@@ -9,7 +9,7 @@
 //                            | step_gap | step_odd | step_listen_choose | step_listen_build
 //   ?exit=1 — на экране ступени поверх открыта шторка «Выйти из ступени?» (spire-009). Жалобу на задание в превью не рисуем: её отправка — запись в сеть.
 //   ?selector=1 — снизу полоса переключения состояний (по умолчанию скрыта, чтобы не попадать в кадр).
-//   &tier=0 (лига 0…11, 0 = Гранит; по умолчанию 3) &floor=4 (мой этаж 1…15; по умолчанию 7) — данные кадра как в образце
+//   &tier=0 (лига 0…11, 0 = Гранит; по умолчанию 3) &floor=4 (мой этаж 1…15; по умолчанию 7) &steps=39 (ступени в итоге недели) — данные кадра как в образце; лига итога недели следует за tier
 //   &spirePanel=off — полосы нет совсем (для съёмки); &spirePanel=dot — свёрнута в точку в правом нижнем углу, тап раскрывает.
 // Экраны — ТЕ ЖЕ компоненты, что в бою (SpireHomeScreen через шов spire_preview_context, SpireStepLayout), данные — моки без сети.
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную. Охраняет tests/spire_dev_preview_release_guard.test.mjs.
@@ -82,12 +82,12 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string }>();
+  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string }>();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
   // зачем (координатор 15.10): tier= (0…11, 0 = Гранит) и floor= (1…15) — данные кадров Макетов = образцу; без них прежние tier 3 / этаж 7
-  const overrides = useMemo(() => parseSpirePreviewOverrides(params.tier, params.floor), [params.tier, params.floor]);
+  const overrides = useMemo(() => parseSpirePreviewOverrides(params.tier, params.floor, params.steps), [params.tier, params.floor, params.steps]);
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);
   const exitOpen = params.exit === '1';
@@ -108,7 +108,7 @@ function Inner() {
         <ScreenGradient artBackdrop="home">
           <SafeAreaView edges={['top']} style={s.root}>
             {/* key: смена состояния пересоздаёт экран — локальные состояния (выбранный этаж, шторки) стартуют заново */}
-            <SpirePreviewProvider key={`${state}|${overrides.tier ?? ''}|${overrides.floor ?? ''}`} model={model}>
+            <SpirePreviewProvider key={`${state}|${overrides.tier ?? ''}|${overrides.floor ?? ''}|${overrides.steps ?? ''}`} model={model}>
               <SpireHomeScreen />
             </SpirePreviewProvider>
           </SafeAreaView>

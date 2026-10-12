@@ -24,3 +24,6 @@ components/spire/spire_preview_fixtures.ts (разбор параметров + 
 
 ## Rollback
 git revert.
+
+## Дополнение (Макеты, spire-gap-015): итог недели следует за tier, параметр steps
+Карточка итога недели (weekresult, weekresult_stay, weekresult_down) брала лигу из зашитых prevTier/newTier (2→3), а не из tier=. Теперь «поднимаешься» — в tier (из tier−1; при tier 0 вход в Гранит невозможен, берётся Базальт), «остаёшься» — в tier, «опускаешься» — из tier в tier−1. Добавлен `steps=` (0…200) — число ступеней в карточке итога (образец «39 ступеней»). Только dev-фикстуры, без параметров прежнее поведение. Проверка: расширен tests/spire_preview_tier_floor.test.ts. Откат: git revert.

@@ -35,13 +35,14 @@ const ENABLED_CONFIG: SpireConfigDoc = { ...SPIRE_CONFIG_DEFAULTS, enabled: true
 
 // зачем (координатор 15.10, Макеты: кадры spire-007/011/gap-015/018 должны совпасть с образцом «Гранит, этаж 4»): dev-превью принимает `tier=` и `floor=`.
 // tier — индекс лиги 0…11 (0 = Гранит; прежнее значение 3 = Нефрит), floor — мой этаж 1…15 (прежнее значение 7). Без параметров всё как раньше.
-export type SpirePreviewOverrides = Readonly<{ tier?: number; floor?: number }>;
+// steps — число ступеней в карточке итога недели (weekresult*, прежние 58 / 31 / 12); лига итога привязана к tier (см. weekTiers)
+export type SpirePreviewOverrides = Readonly<{ tier?: number; floor?: number; steps?: number }>;
 const PREVIEW_BASE_TIER = 3;
 const PREVIEW_BASE_FLOOR = 7;
 const PREVIEW_SUMMIT_FLOOR = 15;
 
 /** Только целые в допустимом диапазоне; всё остальное игнорируется (с предупреждением в журнале). */
-export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown): SpirePreviewOverrides {
+export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown, rawSteps?: unknown): SpirePreviewOverrides {
   const first = (v: unknown): unknown => (Array.isArray(v) ? v[0] : v);
   const asInt = (v: unknown, min: number, max: number, name: string): number | undefined => {
     const raw = first(v);
@@ -53,11 +54,22 @@ export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown):
   };
   const tier = asInt(rawTier, 0, 11, 'tier');
   const floor = asInt(rawFloor, 1, PREVIEW_SUMMIT_FLOOR, 'floor');
-  return { ...(tier === undefined ? {} : { tier }), ...(floor === undefined ? {} : { floor }) };
+  const steps = asInt(rawSteps, 0, 200, 'steps');
+  return { ...(tier === undefined ? {} : { tier }), ...(floor === undefined ? {} : { floor }), ...(steps === undefined ? {} : { steps }) };
 }
 
 let activeOverrides: SpirePreviewOverrides = {};
 const previewTier = (): number => activeOverrides.tier ?? PREVIEW_BASE_TIER;
+/** Лиги карточки итога недели: «поднимаешься» — в tier (из tier−1), «остаёшься» — в tier, «опускаешься» — из tier в tier−1; в Граните (0) спуска и входа «в Гранит» не бывает. */
+function weekTiers(kind: 'promoted' | 'stay' | 'demoted'): { prevTier: number; newTier: number } {
+  const tier = previewTier();
+  if (kind === 'stay') return { prevTier: tier, newTier: tier };
+  if (kind === 'promoted') { const newTier = Math.max(1, tier); return { prevTier: newTier - 1, newTier }; }
+  const prevTier = Math.max(1, tier);
+  return { prevTier, newTier: prevTier - 1 };
+}
+const previewSteps = (base: number): number => activeOverrides.steps ?? base;
+
 /** Этаж относительно базового 7 (состояние `win` — этаж+1); вершина 15 остаётся вершиной; ниже 1 не бывает. */
 const previewFloor = (baseFloor: number): number => {
   if (activeOverrides.floor === undefined || baseFloor >= PREVIEW_SUMMIT_FLOOR) return baseFloor;
@@ -195,7 +207,7 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
         ...base, week: w,
         game: game({
           rows: rows(31), myPlace: 5, friends: FRIENDS,
-          weekResult: { weekId: w.weekKey, lang: 'en', steps: 58, roomRank: 2, roomTotal: 30, promoted: true, demoted: false, prevTier: 2, newTier: 3, placeCoins: 200, promotionCoins: 100 },
+          weekResult: { weekId: w.weekKey, lang: 'en', steps: previewSteps(58), roomRank: 2, roomTotal: 30, promoted: true, demoted: false, ...weekTiers('promoted'), placeCoins: 200, promotionCoins: 100 },
         }),
       };
     }
@@ -205,7 +217,7 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
         ...base, week: w,
         game: game({
           rows: rows(31), myPlace: 5, friends: FRIENDS,
-          weekResult: { weekId: w.weekKey, lang: 'en', steps: 31, roomRank: 14, roomTotal: 30, promoted: false, demoted: false, prevTier: 3, newTier: 3, placeCoins: 60, promotionCoins: 0 },
+          weekResult: { weekId: w.weekKey, lang: 'en', steps: previewSteps(31), roomRank: 14, roomTotal: 30, promoted: false, demoted: false, ...weekTiers('stay'), placeCoins: 60, promotionCoins: 0 },
         }),
       };
     }
@@ -215,7 +227,7 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
         ...base, week: w,
         game: game({
           rows: rows(12), myPlace: 11, friends: FRIENDS,
-          weekResult: { weekId: w.weekKey, lang: 'en', steps: 12, roomRank: 27, roomTotal: 30, promoted: false, demoted: true, prevTier: 3, newTier: 2, placeCoins: 0, promotionCoins: 0 },
+          weekResult: { weekId: w.weekKey, lang: 'en', steps: previewSteps(12), roomRank: 27, roomTotal: 30, promoted: false, demoted: true, ...weekTiers('demoted'), placeCoins: 0, promotionCoins: 0 },
         }),
       };
     }

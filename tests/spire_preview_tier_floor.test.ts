@@ -68,9 +68,24 @@ describe('dev_spire_preview: tier= и floor=', () => {
     expect(spirePreviewModel('room').week?.tier).toBe(3);
   });
 
+  it('итог недели следует за tier: «поднимаешься» в tier, «остаёшься» в tier, «опускаешься» из tier; steps= меняет число ступеней; без параметров прежние 2→3, 58', () => {
+    const base = spirePreviewModel('weekresult').game.weekResult;
+    expect(base).toMatchObject({ prevTier: 2, newTier: 3, steps: 58 });
+    expect(spirePreviewModel('weekresult_stay').game.weekResult).toMatchObject({ prevTier: 3, newTier: 3, steps: 31 });
+    expect(spirePreviewModel('weekresult_down').game.weekResult).toMatchObject({ prevTier: 3, newTier: 2, steps: 12 });
+    // образец spire-gap-015: «поднимаешься в Базальт · 39 ступеней» (Базальт = tier 1)
+    expect(spirePreviewModel('weekresult', { tier: 1, floor: 1, steps: 39 }).game.weekResult).toMatchObject({ prevTier: 0, newTier: 1, steps: 39, promoted: true });
+    expect(spirePreviewModel('weekresult_stay', { tier: 4 }).game.weekResult).toMatchObject({ prevTier: 4, newTier: 4 });
+    expect(spirePreviewModel('weekresult_down', { tier: 4 }).game.weekResult).toMatchObject({ prevTier: 4, newTier: 3 });
+    // в Граните (0) входа «в Гранит» и спуска ниже нет: «поднимаешься» даёт Базальт, спуск — из Базальта в Гранит
+    expect(spirePreviewModel('weekresult', { tier: 0 }).game.weekResult).toMatchObject({ prevTier: 0, newTier: 1 });
+    expect(spirePreviewModel('weekresult_down', { tier: 0 }).game.weekResult).toMatchObject({ prevTier: 1, newTier: 0 });
+    expect(parseSpirePreviewOverrides(undefined, undefined, '39')).toEqual({ steps: 39 });
+  });
+
   it('маршрут читает параметры и меняет ключ провайдера; параметры описаны в шапке; боевой код Шпиля не тронут', () => {
     const route = read('app', 'dev_spire_preview.tsx');
-    expect(route).toContain('parseSpirePreviewOverrides(params.tier, params.floor)');
+    expect(route).toContain('parseSpirePreviewOverrides(params.tier, params.floor, params.steps)');
     expect(route).toContain('spirePreviewModel(state, overrides)');
     expect(route).toContain('spireStepPreview(state, overrides)');
     expect(route).toMatch(/&tier=0/);

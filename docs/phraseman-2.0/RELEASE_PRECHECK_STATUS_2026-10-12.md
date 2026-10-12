@@ -203,3 +203,22 @@
 - **В день сборки, до eas build** (тяжело — через светофор, один процесс): стор-экспорт Android в `dist-store`
   (команда — в шапке скрипта гейта), затем `npm run release:precheck`. Нашлась строка — ОТКАЗ с файлом; лечится
   добавлением модуля в подмену заглушкой.
+
+## Прогон Ядра 12.10 поздний вечер (по частям: свободной памяти ~1 ГБ < 4 ГБ — полный прогон не запускался)
+
+Каждый гейт `release:precheck` запущен отдельно (`node scripts/<гейт>.mjs`), HEAD ≈ dc011a379.
+
+| Гейт | Итог | Зона | Что дальше |
+|---|---|---|---|
+| ключи и конфиги релиза (`release_keys_gate`) | ✅ OK static | Ядро | — |
+| версии production-профиля (`eas_production_version_gate`) | ✅ | Ядро | — |
+| нет ссылок на вырезанные из стора маршруты (`store_route_reachability`) | ✅ 10 вырезано, 0 переходов | Ядро | — |
+| стор-заглушки dev-модулей (`store_release_stubs_gate`) | ✅ 15 заглушек (+`dev_energy_stop_flag`, 990c22f61) | Ядро | — |
+| пакеты фразы дня .dpk (`daily_phrase_dpk_assets_gate`) | ✅ исходники es/de/it по 176 фраз; проверка сборки ПРОПУЩЕНА (манифест release старее .dpk, `dist-store` нет) | Ядро | в день сборки — после стор-экспорта |
+| в стор-бандле нет dev-строк (`store_bundle_dev_strings_gate`) | ⏸ не запускался — нужен стор-экспорт (тяжело) | Ядро | в день сборки, через светофор, см. §4 |
+| исходник = выпуск = копия Learning V2 (`learning_v2_release_parity_gate`) | ❌ CONTENT_MISMATCH l01/s04… и ещё 185 | **Codex** (Learning V2) | `content/learning-v2-course`, `modules/learning-v2` — владелец Codex |
+| озвучка встроенных занятий Learning V2 (`learning_v2_audio_coverage_gate`) | ❌ zero_released_sessions: собирается 56 из 186, audio_missing 130 | **Codex** (Learning V2) | озвучить с l1s1 и перегенерировать артефакт доступности — Codex |
+| приложение = макет (`visual_parity_gate`) | ❌ 1096 строк: match 56 (гейт проходят 27), pending 610, diff 376, blocked 10, evidence_stale 29 | **Макеты/Сверка** (+ Дизайн по diff) | подмены Ядра для съёмки — DEV_SWITCHES_R1_CORE.md (партии 1–5); сторож ссылок `tests/dev_links_r1_prod_write_guard.test.mjs` |
+
+**Красных в зоне Ядра нет.** Красные — Learning V2 (Codex, 2 гейта) и визуальная сверка (Макеты/Сверка: 1026 нарушений,
+из них pending 610 — съёмка ещё идёт).

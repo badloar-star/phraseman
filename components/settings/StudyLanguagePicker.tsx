@@ -286,6 +286,7 @@ export default function StudyLanguagePicker({
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
             accessibilityLabel={STUDY_TARGET_NATIVE_NAME[code]}
+            testID={`study-lang-row-${code}`} // зачем (робот съёмки, 12.10): строка языка находится без привязки к языку интерфейса
             style={{
               width: CARD_WIDTH,
               height: CARD_HEIGHT,

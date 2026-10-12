@@ -193,6 +193,7 @@ export function demoCustomCards(count: number = DEMO_CUSTOM_COUNT): CardItem[] {
 
 export async function applyCustomCards(count: number = DEMO_CUSTOM_COUNT): Promise<string> {
   await assertWritableAccount('cards=custom50');
+  await resetCardsViewPrefs(); // зачем (Макеты e68b81502, cards-010 снялся в режиме «Стопка»): вид и масштаб переживают перезапуск — каждая карточная фикстура начинает со списка
   const { updateCustomCards } = await import('./flashcards/custom_cards_store');
   const cards = demoCustomCards(count);
   await updateCustomCards(() => cards, TARGET);
@@ -209,6 +210,7 @@ export const DEMO_PUBLISHED_LOCAL_ID = 'local_pack_dev_demo_published';
  */
 export async function applyDemoPublished(stableId: string): Promise<string> {
   await assertWritableAccount('cards=demo_published');
+  await resetCardsViewPrefs(); // зачем: см. cards=custom50
   const own: DemoOwnPack = { packId: DEMO_PUBLISHED_LOCAL_ID, title: 'Мой опубликованный', count: 10, level: 'B1', words: ['Layover', 'Gate', 'Customs'] };
   const { saveLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
   await saveLocalAuthorPack({
@@ -245,6 +247,7 @@ export async function applyDemoPublished(stableId: string): Promise<string> {
 /** Сохранённые карточки без перевода (R1 Н-11: cards-gap-007/008): `answerFor` пуст для любого языка интерфейса. */
 export async function applyNoTranslationCards(): Promise<string> {
   await assertWritableAccount('cards=notranslation');
+  await resetCardsViewPrefs(); // зачем: см. cards=custom50
   const { saveFlashcards } = await import('../hooks/use-flashcards');
   const words = ['Layover', 'Gate', 'Customs', 'Boarding', 'Luggage', 'Passport'];
   const cards = words.map((en, i) => ({

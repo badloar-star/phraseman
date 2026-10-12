@@ -137,6 +137,8 @@ export type DevStateRequest = Readonly<{
   intros?: 'seen' | 'reset';
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
+  /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
+  aiConsent?: 'granted' | 'off';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -197,6 +199,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
+  request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -428,6 +431,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
+  }
+  if (request.aiConsent !== undefined) {
+    // зачем (координатор 12.10): у гостя нет согласия на ИИ — «Начать» открывает шторку согласия вместо сессии; подменяем ТОЛЬКО ответ гейта (память), recordAiDialogConsent не вызывается
+    await step('aiConsent', request.aiConsent, async () => {
+      const { setDevAiConsentGranted } = await import('./dev_ai_consent');
+      return setDevAiConsentGranted(request.aiConsent === 'granted');
+    });
   }
   if (request.coinRank !== undefined) {
     // зачем (координатор 12.10): у гостя ранг 0 — все диалоги «Откроется на ранге 1…6»; подмена ТОЛЬКО значения хука, без записи монет и ранга (ранг синхронизируемый)

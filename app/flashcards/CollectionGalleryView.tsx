@@ -196,7 +196,7 @@ export default function CollectionGalleryView({
         <ScrollView
           ref={scrollRef}
           testID="fc-gallery-scroll"
-          contentContainerStyle={styles.content}
+          contentContainerStyle={[styles.content, selectionMode && !canCreatePack && styles.contentSelHint]}
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onScroll={onScroll}
@@ -263,7 +263,13 @@ export default function CollectionGalleryView({
 
       {selectionMode ? (
         <PanelDock>
-          {!canCreatePack ? <Text style={[styles.selHint, { color: g.secondary }]}>{copy.more(selectionRemaining ?? 0)}</Text> : null}
+          {/* зачем (Макеты e68b81502, cards-007: подсказка «Выбери ещё 10 карточек…» лежала на нижнем ряду без подложки, текст наезжал на карточки): плашка по тону
+              «Тени» (opaqueControl, как у подсказки удаления) + запас внизу списка (contentSelHint), чтобы последний ряд не прятался за панелью */}
+          {!canCreatePack ? (
+            <View testID="fc-selection-hint" style={[styles.selHintPlate, { backgroundColor: g.opaqueControl }]}>
+              <Text style={[styles.selHint, { color: g.text }]}>{copy.more(selectionRemaining ?? 0)}</Text>
+            </View>
+          ) : null}
           <View style={styles.selRow}>
             <PanelCta g={g} flex testID="fc-create-pack-from-selection" label={copy.createPack} disabled={!canCreatePack} onPress={onCreatePack} />
             <PanelCta g={g} ghost testID="fc-delete-selected" label={copy.deleteSel} disabled={selectedCount === 0} onPress={onDeleteSelected} />
@@ -303,6 +309,7 @@ export default function CollectionGalleryView({
 const styles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingHorizontal: SIDE, paddingBottom: 150 },
+  contentSelHint: { paddingBottom: 210 }, // панель выделения с плашкой-подсказкой выше обычной: 150 + плашка ≈ 40 + зазор
   gridWrap: { marginTop: 0 },
   addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },
   addText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
@@ -314,7 +321,8 @@ const styles = StyleSheet.create({
   report: { alignItems: 'center', paddingVertical: 24 },
   hint: { position: 'absolute', left: 16, right: 16, bottom: 96, zIndex: 20, flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12 },
   hintText: { flex: 1, fontSize: 13, lineHeight: 18 },
-  selHint: { marginBottom: 10, fontSize: 13, lineHeight: 17, textAlign: 'center' },
+  selHintPlate: { alignSelf: 'center', maxWidth: '100%', marginBottom: 10, borderRadius: 14, paddingHorizontal: 14, paddingVertical: 8 },
+  selHint: { fontSize: 13, lineHeight: 18, textAlign: 'center' },
   selRow: { flexDirection: 'row', gap: 10 },
   fabWrap: { position: 'absolute', left: 0, right: 0, alignItems: 'center' },
   limitBar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 20 },

@@ -16,11 +16,12 @@
  *   back | key:ENTER             системная кнопка / клавиша
  *   scroll:down | scroll:up      прокрутка экрана
  *   wait:600                     пауза, мс
+ *   settle:0                     мета-шаг строки: пауза перед снимком вместо --settle-ms (для коротких состояний вроде «ИИ печатает»); шагом не выполняется, а предыдущий шаг не ждёт afterStepMs
  *   xy:540,1200                  последнее средство: тап по координатам
  */
 const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see']);
 const OPS_NO_TARGET = new Set(['back']);
-const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy']);
+const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy', 'settle']);
 
 export function parseSteps(raw) {
   const text = String(raw ?? '').replace(/`/g, '').trim();
@@ -36,7 +37,7 @@ export function parseSteps(raw) {
     }
     if (OPS_WITH_VALUE.has(op)) {
       if (!value) throw new Error(`step_no_value:${part}`);
-      if (op === 'wait' && !/^\d{1,5}$/.test(value)) throw new Error(`step_bad_wait:${part}`);
+      if ((op === 'wait' || op === 'settle') && !/^\d{1,5}$/.test(value)) throw new Error(`step_bad_wait:${part}`);
       if (op === 'xy' && !/^\d{1,4},\d{1,4}$/.test(value)) throw new Error(`step_bad_xy:${part}`);
       if (op === 'scroll' && !/^(down|up)$/.test(value)) throw new Error(`step_bad_scroll:${part}`);
       if (op === 'type' && !/^[\x20-\x7e]+$/.test(value)) throw new Error(`step_type_not_ascii:${part}`);
@@ -153,7 +154,9 @@ export async function runSteps(run, steps, opts = {}) {
     log(`элемент ${selector} не удалось вывести на экран за 6 прокруток — жмём как есть`); // guard-ok: причина, по которой тап может промахнуться
     return found.node;
   };
-  for (const step of steps) {
+  for (let index = 0; index < steps.length; index += 1) {
+    const step = steps[index];
+    if (step.op === 'settle') continue; // мета-шаг: читает робот, а не исполнитель
     log(`шаг ${step.op}${step.value ? `:${step.value}` : ''}`);
     if (step.op === 'wait') { await sleep(Number(step.value)); continue; }
     if (step.op === 'back') run(['shell', 'input', 'keyevent', '4']);
@@ -180,6 +183,8 @@ export async function runSteps(run, steps, opts = {}) {
         run(['shell', 'input', 'swipe', String(a), String(cy), String(b), String(cy), '250']);
       }
     }
+    // зачем: перед мета-шагом settle пауза после тапа не нужна — окно «ИИ печатает» живёт 1,5 с
+    if (steps[index + 1]?.op === 'settle') continue;
     await sleep(afterStepMs);
   }
 }

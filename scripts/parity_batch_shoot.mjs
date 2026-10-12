@@ -226,7 +226,9 @@ async function shootOne(device, row, opts, runDir) {
   }
   // --burst-ms: кадр СРАЗУ после перехода (конфетти, вспышки) — без паузы settle и без повторов пустого кадра
   const burst = opts.burstMs > 0 && result.outcome === 'ok';
-  await sleep(burst ? opts.burstMs : opts.settleMs);
+  // зачем (координатор 12.10, dialogs-029): мета-шаг `settle:<мс>` в строке заменяет --settle-ms
+  const settleStep = row.steps.find((s) => s.op === 'settle');
+  await sleep(burst ? opts.burstMs : (settleStep ? Number(settleStep.value) : opts.settleMs));
   const capture = () => adb(device, ['exec-out', 'screencap', '-p'], { timeout: 30_000, binary: true });
   const first = capture();
   if (!isPng(first)) return { ...result, outcome: 'error', detail: `screencap_не_png_${first.length}_байт`, file: null };

@@ -25,6 +25,10 @@ def add(ids, steps=(), params='', nxt='', unique=True, note=''):
     # (dev_state?coinRank=6, app/dev_coin_rank.ts — только память, монеты и ранг не пишутся)
     if nxt.startswith('/ai_dialog_home') and 'coinRank=' not in params:
         params = f'{params}&coinRank=6' if params else 'coinRank=6'
+    # зачем (координатор 12.10): без согласия на ИИ «Начать» открывает шторку согласия, а не сессию; dev_state?aiConsent=granted подменяет ТОЛЬКО ответ гейта в памяти
+    # (запись согласия и облако не вызываются). Нужен всем ссылкам, чьи шаги нажимают «Начать» в брифинге; строка dialogs-009 (сама шторка) снимается без подмены.
+    if nxt.startswith('/ai_dialog_home') and any('dialogue-v2-briefing-start' in s for s in steps) and 'aiConsent=' not in params:
+        params = f'{params}&aiConsent=granted' if params else 'aiConsent=granted'
     for rid in ([ids] if isinstance(ids, str) else ids):
         if rid in ENTRIES:
             raise SystemExit(f'duplicate steps entry: {rid}')
@@ -349,3 +353,7 @@ add('dialogs-008', [WORLD, ROW], 'plus=off&dquota=reset&energy=5&coinRank=0', DL
 add('dialogs-012', DLG_START, SESSION_FREE + '&dev_dialog_send=ok', DLG, note='старт диалога: энергия 5 → 4 в пилюле сессии (кадр спустя 3 с после «Начать»)')
 add(['dialogs-014', 'dialogs-030'], DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok', DLG, note='разговор идёт: после отправки сообщения ответ собеседника на месте (подставной ход, 1,5 с)')
 add('dialogs-036', DLG_START + ['back'], SESSION_FREE + '&dev_dialog_send=ok', DLG, note='внутри сессии: системная «назад» → подтверждение выхода')
+
+# Раунд 7 (координатор 12.10)
+# dialogs-029 «ИИ печатает»: индикатор живёт 1,5 с (подставной ход) — снимаем сразу после отправки (settle:0)
+add('dialogs-029', DLG_START + ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'settle:0'], SESSION_FREE + '&dev_dialog_send=ok', DLG, note='«ИИ печатает»: кадр сразу после отправки (индикатор 1,5 с)')

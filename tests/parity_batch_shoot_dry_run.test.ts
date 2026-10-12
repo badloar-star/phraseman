@@ -42,8 +42,8 @@ function evalModule(code: string): unknown {
 
 describe('parity_steps (grammar and node search)', () => {
   it('parses a step list and rejects malformed steps', () => {
-    expect(evalModule(`m.parseSteps('tap:#fc-saved-actions; wait:300; type:zzzqq; back; scroll:down; see:#paywall-compare-toggle')`)).toEqual([
-      { op: 'tap', value: '#fc-saved-actions' }, { op: 'wait', value: '300' }, { op: 'type', value: 'zzzqq' }, { op: 'back', value: '' }, { op: 'scroll', value: 'down' }, { op: 'see', value: '#paywall-compare-toggle' },
+    expect(evalModule(`m.parseSteps('tap:#fc-saved-actions; wait:300; type:zzzqq; back; scroll:down; see:#paywall-compare-toggle; settle:0')`)).toEqual([
+      { op: 'tap', value: '#fc-saved-actions' }, { op: 'wait', value: '300' }, { op: 'type', value: 'zzzqq' }, { op: 'back', value: '' }, { op: 'scroll', value: 'down' }, { op: 'see', value: '#paywall-compare-toggle' }, { op: 'settle', value: '0' },
     ]);
     for (const bad of ['tap', 'wait:abc', 'type:привет', 'fly:#x', 'scroll:left', 'xy:10']) {
       expect(() => evalModule(`m.parseSteps(${JSON.stringify(bad)})`)).toThrow();

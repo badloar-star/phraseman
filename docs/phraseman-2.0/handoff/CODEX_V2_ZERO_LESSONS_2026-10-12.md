@@ -65,3 +65,6 @@ ew-chat\outputs\ACCOUNT_ANDROID_PROVISION_LOCK_REVIEWED_LAUNCH.ps1 изменё�
 ## Ответ Codex
 
 _(впишите сюда: что сделано, хэши, реальный потолок занятий и срок)_
+
+## Координатор 12.10 20:05 — красный ratchet цветов
+`tests/theme_hardcoded_colors_ratchet` красный из-за `modules/learning-v2/modes/mode_feedback_v1.tsx`: +5 цветовых литералов вне токенов темы. Просьба: заменить на токены темы (useTheme / glassTone), либо пометить theme-exempt с причиной, если цвет сознательно постоянный. Иначе release:precheck красный.

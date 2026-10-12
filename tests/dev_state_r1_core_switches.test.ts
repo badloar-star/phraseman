@@ -167,4 +167,18 @@ describe('dev_state R1 (Ядро): packcards=meta и packdraft', () => {
     expect(cards.getDevPackDraft()).toBeNull();
     expect(cards.isDevCommunityPackId('dev_demo_community_2')).toBe(false);
   });
+
+  test('packdraft few/full/private и speech=hold|preparing', async () => {
+    const cards = require('../app/dev_cards_state') as typeof import('../app/dev_cards_state');
+    const rowsOf = () => (cards.getDevPackDraft() as { rows: unknown[]; publishToCommunity: boolean } | null);
+    await applyDevState(parseDevStateParams({ packdraft: 'few' }).request);
+    expect(rowsOf()?.rows).toHaveLength(4);
+    await applyDevState(parseDevStateParams({ packdraft: 'full' }).request);
+    expect(rowsOf()?.rows).toHaveLength(50);
+    expect(new Set((rowsOf()?.rows as { en: string }[]).map((r) => r.en)).size).toBe(50);
+    await applyDevState(parseDevStateParams({ packdraft: 'private' }).request);
+    expect(rowsOf()?.publishToCommunity).toBe(false);
+    expect(parseDevStateParams({ speech: 'hold' }).request.speech).toBe('hold');
+    expect(parseDevStateParams({ speech: 'preparing' }).request.speech).toBe('preparing');
+  });
 });

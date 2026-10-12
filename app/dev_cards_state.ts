@@ -29,7 +29,9 @@ export const DEV_CARDS_FAILS = [
 export type DevCardsFail = (typeof DEV_CARDS_FAILS)[number];
 
 /** «Устно»: что подставить вместо реального микрофона. */
-export const DEV_SPEECH_MODES = ['correct', 'wrong', 'denied', 'no_speech', 'unavailable'] as const;
+// зачем (Макеты 12.10, dialogs-024/025): hold — «запись» держится и после отпускания (робот снимает кадр после шага);
+// preparing — держится «Готовлю микрофон…» (Диалоги). Снять — speech=off.
+export const DEV_SPEECH_MODES = ['correct', 'wrong', 'denied', 'no_speech', 'unavailable', 'hold', 'preparing'] as const;
 export type DevSpeechMode = (typeof DEV_SPEECH_MODES)[number];
 
 /** Отказ слоя отложенной выдачи тренировки (экраны «Тренировка не открылась» и т. п.). */
@@ -245,29 +247,38 @@ export function devCommunityRecordPosted(comment: PackComment): void {
 // ───────────────────── Черновик нового набора (cards-072, съёмка R1) ─────────────────────
 // зачем: кадр «Набор сохранён на устройстве. Публикация не завершена…» требует нового набора с ≥10 карточками и публикацией;
 // набирать 12 карточек роботом — долго и хрупко. `packdraft=on` отдаёт экрану создания готовый черновик из памяти.
-let packDraftOn = false;
+// on — 12 карточек в сообщество (cards-072); few — 4 (cards-069 «Минимум 10»); full — 50 (cards-071 лимит); private — 12 без публикации
+// (cards-073 «Набор сохранён» без сервера).
+export const DEV_PACK_DRAFTS = ['on', 'few', 'full', 'private'] as const;
+export type DevPackDraft = (typeof DEV_PACK_DRAFTS)[number];
+let packDraft: DevPackDraft | null = null;
 
-export function setDevPackDraft(on: boolean): boolean {
+export function setDevPackDraft(mode: DevPackDraft | null): boolean {
   if (!devCardsAvailable()) {
     console.warn(`${LOG} packdraft: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
     return false;
   }
-  packDraftOn = on;
-  console.log(`${LOG} packdraft=${on ? 'on' : 'off'}`); // guard-ok: единичный лог на ссылку
+  packDraft = mode;
+  console.log(`${LOG} packdraft=${mode ?? 'off'}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
 /** Черновик «нового набора» (форма CommunityPackCreateDraftV1) или null (вне dev — всегда null). */
 export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
-  if (!devCardsAvailable() || !packDraftOn) return null;
+  if (!devCardsAvailable() || packDraft === null) return null;
   const words: readonly (readonly [string, string])[] = [
     ['Layover', 'пересадка'], ['Gate', 'выход на посадку'], ['Customs', 'таможня'], ['Boarding pass', 'посадочный талон'],
     ['Luggage', 'багаж'], ['Delay', 'задержка'], ['Aisle seat', 'место у прохода'], ['Window seat', 'место у окна'],
     ['Check-in', 'регистрация'], ['Departure', 'вылет'], ['Arrival', 'прилёт'], ['Carry-on', 'ручная кладь'],
   ];
+  const count = packDraft === 'few' ? 4 : packDraft === 'full' ? 50 : words.length;
+  const rows = Array.from({ length: count }, (_, i) => {
+    const [en, ru] = words[i % words.length];
+    return { id: `c${i + 1}`, en: i < words.length ? en : `${en} ${Math.floor(i / words.length) + 1}`, ru, uk: ru };
+  });
   return {
-    v: 1, title: 'В аэропорту', description: 'Фразы для перелёта', themeIdx: 0, packLanguage: 'en', publishToCommunity: true, level: 'A2',
-    rows: words.map(([en, ru], i) => ({ id: `c${i + 1}`, en, ru, uk: ru })),
+    v: 1, title: 'В аэропорту', description: 'Фразы для перелёта', themeIdx: 0, packLanguage: 'en', publishToCommunity: packDraft !== 'private', level: 'A2',
+    rows,
     addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftPlannedTranslation: '', draftNote: '',
   };
 }
@@ -276,7 +287,7 @@ export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
 export function resetDevCardsStateForTests(): void {
   state = EMPTY;
   community = EMPTY_COMMUNITY;
-  packDraftOn = false;
+  packDraft = null;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -1717,6 +1717,11 @@ export function SpeakingPanel({
     }
     if (!holdActive && wasHolding) {
       const devMode = devSpeechHoldRef.current;
+      // зачем (Макеты 12.10): dev `speech=hold|preparing` — «запись идёт» остаётся и после отпускания, для кадра робота.
+      if (devMode === 'hold' || devMode === 'preparing') {
+        console.log(`[DEV-STATE] speaking: отпускание проигнорировано — запись удержана (${devMode})`); // guard-ok: dev-ветка
+        return;
+      }
       if (devMode !== null) {
         devSpeechHoldRef.current = null;
         const generation = captureGenerationRef.current;

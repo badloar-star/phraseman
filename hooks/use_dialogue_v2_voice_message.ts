@@ -212,6 +212,11 @@ export function useDialogueV2VoiceMessage({
   // Подмена держит «запись», на отпускании выдаёт транскрипт и черновик голосового (file:///dev-voice.m4a — файла нет, удаление безопасно).
   const devSpeechActiveRef = useRef(false);
   const stop = useCallback(() => {
+    const heldMode = devSpeechActiveRef.current ? getDevSpeechMode() : null;
+    if (heldMode === 'hold' || heldMode === 'preparing') {
+      console.warn('[DEV-STATE] dialogue voice: отпускание проигнорировано — статус удержан', JSON.stringify({ mode: heldMode })); // guard-ok: dev-ветка
+      return;
+    }
     if (devSpeechActiveRef.current) {
       devSpeechActiveRef.current = false;
       voiceHoldActiveRef.current = false;
@@ -245,7 +250,7 @@ export function useDialogueV2VoiceMessage({
       devSpeechActiveRef.current = true;
       voiceHoldActiveRef.current = true;
       console.warn('[DEV-STATE] dialogue voice: «запись» без микрофона', JSON.stringify({ mode: devMode })); // guard-ok: dev-ветка
-      updateStatus('recording');
+      updateStatus(devMode === 'preparing' ? 'starting' : 'recording');
       return;
     }
     // зачем (§SPEECH-NA): раньше при отсутствии модуля старт молча выходил — на

@@ -130,6 +130,12 @@ export async function publishLocalAuthorPack(
     logPublish('exit:invalid', { packId: id, reason: String(invalidReason), cards: payload.cards.length, hasTitle: Boolean(payload.title), hasDescription: Boolean(payload.description) });
     return 'invalid';
   }
+  // зачем (координатор 12.10, «без прод-записей» при съёмке R1): демо-наборы dev_state (local_pack_dev_demo_*) в dev-сборке
+  // никогда не уходят на сервер публикации — даже если демо-данные однажды станут валидными. В стор-сборке __DEV__ = false.
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && id.startsWith('local_pack_dev_demo')) {
+    logPublish('exit:dev_demo_pack', { packId: id, reason: 'demo pack never published from dev' });
+    return 'error';
+  }
 
   try {
     const authorStableId = await getCanonicalUserId().catch((e: unknown) => {

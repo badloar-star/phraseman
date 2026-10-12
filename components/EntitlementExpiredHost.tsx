@@ -187,7 +187,12 @@ function EntitlementExpiredHost() {
       // Any visible decision belongs to the previous account. Close it before
       // adopting the next generation, including direct active A → active B swaps.
       setKind(null);
-      setAccountGeneration(next);
+      // зачем (аудит скорости R1_PERF_FIRST_FRAME, координатор 12.10): captureAccountGeneration() каждый раз отдаёт новый объект —
+      // на монтировании это был лишний рендер хоста и повторный прогон проверки истечения. Новый объект — только при смене полей
+      // (как app/(tabs)/home.tsx); смена аккаунта по-прежнему принимается.
+      setAccountGeneration((prev) => (
+        prev.generation === next.generation && prev.stableId === next.stableId && prev.phase === next.phase ? prev : next
+      ));
     };
     acceptAccount(captureAccountGeneration());
     const subscription = subscribeAccountGeneration(acceptAccount);

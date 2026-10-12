@@ -105,4 +105,13 @@ describe('EntitlementExpiredHost contract', () => {
     expect(hostSrc).not.toContain("title: 'VIP закончился'");
     expect(hostSrc).not.toContain('безлимит');
   });
+
+  // зачем (аудит скорости R1_PERF_FIRST_FRAME, координатор 12.10): новый объект поколения с теми же полями давал лишний рендер хоста
+  // и повторный прогон проверки истечения на каждом старте. Принимаем новый объект только при смене generation/stableId/phase.
+  it('account generation state changes only when generation/stableId/phase change', () => {
+    expect(hostSrc).toContain(
+      'prev.generation === next.generation && prev.stableId === next.stableId && prev.phase === next.phase ? prev : next',
+    );
+    expect(hostSrc).not.toMatch(/setAccountGeneration\(next\);/);
+  });
 });

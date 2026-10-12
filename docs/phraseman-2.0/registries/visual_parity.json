@@ -28891,16 +28891,20 @@
       "anim_notes": [
         "blink 1.05s steps(2) infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-023.png",
+      "evidence_at": "2026-10-12T02:32:37.068Z",
+      "evidence_sha256": "f58382bc92125cca7872594e5e9168be5483a9ab4ce90e5833cb061a16a45f15",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄» в каталоге] В шапке справа чип языка «EN ⌄» и линия под верхней строкой; в утверждённом образце нет (рекомендация в листе владельца — оставить и дорисовать в образец).",
+        "[состояние] На кадре открыта клавиатура ОС; слово «zzzqq» против «xyzq» — данные.",
+        "[вёрстка, мелко] Стрелка «назад» без круглой плашки."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:33:19.810Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28918,7 +28922,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:32, образец cards-v2 №26 «Каталог — ничего не найдено» утверждён): текст и состав совпали — «Сообщество», «+», поле поиска со словом и ✕, плитка с лупой, «Ничего не нашли», «Попробуй другое слово», «Сбросить поиск»."
     },
     {
       "id": "cards-section-024",

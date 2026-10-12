@@ -20,6 +20,7 @@ import { sendFriendRequest } from '../app/firestore_friend_requests';
 import ReferralSheetShell from './referral_sheet_shell';
 import { DebugLogger } from '../app/debug-logger';
 import { getDevReferralApplyResult } from '../app/dev_social_state';
+import { hasEnteredCode, isReferralCodeLongEnough } from '../app/code_entry_format';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -189,13 +190,19 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
     if (visible) { setCode(''); setFeedback(null); setFriendRequested(false); }
   }, [visible]);
 
-  const canSubmit = code.trim().length >= 4 && !busy;
+  // зачем (решение владельца п.81(13), overlays-campaigns-021): кнопка активна при любом непустом коде; короткий код объясняется по нажатию.
+  const canSubmit = hasEnteredCode(code) && !busy;
 
   // зачем (координатор 10.10, Optimistic UI): state busy обновляется после рендера — второй тап в том же кадре применил бы код дважды
   // (и дважды слал заявку в друзья); ref-замок синхронный, снимается в finally.
   const submitLockRef = useRef(false);
   const submit = useCallback(async () => {
     if (!canSubmit) return;
+    if (!isReferralCodeLongEnough(code)) {
+      console.log(`[REFERRAL-CODE] применение: код короче 4 знаков (${code.trim().length}) — сразу «слишком короткий», сеть не вызывается`); // guard-ok: ранний выход логируется
+      setFeedback(feedbackForStatus('invalid', L));
+      return;
+    }
     if (submitLockRef.current) {
       console.warn('[REFERRAL-CODE] применение: повторный тап пропущен');
       return;

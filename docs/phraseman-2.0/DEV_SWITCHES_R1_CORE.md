@@ -307,3 +307,14 @@ energy-modes: не проверено, есть ли у урока 1 перед 
 |---|---|---|
 | cards-gap-025 | `B&cards=demo&plus=on&publish=ok&next=/flashcards_collection?pack=local_pack_dev_demo_work` | `tap:#fc-pack-publish; wait:400` (тост «Набор отправлен на публикацию.») |
 | settings-gap-001 | `onboarding=done&intros=seen&account=linked&plus=off&overlays=off&studyTarget=en&next=/(tabs)/settings` | `wait:1200` (строка аккаунта «привязан»; кнопки аккаунта не жать — они откажут) |
+
+### Авторизация — «неверный формат» промокода и кода друга (п.81(13), 12.10 ночь)
+
+Код приложения изменён (не только подмена): кнопки «Активировать» / «Применить код» активны при любом непустом вводе; формат проверяется
+по нажатию ДО загрузки и сети. Ответ сервера `invalid-argument: bad_code` — тот же текст. Новый параметр: `promo=bad_code` (ответ
+«неверный формат» без сервера — для кода макета `WELC0ME`, у которого формат верный).
+
+| id | ссылка | шаги |
+|---|---|---|
+| overlays-campaigns-013 | `onboarding=done&intros=seen&plus=off&promo=bad_code&overlays=off&next=/promo_code_entry` | `tap:#promo-code-input; type:WELC0ME; back; tap:#promo-code-submit; wait:400` («Проверь код: похоже, он введён неверно.») |
+| overlays-campaigns-021 | `guest=required&onboarding=done&intros=seen&referral=on&refcode=none&overlays=off&next=/referrals?enter=1` | `tap:#referral-code-sheet-input; type:AN; tap:#referral-code-sheet-submit; wait:300` («Проверь код: он слишком короткий.», без сети) |

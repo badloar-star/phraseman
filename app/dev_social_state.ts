@@ -15,6 +15,8 @@ import type { DailyPoll, DailyPollVote } from './daily_poll/daily_poll_model';
 /** Результаты промокода. `off` — глобальный рубильник «промокоды выключены» (promo_disabled), `none` — снять фикстуру. */
 export const DEV_PROMO_RESULTS = [
   'off', 'ok', 'lifetime', 'used', 'expired', 'disabled', 'limit', 'not_found', 'rate_limited', 'error', 'hold', 'none',
+  // зачем (Авторизация 12.10, overlays-campaigns-013): «неверный формат» для кода макета WELC0ME (формат верный — ответ сервера подменяется)
+  'bad_code',
 ] as const;
 export type DevPromoResult = (typeof DEV_PROMO_RESULTS)[number];
 
@@ -157,6 +159,7 @@ export function getDevPromoResult(nowMs: number = Date.now()): PromoRedeemResult
     case 'not_found': return { status: 'not_found' };
     case 'rate_limited': return { status: 'rate_limited' };
     case 'error': return { status: 'error' };
+    case 'bad_code': return { status: 'bad_code' };
     // `hold` — не ответ, а удержание «Активируем…» (см. isDevPromoHold).
     case 'hold': return null;
   }

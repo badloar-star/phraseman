@@ -32,6 +32,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette'; // з�
 import { captureAccountGeneration, isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { writeVipSnapshotForAccount } from './premium_vip_storage';
 import { ensureAnonUser } from './cloud_sync';
+import { hasEnteredCode, isPromoCodeFormatValid } from './code_entry_format';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
@@ -245,8 +246,12 @@ export default function PromoCodeEntryScreen() {
   // Кнопка активна только для кода валидного формата (зеркало серверного CODE_RE
   // 3..32 [A-Z0-9_-]) — чтобы не слать заведомо плохой код.
   const normalizedCode = normalizePromoCodeInput(code);
-  const inputValid = /^[A-Z0-9_-]{3,32}$/.test(normalizedCode);
-  const canSubmit = inputValid && !busy;
+  // зачем (решение владельца п.81(13), overlays-campaigns-013): кнопка активна при любом непустом коде — неверный формат объясняется по нажатию,
+  // а не молча выключенной кнопкой. Формат проверяется в submit ДО загрузки и сети.
+  const canSubmit = hasEnteredCode(normalizedCode) && !busy;
+  // Рамка поля — признак верного формата (как раньше); вид кнопки следует за её активностью: введён код — кнопка выглядит активной.
+  const inputValid = isPromoCodeFormatValid(normalizedCode);
+  const submitLooksReady = hasEnteredCode(normalizedCode);
 
   // зачем (координатор 10.10, Optimistic UI): замок от двойного тапа ставится синхронно — state busy обновляется после рендера,
   // второй тап в том же кадре успел бы отправить код дважды; снимается в finally.
@@ -304,8 +309,13 @@ export default function PromoCodeEntryScreen() {
 
   const submit = useCallback(async () => {
     if (!canSubmit) return;
+    if (!isPromoCodeFormatValid(code)) {
+      console.log(`[PROMO] redeem: неверный формат (длина ${normalizePromoCodeInput(code).length}) — сразу «Проверь код», сеть не вызывается`); // guard-ok: ранний выход логируется
+      setFeedback(feedbackForStatus('bad_code', undefined, undefined, L));
+      return;
+    }
     await runRedeem(code);
-  }, [canSubmit, code, runRedeem]);
+  }, [L, canSubmit, code, runRedeem]);
 
   useEffect(() => {
     if (autoRedeemTriedRef.current) return;
@@ -397,17 +407,17 @@ export default function PromoCodeEntryScreen() {
                 style={{
                   minHeight: 56, borderRadius: 16,
                   alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8,
-                  backgroundColor: (inputValid || busy) ? g.cta : g.selected,
+                  backgroundColor: (submitLooksReady || busy) ? g.cta : g.selected,
                   boxShadow: nestedBoxShadow(g),
-                  opacity: (inputValid || busy) ? 1 : 0.55,
+                  opacity: (submitLooksReady || busy) ? 1 : 0.55,
                 }}
               >
                 {busy ? (
                   <ActivityIndicator size="small" color={g.ctaInk} />
                 ) : (
-                  <Ionicons name="checkmark-circle-outline" size={20} color={inputValid ? g.ctaInk : g.mutedText} />
+                  <Ionicons name="checkmark-circle-outline" size={20} color={submitLooksReady ? g.ctaInk : g.mutedText} />
                 )}
-                <Text style={{ color: inputValid ? g.ctaInk : g.mutedText, fontSize: f.body ?? 16, fontWeight: '800' }}>
+                <Text style={{ color: submitLooksReady ? g.ctaInk : g.mutedText, fontSize: f.body ?? 16, fontWeight: '800' }}>
                   {busy
                     ? L('Активируем…', 'Активуємо…', 'Activating…', 'Activando…', 'Ativando…', 'Đang kích hoạt…', 'Mengaktifkan…', 'Etkinleştiriliyor…', 'Aktywujemy…')
                     : L('Активировать', 'Активувати', 'Activate', 'Activar', 'Ativar', 'Kích hoạt', 'Aktifkan', 'Etkinleştir', 'Aktywuj')}

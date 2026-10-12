@@ -97,8 +97,11 @@ export async function redeemPromoCode(rawCode: string): Promise<PromoRedeemResul
       const errorCode = String((error as { code?: unknown })?.code ?? '');
       const message = String((error as { message?: unknown })?.message ?? error).slice(0, 160);
       const rateLimited = errorCode.includes('resource-exhausted') && message.includes('promo_rate_limited');
-      console.warn('[PROMO-REDEEM] call_failed', JSON.stringify({ errorCode, message, rateLimited }));
-      return { status: rateLimited ? 'rate_limited' : 'error' };
+      // зачем (решение владельца п.81(13), overlays-campaigns-013): сервер отвечает invalid-argument «bad_code» на неверный формат —
+      // это «Проверь код», а не общее «не получилось».
+      const badCode = errorCode.includes('invalid-argument') && message.includes('bad_code');
+      console.warn('[PROMO-REDEEM] call_failed', JSON.stringify({ errorCode, message, rateLimited, badCode }));
+      return { status: rateLimited ? 'rate_limited' : badCode ? 'bad_code' : 'error' };
     }
   })().finally(() => {
     promoRedeemInFlight.delete(code);

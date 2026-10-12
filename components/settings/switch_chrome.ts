@@ -13,6 +13,6 @@ export function switchOffTrackTone(
   glass: Readonly<{ isLight?: boolean; opaqueControl: string; secondary: string }>,
 ): Readonly<{ track: string; knob: string }> {
   return glass.isLight
-    ? { track: `${glass.secondary.slice(0, 7)}A6`, knob: '#FFFFFF' }
+    ? { track: `${glass.secondary.slice(0, 7)}A6`, knob: '#FFFFFF' } // theme-exempt: ручка переключателя всегда светлая, как у iOS/Android
     : { track: glass.opaqueControl, knob: glass.secondary };
 }

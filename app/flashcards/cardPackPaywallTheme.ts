@@ -4,6 +4,8 @@ import {
   UGC_CARD_THEME_IDS,
 } from "../community_packs/ugcCardThemePresets";
 import type { FlashcardMarketPack, FlashcardPackCategory } from "./marketplace";
+import type { GlassTokens } from "../../constants/liquidGlassThemePalette";
+import { cardPackPaywallShellFromTokens } from "./cardPackPaywallTokenTheme";
 
 /**
  * Декор paywall прив\'язаний до **глобальної теми** (`ThemeMode`):
@@ -403,8 +405,11 @@ function categoryTweak(
  */
 export function getCardPackPaywallTheme(
   pack: FlashcardMarketPack,
-  opts: { themeMode: ThemeMode; isLight?: boolean },
+  opts: { themeMode: ThemeMode; isLight?: boolean; tokens?: GlassTokens },
 ): CardPackPaywallTheme {
+  // зачем (координатор 12.10): окно покупки набора следует теме Liquid Glass (в том числе светлой и любому оттенку ползунка),
+  // а не таблице по прежним id тем — themeMode всегда 'dark' и давал зелёную оболочку. Категория набора оболочку больше не красит.
+  if (opts.tokens) return cardPackPaywallShellFromTokens(opts.tokens);
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
   if (opts.themeMode === "sagePorcelain") return shell;
   const t = categoryTweak(shell, pack.category);
@@ -504,8 +509,9 @@ const UGC_SHELL_PATCH: Record<
  */
 export function getCommunityUgcPackPaywallTheme(
   themeKey: string | undefined,
-  opts: { themeMode: ThemeMode; isLight?: boolean },
+  opts: { themeMode: ThemeMode; isLight?: boolean; tokens?: GlassTokens },
 ): CardPackPaywallTheme {
+  if (opts.tokens) return cardPackPaywallShellFromTokens(opts.tokens); // зачем: см. getCardPackPaywallTheme
   const shell = SHELL[opts.themeMode] ?? SHELL.dark;
   if (opts.themeMode === "sagePorcelain") return shell;
   const ids = UGC_CARD_THEME_IDS as readonly string[];

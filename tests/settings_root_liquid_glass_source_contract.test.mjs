@@ -148,7 +148,7 @@ test('functions absent from the macet stay reachable as glass rows and are not s
   assert.match(body, /minHeight:\s*56/);
   assert.match(body, /<SettingsGlassSwitch[\s\S]*?value=\{hapticTap\}[\s\S]*?onValueChange=\{toggleTapHaptics\}/);
   assert.match(source, /setHapticCacheEnabled\(val\);/);
-  assert.match(source, /AsyncStorage\.setItem\('haptics_tap', String\(val\)\)\.catch\(\(error\) => \{\s*DebugLogger\.error\('settings\.tsx:toggleTapHaptics:storage'/);
+  assert.match(source, /AsyncStorage\.setItem\('haptics_tap', String\(val\)\)\.catch\(\(error(?:: unknown)?\) => \{\s*DebugLogger\.error\('settings\.tsx:toggleTapHaptics:storage'/); // зачем (аудит Optimistic UI «Настроек» 12.10): тип ошибки стал явным (`: unknown`) — смысл прежний, запись на диск фоном, сбой логируется и откатывается
   assert.match(body, /testID="settings-clear-cache-row"[\s\S]*?onPress=\{confirmClearCache\}/);
   assert.match(body, /testID="settings-rate-app-row"[\s\S]*?openStoreReviewPage\(\)/);
   assert.match(body, /testID="settings-invite-banner"[\s\S]*?pathname: '\/referrals', params: \{ source: 'settings' \}/);

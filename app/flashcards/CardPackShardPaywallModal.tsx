@@ -54,6 +54,7 @@ import {
   type FlashcardMarketPack,
 } from './marketplace';
 import { getCardPackPaywallTheme } from './cardPackPaywallTheme';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { packTileImageForPack } from './packMarketplaceIcons';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import DuoPressable from '../../components/DuoPressable';
@@ -414,7 +415,9 @@ export default function CardPackShardPaywallModal({
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): только вёрстка текста — межстрочный растёт с системным шрифтом; логика покупки и цены не тронуты
   const lh = useLineScale();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+  // зачем (координатор 12.10): оболочка окна покупки — токены активной темы Liquid Glass (светлая и любой оттенок ползунка), не таблица по id темы
+  const glassTokens = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   // зачем: стаб false отдавал sagePorcelain тёмную ручку шторки (#3C5A50)
   // вместо светлой #D1D9D1 на фарфоровой панели.
   const isLightTheme = isLightThemeMode(themeMode);
@@ -454,8 +457,8 @@ export default function CardPackShardPaywallModal({
   const iconName = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
   const packPng = packTileImageForPack(pack);
   const paywallVisual = useMemo(
-    () => getCardPackPaywallTheme(pack, { themeMode, isLight: isLightTheme }),
-    [pack.id, pack.category, themeMode, isLightTheme],
+    () => getCardPackPaywallTheme(pack, { themeMode, isLight: isLightTheme, tokens: glassTokens }),
+    [pack.id, pack.category, themeMode, isLightTheme, glassTokens],
   );
   const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 3), [themeMode, t]);
   const [reportVisible, setReportVisible] = useState(false);
@@ -1143,16 +1146,16 @@ export default function CardPackShardPaywallModal({
                               }}
                               disabled={purchasing}
                               withHaptic={false}
-                              gradientColors={[t.gold, `${t.gold}DD`]}
+                              gradientColors={paywallVisual.goShopCta} /* зачем (координатор 12.10): кнопка ваучера — та же проверенная по контрасту пара, что у «В магазин»; t.gold + t.bgPrimary на светлых темах давали 4,1–4,3:1 */
                               style={{ minHeight: undefined, paddingVertical: 16, borderRadius: 16, opacity: purchasing ? 0.85 : 1 }}
                             >
                               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
                                 {purchasing ? (
-                                  <ActivityIndicator size="small" color={t.bgPrimary} />
+                                  <ActivityIndicator size="small" color={paywallVisual.goShopForeground} />
                                 ) : (
-                                  <Ionicons name="gift-outline" size={22} color={t.bgPrimary} />
+                                  <Ionicons name="gift-outline" size={22} color={paywallVisual.goShopForeground} />
                                 )}
-                                <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
+                                <Text style={{ color: paywallVisual.goShopForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
                                   {str.voucherCta}
                                 </Text>
                               </View>

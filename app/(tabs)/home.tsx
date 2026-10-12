@@ -51,6 +51,7 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
+import { glassTone } from '../../components/dialogs/glass/glassTone';
 import { useHomeSurveyEntry } from '../../hooks/use_home_survey_entry';
 import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayVisible } from '../../components/OverlayArbiter';
@@ -2495,10 +2496,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
       </Suspense>) : null}
 
       <Modal visible={titleModalVisible} transparent animationType="fade" onRequestClose={() => setTitleModalVisible(false)}>
-        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
+        <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)' /* theme-exempt: скрим затемнения под модалкой — одинаков в обоих оформлениях */, paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
           <View style={{ maxHeight: Math.min(SCREEN_H * 0.74, 620), width: '100%', maxWidth: 560, alignSelf: 'center' }}>
-            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}>
+            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000' /* theme-exempt: тень карточки модалки */, shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: f.h2 + 5 }} numberOfLines={1}>
@@ -2522,7 +2523,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               <ScrollView decelerationRate="fast" style={{ maxHeight: Math.min(SCREEN_H * 0.52, 430) }} nestedScrollEnabled keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 2 }}>
                 {visibleTitles.map((item) => {
                     const titleColor = isLightTheme ? item.colorLight : item.colorDark;
-                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? 'rgba(255,255,255,0.045)' : t.bgSurface), boxShadow: item.current ? raisedBoxShadow(shadowGlass) : plateBoxShadow(shadowGlass), transform: item.current ? [{ translateY: RAISED_LIFT }] : [] }}>
+                    return (<TouchableOpacity key={item.key} activeOpacity={0.84} onPress={() => selectHomeTitle(item)} accessibilityRole="button" accessibilityState={{ disabled: !item.unlocked, selected: item.current }} style={{ minHeight: 62, borderRadius: 15, padding: 12, marginBottom: 10, flexDirection: 'row', alignItems: 'center', gap: 11, backgroundColor: item.current ? titleModalButtonBg : (isGoldTheme ? glassTone(t.textPrimary, 0.05) /* зачем (Темы, R1_LIGHT_THEME_LITERALS): белая дымка 4,5 % была невидима на светлом оформлении; дымка цвета ТЕКСТА темы светлеет в тёмной и темнеет в светлой */ : t.bgSurface), boxShadow: item.current ? raisedBoxShadow(shadowGlass) : plateBoxShadow(shadowGlass), transform: item.current ? [{ translateY: RAISED_LIFT }] : [] }}>
                         <View style={{ width: 38, height: 38, borderRadius: 19, alignItems: 'center', justifyContent: 'center', backgroundColor: titleColor + '20' }}>
                           <Ionicons name={item.current ? 'ribbon' : 'checkmark-circle'} size={20} color={titleColor}/>
                         </View>

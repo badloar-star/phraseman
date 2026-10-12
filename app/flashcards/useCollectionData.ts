@@ -21,6 +21,8 @@ import { accountScopeKey } from '../account_scope_key';
  * (restore-позиция, DEV-пак, deeplink) — через onLoaded-колбэк контейнера.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useTheme } from '../../components/ThemeContext';
+import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Flashcard,
@@ -1222,6 +1224,11 @@ export function useDerivedCollectionCards(args: {
   return { cards, filteredCards, listCards, hiddenByLimitCount };
 }
 
+/** Прозрачность к цвету #rrggbb суффиксом `AA`; цвет другого вида (rgba, #rrggbbaa) возвращается без изменений. */
+function withHexAlpha(color: string, aa: string): string {
+  return /^#[0-9a-fA-F]{6}$/.test(color) ? `${color}${aa}` : color;
+}
+
 // ── E11: премиальный декор просмотра купленного пака (`?pack=` / lesson:DEV:…) ──
 export function usePackBrowseVisual(args: {
   packDeeplink: string | null;
@@ -1233,6 +1240,9 @@ export function usePackBrowseVisual(args: {
   bgSurface: string;
 }) {
   const { packDeeplink, activeFilter, marketPackCatalog, themeMode, isLightTheme, bgCard, bgSurface } = args;
+  // зачем (координатор 12.10): оболочка окна покупки и тон карточек купленного набора следуют активной теме Liquid Glass (в том числе светлой)
+  const { liquidGlassThemeId } = useTheme();
+  const glassTokens = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   const currentMarketPack = useMemo((): FlashcardMarketPack | null => {
     if (packDeeplink) return marketPackCatalog.find((p) => p.id === packDeeplink) ?? null;
     if (activeFilter.startsWith('lesson:')) {
@@ -1248,10 +1258,10 @@ export function usePackBrowseVisual(args: {
   const packPremiumVisual = useMemo(() => {
     if (!currentMarketPack) return null;
     if (currentMarketPack.isCommunityUgc && currentMarketPack.ugcCardThemeKey) {
-      return getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { themeMode, isLight: isLightTheme });
+      return getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { themeMode, isLight: isLightTheme, tokens: glassTokens });
     }
-    return getCardPackPaywallTheme(currentMarketPack, { themeMode, isLight: isLightTheme });
-  }, [currentMarketPack, themeMode, isLightTheme]);
+    return getCardPackPaywallTheme(currentMarketPack, { themeMode, isLight: isLightTheme, tokens: glassTokens });
+  }, [currentMarketPack, themeMode, isLightTheme, glassTokens]);
 
   const packCardTheme = useMemo(() => {
     /**
@@ -1278,8 +1288,9 @@ export function usePackBrowseVisual(args: {
     const ba = isLightTheme ? '18' : '32';
     return {
       borderAccent: packPremiumVisual.borderAccent,
-      frontGradient: [c0 + fa, bgCard] as [string, string],
-      backGradient: [c1 + ba, bgSurface] as [string, string],
+      // зачем (координатор 12.10): цвета оболочки теперь из токенов темы — суффикс прозрачности добавляем только к #rrggbb, иначе цвет остаётся как есть
+      frontGradient: [withHexAlpha(c0, fa), bgCard] as [string, string],
+      backGradient: [withHexAlpha(c1, ba), bgSurface] as [string, string],
     };
   }, [currentMarketPack, packPremiumVisual, isLightTheme, bgCard, bgSurface]);
 

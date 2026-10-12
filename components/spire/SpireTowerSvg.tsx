@@ -58,7 +58,7 @@ const FloorWindows = memo(function FloorWindows({ fl, tone }: { fl: SpireFloorGe
         const d = windowPath(x, yy, ww, wh);
         return (
           <G key={t}>
-            {tone === 'lit' ? <Path d={d} fill="#EEF0F6" fillOpacity={0.3} stroke="#EEF0F6" strokeOpacity={0.25} strokeWidth={6} strokeLinejoin="round" /> : null}
+            {tone === 'lit' ? <Path d={d} fill="#EEF0F6" fillOpacity={0.3} stroke="#EEF0F6" strokeOpacity={0.25} strokeWidth={6} strokeLinejoin="round" /> : null}{/* theme-exempt: свечение окна на ночной сцене башни — небо (spireSky) всегда тёмное, в светлом оформлении сцена не светлеет */}
             <Path d={d} fill={WINDOW_FILL[tone]} />
             <Rect x={x - 2} y={yy + wh} width={ww + 4} height={2.6} rx={1} fill="#6B6B72" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
           </G>
@@ -99,7 +99,7 @@ const Floor = memo(function Floor({ fl, tone, mine, selected, label, onSelect }:
       )}
       <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#6E6E72'} textAnchor="middle">{String(f)}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       {label ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill="#8E8E92" textAnchor="middle">{label}</SvgText> : null}
-      {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke="rgba(255,255,255,.8)" strokeWidth={1.4} /> : null}
+      {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke="rgba(255,255,255,.8)" strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа на ночной сцене (небо всегда тёмное) */}
       <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />
     </G>
   );
@@ -192,7 +192,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width }: Props) {
       </Defs>
       <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />
       <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill="rgba(255,255,255,.03)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={`rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} />)}
+      {STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={`rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} />)}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
       <Ellipse cx={60} cy={geom.top - 150} rx={130} ry={28} fill="url(#spireCloud)" />
       <Ellipse cx={330} cy={geom.top - 170} rx={140} ry={30} fill="url(#spireCloud)" />
       <Ellipse cx={80} cy={geom.top - 96} rx={110} ry={22} fill="url(#spireCloud)" />

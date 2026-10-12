@@ -49,6 +49,6 @@ export default function HomeV2VideoPlayerModal({ video, onClose, startSec, testI
 }
 
 const s = StyleSheet.create({
-  screen: { flex: 1, justifyContent: 'center', paddingHorizontal: V2.screenPad, backgroundColor: 'rgba(3, 4, 8, 0.91)' },
-  player: { alignSelf: 'center', borderRadius: 18, overflow: 'hidden', backgroundColor: '#000000' },
+  screen: { flex: 1, justifyContent: 'center', paddingHorizontal: V2.screenPad, backgroundColor: 'rgba(3, 4, 8, 0.91)' }, // theme-exempt: тёмное «кино»-окно видео, по замыслу не следует светлой теме
+  player: { alignSelf: 'center', borderRadius: 18, overflow: 'hidden', backgroundColor: '#000000' }, // theme-exempt: чёрная подложка плеера под видео
 });

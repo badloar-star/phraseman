@@ -63,7 +63,7 @@ export default function HomeV2VideoRail({ videos, status, ownerActive, onSeeAll 
                   ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
               <VideoThumb surface="home_video_rail" id={video.id} videoId={video.id} thumbUrl={video.thumbnailUrl || null} title={video.title} g={glass} showTitle showPlay={false} fallbackBackground="transparent" />
               <View style={s.cardContent}>
-                <Ionicons name="play-circle" size={26} color="#FFFFFF" />
+                <Ionicons name="play-circle" size={26} color="#FFFFFF" /* theme-exempt: белая иконка play лежит на превью ролика (фото), не на фоне темы */ />
               </View>
             </Pressable>
           ))}

@@ -40865,21 +40865,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-007.png",
+      "evidence_at": "2026-10-12T18:28:12.496Z",
+      "evidence_sha256": "3e9ac4afd4d051004d5bea6e2f022aefe9cda40e4aefd61b98b79af1a65c9f95",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Шаг tap:Очистить по тексту не нажал кнопку окна; теперь шаг по id glass-alert-action-1 (вторая кнопка «Очистить») — переснять.",
+        "[состояние не то] В образце видна карточка «Важное от Phraseman» с опросом «Что добавить в первую очередь?» (slot=poll) под блоком помощи и версией; в приложении после подтверждения надо прокрутить к слоту сообщений (в ссылке slot=poll) — проверить на пересъёмке."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:30:12.718Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:28, settings-gaps №7 «Очистить кеш — чистим… + опрос до голосования»): сверка невозможна — на кадре открыто окно подтверждения «Очистить кеш?» («Не сейчас» / «Очистить»), статуса «Чистим…» в строке нет; страница прокручена к блоку «PHRASEMAN PLUS»."
     },
     {
       "id": "settings-gap-008",

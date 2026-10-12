@@ -29414,16 +29414,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-034.png",
+      "evidence_at": "2026-10-12T02:33:04.985Z",
+      "evidence_sha256": "0ee1351e47c73db29555532aa607119ccd1fb224bd09c9303c446587defacdbe",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце режим «Блиц» (значок молнии, «Время · 30 с / 60 с / 90 с»), на кадре режим «Устно» (значок микрофона, «Сколько · 10 / 20 / Все»). Образца настройки для «Устно» в cards-v2 нет — дорисовать кадр в конец страницы по приложению (решение координатора по п.54) либо принять «Блиц» за образец раскладки.",
+        "[данные] Пилюля «30/30» против «24/30»; наборы: «Все сохранённые, Путешествия, B2 глаголы, Работа, Фразовые глаголы» против «…, Мои карточки»; в приложении плитки набора крупнее."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:34:03.443Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -29441,7 +29444,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:33, образец cards-v2 №28 «Настройка тренировки» утверждён, но показывает режим «Блиц»): раскладка настройки совпала — «‹» и пилюля лимита, плитка режима с названием, «Что повторяем» с плитками наборов и отметками, переключатель, «Начать»."
     },
     {
       "id": "cards-section-035",

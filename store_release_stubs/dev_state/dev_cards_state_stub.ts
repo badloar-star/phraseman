@@ -33,3 +33,5 @@ export function getDevPackDraft(): null { return null; }
 export const DEV_PACK_DRAFTS = [] as const;
 export function setDevLessonIntroSkip(): boolean { return false; }
 export function isDevLessonIntroSkip(): boolean { return false; }
+// зачем (Авторизация 12.10, cards-v2-038/039): цель ответа «Правды/лжи» и «Напиши» в стор-сборке не подменяется
+export function getDevAnswerTarget(): null { return null; }

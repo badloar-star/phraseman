@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { isDevCardsFail } from './dev_cards_state';
+import { getDevAnswerTarget, isDevCardsFail } from './dev_cards_state';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -186,6 +186,17 @@ export default function FlashcardsRecallSession() {
   const [lastAward, setLastAward] = useState(0);
   const [answerRevealed, setAnswerRevealed] = useState(false);
   const [hintVisible, setHintVisible] = useState(false);
+  // зачем (Авторизация 12.10, cards-v2-039 / cards-section-050): робот не знает ответ на случайную карточку. dev `answer=correct|wrong` вписывает в поле
+  // верный ответ (первый из вариантов) или заведомо неверный — дальше робот жмёт «Проверить». Вне dev getDevAnswerTarget() === null — эффект ничего не делает.
+  const activeCardId = activeCard?.id ?? null;
+  useEffect(() => {
+    const target = getDevAnswerTarget();
+    if (target === null || !activeCard) return;
+    const typed = target === 'correct' ? (answerOf(activeCard).split(/\s*[\/;]\s*/).filter(Boolean)[0] ?? answerOf(activeCard)) : 'banana window';
+    console.log(`[DEV-STATE] recall: в поле вписан ${target === 'correct' ? 'верный' : 'неверный'} ответ для карточки ${activeCard.id}`); // guard-ok: dev-ветка
+    setInput(typed);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCardId]);
   const [masteredCount, setMasteredCount] = useState(0);
   const [totalCards, setTotalCards] = useState(0);
   // зачем (координатор 12.10, «Продолжить»): позиция в наборе — выучено / всего; пишется локально с задержкой и при выходе, смешанные колоды не пишутся
@@ -356,8 +367,10 @@ export default function FlashcardsRecallSession() {
         if (!cancelled) { silentRecallRetryRef.current = 99; setLoading(false); setLoadError(true); }
         return;
       }
+      // зачем (Авторизация 12.10, cards-v2-039 / cards-section-050): при dev `answer=correct|wrong` порядок карточек — как в наборе (кадр воспроизводим).
+      const devAnswerTarget = getDevAnswerTarget();
       const loadedCards = await loadDeckCardsMulti(deckRefs, contentLang, {
-        shuffle: true,
+        shuffle: devAnswerTarget === null,
         studyTarget,
       });
       const cards = loadedCards.slice(0, sessionSize);
@@ -366,7 +379,8 @@ export default function FlashcardsRecallSession() {
         setLoading(false);
         return;
       }
-      const round = shuffle(cards);
+      const round = devAnswerTarget === null ? shuffle(cards) : cards.slice();
+      if (devAnswerTarget !== null) console.log(`[DEV-STATE] recall: порядок как в наборе, ответ=${devAnswerTarget}, первая=${round[0]?.en ?? '-'}`); // guard-ok: dev-ветка
       recallLocalStart = () => { resetRound(round, true); setLoading(false); };
       // зачем: восстановление идёт из ВСЕГО загруженного пула (запись могла быть reused от прежней попытки
       // с другим срезом sessionSize); коллизия отпечатков → pending_grant_manifest_id_collision → fail-open.

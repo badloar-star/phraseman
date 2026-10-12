@@ -108,7 +108,8 @@ jest.mock('../app/energy_session_operation_ledger', () => ({
 }));
 // зачем (12.10, dev-состояния Карточек): экран читает isDevCardsFail из dev_cards_state, а тот тянет app/config → Platform.OS, которого в моке RN нет («Cannot read properties of undefined (reading 'OS')»).
 // Здесь dev-сбоев нет по определению — подменяем модуль целиком.
-jest.mock('../app/dev_cards_state', () => ({ isDevCardsFail: () => false }));
+// Авторизация 12.10: экран читает и getDevAnswerTarget (dev `answer=…` для робота) — без подмены null.
+jest.mock('../app/dev_cards_state', () => ({ isDevCardsFail: () => false, getDevAnswerTarget: () => null }));
 jest.mock('../app/flashcards/deck_sources', () => ({
   deckRefKey: () => 'saved', parseDeckParams: () => [{ kind: 'saved' }],
   loadDeckCardsMulti: jest.fn(async () => [{ id: 'one', en: 'hello', translation: 'привет' }]),

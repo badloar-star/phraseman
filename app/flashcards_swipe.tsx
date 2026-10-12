@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { describeDevCardsState, getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
+import { describeDevCardsState, getDevAnswerTarget, getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
@@ -3712,6 +3712,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
   const renderTrueFalsePlay = () => {
     if (!currentPrompt) return null;
+    const devAnswerTarget = getDevAnswerTarget();
     const total = Math.max(1, stats.total);
     const completedBeforeCurrent = Math.max(
       0,
@@ -3841,7 +3842,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
               ].map((btn) => (
                 <TouchableOpacity
                   key={btn.key}
-                  testID={btn.testID}
+                  // зачем (Авторизация 12.10, cards-v2-038 / cards-section-049): утверждение случайно, робот не знает ответ. dev `answer=correct|wrong`
+                  // помечает нужную кнопку `flashcards-truefalse-answer-target`; без подмены и в сторе getDevAnswerTarget() === null — обычные testID.
+                  testID={devAnswerTarget !== null && currentPrompt && (btn.saysMatch === currentPrompt.isMatch) === (devAnswerTarget === 'correct') ? 'flashcards-truefalse-answer-target' : btn.testID}
                   onPress={() => decide(btn.saysMatch)}
                   disabled={answersLocked}
                   accessibilityRole="button"

@@ -18,6 +18,7 @@ import { DebugLogger } from '../debug-logger';
 import { getLocalDayKey } from '../local_date';
 import { getCanonicalUserId } from '../user_id_policy';
 import { normalizeDailyPollCounts, parseDailyPoll, type DailyPoll, type DailyPollVote } from './daily_poll_model';
+import { devDailyPollVote, getDevDailyPoll } from '../dev_social_state';
 
 export const DAILY_POLL_LOG = '[DAILY-POLL]';
 const REGION = 'us-central1';
@@ -97,6 +98,15 @@ async function fetchPollFromNetwork(dateKey: string): Promise<DailyPoll | null> 
 
 async function loadInternal(): Promise<DailyPollSnapshot> {
   const dateKey = getLocalDayKey();
+  // зачем (Авторизация 12.10, съёмка R1 community-023): опрос на сегодня в проде может отсутствовать — `dailypoll=demo|voted` отдаёт опрос из памяти
+  // без чтения daily_polls и без записи кэша/голоса на диск. В сторе геттер всегда null.
+  const devPoll = getDevDailyPoll(dateKey);
+  if (devPoll) {
+    const snapshot: DailyPollSnapshot = { dateKey, ownerId: 'dev', poll: devPoll.poll, vote: devPoll.vote };
+    memory = snapshot;
+    DebugLogger.info(DAILY_POLL_LOG, `[DEV-STATE] опрос из памяти (dailypoll), сеть и диск не тронуты, голос=${devPoll.vote?.optionId ?? 'нет'}`);
+    return snapshot;
+  }
   const ownerId = (await getCanonicalUserId().catch((error: unknown) => {
     console.warn('[DAILY-POLL] owner id unavailable', { message: error instanceof Error ? error.message : String(error) });
     return null;
@@ -172,6 +182,12 @@ export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId:
   if (!poll) {
     DebugLogger.warn(DAILY_POLL_LOG, `голос: ранний выход — опроса нет (dateKey=${dateKey})`);
     return { ok: false, reason: 'not_found' };
+  }
+  const devVote = getDevDailyPoll(dateKey) ? devDailyPollVote(optionId) : null;
+  if (devVote) {
+    memory = { ...snapshot, vote: devVote };
+    DebugLogger.info(DAILY_POLL_LOG, `[DEV-STATE] голос в опросе из памяти option=${optionId}, dailyPollVote не вызывается`);
+    return { ok: true, vote: devVote, alreadyVoted: false };
   }
   if (!isCloudEnabled()) {
     DebugLogger.info(DAILY_POLL_LOG, 'голос: ранний выход — облако выключено');

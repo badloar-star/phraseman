@@ -46,6 +46,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
+import { isDevCardsFail } from './dev_cards_state';
 // зачем (владелец 01.10): «Из видео» берёт ГОТОВЫЕ наборы фраз роликов
 // (video_phrase_sets) — те же, что открываются по тапу на фразу под роликом.
 import {
@@ -316,6 +317,13 @@ export default function FlashcardsVideoPacksScreen({ embedded = false, bottomPad
     useCallback(() => {
       let cancelled = false;
       void reloadTick;
+      // зачем (Авторизация 12.10, съёмка R1 cards-030): «Сейчас недоступно» без отключения сети — dev `fail=video_list`, каталог не читается.
+      // Пустой список: при кэше экран показал бы строки, а кадр — про отказ без кэша. В сторе isDevCardsFail всегда false.
+      if (isDevCardsFail('video_list')) {
+        DebugLogger.warn(LOG, '[DEV-STATE] каталог «Из видео»: подменённый отказ (fail=video_list), сеть не вызывалась');
+        setCatalogState({ targetKey, packs: [], loadState: 'error' });
+        return () => { cancelled = true; };
+      }
       if (!cloudEnabled) {
         // зачем лог: без облака список пуст ВСЕГДА, и это надо отличать от
         // «сеть отвалилась» — иначе диагноз ищут не там.

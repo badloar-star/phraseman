@@ -10,6 +10,7 @@
 import { IS_STORE_RELEASE } from './config';
 import type { PromoRedeemResult } from './promo_code_client';
 import type { ReferralApplyStatus } from './referral_bootstrap';
+import type { DailyPoll, DailyPollVote } from './daily_poll/daily_poll_model';
 
 /** Результаты промокода. `off` — глобальный рубильник «промокоды выключены» (promo_disabled), `none` — снять фикстуру. */
 export const DEV_PROMO_RESULTS = [
@@ -26,9 +27,12 @@ export const DEV_REFCODE_RESULTS = [
 ] as const;
 export type DevRefcodeResult = (typeof DEV_REFCODE_RESULTS)[number];
 
-export const DEV_FRIENDS_HOLDS = ['add_request'] as const;
+// зачем (Авторизация 12.10, съёмка R1 community-008): `search` — поиск друга держится в загрузке (скелетон), ответа нет.
+export const DEV_FRIENDS_HOLDS = ['add_request', 'search'] as const;
 export type DevFriendsHold = (typeof DEV_FRIENDS_HOLDS)[number];
-export const DEV_FRIENDS_FAILS = ['add', 'search'] as const;
+// зачем (Авторизация 12.10, съёмка R1): `search_offline` — поиск без сети, «Связь пропала» (community-015); `list` — список друзей
+// не обновился, пустое состояние «Связь пропала» без подписок Firestore (community-021).
+export const DEV_FRIENDS_FAILS = ['add', 'search', 'search_offline', 'list'] as const;
 export type DevFriendsFail = (typeof DEV_FRIENDS_FAILS)[number];
 export const DEV_SETTINGS_FAILS = ['study_language', 'support_send', 'cache_clear'] as const;
 export type DevSettingsFail = (typeof DEV_SETTINGS_FAILS)[number];
@@ -44,6 +48,11 @@ export const DEV_UNSYNCED_FRIEND_CODE = 'DEVUNS';
 /** Служебный код «найден друг» (community-009/010/011/017…019): карточка найденного профиля без сервера, заявка — без отправки. */
 export const DEV_FOUND_FRIEND_CODE = 'DEVFND';
 export const DEV_FOUND_FRIEND_UID = 'dev_found_friend';
+/** Служебный код «это твой код» (community-013): настоящий код меняется от аккаунта к аккаунту, робот его не знает. */
+export const DEV_SELF_FRIEND_CODE = 'DEVSLF';
+/** Опрос дня из памяти (community-023): `dailypoll=demo` — опрос без чтения daily_polls, `voted` — с уже отданным голосом. */
+export const DEV_DAILY_POLLS = ['demo', 'voted'] as const;
+export type DevDailyPoll = (typeof DEV_DAILY_POLLS)[number];
 
 const LOG = '[DEV-STATE]';
 
@@ -62,8 +71,11 @@ type State = {
   startedLanguages: readonly string[] | null;
   /** settings-gap-012: «телефон не разрешает уведомления» — разрешение отклонено системой (только память, `notifperm=denied`). */
   notifPermDenied: boolean;
+  dailyPoll: DevDailyPoll | null;
+  /** Голос в «опросе» из памяти: сервер dailyPollVote не вызывается. */
+  dailyPollVote: DailyPollVote | null;
 };
-const EMPTY: State = { referralOff: false, promo: null, refcode: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set(), supportSent: false, startedLanguages: null, notifPermDenied: false };
+const EMPTY: State = { referralOff: false, promo: null, refcode: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set(), supportSent: false, startedLanguages: null, notifPermDenied: false, dailyPoll: null, dailyPollVote: null };
 let state: State = EMPTY;
 
 function devSocialAvailable(): boolean {
@@ -82,6 +94,7 @@ export function setDevSocialState(patch: Partial<{
   supportSent: boolean;
   startedLanguages: readonly string[] | null;
   notifPermDenied: boolean;
+  dailyPoll: DevDailyPoll | null;
 }>): boolean {
   if (!devSocialAvailable()) {
     console.warn(`${LOG} social: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -98,8 +111,10 @@ export function setDevSocialState(patch: Partial<{
     supportSent: patch.supportSent ?? state.supportSent,
     startedLanguages: patch.startedLanguages === undefined ? state.startedLanguages : patch.startedLanguages,
     notifPermDenied: patch.notifPermDenied ?? state.notifPermDenied,
+    dailyPoll: patch.dailyPoll === undefined ? state.dailyPoll : patch.dailyPoll,
+    dailyPollVote: patch.dailyPoll === undefined ? state.dailyPollVote : null,
   };
-  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, refcode: state.refcode, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails], supportSent: state.supportSent, startedLanguages: state.startedLanguages })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, refcode: state.refcode, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails], supportSent: state.supportSent, startedLanguages: state.startedLanguages, dailyPoll: state.dailyPoll })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
@@ -174,6 +189,40 @@ export function isDevUnsyncedFriendCode(code: string): boolean {
 /** Служебный код «найден друг» — только в dev. */
 export function isDevFoundFriendCode(code: string): boolean {
   return devSocialAvailable() && code.trim().toUpperCase() === DEV_FOUND_FRIEND_CODE;
+}
+
+/** Служебный код «свой профиль» — только в dev. */
+export function isDevSelfFriendCode(code: string): boolean {
+  return devSocialAvailable() && code.trim().toUpperCase() === DEV_SELF_FRIEND_CODE;
+}
+
+const DEV_POLL_OPTIONS = [
+  { id: 'short', text: { ru: 'Короткие занятия', uk: 'Короткі заняття', en: 'Short sessions' }, count: 64 },
+  { id: 'friends', text: { ru: 'Занятия с друзьями', uk: 'Заняття з друзями', en: 'Studying with friends' }, count: 36 },
+] as const;
+
+/** Опрос дня из памяти (вне dev или без `dailypoll` — null): тексты — как в макете community.html «Активность и опрос дня». */
+export function getDevDailyPoll(dateKey: string): { poll: DailyPoll; vote: DailyPollVote | null } | null {
+  if (!devSocialAvailable() || state.dailyPoll === null) return null;
+  const counts = Object.fromEntries(DEV_POLL_OPTIONS.map((o) => [o.id, o.count]));
+  const poll: DailyPoll = {
+    dateKey,
+    question: { ru: 'Что помогает заниматься регулярно?', uk: 'Що допомагає займатися регулярно?', en: 'What helps you study regularly?' },
+    options: DEV_POLL_OPTIONS.map((o) => ({ id: o.id, text: o.text })),
+    counts,
+  };
+  const vote = state.dailyPollVote ?? (state.dailyPoll === 'voted' ? { optionId: 'short', counts } : null);
+  return { poll, vote };
+}
+
+/** Голос в опросе из памяти (вне dev — null): счётчик выбранного варианта +1, сервер не вызывается. */
+export function devDailyPollVote(optionId: string): DailyPollVote | null {
+  const current = getDevDailyPoll('');
+  if (!current) return null;
+  const counts = { ...current.poll.counts, [optionId]: (current.poll.counts[optionId] ?? 0) + 1 };
+  state = { ...state, dailyPollVote: { optionId, counts } };
+  console.log(`${LOG} social: голос в опросе из памяти option=${optionId}`); // guard-ok: единичный лог на действие
+  return state.dailyPollVote;
 }
 
 /** Подставной найденный друг: заявка ему не уходит на сервер (вне dev — всегда false). */

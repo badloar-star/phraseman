@@ -248,3 +248,49 @@ energy-modes: не проверено, есть ли у урока 1 перед 
 | energy-modes-008 | `onboarding=done&intros=seen&overlays=off&studyTarget=en&plus=off&free=on&mode=b&energy=restoring&restore_in=8&next=/lesson_menu?id=1` | `tap:#lesson-menu-primary; wait:1200` (шторка «Нужна энергия») → `tap:#energy-needed-wait; wait:7500` → тост «Энергия восстановилась» и «Начать» активна. Состав макета Б8 (список «Обучение» + тост + оживающая кнопка) — сверить по кадру; если меню снова уводит на Главную — прислать журнал `[ENERGY-NEEDED]`/`[LESSON-LOCK]` |
 
 **Осталось:** settings-gap-012 (запрет уведомлений — экран освободился, следующий).
+
+## Авторизация — Карточки и Друзья (manual_conditional, 12.10 ночь)
+
+Подмены — только память процесса; сеть в подменённых ветках не вызывается; в стор-сборке — заглушки (гейт `store_release_stubs_gate.mjs` OK).
+Сторож: `tests/aa_r1_switches_cards_friends.test.ts`.
+
+### Новые параметры
+
+| Параметр | Что делает | Где читается |
+|---|---|---|
+| `dev_friends_hold=search` | поиск друга держится в загрузке (скелетон), ответа нет | `(tabs)/friends.tsx` handleSearch |
+| `dev_friends_fail=search_offline` | поиск — «Связь пропала / Проверь интернет…», сеть и журнал сбоев не вызываются | то же |
+| `dev_friends_fail=list` | вкладка «Друзья»: пустое состояние «Связь пропала» (FriendsEmptyState error), без подписок Firestore, кэш вкладки не пишется | эффект списка друзей |
+| код друга `DEVSLF` | «это твой код» (фраза из `friends_self_code_messages`, выбирается случайно) | handleSearch |
+| `dailypoll=demo\|voted` | опрос дня из памяти: «Что помогает заниматься регулярно?» — «Короткие занятия» / «Занятия с друзьями»; голос — в памяти, `dailyPollVote` не вызывается | `daily_poll/daily_poll_client.ts` |
+| `answer=correct\|wrong` | «Правда/ложь»: нужная кнопка получает testID `flashcards-truefalse-answer-target`; «Напиши»: порядок как в наборе, в поле вписан верный (первый вариант) или неверный ответ | `flashcards_swipe.tsx`, `flashcards_recall_session.tsx` |
+| `fail=video_list` | «Из видео»: каталог не читается, пустой список + состояние ошибки | `flashcards_video_packs.tsx` |
+| `cards=demo_few` | очистка + 3 сохранённые карточки без своих наборов (меньше минимума Блица 4) | `dev_state_cards_demo.ts` |
+| маршрут `/dev_cards_result_preview?state=errors\|clean\|good\|grow` | экран итога тренировки на данных макета («Блиц · Путешествия», N из 20, 1:12, +N×10, ошибки Gate/Customs); тренировки нет, монеты не зачисляются, формы отзыва нет; вне dev — на Главную | новый маршрут |
+
+`B` = `onboarding=done&intros=seen&overlays=off&studyTarget=en`. `F` — как в партии 1 (Друзья). `T(mode)` = `B&cards=demo&plus=on&next=/flashcards_training_setup?mode=<mode>`,
+шаг старта `S` = `tap:#fc-training-setup-deck-saved; tap:#fc-training-setup-start; wait:2500`.
+
+### Строки
+
+| id | ссылка | шаги |
+|---|---|---|
+| cards-v2-041 = cards-section-053 = cards-section-054 | `B&next=/dev_cards_result_preview?state=errors` | `wait:1500` (счётчики) |
+| cards-v2-042 = cards-section-055 | `B&next=/dev_cards_result_preview?state=clean` | `wait:1500` |
+| cards-v2-051 | `B&next=/dev_cards_result_preview?state=good` | `wait:1500` |
+| cards-v2-052 | `B&next=/dev_cards_result_preview?state=grow` | `wait:1500` |
+| cards-v2-038 = cards-section-049 | `T(truefalse)&answer=wrong` | `S; tap:#flashcards-truefalse-answer-target; wait:600` (панель «Неверно») |
+| cards-v2-039 = cards-section-050 | `T(recall)&answer=correct` | `S; tap:#fc-recall-check; wait:600` (панель «Верно» +10) |
+| cards-026 | `B&cards=demo_few&plus=on&next=/flashcards_training_setup?mode=blitz` | `tap:#fc-training-setup-deck-saved; wait:500` (подсказка «Для блица нужно минимум 4 карточки.») |
+| cards-030 | `B&cards=demo&fail=video_list&next=/flashcards_video_packs` | `wait:800` |
+| community-008 | `F&dev_friends_hold=search` | `S(ZZ99)` (шаг поиска партии 1), снимать сразу |
+| community-013 | `F` | `S(DEVSLF)`, `wait:800` |
+| community-015 | `F&dev_friends_fail=search_offline` | `S(ZZ99)`, `wait:800` |
+| community-021 | `F&dev_friends_fail=list` | `wait:1000` (подмена списка проверяется раньше `friends=demo` и побеждает) |
+| community-023 | `F&dailypoll=demo` | `wait:1000` (карточка опроса над списком); с голосом — `dailypoll=voted` |
+
+**Расхождения данных с макетом (не подмена, решать Макетам/Сверке):**
+- «Правда/ложь» и «Напиши» берут первую карточку набора «Сохранённые» демо, а не Gate/таможня и задержка/delay из макета: порядок фиксирован, слово — из демо-данных.
+- community-013: фраза «свой код» выбирается случайно из 5 (так в коде).
+- community-023: ленты «Активность» в приложении нет — её удалил владелец 16.08 (friends.tsx). Есть только карточка опроса дня.
+- Плашка баланса монет на итоге показывает настоящий баланс устройства, а не «1 240» из макета.

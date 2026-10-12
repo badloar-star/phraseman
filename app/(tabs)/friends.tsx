@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { consumeDevFriendEvent, DEV_FOUND_FRIEND_UID, isDevFoundFriendCode, isDevFoundFriendUid, isDevFriendsFail, isDevFriendsHeld, isDevUnsyncedFriendCode } from '../dev_social_state';
+import { consumeDevFriendEvent, DEV_FOUND_FRIEND_UID, isDevFoundFriendCode, isDevFoundFriendUid, isDevFriendsFail, isDevFriendsHeld, isDevSelfFriendCode, isDevUnsyncedFriendCode } from '../dev_social_state';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput,
@@ -1384,6 +1384,14 @@ export default function FriendsTabScreen() {
     void (async () => {
       // зачем (координатор 12.10, community-006, dev `friends=demo`): робот не входит во второй аккаунт — вкладка показывает одну входящую заявку и одного друга ТОЛЬКО из памяти:
       // без подписок Firestore, без записи кэша вкладки (см. эффекты ниже). В сторе isDevFriendsDemoOn() всегда false.
+      // зачем (Авторизация 12.10, съёмка R1 community-021): «Связь пропала» вкладки без подписок Firestore — список пуст, плашка ошибки. В сторе выключено.
+      if (isDevFriendsFail('list')) {
+        console.warn('[DEV-STATE] friends: список не обновился (dev_friends_fail=list) — подписок нет, пустое состояние с ошибкой'); // guard-ok: dev-ветка
+        setFriends([]);
+        setRequests([]);
+        setFriendsListError(true);
+        return;
+      }
       if (isDevFriendsDemoOn()) {
         const demo = devFriendsDemoData();
         console.log(`[DEV-STATE] friends: вкладка рисует демо requests=${demo.requests.length} friends=${demo.friends.length} (подписок нет)`); // guard-ok: ветка решает значение
@@ -1474,6 +1482,7 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     if (isDevFriendsDemoOn()) return undefined; // зачем: демо-данные не пишем в кэш вкладки (диск)
+    if (isDevFriendsFail('list')) return undefined; // зачем (Авторизация 12.10, community-021): пустой список подмены не пишем в кэш вкладки — иначе затрём настоящий список
     const timer = setTimeout(() => {
       void (async () => {
         try {
@@ -1500,6 +1509,7 @@ export default function FriendsTabScreen() {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
     if (!friendsRuntimeActive || uids.length === 0) return;
     if (isDevFriendsDemoOn()) return; // зачем: демо-друзья вымышленные — профили из Firestore не читаем
+    if (isDevFriendsFail('list')) return; // зачем (Авторизация 12.10, community-021): при подмене `list` друзей нет — профили из Firestore не читаем
     let cancelled = false;
     void (async () => {
       // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
@@ -1586,6 +1596,22 @@ export default function FriendsTabScreen() {
       }
       // зачем (координатор 12.10, R1 «нет пути», друзья): dev `dev_friends_fail=search` — «Сейчас не получилось» (не транзиентный отказ); служебный код DEVUNSYNCED — «профиль найден, но не синхронизирован» без сервера; в стор-сборке геттеры выключены.
       if (isDevFriendsFail('search')) throw new Error('dev_friends_search_failed');
+      // зачем (Авторизация 12.10, съёмка R1 community-008/013/015): скелетон поиска живёт доли секунды, свой код робот не знает,
+      // а «нет сети» на эмуляторе не включить. Ветки — до сети и до журнала сбоев (в catch пишется отчёт в Firestore). В сторе выключено.
+      if (isDevFriendsHeld('search')) {
+        console.warn('[DEV-STATE] friends: поиск держится в загрузке (dev_friends_hold=search), ответа не будет'); // guard-ok: dev-ветка
+        await new Promise<never>(() => {});
+      }
+      if (isDevFriendsFail('search_offline')) {
+        console.warn('[DEV-STATE] friends: поиск — «Связь пропала» (dev_friends_fail=search_offline), сеть не вызывалась'); // guard-ok: dev-ветка
+        setSearchError(L('Связь пропала', 'Зв’язок зник', 'Connection lost', 'Se perdió la conexión', 'A conexão caiu', 'Mất kết nối', 'Koneksi terputus', 'Bağlantı kesildi', 'Brak połączenia')+'\n'+L('Проверь интернет и попробуй ещё раз.', 'Перевір інтернет і спробуй ще раз.', 'Check your connection and try again.', 'Revisa tu conexión e inténtalo de nuevo.', 'Verifique a internet e tente novamente.', 'Hãy kiểm tra mạng và thử lại.', 'Periksa internet lalu coba lagi.', 'İnternetinizi kontrol edip tekrar deneyin.', 'Sprawdź internet i spróbuj ponownie.'));
+        return;
+      }
+      if (isCode && isDevSelfFriendCode(codeUpper)) {
+        console.warn('[DEV-STATE] friends: поиск — свой код (DEVSLF), сеть не вызывалась'); // guard-ok: dev-ветка
+        setSearchError(randomSelfFriendCodeMessage(L));
+        return;
+      }
       // зачем (координатор 12.10, съёмка R1 community-009/010/011/017…019): служебный код DEVFND — найденный профиль без сервера
       // и без входа; заявка такому другу дальше тоже не уходит в сеть (handleAddFound). В стор-сборке геттер выключен.
       if (isCode && isDevFoundFriendCode(codeUpper)) {

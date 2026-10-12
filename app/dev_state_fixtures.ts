@@ -94,7 +94,7 @@ export type DevStateRequest = Readonly<{
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
-  cards?: 'demo' | 'demo_lessons' | 'demo_nopacks' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
+  cards?: 'demo' | 'demo_lessons' | 'demo_nopacks' | 'demo_few' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
   /** Гипотеза падения qemu (координатор 14.10): off — все boxShadow стиля «Тень» выключены в памяти процесса, on — вернуть. */
   shadows?: 'on' | 'off';
@@ -124,6 +124,10 @@ export type DevStateRequest = Readonly<{
   trainGate?: DevTrainGate | 'off';
   /** Блиц: пометить верный (`correct`) или неверный (`wrong`) вариант testID `fc-blitz-opt-target` для робота (app/dev_cards_state.ts). Только память. */
   blitzAnswer?: 'correct' | 'wrong' | 'off';
+  /** «Правда/ложь» и «Напиши» (Авторизация 12.10, cards-v2-038/039): какой ответ дать роботу. */
+  answer?: 'correct' | 'wrong' | 'off';
+  /** Опрос дня из памяти на вкладке «Друзья» (Авторизация 12.10, community-023). */
+  dailypoll?: 'demo' | 'voted' | 'off';
   /** Сообщество без сети (съёмка R1 Карточек): демо-наборы с карточками в памяти (on) или режим без карточек (off). */
   packcards?: 'on' | 'meta' | 'off';
   /** Список голосов озвучки (cards-gap-036/038): demo — образцовый, none — пусто. */
@@ -283,7 +287,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     }
   }
   request.free = pick('free', ['on', 'off'] as const);
-  request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_nopacks', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
+  request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_nopacks', 'demo_few', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
@@ -336,6 +340,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
   request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
+  request.answer = pick('answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
+  request.dailypoll = pick('dailypoll', ['demo', 'voted', 'off'] as const);
   request.packcards = pick('packcards', ['on', 'meta', 'off'] as const);
   request.voices = pick('voices', [...DEV_CARDS_VOICES, 'off'] as const);
   request.packdraft = pick('packdraft', [...DEV_PACK_DRAFTS, 'off'] as const);
@@ -534,6 +540,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   // зачем (R1_SHOT_LIST «нет пути»): локальные состояния Карточек, лимитов и каталога — только ключи устройства, без записи в Firestore.
   // зачем (cards-gap-019): сохранённые карточки без своих наборов — сперва очистка как у cards=empty (убирает наборы прошлых кадров).
+  // зачем (Авторизация 12.10, cards-026): 3 сохранённые карточки без своих наборов — сперва очистка (убирает наборы прошлых кадров).
+  if (request.cards === 'demo_few') {
+    await step('cards', 'demo_few', async () => {
+      const { applyCardsDemo, applyCardsEmpty } = await import('./dev_state_cards_demo');
+      const empty = await applyCardsEmpty();
+      const demo = await applyCardsDemo({ few: true });
+      for (const [key, reason] of Object.entries({ ...empty.skipped, ...demo.skipped })) skipped[`cards.${key}`] = reason;
+      return Object.keys(empty.skipped).length === 0 && Object.keys(demo.skipped).length === 0;
+    });
+  }
   if (request.cards === 'demo_nopacks') {
     await step('cards', 'demo_nopacks', async () => {
       const { applyCardsDemo, applyCardsEmpty } = await import('./dev_state_cards_demo');
@@ -728,6 +744,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.blitzAnswer !== undefined) {
     await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));
   }
+  if (request.answer !== undefined) {
+    await step('answer', request.answer, async () => setDevCardsState({ answer: request.answer === 'off' ? null : request.answer! }));
+  }
   if (request.packdraft !== undefined) {
     await step('packdraft', request.packdraft, async () => setDevPackDraft(request.packdraft === 'off' ? null : request.packdraft!));
   }
@@ -809,6 +828,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.notifPerm !== undefined) {
     await step('notifperm', request.notifPerm, async () => setDevSocialState({ notifPermDenied: request.notifPerm === 'denied' }));
+  }
+  if (request.dailypoll !== undefined) {
+    await step('dailypoll', request.dailypoll, async () => setDevSocialState({ dailyPoll: request.dailypoll === 'off' ? null : request.dailypoll! }));
   }
   if (request.lessonIntro !== undefined) {
     await step('lessonintro', request.lessonIntro, async () => setDevLessonIntroSkip(request.lessonIntro === 'skip'));

@@ -27,6 +27,8 @@ export const DEV_CARDS_FAILS = [
   'video_open',
   // зачем (Макеты 12.10, cards-v2-044): каталог сообщества «без сети» (с catalog=empty).
   'catalog_load',
+  // зачем (Авторизация 12.10, cards-030): список роликов «Из видео» не загрузился — «Сейчас недоступно» без отключения сети.
+  'video_list',
 ] as const;
 export type DevCardsFail = (typeof DEV_CARDS_FAILS)[number];
 
@@ -59,8 +61,10 @@ type State = {
   blitzAnswer: DevBlitzAnswer | null;
   /** Список голосов озвучки вместо голосов эмулятора (`voices=demo|none`). */
   voices: DevCardsVoices | null;
+  /** «Правда/ложь» и «Напиши»: какой ответ дать роботу (`answer=correct|wrong`), см. getDevAnswerTarget. */
+  answer: DevBlitzAnswer | null;
 };
-const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null, voices: null };
+const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null, voices: null, answer: null };
 let state: State = EMPTY;
 // зачем (координатор 12.10, «сперва логи», cards-v2-033): подмены живут в памяти процесса и переживают переход на следующую ссылку робота — в журнале старта нужно видеть, когда и какими ключами их выставили
 let lastPatch: { atMs: number; keys: string[]; count: number } | null = null;
@@ -70,7 +74,7 @@ function devCardsAvailable(): boolean {
 }
 
 /** Выставить флаги. Любое поле необязательно: не переданное не меняется. В стор-сборке — отказ с логом, ничего не меняется. */
-export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null; voices: DevCardsVoices | null }>): boolean {
+export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null; voices: DevCardsVoices | null; answer: DevBlitzAnswer | null }>): boolean {
   if (!devCardsAvailable()) {
     console.warn(`${LOG} cards: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
     return false;
@@ -82,9 +86,10 @@ export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]
     trainGate: patch.trainGate !== undefined ? patch.trainGate : state.trainGate,
     blitzAnswer: patch.blitzAnswer !== undefined ? patch.blitzAnswer : state.blitzAnswer,
     voices: patch.voices !== undefined ? patch.voices : state.voices,
+    answer: patch.answer !== undefined ? patch.answer : state.answer,
   };
   lastPatch = { atMs: Date.now(), keys: Object.keys(patch), count: (lastPatch?.count ?? 0) + 1 };
-  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer, answer: state.answer })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
@@ -102,6 +107,15 @@ export function getDevSpeechMode(): DevSpeechMode | null {
 
 export function getDevBlitzAnswer(): DevBlitzAnswer | null {
   return devCardsAvailable() ? state.blitzAnswer : null;
+}
+
+/**
+ * «Правда/ложь» и «Напиши» (Авторизация 12.10, cards-v2-038/039, cards-section-049/050): карточка и её утверждение случайны, робот не знает верный ответ.
+ * `answer=correct|wrong`: «Правда/ложь» помечает нужную кнопку testID `flashcards-truefalse-answer-target`, «Напиши» вписывает в поле верный
+ * ответ (или заведомо неверный) и держит порядок карточек как в наборе. Вне dev — всегда null.
+ */
+export function getDevAnswerTarget(): DevBlitzAnswer | null {
+  return devCardsAvailable() ? state.answer : null;
 }
 
 /** Подменённый список голосов озвучки (вне dev — всегда null). Форма — как у Speech.getAvailableVoicesAsync. */
@@ -127,6 +141,7 @@ export function describeDevCardsState(): Record<string, unknown> {
     build: 'dev',
     trainGate: state.trainGate,
     blitzAnswer: state.blitzAnswer,
+    answer: state.answer,
     holds: [...state.holds],
     fails: [...state.fails],
     speech: state.speech,

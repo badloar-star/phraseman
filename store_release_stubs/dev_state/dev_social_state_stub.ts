@@ -26,3 +26,9 @@ export default function __RouteShim() { return null; }
 export const DEV_REFCODE_RESULTS = [] as const;
 export function getDevReferralApplyResult(): null { return null; }
 export function isDevNotifPermDenied(): boolean { return false; }
+// зачем (Авторизация 12.10, подмены съёмки community-013/023): служебный код «свой профиль» и опрос дня из памяти — в стор-сборке выключены
+export const DEV_SELF_FRIEND_CODE = 'DEVSLF';
+export const DEV_DAILY_POLLS = [] as const;
+export function isDevSelfFriendCode(): boolean { return false; }
+export function getDevDailyPoll(): null { return null; }
+export function devDailyPollVote(): null { return null; }

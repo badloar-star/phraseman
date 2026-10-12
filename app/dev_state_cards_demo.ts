@@ -452,7 +452,9 @@ export async function applyCardsEmpty(): Promise<CardsDemoResult> {
 
 /** Выставить наполненный аккаунт. Каждый шаг независим: сбой одного не мешает остальным и пишет причину. */
 // зачем (cards-gap-019 «В какой набор? — своих наборов нет»): noPacks — те же 64 сохранённые, но без своих наборов и «Продолжить».
-export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPacks?: boolean }> = {}): Promise<CardsDemoResult> {
+// зачем (Авторизация 12.10, съёмка R1 cards-026 «Мало карточек для блица»): `few` — в «Сохранённых» 3 карточки (меньше BLITZ_MIN_CARDS = 4), своих наборов нет,
+// поэтому на подготовке Блица единственная колода даёт подсказку «нужно минимум 4 карточки».
+export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPacks?: boolean; few?: boolean }> = {}): Promise<CardsDemoResult> {
   const applied: Record<string, string> = {};
   const skipped: Record<string, string> = {};
   const step = async (key: string, run: () => Promise<string>) => {
@@ -465,7 +467,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPa
   };
 
   try {
-    await assertWritableAccount(options.lessons === true ? 'cards=demo_lessons' : 'cards=demo');
+    await assertWritableAccount(options.lessons === true ? 'cards=demo_lessons' : options.few === true ? 'cards=demo_few' : 'cards=demo');
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     console.warn('[DEV-STATE] cards=demo mode=refused', reason); // guard-ok: причина отказа
@@ -474,12 +476,13 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPa
   await step('view', resetCardsViewPrefs);
   await step('saved', async () => {
     const { saveFlashcards } = await import('../hooks/use-flashcards');
-    const cards = demoSavedFlashcards(options.lessons === true);
+    const cards = options.few === true ? demoSavedFlashcards(false).slice(0, 3) : demoSavedFlashcards(options.lessons === true);
     await saveFlashcards(cards, TARGET);
     return String(cards.length);
   });
   await step('own_packs', async () => {
     if (options.noPacks === true) return 'skipped:noPacks';
+    if (options.few === true) return 'skipped:few';
     const { saveLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
     for (const pack of DEMO_OWN_PACKS) { // guard-ok: локальная запись на устройство, Firestore не читается
       await saveLocalAuthorPack({
@@ -497,6 +500,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPa
   });
   await step('continue', async () => {
     if (options.noPacks === true) return 'skipped:noPacks';
+    if (options.few === true) return 'skipped:few';
     const { recordPackContinuePosition } = await import('./flashcards/pack_continue_position');
     recordPackContinuePosition(TARGET, { packId: DEMO_TRAVEL_PACK_ID, index: 12, total: 40, mode: 'blitz' });
     return 'Путешествия 12/40';

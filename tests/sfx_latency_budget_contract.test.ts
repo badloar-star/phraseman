@@ -53,12 +53,23 @@ describe('SFX: бюджет задержки первого звука', () => {
     expect(size).toBeLessThan(sourceCount);
   });
 
-  it('звуки нажатий греются рано — до первого тапа человека', () => {
-    // Тап слышно чаще всего; прогрев на 3.5с не успевал к первому нажатию.
+  it('звуки нажатий греются первыми, сразу после кадра Главной и премаунта вкладок', () => {
+    // Тап слышно чаще всего — волна нажатий идёт первой в очереди прогрева.
+    // зачем (координатор 13.10, вариант «б»; замер Сверки 57ecd26e6): прежний таймер 1,2 с от монтирования корня ставил
+    // первый плеер — единственный дорогой (подъём нативного аудио, до 1,5 с) — в окно премаунта вкладок. Теперь старт —
+    // кадр Главной (потолок ≤ 6 с) + пауза под премаунт; ранний тап до прогрева звучит, лишь с задержкой (play создаёт плеер).
     expect(layout).toMatch(/prewarm\(\[\s*'pm\.ui\.tap_soft',\s*'pm\.ui\.tap_primary'/);
-    const tapWave = layout.match(/tapPrewarmTimer = setTimeout\([\s\S]*?\}, (\d+)\);/);
-    expect(tapWave).not.toBeNull();
-    expect(Number(tapWave![1])).toBeLessThanOrEqual(1500);
+    expect(layout).toContain('scheduleStartupSfxPrewarm({');
+    const startup = readFileSync(join(__dirname, '..', 'modules', 'audio', 'startup_sfx_prewarm.ts'), 'utf8');
+    const ceiling = startup.match(/SFX_PREWARM_HOME_PAINT_CEILING_MS = ([\d_]+);/);
+    const delay = startup.match(/SFX_PREWARM_AFTER_PAINT_DELAY_MS = ([\d_]+);/);
+    expect(ceiling).not.toBeNull();
+    expect(delay).not.toBeNull();
+    // Кадр Главной + пауза не дольше ~11 с: прогрев обязан успеть задолго до первого урока.
+    expect(Number(ceiling![1].replace(/_/g, ''))).toBeLessThanOrEqual(6000);
+    expect(Number(delay![1].replace(/_/g, ''))).toBeLessThanOrEqual(5000);
+    // Плеер при промахе прогрева создаётся в play() — ранний тап не молчит.
+    expect(backend).toMatch(/entry = this\.ensure\(eventId, source\);/);
   });
 
   it('прогрев покрывает звуки конца урока, а не только его середину', () => {

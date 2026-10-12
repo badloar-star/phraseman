@@ -41,9 +41,11 @@ describe('lesson_end_prewarm — когда греть звуки конца у�
     expect(missing).toEqual([]);
   });
 
-  it('корень греет вторую волну по плану: таймер или вход в занятие', () => {
+  it('корень греет вторую волну по плану: вслед за нажатиями на старте или на входе в занятие', () => {
+    // зачем (координатор 13.10, вариант «б»): вторая волна идёт той же очередью сразу после нажатий (scheduleStartupSfxPrewarm),
+    // а не своим таймером — иначе первым (дорогим) плеером снова мог стать звук конца урока в окне премаунта вкладок.
     const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
-    expect(layout).toMatch(/lessonEndPlan === 'startup_timer'\s*\?\s*setTimeout\(\(\) => prewarmLessonEndSfx\('startup_timer'\)/);
+    expect(layout).toMatch(/if \(lessonEndPlan === 'startup_timer'\) prewarmLessonEndSfx\(reason\)/);
     expect(layout).toMatch(/lessonEndPrewarmPlan\(\) !== 'on_session_entry' \|\| !isSessionEntryPath\(pathname\)/);
   });
 });

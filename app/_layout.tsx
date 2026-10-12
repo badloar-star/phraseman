@@ -92,11 +92,8 @@ import { setManagedAudioMode } from './audio_session_coordinator';
 import { releaseStaleAudioActivity } from '../modules/audio/audio_activity';
 import { stopAllAudioOwnersOnResume } from '../modules/audio/audio_runtime_arbiter';
 import { soundDirector } from '../modules/audio/sound_director';
-import {
-  LESSON_END_SFX_STARTUP_DELAY_MS,
-  isSessionEntryPath,
-  lessonEndPrewarmPlan,
-} from '../modules/audio/lesson_end_prewarm';
+import { isSessionEntryPath, lessonEndPrewarmPlan } from '../modules/audio/lesson_end_prewarm';
+import { scheduleStartupSfxPrewarm } from '../modules/audio/startup_sfx_prewarm';
 
 /**
  * Вторая волна прогрева — звуки конца урока. Раньше их не было вовсе, хотя они звучат в конце КАЖДОГО урока и по коду
@@ -1577,27 +1574,29 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     // — и этот тап платил полную латентность создания плеера. Звуки нажатий
     // (самое частое, что слышно) греем на 1.2с: холодный старт и первый кадр
     // уже позади, а это всего три лёгких createAudioPlayer.
-    const tapPrewarmTimer = setTimeout(() => {
-      soundDirector.prewarm([
-        'pm.ui.tap_soft',
-        'pm.ui.tap_primary',
-        'pm.ui.tap_blocked',
-      ]);
-    }, 1200);
-    // Вторая волна — звуки урока и его завершения. Раньше здесь было 5 событий,
-    // причём звуков награды и счётчика опыта среди них не было вовсе, хотя они
-    // звучат в конце КАЖДОГО урока и по коду встречаются чаще прочих
-    // (pm.reward.chest_open — самое частое событие в приложении).
-    // зачем (координатор 13.10): при DEFER_LESSON_END_SFX_PREWARM_TO_SESSION вторая волна уходит на вход в занятие (эффект ниже).
-    const lessonEndPlan = lessonEndPrewarmPlan();
-    const prewarmTimer = lessonEndPlan === 'startup_timer'
-      ? setTimeout(() => prewarmLessonEndSfx('startup_timer'), LESSON_END_SFX_STARTUP_DELAY_MS)
-      : null;
-    if (prewarmTimer === null) console.log(`[SFX-PREWARM] lesson_end plan=${lessonEndPlan} — на старте не греем`);
-    return () => {
-      clearTimeout(tapPrewarmTimer);
-      if (prewarmTimer !== null) clearTimeout(prewarmTimer);
-    };
+    // зачем (координатор 13.10, вариант «б», замер Сверки 57ecd26e6): прежний таймер 1,2 с от монтирования ставил первый —
+    // единственный дорогой (подъём нативного аудио, до 1,5 с) — плеер в окно премаунта вкладок. Теперь обе волны идут после
+    // кадра Главной + паузы под премаунт (modules/audio/startup_sfx_prewarm.ts), одной очередью: нажатия, затем конец урока.
+    // Ранний тап до прогрева звучит с задержкой — play() создаёт плеер сам.
+    const cancelStartupPrewarm = scheduleStartupSfxPrewarm({
+      whenHomePainted,
+      runAfterInteractions: (task) => InteractionManager.runAfterInteractions(task),
+      setTimer: (task, ms) => setTimeout(task, ms),
+      clearTimer: (timer) => clearTimeout(timer),
+      now: () => Date.now(),
+      prewarm: (reason) => {
+        soundDirector.prewarm([
+          'pm.ui.tap_soft',
+          'pm.ui.tap_primary',
+          'pm.ui.tap_blocked',
+        ]);
+        // Вторая волна — звуки конца урока; при DEFER_LESSON_END_SFX_PREWARM_TO_SESSION уходит на вход в занятие (эффект ниже).
+        const lessonEndPlan = lessonEndPrewarmPlan();
+        if (lessonEndPlan === 'startup_timer') prewarmLessonEndSfx(reason);
+        else console.log(`[SFX-PREWARM] lesson_end plan=${lessonEndPlan} — на старте не греем`);
+      },
+    });
+    return cancelStartupPrewarm;
   }, []);
 
   useEffect(() => {

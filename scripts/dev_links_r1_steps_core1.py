@@ -16,7 +16,7 @@ def search(code):
 
 
 # ── Настройки, Профиль, Плюс
-add('settings-gap-023', ['tap:#support-report-input', 'type:Test', 'back', 'tap:#support-report-submit', 'wait:800'], 'plus=off&support=sent', '/support_report', note='Поддержка: «Обращение отправлено» без отправки (support=sent); текст набирается, клавиатура закрывается перед «Отправить»')
+add('settings-gap-023', ['tap:#support-report-input', 'type:Test', 'hidekb', 'tap:#support-report-submit', 'wait:800'], 'plus=off&support=sent', '/support_report', note='Поддержка: «Обращение отправлено» без отправки (support=sent); текст набирается, клавиатура закрывается перед «Отправить»')
 add(['paywalls-020', 'profile-019'], [], 'plus=on&plan=yearly&manage=loading', '/manage_subscription', note='«Управление подпиской»: скелетон держится (manage=loading)')
 add('settings-gap-020', ['tap:#settings-study-language-row', 'wait:700', 'tap:#study-language-option-es', 'wait:700'], 'plus=off&studyTarget=en&started=en,es', '/(tabs)/settings', note='тост «Теперь учишь…»: es уже начат (started=en,es), мини-онбординга нет')
 add('settings-gap-021', ['tap:#settings-study-language-row', 'wait:700', 'tap:#study-language-option-en', 'wait:700'], 'plus=off&studyTarget=es&started=en,es&studyfail=on', '/(tabs)/settings', note='ошибка смены языка изучения (started=en,es + studyfail=on)')
@@ -25,7 +25,7 @@ add('paywalls-010', ['wait:3000'], 'plus=off&upsell=three_lessons', '/lesson_com
 add('paywalls-008', [], 'plus=off&aiConsent=granted&ai_explain=limit', '/lesson_menu?id=1', unique=False, note='карточка ИИ-разбора «лимит дня» (ai_explain=limit): надо открыть урок и ошибиться в задании → ai-mistake-limit-card — шаги ручные')
 
 # ── Промокод
-add('overlays-campaigns-006', ['tap:#promo-code-input', 'type:TESTCODE', 'back', 'tap:#promo-code-submit', 'wait:400'], 'plus=off&promo=hold', '/promo_code_entry', note='промокод: «Активируем…» держится (promo=hold)')
+add('overlays-campaigns-006', ['tap:#promo-code-input', 'type:TESTCODE', 'hidekb', 'tap:#promo-code-submit', 'wait:400'], 'plus=off&promo=hold', '/promo_code_entry', note='промокод: «Активируем…» держится (promo=hold)')
 
 # ── Диалоги: подставной старт и ход (dev_dialog_send=ok) — обязателен, иначе старт сессии идёт в прод
 SEND = ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send']

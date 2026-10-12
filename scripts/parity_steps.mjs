@@ -15,6 +15,7 @@
  *   swipe-left:Текст | swipe-right:Текст   свайп поперёк рамки элемента (удаление свайпом)
  *   type:abc                     ввести ASCII-текст в сфокусированное поле (кириллицу `input text` не умеет)
  *   back | key:ENTER             системная кнопка / клавиша
+ *   hidekb                       убрать экранную клавиатуру, ТОЛЬКО если она показана (dumpsys input_method: mInputShown=true); `back` без клавиатуры выходит с экрана (кадры settings-gap-023/profile-015: после ввода оказались на Главной)
  *   scroll:down | scroll:up      прокрутка экрана
  *   wait:600                     пауза, мс
  *   settle:0                     мета-шаг строки: пауза перед снимком вместо --settle-ms (для коротких состояний вроде «ИИ печатает»); шагом не выполняется, а предыдущий шаг не ждёт afterStepMs
@@ -22,7 +23,7 @@
  */
 export const LONG_PRESS_MS = 1500;
 const OPS_WITH_TARGET = new Set(['tap', 'long', 'swipe-left', 'swipe-right', 'see', 'await']);
-const OPS_NO_TARGET = new Set(['back']);
+const OPS_NO_TARGET = new Set(['back', 'hidekb']);
 const OPS_WITH_VALUE = new Set(['type', 'key', 'scroll', 'wait', 'xy', 'settle']);
 
 export function parseSteps(raw) {
@@ -195,6 +196,14 @@ export async function runSteps(run, steps, opts = {}) {
     if (step.op === 'wait') { await sleep(Number(step.value)); continue; }
     // зачем (Макеты cards-gap-034, 12.10): тост «не скачан» живёт у нижней кромки — `see` подкрутил бы экран свайпом; ждём только появления
     if (step.op === 'await') { await waitNode(step.value, { scroll: false }); continue; }
+    // зачем (Макеты 12.10, ответ Сверке «после type кадры на Главной»): на эмуляторе с аппаратной клавиатурой экранная не показывается, и `back` уходил с экрана
+    if (step.op === 'hidekb') {
+      const ime = String(run(['shell', 'dumpsys', 'input_method']) ?? '');
+      const shown = /mInputShown=true/.test(ime);
+      log(`hidekb: клавиатура ${shown ? 'показана — скрываю' : 'не показана — ничего не делаю'}`);
+      if (shown) run(['shell', 'input', 'keyevent', '4']);
+      continue;
+    }
     if (step.op === 'back') run(['shell', 'input', 'keyevent', '4']);
     else if (step.op === 'key') run(['shell', 'input', 'keyevent', `KEYCODE_${step.value}`]);
     else if (step.op === 'type') run(['shell', 'input', 'text', step.value.replace(/ /g, '%s')]);

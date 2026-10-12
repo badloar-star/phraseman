@@ -21,7 +21,8 @@ add('cards-gap-035', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#f
 
 # ── Устно: удержание микрофона подменено верным ответом (speech=correct, SpeakingPanel); подпись кнопки — «Зажми и говори» (интерфейс ru)
 # зачем (сбои ROBOT9, 12.10): кнопки «Зажми и говори» в сессии нет — это круглый микрофон `fc-speak-mic` (нажал — говорю, нажал — стоп); подмена речи срабатывает на этих двух нажатиях
-add('cards-section-046', ['tap:#fc-speak-mic', 'wait:900', 'tap:#fc-speak-mic', 'wait:1200'], DEMO + '&speech=correct', SPEAK_ROUTE, note='«Устно — верно»: удержание микрофона подменено верным ответом (speech=correct; только русский интерфейс)')
+# зачем (Сверка 12.10, step_target_not_found #fc-speak-mic: у круглого микрофона с бесконечной анимацией кольца uiautomator не отдаёт resource-id): тап по координатам центра микрофона Pixel_8 (540,1324), после паузы 3 с на скелетон сессии
+add('cards-section-046', ['wait:3000', 'xy:540,1324', 'wait:900', 'xy:540,1324', 'wait:1200'], DEMO + '&speech=correct', SPEAK_ROUTE, note='«Устно — верно»: удержание микрофона подменено верным ответом (speech=correct; только русский интерфейс)')
 
 # ── Фильтр по уроку: карточки с источником «урок» (cards=demo_lessons: те же 64, у части source=lesson)
 # зачем (сбои ROBOT9, 12.10): строка «Фильтр» в меню «⋯» появляется только при виде «Фразы» (hasFilter: savedContentKind === 'phrase') — сперва чип «Фразы»
@@ -54,8 +55,8 @@ add(['cards-v2-029', 'cards-076'], [], EMPTY_PLUS + '&studyTarget=es', '/flashca
 add('cards-078', [], DEMO, '/flashcards_training_setup', note='«Режим недоступен»: маршрут настройки без параметра mode')
 add('cards-020', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report'], 'catalog=demo', PACKS, note='жалоба на набор сообщества (долгое нажатие → «Пожаловаться»)')
 # зачем (сбои ROBOT9, 12.10): клавиатура после ввода закрывает поле «Перевод» — `back` убирает её перед следующим тапом
-add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'back', 'tap:#fc-editor-tr', 'type:Test', 'back', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
+add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'hidekb', 'tap:#fc-editor-tr', 'type:Test', 'hidekb', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
 add('cards-068', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Test', 'tap:#ugc-pack-draft-back', 'type:test', 'tap:#ugc-pack-draft-save', 'tap:#ugc-pack-menu', 'tap:#ugc-pack-clear-draft'], EMPTY_PLUS, CREATE, note='«Очистить черновик?»: одна карточка в черновике → меню набора → очистить')
 
 # зачем (Ядро 12.10, партия 1): образец «Устно — ожидание» — микрофон нажат, идёт запись; адрес сессии с вложенным size (`&` в next экранируется), подмена речи speech=correct снаружи
-add('cards-section-040', ['tap:#fc-speak-mic', 'wait:500'], DEMO + '&speech=correct', SPEAK_ROUTE, unique=False, note='«Устно — ожидание»: микрофон нажат один раз (speech=correct, запись идёт); не проверено на кадре')
+add('cards-section-040', ['wait:3000', 'xy:540,1324', 'wait:500'], DEMO + '&speech=correct', SPEAK_ROUTE, unique=False, note='«Устно — ожидание»: микрофон нажат один раз (speech=correct, запись идёт); не проверено на кадре')

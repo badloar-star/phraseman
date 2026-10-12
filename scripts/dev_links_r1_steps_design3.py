@@ -4,6 +4,6 @@
 # а не «Обращение отправлено». Подмена support=sent уже есть (settings-gap-023): ответ отправки подменяется, в облако ничего не уходит.
 from dev_links_r1_steps import add
 
-add('profile-015', ['tap:#support-report-input', 'type:Test', 'back', 'tap:#support-report-submit', 'wait:800'], 'plus=off&support=sent', '/support_report',
+add('profile-015', ['tap:#support-report-input', 'type:Test', 'hidekb', 'tap:#support-report-submit', 'wait:800'], 'plus=off&support=sent', '/support_report',
     unique=False, note='форма поддержки: «Обращение отправлено» без отправки (support=sent); тот же экран, что settings-gap-023')
 

@@ -149,7 +149,8 @@ add('cards-gap-018', [TILE, TO_PACK], DEMO, SAVED, note='шторка «В ка�
 # зачем (R1_DIFF_ONE_FIX, cards-gap-020): набор «Работа» в демо содержит первые 19 сохранённых слов (demoPackCards), поэтому первая плитка (Layover) — дубль и тост «Эта карточка уже в наборе» ложился поверх шторки; для «Добавлено» берём плитку ниже по списку (после прокрутки), которой в наборе нет
 add('cards-gap-020', ['scroll:down', 'scroll:down', 'scroll:down', 'scroll:down', 'tap:#fc-gallery-tile-*@3', TO_PACK, PACK_WORK], DEMO, SAVED, note='карточка добавлена в «Работа» — тост «Добавлено»')
 # зачем (сбои ROBOT9, 12.10): после первого добавления шторка карточки закрывается — для второго «В набор» карточку открываем заново; паузы — анимация шторок
-add('cards-gap-021', [TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK, 'wait:1500', TILE, 'wait:600', TO_PACK, 'wait:600', PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
+# зачем (Сверка 12.10, step_target_not_found #fc-expanded-to-pack: шторка карточки не успевала открыться — список листался вслепую): паузы после тапа по плитке 900 мс
+add('cards-gap-021', [TILE, 'wait:900', TO_PACK, 'wait:900', PACK_WORK, 'wait:1800', TILE, 'wait:900', TO_PACK, 'wait:900', PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
 
 # Карточки: состояния, которые открывает сама ссылка (фикстура держит/ломает данные, тап не нужен)
 # cards-039: привязка образца — cards-v2 №44 «Каталог без сети»; запись «Сохранённые — ошибка загрузки» ей не соответствует, кадр «без сети» ссылкой не выводится → строка «нет» до перепривязки
@@ -252,7 +253,7 @@ PROMO = '/promo_code_entry'
 PROMO_TYPE = ['tap:#promo-code-input', 'type:TESTCODE']
 PROMO_SEND = PROMO_TYPE + ['tap:#promo-code-submit']
 # зачем (координатор 12.10): кадры ответов overlays-campaigns-009…012/015 снимались с открытой клавиатурой — после ввода кода `back` закрывает её (экран остаётся: пока поле в фокусе, первый back гасит только клавиатуру), затем отправка.
-PROMO_SEND_NOKB = PROMO_TYPE + ['back', 'tap:#promo-code-submit']
+PROMO_SEND_NOKB = PROMO_TYPE + ['hidekb', 'tap:#promo-code-submit']
 PROMO_BASE = 'plus=off&energy=3'
 add('overlays-campaigns-004', [], PROMO_BASE, PROMO, note='ввод промокода — пусто')
 add('overlays-campaigns-005', PROMO_TYPE, PROMO_BASE, PROMO, note='введён код — кнопка активна («можно применить»)')

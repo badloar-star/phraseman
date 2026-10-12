@@ -61,6 +61,7 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         disabled={asking}
         onPress={allow}
         withHaptic={false}
+        outerStyle={S.stretch}
         // зачем (paywall-gaps-states `.wcta`): кнопка с градиентом и свечением, как главная кнопка покупки
         style={[S.cta, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.accent}4D` }] }]}
       >
@@ -75,6 +76,7 @@ function PaywallTrialReminderPrompt({ lang, g, topInset, bottomInset, onAllow, o
         onPress={onSkip}
         withHaptic={false}
         scaleTo={0.96}
+        outerStyle={S.stretch}
         style={S.ghost}
       >
         <Text style={[S.ghostText, { color: g.secondary }]}>{pick(lang, COPY.afterNotNow)}</Text>
@@ -92,7 +94,10 @@ const S = StyleSheet.create({
   title: { marginTop: 24, fontSize: 28, lineHeight: 33, fontWeight: '800', letterSpacing: -0.5, textAlign: 'center' },
   body: { marginTop: 10, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   spacer: { flexGrow: 1, minHeight: 24 },
-  cta: { alignSelf: 'stretch', minHeight: 58, borderRadius: 29, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' },
+  // зачем (paywall-gap-006, Макеты 12.10): кнопка была узким прямоугольником с прямыми углами. Причины две: (1) V2Pressable кладёт внешний Pressable в колонку с alignItems:'center' —
+  // он сжимался по тексту, а `alignSelf:'stretch'` стоял на внутреннем слое (stretch переехал в outerStyle); (2) градиент на всю кнопку без overflow:'hidden' перекрывал скругление, как у главной кнопки покупки (PaywallPlus.cta).
+  stretch: { alignSelf: 'stretch' },
+  cta: { alignSelf: 'stretch', minHeight: 58, borderRadius: 29, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   ctaText: { fontSize: 16, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
   ghost: { alignSelf: 'stretch', minHeight: 50, marginTop: 10, alignItems: 'center', justifyContent: 'center' },
   ghostText: { fontSize: 16, fontWeight: '700' },

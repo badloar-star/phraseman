@@ -24665,24 +24665,29 @@
         "components/referral_code_sheet.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-018.png",
+      "evidence_at": "2026-10-12T02:25:52.807Z",
+      "evidence_sha256": "e0be908a94b689aa748b8727a162c8481519139b216f897dadb4b7df6f6d963a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — решение координатора 12.10] «✕» слева, заголовок смещён вправо; в образце «✕» справа в круге, заголовок по центру — перенести «✕» вправо (как 016/017).",
+        "[состояние] На кадре открыта клавиатура ОС (в образце нет); поле кода без подложки-плашки, в образце тёмное поле.",
+        "[тема] Кнопка «Применяем…» белая, в образце мятная — тон темы, принято."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:26:29.751Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=hold&overlays=off&next=/referrals?enter=1"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:25, referral-code-states.html №3 «018 · Проверка»): состояние проверки воспроизведено — шторка «Код от друга», код ANNA42, кнопка «Применяем…» со спиннером."
     },
     {
       "id": "overlays-campaigns-019",

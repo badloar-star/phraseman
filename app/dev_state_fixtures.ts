@@ -28,6 +28,7 @@ import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_c
 import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
+import { setDevAppearance } from './dev_appearance_override';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
@@ -78,6 +79,8 @@ export type DevStateRequest = Readonly<{
   /** Кэш каталога сообщества: пустой (живая сеть, «Здесь появятся наборы…») или демо-наборы. */
   catalog?: 'empty' | 'demo';
   spire?: 'open' | 'closed';
+  /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
+  appearance?: 'light' | 'dark' | 'clear';
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
@@ -217,6 +220,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dquota = intOrWord('dquota', ['reset'] as const, 30);
   request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
+  request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   // зачем (R1_PENDING_COVERAGE 2б, onboarding-025 / onboarding-paywall-001): дорога к экрану цены онбординга без прохода всех шагов. Допустимы только id каталога шагов.
   const onbStepRaw = one(params.onbstep);
@@ -386,6 +390,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   if (request.free) await step('free', request.free, () => setDevAsFreeFlag(request.free === 'on'));
+  if (request.appearance) {
+    // зачем (Макеты 15.10): светлая/тёмная Главная ссылкой, только память
+    await step('appearance', request.appearance, async () => {
+      setDevAppearance(request.appearance === 'clear' ? null : request.appearance === 'light' ? 'light' : 'dark');
+      return true;
+    });
+  }
   if (request.spire) {
     await step('spire', request.spire, async () => {
       await setSpireTabDevOverride(request.spire === 'open');

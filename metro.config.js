@@ -276,6 +276,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_ui_lang',
     'dev_save_offer_progress',
     'dev_animations_off',
+    // зачем (Макеты 15.10): dev_state?appearance=light|dark — подмена оформления в памяти; в стор-сборке заглушка (ThemeContext импортирует модуль из боевого кода)
+    'dev_appearance_override',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

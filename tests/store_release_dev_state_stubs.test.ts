@@ -7,7 +7,9 @@ import path from 'node:path';
 const ROOT = path.join(__dirname, '..');
 const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev_cards_state', 'dev_dialog_state', 'dev_paywall_state', 'hub_lifecycle_probe',
   // зачем (координатор 12.10): dev-подмены робота и английского прохода — тоже в списке заглушек сборщика
-  'dev_mistakes_demo', 'dev_friends_demo', 'dev_ui_lang', 'dev_save_offer_progress', 'dev_animations_off'] as const;
+  'dev_mistakes_demo', 'dev_friends_demo', 'dev_ui_lang', 'dev_save_offer_progress', 'dev_animations_off',
+  // зачем (Макеты 15.10): оформление light/dark ссылкой dev_state — только память; в стор-бандле заглушка
+  'dev_appearance_override'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {
@@ -47,6 +49,9 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     const view = { loading: false };
     expect([paywall.parseDevPaywallState('loading'), paywall.setDevPaywallLinkState('loading'), paywall.getDevPaywallLinkState()]).toEqual([null, false, null]);
     expect(paywall.applyDevPaywallView('loading', view, 'yearly')).toBe(view); // вид окна цен не меняется
+    const appearance = require('../store_release_stubs/dev_state/dev_appearance_override_stub');
+    expect([appearance.getDevAppearance(), appearance.setDevAppearance('light'), appearance.getDevAppearance()]).toEqual([null, undefined, null]); // подмены оформления нет
+    expect(typeof appearance.subscribeDevAppearance()).toBe('function');
     const probe = require('../store_release_stubs/dev_state/hub_lifecycle_probe_stub');
     expect(() => { probe.registerHubCacheProbe(); probe.logHubSnapshot(); probe.useHubLifecycle(); probe.noteHubSubscription(); }).not.toThrow();
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */

@@ -27,6 +27,7 @@ import {
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
+import { getDevAppearance, subscribeDevAppearance } from '../app/dev_appearance_override';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -319,7 +320,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [previewLiquidGlassIntensity, setPreviewIntensityState] = useState<number | null>(null);
   const liquidGlassIntensity = previewLiquidGlassIntensity ?? appliedLiquidGlassIntensity;
   const liquidGlassColorLevel = liquidGlassLevelForIntensity(liquidGlassIntensity);
-  const [liquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
+  const [savedLiquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
+  // зачем (Макеты 15.10): dev_state?appearance=light|dark — оформление ТОЛЬКО в памяти (app/dev_appearance_override.ts); хранилище и сохранённый выбор не меняются. Без оверрайда — прежнее значение.
+  const [devAppearance, setDevAppearanceState] = useState<LiquidGlassAppearance | null>(() => getDevAppearance());
+  useEffect(() => subscribeDevAppearance(setDevAppearanceState), []);
+  const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? savedLiquidGlassAppearance;
   // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
   // человек успел сделать раньше (last-write-guard, как с осколками).
   const touchedRef = useRef({ theme: false, level: false, appearance: false });

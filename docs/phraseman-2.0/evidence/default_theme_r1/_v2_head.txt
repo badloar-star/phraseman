@@ -1,1 +1,1 @@
-755c8dca6 docs: вопросы владельцу — №9 жалоба на набор (окно vs шторка с причинами, cards-020)
+a85be59e7 test(parity): verdicts for 14 re-shot cards frames (stale hash): 2 match, 12 diff

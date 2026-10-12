@@ -82,6 +82,17 @@ firebase deploy --only functions:progressSubmitEvent,functions:coinReconcileV1 -
 - **Откат:** `gcloud run services update-traffic <имя строчными> --region us-central1 --to-revisions <ПРОШЛАЯ>=100` —
   для каждой функции. Для новой `coinReconcileV1` — `firebase functions:delete coinReconcileV1 --region us-central1`.
 
+## Шаг 3б. Озвучка карточек — только после правки политики
+
+Не раньше, чем на сайте опубликован абзац П9 (§6/§13) — подробно в «Пакет 20.10», п.6 ниже. Пока политика обещает озвучку
+только на устройстве, эти две функции не выкладываются.
+
+```bash
+firebase deploy --only "functions:cardTtsPackWorker,functions:adminCardTtsRequeuePack" --project phraseman-ea0b3
+```
+
+Затем «Пульт» → `card_tts_enabled` → ВКЛ; без этого функции ничего не шлют в OpenAI.
+
 ## Шаг 4. Админка — последней
 
 ```bash
@@ -124,6 +135,103 @@ firebase deploy --only hosting:admin --project phraseman-ea0b3
    - 14 функций без кода ([DEPLOY_NOW.md](DEPLOY_NOW.md), шаг 2);
    - и убрать из правил блок `friends_chest_claims` (вместе со сторожем PM-170, который его сейчас требует).
 3. Остальное — [OWNER_RELEASE_STEPS.md](OWNER_RELEASE_STEPS.md) §7.
+
+## Пакет 20.10 — по пунктам (Ядро, 12.10 вечер)
+
+Подробности к шагам 2–3 и новый шаг 3б. **Нажимает только владелец.** Сессии ИИ ничего из этого не выкладывают.
+Выкладка — из чистого среза коммита, как в [DEPLOY_MORNING_2026-10-13.md](DEPLOY_MORNING_2026-10-13.md) («Почему не из рабочей
+папки» и «Команда»): `firebase deploy` собирает рабочую папку, а в ней бывают чужие незакоммиченные правки.
+
+**Что уедет вместе.** Каждая функция берёт весь свой код на момент коммита. Ниже — коммиты с 20.09 в файле функции и её прямых
+зависимостях. Дату прошлой выкладки владелец смотрит командой (только чтение) и отсекает всё, что раньше, — оно уже в проде:
+
+```bash
+gcloud functions describe <имяФункции> --gen2 --region us-central1 --project phraseman-ea0b3 --format="value(updateTime)"
+```
+
+Общие для всех групп коммиты (затрагивают общий код личности и логов, смысл для человека — нет): `0394a4add` (бан переживает
+удаление аккаунта), `8917963d6`, `11cf4f911`, `301df32e6`, `750728284`, `a16a2b600` (старым сборкам — client_too_old),
+`f5447d10c` / `17047a3c8` (немые catch пишут причину), `efe19ae9d` (общий снимок 30.09).
+
+### 1. `levelSpinStarGrant` — шаг 2, первой
+
+| | |
+|---|---|
+| Функция | `levelSpinStarGrant` (functions/src/level_spin_star_grant.ts) |
+| Порядок | первой, сразу после одобрения 2.0 магазинами, затем без паузы шаг 5 (обновление для 1.6.x) |
+| Что даёт | серверный кошелёк монет без спинов (Q13, `6d5835ef8`); список источников монет закреплён (`318589878`); «Супер-воскресенье» снято (`b053c3ac4`, D147); серия телефона раз в сутки (`5e1dc5344`, `398daf03c` — старые клиенты по-старому) |
+| Уедет вместе | `caf7b9889` (progressMigrateSnapshot не затирает облако), `1adefdef7` (отказы progressSubmitEvent с причиной), `923ea2b00`, `c9ba37a23`, `9345148f2`, общие выше |
+| Риск | **1.6.x перестаёт получать награды спинов** — поэтому шаг 5 сразу |
+| Проверка | `firebase functions:log --only levelSpinStarGrant -n 20 --project phraseman-ea0b3` — нет ошибок старта; спин на 2.0 даёт монеты |
+| Откат | `gcloud run revisions list --service levelspinstargrant --region us-central1 --limit 3` → `gcloud run services update-traffic levelspinstargrant --region us-central1 --to-revisions <ПРОШЛАЯ>=100` |
+| Политика до выкладки | ничего нового: монеты — внутриигровая валюта, уже описана |
+
+### 2. `coinReconcileV1` — шаг 3, третья команда
+
+| | |
+|---|---|
+| Функция | `coinReconcileV1` (functions/src/coin_reconcile_v1.ts) — **новая**, callable; зовёт клиент 2.0 (app/community_packs/functionsClient.ts) |
+| Порядок | после `levelSpinStarGrant`; **до** чистки D90 (`level_spin_results`) |
+| Что даёт | разовая серверная сверка монет (`b87afa74a`); учитывает призы спинов аккаунтов, скрытых слиянием (`6e8f634bb`); квитанция против повторной сверки (`4ad2bf08f`) |
+| Уедет вместе | общие выше + те же коммиты прогресса, что у levelSpinStarGrant |
+| Проверка | `firebase functions:log --only coinReconcileV1 -n 20 --project phraseman-ea0b3`; в Firestore появляются `coin_reconcile_receipts/{opId}`, баланс у тестового аккаунта не задваивается при повторном входе |
+| Откат | функция новая: `firebase functions:delete coinReconcileV1 --region us-central1 --project phraseman-ea0b3` (клиент 2.0 переживает отсутствие — сверка просто не применится) |
+| Политика | ничего нового |
+
+### 3. Награда за жалобу — шаг 3, первая команда
+
+| | |
+|---|---|
+| Функции (7) | `adminReplyToReport`, `claimReportReward`, `adminDraftReportReply` (functions/src/report_replies.ts); `adminExportReportDocuments`, `adminExportUnresolvedReports`, `adminListReportQueue`, `adminUpdateReportStatus` (functions/src/admin_reports_center.ts) |
+| Порядок | после шага 2 |
+| Что даёт | награда за жалобу в монетах v2 `{coins}` 300/600/1000 (`f20328d12`, Q4); жалоба на задание Шпиля (`315c3edb6`); расход ИИ черновика ответа виден по operation (`76de2317d`, `abec9c00a`, `490f82406`) |
+| Уедет вместе | `dac44f015` (общий коммит функций 11.10), `a4606e6e6` (удалены помощники MAX), общие выше |
+| Риск | 1.6.x не сможет забрать новую награду (2.0 — может) → шаг 5 |
+| Проверка | `firebase functions:log --only claimReportReward -n 20 --project phraseman-ea0b3`; админка → ответ на жалобу с наградой → на 2.0 «Забрать» начисляет монеты |
+| Откат | для каждой из 7: `gcloud run services update-traffic <имя строчными> --region us-central1 --to-revisions <ПРОШЛАЯ>=100` |
+| Политика | ничего нового (жалобы и ответы уже описаны) |
+
+### 4. Опрос осколков + «без русской подмены» — шаг 3, вторая команда
+
+| | |
+|---|---|
+| Функции (4) | `submitShardSurvey`, `getActiveShardSurvey`, `adminWriteShardSurvey`, `adminDeleteShardSurvey` (functions/src/shard_survey.ts) |
+| Порядок | шаг 3; **сразу после** — переводы uk/en (ниже) |
+| Что даёт | белые списки маршрутов 2.0 (`e504ec057` — без переходов в Арену/Лигу, `41648d48d` — раздел «Идеи» выключен), `825a5a9f6` (жемчуг не начисляется); **(б) `e4f45f8e3`**: опрос без текста на языке человека не предлагается, лог `[SHARD-SURVEY] reason=no_locale`, `en` в языках опроса |
+| Уедет вместе | общие выше |
+| Сразу после (только владелец, запись в прод) | `node scripts/apply_shard_survey_translations.mjs` — план; затем `node scripts/apply_shard_survey_translations.mjs --write --confirm APPLY_SURVEY_TRANSLATIONS_UK_EN`. Без этого на uk/en опросы исчезнут; es/pt-BR/vi/id/tr/pl — исчезнут до отдельного перевода; 9 из 63 опросов скрипт покажет «нет в черновике» — их вручную в админке. [SHARD_SURVEY_TRANSLATIONS_DRAFT.md](SHARD_SURVEY_TRANSLATIONS_DRAFT.md) |
+| Проверка | `firebase functions:log --only getActiveShardSurvey -n 20 --project phraseman-ea0b3` — `reason=no_locale` только у языков без перевода; на uk-интерфейсе в «Сегодня» опрос по-украински |
+| Откат | для каждой из 4: `gcloud run services update-traffic <имя строчными> --region us-central1 --to-revisions <ПРОШЛАЯ>=100` (переводы в документах не мешают старой ревизии) |
+| Политика | ничего нового |
+
+### 5. `progressSubmitEvent` — шаг 3, третья команда (вместе с coinReconcileV1)
+
+| | |
+|---|---|
+| Функция | `progressSubmitEvent` (functions/src/progress_events.ts) |
+| Что даёт | серия от 2.0 (`streak_sync`, `5e1dc5344`); старые события 1.6.x проверяются по-прежнему (`398daf03c`); отказы 400 пишут `[PROGRESS-EVENT] rejected` с причиной (`1adefdef7`) |
+| Уедет вместе | `caf7b9889` (progressMigrateSnapshot не затирает облако), общие выше |
+| Проверка | на клиенте 2.0 — `[STREAK-SYNC] sent`; на сервере — нет всплеска `progress_streak_evidence_rejected` (`firebase functions:log --only progressSubmitEvent -n 50`) |
+| Откат | `gcloud run services update-traffic progresssubmitevent --region us-central1 --to-revisions <ПРОШЛАЯ>=100` |
+| Политика | ничего нового |
+
+### 6. Озвучка карточек `cardTts*` — НОВЫЙ шаг 3б, только после правки политики
+
+| | |
+|---|---|
+| Функции (2) | `cardTtsPackWorker` (триггер Firestore `card_tts_jobs/{packId}`), `adminCardTtsRequeuePack` (callable, только admin) — functions/src/card_tts_worker.ts. **Новые.** |
+| Рубильник | `remote_config/app.bools.card_tts_enabled` (по умолчанию ВЫКЛ; кэш инстанса 10 мин; ошибка чтения → ВЫКЛ). Имени `config/card_tts_v1` в коде нет. Даже выложенные функции при выключенном рубильнике ничего не шлют в OpenAI — задачи остаются `queued` |
+| ⛔ Политика ДО выкладки | сейчас §13 обещает: «pronunciation is generated on device and Knowly does not receive the generated text-to-speech audio». Нужно опубликовать П9 из [PRIVACY_R1_GAP.md](PRIVACY_R1_GAP.md): абзац в §6 (текст карточек одобренного набора отправляется OpenAI для озвучки, аудио хранится с набором) и строку в конец первого абзаца §13 (у части наборов есть заранее подготовленная озвучка). Правка — в `legal/privacy_policy_en.json` и `legal/privacy_policy_en_ios.json`, затем `npm run legal:sync`, затем выкладка сайта `hosting:knowlywww` (DEPLOY_MORNING, блок «Г»). Проверить на https://knowlyapps.com/legal/privacy, что абзац виден |
+| Порядок | (1) политика с П9 опубликована и видна → (2) `firebase deploy --only "functions:cardTtsPackWorker,functions:adminCardTtsRequeuePack" --project phraseman-ea0b3` → (3) «Пульт» → включить `card_tts_enabled` → (4) админка → перепоставить ждущие наборы (`adminCardTtsRequeuePack`) |
+| Что даёт | озвучка одобренных наборов сообщества через OpenAI TTS (`cc3bac44d`, D128); рубильник ИИ останавливает и её (`2c24c96f7`); серверный рубильник (`a927ae576`); потолки и тайм-ауты платных запросов (`d99195f71`, `15326b641`, `490f82406`) |
+| Проверка | `firebase functions:log --only cardTtsPackWorker -n 30 --project phraseman-ea0b3`: при выключенном рубильнике `[CARD-TTS-GATE] skipped:disabled`; после включения — набор доходит до `done`, в админке виден расход по operation; суточный бюджет `card_tts_daily_budget` не превышен |
+| Откат | сначала рубильник `card_tts_enabled` → ВЫКЛ (останавливает за ≤ 10 мин без выкладки); затем при необходимости `firebase functions:delete cardTtsPackWorker adminCardTtsRequeuePack --region us-central1 --project phraseman-ea0b3`. Уже созданное аудио остаётся у наборов |
+| Деньги | каждый одобренный набор = запросы OpenAI TTS; бюджет на сутки — `card_tts_daily_budget`, расход — `card_tts_billing` |
+
+### Кто нажимает
+
+Все шаги 2, 3, 3б, 4, 5 и запись переводов опросов — **только владелец** (или координатор по его прямому «да» на конкретный
+шаг). Сессии ИИ готовят документы и проверяют срез, но ни одной выкладки и ни одной записи в прод не делают.
 
 ## Стоп-условия
 

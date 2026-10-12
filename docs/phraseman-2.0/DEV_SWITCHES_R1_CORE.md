@@ -74,9 +74,75 @@
 - **dialogs-028** «попытки кончились + PLUS»: в коде нет голосовой квоты и значка PLUS на микрофоне — только в макете.
 - **community-010** «Отправляем заявку…»: подпись мёртвая, карточка скрывается в тот же тик.
 
-## Партия 2 — Карточки (в работе)
+## Партия 2 — Карточки (коммит ae44078f4 + дополнение)
 
-Готовы без новых переключателей (ссылки — Макетам): cards-077, gap-009, gap-022, gap-035, section-046, gap-005,
-gap-024, gap-023, section-040/041, v2-032, cards-079, cards-042, cards-049, gap-032 (после cards-018). Важно для
-cards-042/049: **убрать `catalog=demo`** — он идёт после `cards=demo_published` и стирает «Мой опубликованный» из каталога.
-Новые подмены (демо-наборы сообщества в памяти, отклики, лайк, публикация, голоса, видео) — следующим коммитом.
+### Новые параметры
+
+| Параметр | Что делает |
+|---|---|
+| `packcards=on` | **сообщество без сети**: демо-наборы с карточками и метой в памяти + тот же каталог. Для `dev_demo_*` / `video_devDemo*` сеть не вызывается вообще — ни чтение, ни запись (лайк, «Добавить себе», отклик, жалоба в прод не уходят) |
+| `packcards=meta` | мета наборов есть, карточек нет (cards-044 «Набор ещё не скачан») |
+| `packcards=off` / `community=off` | режим без карточек / выключить режим |
+| `community=reset` | забыть «добавленное», лайки, отправленные отклики (память живёт до перезапуска — ставить в каждую ссылку) |
+| `community=added` | наборы 2, 1, 3 уже «добавлены» (в «Моих наборах») |
+| `comments=demo\|empty` | ветка откликов: 3 отклика (`dev_demo_cm_1` закреплён автором) / пусто |
+| `hold=comment_send` / `fail=comment_send` | отклик «отправляется» (висит) / «не отправлен»; без них — «отправлен» в память |
+| `fail=report_send` | жалоба на демо-набор/отклик «не отправилась»; без него — «отправлена» (без сети и троттлинга) |
+| `fail=pack_like` | лайк не прошёл: откат сердца + тост |
+| `fail=publish_error` | «Не удалось отправить набор на публикацию» без сети |
+| `fail=pack_remove_min\|pack_remove_net` | удаление карточки опубликованного набора: «минимум 10» / «нет связи» |
+| `fail=video_open` | «Видео сейчас не открывается» без браузера |
+| `voices=demo\|none` | голоса озвучки как на образце (Samantha/Daniel/Karen/Moira) / пусто |
+| `hold=swipe_quickstart` | **починен:** теперь реально держит «Готовим тренировку…» (автозапуск его не читал) |
+
+Демо-наборы: `dev_demo_community_2` = «B2 глаголы» · Ирина · 49 · B2 (Convince, Claim, Afford, Borrow, Deserve…);
+`dev_demo_published_own` = «Мой опубликованный» (автор — ты; нужен `cards=demo_published`, только гость);
+`video_devDemoVid0` = «Заказ в кафе» (ролик). testID плиток: `fc-gallery-tile-<packId>_c1…`.
+Поле отклика получило `testID="pack-comment-input"`.
+
+`B` = `onboarding=done&intros=seen&overlays=off&studyTarget=en`. `P2` = `B&packcards=on&community=reset&next=/flashcards_collection?pack=dev_demo_community_2%26preview=1`.
+
+### Строки
+
+| id | ссылка | шаги |
+|---|---|---|
+| cards-018 = section-013 = v2-015 | `P2` | — (чужой набор до добавления) |
+| cards-019 = section-014 = v2-016 | `P2` | `tap:#pack-add-dev_demo_community_2` |
+| cards-gap-032 | `P2` | `tap:#pack-like-dev_demo_community_2` (тост «сначала добавь») |
+| cards-050 | `P2` | `tap:#pack-add-dev_demo_community_2; tap:#pack-like-dev_demo_community_2` |
+| cards-gap-033 | `P2&fail=pack_like` | `tap:#pack-add-dev_demo_community_2; tap:#pack-like-dev_demo_community_2` |
+| cards-section-018 | `P2` | `tap:#pack-add-dev_demo_community_2; tap:#fc-gallery-tile-dev_demo_community_2_c1` |
+| cards-051 | `P2&comments=empty` | `tap:#pack-add-dev_demo_community_2; tap:#pack-comments-dev_demo_community_2` («Пока тихо») |
+| cards-052 | `P2&comments=demo` | `tap:#pack-comments-dev_demo_community_2` (до добавления — `pack-comments-write-locked`) |
+| cards-054 (отправлен) | `P2&comments=demo` | `tap:#pack-add-…; tap:#pack-comments-…; tap:#pack-comment-input; type:Thanks; tap:#pack-comment-send; wait:600` |
+| cards-054 (отправляется) | `P2&comments=demo&hold=comment_send` | то же |
+| cards-056 (не отправлен) | `P2&comments=demo&fail=comment_send` | то же |
+| cards-055 | `P2&comments=demo` | `tap:#pack-add-…; tap:#pack-comments-…; tap:#pack-comment-more-dev_demo_cm_2` (меню чужого) |
+| cards-057 | как 055 | + `tap:Пожаловаться` → `report-comment-sheet` |
+| cards-058/059 (жалоба отправлена) | как 055 | + `tap:Пожаловаться; tap:Спам или реклама; tap:Отправить жалобу; wait:600`; «не отправилась» — `&fail=report_send` |
+| cards-053 (меню автора) | `B&cards=demo_published&plus=on&packcards=on&comments=demo&next=/flashcards_collection?pack=dev_demo_published_own%26openComments=1` | `tap:#pack-comment-more-dev_demo_cm_2` (пункты не жать — но и они без сети) |
+| cards-gap-029 | `B&cards=demo_published&plus=on&packcards=on&fail=pack_remove_min&next=/flashcards_collection?pack=dev_demo_published_own` | `tap:#fc-gallery-tile-dev_demo_published_own_c1; tap:#fc-expanded-delete; wait:5800` |
+| cards-gap-031 | то же с `fail=pack_remove_net` | то же |
+| cards-gap-039 | `B&cards=demo_published&plus=on&packcards=on&next=/flashcards_collection?pack=dev_demo_published_own` | `tap:#fc-gallery-tile-dev_demo_published_own_c1; tap:#fc-expanded-to-pack` |
+| cards-044 | `B&packcards=meta&community=added&next=/flashcards_my_packs` | `tap:#fc-my-packs-pack-dev_demo_community_2; wait:5200` (тост «не скачан») |
+| cards-043 = section-030 = v2-019 | `B&packcards=on&community=reset&next=/flashcards_collection?pack=video_devDemoVid0%26preview=1` | — |
+| cards-section-031 = v2-053 | как 043 | `tap:#pack-add-video_devDemoVid0` |
+| cards-082 | как 043 + `&fail=video_open` | `tap:#video-set-hero` |
+| cards-gap-003 | `B&cards=demo&plus=on&hold=swipe_quickstart&next=/flashcards_truefalse_session?deck=saved%26quick=1%26size=all` | — |
+| cards-gap-028 | `B&cards=demo&plus=on&fail=publish_error&next=/flashcards_collection?pack=local_pack_dev_demo_work` | `tap:#fc-pack-menu; tap:#fc-pack-publish` |
+| cards-gap-036 | `B&plus=on&voices=demo&next=/flashcards_voice_picker` | `tap:#fc-voice-row-dev_voice_samantha` |
+| cards-gap-038 | `B&plus=on&voices=none&next=/flashcards_voice_picker` | — |
+| cards-042 | `B&cards=demo_published&plus=on&next=/community_pack_create?packId=dev_demo_published_own` | — (редактор, образец №23) |
+| cards-049 | `B&cards=demo_published&plus=on&next=/flashcards_packs` | **без `catalog=demo`** — он стирал «Мой опубликованный» |
+| cards-section-040 = v2-032 | `B&cards=demo&plus=on&speech=correct&next=/flashcards_speaking_session?deck=saved%26size=all` | — |
+| cards-section-041 | как 040 | `tap:#fc-speak-mic` (запись идёт) |
+| cards-079 | `B&cards=demo&plus=on&speech=correct&next=/flashcards_speaking_session?deck=custom%26size=all` | `tap:#fc-speak-pick-decks-empty` |
+| cards-gap-023 | `B&cards=demo_lessons&plus=on&next=/flashcards_collection?cat=saved` | `tap:#fc-saved-actions; tap:#fc-saved-content-phrase; tap:#fc-menu-filter` |
+| cards-gap-022 | `B&cards=demo&plus=on&fail=pack_write&next=/flashcards_collection?cat=saved` | `tap:Layover; tap:#fc-expanded-to-pack; tap:#fc-expanded-pack-local_pack_dev_demo_work` |
+| cards-gap-035 | `B&catalog=demo&fail=pack_write&next=/flashcards_packs` | `long:#flashcards-pack-card-dev_demo_community_1; tap:#flashcards-pack-add` |
+
+Готовые без изменений (отметка в реестре устарела, Макеты перевели в ready): cards-077, gap-009, gap-005, gap-024, section-046.
+
+**Осталось:** cards-072 (черновик нового набора с 12 карточками — нужен `packdraft=on`); страховка «Устно» на эмуляторе
+(`speech_device_availability` при `speech=` — проверить `[SPEECH-AVAIL] probe` первой серией); голос в Диалогах
+(dialogs-024…028, gap-014); запрет уведомлений (settings-gap-012, файл сейчас правит другая сессия).

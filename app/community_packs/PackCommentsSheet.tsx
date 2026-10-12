@@ -892,6 +892,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                 <View style={{ flex: 1, backgroundColor: glass.opaqueControl, borderRadius: 23, paddingHorizontal: 16, paddingVertical: 11, minHeight: 46, justifyContent: 'center' }}>
                   <TextInput
                     ref={composerRef}
+                    // зачем (съёмка R1 cards-054/056): робот печатает отклик по testID — поле без него было недоступно шагам.
+                    testID="pack-comment-input"
                     value={draft}
                     // зачем БЕЗ normalizePackCommentText на каждое нажатие
                     // (владелец: «ставлю пробел, он убирается»): функция

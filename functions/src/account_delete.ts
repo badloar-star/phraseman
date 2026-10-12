@@ -1949,6 +1949,9 @@ export async function executeAccountDeletion(
       if (e?.code !== 'auth/user-not-found') {
         throw new HttpsError('internal', 'auth_delete_failed');
       }
+      // зачем (координатор 12.10, §9 инцидента: authDeleted=false у всех трёх без единой строки): учётной записи входа уже нет —
+      // это не ошибка, но причина обязана быть в журнале, иначе «не удалили» и «нечего было удалять» не различить.
+      accountDeleteLog(ctx, 'auth_already_deleted', stats, { code: 'auth/user-not-found' });
     }
 
     // зачем (Пакет 6A): «completed» ставит ТОЛЬКО конец конвейера — после

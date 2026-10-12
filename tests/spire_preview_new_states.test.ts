@@ -89,4 +89,14 @@ describe('новые состояния превью Шпиля', () => {
     const fixtures = readFileSync(join(__dirname, '..', 'components', 'spire', 'spire_preview_fixtures.ts'), 'utf8');
     expect(fixtures).not.toMatch(/fetch\(|httpsCallable|firestore|AsyncStorage/i);
   });
+  // зачем (координатор 12.10, spire-gap-012/013): причины провала различаются в превью
+  it('провал: «время вышло» (timeout) и «ступень прервана» (backed_out) — свои состояния, обычный lose остаётся «сердца»', () => {
+    for (const state of ['lose_timeout', 'lose_aborted'] as const) {
+      expect(isSpirePreviewState(state)).toBe(true);
+      expect(SPIRE_PREVIEW_STATES).toContain(state);
+    }
+    expect(spirePreviewModel('lose').game.outcome!.report!.failReason).toBe('hearts');
+    expect(spirePreviewModel('lose_timeout').game.outcome!.report!.failReason).toBe('timeout');
+    expect(spirePreviewModel('lose_aborted').game.outcome!.report!.failReason).toBe('backed_out');
+  });
 });

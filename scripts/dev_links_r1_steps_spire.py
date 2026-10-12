@@ -29,13 +29,14 @@ add('spire-003', [NEXT_TOUR, NEXT_TOUR], '', preview('tour'), note='тур, ст
 add(['spire-004'], [], '', preview('room'), note='башня, этаж 7 (превью)')
 add('spire-005', ['scroll:down'], '', preview('room'), note='ниже башни: друзья и пьедестал')
 add('spire-gap-009', [], '', preview('empty'), note='комнаты ещё нет, «Подняться» зависит от данных превью')
-add('spire-gap-010', ['scroll:down'], '', preview('empty'), note='пьедестал и «Все участники» без комнаты — по превью «empty»', unique=False)
+add('spire-gap-010', ['scroll:down'], '', preview('empty'), note='пьедестал и «Все участники» без комнаты — по превью «empty», прокрутка вниз')
 add('spire-gap-007', [], '', preview('block_offline'), note='нет сети — задания недели не скачались')
 add('spire-gap-008', [], '', preview('block_missing'), note='задания недели ещё готовятся')
 add('spire-gap-011', [], '', preview('locked'), note='«Шпиль откроется чуть позже»')
 
 # ── Все участники, правила
-add('spire-006', ['tap:#spire-open-all'], '', preview('room'), note='«Все участники»', unique=False)
+# зачем (сторож селекторов 12.10): testID кнопки «Все участники» — spire-all-members (SpirePodium); прежний spire-open-all не существовал
+add('spire-006', ['tap:#spire-all-members'], '', preview('room'), note='«Все участники»')
 add('community-003', [], '', preview('all'), note='в превью нет состояния offline-safe: плашки «Последнее обновление…» нет', unique=False)
 add(['community-004', 'spire-gap-018'], [], '', preview('rules'), note='шторка правил, начало списка')
 add('spire-gap-019', ['scroll:down'], '', preview('rules'), note='прокрутка списка внутри шторки — шаг не отлажен', unique=False)
@@ -57,7 +58,9 @@ add('spire-010', [], '', preview('passed'), note='ступень пройден�
 add('spire-011', [], '', preview('lose'), note='ступень провалена')
 add('spire-012', [], '', preview('guard'), note='этаж 4 пройден — впереди Страж')
 add('spire-013', [], '', preview('summit'), note='вершина, 15 этаж')
-add(['spire-gap-012', 'spire-gap-013'], [], '', preview('lose'), note='в превью одна причина провала; «время вышло» и «прервана» не различаются', unique=False)
+# зачем (координатор 12.10): в превью появились причины провала lose_timeout / lose_aborted (components/spire/spire_preview_fixtures.ts) — строки различаются
+add('spire-gap-012', [], '', preview('lose_timeout'), note='провал — время вышло (причина timeout)')
+add('spire-gap-013', [], '', preview('lose_aborted'), note='провал — ступень прервана (причина backed_out)')
 add('spire-gap-014', [], '', preview('save_failed'), note='ступень не сохранилась')
 
 # ── Итог недели

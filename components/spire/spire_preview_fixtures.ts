@@ -22,6 +22,8 @@ export const SPIRE_PREVIEW_STATES = [
   // плашки «задания готовятся»/«нет сети» у кнопки «Подняться» и четыре вида заданий, которых не было в превью.
   'weekresult_stay', 'weekresult_down', 'passed', 'guard', 'block_missing', 'block_offline',
   'step_gap', 'step_odd', 'step_listen_choose', 'step_listen_build',
+  // зачем (координатор 12.10, spire-gap-012/013): причины провала «время вышло» и «ступень прервана» (раньше в превью была одна — «сердца»)
+  'lose_timeout', 'lose_aborted',
 ] as const;
 export type SpirePreviewState = (typeof SPIRE_PREVIEW_STATES)[number];
 
@@ -134,6 +136,14 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
     case 'lose': {
       const w = week(7, 2, 31);
       return { ...base, week: w, game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, outcome: outcome('failed', w) }) };
+    }
+    case 'lose_timeout': {
+      const w = week(7, 2, 31);
+      return { ...base, week: w, game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, outcome: outcome('failed', w, { failReason: 'timeout' }) }) };
+    }
+    case 'lose_aborted': {
+      const w = week(7, 2, 31);
+      return { ...base, week: w, game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, outcome: outcome('failed', w, { failReason: 'backed_out' }) }) };
     }
     case 'save_failed': {
       const w = week(7, 3, 32);

@@ -33366,22 +33366,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-024.png",
+      "evidence_at": "2026-10-12T02:40:45.868Z",
+      "evidence_sha256": "20544d1d5a73f70c2bcf8272195cc87936e917356dd211a3da36d7b76ccf9cd6",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Кадр снят на шторке из «Нового набора» (поля, «Ещё одну» / «Добавить», клавиатура ОС), без превью и строки «Мои карточки»; образец — полноэкранный вариант. Переснять на полноэкранном маршруте «Новая карточка» (как cards-v2-046), с введёнными «Layover» / «пересадка». Шторка уже сверена отдельно (cards-v2 №58, cards-section-020).",
+        "[данные] Перевод не заполнен, в образце «пересадка»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:40.838Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10, уточнён (составной кадр 3:40, утверждённый cards-v2 №24 «Новая карточка — превью живое»): на кадре не тот маршрут. Приложение показывает «Новую карточку» шторкой поверх «Нового набора» (путь из экрана создания набора), а образец №24 — полноэкранная «Новая карточка» с живым превью. Полноэкранный вариант с превью в приложении есть (кадр cards-v2-046): превью, три поля, «Мои карточки», кнопка."
     },
     {
       "id": "cards-v2-025",
@@ -34115,21 +34119,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-045.png",
+      "evidence_at": "2026-10-12T02:42:54.480Z",
+      "evidence_sha256": "e73d1780e0a5e3f0d074eb1deef42afad91554d6f4dd0b456033b826590aca12",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр пустой — пересъёмка] На кадре «Сохранённые 0» и четыре плашки-заглушки со строками; нет ни слов, ни ползунка, ни счётчика «50/50» в шапке, ни кнопки «Безлимит с Plus». Переснять после загрузки списка при заполненных 50 сохранённых."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:40.838Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&cards=custom50&overlays=off&next=/flashcards_collection?cat=s"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:42, утверждённый cards-v2 №45 «Лимит — сохранённые 50/50»): кадр снят во время загрузки — вместо списка слов серые заглушки."
     },
     {
       "id": "cards-v2-046",
@@ -34149,21 +34156,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-046.png",
+      "evidence_at": "2026-10-12T02:43:11.353Z",
+      "evidence_sha256": "9bdb96a71a9551fa3d7edf66f3e02b7d54c368e189bcf688e35e5cf4d23d9d67",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Поля пустые: превью показывает подсказку «Слово», поля без текста; в образце введено «Layover» / «пересадка», превью «Layover». Переснять с введёнными значениями.",
+        "[вёрстка] Значок строки «Мои карточки»: в образце баночка/архив, в приложении стопка слоёв (тот же вопрос, что cards-v2-013, 020).",
+        "[вёрстка, мелко] Кнопка «Безлимит с Plus» в приложении чуть выше нижнего края (подложка снизу), шапка и превью ниже на ~15 px."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:40.838Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&cards=custom50&overlays=off&next=/flashcards_card_editor?crea"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:43, утверждённый cards-v2 №46 «Лимит — свои карточки 50/50»): состав совпал — «✕», «Новая карточка», счётчик «50/50», превью карточки (EN, слово по центру, значок переворота), три поля, строка «Мои карточки ›», светлая «Безлимит с Plus» внизу."
     },
     {
       "id": "cards-v2-047",
@@ -34217,21 +34229,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-048.png",
+      "evidence_at": "2026-10-12T02:43:33.215Z",
+      "evidence_sha256": "0a22368daf7252de7b96e465b4de5612bb3872be4fc6cff1d15a3748f3b981e8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄»] «Язык набора»: в образце текстовая таблетка «English», в приложении чип с флагом «EN ⌄» (тот же открытый вопрос, cards-014..017, 048).",
+        "[вёрстка] Фильтр в образце — один сегмент-контейнер с выбранным «Все 64», в приложении три отдельные таблетки (светлая у выбранной); значок «Показать стопкой» — баночка против стопки слоёв.",
+        "[данные] Счётчики «Слова 64 · Фразы 0» против «Слова 52 · Фразы 12»; под затемнением масштаб «2 колонки» против «5 колонок»; шторка в приложении выше (y≈690 против 742)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:44:40.838Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:43, утверждённый cards-v2 №48 «Сохранённые — меню «⋯»»): состав совпал — шторка с тремя действиями («Показать стопкой», «Отметить несколько», «Лучшее у сообщества»), фильтр «Все / Слова / Фразы» со счётчиками и строка «Язык набора»."
     },
     {
       "id": "cards-v2-049",

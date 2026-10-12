@@ -1,6 +1,6 @@
 ﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
-import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
+import { useFocusEffect, useNavigationContainerRef, usePathname, useRouter, useSegments } from 'expo-router';
 import { View, StyleSheet, Animated, AppState, Easing } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -23,7 +23,7 @@ import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
 import { FLOATING_PILL_BOTTOM_GAP } from '../../hooks/use-tab-content-bottom-pad';
 import { emitAppEvent, onAppEvent } from '../events';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import { PerfR1Profile, useMountTrace } from '../perf_r1_probe';
+import { PerfR1Profile, useMountTrace, useNavActionTrace } from '../perf_r1_probe';
 // Home stays behind the tab shell until React can commit the first frame. Its
 // screen/data tree is large enough that evaluating it synchronously delays boot.
 // Starting the promise here overlaps the module fetch/evaluation with the root
@@ -717,6 +717,8 @@ function scheduleIdleTask(run: () => void, timeoutMs: number): CancelableTask {
 
 function ReleasedTabLayout() {
   useMountTrace('tabs_layout'); // зачем (R1, двойной монтаж Главной): верхний ярус каркаса табов
+  const navigationContainerRef = useNavigationContainerRef();
+  useNavActionTrace(navigationContainerRef as never); // зачем (R1): какое действие навигации заменило маршрут (журнал [PERF-R1-NAV]); только dev
   const { width: tabPaneWidth } = useScreen();
   const { theme: t } = useTheme();
   const pathname = usePathname();

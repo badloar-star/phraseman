@@ -63,4 +63,10 @@ describe('[PERF-R1-MOUNT] / [PERF-R1-PROFILE]: трассировка двойн
     expect(layout).toContain('<PerfR1Profile id="home">');
     expect(layout).toContain('<PerfR1Profile id="lessons">');
   });
+  it('[PERF-R1-NAV]: слушает действия навигации (кто заменил маршрут) со стеком вызова; в релизе — пустая функция, expo-router в пробе не импортируется', () => {
+    expect(probe).toContain("'__unsafe_action__'");
+    expect(probe).toContain('export const useNavActionTrace: (navigationRef: NavTraceRef) => void = ENABLED ? useNavActionTraceImpl : () => undefined;');
+    expect(probe).not.toContain("from 'expo-router'");
+    expect(layout).toContain('useNavActionTrace(navigationContainerRef as never);');
+  });
 });

@@ -107,5 +107,63 @@ export function PerfR1Profile({ id, children }: { id: string; children: ReactNod
   return createElement(Profiler, { id, onRender: onProfileRender }, children);
 }
 
+// ═════════════════════════════════════════════════════════════════════
+// useNavActionTrace — КТО перемонтировал каркас табов (R1, координатор 12.10: СПЕРВА ЛОГИ).
+// Журнал [PERF-R1-MOUNT] Сверки показал: через ≈1,5 с после первого монтажа появляется ВТОРОЙ экземпляр `(tabs)`-layout, рендерится ДО смерти первого и заменяет его —
+// так ведёт себя замена маршрута в стеке (новый ключ маршрута), а не двойной вызов эффектов. Какой именно вызов навигации это сделал, видно только в момент отправки действия:
+// слушаем `__unsafe_action__` корневого контейнера навигации и пишем тип действия, имя/параметры и верх стека вызова (JS-стек в момент dispatch указывает на вызывающий код),
+// плюс `state` — ключи маршрутов верхнего стека. Только dev и не стор-релиз; ссылку на контейнер навигации передаёт вызывающий (useNavigationContainerRef) — сам модуль expo-router не импортирует.
+// ═════════════════════════════════════════════════════════════════════
+type NavTraceRef = {
+  current?: {
+    addListener?: (type: string, cb: (e: { data?: { action?: { type?: string; payload?: Record<string, unknown> }; noop?: boolean } }) => void) => () => void;
+    getRootState?: () => { routes?: Array<{ name?: string; key?: string }> } | undefined;
+  } | null;
+};
+
+function useNavActionTraceImpl(navigationRef: NavTraceRef): void {
+  useEffect(() => {
+    let removeAction: (() => void) | null = null;
+    let removeState: (() => void) | null = null;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const attach = (attempt: number) => {
+      if (cancelled) return;
+      try {
+        const ref = navigationRef.current;
+        if (!ref?.addListener) {
+          if (attempt < 20) timer = setTimeout(() => attach(attempt + 1), 100);
+          else console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'no_navigation_ref' })); // guard-ok: трассировка навигации, только dev
+          return;
+        }
+        removeAction = ref.addListener('__unsafe_action__', (e) => {
+          const action = e?.data?.action;
+          const payload = action?.payload ?? {};
+          const stack = (new Error().stack ?? '').split('\n').slice(2, 11).map((line) => line.trim().replace(/^at\s+/, '').slice(0, 90)).join(' | ');
+          console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'action', type: action?.type, name: payload.name, path: payload.path, noop: e?.data?.noop ?? null, atMs: Date.now() - MODULE_T0, stack })); // guard-ok: трассировка навигации, только dev
+        });
+        removeState = ref.addListener('state', () => {
+          const routes = (ref.getRootState?.()?.routes ?? []).map((r) => `${r.name}#${String(r.key).slice(-6)}`);
+          console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'state', routes, atMs: Date.now() - MODULE_T0 })); // guard-ok: трассировка навигации, только dev
+        });
+        console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'attached', attempt, atMs: Date.now() - MODULE_T0 })); // guard-ok: трассировка навигации, только dev
+      } catch (error) {
+        console.log('[PERF-R1-NAV]', JSON.stringify({ event: 'attach_failed', message: error instanceof Error ? error.message : String(error) })); // guard-ok: ошибка трассировки называет причину
+      }
+    };
+    attach(0);
+    return () => {
+      cancelled = true;
+      if (timer) clearTimeout(timer);
+      removeAction?.();
+      removeState?.();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+}
+
 /** Метка монтирования яруса (см. выше); в релизе — пустая функция без хуков. */
 export const useMountTrace: (tag: string, note?: string) => void = ENABLED ? useMountTraceImpl : () => undefined;
+
+/** Трассировка действий навигации (кто заменил маршрут); в релизе — пустая функция без хуков. */
+export const useNavActionTrace: (navigationRef: NavTraceRef) => void = ENABLED ? useNavActionTraceImpl : () => undefined;

@@ -42,4 +42,28 @@ describe('русские строки не содержат украинских
     expect(read('app/notifications.ts')).toContain("ru: '☀️ Фраза дня',");
     expect(read('app/flashcards_swipe.tsx')).toContain("ru: 'Фраза',\n        en: 'Phrase',\n        uk: 'Вислів',");
   });
+
+  // зачем (координатор 12.10): подсказки Главной хранятся отдельными наборами по языкам, а не ключами `ru:` — первый тест их не видит.
+  // В украинском наборе заголовок остался русским «Фраза дня» над украинскими текстами. Проверяем все 6 показов обоих наборов.
+  it('подсказки Главной: ru без украинских букв, uk без русских и со своими заголовками', () => {
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    const { buildHomeFeatureTips } = require('../app/home_feature_tips');
+    const RU_ONLY = /[ыэъёЫЭЪЁ]/;
+    const SAME_IN_BOTH = new Set(['Статистика', 'Уроки']);
+    for (let show = 0; show < 6; show += 1) {
+      type Tip = { title: string; body: string; icon: string };
+      const ru = buildHomeFeatureTips('ru', show) as Tip[];
+      const uk = buildHomeFeatureTips('uk', show) as Tip[];
+      ru.forEach((tip) => {
+        expect(`${show}:${tip.title}:${UK_ONLY.test(tip.title + tip.body)}`).toBe(`${show}:${tip.title}:false`);
+      });
+      // пары ищем по значку: в uk есть «Виклики дня», которой в ru нет, позиции не совпадают
+      const ruTitleByIcon = new Map(ru.map((tip) => [tip.icon, tip.title]));
+      uk.forEach((tip) => {
+        expect(`${show}:${tip.title}:${RU_ONLY.test(tip.title + tip.body)}`).toBe(`${show}:${tip.title}:false`);
+        const ruTitle = ruTitleByIcon.get(tip.icon);
+        if (ruTitle && !SAME_IN_BOTH.has(tip.title)) expect(`${tip.icon}:${tip.title}`).not.toBe(`${tip.icon}:${ruTitle}`);
+      });
+    }
+  });
 });

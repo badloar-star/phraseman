@@ -202,7 +202,7 @@ const HOME_FEATURE_TIP_SEEDS_UK: readonly HomeFeatureTipSeed[] = [
         ],
     },
     {
-        title: 'Фраза дня',
+        title: 'Вислів дня',
         icon: 'newspaper',
         bodies: [
             'Вислів дня — невеликий щоденний гачок. Один вислів, який можна забрати в реальне життя без валізи граматики.',

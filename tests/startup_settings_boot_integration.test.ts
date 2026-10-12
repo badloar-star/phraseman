@@ -151,8 +151,11 @@ describe('two actual startup settings consumers', () => {
   test('retains the race budget and closes at actual settlement, with disposal cleanup', () => {
     expect(rootSource).toContain('new Promise<void>((resolve) => setTimeout(resolve, 350))');
     expect(rootSource).toContain('void startupLocalHydration.then(');
-    const cleanup = rootSource.slice(rootSource.indexOf('effectDisposed = true;'));
-    expect(cleanup.slice(0, 250)).toContain('closeStartupSettingsReadScope?.();');
+    // зачем (перепрогон 12.10): перед вызовом появился поясняющий комментарий (ревью Opus) — окно 250 символов стало мало;
+    // проверяем всю функцию очистки, до её закрывающей скобки.
+    const cleanupStart = rootSource.indexOf('effectDisposed = true;');
+    const cleanup = rootSource.slice(cleanupStart, rootSource.indexOf('};', cleanupStart));
+    expect(cleanup).toContain('closeStartupSettingsReadScope?.();');
     expect(primeNode.getText(snapshotSource)).toContain('hydrateUserSettingsFromStorage(settingsBootReadScope)');
   });
 });

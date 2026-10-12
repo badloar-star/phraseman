@@ -42,7 +42,8 @@ describe('spire_oddity_prompt', () => {
         expect(text).not.toBe(template);
       }
       expect(localizeSpireOddityPrompt(template, 'ru')).toBe('Найди фразу, которую нужно исправить.');
-      expect(localizeSpireOddityPrompt(template, 'uk')).toBe('Знайди фразу, яку треба виправити.');
+      // зачем (владелец 12.10 через Сверку): на украинском «вислів», не «фраза» (41443be48).
+      expect(localizeSpireOddityPrompt(template, 'uk')).toBe('Знайди вислів, який треба виправити.');
     }
   });
 

@@ -122,8 +122,10 @@ function patchFirestoreReads(): void {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const firestore = (require('@react-native-firebase/firestore') as { default: () => { collection: (p: string) => { doc: (id: string) => object } } }).default;
     const db = firestore();
-    const collectionRef = db.collection('__mem_tick_probe__');
-    const docRef = collectionRef.doc('__probe__');
+    // зачем (сторож firestore_reserved_document_id_guard): ссылка нужна только ради прототипов get/onSnapshot — по ней не читаем
+    // и не пишем; имена вида __…__ Firestore резервирует, поэтому обычные.
+    const collectionRef = db.collection('mem_tick_probe');
+    const docRef = collectionRef.doc('probe');
     const wrap = (proto: Record<string, unknown> | null, method: 'get' | 'onSnapshot', label: string) => {
       if (!proto || typeof proto[method] !== 'function') return;
       const original = proto[method] as (...a: unknown[]) => unknown;

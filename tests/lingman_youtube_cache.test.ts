@@ -33,7 +33,8 @@ describe('Lingman snapshot cache', () => {
     const fs = require('fs');
     const path = require('path');
     const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'lingman_videos.tsx'), 'utf8');
-    expect(source).toContain('const snapshot = loadedKey === currentRenderKey ? cachedSnapshot : null');
+    // зачем (перепрогон 12.10): маска стала строже — снимок скрыт и во время смены канала (!pendingChannel).
+    expect(source).toContain('const snapshot = !pendingChannel && loadedKey === currentRenderKey ? cachedSnapshot : null');
     expect(source).toContain('const visibleLoading = loading || loadedKey !== currentRenderKey');
     // зачем (7b27ddbf6, откат значка при сбое markSeen): поколение аккаунта снимается один раз в seenToken и идёт и в
     // мгновенное обновление, и в откат — запись чужого аккаунта после смены по-прежнему невозможна.

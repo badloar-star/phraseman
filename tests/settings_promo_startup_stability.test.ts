@@ -17,7 +17,8 @@ describe('settings promo-code startup stability', () => {
     const rootLayout = read('app/_layout.tsx');
 
     expect(remoteConfig).toContain('export async function primeRemoteConfigCacheFromStorage(): Promise<void>');
-    expect(rootLayout).toContain("import { primeRemoteConfigCacheFromStorage } from './remote_config_client';");
+    // зачем (перепрогон 12.10): корень берёт из модуля ещё readRemoteConfigCacheRaw — проверяем сам импорт, а не точную строку.
+    expect(rootLayout).toMatch(/import \{ primeRemoteConfigCacheFromStorage[^}]*\} from '\.\/remote_config_client';/);
     // зачем: PM-229 — немой обработчик теперь пишет причину в журнал; значение по умолчанию прежнее
     expect(rootLayout).toMatch(/primeRemoteConfigCacheFromStorage\(\)\.catch\((\(\) => \{\}|noteSwallowedHandler\('[^']+'\))\)/);
   });

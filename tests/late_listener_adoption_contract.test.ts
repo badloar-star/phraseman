@@ -5,13 +5,11 @@ const root = path.resolve(__dirname, '..');
 const read = (relative: string) => fs.readFileSync(path.join(root, relative), 'utf8');
 
 test('late async listeners are adopted through a disposable owner', () => {
-  const messages = read('app/app_messages.ts');
+  // зачем (перепрогон 12.10): живой поток subscribeUserAppMessages удалён как мёртвый (b59868b5b, §CORE-0162) — в
+  // app_messages.ts поздних слушателей больше нет, сторожим оставшиеся места.
   const notifications = read('app/notifications.ts');
   const layout = read('app/_layout.tsx');
 
-  expect(messages).toContain('const lifetime = createDisposableAdoption();');
-  expect(messages.match(/lifetime\.adopt\(/g)).toHaveLength(3);
-  expect(messages).toContain('if (lifetime.isDisposed()) return;');
   expect(notifications).toContain('const lifetime = createDisposableAdoption();');
   expect(notifications).toContain('lifetime.adopt(() => subscription.remove?.());');
   expect(layout).toContain('const lifetime = createDisposableAdoption();');

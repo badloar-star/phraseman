@@ -67,11 +67,12 @@ jest.mock('expo-file-system', () => {
   return { Paths: { cache: 'file:///cache' }, File: MockFile, Directory: MockDirectory };
 });
 
+// зачем (перепрогон 12.10): поверхность plan_content убрана из COURSE_PACK_SURFACES — фикстура на допустимой lesson.
 const MANIFEST = {
-  packId: 'en.ru.plan_content.release.test.1',
+  packId: 'en.ru.lesson.release.test.1',
   studyTarget: 'en',
   sourceLocale: 'ru',
-  surface: 'plan_content',
+  surface: 'lesson',
   schemaVersion: 'course-pack-v1',
   contentVersion: 'release.test.1',
   minAppVersion: '1.0.0',

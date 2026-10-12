@@ -42,7 +42,8 @@ describe('course pack runtime contract', () => {
 
   it('fails closed for unknown language dimensions and unsafe manifest paths', () => {
     const result = validateCoursePackManifest(validManifest({
-      studyTarget: 'de' as never,
+      // зачем (перепрогон 12.10): de стал поддерживаемым языком изучения — «неизвестный» язык теперь явно выдуманный.
+      studyTarget: 'xx' as never,
       sourceLocale: 'pt_BR' as never,
       entryIndex: '../quiz/index.json',
       sha256: 'not-a-hash',

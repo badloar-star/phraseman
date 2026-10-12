@@ -7,7 +7,8 @@ const source = normalizeEol(fs.readFileSync(layoutPath, 'utf8'));
 
 function tabPaneSource(): string {
   const start = source.indexOf('function TabPane(');
-  const end = source.indexOf('\ntype LessonsPrivacyState', start);
+  // зачем (перепрогон 12.10): тип LessonsPrivacyState удалён — граница TabPane теперь следующая функция LessonsPaneBoundary.
+  const end = source.indexOf('\nfunction LessonsPaneBoundary(', start);
   if (start < 0 || end < 0) throw new Error('TabPane source boundary not found');
   return source.slice(start, end);
 }

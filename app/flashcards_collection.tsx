@@ -122,6 +122,7 @@ import { DebugLogger } from './debug-logger';
 import { captureAccountGeneration } from './account_generation';
 import { readUnifiedLevelSpinStars } from './level_spin_star_grants';
 import { buyCommunityPackLocally } from './community_packs/packPurchase';
+import { packPurchaseGate } from './community_packs/packPurchaseGate';
 import { syncPendingPackSales } from './community_packs/packSaleSync';
 import { addCommunityPackToLibrary } from './community_packs/communityPackActions';
 import CardPackShardPaywallModal from './flashcards/CardPackShardPaywallModal';
@@ -224,6 +225,17 @@ export default function FlashcardsScreen() {
   const [runeBalance, setRuneBalance] = useState(0);
   const purchasingRef = useRef(false);
   const [purchasing, setPurchasing] = useState(false);
+  // зачем (R1_PAYWALL_UX п.2, координатор 12.10): единственный вход в окно покупки набора. Набор без цены или с расхождением цен не открывает окно
+  // («за 0» и отказ уже после тапа) — причина отказа пишется в журнал. Все три места вызова (соцбар, просмотр набора, набор из видео) идут сюда.
+  const requestPackPurchase = useCallback((p: FlashcardMarketPack, price: number) => {
+    const gate = packPurchaseGate(p, price);
+    if (!gate.ok) {
+      console.warn(`[PACK-BUY] gate:refused pack=${p.id} price=${price} packPriceRunes=${String(p.priceRunes ?? '-')} reason=${gate.reason}`); // guard-ok: отказ окна покупки называет причину
+      return;
+    }
+    setPurchasePack(p);
+    setPurchasePrice(price);
+  }, []);
   // Баланс читаем ТОЛЬКО когда шит открылся: локальное чтение, 0 обращений к
   // Firestore, и на холодный старт экрана оно не влияет.
   useEffect(() => {
@@ -1425,7 +1437,7 @@ export default function FlashcardsScreen() {
             // а не нижняя «Учить набор»; логика добавления и покупки прежняя.
             owned={!previewMode}
             onAdded={() => { void loadAll(); }}
-            onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
+            onRequestPurchase={requestPackPurchase}
             onTrain={!previewMode && listCards.length > 0 ? onTrainThisPack : null}
           />
         ) : previewResolving ? (
@@ -1440,7 +1452,7 @@ export default function FlashcardsScreen() {
             onBack={handleCollectionBack}
             onMore={() => setPackReportOpen(true)}
             onAdded={() => { void loadAll(); }}
-            onRequestPurchase={(p, price) => { setPurchasePack(p); setPurchasePrice(price); }}
+            onRequestPurchase={requestPackPurchase}
             onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
             onSpeak={onSpeakCb}
             cardsLoading={deeplinkCardsState === 'pending' && listCards.length === 0}
@@ -1535,12 +1547,8 @@ export default function FlashcardsScreen() {
               owned={packOwnedByMe}
               variant="screen"
               onAdded={() => { void loadAll(); }}
-              onRequestPurchase={(p, price) => {
-                // Шит покупки — ТОТ ЖЕ, что у наборов за жемчуг, с той же
-                // анимацией (владелец 2026-09-17): меняется только валюта.
-                setPurchasePack(p);
-                setPurchasePrice(price);
-              }}
+              // Шит покупки — ТОТ ЖЕ, что у наборов за жемчуг, с той же анимацией (владелец 2026-09-17): меняется только валюта.
+              onRequestPurchase={requestPackPurchase}
               onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
             />
             {/* Тихая ссылка под лайком: жалоба не должна спорить с «Добавить

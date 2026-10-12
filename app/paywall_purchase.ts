@@ -62,6 +62,7 @@ import { claimInitialInventoryResolution, classifyPaywallInventory } from './pay
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWithCount } from '../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): срок пробного — число из магазина (3, 7, 14…), форма слова обязана согласоваться
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
+import { PURCHASE_FAILURE_PHASE_LABEL, purchaseFailurePhase, purchaseFailureUi } from './paywall_purchase_failure';
 import { applyDevPaywallView, getDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
@@ -466,6 +467,21 @@ export function purchaseErrorCategory(error: unknown): PurchaseErrorCategory {
   if (code.includes('store') || code.includes('product') || code.includes('package')) return 'store_error';
   if (code.includes('config') || code.includes('api_key')) return 'configuration_error';
   return 'sdk_other';
+}
+
+/** Восстановление прервано сменой аккаунта (R1_PAYWALL_UX п.3): раньше крутилка просто пропадала без слова. */
+export function restoreAccountChangedToast() {
+  return actionToastTri('error', {
+    ru: 'Аккаунт сменился — восстановление прервано',
+    uk: 'Акаунт змінився — відновлення перервано',
+    en: 'Account changed — restore was interrupted',
+    es: 'La cuenta cambió: se interrumpió la restauración',
+    'pt-BR': 'A conta mudou — a restauração foi interrompida',
+    vi: 'Tài khoản đã đổi — việc khôi phục bị gián đoạn',
+    id: 'Akun berubah — pemulihan dihentikan',
+    tr: 'Hesap değişti — geri yükleme yarıda kesildi',
+    pl: 'Konto się zmieniło — przywracanie przerwano',
+  });
 }
 
 function storePricePerMonthTrim(pkg: PurchasesPackage | undefined): string {
@@ -1074,6 +1090,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         pl: 'Sklep nie odpowiada. Spróbuj ponownie.',
       }));
     };
+    // зачем (R1_PAYWALL_UX п.1): true — с момента, как окно оплаты магазина запрошено; решает, мягкий тост или диалог «статус не подтверждён».
+    let storeSheetRequested = false;
     try {
       if (!pkgOrNull) {
         // зачем (D158): кнопка Plus всегда активна. Offerings ещё нет — грузим их ПРЯМО НА ТАПЕ
@@ -1178,12 +1196,16 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       setPayStarted(true); // L1: с этого момента окно не закрывается
+      storeSheetRequested = true; // консервативно: дальше возможно списание без ответа — любой сбой идёт в диалог «статус не подтверждён»
       const purchaseResult = await runRevenueCatOperationForGeneration(
         operationAccount,
         // AA S2d раунд 3: метка потока покупки — фоновый перенос Plus в это время ждёт.
         () => withPurchaseFlow('paywall_purchase', () => Purchases.purchasePackage(pkg)), // RAW пакет — цена стора без изменений
       );
-      if (purchaseResult.status !== 'ok') return;
+      if (purchaseResult.status !== 'ok') {
+        DebugLogger.warn('[PAYWALL]', `purchase:stale план=${selected} source=${source} — аккаунт сменился вокруг окна оплаты (статус=${purchaseResult.status}), результат отброшен`);
+        return;
+      }
       let { customerInfo } = purchaseResult.value;
       // зачем: в Sandbox/TestFlight customerInfo из purchasePackage иногда ещё не
       // отражает свежий entitlement (RevenueCat не успел досинхронизироваться с
@@ -1320,6 +1342,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
     } catch (err: unknown) {
       const errCode = String((err as { code?: unknown })?.code ?? '');
+      const failurePhase = purchaseFailurePhase(storeSheetRequested);
+      const wasCancelled = Boolean((err as { userCancelled?: boolean })?.userCancelled);
+      const failureUi = wasCancelled
+        ? 'cancel'
+        : errCode === PURCHASES_ERROR_CODE.PAYMENT_PENDING_ERROR
+          ? 'pending'
+          : ONBOARDING_PURCHASE_SOURCES.has(source)
+            ? 'onboarding_alert'
+            : purchaseFailureUi(failurePhase);
+      // зачем (СПЕРВА ЛОГИ): одна строка на любой сбой покупки — по ней видно, что решило между тостом и диалогом.
+      DebugLogger.warn('[PAYWALL]', `purchase:fail category=${purchaseErrorCategory(err)} phase=${PURCHASE_FAILURE_PHASE_LABEL[failurePhase]} code=${errCode || '-'} `
+        + `cancelled=${String(wasCancelled)} plan=${selected} source=${source} ui=${failureUi}`);
       if ((err as { userCancelled?: boolean })?.userCancelled) {
         void trackEvent('purchase_cancelled', { context, plan: selected, paywall: variant, ...paywallImpressionParams(impression) });
         logPaywallFunnel('purchase_cancelled', { variant, context, plan: selected });
@@ -1365,6 +1399,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             }),
             'OK',
           );
+        } else if (purchaseFailureUi(failurePhase) === 'soft_store_toast') {
+          // зачем (R1_PAYWALL_UX п.1): окно оплаты магазина не открывалось — деньги не тронуты, пугать «статус неизвестен» не надо.
+          emitAppEvent('action_toast', storeUnreachableToast());
+          if (isOperationAccountCurrent() && !lifeRef.current.dead) setTapNotice(true);
         } else {
           void showUnverifiedPurchaseAlert(lang).then((choice) => {
             console.warn('[PAYWALL] unverified:choice', JSON.stringify({ choice })); // guard-ok: выбор пользователя логируется
@@ -1428,7 +1466,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const handleRestore = useCallback(async (mode: 'restore' | 'check' = 'restore') => {
     if (operationRef.current) return;
     hapticTap();
-    if (DEV_IAP_BYPASS || restoring || purchasing) return;
+    if (DEV_IAP_BYPASS || restoring || purchasing) {
+      DebugLogger.info('[PAYWALL]', `restore: выход без действия dev_bypass=${String(DEV_IAP_BYPASS)} restoring=${String(restoring)} purchasing=${String(purchasing)} mode=${mode}`);
+      return;
+    }
     operationRef.current = 'restore';
     const operationAccount = captureAccountGeneration();
     const isOperationAccountCurrent = () => isCurrentAccountGeneration(operationAccount);
@@ -1445,7 +1486,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         operationAccount,
         () => withPurchaseFlow('paywall_restore', () => (mode === 'check' ? Purchases.getCustomerInfo() : Purchases.restorePurchases())),
       );
-      if (restoreResult.status !== 'ok') return;
+      if (restoreResult.status !== 'ok') {
+        // зачем (R1_PAYWALL_UX п.3): аккаунт сменился вокруг запроса к магазину — результат чужой, применять нельзя, но человек должен узнать, что произошло.
+        DebugLogger.warn('[PAYWALL]', `restore:stale mode=${mode} статус=${restoreResult.status} — аккаунт сменился во время восстановления, результат отброшен`);
+        emitAppEvent('action_toast', restoreAccountChangedToast());
+        return;
+      }
       const info = restoreResult.value;
       const activeSubscriptions = info.activeSubscriptions ?? [];
       if (revenueCatCustomerInfoHasPremiumAccess(info)) {
@@ -1481,7 +1527,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           emitAppEvent('premium_activated');
           return isCommitCurrent();
         });
-        if (applied.status !== 'ok' || !applied.value) return;
+        if (applied.status !== 'ok' || !applied.value) {
+          // зачем (R1_PAYWALL_UX п.3): stale — аккаунт сменился; ok+false — запись доступа не удалась на текущем аккаунте (реальный сбой, а не тишина).
+          DebugLogger.warn('[PAYWALL]', `restore:not_applied mode=${mode} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} план=${plan}`);
+          emitAppEvent('action_toast', applied.status !== 'ok' ? restoreAccountChangedToast() : paywallRestoreToast(mode === 'check' ? 'status_check_failed' : 'restore_failed'));
+          return;
+        }
         // зачем (Бандл-диета Ф1): восстановленная покупка тоже активирует план —
         // зачем: раньше восстановление молча активировало премиум и закрывало пейвол —
         // владелец попросил короткое видимое подтверждение ДО навигации/закрытия,

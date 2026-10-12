@@ -39446,21 +39446,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-032.png",
+      "evidence_at": "2026-10-12T03:03:17.255Z",
+      "evidence_sha256": "71eaf891e26be197969d72ed58faab7ee4a9a61135ce7b26825c07f232f646f4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Нет ни шторки «Изменить имя», ни окна «Введи имя»: клавиатура закрывает нижнюю половину, тап «Сохранить» с пустым полем на кадре не виден. Тот же дефект, что settings-gap-025/026/031 (шторка скрыта клавиатурой) — переснять после его исправления либо со скрытой клавиатурой, затем тап «Сохранить».",
+        "[состояние не то] Под затемнением «Аккаунт» без привязки, в образце «Имя · Алекс», «Способ входа · Google»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:04:12.964Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=none&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:03, settings-gaps-states №32 «Имя — пустое поле: окно «Введи имя»»; образец нарисован с приложения): окна «Сообщение · Введи имя · OK» на кадре нет — снова затемнённый «Аккаунт» и открытая клавиатура ОС. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-033",

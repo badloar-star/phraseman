@@ -21,7 +21,8 @@ const section = (source: string, start: string, length = 2600): string => {
 
 describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
   it('«Добавить себе» rolls back with a clear message when the write throws', () => {
-    const bar = section(read('app/community_packs/CommunityPackSocialBar.tsx'), 'const onAddPress = useCallback', 4200);
+    // зачем (ревью покупки a15631ea5, 12.10): перед оптимистичным шагом добавилась ветка «платный набор без обработчика» (≈34 строки) — окно проверки расширено, правило отката то же
+    const bar = section(read('app/community_packs/CommunityPackSocialBar.tsx'), 'const onAddPress = useCallback', 6600);
     expect(bar).toMatch(/try \{\s*res = await addCommunityPackToLibrary\(pack, studyTarget\);\s*\} catch/);
     expect(bar).toMatch(/\[OPT-UI\] pack_add threw/);
     expect(bar).toMatch(/emitAppEvent\('action_toast', packAddFailureToast\(res\)\)/);
@@ -59,8 +60,9 @@ describe('Optimistic UI audit R1 — cheap gaps stay closed', () => {
     expect(update).toContain('[OPT-UI] settings_edu rollback skipped');
     expect(update).toMatch(/\[key\]: previous\[key\]/);
     expect(update).toMatch(/emitAppEvent\('action_toast'/);
-    expect(edu).toMatch(/logToggleSaveFailure\('fc_sfx', \(\) => setFcSfx\(!value\)\)/);
-    expect(edu).toMatch(/logToggleSaveFailure\('fc_autospeak', \(\) => setFcAutoSpeak\(!value\)\)/);
+    // зачем (аудит Optimistic UI «Настроек» 2a92df6fe): откат тумблера защищён от гонки — возвращает значение, только если его не успели изменить снова
+    expect(edu).toMatch(/logToggleSaveFailure\('fc_sfx', \(\) => setFcSfx\(\(current\) => \(current === value \? !value : current\)\)\)/);
+    expect(edu).toMatch(/logToggleSaveFailure\('fc_autospeak', \(\) => setFcAutoSpeak\(\(current\) => \(current === value \? !value : current\)\)\)/);
   });
 
   it('the card editor locks double taps synchronously', () => {

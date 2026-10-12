@@ -3,7 +3,7 @@ import { actionToastTri, emitAppEvent } from './events';
 import { switchOffTrackTone } from '../components/settings/switch_chrome';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
@@ -119,11 +119,44 @@ export default function SettingsEdu() {
     lastShownVoiceValue !== undefined ? lastShownVoiceValue : (peekEnVoiceId() ? '' : null)
   ));
 
+  // зачем (координатор 12.10, 🟡 Ядра по 59ba4d58d): подпись голоса зависит от ЯЗЫКА ИНТЕРФЕЙСА и списка голосов (voiceTitle), а useFocusEffect с пустыми deps читал `lang` только при входе
+  // на экран — при смене языка подпись обновлялась лишь при следующем открытии. Загрузка подписи вынесена в колбэк с зависимостью [lang]: он зовётся из фокус-эффекта (вход на экран)
+  // и отдельным эффектом при смене языка — остальные чтения (настройки, переключатели) на смену языка НЕ перезапускаются.
+  const voiceRequestRef = useRef(0);
+  const voiceLoadedLangRef = useRef<string | null>(null);
+  const loadVoiceValue = useCallback((reason: 'focus' | 'lang_changed') => {
+    const request = ++voiceRequestRef.current;
+    voiceLoadedLangRef.current = lang;
+    console.log(`[SETTINGS-EDU] voice_value:load reason=${reason} lang=${lang} request=${request}`);
+    void getVoicePrefs()
+      .then(async (prefs) => {
+        if (!prefs.voiceIdEn) {
+          if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (системный голос)`); return; }
+          lastShownVoiceValue = null;
+          setVoiceValue(null);
+          return;
+        }
+        const voices = await getVoicesOnce();
+        const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
+        // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
+        // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
+        const next = match ? voiceTitle(match, lang, voices) : null;
+        if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (ушёл с экрана или язык сменился ещё раз)`); return; }
+        lastShownVoiceValue = next;
+        setVoiceValue((prev) => (prev === next ? prev : next));
+        console.log(`[SETTINGS-EDU] voice_value:shown reason=${reason} lang=${lang} voices=${voices.length} matched=${match ? 'yes' : 'no'} value=${next ?? 'system'}`);
+      })
+      .catch((error: unknown) => {
+        console.warn(`[SETTINGS-EDU] voice_value_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
+      });
+  }, [lang]);
+  const loadVoiceValueRef = useRef(loadVoiceValue);
+  loadVoiceValueRef.current = loadVoiceValue;
+
   // зачем (координатор 12.10, аудит Optimistic UI R1): поздний ответ loadSettings() не имеет права затереть переключатель, который человек уже тронул — версия правок сверяется до применения.
   const editVersionRef = useRef(0);
   useFocusEffect(
     useCallback(() => {
-      let alive = true;
       const loadStartedAtVersion = editVersionRef.current;
       void loadSettings().then((loaded) => {
         if (editVersionRef.current !== loadStartedAtVersion) {
@@ -137,23 +170,19 @@ export default function SettingsEdu() {
       });
       setFcSfx(isFcSfxEnabled());
       setFcAutoSpeak(isFcAutoSpeakEnabled());
-      void getVoicePrefs()
-        .then(async (prefs) => {
-          if (!prefs.voiceIdEn) { lastShownVoiceValue = null; if (alive) setVoiceValue(null); return; }
-          const voices = await getVoicesOnce();
-          const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
-          // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
-          // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
-          const next = match ? voiceTitle(match, lang, voices) : null;
-          lastShownVoiceValue = next;
-          if (alive) setVoiceValue(next);
-        })
-        .catch((error: unknown) => {
-          console.warn(`[SETTINGS-EDU] voice_value_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
-        });
-      return () => { alive = false; };
+      loadVoiceValueRef.current('focus');
+      return () => {
+        // уход с экрана снимает ожидающий ответ подписи голоса (раньше это делал флаг alive)
+        voiceRequestRef.current += 1;
+      };
     }, []),
   );
+  // зачем (🟡 Ядра): язык интерфейса сменился при открытом экране — подпись голоса пересчитывается сразу; при первом входе фокус-эффект уже загрузил для этого языка — повтора нет
+  useEffect(() => {
+    if (voiceLoadedLangRef.current === lang) return;
+    console.log(`[SETTINGS-EDU] voice_value:lang_effect prev=${voiceLoadedLangRef.current ?? 'none'} now=${lang}`);
+    loadVoiceValue('lang_changed');
+  }, [lang, loadVoiceValue]);
 
   // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): запись больше не живёт внутри обновителя состояния (двойной вызов в StrictMode = двойная запись); при отказе хранилища откатывается ТОЛЬКО эта строка и только если её не успели изменить снова.
   const latestSettingsRef = useRef(s);

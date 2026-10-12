@@ -12,6 +12,7 @@ import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../components/ThemeContext';
+import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
 import StatsArtBackdrop from '../components/StatsArtBackdrop';
@@ -74,6 +75,7 @@ const EXEMPT_COLOR_1 = '#35D07F'; // theme-exempt: семантические ц
 const EXEMPT_COLOR_2 = '#35D07F'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 const EXEMPT_COLOR_3 = 'rgba(255,255,255,0.08)'; // theme-exempt: семантические цвета оценки и динамики серии (токены good/warn — у «Тем»)
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { accentGraphicOf } from '../constants/themeAccentRoles';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -132,7 +134,7 @@ type LifetimeChartTheme = {
     textPrimary: string;
     textSecond: string;
     textMuted: string;
-    accent: string;
+    accentText: string; // зачем (светлый акцент): сюда приходит accentText, а не сырой accent
 };
 interface DayData {
     date: string;
@@ -851,9 +853,9 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
             const y = plotTop + ((plotBottom - plotTop) * g) / 4;
             return (<Line key={`g-${g}`} x1={0} y1={y} x2={chartW} y2={y} stroke={ct.border} strokeWidth={1}/>);
         })}
-            {!hasDailyData ? (<Circle cx={startDotCx} cy={yZero} r={4.5} fill={ct.accent}/>) : chartLen === 1 && raw[0] > 0 ? (<Circle cx={LIFETIME_LINE_COL_W / 2} cy={lifetimeChartYForValue(raw[0], maxV, LIFETIME_LINE_PLOT_H)} r={5} fill={ct.accent}/>) : (<>
-                {pointsPink.length > 0 ? (<Polyline points={pointsPink} fill="none" stroke={ct.accent} strokeOpacity={0.38} strokeWidth={2.25}/>) : null}
-                {pointsRed.length > 0 ? (<Polyline points={pointsRed} fill="none" stroke={ct.accent} strokeWidth={2.75}/>) : null}
+            {!hasDailyData ? (<Circle cx={startDotCx} cy={yZero} r={4.5} fill={ct.accentText}/>) : chartLen === 1 && raw[0] > 0 ? (<Circle cx={LIFETIME_LINE_COL_W / 2} cy={lifetimeChartYForValue(raw[0], maxV, LIFETIME_LINE_PLOT_H)} r={5} fill={ct.accentText}/>) : (<>
+                {pointsPink.length > 0 ? (<Polyline points={pointsPink} fill="none" stroke={ct.accentText} strokeOpacity={0.38} strokeWidth={2.25}/>) : null}
+                {pointsRed.length > 0 ? (<Polyline points={pointsRed} fill="none" stroke={ct.accentText} strokeWidth={2.75}/>) : null}
               </>)}
           </Svg>
           <View style={{ flexDirection: 'row', gap: LIFETIME_LINE_GAP, marginTop: 8 }}>
@@ -864,7 +866,7 @@ function LifetimePathLineChart({ days, loading, scrollRef, chartTheme, plotFutur
                   <Text style={{
                     fontSize: 8, // d145-micro: подпись оси графика в колонке 26 pt, 13 не влезает
                     fontWeight: isToday ? '800' : '500',
-                    color: isToday ? ct.accent : ct.textMuted,
+                    color: isToday ? ct.accentText : ct.textMuted,
                     opacity: isFuture ? 0.45 : 1,
                 }} numberOfLines={1}>
                     {d.shortLabel}
@@ -980,7 +982,7 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
                     textPrimary: t.textPrimary,
                     textSecond: t.textSecond,
                     textMuted: t.textMuted,
-                    accent: t.accentText, // зачем (Сверка): линия и подписи графика — акцент как текст
+                    accentText: t.accentText, // зачем (Сверка): линия и подписи графика — акцент как текст
                 }}/>
           </>) : null}
       </React.Fragment>);
@@ -1116,6 +1118,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
     /** Минуты этой недели минус минуты прошлой; null — прошлая неделя пустая (нечего сравнивать). */
     weekDeltaMinutes: number | null;
 }) {
+    const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder
     const isBusiness = false;
     const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? t.accent : metrics.scoreColor;
     const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
@@ -1165,7 +1168,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
           centerSubLabel={metrics.scoreSubLabel}
           accent={scoreAccent}
           accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'B0'}
-          trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(t.accent, 'quiet')}
+          trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(accentGfx.border, 'quiet')}
           size={104}
           strokeWidth={10}
           centerColor={t.textPrimary}
@@ -1207,7 +1210,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
         }))}
           accent={scoreAccent}
           accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'CC'}
-          inactiveColor={accentTint(t.accent, 'quiet')}
+          inactiveColor={accentTint(accentGfx.border, 'quiet')}
           todayDotColor={scoreAccent}
           height={88}
           topLabelColor={t.textPrimary}
@@ -1511,6 +1514,7 @@ function WeekAnalyticsCard({
     metric: StatsPrimaryMetric;
     onSelectMetric: (metric: StatsPrimaryMetric) => void;
 }) {
+    const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder
     // BUG 4: главный акцент темы — единый hue для графика, сегментов и скраб-пузыря.
     const accent = isGoldTheme ? GOLD_RICH.champagne : t.accentText; // зачем (Сверка 04:49): «Все 9», значки и цифры серии — акцент как текст (в светлой «Максимум» заливка бледная)
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
@@ -1616,7 +1620,7 @@ function WeekAnalyticsCard({
               bars={weeklyBars}
               accent={accent}
               accentSoft={isGoldTheme ? GOLD_RICH.paleGold : accent + 'CC'}
-              inactiveColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(t.accent, 'quiet')}
+              inactiveColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(accentGfx.border, 'quiet')}
               todayDotColor={accent}
               height={96}
               topLabelColor={t.textPrimary}
@@ -2301,7 +2305,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               })()}
               <View style={{ gap: 16 }}>
                 {pItems.map((item, idx) => (
-                  <StatProgressRow key={item.label} percent={item.percent} label={item.label} icon={item.icon} accent={item.color} accentSoft={item.color + 'AA'} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(t.accent, 'quiet')} iconChipBg={item.color + '24'} labelColor={t.textPrimary} valueColor={item.color} delayMs={120 + idx * 110}/>
+                  <StatProgressRow key={item.label} percent={item.percent} label={item.label} icon={item.icon} accent={item.color} accentSoft={item.color + 'AA'} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(statsGlass.accentBorder, 'quiet')} iconChipBg={item.color + '24'} labelColor={t.textPrimary} valueColor={item.color} delayMs={120 + idx * 110}/>
                 ))}
               </View>
             </StatsCardArtSurface>
@@ -2609,7 +2613,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                                     const barH = d.ms > 0 ? Math.max((d.ms / maxMs) * CHART_H, 8) : 5;
                                     const isToday = d.date === today;
                                     const barColor = d.active
-                                        ? (isToday ? t.textPrimary : t.accent)
+                                        ? (isToday ? t.textPrimary : accentGraphicOf(t))
                                         : (isToday ? t.border : t.bgSurface2 ?? t.border);
                                     const timeLabel = formatTimeBarMs(d.ms, lang);
                                     return (<View key={`t-${i}`} style={{ width: 26, alignItems: 'center', gap: 2 }}>

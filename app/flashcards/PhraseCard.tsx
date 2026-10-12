@@ -62,6 +62,7 @@ import WordStrengthDots from './WordStrengthDots';
 import type { FlashcardContentLang } from './types';
 import type { WordStrength } from './word_strength';
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { accentTextSafeOf } from '../../constants/themeAccentRoles';
 
 // ── Общие хуки деградации ─────────────────────────────────────────────────────
 
@@ -530,7 +531,7 @@ function PhraseCardImpl({
     return { opacity: flyingOut.value === 1 && tx.value < 0 ? 1 : byDrag };
   });
 
-  const accent = packTheme?.borderAccent ?? t.accent;
+  const accent = packTheme?.borderAccent ?? accentTextSafeOf(t); // зачем (светлый акцент): значок озвучки на карточке
   /** Подписи свайп-индикатора: явный проп важнее, иначе локаль (8 языков). */
   const swipeLabels = gradeLabels ?? PHRASE_CARD_GRADE_LABELS[lang] ?? PHRASE_CARD_GRADE_LABELS.ru;
   /**

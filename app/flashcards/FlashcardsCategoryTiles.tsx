@@ -5,6 +5,7 @@ import type { Theme } from '../../constants/theme';
 import { glassFill } from '../../components/GlassSurface';
 import { triLang, type Lang } from '../../constants/i18n';
 import { Category, CategoryId } from './types';
+import { accentGraphicOf } from '../../constants/themeAccentRoles';
 
 type Props = {
   categories: Category[];
@@ -88,7 +89,7 @@ export default function FlashcardsCategoryTiles({
                       width: 6,
                       height: 6,
                       borderRadius: 3,
-                      backgroundColor: t.accent,
+                      backgroundColor: accentGraphicOf(t), // зачем (светлый акцент): точка-графика
                     }}
                   />
                 )}

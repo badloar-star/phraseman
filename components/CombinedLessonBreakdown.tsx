@@ -17,6 +17,7 @@ import { Text, View } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
 import type { CombinedLessonTopicResult } from '../app/combined_lesson_pool';
+import { accentGraphicOf } from '../constants/themeAccentRoles';
 
 export interface CombinedLessonBreakdownProps {
   rows: readonly CombinedLessonTopicResult[];
@@ -88,7 +89,7 @@ export default function CombinedLessonBreakdown({
                     width: `${Math.round(ratio * 100)}%`,
                     height: '100%',
                     borderRadius: 4,
-                    backgroundColor: weak ? t.wrong : t.accent,
+                    backgroundColor: weak ? t.wrong : accentGraphicOf(t), // зачем (светлый акцент): полоса прогресса
                   }}
                 />
               </View>

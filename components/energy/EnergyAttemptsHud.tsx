@@ -85,7 +85,7 @@ function EnergyAttemptsHud({ attempts, testID, onStoppedExit }: Props) {
           energy={have}
           maxEnergy={maxEnergy}
           lossSeq={attempts.energyLossSeq}
-          accent={g.accent}
+          accent={g.accentTextSafe}
           muted={g.secondary}
           textColor={g.text}
           bad={t.wrong}

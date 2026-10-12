@@ -27,6 +27,7 @@ import { FlowText } from './text-integrity/FlowText';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
+import { accentGraphicOf } from '../constants/themeAccentRoles';
 
 const EXEMPT_COLOR_1 = '#211D17'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
 const EXEMPT_COLOR_2 = '#15120E'; // theme-exempt: тёмные стопки градиента тепловой карты — палитра графика (токены графиков — у «Тем»)
@@ -177,7 +178,7 @@ function CanonicalYearHeatmap({
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { width } = useWindowDimensions();
-  const palette = useMemo(() => heatPalette(themeMode, t.accent), [themeMode, t.accent]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
+  const palette = useMemo(() => heatPalette(themeMode, accentGraphicOf(t)), [themeMode, t]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
   const activityMapSurface = themeMode === 'gold'
     ? [EXEMPT_COLOR_1, EXEMPT_COLOR_2]
     : [withAlpha(t.bgSurface2, 0.98), withAlpha(t.bgCard, 0.94)];
@@ -246,7 +247,7 @@ function CompactHistoryHeatmap({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { width } = useWindowDimensions();
-  const palette = useMemo(() => heatPalette(themeMode, t.accent), [themeMode, t.accent]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
+  const palette = useMemo(() => heatPalette(themeMode, accentGraphicOf(t)), [themeMode, t]); // зачем: рампа пересчитывается только при смене темы, не на каждом рендере годовой сетки
   const observedDays = days.filter((day) => !day.future);
   const columns = 7;
   const gap = 5;

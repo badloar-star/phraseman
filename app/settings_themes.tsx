@@ -76,7 +76,7 @@ function selectedChip(glass: GlassTokens): { box: ViewStyle; ink: string } {
         backgroundColor: glass.level === 'calm' ? glass.opaqueCard : glass.accentSoft,
         boxShadow: nestedBoxShadow(glass),
       },
-      ink: glass.level === 'calm' ? glass.text : glass.accent,
+      ink: glass.level === 'calm' ? glass.text : glass.accentTextSafe,
     };
   }
   if (glass.level === 'calm') {

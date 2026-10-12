@@ -71,6 +71,7 @@ import { projectDevLessonAccess } from "../dev_plus_controls";
 import { useTabNav } from "../TabContext";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useTheme } from "../../components/ThemeContext";
+import { useAccentGraphics } from "../../hooks/use_accent_graphics";
 import { useLang } from "../../components/LangContext";
 import { useStudyTarget } from "../../components/StudyTargetContext";
 import ScreenGradient from "../../components/ScreenGradient";
@@ -197,6 +198,7 @@ import {
 // при подготовке занятия — грузим лениво, тип импортируем отдельно (тип
 // стирается при сборке и веса не добавляет).
 import type { LearningV2CourseSessionReadyHandleV3 } from "../learning_v2_course_released_session_client_v3";
+import { accentGraphicOf, accentTextSafeOf } from '../../constants/themeAccentRoles';
 import {
   markLearningV2SessionLaunchStageV1,
   startLearningV2SessionLaunchTraceV1,
@@ -1629,6 +1631,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
   ) => void;
   onSessionCompleted?: (point: CoinRewardFlightPoint) => void;
 }>) {
+  const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder (в тёмном ≈ accent, вид не меняется)
   if (row.kind === "chapter") {
     return (
       <View
@@ -1777,7 +1780,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
           height={nodeH}
           radius={nodeR}
           faceColor={faceColor}
-          haloColor={current ? theme.accent : undefined}
+          haloColor={current ? accentGfx.border : undefined}
           accessible={accessible}
           active={runtimeActive}
           reduceMotion={reduceMotion}
@@ -1919,7 +1922,7 @@ const LearningV2InlineMapRow = React.memo(function LearningV2InlineMapRow({
             <Text
               style={{
                 color: current
-                  ? theme.accent
+                  ? accentTextSafeOf(theme)
                   : completed
                     ? theme.textPrimary
                     : theme.textMuted,
@@ -5312,7 +5315,7 @@ export default function LessonsTab({
               active={page === "lessons"}
               color={t.textPrimary}
               mutedColor={t.textMuted}
-              accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+              accent={isGoldTheme ? GOLD_RICH.champagne : accentGraphicOf(t)}
               fontSize={f.body}
               themeMode={themeMode}
               onPress={() => {
@@ -5338,7 +5341,7 @@ export default function LessonsTab({
                 active={page === "dialogs"}
                 color={t.textPrimary}
                 mutedColor={t.textMuted}
-                accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+                accent={isGoldTheme ? GOLD_RICH.champagne : accentGraphicOf(t)}
                 fontSize={f.body}
                 themeMode={themeMode}
                 plusBadge={!dialogAccess}
@@ -5365,7 +5368,7 @@ export default function LessonsTab({
                 active={page === "v2"}
                 color={t.textPrimary}
                 mutedColor={t.textMuted}
-                accent={isGoldTheme ? GOLD_RICH.champagne : t.accent}
+                accent={isGoldTheme ? GOLD_RICH.champagne : accentGraphicOf(t)}
                 fontSize={f.body}
                 themeMode={themeMode}
                 onPress={() => {
@@ -5990,7 +5993,7 @@ export default function LessonsTab({
                It is unreachable: every item in the flat list returns above.
             // ── Глава-аккордеон ──────────────────────────────────────────────
             const { level: chapterLevel, from: chapFrom, to: chapTo } = item;
-            const chapterAccent = isGoldTheme ? goldCefrAccent(chapterLevel).accent : t.accent;
+            const chapterAccent = isGoldTheme ? goldCefrAccent(chapterLevel).accent : accentTextSafeOf(t);
             const chapterPremiumLocked = !isPremium && !effectiveDevContentUnlock && !effectiveNoLimits && chapterLevel !== 'A1';
             const chapterCounts = progCounts.slice(chapFrom - 1, chapTo);
             const chapterDone = chapterCounts.filter((count) => (count ?? 0) >= 50).length;

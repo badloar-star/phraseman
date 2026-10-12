@@ -185,7 +185,7 @@ function StatusRow({ glass, lang, state }: { glass: LessonsListGlass; lang: Lang
     return (
       <>
         <View style={{ flex: 1, height: 6, borderRadius: 4, backgroundColor: glass.line, overflow: 'hidden' }}>
-          <View style={{ width: `${pct}%`, minWidth: 6, height: 6, borderRadius: 4, backgroundColor: glass.accent }} />
+          <View style={{ width: `${pct}%`, minWidth: 6, height: 6, borderRadius: 4, backgroundColor: glass.accentGraphic }} />
         </View>
         <Text style={[muted, { minWidth: 34, textAlign: 'right', fontVariant: ['tabular-nums'] }]}>{pct}%</Text>
       </>

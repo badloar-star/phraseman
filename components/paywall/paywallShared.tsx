@@ -31,6 +31,7 @@ import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackg
 import { isLightThemeMode, SAGE_PORCELAIN, type ThemeMode } from '../../constants/theme';
 import { PaywallIdleFloat } from './PaywallMotion';
 import { noAndroidOutline } from '../../constants/androidGlow';
+import { accentGraphicOf, accentTextSafeOf } from '../../constants/themeAccentRoles';
 
 function glassAlpha(color: string, alpha: string): string {
   return color.startsWith('#') && color.length === 7 ? `${color}${alpha}` : color;
@@ -81,7 +82,7 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
     const tc: ThemePaywallConfig = {
       ...base,
       heroAccent: theme.accent,
-      selectedCardBorder: theme.accent,
+      selectedCardBorder: accentGraphicOf(theme), // зачем (светлый акцент): контур выбранного тарифа
       selectedCardBg: glassAlpha(theme.accent, '26'),
       unselectedCardBg: glassAlpha(theme.bgSurface, 'E8'),
       panelBg: glassAlpha(theme.bgCard, 'D9'),
@@ -91,9 +92,9 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
       ctaText: theme.textOnGold ?? '#111318', // theme-exempt: запасной тёмный текст на золотой кнопке
       ctaShadow: theme.accent,
       pillBg: glassAlpha(theme.accent, '22'),
-      pillText: theme.accent,
+      pillText: accentTextSafeOf(theme),
       pillBorder: glassAlpha(theme.accent, '52'),
-      expandBtnText: theme.accent,
+      expandBtnText: accentTextSafeOf(theme),
       expandBtnBorder: glassAlpha(theme.accent, '52'),
       socialProofText: theme.textMuted,
     };

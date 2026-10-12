@@ -6,6 +6,7 @@ import { useTheme } from '../ThemeContext';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { accentGraphicOf } from '../../constants/themeAccentRoles';
 
 // зачем: владелец попросил «три кольца дня как у Bevel» — единый one-glance статус
 // дня (урок / практика ошибок / карточки) вместо пяти разных индикаторов прогресса.
@@ -155,10 +156,10 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
   const { lang } = useLang();
 
   const colors = useMemo(() => ({
-    lesson: t.accent,
+    lesson: accentGraphicOf(t), // зачем (светлый акцент): кольца дня — графика
     practice: t.gold,
-    cards: lighten(t.accent, 0.18),
-  }), [t.accent, t.gold]);
+    cards: lighten(accentGraphicOf(t), 0.18),
+  }), [t]);
 
   const trackColor = useMemo(() => withAlphaColor(t.textMuted, 0.14), [t.textMuted]);
   const announceTrackColor = useMemo(() => withAlphaColor(t.accent, 0.1), [t.accent]);

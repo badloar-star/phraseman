@@ -695,6 +695,7 @@ export default function FlashcardsSpeakingSession() {
         pendingAccount,
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
+        { energyCharged },
       );
       logFlashcardTrainingRoundClear('speaking', playable, cleared);
       if (cleared.status === 'cleared') {

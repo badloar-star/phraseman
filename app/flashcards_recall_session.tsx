@@ -507,6 +507,7 @@ export default function FlashcardsRecallSession() {
         pendingAccount,
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
+        { energyCharged },
       );
       logFlashcardTrainingRoundClear('recall', playable, cleared);
       if (cleared.status === 'cleared') recallPendingGrantRef.current = null;

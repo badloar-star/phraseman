@@ -210,6 +210,76 @@ test('quota/playable transitions are durable and clearing happens only after a s
   await expect(readFlashcardTrainingPendingGrant(account(), scope())).resolves.toEqual({ status: 'missing' });
 });
 
+// зачем (cards-v2-033, 12.10): у Plus энергия безлимитная, операции списания нет — подтверждение «пустышкой» и сверка с журналом энергии не должны блокировать очистку записи («Правда/ложь» не стартовала)
+test('unlimited energy (caller says nothing was charged): the playable record clears without any energy ACK or ledger read', async () => {
+  const prepared = await prepareFlashcardTrainingPendingGrant({
+    account: account(), scope: scope(), manifest: manifest(), attemptId: 'attempt-unl',
+    receiptId: 'swipe:attempt-unl', energyOperationId: 'energy:swipe:attempt-unl', energyEpoch: 'boot-1', nowMs: 100,
+  });
+  if (prepared.status !== 'prepared') throw new Error('expected prepared');
+  await claimRecord(prepared.record);
+  await markFlashcardTrainingQuotaCommitted(account(), prepared.record.fingerprint, 200);
+  await markFlashcardTrainingPendingGrantPlayable(account(), prepared.record.fingerprint, 300);
+  mockReadEnergyStatus.mockClear();
+  mockReadEnergyStatus.mockResolvedValue({ status: 'missing' });
+
+  const noEnergyAck = jest.fn(async () => false);
+  await expect(acknowledgeAndClearFlashcardTrainingPendingGrant(
+    account(), prepared.record.fingerprint, noEnergyAck, { energyCharged: false },
+  )).resolves.toEqual({ status: 'cleared' });
+  expect(noEnergyAck).not.toHaveBeenCalled();
+  expect(mockReadEnergyStatus).not.toHaveBeenCalled();
+  await expect(readFlashcardTrainingPendingGrant(account(), scope())).resolves.toEqual({ status: 'missing' });
+});
+
+test('reused + ack failed path: without the caller flag a never-charged record still reports ack_failed (old behaviour), with it the hanging record is cleared', async () => {
+  const prepared = await prepareFlashcardTrainingPendingGrant({
+    account: account(), scope: scope(), manifest: manifest(), attemptId: 'attempt-reuse',
+    receiptId: 'swipe:attempt-reuse', energyOperationId: 'energy:swipe:attempt-reuse', energyEpoch: 'boot-1', nowMs: 100,
+  });
+  if (prepared.status !== 'prepared') throw new Error('expected prepared');
+  await claimRecord(prepared.record);
+  await markFlashcardTrainingQuotaCommitted(account(), prepared.record.fingerprint, 200);
+  await markFlashcardTrainingPendingGrantPlayable(account(), prepared.record.fingerprint, 300);
+  mockReadEnergyStatus.mockResolvedValue({ status: 'missing' });
+
+  // как у экрана «Правда/ложь» до починки: пустышка-подтверждение + сверка с журналом → ack_failed, запись остаётся висеть
+  await expect(acknowledgeAndClearFlashcardTrainingPendingGrant(
+    account(), prepared.record.fingerprint, async () => true,
+  )).resolves.toEqual({ status: 'ack_failed' });
+  const hanging = await readFlashcardTrainingPendingGrant(account(), scope());
+  expect(hanging).toEqual(expect.objectContaining({ status: 'found' }));
+
+  // следующий вход: prepare переиспользует висящую запись (status=reused), с флагом подтверждение проходит и запись очищается
+  const reused = await prepareFlashcardTrainingPendingGrant({
+    account: account(), scope: scope(), manifest: manifest(), attemptId: 'attempt-reuse-2',
+    receiptId: 'swipe:attempt-reuse-2', energyOperationId: 'energy:swipe:attempt-reuse-2', energyEpoch: 'boot-1', nowMs: 400,
+  });
+  expect(reused.status).toBe('reused');
+  await expect(acknowledgeAndClearFlashcardTrainingPendingGrant(
+    account(), prepared.record.fingerprint, async () => true, { energyCharged: false },
+  )).resolves.toEqual({ status: 'cleared' });
+  await expect(readFlashcardTrainingPendingGrant(account(), scope())).resolves.toEqual({ status: 'missing' });
+});
+
+test('safety: the caller flag never skips the ACK when the record is marked as charged', async () => {
+  const prepared = await prepareFlashcardTrainingPendingGrant({
+    account: account(), scope: scope(), manifest: manifest(), attemptId: 'attempt-charged',
+    receiptId: 'swipe:attempt-charged', energyOperationId: 'energy:swipe:attempt-charged', energyEpoch: 'boot-1', nowMs: 100,
+  });
+  if (prepared.status !== 'prepared') throw new Error('expected prepared');
+  await claimRecord(prepared.record);
+  await markFlashcardTrainingEnergyCharged(account(), prepared.record.fingerprint);
+  await markFlashcardTrainingQuotaCommitted(account(), prepared.record.fingerprint, 200);
+  await markFlashcardTrainingPendingGrantPlayable(account(), prepared.record.fingerprint, 300);
+
+  const failedAck = jest.fn(async () => false);
+  await expect(acknowledgeAndClearFlashcardTrainingPendingGrant(
+    account(), prepared.record.fingerprint, failedAck, { energyCharged: false },
+  )).resolves.toEqual({ status: 'ack_failed' });
+  expect(failedAck).toHaveBeenCalledTimes(1);
+});
+
 test('one storage mutex makes concurrent exact-scope mounts create one durable start', async () => {
   const inputs = [1, 2].map((ordinal) => ({
     account: account(), scope: scope(), manifest: manifest(), attemptId: `attempt-${ordinal}`,

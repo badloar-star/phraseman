@@ -1352,6 +1352,9 @@ export async function acknowledgeAndClearFlashcardTrainingPendingGrant(
   account: FlashcardTrainingPendingGrantAccount,
   fingerprint: string,
   acknowledgeEnergy: (operationId: string) => Promise<boolean>,
+  // зачем (cards-v2-033, 12.10): у Plus энергия безлимитная — операции списания нет, и сверка с журналом энергии никогда не даст `acknowledged`: «Правда/ложь» (без аварийного локального старта)
+  // не стартовала, а запись гранта оставалась висеть (следующий вход видел status=reused). `energyCharged: false` — вызывающий подтверждает, что энергия НЕ списывалась.
+  options: Readonly<{ energyCharged?: boolean }> = {},
 ): Promise<Readonly<{ status: 'cleared' | 'ack_failed' | 'missing' | 'stale_account' | 'invalid_phase' }> | Readonly<{ status: 'unavailable'; reason: string }>> {
   const found = await mutateJournal(account, async (journal) => {
     const record = journal.records.find((item) => item.fingerprint === fingerprint);
@@ -1361,6 +1364,17 @@ export async function acknowledgeAndClearFlashcardTrainingPendingGrant(
     return { result: { status: 'found', record } as const };
   });
   if (found.status !== 'found') return found as Exclude<Awaited<ReturnType<typeof acknowledgeAndClearFlashcardTrainingPendingGrant>>, { status: 'cleared' | 'ack_failed' }>;
+  const nothingToAcknowledge = options.energyCharged === false
+    && found.record.energyState !== 'charged'
+    && found.record.energyState !== 'refund_in_progress';
+  console.log('[FC-PENDING-GRANT] ack:begin', JSON.stringify({ energyChargedByCaller: options.energyCharged ?? null, recordEnergyState: found.record.energyState, skipEnergyAck: nothingToAcknowledge })); // guard-ok: ветвление решает значение
+  if (nothingToAcknowledge) {
+    const removalWithoutEnergy = await removeRecord(account, found.record);
+    console.log('[FC-PENDING-GRANT] ack:skipped_no_energy_charged', JSON.stringify({ removal: removalWithoutEnergy.status })); // guard-ok: результат ветки
+    if (removalWithoutEnergy.status === 'removed' || removalWithoutEnergy.status === 'missing') return { status: 'cleared' };
+    if (removalWithoutEnergy.status === 'changed') return { status: 'invalid_phase' };
+    return removalWithoutEnergy;
+  }
   let acknowledged = false;
   try {
     acknowledged = await acknowledgeEnergy(found.record.energyOperationId);
@@ -1369,12 +1383,16 @@ export async function acknowledgeAndClearFlashcardTrainingPendingGrant(
     console.warn('[FC-PENDING-GRANT] ack:energy_ack_threw', error instanceof Error ? error.message : String(error));
     acknowledged = false;
   }
-  if (!acknowledged) return { status: 'ack_failed' };
+  if (!acknowledged) {
+    console.warn('[FC-PENDING-GRANT] ack:energy_ack_false', JSON.stringify({ operationId: found.record.energyOperationId, recordEnergyState: found.record.energyState }));
+    return { status: 'ack_failed' };
+  }
   const authoritative = await readEnergySessionStartStatus(found.record.energyOperationId, account.runtimeToken)
     .catch(() => ({ status: 'unavailable' as const, reason: 'read_failed' }));
   if (authoritative.status !== 'acknowledged') {
     // зачем: разбор по статусам отдельно — у EnergySessionStartStatus первый член несёт целый набор
     // статусов, и «authoritative» целиком не подходит под наш результат.
+    console.warn('[FC-PENDING-GRANT] ack:authoritative_not_acknowledged', JSON.stringify({ operationId: found.record.energyOperationId, authoritative: authoritative.status, reason: 'reason' in authoritative ? String(authoritative.reason) : null }));
     if (authoritative.status === 'unavailable') return authoritative;
     if (authoritative.status === 'stale_account') return { status: 'stale_account' };
     return { status: 'ack_failed' };

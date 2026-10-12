@@ -905,6 +905,7 @@ export default function FlashcardsBlitzSession() {
           pending.account,
           pending.record.fingerprint,
           pending.record.energyState === 'charged' ? acknowledgeSessionStart : async () => true,
+          { energyCharged: pending.record.energyState === 'charged' },
         );
         logFlashcardTrainingRoundClear('blitz', playable, cleared);
         if (cleared.status === 'cleared') {

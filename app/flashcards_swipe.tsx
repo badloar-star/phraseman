@@ -2632,6 +2632,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         pendingAccount,
         pendingRecord.fingerprint,
         energyCharged ? acknowledgeSessionStart : async () => true,
+        { energyCharged },
       );
       if (cleared.status !== 'cleared') {
         throw new Error(`pending_grant_ack_${cleared.status}`);

@@ -2736,23 +2736,29 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-070.png",
+      "evidence_at": "2026-10-12T02:08:16.968Z",
+      "evidence_sha256": "b428bda282fc02a793da4cbc9f0e0dadeee9f5616c8cbc528317baa4981e52f3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Нужна форма после попытки сохранить с незаполненными полями: подсвеченные/подписанные ошибки у названия и карточек; на кадре форма как в cards-067, ошибок нет. Переснять после нажатия на действие создания.",
+        "[образец] Привязка на заполненную форму №22 не подходит; для проверки полей кадра в cards-v2 нет — дорисовать по правильному кадру."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:11:05.815Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create",
+        "bucket": "b_reshoot",
+        "bucket_reason": "отличия уже исправлены или устарели — переснять"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:08, строка «Создание набора — Проверь поля», привязка cards-v2 №22): на кадре пустая форма «Новый набор» без признаков проверки."
     },
     {
       "id": "cards-071",
@@ -4149,8 +4155,8 @@
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 12.10 (сессия «Макеты»): кадр свежее кода экрана, сверен с образцом. Отличия перечислены в diffs; различия данных и dev-превью отмечены отдельно.",
       "triage": {
-        "bucket": "b_reshoot",
-        "bucket_reason": "кадр старше правки кода — переснять и сверить заново"
+        "bucket": "c_owner_decides",
+        "bucket_reason": "иллюстрация тура: образец (подложка с башней) ≠ арт приложения — решение Дизайна/владельца"
       }
     },
     {
@@ -4170,18 +4176,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-002.png",
+      "evidence_at": "2026-10-12T02:09:36.567Z",
+      "evidence_sha256": "e613adc01a6870f1598ccc3547ccd7ffd4f1853f759585b53fbf49a241c8a381",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[иллюстрация] В образце кольцо таймера «1:42» и пилюля из трёх сердец на карточке-подложке, в приложении кольцо с числом «10» и три сердца без подложки — арт тура, решение Дизайна/владельца.",
+        "[вёрстка, мелко] Заголовок переносится иначе («10 заданий, общее / время, 3 сердца»): в приложении поля шире, кегль крупнее."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:11:05.815Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4197,8 +4204,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off",
+        "bucket": "c_owner_decides",
+        "bucket_reason": "иллюстрация тура: образец (таймер 1:42 в подложке) ≠ арт приложения — решение Дизайна/владельца"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:09, spire.html №2 «Тур 2 — как устроена ступень»): текст и кнопка совпали — «10 заданий, общее время, 3 сердца», описание, пейджер (активная точка пилюлей), «Далее →», «Пропустить»."
     },
     {
       "id": "spire-003",
@@ -4217,18 +4227,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-003.png",
+      "evidence_at": "2026-10-12T02:10:00.965Z",
+      "evidence_sha256": "2e97412ab459cc5e58ec1c8b91f3eb500b226393fa6c175c7d69e903df5b3938",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[иллюстрация] В образце список игроков с монетами и ступенями (Аня 47 ступ., Марк, Ольга) на карточке-подложке, в приложении три строки рангов «Мрамор / Базальт / Гранит» с зелёными стрелками «↑» без подложки — арт тура, решение Дизайна/владельца."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:11:05.815Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4245,8 +4255,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off",
+        "bucket": "c_owner_decides",
+        "bucket_reason": "иллюстрация тура: образец (игроки с монетами) ≠ арт приложения (ранги со стрелками) — решение Дизайна/владельца"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:09, spire.html №3 «Тур 3 — повышение»): текст совпал — «Верхние 15% переходят в следующий шпиль», описание, пейджер, «Начать →», «Пропустить»."
     },
     {
       "id": "spire-004",
@@ -4326,18 +4339,20 @@
       "anim_notes": [
         "halo 2.4s ease-in-out infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-005.png",
+      "evidence_at": "2026-10-12T02:10:21.040Z",
+      "evidence_sha256": "5a8c3e2fba5a0b5a01382357384a2ab3162a6ba8773d9816daeaf650b3b8531e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Не снять: Шпиль выключен конфигом (лог [SPIRE] home: config.enabled=false, tab remote=false dev=true) — вкладка показывает «Шпиль откроется чуть позже» (SPIRE_locked_0613.png). Снимать, когда включат"
+        "[дефект кода — подтверждено] «Подняться» в приложении серая и неактивная при комнате из 12 человек, в образце светлая активная; на кадре spire-gap-009 (комнаты нет) она наоборот светлая — условие активности, вероятно, перевёрнуто. Файл: SpireClimbDock.tsx.",
+        "[данные] Превью: этаж 7 против 4, друзья Алиса/Марк против Аня/Kirill, в пьедестале и в плашках кружки с инициалами вместо монет рангов, «Все участники · 9» против «ты 7-й».",
+        "[вёрстка] Нижняя кнопка «Все участники · 9» выходит за нижний край кадра, в образце помещается над «Подняться»."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:11:05.815Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -4353,8 +4368,11 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=room%26spirePanel=off"
-      }
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=room%26spirePanel=off",
+        "bucket": "a_code_defect",
+        "bucket_reason": "«Подняться» серая при комнате из 12 человек и светлая без комнаты (spire-gap-009) — условие активности, вероятно, перевёрнуто (подтверждено кадром 3:10)"
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:10, spire.html №5 «Шпиль — ниже: друзья, пьедестал»): состав совпал — башня с выделенным этажом, «Этаж N · Ты здесь · … ступеней · … монет за этаж», «Друзья на этой неделе», «Комната недели N», пьедестал из трёх, «Подняться», «Все участники · N». Башня теперь прокручена к своему этажу (7) — прежний дефект исправлен."
     },
     {
       "id": "spire-006",
@@ -35652,7 +35670,7 @@
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 2:35, spire-gaps-states №9 «комнаты ещё нет, «Подняться» неактивна»): кадр свежий, расхождения подтверждены.",
       "triage": {
         "bucket": "a_code_defect",
-        "bucket_reason": "«Подняться» выглядит активной при «комнаты ещё нет»; окно башни показывает вершину при выбранном этаже 1; в шапке нет «⚡ N» (подтверждено кадром 2:35)"
+        "bucket_reason": "«Подняться» выглядит активной при «комнаты ещё нет» (при комнате из 12 — серая, spire-005: условие перевёрнуто); окно башни показывает вершину при выбранном этаже 1; в шапке нет «⚡ N»"
       }
     },
     {

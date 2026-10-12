@@ -2021,6 +2021,14 @@ const DEV_POLL_QUESTION: DevCampaignText = {
   ru: 'Что улучшить в первую очередь?', uk: 'Що покращити насамперед?', es: '¿Qué mejoramos primero?', ptBr: 'O que melhorar primeiro?',
   vi: 'Nên cải thiện điều gì trước?', id: 'Apa yang harus diperbaiki dulu?', tr: 'Önce neyi geliştirelim?', pl: 'Co poprawić w pierwszej kolejności?',
 };
+// зачем (settings-gap-008, Макеты 12.10): сид клал вопрос и в заголовок, и в текст сообщения — на кадре «Что улучшить…» стояло трижды (заголовок, абзац, вопрос).
+// Это данные сида, а не шаблон карточки (SettingsMessageSlotCard выводит title / body / question из РАЗНЫХ полей). Теперь заголовок — «Важное от Phraseman» (макет `.gs-sti`), абзаца у опроса нет.
+const DEV_POLL_TITLE: DevCampaignText = {
+  ru: 'Важное от Phraseman', uk: 'Важливе від Phraseman', es: 'Importante de Phraseman', ptBr: 'Importante do Phraseman',
+  vi: 'Quan trọng từ Phraseman', id: 'Penting dari Phraseman', tr: "Phraseman'dan önemli", pl: 'Ważne od Phraseman',
+};
+const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '' };
+const DEV_POLL_EMPTY_BODY: DevCampaignText = { ru: '', uk: '', es: '', ptBr: '', vi: '', id: '', tr: '', pl: '' };
 const DEV_POLL_OPTIONS: ReadonlyArray<{ id: string; text: DevCampaignText; count: number }> = [
   { id: 'speed', count: 42, text: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', ptBr: 'Velocidade', vi: 'Tốc độ', id: 'Kecepatan', tr: 'Hız', pl: 'Szybkość' } },
   { id: 'content', count: 31, text: { ru: 'Больше заданий', uk: 'Більше завдань', es: 'Más ejercicios', ptBr: 'Mais exercícios', vi: 'Thêm bài tập', id: 'Lebih banyak latihan', tr: 'Daha fazla görev', pl: 'Więcej zadań' } },
@@ -2046,8 +2054,8 @@ function devCampaignRow(id: string, slot: SettingsMessageSlot, kind: 'poll' | 'm
   const row: Record<string, unknown> = {
     id, kind, active: true, audience: 'all', deliverySurface: 'settings', settingsSlot: slot, controlPercent: 0, priority: 1,
     createdAtMs: nowMs, updatedAtMs: nowMs, expiresAtMs: nowMs + APP_MESSAGE_TTL_MS,
-    ...texts('title', kind === 'poll' ? DEV_POLL_QUESTION : DEV_MESSAGE_TITLE),
-    ...texts('message', kind === 'poll' ? DEV_POLL_QUESTION : DEV_MESSAGE_BODY),
+    ...texts('title', kind === 'poll' ? DEV_POLL_TITLE : DEV_MESSAGE_TITLE),
+    ...texts('message', kind === 'poll' ? DEV_POLL_EMPTY_BODY : DEV_MESSAGE_BODY),
   };
   if (kind === 'poll') {
     row.poll = {

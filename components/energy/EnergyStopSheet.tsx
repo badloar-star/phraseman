@@ -44,10 +44,12 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
   const { isUnlimited, recoveryIntervalMs } = useEnergy();
   const { formattedTime } = useEnergyCountdown({ visible });
   const resumedRef = useRef(false);
+  // зачем (R1_PAYWALL_UX): быстрый второй тап по «Продолжить с Plus» до перерисовки открывал бы окно Plus дважды (стек из двух пейволов); сбрасывается, когда экран занятия снова в фокусе.
+  const plusOpeningRef = useRef(false);
   // зачем (ревью Ядра п.2): экран Plus открывается маршрутом ПОВЕРХ нативного окна — карточка остановки перекрыла бы его, и кнопка казалась бы
   // мёртвой. Поэтому перед переходом карточку прячем, а когда экран занятия снова в фокусе (пейвол закрыт) — возвращаем, если остановка ещё есть.
   const [plusOpen, setPlusOpen] = useState(false);
-  useFocusEffect(useCallback(() => { setPlusOpen(false); }, []));
+  useFocusEffect(useCallback(() => { setPlusOpen(false); plusOpeningRef.current = false; }, []));
 
   useEffect(() => {
     if (!visible) { resumedRef.current = false; return; }
@@ -102,6 +104,10 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
   );
 
   const openPlus = () => {
+    if (plusOpeningRef.current) {
+      DebugLogger.info(TAG, 'повторный тап «Продолжить с Plus» проигнорирован: окно Plus уже открывается');
+      return;
+    }
     hapticTap();
     // зачем (координатор 12.10, energy-modes-006): dev `energy_stop=plus_granted` — Plus только в памяти вместо пейвола;
     // эффект выше (isUnlimited) продолжит занятие сам, как после настоящей покупки. В стор-сборке геттер false.
@@ -120,6 +126,7 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
       return;
     }
     DebugLogger.info(TAG, `тап «${cta}» → /premium_modal context=${paywallContext}`);
+    plusOpeningRef.current = true;
     setPlusOpen(true);
     router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: 'energy_stop_sheet' } } as never);
   };

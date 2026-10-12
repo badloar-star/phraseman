@@ -239,7 +239,9 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
             <PaywallPlusDock lang={lang} g={g} state={state} label={p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady ? cta.label : pick(lang, COPY.getPlus)} fine={cta.fine}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
-              restoring={p.restoring} restoreDisabled={checkoutInFlight || state === 'loading'}
+              // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),
+              // а вернувшийся покупатель как раз сюда и идёт. Блокируем только на время самой оплаты/восстановления.
+              restoring={p.restoring} restoreDisabled={checkoutInFlight}
               onRestore={() => { void p.handleRestore(); }} />
           </View>
         </>

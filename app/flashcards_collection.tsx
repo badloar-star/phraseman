@@ -180,6 +180,21 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   return labels[lang];
 }
 
+/** Тост «покупка набора не удалась» (R1_PAYWALL_UX): окно покупки не должно молчать при отказе. */
+function packBuyFailedToast() {
+  return actionToastTri('error', {
+    ru: 'Не удалось купить набор. Попробуй ещё раз.',
+    uk: 'Не вдалося купити набір. Спробуй ще раз.',
+    en: 'Couldn’t buy the pack. Try again.',
+    es: 'No se pudo comprar el paquete. Inténtalo de nuevo.',
+    'pt-BR': 'Não foi possível comprar o pacote. Tente de novo.',
+    vi: 'Không mua được bộ thẻ. Hãy thử lại.',
+    id: 'Tidak bisa membeli paket. Coba lagi.',
+    tr: 'Paket satın alınamadı. Tekrar dene.',
+    pl: 'Nie udało się kupić zestawu. Spróbuj ponownie.',
+  });
+}
+
 export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -1844,6 +1859,9 @@ export default function FlashcardsScreen() {
                 purchasingRef.current = false;
                 setPurchasing(false);
                 console.log(`[PACK-BUY] denied pack=${purchasePack.id} reason=${res.reason}`); // guard-ok: otkaz obyazan logirovat'sya i v relize
+                // зачем (R1_PAYWALL_UX, координатор 12.10): раньше при отказе крутилка просто пропадала и окно оставалось без слова. Нехватка рун сама
+                // переключает окно на «Пополнить» (mode считается по балансу), поэтому тост — для остальных причин (смена аккаунта, неверная цена).
+                if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', packBuyFailedToast());
                 return;
               }
               await addCommunityPackToLibrary(purchasePack);
@@ -1857,6 +1875,7 @@ export default function FlashcardsScreen() {
             }).catch((error: unknown) => {
               purchasingRef.current = false;
               setPurchasing(false);
+              emitAppEvent('action_toast', packBuyFailedToast()); // зачем (R1_PAYWALL_UX): сбой после списания не должен быть немым
               DebugLogger.error(
                 'flashcards_collection:pack_buy',
                 error instanceof Error ? error : new Error(String(error)),

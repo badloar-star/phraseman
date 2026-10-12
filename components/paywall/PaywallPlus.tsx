@@ -45,6 +45,9 @@ export type PaywallPlusState = 'ready' | 'loading' | 'error';
 /** Высота плашек тарифов (и скелета/«недоступно» на их месте) — первый кадр без прыжка, когда придут цены. */
 const PLAN_CARD_HEIGHT = 160;
 
+/** Приглушение недоступной управляющей кнопки (закрыть / восстановить на время оплаты). */
+const PAYWALL_DISABLED_OPACITY = 0.4;
+
 const TERMS_URL = 'https://phraseman.app/terms';
 const PRIVACY_URL = 'https://phraseman.app/privacy';
 
@@ -82,7 +85,8 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
       onPress={onClose}
       withHaptic={false}
       scaleTo={0.92}
-      style={[S.close, { backgroundColor: g.opaqueControl }]}
+      // зачем (R1_PAYWALL_UX): пока идёт оплата, закрыть нельзя — кнопка это показывает приглушением, а не молча не отзывается.
+      style={[S.close, { backgroundColor: g.opaqueControl, opacity: closeDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}
     >
       <Ionicons name="close" size={18} color={g.text} />
     </V2Pressable>
@@ -364,8 +368,11 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
       </V2Pressable>
       <Text testID="paywall-fine" style={[S.fine, { color: g.mutedText }]}>{fineText}</Text>
       <View style={S.links}>
+        {/* зачем (R1_PAYWALL_UX): восстановление видно — крутилка рядом с «Восстанавливаем…»; недоступная ссылка приглушена (раньше не отличалась от активной). */}
         <V2Pressable testID="paywall-restore" withHaptic={false} scaleTo={0.95} disabled={restoreDisabled}
-          accessibilityState={{ busy: restoring }} onPress={onRestore} style={S.linkHit}>
+          accessibilityState={{ busy: restoring }} onPress={onRestore}
+          style={[S.linkHit, S.restoreRow, { opacity: restoreDisabled && !restoring ? PAYWALL_DISABLED_OPACITY : 1 }]}>
+          {restoring ? <ActivityIndicator size="small" color={g.mutedText} /> : null}
           <Text style={[S.link, { color: g.mutedText }]}>{pick(lang, restoring ? COPY.restoring : COPY.restore)}</Text>
         </V2Pressable>
         <V2Pressable accessibilityRole="link" scaleTo={0.95} onPress={() => openLegal(TERMS_URL)} style={S.linkHit}>
@@ -451,6 +458,7 @@ const S = StyleSheet.create({
   sectionLabel: { marginTop: 22, marginBottom: 10, marginHorizontal: 4, fontSize: 13, fontWeight: '700', letterSpacing: 2.2 },
   links: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', marginTop: 14 },
   linkHit: { minHeight: 44, paddingHorizontal: 10, justifyContent: 'center' },
+  restoreRow: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   link: { fontSize: 13, lineHeight: 18 },
   dock: { paddingTop: 14, paddingHorizontal: 16 },
   cta: { minHeight: 58, borderRadius: 29, paddingHorizontal: 20, paddingVertical: 12, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

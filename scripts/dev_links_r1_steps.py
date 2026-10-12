@@ -111,7 +111,8 @@ HUB_TRAIN = '/flashcards?train=1'
 SETUP = '/flashcards_training_setup?mode='
 
 add('cards-v2-001', [], HUB_FREE, HUB, note='хаб Карточек (демо-аккаунт, Free)')
-add(['cards-002', 'cards-section-032', 'cards-v2-027'], [], HUB_FREE, HUB_TRAIN, note='шторка выбора режима тренировки (хаб открывает её сам по ?train=1)')
+# зачем (координатор 12.10, Дизайн 11a040d40): кадры снимались при исчерпанном лимите Free («0/30», «Безлимит с Plus» вместо «Начать») — перед съёмкой счётчик сбрасывается подменой quota=reset.
+add(['cards-002', 'cards-section-032', 'cards-v2-027'], [], HUB_FREE + '&quota=reset', HUB_TRAIN, note='шторка выбора режима тренировки (хаб открывает её сам по ?train=1)')
 add(['cards-section-033', 'cards-v2-028'], [], HUB_FREE, SETUP + 'blitz', note='настройка тренировки «Блиц» (прямой маршрут)')
 add('cards-section-034', [], HUB_FREE, SETUP + 'speaking', note='настройка тренировки «Устно» (прямой маршрут)')
 add('cards-section-035', [], HUB_FREE, SETUP + 'truefalse', note='настройка тренировки «Правда / ложь» (прямой маршрут)')
@@ -123,8 +124,8 @@ add('cards-016', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flash
 add(['cards-017', 'cards-section-023', 'cards-048', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений («Ничего не найдено»)')
 add('cards-section-028', [], 'catalog=demo', PACKS, note='каталог (привязка образца: «Каталог»; по названию строки — «Ничего не нашли»)')
 add('cards-015', [], 'catalog=demo', PACKS, note='каталог (привязка образца cards-v2 №25 «Каталог»; по названию строки — поиск и меню по долгому нажатию)')
-# зачем (Макеты, 12.10): набор открывается на скелетах и «не скачан» объявляется после тихих повторов (1,5 + 3 с) — кадр снимали раньше; ждём тост и снимаем после
-add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2', 'wait:3500', 'await:Набор ещё не скачан'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
+# зачем (Макеты, 12.10; координатор: ждать ≥5 с): набор открывается на скелетах и «не скачан» объявляется после тихих повторов (1,5 + 3 с) — кадр снимали раньше; ждём 5,5 с, затем тост и снимаем после
+add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2', 'wait:5500', 'await:Набор ещё не скачан'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
 
 VIDEO = '/flashcards_video_packs'
 add(['cards-028', 'cards-v2-018'], [], DEMO_PLUS, VIDEO, note='«Из видео»: 5 демо-роликов (по строкам не тапать)')
@@ -331,7 +332,7 @@ add('cards-gap-008', [], 'cards=notranslation&plus=on', RECALL_ROUTE, note='«Н
 add('cards-gap-006', [], DEMO + '&train_gate=fail_swipe_quota', TF_ROUTE, note='«Правда / ложь»: не удалось проверить лимит (train_gate=fail_swipe_quota)')
 add('cards-gap-001', [], DEMO + '&train_gate=fail_blitz', BLITZ_ROUTE, note='«Блиц»: тренировка не открылась (train_gate=fail_blitz)')
 add('cards-gap-002', [], DEMO + '&train_gate=fail_speaking', SPEAK_ROUTE, note='«Устно»: тренировка не открылась (train_gate=fail_speaking)')
-add('cards-gap-011', [], 'cards=demo&plus=off&hold=quota_waiting', HUB_TRAIN, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting; хаб открывает окно сам по ?train=1)')
+add('cards-gap-011', [], 'cards=demo&plus=off&quota=reset&hold=quota_waiting', HUB_TRAIN, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting; хаб открывает окно сам по ?train=1)')
 add('cards-gap-012', [], 'cards=demo&plus=off&hold=quota_failed', HUB_TRAIN, note='шторка режима: «Не получилось подготовить тренировку» (hold=quota_failed; хаб открывает окно сам по ?train=1)')
 
 add('cards-062', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO + '&fail=card_write', '/flashcards_card_editor?create=1&cat=custom', note='редактор: «Не удалось сохранить» (fail=card_write); создание карточки — функция Plus, поэтому plus=on')

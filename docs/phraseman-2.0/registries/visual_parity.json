@@ -36569,21 +36569,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-003.png",
+      "evidence_at": "2026-10-12T03:15:37.742Z",
+      "evidence_sha256": "acf1d5b59d19e4df96cff4905f53e721bed2649e0e345a96973a305784aebad8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо экрана загрузки (плитка с искрой, «Тренировка карточек», «Готовим тренировку…») на кадре экран подготовки со списком наборов и красной ошибкой «Не удалось подготовить тренировку. Энергия возвращена.» — то же, что cards-gap-005. Удержание hold=quota_waiting не сработало (подготовка уже завершилась ошибкой от предыдущего прогона); переснять на чистом госте с удержанием загрузки."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:17:28.897Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?hold=hub_loading|saved_loading|catalog_loading|setup_loading|quota_waiting|quota_failed|voices_loading"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:15, cards-gaps-states №3 «Правда / ложь — быстрый старт: «Готовим тренировку…»»; образец нарисован с приложения): состояния «Готовим тренировку…» на кадре нет. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-004",
@@ -36640,21 +36643,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-005.png",
+      "evidence_at": "2026-10-12T03:15:54.648Z",
+      "evidence_sha256": "3117c2b6ee16e1de59f7e68cd060bcd9f0ab27795138d7ff0610fb44124d2102",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] В приложении один набор («Сохранённые карточки · 64 карточки»), в образце два (ещё «Путешествия · Community pack · 40 карточек»).",
+        "[вёрстка, мелко] Назад в приложении «←» на круглой подложке, в образце «‹» без подложки; заголовок крупнее (≈46 против 42 px), блок «Наборы» ниже на ~40 px; «Начать» выше (78 против 62 px). Поправить образец по приложению (рисую я)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:17:28.897Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?train_gate=fail_blitz|fail_speaking|fail_swipe_prepare|fail_swipe_quota"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:15, cards-gaps-states №5 «Правда / ложь — «Не удалось подготовить тренировку. Энергия возвращена.»»; образец нарисован с приложения): состояние то же — «Тренировка карточек», «Наборы», красное сообщение «Не удалось подготовить тренировку. Энергия возвращена.», карточка набора с галочкой, светлая «Начать» внизу. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-006",
@@ -36787,21 +36794,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-009.png",
+      "evidence_at": "2026-10-12T03:16:11.776Z",
+      "evidence_sha256": "a9b0104f2a1092bf341b31283e1e50b58a9dcad20eacde2ceac2a5bac6608281",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Значок кнопки наборов: стопка слоёв в приложении, баночка в образце (общий вопрос владельцу).",
+        "[данные] Счётчик монет «0» с медной монетой против «1 240» с серебряной.",
+        "[вёрстка, мелко] Кнопка в приложении крупнее (58 против 54 px), блок на ~4 px ниже."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:17:28.897Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:16, cards-gaps-states №9 «Напиши — «Сейчас недоступно»»; образец нарисован с приложения): состав совпал — «✕», «Напиши», три сердца, кнопка наборов, полоса прогресса, плитка со стопкой, «Сейчас недоступно», светлая «Попробовать снова». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-010",

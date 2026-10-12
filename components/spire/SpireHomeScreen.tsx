@@ -41,6 +41,7 @@ import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpireBgBottom, useSpirePalette } from './useSpirePalette';
+import { spireScreenLangLock } from './spire_screen_lang_lock';
 import { useSpireShadow } from './useSpireShadow';
 import SpireEnergyPill from './SpireEnergyPill';
 import SpireAllMembers from './SpireAllMembers';
@@ -147,7 +148,18 @@ export default function SpireHomeScreen() {
     return () => { alive = false; };
   }, []);
 
-  const unlocked = config !== null && config.enabled === true;
+  // зачем (владелец 11.10 «Шпиль только ru/uk», п.76, координатор 15.10): вкладка закрыта замком по языку интерфейса, но прямой маршрут /spire и смена языка
+  // на открытом экране обходили его — открывались английские подписи с русскими заданиями. Теперь экран сам подчиняется тому же решению (SpireLockedState).
+  const langLock = spireScreenLangLock(lang);
+  const unlocked = config !== null && config.enabled === true && !langLock.locked;
+  const lastLangLockKeyRef = useRef<string | null>(null);
+  useEffect(() => {
+    const key = `${langLock.decision.lang}:${langLock.decision.allowed}`;
+    if (lastLangLockKeyRef.current === key) return;
+    const before = lastLangLockKeyRef.current;
+    lastLangLockKeyRef.current = key;
+    console.log('[SPIRE-GATE] screen', JSON.stringify({ lang: langLock.decision.lang, allowed: langLock.decision.allowed, reason: langLock.decision.reason, locked: langLock.locked, previous: before, preview: preview !== null, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', result: langLock.locked ? 'SpireLockedState' : 'screen_allowed' })); // guard-ok: решение по языку интерфейса, одна строка на смену
+  }, [langLock.decision.lang, langLock.decision.allowed, langLock.decision.reason, langLock.locked, preview, config]);
   const spireLang = asSpireLang(studyTarget);
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка неделя и выбранный этаж старого языка не должны оставаться до конца чтения новой недели.
   const prevSpireLangRef = useRef(spireLang);
@@ -239,6 +251,7 @@ export default function SpireHomeScreen() {
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, 'rankedBySteps')}`;
 
+  if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
   if (config === null) return <View style={s.root} testID="spire-loading" />;
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;

@@ -21,6 +21,7 @@ import {
   type LessonsListGlass,
 } from './LessonsListGlassKit';
 import { useLineScale } from '../../hooks/useLineScale';
+import { lessonsListCardPropsEqual } from './lessonsListCardEquality';
 
 // зачем (владелец 2026-09-30): карточка урока `.lc` из learn.html — круг 44 с номером слева,
 // название 17/22, строка состояния (звёзды D36 / полоска прогресса / «Открыт» / замок), шеврон.
@@ -265,4 +266,5 @@ export const LessonsListGlassCard = React.memo(function LessonsListGlassCard({
       <Ionicons name="chevron-forward" size={20} color={glass.text} />
     </PressableHybrid>
   );
-});
+// зачем (R1 L1): состояние плашки приходит новым объектом на каждый коммит корня — сравниваем по данным урока, иначе memo не работает
+}, lessonsListCardPropsEqual);

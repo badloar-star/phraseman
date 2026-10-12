@@ -806,6 +806,28 @@ interface LessonCardProps {
   onLearningV2Press?: (lessonOrdinal: number) => void;
 }
 
+// зачем (R1 L1, координатор 12.10): renderLessonCard собирал для каждой плашки НОВЫЙ объект стиля слоя и новую стрелку нажатия — React.memo у LessonCard
+// видел другие ссылки и перерисовывал плашку на каждом коммите корня. Стиль слоя зависит только от радиуса (14/16) — кэшируем по радиусу;
+// обёртка нажатия кэшируется по самой функции-источнику (WeakMap) — тот же вход даёт ту же ссылку.
+const LESSON_CARD_LAYER_STYLES = new Map<number, LessonCardProps["cardLayerStyle"]>();
+function lessonCardLayerStyle(radius: number): LessonCardProps["cardLayerStyle"] {
+  let style = LESSON_CARD_LAYER_STYLES.get(radius);
+  if (!style) {
+    style = { position: "absolute", left: 0, top: 0, right: 0, bottom: 0, borderRadius: radius, overflow: "hidden" };
+    LESSON_CARD_LAYER_STYLES.set(radius, style);
+  }
+  return style;
+}
+const LESSON_CARD_PRESS_WRAPPERS = new WeakMap<() => void, () => void>();
+function lessonCardPressWrapper(source: () => void): () => void {
+  let wrapper = LESSON_CARD_PRESS_WRAPPERS.get(source);
+  if (!wrapper) {
+    wrapper = () => source();
+    LESSON_CARD_PRESS_WRAPPERS.set(source, wrapper);
+  }
+  return wrapper;
+}
+
 /** Тени карточек уроков: только iOS (см. зачем у стиля карточки). */
 const LESSON_CARD_SHADOWS_ENABLED = Platform.OS !== "android";
 
@@ -4461,6 +4483,18 @@ export default function LessonsTab({
       unlockedLessons,
     ],
   );
+  // зачем (R1 L1, координатор 12.10): нажатие аттестации — стабильная ссылка, иначе memo-плашка перерисовывалась на каждом коммите корня.
+  const openDiagnosticTest = useCallback(() => {
+    hapticTap();
+    router.push("/diagnostic_test");
+  }, [router]);
+  // зачем (R1 L1): у экзаменов нажатие замыкает ~10 значений экрана. Стабильная обёртка на уровень зовёт ПОСЛЕДНЮЮ версию обработчика из ref
+  // (ref обновляется на каждом рендере, нажатие всегда читает свежие данные) — ссылка пропса не меняется, плашка экзамена не перерисовывается впустую.
+  const examPressImplRef = useRef<Record<string, () => void>>({});
+  const examPressStable = useMemo(() => {
+    const make = (lvl: string) => () => examPressImplRef.current[lvl]?.();
+    return { A1: make("A1"), A2: make("A2"), B1: make("B1"), B2: make("B2") } as Record<string, () => void>;
+  }, []);
   // ── Exam card (Liquid Glass `.exc` макета learn.html) ──
   const renderExamCard = (lvl: string): React.ReactNode => {
     const [from, to] =
@@ -4603,6 +4637,41 @@ export default function LessonsTab({
       level: lvl, hasResult: Boolean(result), resultPct: result?.pct ?? null, passed: result?.passed ?? null,
       examSourceAvailable, allDone, examPremiumRequired, isPremium, kind: examStatusKind, chosen: subLine,
     });
+    // зачем (R1 L1): свежий обработчик кладём в ref, а в плашку отдаём стабильную обёртку — ссылка пропса не меняется между коммитами.
+    examPressImplRef.current[lvl] = () => {
+      markLessonsGateTap();
+      hapticTap();
+      const firstLessonByLevel =
+        lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;
+      if (examPremiumRequired) {
+        openLessonPaywall(
+          requiresPremiumForLesson(
+            firstLessonByLevel,
+            effectiveLegacyFreeLessonCap,
+          )
+            ? firstLessonByLevel
+            : to,
+        );
+      } else if (!examSourceAvailable) {
+        setGateModal({ kind: "frenchExam", level: lvl });
+      } else if (allDone) {
+        router.push({ pathname: "/level_exam", params: { level: lvl } });
+      } else if (isPremium && prevExamLevel) {
+        setGateModal({
+          kind: "levelGate",
+          level: lvl,
+          prevLevel: prevExamLevel,
+          // зачем: соседняя сессия добавила механику «открыть урок за
+          // жемчужины» и сделала lessonNum обязательным, но эту точку
+          // вызова пропустила — сборка падала на типах. Берём первый урок
+          // уровня: именно он стоит за этим гейтом, и именно его логично
+          // предложить открыть. Саму механику не трогаем.
+          lessonNum: firstLessonByLevel,
+        });
+      } else {
+        setGateModal({ kind: "exam", level: lvl });
+      }
+    };
     return (
       <LessonsListGlassExamCard
         key={`e-${lvl}`}
@@ -4612,40 +4681,7 @@ export default function LessonsTab({
         status={subLine}
         faint={!allDone && !result}
         bestPct={examBestPct}
-        onPress={() => {
-          markLessonsGateTap();
-          hapticTap();
-          const firstLessonByLevel =
-            lvl === "A1" ? 1 : lvl === "A2" ? 9 : lvl === "B1" ? 19 : 29;
-          if (examPremiumRequired) {
-            openLessonPaywall(
-              requiresPremiumForLesson(
-                firstLessonByLevel,
-                effectiveLegacyFreeLessonCap,
-              )
-                ? firstLessonByLevel
-                : to,
-            );
-          } else if (!examSourceAvailable) {
-            setGateModal({ kind: "frenchExam", level: lvl });
-          } else if (allDone) {
-            router.push({ pathname: "/level_exam", params: { level: lvl } });
-          } else if (isPremium && prevExamLevel) {
-            setGateModal({
-              kind: "levelGate",
-              level: lvl,
-              prevLevel: prevExamLevel,
-              // зачем: соседняя сессия добавила механику «открыть урок за
-              // жемчужины» и сделала lessonNum обязательным, но эту точку
-              // вызова пропустила — сборка падала на типах. Берём первый урок
-              // уровня: именно он стоит за этим гейтом, и именно его логично
-              // предложить открыть. Саму механику не трогаем.
-              lessonNum: firstLessonByLevel,
-            });
-          } else {
-            setGateModal({ kind: "exam", level: lvl });
-          }
-        }}
+        onPress={examPressStable[lvl]}
       />
     );
   };
@@ -4735,15 +4771,7 @@ export default function LessonsTab({
     const lockedCardBaseColor = isGoldTheme
       ? goldSurface
       : darkenHexCached(bg, 0.28);
-    const cardLayerStyle = {
-      position: "absolute" as const,
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 0,
-      borderRadius: cardRadius,
-      overflow: "hidden" as const,
-    };
+    const cardLayerStyle = lessonCardLayerStyle(cardRadius); // зачем (R1 L1): стабильная ссылка на стиль, иначе memo плашки не срабатывает
     const lessonTextColor = isSagePorcelainTheme
       ? t.textPrimary
       : isGoldTheme
@@ -4817,7 +4845,7 @@ export default function LessonsTab({
         learningV2Expanded={expandedLearningV2Lesson === num}
         learningV2InProgress={learningV2InProgress}
         onLearningV2PressIn={learningV2Available ? prepareLearningV2Lesson : undefined}
-        onLearningV2Press={onLearningV2PressOverride ? () => onLearningV2PressOverride() : toggleLearningV2Lesson}
+        onLearningV2Press={onLearningV2PressOverride ? lessonCardPressWrapper(onLearningV2PressOverride) : toggleLearningV2Lesson}
       />
     );
   };
@@ -5862,10 +5890,7 @@ export default function LessonsTab({
                       key="attestation-after-32"
                       glass={learnGlass}
                       title={s.home.attestTile}
-                      onPress={() => {
-                        hapticTap();
-                        router.push("/diagnostic_test");
-                      }}
+                      onPress={openDiagnosticTest}
                     />
                   );
                 }

@@ -6,9 +6,9 @@
 
 | Корзина | Строк | Что это |
 |---|---|---|
-| `a_code_defect` | 15 | есть кодовый дефект (метка «дефект кода» / решение координатора / разбор исполнителя) — **12 уникальных правок** |
+| `a_code_defect` | 5 | есть кодовый дефект (метка «дефект кода» / решение координатора / разбор исполнителя) — **3 уникальных правок** |
 | `a2_layout_candidate` | 52 | только «вёрстка, мелко» (±px) к утверждённому образцу, причина не доказана (прокрутка, клавиатура, данные) — **не гонять в код до пересъёмки свежим кодом** |
-| `b_reshoot` | 127 | только пересъёмка (кадр старый / состояние / шаг робота / уже исправлено) |
+| `b_reshoot` | 137 | только пересъёмка (кадр старый / состояние / шаг робота / уже исправлено) |
 | `c_owner_decides` | 35 | решает владелец (утренний лист): значок «В набор», шапка Шпиля, цвет кнопки, срок промокода… |
 | `d_mockup_stale` | 29 | образец устарел или неточен — правят Макеты (страницы под замком — после ответа владельца) |
 
@@ -16,34 +16,24 @@
 
 | Исполнитель | Уникальных правок | Строк |
 |---|---|---|
-| Дизайн | 10 | 11 |
-| Темы | 1 | 1 |
+| Дизайн | 0 | 0 |
+| Темы | 2 | 2 |
 | Ядро | 1 | 3 |
 | Авторизация | 0 | 0 |
-| **Итого** | **12** | **15** |
+| **Итого** | **3** | **5** |
 
 Кандидатов «мелкая вёрстка» (Дизайн): **52** строк — отдельно, см. ниже.
 
-### Дизайн — 10
+### Дизайн — 0
 
-| Строки | Что исправить | Файл |
-|---|---|---|
-| cards-005 | [дефект кода — кандидат] Залипающая шапка полупрозрачная: сквозь полосу ползунка просвечивает перевод «выход на посадку» из прокрученной карточки (текст над ползунком y≈205); шапка должна быть непрозрачной или с размытием под поло | `app/flashcards/CollectionListView.tsx` |
-| cards-006 | [дефект кода — две плашки] Подсказка «Зажми карточку, чтобы изменить или удалить её» висит над «Удалено · Вернуть» и закрывает ряд карточек; в образце плашка одна. Решить, должна ли подсказка показываться вместе с «Удалено» (повед | `app/flashcards/CollectionListView.tsx` |
-| cards-034, cards-section-010 | [дефект кода — кандидат] Затемнение не закрывает статус-бар сверху (светлая полоса y<120) — как на кадре 02:59. | `app/flashcards/FlashcardListItem.tsx` |
-| cards-gap-020 | [дефект кода — кандидат] Плашка «СООБЩЕНИЕ · Эта карточка уже в наборе» ложится поверх четвёртой строки списка наборов («Фразовые глаголы» скрыта под ней, видны обрезки) — плашка должна появляться ниже списка или заменять его низ  | `app/flashcards/ExpandedCardV2.tsx` |
-| cards-gap-034 | [дефект кода — кандидат] Если экран набора без сети остаётся на заглушках без сообщения, это немой отказ: показать «Набор ещё не скачан — нужен интернет» и вернуть в каталог (как в образце). Подтвердить пересъёмкой и чтением обраб | `app/community_packs/stage_with_retry.ts` |
-| dialogs-001 | [дефект кода — кандидат] Пилюли «30/30» (дневной лимит диалогов) справа под энергией в приложении нет — в образце Free она есть; проверить в коде хаба, показывается ли лимит у Free (у Plus пилюли нет по замыслу) и состояние ссылки | `components/dialogs/DialogueV2CatalogueContainer.tsx` |
-| dialogs-gap-002 | [дефект кода — кандидат] В образце после пояснения отдельная строка «Для этого языка пока ничего не сохранено.» (пустое состояние), в приложении её нет — сразу кнопка; либо кадр снят не в пустом состоянии, либо строка не выводится | `app/dialogue_v2_memory.tsx` |
-| settings-gap-028 | [вёрстка, мелко] Блок «Разрешить уведомления» в приложении выше (≈120 против 112 px); подписи крупнее. | `app/settings_notifications.tsx` |
-| spire-010 | [дефект кода — кандидат] Под панелью башня показана от вершины («НАД ОБЛАКАМИ», этажи 15, 14), маркер не на своём этаже; в образце окно башни стоит на этаже 4 с рамкой выделения и маркером. На spire-005 и spire-012 башня уже прокр | `components/spire/SpireResultPanel.tsx` |
-| spire-016 | [дефект кода — кандидат] На месте башни пустая серая плашка (башня не отрисована), в образце башня с выделенным этажом 4 и монетами; кадр мог быть снят до отрисовки башни — переснять. | `components/spire/SpireClimbDock.tsx` |
+Нет.
 
-### Темы — 1
+### Темы — 2
 
 | Строки | Что исправить | Файл |
 |---|---|---|
 | cards-024 | [дефект кода — кандидат, Темы] Шторка полупрозрачная: сквозь неё просвечивают строки списка карточек под ней (слова «занимать», «Admit», «Afford» видны поверх полей «Слово или фраза», «Пример» и между кнопками) — в образце шторка  | `app/community_pack_create.tsx` |
+| spire-010 | [дефект кода — кандидат] Под панелью башня показана от вершины («НАД ОБЛАКАМИ», этажи 15, 14), маркер не на своём этаже; в образце окно башни стоит на этаже 4 с рамкой выделения и маркером. На spire-005 и spire-012 башня уже прокр | `components/spire/SpireResultPanel.tsx` |
 
 ### Ядро — 1
 
@@ -62,10 +52,10 @@
 ## Список для ROBOT10 (одна строка)
 
 ```
-cards-009 cards-010 cards-021 cards-025 cards-032 cards-039 cards-062 cards-075 cards-081 cards-gap-003 cards-gap-021 cards-gap-026 cards-gap-030 cards-section-006 cards-section-007 cards-section-009 cards-section-015 cards-section-019 cards-section-024 cards-section-028 cards-section-032 cards-section-033 cards-section-034 cards-section-035 cards-section-036 cards-v2-001 cards-v2-005 cards-v2-008 cards-v2-009 cards-v2-011 cards-v2-013 cards-v2-014 cards-v2-017 cards-v2-022 cards-v2-023 cards-v2-024 cards-v2-027 cards-v2-028 cards-v2-030 cards-v2-031 cards-v2-033 cards-v2-048 community-003 community-004 community-005 dialogs-007 dialogs-015 dialogs-016 dialogs-017 dialogs-018 dialogs-019 dialogs-020 dialogs-022 dialogs-023 dialogs-031 dialogs-032 dialogs-034 dialogs-036 dialogs-gap-009 dialogs-gap-015 dialogs-gap-017 energy-modes-001 energy-modes-017 onboarding-019 onboarding-020 onboarding-021 overlays-campaigns-005 overlays-campaigns-016 overlays-campaigns-018 overlays-campaigns-019 overlays-campaigns-020 overlays-campaigns-022 overlays-campaigns-023 overlays-campaigns-024 overlays-campaigns-025 overlays-campaigns-026 overlays-runtime-018 packs-simple-003 packs-simple-004 paywall-gap-001 paywall-gap-002 paywall-gap-003 paywall-gap-004 paywall-gap-005 paywall-gap-007 paywall-gap-008 paywall-gap-009 paywall-gap-010 paywall-gap-011 paywalls-022 paywalls-023 paywalls-024 profile-001 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-020 profile-021 profile-022 profile-024 profile-025 profile-028 profile-029 profile-030 settings-gap-002 settings-gap-003 settings-gap-004 settings-gap-005 settings-gap-008 settings-gap-009 settings-gap-011 settings-gap-019 settings-gap-024 settings-gap-025 settings-gap-026 settings-gap-030 settings-gap-031 settings-gap-032 settings-gap-033 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-017 spire-gap-003 spire-gap-006 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-018 spire-gap-020
+cards-005 cards-006 cards-009 cards-010 cards-021 cards-025 cards-032 cards-034 cards-039 cards-062 cards-075 cards-081 cards-gap-003 cards-gap-020 cards-gap-021 cards-gap-026 cards-gap-030 cards-gap-034 cards-section-006 cards-section-007 cards-section-009 cards-section-010 cards-section-015 cards-section-019 cards-section-024 cards-section-028 cards-section-032 cards-section-033 cards-section-034 cards-section-035 cards-section-036 cards-v2-001 cards-v2-005 cards-v2-008 cards-v2-009 cards-v2-011 cards-v2-013 cards-v2-014 cards-v2-017 cards-v2-022 cards-v2-023 cards-v2-024 cards-v2-027 cards-v2-028 cards-v2-030 cards-v2-031 cards-v2-033 cards-v2-048 community-003 community-004 community-005 dialogs-001 dialogs-007 dialogs-015 dialogs-016 dialogs-017 dialogs-018 dialogs-019 dialogs-020 dialogs-022 dialogs-023 dialogs-031 dialogs-032 dialogs-034 dialogs-036 dialogs-gap-002 dialogs-gap-009 dialogs-gap-015 dialogs-gap-017 energy-modes-001 energy-modes-017 onboarding-019 onboarding-020 onboarding-021 overlays-campaigns-005 overlays-campaigns-016 overlays-campaigns-018 overlays-campaigns-019 overlays-campaigns-020 overlays-campaigns-022 overlays-campaigns-023 overlays-campaigns-024 overlays-campaigns-025 overlays-campaigns-026 overlays-runtime-018 packs-simple-003 packs-simple-004 paywall-gap-001 paywall-gap-002 paywall-gap-003 paywall-gap-004 paywall-gap-005 paywall-gap-007 paywall-gap-008 paywall-gap-009 paywall-gap-010 paywall-gap-011 paywalls-022 paywalls-023 paywalls-024 profile-001 profile-003 profile-004 profile-005 profile-006 profile-007 profile-008 profile-009 profile-010 profile-011 profile-012 profile-013 profile-014 profile-015 profile-020 profile-021 profile-022 profile-024 profile-025 profile-028 profile-029 profile-030 settings-gap-002 settings-gap-003 settings-gap-004 settings-gap-005 settings-gap-008 settings-gap-009 settings-gap-011 settings-gap-019 settings-gap-024 settings-gap-025 settings-gap-026 settings-gap-028 settings-gap-030 settings-gap-031 settings-gap-032 settings-gap-033 spire-001 spire-004 spire-006 spire-007 spire-008 spire-011 spire-013 spire-014 spire-016 spire-017 spire-gap-003 spire-gap-006 spire-gap-011 spire-gap-014 spire-gap-015 spire-gap-018 spire-gap-020
 ```
 
-Всего 145 (diff с корзиной `b_reshoot` + pending с coverage=ready).
+Всего 155 (diff с корзиной `b_reshoot` + pending с coverage=ready).
 
 ## Решает владелец
 

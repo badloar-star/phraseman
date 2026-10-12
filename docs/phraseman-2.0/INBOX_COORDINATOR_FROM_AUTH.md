@@ -547,3 +547,25 @@
 4. ℹ️ `emitDevStudyTargetChanged` (`app/study_target_lang_dev.ts:21-25`) — без слушателей, мёртвый. Комментарий в `lessons.tsx:5128` вводит в заблуждение.
 
 Правок в моих файлах нет — недержащих мест не нашлось. Проверено чтением кода (агент на чтение + выборочная перепроверка `EnergyContext.tsx:532` и `settings.tsx:542`), не на эмуляторе.
+
+## §AUTH-0120 — 2026-10-12: смена языка — три правки по §AUTH-0110 (ace26d405, 677a87435, f1dd267c7)
+- ✅ **ace26d405 — пуши на языке интерфейса для всех 9 языков.**
+  - Новый `app/notification_lang.ts` `resolveNotificationLang`: сохранённый `app_lang` через `coerceInterfaceLang`, иначе язык устройства — как при первом запуске.
+  - Подключён в `EnergyContext.readNotificationLang` (пуш «энергия восполнена») и в `hall_of_fame_utils` («серия потеряна» — тот же дефект `uk ? uk : es ? es : ru`, нашёлся рядом).
+  - Немой `catch` заменён логом `[LANG-SWITCH] notification_lang … read_failed`. Запасной путь тоже пишет строку.
+  - Тексты пушей на 9 языках уже были, менялся только выбор языка.
+  - Тесты: notification_lang 3/3, push_ui_lang 8/8, startup_notifications 2/2, streak_day_rule 6/6, energy_attempts_hud 8/8.
+- ✅ **677a87435 — Настройки: изучаемый язык из `useStudyTarget()`** вместо своего `useState('en')`.
+  - Первый кадр — из снимка, сразу верный.
+  - Смена цели — по событию `study_target_changed`.
+  - Обновление по фокусу и при закрытии шторки оставлено как страховка.
+  - Лог `[LANG-SWITCH] settings study_target=… previous=…` (только dev).
+  - Тесты: settings_study_target_context 2/2, settings_locale_runtime 4/4, retained_tabs 5/5, tab_deferred_mount 6/6, settings_name_save 1/1. Типографику Тем не трогал.
+- ✅ **f1dd267c7 — онбординг: ошибка входа хранит «язык → текст».**
+  - Все 22 места вызова: `null` / `(uiLang) => …` / `authErrorFor(code)`.
+  - Текст строится при рендере на текущем языке. Лог `[LANG-SWITCH] onboarding auth_error rebuilt from=… to=…`.
+  - Тесты: onboarding_auth_error_lang_switch 3/3, release_floor 21/21, restore_prompt 8/8, post_delete 3/3, double_tap 29/29, auth_error_i18n 1/1.
+- ℹ️ **Окно входа (`RegistrationPromptModal`) не менял.** Ошибка живёт, пока окно открыто, а язык под открытым окном сменить нельзя: Настройки за ним; при открытии и закрытии ошибки сбрасываются (:392, :400). Это недостижимо, и правка 26 мест не оправдана.
+- **Остаётся у владельцев** (из §AUTH-0110):
+  - Шпиль и Карточки — Темы;
+  - перестановка уведомлений после смены языка и цели — Ядро.

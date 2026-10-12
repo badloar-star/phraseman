@@ -39330,21 +39330,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-029.png",
+      "evidence_at": "2026-10-12T03:01:26.027Z",
+      "evidence_sha256": "5710de75cd0bd30a4d5b49e06d3521412c11d53b002f1aa51aff42de0781bc8b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] Заголовок и текст сообщения: в образце «Важное от Phraseman · Мы обновили приложение: тему оформления теперь можно сменить в настройках.», в приложении «Новое в Phraseman · Мы добавили Шпиль и обновили Карточки. Загляни и расскажи, как тебе.» (текст из ленты сообщений); значок в образце маленький динамик, в приложении рупор.",
+        "[состояние] Профиль: в образце «Алекс · Лектор · аккаунт привязан», «Аккаунт · Google», «Уведомления · Вкл»; в приложении «Профиль · Стажёр · прогресс привязан к этому телефону» с «Войти», «Аккаунт · Не привязан», «Уведомления · Выкл» (гость).",
+        "[образец ≠ код] Нижняя панель вкладок «пилюлей» — значки в образце устарели (слои / закладка / плей / люди / солнце против дом / книга / плей / люди / шестерёнка)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:03:27.761Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=top&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:01, settings-gaps-states №29 «Настройки — верхний слот сообщений»; образец нарисован с приложения): слот сообщения над разделом «ОБУЧЕНИЕ» показывается и по составу совпал — карточка с рупором, заголовком и двумя строками текста; остальная раскладка (заголовок с медалью, «Профиль», «ПРОФИЛЬ» с тремя строками, «ОБУЧЕНИЕ») та же. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-030",
@@ -39364,21 +39369,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-030.png",
+      "evidence_at": "2026-10-12T03:01:45.268Z",
+      "evidence_sha256": "1a6d5d9c0e80847c3fa6814c9e7005de7bbde8aa8f7e8dccd64b980ee5711a63",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Строки «Пригласить друга» (между «Ввести промокод» и «ПОМОЩЬ») на кадре нет, потому что блок «Phraseman Plus» ниже края; в образце видны «Подписка Plus · Не активна» и «Ввести промокод» без «Пригласить друга». Переснять с прокруткой вниз до «ПОМОЩЬ» (как settings-gap-002/003).",
+        "[образец ≠ код] Нижняя панель вкладок и «Профиль · Стажёр» без кнопки «Войти» (в этом состоянии referral=off) — образец и приложение расходятся по значкам панели вкладок (общий пункт)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:03:27.761Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&referral=off&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:01, settings-gaps-states №30 «Настройки — «Пригласить друга» скрыта»; образец нарисован с приложения): на кадре верх экрана «Настройки», а образец — нижняя часть с блоком «PHRASEMAN PLUS»; пропажу строки «Пригласить друга» на кадре увидеть нельзя. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-031",

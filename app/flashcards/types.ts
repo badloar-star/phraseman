@@ -33,6 +33,7 @@ export interface Category {
   id: CategoryId;
   icon: string;
   labelRU: string;
+  labelEn: string; // зачем (п.76, английский интерфейс): раньше en брал русскую подпись
   labelUK: string;
   labelES: string;
   labelPtBr: string;
@@ -41,6 +42,7 @@ export interface Category {
   labelTr: string;
   labelPl: string;
   fullLabelRU: string;
+  fullLabelEn: string;
   fullLabelUK: string;
   fullLabelES: string;
   fullLabelPtBr: string;

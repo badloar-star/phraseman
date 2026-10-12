@@ -175,7 +175,7 @@ export default function CollectionHeader({
         : {
             ru: cat.fullLabelRU,
             uk: cat.fullLabelUK,
-            en: cat.fullLabelRU,
+            en: cat.fullLabelEn,
             es: cat.fullLabelES,
             'pt-BR': cat.fullLabelPtBr,
             vi: cat.fullLabelVi,

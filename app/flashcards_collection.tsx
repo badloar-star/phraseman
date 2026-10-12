@@ -169,7 +169,7 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   const labels: Record<Lang, string> = {
     ru: cat.fullLabelRU,
     uk: cat.fullLabelUK,
-    en: cat.fullLabelRU,
+    en: cat.fullLabelEn,
     es: cat.fullLabelES,
     'pt-BR': cat.fullLabelPtBr,
     vi: cat.fullLabelVi,

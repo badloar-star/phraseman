@@ -162,7 +162,10 @@ describe('lesson intro screens (es locale fields)', () => {
     expect(source).not.toMatch(/uk:\s*(?:ex|screen|value|km)\./);
     expect(source).not.toMatch(/es:\s*(?:ex|screen|value|km)\./);
     expect(richSource).toContain('type PlannedIntroLang');
-    expect(richSource).toContain('defaultTitlePtBr');
+    // зачем (EN_READINESS_R1, 12.10): заголовки блоков — одна карта по языкам (defaultTitle) с собственным значением для планируемых языков и английского
+    expect(richSource).toContain('defaultTitle: Readonly<Record<Lang, string>>');
+    expect(richSource).toContain('if (isPlannedIntroLang(lang)) return titles[lang];');
+    expect(richSource).toContain("en: 'Why this topic'");
     expect(source).toContain('isPlannedIntroLang(lang)');
   });
 });

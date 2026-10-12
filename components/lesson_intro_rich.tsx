@@ -370,14 +370,8 @@ export type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
 export interface KindStyle {
   icon: IconName;
-  defaultTitleRU: string;
-  defaultTitleUK: string;
-  defaultTitleES: string;
-  defaultTitlePtBr: string;
-  defaultTitleVi: string;
-  defaultTitleId: string;
-  defaultTitleTr: string;
-  defaultTitlePl: string;
+  /** Заголовок блока по языкам интерфейса (одной строкой — сканер непереведённого видит парные переводы; en добавлен 12.10, EN_READINESS_R1). */
+  defaultTitle: Readonly<Record<Lang, string>>;
   /** Возвращает основной акцентный цвет блока из темы */
   color: (t: any) => string;
 }
@@ -385,203 +379,87 @@ export interface KindStyle {
 export const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
   why: {
     icon: 'sparkles',
-    defaultTitleRU: 'Зачем эта тема',
-    defaultTitleUK: 'Навіщо ця тема',
-    defaultTitleES: '¿Para qué sirve este tema?',
-    defaultTitlePtBr: 'Para que serve este tema?',
-    defaultTitleVi: 'Chủ đề này dùng để làm gì?',
-    defaultTitleId: 'Untuk apa topik ini?',
-    defaultTitleTr: 'Bu konu ne işe yarar?',
-    defaultTitlePl: 'Po co ten temat?',
+    defaultTitle: { ru: 'Зачем эта тема', uk: 'Навіщо ця тема', en: 'Why this topic', es: '¿Para qué sirve este tema?', 'pt-BR': 'Para que serve este tema?', vi: 'Chủ đề này dùng để làm gì?', id: 'Untuk apa topik ini?', tr: 'Bu konu ne işe yarar?', pl: 'Po co ten temat?' },
     color: (t) => t.accentText,
   },
   how: {
     icon: 'construct',
-    defaultTitleRU: 'Как строится фраза',
-    defaultTitleUK: 'Як будується фраза',
-    defaultTitleES: '¿Cómo se forma la frase?',
-    defaultTitlePtBr: 'Como a frase é formada?',
-    defaultTitleVi: 'Câu được tạo như thế nào?',
-    defaultTitleId: 'Bagaimana frasa dibentuk?',
-    defaultTitleTr: 'Cümle nasıl kurulur?',
-    defaultTitlePl: 'Jak zbudować zdanie?',
+    defaultTitle: { ru: 'Как строится фраза', uk: 'Як будується фраза', en: 'How the phrase is built', es: '¿Cómo se forma la frase?', 'pt-BR': 'Como a frase é formada?', vi: 'Câu được tạo như thế nào?', id: 'Bagaimana frasa dibentuk?', tr: 'Cümle nasıl kurulur?', pl: 'Jak zbudować zdanie?' },
     color: (t) => t.correct,
   },
   tip: {
     icon: 'bulb',
-    defaultTitleRU: 'Полезно знать',
-    defaultTitleUK: 'Корисно знати',
-    defaultTitleES: 'Dato útil',
-    defaultTitlePtBr: 'Bom saber',
-    defaultTitleVi: 'Điều hữu ích cần biết',
-    defaultTitleId: 'Perlu diketahui',
-    defaultTitleTr: 'Bilmekte fayda var',
-    defaultTitlePl: 'Warto wiedzieć',
+    defaultTitle: { ru: 'Полезно знать', uk: 'Корисно знати', en: 'Good to know', es: 'Dato útil', 'pt-BR': 'Bom saber', vi: 'Điều hữu ích cần biết', id: 'Perlu diketahui', tr: 'Bilmekte fayda var', pl: 'Warto wiedzieć' },
     color: (t) => t.accentText,
   },
   trap: {
     icon: 'warning',
-    defaultTitleRU: 'Главная ловушка',
-    defaultTitleUK: 'Головна пастка',
-    defaultTitleES: 'Trampa principal',
-    defaultTitlePtBr: 'Armadilha principal',
-    defaultTitleVi: 'Bẫy chính',
-    defaultTitleId: 'Jebakan utama',
-    defaultTitleTr: 'Ana tuzak',
-    defaultTitlePl: 'Główna pułapka',
+    defaultTitle: { ru: 'Главная ловушка', uk: 'Головна пастка', en: 'The main trap', es: 'Trampa principal', 'pt-BR': 'Armadilha principal', vi: 'Bẫy chính', id: 'Jebakan utama', tr: 'Ana tuzak', pl: 'Główna pułapka' },
     color: (t) => t.wrong,
   },
   mechanic: {
     icon: 'hand-left',
-    defaultTitleRU: 'Как это работает',
-    defaultTitleUK: 'Як це працює',
-    defaultTitleES: '¿Cómo funciona esto?',
-    defaultTitlePtBr: 'Como isso funciona?',
-    defaultTitleVi: 'Cách hoạt động',
-    defaultTitleId: 'Cara kerjanya',
-    defaultTitleTr: 'Nasıl çalışır?',
-    defaultTitlePl: 'Jak to działa?',
+    defaultTitle: { ru: 'Как это работает', uk: 'Як це працює', en: 'How it works', es: '¿Cómo funciona esto?', 'pt-BR': 'Como isso funciona?', vi: 'Cách hoạt động', id: 'Cara kerjanya', tr: 'Nasıl çalışır?', pl: 'Jak to działa?' },
     color: (t) => t.accentText,
   },
   core_idea: {
     icon: 'flash',
-    defaultTitleRU: 'Ключевая идея',
-    defaultTitleUK: 'Ключова ідея',
-    defaultTitleES: 'Idea clave',
-    defaultTitlePtBr: 'Ideia principal',
-    defaultTitleVi: 'Ý chính',
-    defaultTitleId: 'Ide utama',
-    defaultTitleTr: 'Ana fikir',
-    defaultTitlePl: 'Główna myśl',
+    defaultTitle: { ru: 'Ключевая идея', uk: 'Ключова ідея', en: 'Key idea', es: 'Idea clave', 'pt-BR': 'Ideia principal', vi: 'Ý chính', id: 'Ide utama', tr: 'Ana fikir', pl: 'Główna myśl' },
     color: (t) => t.accentText,
   },
   main_formula: {
     icon: 'calculator',
-    defaultTitleRU: 'Формула урока',
-    defaultTitleUK: 'Формула уроку',
-    defaultTitleES: 'Fórmula de la lección',
-    defaultTitlePtBr: 'Fórmula da lição',
-    defaultTitleVi: 'Công thức của bài học',
-    defaultTitleId: 'Rumus pelajaran',
-    defaultTitleTr: 'Ders formülü',
-    defaultTitlePl: 'Wzór lekcji',
+    defaultTitle: { ru: 'Формула урока', uk: 'Формула уроку', en: 'Lesson formula', es: 'Fórmula de la lección', 'pt-BR': 'Fórmula da lição', vi: 'Công thức của bài học', id: 'Rumus pelajaran', tr: 'Ders formülü', pl: 'Wzór lekcji' },
     color: (t) => t.accentText,
   },
   be_choice: {
     icon: 'git-branch',
-    defaultTitleRU: 'Как выбрать форму',
-    defaultTitleUK: 'Як обрати форму',
-    defaultTitleES: 'Cómo elegir la forma',
-    defaultTitlePtBr: 'Como escolher a forma',
-    defaultTitleVi: 'Cách chọn dạng đúng',
-    defaultTitleId: 'Cara memilih bentuk',
-    defaultTitleTr: 'Biçim nasıl seçilir?',
-    defaultTitlePl: 'Jak wybrać formę',
+    defaultTitle: { ru: 'Как выбрать форму', uk: 'Як обрати форму', en: 'How to choose the form', es: 'Cómo elegir la forma', 'pt-BR': 'Como escolher a forma', vi: 'Cách chọn dạng đúng', id: 'Cara memilih bentuk', tr: 'Biçim nasıl seçilir?', pl: 'Jak wybrać formę' },
     color: (t) => t.correct,
   },
   description_logic: {
     icon: 'list',
-    defaultTitleRU: 'Что идёт после глагола',
-    defaultTitleUK: 'Що йде після дієслова',
-    defaultTitleES: 'Qué va después del verbo',
-    defaultTitlePtBr: 'O que vem depois do verbo',
-    defaultTitleVi: 'Đi sau động từ là gì',
-    defaultTitleId: 'Apa yang datang setelah kata kerja',
-    defaultTitleTr: 'Fiilden sonra ne gelir?',
-    defaultTitlePl: 'Co idzie po czasowniku',
+    defaultTitle: { ru: 'Что идёт после глагола', uk: 'Що йде після дієслова', en: 'What comes after the verb', es: 'Qué va después del verbo', 'pt-BR': 'O que vem depois do verbo', vi: 'Đi sau động từ là gì', id: 'Apa yang datang setelah kata kerja', tr: 'Fiilden sonra ne gelir?', pl: 'Co idzie po czasowniku' },
     color: (t) => t.accentText,
   },
   memory_tip: {
     icon: 'bulb',
-    defaultTitleRU: 'Приём сборки',
-    defaultTitleUK: 'Прийом складання',
-    defaultTitleES: 'Truco de construcción',
-    defaultTitlePtBr: 'Truque de montagem',
-    defaultTitleVi: 'Mẹo ghép câu',
-    defaultTitleId: 'Trik menyusun',
-    defaultTitleTr: 'Kurma ipucu',
-    defaultTitlePl: 'Sposób składania',
+    defaultTitle: { ru: 'Приём сборки', uk: 'Прийом складання', en: 'Building trick', es: 'Truco de construcción', 'pt-BR': 'Truque de montagem', vi: 'Mẹo ghép câu', id: 'Trik menyusun', tr: 'Kurma ipucu', pl: 'Sposób składania' },
     color: (t) => t.accentText,
   },
   negative_formula: {
     icon: 'close-circle',
-    defaultTitleRU: 'Отрицание',
-    defaultTitleUK: 'Заперечення',
-    defaultTitleES: 'Negación',
-    defaultTitlePtBr: 'Negação',
-    defaultTitleVi: 'Phủ định',
-    defaultTitleId: 'Negasi',
-    defaultTitleTr: 'Olumsuz',
-    defaultTitlePl: 'Przeczenie',
+    defaultTitle: { ru: 'Отрицание', uk: 'Заперечення', en: 'Negation', es: 'Negación', 'pt-BR': 'Negação', vi: 'Phủ định', id: 'Negasi', tr: 'Olumsuz', pl: 'Przeczenie' },
     color: (t) => t.wrong,
   },
   question_formula: {
     icon: 'help-circle',
-    defaultTitleRU: 'Вопрос',
-    defaultTitleUK: 'Питання',
-    defaultTitleES: 'Pregunta',
-    defaultTitlePtBr: 'Pergunta',
-    defaultTitleVi: 'Câu hỏi',
-    defaultTitleId: 'Pertanyaan',
-    defaultTitleTr: 'Soru',
-    defaultTitlePl: 'Pytanie',
+    defaultTitle: { ru: 'Вопрос', uk: 'Питання', en: 'Question', es: 'Pregunta', 'pt-BR': 'Pergunta', vi: 'Câu hỏi', id: 'Pertanyaan', tr: 'Soru', pl: 'Pytanie' },
     color: (t) => t.accentText,
   },
   after_be: {
     icon: 'list',
-    defaultTitleRU: 'Что идёт после To Be',
-    defaultTitleUK: 'Що йде після To Be',
-    defaultTitleES: 'Qué va después de To Be',
-    defaultTitlePtBr: 'O que vem depois de To Be',
-    defaultTitleVi: 'Đi sau To Be là gì',
-    defaultTitleId: 'Apa yang datang setelah To Be',
-    defaultTitleTr: 'To Be sonrasında ne gelir?',
-    defaultTitlePl: 'Co idzie po To Be',
+    defaultTitle: { ru: 'Что идёт после To Be', uk: 'Що йде після To Be', en: 'What comes after To Be', es: 'Qué va después de To Be', 'pt-BR': 'O que vem depois de To Be', vi: 'Đi sau To Be là gì', id: 'Apa yang datang setelah To Be', tr: 'To Be sonrasında ne gelir?', pl: 'Co idzie po To Be' },
     color: (t) => t.accentText,
   },
   negative_questions: {
     icon: 'alert-circle',
-    defaultTitleRU: 'Вопросы с not',
-    defaultTitleUK: 'Питання з not',
-    defaultTitleES: 'Preguntas con not',
-    defaultTitlePtBr: 'Perguntas com not',
-    defaultTitleVi: 'Câu hỏi với not',
-    defaultTitleId: 'Pertanyaan dengan not',
-    defaultTitleTr: 'not ile sorular',
-    defaultTitlePl: 'Pytania z not',
+    defaultTitle: { ru: 'Вопросы с not', uk: 'Питання з not', en: 'Questions with not', es: 'Preguntas con not', 'pt-BR': 'Perguntas com not', vi: 'Câu hỏi với not', id: 'Pertanyaan dengan not', tr: 'not ile sorular', pl: 'Pytania z not' },
     color: (t) => t.accentText,
   },
   mistakes: {
     icon: 'warning',
-    defaultTitleRU: 'Главные ошибки',
-    defaultTitleUK: 'Головні помилки',
-    defaultTitleES: 'Errores principales',
-    defaultTitlePtBr: 'Erros principais',
-    defaultTitleVi: 'Lỗi chính',
-    defaultTitleId: 'Kesalahan utama',
-    defaultTitleTr: 'Başlıca hatalar',
-    defaultTitlePl: 'Główne błędy',
+    defaultTitle: { ru: 'Главные ошибки', uk: 'Головні помилки', en: 'Main mistakes', es: 'Errores principales', 'pt-BR': 'Erros principais', vi: 'Lỗi chính', id: 'Kesalahan utama', tr: 'Başlıca hatalar', pl: 'Główne błędy' },
     color: (t) => t.wrong,
   },
 };
 
 export function defaultKindTitle(km: KindStyle, lang: Lang, studyTarget: StudyTargetLang): string {
-  const plannedTitles: Record<PlannedIntroLang, string> = {
-    'pt-BR': km.defaultTitlePtBr,
-    vi: km.defaultTitleVi,
-    id: km.defaultTitleId,
-    tr: km.defaultTitleTr,
-    pl: km.defaultTitlePl,
-  };
-  return isPlannedIntroLang(lang)
-    ? plannedTitles[lang]
-    : legacyIntroValue(
-      lang,
-      studyTarget,
-      km.defaultTitleRU,
-      km.defaultTitleUK,
-      km.defaultTitleES,
-    ) ?? km.defaultTitleRU;
+  const titles = km.defaultTitle;
+  // зачем (EN_READINESS_R1, 12.10): английский интерфейс получает свой заголовок (раньше legacyIntroValue отдавал русский), остальные плановые языки — как было
+  if (isPlannedIntroLang(lang)) return titles[lang];
+  if (lang === 'en') return titles.en;
+  return legacyIntroValue(lang, studyTarget, titles.ru, titles.uk, titles.es) ?? titles.ru;
 }
 
 export const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];

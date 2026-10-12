@@ -443,7 +443,10 @@ export function createDialogueV2CompletionAssessmentGenerator(
           }),
           signal: abort.signal,
         }));
-        httpStatusForLog = typeof response.status === 'number' ? response.status : null;
+        // зачем: тип fetchImpl — Pick<'ok'|'json'> (тесты подменяют без status); код статуса нужен только для журнала,
+        // поэтому читаем его без расширения типа, иначе predeploy tsc роняет выкладку (12.10, deploy accountDelete*).
+        const rawStatus = (response as { status?: unknown }).status;
+        httpStatusForLog = typeof rawStatus === 'number' ? rawStatus : null;
         if (!response.ok) throw new Error('completion_provider_failed');
         const payload = await beforeDeadline(response.json());
         // зачем: PM-231 (A3) — итог занятия платил OpenAI без строки биллинга; отчёт не бросает.

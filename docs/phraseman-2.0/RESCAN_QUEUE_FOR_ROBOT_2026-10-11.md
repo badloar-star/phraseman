@@ -95,3 +95,43 @@
 
 ## Образцы поправлены, пересклейка (Макеты 12.10, ночь, разбор гейта R1)
 Пересклеить с новым образцом (без новой съёмки): **community-009, 012, 013, 014, 015, 016, 017, 018, 019** (community.html №17–22: исходы поиска в шторке), **settings-gap-020, 021** (гость), **cards-040** (чип A2). Уже снятые кадры, склеенные с прежним образцом: **cards-026, 033, 068, 077, cards-section-054** — привязка исправлена на актуальный образец, пересклеить. **cards-027** — снять после кода Дизайна (R1_FC_LANG_FILTER).
+
+## Пачки ночь 12→13.10 (Макеты, по просьбе координатора; порядок для Сверки)
+Принцип: один запуск приложения на группу = одинаковый набор dev-флагов в ссылке (DEV_LINKS_R1: всё до `&next=`, без onboarding/intros/overlays). Флаги живут в памяти — между группами с разными флагами нужен перезапуск (`devshot.sh`, ждать «replace вызван»). Внутри группы кадры снимаются подряд — ссылкой с другим `next` и шагами из таблицы. Кнопки трат и покупки не жать (пейвол, «Повысить ранг»).
+
+### 0. Первыми — топ-20 дешёвых закрытий (БЕЗ новой съёмки приложения — только пересклейка с исправленным образцом)
+cards-040, cards-026, cards-033, cards-068, cards-077, cards-section-054, auth-gap-014, auth-gap-015, auth-gap-017, auth-gap-018, cards-v2-025, cards-v2-026, cards-v2-001, packs-simple-001, cards-section-004, overlays-campaigns-016, overlays-campaigns-017, settings-gap-020, settings-gap-021, community-014.
+Остальная пересклейка без съёмки: community-016, cards-047, overlays-campaigns-014, cards-v2-006, cards-v2-020, cards-v2-045, cards-v2-046, cards-gap-007, cards-gap-009, cards-gap-010, cards-gap-011, cards-gap-012, cards-gap-016, cards-gap-035, paywall-gap-012, cards-gap-013, cards-gap-014, cards-gap-015, cards-gap-017.
+
+### 1. Пять кадров п.83 от Дизайна (cards-027, образец cards-states №22; ссылка `/flashcards_training_setup?mode=blitz`, `cards=demo&plus=off&free=on`; снимать после кода Дизайна по R1_FC_LANG_FILTER.md)
+1. один язык — чип «EN» без стрелки и меню (демо-наборы только английские); 2. наборы на ≥2 языках — чип «EN ⌄» со стрелкой (нужны демо-наборы на другом языке — подмена Ядра/Дизайна, пока нет); 3. меню языков открыто (тап по чипу): язык + число наборов; 4. список наборов испанского при приложении на английском (выбран «Español» в меню; studyTarget приложения не меняется); 5. «Начать» → сессия идёт на языке выбранных наборов (маршрут получает `target=`). Кадры 2–5 зависят от кода Дизайна и данных; если подмены нет — отметить blocked с причиной.
+
+### 2. Съёмка — группы из ≥2 кадров (22 групп, 104 кадров)
+1. `cards=demo&plus=on&studyTarget=en` — 25: cards-064, cards-081, cards-section-016, cards-section-039, cards-section-052, cards-v2-040, cards-v2-049, cards-v2-050, cards-gap-021, cards-gap-027, cards-008, cards-011, cards-012, cards-045, cards-046, cards-063, cards-065, cards-section-021, cards-v2-007, cards-v2-010, cards-041, cards-061, cards-074, cards-section-042, cards-section-043
+2. `(базовый вход)` — 15: community-002, cards-section-053, cards-section-055, onboarding-026, onboarding-027, onboarding-028, onboarding-029, cards-v2-041, cards-v2-042, cards-v2-051, cards-v2-052, auth-gap-002, spire-gap-019, spire-gap-021, spire-gap-022
+3. `community=reset&packcards=on` — 13: cards-043, cards-section-013, cards-section-014, cards-section-030, cards-section-031, cards-gap-032, cards-v2-053, cards-018, cards-019, cards-050, cards-section-018, cards-v2-015, cards-v2-016
+4. `cards=demo&free=on&friends=demo&plus=off&spire=open&studyTarget=en` — 7: community-009, community-012, community-013, community-017, community-018, community-019, community-024
+5. `cards=demo&plus=on&speech=correct&studyTarget=en` — 5: cards-section-046, cards-v2-037, cards-079, cards-section-041, cards-v2-032
+6. `comments=demo&community=reset&packcards=on` — 5: cards-052, cards-054, cards-055, cards-057, cards-058
+7. `cards=empty&plus=on` — 3: cards-067, cards-022, cards-066
+8. `energy=1&free=on&lessonintro=skip&mode=b&plus=off` — 3: energy-modes-003, energy-modes-004, energy-modes-005
+9. `aiConsent=granted&coinRank=6&dev_dialog_send=ok&dquota=reset&energy=5&plus=off&speech=correct` — 2: dialogs-026, dialogs-gap-014
+10. `aiConsent=granted&coinRank=6&dev_dialog_completion=clean&dev_dialog_send=ok&dquota=reset&energy=5&plus=off` — 2: dialogs-040, dialogs-042
+11. `catalog=empty&fail=catalog_load` — 2: cards-section-029, cards-v2-044
+12. `cards=empty&plus=on&studyTarget=es` — 2: cards-section-038, cards-076
+13. `answer=wrong&cards=demo&plus=on&studyTarget=en` — 2: cards-section-049, cards-v2-038
+14. `answer=correct&cards=demo&plus=on&studyTarget=en` — 2: cards-section-050, cards-v2-039
+15. `plus=off` — 2: auth-gap-001, settings-gap-035
+16. `dev_dialog_memory=demo&plus=on` — 2: dialogs-gap-001, dialogs-gap-004
+17. `cards=demo_lessons&plus=on&studyTarget=en` — 2: cards-gap-023, cards-gap-024
+18. `plan=lifetime&plus=on` — 2: profile-018, paywalls-021
+19. `energy=5&free=on&mode=b&plus=off` — 2: energy-modes-009, energy-modes-010
+20. `cards=demo_published&plus=on&studyTarget=en` — 2: cards-042, cards-049
+21. `energy=5&free=on&lessonintro=skip&mode=a&plus=off` — 2: energy-modes-015, energy-modes-016
+22. `plan=yearly&plus=on` — 2: profile-023, paywalls-025
+
+### 3. Одиночные запуски (91; ссылка каждого — в DEV_LINKS_R1.md)
+dialogs-009, dialogs-010, dialogs-021, dialogs-024, dialogs-025, dialogs-027, dialogs-033, dialogs-037, dialogs-043, dialogs-044, dialogs-046, community-008, community-011, community-015, community-021, community-022, paywalls-008, paywalls-009, paywalls-010, overlays-campaigns-006, cards-section-056, energy-modes-007, energy-modes-012, energy-modes-013, energy-modes-014, onboarding-paywall-001, onboarding-002, onboarding-003, onboarding-004, onboarding-005, onboarding-006, onboarding-008, onboarding-010, onboarding-025, cards-v2-035, cards-v2-036, auth-gap-003, auth-gap-004, auth-gap-005, auth-gap-006, auth-gap-007, auth-gap-008, auth-gap-009, auth-gap-010, auth-gap-012, auth-gap-016, dialogs-gap-005, dialogs-gap-006, dialogs-gap-007, dialogs-gap-008, dialogs-gap-009, cards-gap-019, cards-gap-028, cards-gap-033, cards-gap-036, cards-gap-038, settings-gap-012, settings-gap-023, cards-gap-039, cards-gap-040, cards-031, paywalls-014, paywalls-015, cards-section-011, onboarding-007, onboarding-018, settings-gap-009, cards-030, cards-044, cards-051, cards-053, cards-056, cards-059, cards-060, cards-069, cards-071, cards-072, cards-073, cards-082, energy-modes-002, energy-modes-006, energy-modes-008, cards-v2-027, cards-v2-028, cards-v2-047, auth-gap-013, dialogs-gap-011, cards-gap-029, cards-gap-031, settings-gap-007, dialogs-gap-016.
+
+## п.85 владельца (Макеты 12.10): пересклейка
+verlays-campaigns-016, overlays-campaigns-017 (подпись 017 «введён код — кнопка включилась»), хаб-фон cards-gaps-states №11–17 (cards-gap-011…017) — блок «Лучшее у сообщества» убран из образца.

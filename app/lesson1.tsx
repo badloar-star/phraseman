@@ -29,7 +29,7 @@ import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
 import { theoryEntryFor, triLang, type Lang } from '../constants/i18n';
-import { getCardShadow, useTheme } from '../components/ThemeContext';
+import { FONT_SCALE, getCardShadow, useTheme } from '../components/ThemeContext';
 import { useAccentGraphics } from '../hooks/use_accent_graphics';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
@@ -598,7 +598,7 @@ const LessonContent = React.memo(function LessonContent({
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   // зачем (владелец 2026-09-30): экран урока — 1:1 по learn.html (Liquid Glass); поверхности,
   // кнопки, плитки и шапка берут токены стекла, зелёный/красный отклик остаётся у t.correct/t.wrong.
-  const { liquidGlassThemeId } = useTheme();
+  const { liquidGlassThemeId, fontSize: appFontSize, uiScale } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const progressCellTheme = useMemo(() => ({ ...t, bgSurface2: glass.line }), [t, glass.line]);
   // зачем (Сверка learn-028/029, макет learn.html .pill.hearts): попытки — нейтральная пилюля стекла (светлые сердца, потерянные гаснут до 22 %), как в занятии Learning V2
@@ -607,9 +607,17 @@ const LessonContent = React.memo(function LessonContent({
     flex: 1, alignItems: 'center' as const, justifyContent: 'center' as const, minHeight: 56,
     marginHorizontal: 3, paddingVertical: 8, borderRadius: 18, backgroundColor: glass.opaqueControl,
   };
-  // зачем (Макеты 079659ed8, energy-modes-001/002/003/004/016; D139/D145: обычный текст — только 16 и 13): подписи плиток нижней панели урока (50/50 · Теория · Устно · Отменить/Проверить) и счётчик «1/50»
-  // брали `f.label` = 12 × масштаб текста приложения и на кадре выходили ≈17 вместо 13 образца (плитки заодно ≈85 вместо ≈72). Фиксируем 13; системный масштаб шрифта ОС остаётся (без ужатия).
-  const TOOL_LABEL_FONT = 13;
+  // зачем (Макеты 079659ed8, energy-modes-001/002/003/004/016; D139/D145: обычный текст по умолчанию — 13; координатор 13.10: выбор «размера текста» человека должен работать): подписи плиток нижней панели урока
+  // и счётчик «1/50» брали `f.label` = 12 × FONT_SCALE[размер] × uiScale окна: по умолчанию (стандарт 1.15) это 14 на эталонном окне, у «большого» — 15–16. Теперь база 13 — ровно на ДЕФОЛТЕ,
+  // а выбор человека сохраняется как отношение к дефолту: 13 × (FONT_SCALE[размер] / FONT_SCALE.medium) × uiScale (мелкий ≈11, большой ≈15). Системный масштаб шрифта ОС остаётся (без ужатия).
+  const TOOL_LABEL_FONT = Math.round(13 * (FONT_SCALE[appFontSize] / FONT_SCALE.medium) * uiScale);
+  const toolLabelLoggedRef = useRef('');
+  useEffect(() => {
+    const trace = JSON.stringify({ fontSize: appFontSize, fontScale: FONT_SCALE[appFontSize], defaultScale: FONT_SCALE.medium, uiScale: Number(uiScale.toFixed(3)), fLabel: f.label, toolLabel: TOOL_LABEL_FONT, window: `${Math.round(screenW)}x${Math.round(screenH)}` });
+    if (toolLabelLoggedRef.current === trace) return;
+    toolLabelLoggedRef.current = trace;
+    console.log('[FONT-SCALE] lesson1 panel', trace); // guard-ok: значения масштаба текста панели урока при смене (energy-modes-001: «17 против 13»)
+  }, [TOOL_LABEL_FONT, appFontSize, f.label, screenH, screenW, uiScale]);
   const progressCellCount = Math.max(1, totalCells);
   const linkedSliceCompact = false;
   const lessonHorizontalPadding = linkedSliceCompact ? 14 : 20;

@@ -189,17 +189,29 @@ out.append('5. VIP-плашка и план подписки (`vip=`, `plan=`) �
 out.append('6. Тема кадра: тёмная «Аврора» (Спокойно), если в строке не сказано иное.')
 out.append('7. Колонка «тапы» — шаги после открытия ссылки (грамматика — `scripts/parity_steps.mjs`: `tap:#testID`, `tap:Текст`, `long:`, `swipe-left:`, `type:`, `back`, `wait:`); их выполняет робот `scripts/parity_batch_shoot.mjs` через `uiautomator dump`. Колонка «уникальна»: **да** — ссылка+шаги открывают ровно этот кадр (робот берёт только такие); **нет** — ссылка общая с соседями или путь не выведен, снимать руками по shot list. `cards=empty` очищает сохранённые/свои карточки и наборы (пустые кадры); `cards=demo` и `cards=empty` сбрасывают масштаб сетки и режим «стопка».\n')
 out.append('8. ⚠️ **Фикстуры `cards=demo|demo_lessons|empty|custom50|demo_published|notranslation` пишут в синхронизируемые ключи карточек и наборов** (облачная синхронизация и Account V2) — поэтому работают ТОЛЬКО на анонимном госте (`pm clear` → онбординг) и отказываются на аккаунте с Google/Apple (лог `[DEV-STATE] cards=… refused: real account`). Тестовые аккаунты №2/№3 для Карточек не использовать.\n')
+out.append('9. Окна рассылок, объявлений и личных сообщений на кадре гасит `overlays=off` (только память, в стор-сборке вырезано; в ссылках всех кадров, кроме самих окон). `onboarding=done` ставит и отметку завершения онбординга: тестовый гость ведёт себя как настоящий новичок (рассылка ему не приходит первые сутки).')
 
 need = []
 counts = collections.Counter()
+
+# зачем (координатор 12.10, cards-009/010): окна рассылок/объявлений/личных сообщений портили кадры («Замочки ушли в отпуск!» поверх «Сохранённых»). Во все ссылки dev_state добавляем overlays=off
+# (app/dev_overlays_off.ts: только память, в стор-сборке вырезано), кроме кадров самих окон. Слот сообщений Настроек (settings-gap-007/008/009/029) — не окно поверх экрана, но оставляем как есть: это и есть предмет кадра.
+OVERLAYS_KEEP = {'settings-gap-007', 'settings-gap-008', 'settings-gap-009', 'settings-gap-029'}
+
+def add_overlays_off(rid, link):
+    if not link or 'dev_state?' not in link or 'overlays=' in link or rid in OVERLAYS_KEEP:
+        return link
+    if '&next=' in link:
+        return link.replace('&next=', '&overlays=off&next=', 1)
+    return link[:-1] + '&overlays=off`' if link.endswith('`') else link + '&overlays=off'
 
 # ── ссылка каждой строки ДО вывода: нужна, чтобы понять, общая ли она с соседями (признак «уникальна»)
 def final_link(row):
     entry = STEPS_DATA.ENTRIES.get(row['id'])
     if entry:
-        return f"`{entry['link']}`"
+        return add_overlays_off(row['id'], f"`{entry['link']}`")
     link, _ = match(row)
-    return link
+    return add_overlays_off(row['id'], link)
 
 link_usage = collections.Counter(final_link(r) for r in rows if final_link(r))
 unique_count = 0
@@ -227,6 +239,7 @@ for title, secs in AREAS:
             link = f"`{entry['link']}`"
             prep = entry['note']
             steps_cell = '`' + '; '.join(entry['steps']) + '`' if entry['steps'] else ''
+        link = add_overlays_off(r['id'], link)
         t = texts.get(r['id'])
         shot = ''
         if t:

@@ -13,3 +13,6 @@ export function resetDevAccountStateForTests(): void {}
 export default function __RouteShim() { return null; }
 // зачем (12.10, ревизия паритета заглушек): удержание конфетти онбординга (Авторизация) в стор-сборке всегда выключено
 export function isDevConfettiHold(): boolean { return false; }
+// зачем (12.10, сторож паритета заглушек): окно проверки имени (namecheck, 85812a2a3) в стор-сборке не подменяется — тот же набор экспортов, значения «нет подмены»
+export const DEV_NAME_CHECKS = [] as const;
+export function getDevNameCheck(): null { return null; }

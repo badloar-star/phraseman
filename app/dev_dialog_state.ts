@@ -19,8 +19,9 @@ export const DEV_DIALOG_MOODS = ['happy', 'smile', 'neutral', 'sad', 'angry'] as
 const LOG = '[DEV-STATE]';
 
 // зачем (координатор 12.10): send — подставной ход без ИИ и без Firestore (dev_dialog_send), см. dev_dialog_send.ts.
-type State = { fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; energyFail: boolean; send: DevDialogSendMode | null };
-let state: State = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false, send: null };
+// зачем (координатор 12.10, dialogs-005): holdLanguageGate — хаб рисует карточку «Диалоги на этом языке ещё проверяются», хотя язык поддержан (таблицу готовности правит только владелец, D129/D130).
+type State = { fail: DevDialogFail | null; mood: DevDialogMood | null; holdFreeformLoading: boolean; holdLanguageGate: boolean; energyFail: boolean; send: DevDialogSendMode | null };
+let state: State = { fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null };
 
 function devDialogAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -49,6 +50,11 @@ export function isDevFreeformLoadingHeld(): boolean {
   return devDialogAvailable() && state.holdFreeformLoading;
 }
 
+/** true — хаб «Диалоги» показывает карточку «язык ещё проверяется» (dev_state?hold=dialog_language_gate). В стор-сборке всегда false. */
+export function isDevDialogLanguageGateHeld(): boolean {
+  return devDialogAvailable() && state.holdLanguageGate;
+}
+
 export function isDevDialogEnergyFail(): boolean {
   return devDialogAvailable() && state.energyFail;
 }
@@ -60,5 +66,5 @@ export function getDevDialogSend(): DevDialogSendMode | null {
 
 /** Только для тестов. */
 export function resetDevDialogState(): void {
-  state = { fail: null, mood: null, holdFreeformLoading: false, energyFail: false, send: null };
+  state = { fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null };
 }

@@ -14,6 +14,8 @@
 import { DeviceEventEmitter } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_STORE_RELEASE } from './config';
+import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
+import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
 import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
@@ -86,7 +88,7 @@ export type DevStateRequest = Readonly<{
   /** Тост результата проверки статуса/восстановления покупок (R1 paywall-gap-011…013): показывается через ~0,9 с после ссылки. */
   toast?: 'purchase_confirmed' | 'restored' | 'status_not_found' | 'no_active_subscriptions' | 'status_check_failed' | 'restore_failed' | 'store_unreachable';
   /** Карточки (R1 «нет пути», Н-1): удержание загрузок через запятую или `off`. */
-  hold?: readonly (DevCardsHold | 'freeform_loading')[] | 'off';
+  hold?: readonly (DevCardsHold | 'freeform_loading' | 'dialog_language_gate')[] | 'off';
   /** Карточки (Н-2, Н-4, Н-6): искусственные сбои чтения/записи через запятую или `off`. */
   fail?: readonly DevCardsFail[] | 'off';
   /** «Устно» (Н-9): что подставить вместо микрофона. */
@@ -141,6 +143,8 @@ export type DevStateRequest = Readonly<{
   coinRank?: number | 'off';
   /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
   aiConsent?: 'granted' | 'off';
+  /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
+  overlays?: 'on' | 'off';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
   streakJump?: string;
   next?: string;
@@ -202,6 +206,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
   request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
+  request.overlays = pick('overlays', ['on', 'off'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -223,7 +228,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     return ok;
   };
   // зачем: `hold=` общий для Карточек и Диалогов (freeform_loading — «готовим разговор»), список через запятую или `off`.
-  request.hold = list('hold', [...DEV_CARDS_HOLDS, 'freeform_loading'] as const);
+  request.hold = list('hold', [...DEV_CARDS_HOLDS, 'freeform_loading', 'dialog_language_gate'] as const);
   request.fail = list('fail', DEV_CARDS_FAILS);
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
@@ -344,6 +349,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('onboarding', request.onboarding, async () => {
       if (request.onboarding === 'done') {
         await AsyncStorage.setItem('onboarding_done', '1');
+        // зачем (координатор 12.10, cards-009/010): настоящий онбординг пишет ещё и время завершения (CleanOnboarding), по нему ворота «свежая установка» прячут рассылку у новичка;
+        // без отметки тестовый гость считался старым пользователем, и «Замочки ушли в отпуск!» всплывало поверх кадра. Только dev: этот модуль вырезан из стор-сборки.
+        await AsyncStorage.setItem(ONBOARDING_COMPLETED_AT_KEY, String(Date.now()));
+        requestDevOverlayRecheck('onboarding_done');
       } else {
         await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']);
         emitAppEvent('dev_onboarding_restart');
@@ -435,6 +444,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.energyFail !== undefined) {
     await step('energyFail', request.energyFail, async () => setDevDialogState({ energyFail: request.energyFail === 'on' }));
   }
+  if (request.overlays !== undefined) {
+    // зачем (координатор 12.10): для кадров, где окна не нужны, гасим все очередные окна корня (память, без записи и без отметок «прочитано»)
+    await step('overlays', request.overlays, async () => setDevOverlaysOff(request.overlays === 'off'));
+  }
   if (request.aiConsent !== undefined) {
     // зачем (координатор 12.10): у гостя нет согласия на ИИ — «Начать» открывает шторку согласия вместо сессии; подменяем ТОЛЬКО ответ гейта (память), recordAiDialogConsent не вызывается
     await step('aiConsent', request.aiConsent, async () => {
@@ -478,8 +491,8 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.hold !== undefined) {
     await step('hold', request.hold === 'off' ? 'off' : request.hold.join(','), async () => {
       const holds = request.hold === 'off' ? [] : request.hold!;
-      const cardHolds = holds.filter((item): item is DevCardsHold => item !== 'freeform_loading');
-      setDevDialogState({ holdFreeformLoading: holds.includes('freeform_loading') });
+      const cardHolds = holds.filter((item): item is DevCardsHold => item !== 'freeform_loading' && item !== 'dialog_language_gate');
+      setDevDialogState({ holdFreeformLoading: holds.includes('freeform_loading'), holdLanguageGate: holds.includes('dialog_language_gate') });
       return setDevCardsState({ holds: cardHolds });
     });
   }

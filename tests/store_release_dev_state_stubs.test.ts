@@ -40,7 +40,7 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     const cards = require('../store_release_stubs/dev_state/dev_cards_state_stub');
     expect([cards.setDevCardsState(), cards.isDevCardsHeld('x'), cards.isDevCardsFail('x'), cards.getDevSpeechMode(), cards.getDevTrainGate(), cards.devSpeechTranscriptFor('hi')]).toEqual([false, false, false, null, null, null]);
     const dialog = require('../store_release_stubs/dev_state/dev_dialog_state_stub');
-    expect([dialog.setDevDialogState(), dialog.getDevDialogFail(), dialog.getDevDialogMood(), dialog.isDevFreeformLoadingHeld(), dialog.isDevDialogEnergyFail()]).toEqual([false, null, null, false, false]);
+    expect([dialog.setDevDialogState(), dialog.getDevDialogFail(), dialog.getDevDialogMood(), dialog.isDevFreeformLoadingHeld(), dialog.isDevDialogEnergyFail(), dialog.isDevDialogLanguageGateHeld()]).toEqual([false, null, null, false, false, false]);
     const paywall = require('../store_release_stubs/dev_state/dev_paywall_state_stub');
     const view = { loading: false };
     expect([paywall.parseDevPaywallState('loading'), paywall.setDevPaywallLinkState('loading'), paywall.getDevPaywallLinkState()]).toEqual([null, false, null]);

@@ -60,7 +60,7 @@ import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
 import * as Linking from 'expo-linking';
 import { redirectSystemPath } from './+native-intent';
-import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Animated, AppState, BackHandler, Easing, InteractionManager, LogBox, Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { Image } from 'expo-image';
@@ -230,6 +230,7 @@ import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from 
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { decideStartupCloudRecoveryPresentation } from './startup_cloud_recovery_presentation';
 import { OverlayArbiterProvider, useOverlayActiveKey, useOverlayVisible } from '../components/OverlayArbiter';
+import { getDevOverlaysSnapshot, isDevOverlaysOff, subscribeDevOverlays } from './dev_overlays_off';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
 import { ProductAnalyticsRuntimeObserver } from './product_analytics_runtime_observer';
@@ -1882,8 +1883,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, []);
 
   const globalBroadcastCheckInFlightRef = useRef(false);
+  // зачем (координатор 12.10, cards-009/010): dev_state?overlays=off гасит окна корня, а запрос повторной сверки (после onboarding=done) перезапускает проверку рассылки по воротам свежей установки. В стор-сборке снимок всегда '0:0'.
+  const devOverlaysSnapshot = useSyncExternalStore(subscribeDevOverlays, getDevOverlaysSnapshot, getDevOverlaysSnapshot);
+  const devOverlaysOff = devOverlaysSnapshot.startsWith('1');
   const checkGlobalBroadcastFn = useCallback(async () => {
     if (IS_EXPO_GO) return;
+    if (isDevOverlaysOff()) {
+      console.log('[OVERLAY-QUEUE] broadcast: чтение пропущено — dev overlays=off'); // guard-ok: ранний выход называет причину
+      return;
+    }
     if (globalBroadcastCheckInFlightRef.current) return;
     if (globalBroadcastModal) return;
     globalBroadcastCheckInFlightRef.current = true;
@@ -1923,7 +1931,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       console.log(`[OVERLAY-QUEUE] broadcast: id=${globalBroadcastModal.id} остаётся в очереди окон (не новичок: reason=${verdict.reason})`); // guard-ok: ветвление называет причину
     });
     return () => { cancelled = true; };
-  }, [effectiveShowOnboarding, globalBroadcastModal, ready]);
+  }, [devOverlaysSnapshot, effectiveShowOnboarding, globalBroadcastModal, ready]);
 
   useEffect(() => installForegroundUsageMsTracker(), []);
 
@@ -3260,7 +3268,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   // Expo Router requires the root layout to mount a navigator on the first
   // render. Startup, onboarding, and blocked-account states cover it as overlays.
-  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
+  const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned && !devOverlaysOff;
   const startupSplashVisible = !fontsReady || !ready || !liquidGlassChoiceReady
     || (!effectiveShowOnboarding && !isBanned && (!firstContentReady || !homeScreenReady))
     // зачем (владелец, 2026-09-14): раньше здесь стояло голое

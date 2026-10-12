@@ -30,6 +30,7 @@ import {
   type DialogueV2CatalogueWorld,
 } from './DialogueV2CatalogueSection';
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
+import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
 import {
   DialogueV2HubExhaustedCard,
   DialogueV2HubLockedNote,
@@ -261,6 +262,16 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
 
   // зачем (владелец 01.10: «не должно быть состояния "диалоги загружаются"»): встроенный снимок
   // есть всегда, сюда попадаем только при поломке сборки — без строки «загрузка», лог причины.
+  // зачем (координатор 12.10, dialogs-005): dev-удержание показывает карточку «язык ещё проверяется» для поддержанного языка (память процесса; в стор-сборке геттер всегда false).
+  if (isDevDialogLanguageGateHeld()) {
+    console.warn('[DIALOGUE-V2] hub:render → language gate (dev hold=dialog_language_gate)', { studyTarget }); // guard-ok: ветвление называет причину
+    return (
+      <>
+        {plusTools}
+        {languageGate}
+      </>
+    );
+  }
   if (state.kind === 'loading') {
     console.warn('[DIALOGUE-V2] hub:render → no local catalogue (embedded missing)', { studyTarget });
     return plusTools;

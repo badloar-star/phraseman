@@ -1582,7 +1582,7 @@ export default function FlashcardsScreen() {
             selectionRemaining={remainingCardsToMinimum(selectedCardIds)}
             onCreatePack={openCreatePackFromSelection}
             onDeleteSelected={confirmDeleteSelected}
-            showDeleteHint={showDeleteHint}
+            showDeleteHint={showDeleteHint && !undoEntry && !packUndo} // зачем (координатор 12.10, cards-006): внизу одна плашка за раз — пока видна «Удалено · Вернуть», подсказка «Зажми карточку…» прячется (состояние подсказки не теряется, вернётся после плашки)
             onSetShowDeleteHint={setShowDeleteHint}
             onTrain={listCards.length > 0 ? onTrainGallery : null}
             allowAddCustomCard={false}
@@ -1609,7 +1609,7 @@ export default function FlashcardsScreen() {
             packEnterAnimation={!!packPremiumVisual}
             focusedIndexSV={focusedIndexSV}
             searchActive={searchActive}
-            showDeleteHint={showDeleteHint}
+            showDeleteHint={showDeleteHint && !undoEntry && !packUndo} // зачем (координатор 12.10, cards-006): внизу одна плашка за раз — пока видна «Удалено · Вернуть», подсказка «Зажми карточку…» прячется (состояние подсказки не теряется, вернётся после плашки)
             onSetShowDeleteHint={setShowDeleteHint}
             allowAddCustomCard={allowAddCustomCard && !previewMode}
             onCreateCard={openCreateEditor}

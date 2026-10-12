@@ -132,6 +132,8 @@ const TOKEN_REGISTRY: Readonly<Record<LiquidGlassTintThemeId, BaseGlassTokens>> 
 let activeVariant: Required<LiquidGlassVariant> = normalizeVariant(DEFAULT_LIQUID_GLASS_VARIANT);
 // зачем: 23 темы × 2 оформления × 21 шаг ползунка = 966 палитр максимум — кэш ограничен сам.
 const variantCache = new Map<string, GlassTokens>();
+/** Размер кэша токенов (тема × оформление × шаг ползунка) — для dev-лога [THEMES-MEM]. */
+export const liquidGlassTokenCacheSize = (): number => variantCache.size;
 
 /** Called only by ThemeProvider: the variant that argument-less token lookups resolve to. */
 export function setActiveLiquidGlassVariant(variant: LiquidGlassVariant): void {

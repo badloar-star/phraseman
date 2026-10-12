@@ -141,6 +141,8 @@ const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
 // зачем: экраны перерисовываются на каждом шаге ползунка — разрешение кэшируется навсегда по
 // имени+яркости, чтобы источники картинок оставались ТЕМИ ЖЕ объектами (expo-image не перезагружает).
 const cache = new Map<string, ThemedArtResolved>();
+/** Размер кэша источников арта (имя × яркость) — для dev-лога [THEMES-MEM]. */
+export const themedArtCacheSize = (): number => cache.size;
 
 export function resolveThemedArt(name: ThemedArtName, brightness: ThemedArtBrightness): ThemedArtResolved {
   const key = `${name}|${brightness}`;

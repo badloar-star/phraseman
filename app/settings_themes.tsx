@@ -26,6 +26,7 @@ import {
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 import { ThemeIntensitySlider } from '../components/settings/ThemeIntensitySlider';
+import { useThemesMemLog } from '../components/settings/themesMemLog';
 import { safeRouterBack } from './navigation_back';
 import { DebugLogger } from './debug-logger';
 import { themeDisplayName, type ThemeDisplayName } from './theme_display_names';
@@ -198,6 +199,12 @@ export default function SettingsThemes() {
   const insets = useStableSafeAreaInsets();
   const backLabel = triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' });
   const vivid = liquidGlassIntensity > 0;
+  // зачем (запрос координатора 15.10, +52 МБ за 65 с): лог памяти экрана — сколько превью смонтировано и как растут кэши и куча
+  useThemesMemLog({
+    themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, intensity: liquidGlassIntensity,
+    swatches: THEME_OPTIONS.length + GRADIENT_OPTIONS.length,
+    smokes: glass.level === 'max' && glass.cardSmoke && !glass.isLight ? 2 : 0,
+  });
   // зачем (стиль «Тень»): тень списков даёт settingsGlassCardStyle (plateBoxShadow) — прежняя светлая shadow* здесь удвоила бы её.
 
   return (

@@ -5,7 +5,7 @@ import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
-import { triLang, type Lang } from '../constants/i18n';
+import { THEORY_FALLBACK, triLang, type Lang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
@@ -143,7 +143,8 @@ function legacyUiLang(lang: Lang): 'ru' | 'uk' | 'es' {
   const legacyByLang: Record<Lang, 'ru' | 'uk' | 'es'> = {
     ru: 'ru',
     uk: 'uk',
-    en: 'ru',
+    // зачем (координатор 12.10): своей теории для английского нет; режим 'es' — испанская, режим 'hide' — экран «недоступно» (ниже), не кириллица.
+    en: THEORY_FALLBACK === 'es' ? 'es' : 'ru',
     es: 'es',
     'pt-BR': 'ru',
     vi: 'ru',
@@ -453,6 +454,14 @@ function LessonHelp() {
           ) : plannedLocale ? (
             <Body
               key="planned-locale-theory-unavailable"
+              t={tg}
+              f={f}
+              text={unavailableTheoryText}
+            />
+          ) : lang === 'en' && THEORY_FALLBACK === 'hide' ? (
+            // зачем (координатор 12.10): английской теории нет — честное «скоро», а не русский текст (прямой заход по ссылке).
+            <Body
+              key="en-theory-hidden"
               t={tg}
               f={f}
               text={unavailableTheoryText}

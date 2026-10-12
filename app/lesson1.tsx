@@ -28,7 +28,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
 import LessonFirstFrame from '../modules/lesson_first_frame';
-import { triLang, type Lang } from '../constants/i18n';
+import { theoryEntryFor, triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
@@ -1570,7 +1570,9 @@ const LessonContent = React.memo(function LessonContent({
 
 
           {/* Theory Button */}
-          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } router.push(isInteractiveTheoryLesson(topicLessonId) ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
+          {/* зачем (координатор 12.10): своей теории для языка интерфейса нет (английский) — кнопку не показываем; pt-BR/vi/id/tr/pl — в lesson_help на их языке. */}
+          {(lessonTheorySupportBlocked || theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden') && (
+          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={glass.text} />
             <Text style={{ color: glass.secondary, fontSize: f.label, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
@@ -1586,6 +1588,7 @@ const LessonContent = React.memo(function LessonContent({
               }) : s.lesson.theory}
             </Text>
           </LessonPressable>
+          )}
 
           {/* [SPEAKING] "Устно" — premium: произнести фразу вслух (микрофон + эквалайзер) */}
           {speakingFeatureEnabled && status === 'playing' && !!gradeTarget && (

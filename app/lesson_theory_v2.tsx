@@ -5,7 +5,7 @@ import { safeRouterBack } from './navigation_back';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
-import { theoryContentKey, triLang } from '../constants/i18n';
+import { theoryContentKey, theoryEntryFor, triLang } from '../constants/i18n';
 import TheoryLessonView, {
   type TheorySection,
   type TheoryBlock,
@@ -165,7 +165,8 @@ export default function LessonTheoryV2Screen() {
   const lessonId = Number(firstParam(params.id) || '1');
 
   // Контент только для урока 1. Остальные — на legacy-путь.
-  const hasNewTheory = lessonId === 1;
+  // зачем (координатор 12.10): язык без своей теории (pt-BR/vi/id/tr/pl, en в режиме hide) тоже уходит в lesson_help.
+  const hasNewTheory = lessonId === 1 && theoryEntryFor(lang, true, 'lesson_theory_v2') === 'hint';
 
   useEffect(() => {
     if (!hasNewTheory) {

@@ -27,7 +27,7 @@ import EnergyBar from '../components/EnergyBar';
 import { useEnergy } from '../components/EnergyContext';
 import PremiumCard from '../components/PremiumCard';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { triLang } from '../constants/i18n';
+import { theoryEntryFor, triLang } from '../constants/i18n';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { hapticTap } from '../hooks/use-haptics';
 import fk from './feedback/feedback_kit';
@@ -1151,13 +1151,14 @@ function LessonMenu() {
           setSoonOpen('frenchTheory');
           return;
         }
-        if (isInteractiveTheoryLesson(lessonId)) {
-          router.push({ pathname: '/hint', params: { id: lessonId } });
-          return;
-        }
-        router.push({ pathname: '/lesson_help', params: { id: lessonId } });
+        // зачем (координатор 12.10): маршрут теории по языку интерфейса — pt-BR/vi/id/tr/pl в lesson_help (их язык), en скрыт до решения владельца.
+        const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu');
+        if (entry === 'hidden') return;
+        router.push({ pathname: entry === 'hint' ? '/hint' : '/lesson_help', params: { id: lessonId } });
       },
       unavailable: frenchTheorySourceGated,
+      // Своей теории для языка нет (английский) — пункт не показываем; список фильтрует hidden, пустой строки нет.
+      hidden: theoryEntryFor(lang, isInteractiveTheoryLesson(lessonId), 'lesson_menu') === 'hidden',
     },
   ];
 

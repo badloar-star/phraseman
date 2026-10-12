@@ -1,4 +1,4 @@
-import { bundleLang, legacyRuUk, theoryContentKey, triLang } from '../constants/i18n';
+import { bundleLang, legacyRuUk, THEORY_FALLBACK, theoryContentKey, theoryEntryFor, theoryEntryForMode, triLang } from '../constants/i18n';
 
 // зачем (координатор 12.10, 🔴): pt-BR/vi/id/tr/pl видимы в выпуске, а словарь без их ключа отдавал РУССКИЙ (~2400 словарей,
 // docs/phraseman-2.0/I18N_FALLBACK_5LANG_R1.md). Страховка: свой ключ → en → ru последним. ru/uk/es не меняются.
@@ -67,6 +67,40 @@ describe('theoryContentKey', () => {
     const lines = warn.mock.calls.map((c) => String(c[0])).filter((l) => l.includes('screen=theory'));
     expect(lines).toHaveLength(2);
     expect(lines[0]).toContain('lang=vi→es');
+  });
+});
+
+// зачем (координатор 12.10): «Правила и объяснения» — английскому своей теории нет нигде → скрыт (режим 'hide', по умолчанию) или испанская
+// (режим 'es'); pt-BR/vi/id/tr/pl — в lesson_help на их языке; ru/uk/es — прежний маршрут.
+describe('theoryEntryFor / THEORY_FALLBACK', () => {
+  beforeEach(() => { jest.spyOn(console, 'warn').mockImplementation(() => undefined); });
+  afterEach(() => { jest.restoreAllMocks(); });
+
+  it('default mode is hide until the owner decides', () => {
+    expect(THEORY_FALLBACK).toBe('hide');
+    expect(theoryEntryFor('en', true, 'test')).toBe('hidden');
+    expect(theoryEntryFor('en', false, 'test')).toBe('hidden');
+  });
+
+  it.each(['hide', 'es'] as const)('mode %s: ru/uk/es keep their route', (mode) => {
+    for (const lang of ['ru', 'uk', 'es'] as const) {
+      expect(theoryEntryForMode(lang, true, mode)).toBe('hint');
+      expect(theoryEntryForMode(lang, false, mode)).toBe('lesson_help');
+    }
+  });
+
+  it.each(['hide', 'es'] as const)('mode %s: pt-BR/vi/id/tr/pl go to lesson_help in their own language', (mode) => {
+    for (const lang of FIVE) {
+      expect(theoryEntryForMode(lang, true, mode)).toBe('lesson_help');
+      expect(theoryEntryForMode(lang, false, mode)).toBe('lesson_help');
+    }
+  });
+
+  it('English: hidden in hide mode, the usual route (Spanish theory) in es mode', () => {
+    expect(theoryEntryForMode('en', true, 'hide')).toBe('hidden');
+    expect(theoryEntryForMode('en', false, 'hide')).toBe('hidden');
+    expect(theoryEntryForMode('en', true, 'es')).toBe('hint');
+    expect(theoryEntryForMode('en', false, 'es')).toBe('lesson_help');
   });
 });
 

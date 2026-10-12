@@ -973,6 +973,41 @@ export function theoryContentKey(lang: Lang, screen: string): 'ru' | 'uk' | 'es'
   return key;
 }
 
+/**
+ * Что делать с теорией уроков для языков интерфейса без своей теории (английский — ни в hint, ни в lesson_help).
+ * зачем (координатор 12.10): испанская теория для англичанина или турка — не помощь; до решения владельца пункт СКРЫТ.
+ * 'es' — показать испанскую (theoryContentKey) одной строкой.
+ */
+export const THEORY_FALLBACK: 'hide' | 'es' = 'hide';
+
+export type TheoryEntry = 'hint' | 'lesson_help' | 'hidden';
+
+/**
+ * Куда вести «Правила и объяснения» для языка интерфейса.
+ * ru/uk/es — как раньше (интерактивная теория → hint, иначе lesson_help). pt-BR/vi/id/tr/pl — lesson_help: там вводные экраны урока на
+ * их языке или их же переведённое «недоступно» (в hint своего текста нет). en — своего нет нигде: скрыт (или hint с испанским в режиме 'es').
+ */
+const theoryEntryLogged = new Set<string>();
+/** Чистое правило выбора (режим — параметром, чтобы тест проверял оба). */
+export function theoryEntryForMode(lang: Lang, interactiveTheory: boolean, mode: 'hide' | 'es'): TheoryEntry {
+  const own: TheoryEntry = interactiveTheory ? 'hint' : 'lesson_help';
+  if (lang === 'ru' || lang === 'uk' || lang === 'es') return own;
+  if (FIVE_FALLBACK_LANGS.has(lang)) return 'lesson_help';
+  return mode === 'es' ? own : 'hidden';
+}
+
+export function theoryEntryFor(lang: Lang, interactiveTheory: boolean, screen: string): TheoryEntry {
+  const entry = theoryEntryForMode(lang, interactiveTheory, THEORY_FALLBACK);
+  if (lang === 'ru' || lang === 'uk' || lang === 'es') return entry;
+  const logKey = `${screen}:${lang}`;
+  if ((typeof __DEV__ === 'undefined' || __DEV__) && !theoryEntryLogged.has(logKey)) {
+    theoryEntryLogged.add(logKey);
+    const action = entry === 'hidden' ? 'hide' : entry === 'lesson_help' ? 'lesson_help(родной язык)' : 'es';
+    console.warn(`[I18N-FALLBACK] screen=theory(${screen}) lang=${lang} action=${action} mode=${THEORY_FALLBACK}`); // guard-ok: под __DEV__, раз на экран и язык
+  }
+  return entry;
+}
+
 /** Пакеты UI с полными строками RU / UK / ES (магазин осколков, paywall и т.д.). */
 export type UiBundleLang = 'ru' | 'uk' | 'es';
 

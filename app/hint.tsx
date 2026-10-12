@@ -24,7 +24,7 @@ import TheoryLessonView, {
 } from '../components/theory/TheoryLessonView';
 import { LESSON1_THEORY } from './theory_content_lesson1';
 import { getTheoryContent, hasTheoryContent, type LessonTheoryContent } from './theory_content_registry';
-import { theoryContentKey } from '../constants/i18n';
+import { theoryContentKey, theoryEntryFor } from '../constants/i18n';
 import { lessonTheorySectionsSeenKey } from './target_storage_keys';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { RowDivider } from '../components/v2/RowDivider';
@@ -1430,6 +1430,15 @@ function HintScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const lessonId = parseInt(id || '1', 10);
+  // зачем (координатор 12.10): в hint теория только ru/uk/es; pt-BR/vi/id/tr/pl и en (режим hide) уходят в lesson_help —
+  // там вводные экраны урока на их языке или переведённое «недоступно», а не чужой язык. Прямой заход по ссылке тоже.
+  const theoryEntry = theoryEntryFor(lang, true, 'hint');
+  React.useEffect(() => {
+    if (theoryEntry === 'hint') return;
+    console.log(`[I18N-FALLBACK] hint: lang=${lang} entry=${theoryEntry} → replace /lesson_help id=${lessonId}`); // guard-ok: ранний выход логируется
+    router.replace({ pathname: '/lesson_help', params: { id: String(lessonId) } } as never);
+  }, [theoryEntry, lang, lessonId, router]);
+  if (theoryEntry !== 'hint') return null;
 
   // Новая теория «дорогой минимализм» — для всех уроков с готовым контентом
   // (реестр theory_content_registry, уроки 1-32). Остальные — прежняя шпаргалка.

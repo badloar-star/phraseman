@@ -143,6 +143,57 @@
 
 Готовые без изменений (отметка в реестре устарела, Макеты перевели в ready): cards-077, gap-009, gap-005, gap-024, section-046.
 
-**Осталось:** cards-072 (черновик нового набора с 12 карточками — нужен `packdraft=on`); страховка «Устно» на эмуляторе
-(`speech_device_availability` при `speech=` — проверить `[SPEECH-AVAIL] probe` первой серией); голос в Диалогах
-(dialogs-024…028, gap-014); запрет уведомлений (settings-gap-012, файл сейчас правит другая сессия).
+## Партия 3 — создание набора, голос и память Диалогов, каталог без сети, уроки (12.10 вечер)
+
+Коммиты: 5b1caa8ee, faa66282b, c35b9f8ad, b25cab943, dfeeb913e, 25775d555, d92d65410.
+
+### Новые параметры
+
+| Параметр | Что делает |
+|---|---|
+| `packdraft=on\|few\|full\|private` | «Новый набор» с черновиком из памяти: 12 в сообщество / 4 / 50 / 12 без публикации |
+| `speech=correct\|wrong\|denied\|no_speech` (Диалоги) | голос в Диалогах без микрофона: удержание — «запись», отпускание — текст в поле и черновик голосового |
+| `speech=hold\|preparing` | «Говори…» / «Готовлю микрофон…» держится после отпускания (Диалоги и «Устно») |
+| `dev_dialog_memory=demo\|clearing\|clear_fail` | «Память диалогов» из памяти процесса; очистка — успешна в памяти / висит / не удалась. Настоящая память не трогается |
+| `dev_dialog_send=ok` для свободного разговора | старт сессии и ответ без сервера (**прежняя ссылка dialogs-045 создавала настоящую сессию на проде**) |
+| `dev_dialog_fail=service` для свободного разговора | «не удалось продолжить» |
+| `fail=catalog_load` (+ `catalog=empty`) | каталог сообщества «Нет сети» без авиарежима |
+| урок: `lesson1-word-option-wrong` | в dev первый неверный вариант слова помечен — ошибка одним шагом |
+
+Предохранители и починки: демо-наборы `local_pack_dev_demo_*` в dev никогда не уходят на сервер публикации; при подменённой
+речи распознаватель эмулятора не нужен; testID: `dialogue-v2-freeform-input` / `-send`; окно очистки памяти — префикс
+`dialogue-v2-memory-clear-dialog` (кнопка окна `…-dialog-confirm`; раньше совпадала с кнопкой экрана `dialogue-v2-memory-clear-confirm`).
+
+### Строки (`B` = `onboarding=done&intros=seen&overlays=off&studyTarget=en`, `E` — вход в сессию Диалога, см. партию 1)
+
+| id | ссылка | шаги |
+|---|---|---|
+| cards-069 | `B&plus=on&packdraft=few&next=/community_pack_create` | `tap:#ugc-pack-save` (тост «Минимум 10») |
+| cards-071 | `B&plus=on&packdraft=full&next=/community_pack_create` | `tap:#ugc-pack-add-card` (окно лимита) |
+| cards-072 | `B&plus=on&packdraft=on&fail=publish_error&next=/community_pack_create` | `tap:#ugc-pack-save` |
+| cards-073 | `B&plus=on&packdraft=private&next=/community_pack_create` | `tap:#ugc-pack-save` («Набор сохранён») |
+| cards-gap-027 | `B&cards=demo&plus=on&next=/flashcards_collection?pack=local_pack_dev_demo_work` | `tap:#fc-pack-menu; tap:#fc-pack-publish` |
+| cards-gap-026 | то же `&fail=publish_daily_limit` | то же |
+| cards-061 | `B&cards=demo&plus=on&next=/flashcards_card_editor?create=1%26cat=custom` | `tap:#fc-editor-description` (заметка теперь всегда открыта) |
+| cards-v2-044 = section-029 | `B&catalog=empty&fail=catalog_load&next=/flashcards_packs` | — (в коде «Нет сети»+«Повторить», в образце №44 «Сейчас недоступно…» — расхождение образец≠код) |
+| dialogs-024/025 | `B&dev_dialog_send=ok&speech=hold\|preparing&next=/ai_dialog_home` | `E; long:#dialogue-v2-voice-input; wait:400` |
+| dialogs-026 | `…&speech=correct…` | `E; long:#dialogue-v2-voice-input; wait:800` |
+| dialogs-028 (часть «нет доступа») | `…&speech=denied…` | `E; long:#dialogue-v2-voice-input; wait:600` |
+| dialogs-gap-014 | `…&speech=correct…` | `E; long:#dialogue-v2-voice-input; wait:800; tap:#dialogue-v2-session-send; wait:600` |
+| dialogs-gap-001 | `B&plus=on&dev_dialog_memory=demo&next=/dialogue_v2_memory` | — |
+| dialogs-gap-004 | то же | `tap:#dialogue-v2-memory-clear-confirm` (окно) |
+| dialogs-gap-005 / 006 | `dev_dialog_memory=clearing` / `clear_fail` | `tap:#dialogue-v2-memory-clear-confirm; tap:#dialogue-v2-memory-clear-dialog-confirm` |
+| dialogs-045 | `B&plus=on&dev_dialog_send=ok&next=/dialogue_v2_freeform` | — |
+| dialogs-046 | то же | `tap:#dialogue-v2-freeform-input; type:Hello; tap:#dialogue-v2-freeform-send; wait:300` (идёт ответ) |
+| dialogs-gap-011 | `B&plus=on&dev_dialog_fail=service&next=/dialogue_v2_freeform` | — |
+| energy-modes-001/003 | `B&plus=off&free=on&mode=b&energy=5\|1&next=/lesson_menu?id=1` | `tap:#lesson-menu-primary; wait:2500` |
+| energy-modes-002 | `…&mode=b&energy=5…` | `tap:#lesson-menu-primary; wait:2500; tap:#lesson1-word-option-wrong; wait:300` (тряска, «−1») |
+| energy-modes-004 | `…&mode=b&energy=1…` | `tap:#lesson-menu-primary; wait:2500; tap:#lesson1-word-option-wrong; wait:1500` (остановка) |
+| energy-modes-016 | `…&mode=a&energy=5…` | `tap:#lesson-menu-primary; wait:2500; tap:#lesson1-word-option-wrong; wait:300` |
+
+energy-modes: не проверено, есть ли у урока 1 перед первым заданием экран знакомства — проверить первой серией.
+005 (шторка Plus на остановке), 006 (после покупки), 007/008 (нет энергии / восстановилась), 011 (Learning V2 — зона Codex),
+012–014 — следующей партией после первых кадров.
+
+**Осталось:** settings-gap-012 (запрет уведомлений — файл экрана правит другая сессия); cards-gap-019/040; energy-modes
+005–014; разбор кадров cards-v2-015 «0 карточек» и cards-section-041 — ждём журнал Сверки.

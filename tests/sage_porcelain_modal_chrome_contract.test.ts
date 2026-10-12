@@ -19,7 +19,6 @@ jest.mock('react-native-reanimated', () => ({
 }));
 
 import { PAYWALL_THEME_CONFIG } from '../components/paywallThemeConfig';
-import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from '../app/flashcards/cardPackPaywallTheme';
 import { SAGE_PORCELAIN } from '../constants/theme';
 import {
   rewardModalAccentColor,
@@ -64,31 +63,8 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
       ctaBg: '#315F50', ctaText: '#FFFFFF', savingsBadgeBg: '#8B6320', savingsBadgeText: '#FFFFFF',
       urgencyBg: 'rgba(139,99,32,0.12)', urgencyTimerText: '#8B6320', socialProofText: '#52605A',
     });
-    expect(getCardPackPaywallTheme({ id: 'sage', category: 'general' } as any, { themeMode: 'sagePorcelain' })).toMatchObject({
-      backdropBase: 'rgba(23,32,29,0.26)', outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
-      borderAccent: '#BDC8BD', iconBg: ['#FCFDF9', '#E1E5DC'], priceGradient: ['#FCFDF9', '#E1E5DC'],
-      ctaColors: ['#315F50', '#315F50'], ctaForeground: '#FFFFFF', ctaGlowTop: 'rgba(49,95,80,0)',
-    });
-  });
-
-  it.each([
-    { id: 'sage-business', category: 'business' },
-    { id: 'sage-exam', category: 'exam' },
-    { id: 'sage-slang', category: 'slang' },
-    { id: 'sage-verbs', category: 'verbs' },
-    { id: 'official_peaky_blinders_en', category: 'business' },
-  ])('preserves the calm Sage card-pack shell for $id', (pack) => {
-    expect(getCardPackPaywallTheme(pack as any, { themeMode: 'sagePorcelain', isLight: true })).toMatchObject({
-      outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
-      borderAccent: '#BDC8BD', priceBorder: '#BDC8BD', ctaColors: ['#315F50', '#315F50'], ctaGlowTop: 'rgba(49,95,80,0)',
-    });
-  });
-
-  it('preserves the calm Sage card-pack shell for community UGC', () => {
-    expect(getCommunityUgcPackPaywallTheme('magenta_pop', { themeMode: 'sagePorcelain', isLight: true })).toMatchObject({
-      outerGlow: ['rgba(49,95,80,0)', 'rgba(49,95,80,0)', 'rgba(49,95,80,0)'],
-      borderAccent: '#BDC8BD', priceBorder: '#BDC8BD', ctaColors: ['#315F50', '#315F50'], ctaGlowTop: 'rgba(49,95,80,0)',
-    });
+    // зачем (координатор 12.10): оболочка окна покупки набора больше не берётся из таблицы по id темы (sagePorcelain и др.) — она строится из токенов
+    // активной темы Liquid Glass; её контраст и подключение сторожит tests/card_pack_paywall_token_shell_contrast.test.ts.
   });
 
   it('renders no liquid-glass decoration for Sage', () => {

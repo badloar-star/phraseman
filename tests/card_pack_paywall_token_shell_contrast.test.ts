@@ -49,11 +49,14 @@ describe('окно покупки набора из токенов: контра
   });
 });
 
-describe('подключение: оба места берут оболочку из токенов темы', () => {
-  it('геттеры принимают tokens и возвращают оболочку из токенов раньше таблицы по id темы', () => {
+describe('подключение: оба места берут оболочку из токенов темы, старой таблицы по id темы нет', () => {
+  it('геттеры принимают ТОЛЬКО токены и возвращают оболочку из них', () => {
     const src = read('app/flashcards/cardPackPaywallTheme.ts');
-    expect(src).toContain('tokens?: GlassTokens');
-    expect(src.match(/if \(opts\.tokens\) return cardPackPaywallShellFromTokens\(opts\.tokens\);/g)?.length).toBe(2);
+    expect(src).toContain('opts: { tokens: GlassTokens }');
+    expect(src.match(/return cardPackPaywallShellFromTokens\(opts\.tokens\);/g)?.length).toBe(2);
+    // старая таблица (65 литералов hex/rgba по прежним id тем) удалена — литералов цвета в модуле нет
+    expect(src).not.toMatch(/#[0-9A-Fa-f]{3,8}|rgba?\(/);
+    expect(src).not.toContain('SHELL');
   });
   it('кнопка ваучера берёт ту же проверенную пару, что «В магазин»', () => {
     const modal = read('app/flashcards/CardPackShardPaywallModal.tsx');
@@ -62,9 +65,9 @@ describe('подключение: оба места берут оболочку 
   });
   it('окно покупки и экран набора передают токены активной темы', () => {
     const modal = read('app/flashcards/CardPackShardPaywallModal.tsx');
-    expect(modal).toContain('getCardPackPaywallTheme(pack, { themeMode, isLight: isLightTheme, tokens: glassTokens })');
+    expect(modal).toContain('getCardPackPaywallTheme(pack, { tokens: glassTokens })');
     const data = read('app/flashcards/useCollectionData.ts');
-    expect(data).toContain('getCardPackPaywallTheme(currentMarketPack, { themeMode, isLight: isLightTheme, tokens: glassTokens })');
-    expect(data).toContain('getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { themeMode, isLight: isLightTheme, tokens: glassTokens })');
+    expect(data).toContain('getCardPackPaywallTheme(currentMarketPack, { tokens: glassTokens })');
+    expect(data).toContain('getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { tokens: glassTokens })');
   });
 });

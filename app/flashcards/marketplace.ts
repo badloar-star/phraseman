@@ -37,16 +37,16 @@ export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | '
  * читается как витрина, а не как список одинаковых плиток.
  */
 export const PACK_CATEGORY_COVER: Record<FlashcardPackCategory, [string, string]> = {
-  business: ['#3D2B16', '#241B0C'],
-  travel: ['#123B33', '#0A2620'],
-  daily: ['#241D3D', '#141024'],
-  exam: ['#1A2C4A', '#0D1727'],
-  slang: ['#3D1F16', '#24100A'],
-  verbs: ['#17301F', '#0D1F13'],
+  business: ['#3D2B16', '#241B0C'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
+  travel: ['#123B33', '#0A2620'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
+  daily: ['#241D3D', '#141024'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
+  exam: ['#1A2C4A', '#0D1727'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
+  slang: ['#3D1F16', '#24100A'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
+  verbs: ['#17301F', '#0D1F13'], // theme-exempt: собственная тёмная обложка категории (графика витрины), одна на все темы по макету
 };
 
 export function packCoverGradient(category: FlashcardPackCategory): [string, string] {
-  return PACK_CATEGORY_COVER[category] ?? ['#241D3D', '#141024'];
+  return PACK_CATEGORY_COVER[category] ?? ['#241D3D', '#141024']; // theme-exempt: запасная обложка (та же графика витрины)
 }
 
 const PACK_CATEGORY_ICONS: Record<FlashcardPackCategory, string> = {

@@ -1258,10 +1258,10 @@ export function usePackBrowseVisual(args: {
   const packPremiumVisual = useMemo(() => {
     if (!currentMarketPack) return null;
     if (currentMarketPack.isCommunityUgc && currentMarketPack.ugcCardThemeKey) {
-      return getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { themeMode, isLight: isLightTheme, tokens: glassTokens });
+      return getCommunityUgcPackPaywallTheme(currentMarketPack.ugcCardThemeKey, { tokens: glassTokens });
     }
-    return getCardPackPaywallTheme(currentMarketPack, { themeMode, isLight: isLightTheme, tokens: glassTokens });
-  }, [currentMarketPack, themeMode, isLightTheme, glassTokens]);
+    return getCardPackPaywallTheme(currentMarketPack, { tokens: glassTokens });
+  }, [currentMarketPack, glassTokens]);
 
   const packCardTheme = useMemo(() => {
     /**

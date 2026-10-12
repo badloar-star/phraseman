@@ -15,7 +15,7 @@ export const TAB_ACTIVE_PILL_WIDTH = 48;
 export const TAB_ACTIVE_PILL_HEIGHT = 36;
 /** Подложка капсулы на обычных темах. */
 export const TAB_UNDERLAY_DIM_ALPHA = 0.95;
-export const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
+export const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`; // theme-exempt: подложка-затемнение под капсулой вкладок (скрим); константа нигде не используется
 export const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
 export const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
 /** Размер иконок: обычная позиция и центральная (акцентная). */

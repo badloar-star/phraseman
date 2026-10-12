@@ -57,7 +57,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
-import { mixDark } from '../components/mistakes-panel/panelPaint'; // зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
+import { mixDark } from '../components/mistakes-panel/panelPaint'; // theme-exempt: ложное срабатывание — hex только в комментарии. зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
 import { PracticeCta } from '../components/practice/PracticeStates';
 import { PracticeStatePanel } from '../components/practice/PracticeStates';

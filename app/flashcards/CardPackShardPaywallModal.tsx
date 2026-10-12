@@ -457,8 +457,8 @@ export default function CardPackShardPaywallModal({
   const iconName = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
   const packPng = packTileImageForPack(pack);
   const paywallVisual = useMemo(
-    () => getCardPackPaywallTheme(pack, { themeMode, isLight: isLightTheme, tokens: glassTokens }),
-    [pack.id, pack.category, themeMode, isLightTheme, glassTokens],
+    () => getCardPackPaywallTheme(pack, { tokens: glassTokens }),
+    [pack.id, pack.category, glassTokens],
   );
   const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 3), [themeMode, t]);
   const [reportVisible, setReportVisible] = useState(false);

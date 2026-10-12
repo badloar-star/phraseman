@@ -133,7 +133,10 @@ export async function confirmAndSwitchAccountInOnboarding(
   }
   const attemptStartedAtMs = Date.now();
   try {
-    const result = await signOutAndWipeForAccountSwitch();
+    // зачем ((а), координатор 12.10, реестр п.73; прогон Сверки: синхронизация гостя при смене 3,7 с без потолка): облако ждём не
+    // дольше ONBOARDING_SWITCH_SYNC_DEADLINE_MS, как при выходе (вариант Б). Потолок — ТОЛЬКО вместе с allowWipeWithoutSync: иначе на
+    // медленной сети отказ sync_failed выводил бы окно «Сменить без сохранения»; аварийная копия гостя пишется под замком до стирания.
+    const result = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: ONBOARDING_SWITCH_SYNC_DEADLINE_MS, allowWipeWithoutSync: true });
     if (result.ok) {
       console.log(`[AUTH-SWITCH-OFFER] onboarding switched synced=${result.synced ? 'yes' : 'no'} tookMs=${Date.now() - attemptStartedAtMs}`);
       return { kind: 'switched' };
@@ -160,6 +163,8 @@ export async function confirmAndSwitchAccountInOnboarding(
  * данные остаются восстановимыми; несохранённые карточки — отдельное предупреждение.
  */
 const FORCEABLE_SWITCH_REASONS: ReadonlySet<string> = new Set(['sync_failed', 'pending_shard_spend', 'shard_queue_quarantined']);
+/** Потолок ожидания облака при смене аккаунта из онбординга — тот же, что у выхода (LOGOUT_SYNC_DEADLINE_MS, вариант Б). */
+export const ONBOARDING_SWITCH_SYNC_DEADLINE_MS = 3000;
 
 const STAY_LABEL = { ru: 'Остаться здесь', uk: 'Залишитися тут', en: 'Stay here', es: 'Quedarme aquí', 'pt-BR': 'Ficar aqui', vi: 'Ở lại đây', id: 'Tetap di sini', tr: 'Burada kal', pl: 'Zostań tutaj' } as const;
 const FORCE_LABEL = { ru: 'Сменить без сохранения', uk: 'Змінити без збереження', en: 'Switch without saving', es: 'Cambiar sin guardar', 'pt-BR': 'Trocar sem salvar', vi: 'Đổi mà không lưu', id: 'Ganti tanpa menyimpan', tr: 'Kaydetmeden değiştir', pl: 'Zmień bez zapisywania' } as const;

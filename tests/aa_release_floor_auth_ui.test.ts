@@ -121,7 +121,8 @@ describe('смена аккаунта в онбординге — с кнопк�
     choiceQueue = ['switch', 'force'];
     await expect(confirmAndSwitchAccountInOnboarding('ru')).resolves.toEqual({ kind: 'switched' });
     expect(signOutMock).toHaveBeenCalledTimes(2);
-    expect(signOutMock.mock.calls[0]).toEqual([]);
+    // (а) координатор 12.10: первая попытка — с потолком облака 3 с и правом стирать после аварийной копии (без окна «Сменить без сохранения»).
+    expect(signOutMock.mock.calls[0]).toEqual([{ syncDeadlineMs: 3000, allowWipeWithoutSync: true }]);
     expect(signOutMock.mock.calls[1]).toEqual([{ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }]);
   });
 

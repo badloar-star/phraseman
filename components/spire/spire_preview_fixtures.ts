@@ -33,8 +33,40 @@ export function isSpirePreviewState(value: unknown): value is SpirePreviewState 
 
 const ENABLED_CONFIG: SpireConfigDoc = { ...SPIRE_CONFIG_DEFAULTS, enabled: true };
 
-function week(floor: number, stepInFloor: number, stepsCleared: number, tier = 3): SpireWeekLocal {
+// зачем (координатор 15.10, Макеты: кадры spire-007/011/gap-015/018 должны совпасть с образцом «Гранит, этаж 4»): dev-превью принимает `tier=` и `floor=`.
+// tier — индекс лиги 0…11 (0 = Гранит; прежнее значение 3 = Нефрит), floor — мой этаж 1…15 (прежнее значение 7). Без параметров всё как раньше.
+export type SpirePreviewOverrides = Readonly<{ tier?: number; floor?: number }>;
+const PREVIEW_BASE_TIER = 3;
+const PREVIEW_BASE_FLOOR = 7;
+const PREVIEW_SUMMIT_FLOOR = 15;
+
+/** Только целые в допустимом диапазоне; всё остальное игнорируется (с предупреждением в журнале). */
+export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown): SpirePreviewOverrides {
+  const first = (v: unknown): unknown => (Array.isArray(v) ? v[0] : v);
+  const asInt = (v: unknown, min: number, max: number, name: string): number | undefined => {
+    const raw = first(v);
+    if (raw === undefined || raw === null || raw === '') return undefined;
+    const n = Number(raw);
+    if (Number.isInteger(n) && n >= min && n <= max) return n;
+    console.warn(`[DEV-STATE] spire_preview override ${name}=${String(raw)} игнорирован: нужно целое ${min}…${max}`); // guard-ok: dev-превью, причина отказа параметра
+    return undefined;
+  };
+  const tier = asInt(rawTier, 0, 11, 'tier');
+  const floor = asInt(rawFloor, 1, PREVIEW_SUMMIT_FLOOR, 'floor');
+  return { ...(tier === undefined ? {} : { tier }), ...(floor === undefined ? {} : { floor }) };
+}
+
+let activeOverrides: SpirePreviewOverrides = {};
+const previewTier = (): number => activeOverrides.tier ?? PREVIEW_BASE_TIER;
+/** Этаж относительно базового 7 (состояние `win` — этаж+1); вершина 15 остаётся вершиной; ниже 1 не бывает. */
+const previewFloor = (baseFloor: number): number => {
+  if (activeOverrides.floor === undefined || baseFloor >= PREVIEW_SUMMIT_FLOOR) return baseFloor;
+  return Math.min(PREVIEW_SUMMIT_FLOOR - 1, Math.max(1, baseFloor + (activeOverrides.floor - PREVIEW_BASE_FLOOR)));
+};
+
+function week(baseFloor: number, stepInFloor: number, stepsCleared: number, tier = previewTier()): SpireWeekLocal {
   const now = Date.now();
+  const floor = previewFloor(baseFloor);
   return {
     schemaVersion: SPIRE_WEEK_LOCAL_SCHEMA_VERSION,
     weekKey: spireCurrentWeekKey(now),
@@ -77,7 +109,7 @@ const noopAsync = async (): Promise<void> => undefined;
 
 function game(over: Partial<SpirePreviewGame> = {}): SpirePreviewGame {
   return {
-    live: true, uid: null, stableId: null, roomLoad: null, rows: null, myPlace: null, tier: 3, friends: [], weekResult: null,
+    live: true, uid: null, stableId: null, roomLoad: null, rows: null, myPlace: null, tier: previewTier(), friends: [], weekResult: null,
     dismissWeekResult: noop, session: null,
     // зачем (Сверка spire-005, поручение координатора 15.10): в боевом useSpireGame pending === null, пока шаг не ждёт; без этих полей в превью pending был undefined, и
     // climbReady (…&& pending === null) был ложным во ВСЕХ состояниях — «Подняться» рисовалась неактивной даже при живой комнате.
@@ -105,8 +137,10 @@ function outcome(kind: 'passed' | 'floor' | 'summit' | 'failed' | 'save_failed',
 }
 
 /** Готовая модель для Home (SpireHomeScreen). Состояния ступени (step_*) тут тоже дают домашний фон. */
-export function spirePreviewModel(state: SpirePreviewState): SpirePreviewModel {
-  const model = buildPreviewModel(state);
+export function spirePreviewModel(state: SpirePreviewState, overrides: SpirePreviewOverrides = {}): SpirePreviewModel {
+  activeOverrides = overrides;
+  let model: SpirePreviewModel;
+  try { model = buildPreviewModel(state); } finally { activeOverrides = {}; }
   // зачем (правило dev-состояний): каждая ветка пишет, что именно показала — Сверка сверяет кадр с логом. Сети и записей нет.
   console.log(`[DEV-STATE] spire_preview model state=${state} floor=${model.week?.floor ?? 'none'} outcome=${model.game.outcome?.kind ?? 'none'} weekResult=${model.game.weekResult ? `promoted:${String(model.game.weekResult.promoted)} demoted:${String(model.game.weekResult.demoted)}` : 'none'} startBlock=${String(model.game.startBlock)} live=${String(model.game.live)}`);
   return model;
@@ -266,14 +300,16 @@ export function isSpireStepPreviewState(state: SpirePreviewState): boolean {
   return state.startsWith('step_');
 }
 
-export function spireStepPreview(state: SpirePreviewState): SpireStepPreview {
-  const preview = buildStepPreview(state);
+export function spireStepPreview(state: SpirePreviewState, overrides: SpirePreviewOverrides = {}): SpireStepPreview {
+  activeOverrides = overrides;
+  let preview: SpireStepPreview;
+  try { preview = buildStepPreview(state); } finally { activeOverrides = {}; }
   console.log(`[DEV-STATE] spire_preview step state=${state} task=${preview.task.taskId} mode=${preview.task.mode} kind=${preview.task.kind} taskIndex=${preview.taskIndex} hearts=${preview.hearts} paused=${String(preview.paused)} preparing=${String(preview.preparing)} feedback=${preview.feedback ? (preview.feedback.ok ? 'ok' : 'wrong') : 'none'}`);
   return preview;
 }
 
 function buildStepPreview(state: SpirePreviewState): SpireStepPreview {
-  const ctx = { lang: 'en', weekKey: spireCurrentWeekKey(Date.now()), tier: 3, floor: 7, stepInFloor: 2 } as const;
+  const ctx = { lang: 'en', weekKey: spireCurrentWeekKey(Date.now()), tier: previewTier(), floor: previewFloor(PREVIEW_BASE_FLOOR), stepInFloor: 2 } as const;
   const common = { ctx, budgetMs: 100_000, elapsedMs: 28_000, hearts: 3, paused: false, preparing: false, answering: true, feedback: null } as const;
   switch (state) {
     case 'step_build': return { ...common, task: BUILD_TASK, taskIndex: 3 };

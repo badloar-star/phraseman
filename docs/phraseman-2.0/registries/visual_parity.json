@@ -39398,21 +39398,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-031.png",
+      "evidence_at": "2026-10-12T03:02:30.891Z",
+      "evidence_sha256": "f4832b108a13343b496a6c5cb0616458531df2ece647b085f0ab35ee2c8e58e3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — подтверждено кадрами settings-gap-025, 026 и 031] Шторка «Изменить имя» скрыта под клавиатурой ОС: не видны поле «Alexey», сообщение «Проверим при сохранении» и кнопки «Отмена / Сохранить» (components/account/NicknameEditModal.tsx на app/account_details.tsx). См. передачу координатору.",
+        "[состояние не то] Под затемнением «Аккаунт» без привязки, в образце «Имя · Алекс», «Способ входа · Google»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:03:22.302Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=error&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:02, settings-gaps-states №31 «Имя — проверка не удалась: «Проверим при сохранении»»; образец нарисован с приложения): шторки «Изменить имя» на кадре нет — снизу открытая клавиатура с подсказкой «Alexey», выше затемнённый «Аккаунт». Третий кадр подряд с тем же результатом (settings-gap-025, 026). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-032",

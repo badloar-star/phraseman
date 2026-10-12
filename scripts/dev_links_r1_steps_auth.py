@@ -146,6 +146,11 @@ add('profile-028', LOGOUT_TAP + ['settle:0'], 'account=support_only', ACCT,
 # Неудачу выхода настоящим выходом не воспроизвести — остаётся подмена logout=fail (отказ до действия) плюс защита №3.
 add('profile-029', LOGOUT_TAP + ['wait:1500'], 'account=support_only&logout=fail', ACCT,
     note='«Не удалось выйти» (logout=fail — выхода нет); только на №3')
+# зачем (координатор 12.10, chain7 пропустил): «выход выполняется, окно не закрыть» — logout=hold держит прогресс 120 с и затем отказывает
+# (sync_failed) ДО любого стирания; на №3 (account=support_only), т.к. «Выйти» есть только у вошедшего. Настоящего выхода нет.
+ENTRIES.pop('overlays-runtime-018', None)
+add('overlays-runtime-018', LOGOUT_TAP + ['wait:1500'], 'account=support_only&logout=hold', ACCT,
+    note='«Выходим из аккаунта…» держится (logout=hold, 120 с, затем отказ без стирания); снимать в первые 2 мин; только на №3')
 
 # ── Онбординг и вход без ссылок (координатор 12.10: link_missing onboarding-002/005/026–029).
 add('onboarding-002', ['tap:#onboarding-existing-account', 'wait:600'], 'onbstep=welcome', ONB_HOME,

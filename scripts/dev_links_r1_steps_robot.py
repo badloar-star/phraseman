@@ -30,8 +30,8 @@ SAVED = '/flashcards_collection?cat=saved'
 add('cards-031', [], 'cards=demo&hold=saved_loading&studyTarget=en', SAVED, note='«Сохранённые»: загрузка (удержание hold=saved_loading)')
 # «Блиц — верно / неверно»: какой из четырёх вариантов верный, шаг заранее не знает (слово в вопросе случайное) — unique=False, пока у Дизайна нет подсказки
 BLITZ = '/flashcards_blitz_session?deck=saved&sec=60'
-add('cards-section-044', ['wait:1500', 'tap:#fc-blitz-opt-0'], 'cards=demo&plus=on&studyTarget=en', BLITZ, unique=False, note='Блиц: ответ «верно» — какой вариант верный, шаги не знают (нужна подсказка Дизайна, см. R1_ROBOT_LINKS_GAPS.md)')
-add('cards-section-045', ['wait:1500', 'tap:#fc-blitz-opt-0'], 'cards=demo&plus=on&studyTarget=en', BLITZ, unique=False, note='Блиц: ответ «неверно, минус жизнь» — то же, что cards-section-044')
+add('cards-section-044', ['wait:1500', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=correct', BLITZ, note='Блиц: ответ «верно» — dev blitz_answer=correct помечает верный вариант testID fc-blitz-opt-target (12.10)')
+add('cards-section-045', ['wait:1500', 'tap:#fc-blitz-opt-target'], 'cards=demo&plus=on&studyTarget=en&blitz_answer=wrong', BLITZ, note='Блиц: ответ «неверно, минус жизнь» — dev blitz_answer=wrong помечает неверный вариант testID fc-blitz-opt-target (12.10)')
 
 # ── Режим Б: занятия «Слова» и «Неправильные глаголы» (shot list G-E02 / G-E03)
 EB = 'energy=5&plus=off&free=on&mode=b'
@@ -43,6 +43,10 @@ COMM = 'spire=open&plus=off&free=on&cards=demo'
 add('community-001', ['tap:#community-sections-spire', 'wait:800'], COMM, '/(tabs)/community', note='вкладка сообщества: строка сегментов, выбран «Шпиль»')
 add('community-007', ['tap:#friends-open-add', 'wait:800'], COMM, '/(tabs)/community', note='«Добавить друга» — шторка friends-add-sheet (в образце «центрированное окно», в коде нижняя шторка)')
 add('community-020', ['see:#friends-empty-add'], COMM, '/(tabs)/community', note='Друзья: пустой список у гостя без друзей (friends-list-empty)')
+
+# ── Подмены Дизайна 12.10 (R1_ROBOT_LINKS_GAPS.md): «Мои ошибки» с данными и друзья со входящей заявкой — только память, только одноразовый гость
+add('mistakes-panel-002', ['wait:1500'], 'mistakes=demo&studyTarget=en', '/mistakes_hub', note='хаб «Мои ошибки» с данными: dev mistakes=demo (6 ошибок: 4 ждут, 2 исправлены; журнал не трогается)')
+add('community-006', ['see:#friend-request-row-dev-demo-friend-request-1'], 'friends=demo&spire=open&plus=off&free=on', '/(tabs)/community', note='Друзья: входящая заявка (dev friends=demo: заявка от Alex и друг Maria, без подписок Firestore и записей)')
 
 # ── Диалоги: завершение вручную через меню «⋯» (нужна хотя бы одна реплика — «Завершить» иначе неактивна)
 DIALOG_PARAMS = 'plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent=granted&studyTarget=en'

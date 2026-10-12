@@ -72,7 +72,8 @@ add('learn-018', ['tap:#combo-pick-topic-*', 'tap:#combo-pick-topic-*@2', 'tap:#
 add('video-007', ['wait:3000', 'await:#lingman-video-card'], 'plus=on', '/lingman_videos', note='«Все видео и плейлисты»: вкладка «Все видео»')
 add('coins-002', [], 'coinRank=5', '/runes_wallet', note='кошелёк: нулевой баланс (у гостя 0 монет)')
 add('coins-005', [], 'coinRank=5', '/coin_rank', note='повышение ранга: недостаточно монет (у гостя 0 монет)')
-add('home-002', [], 'plus=on', '/(tabs)/home', unique=False, note='Главная в СВЕТЛОЙ теме: подмены theme нет — перед кадром включить светлую тему в Настройки → Внешний вид (запрос Темам: dev_state?theme=light)')
+# зачем (Темы 0c789a547): светлая Главная ссылкой — dev_state?appearance=light (только память, живёт до перезапуска; снять — appearance=clear)
+add('home-002', ['wait:1500'], 'plus=on&appearance=light', '/(tabs)/home', note='Главная в СВЕТЛОЙ теме (appearance=light, только память; после серии — перезапуск процесса или appearance=clear)')
 add('overlays-041', ['wait:1500'], 'intros=reset&plus=on&cards=demo', '/flashcards', unique=False, note='окно знакомства «Фразы — в твою коллекцию» = cards_hub_first_visit (feature_intro_sections_copy.ts, screenRoute /flashcards, first_visit); intros=reset вместо intros=seen')
 
 # ── core_switch / link_missing: подмены уже есть в dev_state — ссылки и шаги (координатор 12.10, «link_missing — твоя часть»)

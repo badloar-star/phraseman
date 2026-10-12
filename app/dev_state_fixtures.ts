@@ -366,10 +366,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     const { checkDisposableGuestNow } = await import('./dev_state_account_guard');
     const verdict = checkDisposableGuestNow();
     if (verdict.ok === false) {
-      console.warn(`[DEV-STATE] guest=required refused: ${verdict.reason} — ссылка не применена, переход отменён`); // guard-ok: ранний выход логируется
+      console.warn(`[DEV-STATE] refused guest_required uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)} reason=${verdict.reason} — ссылка не применена, шаги и переход отменены`); // guard-ok: ранний выход логируется
       return { applied, skipped: { all: `guest_required_refused:${verdict.reason}` }, next: null };
     }
-    console.log(`[DEV-STATE] guest=required ok — анонимный гость ${verdict.uid.slice(0, 6)}…`); // guard-ok: единичный лог на ссылку
+    console.log(`[DEV-STATE] guest_required ok uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)}`); // guard-ok: единичный лог на ссылку
     applied.guest = 'required';
   }
   // зачем (первый прогон робота 12.10: cards-002/008/009/013 — 40 с на «DEV-STATE…» без перехода): шаг фикстуры мог зависнуть (замок записи карточек, переход

@@ -94,3 +94,25 @@ add('settings-gap-017', ['tap:#privacy-analytics-consent-switch', 'tap:#privacy-
     note='аналитика выкл, оба ИИ вкл (исходно: аналитика вкл, ИИ выкл), прокручено до «Документы»/«Удалить аккаунт» (НЕ жать)')
 # settings-gap-012 («телефон не разрешает») — ручной шаг Сверки: pm revoke + системное окно «Не разрешать» (координатор 12.10).
 # settings-gap-001 («профиль привязан») — только настоящий вход (G-A10, аккаунт №3): ручной, в утренний лист владельцу.
+
+# ── guest=required (координатор 12.10, п.1: Сверка жмёт «Выйти», «Продолжить» смены, код приглашения и тумблеры ПО-НАСТОЯЩЕМУ).
+# Во всех ссылках с удалением, сменой аккаунта и кодом приглашения, где кадр — гость: на не-госте dev_state отказывает целиком
+# (app/dev_state_fixtures.ts, до любого шага и без перехода на next). Модуль подключается последним — правим уже собранные ссылки.
+# НЕ ставится там, где кадр есть ТОЛЬКО у вошедшего аккаунта («Выйти» и окно «14 дней» рисуются при linkedAuth, app/account_details.tsx):
+# profile-028/029 (выход), profile-030 и auth-gap-009 (удаление с входом) — они на подменах-отказах logout=hold|fail / delete=fail,
+# которые отказывают до любого действия на ЛЮБОМ аккаунте. Настоящий выход без подмены — только по отдельному слову владельца.
+GUEST_REQUIRED_IDS = (
+    ['auth-gap-010', 'auth-gap-011']
+    + [f'auth-gap-0{n}' for n in range(12, 19)]
+    + [f'overlays-campaigns-0{n}' for n in range(16, 27)]
+)
+_GUEST_MISSING = []
+for _rid in GUEST_REQUIRED_IDS:
+    _entry = ENTRIES.get(_rid)
+    if not _entry or 'dev_state?' not in _entry['link']:
+        _GUEST_MISSING.append(_rid)
+        continue
+    if 'guest=required' not in _entry['link']:
+        _entry['link'] = _entry['link'].replace('dev_state?', 'dev_state?guest=required&', 1)
+if _GUEST_MISSING:
+    raise SystemExit(f'guest=required: нет записи шагов для {_GUEST_MISSING} — ссылка без защиты недопустима')

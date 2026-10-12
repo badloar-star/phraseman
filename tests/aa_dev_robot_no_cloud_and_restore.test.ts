@@ -129,11 +129,18 @@ describe('restore=offer|restored', () => {
 describe('guest=required', () => {
   it('чистая проверка: только анонимный гость без провайдеров проходит, без побочных эффектов', () => {
     const { checkDisposableGuestNow } = require('../app/dev_state_account_guard');
-    expect(checkDisposableGuestNow(() => ({ isAnonymous: true, uid: 'guest123', providerData: [] }))).toEqual({ ok: true, uid: 'guest123' });
+    expect(checkDisposableGuestNow(() => ({ isAnonymous: true, uid: 'guest123', providerData: [] })))
+      .toEqual({ ok: true, uid: 'guest123', uidMasked: 'gues…(8)', isAnonymous: true });
+    expect(checkDisposableGuestNow(() => ({ isAnonymous: false, uid: 'acc1', providerData: [{}] })))
+      .toMatchObject({ uidMasked: 'acc1…(4)', isAnonymous: false });
+    expect(checkDisposableGuestNow(() => null)).toMatchObject({ uidMasked: 'none', isAnonymous: null });
     expect(checkDisposableGuestNow(() => ({ isAnonymous: false, uid: 'acc1', providerData: [{}] }))).toMatchObject({ ok: false, reason: 'not_anonymous' });
     expect(checkDisposableGuestNow(() => ({ isAnonymous: true, uid: 'x', providerData: [{}] }))).toMatchObject({ ok: false, reason: 'linked_providers_1' });
     expect(checkDisposableGuestNow(() => null)).toMatchObject({ ok: false, reason: 'no_auth_user' });
-    expect(read('app/dev_state_account_guard.ts')).toMatch(/export function checkDisposableGuestNow[\s\S]{0,200}return classifyGuestUser\(readUser\(\)\);\n\}/);
+    const guardSrc = read('app/dev_state_account_guard.ts');
+    const fn = guardSrc.slice(guardSrc.indexOf('export function checkDisposableGuestNow'), guardSrc.indexOf('export type GuestCheckWithTrace'));
+    expect(fn).toContain('classifyGuestUser(user)');
+    expect(fn).not.toContain('markDevFixtureNoUpload');
   });
 
   it('applyDevState: проверка гостя стоит ДО первого шага и обрывает ссылку без перехода', () => {
@@ -146,5 +153,7 @@ describe('guest=required', () => {
     const block = src.slice(guard, guard + 900);
     expect(block).toContain('return { applied, skipped: { all: `guest_required_refused:${verdict.reason}` }, next: null };');
     expect(block).not.toContain('assertDisposableGuest');
+    // формат координатора: маска uid и само значение isAnonymous
+    expect(block).toContain('[DEV-STATE] refused guest_required uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)}');
   });
 });

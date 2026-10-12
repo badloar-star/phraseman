@@ -37,9 +37,17 @@ function readCurrentUser(): GuardUser {
  * Та же проверка БЕЗ побочных эффектов (без пометки «не выгружать»): для `dev_state?guest=required` — ссылка съёмки отказывает
  * целиком на настоящем аккаунте. `readUser` подменяется в тестах.
  */
-export function checkDisposableGuestNow(readUser: () => GuardUser = readCurrentUser): GuestCheck {
-  return classifyGuestUser(readUser());
+export function checkDisposableGuestNow(readUser: () => GuardUser = readCurrentUser): GuestCheckWithTrace {
+  const user = readUser();
+  // зачем (координатор 12.10): лог отказа показывает, ЧТО решило — маска uid и само значение isAnonymous, а не голое «нет».
+  const uid = user?.uid ? String(user.uid) : '';
+  const uidMasked = uid ? `${uid.slice(0, 4)}…(${uid.length})` : 'none';
+  const isAnonymous = user ? (typeof user.isAnonymous === 'boolean' ? user.isAnonymous : null) : null;
+  return { ...classifyGuestUser(user), uidMasked, isAnonymous };
 }
+
+/** Итог проверки + трасса для лога: маска uid (первые 4 знака и длина) и значение isAnonymous (null — нет пользователя/поля). */
+export type GuestCheckWithTrace = GuestCheck & Readonly<{ uidMasked: string; isAnonymous: boolean | null }>;
 
 /**
  * Бросает, если текущий аккаунт — не одноразовый гость. Вызывать ПЕРЕД первой записью фикстуры.

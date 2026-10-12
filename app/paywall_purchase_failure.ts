@@ -56,3 +56,27 @@ export function restoreStaleUi(accountStillCurrent: boolean): 'account_changed_t
 export function purchaseUnverifiedUi(accountStillCurrent: boolean): 'unverified_dialog' | 'previous_account_alert' {
   return accountStillCurrent ? 'unverified_dialog' : 'previous_account_alert';
 }
+
+/** Что делать с окном покупки после сбоя пост-шага (доступ УЖЕ применён, покупка успешна). */
+export type PostAccessFailureAction = 'close' | 'exit_onboarding' | 'skip';
+
+/**
+ * Ревью fa6648f02 (2) и (3): условие закрытия окна после сбоя пост-шага — чистая функция с таблицей входов.
+ * Аккаунт сменился или окно уже закрыто — ничего не трогаем. Онбординг-пейвол (`onboarding`) закрывает не окно, а ЭКРАН ОНБОРДИНГА: выходим дальше по сценарию событием завершения
+ * (вид онбординга не меняется). `onboarding_plan` рисует сам онбординг и закрывает себя сам. Остальные источники — закрыть окно / вернуть к уроку.
+ */
+export function postAccessFailureAction(args: { source: string; accountCurrent: boolean; dead: boolean }): PostAccessFailureAction {
+  if (!args.accountCurrent || args.dead) return 'skip';
+  if (args.source === 'onboarding') return 'exit_onboarding';
+  if (args.source === 'onboarding_plan') return 'skip';
+  return 'close';
+}
+
+/**
+ * Ревью fa6648f02 (3): завершение онбординг-пейвола (finishOnboardingPaywallFlow) вернуло «не удалось» ПОСЛЕ включённого Plus. Событие завершения внутри него шлётся последним шагом,
+ * поэтому при false оно НЕ ушло и экран остался бы висеть. Аккаунт сменился (stale) — не трогаем; ok+false на том же аккаунте — шлём событие сами; ok+true — делать нечего.
+ */
+export function onboardingFinishFailureAction(args: { status: 'ok' | 'stale'; value: boolean; accountCurrent: boolean }): 'emit_completed' | 'skip' {
+  if (args.status !== 'ok' || !args.accountCurrent) return 'skip';
+  return args.value ? 'skip' : 'emit_completed';
+}

@@ -62,7 +62,10 @@ import { claimInitialInventoryResolution, classifyPaywallInventory } from './pay
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWithCount } from '../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): срок пробного — число из магазина (3, 7, 14…), форма слова обязана согласоваться
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import { PURCHASE_FAILURE_PHASE_LABEL, purchaseFailurePhase, purchaseFailureUi, purchaseStaleUi, purchaseUnverifiedUi, restoreStaleUi } from './paywall_purchase_failure';
+import {
+  onboardingFinishFailureAction, postAccessFailureAction, PURCHASE_FAILURE_PHASE_LABEL, purchaseFailurePhase, purchaseFailureUi, purchaseStaleUi, purchaseUnverifiedUi, restoreStaleUi,
+} from './paywall_purchase_failure';
+import { previousAccountPurchaseCopy, type PurchaseCertainty } from './paywall_previous_account_copy';
 import { applyDevPaywallView, getDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
 import { markCelebrationPending } from './premium_celebration_state';
@@ -482,30 +485,6 @@ export function restoreAccountChangedToast() {
     tr: 'Hesap değişti — geri yükleme yarıda kesildi',
     pl: 'Konto się zmieniło — przywracanie przerwano',
   });
-}
-
-/**
- * Покупка (или её подтверждение) оборвалась, а аккаунт уже сменился (ревью 12.10 (а)): «Проверить статус / Восстановить» на новом аккаунте не помогут.
- * Говорим прямо, где искать доступ и что платить заново не нужно.
- */
-function previousAccountPurchaseCopy(lang: Lang): { title: string; message: string } {
-  return {
-    title: triLang(lang, {
-      ru: 'Покупка на другом аккаунте', uk: 'Покупка на іншому акаунті', en: 'Purchase is on another account', es: 'La compra está en otra cuenta',
-      'pt-BR': 'A compra está em outra conta', vi: 'Giao dịch nằm ở tài khoản khác', id: 'Pembelian ada di akun lain', tr: 'Satın alma başka bir hesapta', pl: 'Zakup jest na innym koncie',
-    }),
-    message: triLang(lang, {
-      ru: 'Покупка оформлена на предыдущий аккаунт — войди в него, и доступ Plus будет там. Платить заново не нужно.',
-      uk: 'Покупку оформлено на попередній акаунт — увійди в нього, і доступ Plus буде там. Платити заново не потрібно.',
-      en: 'The purchase went to your previous account. Sign in to it and Plus will be there. No need to pay again.',
-      es: 'La compra se hizo en tu cuenta anterior. Inicia sesión en ella y Plus estará allí. No hace falta pagar de nuevo.',
-      'pt-BR': 'A compra foi feita na sua conta anterior. Entre nela e o Plus estará lá. Não é preciso pagar de novo.',
-      vi: 'Giao dịch được thực hiện ở tài khoản trước đó. Hãy đăng nhập vào đó, Plus sẽ có ở đấy. Không cần trả tiền lại.',
-      id: 'Pembelian tercatat di akun sebelumnya. Masuk ke akun itu dan Plus ada di sana. Tidak perlu membayar lagi.',
-      tr: 'Satın alma önceki hesabına yapıldı. O hesaba gir, Plus orada olacak. Yeniden ödemene gerek yok.',
-      pl: 'Zakup trafił na poprzednie konto. Zaloguj się na nie, a Plus będzie tam. Nie trzeba płacić ponownie.',
-    }),
-  };
 }
 
 /** Восстановление не удалось, аккаунт при этом тот же (stale от неподтянутой личности / не взятой блокировки) — честное «попробуй ещё раз», а не «аккаунт сменился». */
@@ -1147,12 +1126,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // а не диалог «статус не подтверждён».
     let accessApplied = false;
     // Один диалог «статус не подтверждён» для всех мест (сбой после окна магазина, stale после вызова, доступ не применён).
-    const presentUnverifiedDialog = (why: string): void => {
+    const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {
       // зачем (ревью 12.10 (а)): аккаунт уже не тот — «Проверить статус / Восстановить» на новом аккаунте не помогут; отдельный текст без этих кнопок.
       const ui = purchaseUnverifiedUi(isOperationAccountCurrent());
-      DebugLogger.warn('[PAYWALL]', `purchase:unverified_dialog причина=${why} plan=${selected} source=${source} аккаунтТот=${String(isOperationAccountCurrent())} ui=${ui}`);
+      DebugLogger.warn('[PAYWALL]', `purchase:unverified_dialog причина=${why} plan=${selected} source=${source} аккаунтТот=${String(isOperationAccountCurrent())} ui=${ui} оплата=${certainty}`);
       if (ui === 'previous_account_alert') {
-        const copy = previousAccountPurchaseCopy(lang);
+        // зачем (ревью fa6648f02 п.1): текст честный про деньги — confirmed (магазин подтвердил) утверждает, unknown (stale / сбой после окна) — только «если оплата прошла»
+        const copy = previousAccountPurchaseCopy(lang, certainty);
         void enqueueThemedBlockingInfoAlert(copy.title, copy.message, 'OK');
         return;
       }
@@ -1281,7 +1261,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         const staleUi = purchaseStaleUi(purchaseInvoked);
         DebugLogger.warn('[PAYWALL]', `purchase:stale plan=${selected} source=${source} статус=${purchaseResult.status} purchaseInvoked=${String(purchaseInvoked)} `
           + `аккаунтТот=${String(isOperationAccountCurrent())} ui=${staleUi}`);
-        if (staleUi === 'unverified_dialog') presentUnverifiedDialog('stale после вызова purchasePackage');
+        if (staleUi === 'unverified_dialog') presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown');
         else if (isOperationAccountCurrent() && !lifeRef.current.dead) setTapNotice(true);
         return;
       }
@@ -1343,7 +1323,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // Тихий возврат оставлял бы живую кнопку «Купить» — человек заплатил бы второй раз. Диалог «статус не подтверждён» ведёт к «Проверить статус / Восстановить».
         DebugLogger.warn('[PAYWALL]', `purchase:not_applied plan=${selected} source=${source} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} `
           + `аккаунтТот=${String(isOperationAccountCurrent())} ui=unverified_dialog`);
-        presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально');
+        presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed');
         return;
       }
       accessApplied = true;
@@ -1393,8 +1373,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           // покупки должно спросить можно ли отправлять». Разрешение есть → ставим сразу.
           // Нет → вместо закрытия пейвола показываем экран «Plus ваш. Напомнить…?»;
           // навигацию дальше делает он (allowTrialReminder / skipTrialReminder).
-          const permission = await getNotificationPermissionStatus();
-          DebugLogger.info('[TRIAL-REMINDER]', `покупка: системное разрешение=${permission}`);
+          // зачем (ревью fa6648f02 п.4): напоминание о конце пробного — best-effort. Сбой чтения разрешения — в журнал, окно закрывается дальше обычным путём (без экрана «Напомнить?»).
+          let permission: Awaited<ReturnType<typeof getNotificationPermissionStatus>> | null = null;
+          try {
+            permission = await getNotificationPermissionStatus();
+          } catch (permissionError) {
+            DebugLogger.error('[TRIAL-REMINDER] purchase:permission_status_failed', permissionError instanceof Error ? permissionError : new Error(String(permissionError)), 'warning');
+          }
+          DebugLogger.info('[TRIAL-REMINDER]', `покупка: системное разрешение=${permission ?? 'не прочитано'}`);
           if (permission === 'granted') {
             const copy = trialReminderCopy(lang, reminderPrice);
             void scheduleTrialEndReminder(reminderDays, copy.title, copy.body, trialStartMs, 'plus_two_days')
@@ -1403,7 +1389,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
                 if (ok) void trackEvent('trial_reminder_scheduled', { context, plan: selected, paywall: variant, days: reminderDays });
               })
               .catch((e: unknown) => DebugLogger.error('[TRIAL-REMINDER] purchase', e instanceof Error ? e : new Error(String(e)), 'warning'));
-          } else if (isOperationAccountCurrent()) {
+          } else if (permission !== null && isOperationAccountCurrent()) {
             DebugLogger.info('[TRIAL-REMINDER]', 'покупка: показываем экран «Напомнить о конце пробного?»');
             setTrialReminderPrompt({ days: reminderDays, priceLabel: reminderPrice, trialStartMs });
             return;
@@ -1422,7 +1408,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
         );
         if (activated.status !== 'ok' || !activated.value) {
-          DebugLogger.warn('[PAYWALL]', `покупка: онбординг — завершение флоу не подтверждено статус=${activated.status} значение=${activated.status === 'ok' ? String(activated.value) : '-'} (доступ уже применён)`);
+          // зачем (ревью fa6648f02 п.3): Plus уже включён, а завершение онбординг-пейвола не удалось — событие завершения в нём шлётся последним шагом и НЕ ушло, экран остался бы висеть.
+          const exitAction = onboardingFinishFailureAction({ status: activated.status, value: activated.status === 'ok' ? activated.value : false, accountCurrent: isOperationAccountCurrent() });
+          DebugLogger.warn('[PAYWALL]', `покупка: онбординг — завершение флоу не подтверждено статус=${activated.status} значение=${activated.status === 'ok' ? String(activated.value) : '-'} действие=${exitAction} (доступ уже применён)`);
+          if (exitAction === 'emit_completed') emitAppEvent('onboarding_paywall_completed');
           return;
         }
         return;
@@ -1445,17 +1434,20 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       // только в журнал; диалог «статус не подтверждён» после успешной покупки был бы ложной тревогой.
       if (accessApplied) {
         DebugLogger.error('[PAYWALL] purchase:post_access_step_failed', err instanceof Error ? err : new Error(String(err)), 'warning');
-        // зачем (ревью 12.10 (б)): покупка УСПЕШНА и доступ применён, а окно покупки от сбоя пост-шага осталось бы открытым — человек видел бы пейвол при активном Plus.
-        // Закрываем/возвращаем к уроку тем же путём, что и в норме; онбординг закрывает свой флоу сам.
-        if (source !== 'onboarding' && source !== 'onboarding_plan' && isOperationAccountCurrent() && !lifeRef.current.dead) {
-          try {
+        // зачем (ревью 12.10 (б) и fa6648f02 п.2–3): покупка УСПЕШНА и доступ применён, а окно от сбоя пост-шага осталось бы открытым. Что делать — решает чистая функция (таблица в тесте):
+        // закрыть окно / вернуть к уроку, выйти из онбординг-пейвола дальше по сценарию (событие завершения, вид онбординга не меняется) или не трогать (аккаунт сменился, окно уже закрыто).
+        const postAction = postAccessFailureAction({ source, accountCurrent: isOperationAccountCurrent(), dead: lifeRef.current.dead });
+        DebugLogger.info('[PAYWALL]', `purchase:post_access_step_failed действие=${postAction} source=${source}`);
+        try {
+          if (postAction === 'close') {
             if (!resumeLessonAfterPremium(router, resumeLessonId)) {
               dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
             }
-            DebugLogger.info('[PAYWALL]', `purchase:post_access_step_failed — окно закрыто после сбоя пост-шага source=${source}`);
-          } catch (closeError) {
-            DebugLogger.error('[PAYWALL] purchase:post_access_close_failed', closeError instanceof Error ? closeError : new Error(String(closeError)), 'warning');
+          } else if (postAction === 'exit_onboarding') {
+            emitAppEvent('onboarding_paywall_completed');
           }
+        } catch (closeError) {
+          DebugLogger.error('[PAYWALL] purchase:post_access_close_failed', closeError instanceof Error ? closeError : new Error(String(closeError)), 'warning');
         }
         return;
       }
@@ -1522,7 +1514,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           emitAppEvent('action_toast', storeUnreachableToast());
           if (isOperationAccountCurrent() && !lifeRef.current.dead) setTapNotice(true);
         } else {
-          presentUnverifiedDialog(`сбой после запроса окна магазина (${purchaseErrorCategory(err)})`);
+          presentUnverifiedDialog(`сбой после запроса окна магазина (${purchaseErrorCategory(err)})`, 'unknown');
         }
       }
     } finally {
@@ -1674,7 +1666,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             (isCommitCurrent) => finishOnboardingPaywallFlow(isCommitCurrent),
           );
           if (activated.status !== 'ok' || !activated.value) {
-            DebugLogger.warn('[PAYWALL]', `restore: онбординг — завершение флоу не подтверждено mode=${mode} статус=${activated.status} значение=${activated.status === 'ok' ? String(activated.value) : '-'} (доступ уже применён)`);
+            // зачем (ревью fa6648f02 п.3): то же, что в покупке — Plus восстановлен, а экран онбординг-пейвола не отпустили; выходим дальше по сценарию.
+            const exitAction = onboardingFinishFailureAction({ status: activated.status, value: activated.status === 'ok' ? activated.value : false, accountCurrent: isOperationAccountCurrent() });
+            DebugLogger.warn('[PAYWALL]', `restore: онбординг — завершение флоу не подтверждено mode=${mode} статус=${activated.status} значение=${activated.status === 'ok' ? String(activated.value) : '-'} действие=${exitAction} (доступ уже применён)`);
+            if (exitAction === 'emit_completed') emitAppEvent('onboarding_paywall_completed');
             return;
           }
           return;

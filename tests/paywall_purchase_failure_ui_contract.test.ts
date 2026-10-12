@@ -13,9 +13,12 @@ import {
   purchaseFailurePhase,
   purchaseFailureUi,
   purchaseStaleUi,
+  onboardingFinishFailureAction,
+  postAccessFailureAction,
   purchaseUnverifiedUi,
   restoreStaleUi,
 } from '../app/paywall_purchase_failure';
+import { previousAccountPurchaseCopy } from '../app/paywall_previous_account_copy';
 import { packPurchaseGate } from '../app/community_packs/packPurchaseGate';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
@@ -69,7 +72,7 @@ describe('ревью п.1: stale вокруг purchasePackage', () => {
   it('stale-ветка решает через purchaseStaleUi: диалог при вызове магазина, иначе тихая подсказка; без немого return', () => {
     const stale = between(body, "if (purchaseResult.status !== 'ok') {", 'let { customerInfo }');
     expect(stale).toContain('purchaseStaleUi(purchaseInvoked)');
-    expect(stale).toContain("presentUnverifiedDialog('stale после вызова purchasePackage')");
+    expect(stale).toContain("presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown')");
     expect(stale).toContain('setTapNotice(true)');
     expect(stale).toContain('DebugLogger.warn');
   });
@@ -81,7 +84,7 @@ describe('ревью п.2: доступ подтверждён магазино�
   it('вместо тихого return — лог и диалог «статус не подтверждён»', () => {
     const block = between(body, "if (applied.status !== 'ok' || !applied.value) {", 'accessApplied = true;');
     expect(block).toContain('purchase:not_applied');
-    expect(block).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально')");
+    expect(block).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed')");
     expect(block).toContain('return;');
   });
 });
@@ -237,22 +240,45 @@ describe('ревью (а): аккаунт сменился — отдельны�
   const body = between(read('app/paywall_purchase.ts'), 'const handlePurchase = useCallback', 'const finishAfterTrialReminderPrompt');
 
   it('единый диалог проверяет аккаунт: при смене — инфо-окно с одной кнопкой, до showUnverifiedPurchaseAlert; stale и not_applied идут через него', () => {
-    const dialog = between(body, 'const presentUnverifiedDialog = (why: string): void => {', 'try {');
+    const dialog = between(body, 'const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {', 'try {');
     expect(dialog.indexOf('purchaseUnverifiedUi(isOperationAccountCurrent())')).toBeGreaterThan(-1);
     expect(dialog.indexOf("ui === 'previous_account_alert'")).toBeLessThan(dialog.indexOf('showUnverifiedPurchaseAlert(lang)'));
+    expect(dialog).toContain('previousAccountPurchaseCopy(lang, certainty)');
     expect(dialog).toContain('enqueueThemedBlockingInfoAlert(copy.title, copy.message');
-    expect(body).toContain("presentUnverifiedDialog('stale после вызова purchasePackage')");
-    expect(body).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально')");
+    expect(body).toContain("presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown')");
+    expect(body).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed')");
+    expect(body).toContain("`сбой после запроса окна магазина (${purchaseErrorCategory(err)})`, 'unknown')");
   });
 
-  it('текст говорит, куда войти и что платить заново не нужно (все 9 языков заполнены)', () => {
-    const src = read('app/paywall_purchase.ts');
-    const copy = between(src, 'function previousAccountPurchaseCopy', 'export function restoreRetryToast');
-    expect(copy).toContain('Покупка оформлена на предыдущий аккаунт — войди в него');
-    expect(copy).toContain('Платить заново не нужно.');
-    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
-      expect(copy.match(new RegExp(`${lang}: `, 'g'))?.length).toBeGreaterThanOrEqual(2); // заголовок и текст
+  const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+
+  it('confirmed (магазин подтвердил оплату): утверждает «оформлена на предыдущий аккаунт» и «платить заново не нужно» — на всех 9 языках текст есть', () => {
+    const ru = previousAccountPurchaseCopy('ru', 'confirmed');
+    expect(ru.message).toContain('Покупка оформлена на предыдущий аккаунт — войди в него');
+    expect(ru.message).toContain('Платить заново не нужно.');
+    for (const lang of LANGS) {
+      const copy = previousAccountPurchaseCopy(lang, 'confirmed');
+      expect(copy.title.length).toBeGreaterThan(3);
+      expect(copy.message.length).toBeGreaterThan(20);
     }
+  });
+
+  it('unknown (stale после вызова магазина / общий catch): условный текст «если оплата прошла…» и НИКАКИХ обещаний «платить заново не нужно» — на всех 9 языках', () => {
+    const ru = previousAccountPurchaseCopy('ru', 'unknown');
+    expect(ru.message).toBe('Если оплата прошла, она на предыдущем аккаунте — войди в него, Plus будет там.');
+    expect(ru.title).toBe('Аккаунт сменился во время покупки');
+    for (const lang of LANGS) {
+      const unknown = previousAccountPurchaseCopy(lang, 'unknown');
+      const confirmed = previousAccountPurchaseCopy(lang, 'confirmed');
+      expect(unknown.message.length).toBeGreaterThan(20);
+      // тексты разных видов различаются и по заголовку, и по сообщению (иначе «unknown» снова утверждал бы то же, что confirmed)
+      expect(unknown.message).not.toBe(confirmed.message);
+      expect(unknown.title).not.toBe(confirmed.title);
+    }
+    expect(previousAccountPurchaseCopy('en', 'unknown').message).toContain('If the payment went through');
+    expect(previousAccountPurchaseCopy('en', 'unknown').message).not.toContain('No need to pay again');
+    expect(previousAccountPurchaseCopy('uk', 'unknown').message).toContain('Якщо оплата пройшла');
+    expect(previousAccountPurchaseCopy('uk', 'unknown').message).not.toContain('не потрібно');
   });
 });
 
@@ -261,7 +287,10 @@ describe('ревью (б): сбой пост-шага после применё�
   const guard = between(body, 'if (accessApplied) {', 'const errCode');
 
   it('окно закрывается / возвращает к уроку (не в онбординге, аккаунт тот же, окно живо), сбой закрытия — в журнал', () => {
-    expect(guard).toContain("source !== 'onboarding' && source !== 'onboarding_plan' && isOperationAccountCurrent() && !lifeRef.current.dead");
+    expect(guard).toContain('postAccessFailureAction({ source, accountCurrent: isOperationAccountCurrent(), dead: lifeRef.current.dead })');
+    expect(guard).toContain("postAction === 'close'");
+    expect(guard).toContain("postAction === 'exit_onboarding'");
+    expect(guard).toContain("emitAppEvent('onboarding_paywall_completed')");
     expect(guard).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
     expect(guard).toContain('dismissPaywallModal(router');
     expect(guard).toContain('purchase:post_access_close_failed');
@@ -289,5 +318,58 @@ describe('ревью (д): отказ гейта набора — без «по�
     expect(gate).toContain('packBuyUnavailableToast()');
     expect(gate).not.toContain('packBuyFailedToast()');
     expect(host).toContain("res.reason === 'invalid_price' ? packBuyUnavailableToast() : packBuyFailedToast()");
+  });
+});
+
+describe('ревью fa6648f02 (2): postAccessFailureAction — таблица входов', () => {
+  const sources = ['onboarding', 'onboarding_plan', 'lesson_gate', 'settings_plus', 'afterwin_levelup'];
+
+  it('аккаунт сменился или окно уже закрыто — не трогаем ни в одном источнике', () => {
+    for (const source of sources) {
+      expect(postAccessFailureAction({ source, accountCurrent: false, dead: false })).toBe('skip');
+      expect(postAccessFailureAction({ source, accountCurrent: true, dead: true })).toBe('skip');
+      expect(postAccessFailureAction({ source, accountCurrent: false, dead: true })).toBe('skip');
+    }
+  });
+
+  it('обычные источники — закрыть окно / вернуть к уроку', () => {
+    for (const source of ['lesson_gate', 'settings_plus', 'afterwin_levelup', 'energy_stop_sheet']) {
+      expect(postAccessFailureAction({ source, accountCurrent: true, dead: false })).toBe('close');
+    }
+  });
+
+  it('онбординг-пейвол — выход дальше по сценарию (событие завершения); onboarding_plan закрывает сам онбординг', () => {
+    expect(postAccessFailureAction({ source: 'onboarding', accountCurrent: true, dead: false })).toBe('exit_onboarding');
+    expect(postAccessFailureAction({ source: 'onboarding_plan', accountCurrent: true, dead: false })).toBe('skip');
+  });
+});
+
+describe('ревью fa6648f02 (3): сбой завершения онбординг-пейвола после включённого Plus', () => {
+  it('таблица: событие завершения шлём ТОЛЬКО при ok+false на том же аккаунте', () => {
+    expect(onboardingFinishFailureAction({ status: 'ok', value: false, accountCurrent: true })).toBe('emit_completed');
+    expect(onboardingFinishFailureAction({ status: 'ok', value: true, accountCurrent: true })).toBe('skip');
+    expect(onboardingFinishFailureAction({ status: 'stale', value: false, accountCurrent: true })).toBe('skip');
+    expect(onboardingFinishFailureAction({ status: 'ok', value: false, accountCurrent: false })).toBe('skip');
+    expect(onboardingFinishFailureAction({ status: 'stale', value: false, accountCurrent: false })).toBe('skip');
+  });
+
+  const src = read('app/paywall_purchase.ts');
+  it('и покупка, и восстановление выходят дальше по сценарию, не только пишут лог', () => {
+    const purchase = between(src, 'const handlePurchase = useCallback', 'const finishAfterTrialReminderPrompt');
+    const restore = between(src, 'const handleRestore = useCallback', 'entitlementSyncRef.current = handleRestore;');
+    for (const block of [purchase, restore]) {
+      expect(block).toContain('onboardingFinishFailureAction({ status: activated.status');
+      expect(block).toContain("if (exitAction === 'emit_completed') emitAppEvent('onboarding_paywall_completed');");
+    }
+  });
+});
+
+describe('ревью fa6648f02 (4): сбой чтения разрешения уведомлений в пробном', () => {
+  it('сбой — в журнал, экран «Напомнить?» не показываем, окно закрывается обычным путём', () => {
+    const body = between(read('app/paywall_purchase.ts'), 'const handlePurchase = useCallback', 'const finishAfterTrialReminderPrompt');
+    const block = between(body, 'let permission:', "if (permission === 'granted') {");
+    expect(block).toContain('try {');
+    expect(block).toContain('purchase:permission_status_failed');
+    expect(body).toContain('} else if (permission !== null && isOperationAccountCurrent()) {');
   });
 });

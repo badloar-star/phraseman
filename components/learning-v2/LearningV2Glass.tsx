@@ -204,7 +204,7 @@ export const Lv2Option = memo(function Lv2Option({
           borderColor: edge ?? 'transparent',
           borderWidth: edge ? StyleSheet.hairlineWidth : 0, // shadow-ok: кольцо исхода ответа верно/неверно
           boxShadow: lifted ? raisedBoxShadow(g) : plateBoxShadow(g),
-          transform: lifted ? [{ translateY: RAISED_LIFT }] : undefined,
+          transform: lifted ? [{ translateY: RAISED_LIFT }] : [],
           opacity: verdict === 'dim' ? 0.45 : pressed ? 0.86 : 1,
           paddingRight: showMark && (ok || bad) ? 48 : 18,
           paddingLeft: showMark && (ok || bad) ? 48 : 18,

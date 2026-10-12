@@ -206,7 +206,7 @@ export function ExamOption({
         {
           backgroundColor: state === 'pressed' ? glass.selected : bg,
           boxShadow: lifted ? raisedBoxShadow(glass) : plateBoxShadow(glass),
-          transform: lifted ? [{ translateY: RAISED_LIFT }] : undefined,
+          transform: lifted ? [{ translateY: RAISED_LIFT }] : [],
           opacity: pressed ? 0.85 : 1,
         },
       ]}

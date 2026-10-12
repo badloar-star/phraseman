@@ -115,7 +115,9 @@ export default function SettingsLanguage() {
                   withHaptic={false}
                   withSound={false}
                   variant="card"
-                  style={{ opacity: enabled ? 1 : 0.42, transform: active ? [{ translateY: RAISED_LIFT }] : undefined }}
+                  // зачем (координатор 12.10, 🔴 краш смены языка): ключ transform со значением undefined у бывшей активной строки Fabric превращал в null →
+                  // processTransform(null) в dev падал на null.forEach. Ключ transform — всегда массив; [] = «без сдвига». Сторож: transform_never_undefined_contract.
+                  style={{ opacity: enabled ? 1 : 0.42, transform: active ? [{ translateY: RAISED_LIFT }] : [] }}
                   contentStyle={active ? activeRowStyle : rowStyle}
                 >
                   <PlateFill g={glass} radius={14} raised={active} />

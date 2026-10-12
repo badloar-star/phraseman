@@ -194,6 +194,33 @@ if (stripMultipartForBundles) {
   };
 }
 
+// зачем (координатор 12.10, срочно — инфраструктура съёмки): dev-client запрашивает бандл с `lazy=true`, и каждый import()
+// собирается отдельным бандлом на сотни модулей (147 строк «Android Bundled … (745 modules)» в metro_015402.log), а после
+// force-stop — заново: сборщик дорастал до 6,5 ГБ за 2–3 минуты и падал, робот Сверки ловил timeout. EXPO_NO_METRO_LAZY=1
+// не помогал — параметр ставит сам клиент в URL. Здесь lazy=true → lazy=false в запросах бандла: один полный бандл,
+// import() внутри без дозапросов. Правило Expo (виртуальная точка входа) сохраняется — наше применяется после него.
+// Только dev-сервер: при EXPO_PUBLIC_STORE_RELEASE=1 не ставится; вернуть ленивую сборку — PHRASEMAN_METRO_KEEP_LAZY=1.
+function forceEagerBundleUrl(url) {
+  if (typeof url !== 'string' || !/\.(bundle|map)(\?|$)/.test(url.split('#')[0])) return url;
+  return url.replace(/([?&])lazy=true(?=&|$)/, '$1lazy=false');
+}
+if (process.env.EXPO_PUBLIC_STORE_RELEASE !== '1' && process.env.PHRASEMAN_METRO_KEEP_LAZY !== '1') {
+  const expoRewriteRequestUrl = config.server?.rewriteRequestUrl;
+  let loggedEager = false;
+  config.server = {
+    ...config.server,
+    rewriteRequestUrl: (url) => {
+      const base = typeof expoRewriteRequestUrl === 'function' ? expoRewriteRequestUrl(url) : url;
+      const next = forceEagerBundleUrl(base);
+      if (next !== base && !loggedEager) {
+        loggedEager = true;
+        console.log('[BUNDLER-EAGER] lazy=true → lazy=false: один полный бандл, без дозапросов import() (PHRASEMAN_METRO_KEEP_LAZY=1 — вернуть)');
+      }
+      return next;
+    },
+  };
+}
+
 const defaultResolveRequest = config.resolver.resolveRequest;
 const routerContextPath = path.join(__dirname, 'router.ctx.js');
 const firebaseFunctionsWebShimPath = path.join(__dirname, 'web_shims', 'firebase-functions-web-shim.js');

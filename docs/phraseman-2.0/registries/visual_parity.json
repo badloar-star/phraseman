@@ -32782,22 +32782,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-010.png",
+      "evidence_at": "2026-10-12T02:37:01.061Z",
+      "evidence_sha256": "52915075826156f16a5d6860201503e546bf9b823fd08c16964abbc88096505e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В образце масштаб «1 колонка» (ручка у правого края, карточки на всю ширину с «···»), в приложении масштаб «2 колонки» (ручка на втором делении, плитки без «···») — кадр снят при другом положении ползунка; переснять в масштабе «1 колонка».",
+        "[данные] Счётчик «63» (после удаления Gate) против «64» в образце; список начинается с Layover, в образце с Gate.",
+        "[вёрстка, мелко] Под плашкой отмены в приложении выглядывает край кнопки «Тренировать» — в образце она скрыта плашкой."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:38:03.011Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:36, утверждённый cards-v2 №10 «Удалено — вернуть»): плашка отмены совпала — урна, «Удалено», светлая кнопка «Вернуть» справа, поверх списка у нижнего края; шапка и ползунок те же."
     },
     {
       "id": "cards-v2-011",
@@ -32822,22 +32827,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-011.png",
+      "evidence_at": "2026-10-12T02:37:18.354Z",
+      "evidence_sha256": "bfc844dd7664b4e7bf1a72bf22a45184d81721f1cae5690ebb1e2b29de0656cf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] Блок пустого состояния в приложении сидит ниже примерно на 70 px (≈6 % высоты экрана): плитка-закладка на y≈590 против 522, кнопка на y≈843 против 768; зазоры внутри блока в приложении на ~10 % больше. В образце блок выше центра области под заголовком — подтянуть вертикальное положение."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:38:03.011Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&next=/flashcards_collection?cat=save"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:37, утверждённый cards-v2 №11 «Пусто»): состав совпал — шапка («‹», поиск, «+», «⋮»), заголовок «Сохранённые» без счётчика, плитка-закладка, «Пока пусто», «Сохраняй слова из уроков», светлая кнопка «Открыть каталог»."
     },
     {
       "id": "cards-v2-012",

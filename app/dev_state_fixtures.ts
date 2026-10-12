@@ -260,6 +260,9 @@ export function isDevStateAvailable(): boolean {
 }
 
 /** Выставить состояния. Каждое — независимо: сбой одного не мешает остальным (и пишет причину). */
+/** Потолок одного шага фикстуры, мс: зависший шаг снимается и пишется в skipped, а не держит экран «DEV-STATE…» вечно. */
+const DEV_STATE_STEP_CEILING_MS = 15_000;
+
 export async function applyDevState(request: DevStateRequest): Promise<DevStateResult> {
   const applied: Record<string, string> = {};
   const skipped: Record<string, string> = {};
@@ -267,13 +270,31 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     console.warn('[DEV-STATE] refused: not a dev build'); // guard-ok: ранний выход логируется
     return { applied, skipped: { all: 'not_dev_build' }, next: null };
   }
+  // зачем (первый прогон робота 12.10: cards-002/008/009/013 — 40 с на «DEV-STATE…» без перехода): шаг фикстуры мог зависнуть (замок записи карточек, переход
+  // аккаунта) и держать ВЕСЬ экран; логов по шагам не было. Теперь каждый шаг пишет старт/итог с длительностью, а зависший снимается потолком
+  // и попадает в skipped — переход на next не ждёт его вечно. Потолок короткий: следующие шаги, берущие тот же замок, тоже упрутся в свой потолок.
   const step = async (key: string, value: string, run: () => Promise<boolean | void>) => {
+    const startedAt = Date.now();
+    console.log(`[DEV-STATE] step ${key}=${value}: старт`); // guard-ok: трассировка шага
+    let timer: ReturnType<typeof setTimeout> | null = null;
     try {
-      const ok = await run();
-      if (ok === false) skipped[key] = `${value}: отказ`;
+      const raced = await Promise.race([
+        run(),
+        new Promise<'__ceiling'>((resolve) => { timer = setTimeout(() => resolve('__ceiling'), DEV_STATE_STEP_CEILING_MS); }),
+      ]);
+      if (raced === '__ceiling') {
+        skipped[key] = `${value}: потолок ${DEV_STATE_STEP_CEILING_MS} мс — шаг завис`;
+        console.warn(`[DEV-STATE] step ${key}=${value}: ПОТОЛОК ${DEV_STATE_STEP_CEILING_MS} мс, идём дальше (шаг продолжает работать в фоне)`); // guard-ok: причина пропуска
+        return;
+      }
+      if (raced === false) skipped[key] = `${value}: отказ`;
       else applied[key] = value;
+      console.log(`[DEV-STATE] step ${key}=${value}: ${raced === false ? 'отказ' : 'ок'} за ${Date.now() - startedAt} мс`); // guard-ok: итог шага
     } catch (error) {
       skipped[key] = `${value}: ${error instanceof Error ? error.message : String(error)}`;
+      console.warn(`[DEV-STATE] step ${key}=${value}: ОШИБКА за ${Date.now() - startedAt} мс`, skipped[key]); // guard-ok: причина ошибки шага
+    } finally {
+      if (timer) clearTimeout(timer);
     }
   };
   if (request.mode) {

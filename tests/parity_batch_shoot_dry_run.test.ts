@@ -31,7 +31,7 @@ const FAKE_XML = `<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hiera
 </node></hierarchy>`;
 
 function run(args: string[], env: Record<string, string> = {}) {
-  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', env: { ...process.env, ...env }, timeout: 60_000 });
+  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', env: { ...process.env, PARITY_SHOT_SCRIPT: path.join(ROOT, 'tests', 'helpers', 'fake_parity_shot.cjs'), ...env }, timeout: 60_000 });
 }
 
 function evalModule(code: string): unknown {
@@ -119,11 +119,11 @@ describe('parity_batch_shoot', () => {
   it('on a fake adb: a ready marker saves <id>.png and writes an ok journal line', () => {
     const out = path.join(tmp, 'out_ok');
     const log = path.join(tmp, 'adb_ok.log');
-    const result = run(['cards-005', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log });
+    const result = run(['cards-014', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', FAKE_LOG: log });
     expect(result.status).toBe(0);
-    expect(fs.existsSync(path.join(out, 'cards-005.png'))).toBe(true);
+    expect(fs.existsSync(path.join(out, 'cards-014.png'))).toBe(true);
     const journal = fs.readdirSync(path.join(out, '_runs')).find((f) => f.endsWith('.tsv')) as string;
-    expect(fs.readFileSync(path.join(out, '_runs', journal), 'utf8')).toMatch(/cards-005\t[^\t]+\tok\t/);
+    expect(fs.readFileSync(path.join(out, '_runs', journal), 'utf8')).toMatch(/cards-014\t[^\t]+\tok\t/);
     expect(fs.readFileSync(log, 'utf8')).toContain('am start -a android.intent.action.VIEW');
   });
 
@@ -159,15 +159,15 @@ describe('parity_batch_shoot', () => {
   it('on a fake adb: no marker → timeout, exit code 1, and the real <id>.png is NOT overwritten', () => {
     const out = path.join(tmp, 'out_timeout');
     fs.mkdirSync(out, { recursive: true });
-    fs.writeFileSync(path.join(out, 'cards-005.png'), 'GOOD-OLD-EVIDENCE');
-    const result = run(['cards-005', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=600'], { ADB_PATH: fakeAdb, FAKE_MARKER: '0' });
+    fs.writeFileSync(path.join(out, 'cards-014.png'), 'GOOD-OLD-EVIDENCE');
+    const result = run(['cards-014', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=600'], { ADB_PATH: fakeAdb, FAKE_MARKER: '0' });
     expect(result.status).toBe(1);
-    expect(fs.readFileSync(path.join(out, 'cards-005.png'), 'utf8')).toBe('GOOD-OLD-EVIDENCE');
+    expect(fs.readFileSync(path.join(out, 'cards-014.png'), 'utf8')).toBe('GOOD-OLD-EVIDENCE');
     const runsDir = path.join(out, '_runs');
     const stampDir = fs.readdirSync(runsDir).find((f) => !f.endsWith('.tsv')) as string;
-    expect(fs.existsSync(path.join(runsDir, stampDir, 'cards-005.timeout.png'))).toBe(true);
+    expect(fs.existsSync(path.join(runsDir, stampDir, 'cards-014.timeout.png'))).toBe(true);
     const journal = fs.readdirSync(runsDir).find((f) => f.endsWith('.tsv')) as string;
-    expect(fs.readFileSync(path.join(runsDir, journal), 'utf8')).toMatch(/cards-005\t[^\t]+\ttimeout\t/);
+    expect(fs.readFileSync(path.join(runsDir, journal), 'utf8')).toMatch(/cards-014\t[^\t]+\ttimeout\t/);
   });
 
   it('on a fake adb: a vip/plan link launches the app twice', () => {
@@ -186,6 +186,42 @@ describe('parity_batch_shoot', () => {
     expect(skipped.stdout).toContain('к съёмке=0');
     const allowed = run(['cards-005', '--guest', '--dry-run']);
     expect(allowed.stdout).toContain('DRY cards-005');
+  });
+
+  it('ok frame: evidence is the STITCHED composite, the bare frame stays in _runs, registry is never written', () => {
+    const out = path.join(tmp, 'out_stitch');
+    const result = run(['cards-014', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1' });
+    expect(result.status).toBe(0);
+    expect(fs.readFileSync(path.join(out, 'cards-014.png')).subarray(0, 9).toString()).toBe('STITCHED:');
+    const runs = path.join(out, '_runs');
+    const stamp = fs.readdirSync(runs).find((f) => !f.endsWith('.tsv')) as string;
+    expect(fs.existsSync(path.join(runs, stamp, 'cards-014.bare.png'))).toBe(true);
+    const journal = fs.readdirSync(runs).find((f) => f.endsWith('.tsv')) as string;
+    expect(fs.readFileSync(path.join(runs, journal), 'utf8')).toMatch(/cards-014\t[^\t]+\tok\t\d+\tmarker\+склейка/);
+  });
+
+  it('stitch failure: stitch_failed, exit 1, evidence untouched (old <id>.png kept), bare frame in _runs', () => {
+    const out = path.join(tmp, 'out_stitch_fail');
+    fs.mkdirSync(out, { recursive: true });
+    fs.writeFileSync(path.join(out, 'cards-014.png'), 'GOOD-OLD-COMPOSITE');
+    const result = run(['cards-014', '--guest', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1', STUB_STITCH_FAIL: '1' });
+    expect(result.status).toBe(1);
+    expect(fs.readFileSync(path.join(out, 'cards-014.png'), 'utf8')).toBe('GOOD-OLD-COMPOSITE');
+    const runs = path.join(out, '_runs');
+    const stamp = fs.readdirSync(runs).find((f) => !f.endsWith('.tsv')) as string;
+    expect(fs.existsSync(path.join(runs, stamp, 'cards-014.bare.png'))).toBe(true);
+    const journal = fs.readdirSync(runs).find((f) => f.endsWith('.tsv')) as string;
+    expect(fs.readFileSync(path.join(runs, journal), 'utf8')).toMatch(/cards-014\t[^\t]+\tstitch_failed\t/);
+  });
+
+  it('--no-stitch keeps the old behaviour (bare frame in evidence) and says so in the journal', () => {
+    const out = path.join(tmp, 'out_nostitch');
+    const result = run(['cards-014', '--guest', '--no-stitch', `--out=${out}`, '--settle-ms=0', '--poll-ms=100', '--timeout-ms=3000'], { ADB_PATH: fakeAdb, FAKE_MARKER: '1' });
+    expect(result.status).toBe(0);
+    expect(fs.readFileSync(path.join(out, 'cards-014.png')).subarray(0, 9).toString()).not.toBe('STITCHED:');
+    const runs = path.join(out, '_runs');
+    const journal = fs.readdirSync(runs).find((f) => f.endsWith('.tsv')) as string;
+    expect(fs.readFileSync(path.join(runs, journal), 'utf8')).toContain('голый_кадр');
   });
 
   it('without ids and without --all-pending it refuses with a clear message', () => {

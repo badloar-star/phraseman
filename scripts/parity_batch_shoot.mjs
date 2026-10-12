@@ -13,6 +13,8 @@
  *   --status=pending     какие статусы реестра брать для --all-pending (через запятую; по умолчанию pending)
  *   --guest              подтверждение: на устройстве вход — АНОНИМНЫЙ гость (pm clear + онбординг). Без него строки с cards=demo|empty|… пропускаются
  *   --burst-ms=0..1000   кадр через N мс после «replace вызван» без паузы settle и без повторов пустого кадра (анимации, конфетти)
+ *   --no-stitch          НЕ клеить с образцом (в evidence — голый кадр; только для отладки). По умолчанию: составная склейка «образец | приложение» через scripts/parity_shot.mjs
+ *                        (нужен сервер макетов http://127.0.0.1:8765 и playwright); голый кадр всегда в _runs/<метка>/<id>.bare.png; реестр не пишется
  *   --no-blank-check     не проверять «пустой кадр» (по умолчанию: >95 % одного цвета или <8 цветов → повтор до 6 раз через 1 с; пусто >3 с = статус blank_too_long)
  *   --blank-retries=6  --blank-poll-ms=1000  --blank-max-ms=3000
  *   --include-nonunique  брать и строки с «уникальна: нет» (ссылка общая с соседями — кадр будет НЕ тем состоянием; по умолчанию пропускаются)
@@ -36,6 +38,9 @@ const LINKS_DOC = process.env.BATCH_SHOOT_LINKS_DOC ? path.resolve(process.env.B
 const REGISTRY = process.env.PARITY_REGISTRY ? path.resolve(process.env.PARITY_REGISTRY) : path.join(ROOT, 'docs/phraseman-2.0/registries/visual_parity.json');
 const ADB = process.env.ADB_PATH || path.join(process.env.LOCALAPPDATA || '', 'Android', 'Sdk', 'platform-tools', 'adb.exe');
 const APP = 'app.phraseman';
+// зачем (координатор 12.10, Макеты e1b68c470): в evidence кладём СОСТАВНУЮ склейку «образец макета | кадр приложения» (как делает parity_shot Сверки), а не голый
+// скриншот 1080×2400 — голый Макеты сверять не могут. Склейку строит сам parity_shot (сервер макетов + playwright), реестр он не трогает (--no-registry).
+const PARITY_SHOT = process.env.PARITY_SHOT_SCRIPT ? path.resolve(process.env.PARITY_SHOT_SCRIPT) : path.join(ROOT, 'scripts', 'parity_shot.mjs');
 const READY_MARKERS = ['route: replace вызван', 'route: next не задан'];
 const FAIL_MARKERS = ['route: ОШИБКА до перехода', 'route: replace УПАЛ'];
 
@@ -119,6 +124,21 @@ export function commandsFor(row, device) {
   }
   steps.push('# пауза settle', `${adbBase} exec-out screencap -p > <out>/${row.id}.png`);
   return steps;
+}
+
+function stitchEvidence(id, barePath, outDir) {
+  const target = path.join(outDir, `${id}.png`);
+  const startedAt = Date.now();
+  const result = spawnSync(process.execPath, [PARITY_SHOT, 'shot', id, '--no-registry', '--wait-ms=300'], {
+    encoding: 'utf8',
+    timeout: 180_000,
+    env: { ...process.env, PARITY_FAKE_DEVICE_PNG: barePath, PARITY_EVIDENCE_DIR: outDir },
+  });
+  const fresh = fs.existsSync(target) && fs.statSync(target).mtimeMs >= startedAt - 1000;
+  if (result.status === 0 && fresh) return { ok: true, reason: '' };
+  const tail = `${result.stderr ?? ''} ${result.stdout ?? ''}`.replace(/\s+/g, ' ').trim().slice(-200);
+  console.warn(`${LOG} ${id}: склейка не удалась (status=${result.status}, свежий файл=${fresh}): ${tail}`); // guard-ok: причина отказа склейки
+  return { ok: false, reason: tail || `status_${result.status}` };
 }
 
 function arg(argv, name, fallback) {
@@ -233,8 +253,16 @@ async function shootOne(device, row, opts, runDir) {
   };
   if (outcome === 'ok') {
     const target = path.join(opts.outDir, `${row.id}.png`);
-    save(target, finalPng);
-    return { ...result, outcome, detail, file: rel(target), bytes: finalPng.length, msToNonblank };
+    const bare = path.join(runDir, `${row.id}.bare.png`);
+    save(bare, finalPng); // голый кадр всегда остаётся в _runs
+    if (!opts.stitch) {
+      save(target, finalPng); // --no-stitch: прежнее поведение, ТОЛЬКО для отладки — Макеты голый кадр сверять не могут
+      return { ...result, outcome, detail: `${detail}+голый_кадр`, file: rel(target), bytes: finalPng.length, msToNonblank };
+    }
+    const stitched = stitchEvidence(row.id, bare, opts.outDir);
+    if (stitched.ok) return { ...result, outcome, detail: `${detail}+склейка`, file: rel(target), bytes: finalPng.length, msToNonblank };
+    // склейки нет → evidence НЕ пишем (не подменяем составной кадр голым), старый <id>.png остаётся; голый кадр лежит в _runs
+    return { ...result, outcome: 'stitch_failed', detail: `${detail}+склейка_не_удалась: ${stitched.reason}`, file: rel(bare), bytes: finalPng.length, msToNonblank };
   }
   // не кадр, а находка: пустой экран дольше порога может быть настоящей вспышкой у человека — файлы только в _runs
   const target = path.join(runDir, `${row.id}.${outcome}.png`);
@@ -257,6 +285,7 @@ export async function main(argv) {
     pollMs: Number(arg(argv, '--burst-ms', '0')) > 0 ? 250 : Number(arg(argv, '--poll-ms', '1000')),
     burstMs: Math.min(1000, Math.max(0, Number(arg(argv, '--burst-ms', '0')))),
     blankCheck: !argv.includes('--no-blank-check'),
+    stitch: !argv.includes('--no-stitch'),
     blankRetries: Number(arg(argv, '--blank-retries', '6')),
     blankPollMs: Number(arg(argv, '--blank-poll-ms', '1000')),
     blankMaxMs: Number(arg(argv, '--blank-max-ms', '3000')),
@@ -292,7 +321,7 @@ export async function main(argv) {
   fs.mkdirSync(path.dirname(journal), { recursive: true });
   fs.appendFileSync(journal, 'id\ttime\tresult\tms\tdetail\tfile\tms_to_nonblank\n');
   if (opts.blankCheck && !blankCheckAvailable()) console.warn(`${LOG} проверка пустого кадра отключена: pngjs недоступен (${blankCheckUnavailableReason()})`); // guard-ok: причина отключения проверки
-  const totals = { ok: 0, timeout: 0, error: 0, blank_too_long: 0 };
+  const totals = { ok: 0, timeout: 0, error: 0, blank_too_long: 0, stitch_failed: 0 };
   for (const row of picked) {
     let result;
     try {
@@ -305,9 +334,10 @@ export async function main(argv) {
     fs.appendFileSync(journal, `${row.id}\t${new Date().toISOString()}\t${result.outcome}\t${result.ms}\t${result.detail}\t${result.file ?? ''}\t${result.msToNonblank ?? 0}\n`);
     console.log(`${LOG} ${row.id}: ${result.outcome} ${result.ms}мс ${result.detail} → ${result.file ?? 'без файла'}`); // guard-ok: итог кадра
   }
-  console.log(`${LOG} готово: ok=${totals.ok} timeout=${totals.timeout} error=${totals.error} blank_too_long=${totals.blank_too_long}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
+  console.log(`${LOG} готово: ok=${totals.ok} timeout=${totals.timeout} error=${totals.error} blank_too_long=${totals.blank_too_long} stitch_failed=${totals.stitch_failed}; журнал ${path.relative(ROOT, journal)}`); // guard-ok: итог пакета
   if (totals.blank_too_long > 0) console.warn(`${LOG} пустой экран дольше порога (находки для координатора, не кадры): см. журнал, файлы в _runs`); // guard-ok: итог находок
-  return totals.error + totals.timeout + totals.blank_too_long > 0 ? 1 : 0;
+  if (totals.stitch_failed > 0) console.warn(`${LOG} склейка не удалась у ${totals.stitch_failed} кадров (сервер макетов http://127.0.0.1:8765 запущен? у строки есть mockup?): голые кадры в _runs, evidence не тронуты`); // guard-ok: итог отказов склейки
+  return totals.error + totals.timeout + totals.blank_too_long + totals.stitch_failed > 0 ? 1 : 0;
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

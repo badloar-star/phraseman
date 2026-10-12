@@ -203,14 +203,22 @@ def final_link(row):
 
 link_usage = collections.Counter(final_link(r) for r in rows if final_link(r))
 unique_count = 0
+# зачем (координатор 12.10, Макеты e1b68c470): ожидаемое состояние берём из ПРИВЯЗКИ строки (mockup.file#phone + подпись), а не из названия строки —
+# cards-006 в названии про «карточка раскрыта», а привязана к макету «Удалено — вернуть». Подпись образца — в колонке «образец»; запись «да»,
+# описание которой не пересекается с подписью образца, попадает в список несовпадений (печать + DEV_LINKS_R1_BINDINGS.md).
+binding_flags = []
+
+def label_tokens(text):
+    words = re.findall(r'[A-Za-zА-Яа-яЁё0-9]{3,}', (text or '').lower())
+    return {w[:4] for w in words}
 for title, secs in AREAS:
     group = [r for r in rows if section_of(r['id']) in secs]
     if not group:
         continue
     group.sort(key=lambda r: r['id'])
     out.append(f'## {title} ({len(group)})\n')
-    out.append('| id | экран · состояние | ссылка / путь | перед кадром | shot list | тапы | уникальна |')
-    out.append('|---|---|---|---|---|---|---|')
+    out.append('| id | экран · состояние | ссылка / путь | перед кадром | shot list | тапы | уникальна | образец (макет#телефон · подпись) |')
+    out.append('|---|---|---|---|---|---|---|---|')
     for r in group:
         link, prep = match(r)
         entry = STEPS_DATA.ENTRIES.get(r['id'])
@@ -250,16 +258,31 @@ for title, secs in AREAS:
             # по умолчанию «да» только для прямых ссылок на состояние пейвола (premium_modal?…&_dev_state=…), остальное — явной записью в dev_links_r1_steps.py
             is_unique = bool(link) and 'premium_modal' in link and link_usage[link] == 1 and 'тапами' not in prep and secs is not O
         unique_count += 1 if is_unique else 0
+        mk = r.get('mockup') or {}
+        sample = f"{(mk.get('file') or '').split('/')[-1]}#{mk.get('phone')} · {mk.get('label') or '—'}" if mk.get('file') else 'нет макета'
+        sample = sample.replace('|', '¦')
+        if is_unique and entry and mk.get('label'):
+            described = ' '.join([entry['note'], ' '.join(entry['steps']), mk.get('label') or ''])
+            overlap = label_tokens(mk['label']) & label_tokens(entry['note'])
+            if not overlap:
+                binding_flags.append((r['id'], sample, entry['note'], f"{r.get('screen')} · {r.get('state')}"))
         if re.search(r'[?&]cards=(?:demo|demo_lessons|empty|custom50|demo_published|notranslation)(?:&|$|%26)', link or ''):
             prep = (prep + ' · ' if prep else '') + '**только гость (pm clear + онбординг)**'
         prep = prep.replace('|', '¦')  # зачем: «|» в тексте подготовки сдвигал колонки «тапы»/«уникальна» (разбор роботом по номеру колонки)
-        out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} | {steps_cell} | {'да' if is_unique else 'нет'} |")
+        out.append(f"| {r['id']} | {label} | {cell} | {prep} | {shot} | {steps_cell} | {'да' if is_unique else 'нет'} | {sample} |")
     out.append('')
 
 out.append('## Итог\n')
+if binding_flags:
+    out.append(f'⚠️ Несовпадения «запись ↔ привязка образца» ({len(binding_flags)}): подробности — DEV_LINKS_R1_BINDINGS.md.\n')
 out.append(f'Строк с признаком «уникальна: да» (робот parity_batch_shoot берёт только их): {unique_count} из {sum(counts.values())}.\n')
 out.append(f"Строк в охвате: {sum(counts.values())}. Готовая ссылка: {counts['link']}. Ручной путь по shot list: {counts['manual']}. Только ссылки по shot list (Шпиль/онбординг/аккаунт): {counts['shot']}. «Нужна фикстура»: {counts['need']}" + (f" — {', '.join(need[:60])}" if need else '') + '.\n')
 import os, time
+bind_lines = ['# DEV_LINKS_R1 — несовпадения записи и привязки образца', '', 'Запись «уникальна: да» описывает кадр, у которого нет общих слов с подписью макета, к которому привязана строка реестра. Проверить глазами: либо запись неверна, либо привязка в реестре.', '', '| id | образец | что открывает запись | название строки |', '|---|---|---|---|']
+for fid, fsample, fnote, fname in binding_flags:
+    bind_lines.append('| ' + ' | '.join(x.replace('|', '¦') for x in (fid, fsample, fnote, fname)) + ' |')
+open(R + 'docs/phraseman-2.0/DEV_LINKS_R1_BINDINGS.md', 'w', encoding='utf-8', newline='\n').write('\n'.join(bind_lines) + '\n')
+print('binding flags:', len(binding_flags))
 target = R + 'docs/phraseman-2.0/DEV_LINKS_R1.md'
 # зачем: Windows иногда отвечает «Invalid argument» на открытие файла, который читает другой процесс; пишем во временный файл и подменяем, с повтором
 for attempt in range(8):

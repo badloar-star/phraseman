@@ -42,7 +42,7 @@ DECK = 'tap:#fc-saved-view-deck'
 SEARCH = ['tap:#fc-collection-search', 'tap:#fc-search-input']
 DEMO = 'cards=demo&plus=on'
 
-add(['cards-005', 'cards-section-005'], [], DEMO, SAVED, note='список, 2 колонки (шаг по умолчанию)')
+add(['cards-005', 'cards-section-005'], ['tap:#fc-zoom-larger'], DEMO, SAVED, note='1 колонка (привязка образца: «Сохранённые — 1 колонка»)')
 add('cards-v2-006', [], DEMO, SAVED, note='2 колонки')
 add('cards-v2-005', ['tap:#fc-zoom-larger'], DEMO, SAVED, note='1 колонка')
 add('cards-v2-007', ['tap:#fc-zoom-smaller'], DEMO, SAVED, note='3 колонки: шаг «мельче» ×1 от двух (по коду GALLERY_STEPS)')
@@ -56,7 +56,7 @@ add('cards-038', SEARCH + ['type:zzzqq'], DEMO, SAVED, note='поиск без �
 add('cards-034', ['long:#fc-gallery-tile-*'], DEMO, SAVED, note='долгое нажатие — шторка действий «Править / Удалить»')
 add('cards-035', [MENU, SELECT, TILE, TILE2, TILE3, 'tap:#fc-delete-selected'], DEMO, SAVED, note='3 выбранных → окно подтверждения удаления')
 add('cards-036', [MENU, SELECT, TILE, TILE2, TILE3], DEMO, SAVED, note='3 выбранных — «выбери ещё» (мало для набора)')
-add('cards-006', [TILE], DEMO, SAVED, note='карточка раскрыта (лицевая); удаление свайпом и «Вернуть» — отдельные кадры cards-v2-010')
+add('cards-006', [TILE, 'tap:#fc-expanded-delete'], DEMO, SAVED, note='карточка удалена — плашка «Вернуть» (привязка образца cards-v2 №10 «Удалено — вернуть»)')
 add('cards-v2-020', [TILE], DEMO, SAVED, note='карточка открыта, лицевая сторона')
 add(['cards-v2-021', 'cards-section-017'], [TILE, 'tap:#fc-expanded-card-flip'], DEMO, SAVED, note='оборот карточки')
 add(['cards-section-015', 'cards-v2-010'], [TILE, 'tap:#fc-expanded-delete'], DEMO, SAVED, note='карточка удалена — плашка «Вернуть»')
@@ -87,8 +87,8 @@ add('cards-gap-030', [ROW_TRAVEL], DEMO_PLUS, MYPACKS, note='набор «Пут
 add(['cards-section-019', 'cards-v2-022', 'cards-023'], [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (черновик сбрасывается фикстурой)')
 add('cards-section-020', ['tap:#ugc-pack-first-card'], EMPTY_PLUS, CREATE, note='шторка «Новая карточка»')
 add('cards-v2-024', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
-add('cards-067', ['tap:#ugc-pack-menu'], EMPTY_PLUS, CREATE, note='меню набора')
-add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE, note='сохранить пустую форму — «Проверь поля» (тост)')
+add('cards-067', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — меню набора)')
+add('cards-070', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — «Проверь поля»)')
 add(['cards-065', 'cards-section-021', 'cards-v2-023'], [], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='правка своего набора «Работа»')
 add('cards-024', ['tap:#ugc-pack-add-card'], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='новая карточка в существующем наборе (шторка)')
 
@@ -110,9 +110,10 @@ add('cards-section-036', [TRAIN, 'tap:#fc-training-mode-recall'], HUB_FREE, HUB,
 
 PACKS = '/flashcards_packs'
 add(['cards-014', 'cards-section-022', 'cards-section-024', 'cards-v2-025', 'packs-simple-001'], [], 'catalog=demo', PACKS, note='каталог сообщества, «Новые»')
-add(['cards-016', 'cards-048'], [], 'catalog=empty', PACKS, note='каталог пуст')
-add(['cards-017', 'cards-section-023', 'cards-section-028', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений')
-add('cards-015', ['tap:#flashcards-packs-search', 'type:Fam', 'long:#flashcards-pack-card-dev_demo_community_1'], 'catalog=demo', PACKS, note='поиск «Fam» → долгое нажатие по набору — меню действий')
+add('cards-016', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report'], 'catalog=demo', PACKS, note='жалоба на набор: долгое нажатие по набору → «Пожаловаться» (привязка образца cards-states №15 «Жалоба на набор»)')
+add(['cards-017', 'cards-section-023', 'cards-048', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений («Ничего не найдено»)')
+add('cards-section-028', [], 'catalog=demo', PACKS, note='каталог (привязка образца: «Каталог»; по названию строки — «Ничего не нашли»)')
+add('cards-015', [], 'catalog=demo', PACKS, note='каталог (привязка образца cards-v2 №25 «Каталог»; по названию строки — поиск и меню по долгому нажатию)')
 add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2'], 'catalog=demo', PACKS, note='набор из демо-каталога ещё не скачан — тост')
 
 VIDEO = '/flashcards_video_packs'
@@ -130,7 +131,8 @@ add('cards-gap-020', [TILE, TO_PACK, PACK_WORK], DEMO, SAVED, note='карточ
 add('cards-gap-021', [TILE, TO_PACK, PACK_WORK, 'wait:1500', TO_PACK, PACK_WORK], DEMO, SAVED, note='повторное добавление — тост «уже в наборе»')
 
 # Карточки: состояния, которые открывает сама ссылка (фикстура держит/ломает данные, тап не нужен)
-add('cards-039', [], 'cards=demo&fail=saved_load', SAVED, note='«Сохранённые» — ошибка загрузки (fail=saved_load; снять fail=off)')
+# cards-039: привязка образца — cards-v2 №44 «Каталог без сети»; запись «Сохранённые — ошибка загрузки» ей не соответствует, кадр «без сети» ссылкой не выводится → строка «нет» до перепривязки
+# (fail=saved_load: dev_state?cards=demo&fail=saved_load&next=/flashcards_collection?cat=saved — пригодится, когда Макеты перепривяжут строку)
 add('cards-047', [], 'hold=catalog_loading', PACKS, note='каталог — загрузка (hold=catalog_loading; снять hold=off)')
 add('cards-075', [], 'cards=demo&plus=on&hold=setup_loading', '/flashcards_training_setup?mode=truefalse', note='настройка «Правда / ложь» — загрузка наборов (hold=setup_loading); режим ОБЯЗАТЕЛЕН в маршруте, без ?mode= кнопка показывает «Режим недоступен»')
 add('cards-gap-014', [], 'moderation=approved', HUB, note='окно «Твой набор одобрен» приходит само через 0,9 с')

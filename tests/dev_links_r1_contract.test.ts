@@ -56,9 +56,9 @@ describe('DEV_LINKS_R1', () => {
     expect(parseDevStateParams({ intros: 'nope' }).rejected.intros).toBeTruthy();
   });
 
-  it('«уникальна: да» rows have a ready link; their «тапы» use only the known step grammar; the table keeps 7 columns', () => {
+  it('«уникальна: да» rows have a ready link; their «тапы» use only the known step grammar; the table keeps 8 columns', () => {
     const rows = doc.split(String.fromCharCode(10)).filter((line) => /^\| [a-z0-9-]+-\d{3} \|/.test(line));
-    const badColumns = rows.filter((line) => line.split('|').length !== 9).map((line) => line.slice(0, 60));
+    const badColumns = rows.filter((line) => line.split('|').length !== 10).map((line) => line.slice(0, 60));
     expect(badColumns).toEqual([]); // «|» в тексте сдвигал колонки, а робот читает «тапы»/«уникальна» по номеру
     const stepRx = /^(tap|long|swipe-left|swipe-right|see):\S.*$|^(back)$|^(type|key|scroll|wait|xy):\S[ -~]*$/;
     const problems: string[] = [];

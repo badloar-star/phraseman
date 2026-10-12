@@ -36,7 +36,7 @@ else if (args[0] === 'exec-out' && args[1] === 'screencap') {
 `;
 
 function run(args: string[], env: Record<string, string>) {
-  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', env: { ...process.env, ...env }, timeout: 90_000 });
+  return spawnSync(process.execPath, [SCRIPT, ...args], { encoding: 'utf8', env: { ...process.env, PARITY_SHOT_SCRIPT: path.join(ROOT, 'tests', 'helpers', 'fake_parity_shot.cjs'), ...env }, timeout: 90_000 });
 }
 
 function evalBlank(code: string): unknown {

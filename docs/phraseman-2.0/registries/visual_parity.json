@@ -24582,24 +24582,30 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-014.png",
+      "evidence_at": "2026-10-12T03:33:44.897Z",
+      "evidence_sha256": "c4222b9a0fefdc838f7a7d068e28fce3bab5f40a8533acfab56a3a99bc339062",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Вместо «Промокоды сейчас временно выключены.» плашка «Такой код не найден или больше не действует.» (то же, что overlays-campaigns-009): подмена promo=disabled не применилась либо ответ сервера перекрыт обычной проверкой кода. Переснять после исправления ссылки (promo=disabled) и убедиться, что текст «временно выключены» выводится из кода.",
+        "[тема] Кнопка «Активировать» светлая в приложении, мятная в образце — общий вопрос цвета кнопки (в листе владельца); фон: блики «Авроры» против ровного графита (решение Тем).",
+        "[состояние] Поле в фокусе (белая рамка, курсор) и открыта клавиатура ОС; введён TESTCODE вместо WELCOME30 — переснять со скрытой клавиатурой.",
+        "[вёрстка, мелко] Заголовок и поля крупнее (≈26 против 24 px), карточка на ~6 px ниже."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:36:18.834Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=disabled&overlays=off&next=/promo_code_entry"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:33, promo-code-states №11 «Отключён»; образец нарисован с приложения): состояние не воспроизведено — плашки «Промокоды сейчас временно выключены.» на кадре нет. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "overlays-campaigns-015",
@@ -24616,24 +24622,29 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-015.png",
+      "evidence_at": "2026-10-12T03:34:14.430Z",
+      "evidence_sha256": "34b6a8b96f300e8d7cf3f044a6770a26b2b8f4163ff295fc70e526e14ef29005",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[тема] Кнопка «Активировать» светлая в приложении, мятная в образце — общий вопрос цвета кнопки (в листе владельца); фон: блики «Авроры» против ровного графита (решение Тем).",
+        "[состояние] Поле в фокусе (белая рамка, курсор) и открыта клавиатура ОС; введён TESTCODE вместо WELCOME30 — переснять со скрытой клавиатурой.",
+        "[вёрстка, мелко] Заголовок и поля крупнее (≈26 против 24 px), карточка на ~6 px ниже."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:36:18.834Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=error&overlays=off&next=/promo_code_entry"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:34, promo-code-states №12 «Ошибка проверки»; образец нарисован с приложения): состав и текст совпали — плашка «Сейчас не получилось активировать код. Попробуй ещё раз.» в три строки. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "overlays-campaigns-016",

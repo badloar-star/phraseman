@@ -2249,7 +2249,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 subtitle: triLang(lang, { ru: 'Поднимайся выше всех', uk: 'Піднімайся вище за всіх', en: 'Climb above everyone', es: 'Sube más alto que nadie', 'pt-BR': 'Suba mais alto que todos', vi: 'Leo cao hơn mọi người', id: 'Naik lebih tinggi dari semua', tr: 'Herkesten yükseğe çık', pl: 'Wspinaj się najwyżej' }),
                 onPress: () => { nav.push('/(tabs)/community?section=spire' as never); },
                 // зачем (приказ владельца 15.10: «старые удалены»): вместо щита с Тауэрским мостом (1.0) — арт 2.0 «башня с флагом» (intro_arena, ASSETS_V2_BRIEF п.54), тёмный/светлый по тону Главной
-                art: resolveThemedArt('intro_arena', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'),
+                // зачем (координатор 15.10): порядок spire_tile (арт Codex, встанет сам после сдачи файла) → intro_arena → запасной
+                art: resolveThemedArt('spire_tile', homeArtTone).base ?? resolveThemedArt('intro_arena', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'),
             },
             {
                 key: 'video_packs',
@@ -2257,7 +2258,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: triLang(lang, { ru: 'Наборы из видео', uk: 'Набори з відео', en: 'Video packs', es: 'Packs de vídeos', 'pt-BR': 'Pacotes de vídeos', vi: 'Bộ từ video', id: 'Paket video', tr: 'Video paketleri', pl: 'Zestawy z filmów' }),
                 subtitle: triLang(lang, { ru: 'Фразы из роликов', uk: 'Фрази з роликів', en: 'Phrases from videos', es: 'Frases de vídeos', 'pt-BR': 'Frases dos vídeos', vi: 'Cụm từ từ video', id: 'Frasa dari video', tr: 'Videolardan ifadeler', pl: 'Zwroty z filmów' }),
                 onPress: () => { nav.push('/flashcards_video_packs' as never); },
-                art: require('../../assets/images/v2/spiral_notepad.png'),
+                art: resolveThemedArt('cards_from_video', homeArtTone).base ?? require('../../assets/images/v2/spiral_notepad.png'), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },
             {
                 key: 'mistakes',
@@ -2266,7 +2267,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 subtitle: triLang(lang, { ru: 'Разбор и повтор', uk: 'Розбір і повтор', en: 'Review and retry', es: 'Repasa y repite', 'pt-BR': 'Revise e repita', vi: 'Xem lại và làm lại', id: 'Tinjau dan ulangi', tr: 'Gözden geçir, tekrarla', pl: 'Przegląd i powtórka' }),
                 // зачем: единая точка входа в «Мои ошибки» (лог + аналитика) — карточка «Продолжить» больше не ведёт в ошибки.
                 onPress: () => { openHomeMistakesHub('home_tile'); },
-                art: require('../../assets/images/home_mistakes/home-mistakes-dark.webp'),
+                art: resolveThemedArt('mistakes_entry', homeArtTone).base ?? require('../../assets/images/v2/notecard_stack.png'), // зачем (координатор 15.10): арт 2.0 в обеих яркостях вместо home_mistakes 1.0
             },
             {
                 key: 'saved',
@@ -2274,7 +2275,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 title: triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', en: 'Saved', es: 'Guardados', 'pt-BR': 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' }),
                 subtitle: triLang(lang, { ru: 'Твои карточки', uk: 'Твої картки', en: 'Your cards', es: 'Tus tarjetas', 'pt-BR': 'Seus cartões', vi: 'Thẻ của bạn', id: 'Kartumu', tr: 'Kartların', pl: 'Twoje karty' }),
                 onPress: () => { nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'home' } } as never); },
-                art: require('../../assets/images/v2/cards_hub_saved.webp'),
+                art: resolveThemedArt('cards_empty_saved', homeArtTone).base ?? require('../../assets/images/v2/cards_hub_saved.webp'), // зачем: новый арт Codex встаёт сам, нынешняя картинка — запасная
             },
         ];
         const homeV2Tiles: HomeFeatureTile[] = homeV2BaseTiles.length >= 3 || homeV2BaseTiles.length === 0

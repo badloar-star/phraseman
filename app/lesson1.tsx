@@ -1418,7 +1418,9 @@ const LessonContent = React.memo(function LessonContent({
                       const isFlashing = flashWord?.optionKey === optionKey;
                       return (
                     <DuoPressable
-                      testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
+                      // зачем (координатор 12.10, съёмка R1 energy-modes-002…005/016): робот не знает, какой номер неверный —
+                      // в dev первый неверный вариант помечен `lesson1-word-option-wrong` (ошибка по шагу). В стор-сборке __DEV__ = false.
+                      testID={isCorrectOption ? 'lesson1-word-option-correct' : (__DEV__ && wordOptionItems.find((o) => !o.isCorrectOption)?.index === i ? 'lesson1-word-option-wrong' : `lesson1-word-option-${i}`)}
                       pressedExternally={isFlashing}
                       withHaptic={false}
                       disabled={wordDispatchPending}

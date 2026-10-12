@@ -361,11 +361,17 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
 export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
 ): Promise<GlobalBroadcastModalPayload | null> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  // зачем (координатор 12.10, п.70 №4, «сперва логи»): «рассылки нет» складывалось из десятка немых выходов и немого
+  // catch — по журналу нельзя было понять, нет рассылки или проверка сломалась. Каждый выход называет причину.
+  const skip = (reason: string): null => {
+    console.log(`[OVERLAY-QUEUE] broadcast:fetch → null reason=${reason}`);
+    return null;
+  };
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return skip(IS_EXPO_GO ? 'expo_go' : 'cloud_sync_disabled');
   const uid = await getCanonicalUserId().catch(noteSwallowedAs('global_broadcast_modal:promise_1', null));
-  if (!uid) return null;
+  if (!uid) return skip('no_uid');
   const accountToken = captureAccountGeneration();
-  if (!isCurrentAccountGeneration(accountToken, uid)) return null;
+  if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_list');
 
   try {
     const listActive = httpsCallable<{ limit: number }, GlobalBroadcastPublicListResponse>(
@@ -378,8 +384,8 @@ export async function fetchPendingGlobalBroadcastModal(
       || listData.truncated === true || listData.sourceHealth?.complete !== true) {
       throw new Error('broadcast_public_source_incomplete');
     }
-    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
-    if (listData.items.length === 0) return null;
+    if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_after_list');
+    if (listData.items.length === 0) return skip('no_active_broadcasts');
     const activeDocs = listData.items.map((row) => ({ id:String(row.id || ''), data:row }));
 
     const firestoreModule = await import('@react-native-firebase/firestore');
@@ -392,27 +398,27 @@ export async function fetchPendingGlobalBroadcastModal(
     }
 
     const payload = pickLatest(activeDocs);
-    if (!payload) return null;
+    if (!payload) return skip(`no_valid_payload items=${activeDocs.length}`);
     if (isRetiredLeagueSystemBroadcast(payload)) {
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_3'));
-      return null;
+      return skip(`retired_league id=${payload.id}`);
     }
     if (payload.kind === 'review_promo') {
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_4'));
-      return null;
+      return skip(`review_promo id=${payload.id}`);
     }
 
     if (payload.premiumAudience !== 'all') {
       const userSnap = await db.collection('users').doc(uid).get();
       const progress = userSnap.data()?.progress ?? {};
       const isPremium = isPremiumAccessProgressActive(progress);
-      if (payload.premiumAudience === 'free' && isPremium) return null;
-      if (payload.premiumAudience === 'premium' && !isPremium) return null;
+      if (payload.premiumAudience === 'free' && isPremium) return skip(`audience_free_but_premium id=${payload.id}`);
+      if (payload.premiumAudience === 'premium' && !isPremium) return skip(`audience_premium_but_free id=${payload.id}`);
     }
 
     const dismissed = await AsyncStorage.getItem(dismissKey(payload.id, accountToken));
-    if (!isCurrentAccountGeneration(accountToken, uid)) return null;
-    if (dismissed === '1') return null;
+    if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_claim');
+    if (dismissed === '1') return skip(`dismissed id=${payload.id}`);
 
     const claimId = `global_broadcast_${payload.id}`;
     const claimSnap = await db.collection('users').doc(uid).collection('reward_claims').doc(claimId).get();
@@ -429,13 +435,16 @@ export async function fetchPendingGlobalBroadcastModal(
           return payload;
         }
       }
-      if (!isCurrentAccountGeneration(accountToken, uid)) return null;
+      if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_after_claim');
       await AsyncStorage.setItem(dismissKey(payload.id, accountToken), '1').catch(noteSwallowedHandler('global_broadcast_modal:promise_5'));
-      return null;
+      return skip(`already_claimed id=${payload.id}`);
     }
 
     return payload;
-  } catch {
+  } catch (error: unknown) {
+    // зачем (п.70 №4): был немой catch — сбой сервера/сети/неполный источник выглядел как «рассылки нет».
+    const code = String((error as { code?: unknown })?.code ?? '');
+    console.warn(`[OVERLAY-QUEUE] broadcast:fetch → null reason=failed code=${code || '-'} message=${error instanceof Error ? error.message : String(error)}`);
     return null;
   }
 }

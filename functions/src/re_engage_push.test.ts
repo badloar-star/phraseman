@@ -221,12 +221,20 @@ describe('buildExpoPushMessage', () => {
     expect(m.title.length).toBeGreaterThan(0);
   });
 
-  it.each(['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])('есть локализация для %s', (lang) => {
+  it.each(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'])('есть локализация для %s', (lang) => {
     const inactive = buildExpoPushMessage({ ...base, lang });
     const streak = buildExpoPushMessage({ ...base, lang, reason: 'streak_at_risk', streakCount: 5 });
     expect(inactive.title).toBeTruthy();
     expect(inactive.body).toBeTruthy();
     expect(streak.title).toContain('5');
+  });
+
+  // зачем (EN_READINESS_R1): английский интерфейс не должен получать русский пуш (запасной язык — ru).
+  it('en: английский текст, без кириллицы', () => {
+    const inactive = buildExpoPushMessage({ ...base, lang: 'en' });
+    const streak = buildExpoPushMessage({ ...base, lang: 'en', reason: 'streak_at_risk', streakCount: 5 });
+    expect(streak.title).toBe('🔥 Your 5-day streak is waiting');
+    expect(`${inactive.title}${inactive.body}${streak.body}`).not.toMatch(/[А-Яа-яЁё]/);
   });
 });
 

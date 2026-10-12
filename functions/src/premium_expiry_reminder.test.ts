@@ -172,6 +172,15 @@ describe('selectExpiryReminderCandidates + build', () => {
     const msg = buildExpiryReminderMessage({ uid: 'u', token: TOKEN, lang: 'zz', kind: 'subscription', expiryMs: IN_3_DAYS });
     expect(msg.title).toContain('Plus');
   });
+
+  // зачем (EN_READINESS_R1): английский интерфейс не должен получать русский пуш.
+  test('en: английский текст, не русский запасной', () => {
+    const sub = buildExpiryReminderMessage({ uid: 'u', token: TOKEN, lang: 'en', kind: 'subscription', expiryMs: IN_3_DAYS });
+    const vip = buildExpiryReminderMessage({ uid: 'u', token: TOKEN, lang: 'en', kind: 'vip', expiryMs: IN_3_DAYS });
+    expect(sub.title).toBe('💛 Your Plus renews soon');
+    expect(vip.title).toBe('💛 Your Plus access ends soon');
+    expect(`${sub.body}${vip.body}`).not.toMatch(/[А-Яа-яЁё]/);
+  });
 });
 
 describe('PM-200: pushPrefs.offers', () => {

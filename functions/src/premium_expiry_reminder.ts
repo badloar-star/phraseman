@@ -232,7 +232,8 @@ export function selectExpiryReminderCandidates(
 
 // ── Локализованные тексты (8 языков, gain-framing, один эмодзи) ─────────────────
 type Copy = { title: string; body: string };
-const SUPPORTED_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+// зачем (EN_READINESS_R1, координатор 12.10): без 'en' английский интерфейс получал бы русский пуш (запасной язык — ru).
+const SUPPORTED_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 type CopyLang = (typeof SUPPORTED_LANGS)[number];
 
 function normLang(lang: string): CopyLang {
@@ -242,6 +243,7 @@ function normLang(lang: string): CopyLang {
 // Подписка: мягко напоминаем, что скоро продление/списание — без давления и угроз.
 const SUBSCRIPTION_COPY: Record<CopyLang, Copy> = {
   ru: { title: '💛 Твой Plus скоро продлится', body: 'Осталось около 3 дней. Если всё нравится — ничего делать не нужно, продолжаем вместе.' },
+  en: { title: '💛 Your Plus renews soon', body: "About 3 days left. If you're enjoying it, there's nothing to do — we keep going together." },
   uk: { title: '💛 Твій Plus скоро подовжиться', body: 'Лишилось близько 3 днів. Якщо все подобається — робити нічого не треба, продовжуємо разом.' },
   es: { title: '💛 Tu Plus se renovará pronto', body: 'Quedan unos 3 días. Si todo va bien, no tienes que hacer nada: seguimos juntos.' },
   'pt-BR': { title: '💛 Seu Plus vai renovar em breve', body: 'Faltam uns 3 dias. Se está tudo certo, não precisa fazer nada: seguimos juntos.' },
@@ -254,6 +256,7 @@ const SUBSCRIPTION_COPY: Record<CopyLang, Copy> = {
 // VIP-доступ: не продлевается сам — мягко предупреждаем, что скоро закончится.
 const VIP_COPY: Record<CopyLang, Copy> = {
   ru: { title: '💛 Твой доступ Plus скоро закончится', body: 'Осталось около 3 дней. Успей взять максимум — а захочешь остаться, продлить легко.' },
+  en: { title: '💛 Your Plus access ends soon', body: 'About 3 days left. Make the most of it — and if you want to stay, renewing is easy.' },
   uk: { title: '💛 Твій доступ Plus скоро завершиться', body: 'Лишилось близько 3 днів. Встигни взяти максимум — а схочеш лишитися, подовжити легко.' },
   es: { title: '💛 Tu acceso Plus termina pronto', body: 'Quedan unos 3 días. Aprovéchalo al máximo, y si quieres quedarte, renovar es fácil.' },
   'pt-BR': { title: '💛 Seu acesso Plus termina em breve', body: 'Faltam uns 3 dias. Aproveite ao máximo, e se quiser ficar, renovar é fácil.' },

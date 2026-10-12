@@ -249,7 +249,8 @@ export function capCandidates(candidates: ReEngageCandidate[]): ReEngageCandidat
 
 // ── Локализованные тексты ──────────────────────────────────────────────────────
 type Copy = { title: string; body: string };
-const SUPPORTED_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+// зачем (EN_READINESS_R1, координатор 12.10): без 'en' английский интерфейс получал бы русский пуш (запасной язык — ru).
+const SUPPORTED_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 type CopyLang = (typeof SUPPORTED_LANGS)[number];
 
 function normLang(lang: string): CopyLang {
@@ -262,6 +263,7 @@ function normLang(lang: string): CopyLang {
 const STREAK_AT_RISK_COPY: Record<CopyLang, (streak: number) => Copy> = {
   ru: (s) => ({ title: `🔥 Серия ${s} дней ждёт тебя`, body: 'Одна сессия сегодня — и серия растёт.' }),
   uk: (s) => ({ title: `🔥 Серія ${s} днів чекає на тебе`, body: 'Одна сесія сьогодні — і серія росте.' }),
+  en: (s) => ({ title: `🔥 Your ${s}-day streak is waiting`, body: 'One session today and your streak grows.' }),
   es: (s) => ({ title: `🔥 Tu racha de ${s} días te espera`, body: 'Una sesión hoy y tu racha crece.' }),
   'pt-BR': (s) => ({ title: `🔥 Sua sequência de ${s} dias te espera`, body: 'Uma sessão hoje e sua sequência cresce.' }),
   vi: (s) => ({ title: `🔥 Chuỗi ${s} ngày đang chờ bạn`, body: 'Một buổi hôm nay là chuỗi dài thêm.' }),
@@ -273,6 +275,7 @@ const STREAK_AT_RISK_COPY: Record<CopyLang, (streak: number) => Copy> = {
 const INACTIVE_RETURN_COPY: Record<CopyLang, Copy> = {
   ru: { title: `👋 Давно тебя не было`, body: `Пять минут практики — и ты снова в ритме. Продолжим?` },
   uk: { title: `👋 Давно тебе не було`, body: `П'ять хвилин практики — і ти знову в ритмі. Продовжимо?` },
+  en: { title: `👋 Long time no see`, body: `Five minutes of practice and you're back in rhythm. Shall we?` },
   es: { title: `👋 Cuánto tiempo`, body: `Cinco minutos de práctica y vuelves a tu ritmo. ¿Seguimos?` },
   'pt-BR': { title: `👋 Quanto tempo`, body: `Cinco minutos de prática e você volta ao ritmo. Vamos?` },
   vi: { title: `👋 Lâu rồi không gặp`, body: `Năm phút luyện tập là bạn trở lại nhịp. Tiếp tục nhé?` },
@@ -284,6 +287,7 @@ const INACTIVE_RETURN_COPY: Record<CopyLang, Copy> = {
 const INACTIVE_LONG_COPY: Record<CopyLang, Copy> = {
   ru: { title: `💡 Мы всё ещё помним тебя`, body: `Начнём с малого — пара фраз, и слова снова приходят сами.` },
   uk: { title: `💡 Ми все ще пам'ятаємо тебе`, body: `Почнімо з малого — пара фраз, і слова знову приходять самі.` },
+  en: { title: `💡 We still remember you`, body: `Start small — a couple of phrases and the words come back on their own.` },
   es: { title: `💡 Aún te recordamos`, body: `Empecemos con poco — un par de frases y las palabras vuelven solas.` },
   'pt-BR': { title: `💡 Ainda lembramos de você`, body: `Vamos com calma — algumas frases e as palavras voltam sozinhas.` },
   vi: { title: `💡 Chúng tôi vẫn nhớ bạn`, body: `Bắt đầu nhẹ nhàng — vài câu là từ ngữ tự quay lại.` },

@@ -45,6 +45,7 @@ import {
   shouldShowCommentsCount,
 } from './packComments';
 import { isCommunityPackLikedLocally } from './packSocialStorage';
+import { nestedBoxShadow } from '../../components/v2/ShadowSurface';
 import { noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export type CommunityPackSocialVariant = 'row' | 'tile' | 'screen' | 'list' | 'previewMeta' | 'previewCta' | 'videoAdd' | 'videoAddRound' | 'setAdd' | 'setHeart';
@@ -453,6 +454,7 @@ export default function CommunityPackSocialBar({
                 paddingHorizontal: 12,
                 borderRadius: 22,
                 backgroundColor: g.opaqueControl,
+                boxShadow: nestedBoxShadow(g), // зачем (стиль «Тень», серия cards-v2): контрол отделён малой тенью, а не плоской заливкой
               }
             : { flexDirection: 'row', alignItems: 'center', gap }
         }
@@ -529,7 +531,7 @@ export default function CommunityPackSocialBar({
         onPress={onAddPress}
         activeOpacity={0.85}
         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-        style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl }}
+        style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }}
       >
         <Ionicons name={isAdded ? 'checkmark' : 'add'} size={20} color={isAdded ? g.accentText : g.text} />
       </TouchableOpacity>
@@ -746,6 +748,7 @@ export default function CommunityPackSocialBar({
               paddingVertical: 3,
               borderRadius: 999,
               backgroundColor: g.opaqueControl,
+              boxShadow: nestedBoxShadow(g),
             }}
           >
             <Ionicons name="trending-up-outline" size={12} color={g.text} />

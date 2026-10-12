@@ -38352,21 +38352,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-003.png",
+      "evidence_at": "2026-10-12T02:53:54.320Z",
+      "evidence_sha256": "6791521122aa271a263c6720d8fa9b17511b1397a6e07fa1d0a6e0d5501de5d4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Строки «Подписка Plus · Год» на кадре нет — она ниже, в блоке «Phraseman Plus» после «Размер шрифта»; на кадре верх экрана (заголовок, «Профиль», «Аккаунт», языки, «Важное от Phraseman», «Обучение»). Переснять с прокруткой вниз до блока «Phraseman Plus» (тот же приём, что для settings-gap-002).",
+        "[образец ≠ код] Нижняя панель вкладок и медаль-аватар в углу — как в settings-gap-002 (значки в образце устарели)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:55:02.159Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/(tabs)/settings"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:53, settings-gaps-states №3 «Главная — Plus по подписке»; образец нарисован с приложения): кадр показывает верх экрана «Настройки», а образец — низ со строкой «Подписка Plus · Год». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-004",

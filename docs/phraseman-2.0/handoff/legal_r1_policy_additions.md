@@ -112,6 +112,67 @@ you in the App.», дальше сразу абзац «We may review, block, re
 (`scripts/sync-legal-html.mjs`) читает только эти файлы и пишет английский текст в приложение, в корневые html и на сайт.
 Русской и украинской версий политики нет, поэтому по п.60 до релиза русская не публикуется автоматически.
 
+## 4. Удаление аккаунта: сверка политики с кодом (Авторизация, 12.10)
+
+Статус: **заготовка, НЕ опубликована и НЕ внесена в legal/*.json.** Решение и публикация — только владелец
+(после «да»: править `legal/privacy_policy_en.json` (+ `_ios`), затем `npm run legal:sync`; страницу
+`knowly-www/legal/data-deletion/index.html` — тем же коммитом).
+Подготовил: 5 · АВТОРИЗАЦИЯ по поручению координатора. Сверка — с кодом HEAD после f745f817f.
+
+### Что сверено и где совпадает (правок не нужно)
+
+| Обещание | Где в политике | Код | Итог |
+|---|---|---|---|
+| Связанный аккаунт (Google/Apple): 14 дней, вход в эти дни предлагает восстановить, согласие отменяет удаление | §19, §20, страница data-deletion | постановка accountDeleteEnqueue (окно account_delete_grace), окно «Восстановить аккаунт?» (app/account_delete_restore_prompt.ts) | совпадает |
+| Гость: восстановить нельзя; телефон стирается сразу; сервер — «не позже конца 14 дней» | §20, data-deletion | фоновая постановка (дедлайн 25 с), без квитанции — прямой accountDeleteMine (сразу) | совпадает (сразу ≤ 14 дней) |
+| «Подписка не отменяется автоматически» | §20 | окно удаления: ru «Подписка в App Store или Google Play не отменится автоматически» | совпадает |
+| Экран: «Аккаунт удалится через 14 дней. Если передумаешь — просто войди снова…» / гость «Прогресс удалится безвозвратно…» | components/DeleteAccountConfirmModal.tsx | как выше | совпадает — правок i18n не требуется |
+
+### Расхождения → предлагаемый текст
+
+#### 1. Кэш базы данных на устройстве чистится при СЛЕДУЮЩЕМ запуске, а не «сразу»
+
+Политика (§20): «The App signs you out and clears local app data on that device immediately.» С 12.10 (1087ab5d7, fedf321e1,
+f745f817f) приложение стирает хранилище сразу, но технический офлайн-кэш библиотеки базы данных (Firebase Firestore) стирается при
+следующем запуске приложения: стереть его посреди работы нельзя без сбоя.
+
+Добавить в §20 после «…clears local app data on that device immediately.»:
+
+> A technical offline cache kept by the Firebase database library on the device is cleared the next time the App starts after the deletion.
+
+И в §3 («Data stored on your device»), последним предложением абзаца про данные на устройстве:
+
+> After account deletion, the App also clears the offline cache kept by the Firebase database library the next time it starts.
+
+#### 2. Гость без сети: приложение повторяет запрос само
+
+Политика (§20 и data-deletion): «If the request cannot reach our servers at that moment (for example, if the device is offline), please
+make sure you are connected when deleting, or contact us…». Код (TG-F5939EAC5D97, tests/aa_guest_offline_delete_retry.test.ts):
+без сети замок удаления и гостевая сессия сохраняются, и приложение повторяет запрос при следующем запуске с сетью.
+
+Заменить на:
+
+> If the request cannot reach our servers at that moment (for example, if the device is offline), the App keeps the deletion pending and sends the request again the next time it starts with a connection. If you uninstall the App before that happens, contact us as described below.
+
+То же — на странице data-deletion (абзац про гостя).
+
+#### 3. Данные удалённой доски идей названы явно
+
+Сервер удаления чистит записи старой доски идей (user_ideas, idea_likes_sent, idea_reports, user_idea_report_rate_limits — см.
+ACCOUNT_DELETE_INDEX_INCIDENT_2026-10-12.md), а в политике идеи не упоминаются ни разу. Они подпадают под общую фразу о
+«historical records created by retired features», но в перечне примеров их нет.
+
+В §(исторические записи) в скобках с примерами после «friend gifts» добавить:
+
+> …, or the old ideas board (submitted ideas, likes and reports on ideas)…
+
+### Не текст, а исполнение (🔴 до релиза)
+
+Пока в проде нет 5 индексов группы коллекций (ACCOUNT_DELETE_INDEX_INCIDENT_2026-10-12.md, 37e53b290 ждёт деплоя), серверное удаление
+обрывается на стадии `collection_group_matches`: часть данных удаляется, остаток — нет, до повторов. Обещание §20 «designed to delete
+or de-identify…» по замыслу верно, но фактически невыполнимо до деплоя индексов. Нужен деплой индексов владельцем до R1; после
+деплоя следующий риск — полный перебор `users` (таймаут 540 с, раздел 5 того же документа).
+
 ## Как применить (только по «да» владельца)
 
 1. `git apply docs/phraseman-2.0/handoff/legal_r1_policy_additions.patch`

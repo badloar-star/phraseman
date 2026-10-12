@@ -1,7 +1,7 @@
 # Task packet: метка очистки кэша при убитом процессе + сверка политики удаления с кодом
 
 Governance-ID: TG-F177C5ECF41B
-Status: In progress
+Status: Done (код f745f817f; политика — заготовка п.4 в handoff/legal_r1_policy_additions.md)
 Owner: 5 · АВТОРИЗАЦИЯ (координатор 12.10)
 
 ## Outcome

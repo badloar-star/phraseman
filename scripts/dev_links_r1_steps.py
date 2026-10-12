@@ -125,7 +125,9 @@ add(['cards-028', 'cards-v2-018'], [], DEMO_PLUS, VIDEO, note='«Из видео
 add('cards-081', ['tap:#fc-video-packs-menu', 'tap:#fc-video-packs-menu-search', 'tap:#fc-video-packs-search', 'type:zzzqq'], DEMO_PLUS, VIDEO, note='поиск по роликам без совпадений')
 
 CUSTOM50 = 'plus=off&cards=custom50'
-add(['cards-010', 'cards-v2-045'], [], CUSTOM50, SAVED, note='Free: лимит сохранённых 50/50')
+# зачем (координатор 12.10, cards-010 снят пустым «Пока пусто»): лимит «сохранённых» считается по СОХРАНЁННЫМ карточкам (savedCards ≥ FREE_SAVED_CARD_LIMIT, flashcards_collection.tsx), а cards=custom50 пишет СВОИ карточки —
+# в «Сохранённых» они не видны. Нужен список сохранённых из 64 (cards=demo) на Free: пилюля «50/50» и блок «+14 скрыто · Безлимит с Plus» (в образце «+78» — данные).
+add(['cards-010', 'cards-v2-045'], [], 'cards=demo&plus=off', SAVED, note='Free: список из 64 сохранённых, лимит 50/50 и блок «+14 скрыто» (cards=demo&plus=off; cards=custom50 тут не годится — свои карточки в «Сохранённых» не видны)')
 add('cards-v2-046', [], CUSTOM50, '/flashcards_card_editor?create=1&cat=custom', note='Free: лимит своих карточек 50/50 в редакторе новой карточки')
 
 TO_PACK = 'tap:#fc-expanded-to-pack'
@@ -282,23 +284,6 @@ add('profile-029', ['see:#account-logout-button', 'tap:#account-logout-button', 
     note='«Старый аккаунт не считается закрытым» (logout=fail, стирание недостижимо); НУЖЕН ВХОД')
 add('profile-030', ['see:#account-delete-button', 'tap:#account-delete-button'], 'delete=fail', ACCT,
     note='окно «Удалить аккаунт?» с «14 дней», НЕ подтверждать (delete=fail — страховка); НУЖЕН ВХОД')
-
-
-# ───────────────────────── Аккаунт: отказы смены и входа (switch=…, зона Авторизации) ─────────────────────────
-# dev_state?switch=<режим> (app/dev_account_state.ts, память процесса): выход/смена отказывают ДО замка, синхронизации, маркера и стирания
-# (форсированная попытка тоже отказывает — защёлка), вход возвращает ошибку ДО сети. В стор-сборке ссылка не действует (маршрут вырезан,
-# геттеры = null). Окно смены открывает параметр Настроек switchAccount=1 (то же, что кнопка «Сменить аккаунт» из окна входа).
-SWITCH = '/(tabs)/settings?switchAccount=1'
-SWITCH_GO = ['tap:Продолжить', 'wait:1500']
-SWITCH_FORCE = SWITCH_GO + ['tap:Сменить без сохранения', 'wait:1500']
-SIGNIN = ['tap:#account-link-row', 'tap:#auth-google-button', 'wait:1500']
-add('auth-gap-004', SIGNIN, 'switch=not_uploaded', ACCT, note='окно входа: «прогресс на месте, вход отменён» (ошибка до сети); ТОЛЬКО ГОСТЬ — «Привязать аккаунт» есть у гостя')
-add('auth-gap-005', SIGNIN, 'switch=backup_blocked', ACCT, note='окно входа: «ждёт прогресс другого аккаунта»; ТОЛЬКО ГОСТЬ')
-add('auth-gap-013', SWITCH_FORCE, 'switch=unsaved_cards', SWITCH, note='«Прогресс не сохранён» → «Сменить без сохранения» → окно про несохранённые карточки')
-add('auth-gap-014', SWITCH_GO, 'switch=pending_spend', SWITCH, note='«Покупка ещё синхронизируется»')
-add('auth-gap-015', SWITCH_GO, 'switch=quarantine', SWITCH, note='«Нужна проверка монет»')
-add('auth-gap-017', SWITCH_FORCE, 'switch=guard', SWITCH, note='«Прогресс не сохранён» → «Сменить без сохранения» → «Смена аккаунта отменена» (форсированная отклонена защитной проверкой)')
-add('auth-gap-018', ['tap:Продолжить', 'wait:47000'], 'switch=slow', SWITCH, note='смена дольше 45 с → окно «смена ещё идёт» (switch=slow держит 50 с, затем отказ)')
 
 
 # ───────────────────────── Карточки: прямые маршруты тренировок (вердикты Макетов 12.10) ─────────────────────────

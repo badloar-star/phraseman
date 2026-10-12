@@ -38,6 +38,8 @@ type State = {
 };
 const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null };
 let state: State = EMPTY;
+// зачем (координатор 12.10, «сперва логи», cards-v2-033): подмены живут в памяти процесса и переживают переход на следующую ссылку робота — в журнале старта нужно видеть, когда и какими ключами их выставили
+let lastPatch: { atMs: number; keys: string[]; count: number } | null = null;
 
 function devCardsAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -55,6 +57,7 @@ export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]
     speech: patch.speech !== undefined ? patch.speech : state.speech,
     trainGate: patch.trainGate !== undefined ? patch.trainGate : state.trainGate,
   };
+  lastPatch = { atMs: Date.now(), keys: Object.keys(patch), count: (lastPatch?.count ?? 0) + 1 };
   console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
@@ -73,6 +76,21 @@ export function getDevSpeechMode(): DevSpeechMode | null {
 
 export function getDevTrainGate(): DevTrainGate | null {
   return devCardsAvailable() ? state.trainGate : null;
+}
+
+/** Снимок подмен Карточек для журнала [FLASHCARDS-SESSION]: что включено и ОТКУДА (когда и какими ключами выставлено последний раз; null — ссылка с подменами в этом процессе не приходила). */
+export function describeDevCardsState(): Record<string, unknown> {
+  if (!devCardsAvailable()) return { build: 'store', active: false };
+  return {
+    build: 'dev',
+    trainGate: state.trainGate,
+    holds: [...state.holds],
+    fails: [...state.fails],
+    speech: state.speech,
+    source: lastPatch
+      ? { via: 'dev_state-ссылка в памяти процесса', patches: lastPatch.count, lastKeys: lastPatch.keys, lastAgoMs: Date.now() - lastPatch.atMs }
+      : { via: 'не выставлялись в этом процессе' },
+  };
 }
 
 /** Фраза, которую «распознал» несуществующий микрофон: верная — сама цель, неверная — заведомо чужие слова. */

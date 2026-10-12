@@ -60,7 +60,7 @@ import { useFlashcardTrainingQuotaPreview } from '../hooks/useFlashcardTrainingQ
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
-import { isDevCardsFail, isDevCardsHeld } from './dev_cards_state';
+import { describeDevCardsState, isDevCardsFail, isDevCardsHeld } from './dev_cards_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type LoadState = 'loading' | 'ready' | 'error';
@@ -485,6 +485,8 @@ export default function FlashcardsTrainingSetupScreen() {
   const startTraining = useCallback(async () => {
     const state = { canStart, starting, inFlight: startInFlightRef.current, mode: mode ?? null, loadState, cardCount: summary.cardCount, quotaStatus: quotaPreview.status, blitzHasEnoughCards };
     console.log('[FC-TRAIN-ENTRY] setup:start-tap', JSON.stringify(state));
+    // зачем (координатор 12.10, «сперва логи», cards-v2-033): тот же префикс, что в старте сессии, — режим, наборы, размер и подмены dev с источником одним поиском
+    console.log(`[FLASHCARDS-SESSION] setup:tap ${JSON.stringify({ ...state, selectedDecks: selectedDeckIds.length, sizeId, secId, dirId, devState: describeDevCardsState() })}`); // guard-ok: журнал цепочки старта
     if (startInFlightRef.current) { console.log('[FC-TRAIN-ENTRY] setup:start-exit in_flight_lock'); return; }
     if (!mode) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_mode'); return; }
     if (!canStart) {
@@ -503,6 +505,7 @@ export default function FlashcardsTrainingSetupScreen() {
     if (!route) { console.log('[FC-TRAIN-ENTRY] setup:start-exit no_route', JSON.stringify({ mode, selectedDecks: selectedDeckIds.length })); return; }
     console.log('[BLITZ-AUTOOPEN] setup:push', JSON.stringify({ mode }));
     console.log('[FC-TRAIN-ENTRY] setup:push', JSON.stringify({ pathname: route.pathname, params: route.params }));
+    console.log(`[FLASHCARDS-SESSION] setup:push ${JSON.stringify({ pathname: route.pathname, params: route.params, mode })}`); // guard-ok: журнал цепочки старта
     startInFlightRef.current = true;
     setStarting(true);
     void setLastPreset(presetModeFor(mode), {

@@ -1,5 +1,5 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
+import { describeDevCardsState, getDevTrainGate, isDevCardsHeld } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
@@ -2336,9 +2336,17 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     void clearFlashcardsSwipeSessionDraft(studyTarget).catch((error) => DebugLogger.error('flashcards_swipe:draft-discard', error, 'warning'));
   }, [cancelDraftSave, studyTarget]);
 
+  // зачем (координатор 12.10, «сперва логи», cards-v2-033: «Не удалось подготовить тренировку» у Верно/Неверно без подмены сбоя): единый префикс — вся цепочка «Начать» → подготовка → результат одним поиском
+  const fsLog = useCallback((step: string, data: Record<string, unknown> = {}) => {
+    console.log(`[FLASHCARDS-SESSION] ${step} ${JSON.stringify(data)}`); // guard-ok: журнал цепочки старта обязан быть и в релизе (ранние выходы и catch)
+  }, []);
+
   const startSession = useCallback(async () => {
-    if (!accessResolved) return;
-    if (selectedSources.length === 0 || starting || startChargeInFlightRef.current) return;
+    if (!accessResolved) { fsLog('exit:access_not_resolved', { mode: trainingMode ?? 'trainer' }); return; }
+    if (selectedSources.length === 0 || starting || startChargeInFlightRef.current) {
+      fsLog('exit:not_startable', { sources: selectedSources.length, starting, inFlightLatch: startChargeInFlightRef.current });
+      return;
+    }
     const accessEpoch = swipeAccessEpochRef.current;
     const accessIsCurrent = () => swipeAccessGrantedRef.current
       && swipeAccessEpochRef.current === accessEpoch;
@@ -2350,6 +2358,12 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     swipeExplicitlyAbandonedRef.current = false;
     setStarting(true);
     setLoadError('');
+    fsLog('enter', {
+      mode: trainingMode ?? 'trainer', isTrueFalse: isTrueFalseSession, quickStart, phase,
+      deckIds: deckIdsForSwipeSources(selectedSources), sources: selectedSources.length, requestedSize: requestedSessionSize,
+      hasPremiumAccess, hasAccountToken: accountToken != null, attemptSessionId,
+      devState: describeDevCardsState(),
+    });
     let pendingRecord: FlashcardTrainingPendingGrantRecord | null = null;
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let swipeLocalStart: (() => void) | null = null;
@@ -2358,18 +2372,21 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       const devGate = getDevTrainGate();
       if (devGate === 'fail_swipe_prepare' || devGate === 'fail_swipe_quota') {
         console.log(`[DEV-STATE] swipe: старт подменён отказом (${devGate})`); // guard-ok: dev-ветка
+        fsLog('exit:dev_train_gate', { devGate, shown: devGate === 'fail_swipe_quota' ? 'quota_unverified' : 'prepare_failed', devState: describeDevCardsState() });
         setLoadError(devGate === 'fail_swipe_quota' ? swipeQuotaUnverifiedText(lang) : swipePrepareFailedText(lang));
         return;
       }
       const memory = await loadSwipeMemory(studyTarget);
       memoryRef.current = memory;
       const { cards, info } = await buildSessionCards(selectedSources, memory);
+      fsLog('cards:built', { cards: cards.length, memoryKeys: Object.keys(memory ?? {}).length, accessCurrent: accessIsCurrent() });
       if (!accessIsCurrent()) {
         // зачем (баг «Блиц висит на каркасе», 03.10): немой выход по тапу «Начать» — причина в лог.
         console.warn('[FC-SWIPE-GATE] exit:access_not_current', JSON.stringify({ cards: cards.length }));
         return;
       }
       if (cards.length === 0) {
+        fsLog('exit:no_cards_with_translation', { sources: selectedSources.length });
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
@@ -2405,6 +2422,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         setPhase('play');
       };
       const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
+      fsLog('account:resolved', { resolved: pendingAccount != null, hasAccountToken: accountToken != null });
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
       const pendingScope = {
         mode: 'swipe' as const,
@@ -2414,6 +2432,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         sessionSize: requestedSessionSize > 0 ? requestedSessionSize : Number.MAX_SAFE_INTEGER,
         preset: flashcardPendingGrantPreset(isTrueFalseSession),
       };
+      const prepareStartedAt = Date.now();
+      fsLog('prepare:request', { mode: 'swipe', preset: pendingScope.preset, sessionCards: sessionCards.length, size: requestedSessionSize > 0 ? requestedSessionSize : 'all', decks: pendingScope.deckKeys.length });
       const prepared = await prepareFlashcardTrainingPendingGrant({
         account: pendingAccount,
         scope: pendingScope,
@@ -2435,6 +2455,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         energyOperationId: swipeEnergyIntent.operationId,
         energyEpoch: swipeEnergyIntent.grant.attemptId,
       });
+      fsLog('prepare:response', { status: prepared.status, reason: 'reason' in prepared ? String(prepared.reason) : null, ms: Date.now() - prepareStartedAt });
       if (prepared.status !== 'prepared' && prepared.status !== 'reused') {
         // зачем: без reason аудит по логу невозможен — «unavailable» ничего не объясняет.
         throw new Error(`pending_grant_${prepared.status}:${'reason' in prepared ? String(prepared.reason) : 'n/a'}`);
@@ -2443,6 +2464,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       activeSwipePendingGrantRef.current = { account: pendingAccount, fingerprint: pendingRecord.fingerprint };
       const reconciled = await reconcileFlashcardTrainingPendingGrant(pendingAccount, pendingScope);
       console.log('[FC-SWIPE-GATE] reconcile:done', JSON.stringify({ status: reconciled.status }));
+      fsLog('reconcile', { status: reconciled.status });
       // зачем (баг 03.10, тот же класс, что в Блице): 'missing' сразу после prepare давал немой return —
       // тап «Начать» ничего не делал. Уводим в catch → fail-open (тренажёр) или понятная ошибка (Верно/Неверно).
       if (reconciled.status === 'found') pendingRecord = reconciled.record;
@@ -2497,6 +2519,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         pendingRecord.receiptId,
         `swipe-start:${attemptSessionId}`,
       );
+      fsLog('claim', { status: claimed.status });
       if (claimed.status !== 'claimed' && claimed.status !== 'reused') {
         throw new Error(`pending_grant_claim_${claimed.status}`);
       }
@@ -2515,7 +2538,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
             refundSpent: () => refundActiveSwipeEnergy('pending_grant_energy_persist_failed'),
           });
         }
+        fsLog('energy', { result: energyResult, charged: energyCharged, accessCurrent: accessIsCurrent() });
         if (!accessIsCurrent()) {
+          fsLog('exit:access_lost_after_energy', { charged: energyCharged });
           if (energyCharged) {
             await abandonFlashcardTrainingPendingGrant(
               pendingAccount,
@@ -2529,10 +2554,12 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           return;
         }
         if (energyResult === 'cancelled') {
+          fsLog('exit:energy_cancelled', {});
           await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
           return;
         }
         if (energyResult === 'insufficient') {
+          fsLog('exit:energy_insufficient', {});
           await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
           setNoEnergyOpen(true);
           return;
@@ -2547,6 +2574,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           receiptId: pendingRecord.receiptId,
           mode: 'swipe',
         });
+        fsLog('quota', { status: quotaResult.status });
         if (quotaResult.status === 'allowed') {
           const marked = await markFlashcardTrainingQuotaCommitted(
             pendingAccount,
@@ -2571,6 +2599,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
           activeSwipeSpentOperationRef.current = null;
           activeSwipePendingGrantRef.current = null;
+        fsLog('exit:quota_refused', { status: quotaResult.status, shown: quotaResult.status === 'exhausted' ? 'monthly_limit' : 'quota_unverified' });
         if (quotaResult.status === 'exhausted') {
           openMonthlyTrainingLimit();
         } else {
@@ -2579,7 +2608,10 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         return;
       }
       }
-      if (!swipeMountedRef.current || swipeExplicitlyAbandonedRef.current || !accessIsCurrent()) return;
+      if (!swipeMountedRef.current || swipeExplicitlyAbandonedRef.current || !accessIsCurrent()) {
+        fsLog('exit:unmounted_or_abandoned', { mounted: swipeMountedRef.current, abandoned: swipeExplicitlyAbandonedRef.current, accessCurrent: accessIsCurrent() });
+        return;
+      }
       /**
        * Запоминаем выбор наборов (`fc_mode_prefs_v1`) — следующий запуск
        * «Тренировки» из таббара придёт сюда уже с ними отмеченными.
@@ -2617,6 +2649,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       setSessionInfo(info);
       setAttemptSessionId(makeFeedbackAttemptId());
       setPhase('play');
+      fsLog('result:play', { cards: restoredSessionCards.length, path: 'grant' });
     } catch (error: unknown) {
       const pending = activeSwipePendingGrantRef.current;
       // зачем (владелец, 2026-09-13): немой catch прятал причину отказа входа.
@@ -2650,19 +2683,23 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
        * чека квоты и без списания энергии; отказ инфраструктуры громко в логе.
        */
       const message = error instanceof Error ? error.message : String(error);
-      if (canUseLegacySwipeGrantFailOpen(message, isTrueFalseSession) && swipeLocalStart && swipeMountedRef.current && !swipeExplicitlyAbandonedRef.current && accessIsCurrent()) {
+      const failOpenPolicy = canUseLegacySwipeGrantFailOpen(message, isTrueFalseSession);
+      fsLog('catch', { message, isTrueFalse: isTrueFalseSession, failOpenPolicy, hasLocalStart: swipeLocalStart != null, mounted: swipeMountedRef.current, abandoned: swipeExplicitlyAbandonedRef.current, accessCurrent: accessIsCurrent(), devState: describeDevCardsState() });
+      if (failOpenPolicy && swipeLocalStart && swipeMountedRef.current && !swipeExplicitlyAbandonedRef.current && accessIsCurrent()) {
         activeSwipePendingGrantRef.current = null;
         activeSwipeSpentOperationRef.current = null;
         console.warn('[FC-TRAIN-ENTRY] swipe entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));
         swipeLocalStart();
+        fsLog('result:play', { path: 'fail-open-local' });
         return;
       }
+      fsLog('result:error_shown', { text: 'prepare_failed', reason: message, mounted: swipeMountedRef.current });
       if (swipeMountedRef.current) setLoadError(swipePrepareFailedText(lang));
     } finally {
       startChargeInFlightRef.current = false;
       if (swipeMountedRef.current) setStarting(false);
     }
-  }, [accessResolved, hasPremiumAccess, accountToken, acknowledgeSessionStart, answerFor, attemptSessionId, buildPromptQueue, buildSessionCards, cardContentLang, confirmSwipeEnergy, isTrueFalseSession, lang, openMonthlyTrainingLimit, position, refundActiveSwipeEnergy, refundSwipeEnergy, requestedSessionSize, selectedSources, starting, studyTarget, swipeEnergyIntent]);
+  }, [fsLog, trainingMode, quickStart, phase, accessResolved, hasPremiumAccess, accountToken, acknowledgeSessionStart, answerFor, attemptSessionId, buildPromptQueue, buildSessionCards, cardContentLang, confirmSwipeEnergy, isTrueFalseSession, lang, openMonthlyTrainingLimit, position, refundActiveSwipeEnergy, refundSwipeEnergy, requestedSessionSize, selectedSources, starting, studyTarget, swipeEnergyIntent]);
 
   useEffect(() => {
     if (!swipeAccessGranted) return;

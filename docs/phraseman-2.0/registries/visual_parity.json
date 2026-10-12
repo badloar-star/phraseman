@@ -2933,23 +2933,26 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-069.png",
+      "evidence_at": "2026-10-12T17:44:43.515Z",
+      "evidence_sha256": "404638f73b878c8533361797719b133bd6c8cd4d771b8c73369cc8f28e28ac0d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы», а не экран создания набора с сообщением о минимуме 10 карточек; шагов не было (общий маршрут)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:45:42.312Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:44, cards-v2 №22 «Новый набор» против «Создание набора · Минимум 10 карточек»): сверка невозможна — на кадре «Мои наборы» (один набор), образец — экран «Новый набор» с названием, «Кто видит», уровнем и карточками."
     },
     {
       "id": "cards-070",
@@ -3018,23 +3021,26 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-071.png",
+      "evidence_at": "2026-10-12T17:45:13.078Z",
+      "evidence_sha256": "038685e6bde49d46167340a93be0ef3f360f84b75f5ced9a93bc4c4b4332ec8f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Сохранённые» (пусто), а не экран создания набора с лимитом 50 карточек; нужна ссылка на /community_pack_create с набором из 50 карточек (подмена packcards — партия 2 Ядра)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:45:42.312Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:45, cards-v2 №22 «Новый набор» против «Создание набора · Лимит 50 карточек»): сверка невозможна — на кадре «Сохранённые» «Пока пусто» («Открыть каталог»), образец — экран «Новый набор»."
     },
     {
       "id": "cards-072",

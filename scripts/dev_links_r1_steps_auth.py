@@ -134,3 +134,15 @@ add('onboarding-008', ['tap:#auth-google-button', 'wait:1200'], 'guest=required&
 ENTRIES.pop('auth-gap-011', None)
 add('auth-gap-011', ['see:#account-delete-button', 'tap:#account-delete-button', 'wait:600', 'tap:#delete-account-confirm', 'wait:2500'],
     'guest=required&delete=throw', ACCT, note='окно «Не получилось · Удаление не завершилось. Проверь интернет…» (исключение dev_delete_throw, ничего не удалено)')
+
+# ── «Выйти» (координатор 12.10, п.A): кнопка есть только у вошедшего аккаунта — настоящий выход ТОЛЬКО на №3 «Phraseman Support».
+# account=support_only обрывает ссылку на любом другом аккаунте (app/dev_state_fixtures.ts). Повторный вход в №3 — только выбором уже
+# добавленного аккаунта; появилось поле пароля — СТОП (пароли не вводим).
+ENTRIES.pop('profile-028', None)
+ENTRIES.pop('profile-029', None)
+LOGOUT_TAP = ['see:#account-logout-button', 'tap:#account-logout-button']
+add('profile-028', LOGOUT_TAP + ['settle:0'], 'account=support_only', ACCT,
+    note='НАСТОЯЩИЙ выход из №3: кадр «Выходим из аккаунта…» сразу после тапа; потом вход в №3 выбором аккаунта (пароль — стоп)')
+# Неудачу выхода настоящим выходом не воспроизвести — остаётся подмена logout=fail (отказ до действия) плюс защита №3.
+add('profile-029', LOGOUT_TAP + ['wait:1500'], 'account=support_only&logout=fail', ACCT,
+    note='«Не удалось выйти» (logout=fail — выхода нет); только на №3')

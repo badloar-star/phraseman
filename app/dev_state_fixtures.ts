@@ -200,6 +200,8 @@ export type DevStateRequest = Readonly<{
   robotNoCloud?: '1' | '0';
   /** `guest=required`: ссылка не применяет НИЧЕГО и не переходит на next, если на устройстве не анонимный гость (№1/№2/№3, Google/Apple). */
   guest?: 'required';
+  /** `account=support_only`: ссылка не применяет НИЧЕГО и не переходит на next, если на устройстве не аккаунт №3 «Phraseman Support» (Google). */
+  account?: 'support_only';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
@@ -289,6 +291,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
   request.guest = pick('guest', ['required'] as const);
+  request.account = pick('account', ['support_only'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -393,6 +396,17 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     }
     console.log(`[DEV-STATE] guest_required ok uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)}`); // guard-ok: единичный лог на ссылку
     applied.guest = 'required';
+  }
+  // зачем (координатор 12.10, п.A): настоящий «Выйти» роботом — ТОЛЬКО на №3 «Phraseman Support»; иначе ссылка обрывается целиком, до шагов.
+  if (request.account === 'support_only') {
+    const { checkSupportAccountNow } = await import('./dev_state_account_guard');
+    const support = checkSupportAccountNow();
+    if (!support.ok) {
+      console.warn(`[DEV-STATE] refused account_support_only reason=${support.reason} email=${support.emailMasked} providers=${support.providers} — ссылка не применена, шаги и переход отменены`); // guard-ok: ранний выход логируется
+      return { applied, skipped: { all: `account_support_only_refused:${support.reason}` }, next: null };
+    }
+    console.log(`[DEV-STATE] account_support_only ok email=${support.emailMasked} providers=${support.providers}`); // guard-ok: единичный лог на ссылку
+    applied.account = 'support_only';
   }
   // зачем (первый прогон робота 12.10: cards-002/008/009/013 — 40 с на «DEV-STATE…» без перехода): шаг фикстуры мог зависнуть (замок записи карточек, переход
   // аккаунта) и держать ВЕСЬ экран; логов по шагам не было. Теперь каждый шаг пишет старт/итог с длительностью, а зависший снимается потолком

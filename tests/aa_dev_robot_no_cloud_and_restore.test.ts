@@ -235,3 +235,34 @@ describe('delete=throw и обход ввода «УДАЛИТЬ» — толь�
     expect(thrown).toBeLessThan(src.indexOf("discardAccountSwitchResumeCredential('account_delete');", fn));
   });
 });
+
+describe('account=support_only — настоящий «Выйти» только на №3', () => {
+  const google = [{ providerId: 'google.com' }];
+  it('проходит только Google-аккаунт «Phraseman Support»; маска без полной почты', () => {
+    const { classifySupportAccount, maskEmailForLog } = require('../app/dev_state_account_guard');
+    expect(classifySupportAccount({ isAnonymous: false, email: 'someone.long@gmail.com', displayName: 'Phraseman Support', providerData: google }))
+      .toEqual({ ok: true, reason: 'support_account', emailMasked: 'som…@gmail.com(22)', providers: 'google.com' });
+    expect(classifySupportAccount(null)).toMatchObject({ ok: false, reason: 'no_auth_user' });
+    expect(classifySupportAccount({ isAnonymous: true, providerData: [] })).toMatchObject({ ok: false, reason: 'anonymous' });
+    expect(classifySupportAccount({ isAnonymous: false, displayName: 'Phraseman Support', providerData: [{ providerId: 'apple.com' }] }))
+      .toMatchObject({ ok: false, reason: 'not_google' });
+    expect(classifySupportAccount({ isAnonymous: false, displayName: 'Owner', providerData: google }))
+      .toMatchObject({ ok: false, reason: 'display_name_mismatch' });
+    expect(classifySupportAccount({ isAnonymous: false, displayName: null, providerData: google }))
+      .toMatchObject({ ok: false, reason: 'display_name_mismatch' });
+    expect(maskEmailForLog('abcdef@x.io')).toBe('abc…@x.io(11)');
+    expect(maskEmailForLog(null)).toBe('none');
+    // почта и uid в коде проверки не хранятся
+    const guardSrc = read('app/dev_state_account_guard.ts');
+    expect(guardSrc).not.toMatch(/[A-Za-z0-9._%+-]+@(gmail|googlemail)\.com/);
+  });
+
+  it('applyDevState: проверка №3 стоит до первого шага и обрывает ссылку без перехода', () => {
+    const src = read('app/dev_state_fixtures.ts');
+    const start = src.indexOf('export async function applyDevState(');
+    const guard = src.indexOf("if (request.account === 'support_only') {", start);
+    expect(guard).toBeGreaterThan(start);
+    expect(guard).toBeLessThan(src.indexOf('await step(', start));
+    expect(src.slice(guard, guard + 900)).toContain('return { applied, skipped: { all: `account_support_only_refused:${support.reason}` }, next: null };');
+  });
+});

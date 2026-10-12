@@ -63,3 +63,44 @@ export function assertDisposableGuest(what: string, readUser: () => GuardUser = 
   // зачем (координатор 12.10, Ядро): с этого момента карточки/наборы этого гостя не выгружаются в облако (мусор в проде).
   markDevFixtureNoUpload(verdict.uid, what);
 }
+
+/** Пользователь Firebase Auth для проверки аккаунта №3 (поля профиля, без хранения почты/uid в коде). */
+export type SupportGuardUser = Readonly<{
+  isAnonymous?: boolean;
+  email?: string | null;
+  displayName?: string | null;
+  providerData?: readonly unknown[];
+}> | null | undefined;
+
+export type SupportAccountCheck = Readonly<{ ok: boolean; reason: string; emailMasked: string; providers: string }>;
+
+// зачем (координатор 12.10, п.A): настоящий «Выйти» роботом — ТОЛЬКО на аккаунте №3 «Phraseman Support» (№1 никогда, №2 не трогаем).
+// Опознание по имени профиля Google, почта и uid в коде не хранятся; ошибка опознания = отказ (безопасная сторона).
+const SUPPORT_ACCOUNT_DISPLAY_NAME = 'phraseman support';
+
+/** Маска почты для журнала: первые 3 знака, домен и длина — без полного адреса. */
+export function maskEmailForLog(email: string | null | undefined): string {
+  if (!email) return 'none';
+  const at = email.indexOf('@');
+  if (at <= 0) return `?(${email.length})`;
+  return `${email.slice(0, Math.min(3, at))}…@${email.slice(at + 1)}(${email.length})`;
+}
+
+/** Чистая проверка (юнит-тестируема): Google-аккаунт с именем профиля «Phraseman Support». */
+export function classifySupportAccount(user: SupportGuardUser): SupportAccountCheck {
+  const emailMasked = maskEmailForLog(user?.email ?? null);
+  const providerIds = (Array.isArray(user?.providerData) ? user!.providerData : [])
+    .map((p) => String((p as { providerId?: unknown } | null)?.providerId ?? '?'));
+  const providers = providerIds.join(',') || 'none';
+  if (!user) return { ok: false, reason: 'no_auth_user', emailMasked, providers };
+  if (user.isAnonymous === true) return { ok: false, reason: 'anonymous', emailMasked, providers };
+  if (!providerIds.includes('google.com')) return { ok: false, reason: 'not_google', emailMasked, providers };
+  const name = String(user.displayName ?? '').trim().toLowerCase();
+  if (name !== SUPPORT_ACCOUNT_DISPLAY_NAME) return { ok: false, reason: 'display_name_mismatch', emailMasked, providers };
+  return { ok: true, reason: 'support_account', emailMasked, providers };
+}
+
+/** Проверка текущего пользователя без побочных эффектов (для `dev_state?account=support_only`). */
+export function checkSupportAccountNow(readUser: () => SupportGuardUser = readCurrentUser as () => SupportGuardUser): SupportAccountCheck {
+  return classifySupportAccount(readUser());
+}

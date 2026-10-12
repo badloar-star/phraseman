@@ -387,3 +387,21 @@
   - **021** — `unique=False`: в макете в поле «AN», а кнопка до 4 знаков выключена — такой кадр в коде недостижим, нужен вердикт Макетов.
   - **025** снимается ответом `disabled` при включённом рубильнике (иначе шит не открыть).
   - Тесты: dev_social_state 8/8, dev_links_r1_contract 6/6.
+
+## §AUTH-0060 — 2026-10-12: вход в №2 за 55–61 с — этапные логи хвоста подмены аккаунта (**f02debe25**); онбординг — принято, [ONB-STALL] остаётся навсегда
+- ℹ️ Онбординг: принято — на чистой установке 400–550 мс на шаг, прежние 15/65 с — артефакт dev-бандла. Замеры `[ONB-STALL]` (e43c6ea32) остаются.
+- **Что уже было видно.** У каждой строки `[AUTH-LINK-GOOGLE]` есть монотонная метка `t`, поэтому этапы ДО слияния раскладываются по разнице соседних строк: native ok → link decision → link_lookup → ensure_link → swap presync_* → swap merge_result / merge_skipped_fallback. Слепым было одно место: между `merge_skipped_fallback` и `result merged_devices` подряд шли ожидание синхронизации (до 10 с), переходная блокировка, замок, стирание, установка id и `ensureAnonUser` — без единой строки.
+- **f02debe25 — `[AUTH-LINK-GOOGLE] swap stage <этап> {tookMs, sinceStartMs, t}`** в ветке `merged_swap_to_remote`:
+  - `local_data_checked {preserveLocalProgress, handoff}`;
+  - `presync_phase_done`;
+  - `server_merge_done {called}`;
+  - `authoritative_link_read` — сетевое перечтение привязки, когда слияния не было;
+  - `sync_quiesced` — ожидание синхронизации перед сменой id;
+  - `entitlement_transition_begun`;
+  - `transition_lock_acquired`;
+  - `wipe_done` — то самое 2-е стирание;
+  - `stable_id_installed`;
+  - `auth_user_ready`.
+
+  Порядок и поведение входа не менялись. Тесты: auth_provider_behavior 122/122, aa_auth_double_tap 29/29.
+- **Прошу Сверку** на следующем входе в №2 через «Войти в этот аккаунт» прислать с метками времени ВСЕ строки `[AUTH-LINK-GOOGLE]` (включая `swap stage`), `[AUTH-SWITCH-OFFER]`, `[ACC-SIGNOUT]`, `[SYNC-DENY]`, `[ACC-SWITCH-WIPE]`, `[NAV-PAINT]`. По ним будет точно видно, какой этап держит ~25 с, и станет ясно, нужны ли (а)/(б) из §AUTH-0040 или чинить другое.

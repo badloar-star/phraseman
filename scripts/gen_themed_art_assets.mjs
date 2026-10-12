@@ -10,6 +10,49 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+
+// зачем (координатор 15.10, [THEMED-ART-GUARD]): Codex положил в v2art фэнтези-башню по 1,7 МБ с нарисованной шахматкой вместо прозрачности — такое не должно
+// попадать в сборку. Файл тяжелее 400 КБ или с непрозрачными углами (нет настоящей альфы) в реестр не регистрируется, причина пишется в журнал.
+export const ART_MAX_BYTES = 400 * 1024;
+const ART_CORNER_MAX_ALPHA = 16;
+
+/** Проверка одного файла арта: { ok, reason }. Не бросает — причина отказа всегда в reason. */
+export async function checkArtFile(file) {
+  try {
+    const bytes = fs.statSync(file).size;
+    if (bytes > ART_MAX_BYTES) return { ok: false, reason: `размер ${Math.round(bytes / 1024)} КБ больше лимита ${ART_MAX_BYTES / 1024} КБ` };
+    const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+    const { width, height } = info;
+    const patch = Math.min(4, width, height);
+    let maxCornerAlpha = 0;
+    for (const [x0, y0] of [[0, 0], [width - patch, 0], [0, height - patch], [width - patch, height - patch]]) {
+      for (let y = y0; y < y0 + patch; y += 1) for (let x = x0; x < x0 + patch; x += 1) maxCornerAlpha = Math.max(maxCornerAlpha, data[(y * width + x) * 4 + 3]);
+    }
+    if (maxCornerAlpha > ART_CORNER_MAX_ALPHA) return { ok: false, reason: `углы непрозрачные (альфа ${maxCornerAlpha}/255) — нет настоящей прозрачности (нарисованный фон или шахматка)` };
+    return { ok: true, reason: `${Math.round(bytes / 1024)} КБ, углы прозрачны` };
+  } catch (error) {
+    return { ok: false, reason: `файл не читается: ${error instanceof Error ? error.message : String(error)}` };
+  }
+}
+
+/** Все кандидаты v2art, не прошедшие сторож: Map<'dark/name.webp', reason>. */
+export async function rejectedArtFiles() {
+  const rejected = new Map();
+  for (const brightness of ['dark', 'light']) {
+    const dir = path.join(artDir, brightness);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir).sort()) {
+      if (!/^([a-z0-9_]+)(\.accent)?\.webp$/.test(file)) continue;
+      const verdict = await checkArtFile(path.join(dir, file));
+      if (!verdict.ok) {
+        rejected.set(`${brightness}/${file}`, verdict.reason);
+        console.error(`[THEMED-ART-GUARD] отказ: ${brightness}/${file} — ${verdict.reason}`);
+      }
+    }
+  }
+  return rejected;
+}
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const artDir = path.join(root, 'assets', 'images', 'v2art');
@@ -26,7 +69,7 @@ export function knownNames() {
   return names;
 }
 
-export function scan(names) {
+export function scan(names, exclude = new Set()) {
   const slots = new Map();
   const unknown = [];
   for (const brightness of ['dark', 'light']) {
@@ -36,6 +79,7 @@ export function scan(names) {
       const m = file.match(/^([a-z0-9_]+)(\.accent)?\.webp$/);
       if (!m) continue; // .glow.webp и прочие черновики не подключаем
       const [, name, accent] = m;
+      if (exclude.has(`${brightness}/${file}`)) continue; // отвергнут сторожем [THEMED-ART-GUARD]
       if (!names.has(name)) { unknown.push(`${brightness}/${file}`); continue; }
       const key = `${brightness}${accent ? 'Accent' : ''}`;
       const entry = slots.get(name) ?? {};
@@ -67,13 +111,15 @@ export function render(slots) {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const { slots, unknown } = scan(knownNames());
+  const rejected = await rejectedArtFiles();
+  const { slots, unknown } = scan(knownNames(), new Set(rejected.keys()));
   for (const u of unknown) console.warn(`[THEMED-ART] неизвестное имя, пропущено: ${u}`);
   const next = render(slots);
   if (process.argv.includes('--check')) {
     const cur = fs.existsSync(outPath) ? fs.readFileSync(outPath, 'utf8').replace(/\r\n/g, '\n') : '';
     if (cur !== next) { console.error('[THEMED-ART] generated-файл устарел: node scripts/gen_themed_art_assets.mjs'); process.exit(1); }
     console.log(`[THEMED-ART] ok: ${slots.size} предметов`);
+    if (rejected.size > 0) { console.error(`[THEMED-ART-GUARD] ${rejected.size} файл(ов) отвергнуто — уберите их из assets/images/v2art`); process.exit(1); }
   } else {
     fs.writeFileSync(outPath, next);
     console.log(`[THEMED-ART] записано ${slots.size} предметов → ${path.relative(root, outPath)}`);

@@ -245,7 +245,9 @@ const secPlus = (p, details = [], noInvite = false) => ey('PHRASEMAN PLUS', 'plu
 const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить кеш', { value: cache }), row('star', 'Оценить в Google Play')]);
 const PLUS_OFF = { title: 'Подписка Plus', value: 'Не активна', filled: false };
 const PLUS_ON = { title: 'Подписка Plus', value: 'Активна', filled: true };
-const mainScreen = (o = {}) => hMain + pcard('Лектор · аккаунт привязан') + secProfile(o.acc || 'Google', o.study || 'English') + (o.slotTop || '') + secLearn()
+// зачем (кадры settings-gap-020/021, 12.10): гость — «Профиль · Стажёр · прогресс привязан к этому телефону» + «Войти», «Аккаунт · Не привязан», сверху слот «Важное от Phraseman»; привязанный аккаунт без подмены Авторизации не снять
+const pcardGuest = `<div class="gs-pc t">${K.coinImg(5, 52)}<div class="gs-tx"><div class="gs-pn">Профиль</div><div class="gs-ps">Стажёр · прогресс привязан к этому телефону</div></div><span class="t" style="flex:none;display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:15px;background:rgba(255,255,255,.1);font-size:13px;font-weight:700">Войти</span></div>`;
+const mainScreen = (o = {}) => hMain + (o.guest ? pcardGuest : pcard('Лектор · аккаунт привязан')) + secProfile(o.guest ? 'Не привязан' : (o.acc || 'Google'), o.study || 'English') + (o.guest ? slotTopMsg : (o.slotTop || '')) + secLearn()
   + secPlus(o.plus || PLUS_OFF, o.details || [], !!o.noInvite) + secHelp(o.cache) + (o.slotBottom || '') + '<div class="gs-ver">Версия 2.0.0 (118)</div>';
 
 /* ---------- слот сообщений (SettingsMessageSlotCard.tsx) ---------- */
@@ -371,8 +373,8 @@ document.getElementById('root').innerHTML =
   block('lang', 'Языки интерфейса и изучения', 'Английский интерфейс выключен флагом, поэтому строк восемь. Шторка «Язык изучения» — пять языков.', [
     col('Язык интерфейса: 8 строк, «Português (Brasil)», внизу «Язык изучения»', ph(langScreen(), { time: '13:15', inStyle: 'padding-bottom:60px' })),
     col('Шторка «Язык изучения»: «Учу · выбран», «Учу», замок «Новый язык · доступ уточняется»', ph(mainScreen({}), { ...withNav, time: '13:16', overlay: studySheet() })),
-    col('Тост после смены языка: «Готово · Теперь учишь Español»', ph(mainScreen({ study: 'Español' }), { ...withNav, time: '13:16', overlay: toast('ok', 'Готово', 'Теперь учишь Español') })),
-    col('Тост при сбое: «Что-то пошло не так · Не получилось сменить язык. Попробуй ещё раз.»', ph(mainScreen({}), { ...withNav, time: '13:17', overlay: toast('err', 'Что-то пошло не так', 'Не получилось сменить язык. Попробуй ещё раз.') })),
+    col('Тост после смены языка: «Готово · Теперь учишь Español»', ph(mainScreen({ guest: true, study: 'Español' }), { ...withNav, time: '13:16', overlay: toast('ok', 'Готово', 'Теперь учишь Español') })),
+    col('Тост при сбое: «Что-то пошло не так · Не получилось сменить язык. Попробуй ещё раз.»', ph(mainScreen({ guest: true }), { ...withNav, time: '13:17', overlay: toast('err', 'Что-то пошло не так', 'Не получилось сменить язык. Попробуй ещё раз.') })),
   ]) +
   block('support', 'Поддержка', 'Раскрытая диагностика и экран после отправки.', [
     col('Поддержка: карточка «Техническая диагностика» при выключенном журнале («Журнал технических действий сейчас выключен — вместе с обращением он не отправляется»)', ph(support({ text: 'В «Карточках» нажимаю «Послушать», но звука нет.' }), { time: '12:42' })),

@@ -28163,16 +28163,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-008.png",
+      "evidence_at": "2026-10-12T03:19:00.078Z",
+      "evidence_sha256": "828d3fb2c75a58a177094047cab4d0472497fe77d3fde446734bd3c3192fb867",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] Перевод «стоимость проезда» в карточке Fare переносится на две строки (карточка выше соседних) — в образце одна строка рядом с кнопкой озвучки; то же на cards-v2-006. Подтянуть ширину текстовой области или кегль.",
+        "[вёрстка, мелко] Плитки в приложении крупнее по высоте (≈125 против 122 px); плашка «Тренировать» на y≈1150 против 1190 в масштабе образца."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:20:14.756Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -28190,7 +28193,8 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:18, утверждённый cards-v2 №6 «Сохранённые — 2 колонки»): раскладка и содержимое совпали — шапка, заголовок «Сохранённые 64», ползунок на втором делении, плитки в две колонки в том же порядке, плашка «Тренировать». Match не выставлен: остаётся одно отличие вёрстки."
     },
     {
       "id": "cards-section-009",
@@ -37722,21 +37726,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-035.png",
+      "evidence_at": "2026-10-12T03:18:42.467Z",
+      "evidence_sha256": "19c39c1bfb2701b3278e508a3de06f7f3adf8a3befec859e8db6f96a39a3b747",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вопрос владельцу — «EN ⌄»] Чип «EN ⌄» в шапке приложения, в образце его нет (общий открытый вопрос).",
+        "[образец ≠ код] Кнопка «+» (создать набор) справа от заголовка «Сообщество» в приложении светлая круглая; в образце нет. Выбран фильтр «Новые» (в образце «Популярные»); в карточках наборов один чип слова вместо трёх (как cards-v2-025).",
+        "[вёрстка, мелко] Значок тоста: белый заливной круг с «!» против «!» в кольце; карточки наборов выше (~210 против 190 px)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:20:14.756Z",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?fail=card_write|pack_write"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:18, cards-gaps-states №35 «Каталог — не сохранился на телефоне»; образец нарисован с приложения): тост «ЧТО-ТО ПОШЛО НЕ ТАК · Не получилось сохранить набор на телефоне. Попробуй ещё раз.» поверх каталога «Сообщество» показан, список наборов (Family, B2 глаголы, Антоніми дієслів) тот же. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-036",

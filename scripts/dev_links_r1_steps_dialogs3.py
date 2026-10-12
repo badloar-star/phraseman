@@ -55,3 +55,13 @@ put('energy-modes-016', START + WRONG + ['wait:300'], LI + '&mode=a&energy=5', E
 put('energy-modes-015', START, LI + '&mode=a&energy=5', EM, note='Режим А: старт занятия, −1 энергия')
 # 008: энергия 0, следующая единица через 8 с; шторка «Нужна энергия» → «Подожду» → тост «Энергия восстановилась»
 put('energy-modes-008', ['tap:#lesson-menu-primary', 'wait:1200', 'tap:#energy-needed-wait', 'wait:7500'], 'plus=off&free=on&mode=b&energy=restoring&restore_in=8', '/lesson_menu?id=1', unique=False, note='Режим Б: энергия 0, восстановление через 8 с → «Нужна энергия» → «Подожду» → тост (energy=restoring&restore_in=8; состав макета Б8 сверить по кадру)')
+
+# ── Партия 4 Ядра (d0c04fbfd): cards=demo_nopacks, energy=0, blitz_answer=wrong, mode=a
+# зачем (Ядро 12.10): хвосты Карточек и энергии — только гость; в energy-modes-013 пилюля энергии не меняется (ошибка в диалоге энергию не тратит)
+from dev_links_r1_steps import DLG_START as _DS, DLG as _DLG  # noqa: E402
+put('cards-gap-019', ['tap:Layover', 'tap:#fc-expanded-to-pack'], 'cards=demo_nopacks&plus=on', '/flashcards_collection?cat=saved', note='шторка «В какой набор?»: своих наборов пока нет (cards=demo_nopacks → тап по карточке → «В набор»)')
+put('cards-gap-040', [], 'cards=demo&plus=off&free=on&mode=a&energy=5', '/flashcards_recall_session?deck=saved&size=all&dir=to_target', note='«Напиши»: флаг energy_mistake_charge выключен (mode=a) — пилюля энергии вместо сердец')
+put('energy-modes-007', ['tap:#lesson-menu-primary', 'wait:1500'], 'plus=off&free=on&mode=b&energy=0', '/lesson_menu?id=1', unique=False, note='Режим Б: энергии 0 → шторка «Нужна энергия» (energy-needed-sheet); если меню уводит на Главную — прислать журнал [ENERGY-NEEDED]')
+put('energy-modes-012', ['wait:4000', 'await:#fc-blitz-opt-target', 'tap:#fc-blitz-opt-target', 'wait:300'], 'cards=demo&plus=off&free=on&mode=b&energy=5&blitz_answer=wrong', '/flashcards_blitz_session?deck=saved&sec=60', note='Режим Б: блиц, неверный ответ — −1 энергия, сердец нет (blitz_answer=wrong)')
+put('energy-modes-013', _DS + ['tap:#dialogue-v2-session-input', 'type:I goed home', 'tap:#dialogue-v2-session-send', 'wait:2500'], 'plus=off&mode=b&energy=5&dquota=reset&coinRank=6&aiConsent=granted&dev_dialog_send=ok', _DLG, unique=False, note='Режим Б: диалог, реплика с ошибкой — пилюля энергии не меняется (dev_dialog_send=ok)')
+put('energy-modes-014', ['tap:#home-v2-phrase-of-day', 'wait:800'], 'plus=off&mode=b&energy=5', '/(tabs)/home', unique=False, note='Режим Б: фраза дня энергию не тратит (пилюля на Главной)')

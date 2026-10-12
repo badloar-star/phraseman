@@ -161,7 +161,9 @@ add('dialogs-005', [], 'plus=off&dquota=reset&hold=dialog_language_gate', DLG, n
 add('dialogs-003', [WORLD], 'plus=off&dquota=reset&dialogsDone=3', DLG, note='первая категория раскрыта, 3 первых диалога пройдены (dialogsDone=3: локальная запись, только гость; стереть: dialogsDone=reset) — «пройдено ✓» и счётчик «3 / всего»')
 add('dialogs-006', [WORLD], 'plus=off&dquota=reset', DLG, note='категория раскрыта (первая)')
 add('dialogs-007', [WORLD, ROW], 'plus=off&dquota=reset', DLG, note='брифинг первого диалога первой категории')
-add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'energy=0&dev_energy_fail=1', DLG, note='старт без энергии — окно «Нет энергии»')
+# зачем (координатор 12.10, dialogs-011; журнал кадра: «confirmSpendOne(ai_dialog) → cancelled (dev_energy_fail)»): dev_energy_fail=1 подменяет ответ на «отказ» — это тост «Не получилось начать диалог» (dialogs-gap, строка про отказ старта),
+# а окно «Энергия закончилась» показывает настоящий ответ 'insufficient' при нулевой энергии без подмены отказа. Free (plus=off) и energy=0.
+add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=0', DLG, note='старт без энергии — окно «Энергия закончилась» (energy=0; подмена отказа энергии даёт тост, а не окно)')
 add('dialogs-gap-002', [], 'plus=on&dquota=reset', '/dialogue_v2_memory', note='память диалогов, Plus (кадр «пусто», если памяти нет)')
 add('dialogs-gap-003', [], 'plus=off&dquota=reset', '/dialogue_v2_memory', note='память диалогов без Plus — только удаление')
 add('dialogs-gap-009', [], 'plus=on&hold=freeform_loading', '/dialogue_v2_freeform', note='свободный разговор — готовим разговор (hold=freeform_loading)')

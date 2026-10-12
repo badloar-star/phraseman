@@ -172,7 +172,7 @@ export default function DialogueV2BriefingRoute() {
   // зачем (владелец 30.09: «энергия как урок, 1 за диалог»; макет dialogs.html B5/B6):
   // «Начать» списывает 1 энергию до входа в сессию; нет энергии — окно «Нет энергии».
   // Plus не тратит (confirmSpendOne вернёт 'unlimited'). Латч — от двойного тапа.
-  const { confirmSpendOne, isUnlimited: energyUnlimited } = useEnergy();
+  const { confirmSpendOne, isUnlimited: energyUnlimited, energy: energyNow } = useEnergy();
   const [dialogueAttempt, setDialogueAttempt] = useState(0);
   // зачем (баг 01.10, «Дизайн»: «Начать диалог» — мёртвая кнопка, operation_id_conflict):
   // номер операции энергии = тип + попытка, БЕЗ сценария; попытка с 0 на каждом открытии
@@ -275,7 +275,7 @@ export default function DialogueV2BriefingRoute() {
     if (supportedTarget(studyTarget) && scenarioId) markDialogueV2StartTap({ studyTarget, scenarioId }, Date.now());
     try {
       const result = await confirmSpendOne(energyIntent);
-      console.log('[DIALOGUE-V2] start energy', { scenarioId, result, operationId: energyIntent.operationId, attempt: dialogueAttempt }); // guard-ok: ранний выход старта логируется
+      console.log('[DIALOGUE-V2] start energy', { scenarioId, result, energyNow, operationId: energyIntent.operationId, attempt: dialogueAttempt, branch: result === 'cancelled' ? 'toast_start_failed' : result === 'insufficient' ? 'no_energy_modal' : 'open_session' }); // guard-ok: ранний выход старта логируется
       if (result === 'cancelled') {
         // зачем (владелец: ни одной мёртвой кнопки): отказ старта — понятная реакция и
         // новый номер попытки, чтобы следующий тап не упёрся в ту же запись.

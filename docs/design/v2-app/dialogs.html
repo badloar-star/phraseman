@@ -271,7 +271,11 @@
 .one .page { padding: 20px 20px 20px; } .one .block { margin-top: 0; }
 /* зачем (координатор 11.10): «Свободный разговор» — строка над категориями хаба (DialogsTabContent), кнопки входа — акцентом темы, а не белые.
    Free: справа замок (ряд ведёт в Plus), Plus: шеврон. «Память диалогов» здесь НЕ рисуем — она в Настройки → Приватность и данные. */
-.ph { --acc: #7EF0C8; --on: #04261D; }
+/* зачем (координатор 13.10, класс A «Аврора ＠1» по таблице DEV_SWITCHES_R1_CORE): на образце основные кнопки («Включить / Остаться / Получить Plus / К урокам / Закрыть / Открыть Plus») мятные, как в приложении на theme=grad_aurora&level=1, и у телефона есть свечение фона (--g1/--g2); раньше кнопки брали белый базовый --cta, фон был ровным.
+.ph { --g1: #38E0AA; --g2: #7C5CFF; --acc: #7EF0C8; --on: #04261D; }
+.ph::before { content: ""; position: absolute; inset: -18%; z-index: -1; pointer-events: none; opacity: .62;
+  background: radial-gradient(38% 26% at 18% 16%, var(--g1), transparent 70%), radial-gradient(40% 28% at 88% 44%, var(--g2), transparent 70%), radial-gradient(48% 28% at 32% 96%, var(--g1), transparent 72%); }
+.ph .cta:not(.dis):not(.gh) { background: var(--acc); color: var(--on); }
 .fr { margin-top: 14px; padding: 16px 16px 16px 14px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden; background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 14%, #1D1D1F), #1D1D1F 70%) !important; }
 .fr .fi { width: 52px; height: 52px; border-radius: 18px; flex: none; display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--acc) 22%, #1D1D1F); color: var(--acc); }
 .fr .ft { display: flex; align-items: center; gap: 8px; font-size: 18px; line-height: 23px; font-weight: 800; } .fr .fp { height: 20px; padding: 0 7px; border-radius: 8px; background: var(--acc); color: var(--on); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; flex: none; }

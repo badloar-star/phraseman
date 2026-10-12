@@ -90,6 +90,10 @@ jest.mock('../components/dialogs/DialogueV2PlusTools', () => ({
 jest.mock('../components/dialogs/DialogueV2CatalogueSection', () => ({
   DialogueV2CatalogueSection: (props: unknown) => mockSection(props),
 }));
+// зачем (E2, 12.10): скелет каталога тянет Reanimated (ESM) — в этом тесте его содержимое не важно, важно лишь что он стоит на месте пустоты
+jest.mock('../components/dialogs/DialogueV2CatalogueSkeleton', () => ({
+  DialogueV2CatalogueSkeleton: () => null,
+}));
 
 import { DialogueV2CatalogueContainer } from '../components/dialogs/DialogueV2CatalogueContainer';
 

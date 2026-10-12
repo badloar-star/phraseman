@@ -222,6 +222,16 @@ export default function DialogueV2BriefingRoute() {
     const peeked = scenarioId && supportedTarget(studyTarget) ? peekDialogueV2Catalogue(studyTarget) : null;
     return peeked ? { kind: 'available', envelope: peeked } : { kind: 'loading' };
   });
+  // зачем (E2, координатор 12.10, «сперва логи»): время от монтирования до первого содержательного кадра — что было в первом кадре (данные / скелет) и когда пришли данные
+  const firstFrameAtRef = useRef(Date.now());
+  const firstFrameKindRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+    if (firstFrameKindRef.current === state.kind) return;
+    const first = firstFrameKindRef.current === null;
+    firstFrameKindRef.current = state.kind;
+    console.log(`[DIALOGS-FIRST-FRAME] briefing ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
+  }, [state.kind]);
 
   useEffect(() => {
     if (!scenarioId || !supportedTarget(studyTarget)) {

@@ -147,6 +147,16 @@ function SessionContent() {
     return envelope ? { kind: 'available', envelope } : { kind: 'loading' };
   };
   const [state, setState] = useState<SessionState>(() => localSessionState(studyTarget));
+  // зачем (E2, координатор 12.10, «сперва логи»): время от монтирования до первого содержательного кадра — что было в первом кадре (данные / скелет) и когда пришли данные
+  const firstFrameAtRef = useRef(Date.now());
+  const firstFrameKindRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+    if (firstFrameKindRef.current === state.kind) return;
+    const first = firstFrameKindRef.current === null;
+    firstFrameKindRef.current = state.kind;
+    console.log(`[DIALOGS-FIRST-FRAME] session ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
+  }, [state.kind]);
   const [startAttempt, setStartAttempt] = useState(0);
   const [messages, setMessages] = useState<readonly DialogueV2SessionMessage[]>([]);
   // зачем (координатор 12.10, dialogs-038, «сперва логи»): номер реплики ученика для [DIALOG-END] — замыкание

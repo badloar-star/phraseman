@@ -30,6 +30,7 @@ import {
   type DialogueV2CatalogueWorld,
 } from './DialogueV2CatalogueSection';
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
+import { DialogueV2CatalogueSkeleton } from './DialogueV2CatalogueSkeleton';
 import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
 import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../app/dialogue_v2_done_store';
 import {
@@ -113,6 +114,16 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   // зачем (владелец 01.10: «Диалоги не загрузились» не должно быть нигде): первый кадр —
   // сразу из кэша этого запуска или встроенного снимка, без «Загрузка…» и без сети.
   const [state, setState] = useState<CatalogueState>(() => initialCatalogueState(studyTarget));
+  // зачем (E2, координатор 12.10, «сперва логи»): время от монтирования хаба до первого содержательного кадра — что именно было в первом кадре (данные / скелет) и когда пришли данные
+  const firstFrameAtRef = useRef(Date.now());
+  const firstFrameLoggedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+    if (firstFrameLoggedRef.current === state.kind) return;
+    const first = firstFrameLoggedRef.current === null;
+    firstFrameLoggedRef.current = state.kind;
+    console.log(`[DIALOGS-FIRST-FRAME] hub ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
+  }, [state.kind]);
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   const hubCopy = useMemo(() => dialogueV2HubCopy(lang), [lang]);
@@ -282,7 +293,13 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   }
   if (state.kind === 'loading') {
     console.warn('[DIALOGUE-V2] hub:render → no local catalogue (embedded missing)', { studyTarget });
-    return plusTools;
+    // зачем (E2): раньше хаб оставался пустым под шапкой и «прыгал» при приходе данных; скелет той же геометрии занимает места карточек
+    return (
+      <>
+        {plusTools}
+        <DialogueV2CatalogueSkeleton />
+      </>
+    );
   }
 
   if (!supportedTarget(studyTarget) || (projection && projection.items.length === 0)) {
@@ -299,7 +316,12 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
     // зачем (владелец 01.10): никакой карточки ошибки. Проекция не прошла и встроенного нет —
     // показываем остальное, сеть повторяется фоном (эффект выше). Лог причины остаётся.
     console.warn('[DIALOGUE-V2] hub:render → no projection, background retry', { studyTarget });
-    return plusTools;
+    return (
+      <>
+        {plusTools}
+        <DialogueV2CatalogueSkeleton />
+      </>
+    );
   }
 
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,6 +8,8 @@ import { useTheme } from '../../ThemeContext';
 import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../v2/ShadowSurface';
 import { ThemeAccentFill } from '../../v2/ThemeAccentFill';
+import SkeletonBlock from '../../SkeletonShimmer';
+import { glassTone } from './glassTone';
 
 // зачем (владелец 2026-09-30): V2-экраны «Диалогов» переносятся «1 в 1» по макету
 // dialogs.html (Liquid Glass). Здесь один раз собраны презентационные части макета из
@@ -181,6 +183,31 @@ export function DialogueGlassSysError({
  * Экран-гейт `.gate` (загрузка, «Диалоги недоступны», «Нужен Plus»): «‹» сверху, круг со
  * значком 84, заголовок 26/32, текст, кнопка. Безопасные зоны сверху и снизу.
  */
+/** Скелет экрана диалога под настоящей шапкой: заголовок, карточка цели, два пузыря, поле ввода — формы будущего содержимого, без спиннера. */
+function DialogueGlassSceneSkeleton({ glass, label, testID }: Readonly<{ glass: DialogueGlass; label: string; testID: string }>) {
+  const base = glassTone(glass.text, 0.09);
+  const highlight = glassTone(glass.text, 0.15);
+  return (
+    <View testID={testID} accessible accessibilityLabel={label} accessibilityState={{ busy: true }} style={{ flex: 1, paddingHorizontal: 20, paddingTop: 14, paddingBottom: 16 }}>
+      <SkeletonBlock width="58%" height={30} borderRadius={10} baseColor={base} highlightColor={highlight} />
+      <View style={{ height: 10 }} />
+      <SkeletonBlock width="38%" height={16} borderRadius={8} baseColor={base} highlightColor={highlight} />
+      <View style={[dialogueGlassCardStyle(glass, 22), { marginTop: 22, paddingHorizontal: 16, paddingVertical: 16, gap: 10 }]}>
+        <SkeletonBlock width="30%" height={14} borderRadius={7} baseColor={base} highlightColor={highlight} />
+        <SkeletonBlock width="88%" height={20} borderRadius={8} baseColor={base} highlightColor={highlight} />
+      </View>
+      <View style={{ marginTop: 22, gap: 12 }}>
+        <SkeletonBlock width="72%" height={64} borderRadius={20} baseColor={base} highlightColor={highlight} />
+        <View style={{ alignItems: 'flex-end' }}>
+          <SkeletonBlock width="56%" height={48} borderRadius={20} baseColor={base} highlightColor={highlight} />
+        </View>
+      </View>
+      <View style={{ flex: 1 }} />
+      <SkeletonBlock width="100%" height={52} borderRadius={26} baseColor={base} highlightColor={highlight} />
+    </View>
+  );
+}
+
 export function DialogueGlassGate({
   glass, testID, backLabel, onBack, icon, title, message, loading, action, secondaryAction,
 }: Readonly<{
@@ -201,13 +228,14 @@ export function DialogueGlassGate({
         <View style={styles.gateTop}>
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={backLabel} />
         </View>
+        {loading ? (
+          // зачем (E2, координатор 12.10; правило владельца «никаких спиннеров на весь экран»): загрузка — скелет экрана на месте будущего содержимого (заголовок, цель, пузыри, поле ввода),
+          // а не круг со спиннером и «Загружаем диалоги…». Шапка с «назад» уже настоящая; подпись загрузки остаётся только для озвучки экрана.
+          <DialogueGlassSceneSkeleton glass={glass} label={title} testID={`${testID}-skeleton`} />
+        ) : (
         <View style={styles.gateBody}>
           <View style={[styles.gateBig, { backgroundColor: glass.opaqueControl }]}>
-            {loading ? (
-              <ActivityIndicator color={glass.text} />
-            ) : (
-              <Ionicons name={icon ?? 'chatbubbles-outline'} size={38} color={glass.text} />
-            )}
+            <Ionicons name={icon ?? 'chatbubbles-outline'} size={38} color={glass.text} />
           </View>
           <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.gateTitle, { color: glass.text }]}>{title}</Text>
           {message ? (
@@ -220,6 +248,7 @@ export function DialogueGlassGate({
             <DialogueGlassCta glass={glass} ghost label={secondaryAction.label} onPress={secondaryAction.onPress} style={styles.gateCta2} />
           ) : null}
         </View>
+        )}
       </SafeAreaView>
     </View>
   );

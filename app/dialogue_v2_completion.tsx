@@ -1,6 +1,6 @@
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -26,6 +26,8 @@ import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import { RowDivider } from '../components/v2/RowDivider';
+import SkeletonBlock from '../components/SkeletonShimmer';
+import { glassTone } from '../components/dialogs/glass/glassTone';
 
 // зачем (владелец 2026-09-30, макет dialogs.html D1–D5 = practice.html «Завершение»): итог
 // диалога — тот же экран, что во всех режимах: «✕», заголовок «Диалог пройден» / «Разговор
@@ -116,6 +118,9 @@ export default function DialogueV2CompletionRoute() {
     });
   }
   const requestGenerationRef = useRef(0);
+  // зачем (E9, координатор 12.10, «сперва логи»): время до первого содержательного кадра итога — локальные цифры уже в первом кадре, цели приходят позже
+  const firstFrameAtRef = useRef(Date.now());
+  const loggedStateRef = useRef<string | null>(null);
 
   const runCompletion = useCallback(() => {
     const selection = selectionRef.current;
@@ -189,6 +194,13 @@ export default function DialogueV2CompletionRoute() {
   }, []);
 
   const review = state.kind === 'ready' ? state.result.review : null;
+  useEffect(() => {
+    if (typeof __DEV__ === 'undefined' || !__DEV__) return;
+    if (loggedStateRef.current === state.kind) return;
+    const first = loggedStateRef.current === null;
+    loggedStateRef.current = state.kind;
+    console.log(`[DIALOGS-FIRST-FRAME] completion ${first ? 'first' : 'update'} kind=${state.kind} localStats=${String(outcome !== null || learnerTurns > 0)} errorsLocal=${outcome ? outcome.corrections.length : 0} goals=${String(state.kind === 'ready')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
+  }, [state.kind]); // eslint-disable-line react-hooks/exhaustive-deps
   // зачем (эмулятор 02.10): сервер присылает подписи целей на английском, а брифинг показывал их
   // на языке интерфейса — на итоге цели вдруг становились «Start with a greeting». Берём тот же
   // перевод, что у брифинга; нет перевода — подпись сервера.
@@ -205,6 +217,10 @@ export default function DialogueV2CompletionRoute() {
   const turns = Math.max(outcome?.learnerTurns ?? learnerTurns, mistakes);
   const correct = Math.max(0, turns - mistakes);
   const accuracy = turns > 0 ? Math.round((correct / turns) * 100) : 0;
+  // зачем (E9): локальные цифры есть, как только известны реплики (разбор ходов или параметр маршрута) — показываем сразу, не ждём ответ сервера
+  const showLocalStats = outcome !== null || learnerTurns > 0;
+  // число целей сцены известно из каталога (подписи целей) — скелет повторяет высоту будущего списка; нет подписей — три строки
+  const goalRowsGuess = goalLabels ? Math.min(8, Math.max(1, Object.keys(goalLabels).length)) : 3;
   const title = endedBy === 'bot' ? labels.passed : labels.finished;
   const close = () => safeRouterBack(router, '/ai_dialog_home' as never);
   const again = () => {
@@ -239,10 +255,8 @@ export default function DialogueV2CompletionRoute() {
           </View>
 
           {state.kind === 'loading' ? (
-            <View testID="dialogue-v2-completion-loading" style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
-              <ActivityIndicator color={glass.text} />
-              <Text maxFontSizeMultiplier={1.3} style={[styles.stateText, { color: glass.secondary }]}>{labels.loading}</Text>
-            </View>
+            // зачем (E9, координатор 12.10): цифры и «Что исправить» уже есть на телефоне и показаны сразу; ждём только оценку и цели сервера — тихая строка вместо карточки со спиннером, ниже скелет целей
+            <Text testID="dialogue-v2-completion-loading" maxFontSizeMultiplier={1.3} style={[styles.stateText, styles.loadingNote, { color: glass.secondary }]}>{labels.loading}</Text>
           ) : null}
           {state.kind === 'unavailable' ? (
             <View style={[dialogueGlassCardStyle(glass, 16), styles.stateCard]}>
@@ -251,15 +265,22 @@ export default function DialogueV2CompletionRoute() {
             </View>
           ) : null}
 
-          {review ? (
+          {showLocalStats ? (
             <>
               <View testID="dialogue-v2-completion-stats" style={[dialogueGlassCardStyle(glass, 16), styles.stats]}>
-                <Stat glass={glass} value={`${goalsMet}`} suffix={`/${goalsTotal}`} label={labels.goals} />
+                {review ? (
+                  <Stat glass={glass} value={`${goalsMet}`} suffix={`/${goalsTotal}`} label={labels.goals} />
+                ) : (
+                  <GoalsStatSkeleton glass={glass} label={labels.goals} />
+                )}
                 <Stat glass={glass} value={`${correct}`} label={labels.correct} color={LV2_GOOD} divider />
                 <Stat glass={glass} value={`${mistakes}`} label={labels.mistakes} color={LV2_BAD} divider />
                 <Stat glass={glass} value={`${accuracy}%`} label={labels.accuracy} divider />
               </View>
-
+            </>
+          ) : null}
+          {review ? (
+            <>
               <View testID="dialogue-v2-completion-goals" style={[dialogueGlassCardStyle(glass, 16), styles.goals]}>
                 {review.objectiveResults.map((objective, index) => {
                   const met = objective.status === 'met';
@@ -283,27 +304,32 @@ export default function DialogueV2CompletionRoute() {
                   );
                 })}
               </View>
-
-              {errorRows.length > 0 ? (
-                <View testID="dialogue-v2-completion-errors" style={[dialogueGlassCardStyle(glass, 16), styles.errors]}>
-                  <View style={styles.errorsHead}>
-                    <Text maxFontSizeMultiplier={1.3} style={[styles.errorsTitle, { color: glass.text }]}>{labels.errorsTitle}</Text>
-                    <Text maxFontSizeMultiplier={1.3} style={[styles.errorsCount, { color: glass.mutedText }]}>{errorRows.length}</Text>
-                  </View>
-                  {errorRows.map((correction, index) => (
-                    <View
-                      key={`${correction.original}-${index}`}
-                      style={styles.errorRow}
-                    >
-                      {index > 0 ? <RowDivider color={glass.line} /> : null}
-                      <Text maxFontSizeMultiplier={1.4} style={[styles.was, { color: LV2_BAD, textDecorationColor: LV2_BAD }]}>{correction.original}</Text>
-                      <Ionicons name="arrow-forward" size={16} color={glass.mutedText} />
-                      <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
-                    </View>
-                  ))}
+            </>
+          ) : state.kind === 'loading' ? (
+            <GoalsSkeleton glass={glass} rows={goalRowsGuess} />
+          ) : null}
+          {/* зачем (E9): «Что исправить» — из локального разбора ходов, не ждёт сервер */}
+            {errorRows.length > 0 ? (
+              <View testID="dialogue-v2-completion-errors" style={[dialogueGlassCardStyle(glass, 16), styles.errors]}>
+                <View style={styles.errorsHead}>
+                  <Text maxFontSizeMultiplier={1.3} style={[styles.errorsTitle, { color: glass.text }]}>{labels.errorsTitle}</Text>
+                  <Text maxFontSizeMultiplier={1.3} style={[styles.errorsCount, { color: glass.mutedText }]}>{errorRows.length}</Text>
                 </View>
-              ) : null}
-
+                {errorRows.map((correction, index) => (
+                  <View
+                    key={`${correction.original}-${index}`}
+                    style={styles.errorRow}
+                  >
+                    {index > 0 ? <RowDivider color={glass.line} /> : null}
+                    <Text maxFontSizeMultiplier={1.4} style={[styles.was, { color: LV2_BAD, textDecorationColor: LV2_BAD }]}>{correction.original}</Text>
+                    <Ionicons name="arrow-forward" size={16} color={glass.mutedText} />
+                    <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
+                  </View>
+                ))}
+              </View>
+            ) : null}
+          {review ? (
+            <>
               {feedbackAllowed && sessionId && scenarioId ? (
                 <FeedbackRatingCard
                   kind="dialogue"
@@ -343,6 +369,36 @@ export default function DialogueV2CompletionRoute() {
   );
 }
 
+function GoalsStatSkeleton({ glass, label }: Readonly<{ glass: ReturnType<typeof useDialogueGlass>; label: string }>) {
+  const base = glassTone(glass.text, 0.09);
+  const highlight = glassTone(glass.text, 0.15);
+  return (
+    <View style={styles.stat} accessible accessibilityLabel={label} accessibilityState={{ busy: true }}>
+      <View style={{ height: 34, justifyContent: 'center' }}>
+        <SkeletonBlock width={46} height={24} borderRadius={8} baseColor={base} highlightColor={highlight} />
+      </View>
+      <Text maxFontSizeMultiplier={1.2} style={[styles.statLabel, { color: glass.secondary }]}>{label}</Text>
+    </View>
+  );
+}
+
+/** Скелет списка целей: строки той же высоты и с той же отметкой-кружком, что у настоящих целей (`goalRow`), — данные сервера встают на их места без прыжка. */
+function GoalsSkeleton({ glass, rows }: Readonly<{ glass: ReturnType<typeof useDialogueGlass>; rows: number }>) {
+  const base = glassTone(glass.text, 0.09);
+  const highlight = glassTone(glass.text, 0.15);
+  return (
+    <View testID="dialogue-v2-completion-goals-skeleton" accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={[dialogueGlassCardStyle(glass, 16), styles.goals]}>
+      {Array.from({ length: rows }, (_unused, index) => (
+        <View key={index} /* guard-ok: статичный список одинаковых заглушек */ style={styles.goalRow}>
+          {index > 0 ? <RowDivider color={glass.line} /> : null}
+          <SkeletonBlock width={26} height={26} borderRadius={13} baseColor={base} highlightColor={highlight} />
+          <SkeletonBlock width={index % 2 === 0 ? '78%' : '62%'} height={16} borderRadius={8} baseColor={base} highlightColor={highlight} />
+        </View>
+      ))}
+    </View>
+  );
+}
+
 function Stat({ glass, value, suffix, label, color, divider }: Readonly<{
   glass: ReturnType<typeof useDialogueGlass>; value: string; suffix?: string; label: string; color?: string; divider?: boolean;
 }>) {
@@ -370,6 +426,7 @@ const styles = StyleSheet.create({
   moodText: { fontSize: 16, fontWeight: '700' },
   stateCard: { marginTop: 20, paddingHorizontal: 16, paddingVertical: 18, alignItems: 'center', gap: 12 },
   stateText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  loadingNote: { marginTop: 16 },
   stats: { flexDirection: 'row', marginTop: 20, paddingVertical: 15 },
   stat: { flex: 1, alignItems: 'center' },
   statValue: { fontSize: 30, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4, fontVariant: ['tabular-nums'] },

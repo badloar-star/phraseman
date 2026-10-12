@@ -394,7 +394,7 @@ export default function SettingsNotifications() {
   const dailyLabel = L({ ru:'Ежедневное напоминание', uk:'Щоденне нагадування', en:'Daily reminder', es:'Recordatorio diario', 'pt-BR':'Lembrete diário', vi:'Nhắc nhở hằng ngày', id:'Pengingat harian', tr:'Günlük hatırlatıcı', pl:'Codzienne przypomnienie' });
   const timeLabel = L({ ru:'Время', uk:'Час', en:'Time', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
   const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
-  const phraseLabel = L({ ru:'Вислів дня', uk:'Вислів дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
+  const phraseLabel = L({ ru:'Фраза дня', uk:'Вислів дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
   const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
   const sectionRecaps = L({ ru:'Итоги', uk:'Підсумки', en:'Recaps', es:'Resúmenes', 'pt-BR':'Resumos', vi:'Tổng kết', id:'Ringkasan', tr:'Özetler', pl:'Podsumowania' });
   const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', en:'Weekly recap', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });

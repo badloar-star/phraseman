@@ -1704,7 +1704,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         pl: "Czy to tłumaczenie pasuje?",
       }),
       phraseLabel: triLang(lang, {
-        ru: 'Вислів',
+        ru: 'Фраза',
         en: 'Phrase',
         uk: 'Вислів',
         es: 'Frase',

@@ -2349,7 +2349,7 @@ export const schedulePhraseOfDayNotification = async (
     }));
     const teaserIdx = getDayIndex() % teasers.length;
     const title = pickNotif(lang, notificationCopy({
-      ru: '☀️ Вислів дня',
+      ru: '☀️ Фраза дня',
       uk: '☀️ Вислів дня',
       es: '☀️ Frase del día', en: '☀️ Phrase of the day',
       'pt-BR': '☀️ Frase do dia',

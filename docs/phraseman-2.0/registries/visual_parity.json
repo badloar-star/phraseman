@@ -30087,16 +30087,18 @@
       "anim_notes": [
         "unfold 0.76s cubic-bezier(0.2, 1, 0.3, 1)"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-018.png",
+      "evidence_at": "2026-10-12T17:54:39.842Z",
+      "evidence_sha256": "2219bfe4f263b82e8dc03d12f9fbb74fc004192450ea2e13140b5252cc0a7ef0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Нужен чужой набор «B2 глаголы» с раскрытой карточкой (шторка «Озвучить / В набор / Удалить»); ссылка и шаги вписаны (packcards=on + тап «Добавить» + тап по карточке c1) — переснять."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:58:51.133Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -30114,7 +30116,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:54, cards-v2 №20 «Карточка — лицевая сторона» против «Карточка из чужого набора»): сверка невозможна — на кадре список «Сохранённые 64» без раскрытой карточки (кадр снят до появления ссылки на чужой набор packcards)."
     },
     {
       "id": "cards-section-019",
@@ -31215,16 +31218,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-040.png",
+      "evidence_at": "2026-10-12T17:56:38.020Z",
+      "evidence_sha256": "aebda10c71cd96fed2b964b1a9e56686996dbf9d057b716f52125d867c4bed84",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Образец: счётчик «4 / 20», три сердца, пилюля монет «40», флажок жалобы справа, подсказка «Вспомни фразу по переводу. Нажми на микрофон и отвечай.», две пилюли «Скажи по-английски» и «Повтори за диктором» в одну строку, снизу ряд «→ · большой микрофон · динамик». Приложение: «1 / 64», сердца, монеты «0», без флажка, без подсказки, «Сказано: 0», микрофон с кольцом, панель с волной «------», пилюли крупнее (в две строки), стрелка и динамик по углам внизу — решение Дизайна: образец переделать под код или код под образец.",
+        "[данные] Карточка «занимать» вместо «пересадка», монеты 0 вместо 40, 1/64 вместо 4/20 — данные."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:58:51.133Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -31242,7 +31248,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:56, cards-v2 №32 «Устно» против «Устно — ожидание»): сессия «Устно» открыта верно (speech=correct, микрофон готов), но раскладка экрана расходится с образцом."
     },
     {
       "id": "cards-section-041",

@@ -1600,7 +1600,7 @@ export default function FlashcardsScreen() {
             showDeleteHint={showDeleteHint && !undoEntry && !packUndo && !hintCoveredByOverlay} // зачем (координатор 12.10, cards-006): внизу одна плашка за раз — пока видна «Удалено · Вернуть», подсказка «Зажми карточку…» прячется (состояние подсказки не теряется, вернётся после плашки)
             onSetShowDeleteHint={setShowDeleteHint}
             // зачем (Макеты cards-section-012, 12.10): на экране набора кнопка «Тренировать» уже есть в шапке (packInfoBlock), плавающая её дублировала и закрывала нижние ряды сетки; в образце cards-v2 №14 поверх сетки ничего нет
-            onTrain={listCards.length > 0 && !packSurface ? onTrainGallery : null}
+            onTrain={listCards.length > 0 && !packSurface && !undoEntry && !packUndo ? onTrainGallery : null} // зачем (R1_DIFF_ONE_FIX, cards-v2-010): под плашкой «Удалено · Вернуть» выглядывал край «Тренировать» — внизу одна плашка за раз
             allowAddCustomCard={false}
             onCreateCard={openCreateEditor}
             activeCat={activeCat}

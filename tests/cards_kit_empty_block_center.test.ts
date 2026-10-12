@@ -19,6 +19,14 @@ describe('KitEmpty: centred as a whole block, re-measured after the entrance ani
     expect(source).toContain('opacity: pageTop === null || !ready ? 0 : 1');
   });
 
+  // зачем (R1_DIFF_ONE_FIX, 4 строки: блок ниже образца на ≈70 px): холдер занимает весь экран — верх окна известен без замера, а замер в конце входной анимации (y=-50) сдвигал блок вниз
+  it('a holder that fills the window is centred without measuring (pageTop = 0 at once)', () => {
+    expect(source).toContain('if (Math.abs(layoutH - height) < 2) {');
+    expect(source).toContain('setPageTop(0);');
+    expect(source).toContain('fullWindow layoutH=');
+    expect(source).toContain('const onHolderLayout = useCallback((event: { nativeEvent: { layout: { height: number } } }) => {');
+  });
+
   it('logs the holder numbers and the whole block position on screen', () => {
     expect(source).toContain('[CARDS-EMPTY] holder');
     expect(source).toContain('[CARDS-EMPTY] block');

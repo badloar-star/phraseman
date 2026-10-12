@@ -60,6 +60,6 @@ describe('dev_state hint', () => {
   it('the cards view-prefs reset marks the hint seen; the pack screen has no floating train button', () => {
     const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
     expect(read('app/dev_state_cards_demo.ts')).toContain("await AsyncStorage.setItem(flashcardsDeleteHintSeenKey(TARGET), '1');");
-    expect(read('app/flashcards_collection.tsx')).toContain('onTrain={listCards.length > 0 && !packSurface ? onTrainGallery : null}');
+    expect(read('app/flashcards_collection.tsx')).toContain('onTrain={listCards.length > 0 && !packSurface && !undoEntry && !packUndo ? onTrainGallery : null}');
   });
 });

@@ -75,7 +75,7 @@ describe('navigation back underlay', () => {
     expect(navigationBack).toContain("&& leaving?.section === 'settings'");
     expect(navigationBack).toContain("candidate.section !== leaving.section");
     expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'SectionSheetHeader.tsx'), 'utf8')).toContain('left: 12');
-    expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'referral_sheet_shell.tsx'), 'utf8')).toContain("flexDirection: 'row-reverse'");
+    expect(fs.readFileSync(path.join(__dirname, '..', 'components', 'referral_sheet_shell.tsx'), 'utf8')).toContain("flexDirection: 'row',"); // R1_DIFF_ONE_FIX 12.10: «✕» шторки кода друга справа (было row-reverse → слева)
     expect(settings).toContain('settingsScrollYRef.current');
     expect(settings).not.toContain('scrollTo({ y: 0, animated: false })');
   });

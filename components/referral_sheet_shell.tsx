@@ -223,7 +223,9 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   header: {
-    flexDirection: 'row-reverse',
+    // зачем (R1_DIFF_ONE_FIX, overlays-campaigns-016…026, решение координатора 12.10): «✕» шторки справа, как в образце referral-code-states. Заголовок идёт ПЕРВЫМ ребёнком, поэтому
+    // row-reverse ставил крестик слева, а marginLeft: 56 у заголовка сдвигал его вправо; в обычном `row` крестик справа, а 56 слева уравновешивают ширину крестика (центр заголовка = центр шторки).
+    flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
     marginTop: 2,

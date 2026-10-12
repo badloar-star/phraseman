@@ -260,11 +260,22 @@ export const KitEmpty = memo(function KitEmpty({ g, icon, title, detail, action,
       if (settled) setReady(true);
     });
   }, [blockH, height, testID]);
-  const onHolderLayout = useCallback(() => {
+  // зачем (R1_DIFF_ONE_FIX, cards-009/v2-011/v2-013/packs-simple-003: блок ниже образца на ≈70 px): холдер — absoluteFill на ВЕСЬ экран (в журнале holderH = windowH), поэтому в покое его верх = верх окна
+  // и замер не нужен. Замер ловил y=-50 в конце входной анимации экрана, а к кадру родитель уже стоял на y=0 — блок оставался на 50 dp ниже (центр 56 % вместо 50,5 %).
+  // Если холдер занимает всё окно — pageTop = 0 сразу (и блок виден с первого кадра, без паузы под прозрачностью 0); иначе — прежний замер с повторами.
+  const onHolderLayout = useCallback((event: { nativeEvent: { layout: { height: number } } }) => {
+    const layoutH = event.nativeEvent.layout.height;
+    if (Math.abs(layoutH - height) < 2) {
+      console.log(`[CARDS-EMPTY] holder testID=${String(testID)} fullWindow layoutH=${Math.round(layoutH)} windowH=${Math.round(height)} → pageTop=0 без замера`); // guard-ok: ветвление называет значения
+      setPageTop(0);
+      setReady(true);
+      return;
+    }
+    console.log(`[CARDS-EMPTY] holder testID=${String(testID)} not fullWindow layoutH=${Math.round(layoutH)} windowH=${Math.round(height)} → замер в окне`); // guard-ok: ветвление называет значения
     measure(false);
     InteractionManager.runAfterInteractions(() => measure(true));
     setTimeout(() => measure(true), 800);
-  }, [measure]);
+  }, [height, measure, testID]);
   const onBlockLayout = useCallback((event: { nativeEvent: { layout: { height: number } } }) => {
     const measured = event.nativeEvent.layout.height;
     setBlockH((prev) => (Math.abs(prev - measured) < 0.5 ? prev : measured));
@@ -313,7 +324,7 @@ const styles = StyleSheet.create({
   check: { width: 26, height: 26, borderRadius: 13, alignItems: 'center', justifyContent: 'center' },
   emptyBlock: { position: 'absolute', left: 0, right: 0, alignItems: 'center', paddingHorizontal: 40 },
   emptyTile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 22 },
+  emptyTitle: { fontSize: 24, lineHeight: 30, fontWeight: '700', letterSpacing: -0.2, textAlign: 'center', marginTop: 20 }, // зачем (R1_DIFF_ONE_FIX cards-v2-011): макет `.empty .et` margin-top 20, было 22
   emptyDetail: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8 },
   emptyCtaWrap: { marginTop: 26 },
   cta: { minHeight: 48, paddingVertical: 6, borderRadius: 24, paddingHorizontal: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12 },

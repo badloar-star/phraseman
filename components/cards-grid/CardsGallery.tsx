@@ -166,7 +166,7 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
                 <View style={styles.text}>
                   <Text style={[styles.lg, { color: g.secondary, fontSize: f.lg, lineHeight: f.lgLine }]}>EN</Text>
                   {wordEl}
-                  {showTranslation ? <Text style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
+                  {showTranslation ? <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
                 </View>
                 {selected === undefined && onLongPress ? (
                   <Pressable accessibilityRole="button" accessibilityLabel={moreLabel} hitSlop={10} onPress={() => onLongPress(card.id)} style={styles.more}>
@@ -178,7 +178,7 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
               <View style={styles.col1}>
                 <Text style={[styles.lg, { color: g.secondary, fontSize: f.lg, lineHeight: f.lgLine }]}>EN</Text>
                 {wordEl}
-                {showTranslation ? <Text style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
+                {showTranslation ? <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
                 {speakEl}
               </View>
             ) : (
@@ -251,6 +251,7 @@ const styles = StyleSheet.create({
   lg: { fontWeight: '600' },
   word: { fontWeight: '600', letterSpacing: -0.2 },
   wordMini: { minWidth: 0, flexShrink: 1 },
+  // зачем (R1_DIFF_ONE_FIX, cards-v2-006 / cards-section-008): макет `.wc .tr` — white-space: nowrap + ellipsis; перевод «стоимость проезда» переносился на две строки и делал карточку выше соседних
   tr: {},
   match: { textDecorationLine: 'underline' },
   speak0: { alignItems: 'center', justifyContent: 'center' },

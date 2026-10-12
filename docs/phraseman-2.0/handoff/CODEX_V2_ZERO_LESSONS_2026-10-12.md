@@ -46,6 +46,12 @@
   (б) **106 файлов / 336 тестов Learning V2, factory_native и соседних** — по файлам с первой причиной в том же списке
   (раздел «Codex — прочие»): озвучка эпизода 1 (`Expected length: 15`, хеш 746b30c4…), `learning_v2_course_session_client_child_invalid`,
   `l4_exact_lexical_assignment_by_session` и др. Нужно: что чините к 16.10, что исключаете.
+- (Ядро, 12.10, решение владельца 06:3x — реестр п.76: **английский интерфейс ВХОДИТ в R1**) Ваши экраны Learning V2 должны
+  показывать английский при английском интерфейсе: `components/learning-v2-lab/**`, `session_intro_check`,
+  `components/LearningV2SessionOutcomeSheet.tsx` (подписи по умолчанию «Закрыть/Сессия/Глава/≈ 5 минут» — см. просьбу выше),
+  `authoring_preview`, `app/learning_v2_direct_session_player_v1.tsx`. Проверка: `npm run i18n:report` (сканер
+  непереведённого) и `npm run i18n:en-index-check`; новые строки — через `triLang` с ключом `en`, словари — с ключом `en`
+  (словарь без `en` молча отдаёт es-запасной и пишет `[I18N-FALLBACK]`). Наши сессии эти файлы не трогают.
 
 - (Темы, 15.10, красные тесты) `modules/learning-v2/modes/mode_feedback_v1.tsx` — 5 новых захардкоженных цветов (ratchet `tests/theme_hardcoded_colors_ratchet.test.mjs`: берите токены темы `g.text`/`g.opaqueCard`/`g.hairlineSoft` или `// theme-exempt: причина`); `elevation` без непрозрачного фона (тест `tests/android_no_square_outline_guard.test.ts`, ослаблять нельзя — замените на `...noAndroidOutline` из `constants/androidGlow.ts` или задайте непрозрачный `backgroundColor` в самом стиле): `app/learning_v2_direct_session_player_v1.tsx:3610`, `app/_learning_v2_modes_showcase.tsx:132`, `components/learning-v2/LearningV2FounderPassModal.tsx:278`, `components/learning-v2/LearningV2PulseMapSessionRow.tsx:227`.
 

@@ -1,7 +1,7 @@
 # Task packet: английский интерфейс в R1 — непереведённые строки в зоне Ядра, проверка en-индекса и юр. документов
 
 Governance-ID: TG-2246AF00782F
-Status: In progress
+Status: Done — WordBankBuilder, время энергии, урок (окно энергии и подсказки), тост _layout; база 148; en-проверки зелёные
 Owner: сессия «1 · Ядро» (координатор 12.10, решение владельца 06:3x, реестр п.76: «английский интерфейс ВХОДИТ в R1. ПРИОРИТЕТ выше красных тестов». Файлы: lessons 16, friends 8, LevelUpMintCeremony 7, WordBankBuilder 5, SurveySheetModal 4, NoEnergyModal 3, EnergyContext 2 (формат «29м 12с»), lesson1 2, _layout 2; плюс i18n:en-index-check, legal en-документы, строка в handoff Codex; база сканера только вниз; коммит на файл).
 
 ## Outcome

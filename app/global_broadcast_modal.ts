@@ -360,6 +360,7 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
 
 export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
+  options: Readonly<{ premiumAudienceAccess?: boolean | null }> = {},
 ): Promise<GlobalBroadcastModalPayload | null> {
   // зачем (координатор 12.10, п.70 №4, «сперва логи»): «рассылки нет» складывалось из десятка немых выходов и немого
   // catch — по журналу нельзя было понять, нет рассылки или проверка сломалась. Каждый выход называет причину.
@@ -409,9 +410,17 @@ export async function fetchPendingGlobalBroadcastModal(
     }
 
     if (payload.premiumAudience !== 'all') {
-      const userSnap = await db.collection('users').doc(uid).get();
-      const progress = userSnap.data()?.progress ?? {};
-      const isPremium = isPremiumAccessProgressActive(progress);
+      // зачем (п.70 №2): доступ из PremiumContext, если он уже разрешён, — без второго чтения users/{uid} на старте.
+      let isPremium: boolean;
+      if (typeof options.premiumAudienceAccess === 'boolean') {
+        isPremium = options.premiumAudienceAccess;
+        console.log(`[OVERLAY-QUEUE] broadcast:audience id=${payload.id} audience=${payload.premiumAudience} premium=${String(isPremium)} source=premium_context`);
+      } else {
+        const userSnap = await db.collection('users').doc(uid).get(); // guard-ok: один документ по id
+        const progress = userSnap.data()?.progress ?? {};
+        isPremium = isPremiumAccessProgressActive(progress);
+        console.log(`[OVERLAY-QUEUE] broadcast:audience id=${payload.id} audience=${payload.premiumAudience} premium=${String(isPremium)} source=users_doc (контекст доступа ещё не разрешён)`);
+      }
       if (payload.premiumAudience === 'free' && isPremium) return skip(`audience_free_but_premium id=${payload.id}`);
       if (payload.premiumAudience === 'premium' && !isPremium) return skip(`audience_premium_but_free id=${payload.id}`);
     }

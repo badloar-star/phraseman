@@ -309,6 +309,7 @@ import {
   requestDeferredBootRestoreStart,
   whenDeferredBootRestoreDocRead,
 } from './boot_restore_dirty_keys';
+import { noteRestoreUserDocBanned } from './boot_user_doc_ban_peek';
 import { BOOT_RESTORE_OWNER_KEY } from './boot_restore_defer';
 import {
   customCardDeletionsForTarget,
@@ -4671,6 +4672,9 @@ async function restoreAndMigrateFromCloudResultTraced(
     mark('user_doc_read');
     markBootRestoreUserDocRead();
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');
+    // зачем (п.70 №2): проверка бана берёт `banned` из этого же документа, а не читает users/{uid} второй раз.
+    // Та же трактовка, что у проверки бана в корне: любое истинное значение поля = бан.
+    noteRestoreUserDocBanned(uid, doc.exists ? !!(doc.data() as { banned?: unknown } | undefined)?.banned : false);
     const migrated = await AsyncStorage.getItem('cloud_migration_v1');
     mark(doc.exists ? 'migration_flag' : 'migration_flag:no_doc');
     if (!isCurrent()) return failedCloudRestoreAttempt('identity_unavailable');

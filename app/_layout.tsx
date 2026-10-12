@@ -169,6 +169,7 @@ import {
   subscribeFirebaseAuthUid,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
+import { waitForRestoreUserDocBanned } from './boot_user_doc_ban_peek';
 import { isAccountsV2ClientEnabled, syncAccountsV2ClientAuth } from './accounts_v2_client_flag';
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
@@ -893,6 +894,8 @@ function GlobalLevelUpRewards() {
 const BAN_CACHE_KEY = 'ban_status_cached_v1';
 const BAN_CACHE_AT_KEY = 'ban_status_cached_at_v1';
 const BAN_CACHE_TTL_MS = 30 * 60 * 1000;
+/** Сколько проверка бана ждёт документ восстановления, прежде чем прочитать users/{uid} сама (п.70 №2). */
+const BAN_RESTORE_DOC_WAIT_MS = 8_000;
 
 // Вынесено в дочерний компонент чтобы иметь доступ к LangContext + AchievementContext
 // зачем (координатор 05.10, пакет 07:26: setFirstContentReady(true) +8224 → «splash gate» canHide +10207 — фиксация
@@ -1063,7 +1066,12 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // мог вытолкнуть winback/intro-ended пейволл человеку с admin-override
   // доступом (как у Виталия: premium_plan='annual', admin_premium_override=true,
   // но не realPremium/vip флаг).
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, isPremium: premiumForAudience, isVip: vipForAudience, accessResolved } = usePremium();
+  // зачем (п.70 №2): аудитории рассылки («только free / только premium») — доступ из PremiumContext, а не повторное
+  // чтение users/{uid}; та же трактовка, что isPremiumAccessProgressActive (покупка ИЛИ VIP). Пока доступ не
+  // разрешён — null, и рассылка читает документ сама. Ref — чтобы смена доступа не перезапускала проверку рассылки.
+  const broadcastAudienceAccessRef = useRef<boolean | null>(null);
+  broadcastAudienceAccessRef.current = accessResolved ? (premiumForAudience || vipForAudience) : null;
   const { theme: tTheme, themeMode, statusBarLight, liquidGlassChoiceReady } = useTheme();
   const router = useRouter();
   const pathname = usePathname();
@@ -1860,6 +1868,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         const at = parseInt(atRaw || '0', 10) || 0;
         if (raw === '1' || raw === '0') {
           if (Date.now() - at < BAN_CACHE_TTL_MS) {
+            console.log(`[BAN-CHECK] кэш ageMs=${Date.now() - at} banned=${String(raw === '1')} — сеть не нужна`); // guard-ok: ранний выход называет причину
             setIsBanned(raw === '1');
             return;
           }
@@ -1868,13 +1877,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const firestoreModule = await import('@react-native-firebase/firestore');
       const db = firestoreModule.default();
       const uid = await getCanonicalUserId();
-      if (!uid) return;
-      const [banDoc, userDoc] = await Promise.all([
-        db.collection('banned_users').doc(uid).get(),
-        db.collection('users').doc(uid).get(),
+      if (!uid) {
+        console.log('[BAN-CHECK] пропуск: нет uid'); // guard-ok: ранний выход называет причину
+        return;
+      }
+      // зачем (п.70 №2): поле `banned` берём из документа users/{uid}, который восстановление уже прочитало (ждём его
+      // не дольше BAN_RESTORE_DOC_WAIT_MS); список banned_users читается всегда, TTL кэша бана прежний — 30 мин.
+      const [banDoc, restorePeek] = await Promise.all([
+        db.collection('banned_users').doc(uid).get(), // guard-ok: один документ по id
+        force ? Promise.resolve(null) : waitForRestoreUserDocBanned(uid, BAN_RESTORE_DOC_WAIT_MS),
       ]);
+      let bannedByFlag: boolean;
+      if (restorePeek?.source === 'restore_doc') {
+        bannedByFlag = restorePeek.banned;
+        console.log(`[BAN-CHECK] users/{uid} из восстановления ageMs=${restorePeek.ageMs} banned=${String(bannedByFlag)} (второе чтение не нужно)`); // guard-ok: источник значения
+      } else {
+        const userDoc = await db.collection('users').doc(uid).get(); // guard-ok: один документ по id
+        bannedByFlag = !!userDoc?.data?.()?.banned;
+        console.log(`[BAN-CHECK] users/{uid} из сети reason=${force ? 'force' : restorePeek?.reason ?? 'none'} banned=${String(bannedByFlag)} fromCache=${String(userDoc?.metadata?.fromCache ?? false)}`); // guard-ok: источник значения
+      }
       const bannedByList = !!banDoc?.exists;
-      const bannedByFlag = !!userDoc?.data?.()?.banned;
       const banned = bannedByList || bannedByFlag;
       setIsBanned(banned);
       await AsyncStorage.multiSet([
@@ -1908,7 +1930,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         console.log(`[OVERLAY-QUEUE] broadcast: чтение пропущено — свежая установка reason=${verdict.reason} ageMs=${String(verdict.ageMs)}`); // guard-ok: ранний выход называет причину
         return;
       }
-      const payload = await fetchPendingGlobalBroadcastModal(studyTarget);
+      const payload = await fetchPendingGlobalBroadcastModal(studyTarget, { premiumAudienceAccess: broadcastAudienceAccessRef.current });
       console.log(`[OVERLAY-QUEUE] broadcast: запрошено id=${payload?.id ?? 'нет'} kind=${payload?.kind ?? '-'} награда=${payload ? `${payload.rewardType}:${payload.rewardAmount}` : '-'}`); // guard-ok: результат запроса
       if (payload) setGlobalBroadcastModal(payload);
     } finally {

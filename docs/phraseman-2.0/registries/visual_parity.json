@@ -37469,21 +37469,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-030.png",
+      "evidence_at": "2026-10-12T02:50:39.437Z",
+      "evidence_sha256": "f6a314c44815c49f48f2e9e7fc7d8704433710aa8d3d2441f5cc1ea9b6b62ac2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] В образце снизу плашка «ЧТО-ТО ПОШЛО НЕ ТАК · Набор на проверке — удалить сейчас нельзя.»; на кадре плашки нет (либо исчезла до снимка, либо удаление набора на проверке не вызвано). Переснять сразу после действия «Удалить набор» (settle 0, плашка живёт несколько секунд).",
+        "[дефект кода — кандидат] Блок шапки набора (название, «A2 · 40 карточек · 🔒 Только ты», «Тренировать», «+») сдвинут вправо от края списка на ≈26 px — тот же сдвиг, что на cards-v2-014 и 017. В строке сведений лишний «🔒 Только ты» (в образце нет).",
+        "[данные] Порядок слов в сетке другой (Customs после Layover/Gate), перевод «стоимость проезда» переносится на две строки."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:51:32.144Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:50, cards-gaps-states №30 «Свой набор — набор на проверке»; образец нарисован с приложения): экран набора совпал по составу — «‹» и «⋮», название, «A2 · 40 карточек», «Тренировать» и «+», ползунок, сетка в две колонки. Плашки с ошибкой на кадре нет. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-031",
@@ -37606,21 +37611,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-034.png",
+      "evidence_at": "2026-10-12T02:51:02.238Z",
+      "evidence_sha256": "5be48698bf6a1e37f38a8c6ecc33cb079d9b958e92826f1fa8874e5223ee8103",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Приложение открыло экран чужого набора «B2 глаголы» (автор Ирина, B2, 49 карточек, «Добавить себе +», сердечко) и показывает на месте карточек серые заглушки; каталога и плашки сообщения нет. Переснять: оставаться в каталоге и нажать набор без сети, плашка должна появиться поверх каталога.",
+        "[дефект кода — кандидат] Если экран набора без сети остаётся на заглушках без сообщения, это немой отказ: показать «Набор ещё не скачан — нужен интернет» и вернуть в каталог (как в образце). Подтвердить пересъёмкой и чтением обработчика открытия набора."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:51:32.144Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:50, cards-gaps-states №34 «Каталог — набор ещё не скачан»; образец нарисован с приложения): на кадре не то состояние — вместо каталога с плашкой «Набор ещё не скачан — нужен интернет» открыт сам набор с заглушками. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-035",

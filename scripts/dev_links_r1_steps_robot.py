@@ -84,5 +84,4 @@ add('onboarding-010', [], 'onbstep=niceToMeet&greet=Alexander-Maximilian-Fitzger
 add('onboarding-025', [], 'onbstep=onboardingPaywall&paywall=loading', HOME, note='онбординг: цена Plus — загрузка (paywall=loading)')
 add('onboarding-paywall-001', ['wait:2500'], 'onbstep=onboardingPaywall&paywall=live', HOME, note='онбординг: цена Plus — «настоящая» цена (paywall=live; на эмуляторе без магазина может остаться справочной)', unique=False)
 FADD = ['tap:#friends-open-add', 'wait:800', 'tap:#friends-code-input']
-add('community-014', FADD + ['type:DEVUNSYNCED', 'tap:#friends-search', 'wait:1500'], 'friends=demo&' + COMM, '/(tabs)/community', note='Друзья: профиль найден, но ещё не синхронизирован (служебный код DEVUNSYNCED, без сервера)')
 add('community-016', FADD + ['type:ZZ99', 'tap:#friends-search', 'wait:1500'], 'friends=demo&dev_friends_fail=search&' + COMM, '/(tabs)/community', note='Друзья: поиск — другая ошибка (dev_friends_fail=search)')

@@ -9,7 +9,7 @@ from dev_links_r1_steps import (
 
 PACK_WORK = f'tap:#fc-expanded-pack-{WORK}'
 PUB = 'local_pack_dev_demo_published'
-DEMO_PUB = 'cards=demo_published&catalog=demo&plus=on'
+DEMO_PUB = 'cards=demo_published&plus=on'  # зачем (Ядро 12.10): catalog=demo убран — стирал «Мой опубликованный»
 
 # ── Сбои слоя данных (fail=…) и удержания (hold=…)
 add('cards-077', [], DEMO + '&fail=setup_decks', '/flashcards_training_setup?mode=truefalse', note='настройка тренировки: «Ошибка сети» (fail=setup_decks; режим в маршруте обязателен)')
@@ -33,8 +33,10 @@ add('cards-gap-024', [MENU, 'tap:Фразы', 'wait:600', 'tap:#fc-menu-filter',
 TRAVEL = 'local_pack_dev_demo_travel'
 add('cards-040', [f'tap:#fc-my-packs-pack-{TRAVEL}', 'wait:800'], DEMO, MYPACKS, note='свой набор «Путешествия», ещё не в сообществе (cards=demo)')
 add('cards-041', [f'long:#fc-my-packs-pack-{TRAVEL}', 'wait:600'], DEMO, MYPACKS, note='действия со своим набором: шторка по долгому нажатию («Отправить в сообщество»)')
-add('cards-042', [f'tap:#fc-my-packs-pack-{PUB}', 'wait:800', 'tap:#fc-pack-edit'], DEMO_PUB, MYPACKS, note='свой опубликованный набор открыт: «Только ты» (одобрения модерации у демо нет — бейдж «В сообществе» и «Править набор» недостижимы без серверной записи)', unique=False)
-add('cards-049', [], DEMO_PUB, PACKS, note='каталог: свой опубликованный набор (карандаш, «Топ») — не проверено на кадре (пробная съёмка 12.10 пересеклась с прогоном Сверки)', unique=False)
+# зачем (Ядро 12.10, партия 1): catalog=demo стоит ПОСЛЕ cards=demo_published и стирает «Мой опубликованный» из каталога — убран; по реестру cards-042 — редактор набора (№23): /community_pack_create?packId=dev_demo_published_own
+add('cards-042', [], 'cards=demo_published&plus=on', '/community_pack_create?packId=dev_demo_published_own', note='редактор своего опубликованного набора (packId=dev_demo_published_own); образец — редактор набора, №23', unique=False)
+# зачем (Ядро 12.10): без catalog=demo — иначе демо-каталог стирает «Мой опубликованный» (cards=demo_published сам кладёт кэш каталога от моего stableId)
+add('cards-049', [], 'cards=demo_published&plus=on', PACKS, note='каталог: свой опубликованный набор (карандаш, «Топ»); catalog=demo убран — он стирал набор', unique=False)
 
 # ── Разовая подсказка «Зажми карточку…» (cards-033): фикстуры карточек помечают её увиденной, hint=show возвращает её для этого кадра
 add('cards-033', [], DEMO + '&hint=show', SAVED, note='разовая подсказка «Зажми карточку, чтобы изменить или удалить её» (hint=show; остальные кадры карточек её не показывают)')
@@ -53,3 +55,6 @@ add('cards-020', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flash
 # зачем (сбои ROBOT9, 12.10): клавиатура после ввода закрывает поле «Перевод» — `back` убирает её перед следующим тапом
 add('cards-064', ['tap:#fc-editor-en', 'type:Test', 'back', 'tap:#fc-editor-tr', 'type:Test', 'back', 'tap:#fc-editor-save'], DEMO, '/flashcards_card_editor?create=1&cat=custom', note='редактор: карточка сохранена (тост)')
 add('cards-068', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Test', 'tap:#ugc-pack-draft-back', 'type:test', 'tap:#ugc-pack-draft-save', 'tap:#ugc-pack-menu', 'tap:#ugc-pack-clear-draft'], EMPTY_PLUS, CREATE, note='«Очистить черновик?»: одна карточка в черновике → меню набора → очистить')
+
+# зачем (Ядро 12.10, партия 1): образец «Устно — ожидание» — микрофон нажат, идёт запись; адрес сессии с вложенным size (`&` в next экранируется), подмена речи speech=correct снаружи
+add('cards-section-040', ['tap:#fc-speak-mic', 'wait:500'], DEMO + '&speech=correct', SPEAK_ROUTE, unique=False, note='«Устно — ожидание»: микрофон нажат один раз (speech=correct, запись идёт); не проверено на кадре')

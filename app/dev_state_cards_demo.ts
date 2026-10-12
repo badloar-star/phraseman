@@ -451,7 +451,8 @@ export async function applyCardsEmpty(): Promise<CardsDemoResult> {
 }
 
 /** Выставить наполненный аккаунт. Каждый шаг независим: сбой одного не мешает остальным и пишет причину. */
-export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = {}): Promise<CardsDemoResult> {
+// зачем (cards-gap-019 «В какой набор? — своих наборов нет»): noPacks — те же 64 сохранённые, но без своих наборов и «Продолжить».
+export async function applyCardsDemo(options: Readonly<{ lessons?: boolean; noPacks?: boolean }> = {}): Promise<CardsDemoResult> {
   const applied: Record<string, string> = {};
   const skipped: Record<string, string> = {};
   const step = async (key: string, run: () => Promise<string>) => {
@@ -478,6 +479,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = 
     return String(cards.length);
   });
   await step('own_packs', async () => {
+    if (options.noPacks === true) return 'skipped:noPacks';
     const { saveLocalAuthorPack } = await import('./community_packs/localAuthorPacks');
     for (const pack of DEMO_OWN_PACKS) { // guard-ok: локальная запись на устройство, Firestore не читается
       await saveLocalAuthorPack({
@@ -494,6 +496,7 @@ export async function applyCardsDemo(options: Readonly<{ lessons?: boolean }> = 
     return String(DEMO_OWN_PACKS.length);
   });
   await step('continue', async () => {
+    if (options.noPacks === true) return 'skipped:noPacks';
     const { recordPackContinuePosition } = await import('./flashcards/pack_continue_position');
     recordPackContinuePosition(TARGET, { packId: DEMO_TRAVEL_PACK_ID, index: 12, total: 40, mode: 'blitz' });
     return 'Путешествия 12/40';

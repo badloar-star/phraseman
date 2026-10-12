@@ -208,3 +208,11 @@ describe('dev_state R1 (Ядро): память диалогов и свобод
     await expect(free.startDialogueV2FreeformSession({ studyTarget: 'en' })).rejects.toBeTruthy();
   });
 });
+
+describe('dev_state R1 (Ядро): cards=demo_nopacks', () => {
+  test('разбирается; фикстура без своих наборов пропускает шаги own_packs и continue', () => {
+    expect(parseDevStateParams({ cards: 'demo_nopacks' }).request.cards).toBe('demo_nopacks');
+    const src = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'app', 'dev_state_cards_demo.ts'), 'utf8') as string;
+    expect((src.match(/if \(options\.noPacks === true\) return 'skipped:noPacks';/g) ?? []).length).toBe(2);
+  });
+});

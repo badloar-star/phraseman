@@ -85,7 +85,7 @@ export type DevStateRequest = Readonly<{
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
-  cards?: 'demo' | 'demo_lessons' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
+  cards?: 'demo' | 'demo_lessons' | 'demo_nopacks' | 'custom50' | 'demo_published' | 'notranslation' | 'empty';
   /** Слот сообщений Настроек (R1 settings-gap-007…009, 029): dev-кампания — опрос / опрос с голосом / сообщение внизу / сообщение вверху / убрать. */
   /** Гипотеза падения qemu (координатор 14.10): off — все boxShadow стиля «Тень» выключены в памяти процесса, on — вернуть. */
   shadows?: 'on' | 'off';
@@ -269,7 +269,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     }
   }
   request.free = pick('free', ['on', 'off'] as const);
-  request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
+  request.cards = pick('cards', ['demo', 'demo_lessons', 'demo_nopacks', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
   request.dialogFail = pick('dev_dialog_fail', [...DEV_DIALOG_FAILS, 'off'] as const);
   request.dialogMood = pick('dev_dialog_mood', [...DEV_DIALOG_MOODS, 'off'] as const);
@@ -515,6 +515,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     });
   }
   // зачем (R1_SHOT_LIST «нет пути»): локальные состояния Карточек, лимитов и каталога — только ключи устройства, без записи в Firestore.
+  // зачем (cards-gap-019): сохранённые карточки без своих наборов — сперва очистка как у cards=empty (убирает наборы прошлых кадров).
+  if (request.cards === 'demo_nopacks') {
+    await step('cards', 'demo_nopacks', async () => {
+      const { applyCardsDemo, applyCardsEmpty } = await import('./dev_state_cards_demo');
+      const empty = await applyCardsEmpty();
+      const demo = await applyCardsDemo({ noPacks: true });
+      for (const [key, reason] of Object.entries({ ...empty.skipped, ...demo.skipped })) skipped[`cards.${key}`] = reason;
+      return Object.keys(empty.skipped).length === 0 && Object.keys(demo.skipped).length === 0;
+    });
+  }
   if (request.cards === 'empty') {
     await step('cards', 'empty', async () => {
       const { applyCardsEmpty } = await import('./dev_state_cards_demo');

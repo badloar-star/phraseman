@@ -33072,22 +33072,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-017.png",
+      "evidence_at": "2026-10-12T02:38:41.344Z",
+      "evidence_sha256": "09f79d54fedb37691da37ced949fbf0f7c53e9fee2d211c02fe0c495e880e995",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] Под затемнением в образце набор «Путешествия» (40 карточек) в масштабе «5 колонок» (ручка у левого края), в приложении набор «Работа» в масштабе «2 колонки» — снято при другом положении ползунка; не критично для шторки, но кадр не тот же.",
+        "[дефект кода — кандидат] За затемнением видно тот же сдвиг шапки набора вправо от края списка, что и на cards-v2-014 (название и «Тренировать» с x≈655, список с x≈628).",
+        "[вёрстка, мелко] Шторка в приложении начинается на ~15 px выше (y≈725 против 740), плитки действий темнее и без заметного блика стиля «Тень»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:39:43.159Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:38, утверждённый cards-v2 №17 «Действия с набором»): сама шторка совпала — ручка, название набора, четыре действия в том же порядке («Отправить в сообщество», «Править набор», «Новая карточка», красное «Удалить набор») с иконками на плитках, затемнённый экран за ней."
     },
     {
       "id": "cards-v2-018",
@@ -33110,22 +33115,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-018.png",
+      "evidence_at": "2026-10-12T02:38:59.883Z",
+      "evidence_sha256": "7fc07fe206b3188390f3dbca32175a42e67b01727c5e712061b58194fbaf4338",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Обложки: в образце размытые тёмные силуэты людей (заглушки), в приложении цветные иллюстрации блокнота с растением (запасная картинка набора). Решить: образец показывает заглушку без картинки — обновить образец под арт приложения либо принять арт.",
+        "[состояние] У первого ролика в образце внизу полоса просмотра (≈60 %), в приложении полосы нет — ролик не начат.",
+        "[данные] Счётчик «5» против «12»; в образце «24 фраз» (ошибка склонения), в приложении «24 фразы» — приложение верно, образец править по приложению нельзя без решения владельца."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:39:43.159Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_video_packs"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:38, утверждённый cards-v2 №18 «Из видео — все ролики»): раскладка совпала — «‹» и «⋮», заголовок со счётчиком, карточки роликов на всю ширину с длительностью в углу, под ними название, «N фраз» и светлая «Добавить +»."
     },
     {
       "id": "cards-v2-019",

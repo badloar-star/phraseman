@@ -19,6 +19,7 @@ import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
 import PressableHybrid from './PressableHybrid';
 import { useLv2Glass } from './learning-v2/LearningV2Glass';
+import { nestedBoxShadow } from './v2/ShadowSurface';
 
 interface Props {
   /** Deprecated sizing input: every screen now uses one fixed compact pill. */
@@ -177,6 +178,9 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
           style={styles.touchTarget}
           contentStyle={[
             styles.capsule,
+            // зачем (сверка dialogs-001/007, Макеты 4fbcfc81d; образец kit.js `energy()` = `.pill`, эталон «Тень» etalon.html): в стеклянной шапке энергия сидит в капсуле — заливка токена темы + внутренняя тень «Тень», БЕЗ обводки.
+            // Размер прежний (60×28, зафиксирован владельцем 24.09: тест energy_ui_owner_direction_probe); вне glass (старые шапки) пилюля по-прежнему без фона.
+            glass ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
           ]}
         >
           <EnergyIcon

@@ -34725,22 +34725,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-015.png",
+      "evidence_at": "2026-10-12T18:00:02.789Z",
+      "evidence_sha256": "9656351a5dbd0f27d4d2f5517d4dfc7e4a4042d91e60f140535aee543a4261cf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр в момент загрузки] В приложении заголовок «Карточки», «0 карточек», пустая область под ползунком, нет «B2 глаголы · Ирина · B2 · 49 карточек ♡ 3», кнопки «Добавить себе +» и списка Convince/Claim/Afford/Borrow/Deserve; в ссылку добавлена пауза 2 с (WAIT) — переснять. Если и после паузы пусто — дефект подмены packcards (нужен журнал [DEV-STATE] / [FLASHCARDS-COLLECTION]).",
+        "[образец ≠ код] Образец показывает список строк (слово + перевод, «⋯»), приложение — плитки с ползунком размера: уровень ползунка «1 колонка» против 2 колонок — сверить после пересъёмки."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:01:13.995Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:59, cards-v2 №15 «Чужой — до добавления», ссылка packcards=on&community=reset): экран чужого набора открыт, но данные набора не подгрузились."
     },
     {
       "id": "cards-v2-016",
@@ -34764,22 +34768,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-016.png",
+      "evidence_at": "2026-10-12T18:00:39.911Z",
+      "evidence_sha256": "24ecc905eeed403b76d17c6dd3df550b109ba35d285bc4cf119dd4a79ff44bca",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] После добавления код возвращает в каталог «Сообщество» (поиск «Наборы и авторы», чипы «Популярные / Новые / A1 / A2 / B1», наборы Family, «Мой опубликованный», «Заказ в кафе»; поверх тост «Готово»), в образце экран набора остаётся открытым — решение Дизайна/владельца: что правильно.",
+        "[состояние не то] Для кадра «добавлен» нужен экран набора после добавления; если поведение кода «уйти в каталог» — штатное, образцу нужен кадр тоста на каталоге."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:01:13.995Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:00, cards-v2 №16 «Чужой — добавлен»): тап «Добавить себе» сработал (тост «Готово — Набор «B2 глаголы» добавлен в «Карточки»»), но после него приложение ушло в каталог «Сообщество», а образец остаётся на экране набора с «В моих наборах» и «Тренировать»."
     },
     {
       "id": "cards-v2-017",

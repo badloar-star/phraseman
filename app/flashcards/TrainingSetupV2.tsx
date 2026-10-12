@@ -30,6 +30,8 @@ type Props = Readonly<{
   modeIcon: keyof typeof Ionicons.glyphMap;
   /** «24/30»; null — пилюли нет (квота ещё читается). */
   limitLabel: string | null;
+  /** Код языка тренировки («EN») — чип в верхнем ряду справа, ТОЛЬКО показывает язык (без меню и стрелки; решение владельца 12.10, cards-027, вариант а); null — чипа нет. */
+  languageLabel?: string | null;
   /** Лимит месяца исчерпан: настройка остаётся обычной, а вместо «Начать» — «Безлимит с Plus» (макет «Лимит Free»). */
   limitReached: boolean;
   status: 'ready' | 'loading' | 'unavailable' | 'empty' | 'invalid';
@@ -60,15 +62,15 @@ type Props = Readonly<{
 }>;
 
 const copyFor = (lang: Lang) => triLang(lang, {
-  ru: { back: 'Назад', packs: 'Что повторяем', cards: 'Сколько', unlimited: 'Безлимит с Plus', empty: 'Нет карточек', emptyHint: 'Сохрани пару слов', find: 'Открыть каталог', unavailable: 'Сейчас недоступно', checkNet: 'Проверь интернет', retry: 'Попробовать снова', selectedOf: 'карточек выбрано' },
-  uk: { back: 'Назад', packs: 'Що повторюємо', cards: 'Скільки', unlimited: 'Безліміт з Plus', empty: 'Немає карток', emptyHint: 'Збережи кілька слів', find: 'Відкрити каталог', unavailable: 'Зараз недоступно', checkNet: 'Перевір інтернет', retry: 'Спробувати ще', selectedOf: 'карток вибрано' },
-  en: { back: 'Back', packs: 'What to practise', cards: 'How many', unlimited: 'Unlimited with Plus', empty: 'No cards', emptyHint: 'Save a few words', find: 'Open the catalog', unavailable: 'Not available right now', checkNet: 'Check your connection', retry: 'Try again', selectedOf: 'cards selected' },
-  es: { back: 'Atrás', packs: 'Qué repasamos', cards: 'Cuántas', unlimited: 'Ilimitado con Plus', empty: 'Sin tarjetas', emptyHint: 'Guarda unas palabras', find: 'Abrir el catálogo', unavailable: 'No disponible ahora', checkNet: 'Comprueba tu conexión', retry: 'Intentar de nuevo', selectedOf: 'tarjetas elegidas' },
-  'pt-BR': { back: 'Voltar', packs: 'O que vamos revisar', cards: 'Quantos', unlimited: 'Ilimitado com Plus', empty: 'Sem cartões', emptyHint: 'Salve algumas palavras', find: 'Abrir o catálogo', unavailable: 'Indisponível agora', checkNet: 'Verifique sua conexão', retry: 'Tentar de novo', selectedOf: 'cartões selecionados' },
-  vi: { back: 'Quay lại', packs: 'Ôn gì', cards: 'Bao nhiêu', unlimited: 'Không giới hạn với Plus', empty: 'Chưa có thẻ', emptyHint: 'Hãy lưu vài từ', find: 'Mở danh mục', unavailable: 'Hiện chưa khả dụng', checkNet: 'Kiểm tra kết nối', retry: 'Thử lại', selectedOf: 'thẻ đã chọn' },
-  id: { back: 'Kembali', packs: 'Apa yang diulang', cards: 'Berapa banyak', unlimited: 'Tanpa batas dengan Plus', empty: 'Tidak ada kartu', emptyHint: 'Simpan beberapa kata', find: 'Buka katalog', unavailable: 'Belum tersedia sekarang', checkNet: 'Periksa koneksi', retry: 'Coba lagi', selectedOf: 'kartu dipilih' },
-  tr: { back: 'Geri', packs: 'Neyi tekrarlıyoruz', cards: 'Kaç tane', unlimited: 'Plus ile sınırsız', empty: 'Kart yok', emptyHint: 'Birkaç kelime kaydet', find: 'Kataloğu aç', unavailable: 'Şu anda kullanılamıyor', checkNet: 'Bağlantını kontrol et', retry: 'Tekrar dene', selectedOf: 'kart seçildi' },
-  pl: { back: 'Wstecz', packs: 'Co powtarzamy', cards: 'Ile', unlimited: 'Bez limitu z Plus', empty: 'Brak kart', emptyHint: 'Zapisz kilka słów', find: 'Otwórz katalog', unavailable: 'Teraz niedostępne', checkNet: 'Sprawdź połączenie', retry: 'Spróbuj ponownie', selectedOf: 'kart wybrano' },
+  ru: { back: 'Назад', packs: 'Что повторяем', cards: 'Сколько', unlimited: 'Безлимит с Plus', empty: 'Нет карточек', emptyHint: 'Сохрани пару слов', find: 'Открыть каталог', unavailable: 'Сейчас недоступно', checkNet: 'Проверь интернет', retry: 'Попробовать снова', selectedOf: 'карточек выбрано', language: 'Язык тренировки' },
+  uk: { back: 'Назад', packs: 'Що повторюємо', cards: 'Скільки', unlimited: 'Безліміт з Plus', empty: 'Немає карток', emptyHint: 'Збережи кілька слів', find: 'Відкрити каталог', unavailable: 'Зараз недоступно', checkNet: 'Перевір інтернет', retry: 'Спробувати ще', selectedOf: 'карток вибрано', language: 'Мова тренування' },
+  en: { back: 'Back', packs: 'What to practise', cards: 'How many', unlimited: 'Unlimited with Plus', empty: 'No cards', emptyHint: 'Save a few words', find: 'Open the catalog', unavailable: 'Not available right now', checkNet: 'Check your connection', retry: 'Try again', selectedOf: 'cards selected', language: 'Practice language' },
+  es: { back: 'Atrás', packs: 'Qué repasamos', cards: 'Cuántas', unlimited: 'Ilimitado con Plus', empty: 'Sin tarjetas', emptyHint: 'Guarda unas palabras', find: 'Abrir el catálogo', unavailable: 'No disponible ahora', checkNet: 'Comprueba tu conexión', retry: 'Intentar de nuevo', selectedOf: 'tarjetas elegidas', language: 'Idioma de práctica' },
+  'pt-BR': { back: 'Voltar', packs: 'O que vamos revisar', cards: 'Quantos', unlimited: 'Ilimitado com Plus', empty: 'Sem cartões', emptyHint: 'Salve algumas palavras', find: 'Abrir o catálogo', unavailable: 'Indisponível agora', checkNet: 'Verifique sua conexão', retry: 'Tentar de novo', selectedOf: 'cartões selecionados', language: 'Idioma da prática' },
+  vi: { back: 'Quay lại', packs: 'Ôn gì', cards: 'Bao nhiêu', unlimited: 'Không giới hạn với Plus', empty: 'Chưa có thẻ', emptyHint: 'Hãy lưu vài từ', find: 'Mở danh mục', unavailable: 'Hiện chưa khả dụng', checkNet: 'Kiểm tra kết nối', retry: 'Thử lại', selectedOf: 'thẻ đã chọn', language: 'Ngôn ngữ luyện tập' },
+  id: { back: 'Kembali', packs: 'Apa yang diulang', cards: 'Berapa banyak', unlimited: 'Tanpa batas dengan Plus', empty: 'Tidak ada kartu', emptyHint: 'Simpan beberapa kata', find: 'Buka katalog', unavailable: 'Belum tersedia sekarang', checkNet: 'Periksa koneksi', retry: 'Coba lagi', selectedOf: 'kartu dipilih', language: 'Bahasa latihan' },
+  tr: { back: 'Geri', packs: 'Neyi tekrarlıyoruz', cards: 'Kaç tane', unlimited: 'Plus ile sınırsız', empty: 'Kart yok', emptyHint: 'Birkaç kelime kaydet', find: 'Kataloğu aç', unavailable: 'Şu anda kullanılamıyor', checkNet: 'Bağlantını kontrol et', retry: 'Tekrar dene', selectedOf: 'kart seçildi', language: 'Pratik dili' },
+  pl: { back: 'Wstecz', packs: 'Co powtarzamy', cards: 'Ile', unlimited: 'Bez limitu z Plus', empty: 'Brak kart', emptyHint: 'Zapisz kilka słów', find: 'Otwórz katalog', unavailable: 'Teraz niedostępne', checkNet: 'Sprawdź połączenie', retry: 'Spróbuj ponownie', selectedOf: 'kart wybrano', language: 'Język ćwiczeń' },
 });
 
 /** Плитка набора `.pk`: название 16/700, под ним число карточек, справа сверху круглая отметка; выбранная приподнята (стиль «Тень»). */
@@ -113,7 +115,7 @@ const DeckPickTile = memo(function DeckPickTile({ g, title, countLabel, on, disa
 function TrainingSetupV2Inner(props: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом (при 1.0 тот же объект стилей — вид прежний)
   const styles2 = useScaledTextStyles(baseStyles);
-  const { lang, title, modeIcon, limitLabel, limitReached, status, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onUpgrade, onBack, onFindPacks, onRetry } = props;
+  const { lang, title, modeIcon, limitLabel, languageLabel = null, limitReached, status, invalidText, decks, countLabelFor, selectedIds, onToggle, selectedCardCount, sizeOptions, size, onSizeChange, extra, startLabel, canStart, hint, onStart, onUpgrade, onBack, onFindPacks, onRetry } = props;
   const g = useLv2Glass();
   const lh = useLineScale();
   const copy = useMemo(() => copyFor(lang), [lang]);
@@ -130,10 +132,27 @@ function TrainingSetupV2Inner(props: Props) {
       <ScrollView contentContainerStyle={styles2.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
         <View style={styles2.top}>
           <BackButton g={g} onPress={onBack} label={copy.back} />
-          {limitLabel ? (
-            <View testID="fc-training-setup-monthly-limit" style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
-              <Ionicons name="copy-outline" size={16} color={g.text} />
-              <Text style={[styles2.pillText, { color: g.text }]}>{limitLabel}</Text>
+          {/* зачем (владелец 12.10, cards-027, вариант «а»): справа в верхнем ряду — чип языка тренировки, ТОЛЬКО показывает язык (без меню и стрелки: список наборов строго по изучаемому языку приложения),
+              рядом с пилюлей остатка. Токены темы; длинный код не сжимается (без adjustsFontSizeToFit) — чип растёт по тексту, а ряд при нехватке места переносится, не режет. */}
+          {languageLabel || limitLabel ? (
+            <View style={styles2.topRight}>
+              {languageLabel ? (
+                <View
+                  testID="fc-training-setup-language-chip"
+                  accessible
+                  accessibilityRole="text"
+                  accessibilityLabel={`${copy.language}: ${languageLabel}`}
+                  style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}
+                >
+                  <Text style={[styles2.pillText, { color: g.text }]}>{languageLabel}</Text>
+                </View>
+              ) : null}
+              {limitLabel ? (
+                <View testID="fc-training-setup-monthly-limit" style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>
+                  <Ionicons name="copy-outline" size={16} color={g.text} />
+                  <Text style={[styles2.pillText, { color: g.text }]}>{limitLabel}</Text>
+                </View>
+              ) : null}
             </View>
           ) : null}
         </View>
@@ -249,6 +268,7 @@ const baseStyles = StyleSheet.create({
   scroll: { paddingHorizontal: 20, paddingBottom: 150 },
   top: { minHeight: 44, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   pill: { minHeight: 30, borderRadius: 18, paddingHorizontal: 13, flexDirection: 'row', alignItems: 'center', gap: 7 },
+  topRight: { flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', flexWrap: 'wrap', gap: 8, flexShrink: 1 },
   pillText: { fontSize: 16, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },
   // макет: `.flex gap 14, margin-top 14`; `.tile.t55` r14; название 30/700, межбуквенный −.4
   titleRow: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },

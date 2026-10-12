@@ -674,6 +674,7 @@ export default function FlashcardsTrainingSetupScreen() {
             limitLabel={limitLabel}
             limitReached={limitReached}
             status={setupStatus}
+            languageLabel={langChip(studyTarget)} // зачем (cards-027): язык, на котором идёт тренировка — read-only чип
             invalidText={loadErrorMessage}
             decks={decks}
             countLabelFor={(count) => compactDeckCountLabel(lang, count)}

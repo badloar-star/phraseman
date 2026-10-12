@@ -1941,24 +1941,28 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-044.png",
+      "evidence_at": "2026-10-12T17:27:10.435Z",
+      "evidence_sha256": "8b3f8138f421c730da1fdbd940399f6a43d5618cc896aecb8714ec8c6561b3ca",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Снят список «Мои наборы» (/flashcards_my_packs) вместо экрана чужого набора «B2 глаголы» — открыть его без сервера нельзя: у демо-наборов сообщества нет карточек (подмена содержимого dev_pack_content=demo — в списке Ядра, 12.10).",
+        "[состояние не то] Нужны ещё секция «Добавленные из сообщества 3» (B2 глаголы / Family / Антоніми дієслів) и тост — демо-данные добавленных наборов и сбой скачивания (Ядру)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:29:22.682Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-states №38 «Открытие набора · сеть упала»): снят список «Мои наборы 5» (5 наборов с тремя словами) вместо состояния «Добавленные из сообщества» с набором в процессе загрузки (кольцо), зелёной галочкой и тостом «Набор ещё не скачан — нужен интернет.»."
     },
     {
       "id": "cards-045",
@@ -2145,23 +2149,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-049.png",
+      "evidence_at": "2026-10-12T17:27:43.659Z",
+      "evidence_sha256": "6b12cef8f357bd34e2811e016f3d165ee6f2a5acf5eab9ba14f9d7d07e2f45fa",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] В каталоге нет своего опубликованного набора «Мой опубликованный» с карандашом и меткой «Топ» (демо-кэш каталога от cards=demo_published не добавил свой набор), строка «Продолжить создание набора» на этом кадре отсутствует.",
+        "[образец ≠ код] «EN ⌄» в шапке и более крупные размеры (≈6 %) — те же, что на cards-section-022."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:29:22.682Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "dev_state?cards=demo_published"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-v2 №25 «Каталог»; строка «Свой опубликованный — карандаш · «Топ»»): снят каталог «Сообщество» — данные и порядок совпали с образцом (Family / B2 глаголы / Антоніми дієслів / Small talk), чипы «Популярные · Новые · A1…»."
     },
     {
       "id": "cards-050",
@@ -2180,23 +2188,26 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-050.png",
+      "evidence_at": "2026-10-12T17:28:04.959Z",
+      "evidence_sha256": "3524392c941ba2e6af580885ae35969971d9a152075251b4f5769131baa41921",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Снят список «Мои наборы» (/flashcards_my_packs) вместо экрана чужого набора «B2 глаголы» — открыть его без сервера нельзя: у демо-наборов сообщества нет карточек (подмена содержимого dev_pack_content=demo — в списке Ядра, 12.10)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:29:22.682Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:27, cards-states №44 «Лайк после добавления»): снят список «Мои наборы 5» вместо чужого набора «B2 глаголы» с «♥ 4 · 12 · 1», «✓ В моих наборах» и карточками слов с транскрипцией."
     },
     {
       "id": "cards-051",
@@ -2215,23 +2226,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-051.png",
+      "evidence_at": "2026-10-12T17:28:25.737Z",
+      "evidence_sha256": "a86704b482f6f013b431c1e670d86a8389e1cab33f4f54eefc0a692e2c32c622",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Снят список «Мои наборы» (/flashcards_my_packs) вместо экрана чужого набора «B2 глаголы» — открыть его без сервера нельзя: у демо-наборов сообщества нет карточек (подмена содержимого dev_pack_content=demo — в списке Ядра, 12.10).",
+        "[состояние не то] Шторка «Отклик» открывается из экрана набора (значок комментария) — после подмены содержимого нужны шаги тапа."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:29:22.682Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:28, cards-states №45 «Отклик пуст»): снят «Мои наборы» в загрузке (три серые заглушки) вместо чужого набора с шторкой «Отклик» («Пока тихо / Скажи автору, что было полезно — он увидит первым.», поле «Написать автору…»)."
     },
     {
       "id": "cards-052",
@@ -2250,23 +2265,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-052.png",
+      "evidence_at": "2026-10-12T17:28:53.217Z",
+      "evidence_sha256": "92d80b744ad51cb57872f9d0ca1f1862fec9f7ab0609d6c8fec025d08b7f50b3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Снят список «Мои наборы» (/flashcards_my_packs) вместо экрана чужого набора «B2 глаголы» — открыть его без сервера нельзя: у демо-наборов сообщества нет карточек (подмена содержимого dev_pack_content=demo — в списке Ядра, 12.10).",
+        "[данные] Комментарии «Ирина / Дима» с лайками и «Ответить» — нужен сид отклика (Ядру: dev_pack_feedback=demo)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:29:22.682Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:28, cards-states №46 «Набор не добавлен — писать нельзя»): снят список «Мои наборы 5» вместо экрана чужого набора с шторкой «Отклик» (комментарии Ирины и Димы, «Писать могут те, кто добавил набор себе.»)."
     },
     {
       "id": "cards-053",

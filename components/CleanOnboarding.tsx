@@ -423,6 +423,10 @@ async function offerAccountRestore(lang: Lang): Promise<AccountRestorePromptOutc
   return outcome.ok ? 'restored' : 'restore_failed';
 }
 
+/** Текст ошибки входа на языке, который будет в момент показа (см. authErrorText в CleanOnboarding). */
+type AuthErrorText = (uiLang: Lang) => string;
+const authErrorFor = (code: string): AuthErrorText => (uiLang) => describeAuthError(code, uiLang);
+
 function describeAuthError(raw: string, lang: Lang): string {
   const code = String(raw || '');
   // зачем (04.10): язык интерфейса известен (lang) — раньше 9 веток отдавали русский текст любому языку.
@@ -2389,7 +2393,17 @@ function CleanOnboarding({
   // зачем (повторное ревью TG-C8E5C56B2F02): onDone ровно один раз на онбординг, а анкета
   // не пишет профиль/метку автоника поверх засчитанного позднего входа.
   const authCompletionRef = useRef(createOnboardingCompletionState());
-  const [authError, setAuthError] = useState<string | null>(null);
+  // зачем (§AUTH-0110 п.3, координатор 12.10): ошибка входа хранится как «язык → текст», а не готовая строка — если человек
+  // вернётся на шаг языка и сменит его, текст ошибки на экране входа перестроится на новом языке (раньше оставался старым).
+  const [authErrorText, setAuthErrorText] = useState<AuthErrorText | null>(null);
+  const setAuthError = useCallback((next: AuthErrorText | null) => { setAuthErrorText(() => next); }, []);
+  const authError = authErrorText ? authErrorText(lang) : null;
+  const authErrorLangRef = useRef(lang);
+  useEffect(() => {
+    if (authErrorLangRef.current === lang) return;
+    if (authErrorText) console.log(`[LANG-SWITCH] onboarding auth_error rebuilt from=${authErrorLangRef.current} to=${lang}`);
+    authErrorLangRef.current = lang;
+  }, [authErrorText, lang]);
   const [authSlow, setAuthSlow] = useState(false);
   // зачем (Сверка 11.10): под открытым окном «Этот аккаунт уже есть» экран выглядел зависшим — спиннер на Google и
   // плашка «Вход всё ещё выполняется». Пока ждём решения человека, это ожидание его, а не провайдера: прячем и то, и другое.
@@ -2762,7 +2776,7 @@ function CleanOnboarding({
           const switched = await confirmAndSwitchAccountInOnboarding(lang, switchDecisionHooks);
           // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
           if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
-          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError((uiLang) => onboardingAccountSwitchFailureText(uiLang, switched.reason)); return; }
           if (switched.kind === 'switched') {
             // зачем (ревью L-2): человек ушёл «Позже»/«Назад», пока шла смена, — не входим за него.
             if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
@@ -2779,7 +2793,7 @@ function CleanOnboarding({
             }
             if (!resumed) {
               console.log(`[AUTH-SWITCH-OFFER] onboarding resume fallback provider=${provider} source=existing_account`); // guard-ok: ветка входа после смены (правило «сперва логи»)
-              setAuthError(onboardingSwitchedSignInAgainText(lang));
+              setAuthError((uiLang) => onboardingSwitchedSignInAgainText(uiLang));
               return;
             }
             console.log(`[AUTH-SWITCH-OFFER] onboarding resume continued provider=${provider} source=existing_account result=${resumed.result}`); // guard-ok: ветка входа после смены
@@ -2804,12 +2818,14 @@ function CleanOnboarding({
         // снимает заявку, и человек повторяет вход обычным тапом.
         const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
         if (restoreOutcome === 'restore_failed') {
-          const failedCopy = accountRestoreFailedCopy(lang);
-          setAuthError(`${failedCopy.title}. ${failedCopy.body}`);
+          setAuthError((uiLang) => {
+            const failedCopy = accountRestoreFailedCopy(uiLang);
+            return `${failedCopy.title}. ${failedCopy.body}`;
+          });
           return;
         }
         if (restoreOutcome === 'restored') {
-          setAuthError(triLang(lang, {
+          setAuthError((uiLang) => triLang(uiLang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
             en: 'Your account is restored. Sign in again — all your progress is still there.',
@@ -2822,7 +2838,7 @@ function CleanOnboarding({
           }));
           return;
         }
-        setAuthError(describeAuthError(result.error, lang));
+        setAuthError(authErrorFor(result.error));
         return;
       }
       // зачем: юзер нажал «У меня уже есть аккаунт» — он ЗАЯВИЛ, что возвращается.
@@ -2864,7 +2880,7 @@ function CleanOnboarding({
         console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
         return;
       }
-      setAuthError(describeAuthError(detail, lang));
+      setAuthError(authErrorFor(detail));
     } finally {
       authInFlightRef.current = false;
       setAuthSlow(false);
@@ -2914,7 +2930,7 @@ function CleanOnboarding({
           const switched = await confirmAndSwitchAccountInOnboarding(lang, switchDecisionHooks);
           // зачем (шаг 3): смена не состоялась — выбранный Google-пропуск больше не нужен.
           if (switched.kind === 'cancelled') { discardAccountSwitchResumeCredential('switch_cancelled'); setAuthError(null); return; }
-          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError(onboardingAccountSwitchFailureText(lang, switched.reason)); return; }
+          if (switched.kind === 'failed') { discardAccountSwitchResumeCredential('switch_failed'); setAuthError((uiLang) => onboardingAccountSwitchFailureText(uiLang, switched.reason)); return; }
           if (switched.kind === 'switched') {
             // зачем (ревью L-2): человек ушёл «Позже»/«Назад», пока шла смена, — не входим за него.
             if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
@@ -2930,7 +2946,7 @@ function CleanOnboarding({
             }
             if (!resumed) {
               console.log(`[AUTH-SWITCH-OFFER] onboarding resume fallback provider=${provider} source=privacy`); // guard-ok: ветка входа после смены (правило «сперва логи»)
-              setAuthError(onboardingSwitchedSignInAgainText(lang));
+              setAuthError((uiLang) => onboardingSwitchedSignInAgainText(uiLang));
               return;
             }
             console.log(`[AUTH-SWITCH-OFFER] onboarding resume continued provider=${provider} source=privacy result=${resumed.result}`); // guard-ok: ветка входа после смены
@@ -2958,12 +2974,14 @@ function CleanOnboarding({
         // снимает заявку, и человек повторяет вход обычным тапом.
         const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
         if (restoreOutcome === 'restore_failed') {
-          const failedCopy = accountRestoreFailedCopy(lang);
-          setAuthError(`${failedCopy.title}. ${failedCopy.body}`);
+          setAuthError((uiLang) => {
+            const failedCopy = accountRestoreFailedCopy(uiLang);
+            return `${failedCopy.title}. ${failedCopy.body}`;
+          });
           return;
         }
         if (restoreOutcome === 'restored') {
-          setAuthError(triLang(lang, {
+          setAuthError((uiLang) => triLang(uiLang, {
             ru: 'Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.',
             uk: 'Акаунт відновлено. Увійди ще раз — увесь прогрес на місці.',
             en: 'Your account is restored. Sign in again — all your progress is still there.',
@@ -2976,7 +2994,7 @@ function CleanOnboarding({
           }));
           return;
         }
-        setAuthError(describeAuthError(result.error, lang));
+        setAuthError(authErrorFor(result.error));
         return;
       }
       if (result.result === 'created_new') {
@@ -3006,7 +3024,7 @@ function CleanOnboarding({
         console.log(`[ONBOARDING-AUTH] result dropped provider=${provider} result=threw reason=user_left`); // guard-ok: ранний выход пишет причину
         return;
       }
-      setAuthError(describeAuthError(detail, lang));
+      setAuthError(authErrorFor(detail));
     } finally {
       authInFlightRef.current = false;
       setAuthSlow(false);

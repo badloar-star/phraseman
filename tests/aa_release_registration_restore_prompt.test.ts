@@ -110,7 +110,7 @@ describe('промпт восстановления удалённого акк�
     expect(modal.slice(branch, branch + 260)).toContain('setRetryProvider(provider)');
 
     const onboarding = read('components/CleanOnboarding.tsx');
-    expect(onboarding.match(/if \(restoreOutcome === 'restore_failed'\) \{\s*const failedCopy = accountRestoreFailedCopy\(lang\);/g)).toHaveLength(2);
+    expect(onboarding.match(/if \(restoreOutcome === 'restore_failed'\) \{\s*setAuthError\(\(uiLang\) => \{\s*const failedCopy = accountRestoreFailedCopy\(uiLang\);/g)).toHaveLength(2);
     const fn = onboarding.slice(onboarding.indexOf('async function offerAccountRestore('), onboarding.indexOf('function describeAuthError('));
     expect(fn).toMatch(/try \{\s*status = await fetchAccountDeleteStatus\(\);\s*\} catch/);
     for (const line of ['[ACCOUNT-RESTORE] onboarding status_failed', '[ACCOUNT-RESTORE] onboarding not_restorable', '[ACCOUNT-RESTORE] onboarding declined', '[ACCOUNT-RESTORE] onboarding restore ok=']) {

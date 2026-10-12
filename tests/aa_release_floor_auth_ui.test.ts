@@ -139,14 +139,15 @@ describe('смена аккаунта в онбординге — с кнопк�
     const onboarding = read('components/CleanOnboarding.tsx');
     // 12.10: + крючки «ждём решения» (под окном нет спиннера и плашки «вход выполняется»).
     expect(onboarding.match(/await confirmAndSwitchAccountInOnboarding\(lang, switchDecisionHooks\)/g)).toHaveLength(2);
-    expect(onboarding.match(/onboardingAccountSwitchFailureText\(lang, switched\.reason\)/g)).toHaveLength(2);
+    // §AUTH-0110 п.3: текст ошибки строится на языке момента показа (uiLang), а не на языке момента ошибки.
+    expect(onboarding.match(/onboardingAccountSwitchFailureText\(uiLang, switched\.reason\)/g)).toHaveLength(2);
   });
 
   it('после смены вход продолжается сам тем же пропуском; без пропуска — прежний текст (шаг 3, прогон 11.10)', () => {
     const onboarding = read('components/CleanOnboarding.tsx');
     // Оба пути: после switched — продолжение входа, а не сразу «Войди ещё раз».
     expect(onboarding.match(/await withOnboardingAuthSlowNotice\(resumeSignInAfterAccountSwitch\(provider\), \(\) => setAuthSlow\(true\)\)/g)).toHaveLength(2);
-    expect(onboarding.match(/if \(!resumed\) \{[\s\S]{0,400}?setAuthError\(onboardingSwitchedSignInAgainText\(lang\)\);/g)).toHaveLength(2);
+    expect(onboarding.match(/if \(!resumed\) \{[\s\S]{0,400}?setAuthError\(\(uiLang\) => onboardingSwitchedSignInAgainText\(uiLang\)\);/g)).toHaveLength(2);
     expect(onboarding.match(/result = resumed;/g)).toHaveLength(2);
     // Поздний ответ после ухода «Позже»/«Назад» не рисует текст поверх чужого шага.
     expect(onboarding.match(/settleLateOnboardingAuthResult\(provider, resumed\?\.result \?\? 'error', attempt\)/g)).toHaveLength(2);

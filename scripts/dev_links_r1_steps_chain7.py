@@ -15,6 +15,10 @@ CHAIN7_IDS = {
     'community-025', 'system-015', 'results-007', 'results-009', 'mistakes-panel-004', 'mistakes-panel-021',
     # Авторизация 12.10: новые подмены coins=N / coinupgrade=hold / errorscreen=on / appmessage=announcement
     'coins-001', 'coins-003', 'coins-004', 'system-010', 'system-012',
+    # Дизайн 12.10 (228448bfe): демо-каталог YouTube в памяти — videopacks=catalog|catalog_upcoming
+    'video-001', 'video-004', 'video-008', 'video-009', 'video-011',
+    # Ядро 12.10 (d53db125f): lessonsDone / examA1 / dev_dialog_why + метка верного слова lesson1-word-option-correct
+    'learn-007', 'learn-008', 'learn-011', 'learn-012', 'learn-013', 'learn-029', 'learn-031', 'dialogs-020',
 }
 STEPS_ROBOT.INCLUDE_IDS.update(CHAIN7_IDS)
 
@@ -77,3 +81,30 @@ add('coins-004', ['wait:1500', 'tap:#coin-rank-upgrade', 'await:#coin-rank-pendi
 add('system-010', ['wait:2000'], 'errorscreen=on', '/(tabs)/home', note='экран ошибки корневой границы (errorscreen=on; снять — errorscreen=off или перезапуск)')
 add('system-012', ['wait:2500'], 'appmessage=announcement&overlays=on', '/(tabs)/home',
     note='окно «сообщение команды»: демо-объявление из памяти (overlays=on — окна не гасятся)')
+
+# ── Видео: демо-каталог YouTube из памяти (app/dev_youtube_demo.ts, Дизайн 228448bfe) — канал dev_en, премьера devDemoEvt1, ролики devDemoVid0…5,
+# плейлисты PLdevDemoEveryday01 / PLdevDemoTravel0002; Firestore не вызывается. Превью i.ytimg.com несуществующих роликов пустые — для кадров состояний это норма.
+VIDEO = 'videopacks=catalog&studyTarget=en'
+add('video-001', ['wait:2500'], VIDEO, '/lingman_videos', note='главная канала (демо-каталог videopacks=catalog)')
+add('video-004', ['wait:2500', 'see:#youtube-premiere-live'], VIDEO, '/lingman_videos', note='премьера «сейчас» (маркер youtube-premiere-live; «скоро» — videopacks=catalog_upcoming)')
+add('video-008', ['wait:2500', 'tap:#youtube-tab-playlists', 'wait:600'], VIDEO, '/lingman_videos', note='вкладка «Плейлисты»')
+add('video-009', ['wait:2500'], VIDEO, '/lingman_playlist?playlistId=PLdevDemoEveryday01&channelId=dev_en', note='плейлист PLdevDemoEveryday01')
+add('video-011', ['wait:3000'], VIDEO, '/lingman_video_watch?videoId=devDemoVid0&channelId=dev_en&title=Ordering%20coffee%20like%20a%20local&source=deeplink',
+    unique=False, note='ролик с фразами devDemoVid0: фразы из памяти, плеер без сети показывает своё состояние — кадр смотреть глазами')
+
+# ── Список уроков: прогресс и экзамен A1 подменяются в памяти поверх снимка (Ядро d53db125f); ворота уроков считаются честно (без dev-разблокировки)
+LP = 'plus=on&studyTarget=en'
+add('learn-007', ['wait:1500', 'see:#legacy-lessons-exam-A1'], LP + '&lessonsDone=8&examA1=almost', LESSONS, note='экзамен A1 «Почти — 61%» (A7)')
+add('learn-008', ['wait:1500', 'see:#legacy-lessons-exam-A1'], 'plus=off&studyTarget=en&lessonsDone=8', LESSONS, note='Free: экзамен «Откроется с Plus» (A8)')
+add('learn-011', ['wait:1500', 'tap:#lessons-row-3', 'wait:600'], LP + '&lessonsDone=1', LESSONS, note='окно «Ещё рано» (A10): урок 3 закрыт по прогрессу; Plus — иначе пейвол')
+add('learn-012', ['wait:1500', 'tap:#legacy-lessons-exam-A2', 'wait:600'], LP + '&lessonsDone=8', LESSONS, note='окно «Уровень пока закрыт» (A11): A1 пройден, экзамен A1 не сдан')
+add('learn-013', ['wait:1500', 'tap:#legacy-lessons-exam-A1', 'wait:600'], LP + '&lessonsDone=2', LESSONS, note='окно «Недоступно» (A12): уровень не пройден')
+
+# ── Урок 1: верное слово метит lesson1-word-option-correct (во всех сборках)
+add('learn-029', ['wait:2500', 'tap:#lesson1-word-option-correct', 'wait:300'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
+    note='фраза собирается (D2): одно верное слово')
+add('learn-031', ['wait:2500'] + ['tap:#lesson1-word-option-correct'] * 8 + ['wait:800'], LESSON_BASE + '&mode=a&energy=5', LESSON1, unique=False,
+    note='«Верно + монеты» (D4): верные слова до конца фразы; длина фразы не из кода — если кнопки кончились раньше, лишние тапы не нужны, кадр смотреть глазами')
+
+# ── Диалог: «Почему так» — разборы на сегодня закончились (dev_dialog_why=spent, только память)
+add('dialogs-020', DLG_START + SEND + ['tap:#dialogue-v2-why-*', 'wait:800'], DLG_BASE + '&dev_dialog_why=spent', DLG, note='шторка «Почему так»: бесплатные разборы на сегодня закончились')

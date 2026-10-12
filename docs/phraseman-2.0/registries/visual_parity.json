@@ -2620,23 +2620,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-061.png",
+      "evidence_at": "2026-10-12T17:43:54.599Z",
+      "evidence_sha256": "f3031217f6c1a7a2f384408b827eb19ed371a7214f475d9f27a9747a01417daf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы» (скелетоны/список), а не нужный экран; у строки не было ссылки и шагов (общий маршрут /flashcards_my_packs).",
+        "Ссылка и шаги добавлены в DEV_LINKS_R1 (редактор /flashcards_card_editor?create=1, раскрытие заметки) — переснять."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:45:07.831Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:43, cards-v2 №24 «Новая карточка — превью живое» против «Редактор карточки · Новая · заметка раскрыта»): сверка невозможна — на кадре «Мои наборы» в загрузке, образец — редактор новой карточки (EN «Layover», поля «Слово или фраза / Перевод / Пример», «Мои карточки», «Добавить»)."
     },
     {
       "id": "cards-062",
@@ -2813,23 +2817,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-066.png",
+      "evidence_at": "2026-10-12T17:44:19.947Z",
+      "evidence_sha256": "37a0be0cb0d17efd4ae579835b10794b0f8c7bd1157b4aa1a05d939afd7b004f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы» (скелетоны/список), а не нужный экран; у строки не было ссылки и шагов (общий маршрут /flashcards_my_packs).",
+        "Ссылка и шаги добавлены в DEV_LINKS_R1 (/community_pack_create + заполнение) — переснять."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:45:07.831Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:44, cards-v2 №22 «Новый набор» против «Создание набора · Только для меня»): сверка невозможна — на кадре «Мои наборы» с одним набором, образец — экран «Новый набор» (название «Путешествия», «Кто видит: Только я», уровень A2, 2 карточки, «Создать набор»)."
     },
     {
       "id": "cards-067",

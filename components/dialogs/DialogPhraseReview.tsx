@@ -17,6 +17,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { triLang, type Lang } from '../../constants/i18n';
+import { pluralWord } from '../../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): число и существительное согласуются через общий помощник
 import type { PremiumDialogReviewPhrase } from '../../app/ai_dialog_client';
 
 interface DialogPhraseReviewProps {
@@ -106,15 +107,15 @@ export default function DialogPhraseReview({
           }}
           accessibilityRole="button"
           accessibilityLabel={triLang(lang, {
-            ru: `Открыть разбор ещё ${lockedCount} фраз в Plus`,
-            uk: `Відкрити розбір ще ${lockedCount} фраз у Plus`,
-            en: `Unlock ${lockedCount} more phrases in Plus`,
-            es: `Desbloquear ${lockedCount} frases más en Plus`,
-            'pt-BR': `Desbloquear mais ${lockedCount} frases no Plus`,
+            ru: `Открыть разбор ещё ${lockedCount} ${pluralWord('ru', lockedCount, { one: 'фразы', few: 'фраз', many: 'фраз' })} в Plus`,
+            uk: `Відкрити розбір ще ${lockedCount} ${pluralWord('uk', lockedCount, { one: 'фрази', few: 'фраз', many: 'фраз' })} у Plus`,
+            en: `Unlock ${lockedCount} more ${pluralWord('en', lockedCount, { one: 'phrase', few: 'phrases', many: 'phrases' })} in Plus`,
+            es: `Desbloquear ${lockedCount} ${pluralWord('es', lockedCount, { one: 'frase', few: 'frases', many: 'frases' })} más en Plus`,
+            'pt-BR': `Desbloquear mais ${lockedCount} ${pluralWord('pt-BR', lockedCount, { one: 'frase', few: 'frases', many: 'frases' })} no Plus`,
             vi: `Mở thêm ${lockedCount} câu trong Plus`,
             id: `Buka ${lockedCount} kalimat lagi di Plus`,
             tr: `Plus ile ${lockedCount} cümle daha aç`,
-            pl: `Odblokuj jeszcze ${lockedCount} zdań w Plus`,
+            pl: `Odblokuj jeszcze ${lockedCount} ${pluralWord('pl', lockedCount, { one: 'zdanie', few: 'zdania', many: 'zdań' })} w Plus`,
           })}
           style={({ pressed }) => [
             styles.locked,
@@ -128,15 +129,15 @@ export default function DialogPhraseReview({
             maxFontSizeMultiplier={1.2}
           >
             {triLang(lang, {
-              ru: `Ещё ${lockedCount} фраз в Plus`,
-              uk: `Ще ${lockedCount} фраз у Plus`,
-              en: `${lockedCount} more phrases in Plus`,
-              es: `${lockedCount} frases más en Plus`,
-              'pt-BR': `Mais ${lockedCount} frases no Plus`,
+              ru: `Ещё ${lockedCount} ${pluralWord('ru', lockedCount, { one: 'фраза', few: 'фразы', many: 'фраз' })} в Plus`,
+              uk: `Ще ${lockedCount} ${pluralWord('uk', lockedCount, { one: 'фраза', few: 'фрази', many: 'фраз' })} у Plus`,
+              en: `${lockedCount} more ${pluralWord('en', lockedCount, { one: 'phrase', few: 'phrases', many: 'phrases' })} in Plus`,
+              es: `${lockedCount} ${pluralWord('es', lockedCount, { one: 'frase', few: 'frases', many: 'frases' })} más en Plus`,
+              'pt-BR': `Mais ${lockedCount} ${pluralWord('pt-BR', lockedCount, { one: 'frase', few: 'frases', many: 'frases' })} no Plus`,
               vi: `Thêm ${lockedCount} câu trong Plus`,
               id: `${lockedCount} kalimat lagi di Plus`,
               tr: `Plus’ta ${lockedCount} cümle daha`,
-              pl: `Jeszcze ${lockedCount} zdań w Plus`,
+              pl: `Jeszcze ${lockedCount} ${pluralWord('pl', lockedCount, { one: 'zdanie', few: 'zdania', many: 'zdań' })} w Plus`,
             })}
           </Text>
           <Ionicons name="chevron-forward" size={18} color={t.accentText} />

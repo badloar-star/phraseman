@@ -60,6 +60,7 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams, type Paywall
 import { trackProductOperationFailure } from './product_operation_analytics';
 import { claimInitialInventoryResolution, classifyPaywallInventory } from './paywall_inventory_analytics';
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWithCount } from '../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): срок пробного — число из магазина (3, 7, 14…), форма слова обязана согласоваться
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import { applyDevPaywallView, getDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { persistPortableProgressRegister } from './phone_state_progress_register_bridge';
@@ -1630,15 +1631,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         if (!days) { doClose(reason); return; }
         setExitOffer({
           title: triLang(lang, {
-            ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
-            uk: `Точно йдеш? ${days} дні доступу — безкоштовно`,
-            en: `Sure you're leaving? ${days} days of free access`,
-            es: `¿Seguro que te vas? ${days} días de acceso gratis`,
-            'pt-BR': `Tem certeza? ${days} dias de acesso grátis`,
+            ru: `Точно уходишь? ${pluralWithCount('ru', days, { one: 'день', few: 'дня', many: 'дней' })} доступа — бесплатно`,
+            uk: `Точно йдеш? ${pluralWithCount('uk', days, { one: 'день', few: 'дні', many: 'днів' })} доступу — безкоштовно`,
+            en: `Sure you're leaving? ${pluralWithCount('en', days, { one: 'day', few: 'days', many: 'days' })} of free access`,
+            es: `¿Seguro que te vas? ${pluralWithCount('es', days, { one: 'día', few: 'días', many: 'días' })} de acceso gratis`,
+            'pt-BR': `Tem certeza? ${pluralWithCount('pt-BR', days, { one: 'dia', few: 'dias', many: 'dias' })} de acesso grátis`,
             vi: `Bạn chắc muốn rời đi? ${days} ngày dùng thử miễn phí`,
             id: `Yakin mau keluar? ${days} hari akses gratis`,
             tr: `Gerçekten çıkıyor musun? ${days} gün ücretsiz erişim`,
-            pl: `Na pewno wychodzisz? ${days} dni dostępu za darmo`,
+            pl: `Na pewno wychodzisz? ${pluralWithCount('pl', days, { one: 'dzień', few: 'dni', many: 'dni' })} dostępu za darmo`,
           }),
           message: triLang(lang, {
             ru: 'Платить сейчас не нужно. Отмени за день до конца пробного — и ничего не спишется.',
@@ -1652,15 +1653,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             pl: 'Teraz nie płacisz — wystarczy anulować subskrypcję dzień przed końcem okresu próbnego i nic nie pobierzemy.',
           }),
           confirmLabel: triLang(lang, {
-            ru: `Попробовать ${days} дня бесплатно`,
-            uk: `Спробувати ${days} дні безкоштовно`,
-            en: `Try ${days} days free`,
-            es: `Probar ${days} días gratis`,
-            'pt-BR': `Testar ${days} dias grátis`,
+            ru: `Попробовать ${pluralWithCount('ru', days, { one: 'день', few: 'дня', many: 'дней' })} бесплатно`,
+            uk: `Спробувати ${pluralWithCount('uk', days, { one: 'день', few: 'дні', many: 'днів' })} безкоштовно`,
+            en: `Try ${pluralWithCount('en', days, { one: 'day', few: 'days', many: 'days' })} free`,
+            es: `Probar ${pluralWithCount('es', days, { one: 'día', few: 'días', many: 'días' })} gratis`,
+            'pt-BR': `Testar ${pluralWithCount('pt-BR', days, { one: 'dia', few: 'dias', many: 'dias' })} grátis`,
             vi: `Dùng thử ${days} ngày miễn phí`,
             id: `Coba ${days} hari gratis`,
             tr: `${days} gün ücretsiz dene`,
-            pl: `Wypróbuj ${days} dni za darmo`,
+            pl: `Wypróbuj ${pluralWithCount('pl', days, { one: 'dzień', few: 'dni', many: 'dni' })} za darmo`,
           }),
           cancelLabel: triLang(lang, {
             ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não',

@@ -16,8 +16,8 @@ export function dialogueV2HubCopy(lang: Lang) {
   return Object.freeze({
     quotaA11y: (remaining: number, total: number) => triLang(lang, {
       ru: `В этом месяце осталось ${remaining} из ${total} ответов`, uk: `Цього місяця залишилось ${remaining} з ${total} відповідей`,
-      en: `${remaining} of ${total} replies left this month`, es: `Quedan ${remaining} de ${total} respuestas este mes`,
-      'pt-BR': `Restam ${remaining} de ${total} respostas este mês`, vi: `Tháng này còn ${remaining}/${total} lượt trả lời`,
+      en: `${remaining} of ${total} replies left this month`, es: `${remaining === 1 ? 'Queda' : 'Quedan'} ${remaining} de ${total} respuestas este mes`,
+      'pt-BR': `${remaining === 1 ? 'Resta' : 'Restam'} ${remaining} de ${total} respostas este mês`, vi: `Tháng này còn ${remaining}/${total} lượt trả lời`,
       id: `Sisa ${remaining} dari ${total} balasan bulan ini`, tr: `Bu ay ${total} yanıttan ${remaining} kaldı`,
       pl: `W tym miesiącu zostało ${remaining} z ${total} odpowiedzi`, fr: `Il reste ${remaining} réponses sur ${total} ce mois-ci`,
       de: `Diesen Monat noch ${remaining} von ${total} Antworten`,

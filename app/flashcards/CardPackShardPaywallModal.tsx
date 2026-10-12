@@ -57,6 +57,7 @@ import { getCardPackPaywallTheme } from './cardPackPaywallTheme';
 import { packTileImageForPack } from './packMarketplaceIcons';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import DuoPressable from '../../components/DuoPressable';
+import { pluralWithCount, pluralWord } from '../../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): число и существительное согласуются через общий помощник
 import PressableHybrid from '../../components/PressableHybrid';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0)'; // theme-exempt: прозрачный конец градиента (нулевая альфа) — не цвет
@@ -138,15 +139,15 @@ function triRunesWord(lang: Lang): string {
 
 function triRunesBuyFor(lang: Lang, n: number): string {
   const map: Record<string, string> = {
-    ru: `Открыть за ${n} монет`,
-    uk: `Відкрити за ${n} монет`,
-    en: `Unlock for ${n} coins`,
-    es: `Abrir por ${n} monedas`,
-    'pt-BR': `Abrir por ${n} moedas`,
+    ru: `Открыть за ${pluralWithCount('ru', n, { one: 'монету', few: 'монеты', many: 'монет' })}`,
+    uk: `Відкрити за ${pluralWithCount('uk', n, { one: 'монету', few: 'монети', many: 'монет' })}`,
+    en: `Unlock for ${n} ${pluralWord('en', n, { one: 'coin', few: 'coins', many: 'coins' })}`,
+    es: `Abrir por ${pluralWithCount('es', n, { one: 'moneda', few: 'monedas', many: 'monedas' })}`,
+    'pt-BR': `Abrir por ${pluralWithCount('pt-BR', n, { one: 'moeda', few: 'moedas', many: 'moedas' })}`,
     vi: `Mở với ${n} xu`,
     id: `Buka seharga ${n} koin`,
     tr: `${n} jeton karşılığında aç`,
-    pl: `Otwórz za ${n} monet`,
+    pl: `Otwórz za ${pluralWithCount('pl', n, { one: 'monetę', few: 'monety', many: 'monet' })}`,
   };
   return map[lang] ?? map.en;
 }
@@ -227,7 +228,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherCtaBusy: '',
       voucherCtaSub: 'Один раз — після підтвердження',
       packKindLabel: 'Набір',
-      metaCards: (n: number) => `${n} карток`,
+      metaCards: (n: number) => `${pluralWithCount('uk', n, { one: 'картка', few: 'картки', many: 'карток' })}`,
       // зачем: «не вистачає» управляет родовим — «не вистачає ще 1 монети».
       shortageRemaining: (n: number) => `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
       needLabel: 'Потрібно',
@@ -262,7 +263,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherCtaBusy: '',
       voucherCtaSub: 'Un solo uso, al confirmar',
       packKindLabel: 'Paquete',
-      metaCards: (n: number) => `${n} tarjetas`,
+      metaCards: (n: number) => `${pluralWithCount('es', n, { one: 'tarjeta', few: 'tarjetas', many: 'tarjetas' })}`,
       shortageRemaining: (n: number) => `Te faltan ${n} ${S}`,
       needLabel: 'Necesitas',
       youHaveLabel: 'Tienes',
@@ -276,7 +277,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   if (lang === 'pt-BR') {
     return {
       cancel: 'Cancelar', buy: 'Abrir', buyShards: 'Como ganhar moedas',
-      forShards: (n: number) => `Abrir por ${n} moedas`,
+      forShards: (n: number) => `Abrir por ${pluralWithCount('pt-BR', n, { one: 'moeda', few: 'moedas', many: 'moedas' })}`,
       insufficientTitle: 'Moedas insuficientes',
       insufficientIntro: 'Ganhe moedas com lições e treinos. O botão abaixo mostra como.',
       balanceBlockTitle: 'Para este pacote', ctaSub: 'Compra com um toque',
@@ -286,7 +287,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherWarn: 'A abertura gratuita é de uso único: será aplicada logo após a confirmação.',
       voucherCta: 'Abrir de graça', voucherCtaBusy: '',
       voucherCtaSub: 'Uso único, na confirmação', packKindLabel: 'Pacote',
-      metaCards: (n: number) => `${n} cartões`, shortageRemaining: (n: number) => `Faltam ${n} moedas`,
+      metaCards: (n: number) => `${pluralWithCount('pt-BR', n, { one: 'cartão', few: 'cartões', many: 'cartões' })}`, shortageRemaining: (n: number) => `${n === 1 ? 'Falta' : 'Faltam'} ${pluralWithCount('pt-BR', n, { one: 'moeda', few: 'moedas', many: 'moedas' })}`,
       needLabel: 'Necessário', youHaveLabel: 'Você tem', costLabel: 'Custo',
       shardsUnit: 'moedas', waitBusy: '', reportPack: 'Denunciar pacote', hidePack: 'Não mostrar novamente',
     };
@@ -348,7 +349,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   if (lang === 'pl') {
     return {
       cancel: 'Anuluj', buy: 'Otwórz', buyShards: 'Jak zdobyć monety',
-      forShards: (n: number) => `Otwórz za ${n} monet`,
+      forShards: (n: number) => `Otwórz za ${pluralWithCount('pl', n, { one: 'monetę', few: 'monety', many: 'monet' })}`,
       insufficientTitle: 'Za mało monet',
       insufficientIntro: 'Zdobywaj monety w lekcjach i treningach. Przycisk poniżej pokaże, jak.',
       balanceBlockTitle: 'Dla tego pakietu', ctaSub: 'Kup jednym dotknięciem',
@@ -357,8 +358,8 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherIntro: 'Ten pakiet zostanie na zawsze dodany do «Kart» za darmo — nie wydasz monet.',
       voucherWarn: 'Darmowe otwarcie jest jednorazowe: zostanie użyte zaraz po potwierdzeniu.',
       voucherCta: 'Otwórz za darmo', voucherCtaBusy: '', voucherCtaSub: 'Jednorazowo, po potwierdzeniu',
-      packKindLabel: 'Pakiet', metaCards: (n: number) => `${n} kart`,
-      shortageRemaining: (n: number) => `Brakuje ${n} monet`, needLabel: 'Potrzebujesz',
+      packKindLabel: 'Pakiet', metaCards: (n: number) => `${pluralWithCount('pl', n, { one: 'karta', few: 'karty', many: 'kart' })}`,
+      shortageRemaining: (n: number) => `Brakuje ${pluralWithCount('pl', n, { one: 'monety', few: 'monet', many: 'monet' })}`, needLabel: 'Potrzebujesz',
       youHaveLabel: 'Masz', costLabel: 'Cena', shardsUnit: 'monet', waitBusy: '',
       reportPack: 'Zgłoś pakiet', hidePack: 'Nie pokazuj ponownie',
     };
@@ -385,7 +386,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     voucherCtaBusy: '',
     voucherCtaSub: 'Один раз — после подтверждения',
     packKindLabel: 'Набор',
-    metaCards: (n: number) => `${n} карточек`,
+    metaCards: (n: number) => `${pluralWithCount('ru', n, { one: 'карточка', few: 'карточки', many: 'карточек' })}`,
     // зачем: «не хватает» требует родительного — «не хватает ещё 1 монеты».
     shortageRemaining: (n: number) => `Не хватает ещё ${n} ${ruKnowledgeShardsGenitiveAfterNumber(n)}`,
     needLabel: 'Нужно',

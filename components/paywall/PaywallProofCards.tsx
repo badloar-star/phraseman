@@ -15,6 +15,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
+import { pluralWord } from '../../constants/plural'; // зачем (проход по склейке «число + слово», 12.10): число и существительное согласуются через общий помощник
 import type { PremiumContext } from '../../app/premium_context';
 import type { ProgressMirror } from '../../app/paywall_progress_mirror';
 import type { PaywallProfile } from '../../app/paywall_profile';
@@ -272,17 +273,20 @@ export function PersonalizationProofCard({
   const accent = chrome.tc.heroAccent;
   const phraseValue = mirror?.phrases ? formatMirrorValue(mirror.phrases) : '';
   const streakValue = mirror?.streak ? formatMirrorValue(mirror.streak) : '';
+  // число для выбора формы слова: «1,2K» читается как «много» (1000), остальное — как есть
+  const phraseN = (mirror?.phrases ?? 0) >= 1000 ? 1000 : (mirror?.phrases ?? 0);
+  const streakN = (mirror?.streak ?? 0) >= 1000 ? 1000 : (mirror?.streak ?? 0);
   const progressLine = phraseValue || streakValue
     ? `${name ? `${name}, ` : ''}${triLang(lang, {
-        ru: phraseValue && streakValue ? `у тебя уже ${phraseValue} фраз и ${streakValue} дн. серии.` : phraseValue ? `у тебя уже ${phraseValue} фраз.` : `у тебя уже ${streakValue} дн. серии.`,
-        uk: phraseValue && streakValue ? `у тебе вже ${phraseValue} фраз і ${streakValue} дн. серії.` : phraseValue ? `у тебе вже ${phraseValue} фраз.` : `у тебе вже ${streakValue} дн. серії.`,
-        en: phraseValue && streakValue ? `you already have ${phraseValue} phrases and a ${streakValue}-day streak.` : phraseValue ? `you already have ${phraseValue} phrases.` : `you already have a ${streakValue}-day streak.`,
-        es: phraseValue && streakValue ? `ya tienes ${phraseValue} frases y ${streakValue} días de racha.` : phraseValue ? `ya tienes ${phraseValue} frases.` : `ya tienes ${streakValue} días de racha.`,
-        'pt-BR': phraseValue && streakValue ? `você já tem ${phraseValue} frases e ${streakValue} dias seguidos.` : phraseValue ? `você já tem ${phraseValue} frases.` : `você já tem ${streakValue} dias seguidos.`,
+        ru: phraseValue && streakValue ? `у тебя уже ${phraseValue} ${pluralWord('ru', phraseN, { one: 'фраза', few: 'фразы', many: 'фраз' })} и ${streakValue} дн. серии.` : phraseValue ? `у тебя уже ${phraseValue} ${pluralWord('ru', phraseN, { one: 'фраза', few: 'фразы', many: 'фраз' })}.` : `у тебя уже ${streakValue} дн. серии.`,
+        uk: phraseValue && streakValue ? `у тебе вже ${phraseValue} ${pluralWord('uk', phraseN, { one: 'фраза', few: 'фрази', many: 'фраз' })} і ${streakValue} дн. серії.` : phraseValue ? `у тебе вже ${phraseValue} ${pluralWord('uk', phraseN, { one: 'фраза', few: 'фрази', many: 'фраз' })}.` : `у тебе вже ${streakValue} дн. серії.`,
+        en: phraseValue && streakValue ? `you already have ${phraseValue} ${pluralWord('en', phraseN, { one: 'phrase', few: 'phrases', many: 'phrases' })} and a ${streakValue}-day streak.` : phraseValue ? `you already have ${phraseValue} ${pluralWord('en', phraseN, { one: 'phrase', few: 'phrases', many: 'phrases' })}.` : `you already have a ${streakValue}-day streak.`,
+        es: phraseValue && streakValue ? `ya tienes ${phraseValue} ${pluralWord('es', phraseN, { one: 'frase', few: 'frases', many: 'frases' })} y ${streakValue} ${pluralWord('es', streakN, { one: 'día', few: 'días', many: 'días' })} de racha.` : phraseValue ? `ya tienes ${phraseValue} ${pluralWord('es', phraseN, { one: 'frase', few: 'frases', many: 'frases' })}.` : `ya tienes ${streakValue} ${pluralWord('es', streakN, { one: 'día', few: 'días', many: 'días' })} de racha.`,
+        'pt-BR': phraseValue && streakValue ? `você já tem ${phraseValue} ${pluralWord('pt-BR', phraseN, { one: 'frase', few: 'frases', many: 'frases' })} e ${streakValue} ${pluralWord('pt-BR', streakN, { one: 'dia seguido', few: 'dias seguidos', many: 'dias seguidos' })}.` : phraseValue ? `você já tem ${phraseValue} ${pluralWord('pt-BR', phraseN, { one: 'frase', few: 'frases', many: 'frases' })}.` : `você já tem ${streakValue} ${pluralWord('pt-BR', streakN, { one: 'dia seguido', few: 'dias seguidos', many: 'dias seguidos' })}.`,
         vi: phraseValue && streakValue ? `bạn đã có ${phraseValue} cụm từ và chuỗi ${streakValue} ngày.` : phraseValue ? `bạn đã có ${phraseValue} cụm từ.` : `bạn đã có chuỗi ${streakValue} ngày.`,
         id: phraseValue && streakValue ? `kamu sudah punya ${phraseValue} frasa dan runtutan ${streakValue} hari.` : phraseValue ? `kamu sudah punya ${phraseValue} frasa.` : `kamu sudah punya runtutan ${streakValue} hari.`,
         tr: phraseValue && streakValue ? `şimdiden ${phraseValue} ifade ve ${streakValue} günlük seri var.` : phraseValue ? `şimdiden ${phraseValue} ifade var.` : `şimdiden ${streakValue} günlük seri var.`,
-        pl: phraseValue && streakValue ? `masz już ${phraseValue} fraz i ${streakValue} dni serii.` : phraseValue ? `masz już ${phraseValue} fraz.` : `masz już ${streakValue} dni serii.`,
+        pl: phraseValue && streakValue ? `masz już ${phraseValue} ${pluralWord('pl', phraseN, { one: 'frazę', few: 'frazy', many: 'fraz' })} i ${streakValue} ${pluralWord('pl', streakN, { one: 'dzień', few: 'dni', many: 'dni' })} serii.` : phraseValue ? `masz już ${phraseValue} ${pluralWord('pl', phraseN, { one: 'frazę', few: 'frazy', many: 'fraz' })}.` : `masz już ${streakValue} ${pluralWord('pl', streakN, { one: 'dzień', few: 'dni', many: 'dni' })} serii.`,
       })}`
     : name
       ? `${name}, ${triLang(lang, {
@@ -423,13 +427,13 @@ export function FaqCard({ lang, chrome, trialDays, priceLine }: {
       a: triLang(lang, {
         ru: `${trialDays} дн. всё открыто бесплатно. Если уведомления разрешены, напомним перед окончанием. Отменишь — деньги не спишутся. Не отменишь — ${priceLine}.`,
         uk: `${trialDays} дн. усе відкрито безкоштовно. Якщо сповіщення дозволені, нагадаємо перед завершенням. Скасуєш — гроші не спишуться. Не скасуєш — ${priceLine}.`,
-        en: `${trialDays} days with everything open for free. If notifications are allowed, we'll remind you before it ends. Cancel and nothing is charged. Don't cancel and it's ${priceLine}.`,
-        es: `${trialDays} días con todo abierto gratis. Si permites notificaciones, te recordaremos antes del final. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
-        'pt-BR': `${trialDays} dias com tudo liberado grátis. Se as notificações estiverem permitidas, lembraremos antes do fim. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
+        en: `${trialDays} ${pluralWord('en', trialDays, { one: 'day', few: 'days', many: 'days' })} with everything open for free. If notifications are allowed, we'll remind you before it ends. Cancel and nothing is charged. Don't cancel and it's ${priceLine}.`,
+        es: `${trialDays} ${pluralWord('es', trialDays, { one: 'día', few: 'días', many: 'días' })} con todo abierto gratis. Si permites notificaciones, te recordaremos antes del final. Si cancelas, no se cobra nada. Si no, ${priceLine}.`,
+        'pt-BR': `${trialDays} ${pluralWord('pt-BR', trialDays, { one: 'dia', few: 'dias', many: 'dias' })} com tudo liberado grátis. Se as notificações estiverem permitidas, lembraremos antes do fim. Se cancelar, nada é cobrado. Se não, ${priceLine}.`,
         vi: `${trialDays} ngày mở tất cả miễn phí. Nếu bạn cho phép thông báo, chúng tôi sẽ nhắc trước khi kết thúc. Hủy thì không bị trừ tiền. Không hủy thì ${priceLine}.`,
         id: `${trialDays} hari semua terbuka gratis. Jika notifikasi diizinkan, kami akan mengingatkan sebelum berakhir. Kalau dibatalkan, tidak ada tagihan. Kalau tidak, ${priceLine}.`,
         tr: `${trialDays} gün boyunca her şey ücretsiz açık. Bildirimlere izin verirsen bitmeden önce hatırlatırız. İptal edersen ücret alınmaz. Etmezsen ${priceLine}.`,
-        pl: `${trialDays} dni wszystko jest otwarte za darmo. Jeśli powiadomienia są dozwolone, przypomnimy przed końcem. Anulujesz — nic nie pobierzemy. Nie anulujesz — ${priceLine}.`,
+        pl: `${trialDays} ${pluralWord('pl', trialDays, { one: 'dzień', few: 'dni', many: 'dni' })} wszystko jest otwarte za darmo. Jeśli powiadomienia są dozwolone, przypomnimy przed końcem. Anulujesz — nic nie pobierzemy. Nie anulujesz — ${priceLine}.`,
       }),
     }] : []),
     {

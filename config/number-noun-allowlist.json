@@ -1,0 +1,65 @@
+{
+  "about": "Разрешённые склейки «число + слово» (scripts/scan_number_noun_pairs.mjs): форма слова верна по причине из поля reason. Тест tests/number_noun_pairs_guard.test.ts сторожит значения констант.",
+  "entries": [
+    {
+      "file": "app/community_packs/PackCommentsSheet.tsx",
+      "contains": "${day} дн",
+      "reason": "сокращение «дн» не склоняется"
+    },
+    {
+      "file": "app/community_pack_create.tsx",
+      "contains": "COMMUNITY_PACK_CARD_COUNT_MIN",
+      "reason": "константа 10 (форма «много» верна); значение сторожит тест"
+    },
+    {
+      "file": "app/community_pack_create.tsx",
+      "contains": "COMMUNITY_PACK_CARD_COUNT_MAX",
+      "reason": "константа 50 (форма «много» верна); значение сторожит тест"
+    },
+    {
+      "file": "app/dialogue_v2_session_coaching_labels.ts",
+      "contains": "replies left this month",
+      "reason": "«N of M replies»: слово относится к общему числу M (≥30)"
+    },
+    {
+      "file": "components/dialogs/DialogueV2HubNotices.tsx",
+      "contains": "replies left this month",
+      "reason": "«N of M replies»: слово относится к общему числу M (≥30)"
+    },
+    {
+      "file": "components/dialogs/DialogueV2HubNotices.tsx",
+      "contains": "Quedan 0 de",
+      "reason": "ровно 0 — форма «много»"
+    },
+    {
+      "file": "app/flashcards/CardPackShardPaywallModal.tsx",
+      "contains": "packKindLabel: 'Paket', metaCards",
+      "reason": "турецкий: слово после числа не меняется"
+    },
+    {
+      "file": "app/flashcards/marketplace.ts",
+      "contains": "tarjetas en inglés",
+      "reason": "в наборе сообщества не меньше 10 карточек (COMMUNITY_PACK_CARD_COUNT_MIN)"
+    },
+    {
+      "file": "app/flashcards_cloud_pages.ts",
+      "contains": "target=${target}",
+      "reason": "строка журнала, пользователь её не видит"
+    },
+    {
+      "file": "app/paywall_context_texts.ts",
+      "contains": "${c}",
+      "reason": "число уроков курса после бесплатных (courseLessonsAfterFree = 29); значение сторожит тест"
+    },
+    {
+      "file": "app/paywall_copy.ts",
+      "contains": "${DAILY_SPEAKING}",
+      "reason": "лимит голосовых попыток в день (3: формы «попытки/спроби/próby» верны); значение сторожит тест"
+    },
+    {
+      "file": "app/paywall_copy.ts",
+      "contains": "${MONTHLY_DIALOG}",
+      "reason": "лимит реплик диалога в месяц (30: форма «много»); значение сторожит тест"
+    }
+  ]
+}

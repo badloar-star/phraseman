@@ -168,20 +168,86 @@ const PUSH_PREFS_LOCAL_KEY = 'server_push_prefs_last_written';
  * streak-пуши юзеру, который выключил «Серия под угрозой». Пишем ТОЛЬКО при
  * реальном изменении (кэш) — Firebase-экономия: 1 write на смену настройки.
  */
-export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<void> {
+// зачем (E-1, R1_SETTINGS_OPTIMISTIC_UI, координатор 12.10): быстрые переключения тумблеров запускали параллельные записи до
+// того, как обновится кэш-ключ, — лишние записи в Firestore и риск, что поздний ответ старой записи победит новую. Теперь
+// пишем ОДИН раз через 1,5 с после последнего тапа, последнее значение побеждает, записи идут строго по очереди.
+export const PUSH_PREFS_WRITE_DEBOUNCE_MS = 1_500;
+let pendingPushPrefs: ServerPushPrefs | null = null;
+let pendingPushPrefsTimer: ReturnType<typeof setTimeout> | null = null;
+let pendingPushPrefsTaps = 0;
+let pendingPushPrefsWaiters: Array<() => void> = [];
+let pushPrefsWriteChain: Promise<void> = Promise.resolve();
+
+function pushPrefsLog(step: string, data: Record<string, unknown>): void {
+  console.log(`[PUSH-PREFS] ${step}`, JSON.stringify(data)); // guard-ok: каждый шаг записи настроек пушей называет причину
+}
+
+function flushPendingPushPrefs(): void {
+  pendingPushPrefsTimer = null;
+  const prefs = pendingPushPrefs;
+  const taps = pendingPushPrefsTaps;
+  const waiters = pendingPushPrefsWaiters;
+  pendingPushPrefs = null;
+  pendingPushPrefsTaps = 0;
+  pendingPushPrefsWaiters = [];
+  if (!prefs) {
+    waiters.forEach((resolve) => resolve());
+    return;
+  }
+  pushPrefsLog('flush', { taps, streak: prefs.streak, offers: prefs.offers, league: prefs.league });
+  pushPrefsWriteChain = pushPrefsWriteChain
+    .then(() => writeServerPushPrefsNow(prefs))
+    .finally(() => waiters.forEach((resolve) => resolve()));
+}
+
+/**
+ * Записать выбор пушей в облако (best-effort). Склеивает быстрые переключения: одна запись через 1,5 с после последнего вызова.
+ * Промис завершается после этой записи (или пропуска) — интерфейс его не ждёт.
+ */
+export function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<void> {
+  pendingPushPrefs = { streak: prefs.streak, offers: prefs.offers, league: prefs.league };
+  pendingPushPrefsTaps += 1;
+  if (pendingPushPrefsTimer) clearTimeout(pendingPushPrefsTimer);
+  pendingPushPrefsTimer = setTimeout(flushPendingPushPrefs, PUSH_PREFS_WRITE_DEBOUNCE_MS);
+  return new Promise<void>((resolve) => { pendingPushPrefsWaiters.push(resolve); });
+}
+
+/** Только для тестов: записать отложенное сразу и дождаться очереди записей. */
+export async function flushServerPushPrefsForTests(): Promise<void> {
+  if (pendingPushPrefsTimer) {
+    clearTimeout(pendingPushPrefsTimer);
+    flushPendingPushPrefs();
+  }
+  await pushPrefsWriteChain;
+}
+
+async function writeServerPushPrefsNow(prefs: ServerPushPrefs): Promise<void> {
+  const startedAt = Date.now();
   try {
     const db = getFirestore();
-    if (!db) return;
+    if (!db) {
+      pushPrefsLog('skip', { reason: 'no_firestore' });
+      return;
+    }
 
     const stableId = await ensureAnonUser();
-    if (!stableId) return;
+    if (!stableId) {
+      pushPrefsLog('skip', { reason: 'no_stable_id' });
+      return;
+    }
     const linkOk = await ensureStableAuthLinkForStableId(stableId).catch(noteSwallowedAs('push_token_registration:promise_2', false));
-    if (!linkOk) return;
+    if (!linkOk) {
+      pushPrefsLog('skip', { reason: 'auth_link_not_ready' });
+      return;
+    }
 
     // зачем: league (тумблер «События Шпиля») входит в ключ — иначе его смена не дошла бы до сервера.
     const cacheKey = `${stableId}:${prefs.streak ? 1 : 0}${prefs.offers ? 1 : 0}${prefs.league ? 1 : 0}`;
     const lastWritten = await AsyncStorage.getItem(PUSH_PREFS_LOCAL_KEY);
-    if (lastWritten === cacheKey) return;
+    if (lastWritten === cacheKey) {
+      pushPrefsLog('skip', { reason: 'unchanged' });
+      return;
+    }
 
     // Поле `lessons` больше не пишем: этот тип напоминания удалён.
     await db.collection('users').doc(stableId).set(
@@ -189,7 +255,9 @@ export async function updateServerPushPrefs(prefs: ServerPushPrefs): Promise<voi
       { merge: true },
     );
     await AsyncStorage.setItem(PUSH_PREFS_LOCAL_KEY, cacheKey);
+    pushPrefsLog('written', { ms: Date.now() - startedAt });
   } catch (error) {
+    pushPrefsLog('failed', { ms: Date.now() - startedAt, message: error instanceof Error ? error.message.slice(0, 160) : String(error).slice(0, 160) });
     if (isFirestorePermissionDenied(error)) return;
     DebugLogger.error('push_token_registration.ts:updateServerPushPrefs', error, 'warning');
   }

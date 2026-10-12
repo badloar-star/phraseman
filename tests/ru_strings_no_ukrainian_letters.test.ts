@@ -57,7 +57,8 @@ describe('русские строки не содержат украинских
       ru.forEach((tip) => {
         expect(`${show}:${tip.title}:${UK_ONLY.test(tip.title + tip.body)}`).toBe(`${show}:${tip.title}:false`);
       });
-      // пары ищем по значку: в uk есть «Виклики дня», которой в ru нет, позиции не совпадают
+      // зачем (координатор 12.10): uk-набор держал «Виклики дня» после удаления раздела — наборы обязаны совпадать по составу и порядку
+      expect(uk.map((tip) => tip.icon)).toEqual(ru.map((tip) => tip.icon));
       const ruTitleByIcon = new Map(ru.map((tip) => [tip.icon, tip.title]));
       uk.forEach((tip) => {
         expect(`${show}:${tip.title}:${RU_ONLY.test(tip.title + tip.body)}`).toBe(`${show}:${tip.title}:false`);

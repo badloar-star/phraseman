@@ -11,7 +11,8 @@ import {
 } from '../app/home_feature_tips';
 
 // 30.09: карточка «Лига» удалена вместе с Лигами (D78, снимок efe19ae9d) — на одну меньше.
-const TIP_COUNT = { ru: 8, uk: 9 } as const;
+// 12.10: uk-карточка «Виклики дня» удалена — экран вызовов удалён в 1c450880c вместе с ru-карточкой; наборы совпадают по составу.
+const TIP_COUNT = { ru: 8, uk: 8 } as const;
 const ALL_SETS = [0, 1, 2, 3, 4, 5] as const;
 
 describe('home_feature_tips', () => {

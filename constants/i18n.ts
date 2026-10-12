@@ -899,7 +899,27 @@ export function triLang<const T extends { ru: unknown; uk: unknown; es: unknown 
   // Только при включённом английском интерфейсе: пока ENGLISH_UI_LOCALE_ENABLED=false, любой путь, передавший 'en' (язык контента и т. п.),
   // получает прежнее поведение (ru), чтобы у текущих пользователей ничего не поменялось.
   if (lang === 'en' && (ENGLISH_UI_LOCALE_ENABLED || isDevUiLangEnOn())) return missingEnFallback(txt) as WidenTriLangValue<T[keyof T]>;
+  // зачем (координатор 12.10, 🔴): pt-BR/vi/id/tr/pl видимы в выпуске (INTERFACE_LANG_READY_FOR_PROD), а словарь без их ключа отдавал
+  // РУССКИЙ — замер I18N_FALLBACK_5LANG_R1.md: ~2400 словарей. Страховка: свой ключ → en (если есть) → ru только последним.
+  // ru/uk/es и en — прежний путь выше, их поведение не меняется.
+  if (FIVE_FALLBACK_LANGS.has(lang)) return missingOwnKeyFallback(lang, txt) as WidenTriLangValue<T[keyof T]>;
   return txt.ru as WidenTriLangValue<T[keyof T]>;
+}
+
+const FIVE_FALLBACK_LANGS: ReadonlySet<Lang> = new Set<Lang>(['pt-BR', 'vi', 'id', 'tr', 'pl']);
+const missingOwnKeyLogged = new Set<string>();
+
+function missingOwnKeyFallback(lang: Lang, txt: { ru: unknown; en?: unknown }): unknown {
+  const useEn = txt.en !== undefined && txt.en !== null;
+  // В магазинной сборке (__DEV__ === false) молчим: 2400 словарей × язык — лишняя работа и шум; в dev и тестах — журнал дыр.
+  if (typeof __DEV__ === 'undefined' || __DEV__) {
+    const key = `${lang}:${typeof txt.ru === 'string' ? txt.ru.slice(0, 80) : typeof txt.ru}`;
+    if (!missingOwnKeyLogged.has(key)) {
+      missingOwnKeyLogged.add(key);
+      console.warn(`[I18N-FALLBACK] lang=${lang}→${useEn ? 'en' : 'ru'}: в словаре нет ключа ${lang}${useEn ? '' : ' и нет en'} (ru="${key.slice(lang.length + 1)}")`); // guard-ok: под __DEV__, один раз на строку, дыра в переводе
+    }
+  }
+  return useEn ? txt.en : txt.ru;
 }
 
 const missingEnLogged = new Set<string>();

@@ -183,6 +183,24 @@ describe('PM-211 runAfterHomeFirstFrame — поведение', () => {
     expect(lines.some((l) => l.includes('[FIRST-FRAME]') && l.includes('sync_fail') && l.includes('boom_sync'))).toBe(true);
     expect(lines.some((l) => l.includes('[FIRST-FRAME]') && l.includes('async_fail') && l.includes('boom_async'))).toBe(true);
   });
+
+  // зачем (координатор 12.10, холодный старт dev-ссылки 35 с): отмена обязана сказать, потеряна ли задача.
+  it('deferred:cancel печатает фазу и lost=1, если задача не запускалась, и lost=0 после запуска', () => {
+    const { runAfterHomeFirstFrame } = loadModule();
+    const warn = console.warn as jest.Mock;
+    const log = console.log as jest.Mock;
+    const cancelEarly = runAfterHomeFirstFrame('early', jest.fn(), { fallbackMs: 1_000 });
+    cancelEarly();
+    const cancelLate = runAfterHomeFirstFrame('late_ran', jest.fn(), { fallbackMs: 1_000 });
+    emitHomeReady();
+    flushInteractions();
+    cancelLate();
+    const warnLines = warn.mock.calls.map((c) => String(c[0]));
+    const logLines = log.mock.calls.map((c) => String(c[0]));
+    expect(warnLines.some((l) => l.includes('deferred:cancel label=early') && l.includes('phase=waiting_home') && l.includes('lost=1'))).toBe(true);
+    expect(warnLines.some((l) => l.includes('deferred:start label=late_ran'))).toBe(true);
+    expect(logLines.some((l) => l.includes('deferred:cancel label=late_ran') && l.includes('phase=done') && l.includes('lost=0'))).toBe(true);
+  });
 });
 
 describe('PM-211 структура: путь первого кадра не ждёт необязательного', () => {

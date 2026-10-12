@@ -15539,8 +15539,8 @@
       "blocked_reason": null,
       "release": "r1",
       "triage": {
-        "coverage": "link_missing",
-        "coverage_note": "записи ссылки нет — путь есть в shot list (G-S01)"
+        "coverage": "ready",
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
       }
     },
     {

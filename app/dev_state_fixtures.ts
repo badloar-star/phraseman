@@ -19,6 +19,8 @@ import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off'
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevSaveOfferProgress } from './dev_save_offer_progress';
 import { setDevUiLang } from './dev_ui_lang';
+import { setDevMistakesDemo } from './dev_mistakes_demo';
+import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
 import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
@@ -31,7 +33,7 @@ import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_SWITCH_MODES,
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
-import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
+import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
@@ -101,6 +103,12 @@ export type DevStateRequest = Readonly<{
   speech?: DevSpeechMode | 'off';
   /** Отказ слоя отложенной выдачи тренировки (Н-10). */
   trainGate?: DevTrainGate | 'off';
+  /** Блиц: пометить верный (`correct`) или неверный (`wrong`) вариант testID `fc-blitz-opt-target` для робота (app/dev_cards_state.ts). Только память. */
+  blitzAnswer?: 'correct' | 'wrong' | 'off';
+  /** «Мои ошибки» с данными (app/dev_mistakes_demo.ts): demo — хаб рисует шесть демо-ошибок, off — выключить. Только память, только одноразовый гость. */
+  mistakes?: 'demo' | 'off';
+  /** Друзья со входящей заявкой (app/dev_friends_demo.ts): demo — одна заявка и один друг, off — выключить. Только память, только одноразовый гость, без подписок Firestore. */
+  friends?: 'demo' | 'off';
   /** Окно решения модерации набора (Н-12): локальная постановка, без чтения почтового ящика продавца. */
   moderation?: 'approved' | 'rejected' | 'revision' | 'removed';
   /** Цена на пейволе без своего `_dev_state` (онбординг): loading|live|reference|failed, off снимает. */
@@ -268,6 +276,9 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.fail = list('fail', DEV_CARDS_FAILS);
   request.speech = pick('speech', [...DEV_SPEECH_MODES, 'off'] as const);
   request.trainGate = pick('train_gate', [...DEV_TRAIN_GATES, 'off'] as const);
+  request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
+  request.mistakes = pick('mistakes', ['demo', 'off'] as const);
+  request.friends = pick('friends', ['demo', 'off'] as const);
   request.moderation = pick('moderation', ['approved', 'rejected', 'revision', 'removed'] as const);
   request.paywall = pick('paywall', ['loading', 'live', 'reference', 'failed', 'off'] as const);
   request.referral = pick('referral', ['off', 'on'] as const);
@@ -582,6 +593,15 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.speech !== undefined) {
     await step('speech', request.speech, async () => setDevCardsState({ speech: request.speech === 'off' ? null : request.speech! }));
+  }
+  if (request.blitzAnswer !== undefined) {
+    await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));
+  }
+  if (request.mistakes !== undefined) {
+    await step('mistakes', request.mistakes, async () => setDevMistakesDemo(request.mistakes === 'demo'));
+  }
+  if (request.friends !== undefined) {
+    await step('friends', request.friends, async () => setDevFriendsDemo(request.friends === 'demo'));
   }
   if (request.trainGate !== undefined) {
     await step('train_gate', request.trainGate, async () => setDevCardsState({ trainGate: request.trainGate === 'off' ? null : request.trainGate! }));

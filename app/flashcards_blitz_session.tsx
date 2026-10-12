@@ -23,7 +23,7 @@
 // Чистая логика (жизни/вопрос) — flashcards/blitz_logic.ts.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getDevTrainGate } from './dev_cards_state';
+import { getDevBlitzAnswer, getDevTrainGate } from './dev_cards_state';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -1553,10 +1553,15 @@ export default function FlashcardsBlitzSession() {
                 // зачем (решение 4, kit `--outline` .30): контур варианта светлее кромки карточек; после ответа прочие гаснут.
                 const edge = state === 'correct' ? ANSWER_OK_EDGE : state === 'wrong' ? ANSWER_BAD_EDGE : `${blitzGlass.text}4D`;
                 const faded = state === 'idle' && btnStates.some((st) => st !== 'idle');
+                // зачем (координатор 12.10, cards-section-044/045): слово в вопросе случайное, робот не знает верный вариант. dev `blitz_answer=correct|wrong` помечает нужный вариант testID
+                // `fc-blitz-opt-target` (верный / первый неверный); без подмены и в сторе getDevBlitzAnswer() === null — обычные testID `fc-blitz-opt-<i>`.
+                const devAnswer = getDevBlitzAnswer();
+                const firstWrong = (question?.options ?? []).findIndex((_o, idx) => idx !== question?.correctIndex);
+                const isDevTarget = devAnswer === 'correct' ? i === question?.correctIndex : devAnswer === 'wrong' ? i === firstWrong : false;
                 return (
                   <TouchableOpacity
                     key={`${qIdxRef.current}_${i}`}
-                    testID={`fc-blitz-opt-${i}`}
+                    testID={isDevTarget ? 'fc-blitz-opt-target' : `fc-blitz-opt-${i}`}
                     // зачем (DQA / PM-134 A2, 04.10): диктор читает сам вариант ответа, а не служебную строку; testID для тестов остаётся.
                     accessibilityLabel={opt}
                     accessibilityRole="button"

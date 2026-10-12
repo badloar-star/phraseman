@@ -25,6 +25,10 @@ export const DEV_SPEECH_MODES = ['correct', 'wrong', 'denied', 'no_speech', 'una
 export type DevSpeechMode = (typeof DEV_SPEECH_MODES)[number];
 
 /** Отказ слоя отложенной выдачи тренировки (экраны «Тренировка не открылась» и т. п.). */
+/** Блиц: робот не знает верный вариант (слово в вопросе случайное) — экран помечает нужный вариант testID `fc-blitz-opt-target` (только dev). */
+export const DEV_BLITZ_ANSWERS = ['correct', 'wrong'] as const;
+export type DevBlitzAnswer = (typeof DEV_BLITZ_ANSWERS)[number];
+
 export const DEV_TRAIN_GATES = ['fail_blitz', 'fail_speaking', 'fail_swipe_prepare', 'fail_swipe_quota'] as const;
 export type DevTrainGate = (typeof DEV_TRAIN_GATES)[number];
 
@@ -35,8 +39,10 @@ type State = {
   fails: ReadonlySet<DevCardsFail>;
   speech: DevSpeechMode | null;
   trainGate: DevTrainGate | null;
+  /** Блиц: какой вариант помечать для робота — верный или заведомо неверный (`blitz_answer=correct|wrong`). */
+  blitzAnswer: DevBlitzAnswer | null;
 };
-const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null };
+const EMPTY: State = { holds: new Set(), fails: new Set(), speech: null, trainGate: null, blitzAnswer: null };
 let state: State = EMPTY;
 // зачем (координатор 12.10, «сперва логи», cards-v2-033): подмены живут в памяти процесса и переживают переход на следующую ссылку робота — в журнале старта нужно видеть, когда и какими ключами их выставили
 let lastPatch: { atMs: number; keys: string[]; count: number } | null = null;
@@ -46,7 +52,7 @@ function devCardsAvailable(): boolean {
 }
 
 /** Выставить флаги. Любое поле необязательно: не переданное не меняется. В стор-сборке — отказ с логом, ничего не меняется. */
-export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null }>): boolean {
+export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]; fails: readonly DevCardsFail[]; speech: DevSpeechMode | null; trainGate: DevTrainGate | null; blitzAnswer: DevBlitzAnswer | null }>): boolean {
   if (!devCardsAvailable()) {
     console.warn(`${LOG} cards: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
     return false;
@@ -56,9 +62,10 @@ export function setDevCardsState(patch: Partial<{ holds: readonly DevCardsHold[]
     fails: patch.fails ? new Set(patch.fails) : state.fails,
     speech: patch.speech !== undefined ? patch.speech : state.speech,
     trainGate: patch.trainGate !== undefined ? patch.trainGate : state.trainGate,
+    blitzAnswer: patch.blitzAnswer !== undefined ? patch.blitzAnswer : state.blitzAnswer,
   };
   lastPatch = { atMs: Date.now(), keys: Object.keys(patch), count: (lastPatch?.count ?? 0) + 1 };
-  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate })}`); // guard-ok: единичный лог на ссылку
+  console.log(`${LOG} cards: ${JSON.stringify({ holds: [...state.holds], fails: [...state.fails], speech: state.speech, trainGate: state.trainGate, blitzAnswer: state.blitzAnswer })}`); // guard-ok: единичный лог на ссылку
   return true;
 }
 
@@ -74,6 +81,10 @@ export function getDevSpeechMode(): DevSpeechMode | null {
   return devCardsAvailable() ? state.speech : null;
 }
 
+export function getDevBlitzAnswer(): DevBlitzAnswer | null {
+  return devCardsAvailable() ? state.blitzAnswer : null;
+}
+
 export function getDevTrainGate(): DevTrainGate | null {
   return devCardsAvailable() ? state.trainGate : null;
 }
@@ -84,6 +95,7 @@ export function describeDevCardsState(): Record<string, unknown> {
   return {
     build: 'dev',
     trainGate: state.trainGate,
+    blitzAnswer: state.blitzAnswer,
     holds: [...state.holds],
     fails: [...state.fails],
     speech: state.speech,

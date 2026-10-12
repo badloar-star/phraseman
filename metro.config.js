@@ -270,6 +270,12 @@ const storeReleaseDevStateStubs = new Map(
     'dev_dialog_state',
     'dev_paywall_state',
     'hub_lifecycle_probe',
+    // зачем (координатор 12.10): dev-подмены робота и английского прохода — в стор-сборке заглушки (store_release_stubs_gate)
+    'dev_mistakes_demo',
+    'dev_friends_demo',
+    'dev_ui_lang',
+    'dev_save_offer_progress',
+    'dev_animations_off',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

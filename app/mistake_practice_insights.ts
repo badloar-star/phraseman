@@ -8,6 +8,7 @@ import { reconcileMutableMistakeContent } from './mistake_practice_content_recon
 import type { MistakeEventJournal } from './mistake_practice_cloud_merge';
 import { loadMistakeEventJournal, mistakeJournalWriteEpoch } from './mistake_practice_store';
 import { getStableId } from './stable_id';
+import { buildDevMistakesDemoSnapshot, isDevMistakesDemoOn } from './dev_mistakes_demo';
 
 const assertCurrentAccount = (
   generation: ReturnType<typeof captureAccountGeneration>,
@@ -309,6 +310,12 @@ export async function loadMistakePracticeHubSnapshot(
   nowMs = Date.now(),
 ): Promise<MistakePracticeHubSnapshot> {
   const startedAt = Date.now();
+  // зачем (координатор 12.10, mistakes-panel-002): dev `mistakes=demo` подсовывает хабу готовый снимок (только память, журнал не трогаем; в сторе isDevMistakesDemoOn() всегда false)
+  if (isDevMistakesDemoOn()) {
+    const demo = buildDevMistakesDemoSnapshot(nowMs);
+    console.log('[MISTAKES-HUB] snapshot', JSON.stringify({ studyTarget, source: 'dev_demo', active: demo.insights.active, ready: demo.readyCount, corrected: demo.insights.corrected, ms: Date.now() - startedAt })); // guard-ok: источник снимка назван
+    return demo;
+  }
   const journal = await loadCurrentMistakeJournal(studyTarget, true);
   const snapshot = buildMistakePracticeHubSnapshot(journal.events, nowMs);
   console.log('[MISTAKES-HUB] snapshot', JSON.stringify({

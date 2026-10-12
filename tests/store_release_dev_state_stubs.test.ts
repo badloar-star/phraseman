@@ -5,7 +5,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.join(__dirname, '..');
-const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev_cards_state', 'dev_dialog_state', 'dev_paywall_state', 'hub_lifecycle_probe'] as const;
+const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev_cards_state', 'dev_dialog_state', 'dev_paywall_state', 'hub_lifecycle_probe',
+  // зачем (координатор 12.10): dev-подмены робота и английского прохода — тоже в списке заглушек сборщика
+  'dev_mistakes_demo', 'dev_friends_demo', 'dev_ui_lang', 'dev_save_offer_progress', 'dev_animations_off'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {

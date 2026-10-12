@@ -73,6 +73,7 @@ import { CLOUD_SYNC_ENABLED, ENABLE_DEV_TOOLS, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
 import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
+import { devFriendsDemoData, isDevFriendsDemoOn } from '../dev_friends_demo';
 import { acquireInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -1376,6 +1377,15 @@ export default function FriendsTabScreen() {
     let unsubRequests: () => void = () => {};
 
     void (async () => {
+      // зачем (координатор 12.10, community-006, dev `friends=demo`): робот не входит во второй аккаунт — вкладка показывает одну входящую заявку и одного друга ТОЛЬКО из памяти:
+      // без подписок Firestore, без записи кэша вкладки (см. эффекты ниже). В сторе isDevFriendsDemoOn() всегда false.
+      if (isDevFriendsDemoOn()) {
+        const demo = devFriendsDemoData();
+        console.log(`[DEV-STATE] friends: вкладка рисует демо requests=${demo.requests.length} friends=${demo.friends.length} (подписок нет)`); // guard-ok: ветка решает значение
+        setFriends(demo.friends.map((f) => ({ uid: f.uid, createdAt: f.createdAt, displayName: f.displayName })));
+        setRequests(demo.requests.map((r) => ({ fromUid: r.fromUid, fromName: r.fromName, status: r.status, createdAt: r.createdAt })));
+        return;
+      }
       await startFriendsTabSwrPrime();
       if (cancelled) return;
 
@@ -1447,6 +1457,7 @@ export default function FriendsTabScreen() {
   }, [friendsRuntimeActive]);
 
   useEffect(() => {
+    if (isDevFriendsDemoOn()) return undefined; // зачем: демо-данные не пишем в кэш вкладки (диск)
     const timer = setTimeout(() => {
       void (async () => {
         try {
@@ -1472,6 +1483,7 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
     if (!friendsRuntimeActive || uids.length === 0) return;
+    if (isDevFriendsDemoOn()) return; // зачем: демо-друзья вымышленные — профили из Firestore не читаем
     let cancelled = false;
     void (async () => {
       // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
@@ -1763,6 +1775,14 @@ export default function FriendsTabScreen() {
   const requestOpsInFlightRef = useRef<Set<string>>(new Set());
 
   const handleAcceptRequest = useCallback((request: FriendRequestEntry) => {
+    if (isDevFriendsDemoOn()) {
+      // зачем (dev friends=demo): вымышленная заявка — меняем только экран, в облако ничего не уходит
+      hapticTap();
+      console.log(`[DEV-STATE] friends: demo accept ${request.fromUid} (только экран)`); // guard-ok: ветка решает значение
+      setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
+      setFriends(prev => (prev.some(f => f.uid === request.fromUid) ? prev : [{ uid: request.fromUid, createdAt: Date.now(), ...(request.fromName ? { displayName: request.fromName } : {}) }, ...prev]));
+      return;
+    }
     if (requestOpsInFlightRef.current.has(request.fromUid)) {
       console.warn(`[FRIEND-REQUEST] accept ${request.fromUid}: уже в пути — повторный тап пропущен`);
       return;
@@ -1795,6 +1815,12 @@ export default function FriendsTabScreen() {
   }, [L, friends, showFeedback]);
 
   const handleDeclineRequest = useCallback((request: FriendRequestEntry) => {
+    if (isDevFriendsDemoOn()) {
+      hapticTap();
+      console.log(`[DEV-STATE] friends: demo decline ${request.fromUid} (только экран)`); // guard-ok: ветка решает значение
+      setRequests(prev => prev.filter(item => item.fromUid !== request.fromUid));
+      return;
+    }
     if (requestOpsInFlightRef.current.has(request.fromUid)) {
       console.warn(`[FRIEND-REQUEST] decline ${request.fromUid}: уже в пути — повторный тап пропущен`);
       return;

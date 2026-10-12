@@ -12,7 +12,8 @@ import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
 import { useLv2Glass } from '../../components/learning-v2/LearningV2Glass';
-import { BackButton, FilterChips, SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
+import { BackButton, SheetRow, type PanelChip } from '../../components/mistakes-panel/PanelKit';
+import { KitSegment } from '../../components/cards-grid/CardsKit';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
 import { useTheme } from '../../components/ThemeContext';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -267,7 +268,10 @@ export const CollectionMenuSheet = memo(function CollectionMenuSheet({ visible, 
         })} danger onPress={run(menu.onDeletePack)} />
       ) : null}
       {kindChips.length > 0 && menu.savedContentKind && menu.onSavedContentKindChange ? (
-        <FilterChips g={g} chips={kindChips} activeId={menu.savedContentKind} onChange={(id) => menu.onSavedContentKindChange?.(id as SavedCardContentKind)} testIDPrefix="fc-saved-content" />
+        // зачем (R1_DIFF_ONE_FIX, cards-032 / cards-v2-048, решение координатора 12.10): в макете «Все / Слова / Фразы» — ОДИН сегмент-контейнер (`.seg3`, как «30 с / 60 с / 90 с» в настройке тренировки), а не три отдельные таблетки
+        <View style={{ marginTop: 14 }}>
+          <KitSegment g={g} options={kindChips} value={menu.savedContentKind} onChange={(id) => menu.onSavedContentKindChange?.(id as SavedCardContentKind)} testIDPrefix="fc-saved-content" />
+        </View>
       ) : null}
       {menu.onPackLanguageChange ? (
         <View style={styles.langRow}>

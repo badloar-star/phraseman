@@ -47,3 +47,13 @@ describe('R1_DIFF_ONE_FIX, группа 3', () => {
     expect(src).toContain("style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}");
   });
 });
+
+describe('R1_DIFF_ONE_FIX, группа 4', () => {
+  it('cards-032 / cards-v2-048: фильтр «Все / Слова / Фразы» в меню — один сегмент-контейнер (KitSegment), а не три таблетки', () => {
+    const header = read('app/flashcards/CollectionHeaderV2.tsx');
+    expect(header).toContain("import { KitSegment } from '../../components/cards-grid/CardsKit';");
+    expect(header).toContain('<KitSegment g={g} options={kindChips} value={menu.savedContentKind}');
+    expect(header).toContain('testIDPrefix="fc-saved-content"');
+    expect(header).not.toContain('<FilterChips');
+  });
+});

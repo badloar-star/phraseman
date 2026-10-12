@@ -53,3 +53,5 @@
 - themes-gradient.html (3): themes-gradient-001 themes-gradient-002 themes-gradient-003
 - redesign-round-2.html (2): learn-040 learning-v2-003
 - packs-simple.html (2): packs-simple-002 packs-simple-003
+
+- **Светлое оформление (Темы, 15.10, по R1_LIGHT_THEME_LITERALS.md)** — один проход светлых кадров ссылкой `phraseman://dev_state?onboarding=done&intros=seen&overlays=off&appearance=light&next=…` (тема остаётся ТЁМНОЙ после серии: последним шагом `appearance=clear`): Главная (home-002); Шпиль `/dev_spire_preview?state=room&spirePanel=off` (проверить подсветку окон, рамку выбранного этажа и звёзды `SpireTowerSvg` на светлом фоне); модалка «Звания» на Главной (строки, `home.tsx:2525`); окно покупки набора Карточек (`cardPackPaywallTheme`). Снимать при `appearance=light`, уровни 0 и 1; кадры → спросить Темы по каждому дефекту.

@@ -64,9 +64,10 @@ put('cards-gap-036', ['tap:#fc-voice-row-dev_voice_samantha'], 'plus=on&voices=d
 put('cards-gap-038', [], 'plus=on&voices=none', '/flashcards_voice_picker', note='голосов нет: только «Системный» (voices=none)')
 
 # ── «Устно» и фильтр
-put(['cards-section-040', 'cards-v2-032'], [], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=saved&size=all', note='«Устно — ожидание»: сессия, подмена речи speech=correct')
-put('cards-section-041', ['tap:#fc-speak-mic'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=saved&size=all', note='«Устно»: микрофон нажат — запись идёт')
-put('cards-079', ['tap:#fc-speak-pick-decks-empty'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=custom&size=all', note='шторка выбора наборов «Что говорим?» (кнопка fc-speak-pick-decks-empty)')
+# зачем (кадр cards-v2-032 7:01: скелетон сессии «Устно» ещё не сменился карточкой) — пауза 3 с до кадра
+put(['cards-section-040', 'cards-v2-032'], ['wait:3000'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=saved&size=all', note='«Устно — ожидание»: сессия, подмена речи speech=correct')
+put('cards-section-041', ['wait:3000', 'tap:#fc-speak-mic'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=saved&size=all', note='«Устно»: микрофон нажат — запись идёт')
+put('cards-079', ['wait:3000', 'tap:#fc-speak-pick-decks-empty'], 'cards=demo&plus=on&speech=correct', '/flashcards_speaking_session?deck=custom&size=all', note='шторка выбора наборов «Что говорим?» (кнопка fc-speak-pick-decks-empty)')
 put('cards-gap-023', ['tap:#fc-saved-actions', 'tap:#fc-saved-content-phrase', 'tap:#fc-menu-filter'], 'cards=demo_lessons&plus=on', '/flashcards_collection?cat=saved', note='фильтр по уроку: меню «⋯» → «Фразы» → «Фильтр» (выбрано «Все»)')
 
 

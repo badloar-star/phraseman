@@ -169,4 +169,20 @@ describe('ai_dialog_scenarios', () => {
       }
     }
   });
+
+  // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): при en названия и подсказки падали в русский (titleRu) —
+  // у каждого сценария каталога свои titleEn и nextStepHintEn; название не длиннее самого длинного русского (плитка).
+  it('every scenario has its own English title and next-step hint (no Russian fallback on en)', () => {
+    const longestRuTitle = Math.max(...DIALOG_SCENARIOS.map((scenario) => scenario.titleRu.length));
+    for (const scenario of DIALOG_SCENARIOS) {
+      expect({ id: scenario.id, titleEn: (scenario.titleEn ?? '').trim().length > 0 }).toEqual({ id: scenario.id, titleEn: true });
+      expect({ id: scenario.id, hintEn: (scenario.nextStepHintEn ?? '').trim().length > 0 }).toEqual({ id: scenario.id, hintEn: true });
+      const title = dialogScenarioTitle(scenario, 'en');
+      const hint = dialogScenarioNextStepHint(scenario, 'en');
+      expect({ id: scenario.id, cyrillic: CYRILLIC_PATTERN.test(title) || CYRILLIC_PATTERN.test(hint) }).toEqual({ id: scenario.id, cyrillic: false });
+      expect({ id: scenario.id, fits: title.length <= longestRuTitle }).toEqual({ id: scenario.id, fits: true });
+      expect(title).toBe(scenario.titleEn);
+      expect(hint).toBe(scenario.nextStepHintEn);
+    }
+  });
 });

@@ -116,7 +116,8 @@ SETUP = '/flashcards_training_setup?mode='
 
 add('cards-v2-001', [], HUB_FREE, HUB, note='хаб Карточек (демо-аккаунт, Free)')
 # зачем (координатор 12.10, Дизайн 11a040d40): кадры снимались при исчерпанном лимите Free («0/30», «Безлимит с Plus» вместо «Начать») — перед съёмкой счётчик сбрасывается подменой quota=reset.
-add(['cards-002', 'cards-section-032', 'cards-v2-027'], [], HUB_FREE + '&quota=reset', HUB_TRAIN, note='шторка выбора режима тренировки (хаб открывает её сам по ?train=1)')
+# зачем (12.10): автооткрытие шторки по ?train=1 не срабатывало (эффект хаба вызывает onTrainPress один раз и молча выходит, пока вход в тренировку не готов) — после паузы жмём «Тренироваться» сами.
+add(['cards-002', 'cards-section-032', 'cards-v2-027'], ['wait:2500', 'tap:#fc-cards-hub-train', 'wait:800'], HUB_FREE + '&quota=reset', '/flashcards', note='шторка выбора режима тренировки (хаб открывает её сам по ?train=1)')
 add(['cards-section-033', 'cards-v2-028'], [], HUB_FREE, SETUP + 'blitz', note='настройка тренировки «Блиц» (прямой маршрут)')
 add('cards-section-034', [], HUB_FREE, SETUP + 'speaking', note='настройка тренировки «Устно» (прямой маршрут)')
 add('cards-section-035', [], HUB_FREE, SETUP + 'truefalse', note='настройка тренировки «Правда / ложь» (прямой маршрут)')
@@ -340,7 +341,7 @@ add('cards-gap-008', [], 'cards=notranslation&plus=on', RECALL_ROUTE, note='«Н
 add('cards-gap-006', [], DEMO + '&train_gate=fail_swipe_quota', TF_ROUTE, note='«Правда / ложь»: не удалось проверить лимит (train_gate=fail_swipe_quota)')
 add('cards-gap-001', [], DEMO + '&train_gate=fail_blitz', BLITZ_ROUTE, note='«Блиц»: тренировка не открылась (train_gate=fail_blitz)')
 add('cards-gap-002', [], DEMO + '&train_gate=fail_speaking', SPEAK_ROUTE, note='«Устно»: тренировка не открылась (train_gate=fail_speaking)')
-add('cards-gap-011', [], 'cards=demo&plus=off&quota=reset&hold=quota_waiting', HUB_TRAIN, note='шторка режима: «Готовим тренировку…» (hold=quota_waiting; хаб открывает окно сам по ?train=1)')
+add('cards-gap-011', ['wait:2500', 'tap:#fc-cards-hub-train', 'wait:800'], 'cards=demo&plus=off&quota=reset&hold=quota_waiting&animations=off', '/flashcards', note='шторка режима: «Готовим тренировку…» (hold=quota_waiting; хаб открывает окно сам по ?train=1)')
 add('cards-gap-012', [], 'cards=demo&plus=off&hold=quota_failed', HUB_TRAIN, note='шторка режима: «Не получилось подготовить тренировку» (hold=quota_failed; хаб открывает окно сам по ?train=1)')
 
 add('cards-062', ['tap:#fc-editor-en', 'type:Test', 'tap:#fc-editor-tr', 'type:Test', 'tap:#fc-editor-save'], DEMO + '&fail=card_write', '/flashcards_card_editor?create=1&cat=custom', note='редактор: «Не удалось сохранить» (fail=card_write); создание карточки — функция Plus, поэтому plus=on')

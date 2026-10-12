@@ -1359,10 +1359,10 @@
       "id": "cards-036",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 31,
-        "label": "Мало для набора — «выбери ещё»",
-        "mapping": "manual_rebind"
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 72,
+        "label": "Сохранённые — выделено 3, «выбери ещё 7»",
+        "mapping": "manual_rebind_2026-10-12"
       },
       "screen": "Сохранённые — все окна и состояния",
       "state": "Мало для набора — «выбери ещё»",
@@ -1372,9 +1372,9 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-036.png",
+      "evidence_at": "2026-10-12T00:49:49.344Z",
+      "evidence_sha256": "0711ba492975079b2b726ad3c7624bd2fd30dce5d141231a9a36c39515dd8340",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -1384,7 +1384,10 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "basis": "mockup_from_app"
+      }
     },
     {
       "id": "cards-037",

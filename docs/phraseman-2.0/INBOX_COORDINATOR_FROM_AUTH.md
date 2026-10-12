@@ -645,3 +645,24 @@
   - возврат энергии (982e49ec5) — §4: «coin and Energy balances and ledgers».
 - ⚠️ **До релиза — КОД, не текст (п.5).** Метка `app_messages_login_forced_v1:<stableId>` (d06b9a511) и давние ключи `app_messages_*:<stableId>` (кэш, очереди подтверждений) НЕ входят в инвентарь стирания (`cloud_sync.ts:834`, `finalScan :6006`). Они переживают выход и удаление аккаунта, а §3/§20 обещают удаление локальных данных. Владельцу Ядра: добавить префиксы `appMessagesOwnerStorageKey` в инвентарь плюс сторож. Подтвердить одним прогоном удаления тестового аккаунта.
 - **После релиза, по желанию.** Уточнение §3 «(including which dialogue scenarios you have completed)» — текст ru/en в документе.
+
+## §AUTH-0180 — 2026-10-12: стирание аккаунта на устройстве — ключи сообщений и отметка восстановления (**c4c2c3ace**); денежные очереди — решение координатора
+- ✅ **Что теперь стирается** (выход, смена, удаление):
+  - ключи сообщений `<prefix>:<stableId>` — `app_messages_cache_v2`, `…_last_background_refresh_ms_v2`, `…_local_preview_v2`, `app_message_local_preview_states_v2`, очереди подтверждений `app_message_visibility_outbox_v1` / `…personal_modal_ack_outbox_v1` / `…modal_ack_outbox_v1`, `app_message_received_anim_ids_v2`, метка `app_messages_login_forced_v1`;
+  - устаревшие v1-ключи без владельца;
+  - отметка `mistake_restore_full_done_v1:<uid>`.
+
+  Лог: `[ACC-WIPE] app_messages {префикс: число}`, стадия `appMessages` в `wipe_stages`.
+- **Почему НЕ в общий инвентарь `accountOwnedStorageKeysFrom`**, как предлагалось. Этот инвентарь — ещё и аварийная копия, и «проверка чистоты» перед входом. Кэш сообщений есть у любого гостя после первой загрузки, и в инвентаре он делал бы каждого гостя «грязным»: вход в существующий аккаунт ушёл бы в ветку смены. Это изменение защиты данных, которое запрещено. Поэтому сделал отдельный шаг тем же `removeExactly` (с проверкой остатка) сразу после «Памяти диалогов»; порядок прежних шагов не тронут.
+- **В `finalScan` — тихий повтор без броска.** Живой загрузчик сообщений мог дописать кэш старого владельца во время выхода. Бросать `account_wipe_incomplete` на этом — новая причина отказа выхода, поэтому: убрать, записать лог `[ACC-WIPE] app_messages late`, не падать.
+- `app/app_messages.ts` изменён только экспортом `APP_MESSAGES_ACCOUNT_WIPE_PREFIXES` / `_LEGACY_KEYS`.
+- ⚠️ **Денежные ключи-владельцы НЕ стираются этой правкой** — нужно решение, лучше до релиза:
+  - `app_messages_report_reply_pending_claims_v2` — незавершённые награды за отчёты, досылает синхронизация;
+  - `community_pack_paid_ids_v1:<stableId>` — купленные наборы;
+  - `community_pack_sale_outbox_v1:<stableId>` — очередь продаж автора;
+  - звёзды и руны спинов: `paid_level_spin_envelope_v1`, `level_spin_star_*`, `practice_rune_journal_v1`.
+
+  Они намеренно переживают СМЕНУ аккаунта: незавершённое начисление дойдёт, когда владелец вернётся. Но после УДАЛЕНИЯ аккаунта остаются с его stableId. Предложение: при удалении (не при смене) стирать и их — путь удаления уже отличается от смены (`beginAccountDeletion`). Решение и исполнитель — за координатором; без «да» не трогаю.
+- **Сторож** `account_wipe_owner_keys_guard` 2/2. Каждый ключ-владелец `<prefix>:${owner}` в `app/**` обязан иметь решение — «стирается» или «сохраняется намеренно, с причиной»; новый ключ без решения роняет тест.
+- **Тесты:** local_account_data 23/23, roundtrip 22/22, race 3/3, customization_isolation 35/35, fingerprint_wipe 2/2, stash_tails 10/10, delete_flow 23/23, guest_server_delete 12/12, guest_offline_delete 3/3, card_resurrection 21/21, future_kept_backup 12/12, legacy_sync_switch 39/39, app_messages 10/10 + 4/4 + 3/3, login_only_force 6/6.
+- **Прошу Сверку** при следующем выходе прислать строку `[ACC-WIPE] app_messages {…}`. Ожидаю ненулевые `app_messages_cache_v2` и `app_messages_login_forced_v1`.

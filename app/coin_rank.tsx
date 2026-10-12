@@ -214,14 +214,17 @@ export default function CoinRankScreen() {
     max: triLang(lang, { ru: 'Достигнут максимальный ранг', uk: 'Досягнуто максимального рангу', en: 'Maximum rank reached', es: 'Has alcanzado el rango máximo', 'pt-BR': 'Rank máximo alcançado', vi: 'Đã đạt hạng cao nhất', id: 'Peringkat maksimum tercapai', tr: 'En yüksek rütbeye ulaşıldı', pl: 'Osiągnięto najwyższą rangę' }),
   }), [lang]);
 
+  // зачем (координатор 12.10, EN_READINESS): было `uk: ru` — украинцу 8 тостов повышения ранга показывались по-русски.
+  // Сигнатура (type, ru, uk, en): украинский — свой текст; pt-BR/vi/id/tr/pl — английский запасной до решения после R1.
   const showToast = useCallback((
     type: 'success' | 'error' | 'info' | 'warning',
     ru: string,
+    uk: string,
     en: string,
   ) => {
     emitAppEvent('action_toast', actionToastTri(type, {
       ru,
-      uk: ru,
+      uk,
       en,
       es: en,
       'pt-BR': en,
@@ -253,7 +256,7 @@ export default function CoinRankScreen() {
     if (result.ok) {
       if (result.status === 'upgraded') return;
       if (result.status === 'already_applied') {
-        showToast('info', 'Ранг уже повышен. Баланс повторно не списан.', 'Rank already upgraded. No second charge was made.');
+        showToast('info', 'Ранг уже повышен. Баланс повторно не списан.', 'Ранг уже підвищено. Баланс повторно не списано.', 'Rank already upgraded. No second charge was made.');
       }
       return;
     }
@@ -266,28 +269,28 @@ export default function CoinRankScreen() {
         if (quality === 'durable') {
           reconciliationBlockedRef.current = false;
           setBalanceReconciling(false);
-          showToast('warning', 'Монет недостаточно. Баланс проверен и обновлён.', 'Not enough coins. Your balance was verified and refreshed.');
+          showToast('warning', 'Монет недостаточно. Баланс проверен и обновлён.', 'Монет недостатньо. Баланс перевірено й оновлено.', 'Not enough coins. Your balance was verified and refreshed.');
         } else {
           setBalanceReconciling(false);
-          showToast('error', 'Не удалось подтвердить баланс. Повышение заблокировано.', 'Could not verify the balance. Upgrading is disabled.');
+          showToast('error', 'Не удалось подтвердить баланс. Повышение заблокировано.', 'Не вдалося підтвердити баланс. Підвищення заблоковано.', 'Could not verify the balance. Upgrading is disabled.');
         }
         return;
       }
       case 'stale_rank':
-        showToast('info', 'Ранг изменился. Данные на экране обновлены.', 'Your rank changed. The screen has been refreshed.');
+        showToast('info', 'Ранг изменился. Данные на экране обновлены.', 'Ранг змінився. Дані на екрані оновлено.', 'Your rank changed. The screen has been refreshed.');
         return;
       case 'max_rank':
-        showToast('info', 'Максимальный ранг уже достигнут.', 'Maximum rank is already reached.');
+        showToast('info', 'Максимальный ранг уже достигнут.', 'Максимального рангу вже досягнуто.', 'Maximum rank is already reached.');
         return;
       case 'identity_changed':
-        showToast('error', 'Аккаунт изменился. Повышение не выполнено.', 'The account changed. The upgrade was not performed.');
+        showToast('error', 'Аккаунт изменился. Повышение не выполнено.', 'Акаунт змінився. Підвищення не виконано.', 'The account changed. The upgrade was not performed.');
         return;
       case 'invalid_rank':
       case 'state_corrupt':
-        showToast('error', 'Данные ранга повреждены. Монеты не списаны.', 'Rank data is invalid. No coins were charged.');
+        showToast('error', 'Данные ранга повреждены. Монеты не списаны.', 'Дані рангу пошкоджено. Монети не списано.', 'Rank data is invalid. No coins were charged.');
         return;
       case 'failed':
-        showToast('error', 'Не удалось повысить ранг. Монеты не списаны.', 'Could not upgrade the rank. No coins were charged.');
+        showToast('error', 'Не удалось повысить ранг. Монеты не списаны.', 'Не вдалося підвищити ранг. Монети не списано.', 'Could not upgrade the rank. No coins were charged.');
         return;
     }
   }, [canUpgrade, forceBalanceReconcile, rankBinding, showToast, upgrade]);

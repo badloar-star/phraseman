@@ -36,19 +36,22 @@ put('dialogs-gap-011', ['wait:1500'], 'plus=on&dquota=reset&energy=5&dev_dialog_
 put('cards-v2-044', [], 'catalog=empty&fail=catalog_load', '/flashcards_packs', unique=False, note='каталог без сети: catalog=empty + fail=catalog_load → «Нет сети» + «Повторить» (в образце №44 другие тексты: «Сейчас недоступно · Проверь интернет · Попробовать снова» — сверить на кадре)')
 
 
-# ── energy-modes: первый неверный вариант слова урока 1 помечен lesson1-word-option-wrong (Ядро 25775d555) — ошибка одним шагом
-# зачем (Ядро 12.10, кадры energy-modes-002…006 показали Главную): меню урока само уводит только при замке/пейволе, значит либо replace на /lesson_menu не дошёл, либо после него «назад» — пробуем
-# ПРЯМОЙ маршрут занятия, как его открывает само меню: /lesson1?id=1&from=lesson_menu (без тапа lesson-menu-primary). Если и он даст Главную — дело не в меню, нужен журнал (запрос Сверке).
+# ── energy-modes: партия 5 Ядра (990c22f61): lessonintro=skip, energy_stop=plus_granted, energy=restoring&restore_in=N
+# зачем (Ядро 12.10): вступление урока пропускается флагом (раньше 6 слепых тапов), вход — прямой маршрут /lesson1?id=1&from=lesson_menu
+# (меню урока после replace уводило на Главную). Первый неверный вариант слова помечен lesson1-word-option-wrong (25775d555).
 EM = '/lesson1?id=1&from=lesson_menu'
-# зачем (кадр energy-modes-015 7:38: прямой маршрут открыл урок 1, но перед первым заданием — вступительные экраны «Зачем это в испанском» («Коснитесь, чтобы увидеть дальше»), тап в любом месте = следующий блок, в конце кнопка lesson-intro-start):
-# листаем тапами в середину экрана и жмём «Начать»; число блоков заранее не известно, лишние тапы безвредны — не проверено на кадре
-INTRO_TAP = ['xy:540,1300', 'wait:700']
-START = ['wait:1500'] + INTRO_TAP * 6 + ['await:#lesson-intro-start', 'tap:#lesson-intro-start', 'wait:2500']
+LI = 'plus=off&free=on&lessonintro=skip'
+START = ['wait:2500']
 WRONG = ['tap:#lesson1-word-option-wrong']
-put('energy-modes-001', START, 'plus=off&free=on&mode=b&energy=5', EM, unique=False, note='Режим Б: первое задание урока 1, энергия 5 (прямой маршрут /lesson1?id=1&from=lesson_menu; не проверено на кадре)')
-put('energy-modes-003', START, 'plus=off&free=on&mode=b&energy=1', EM, unique=False, note='Режим Б: осталась 1 энергия (energy=1; прямой маршрут занятия, не проверено на кадре)')
-put('energy-modes-002', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=b&energy=5', EM, unique=False, note='Режим Б: ошибка — тряска и «−1» (lesson1-word-option-wrong; прямой маршрут занятия)')
-put('energy-modes-004', START + WRONG + ['wait:1500'], 'plus=off&free=on&mode=b&energy=1', EM, unique=False, note='Режим Б: ошибка на последней энергии → остановка (прямой маршрут занятия)')
-put('energy-modes-016', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=a&energy=5', EM, unique=False, note='Режим А: ошибка — сердечко и серия монет (прямой маршрут занятия)')
-
-put('energy-modes-015', START, 'plus=off&free=on&mode=a&energy=5', EM, unique=False, note='Режим А: старт занятия, −1 энергия (прямой маршрут + пролистать вступление урока; не проверено на кадре)')
+STOP = START + WRONG + ['wait:1500']
+put('energy-modes-001', START, LI + '&mode=b&energy=5', EM, note='Режим Б: первое задание урока 1, энергия 5 (lessonintro=skip, прямой маршрут)')
+put('energy-modes-003', START, LI + '&mode=b&energy=1', EM, note='Режим Б: осталась 1 энергия (energy=1)')
+put('energy-modes-002', START + WRONG + ['wait:300'], LI + '&mode=b&energy=5', EM, note='Режим Б: ошибка — тряска и «−1» (lesson1-word-option-wrong)')
+put('energy-modes-004', STOP, LI + '&mode=b&energy=1', EM, note='Режим Б: ошибка на последней энергии → шторка остановки (energy-stop-sheet)')
+# 005: пейвол поверх шторки; кнопку покупки НЕ жать (сторож: #paywall-cta без _dev_state=/paywall= красный)
+put('energy-modes-005', STOP + ['tap:#energy-stop-plus', 'wait:1200'], LI + '&mode=b&energy=1', EM, note='Режим Б: «Продолжить с Plus» → пейвол поверх шторки (кнопку покупки не жать)')
+put('energy-modes-006', STOP + ['tap:#energy-stop-plus', 'wait:1500'], LI + '&mode=b&energy=1&energy_stop=plus_granted', EM, note='Режим Б: Plus выдан в памяти (energy_stop=plus_granted) → тост «Plus активирован», занятие на том же вопросе')
+put('energy-modes-016', START + WRONG + ['wait:300'], LI + '&mode=a&energy=5', EM, note='Режим А: ошибка — сердечко и серия монет')
+put('energy-modes-015', START, LI + '&mode=a&energy=5', EM, note='Режим А: старт занятия, −1 энергия')
+# 008: энергия 0, следующая единица через 8 с; шторка «Нужна энергия» → «Подожду» → тост «Энергия восстановилась»
+put('energy-modes-008', ['tap:#lesson-menu-primary', 'wait:1200', 'tap:#energy-needed-wait', 'wait:7500'], 'plus=off&free=on&mode=b&energy=restoring&restore_in=8', '/lesson_menu?id=1', unique=False, note='Режим Б: энергия 0, восстановление через 8 с → «Нужна энергия» → «Подожду» → тост (energy=restoring&restore_in=8; состав макета Б8 сверить по кадру)')

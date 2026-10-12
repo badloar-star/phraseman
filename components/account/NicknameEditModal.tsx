@@ -127,6 +127,21 @@ export default function NicknameEditModal({
     warmNameAvailabilityAuth();
   }, [visible, currentName]);
 
+  // зачем (координатор 12.10, СПЕРВА ЛОГИ): шторка имени пряталась под клавиатурой. Пишем каждое событие клавиатуры, пока шторка
+  // открыта: высоту, верх клавиатуры (screenY), режим. Подъём шторки — `[MODAL-KB]` в HybridAlertShell.
+  useEffect(() => {
+    if (!visible) return undefined;
+    const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+    const show = Keyboard.addListener(showEvent, (event) => {
+      console.log(`[NICKNAME-KB] ${showEvent} height=${Math.round(event.endCoordinates?.height ?? 0)} screenY=${Math.round(event.endCoordinates?.screenY ?? 0)} placement=bottom avoidKeyboard=on platform=${Platform.OS}`); // guard-ok: одна строка на показ клавиатуры
+    });
+    const hide = Keyboard.addListener(hideEvent, () => {
+      console.log(`[NICKNAME-KB] ${hideEvent}`); // guard-ok: одна строка на скрытие клавиатуры
+    });
+    return () => { show.remove(); hide.remove(); };
+  }, [visible]);
+
   useEffect(() => {
     const requestId = ++availabilityRequestRef.current;
     if (!visible) {
@@ -581,6 +596,9 @@ export default function NicknameEditModal({
         shadowColor={EXEMPT_COLOR_1}
         backdropColor={EXEMPT_COLOR_2}
         placement="bottom"
+        // зачем (координатор 12.10, кадры settings-gap-025/026): без этого шторка оставалась под клавиатурой — поле, «Имя свободно/занято»
+        // и «Сохранить» скрыты. Шелл поднимает нижнюю шторку на перекрытие клавиатуры только при этом флаге.
+        avoidKeyboard
         testID="nickname-edit-modal-hybrid"
       >
         {panelContent}

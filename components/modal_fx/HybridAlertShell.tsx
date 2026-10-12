@@ -85,6 +85,16 @@ function HybridAlertShell({
     visible && !fillAvailableHeight && (avoidKeyboard || scrollContent),
   );
   const bottomSheet = placement === 'bottom';
+  // зачем (координатор 12.10, кадры settings-gap-025/026: шторка «Изменить имя» скрыта клавиатурой — не сменить имя): у нижней
+  // шторки отступ снизу всегда был 0, посчитанное перекрытие клавиатуры не применялось. Android adjustResize не сжимает окно
+  // <Modal>, поэтому поднимаем шторку на перекрытие — ТОЛЬКО при явном avoidKeyboard (прочие нижние шторки не меняются).
+  const bottomSheetKeyboardLift = bottomSheet && avoidKeyboard ? keyboardInset : null;
+  const loggedKeyboardLiftRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (bottomSheetKeyboardLift === null || loggedKeyboardLiftRef.current === bottomSheetKeyboardLift) return;
+    loggedKeyboardLiftRef.current = bottomSheetKeyboardLift;
+    if (__DEV__) console.log(`[MODAL-KB] testID=${testID ?? 'none'} placement=bottom avoidKeyboard=on paddingBottom=${bottomSheetKeyboardLift}`); // guard-ok: под __DEV__, одна строка на смену высоты
+  }, [bottomSheetKeyboardLift, testID]);
   const backdropOpacity = useSharedValue(0);
   const panelOpacity = useSharedValue(0);
   const panelScale = useSharedValue(1.04);
@@ -185,7 +195,7 @@ function HybridAlertShell({
             bottomSheet ? styles.bottomViewport : undefined,
             {
               paddingTop: Math.max(24, insets.top),
-              paddingBottom: bottomSheet ? 0 : Math.max(24, insets.bottom, keyboardInset),
+              paddingBottom: bottomSheetKeyboardLift ?? (bottomSheet ? 0 : Math.max(24, insets.bottom, keyboardInset)),
               paddingLeft: bottomSheet ? Math.max(0, insets.left) : Math.max(16, insets.left),
               paddingRight: bottomSheet ? Math.max(0, insets.right) : Math.max(16, insets.right),
             },

@@ -145,6 +145,10 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
       setAnalyticsConsent: localSetter('analytics'),
     },
     './age_consent_cloud': { recordConsentToCloud: cloud('analytics') },
+    // 12.10 (Дизайн через координатора, R1 E-2): облако идёт через склейку тапов (app/consent_cloud_coalescer.ts — свои тесты);
+    // здесь склейка отправляет сразу, чтобы порядок «локально → облако» проверялся как прежде. Тост отката — через событие.
+    './consent_cloud_coalescer': { scheduleConsentCloudRecord: (_key, send) => { void send(); } },
+    './events': { emitAppEvent: (name, payload) => { order.push(`event:${name}:${payload?.type}:${payload?.messageEn}`); } },
     './ai_explain_consent': {
       getAiExplainConsentState: () => initial.explain,
       setAiExplainConsent: localSetter('explain'),
@@ -160,7 +164,7 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
   const code = ts.transpileModule(candidate, {
     compilerOptions: { jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, esModuleInterop: true },
   }).outputText;
-  vm.runInNewContext(code, { module, exports: module.exports, require: name => {
+  vm.runInNewContext(code, { module, exports: module.exports, __DEV__: false, require: name => {
     assert.ok(modules[name], `stub exists for ${name}`);
     return modules[name];
   } }, { filename: 'privacy_settings.tsx' });
@@ -248,7 +252,11 @@ test('a failed local consent write rolls the switch back and skips the cloud rec
     harness.order.length = 0;
     switches[0].props.onPress();
     await new Promise(resolve => setImmediate(resolve));
-    assert.deepEqual(harness.order, ['haptic', 'state:0:false', 'local:analytics:denied', 'state:0:true']);
+    // 12.10 (R1 E-2): откат больше не молчит — тост с понятной причиной; облако не трогаем.
+    assert.deepEqual(harness.order, [
+      'haptic', 'state:0:false', 'local:analytics:denied', 'state:0:true',
+      "event:action_toast:error:Couldn't save the setting. Try again.",
+    ]);
   } finally {
     console.warn = warn;
   }

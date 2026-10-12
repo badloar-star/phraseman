@@ -31,6 +31,8 @@ import { getAnalyticsConsentState, setAnalyticsConsent } from './analytics_conse
 import { recordConsentToCloud } from './age_consent_cloud';
 import { getAiExplainConsentState, setAiExplainConsent, recordAiExplainConsentToCloud } from './ai_explain_consent';
 import { getAiDialogConsentState, setAiDialogConsent, recordAiDialogConsentToCloud } from './ai_dialog_consent';
+import { scheduleConsentCloudRecord } from './consent_cloud_coalescer';
+import { emitAppEvent } from './events';
 
 /** Строка на 9 UI-языках (форма triLang). */
 interface Text8 {
@@ -174,17 +176,33 @@ export default function PrivacySettings() {
     setOn(val);
     const seq = (consentSeqRef.current[key] ?? 0) + 1;
     consentSeqRef.current[key] = seq;
+    if (__DEV__) console.log(`[PRIVACY-CONSENT] ${key}: тап → ${val ? 'granted' : 'denied'} seq=${seq}`);
     void (async () => {
       try {
         await save(val ? 'granted' : 'denied');
       } catch (error) {
-        console.warn(`[PRIVACY-CONSENT] ${key}: локальная запись ${val} не удалась — откат`, error);
-        if (consentSeqRef.current[key] === seq) setOn(!val);
+        const superseded = consentSeqRef.current[key] !== seq;
+        console.warn(`[PRIVACY-CONSENT] ${key}: локальная запись ${val} не удалась seq=${seq} — ${superseded ? `уже пришёл тап seq=${consentSeqRef.current[key]}, откат не нужен` : 'откат тумблера + тост'}`, error); // guard-ok: catch и ранний выход логируются всегда (правило «сперва логи»)
+        if (superseded) return;
+        setOn(!val);
+        // зачем (Дизайн через координатора 12.10, R1 E-2): откат шёл молча — тумблер «сам» прыгал обратно без объяснения.
+        emitAppEvent('action_toast', {
+          type: 'error',
+          messageRu: 'Не удалось сохранить настройку. Попробуй ещё раз.',
+          messageUk: 'Не вдалося зберегти налаштування. Спробуй ще раз.',
+          messageEn: "Couldn't save the setting. Try again.",
+          messageEs: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+          messagePtBr: 'Não foi possível salvar a configuração. Tente de novo.',
+          messageVi: 'Không lưu được cài đặt. Hãy thử lại.',
+          messageId: 'Pengaturan gagal disimpan. Coba lagi.',
+          messageTr: 'Ayar kaydedilemedi. Tekrar dene.',
+          messagePl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+        });
         return;
       }
-      recordToCloud().catch((error) => {
-        console.warn(`[PRIVACY-CONSENT] ${key}: запись в облако не удалась (локально сохранено)`, error);
-      });
+      // зачем (Дизайн через координатора 12.10, R1 E-2, Firebase-экономия): серия быстрых тапов — ОДНА запись в облако с последним
+      // положением, через 1,5 с после последнего тапа или сразу при уходе в фон. Недоставленное досылается при входе (у владельцев записи).
+      scheduleConsentCloudRecord(key, recordToCloud);
     })();
   }, []);
 

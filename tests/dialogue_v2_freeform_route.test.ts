@@ -313,4 +313,106 @@ describe('Dialogue V2 freeform route', () => {
     ]);
     expect(mockOpening).toHaveBeenCalledWith('de');
   });
+  // зачем (координатор 12.10, Optimistic UI свободного разговора): реплика до готовности сессии — пузырь и пустое поле сразу,
+  // ход уходит один раз, когда сессия пришла; двойные тапы не шлют ход дважды и не создают вторую серверную сессию.
+  it('queues a message sent before the session is ready: bubble and empty draft at once, one turn after start', async () => {
+    let resolveStart!: (value: unknown) => void;
+    mockStart.mockImplementationOnce(() => new Promise((resolve) => { resolveStart = resolve; }));
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo zusammen'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    const queuedFrame = mockScreen.mock.calls.at(-1)[0];
+    expect(queuedFrame.messages).toEqual([{ id: 'learner_1', author: 'learner', text: 'Hallo zusammen' }]);
+    expect(queuedFrame.draft).toBe('');
+    expect(queuedFrame.sending).toBe(true);
+    expect(mockTurn).not.toHaveBeenCalled();
+    await act(async () => { resolveStart({ ok: true, sessionId: `d2fs_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
+    await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
+    expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo zusammen' }));
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([
+      { id: 'learner_1', author: 'learner', text: 'Hallo zusammen' },
+      { id: 'assistant_2', author: 'assistant', text: 'Hallo! Woran möchtest du heute arbeiten?' },
+    ]));
+    expect(mockScreen.mock.calls.at(-1)[0].sending).toBe(false);
+  });
+
+  it('double tap before the session is ready queues one message and sends one turn', async () => {
+    let resolveStart!: (value: unknown) => void;
+    mockStart.mockImplementationOnce(() => new Promise((resolve) => { resolveStart = resolve; }));
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Erste'); });
+    await act(async () => {
+      const frame = mockScreen.mock.calls.at(-1)[0];
+      await frame.onSend();
+      await frame.onSend();
+    });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Zweite'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([{ id: 'learner_1', author: 'learner', text: 'Erste' }]);
+    await act(async () => { resolveStart({ ok: true, sessionId: `d2fs_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
+    await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
+    await act(async () => { await Promise.resolve(); });
+    expect(mockTurn).toHaveBeenCalledTimes(1);
+    expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Erste' }));
+  });
+
+  it('does not queue or show a non-canonical message before the session is ready', async () => {
+    mockStart.mockImplementationOnce(() => new Promise(() => undefined));
+    await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Café'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    expect(mockScreen.mock.calls.at(-1)[0].messages).toEqual([]);
+    expect(mockScreen.mock.calls.at(-1)[0].sending).toBe(false);
+    expect(mockTurn).not.toHaveBeenCalled();
+  });
+
+  it('double tap on Retry after a failed turn resends the pending turn once', async () => {
+    let resolveRetry!: (value: unknown) => void;
+    mockTurn
+      .mockRejectedValueOnce(new Error('provider detail'))
+      .mockImplementationOnce(() => new Promise((resolve) => { resolveRetry = resolve; }));
+    const screen = await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled()); await act(async () => { await Promise.resolve(); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Noch einmal.'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    const retry = await screen.findByLabelText('Повторить');
+    await act(async () => {
+      fireEvent.press(retry);
+      fireEvent.press(retry);
+    });
+    expect(mockTurn).toHaveBeenCalledTimes(2);
+    await act(async () => { resolveRetry({ ok: true, assistantMessage: 'Alles klar.', sessionId: `d2fs_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
+    expect(mockTurn).toHaveBeenCalledTimes(2);
+  });
+
+  it('double tap on Retry after a failed start starts one new session', async () => {
+    let resolveSecondStart!: (value: unknown) => void;
+    mockStart
+      .mockResolvedValueOnce(null)
+      .mockImplementationOnce(() => new Promise((resolve) => { resolveSecondStart = resolve; }));
+    const screen = await render(h(DialogueV2FreeformRoute));
+    const retry = await screen.findByLabelText('Повторить');
+    await act(async () => {
+      fireEvent.press(retry);
+      fireEvent.press(retry);
+    });
+    expect(mockStart).toHaveBeenCalledTimes(2);
+    await act(async () => { resolveSecondStart({ ok: true, sessionId: `d2fs_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
+    expect(mockStart).toHaveBeenCalledTimes(2);
+  });
+
+  it('energy contract: the Plus-only freeform route charges no energy; a future charge must come with the one-shot refund', () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const fs = require('fs') as typeof import('fs');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const path = require('path') as typeof import('path');
+    const source = fs.readFileSync(path.join(__dirname, '..', 'app', 'dialogue_v2_freeform.tsx'), 'utf8');
+    const charges = /useEnergy\(|energyOp|confirmActivityStart|spendMistakeEnergy/.test(source);
+    if (charges) expect(source).toContain('createDialogueEnergySettler(');
+    else expect(charges).toBe(false);
+    expect(source).not.toMatch(/catch \{/);
+  });
 });

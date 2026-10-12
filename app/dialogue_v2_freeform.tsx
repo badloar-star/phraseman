@@ -71,6 +71,11 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
   });
 }
 
+// Пробные id нужного формата — проверка текста реплики, поставленной в очередь до готовности сессии, той же канонической
+// формой, что у настоящего хода (общий контракт не меняется).
+const QUEUE_PROBE_SESSION_ID = `d2fs_${'q'.repeat(32)}`;
+const QUEUE_PROBE_TURN_ID = `d2ft_${'q'.repeat(16)}`;
+
 async function secureTurnId(): Promise<string> {
   const bytes = await Crypto.getRandomBytesAsync(18);
   return `d2ft_${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
@@ -99,6 +104,11 @@ export default function DialogueV2FreeformRoute() {
   const pendingRef = useRef<PendingTurn | null>(null);
   const startingRef = useRef(false);
   const generationRef = useRef(0);
+  // зачем (координатор 12.10, Optimistic UI): реплика до готовности сессии — уже проверенный текст, пузырь показан сразу.
+  const queuedMessageRef = useRef<string | null>(null);
+  // Защёлки от двойного тапа (синхронно, до await): старт одного поколения и «Повторить» — по одному в полёте.
+  const startInFlightRef = useRef<number | null>(null);
+  const retryBusyRef = useRef(false);
   const targetRef = useRef<unknown>(studyTarget);
   targetRef.current = studyTarget;
 
@@ -129,17 +139,32 @@ export default function DialogueV2FreeformRoute() {
     target: SupportedTarget,
     generation: number,
   ) => {
+    if (startInFlightRef.current === generation) {
+      console.log('[DIALOGUE-V2] freeform: start already in flight', { generation, studyTarget: target }); // guard-ok: двойной тап не создаёт вторую сессию
+      return;
+    }
+    startInFlightRef.current = generation;
     replaceSession(null);
     setUnavailable(false);
     try {
       const started = await startDialogueV2FreeformSession({ studyTarget: target });
-      if (generationRef.current !== generation || targetRef.current !== target) return;
-      if (!started) { setUnavailable(true); return; }
-      replaceSession(Object.freeze({ ...started, studyTarget: target, generation }));
-    } catch {
-      if (generationRef.current === generation && targetRef.current === target) {
-        setUnavailable(true);
+      if (generationRef.current !== generation || targetRef.current !== target) {
+        console.log('[DIALOGUE-V2] freeform: start result ignored — contour changed', { generation, current: generationRef.current, studyTarget: target }); // guard-ok
+        return;
       }
+      if (!started) {
+        console.warn('[DIALOGUE-V2] freeform: start → server returned no session', { generation, studyTarget: target, queued: queuedMessageRef.current !== null });
+        setUnavailable(true);
+        return;
+      }
+      console.log('[DIALOGUE-V2] freeform: start → session ready', { generation, studyTarget: target, queued: queuedMessageRef.current !== null });
+      replaceSession(Object.freeze({ ...started, studyTarget: target, generation }));
+    } catch (error: unknown) {
+      const current = generationRef.current === generation && targetRef.current === target;
+      console.warn('[DIALOGUE-V2] freeform: start → failed', { generation, studyTarget: target, current, message: error instanceof Error ? error.message : String(error) });
+      if (current) setUnavailable(true);
+    } finally {
+      if (startInFlightRef.current === generation) startInFlightRef.current = null;
     }
   }, [replaceSession]);
 
@@ -151,7 +176,8 @@ export default function DialogueV2FreeformRoute() {
     setMessages(freeformOpeningMessages(studyTarget));
     setDraft('');
     pendingRef.current = null;
-    queuedSendRef.current = false;
+    queuedMessageRef.current = null;
+    retryBusyRef.current = false;
     startingRef.current = false;
     setSending(false);
     setUnavailable(false);
@@ -161,7 +187,10 @@ export default function DialogueV2FreeformRoute() {
   }, [accessResolved, discardVoice, hasPremiumAccess, replaceSession, startCurrentSession, studyTarget]);
 
   const runPendingTurn = useCallback(async (pending: PendingTurn) => {
-    if (!isCurrentPending(pending)) return;
+    if (!isCurrentPending(pending)) {
+      console.log('[DIALOGUE-V2] freeform: turn skipped — not current contour', { turnId: pending.turnId }); // guard-ok
+      return;
+    }
     setSending(true);
     setUnavailable(false);
     try {
@@ -172,7 +201,10 @@ export default function DialogueV2FreeformRoute() {
         userMessage: pending.userMessage,
       });
       if (!result) throw new Error('freeform_turn_unavailable');
-      if (!isCurrentPending(pending)) return;
+      if (!isCurrentPending(pending)) {
+        console.log('[DIALOGUE-V2] freeform: late turn result ignored — contour changed', { turnId: pending.turnId }); // guard-ok
+        return;
+      }
       setMessages((current) => Object.freeze([...current, Object.freeze({
         id: `assistant_${current.length + 1}`,
         author: 'assistant' as const,
@@ -191,8 +223,10 @@ export default function DialogueV2FreeformRoute() {
         requestSelection: requestDialogueV2FreeformPreparedBotVoice,
       });
       pendingRef.current = null;
-    } catch {
-      if (isCurrentPending(pending)) setUnavailable(true);
+    } catch (error: unknown) {
+      const current = isCurrentPending(pending);
+      console.warn('[DIALOGUE-V2] freeform: turn → failed', { turnId: pending.turnId, current, message: error instanceof Error ? error.message : String(error) });
+      if (current) setUnavailable(true);
     } finally {
       if (isCurrentPending(pending)) {
         setSending(false);
@@ -201,35 +235,72 @@ export default function DialogueV2FreeformRoute() {
     }
   }, [isCurrentPending]);
 
-  const queuedSendRef = useRef(false);
-  const sendRef = useRef<() => Promise<void>>(async () => undefined);
+  const sendRef = useRef<(queued: string | null) => Promise<void>>(async () => undefined);
   useEffect(() => {
-    if (!session || !queuedSendRef.current) return;
-    queuedSendRef.current = false;
-    console.log('[DIALOGUE-V2] freeform: session ready, flushing queued send'); // guard-ok
-    void sendRef.current();
+    const queued = queuedMessageRef.current;
+    if (!session || queued === null) return;
+    queuedMessageRef.current = null;
+    console.log('[DIALOGUE-V2] freeform: session ready, flushing queued send', { length: queued.length }); // guard-ok
+    void sendRef.current(queued);
   }, [session]);
 
-  const send = async () => {
-    const userMessage = draft.trim();
+  const appendLearnerMessage = (text: string) => {
+    const voiceAttachment = voice.takeVoiceAttachment(text);
+    setMessages((current) => Object.freeze([...current, Object.freeze({
+      id: `learner_${current.length + 1}`,
+      author: 'learner' as const,
+      text,
+      ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
+    })]));
+    setDraft('');
+  };
+
+  /** queued — текст из очереди (пузырь уже показан); null — обычная отправка из поля ввода. */
+  const send = async (queued: string | null = null) => {
+    const userMessage = queued ?? draft.trim();
     const currentSession = sessionRef.current;
-    // зачем (владелец 01.10: «диалоги без загрузки»): экран открыт до ответа сервера; отправку,
-    // нажатую раньше готовности сессии, держим в очереди и шлём, как только сессия пришла.
-    if (!currentSession && userMessage.length > 0 && voice.status === 'idle') {
-      console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: userMessage.length }); // guard-ok
-      queuedSendRef.current = true;
+    // зачем (владелец 01.10 «диалоги без загрузки»; координатор 12.10 Optimistic UI): экран открыт до ответа сервера. Реплика,
+    // нажатая раньше готовности сессии, сразу встаёт пузырём, поле очищается, видна «отправка»; ход уйдёт сам, когда сессия
+    // придёт. Текст проверяется ДО пузыря той же канонической формой, что у хода.
+    if (!currentSession && queued === null) {
+      if (queuedMessageRef.current !== null) {
+        console.log('[DIALOGUE-V2] freeform: send ignored — a message is already queued'); // guard-ok: двойной тап
+        return;
+      }
+      if (userMessage.length < 1 || voice.status !== 'idle' || !isSupportedTarget(targetRef.current)) {
+        console.log('[DIALOGUE-V2] freeform: send not queued', { length: userMessage.length, voice: voice.status, supported: isSupportedTarget(targetRef.current) }); // guard-ok
+        return;
+      }
+      const probe = parseDialogueV2FreeformSessionTurnShape({
+        sessionId: QUEUE_PROBE_SESSION_ID, turnId: QUEUE_PROBE_TURN_ID, studyTarget: targetRef.current, userMessage,
+      });
+      if (!probe) {
+        console.log('[DIALOGUE-V2] freeform: send not queued — text is not canonical', { length: userMessage.length }); // guard-ok
+        return;
+      }
+      queuedMessageRef.current = probe.userMessage;
+      appendLearnerMessage(probe.userMessage);
+      setSending(true);
+      console.log('[DIALOGUE-V2] freeform: send queued until session ready', { length: probe.userMessage.length }); // guard-ok
       return;
     }
-    if (!currentSession || !isSupportedTarget(targetRef.current) || sending || startingRef.current
-      || voice.status !== 'idle'
-      || userMessage.length < 1) return;
+    if (!currentSession || !isSupportedTarget(targetRef.current) || startingRef.current
+      || (queued === null && (sending || voice.status !== 'idle'))
+      || userMessage.length < 1) {
+      console.log('[DIALOGUE-V2] freeform: send skipped', {
+        hasSession: !!currentSession, queued: queued !== null, starting: startingRef.current, sending, voice: voice.status, length: userMessage.length,
+      }); // guard-ok
+      return;
+    }
     startingRef.current = true;
     let turnId: string;
     try {
       turnId = await secureTurnId();
     } catch (error: unknown) {
-      console.warn('[DIALOGUE-V2] freeform: turn id failed', { message: error instanceof Error ? error.message : String(error) });
+      console.warn('[DIALOGUE-V2] freeform: turn id failed', { queued: queued !== null, message: error instanceof Error ? error.message : String(error) });
       startingRef.current = false;
+      // Реплика из очереди уже в ленте — оставляем её в очереди: «Повторить» перезапустит старт и отправит её.
+      if (queued !== null) queuedMessageRef.current = queued;
       setUnavailable(true);
       return;
     }
@@ -240,23 +311,19 @@ export default function DialogueV2FreeformRoute() {
       userMessage,
     });
     if (!canonicalRequest) {
+      console.log('[DIALOGUE-V2] freeform: send rejected — text is not canonical', { length: userMessage.length, queued: queued !== null }); // guard-ok
       startingRef.current = false;
+      if (queued !== null) setSending(false);
       return;
     }
     const pending = Object.freeze({ ...canonicalRequest, generation: currentSession.generation });
     if (!isCurrentPending(pending)) {
+      console.log('[DIALOGUE-V2] freeform: send skipped — contour changed', { turnId }); // guard-ok
       startingRef.current = false;
       return;
     }
     pendingRef.current = pending;
-    const voiceAttachment = voice.takeVoiceAttachment(canonicalRequest.userMessage);
-    setMessages((current) => Object.freeze([...current, Object.freeze({
-      id: `learner_${current.length + 1}`,
-      author: 'learner' as const,
-      text: canonicalRequest.userMessage,
-      ...(voiceAttachment ? { voice: { uri: voiceAttachment.uri } } : {}),
-    })]));
-    setDraft('');
+    if (queued === null) appendLearnerMessage(canonicalRequest.userMessage);
     await runPendingTurn(pending);
   };
   sendRef.current = send;
@@ -291,15 +358,27 @@ export default function DialogueV2FreeformRoute() {
         action={{
           label: labels.retry,
           onPress: () => {
+            // зачем (координатор 12.10): двойной тап «Повторить» не шлёт ход дважды и не создаёт вторую серверную сессию.
+            if (retryBusyRef.current) {
+              console.log('[DIALOGUE-V2] freeform: retry ignored — already in flight'); // guard-ok
+              return;
+            }
+            retryBusyRef.current = true;
+            const release = () => { retryBusyRef.current = false; };
             const pending = pendingRef.current;
             if (pending && isCurrentPending(pending)) {
-              void runPendingTurn(pending);
+              console.log('[DIALOGUE-V2] freeform: retry → resend pending turn', { turnId: pending.turnId });
+              void runPendingTurn(pending).finally(release);
               return;
             }
             const target = targetRef.current;
             if (isSupportedTarget(target)) {
-              void startCurrentSession(target, generationRef.current);
+              console.log('[DIALOGUE-V2] freeform: retry → restart session', { generation: generationRef.current, queued: queuedMessageRef.current !== null });
+              void startCurrentSession(target, generationRef.current).finally(release);
+              return;
             }
+            console.warn('[DIALOGUE-V2] freeform: retry → unsupported study target', { target: String(target) });
+            release();
           },
         }}
       />

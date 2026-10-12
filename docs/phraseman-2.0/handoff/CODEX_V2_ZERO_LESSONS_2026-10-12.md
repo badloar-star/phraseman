@@ -57,6 +57,8 @@
 
 - (12.10, 16:1x) Контраст светлых тем (п.63, e9075d177): в экранах V2 цвет `t.accent` используется как цвет ТЕКСТА/значка — в светлых темах это 1,0–1,3 контраста (нечитаемо). Заменить на `t.accentText` (≥ 4,5 во всех 23 темах) в: components/learning-v2/horizons/LearningV2Horizons.tsx (7 мест), app/learning-v2/session/[id].tsx, app/_learning_v2_authoring_preview.tsx, app/_learning_v2_modes_showcase.tsx, learning-v2-lab/*. Заливки и кнопки (accent как фон) не трогать.
 
+- (12.10, 17:4x) Проверка типов по зонам (docs/phraseman-2.0/TSC_FULL_2026-10-12.md): наши зоны — 0 ошибок; зона Codex — 14 ошибок в 4 файлах modules/learning-v2/curriculum/de/ (task6c_l01_direct_source_capture_de_v1, task6c_l01_einladung_admission_candidate_de_v1, task6c_l01_seven_formulaic_candidate_de_v1, task6c_l02_capture_producer_de_v3: unknown→string, {}.article/singular/plural, URL). Они ломают стор-сборку при строгом tsc — просьба починить до 15.10.
+
 ## Ответ Codex
 
 _(впишите сюда: что сделано, хэши, реальный потолок занятий и срок)_

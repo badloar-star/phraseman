@@ -67,6 +67,21 @@
 
 Файлы: `app/flashcards_blitz_session.tsx`, `app/flashcards/ExpandedCardV2.tsx`, `app/flashcards_collection.tsx`, `app/community_pack_create.tsx`. Журнал: префикс `[OPT-UI]` (ранний выход с причиной, откат с причиной). Сторож: `tests/cards_optimistic_ui_locks_contract.test.ts`; прежний сторож — `tests/optimistic_ui_audit_r1_contract.test.ts`.
 
+## Скорость (аудит по коду, 12.10, по заданию координатора)
+
+Метод: чтение кода на HEAD; замеров на эмуляторе пока нет — сначала поставлен журнал **`[CARDS-PERF]`** (только dev, в сторе пустышка; `components/cards-grid/cardsPerfLog.ts`). Строки журнала: `saved first-frame` (мс от монтирования до следующего кадра), `saved scroll-end` (за прокрутку: `tile-render`, `gallery-render`, `scroll-event`, `window-step`, `tiles-in-window`, `cards-total`), `catalog first-frame` / `catalog rows-changed` (`catalog-row-render` за ввод в поиск и за подъём плашки). Как снять: `phraseman://dev_state?cards=demo_lessons` (64 карточки) → «Сохранённые», прокрутить, смотреть `[CARDS-PERF] saved scroll-end`.
+
+| Поверхность | Что нашёл по коду | Итог |
+|---|---|---|
+| «Сохранённые» (64+) — `CollectionGalleryView` + `CardsGallery` | Не FlatList: своё окно плиток по `galleryVisibleRange` (рисуются только плитки в окне + запас), позиции считает UI-поток (`useAnimatedStyle`), `Tile` в `memo`, ключ — `card.id`, колбэки (`onTile`, `onSpeakTile`) в `useCallback`, прокрутка в состояние идёт ступенями по 40 dp (`setScrollY`), `reportViewed` — по концу прокрутки | ✅ норма. Единственная цена: каждый шаг 40 dp перерисовывает весь `CollectionGalleryView` (шапка — тот же элемент, `ZoomBar` и плитки по memo отсекаются). Цифры `window-step`/`tile-render` покажут, сколько это на деле |
+| «Список» (старый вид) — `CollectionListView` | `Reanimated.FlatList`: `keyExtractor`, `initialNumToRender 8`, `maxToRenderPerBatch 10`, `windowSize 7`, `removeClippedSubviews` на Android; `getItemLayout` нет (переменная высота строки с раскрывающейся деталью) | ✅ осознанно; 💰 `getItemLayout` невозможен без фиксированной высоты — не делаю |
+| Каталог наборов — `FlashcardsCategoryHub` | До 50 строк (серверный `limit`) в `ScrollView` через `.map`, но `CommunityPackRow` в `memo` с покомпонентным сравнением (поиск/сортировка/долгое нажатие не перерисовывают все строки); при подъёме плашки меняется `emphasis` у всех — это сам эффект (приглушение соседей) | ✅ норма для ≤50; виртуализация нужна, если лимит вырастет |
+| Хаб — `CardsHubV2` | четыре карточки, одна бесконечная анимация «парения» на UI-потоке, выключается вне фокуса / при «уменьшить движение» / в `animations=off` | ✅ |
+| Превью роликов — `VideoThumb` | `expo-image`, `cachePolicy="memory-disk"`, `recyclingKey`, адрес `hqdefault.jpg` (480×360) для плитки 132 dp (≈350–400 px) и широкой плитки; полноразмерного `maxresdefault` нигде нет | ✅ размер соответствует плитке; `mqdefault` (320×180) был бы мягче на 3× — не менял |
+| Лишние `setState` в кадре прокрутки | в галерее — один `setScrollY` на шаг 40 dp (не на каждый кадр); `scrollYRef` обновляется без рендера | ✅ |
+
+Дорогое (в код не лезу): виртуализация каталога (сейчас ≤50 строк), `getItemLayout` для списка с раскрывающейся деталью, перенос ступени прокрутки галереи в UI-поток целиком (сейчас окно считает JS на шаге 40 dp). Цена каждого — M, выигрыш подтвердят только числа `[CARDS-PERF]`.
+
 ## Не проверено
 
 Поведение на эмуляторе (тайминги, кадры); платные наборы (`onRequestPurchase`) и ранг монеты; серверные правила Firestore; интеграционный тест блица (`fc_blitz_attempts_integration.test.tsx` не входит в `testMatch`, не запускался); сверка рун с сервером (E8).

@@ -22,6 +22,7 @@ import {
   galleryVisibleRange,
   unionRange,
 } from './cardsGalleryLayout';
+import { cardsPerfCount, cardsPerfMark } from './cardsPerfLog';
 import type { GridMorph, GridState } from './useCardsScale';
 
 export type GalleryCard = Readonly<{
@@ -101,6 +102,7 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
   selected?: boolean | undefined;
   highlight?: string;
 }>) {
+  cardsPerfCount('tile-render'); // зачем: [CARDS-PERF] сколько плиток перерисовано за прокрутку (memo должен их держать)
   const { from, to, t, shift } = morph;
   const style = useAnimatedStyle(() => {
     const a = galleryLayoutFor(from.value, width);
@@ -212,6 +214,9 @@ function CardsGalleryInner({ g, cards, width, step: stepProp, morph: morphProp, 
     return unionRange(now, galleryVisibleRange(cards.length, galleryLayoutFor(morphFrom.step, width), Math.max(0, morphFrom.scrollY), viewportH));
   }, [cards.length, morphFrom, scrollY, step, viewportH, width]);
   const visible = cards.slice(range.from, range.to);
+  cardsPerfCount('gallery-render');
+  cardsPerfMark('tiles-in-window', visible.length);
+  cardsPerfMark('cards-total', cards.length);
   return (
     <Animated.View style={[styles.container, { width }, heightStyle]}>
       {visible.map((card, offset) => (

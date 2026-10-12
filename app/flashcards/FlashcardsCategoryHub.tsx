@@ -91,6 +91,7 @@ import { getEffectivePlatformOS } from '../platform_ui_preview';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { hapticTap } from '../../hooks/use-haptics';
 import { DebugLogger } from '../debug-logger';
+import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
 import { isLocalAuthorPackId } from '../community_packs/localAuthorPacks';
 import { NO_PACK_LANGUAGE, noPackLanguageLabel, PACK_LANGUAGE_META, normalizePackLanguage, type PackLanguage } from './pack_languages';
 
@@ -276,6 +277,7 @@ const baseMenuStyles = StyleSheet.create({
 function CommunityPackRowBase({
   pack, uiLang, titleLang, g, owned, emphasis, highlight, likes, onOpen, onLongPress, onAdd, opening, disabled,
 }: CommunityPackRowProps) {
+  cardsPerfCount('catalog-row-render'); // зачем: [CARDS-PERF] сколько строк каталога перерисовано (memo держит строки при наборе в поиске / долгом нажатии)
   // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
   const author = useCommunityAuthor(pack, uiLang);
   const title = packTitleForInterface(pack, titleLang) || packHubCodeName(pack);
@@ -474,6 +476,16 @@ export default function FlashcardsCategoryHub({
     // зачем (cards-v2 чипы A1…B2): фильтр по уровню — клиентский, поверх уже загруженного списка, без запросов.
     return communityLevel ? found.filter((pack) => packDeckLevel(pack) === communityLevel) : found;
   }, [catalogCommunityPacks, communityQuery, communitySort, communityLevel, packLanguage]);
+
+  // зачем (координатор 12.10, [CARDS-PERF]): строки каталога за первый кадр, за ввод в поиск и за подъём плашки (меню) — сколько реально перерисовалось
+  const perfMountedAtRef = useRef(Date.now());
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => cardsPerfFlush('catalog', 'first-frame', { rows: visibleCommunityPacks.length, sinceMountMs: Date.now() - perfMountedAtRef.current }));
+    return () => cancelAnimationFrame(raf);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    cardsPerfFlush('catalog', 'rows-changed', { rows: visibleCommunityPacks.length, query: communityQuery, menuPackId: ugcReportHintPackId ?? null });
+  }, [visibleCommunityPacks.length, communityQuery, ugcReportHintPackId]);
 
   useEffect(() => {
     if (Platform.OS === 'web') {

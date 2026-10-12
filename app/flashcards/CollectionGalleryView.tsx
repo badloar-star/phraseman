@@ -13,6 +13,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions, typ
 import { GestureDetector } from 'react-native-gesture-handler';
 
 import { CardsGallery, type GalleryCard } from '../../components/cards-grid/CardsGallery';
+import { cardsPerfCount, cardsPerfFlush } from '../../components/cards-grid/cardsPerfLog';
 import { useCardsGridStep } from '../../components/cards-grid/useCardsScale';
 import { ZoomBar } from '../../components/cards-grid/ZoomBar';
 import { GALLERY_DEFAULT_STEP } from '../../components/cards-grid/cardsGalleryLayout';
@@ -120,6 +121,7 @@ export default function CollectionGalleryView({
   const scrollYRef = useRef(0);
   const gridTopRef = useRef(260);
   const [scrollY, setScrollY] = useState(0);
+  const perfWindowYRef = useRef(0);
   const [gridTop, setGridTop] = useState(260);
   const [pressedId, setPressedId] = useState<string | null>(null);
   // зачем (координатор 12.10, cards-034): шторка действий лежит в области ПОД шапкой экрана, и затемнение не закрывало «‹ поиск + ⋮». Меряем положение корня в окне и растягиваем слой шторки вверх до края окна
@@ -168,19 +170,27 @@ export default function CollectionGalleryView({
   useEffect(() => {
     console.log('[PACK-OPEN] gallery:cards', JSON.stringify({ cards: cards.length, items: items.length, step, sinceMountMs: Date.now() - galleryMountedAtRef.current }));
   }, [cards.length, items.length, step]);
+  // зачем: [CARDS-PERF] время до первого кадра списка — следующий кадр после монтирования галереи
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => cardsPerfFlush('saved', 'first-frame', { cards: cards.length, step, sinceMountMs: Date.now() - galleryMountedAtRef.current }));
+    return () => cancelAnimationFrame(raf);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const raw = event.nativeEvent.contentOffset.y;
     scrollYRef.current = raw;
+    cardsPerfCount('scroll-event');
     const y = Math.round(raw / 40) * 40;
+    if (perfWindowYRef.current !== y) { perfWindowYRef.current = y; cardsPerfCount('window-step'); } // зачем: [CARDS-PERF] сколько раз прокрутка перерисовала весь экран галереи (шаг 40 dp)
     setScrollY((prev) => (prev === y ? prev : y));
   }, []);
   // зачем: «просмотренные карточки» считались по видимым строкам списка; в галерее — по окну плиток после остановки прокрутки.
   const reportViewed = useCallback(() => {
+    cardsPerfFlush('saved', 'scroll-end', { cards: cards.length, step, scrollY: Math.round(scrollYRef.current) });
     const ids = cards.slice(0, 24).map((card) => card.id);
     const key = ids.join(',');
     if (key && key !== viewedRef.current) { viewedRef.current = key; onCardsViewed(ids); }
-  }, [cards, onCardsViewed]);
+  }, [cards, onCardsViewed, step]);
 
   const onTile = useCallback((id: string) => {
     if (selectionMode) { hapticTap(); onToggleSelection(id); return; }

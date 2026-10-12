@@ -80,7 +80,9 @@ async function main() {
     }
   });
   await new Promise((resolve, reject) => { ws.on('open', resolve); ws.on('error', reject); });
-  await send('Profiler.enable');
+  // зачем (Сверка 12.10: «Unsupported method 'Profiler.enable'» на всех трёх запусках): инспектор Hermes в dev-сборке не знает Profiler.enable — Profiler.start/stop работают и без него.
+  // enable пробуем, отказ не фатален (в журнал), дальше сразу start; сам отказ start/stop — уже настоящая ошибка и роняет скрипт.
+  await send('Profiler.enable').catch((error) => console.log(`[CPU-PROFILE] Profiler.enable не поддержан целью (${error.message}) — иду сразу на Profiler.start`));
   await send('Profiler.setSamplingInterval', { interval: 500 }).catch((error) => console.log(`[CPU-PROFILE] интервал не задан: ${error.message}`));
   const startedAt = Date.now();
   await send('Profiler.start');

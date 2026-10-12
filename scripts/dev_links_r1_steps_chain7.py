@@ -37,7 +37,8 @@ add('learn-014', ['wait:1500', 'tap:#lessons-row-4', 'wait:1500'], FREE, LESSONS
 LESSON1 = '/lesson1?id=1%26from=lesson_menu'
 LESSON_BASE = 'plus=off&free=on&studyTarget=en&lessonintro=skip'
 add('learn-028', ['wait:2500'], LESSON_BASE + '&mode=a&energy=5', LESSON1, note='задание — пусто (D1): первый вопрос урока 1')
-add('learn-032', ['wait:2500', 'tap:#lesson1-word-option-wrong', 'wait:300'], LESSON_BASE + '&mode=b&energy=5', LESSON1,
+# зачем (Ядро 13.10): автопроверка по умолчанию выключена — после третьего слова нужен тап «Проверить»
+add('learn-032', ['wait:2500', 'tap:#lesson1-word-option-wrong'] + ['tap:#lesson1-word-option-correct'] * 2 + ['tap:#lesson1-check', 'wait:800'], LESSON_BASE + '&mode=b&energy=5', LESSON1,
     note='неверно — сердце потеряно (D5): dev-метка первого неверного слова, режим сердец (mode=b)')
 
 # ── Диалоги: сессия на подставном ходе (dev_dialog_send=ok), без сервера ИИ
@@ -51,7 +52,9 @@ add('dialogs-016', DLG_START + ['tap:#dialogue-v2-prepared-bot-voice-*', 'wait:4
 add('dialogs-019', DLG_START + SEND + ['tap:#dialogue-v2-why-*', 'wait:800'], DLG_BASE, DLG, note='шторка «Почему так» (первый из 3 разборов Free за день)')
 add('dialogs-022', DLG_START + ['tap:#dialogue-v2-session-input', 'type:Hel', 'wait:500'], DLG_BASE, DLG, note='ввод текстом: клавиатура открыта, набрано «Hel» (не отправлять)')
 COMPLETE = ['tap:#dialogue-v2-session-more', 'tap:#dialogue-v2-session-menu-complete', 'wait:1500']
-add('dialogs-041', DLG_START + SEND + COMPLETE, DLG_BASE + '&dev_dialog_completion=errors', DLG, note='итог диалога — с ошибками (dev_dialog_completion=errors)')
+# зачем (Ядро 13.10): заголовок «Диалог пройден» — только когда диалог завершил собеседник (endedBy='bot'); «Завершить» из меню даёт «Разговор завершён»
+add('dialogs-041', DLG_START + SEND + ['wait:2500', 'tap:#dialogue-v2-session-end-veil', 'wait:1500'], DLG_BASE + '&dev_dialog_end=on&dev_dialog_completion=errors', DLG,
+    note='итог — «Диалог пройден» (собеседник завершил, dev_dialog_end=on); локально сценарий отметится пройденным, сети нет')
 
 # ── Блиц (practice.html) = те же кадры, что cards-section-044/045 (подмена blitz_answer помечает нужный вариант)
 _blitz_ok = ENTRIES['cards-section-044']
@@ -99,13 +102,15 @@ LP = 'plus=on&studyTarget=en'
 add('learn-007', ['wait:1500', 'see:#legacy-lessons-exam-A1'], LP + '&lessonsDone=8&examA1=almost', LESSONS, note='экзамен A1 «Почти — 61%» (A7)')
 add('learn-008', ['wait:1500', 'see:#legacy-lessons-exam-A1'], 'plus=off&studyTarget=en&lessonsDone=8', LESSONS, note='Free: экзамен «Откроется с Plus» (A8)')
 add('learn-011', ['wait:1500', 'tap:#lessons-row-3', 'wait:600'], LP + '&lessonsDone=1', LESSONS, note='окно «Ещё рано» (A10): урок 3 закрыт по прогрессу; Plus — иначе пейвол')
-add('learn-012', ['wait:1500', 'tap:#legacy-lessons-exam-A2', 'wait:600'], LP + '&lessonsDone=8', LESSONS, note='окно «Уровень пока закрыт» (A11): A1 пройден, экзамен A1 не сдан')
-add('learn-013', ['wait:1500', 'tap:#legacy-lessons-exam-A1', 'wait:600'], LP + '&lessonsDone=2', LESSONS, note='окно «Недоступно» (A12): уровень не пройден')
+# зачем (Ядро 712ceea64): в dev ворота уровней открыты (DEV_CONTENT_UNLOCK) — тап по экзамену вёл на экран зачёта, а не в окно.
+# lessonGates=real — ворота как в релизе при Plus; legacyCap=N — бесплатный потолок старого аккаунта (D122). Только память.
+add('learn-012', ['wait:1500', 'tap:#legacy-lessons-exam-A2', 'wait:600'], LP + '&lessonGates=real&lessonsDone=2', LESSONS, note='окно «Уровень пока закрыт» (A11): «Сначала зачёт A1»')
+add('learn-013', ['wait:1500', 'tap:#legacy-lessons-exam-A1', 'wait:600'], 'plus=off&studyTarget=en&legacyCap=8&lessonsDone=2', LESSONS, note='окно «Недоступно» (A12): Free со старым потолком 8, уроки не пройдены')
 
 # ── Урок 1: верное слово метит lesson1-word-option-correct (во всех сборках)
 add('learn-029', ['wait:2500', 'tap:#lesson1-word-option-correct', 'wait:300'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
     note='фраза собирается (D2): одно верное слово')
-add('learn-031', ['wait:2500'] + ['tap:#lesson1-word-option-correct'] * 3 + ['wait:600'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
+add('learn-031', ['wait:2500'] + ['tap:#lesson1-word-option-correct'] * 3 + ['tap:#lesson1-check', 'wait:800'], LESSON_BASE + '&mode=a&energy=5', LESSON1,
     note='«Верно + монеты» (D4): все фразы урока 1 — по 3 слова (Ядро 12.10), 3 верных тапа завершают первую фразу')
 
 # ── Диалог: «Почему так» — разборы на сегодня закончились (dev_dialog_why=spent, только память)

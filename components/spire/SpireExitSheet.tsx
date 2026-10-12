@@ -33,7 +33,8 @@ function SpireExitSheet({ lang, visible, floor, onContinue, onExit }: Props) {
         <V2Pressable onPress={onContinue} accessibilityRole="button" style={[s.cta, { backgroundColor: p.cta }, sh.action(p.cta)]} testID="spire-exit-continue">
           <Text style={[s.ctaText, { color: p.ctaText }]}>{spireGameText(lang, 'continueStep')}</Text>
         </V2Pressable>
-        <V2Pressable onPress={onExit} accessibilityRole="button" style={s.ghost} testID="spire-exit-confirm">
+        {/* зачем (R1_DIFF_ONE_FIX, spire-009; образец kit.css `.cta.gh`): «Выйти» — тёмная таблетка с малой тенью, а не голый текст */}
+        <V2Pressable onPress={onExit} accessibilityRole="button" style={[s.ghost, { backgroundColor: p.control }, sh.nested]} testID="spire-exit-confirm">
           <Text style={[s.ctaText, { color: p.wrong }]}>{spireGameText(lang, 'exit')}</Text>
         </V2Pressable>
       </View>

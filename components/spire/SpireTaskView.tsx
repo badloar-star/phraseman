@@ -55,7 +55,8 @@ type Tone = 'idle' | 'ok' | 'no';
 
 function Option({ label, tone, disabled, onPress, testID }: Readonly<{ label: string; tone: Tone; disabled: boolean; onPress: () => void; testID: string }>) {
   const p = useSpirePalette(); const sh = useSpireShadow();
-  const bg = tone === 'ok' ? lv2Alpha(p.correct, 0.22) : tone === 'no' ? lv2Alpha(p.wrong, 0.22) : p.card;
+  // зачем (R1_DIFF_ONE_FIX, spire-008; образец kit.css `.opt.ok/.opt.no` rgba(…, .12)): подсветка ответа приглушённая — 12 %, а не 22 %
+  const bg = tone === 'ok' ? lv2Alpha(p.correct, 0.12) : tone === 'no' ? lv2Alpha(p.wrong, 0.12) : p.card;
   return (
     <V2Pressable
       onPress={onPress}
@@ -103,7 +104,7 @@ function BuildTask({ task, feedback, disabled, onTokens }: Props) {
     if (disabled) return;
     setPicked((cur) => cur.filter((k) => k !== i));
   }, [disabled]);
-  const answerBg = feedback ? lv2Alpha(feedback.ok ? p.correct : p.wrong, 0.18) : p.card;
+  const answerBg = feedback ? lv2Alpha(feedback.ok ? p.correct : p.wrong, 0.12) : p.card;
   return (
     <View style={s.stack}>
       <View style={[s.answer, { backgroundColor: answerBg }]} accessibilityLabel={picked.map((k) => bank[k]).join(' ')}>

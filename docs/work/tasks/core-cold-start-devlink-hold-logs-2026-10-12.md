@@ -1,6 +1,6 @@
 # Task packet: холодный старт по dev-ссылке 35 с — логи [COLD-START-HOLD] (сперва журнал, потом диагноз)
 
-Governance-ID: TG-3E7402B2BF9C
+Governance-ID: TG-DACA19815EFA
 Status: In progress — только логи, поведение не меняется
 Owner: сессия «1 · Ядро». Координатор 12.10, пункт 2: «Сверка видела холодный запуск dev-ссылки по 35 с: белый экран, JS
 замолчал после [FIRST-FRAME] deferred:cancel, ссылка не обработалась. Нужны логи — что держит старт после deferred:cancel и

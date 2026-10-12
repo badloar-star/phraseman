@@ -47,6 +47,28 @@ if (BOOT_TRACE_ENABLED) {
 }
 // зачем (12.10, [COLD-START-HOLD]): сколько раз монтировался AppContent за жизнь процесса.
 let appContentMountCount = 0;
+// зачем (Сверка 12.10, cards-v2-033: в 14:59:40 разом размонтировались корень и хост тостов, после чего — ни одного таймера,
+// процесс жив, экран белый 2,5 мин, dev-ссылка не дошла): так выглядит перезагрузка JS, а не зависание. Подозрение —
+// Fast Refresh делает полную перезагрузку, когда параллельная сессия правит модуль, который нельзя подменить на лету
+// (корень, контексты), а новый бандл не доезжает. Печатаем причину ДО перезагрузки. Перезагрузки по команде сборщика
+// (нативные) сюда не попадают — их видно по отсутствию этой строки перед тишиной. Только dev.
+if (BOOT_TRACE_ENABLED) {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const devSettings = require('react-native').DevSettings as { reload?: (reason?: string) => void } | undefined; // guard-ok: только dev, react-native уже загружен
+    const originalReload = devSettings?.reload?.bind(devSettings);
+    if (devSettings && originalReload) {
+      devSettings.reload = (reason?: string) => {
+        console.warn(`[COLD-START-HOLD] dev_reload reason=${reason ?? 'none'} boot=+${Date.now() - BOOT_T0}ms`); // guard-ok: только dev
+        originalReload(reason);
+      };
+    } else {
+      console.warn('[COLD-START-HOLD] dev_reload hook: DevSettings.reload недоступен — причину перезагрузки не увидим'); // guard-ok: ранний выход логируется
+    }
+  } catch (error) {
+    console.warn('[COLD-START-HOLD] dev_reload hook failed', String(error)); // guard-ok: catch логируется
+  }
+}
 export function bootMark(step: string, extra?: unknown): void {
   if (!BOOT_TRACE_ENABLED) return;
   const ms = Date.now() - BOOT_T0;

@@ -36,6 +36,7 @@ import { STORE_URL } from './config';
 import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
+import { resolveNotificationLang } from './notification_lang';
 import {
   shouldAnnounceNextLessonUnlock,
   tryUnlockLevelExam,
@@ -877,7 +878,9 @@ export default function LessonComplete() {
           const streakRaw = await AsyncStorage.getItem('streak_count');
           const d1Streak = parseInt(streakRaw || '0') || 0;
           const langRaw = await AsyncStorage.getItem('app_lang');
-          const d1Lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
+          // зачем (аудит смены языка R1 п.3, Авторизация 13.10): прежний разбор `uk ? uk : es ? es : ru` слал D+1 по-русски
+          // для en/pt-BR/vi/id/tr/pl, хотя текст пуша есть на всех 9 языках — общий помощник, как у энергии и серии (ace26d405).
+          const d1Lang: Lang = resolveNotificationLang(langRaw, 'lesson_d1');
           scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(noteSwallowedHandler('lesson_complete:useCallback.scheduleD1PersonalizedReminder'));
         } catch (e) {
       DebugLogger.error('lesson_complete:langRaw', e instanceof Error ? e : new Error(String(e)), 'warning');

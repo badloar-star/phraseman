@@ -24,6 +24,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
+import { ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS } from './account_delete_timeout';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
@@ -4717,11 +4718,14 @@ async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | 'loca
       requiresDurableServerDeletion: false,
     };
   }
-  const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(
-    pendingDeleteStableId,
-    pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock) ?? undefined : undefined,
-    ...accountsV2EnqueueArgs,
-  );
+  const enqueueProof = pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock) ?? undefined : undefined;
+  // зачем (координатор 12.10, журнал прода: холодный старт ≈9 с > 8 с): у гостя ответ ждёт ФОН — дедлайн 25 с; связанные — прежний вызов.
+  const cloudDeleteEnqueueOperation = isProvablyAnonymousAccount
+    ? startCloudDeletionEnqueue(pendingDeleteStableId, enqueueProof, accountsV2Deletion ?? null, {
+      timeoutMs: ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS,
+      label: 'enqueue_guest',
+    })
+    : startCloudDeletionEnqueue(pendingDeleteStableId, enqueueProof, ...accountsV2EnqueueArgs);
   // зачем (TG-F5939EAC5D97): фон подпишется на ответ через секунды — ранний отказ сети не
   // должен стать «Uncaught (in promise)»; см. observeEarlyAcknowledgmentRejection.
   observeEarlyAcknowledgmentRejection(cloudDeleteEnqueueOperation, 'enqueue');

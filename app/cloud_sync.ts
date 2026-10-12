@@ -6227,13 +6227,17 @@ export function startCloudDeletionEnqueue(
   // зачем (Account V2, Пакет 6B): ключ удаления V2 (base64url 32 байта) — отдельным
   // полем accountsV2Deletion; без него (флаг V2 выключен) запрос байт-в-байт прежний.
   accountsV2Deletion?: AccountDeleteCredentialProof | null,
+  // зачем (координатор 12.10): только фоновая ветка гостя передаёт свой дедлайн (25 с); прочие вызовы — без аргумента, 8 с.
+  options?: Readonly<{ timeoutMs?: number; label?: string }>,
 ): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {
+  const enqueueTimeoutMs = options?.timeoutMs ?? ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS;
+  const enqueueLabel = options?.label ?? 'enqueue';
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
     return startAccountDeleteEnqueueWithDeadline(
       async () => { throw new Error('account_delete_enqueue_unavailable'); },
       async () => { throw new Error('account_delete_enqueue_unavailable'); },
-      ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
-      'enqueue',
+      enqueueTimeoutMs,
+      enqueueLabel,
     );
   }
   return startAccountDeleteEnqueueWithDeadline(
@@ -6249,7 +6253,7 @@ export function startCloudDeletionEnqueue(
         accountsV2Deletion?: AccountDeleteCredentialProof;
       }, AccountDeleteEnqueueAck>(
         'accountDeleteEnqueue',
-        { timeout: ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS },
+        { timeout: enqueueTimeoutMs },
       );
       const res = await fn(accountsV2Deletion
         ? { stableId, ...proof, accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability } }
@@ -6262,8 +6266,8 @@ export function startCloudDeletionEnqueue(
       ) throw new Error('account_delete_enqueue_failed');
       return res.data;
     },
-    ACCOUNT_DELETE_ENQUEUE_TIMEOUT_MS,
-    'enqueue',
+    enqueueTimeoutMs,
+    enqueueLabel,
   );
 }
 

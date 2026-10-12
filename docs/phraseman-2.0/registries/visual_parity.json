@@ -1215,8 +1215,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: набор с малым числом карточек для блица (cards=few)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -15854,8 +15854,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: удержание поиска друга в загрузке (dev_friends_hold=search)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -16324,8 +16324,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: ошибка обновления / офлайн вкладки «Друзья»"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -31861,8 +31861,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: правильный/неправильный ответ в «Правде/лжи» (порядок карточек случайный; аналог blitz_answer)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -31907,8 +31907,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: верный ввод в «Напиши» (порядок карточек случайный; аналог blitz_answer)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -32034,8 +32034,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: экран итога тренировки (с ошибками)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -32073,8 +32073,8 @@
         "to": "Дизайн",
         "at": "2026-10-11",
         "note": "склейка свежее правок кода — отличия актуальны",
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: экран итога тренировки (Блиц)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       },
       "precheck": {
         "date": "2026-10-11",
@@ -32135,8 +32135,8 @@
       "release": "r1",
       "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: экран итога тренировки (без ошибок)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -35948,8 +35948,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: правильный/неправильный ответ в «Правде/лжи» (порядок карточек случайный; аналог blitz_answer)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -35983,8 +35983,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: верный ввод в «Напиши» (порядок карточек случайный; аналог blitz_answer)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -36054,8 +36054,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: экран итога тренировки (с ошибками)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -36090,8 +36090,8 @@
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: экран итога тренировки (без ошибок)"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -36433,8 +36433,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: итог «Хороший результат» 12 из 20 с плашкой баланса"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {
@@ -36467,8 +36467,8 @@
       "reviewed_at": null,
       "release": "r1",
       "triage": {
-        "coverage": "manual_conditional",
-        "coverage_note": "нужна подмена Ядра: итог «Есть куда расти» 6 из 20 с плашкой баланса"
+        "coverage": "ready",
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
       }
     },
     {

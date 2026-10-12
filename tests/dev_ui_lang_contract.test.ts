@@ -77,3 +77,22 @@ describe('dev_state?uiLang — английский интерфейс без г
     expect(src).toContain("moveTo(event.x, 'drag');");
   });
 });
+
+describe('находки EN-прохода 12.10 (Сверка)', () => {
+  it('«Сохранённые»: подписи экрана идут на языке ИНТЕРФЕЙСА, контентный lang — только для перевода плитки', () => {
+    const src = read('app/flashcards/CollectionGalleryView.tsx');
+    expect(src).toContain("const { lang: uiLang } = useLang();");
+    expect(src).toContain('const copy = useMemo(() => copyFor(uiLang), [uiLang]);');
+    expect(src).toContain('const zoomCopy = useMemo(() => zoomCopyFor(uiLang), [uiLang]);');
+    expect(src).toContain('unlimitedLabelFor(uiLang)');
+    expect(src).not.toContain('copyFor(lang)');
+  });
+
+  it('редактор карточки: словарь STR берётся по языку интерфейса целиком (не сужен до ru/uk/es)', () => {
+    const src = read('app/flashcards_card_editor.tsx');
+    expect(src).toContain('const s = STR[lang] ?? STR.ru;');
+    expect(src).not.toContain("lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru'");
+    const consts = read('app/flashcards/constants.ts');
+    expect(consts).toContain("newCard: 'New flashcard'");
+  });
+});

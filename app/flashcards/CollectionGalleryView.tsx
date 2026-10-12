@@ -23,7 +23,8 @@ import { PanelCta, PanelDock, SheetRow } from '../../components/mistakes-panel/P
 import { actionBoxShadow } from '../../components/v2/ShadowSurface';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { PanelSheet } from '../../components/mistakes-panel/PanelSheet';
-import { triLang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
+import { useLang } from '../../components/LangContext';
 import { pluralWithCount, pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 import { noteSwallowedHandler } from '../swallow_log';
@@ -71,7 +72,7 @@ type Props = Readonly<{
 
 const SIDE = 20;
 
-const copyFor = (lang: FlashcardContentLang) => triLang(lang, {
+const copyFor = (lang: Lang) => triLang(lang, {
   ru: { train: 'Тренировать', speak: 'Озвучить', edit: 'Изменить', del: 'Удалить', hint: 'Зажми карточку, чтобы изменить или удалить её', hidden: (n: number) => `+${n} ${pluralWord('ru', n, { one: 'карточка скрыта', few: 'карточки скрыты', many: 'карточек скрыто' })}`, free: 'Бесплатно доступны первые 50 сохранённых карточек', plus: 'Открыть все с Plus', createPack: 'Создать набор', deleteSel: 'Удалить', more: (n: number) => `Выбери ещё ${pluralWithCount('ru', n, { one: 'карточку', few: 'карточки', many: 'карточек' })}, чтобы создать набор`, add: 'Добавить карточку', close: 'Закрыть' },
   uk: { train: 'Тренувати', speak: 'Озвучити', edit: 'Змінити', del: 'Видалити', hint: 'Затисни картку, щоб змінити або видалити її', hidden: (n: number) => `+${n} ${pluralWord('uk', n, { one: 'картка прихована', few: 'картки приховані', many: 'карток приховано' })}`, free: 'Безкоштовно доступні перші 50 збережених карток', plus: 'Відкрити все з Plus', createPack: 'Створити набір', deleteSel: 'Видалити', more: (n: number) => `Познач ще ${pluralWithCount('uk', n, { one: 'картку', few: 'картки', many: 'карток' })}, щоб створити набір`, add: 'Додати картку', close: 'Закрити' },
   en: { train: 'Practise', speak: 'Listen', edit: 'Edit', del: 'Delete', hint: 'Hold a card to edit or delete it', hidden: (n: number) => `+${n} ${pluralWord('en', n, { one: 'card hidden', few: 'cards hidden', many: 'cards hidden' })}`, free: 'The first 50 saved cards are free', plus: 'Unlock all with Plus', createPack: 'Create a pack', deleteSel: 'Delete', more: (n: number) => `Select ${n} more ${pluralWord('en', n, { one: 'card', few: 'cards', many: 'cards' })} to create a pack`, add: 'Add a card', close: 'Close' },
@@ -84,12 +85,12 @@ const copyFor = (lang: FlashcardContentLang) => triLang(lang, {
 });
 
 // зачем (cards-v2 `savedLimit`): подпись нижней кнопки при упёртом лимите Free — 9 языков
-const unlimitedLabelFor = (lang: FlashcardContentLang): string => triLang(lang, {
+const unlimitedLabelFor = (lang: Lang): string => triLang(lang, {
   ru: 'Безлимит с Plus', uk: 'Безліміт з Plus', en: 'Unlimited with Plus', es: 'Sin límite con Plus', 'pt-BR': 'Sem limite com Plus',
   vi: 'Không giới hạn với Plus', id: 'Tanpa batas dengan Plus', tr: 'Plus ile sınırsız', pl: 'Bez limitu z Plus',
 });
 
-const zoomCopyFor = (lang: FlashcardContentLang) => triLang(lang, {
+const zoomCopyFor = (lang: Lang) => triLang(lang, {
   ru: { smaller: 'Мельче', larger: 'Крупнее', more: 'Ещё' },
   uk: { smaller: 'Дрібніше', larger: 'Крупніше', more: 'Ще' },
   en: { smaller: 'Smaller', larger: 'Larger', more: 'More' },
@@ -111,8 +112,11 @@ export default function CollectionGalleryView({
   selectionRemaining, onCreatePack, onDeleteSelected, showDeleteHint, onSetShowDeleteHint, onTrain, allowAddCustomCard, onCreateCard, activeCat, searchQuery, searchField, gridTopGap,
 }: Props) {
   const g = useLv2Glass();
-  const copy = useMemo(() => copyFor(lang), [lang]);
-  const zoomCopy = useMemo(() => zoomCopyFor(lang), [lang]);
+  // зачем (EN-проход Сверки 12.10, cards-007/010 «Тренировать» по-русски при uiLang=en): подписи экрана — это ЯЗЫК ИНТЕРФЕЙСА, а `lang` приходит КОНТЕНТНЫЙ (flashcardContentLang: у en/pt-BR/vi… он ru/uk/es) —
+  // поэтому все подписи (кнопки, подсказка, лимит) шли на языке перевода карточек, а не интерфейса. Контентный `lang` остаётся только для перевода на плитке.
+  const { lang: uiLang } = useLang();
+  const copy = useMemo(() => copyFor(uiLang), [uiLang]);
+  const zoomCopy = useMemo(() => zoomCopyFor(uiLang), [uiLang]);
   const insets = useStableSafeAreaInsets();
   const { width: screenW, height: screenH } = useWindowDimensions();
   const width = screenW - SIDE * 2;
@@ -312,9 +316,9 @@ export default function CollectionGalleryView({
 
       {limitCta && !selectionMode ? (
         <View pointerEvents="box-none" style={[styles.limitBar, { bottom: Math.max(16, insets.bottom + 6) }]}>
-          <Pressable testID="fc-gallery-unlimited" accessibilityRole="button" accessibilityLabel={unlimitedLabelFor(lang)} onPress={limitCta.onPress} style={({ pressed }) => [styles.limitBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
+          <Pressable testID="fc-gallery-unlimited" accessibilityRole="button" accessibilityLabel={unlimitedLabelFor(uiLang)} onPress={limitCta.onPress} style={({ pressed }) => [styles.limitBtn, { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) }, pressed && styles.fabPressed]}>
             <Ionicons name="lock-open-outline" size={18} color={g.accentInk} />
-            <Text style={[styles.limitBtnText, { color: g.accentInk }]}>{unlimitedLabelFor(lang)}</Text>
+            <Text style={[styles.limitBtnText, { color: g.accentInk }]}>{unlimitedLabelFor(uiLang)}</Text>
           </Pressable>
         </View>
       ) : null}

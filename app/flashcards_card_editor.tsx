@@ -193,8 +193,8 @@ export default function FlashcardsCardEditorScreen() {
     } as never);
   }, [creatorLocked, router]);
 
-  const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-  const s = STR[strLang];
+  // зачем (EN-проход Сверки 12.10, cards-021 «Новая карточка» по-русски при uiLang=en): словарь STR есть на всех 9 языках интерфейса, а выбор был сужен до ru/uk/es — en, pt-BR, vi, id, tr, pl падали в русский.
+  const s = STR[lang] ?? STR.ru;
 
   const [existing, setExisting] = useState<CardItem | null>(null);
   /** edit: пока карточка не найдена — форма не показывается (иначе save создаст дубликат). */

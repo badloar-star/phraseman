@@ -104,7 +104,11 @@
       "release": "r1",
       "evidence": null,
       "evidence_at": null,
-      "evidence_sha256": null
+      "evidence_sha256": null,
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-003",
@@ -756,7 +760,11 @@
         "label": "Чужой — до добавления",
         "mapping": "manual_rebind"
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-019",
@@ -794,7 +802,11 @@
         "label": "Чужой — добавлен, лайк",
         "mapping": "manual_rebind"
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-020",
@@ -825,7 +837,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-021",
@@ -906,7 +922,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-023",
@@ -988,7 +1008,11 @@
       "reviewed_by": null,
       "reviewed_at": "2026-10-12T00:25:03.161Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/community_pack_create?packId=loc"
+      }
     },
     {
       "id": "cards-025",
@@ -1071,7 +1095,11 @@
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C02)"
+      }
     },
     {
       "id": "cards-027",
@@ -1106,7 +1134,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_by_code",
+        "coverage_note": "cards-027: На экране настройки тренировки выбора языка набора нет (TrainingSetupV2.tsx). Кнопка `pack-language-picker` есть в шапке каталога сообщества: «Каталог» → тап `pack-language-picker` (PackLan"
+      }
     },
     {
       "id": "cards-028",
@@ -1230,7 +1262,11 @@
         "label": "Сейчас недоступно",
         "mapping": "manual_rebind"
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C01"
+      }
     },
     {
       "id": "cards-031",
@@ -1300,7 +1336,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-033",
@@ -1334,7 +1374,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-034",
@@ -1512,7 +1556,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-039",
@@ -1589,7 +1637,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-041",
@@ -1624,7 +1676,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-042",
@@ -1659,7 +1715,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "cards-043",
@@ -1692,7 +1752,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-044",
@@ -1725,7 +1789,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-045",
@@ -1915,7 +1983,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "cards-050",
@@ -1946,7 +2018,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-051",
@@ -1977,7 +2053,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-052",
@@ -2008,7 +2088,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-053",
@@ -2039,7 +2123,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "cards-054",
@@ -2070,7 +2158,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-055",
@@ -2101,7 +2193,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-056",
@@ -2134,7 +2230,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-057",
@@ -2165,7 +2265,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-058",
@@ -2196,7 +2300,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-059",
@@ -2227,7 +2335,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-060",
@@ -2259,7 +2371,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_by_code",
+        "coverage_note": "cards-060: В коде нет: `shouldGateCreator` всегда false (creator_access.ts:31-36), `fc-editor-skeleton` показывается только на мгновенное чтение карточки при правке."
+      }
     },
     {
       "id": "cards-061",
@@ -2291,7 +2407,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-062",
@@ -2364,7 +2484,11 @@
       "reviewed_by": null,
       "reviewed_at": "2026-10-12T00:25:03.161Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_card_editor?id=dev_mi"
+      }
     },
     {
       "id": "cards-064",
@@ -2396,7 +2520,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-065",
@@ -2428,7 +2556,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/community_pack_create?packId=loc"
+      }
     },
     {
       "id": "cards-066",
@@ -2460,7 +2592,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-067",
@@ -2492,7 +2628,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-068",
@@ -2524,7 +2664,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-069",
@@ -2556,7 +2700,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-070",
@@ -2588,7 +2736,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-071",
@@ -2620,7 +2772,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-072",
@@ -2654,7 +2810,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-073",
@@ -2686,7 +2846,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-074",
@@ -2718,7 +2882,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C09"
+      }
     },
     {
       "id": "cards-075",
@@ -2793,7 +2961,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-077",
@@ -2826,7 +2998,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load"
+      }
     },
     {
       "id": "cards-078",
@@ -2859,7 +3035,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C09"
+      }
     },
     {
       "id": "cards-079",
@@ -2894,7 +3074,11 @@
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-080",
@@ -2961,7 +3145,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_video_packs"
+      }
     },
     {
       "id": "cards-082",
@@ -2993,7 +3181,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "cards-082: Тап `video-set-hero` вызывает `Linking.openURL` (VideoPackRow.tsx:75-99): на эмуляторе откроется браузер. Обход: `adb shell pm disable-user --user 0 "
+      }
     },
     {
       "id": "cards-083",
@@ -3990,7 +4182,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off"
+      }
     },
     {
       "id": "spire-003",
@@ -4034,7 +4230,11 @@
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
       "mockup_pinned": "Макеты 12.10: тур 3 слово в слово как в коде (tour3Title/tour3Text: «Верхние 15% …», «Нижние 15% и все без ступеней спускаются») — расхождение с правилом 5 закрыто Дизайном в коде.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=tour%26spirePanel=off"
+      }
     },
     {
       "id": "spire-004",
@@ -4138,7 +4338,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=room%26spirePanel=off"
+      }
     },
     {
       "id": "spire-006",
@@ -4342,7 +4546,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=step_choice%26spirePanel=of"
+      }
     },
     {
       "id": "spire-010",
@@ -4388,7 +4596,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=passed%26spirePanel=off"
+      }
     },
     {
       "id": "spire-011",
@@ -4487,7 +4699,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=guard%26spirePanel=off"
+      }
     },
     {
       "id": "spire-013",
@@ -4644,7 +4860,11 @@
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
       "mockup_pinned": "Макеты 12.10: «Остаёшься в шпиле {камень}» (weekStay); «спускаешься» — кадр в spire-gaps-states.html (spire-gap-017).",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=weekresult_stay%26spirePane"
+      }
     },
     {
       "id": "spire-016",
@@ -4689,7 +4909,11 @@
         "verdict": "ok",
         "notes": "Тексты макета найдены в components/spire/spire_game_strings.ts (шаблоны с подстановкой). Состав/порядок/раскладку по коду не проверить — только снимок."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=0&overlays=off&next=/dev_spire_preview?state=room%26sp"
+      }
     },
     {
       "id": "spire-017",
@@ -5971,7 +6195,11 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: текст шторки согласия — как в AiDialogConsentModal.tsx: «Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.» + «Можно выключить в настройках в любой момент.»",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D04)"
+      }
     },
     {
       "id": "dialogs-010",
@@ -6009,7 +6237,11 @@
         "kind": "осознанное отличие"
       },
       "mockup_pinned": "Макеты 12.10: «AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.» (ты, как в ai_dialog_consent_gate.tsx).",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D04"
+      }
     },
     {
       "id": "dialogs-011",
@@ -6043,7 +6275,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&dev_energy_fail=1&coinRank=6&aiConsent=granted&overlays=off&n"
+      }
     },
     {
       "id": "dialogs-012",
@@ -6080,7 +6316,11 @@
       },
       "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
+      }
     },
     {
       "id": "dialogs-013",
@@ -6118,7 +6358,11 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: шапка сессии: энергия и ответы — две плашки во второй строке рядом с настроением (DialogueV2SessionScreen, решение 02.10); три точки под микрофоном и бейдж PLUS убраны.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D05)"
+      }
     },
     {
       "id": "dialogs-014",
@@ -6496,7 +6740,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D05)"
+      }
     },
     {
       "id": "dialogs-022",
@@ -6632,7 +6880,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)"
+      }
     },
     {
       "id": "dialogs-025",
@@ -6669,7 +6921,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)"
+      }
     },
     {
       "id": "dialogs-026",
@@ -6707,7 +6963,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+      }
     },
     {
       "id": "dialogs-027",
@@ -6743,7 +7003,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)"
+      }
     },
     {
       "id": "dialogs-028",
@@ -6777,7 +7041,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+      }
     },
     {
       "id": "dialogs-029",
@@ -6812,7 +7080,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent"
+      }
     },
     {
       "id": "dialogs-030",
@@ -6996,7 +7268,11 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: текст «Диалоги на паузе» — как в коде (dialogue_v2_session_coaching_labels.ts pausedMessage): «Собеседники сейчас недоступны. Загляни чуть позже.»",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "paused | dev_state?dialogs_paused=1"
+      }
     },
     {
       "id": "dialogs-034",
@@ -7176,7 +7452,11 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+      }
     },
     {
       "id": "dialogs-038",
@@ -7263,7 +7543,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D10"
+      }
     },
     {
       "id": "dialogs-040",
@@ -7297,7 +7581,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+      }
     },
     {
       "id": "dialogs-041",
@@ -7383,7 +7671,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+      }
     },
     {
       "id": "dialogs-043",
@@ -7420,7 +7712,11 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "mockup_pinned": "Макеты 12.10: «Разговор завершён»: «Твоих реплик: 3.» (без «Ориентир…») и плашка настроения — как dialogue_v2_completion.tsx.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+      }
     },
     {
       "id": "dialogs-044",
@@ -7456,7 +7752,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+      }
     },
     {
       "id": "dialogs-045",
@@ -7491,7 +7791,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+      }
     },
     {
       "id": "dialogs-046",
@@ -7526,7 +7830,11 @@
         "verdict": "ok",
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+      }
     },
     {
       "id": "learn-001",
@@ -14396,7 +14704,11 @@
         "guard_test": "tests/spire_tab_gate_source_contract.test.mjs"
       },
       "blocked_reason": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-S01)"
+      }
     },
     {
       "id": "community-003",
@@ -14653,7 +14965,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-009",
@@ -14684,7 +15000,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-010",
@@ -14715,7 +15035,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_friends_hold=add_request"
+      }
     },
     {
       "id": "community-011",
@@ -14746,7 +15070,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "error | dev_friends_fail=add|search"
+      }
     },
     {
       "id": "community-012",
@@ -14777,7 +15105,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-013",
@@ -14808,7 +15140,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-014",
@@ -14838,7 +15174,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "lookupUserByFriendCode"
+      }
     },
     {
       "id": "community-015",
@@ -14869,7 +15209,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-016",
@@ -14900,7 +15244,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "error | dev_friends_fail=add|search"
+      }
     },
     {
       "id": "community-017",
@@ -14930,7 +15278,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-018",
@@ -14960,7 +15312,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-019",
@@ -14990,7 +15346,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-020",
@@ -15064,7 +15424,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-022",
@@ -15093,7 +15457,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "study_invite | dev_state?friend_event=study_invite | friendsTogetherUiEnabled=false"
+      }
     },
     {
       "id": "community-023",
@@ -15122,7 +15490,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02 (частично))"
+      }
     },
     {
       "id": "community-024",
@@ -15151,7 +15523,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-M02)"
+      }
     },
     {
       "id": "community-025",
@@ -15903,7 +16279,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-017",
@@ -15938,7 +16318,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=monthly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-018",
@@ -15973,7 +16357,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=lifetime&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-019",
@@ -16008,7 +16396,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "profile-020",
@@ -16043,7 +16435,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-021",
@@ -16078,7 +16474,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-022",
@@ -16113,7 +16513,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-023",
@@ -16150,7 +16554,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+      }
     },
     {
       "id": "profile-024",
@@ -16187,7 +16595,11 @@
         "verdict": "ok",
         "notes": "Статические тексты образца найдены в коде (непонятные «не найдено» — подписи/пояснения макета и демо-данные). Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "profile-025",
@@ -17923,7 +18335,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/ai_kill_switch_copy.ts. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_blocked",
+        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+      }
     },
     {
       "id": "paywalls-009",
@@ -17959,7 +18375,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/lesson_complete.tsx. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_blocked",
+        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+      }
     },
     {
       "id": "paywalls-010",
@@ -17995,7 +18415,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Привязка кода уточнена: тексты лежат в app/lesson_complete.tsx. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_blocked",
+        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+      }
     },
     {
       "id": "paywalls-011",
@@ -18358,7 +18782,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "paywalls-020",
@@ -18393,7 +18821,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+      }
     },
     {
       "id": "paywalls-021",
@@ -18428,7 +18860,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=lifetime&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "paywalls-022",
@@ -18463,7 +18899,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "paywalls-023",
@@ -18498,7 +18938,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "paywalls-024",
@@ -18533,7 +18977,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
+      }
     },
     {
       "id": "paywalls-025",
@@ -18568,7 +19016,11 @@
         "verdict": "ok",
         "notes": "Строки макета, не найденные в коде, — пояснительные подписи самого макета (описание состояния), не UI-текст; UI-тексты найдены. Состав/порядок — по снимку."
       },
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A06"
+      }
     },
     {
       "id": "system-001",
@@ -23619,7 +24071,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-005",
@@ -23649,7 +24105,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-006",
@@ -23679,7 +24139,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "overlays-campaigns-007",
@@ -23709,7 +24173,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=ok&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-008",
@@ -23739,7 +24207,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=lifetime&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-009",
@@ -23769,7 +24241,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=not_found&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-010",
@@ -23799,7 +24275,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=expired&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-011",
@@ -23829,7 +24309,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=limit&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-012",
@@ -23859,7 +24343,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=used&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-013",
@@ -23889,7 +24377,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_by_code",
+        "coverage_note": "`overlays-campaigns-013` — «Неверный формат» промокода: кнопка выключена, сообщения нет."
+      }
     },
     {
       "id": "overlays-campaigns-014",
@@ -23919,7 +24411,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=disabled&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-015",
@@ -23949,7 +24445,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&promo=error&overlays=off&next=/promo_code_entry"
+      }
     },
     {
       "id": "overlays-campaigns-016",
@@ -23979,7 +24479,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=none&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-017",
@@ -24009,7 +24513,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=none&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-018",
@@ -24039,7 +24547,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=hold&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-019",
@@ -24069,7 +24581,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=applied&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-020",
@@ -24099,7 +24615,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=already&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-021",
@@ -24129,7 +24649,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_by_code",
+        "coverage_note": "`overlays-campaigns-021` — «Неверный формат» кода друга: кнопка выключена до 4 символов, статус `invalid` недостижим."
+      }
     },
     {
       "id": "overlays-campaigns-022",
@@ -24159,7 +24683,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=unknown_code&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-023",
@@ -24189,7 +24717,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=self&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-024",
@@ -24219,7 +24751,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=too_old&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-025",
@@ -24249,7 +24785,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=disabled&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-026",
@@ -24279,7 +24819,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 5, «Код друга»; светлая тема — телефоны 14–26), эталон сразу",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&referral=on&refcode=error&overlays=off&next=/referrals?enter=1"
+      }
     },
     {
       "id": "overlays-campaigns-027",
@@ -27267,7 +27811,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-section-006",
@@ -27316,7 +27864,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-section-007",
@@ -27426,7 +27978,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
+      }
     },
     {
       "id": "cards-section-009",
@@ -27531,7 +28087,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
+      }
     },
     {
       "id": "cards-section-011",
@@ -27574,7 +28134,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-section-012",
@@ -27620,7 +28184,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-section-013",
@@ -27666,7 +28234,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-018: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-014",
@@ -27712,7 +28284,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-019: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-015",
@@ -27759,7 +28335,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-section-016",
@@ -27805,7 +28385,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
+      }
     },
     {
       "id": "cards-section-017",
@@ -27851,7 +28435,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-section-018",
@@ -27897,7 +28485,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-019",
@@ -27945,7 +28537,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-section-020",
@@ -27993,7 +28589,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-section-021",
@@ -28039,7 +28639,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/community_pack_create?packId=loc"
+      }
     },
     {
       "id": "cards-section-022",
@@ -28082,7 +28686,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
+      }
     },
     {
       "id": "cards-section-023",
@@ -28127,7 +28735,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
+      }
     },
     {
       "id": "cards-section-024",
@@ -28395,7 +29007,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C01)"
+      }
     },
     {
       "id": "cards-section-030",
@@ -28440,7 +29056,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-043: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-031",
@@ -28485,7 +29105,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-032",
@@ -28629,7 +29253,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-section-035",
@@ -28673,7 +29301,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-section-036",
@@ -28717,7 +29349,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-section-037",
@@ -28795,7 +29431,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-076: ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-section-039",
@@ -28837,7 +29477,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-040",
@@ -28879,7 +29523,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-041",
@@ -28925,7 +29573,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-section-042",
@@ -28967,7 +29619,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-043",
@@ -29011,7 +29667,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-044",
@@ -29168,7 +29828,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?speech=correct|wrong"
+      }
     },
     {
       "id": "cards-section-047",
@@ -29278,7 +29942,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-050",
@@ -29320,7 +29988,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-051",
@@ -29396,7 +30068,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-section-053",
@@ -29439,7 +30115,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "cards-section-054",
@@ -29475,7 +30155,9 @@
         "action": "исправить",
         "to": "Дизайн",
         "at": "2026-10-11",
-        "note": "склейка свежее правок кода — отличия актуальны"
+        "note": "склейка свежее правок кода — отличия актуальны",
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-053: записи ссылки нет — путь есть в shot list (G-C06)"
       },
       "precheck": {
         "date": "2026-10-11",
@@ -29534,7 +30216,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "cards-section-056",
@@ -29578,7 +30264,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-v2-030.)"
+      }
     },
     {
       "id": "cards-section-057",
@@ -29753,7 +30443,11 @@
         "mapping": "by_construction"
       },
       "release": "r1",
-      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть"
+      "code_note": "Заполнено 12.10 (сессия «Макеты»): список кода был пуст, хотя экран в приложении есть",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-013.)"
+      }
     },
     {
       "id": "packs-simple-004",
@@ -29894,7 +30588,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+      }
     },
     {
       "id": "energy-modes-003",
@@ -29934,7 +30632,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+      }
     },
     {
       "id": "energy-modes-004",
@@ -29973,7 +30675,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+      }
     },
     {
       "id": "energy-modes-005",
@@ -30009,7 +30715,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+      }
     },
     {
       "id": "energy-modes-006",
@@ -30047,7 +30757,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01 (гипотеза)"
+      }
     },
     {
       "id": "energy-modes-007",
@@ -30084,7 +30798,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
+      }
     },
     {
       "id": "energy-modes-008",
@@ -30122,7 +30840,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01 (гипотеза)"
+      }
     },
     {
       "id": "energy-modes-009",
@@ -30234,7 +30956,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E04"
+      }
     },
     {
       "id": "energy-modes-012",
@@ -30270,7 +30996,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E05"
+      }
     },
     {
       "id": "energy-modes-013",
@@ -30305,7 +31035,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E06"
+      }
     },
     {
       "id": "energy-modes-014",
@@ -30340,7 +31074,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E06"
+      }
     },
     {
       "id": "energy-modes-015",
@@ -30377,7 +31115,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E07"
+      }
     },
     {
       "id": "energy-modes-016",
@@ -30414,7 +31156,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E07"
+      }
     },
     {
       "id": "energy-modes-017",
@@ -30449,7 +31195,11 @@
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). Текст окна — одна из фраз lesson1_energy.ts (случайно), «+1 ⚡ вернётся через {время}»; кнопки «Открыть Plus» и «Позже» (NoEnergyModal.tsx). Серии монет «×N» в коде уроков нет — из кадров убрана (12.10).",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&energy=0&plus=off&mode=a&overlays=off&next=/lesson_menu?id=1"
+      }
     },
     {
       "id": "onboarding-paywall-001",
@@ -30479,7 +31229,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?paywall=loading|live|reference|failed"
+      }
     },
     {
       "id": "onboarding-paywall-002",
@@ -30579,7 +31333,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A01)"
+      }
     },
     {
       "id": "onboarding-003",
@@ -30609,7 +31367,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "onboarding-004",
@@ -30639,7 +31401,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "onboarding-005",
@@ -30669,7 +31435,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+      }
     },
     {
       "id": "onboarding-006",
@@ -30699,7 +31469,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?auth=none"
+      }
     },
     {
       "id": "onboarding-007",
@@ -30764,7 +31538,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "onboarding-009",
@@ -30829,7 +31607,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?greet=<строка>"
+      }
     },
     {
       "id": "onboarding-011",
@@ -31279,7 +32061,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?paywall=loading|live|reference|failed"
+      }
     },
     {
       "id": "onboarding-026",
@@ -31309,7 +32095,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+      }
     },
     {
       "id": "onboarding-027",
@@ -31339,7 +32129,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+      }
     },
     {
       "id": "onboarding-028",
@@ -31369,7 +32163,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+      }
     },
     {
       "id": "onboarding-029",
@@ -31399,7 +32197,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A09)"
+      }
     },
     {
       "id": "cards-v2-001",
@@ -31579,7 +32381,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-006",
@@ -31615,7 +32421,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-007",
@@ -31651,7 +32461,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-008",
@@ -31687,7 +32501,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-009",
@@ -31723,7 +32541,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-010",
@@ -31759,7 +32581,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-011",
@@ -31795,7 +32621,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&next=/flashcards_collection?cat=save"
+      }
     },
     {
       "id": "cards-v2-012",
@@ -31827,7 +32657,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-v2-013",
@@ -31859,7 +32693,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=off&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-v2-014",
@@ -31894,7 +32732,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-v2-015",
@@ -31929,7 +32771,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-018: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-v2-016",
@@ -31964,7 +32810,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-019: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-v2-017",
@@ -31999,7 +32849,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-v2-018",
@@ -32033,7 +32887,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_video_packs"
+      }
     },
     {
       "id": "cards-v2-019",
@@ -32067,7 +32925,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-043: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-v2-020",
@@ -32100,7 +32962,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-021",
@@ -32133,7 +32999,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-022",
@@ -32168,7 +33038,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-v2-023",
@@ -32203,7 +33077,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/community_pack_create?packId=loc"
+      }
     },
     {
       "id": "cards-v2-024",
@@ -32238,7 +33116,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=empty&plus=on&overlays=off&next=/community_pack_create"
+      }
     },
     {
       "id": "cards-v2-025",
@@ -32270,7 +33152,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
+      }
     },
     {
       "id": "cards-v2-026",
@@ -32302,7 +33188,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
+      }
     },
     {
       "id": "cards-v2-027",
@@ -32333,7 +33223,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-v2-028",
@@ -32366,7 +33260,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-v2-029",
@@ -32399,7 +33297,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-076: ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C02"
+      }
     },
     {
       "id": "cards-v2-030",
@@ -32471,7 +33373,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-039: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-032",
@@ -32502,7 +33408,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-section-040: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-v2-033",
@@ -32533,7 +33443,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-042: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-034",
@@ -32564,7 +33478,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-043: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-035",
@@ -32595,7 +33513,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-section-044.)"
+      }
     },
     {
       "id": "cards-v2-036",
@@ -32626,7 +33548,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль строки — снимается тем же кадром, что и соседняя ((dup) То же, что cards-section-045.)"
+      }
     },
     {
       "id": "cards-v2-037",
@@ -32657,7 +33583,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: —"
+      }
     },
     {
       "id": "cards-v2-038",
@@ -32688,7 +33618,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-049: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-039",
@@ -32719,7 +33653,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-050: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-040",
@@ -32750,7 +33688,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-052: записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-041",
@@ -32782,7 +33724,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-053: записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "cards-v2-042",
@@ -32814,7 +33760,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-055: записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "cards-v2-043",
@@ -32879,7 +33829,11 @@
       "reviewed_by": null,
       "reviewed_at": null,
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "дубль cards-section-029: записи ссылки нет — путь есть в shot list (G-C01)"
+      }
     },
     {
       "id": "cards-v2-045",
@@ -32910,7 +33864,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&cards=custom50&overlays=off&next=/flashcards_collection?cat=s"
+      }
     },
     {
       "id": "cards-v2-046",
@@ -32940,7 +33898,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&cards=custom50&overlays=off&next=/flashcards_card_editor?crea"
+      }
     },
     {
       "id": "cards-v2-047",
@@ -32970,7 +33932,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C07"
+      }
     },
     {
       "id": "cards-v2-048",
@@ -33000,7 +33966,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-v2-049",
@@ -33030,7 +34000,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-050",
@@ -33060,7 +34034,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C05)"
+      }
     },
     {
       "id": "cards-v2-051",
@@ -33090,7 +34068,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "cards-v2-052",
@@ -33120,7 +34102,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C06)"
+      }
     },
     {
       "id": "auth-gap-001",
@@ -33150,7 +34136,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A02)"
+      }
     },
     {
       "id": "auth-gap-002",
@@ -33180,7 +34170,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+      }
     },
     {
       "id": "auth-gap-003",
@@ -33211,7 +34205,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A11)"
+      }
     },
     {
       "id": "auth-gap-004",
@@ -33242,7 +34240,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-005",
@@ -33273,7 +34275,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-006",
@@ -33304,7 +34310,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_blocked",
+        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+      }
     },
     {
       "id": "auth-gap-007",
@@ -33334,7 +34344,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_blocked",
+        "coverage_note": "нужна подготовка вне приложения (серверный код/аккаунт/ИИ) — вынести владельцу"
+      }
     },
     {
       "id": "auth-gap-008",
@@ -33364,7 +34378,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?restore=retired"
+      }
     },
     {
       "id": "auth-gap-009",
@@ -33394,7 +34412,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A10)"
+      }
     },
     {
       "id": "auth-gap-010",
@@ -33424,7 +34446,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-A02)"
+      }
     },
     {
       "id": "auth-gap-011",
@@ -33454,7 +34480,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?delete=fail"
+      }
     },
     {
       "id": "auth-gap-012",
@@ -33485,7 +34515,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?plustransfer=on"
+      }
     },
     {
       "id": "auth-gap-013",
@@ -33515,7 +34549,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-014",
@@ -33545,7 +34583,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-015",
@@ -33575,7 +34617,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-016",
@@ -33605,7 +34651,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "Сбои сети: `onboarding-003` (медленная сеть), `onboarding-004`, `onboarding-008` (текст по коду ошибки), `settings-gap-024, 031` (проверка имени), `overlays-cam"
+      }
     },
     {
       "id": "auth-gap-017",
@@ -33635,7 +34685,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "auth-gap-018",
@@ -33666,7 +34720,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?switch=not_uploaded|backup_blocked|unsaved_cards|pending_spend|quarantine|guard|slow"
+      }
     },
     {
       "id": "dialogs-gap-001",
@@ -33696,7 +34754,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+      }
     },
     {
       "id": "dialogs-gap-002",
@@ -33726,7 +34788,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&overlays=off&next=/dialogue_v2_memory"
+      }
     },
     {
       "id": "dialogs-gap-003",
@@ -33756,7 +34822,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&dquota=reset&overlays=off&next=/dialogue_v2_memory"
+      }
     },
     {
       "id": "dialogs-gap-004",
@@ -33786,7 +34856,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+      }
     },
     {
       "id": "dialogs-gap-005",
@@ -33816,7 +34890,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+      }
     },
     {
       "id": "dialogs-gap-006",
@@ -33846,7 +34924,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D09)"
+      }
     },
     {
       "id": "dialogs-gap-007",
@@ -33876,7 +34958,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+      }
     },
     {
       "id": "dialogs-gap-008",
@@ -33906,7 +34992,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D08)"
+      }
     },
     {
       "id": "dialogs-gap-009",
@@ -33936,7 +35026,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&hold=freeform_loading&overlays=off&next=/dialogue_v2_freeform"
+      }
     },
     {
       "id": "dialogs-gap-010",
@@ -33966,7 +35060,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/dialogue_v2_freeform"
+      }
     },
     {
       "id": "dialogs-gap-011",
@@ -33996,7 +35094,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-D09"
+      }
     },
     {
       "id": "dialogs-gap-012",
@@ -34026,7 +35128,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&dev_dialog_fail=plus_"
+      }
     },
     {
       "id": "dialogs-gap-013",
@@ -34057,7 +35163,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-D06)"
+      }
     },
     {
       "id": "dialogs-gap-014",
@@ -34088,7 +35198,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "путь не гарантирован (ИИ/троттлинг/распознавание речи)"
+      }
     },
     {
       "id": "dialogs-gap-015",
@@ -34118,7 +35232,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent="
+      }
     },
     {
       "id": "dialogs-gap-016",
@@ -34148,7 +35266,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "service | rate_limited | plus_daily_cap | dev_dialog_fail=service|rate_limited|plus_daily_cap"
+      }
     },
     {
       "id": "dialogs-gap-017",
@@ -34431,7 +35553,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=block_offline%26spirePanel="
+      }
     },
     {
       "id": "spire-gap-008",
@@ -34542,7 +35668,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S01"
+      }
     },
     {
       "id": "spire-gap-011",
@@ -34610,7 +35740,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04"
+      }
     },
     {
       "id": "spire-gap-013",
@@ -34640,7 +35774,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S04"
+      }
     },
     {
       "id": "spire-gap-014",
@@ -34863,7 +36001,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-S01"
+      }
     },
     {
       "id": "spire-gap-020",
@@ -34932,7 +36074,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "состояние превью уже есть (&exit=1 | step_*) — записать ссылку в DEV_LINKS_R1"
+      }
     },
     {
       "id": "spire-gap-022",
@@ -34962,7 +36108,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-S03)"
+      }
     },
     {
       "id": "cards-gap-001",
@@ -34992,7 +36142,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&train_gate=fail_blitz&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-gap-002",
@@ -35022,7 +36176,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&train_gate=fail_speaking&overlays=off&next=/flashca"
+      }
     },
     {
       "id": "cards-gap-003",
@@ -35052,7 +36210,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?hold=hub_loading|saved_loading|catalog_loading|setup_loading|quota_waiting|quota_failed|voices_loading"
+      }
     },
     {
       "id": "cards-gap-004",
@@ -35119,7 +36281,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?train_gate=fail_blitz|fail_speaking|fail_swipe_prepare|fail_swipe_quota"
+      }
     },
     {
       "id": "cards-gap-006",
@@ -35186,7 +36352,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=notranslation&plus=on&overlays=off&next=/flashcards_truefalse_se"
+      }
     },
     {
       "id": "cards-gap-008",
@@ -35216,7 +36386,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=notranslation&plus=on&overlays=off&next=/flashcards_recall_sessi"
+      }
     },
     {
       "id": "cards-gap-009",
@@ -35246,7 +36420,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?fail=saved_load|setup_decks|recall_load"
+      }
     },
     {
       "id": "cards-gap-010",
@@ -35313,7 +36491,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&hold=quota_waiting&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-gap-012",
@@ -35343,7 +36525,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&hold=quota_failed&overlays=off&next=/flashcards"
+      }
     },
     {
       "id": "cards-gap-013",
@@ -35543,7 +36729,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-gap-019",
@@ -35573,7 +36763,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
+      }
     },
     {
       "id": "cards-gap-020",
@@ -35603,7 +36797,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-gap-021",
@@ -35633,7 +36831,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_collection?cat=saved"
+      }
     },
     {
       "id": "cards-gap-022",
@@ -35663,7 +36865,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?fail=card_write|pack_write"
+      }
     },
     {
       "id": "cards-gap-023",
@@ -35693,7 +36899,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-024",
@@ -35723,7 +36933,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "в `cards=demo` добавить карточки `source=lesson` с `sourceId` 1–3."
+      }
     },
     {
       "id": "cards-gap-025",
@@ -35753,7 +36967,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "owner_prod_write",
+        "coverage_note": "путь пишет/шлёт в прод — только с явным «да» владельца"
+      }
     },
     {
       "id": "cards-gap-026",
@@ -35820,7 +37038,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C04)"
+      }
     },
     {
       "id": "cards-gap-028",
@@ -35850,7 +37072,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-029",
@@ -35880,7 +37106,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "cards-gap-030",
@@ -35910,7 +37140,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&overlays=off&next=/flashcards_my_packs"
+      }
     },
     {
       "id": "cards-gap-031",
@@ -35940,7 +37174,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "cards-gap-032",
@@ -35970,7 +37208,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-033",
@@ -36000,7 +37242,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-034",
@@ -36031,7 +37277,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&catalog=demo&overlays=off&next=/flashcards_packs"
+      }
     },
     {
       "id": "cards-gap-035",
@@ -36062,7 +37312,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?fail=card_write|pack_write"
+      }
     },
     {
       "id": "cards-gap-036",
@@ -36092,7 +37346,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-037",
@@ -36156,7 +37414,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "paywall-gap-001",
@@ -36226,7 +37488,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&next=/premium_modal?context=gen"
+      }
     },
     {
       "id": "paywall-gap-003",
@@ -36256,7 +37522,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&next=/premium_modal?context=gen"
+      }
     },
     {
       "id": "paywall-gap-004",
@@ -36325,7 +37595,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&free=on&energy=5&overlays=off&next=/premium_modal?context=gen"
+      }
     },
     {
       "id": "paywall-gap-006",
@@ -36543,9 +37817,9 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-011.png",
+      "evidence_at": "2026-10-11T22:30:50.518Z",
+      "evidence_sha256": "b131db28738604b2ccacf681f69e37b70dc08754c4af269662824fbee9842324",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -36553,7 +37827,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=purchase_confirmed&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "paywall-gap-012",
@@ -36573,9 +37851,9 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-012.png",
+      "evidence_at": "2026-10-11T22:32:32.491Z",
+      "evidence_sha256": "03d7c4fd18327f593e82e12b47f61de10a7c60d37d774c85a59f24eb239681b6",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -36583,7 +37861,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=restored&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "paywall-gap-013",
@@ -36603,9 +37885,9 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywall-gap-013.png",
+      "evidence_at": "2026-10-11T22:31:16.364Z",
+      "evidence_sha256": "0da078072810572898e79eb1b7bd3b75257e072523fb81fb9c65058fb8b03ce0",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -36613,7 +37895,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&toast=restore_failed&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-001",
@@ -36643,7 +37929,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A10"
+      }
     },
     {
       "id": "settings-gap-002",
@@ -36673,7 +37963,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-003",
@@ -36703,7 +37997,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-004",
@@ -36771,7 +38069,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&vip=referral&plus=inherit&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-006",
@@ -36801,7 +38103,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?vip=promo|referral|survey|idea|tester|admin|admin_pro_lifetime\\&until=<ms>"
+      }
     },
     {
       "id": "settings-gap-007",
@@ -36832,7 +38138,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "переключатель уже есть (dev_state?slot=poll|poll_voted|message|top|off) — записать ссылку в DEV_LINKS_R1"
+      }
     },
     {
       "id": "settings-gap-008",
@@ -36863,7 +38173,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=poll_voted&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-009",
@@ -36894,7 +38208,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=message&cache=failed&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-010",
@@ -36924,7 +38242,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04"
+      }
     },
     {
       "id": "settings-gap-011",
@@ -36954,7 +38276,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_notifications"
+      }
     },
     {
       "id": "settings-gap-012",
@@ -36984,7 +38310,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "`settings-gap-012` — только Android 13+ (системное окно разрешения)."
+      }
     },
     {
       "id": "settings-gap-013",
@@ -37014,7 +38344,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04"
+      }
     },
     {
       "id": "settings-gap-014",
@@ -37044,7 +38378,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_edu"
+      }
     },
     {
       "id": "settings-gap-015",
@@ -37074,7 +38412,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_edu"
+      }
     },
     {
       "id": "settings-gap-016",
@@ -37104,7 +38446,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+      }
     },
     {
       "id": "settings-gap-017",
@@ -37134,7 +38480,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+      }
     },
     {
       "id": "settings-gap-018",
@@ -37164,7 +38514,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_language"
+      }
     },
     {
       "id": "settings-gap-019",
@@ -37231,7 +38585,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A09"
+      }
     },
     {
       "id": "settings-gap-021",
@@ -37261,7 +38619,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?studyfail=on"
+      }
     },
     {
       "id": "settings-gap-022",
@@ -37291,7 +38653,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/support_report"
+      }
     },
     {
       "id": "settings-gap-023",
@@ -37321,7 +38687,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+      }
     },
     {
       "id": "settings-gap-024",
@@ -37351,7 +38721,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=checking&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "settings-gap-025",
@@ -37381,7 +38755,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=available&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "settings-gap-026",
@@ -37411,7 +38789,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=taken&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "cards-gap-039",
@@ -37441,7 +38823,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "core_switch",
+        "coverage_note": "dev_state?cards=demo_published"
+      }
     },
     {
       "id": "settings-gap-027",
@@ -37471,7 +38857,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A04"
+      }
     },
     {
       "id": "settings-gap-028",
@@ -37501,7 +38891,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/settings_notifications"
+      }
     },
     {
       "id": "settings-gap-029",
@@ -37532,7 +38926,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&slot=top&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-030",
@@ -37562,7 +38960,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&referral=off&overlays=off&next=/(tabs)/settings"
+      }
     },
     {
       "id": "settings-gap-031",
@@ -37592,7 +38994,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=error&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "settings-gap-032",
@@ -37623,7 +39029,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=none&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "settings-gap-033",
@@ -37654,7 +39064,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=none&overlays=off&next=/account_details"
+      }
     },
     {
       "id": "settings-gap-034",
@@ -37684,7 +39098,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-A05"
+      }
     },
     {
       "id": "settings-gap-035",
@@ -37714,7 +39132,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/support_report"
+      }
     },
     {
       "id": "settings-gap-036",
@@ -37744,7 +39166,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&support=fail&overlays=off&next=/support_report"
+      }
     },
     {
       "id": "cards-v2-053",
@@ -37775,7 +39201,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "manual_conditional",
+        "coverage_note": "дубль cards-section-031: условный путь — условия в строке shot list"
+      }
     },
     {
       "id": "cards-gap-040",
@@ -37806,7 +39236,11 @@
       "status": "pending",
       "reviewed_by": null,
       "reviewed_at": null,
-      "release": "r1"
+      "release": "r1",
+      "triage": {
+        "coverage": "link_missing",
+        "coverage_note": "записи ссылки нет — путь есть в shot list (G-C07)"
+      }
     },
     {
       "id": "home-001",

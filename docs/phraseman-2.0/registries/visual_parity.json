@@ -3062,23 +3062,27 @@
       "anim_notes": [
         "sk 1.3s linear infinite"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-072.png",
+      "evidence_at": "2026-10-12T17:45:40.064Z",
+      "evidence_sha256": "d79ab18cfb3340565162ca92b1b697c4db9c8516bc42ad4c5e1da1d01fd2a817",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы» (один набор), а не экран создания набора; у строки нет ссылки и шагов (общий маршрут /flashcards_my_packs).",
+        "Нужна ссылка на /community_pack_create + заполнение; часть состояний (офлайн, сохранение, лимиты) — подмены партии 2 Ядра (fail=publish_error, packcards)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:48:19.332Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:45–6:46, cards-v2 №22 «Новый набор» против «Создание набора · Офлайн — сохранено на устройстве»): сверка невозможна — на кадре «Мои наборы», образец — экран «Новый набор» (название «Путешествия», «Кто видит: Только я», уровень A2, 2 карточки)."
     },
     {
       "id": "cards-073",
@@ -3098,23 +3102,27 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-073.png",
+      "evidence_at": "2026-10-12T17:46:06.050Z",
+      "evidence_sha256": "f81881f7424deefdfb7514c1d08e11dc99b93f76086e3c8c84f1c877ea4c7597",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Открыт список «Мои наборы» (один набор), а не экран создания набора; у строки нет ссылки и шагов (общий маршрут /flashcards_my_packs).",
+        "Нужна ссылка на /community_pack_create + заполнение; часть состояний (офлайн, сохранение, лимиты) — подмены партии 2 Ядра (fail=publish_error, packcards)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:48:19.332Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-C04"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:45–6:46, cards-v2 №22 «Новый набор» против «Создание набора · Набор сохранён»): сверка невозможна — на кадре «Мои наборы», образец — экран «Новый набор» (название «Путешествия», «Кто видит: Только я», уровень A2, 2 карточки)."
     },
     {
       "id": "cards-074",

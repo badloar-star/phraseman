@@ -81,7 +81,11 @@ describe('«+» у набора фраз ролика добавляет док�
 
   test('текст отказа больше не отправляет «проверять связь»', () => {
     const bar = readFileSync(path.join(root, 'app/community_packs/CommunityPackSocialBar.tsx'), 'utf8');
+    // зачем: текст отказа переехал из панели лайков в общий packQuickAdd.ts (его же использует «Добавить себе» из меню каталога); панель зовёт packAddFailureToast
+    const quickAdd = readFileSync(path.join(root, 'app/community_packs/packQuickAdd.ts'), 'utf8');
     expect(bar).not.toContain('Не удалось добавить набор. Проверь связь');
-    expect(bar).toContain('Этот набор пока нельзя добавить себе.');
+    expect(quickAdd).not.toContain('Не удалось добавить набор. Проверь связь');
+    expect(bar).toContain("emitAppEvent('action_toast', packAddFailureToast(res));");
+    expect(quickAdd).toContain('Этот набор пока нельзя добавить себе.');
   });
 });

@@ -320,3 +320,8 @@ energy-modes: не проверено, есть ли у урока 1 перед 
 |---|---|---|
 | overlays-campaigns-013 | `onboarding=done&intros=seen&plus=off&promo=bad_code&overlays=off&next=/promo_code_entry` | `tap:#promo-code-input; type:WELC0ME; back; tap:#promo-code-submit; wait:400` («Проверь код: похоже, он введён неверно.») |
 | overlays-campaigns-021 | `guest=required&onboarding=done&intros=seen&referral=on&refcode=none&overlays=off&next=/referrals?enter=1` | `tap:#referral-code-sheet-input; type:AN; tap:#referral-code-sheet-submit; wait:300` («Проверь код: он слишком короткий.», без сети) |
+
+## `theme` и `level` — тема и оттенок ползунка ссылкой (Темы, 12.10, Сверка chain7)
+`phraseman://dev_state?theme=<id>&level=<0..1>`: подмена темы Liquid Glass и оттенка ТОЛЬКО в памяти процесса (хранилище и облако не тронуты; в стор-сборке — заглушка). `theme` — id из `LIQUID_GLASS_THEME_IDS` (graphite, polar, … grad_aurora, grad_jade …) или `clear`; `level` — число 0…1 или `clear`; `clear` снимает только свою половину. Сброс — перезапуск процесса.
+**Образец макетов dialogs/mistakes-panel/profile:** тема «Аврора» (`grad_aurora`) на полной насыщенности — `phraseman://dev_state?theme=grad_aurora&level=1`; в тёмном оформлении акцент `#7EF0C8` на `#04261D` (как `--acc`/`--on` макета). Кадры «плашка мятная / кнопка мятная» снимать с этой ссылкой; приложение по умолчанию — «Графит» на 0 (акцент нейтрально-светлый), поэтому плашка серая, а кнопка белая — это НЕ дефект токенов.
+Светлый образец: добавить `&appearance=light` (на `level=1` светлая «Аврора» даёт акцент `#7EF0C8`, ink `#04261D`).

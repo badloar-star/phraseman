@@ -56,6 +56,8 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     const appearance = require('../store_release_stubs/dev_state/dev_appearance_override_stub');
     expect([appearance.getDevAppearance(), appearance.setDevAppearance('light'), appearance.getDevAppearance()]).toEqual([null, undefined, null]); // подмены оформления нет
     expect(typeof appearance.subscribeDevAppearance()).toBe('function');
+    expect([appearance.getDevThemeChoice(), appearance.setDevThemeChoice(), appearance.getDevThemeChoice()]).toEqual([null, undefined, null]); // подмены темы и оттенка нет
+    expect(typeof appearance.subscribeDevThemeChoice()).toBe('function');
     const probe = require('../store_release_stubs/dev_state/hub_lifecycle_probe_stub');
     expect(() => { probe.registerHubCacheProbe(); probe.logHubSnapshot(); probe.useHubLifecycle(); probe.noteHubSubscription(); }).not.toThrow();
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */

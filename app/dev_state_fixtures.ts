@@ -29,7 +29,8 @@ import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_c
 import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
-import { setDevAppearance } from './dev_appearance_override';
+import { getDevThemeChoice, setDevAppearance, setDevThemeChoice } from './dev_appearance_override';
+import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SIGNIN_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSignInMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
@@ -91,6 +92,10 @@ export type DevStateRequest = Readonly<{
   spire?: 'open' | 'closed';
   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
   appearance?: 'light' | 'dark' | 'clear';
+  /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
+  theme?: string;
+  /** Оттенок ползунка 0..1 ТОЛЬКО в памяти; clear — снять. Образец макетов — 1 (полная насыщенность). */
+  level?: number | 'clear';
   onboarding?: 'done' | 'pending';
   free?: 'on' | 'off';
   /** Карточки 2.0: наполненный аккаунт как на кадрах макета (dev_state_cards_demo.ts); demo_lessons — те же 64 с источниками для фильтра; custom50 — 50 своих карточек (лимит Free). */
@@ -282,6 +287,19 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
+  // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
+  const themeRaw = one(params.theme);
+  if (themeRaw !== undefined) {
+    if (themeRaw === 'clear' || (LIQUID_GLASS_THEME_IDS as readonly string[]).includes(themeRaw)) request.theme = themeRaw;
+    else rejected.theme = `ожидалось clear или id темы (${LIQUID_GLASS_THEME_IDS.join('|')}), пришло ${themeRaw}`;
+  }
+  const levelRaw = one(params.level);
+  if (levelRaw !== undefined) {
+    const n = Number(levelRaw);
+    if (levelRaw === 'clear') request.level = 'clear';
+    else if (levelRaw.trim() !== '' && Number.isFinite(n) && n >= 0 && n <= 1) request.level = n;
+    else rejected.level = `ожидалось 0..1 или clear, пришло ${levelRaw}`;
+  }
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
   // зачем (R1_PENDING_COVERAGE 2б, onboarding-025 / onboarding-paywall-001): дорога к экрану цены онбординга без прохода всех шагов. Допустимы только id каталога шагов.
   const onbStepRaw = one(params.onbstep);
@@ -521,6 +539,16 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     // зачем (Макеты 15.10): светлая/тёмная Главная ссылкой, только память
     await step('appearance', request.appearance, async () => {
       setDevAppearance(request.appearance === 'clear' ? null : request.appearance === 'light' ? 'light' : 'dark');
+      return true;
+    });
+  }
+  if (request.theme !== undefined || request.level !== undefined) {
+    // зачем (Сверка chain7 12.10): только память; clear снимает соответствующую половину подмены, вторая остаётся
+    await step('theme', `${request.theme ?? '-'}/${String(request.level ?? '-')}`, async () => {
+      const before = getDevThemeChoice();
+      const themeId = request.theme === undefined ? before?.themeId ?? null : request.theme === 'clear' ? null : request.theme;
+      const intensity = request.level === undefined ? before?.intensity ?? null : request.level === 'clear' ? null : request.level;
+      setDevThemeChoice({ themeId, intensity });
       return true;
     });
   }

@@ -27,7 +27,7 @@ import {
   type LiquidGlassThemeId,
 } from '../constants/liquidGlassThemePalette';
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
-import { getDevAppearance, subscribeDevAppearance } from '../app/dev_appearance_override';
+import { getDevAppearance, getDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -318,7 +318,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [appliedLiquidGlassIntensity, setIntensityState] = useState<number>(() => getActiveLiquidGlassVariant().intensity);
   // зачем: пока палец на ползунке — перекраска без записи на диск; отпустил — null.
   const [previewLiquidGlassIntensity, setPreviewIntensityState] = useState<number | null>(null);
-  const liquidGlassIntensity = previewLiquidGlassIntensity ?? appliedLiquidGlassIntensity;
+  // зачем (Сверка chain7 12.10): dev_state?theme=&level= — тема и оттенок ТОЛЬКО в памяти (app/dev_appearance_override.ts); сохранённый выбор и запись на диск не меняются
+  const [devThemeChoice, setDevThemeChoiceState] = useState(() => getDevThemeChoice());
+  useEffect(() => subscribeDevThemeChoice(setDevThemeChoiceState), []);
+  const liquidGlassIntensity = previewLiquidGlassIntensity ?? devThemeChoice?.intensity ?? appliedLiquidGlassIntensity;
   const liquidGlassColorLevel = liquidGlassLevelForIntensity(liquidGlassIntensity);
   const [savedLiquidGlassAppearance, setAppearanceState] = useState<LiquidGlassAppearance>(() => getActiveLiquidGlassVariant().appearance);
   // зачем (Макеты 15.10): dev_state?appearance=light|dark — оформление ТОЛЬКО в памяти (app/dev_appearance_override.ts); хранилище и сохранённый выбор не меняются. Без оверрайда — прежнее значение.
@@ -364,7 +367,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }
   const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
-  const liquidGlassThemeId = previewLiquidGlassThemeId ?? appliedLiquidGlassThemeId;
+  const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? appliedLiquidGlassThemeId;
   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');

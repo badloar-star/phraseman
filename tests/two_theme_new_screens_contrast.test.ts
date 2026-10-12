@@ -48,6 +48,11 @@ describe('новые экраны: текст читается в обеих т�
             ['promo idle button', worst(g.mutedText, [over(g.selected, g.opaqueSheet), over(g.selected, g.opaqueCard), over(g.selected, g.bg)])],
             ['promo feedback text', worst(g.text, [g.opaqueCard, g.opaqueSheet, g.bg])],
             // пустое состояние «Пока пусто» в «Из видео» (KitEmpty, экран Дизайна): значок text на плитке opaqueControl, заголовок text и подпись secondary на фоне экрана
+            // Диалоги (Сверка chain7 12.10): плашка «Свободный разговор» — значок accentText на accentSoft над карточкой, заголовок text на карточке, метка PLUS accentInk на accent; «Начать диалог» — accentInk на accent
+            ['dialogs plate icon', worst(g.accentText, [over(g.accentSoft, g.opaqueCard), over(g.accentSoft, g.bg)])],
+            ['dialogs plate title', colorContrast(g.text, g.opaqueCard)],
+            ['dialogs plus chip', colorContrast(g.accentInk, g.accent)],
+            ['dialogs start button', colorContrast(g.accentInk, g.accent)],
             ['video-empty icon/tile', colorContrast(g.text, g.opaqueControl)],
             ['video-empty title/bg', worst(g.text, [g.bg, g.bgTop, g.bgBottom])],
             ['video-empty detail/bg', worst(g.secondary, [g.bg, g.bgTop, g.bgBottom])],

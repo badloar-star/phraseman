@@ -97,7 +97,8 @@ add('cards-section-020', ['tap:#ugc-pack-first-card'], EMPTY_PLUS, CREATE, note=
 add('cards-v2-024', ['tap:#ugc-pack-first-card', 'tap:#ugc-pack-draft-front', 'type:Layover'], EMPTY_PLUS, CREATE, note='новая карточка — живое превью (набрано Layover)')
 add('cards-067', [], EMPTY_PLUS, CREATE, note='новый набор, пустая форма (привязка образца cards-v2 №22 «Новый набор»; по названию строки — меню набора)')
 # зачем (R1_DIFF_ONE_FIX / координатор 12.10, cards-070 «Проверь поля»): состояние достижимо без подмены — «Создать набор» всегда нажимается; при пустом названии (форма пуста, cards=empty очищает черновик) сохранение не уходит и показывает тост «Укажи название и описание набора.» (в образце cards-states №65 текст «Проверь название, описание и все карточки.» — Макеты сверят по приложению). Ничего не пишется ни в облако, ни на устройство.
-add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS, CREATE, note='«Проверь поля»: «Создать набор» при пустой форме → тост «Укажи название и описание набора.» (ничего не сохраняется)')
+# зачем (сторож Ядра 69a4230ba): тап «Создать набор» без подмены публикации мог дойти до сети — fail=publish_error гасит запись (пустая форма и так отсекается до сети)
+add('cards-070', ['tap:#ugc-pack-save'], EMPTY_PLUS + '&fail=publish_error', CREATE, note='«Проверь поля»: «Создать набор» при пустой форме → тост «Укажи название и описание набора.» (ничего не сохраняется)')
 add(['cards-065', 'cards-section-021', 'cards-v2-023'], [], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='правка своего набора «Работа»')
 add('cards-024', ['tap:#ugc-pack-add-card'], DEMO_PLUS, f'{CREATE}?packId={WORK}', note='новая карточка в существующем наборе (шторка)')
 
@@ -178,12 +179,14 @@ add('dialogs-006', [WORLD], 'plus=off&dquota=30', DLG, note='категория 
 add('dialogs-007', [WORLD, ROW], 'plus=off&dquota=reset', DLG, note='брифинг первого диалога первой категории')
 # зачем (координатор 12.10, dialogs-011; журнал кадра: «confirmSpendOne(ai_dialog) → cancelled (dev_energy_fail)»): dev_energy_fail=1 подменяет ответ на «отказ» — это тост «Не получилось начать диалог» (dialogs-gap, строка про отказ старта),
 # а окно «Энергия закончилась» показывает настоящий ответ 'insufficient' при нулевой энергии без подмены отказа. Free (plus=off) и energy=0.
-add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=0', DLG, note='старт без энергии — окно «Энергия закончилась» (energy=0; подмена отказа энергии даёт тост, а не окно)')
+# зачем (сторож Ядра 69a4230ba): старт сессии без dev_dialog_send=ok уходил на сервер — подставной старт на кадр не влияет
+add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=0&dev_dialog_send=ok', DLG, note='старт без энергии — окно «Энергия закончилась» (energy=0; подмена отказа энергии даёт тост, а не окно)')
 # зачем (R1_DIFF_ONE_FIX, dialogs-gap-002): строка «Для этого языка пока ничего не сохранено.» рисуется, когда память прочитана (`memory && !hasMemory`); кадр снимали, пока она грузилась — ждём
 add('dialogs-gap-002', ['wait:3000'], 'plus=on&dquota=reset', '/dialogue_v2_memory', note='память диалогов, Plus (кадр «пусто», если памяти нет)')
 add('dialogs-gap-003', [], 'plus=off&dquota=reset', '/dialogue_v2_memory', note='память диалогов без Plus — только удаление')
-add('dialogs-gap-009', [], 'plus=on&hold=freeform_loading', '/dialogue_v2_freeform', note='свободный разговор — готовим разговор (hold=freeform_loading)')
-add('dialogs-gap-010', [], 'plus=off', '/dialogue_v2_freeform', note='свободный разговор без Plus — «доступен в Plus»')
+# зачем (сторож Ядра 69a4230ba): открытие свободного разговора стартует сессию на сервере даже при hold=freeform_loading — нужен dev_dialog_send=ok
+add('dialogs-gap-009', [], 'plus=on&hold=freeform_loading&dev_dialog_send=ok', '/dialogue_v2_freeform', note='свободный разговор — готовим разговор (hold=freeform_loading)')
+add('dialogs-gap-010', [], 'plus=off&dev_dialog_send=ok', '/dialogue_v2_freeform', note='свободный разговор без Plus — «доступен в Plus»')
 
 
 # ───────────────────────── Пейволы ─────────────────────────
@@ -383,7 +386,7 @@ add('dialogs-032', DLG_START + SEND_MSG, SESSION_FREE + '&dev_dialog_send=ok&dev
 add('dialogs-034', DLG_START, 'plus=off&dquota=1&energy=5&dev_dialog_send=ok', DLG, note='Free, осталась 1 реплика из 30 — пилюля «1/30» в начале сессии')
 add('dialogs-035', DLG_START + SEND_MSG, 'plus=off&dquota=1&energy=5&dev_dialog_send=quota_exhausted', DLG, note='лимит исчерпан на отправке (dev_dialog_send=quota_exhausted)')
 add('dialogs-gap-012', DLG_START + SEND_MSG, SESSION_PLUS + '&dev_dialog_send=ok&dev_dialog_fail=plus_daily_cap', DLG, note='Plus: потолок реплик на сегодня (dev_dialog_fail=plus_daily_cap)')
-add('dialogs-gap-017', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=3&dev_energy_fail=1', DLG, note='брифинг: тост «Не получилось начать диалог» (dev_energy_fail=1)')
+add('dialogs-gap-017', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=3&dev_energy_fail=1&dev_dialog_send=ok', DLG, note='брифинг: тост «Не получилось начать диалог» (dev_energy_fail=1)')
 
 add('cards-gap-026', [f'long:#fc-my-packs-pack-{WORK}', 'tap:#fc-my-packs-action-share'], DEMO_PLUS + '&fail=publish_daily_limit', MYPACKS, note='«Открыть сообществу» при суточном лимите — тост (dev-отказ стоит ПЕРВЫМ в publishLocalAuthorPack, описание не проверяется)')
 

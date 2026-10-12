@@ -5,7 +5,8 @@
 from dev_links_r1_steps import DLG, DLG_START, SESSION_FREE, WORLD, ROW, add
 
 # Согласие на ИИ: БЕЗ подмены aiConsent=granted (она обходит шторку). aiConsent=off — явное «нет подмены», чтобы add() не подставил granted сам; согласие в облако не пишется.
-add('dialogs-009', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start', 'wait:1500'], 'plus=off&dquota=reset&energy=5&aiConsent=off', DLG, note='согласие на ИИ — шторка при нажатии «Начать» (без подмены согласия; кнопку согласия НЕ жать — запись в облако)')
+# зачем (сторож Ядра 69a4230ba): тап «Начать» без dev_dialog_send=ok мог стартовать настоящую сессию — подставной старт на кадр шторки согласия не влияет
+add('dialogs-009', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start', 'wait:1500'], 'plus=off&dquota=reset&energy=5&aiConsent=off&dev_dialog_send=ok', DLG, note='согласие на ИИ — шторка при нажатии «Начать» (без подмены согласия; кнопку согласия НЕ жать — запись в облако)')
 
 # Сессия: начало (приветствие собеседника) и сессия Plus — подставной старт без ИИ
 add('dialogs-013', DLG_START, SESSION_FREE + '&dev_dialog_send=ok', DLG, note='начало сессии: приветствие собеседника (подставной старт dev_dialog_send=ok; какой диалог первый — зависит от каталога)')

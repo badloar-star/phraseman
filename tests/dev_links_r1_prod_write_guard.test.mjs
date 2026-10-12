@@ -102,14 +102,8 @@ export const RULES = [
 ];
 
 /** Найдено сторожем 12.10 (Ядро) и передано Макетам; убрать строку из списка после правки ссылки. */
-const PENDING_FIX = new Map([
-  ['dialogs-009', 'старт сессии без dev_dialog_send (aiConsent=off)'],
-  ['dialogs-011', 'старт сессии без dev_dialog_send (energy=0)'],
-  ['dialogs-gap-017', 'старт сессии без dev_dialog_send (dev_energy_fail=1)'],
-  ['dialogs-gap-009', 'свободный разговор без dev_dialog_send (hold=freeform_loading — старт сессии всё равно идёт)'],
-  ['dialogs-gap-010', 'свободный разговор без dev_dialog_send (Free)'],
-  ['cards-070', '«Сохранить» нового набора без packdraft/fail=publish_error'],
-]);
+// зачем (Макеты 12.10): все шесть строк исправлены (dev_dialog_send=ok / fail=publish_error) — список пуст; новые нарушения сторож ловит сам
+const PENDING_FIX = new Map([]);
 
 export function findProdWriteViolations(rows) {
   const out = [];

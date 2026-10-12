@@ -18825,21 +18825,18 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": false,
+      "has_animation": null,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-019.png",
-      "evidence_at": "2026-10-12T02:18:21.311Z",
-      "evidence_sha256": "14653a1ba6735b2f732fc29931ea78b16af7646e0d8796ec1a95aad65711add0",
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[состояние] Нет строки «Следующее списание · 14 января 2027»: дату даёт магазин, на эмуляторе его нет — нужен store-аккаунт (группа «нельзя снять», как profile-016).",
-        "[тема] Серые значки и галочки по теме «Спокойно», в образце мятные («Аврора»)."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:18:56.667Z",
+      "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -18850,8 +18847,7 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
-      },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:18, manage-subscription-states.html №1 «Управление подпиской (годовая)»): тот же экран и те же отличия, что profile-016 — состав совпал: «Подписка Plus», «Plus активирован · Годовая подписка», «Что включено» с семью пунктами, «Восстановить покупки»."
+      }
     },
     {
       "id": "paywalls-020",
@@ -18907,18 +18903,18 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-021.png",
+      "evidence_at": "2026-10-12T02:18:52.381Z",
+      "evidence_sha256": "3e7bdcbc32874fbb95e6b9484d1994a88d756542db65eefffdf70abeb0fd5074",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-12T02:21:38.479Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -18929,7 +18925,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=lifetime&overlays=off&next=/manage_subscription"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:18, manage-subscription-states.html №5 «Разовая покупка»): тот же экран, что profile-018, совпало — «Подписка Plus», «Plus активирован · Phraseman Pro · Разовая покупка — без списаний и автопродления.», семь пунктов «Что включено». Принято: тема («Спокойно» серые значки против мятных «Авроры» и бликов фона образца), масштаб."
     },
     {
       "id": "paywalls-022",
@@ -18946,18 +18943,21 @@
         "app/manage_subscription.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": null,
+      "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/paywalls-022.png",
+      "evidence_at": "2026-10-12T02:19:28.937Z",
+      "evidence_sha256": "e9faa6691bd037b53d9f894a260344e2fd3db5a1661b4efd5b0189d83976f811",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не воспроизведено] Вместо шторки «Покупок не нашлось · Проверь, тот ли это аккаунт магазина… · Написать в поддержку · Закрыть» на кадре тост «ЧТО-ТО ПОШЛО НЕ ТАК · Сейчас не удалось проверить покупки · Повторить»: на эмуляторе без магазина проверка падает с ошибкой. Достижимо только на store-сборке с аккаунтом магазина без покупок — принять по коду или вынести владельцу (как profile-024 и profile-016).",
+        "[вёрстка, мелко] Заголовок тоста переносится на две строки и наезжает на нижние пункты списка."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:21:38.479Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -18968,7 +18968,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&plan=yearly&overlays=off&next=/manage_subscription"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:19, manage-subscription-states.html №7 «Восстановление: пусто»): тот же кадр, что profile-024 — шторка «Покупок не нашлось» не воспроизведена."
     },
     {
       "id": "paywalls-023",
@@ -24123,29 +24124,24 @@
         "app/promo_code_entry.tsx"
       ],
       "matrix_status": "🟠",
-      "has_animation": false,
+      "has_animation": null,
       "anim_notes": [],
-      "evidence": "docs/phraseman-2.0/evidence/parity/overlays-campaigns-004.png",
-      "evidence_at": "2026-10-12T02:20:56.429Z",
-      "evidence_sha256": "5dba27d8e2c21297adf3abd6c5efd1526ddaf26b3cd1df6b1acc992628eef20e",
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [
-        "[образец ≠ код] Кнопка закрытия «✕» в приложении слева в круглой плашке, в образце справа без плашки — решить, где она должна быть (приложение следует общему виду окон 2.0 — ✕ слева); если верно приложение, исправить образец promo-code-states.html.",
-        "[тема] Фон: в образце цветные блики «Авроры» (зелёный и фиолетовый), в приложении ровный графит «Спокойно» — тон темы, принято.",
-        "[вёрстка, мелко] Поле и кнопка в приложении чуть выше (≈ +6 px склейки), отступы внутри карточки немного больше."
-      ],
-      "status": "diff",
+      "diffs": [],
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T02:21:42.081Z",
+      "reviewed_at": null,
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 4, «Промокод»; светлая тема — телефоны 14–26), эталон сразу",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&energy=3&overlays=off&next=/promo_code_entry"
-      },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:20, promo-code-states.html №1 «004 · Пусто»): состав и тексты совпали — «Промокод», карточка «Есть промокод?» со значком подарка, «Введи промокод, чтобы получить Plus-подписку.», поле «Введи промокод», неактивная «Активировать»."
+      }
     },
     {
       "id": "overlays-campaigns-005",

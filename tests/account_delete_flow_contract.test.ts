@@ -37,7 +37,8 @@ describe('account deletion rebuilt flow contract', () => {
       '() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),',
       start,
     );
-    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(', start);
+    // 12.10 (52429d419): постановка выбирает дедлайн по ветке (гость 25 с / связанный 8 с) — якорь на начало выражения.
+    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = isProvablyAnonymousAccount', start);
     const acknowledgement = authProvider.indexOf('await cloudDeleteEnqueueOperation.acknowledgment', enqueue);
     const persistAcknowledgedPhase = authProvider.indexOf("'server_enqueued'", acknowledgement);
     const dispatchBarrier = authProvider.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled', enqueue);
@@ -98,7 +99,8 @@ describe('account deletion rebuilt flow contract', () => {
     const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);
     const captureStable = authProvider.indexOf('const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);', start);
     const persistGuard = authProvider.indexOf('() => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),', start);
-    const enqueue = authProvider.indexOf('const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(', start);
+    // 12.10 (52429d419): доказательство для постановки вычисляется строкой выше выбора дедлайна (гость 25 с / связанный 8 с).
+    const enqueue = authProvider.indexOf('const enqueueProof = pendingDeleteLock ? accountDeleteCredentialProof(pendingDeleteLock)', start);
     const localExitStart = authProvider.indexOf('async function completePreparedAccountDeleteLocalExit');
     const localExitEnd = authProvider.indexOf('async function verifyPostDeleteLocalWipe', localExitStart);
     const localExitSource = authProvider.slice(localExitStart, localExitEnd);

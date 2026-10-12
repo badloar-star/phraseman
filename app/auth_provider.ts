@@ -25,6 +25,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
 import { ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS } from './account_delete_timeout';
+import { markFirestoreCacheClearPending } from './firestore_cache_clear';
 import { DebugLogger } from './debug-logger';
 import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { beginSettingsStorageMutation } from '../lib/startup_settings_read_scope';
@@ -4393,6 +4394,9 @@ export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   let releaseTransitionReservation: () => void;
   // зачем (владелец, 2026-09-13): «сперва логи» — путь удаления был нем.
   console.log('[ACC-MUT] delete:in');
+  // зачем (координатор 12.10, удаление данных): кэш Firestore SDK (документы старого uid) чистится на СЛЕДУЮЩЕМ холодном старте —
+  // метку ставим сразу (гость и связанный проходят здесь); не ждём, отказ записи метки печатается внутри.
+  void markFirestoreCacheClearPending('account_delete');
   try {
     releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
   } catch (reserveError) {

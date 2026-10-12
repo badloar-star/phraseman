@@ -1,7 +1,7 @@
 # Task packet: удаление гостя — дедлайн постановки 25 с в фоне + очистка кэша Firestore SDK на следующем старте
 
 Governance-ID: TG-AC273A0C3C3C
-Status: In progress
+Status: Done (B1 52429d419, B2 этим коммитом)
 Owner: 5 · АВТОРИЗАЦИЯ (координатор 12.10: «оба ДА», порядок B(1) → B(2))
 Related epic/enabler: журнал прода 12.10 — accountDeleteEnqueue холодный старт ≈9 с > клиентские 8 с; локальный кэш Firestore
 SDK после удаления (≈1 МБ, старый uid 110 раз) — требование удаления данных.

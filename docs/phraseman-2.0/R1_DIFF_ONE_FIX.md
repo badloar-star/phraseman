@@ -91,3 +91,7 @@ cards-005 cards-006 cards-009 cards-010 cards-021 cards-025 cards-032 cards-034 
 ## Образец устарел — Макеты
 
 `cards-002 cards-020 cards-028 cards-070 cards-gap-001 cards-gap-002 cards-gap-004 cards-gap-005 cards-gap-006 cards-section-005 cards-v2-018 community-001 community-006 community-007 dialogs-003 dialogs-004 dialogs-006 dialogs-008 dialogs-012 dialogs-013 dialogs-014 dialogs-029 dialogs-030 dialogs-035 dialogs-039 paywall-gap-013 profile-026 settings-gap-013 settings-gap-029`
+
+## Арт Главной меняется на S2 «Глина» (владелец, п.79) — не отличие кода
+
+Образцы Главной (`home-001`…`home-006`, страницы `home-by-language-mockup.html`, `home-concepts.html`, `home-tiles-variants.html`, `home-mistakes-entry.html`) рисуют трёхмерные картинки плиток (блокнот, кружка с цитатой, арт плиток, монета) старого стиля. Владелец выбрал стиль картинок S2 «Глина», поэтому расхождение «картинка плитки не та» на этих строках — это смена арта, а не дефект кода: в вердиктах помечать «арт меняется на S2» и не отправлять в правки кода. Составы, положения и размеры плиток сверяются как обычно. (Координатор 12.10.)

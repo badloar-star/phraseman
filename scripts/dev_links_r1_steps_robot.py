@@ -45,7 +45,7 @@ add('energy-modes-010', ['tap:#lesson-menu-irregular-verbs', 'wait:1500'], EB, '
 COMM = 'spire=open&plus=off&free=on&cards=demo'
 add('community-001', ['tap:#community-sections-spire', 'wait:800'], COMM, '/(tabs)/community', note='вкладка сообщества: строка сегментов, выбран «Шпиль»')
 add('community-007', ['tap:#friends-open-add', 'wait:800'], 'friends=demo&' + COMM, '/(tabs)/community', note='«Добавить друга» — шторка friends-add-sheet (в образце «центрированное окно», в коде нижняя шторка)')
-add('community-020', ['see:#friends-empty-add'], COMM, '/(tabs)/community', note='Друзья: пустой список у гостя без друзей (friends-list-empty)')
+add('community-020', ['see:#friends-empty-add'], 'overlays=off&' + COMM, '/(tabs)/community', note='Друзья: пустой список у гостя без друзей (friends-list-empty)')
 
 # ── Подмены Дизайна 12.10 (R1_ROBOT_LINKS_GAPS.md): «Мои ошибки» с данными и друзья со входящей заявкой — только память, только одноразовый гость
 add('mistakes-panel-002', ['wait:1500'], 'mistakes=demo&studyTarget=en', '/mistakes_hub', note='хаб «Мои ошибки» с данными: dev mistakes=demo (6 ошибок: 4 ждут, 2 исправлены; журнал не трогается)')

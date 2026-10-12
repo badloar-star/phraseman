@@ -45,11 +45,12 @@ add('spire-gap-019', ['scroll:down'], '', preview('rules'), note='прокрут
 add('spire-007', [], '', preview('step_choice'), note='задание с выбором ответа')
 add('spire-008', [], '', preview('step_wrong'), note='ошибка — правильный ответ')
 add('spire-009', [], '', preview('step_choice', 'exit=1'), note='выход — шторка подтверждения')
-add('spire-gap-001', [], '', preview('step_gap'), note='вставь слово')
-add('spire-gap-002', [], '', preview('step_odd'), note='найди лишнее')
+# зачем (координатор 12.10, ответ Дизайна 7aedebb8b): красный флажок «пожаловаться» в заданиях есть в коде, но виден, пока ответ не дан; кадр снимали позже — ждём его перед съёмкой.
+add('spire-gap-001', ['see:#spire-task-report-0'], '', preview('step_gap'), note='вставь слово')
+add('spire-gap-002', ['see:#spire-task-report-0'], '', preview('step_odd'), note='найди лишнее')
 add('spire-gap-003', [], '', preview('step_build'), note='собери перевод')
-add('spire-gap-004', [], '', preview('step_listen_choose'), note='послушай и выбери')
-add('spire-gap-005', [], '', preview('step_listen_build'), note='послушай и собери')
+add('spire-gap-004', ['see:#spire-task-report-0'], '', preview('step_listen_choose'), note='послушай и выбери')
+add('spire-gap-005', ['see:#spire-task-report-0'], '', preview('step_listen_build'), note='послушай и собери')
 add('spire-gap-006', [], '', preview('step_items'), note='найди пары')
 add('spire-gap-020', [], '', preview('step_prep'), note='готовим ступень…')
 

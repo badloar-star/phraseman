@@ -24,7 +24,7 @@ import { setDevMistakesDemo } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
 import { parseDevStreakJump, runDevStreakRestoreJump } from './dev_streak_restore_jump';
-import { devSetEnergy, setDevEnergyModeOverride } from './dev_energy_tools';
+import { devSetEnergy, devSetEnergyRestoringIn, setDevEnergyModeOverride } from './dev_energy_tools';
 import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_controls';
 import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
@@ -33,9 +33,10 @@ import { setDevAppearance } from './dev_appearance_override';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SIGNIN_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSignInMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
+import { setDevEnergyStopPlusGranted } from './dev_energy_stop_flag';
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
-import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevPackDraft, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
+import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevLessonIntroSkip, setDevPackDraft, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MEMORY, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMemory, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
@@ -67,6 +68,12 @@ export function vipSnapshotValuesFor(kind: DevVipKind, nowMs: number): Record<'v
 
 export type DevStateRequest = Readonly<{
   energy?: number;
+  /** `energy=restoring&restore_in=N`: энергия 0, следующая единица через N с (energy-modes-008). */
+  energyRestoreInSec?: number;
+  /** Шторка остановки: «Продолжить с Plus» выдаёт Plus в памяти вместо пейвола (energy-modes-006). */
+  energyStop?: 'plus_granted' | 'off';
+  /** Вступление урока считается показанным (только память). */
+  lessonIntro?: 'skip' | 'off';
   mode?: 'a' | 'b' | 'server';
   plus?: 'on' | 'off' | 'inherit';
   /** Плашка доступа в группе Plus Настроек: вид выдачи (локальный снимок VIP; после неё — перезапуск приложения). */
@@ -228,7 +235,12 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   if (energy !== undefined) {
     const n = Number(energy);
     if (Number.isInteger(n) && n >= 0 && n <= 5) request.energy = n;
-    else rejected.energy = `ожидалось 0..5, пришло ${energy}`;
+    else if (energy === 'restoring') {
+      // зачем (координатор 12.10, energy-modes-008): таймер «Нужна энергия» доходит до нуля за restore_in секунд (по умолчанию 3).
+      const restoreIn = Number(one(params.restore_in) ?? 3);
+      if (Number.isInteger(restoreIn) && restoreIn >= 1 && restoreIn <= 600) request.energyRestoreInSec = restoreIn;
+      else rejected.restore_in = `ожидалось 1..600 секунд, пришло ${String(one(params.restore_in))}`;
+    } else rejected.energy = `ожидалось 0..5 или restoring, пришло ${energy}`;
   }
   const pick = <T extends string>(key: string, allowed: readonly T[]): T | undefined => {
     const value = one(params[key]);
@@ -352,6 +364,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.started = list('started', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.upsell = pick('upsell', [...DEV_LESSON_UPSELLS, 'off'] as const);
   request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
+  request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
+  request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
   request.cache = pick('cache', ['failed', 'ok'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
   request.refcode = pick('refcode', DEV_REFCODE_RESULTS);
@@ -440,6 +454,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('mode', request.mode, () => setDevEnergyModeOverride(mode));
   }
   if (request.energy !== undefined) await step('energy', String(request.energy), () => devSetEnergy(request.energy!));
+  if (request.energyRestoreInSec !== undefined) await step('energy', `restoring:${request.energyRestoreInSec}s`, () => devSetEnergyRestoringIn(request.energyRestoreInSec!));
   if (request.plus) {
     await step('plus', request.plus, async () => {
       const stableId = await getStableId();
@@ -788,6 +803,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.aiExplain !== undefined) {
     await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit'));
+  }
+  if (request.lessonIntro !== undefined) {
+    await step('lessonintro', request.lessonIntro, async () => setDevLessonIntroSkip(request.lessonIntro === 'skip'));
+  }
+  if (request.energyStop !== undefined) {
+    await step('energy_stop', request.energyStop, async () => setDevEnergyStopPlusGranted(request.energyStop === 'plus_granted'));
   }
   if (request.referral !== undefined) {
     await step('referral', request.referral, async () => setDevSocialState({ referralOff: request.referral === 'off' }));

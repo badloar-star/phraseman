@@ -39,6 +39,18 @@ export function setDevVipOverride(stableId: string, values: Partial<VipStorageVa
   return true;
 }
 
+/**
+ * Снимок «Plus выдан» для подмен в памяти (energy_stop=plus_granted): тестерский VIP на сутки. Чистая функция.
+ * зачем отдельно от dev_state_fixtures.vipSnapshotValuesFor: этот модуль вызывается из экрана (EnergyStopSheet), а фикстуры
+ * в стор-сборку попадать не должны; здесь стор получает заглушку.
+ */
+export function devMemoryPlusValues(nowMs: number): VipStorageValues {
+  return {
+    vip_active: 'true', vip_plan: 'telegram_tester', vip_from: String(nowMs - 60_000), vip_until: String(nowMs + 24 * 60 * 60 * 1000),
+    vip_admin_override: '', vip_admin_grant_at: '',
+  };
+}
+
 export function clearDevVipOverride(): void {
   if (vipOverride) console.log(`${LOG} vip memory_only: подмена снята`); // guard-ok: единичный лог
   vipOverride = null;

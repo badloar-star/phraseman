@@ -123,6 +123,7 @@ import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { isDevOverlaysOff } from './dev_overlays_off';
+import { isDevLessonIntroSkip } from './dev_cards_state';
 import { withLessonRuntimeAccessBoundary } from './lesson_runtime_access_boundary';
 import { MOTION_DURATION } from '../constants/motion';
 import { fiftyFiftyUsageKey, grammarHintSeenKey, lastOpenedLessonKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
@@ -2281,6 +2282,15 @@ function LessonScreen() {
       };
     }
 
+    // зачем (Макеты 12.10, съёмка energy-modes): dev `lessonintro=skip` — вступление считается показанным только в памяти, отметка на диск не пишется.
+    if (isDevLessonIntroSkip()) {
+      console.warn(`[DEV-STATE] lesson1: вступление пропущено (lessonintro=skip) lessonId=${lessonId}`); // guard-ok: dev-ветка
+      setShowIntroScreens(false);
+      setIntroGateReady(true);
+      return () => {
+        cancelled = true;
+      };
+    }
     const shouldReplayIntro = replayIntro && replayIntroToken !== consumedReplayIntroTokenRef.current;
     if (shouldReplayIntro) {
       setShowIntroScreens(true);
@@ -2302,7 +2312,9 @@ function LessonScreen() {
         setShowIntroScreens(shouldShowIntro);
         setIntroGateReady(true);
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        // зачем: немой catch прятал сбой чтения отметки — вступление показывалось повторно без следа в журнале.
+        console.warn(`[LESSON-INTRO] отметка вступления не прочитана lessonId=${lessonId} → показываем: ${error instanceof Error ? error.message : String(error)}`);
         if (cancelled) return;
         setShowIntroScreens(true);
         setIntroGateReady(true);
@@ -2745,7 +2757,7 @@ function LessonScreen() {
       // всё уже готово.
       const introKey = lessonIntroShownKey(lessonId, studyTargetRef.current);
       const introShownRaw = await AsyncStorage.getItem(introKey);
-      if (!introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
+      if (!introShownRaw && !isDevLessonIntroSkip() && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
         await AsyncStorage.setItem(introKey, 'true').catch(noteSwallowedHandler('lesson1:loadData.setItem'));
         syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);

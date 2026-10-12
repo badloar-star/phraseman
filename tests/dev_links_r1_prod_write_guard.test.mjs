@@ -99,6 +99,14 @@ export const RULES = [
     safe: (r) => param(r.link, 'dev_dialog_memory') !== null,
     fix: 'dev_dialog_memory=demo|clearing|clear_fail',
   },
+  {
+    // зачем (координатор 12.10, energy-modes-006): покупка Plus — настоящий магазин/RevenueCat. Кадры «после покупки» берут
+    // Plus в памяти (energy_stop=plus_granted), а пейвол — подменённое состояние (_dev_state= / paywall=).
+    name: 'покупка Plus в пейволе',
+    applies: (r) => /#paywall-cta/.test(r.steps),
+    safe: (r) => /_dev_state=/.test(nextRoute(r.link)) || param(r.link, 'paywall') !== null,
+    fix: '_dev_state=<состояние> в маршруте пейвола или paywall=',
+  },
 ];
 
 /** Найдено сторожем 12.10 (Ядро) и передано Макетам; убрать строку из списка после правки ссылки. */
@@ -142,8 +150,9 @@ test('правила ловят известные случаи «робот п�
     { id: 'x2', link: 'plus=on&next=/dialogue_v2_freeform', steps: '' },
     { id: 'x3', link: 'next=/flashcards_collection?pack=abc', steps: 'tap:#pack-like-abc' },
     { id: 'x4', link: 'cards=demo&next=/community_pack_create', steps: 'tap:#ugc-pack-save' },
+    { id: 'x5', link: 'plus=off&next=/premium_modal?context=generic', steps: 'tap:#paywall-cta' },
   ]).map((v) => v.id);
-  assert.deepEqual(caught, ['x1', 'x2', 'x3', 'x4']);
+  assert.deepEqual(caught, ['x1', 'x2', 'x3', 'x4', 'x5']);
   const clean = findProdWriteViolations([
     { id: 'ok1', link: 'dev_dialog_send=ok&next=/ai_dialog_home', steps: 'tap:#dialogue-v2-briefing-start' },
     { id: 'ok2', link: 'packcards=on&community=reset&next=/x', steps: 'tap:#pack-like-dev_demo_community_2' },

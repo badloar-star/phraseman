@@ -278,6 +278,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_animations_off',
     // зачем (Макеты 15.10): dev_state?appearance=light|dark — подмена оформления в памяти; в стор-сборке заглушка (ThemeContext импортирует модуль из боевого кода)
     'dev_appearance_override',
+    // зачем (Ядро 12.10, energy-modes-006): energy_stop=plus_granted — Plus в памяти на шторке остановки; в стор-сборке заглушка
+    'dev_energy_stop_flag',
     // зачем (координатор 12.10): dev_state?robot_no_cloud=1 — робот съёмки не пишет согласия/уведомления; в стор-сборке заглушка
     'dev_robot_no_cloud',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),

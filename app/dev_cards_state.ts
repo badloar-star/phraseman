@@ -285,6 +285,25 @@ export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
   };
 }
 
+// ───────────────────── Вступление урока (Макеты 12.10, energy-modes) ─────────────────────
+// зачем: перед первым заданием урока идут вступительные экраны, число блоков заранее неизвестно — робот листал вслепую.
+// `lessonintro=skip` считает вступление уже показанным ТОЛЬКО в памяти (отметка на диск не пишется). В сторе выключено.
+let lessonIntroSkip = false;
+
+export function setDevLessonIntroSkip(on: boolean): boolean {
+  if (!devCardsAvailable()) {
+    console.warn(`${LOG} lessonintro: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  lessonIntroSkip = on;
+  console.log(`${LOG} lessonintro=${on ? 'skip' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevLessonIntroSkip(): boolean {
+  return devCardsAvailable() && lessonIntroSkip;
+}
+
 /** Только для тестов. */
 export function resetDevCardsStateForTests(): void {
   state = EMPTY;

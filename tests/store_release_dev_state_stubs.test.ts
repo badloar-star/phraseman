@@ -11,7 +11,9 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   // зачем (Макеты 15.10): оформление light/dark ссылкой dev_state — только память; в стор-бандле заглушка
   'dev_appearance_override',
   // зачем (координатор 12.10): флаг робота «без облака» для тумблеров Уведомлений/Приватности — в стор-бандле заглушка
-  'dev_robot_no_cloud'] as const;
+  'dev_robot_no_cloud',
+  // зачем (Ядро 12.10, energy-modes-006): energy_stop=plus_granted — Plus в памяти на шторке остановки; в стор-бандле заглушка
+  'dev_energy_stop_flag'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {

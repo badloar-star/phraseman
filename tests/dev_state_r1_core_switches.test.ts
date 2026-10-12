@@ -216,3 +216,28 @@ describe('dev_state R1 (Ядро): cards=demo_nopacks', () => {
     expect((src.match(/if \(options\.noPacks === true\) return 'skipped:noPacks';/g) ?? []).length).toBe(2);
   });
 });
+
+describe('dev_state R1 (Ядро): энергия и вступление урока', () => {
+  test('energy=restoring&restore_in, energy_stop, lessonintro — разбор и память', async () => {
+    const pay = require('../app/dev_energy_stop_flag') as typeof import('../app/dev_energy_stop_flag');
+    const cards = require('../app/dev_cards_state') as typeof import('../app/dev_cards_state');
+    const { request, rejected } = parseDevStateParams({ energy: 'restoring', restore_in: '3', energy_stop: 'plus_granted', lessonintro: 'skip' });
+    expect(rejected).toEqual({});
+    expect(request).toMatchObject({ energyRestoreInSec: 3, energyStop: 'plus_granted', lessonIntro: 'skip' });
+    expect(parseDevStateParams({ energy: 'restoring', restore_in: '0' }).rejected).toHaveProperty('restore_in');
+    expect(parseDevStateParams({ energy: 'full' }).rejected).toHaveProperty('energy');
+    await applyDevState(parseDevStateParams({ energy_stop: 'plus_granted', lessonintro: 'skip' }).request);
+    expect(pay.isDevEnergyStopPlusGranted()).toBe(true);
+    expect(cards.isDevLessonIntroSkip()).toBe(true);
+    await applyDevState(parseDevStateParams({ energy_stop: 'off', lessonintro: 'off' }).request);
+    expect(pay.isDevEnergyStopPlusGranted()).toBe(false);
+    expect(cards.isDevLessonIntroSkip()).toBe(false);
+  });
+
+  test('Plus в памяти — тестерский VIP на сутки, без записи', () => {
+    const vip = require('../app/dev_vip_override') as typeof import('../app/dev_vip_override');
+    const now = Date.UTC(2026, 9, 12);
+    const values = vip.devMemoryPlusValues(now);
+    expect(values).toMatchObject({ vip_active: 'true', vip_plan: 'telegram_tester', vip_until: String(now + 86_400_000) });
+  });
+});

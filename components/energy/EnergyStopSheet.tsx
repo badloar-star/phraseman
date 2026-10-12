@@ -12,6 +12,7 @@ import { soundDirector } from '../../modules/audio/sound_director';
 import { useEnergy, useEnergyCountdown } from '../EnergyContext';
 import EnergyIcon from '../EnergyIcon';
 import { emitEnergyToast } from './energy_toasts';
+import { isDevEnergyStopPlusGranted } from '../../app/dev_energy_stop_flag';
 import { useLang } from '../LangContext';
 import HybridAlertShell, { CascadeItem } from '../modal_fx/HybridAlertShell';
 import { useTheme } from '../ThemeContext';
@@ -102,6 +103,22 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
 
   const openPlus = () => {
     hapticTap();
+    // зачем (координатор 12.10, energy-modes-006): dev `energy_stop=plus_granted` — Plus только в памяти вместо пейвола;
+    // эффект выше (isUnlimited) продолжит занятие сам, как после настоящей покупки. В стор-сборке геттер false.
+    if (isDevEnergyStopPlusGranted()) {
+      DebugLogger.info(TAG, 'dev energy_stop=plus_granted: Plus выдаётся в памяти, пейвол не открывается');
+      // Динамические импорты: dev-ветка не тянет конфиг/хранилище в экран (и в изолированные тесты шторки).
+      void Promise.all([import('../../app/stable_id'), import('../../app/dev_vip_override'), import('../../app/events')])
+        .then(async ([{ getStableId }, vip, { emitAppEvent }]) => {
+          const ok = vip.setDevVipOverride(await getStableId(), vip.devMemoryPlusValues(Date.now()), 'energy_stop_plus');
+          DebugLogger.info(TAG, `dev Plus в памяти: ${ok ? 'выдан' : 'отклонён'}`);
+          if (ok) emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
+        })
+        .catch((error: unknown) => {
+          DebugLogger.warn(TAG, `dev Plus в памяти не выдан: ${error instanceof Error ? error.message : String(error)}`);
+        });
+      return;
+    }
     DebugLogger.info(TAG, `тап «${cta}» → /premium_modal context=${paywallContext}`);
     setPlusOpen(true);
     router.push({ pathname: '/premium_modal', params: { context: paywallContext, source: 'energy_stop_sheet' } } as never);

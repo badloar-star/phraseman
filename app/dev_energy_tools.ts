@@ -12,7 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { withStorageLock } from './storage_mutex';
 import { coerceEnergyStateV2 } from './energy_state_v2';
-import { ENERGY_STORAGE_KEY } from './energy_system';
+import { ENERGY_RECOVERY_INTERVAL_MS, ENERGY_STORAGE_KEY } from './energy_system';
 import type { EnergyMode } from './energy_mode';
 
 const DEV_ENERGY_MODE_KEY = 'dev_energy_mode_override_v1';
@@ -93,6 +93,37 @@ export async function devSetEnergy(amount: number): Promise<boolean> {
     return true;
   } catch (error) {
     console.warn(TAG, 'energy_set_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+    return false;
+  }
+}
+
+/**
+ * `dev_state?energy=restoring&restore_in=N` (координатор 12.10, energy-modes-008 «энергия восстановилась»): энергия 0, а следующая
+ * единица вернётся через N секунд — шторка «Нужна энергия» доходит до нуля и кнопка становится «Начать». Только локальное
+ * состояние энергии на устройстве (как energy=0..5), без сети. Восстановление линейное: прошло (интервал − N) секунд.
+ */
+export async function devSetEnergyRestoringIn(seconds: number): Promise<boolean> {
+  if (!devBuild()) return false;
+  const restoreInMs = Math.max(1, Math.min(600, Math.floor(seconds))) * 1000;
+  try {
+    await withStorageLock(async () => {
+      const now = Date.now();
+      const stored = await AsyncStorage.getItem(ENERGY_STORAGE_KEY);
+      let parsed: unknown = null;
+      if (stored) {
+        try { parsed = JSON.parse(stored); } catch (error) {
+          console.warn(TAG, 'energy_state не разобран — начинаем с чистого', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+        }
+      }
+      const prev = coerceEnergyStateV2(parsed, now);
+      const next = { ...prev, current: 0, lastSettledAt: now - Math.max(0, ENERGY_RECOVERY_INTERVAL_MS - restoreInMs), recoveryCreditMicrounits: 0, recoveryDivisionRemainder: 0 };
+      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
+      console.warn(TAG, 'energy restoring', JSON.stringify({ from: prev.current, restoreInMs, intervalMs: ENERGY_RECOVERY_INTERVAL_MS })); // guard-ok: dev-действие видно в логе
+    });
+    emitAppEvent('energy_reload');
+    return true;
+  } catch (error) {
+    console.warn(TAG, 'energy_restoring_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
     return false;
   }
 }

@@ -4118,7 +4118,16 @@ async function signOutAndWipeForAccountSwitchReserved(
     );
     signoutStage('force_sync_done', { synced });
     identityTrace('[ACC-SWITCH-WIPE]', 'signout force_sync', { synced, allowWipeWithoutSync: options?.allowWipeWithoutSync === true });
-    if (!synced) {
+    // зачем (A1, координатор 12.10, реестр п.73; замер Сверки: 1,6 с на первую копию): при выходе, которому разрешено стирать без
+    // синхронизации, первая копия дублирует вторую — та делается под замком через ~0,1 с, свежее и полнее, а её сбой отменяет выход
+    // ДО маркера и стирания. Путь «сбросить незаписанные траты монет» (allowPendingShardSpendDiscard) не трогаем — там копия остаётся.
+    const skipFirstEmergencyBackup = !synced
+      && options?.allowWipeWithoutSync === true
+      && options?.allowPendingShardSpendDiscard !== true;
+    if (skipFirstEmergencyBackup) {
+      signoutStage('emergency_backup_skipped', { reason: 'final_snapshot_under_lock' });
+      logAuthEvent('auth_signout_wipe_sync_failed_continue', { stage: 'sync' });
+    } else if (!synced) {
       try {
         const backedUp = await saveAccountSwitchEmergencyBackup(
           'force_sync_failed_before_account_switch',

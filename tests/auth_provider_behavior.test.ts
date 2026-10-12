@@ -2042,12 +2042,47 @@ test('signout with a sync deadline continues through the emergency backup when t
   const result = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: 30, allowWipeWithoutSync: true });
 
   expect(result.ok).toBe(true);
+  // A1 (координатор 12.10): первая копия пропущена, вторая — под замком — обязательна и сделана до стирания.
+  expect(saveAccountSwitchEmergencyBackup).not.toHaveBeenCalledWith('force_sync_failed_before_account_switch', expect.anything(), expect.anything());
   expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
-    'force_sync_failed_before_account_switch',
+    'final_account_snapshot_before_switch',
     expect.anything(),
     expect.anything(),
   );
+  expect(saveAccountSwitchEmergencyBackup.mock.invocationCallOrder[0]).toBeLessThan(wipeLocalAccountData.mock.invocationCallOrder[0]);
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+// зачем (A1, координатор 12.10): без первой копии сбой второй (под замком) отменяет выход ДО маркера и стирания.
+test('A1: when the only emergency backup under the lock fails, signout stops without a marker or a wipe', async () => {
+  authState.isAnonymous = false;
+  forceSyncToCloud.mockResolvedValueOnce(false);
+  saveAccountSwitchEmergencyBackup.mockResolvedValueOnce(false);
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  const result = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: 30, allowWipeWithoutSync: true });
+
+  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'account_switch_backup_unavailable' });
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledTimes(1);
+  expect(saveAccountSwitchEmergencyBackup.mock.calls[0][0]).toBe('final_account_snapshot_before_switch');
+  expect(await lastLoadedAuthProviderStorage.getItem('account_switch_quarantine_v1')).toBeNull();
+  expect(authState.calls).not.toContain('signout');
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+});
+
+test('A1: the pending-spend discard path keeps the first emergency backup', async () => {
+  authState.isAnonymous = false;
+  forceSyncToCloud.mockResolvedValueOnce(false);
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  const result = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true });
+
+  expect(result.ok).toBe(true);
+  expect(saveAccountSwitchEmergencyBackup.mock.calls.map((call) => call[0])).toEqual([
+    'pending_shard_spend_discard_before_account_switch',
+    'force_sync_failed_before_account_switch',
+    'final_account_snapshot_before_switch',
+  ]);
 });
 
 test('signout with a sync deadline but without force aborts with sync_failed instead of waiting', async () => {

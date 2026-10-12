@@ -27,6 +27,7 @@ import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
+import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
@@ -101,6 +102,8 @@ export type DevStateRequest = Readonly<{
   moderation?: 'approved' | 'rejected' | 'revision' | 'removed';
   /** Цена на пейволе без своего `_dev_state` (онбординг): loading|live|reference|failed, off снимает. */
   paywall?: 'loading' | 'live' | 'reference' | 'failed' | 'off';
+  /** Онбординг: открыть с указанного шага (id из каталога, напр. onboardingPaywall для кадров «Цена: загрузка / настоящая цена»). Подразумевает onboarding=pending. Только dev. */
+  onbStep?: string;
   /** Рубильник приглашений: off — выключен (settings-gap-030, overlays-campaigns-025), on — снять. */
   referral?: 'off' | 'on';
   /** Ответ промокода фикстурой, без сети: off=«промокоды выключены», ok, lifetime, used, expired, disabled, limit, not_found, rate_limited, error, none=снять. */
@@ -194,6 +197,18 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
   request.onboarding = pick('onboarding', ['done', 'pending'] as const);
+  // зачем (R1_PENDING_COVERAGE 2б, onboarding-025 / onboarding-paywall-001): дорога к экрану цены онбординга без прохода всех шагов. Допустимы только id каталога шагов.
+  const onbStepRaw = one(params.onbstep);
+  if (onbStepRaw !== undefined) {
+    const ids = ONBOARDING_STEP_CATALOG.map((entry) => entry.id as string);
+    const found = ids.find((id) => id.toLowerCase() === onbStepRaw.toLowerCase());
+    if (found) {
+      request.onbStep = found;
+      request.onboarding = 'pending';
+    } else {
+      rejected.onbstep = `ожидался один из ${ids.join('|')}, пришло ${onbStepRaw}`;
+    }
+  }
   request.free = pick('free', ['on', 'off'] as const);
   request.cards = pick('cards', ['demo', 'demo_lessons', 'custom50', 'demo_published', 'notranslation', 'empty'] as const);
   request.slot = pick('slot', ['poll', 'poll_voted', 'message', 'top', 'off'] as const);
@@ -358,6 +373,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         requestDevOverlayRecheck('onboarding_done');
       } else {
         await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']);
+        if (request.onbStep) {
+          // зачем: CleanOnboarding восстанавливает шаг из этих двух ключей (версия потока + шаг); только локальные ключи прогресса онбординга, в облако не уходят.
+          const { CLEAN_ONBOARDING_FLOW_VERSION } = await import('../components/CleanOnboarding');
+          await AsyncStorage.multiSet([['onboarding_flow_version_v1', CLEAN_ONBOARDING_FLOW_VERSION], ['onboarding_step', request.onbStep]]);
+          console.log('[DEV-STATE] onbstep', request.onbStep, '— онбординг откроется с этого шага'); // guard-ok: единичный лог на ссылку
+        }
         emitAppEvent('dev_onboarding_restart');
       }
     });

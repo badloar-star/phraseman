@@ -339,11 +339,15 @@ test('no_release_surface за флагом: нужен флаг по умолч�
   assert.deepEqual(codes(runHidden(dir, [hiddenRow({ release_surface_proof: proof })])), ['release_surface_flag_not_default_off']);
 });
 
-test('настоящий router.ctx.js: стор-сборка вырезает Learning V2 и оставляет Главную', () => {
+// зачем (Макеты 12.10, красный на HEAD): коммит caafa92ab снял вырез Learning V2 из стор-сборки, а тест всё ещё требовал его вырезанным.
+// Сторожим то, что стор-сборка вырезает сейчас (превью Шпиля на моках и dev_state — 42bfeb63c, ba16e10c5), и что Главная и Learning V2 в ней остаются.
+test('настоящий router.ctx.js: стор-сборка вырезает dev-превью и оставляет Главную и Learning V2', () => {
   const regex = storeRouteRegex(ROOT);
   assert.ok(regex, 'регулярка стор-режима не найдена в router.ctx.js');
-  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), true);
+  assert.equal(isRouteExcludedInStore(regex, 'app/dev_spire_preview.tsx'), true);
+  assert.equal(isRouteExcludedInStore(regex, 'app/dev_state.tsx'), true);
   assert.equal(isRouteExcludedInStore(regex, 'app/(tabs)/home.tsx'), false);
+  assert.equal(isRouteExcludedInStore(regex, 'app/learning_v2_direct_session_player_v1.tsx'), false);
 });
 
 // зачем (координатор 12.10, решение владельца «гейт только по r1» — утром): `--release=r1` считает только строки выпуска R1;

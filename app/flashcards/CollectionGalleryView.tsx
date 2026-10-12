@@ -185,6 +185,9 @@ export default function CollectionGalleryView({
   }, [onOpenCard, onToggleSelection, selectionMode]);
   const onSpeakTile = useCallback((id: string) => { const card = byId.get(id); if (card) onSpeak(card.en); }, [byId, onSpeak]);
   const pressedCard = pressedId ? byId.get(pressedId) ?? null : null;
+  React.useEffect(() => {
+    if (showDeleteHint && pressedCard !== null) console.log(`[CARDS-HINT] gallery: подсказка скрыта — открыта шторка действий card=${pressedCard.id}`); // guard-ok: ветвление называет причину
+  }, [pressedCard, showDeleteHint]);
   const dismissHint = useCallback(() => {
     onSetShowDeleteHint(false);
     AsyncStorage.setItem('flashcard_delete_hint_seen', '1').catch(noteSwallowedHandler('CollectionGalleryView:dismissHint'));
@@ -252,7 +255,8 @@ export default function CollectionGalleryView({
         </ScrollView>
       </GestureDetector>
 
-      {!selectionMode && showDeleteHint ? (
+      {/* зачем (координатор 12.10, cards-034/006): внизу одна плашка за раз — пока открыта шторка действий («Удалить»), подсказка «Зажми карточку…» не висит поверх неё и не закрывает ручку шторки */}
+      {!selectionMode && showDeleteHint && pressedCard === null ? (
         <View style={[styles.hint, { backgroundColor: g.opaqueControl }]}>
           <Ionicons name="trash-outline" size={18} color={g.secondary} />
           <Text style={[styles.hintText, { color: g.text }]}>{copy.hint}</Text>

@@ -173,7 +173,8 @@ add('dialogs-007', [WORLD, ROW], 'plus=off&dquota=reset', DLG, note='брифи�
 # зачем (координатор 12.10, dialogs-011; журнал кадра: «confirmSpendOne(ai_dialog) → cancelled (dev_energy_fail)»): dev_energy_fail=1 подменяет ответ на «отказ» — это тост «Не получилось начать диалог» (dialogs-gap, строка про отказ старта),
 # а окно «Энергия закончилась» показывает настоящий ответ 'insufficient' при нулевой энергии без подмены отказа. Free (plus=off) и energy=0.
 add('dialogs-011', [WORLD, ROW, 'tap:#dialogue-v2-briefing-start'], 'plus=off&energy=0', DLG, note='старт без энергии — окно «Энергия закончилась» (energy=0; подмена отказа энергии даёт тост, а не окно)')
-add('dialogs-gap-002', [], 'plus=on&dquota=reset', '/dialogue_v2_memory', note='память диалогов, Plus (кадр «пусто», если памяти нет)')
+# зачем (R1_DIFF_ONE_FIX, dialogs-gap-002): строка «Для этого языка пока ничего не сохранено.» рисуется, когда память прочитана (`memory && !hasMemory`); кадр снимали, пока она грузилась — ждём
+add('dialogs-gap-002', ['wait:3000'], 'plus=on&dquota=reset', '/dialogue_v2_memory', note='память диалогов, Plus (кадр «пусто», если памяти нет)')
 add('dialogs-gap-003', [], 'plus=off&dquota=reset', '/dialogue_v2_memory', note='память диалогов без Plus — только удаление')
 add('dialogs-gap-009', [], 'plus=on&hold=freeform_loading', '/dialogue_v2_freeform', note='свободный разговор — готовим разговор (hold=freeform_loading)')
 add('dialogs-gap-010', [], 'plus=off', '/dialogue_v2_freeform', note='свободный разговор без Plus — «доступен в Plus»')

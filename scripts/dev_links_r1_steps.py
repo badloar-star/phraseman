@@ -396,8 +396,8 @@ add('cards-gap-026', [f'long:#fc-my-packs-pack-{WORK}', 'tap:#fc-my-packs-action
 # Режим Б и остановки по ошибкам (energy-modes-001…008, 011…014, 016) требуют ОШИБИТЬСЯ в задании, а тип первого задания (варианты слов, сборка,
 # ввод) не фиксирован — их шаги не выведены (нужен записанный ручной путь). Здесь — только вход в урок и окно «нет энергии».
 LESSON_MENU = '/lesson_menu?id=1'
-add('energy-modes-017', ['tap:#lesson-menu-primary'], 'energy=0&plus=off&mode=a', LESSON_MENU, note='Режим А, энергии нет: «Начать» в меню урока → окно «Нет энергии» (NoEnergyModal)')
-add('energy-modes-015', ['tap:#lesson-menu-primary', 'wait:3000'], 'energy=5&plus=off&mode=a', LESSON_MENU, note='Режим А: старт занятия, энергия 5 → 4 в пилюле шапки (кадр сразу после входа в урок)', unique=False)
+add('energy-modes-017', ['wait:3000', 'tap:#lesson-menu-primary'], 'energy=0&plus=off&mode=a', LESSON_MENU, note='Режим А, энергии нет: «Начать» в меню урока → окно «Нет энергии» (NoEnergyModal)')
+add('energy-modes-015', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:3000'], 'energy=5&plus=off&mode=a', LESSON_MENU, note='Режим А: старт занятия, энергия 5 → 4 в пилюле шапки (кадр сразу после входа в урок)', unique=False)
 
 
 # ───────────────────────── Раунд 4 (координатор 12.10) ─────────────────────────

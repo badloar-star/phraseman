@@ -38,8 +38,8 @@ add('cards-section-045', ['wait:4000', 'await:#fc-blitz-opt-target', 'tap:#fc-bl
 
 # ── Режим Б: занятия «Слова» и «Неправильные глаголы» (shot list G-E02 / G-E03)
 EB = 'energy=5&plus=off&free=on&mode=b'
-add('energy-modes-009', ['tap:#lesson-menu-words', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: тренировка слов, пилюля попыток без сердечек (lesson-words-session-attempts)')
-add('energy-modes-010', ['tap:#lesson-menu-irregular-verbs', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: неправильные глаголы, пилюля попыток (irregular-verbs-session-attempts)')
+add('energy-modes-009', ['wait:3000', 'tap:#lesson-menu-words', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: тренировка слов, пилюля попыток без сердечек (lesson-words-session-attempts)')
+add('energy-modes-010', ['wait:3000', 'tap:#lesson-menu-irregular-verbs', 'wait:1500'], EB, '/lesson_menu?id=1', note='Режим Б: неправильные глаголы, пилюля попыток (irregular-verbs-session-attempts)')
 
 # ── Сообщество (гость без друзей; вкладка по умолчанию — «Друзья»)
 COMM = 'spire=open&plus=off&free=on&cards=demo'

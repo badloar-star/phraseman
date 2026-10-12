@@ -92,7 +92,18 @@ async function openMockup(playwright, page, row, phoneOverride) {
   const cols = page.locator('.col');
   const count = await cols.count();
   if (phone < 1 || phone > count) throw new Error(`phone_out_of_range:${phone} of ${count} in ${path.basename(file)}`);
-  return { phone, count, col: cols.nth(phone - 1), url };
+  const col = cols.nth(phone - 1);
+  await revealPhone(page, col, phone, path.basename(file));
+  return { phone, count, col, url };
+}
+
+// зачем (координатор 12.10, stitch_failed у profile-030/cards-043/081): телефоны 16–24 в profile.html лежат в закрытом <details class="proposal-area"> —
+// Playwright 8 с ждал «element is not visible» и склейка падала молча. Раскрываем все <details>, а если телефон всё равно скрыт (display:none, как №37/№76
+// в cards-states.html) — падаем сразу с понятной причиной phone_hidden, а не таймаутом.
+export async function revealPhone(page, col, phone, fileName = '') {
+  await page.evaluate(() => document.querySelectorAll('details').forEach((d) => { d.open = true; }));
+  const visible = await col.locator('.ph').isVisible();
+  if (!visible) throw new Error(`phone_hidden:${phone} in ${fileName} — телефон скрыт (display:none или закрытый блок); нужен другой номер или правка макета`);
 }
 
 const arg = (name, fallback = null) => {

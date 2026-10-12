@@ -32409,19 +32409,18 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-003.png",
+      "evidence_at": "2026-10-12T18:32:45.733Z",
+      "evidence_sha256": "ee3903baaa7a305becc89468d2ebb0589987cc8425acb6d3a670038dd114dd7a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "ОСОЗНАННОЕ ОТЛИЧИЕ (Дизайн 12.10, согласовано координатором): вместо постоянного баннера «Последняя энергия: следующая ошибка остановит занятие» под шапкой — тост ActionToast (один раз на заход на единицу) + красный пульс пилюли ×3; у 10 экранов занятий разные шапки. Закрывается правкой макета Б3 под тост (запрос сессии 3).",
-        "Реализовано (Дизайн 750314a24, ec6e3b471); снять кадры и анимацию Эмулятору: Dev Hub → «Режим энергии (проверка)» (Режим Б, Энергия 5/1/0, Plus)."
+        "[состояние не то] Ссылка /lesson_menu?id=1 (mode=b, free=on, plus=off) вернула на главную — занятие урока не открылось (так же на energy-modes-002/003/004/005); образец — экран «Урок 3 · A1», пилюли «⚡ N» и «1 240», «Собери фразу: Она работает каждый день», слова works/She/every/day/work/is/at/the. Нужен журнал [LESSON-MENU] / [DEV-STATE] route и точный маршрут занятия (у Free урок 1 может закрываться «Входит в Plus» или меню сразу уводит на список) — запрос Ядру."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:34:25.004Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
@@ -32429,7 +32428,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:32–7:33, energy-modes-states «Режим Б · осталась 1 энергия»): сверка невозможна — на кадре главная «Главная» (серия 0 дней, монеты, Диалоги / Карточки / Шпиль, «Видео», «Сегодня», «Фраза дня»), занятие не открыто."
     },
     {
       "id": "energy-modes-004",
@@ -32453,18 +32453,18 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-004.png",
+      "evidence_at": "2026-10-12T18:33:12.394Z",
+      "evidence_sha256": "6cf9b8839616db6d47a19d83fd105691ec73eafb641638eedb975ba92943e0da",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Реализовано (Дизайн 750314a24, ec6e3b471); снять кадры и анимацию Эмулятору: Dev Hub → «Режим энергии (проверка)» (Режим Б, Энергия 5/1/0, Plus)."
+        "[состояние не то] Ссылка /lesson_menu?id=1 (mode=b, free=on, plus=off) вернула на главную — занятие урока не открылось (так же на energy-modes-002/003/004/005); образец — экран «Урок 3 · A1», пилюли «⚡ N» и «1 240», «Собери фразу: Она работает каждый день», слова works/She/every/day/work/is/at/the. Нужен журнал [LESSON-MENU] / [DEV-STATE] route и точный маршрут занятия (у Free урок 1 может закрываться «Входит в Plus» или меню сразу уводит на список) — запрос Ядру."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:34:25.004Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
@@ -32472,7 +32472,8 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:32–7:33, energy-modes-states «Режим Б · ошибка на последней энергии → остановка»): сверка невозможна — на кадре главная «Главная» (серия 0 дней, монеты, Диалоги / Карточки / Шпиль, «Видео», «Сегодня», «Фраза дня»), занятие не открыто."
     },
     {
       "id": "energy-modes-005",
@@ -32493,18 +32494,18 @@
       "anim_notes": [
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-005.png",
+      "evidence_at": "2026-10-12T18:33:42.020Z",
+      "evidence_sha256": "1d8f037c0db08b8a02704935a51c3d128c0caea6c0152b6c283f4002cc674e0c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Реализовано (Дизайн 750314a24, ec6e3b471); снять кадры и анимацию Эмулятору: Dev Hub → «Режим энергии (проверка)» (Режим Б, Энергия 5/1/0, Plus). Карточка прячется на время перехода к Plus (пейвол — контекст no_energy)."
+        "[состояние не то] Ссылка /lesson_menu?id=1 (mode=b, free=on, plus=off) вернула на главную — занятие урока не открылось (так же на energy-modes-002/003/004/005); образец — экран «Урок 3 · A1», пилюли «⚡ N» и «1 240», «Собери фразу: Она работает каждый день», слова works/She/every/day/work/is/at/the. Нужен журнал [LESSON-MENU] / [DEV-STATE] route и точный маршрут занятия (у Free урок 1 может закрываться «Входит в Plus» или меню сразу уводит на список) — запрос Ядру."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T18:34:25.004Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
@@ -32512,7 +32513,8 @@
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "ссылка есть, но «уникальна: нет» — дописать шаги (тапы); путь: G-E01"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:32–7:33, energy-modes-states «Режим Б · шторка Plus на остановке»): сверка невозможна — на кадре главная «Главная» (серия 0 дней, монеты, Диалоги / Карточки / Шпиль, «Видео», «Сегодня», «Фраза дня»), занятие не открыто. У строки нет ссылки: нужно занятие с энергией 0 и шторкой Plus на остановке (подмена Ядра, партия после первых кадров)."
     },
     {
       "id": "energy-modes-006",

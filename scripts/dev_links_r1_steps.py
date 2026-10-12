@@ -125,7 +125,7 @@ add('cards-section-036', [], HUB_FREE, SETUP + 'recall', note='настройк�
 PACKS = '/flashcards_packs'
 add(['cards-014', 'cards-section-022', 'cards-section-024', 'cards-v2-025', 'packs-simple-001'], [], 'catalog=demo', PACKS, note='каталог сообщества, «Новые»')
 add('cards-016', ['long:#flashcards-pack-card-dev_demo_community_1', 'tap:#flashcards-pack-report'], 'catalog=demo', PACKS, note='жалоба на набор: долгое нажатие по набору → «Пожаловаться» (привязка образца cards-states №15 «Жалоба на набор»)')
-add(['cards-017', 'cards-section-023', 'cards-048', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений («Ничего не найдено»)')
+add(['cards-017', 'cards-section-023', 'cards-048', 'cards-v2-026'], ['tap:#flashcards-packs-search', 'type:zzzqq', 'key:ENTER', 'wait:600'], 'catalog=demo', PACKS, note='поиск по каталогу без совпадений («Ничего не найдено»)')
 add('cards-section-028', [], 'catalog=demo', PACKS, note='каталог (привязка образца: «Каталог»; по названию строки — «Ничего не нашли»)')
 add('cards-015', [], 'catalog=demo', PACKS, note='каталог (привязка образца cards-v2 №25 «Каталог»; по названию строки — поиск и меню по долгому нажатию)')
 # зачем (Макеты, 12.10; координатор: ждать ≥5 с): набор открывается на скелетах и «не скачан» объявляется после тихих повторов (1,5 + 3 с) — кадр снимали раньше; ждём 5,5 с, затем тост и снимаем после

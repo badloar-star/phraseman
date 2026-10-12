@@ -242,10 +242,41 @@ export function devCommunityRecordPosted(comment: PackComment): void {
   community = { ...community, posted: new Map([...community.posted, [comment.packId, list]]) };
 }
 
+// ───────────────────── Черновик нового набора (cards-072, съёмка R1) ─────────────────────
+// зачем: кадр «Набор сохранён на устройстве. Публикация не завершена…» требует нового набора с ≥10 карточками и публикацией;
+// набирать 12 карточек роботом — долго и хрупко. `packdraft=on` отдаёт экрану создания готовый черновик из памяти.
+let packDraftOn = false;
+
+export function setDevPackDraft(on: boolean): boolean {
+  if (!devCardsAvailable()) {
+    console.warn(`${LOG} packdraft: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  packDraftOn = on;
+  console.log(`${LOG} packdraft=${on ? 'on' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Черновик «нового набора» (форма CommunityPackCreateDraftV1) или null (вне dev — всегда null). */
+export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
+  if (!devCardsAvailable() || !packDraftOn) return null;
+  const words: readonly (readonly [string, string])[] = [
+    ['Layover', 'пересадка'], ['Gate', 'выход на посадку'], ['Customs', 'таможня'], ['Boarding pass', 'посадочный талон'],
+    ['Luggage', 'багаж'], ['Delay', 'задержка'], ['Aisle seat', 'место у прохода'], ['Window seat', 'место у окна'],
+    ['Check-in', 'регистрация'], ['Departure', 'вылет'], ['Arrival', 'прилёт'], ['Carry-on', 'ручная кладь'],
+  ];
+  return {
+    v: 1, title: 'В аэропорту', description: 'Фразы для перелёта', themeIdx: 0, packLanguage: 'en', publishToCommunity: true, level: 'A2',
+    rows: words.map(([en, ru], i) => ({ id: `c${i + 1}`, en, ru, uk: ru })),
+    addCardFormOpen: false, draftEn: '', draftRu: '', draftEs: '', draftPlannedTranslation: '', draftNote: '',
+  };
+}
+
 /** Только для тестов. */
 export function resetDevCardsStateForTests(): void {
   state = EMPTY;
   community = EMPTY_COMMUNITY;
+  packDraftOn = false;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

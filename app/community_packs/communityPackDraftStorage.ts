@@ -1,3 +1,4 @@
+import { getDevPackDraft } from '../dev_cards_state';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COMMUNITY_PACK_CARD_COUNT_MAX } from './schema';
 
@@ -156,10 +157,18 @@ export async function loadCommunityPackCreateDraft(
   sourceLocale?: RuntimeSourceLocale,
   packLanguage?: PackLanguage,
 ): Promise<CommunityPackCreateDraftV1 | null> {
+  // зачем (координатор 12.10, cards-072): dev `packdraft=on` — готовый черновик нового набора из памяти (12 карточек, в сообщество).
+  const devDraft = getDevPackDraft();
+  if (devDraft) {
+    console.warn('[DEV-STATE] packdraft: черновик нового набора из памяти'); // guard-ok: dev-ветка
+    return devDraft as unknown as CommunityPackCreateDraftV1;
+  }
   try {
     const raw = await AsyncStorage.getItem(communityPackCreateDraftKey(studyTarget, sourceLocale));
     return packLanguage ? draftsByLanguage(raw, studyTarget)[packLanguage] ?? null : parseDraft(raw);
-  } catch {
+  } catch (e) {
+    // зачем: немой catch прятал битый черновик — экран молча открывался пустым.
+    console.warn('[PACK-DRAFT] черновик не прочитан — открываем пустым', String(e));
     return null;
   }
 }

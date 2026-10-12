@@ -35,7 +35,7 @@ import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
-import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, setDevCommunityState, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
+import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, setDevCommunityState, setDevPackDraft, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
@@ -117,6 +117,8 @@ export type DevStateRequest = Readonly<{
   packcards?: 'on' | 'meta' | 'off';
   /** Список голосов озвучки (cards-gap-036/038): demo — образцовый, none — пусто. */
   voices?: 'demo' | 'none' | 'off';
+  /** Готовый черновик нового набора из памяти (cards-072). */
+  packdraft?: 'on' | 'off';
   /** Ветка откликов демо-набора: три отклика (demo) или пусто (empty). */
   comments?: DevCommunityComments | 'off';
   /** reset — забыть «добавленное»/лайки/отправленное; added — «добавлены» демо-наборы 2, 1, 3 (cards-044); off — выключить режим. */
@@ -316,6 +318,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.blitzAnswer = pick('blitz_answer', [...DEV_BLITZ_ANSWERS, 'off'] as const);
   request.packcards = pick('packcards', ['on', 'meta', 'off'] as const);
   request.voices = pick('voices', [...DEV_CARDS_VOICES, 'off'] as const);
+  request.packdraft = pick('packdraft', ['on', 'off'] as const);
   request.comments = pick('comments', [...DEV_COMMUNITY_COMMENTS, 'off'] as const);
   request.community = pick('community', ['reset', 'added', 'off'] as const);
   request.mistakes = pick('mistakes', ['demo', 'off'] as const);
@@ -676,6 +679,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.blitzAnswer !== undefined) {
     await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));
+  }
+  if (request.packdraft !== undefined) {
+    await step('packdraft', request.packdraft, async () => setDevPackDraft(request.packdraft === 'on'));
   }
   if (request.voices !== undefined) {
     await step('voices', request.voices, async () => setDevCardsState({ voices: request.voices === 'off' ? null : request.voices! }));

@@ -152,3 +152,19 @@ describe('dev_state R1 (Ядро): Карточки — сообщество б�
     expect(cards.getDevVoices()).toBeNull();
   });
 });
+
+describe('dev_state R1 (Ядро): packcards=meta и packdraft', () => {
+  test('packcards=meta — мета без карточек; packdraft — черновик из 12 карточек в сообщество', async () => {
+    const cards = require('../app/dev_cards_state') as typeof import('../app/dev_cards_state');
+    expect(parseDevStateParams({ packcards: 'meta', packdraft: 'on' }).rejected).toEqual({});
+    await applyDevState(parseDevStateParams({ packcards: 'meta', packdraft: 'on' }).request);
+    expect(cards.getDevCommunityPack('dev_demo_community_2')?.cards).toEqual([]);
+    expect(cards.getDevCommunityPack('dev_demo_community_2')?.meta.cardCount).toBe(49);
+    const draft = cards.getDevPackDraft() as { rows: unknown[]; publishToCommunity: boolean } | null;
+    expect(draft?.rows).toHaveLength(12);
+    expect(draft?.publishToCommunity).toBe(true);
+    await applyDevState(parseDevStateParams({ packdraft: 'off', community: 'off' }).request);
+    expect(cards.getDevPackDraft()).toBeNull();
+    expect(cards.isDevCommunityPackId('dev_demo_community_2')).toBe(false);
+  });
+});

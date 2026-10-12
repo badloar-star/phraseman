@@ -28,3 +28,5 @@ export function getDevCommunityComments(): null { return null; }
 export function devCommunityRecordPosted(): void {}
 export const DEV_CARDS_VOICES = [] as const;
 export function getDevVoices(): null { return null; }
+export function setDevPackDraft(): boolean { return false; }
+export function getDevPackDraft(): null { return null; }

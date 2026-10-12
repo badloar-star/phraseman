@@ -49,4 +49,24 @@ describe('analytics consent subscription', () => {
     unsubscribe();
     mockNativeBarrier = null;
   });
+
+  // зачем (аудит Optimistic UI, Авторизация 13.10): быстрое «вкл → выкл» — позднее включение не должно перекрыть отзыв согласия
+  it('a late grant never overrides a newer revocation (memory, native collection order)', async () => {
+    await setAnalyticsConsent('denied');
+    mockApplyAnalyticsCollectionConsent.mockClear();
+    let releaseNative: (() => void) | undefined;
+    mockApplyAnalyticsCollectionConsent.mockImplementationOnce(async () => {
+      await new Promise<void>((resolve) => { releaseNative = resolve; });
+    });
+    const granting = setAnalyticsConsent('granted');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const denying = setAnalyticsConsent('denied');
+    expect(getAnalyticsConsentState()).toBe('denied'); // отказ — сразу
+    releaseNative?.();
+    await granting;
+    await denying;
+    expect(getAnalyticsConsentState()).toBe('denied');
+    // нативный сбор: сначала включение (уже начатое), затем выключение — последним
+    expect(mockApplyAnalyticsCollectionConsent.mock.calls.map((c) => c[0])).toEqual([true, false]);
+  });
 });

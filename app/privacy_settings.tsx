@@ -189,7 +189,9 @@ export default function PrivacySettings() {
     }
     void (async () => {
       try {
-        await save(val ? 'granted' : 'denied');
+        // зачем (аудит Optimistic UI 13.10): ИИ-согласия сообщают сбой записи значением false (не броском) — это тоже откат
+        const persisted = await save(val ? 'granted' : 'denied');
+        if (persisted === false) throw new Error('consent_persist_failed');
       } catch (error) {
         const superseded = consentSeqRef.current[key] !== seq;
         console.warn(`[PRIVACY-CONSENT] ${key}: локальная запись ${val} не удалась seq=${seq} — ${superseded ? `уже пришёл тап seq=${consentSeqRef.current[key]}, откат не нужен` : 'откат тумблера + тост'}`, error); // guard-ok: catch и ранний выход логируются всегда (правило «сперва логи»)

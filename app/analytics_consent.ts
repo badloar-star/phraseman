@@ -108,24 +108,51 @@ export function isAnalyticsConsentHydrated(): boolean {
 }
 
 /** Записать выбор пользователя (онбординг, модал, настройки). */
+// зачем (аудит Optimistic UI, Авторизация 13.10): «включить» ждёт нативный сбор и лишь потом пишет память и диск. Быстрое «вкл → выкл» давало
+// позднее «granted» поверх «denied» — отзыв согласия терялся, нативный сбор мог остаться включённым. Все записи идут одной очередью с номером:
+// перебитый более новым выбором вызов ничего не применяет; отказ действует в памяти сразу, как и раньше.
+let consentWriteSeq = 0;
+let consentWriteChain: Promise<void> = Promise.resolve();
+
 export async function setAnalyticsConsent(state: AnalyticsConsentState): Promise<void> {
-  const previous = consentMemory;
-  if (state === 'granted') {
-    // Keep the in-memory gate closed until the native Firebase SDK is enabled,
-    // otherwise the first session events can be dropped before BigQuery sees them.
-    await syncNativeCollection(true);
-    consentMemory = state;
-    if (state !== previous) notifyConsentListeners();
-  } else {
+  const seq = ++consentWriteSeq;
+  if (state !== 'granted') {
     // Revocation is immediate in memory; disabling native collection can finish after.
+    const previous = consentMemory;
     consentMemory = state;
     if (state !== previous) notifyConsentListeners();
-    await syncNativeCollection(false);
   }
-  try {
-    await AsyncStorage.setItem(CONSENT_KEY, state);
-  } catch (e) {
-      // no-op: в памяти уже обновлено, перезапишется при следующей попытке
-      DebugLogger.error('analytics_consent:previous', e instanceof Error ? e : new Error(String(e)), 'warning');
+  const run = async (): Promise<void> => {
+    if (seq !== consentWriteSeq) {
+      DebugLogger.info('[ANALYTICS-CONSENT]', `запись ${state} seq=${seq} пропущена — уже есть выбор seq=${consentWriteSeq}`);
+      return;
     }
+    if (state === 'granted') {
+      // Keep the in-memory gate closed until the native Firebase SDK is enabled,
+      // otherwise the first session events can be dropped before BigQuery sees them.
+      await syncNativeCollection(true);
+      if (seq !== consentWriteSeq) {
+        // следующий в очереди (отказ) сам выключит нативный сбор
+        DebugLogger.info('[ANALYTICS-CONSENT]', `granted seq=${seq} перебит выбором seq=${consentWriteSeq} во время включения сбора — не применяю`);
+        return;
+      }
+      const previous = consentMemory;
+      consentMemory = state;
+      if (state !== previous) notifyConsentListeners();
+    } else {
+      await syncNativeCollection(false);
+    }
+    if (seq !== consentWriteSeq) return;
+    try {
+      await AsyncStorage.setItem(CONSENT_KEY, state);
+    } catch (e) {
+      // зачем: сбой записи больше не глотается — Настройки откатят тумблер с тостом; после перезапуска иначе вернулось бы старое значение
+      DebugLogger.error('analytics_consent:persist', e instanceof Error ? e : new Error(String(e)), 'warning');
+      throw e;
+    }
+  };
+  const op = consentWriteChain.then(run);
+  // ошибка уже в журнале и уходит вызывающему; очередь не должна застрять на ней
+  consentWriteChain = op.catch((e: unknown) => DebugLogger.info('[ANALYTICS-CONSENT]', `очередь продолжена после сбоя seq=${seq}: ${e instanceof Error ? e.message : String(e)}`));
+  return op;
 }

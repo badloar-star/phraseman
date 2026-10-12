@@ -531,6 +531,15 @@ export default function ReferralsScreen() {
   const copyReferralCode = useCallback(async () => {
     if (!referralCode || !renderAccountScope) return;
     hapticTap();
+    // зачем (аудит Optimistic UI 13.10): галочка «скопировано» — сразу на тап, не после записи в буфер; не вышло — откат с причиной в журнале
+    setCodeCopied(true);
+    if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = setTimeout(() => setCodeCopied(false), 1600);
+    const rollback = (reason: string) => {
+      console.warn(`[REFERRAL-COPY] откат галочки: ${reason}`); // guard-ok: ранний выход и catch логируются
+      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
+      setCodeCopied(false);
+    };
     try {
       const copied = await copyReferralCodeForAccount({
         accountToken: renderToken,
@@ -541,13 +550,11 @@ export default function ReferralsScreen() {
           await Clipboard.setStringAsync(value);
         },
       });
-      if (!copied) return;
-      setCodeCopied(true);
-      if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
-      copyTimerRef.current = setTimeout(() => setCodeCopied(false), 1600);
+      if (!copied) rollback('копирование отклонено (сменился аккаунт или код)');
     } catch (e) {
       // буфер недоступен — код всё равно виден на экране
       DebugLogger.error('referrals:copied', e instanceof Error ? e : new Error(String(e)), 'warning');
+      rollback('буфер обмена недоступен');
     }
   }, [referralCode, renderAccountScope, renderToken]);
 

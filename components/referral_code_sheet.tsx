@@ -185,9 +185,11 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [friendRequested, setFriendRequested] = useState(false);
 
+  // зачем (аудит Optimistic UI 13.10): номер открытия — ответ сервера, пришедший после закрытия/переоткрытия, не пишется в новое открытие
+  const openGenRef = useRef(0);
   // Каждое открытие — с чистого листа (код мог быть применён в прошлый раз).
   useEffect(() => {
-    if (visible) { setCode(''); setFeedback(null); setFriendRequested(false); }
+    if (visible) { openGenRef.current += 1; setCode(''); setFeedback(null); setFriendRequested(false); }
   }, [visible]);
 
   // зачем (решение владельца п.81(13), overlays-campaigns-021): кнопка активна при любом непустом коде; короткий код объясняется по нажатию.
@@ -227,28 +229,38 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       setBusy(false);
       return;
     }
+    const openGen = openGenRef.current;
     try {
       const status = await applyManualReferralCode(code);
+      if (openGen !== openGenRef.current) {
+        console.log(`[REFERRAL-CODE] ответ ${status} пришёл после закрытия шторки — в новое открытие не пишем`); // guard-ok: ранний выход логируется
+        return;
+      }
       setFeedback(feedbackForStatus(status, L));
+      // зачем (аудит Optimistic UI 13.10): ответ на код уже показан — кнопку отпускаем сразу, заявка в друзья идёт фоном
+      submitLockRef.current = false;
+      setBusy(false);
       // зачем: «один код» (решение владельца 2026-07-25) — принятый код сразу шлёт
       // заявку в друзья владельцу кода: 1 lookup + 1 заявка строго по явному
       // действию, дружба — бонус, награда уже привязана (ошибки глотаем).
       if (status === 'applied' || status === 'already') {
-        try {
-          const owner = await lookupUserByFriendCode(code);
-          if (owner) {
-            const res = await sendFriendRequest(owner.uid);
-            if (res === 'sent' || res === 'already_sent') setFriendRequested(true);
+        void (async () => {
+          try {
+            const owner = await lookupUserByFriendCode(code);
+            if (owner) {
+              const res = await sendFriendRequest(owner.uid);
+              if ((res === 'sent' || res === 'already_sent') && openGen === openGenRef.current) setFriendRequested(true);
+            }
+          } catch (e) {
+            // дружба best-effort
+            DebugLogger.error('referral_code_sheet:res', e instanceof Error ? e : new Error(String(e)), 'warning');
           }
-        } catch (e) {
-      // дружба best-effort
-      DebugLogger.error('referral_code_sheet:res', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+        })();
       }
     } catch (error: unknown) {
       // зачем: исключение (сеть, хранилище) уходило наверх без ответа — экран просто «отпускал» кнопку
       console.warn('[REFERRAL-CODE] применение: исключение', error instanceof Error ? error.message : String(error));
-      setFeedback(feedbackForStatus('error', L));
+      if (openGen === openGenRef.current) setFeedback(feedbackForStatus('error', L));
     } finally {
       submitLockRef.current = false;
       setBusy(false);

@@ -25,7 +25,8 @@ export interface AiConsentModule {
   isHydrated(): boolean;
   subscribe(listener: (state: AiConsentState) => void): () => void;
   hydrateFromStorage(): Promise<void>;
-  setConsent(state: AiConsentState): Promise<void>;
+  /** true — выбор записан на диск; false — сбой записи (в памяти выбор уже применён; Настройки откатывают тумблер с тостом). */
+  setConsent(state: AiConsentState): Promise<boolean>;
   /** true — облако подтвердило запись текущего состояния; false — не ушло (отметка «не доставлено» остаётся, досылка при входе). */
   recordToCloud(): Promise<boolean>;
 }
@@ -109,10 +110,13 @@ export function createAiConsentModule(storageKey: string, cloudCallableName: str
         await AsyncStorage.setItem(pendingKey, state).catch((e: unknown) => {
           console.warn(`${LOG} ${storageKey}: отметка «не доставлено» не записалась reason=${e instanceof Error ? e.message : String(e)} — досылка при входе не сработает`);
         });
+        return true;
       } catch (e) {
-      // no-op: в памяти уже обновлено, перезапишется при следующей попытке
-      DebugLogger.error('ai_consent_factory:previous', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+        // зачем (аудит Optimistic UI 13.10): сбой записи раньше глотался — тумблер «сохранён», а после перезапуска вернулся бы старый выбор.
+        // Не бросаем (у шлюзов Диалогов и «Моих ошибок» нет catch), а возвращаем false — Настройки приватности откатывают тумблер с тостом.
+        DebugLogger.error('ai_consent_factory:persist', e instanceof Error ? e : new Error(String(e)), 'warning');
+        return false;
+      }
     },
     recordToCloud: async () => {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {

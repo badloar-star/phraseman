@@ -13,6 +13,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { hapticTap } from '../hooks/use-haptics';
 import { ERROR_REPORT_COMMENT_MIN_LEN } from './error_report';
+import { emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import type { SupportDiagnosticBundle } from './support_diagnostic_schema';
@@ -75,6 +76,24 @@ export default function SupportReportScreen() {
 
   const close = useCallback(() => safeRouterBack(router, '/(tabs)/settings' as never), [router]);
 
+  // зачем (аудит Optimistic UI 13.10): «Отправлено» показывается сразу, а провал отправки после ухода с экрана был немым —
+  // человек думал, что обращение дошло. Экрана уже нет — сообщаем тостом, чтобы отправил ещё раз.
+  const notifyFailedAfterLeave = useCallback(() => {
+    console.warn('[SUPPORT-SEND] экран закрыт до провала отправки — тост «не отправилось»'); // guard-ok: единичный лог на провал
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Обращение не отправилось. Открой «Поддержку» и отправь ещё раз.',
+      messageUk: 'Звернення не надіслано. Відкрий «Підтримку» й надішли ще раз.',
+      messageEn: "Your message wasn't sent. Open Support and send it again.",
+      messageEs: 'Tu mensaje no se envió. Abre Soporte y envíalo de nuevo.',
+      messagePtBr: 'Sua mensagem não foi enviada. Abra o Suporte e envie de novo.',
+      messageVi: 'Tin nhắn chưa được gửi. Hãy mở Hỗ trợ và gửi lại.',
+      messageId: 'Pesanmu belum terkirim. Buka Dukungan dan kirim lagi.',
+      messageTr: 'Mesajın gönderilmedi. Destek’i açıp tekrar gönder.',
+      messagePl: 'Wiadomość nie została wysłana. Otwórz Pomoc i wyślij ją ponownie.',
+    });
+  }, []);
+
   const send = useCallback(() => {
     if (!canSend || submissionStartedRef.current) return;
     submissionStartedRef.current = true;
@@ -93,14 +112,14 @@ export default function SupportReportScreen() {
       console.log('[SUPPORT-SEND] экран получил итог', { outcome, mounted: mountedRef.current }); // guard-ok: единичный лог на жест человека
       if (outcome !== 'failed') return;
       submissionStartedRef.current = false; // повтор снова разрешён, текст в поле не очищали
-      if (mountedRef.current) { setState('idle'); setSendFailed(true); }
+      if (mountedRef.current) { setState('idle'); setSendFailed(true); } else notifyFailedAfterLeave();
     }).catch((error: unknown) => {
       console.warn('[SUPPORT-SEND] экран: отправка бросила ошибку, откат на форму', error);
       noteSwallowedHandler('support_report:useCallback.sendSupportReportInBackground')(error);
       submissionStartedRef.current = false;
-      if (mountedRef.current) { setState('idle'); setSendFailed(true); }
+      if (mountedRef.current) { setState('idle'); setSendFailed(true); } else notifyFailedAfterLeave();
     });
-  }, [attachDiagnostics, canSend, description, diagnosticsPreview, lang]);
+  }, [attachDiagnostics, canSend, description, diagnosticsPreview, lang, notifyFailedAfterLeave]);
 
   return (
     <ScreenGradient artBackdrop="settings">

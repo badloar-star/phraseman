@@ -1254,6 +1254,12 @@ function RegistrationPromptModal({
           if (result.error === 'account_delete_pending') {
             const restore = await promptAccountRestoreAfterSignInRefusal(lang);
             console.log(`[ACCOUNT-RESTORE] registration_modal outcome=${restore}`); // guard-ok: одно событие на тап входа, нужно для диагностики
+            // зачем (аудит Optimistic UI 13.10): пока висело окно восстановления, окно входа могли закрыть или открыть заново —
+            // устаревший итог не должен писать ошибку/повтор в новую попытку
+            if (!isAttemptCurrent(attemptToken)) {
+              console.log(`[AUTH-MODAL] restore outcome dropped provider=${provider} outcome=${restore} reason=attempt_invalidated`); // guard-ok: ранний выход пишет причину
+              return;
+            }
             if (restore === 'restored') {
               setRetryProvider(provider);
               showInlineError(

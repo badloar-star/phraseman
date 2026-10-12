@@ -771,7 +771,18 @@ export default function LessonIntroScreens({
             screen="lesson_intro"
             dataId={`lesson_intro_${lessonId ?? 'unknown'}_slide_${currentIndex ?? 0}`}
             dataText={currentSlideTitle}
-            accessibilityLabel="Сообщить об ошибке в объяснении"
+            // зачем (12.10, английский интерфейс в R1): экранный диктор читал подпись по-русски на любом языке интерфейса.
+            accessibilityLabel={triLang(lang, {
+              ru: 'Сообщить об ошибке в объяснении',
+              uk: 'Повідомити про помилку в поясненні',
+              en: 'Report a mistake in the explanation',
+              es: 'Informar de un error en la explicación',
+              'pt-BR': 'Informar um erro na explicação',
+              vi: 'Báo lỗi trong phần giải thích',
+              id: 'Laporkan kesalahan dalam penjelasan',
+              tr: 'Açıklamadaki hatayı bildir',
+              pl: 'Zgłoś błąd w wyjaśnieniu',
+            })}
             testID="lesson-intro-report"
             style={[
               styles.reportFlag,

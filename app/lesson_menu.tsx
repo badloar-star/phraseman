@@ -1091,6 +1091,8 @@ function LessonMenu() {
               type: 'error',
               messageRu: 'Не хватает энергии. Подожди восстановления или используй бонусную.',
               messageUk: 'Недостатньо енергії. Дочекайся відновлення або використай бонусну енергію.',
+              // зачем (12.10, английский интерфейс в R1): без messageEn английский интерфейс показывал этот тост по-русски.
+              messageEn: 'Not enough energy. Wait for it to recharge or use bonus energy.',
               messageEs: 'No tienes suficiente energía. Espera a que se recargue o usa energía bonus.',
             });
             return;

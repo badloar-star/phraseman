@@ -126,7 +126,9 @@ export function bracketPairs(src) {
   return pairs;
 }
 
-const TOAST_RU_UK_LINE = /^\s*(message|label)(?:Ru|Uk)\s*:\s*[`'"]/;
+// зачем (координатор 12.10, английский в R1): вид пары — любое имя (`titleRu`/`titleEn`, `nextStepHintRu`/`nextStepHintEn` в сценарии
+// диалога), не только тост message/label. Правило то же строгое: английский ТОГО ЖЕ имени, в том же объекте, непустой.
+const TOAST_RU_UK_LINE = /^\s*([a-z][A-Za-z0-9]*?)(?:Ru|Uk)\s*:\s*[`'"]/;
 const STRING_LITERAL = String.raw`(?:'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|\`(?:[^\`\\]|\\.)*\`)`;
 
 /** Текст объекта/вызова `owner` без вложенных скобок — только его собственные ключи и аргументы. */

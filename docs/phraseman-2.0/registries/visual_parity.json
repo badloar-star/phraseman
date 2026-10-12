@@ -33782,22 +33782,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-033.png",
+      "evidence_at": "2026-10-12T03:23:14.271Z",
+      "evidence_sha256": "b0262a34bc4e0c1e2af5da0eddf397cda6d2dfd17f5dc201513abc37df92db5a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо вопроса «Gate → таможня» с кнопками «Ложь / Правда» открыт экран подготовки: «Тренировка карточек», «Наборы», красная ошибка «Не удалось подготовить тренировку. Энергия возвращена.», набор «Сохранённые карточки», светлая «Начать» — подготовка «Правда / ложь» в dev-прогоне завершилась ошибкой (тот же сбой, что cards-gap-003 и 005). Дефект стенда или кода: в dev нет серверной подготовки для режима; переснять после исправления ссылки (train_gate без ошибки)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:24:07.943Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "дубль cards-section-042: записи ссылки нет — путь есть в shot list (G-C05)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:23, утверждённый cards-v2 №33 «Сессии — Правда / ложь»): на кадре не сессия, а экран подготовки «Тренировка карточек»."
     },
     {
       "id": "cards-v2-034",
@@ -33817,22 +33820,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-034.png",
+      "evidence_at": "2026-10-12T03:23:33.937Z",
+      "evidence_sha256": "2d4e44b1bc9e4525d6e4e953b0114fb0dc6c656469685aeabcace4095cc8414f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[кадр пустой — пересъёмка] Карточка слова, поле ответа, «Подсказка», «Проверить» и «Показать ответ» — серые плашки; счётчик монет «0». Переснять после загрузки (1–2 с).",
+        "[вёрстка] В шапке значок наборов — стопка слоёв (в образце баночка, общий вопрос владельцу); флажка жалобы справа нет (в коде только при включённой отправке жалоб)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:24:07.943Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "дубль cards-section-043: записи ссылки нет — путь есть в shot list (G-C05)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:23, утверждённый cards-v2 №34 «Сессии — Вспомни и напиши»): кадр снят на загрузке — шапка «✕ · Напиши · три сердца» и серые заглушки вместо задания и поля ввода."
     },
     {
       "id": "cards-v2-035",

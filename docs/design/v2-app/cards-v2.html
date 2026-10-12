@@ -303,6 +303,10 @@
   .sechead { display: flex; align-items: baseline; gap: 8px; margin: 22px 4px 12px; font-size: 20px; line-height: 26px; font-weight: 700; } .sechead .n2 { font-weight: 600; color: var(--muted); }
   .erow2 { display: flex; align-items: center; gap: 12px; min-height: 70px; padding: 10px 14px; border-radius: 16px; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); }
   .erow2 .w1 { font-size: 16px; line-height: 21px; font-weight: 600; } .erow2 .w2 { font-size: 16px; line-height: 21px; color: var(--sec); margin-top: 2px; } .erow2 .g { color: var(--muted); }
+  /* тост-ошибка общего ActionToast (гибридная карточка): низ экрана, поля 14, высота от 76, радиус 20, планка 3, плитка 44, «ОШИБКА» капсом 13 и текст 16/22 */
+  .etoast { position: absolute; left: 14px; right: 14px; bottom: 42px; z-index: 30; min-height: 76px; padding: 12px 14px; border-radius: 20px; display: flex; align-items: center; gap: 12px; background: rgba(40,42,48,.97); box-shadow: 0 18px 19px rgba(0,0,0,.35); }
+  .etoast .etr { align-self: stretch; width: 3px; border-radius: 3px; background: #E5645B; } .etoast .tl { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; } .etoast .tl svg { width: 22px; height: 22px; }
+  .etoast .cp { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; } .etoast .lb { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; } .etoast .ms { font-size: 16px; line-height: 22px; color: var(--sec); }
 </style>
 </head>
 <body>
@@ -622,6 +626,25 @@
       <div class="sec" style="margin-top:28px"><div class="ti" style="font-size:17px">Что повторяем</div></div>
       <div class="pick">${[0, 1, 2, 3].map(() => '<div class="pk" style="min-height:110px"></div>').join('')}</div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta dis">${icon('play', 's18')}Начать</div></div>` });
+  // зачем (кадры Сверки 12.10, привязки cards-062/063/024/047/039): состояния, которых не было в cards-v2 — рисуем по коду, в конец страницы
+  const etoast = (lb, ms) => `<div class="etoast" role="status"><span class="etr"></span><span class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5"/><path d="M12 16.5h.01" stroke-width="2.4"/></svg></span><span class="cp"><span class="lb">${lb}</span><span class="ms">${ms}</span></span></div>`;
+  const withOverlay = (html, over) => html.replace('<div class="hi"></div>', over + '<div class="hi"></div>');
+  // cards-062 — flashcards_card_editor: сохранение упало — общий тост-ошибка (ActionToast, «Не удалось сохранить карточку.»), форма и черновик остаются на месте. Кнопка «Повторить» задана в коде, но гибридная карточка тоста действие не рисует — вопрос Дизайну
+  const cardSaveErr = () => withOverlay(newCard(), etoast('Ошибка', 'Не удалось сохранить карточку.'));
+  // cards-063 — редактор открыт на карточке, которой нет: вместо формы плитка-значок, «Карточка не найдена» и «Назад» (CardsGlassStateBlock)
+  const cardNotFound = () => phone(`<div class="topbar"><span class="rb t">${icon('close', 's20')}</span><span style="font-size:16px;font-weight:700">Карточка</span><span style="width:42px"></span></div>${empty('search', 'Карточка не найдена', '', 'Назад')}`, { time: '9:41' });
+  // cards-024 — в форме нового набора кнопка «+ Первая карточка / Добавить» открывает шторку «Новая карточка»: три поля, «Ещё одну» и «Добавить»
+  const setNewCardSheet = () => withOverlay(newSet(), sheet('nc', `<div class="flex" style="padding:0 4px"><div class="grow" style="font-size:22px;line-height:28px;font-weight:700">Новая карточка</div><span class="rb fill t">${icon('close', 's18')}</span></div>
+      <div style="margin-top:18px"><div class="flab">Слово или фраза</div><div class="field"><input></div></div>
+      <div style="margin-top:14px"><div class="flab">Перевод</div><div class="field"><input></div></div>
+      <div style="margin-top:14px"><div class="flab">Пример</div><div class="field"><input></div></div>
+      <div class="flex" style="gap:10px;margin-top:20px"><div class="cta gh t grow">Ещё одну</div><div class="cta t grow">Добавить</div></div>`, true));
+  // cards-047 — каталог, пока наборы грузятся (FlashcardsCategoryHub: четыре плитки-заглушки без текста, высота как у плашки)
+  const catalogLoading = () => phone(`${commHead('')}<div class="stack g14" style="margin-top:20px">${[0, 1, 2, 3].map(() => '<div class="card" style="min-height:118px"></div>').join('')}</div>`, { time: '9:41' });
+  // cards-039 — «Сохранённые» не загрузились (SavedCollectionStates, SavedCollectionUnavailable): «Сейчас недоступно» · «Проверь интернет» · «Попробовать снова»
+  const savedUnavailable = () => phone(`${backC(`${rbSearch}${rbPlus}${rbMenu()}`)}${ttl('Сохранённые')}${empty('wifiOff', 'Сейчас недоступно', 'Проверь интернет', `${X.retry}Попробовать снова`)}`, { time: '9:41' });
+  // каталог без сети по коду (FlashcardsCategoryHub): плитка с «нет сети» и «Нет сети», без подписи и кнопки
+  const catalogOffline = () => phone(`${commHead('')}${empty('wifiOff', 'Нет сети', '', '')}`, { time: '9:41' });
   const setupEmpty = () => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', '24/30')}</div>
       <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
       <div style="margin-top:40px">${empty(X.albums.replace('s18', 's28'), 'Нет карточек', 'Сохрани пару слов', 'Открыть каталог', 1)}</div>`, { time: '9:41' });
@@ -734,7 +757,7 @@
     ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
       col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
       col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),
-      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true)), col('Сохранённые — загрузка', savedLoading()), col('Подготовка тренировки — загрузка наборов', setupLoading())]],
+      col('Итог — «Хороший результат» (12 из 20)', resultGood()), col('Итог — «Есть куда расти» (6 из 20)', resultLow()), col('Набор из видео — добавлен', videoSet(true)), col('Сохранённые — загрузка', savedLoading()), col('Подготовка тренировки — загрузка наборов', setupLoading()), col('Новая карточка — не удалось сохранить', cardSaveErr()), col('Карточка не найдена', cardNotFound()), col('Новый набор — шторка «Новая карточка»', setNewCardSheet()), col('Каталог — загрузка', catalogLoading()), col('Сохранённые — недоступно', savedUnavailable()), col('Каталог — нет сети (по коду)', catalogOffline())]],
   ];
   document.getElementById('nav').innerHTML = BLOCKS.map(([id, t]) => `<a href="#${id}">${t}</a>`).join('');
   document.getElementById('root').innerHTML = BLOCKS.map(([id, t, l, c]) => block(id, t, l, c)).join('');

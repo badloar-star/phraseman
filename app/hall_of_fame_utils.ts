@@ -23,12 +23,13 @@ import {
   isYesterdayFlexible,
 } from './local_date';
 import type { Lang } from '../constants/i18n';
+import { resolveNotificationLang } from './notification_lang';
 import type { AccountGenerationToken } from './account_generation';
 import { DebugLogger } from './debug-logger';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
-const notificationLangFromStorageValue = (value: string | null): Lang =>
-  value === 'uk' ? 'uk' : value === 'es' ? 'es' : 'ru';
+// зачем (§AUTH-0110): прежде `uk ? uk : es ? es : ru` — пуш «серия потеряна» по-русски для 6 языков интерфейса.
+const notificationLangFromStorageValue = (value: string | null): Lang => resolveNotificationLang(value, 'streak_lost');
 
 function sendStreakWarningLazy(streak: number, lang: Lang): void {
   void import('./notifications')

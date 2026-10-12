@@ -25,6 +25,7 @@ import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 // и любой другой код, который берёт этот же замок — будет вечная блокировка.
 import { withStorageLock } from '../app/storage_mutex';
 import type { Lang } from '../constants/i18n';
+import { resolveNotificationLang } from '../app/notification_lang';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
@@ -530,11 +531,13 @@ async function readDynMax(): Promise<number> {
 
 /** Язык интерфейса для текста уведомления (тот же источник, что в _layout). */
 async function readNotificationLang(): Promise<Lang> {
+  // зачем (§AUTH-0110): прежде всё, кроме uk/es, превращалось в ru — пуш по-русски для 6 языков интерфейса.
   try {
     const raw = await AsyncStorage.getItem('app_lang');
-    return raw === 'uk' ? 'uk' : raw === 'es' ? 'es' : 'ru';
-  } catch {
-    return 'ru';
+    return resolveNotificationLang(raw, 'energy_full');
+  } catch (error: unknown) {
+    console.warn(`[LANG-SWITCH] notification_lang source=energy_full read_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`); // guard-ok: ранний выход из catch пишет причину
+    return resolveNotificationLang(null, 'energy_full');
   }
 }
 

@@ -67,6 +67,18 @@ jest.mock('../app/dialogue_v2_freeform_prepared_bot_voice_asset_registry', () =>
 }));
 
 jest.mock('../app/dialogue_v2_freeform_opening', () => ({ dialogueV2FreeformOpening: (target: unknown) => mockOpening(target) }));
+// зачем (координатор 12.10): в стенде тихий повтор старта идёт через mockRetryDelay мс вместо 4 с — число попыток то же.
+let mockRetryDelay = 1;
+jest.mock('../app/dialogue_v2_freeform_start_retry', () => {
+  const actual = jest.requireActual('../app/dialogue_v2_freeform_start_retry');
+  return { ...actual, planFreeformStartRetry: (attempt: number) => actual.planFreeformStartRetry(attempt, mockRetryDelay) };
+});
+const failStartTimes = (times: number, how: 'null' | 'reject' = 'reject') => {
+  for (let i = 0; i < times; i += 1) {
+    if (how === 'null') mockStart.mockResolvedValueOnce(null);
+    else mockStart.mockRejectedValueOnce(new Error('start failed'));
+  }
+};
 
 import DialogueV2FreeformRoute from '../app/dialogue_v2_freeform';
 
@@ -94,6 +106,7 @@ describe('Dialogue V2 freeform route', () => {
     mockVoice.voiceDraft = null;
     mockVoice.playingVoiceUri = null;
     mockVoice.takeVoiceAttachment.mockReturnValue(null);
+    mockRetryDelay = 1;
   });
 
   it('starts its own Plus-only session and sends a bounded freeform turn with stable message IDs', async () => {
@@ -270,13 +283,15 @@ describe('Dialogue V2 freeform route', () => {
   });
 
   it('restarts the current language session after start failure instead of retrying a missing turn', async () => {
-    mockStart.mockRejectedValueOnce(new Error('start failed')).mockResolvedValueOnce({
+    failStartTimes(6);
+    mockStart.mockResolvedValueOnce({
       ok: true, sessionId: `d2fs_${'c'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1),
     });
     const screen = await render(h(DialogueV2FreeformRoute));
     await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    expect(mockStart).toHaveBeenCalledTimes(6);
     await act(async () => { fireEvent.press(screen.getByLabelText('Повторить')); });
-    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(7));
     await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0]).toEqual(expect.objectContaining({
       messages: [],
     })));
@@ -390,18 +405,63 @@ describe('Dialogue V2 freeform route', () => {
 
   it('double tap on Retry after a failed start starts one new session', async () => {
     let resolveSecondStart!: (value: unknown) => void;
-    mockStart
-      .mockResolvedValueOnce(null)
-      .mockImplementationOnce(() => new Promise((resolve) => { resolveSecondStart = resolve; }));
+    failStartTimes(6, 'null');
+    mockStart.mockImplementationOnce(() => new Promise((resolve) => { resolveSecondStart = resolve; }));
     const screen = await render(h(DialogueV2FreeformRoute));
     const retry = await screen.findByLabelText('Повторить');
+    expect(mockStart).toHaveBeenCalledTimes(6);
     await act(async () => {
       fireEvent.press(retry);
       fireEvent.press(retry);
     });
-    expect(mockStart).toHaveBeenCalledTimes(2);
+    expect(mockStart).toHaveBeenCalledTimes(7);
     await act(async () => { resolveSecondStart({ ok: true, sessionId: `d2fs_${'b'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1) }); });
-    expect(mockStart).toHaveBeenCalledTimes(2);
+    expect(mockStart).toHaveBeenCalledTimes(7);
+  });
+
+  it('a failed start retries silently without the error panel and the chat keeps the queued message', async () => {
+    failStartTimes(2);
+    const screen = await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockScreen).toHaveBeenCalled());
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockTurn).toHaveBeenCalledTimes(1));
+    expect(mockStart).toHaveBeenCalledTimes(3);
+    expect(screen.queryByLabelText('Повторить')).toBeNull();
+    expect(mockTurn.mock.calls[0][0]).toEqual(expect.objectContaining({ userMessage: 'Hallo' }));
+  });
+
+  it('shows the error panel only after 1 start + 5 silent retries fail', async () => {
+    failStartTimes(6);
+    const screen = await render(h(DialogueV2FreeformRoute));
+    await expect(screen.findByLabelText('Повторить')).resolves.toBeTruthy();
+    expect(mockStart).toHaveBeenCalledTimes(6);
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 20)); });
+    expect(mockStart).toHaveBeenCalledTimes(6);
+  });
+
+  it('drops a pending silent retry of the previous language after the language changes', async () => {
+    mockRetryDelay = 60;
+    mockStart.mockRejectedValueOnce(new Error('start failed'));
+    const screen = await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockStart).toHaveBeenCalledWith({ studyTarget: 'de' }));
+    mockUseStudyTarget.mockReturnValue({ studyTarget: 'es' });
+    await screen.rerender(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockStart).toHaveBeenCalledWith({ studyTarget: 'es' }));
+    await act(async () => { await new Promise((resolve) => setTimeout(resolve, 150)); });
+    expect(mockStart.mock.calls.map((call) => call[0].studyTarget)).toEqual(['de', 'es']);
+    expect(screen.queryByLabelText('Повторить')).toBeNull();
+  });
+
+  it('cancels a pending silent retry when the screen unmounts', async () => {
+    mockRetryDelay = 60;
+    mockStart.mockRejectedValueOnce(new Error('start failed'));
+    const screen = await render(h(DialogueV2FreeformRoute));
+    await waitFor(() => expect(mockStart).toHaveBeenCalledTimes(1));
+    await act(async () => { await Promise.resolve(); });
+    screen.unmount();
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    expect(mockStart).toHaveBeenCalledTimes(1);
   });
 
   it('energy contract: the Plus-only freeform route charges no energy; a future charge must come with the one-shot refund', () => {

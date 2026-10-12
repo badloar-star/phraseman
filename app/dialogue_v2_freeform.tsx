@@ -25,6 +25,7 @@ import {
 import { parseDialogueV2FreeformSessionTurnShape } from '../shared/dialogue_v2_freeform_session_contract';
 import { safeRouterBack } from './navigation_back';
 import { isDevFreeformLoadingHeld } from './dev_dialog_state';
+import { planFreeformStartRetry } from './dialogue_v2_freeform_start_retry';
 
 const SUPPORTED_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 
@@ -109,6 +110,13 @@ export default function DialogueV2FreeformRoute() {
   // Защёлки от двойного тапа (синхронно, до await): старт одного поколения и «Повторить» — по одному в полёте.
   const startInFlightRef = useRef<number | null>(null);
   const retryBusyRef = useRef(false);
+  // зачем (владелец 01.10, координатор 12.10): тихий повтор старта — таймер одного поколения; смена языка и уход с экрана его снимают.
+  const startRetryTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const startSessionRef = useRef<(target: SupportedTarget, generation: number, attempt: number) => Promise<void>>(async () => undefined);
+  const clearStartRetryTimer = useCallback(() => {
+    if (startRetryTimerRef.current) clearTimeout(startRetryTimerRef.current);
+    startRetryTimerRef.current = null;
+  }, []);
   const targetRef = useRef<unknown>(studyTarget);
   targetRef.current = studyTarget;
 
@@ -138,7 +146,27 @@ export default function DialogueV2FreeformRoute() {
   const startCurrentSession = useCallback(async (
     target: SupportedTarget,
     generation: number,
+    attempt = 0,
   ) => {
+    // Сбой текущего поколения: тихий повтор (чат и очередь реплики живы) или, после последнего, панель с «Повторить».
+    const handleStartFailure = (cause: string) => {
+      const plan = planFreeformStartRetry(attempt);
+      if (plan.kind === 'give_up') {
+        console.warn('[DIALOGUE-V2] freeform: start → unavailable after silent retries', { generation, studyTarget: target, attempts: attempt + 1, cause, queued: queuedMessageRef.current !== null });
+        setUnavailable(true);
+        return;
+      }
+      console.warn('[DIALOGUE-V2] freeform: start → failed, silent retry', { generation, studyTarget: target, attempt, nextAttempt: plan.nextAttempt, delayMs: plan.delayMs, cause });
+      clearStartRetryTimer();
+      startRetryTimerRef.current = setTimeout(() => {
+        startRetryTimerRef.current = null;
+        if (generationRef.current !== generation || targetRef.current !== target) {
+          console.log('[DIALOGUE-V2] freeform: silent retry dropped — contour changed', { generation, current: generationRef.current, studyTarget: target }); // guard-ok
+          return;
+        }
+        void startSessionRef.current(target, generation, plan.nextAttempt);
+      }, plan.delayMs);
+    };
     if (startInFlightRef.current === generation) {
       console.log('[DIALOGUE-V2] freeform: start already in flight', { generation, studyTarget: target }); // guard-ok: двойной тап не создаёт вторую сессию
       return;
@@ -153,23 +181,29 @@ export default function DialogueV2FreeformRoute() {
         return;
       }
       if (!started) {
-        console.warn('[DIALOGUE-V2] freeform: start → server returned no session', { generation, studyTarget: target, queued: queuedMessageRef.current !== null });
-        setUnavailable(true);
+        handleStartFailure('no_session');
         return;
       }
-      console.log('[DIALOGUE-V2] freeform: start → session ready', { generation, studyTarget: target, queued: queuedMessageRef.current !== null });
+      console.log('[DIALOGUE-V2] freeform: start → session ready', { generation, studyTarget: target, attempt, queued: queuedMessageRef.current !== null });
       replaceSession(Object.freeze({ ...started, studyTarget: target, generation }));
     } catch (error: unknown) {
       const current = generationRef.current === generation && targetRef.current === target;
-      console.warn('[DIALOGUE-V2] freeform: start → failed', { generation, studyTarget: target, current, message: error instanceof Error ? error.message : String(error) });
-      if (current) setUnavailable(true);
+      const message = error instanceof Error ? error.message : String(error);
+      if (!current) {
+        console.log('[DIALOGUE-V2] freeform: start failure ignored — contour changed', { generation, studyTarget: target, message }); // guard-ok
+      } else {
+        handleStartFailure(message);
+      }
     } finally {
       if (startInFlightRef.current === generation) startInFlightRef.current = null;
     }
-  }, [replaceSession]);
+  }, [clearStartRetryTimer, replaceSession]);
+  startSessionRef.current = startCurrentSession;
+  useEffect(() => clearStartRetryTimer, [clearStartRetryTimer]);
 
   useEffect(() => {
     discardVoice();
+    clearStartRetryTimer();
     const generation = generationRef.current + 1;
     generationRef.current = generation;
     replaceSession(null);
@@ -184,7 +218,7 @@ export default function DialogueV2FreeformRoute() {
     if (!accessResolved || !hasPremiumAccess || !isSupportedTarget(studyTarget)) return undefined;
     void startCurrentSession(studyTarget, generation);
     return undefined;
-  }, [accessResolved, discardVoice, hasPremiumAccess, replaceSession, startCurrentSession, studyTarget]);
+  }, [accessResolved, clearStartRetryTimer, discardVoice, hasPremiumAccess, replaceSession, startCurrentSession, studyTarget]);
 
   const runPendingTurn = useCallback(async (pending: PendingTurn) => {
     if (!isCurrentPending(pending)) {
@@ -373,8 +407,9 @@ export default function DialogueV2FreeformRoute() {
             }
             const target = targetRef.current;
             if (isSupportedTarget(target)) {
-              console.log('[DIALOGUE-V2] freeform: retry → restart session', { generation: generationRef.current, queued: queuedMessageRef.current !== null });
-              void startCurrentSession(target, generationRef.current).finally(release);
+              console.log('[DIALOGUE-V2] freeform: retry → restart session (new silent series)', { generation: generationRef.current, queued: queuedMessageRef.current !== null });
+              clearStartRetryTimer();
+              void startCurrentSession(target, generationRef.current, 0).finally(release);
               return;
             }
             console.warn('[DIALOGUE-V2] freeform: retry → unsupported study target', { target: String(target) });

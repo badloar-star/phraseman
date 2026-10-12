@@ -22,6 +22,15 @@ describe('Dialogue V2 Plus tools discovery', () => {
     expect(toolsSource).not.toMatch(/#[0-9a-fA-F]{3,8}/);
   });
 
+  // зачем (координатор 12.10, dialogs-001/002; эталон «Тень» etalon.html .dc/.pp): значок PLUS рядом с названием, плитка 52/18, значки и замок/шеврон цвета темы
+  test('free conversation row carries the PLUS badge and theme-accent glyphs from the approved Shadow reference', () => {
+    expect(toolsSource).toContain('dialogue-v2-freeform-plus-badge');
+    expect(toolsSource).toMatch(/height: 20, paddingHorizontal: 7, borderRadius: 8, backgroundColor: g\.accent/);
+    expect(toolsSource).toMatch(/width: 52, height: 52, borderRadius: 18/);
+    expect(toolsSource).toContain('color={g.accentText}');
+    expect(toolsSource).toContain('>PLUS</Text>');
+  });
+
   test('keeps free conversation Plus-gated; memory route is reached from Privacy settings', () => {
     expect(containerSource).toContain('<DialogueV2PlusTools');
     expect(containerSource).toContain('usePremium()');

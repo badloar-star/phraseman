@@ -77,24 +77,29 @@ export function DialogueV2PlusTools({
           }}
         >
           <PlateFill g={g} radius={V2.radius.row} raised />
-          <View style={{ width: V2.rowIcon, height: V2.rowIcon, borderRadius: V2.radius.tile, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name={row.icon} size={21} color={p.iconTint} />
+          {/* зачем (координатор 12.10, dialogs-001/002; эталон «Тень» etalon.html .dc): плитка 52×52 радиус 18, значок 26 в цвете темы, как у «Свободного разговора» в утверждённом образце */}
+          <View style={{ width: 52, height: 52, borderRadius: 18, backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g), alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name={row.icon} size={26} color={g.accentText} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: p.text, ...V2_TYPE.headline }} maxFontSizeMultiplier={1.2}>
-              {row.title}
-            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <Text style={{ color: p.text, ...V2_TYPE.headline, flexShrink: 1 }} maxFontSizeMultiplier={1.2} numberOfLines={2}>
+                {row.title}
+              </Text>
+              {/* зачем (образец dialogs.html .fp / etalon .pp): значок PLUS рядом с названием — высота 20, радиус 8, заливка цвета темы, 13/700; показан и Free, и Plus */}
+              <View testID="dialogue-v2-freeform-plus-badge" style={{ height: 20, paddingHorizontal: 7, borderRadius: 8, backgroundColor: g.accent, justifyContent: 'center' }}>
+                <Text style={{ color: g.accentInk, fontSize: 13, lineHeight: 16, fontWeight: '700' }} maxFontSizeMultiplier={1.2}>PLUS</Text>
+              </View>
+            </View>
             <Text style={{ color: p.textSecondary, ...V2_TYPE.caption, marginTop: 2 }} maxFontSizeMultiplier={1.2}>
               {row.subtitle}
             </Text>
           </View>
+          {/* зачем (образец dialogs.html .fr > .i): справа замок (Free, ряд ведёт в Plus) или шеврон (Plus) в цвете темы; подпись «Plus» справа убрана — её роль играет значок рядом с названием */}
           {!hasPremiumAccess ? (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-              <Ionicons name="lock-closed" size={17} color={p.textMuted} />
-              <Text style={{ color: p.textSecondary, ...V2_TYPE.caption, fontWeight: '700' }}>Plus</Text>
-            </View>
+            <Ionicons name="lock-closed" size={20} color={g.accentText} />
           ) : (
-            <Ionicons name="chevron-forward" size={19} color={p.textMuted} />
+            <Ionicons name="chevron-forward" size={20} color={g.accentText} />
           )}
         </PressableScale>
         </View>

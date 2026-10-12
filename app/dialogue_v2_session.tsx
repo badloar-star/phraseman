@@ -23,6 +23,7 @@ import {
 import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_labels';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done } from './dialogue_v2_done_store';
+import { formatDialogObjectiveLabel } from '../components/dialogs/dialog_objective_label';
 import { resolveCurrentDialogueV2PreparedBotVoice } from './dialogue_v2_prepared_bot_voice_runtime';
 import { triLang } from '../constants/i18n';
 import { useMyCoinRank } from '../hooks/use_my_coin_rank';
@@ -57,6 +58,8 @@ type SessionState =
 
 type ServerSessionState = 'idle' | 'starting' | 'unavailable' | 'ready';
 
+let lastGoalLogKey = '';
+
 function supportedTarget(value: unknown): value is DialogueV2CatalogueStudyTarget {
   return typeof value === 'string' && V2_TARGETS.has(value);
 }
@@ -70,7 +73,7 @@ function labelsFor(lang: ReturnType<typeof useLang>['lang']) {
   // подсказки голоса и плашки ошибки — на всех 9 языках интерфейса.
   return Object.freeze({
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz', fr: 'Retour', de: 'Zurück' }),
-    placeholder: triLang(lang, { ru: 'Напиши или зажми микрофон', uk: 'Напиши або затисни мікрофон', en: 'Type or hold the mic', es: 'Escribe o mantén el micrófono', 'pt-BR': 'Escreva ou segure o microfone', vi: 'Nhập hoặc giữ micro', id: 'Ketik atau tahan mikrofon', tr: 'Yaz ya da mikrofona basılı tut', pl: 'Napisz lub przytrzymaj mikrofon', fr: 'Écris ou maintiens le micro', de: 'Schreib oder halte das Mikro' }),
+    placeholder: triLang(lang, { ru: 'Напиши или говори', uk: 'Напиши або говори', en: 'Type or speak', es: 'Escribe o mantén el micrófono', 'pt-BR': 'Escreva ou segure o microfone', vi: 'Nhập hoặc giữ micro', id: 'Ketik atau tahan mikrofon', tr: 'Yaz ya da mikrofona basılı tut', pl: 'Napisz lub przytrzymaj mikrofon', fr: 'Écris ou maintiens le micro', de: 'Schreib oder halte das Mikro' }),
     send: triLang(lang, { ru: 'Отправить', uk: 'Надіслати', en: 'Send', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij', fr: 'Envoyer', de: 'Senden' }),
     complete: triLang(lang, { ru: 'Завершить диалог', uk: 'Завершити діалог', en: 'Finish dialogue', es: 'Terminar el diálogo', 'pt-BR': 'Encerrar diálogo', vi: 'Kết thúc hội thoại', id: 'Akhiri dialog', tr: 'Diyaloğu bitir', pl: 'Zakończ dialog', fr: 'Terminer le dialogue', de: 'Dialog beenden' }),
     subtitle: triLang(lang, { ru: 'Диалог', uk: 'Діалог', en: 'Dialogue', es: 'Diálogo', 'pt-BR': 'Diálogo', vi: 'Hội thoại', id: 'Dialog', tr: 'Diyalog', pl: 'Dialog', fr: 'Dialogue', de: 'Dialog' }),
@@ -607,6 +610,14 @@ function SessionContent() {
     ? Math.max(0, model.objectives.findIndex((objective) => objective.id === coaching.activeObjectiveId))
     : 0;
   const currentObjective = model.objectives[objectiveIndex] ?? null;
+  // зачем (координатор 12.10, dialogs-030/014): сырой и показанный текст цели — одна строка на смену цели, а не на каждый кадр
+  if (currentObjective && typeof __DEV__ !== 'undefined' && __DEV__) {
+    const goalLogKey = `${currentObjective.id}:${currentObjective.label}`;
+    if (goalLogKey !== lastGoalLogKey) {
+      lastGoalLogKey = goalLogKey;
+      console.log(`[DIALOG-GOAL] card id=${currentObjective.id} index=${objectiveIndex + 1}/${model.objectives.length} raw=${JSON.stringify(currentObjective.label.slice(0, 60))} shown=${JSON.stringify(formatDialogObjectiveLabel(currentObjective.label).slice(0, 60))}`); // guard-ok: сырой и показанный текст цели
+    }
+  }
   const whyMessage = coaching.whyMessageId
     ? messages.find((message) => message.id === coaching.whyMessageId && message.author === 'persona')
     : undefined;
@@ -664,7 +675,8 @@ function SessionContent() {
       } : null}
       goal={currentObjective ? {
         kicker: coachingLabels.goalKicker(objectiveIndex + 1, model.objectives.length),
-        label: currentObjective.label,
+        // зачем (координатор 12.10, dialogs-030/014): название цели в карточке с заглавной и без точки, как в брифинге и шторке «Задания» (formatDialogObjectiveLabel); исходный текст не меняется
+        label: formatDialogObjectiveLabel(currentObjective.label),
       } : null}
       // зачем (dialogs-015/017): подсказка — только из разбора хода; подмена текстом цели дублировала карточку цели.
       hintText={coaching.hint ?? null}

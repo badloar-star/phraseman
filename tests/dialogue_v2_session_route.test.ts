@@ -359,7 +359,8 @@ describe('Dialogue V2 session route', () => {
     expect(props.headerMood).toEqual({ mood: 'smile', label: 'mood:smile' });
     expect(props.quotaPill.text).toBe('12/30');
     expect(props.hintText).toBe('Назови размер.');
-    expect(props.goal.label).toBe('Поздороваться.');
+    // зачем (координатор 12.10, dialogs-030/014): карточка цели показывает название через formatDialogObjectiveLabel — без точки в конце
+    expect(props.goal.label).toBe('Поздороваться');
     expect(props.bottom).toBe('input');
 
     await act(async () => { props.onToggleTranslation('persona_2'); });

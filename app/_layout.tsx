@@ -82,8 +82,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createTapLatencyCaptureHandler, createTapLatencyProfilerHandler, createTapLatencyTouchEndHandler } from './tap_latency_trace';
 import { TapLatencyNavProbe } from '../components/TapLatencyNavProbe';
 import { LinearGradient } from '../components/SafeLinearGradient';
-import { Stack, useGlobalSearchParams, usePathname, useRouter, useSegments, router as globalRouter, type Href } from 'expo-router';
-import { isTabsShellMounted } from './tabs_shell_state';
+import { Stack, useGlobalSearchParams, useNavigationContainerRef, usePathname, useRouter, useSegments, router as globalRouter, type Href } from 'expo-router';
+import { isTabsShellMounted, rootNavigateFallbackAction } from './tabs_shell_state';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import * as SplashScreen from 'expo-splash-screen';
@@ -1201,6 +1201,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const rootSegments: readonly string[] = useSegments();
   const rootSegmentsRef = useRef(rootSegments);
   rootSegmentsRef.current = rootSegments;
+  // зачем (R1): живое состояние навигации для проверки после navigate с корня (getCurrentRoute обновляется синхронно, в отличие от pathname из рендера)
+  const rootNavigationContainerRef = useNavigationContainerRef() as unknown as { getCurrentRoute?: () => { name?: string; params?: unknown } | undefined };
   const insets = useStableSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
   const lastPathRef = useRef<string | null>(null);
@@ -1733,9 +1735,17 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       traceLessonExit('layout:rootIndex_navigate_home', { segments: JSON.stringify(rootSegmentsRef.current), target: rootTarget });
       router.navigate(rootTarget as Href);
       const navigateFallback = setTimeout(() => {
-        const stillRoot = !pathnameRef.current || pathnameRef.current === '/';
-        traceLessonExit('layout:rootIndex_navigate_home_check', { pathname: JSON.stringify(pathnameRef.current ?? null), stillRoot });
-        if (stillRoot) router.replace(rootTarget as Href);
+        // зачем (журнал Сверки with_navigate_fix2): pathname из рендера (pathnameRef) отставал при занятом JS-потоке, и запасной replace пересоздавал каркас ПОСЛЕ успешного navigate.
+        // Решаем по живому состоянию навигации: сфокусирован `(tabs)` — navigate сработал, оставляем; иначе — прежний replace.
+        const current = rootNavigationContainerRef.getCurrentRoute?.();
+        const action = rootNavigateFallbackAction(current?.name);
+        traceLessonExit('layout:rootIndex_navigate_home_check', {
+          currentRoute: current?.name ?? null,
+          params: JSON.stringify(current?.params ?? null).slice(0, 120),
+          pathnameFromRender: JSON.stringify(pathnameRef.current ?? null),
+          action,
+        });
+        if (action === 'replace') router.replace(rootTarget as Href);
       }, 600);
       return () => clearTimeout(navigateFallback);
     }

@@ -38,7 +38,10 @@ describe('корневой переход на Главную не пересо�
     const branch = block.slice(navigateAt, replaceAt);
     expect(branch).toContain('}, 600);');
     expect(branch).toContain('return () => clearTimeout(navigateFallback);');
-    expect(branch).toContain("if (stillRoot) router.replace(rootTarget as Href);");
+    expect(branch).toContain("if (action === 'replace') router.replace(rootTarget as Href);");
+    expect(branch).toContain('rootNavigateFallbackAction(current?.name)');
+    expect(branch).toContain('rootNavigationContainerRef.getCurrentRoute?.()');
+    expect(branch).not.toContain('stillRoot');
     expect(branch).toContain("layout:rootIndex_navigate_home_check");
   });
 
@@ -58,5 +61,22 @@ describe('флаг «каркас табов смонтирован» (app/tabs_
     expect(state.isTabsShellMounted()).toBe(true);
     state.setTabsShellMounted(false);
     expect(state.isTabsShellMounted()).toBe(false);
+  });
+});
+
+describe('проверка после navigate решает по живому состоянию навигации, а не по pathname из рендера', () => {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { rootNavigateFallbackAction } = require('../app/tabs_shell_state') as typeof import('../app/tabs_shell_state');
+
+  it('сфокусирован (tabs) — оставляем (путь «/» у него нормален, каркас считает его Главной)', () => {
+    expect(rootNavigateFallbackAction('(tabs)')).toBe('keep');
+  });
+
+  it('остался корневой index, неизвестный или пустой маршрут — прежний replace', () => {
+    expect(rootNavigateFallbackAction('index')).toBe('replace');
+    expect(rootNavigateFallbackAction('premium_modal')).toBe('replace');
+    expect(rootNavigateFallbackAction(undefined)).toBe('replace');
+    expect(rootNavigateFallbackAction(null)).toBe('replace');
+    expect(rootNavigateFallbackAction('')).toBe('replace');
   });
 });

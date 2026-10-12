@@ -35,3 +35,6 @@ export function setDevLessonIntroSkip(): boolean { return false; }
 export function isDevLessonIntroSkip(): boolean { return false; }
 // зачем (Авторизация 12.10, cards-v2-038/039): цель ответа «Правды/лжи» и «Напиши» в стор-сборке не подменяется
 export function getDevAnswerTarget(): null { return null; }
+// зачем (Авторизация 12.10, cards-gap-025): «публикация отправлена» в стор-сборке не подменяется
+export function setDevPublishOk(): boolean { return false; }
+export function isDevPublishOk(): boolean { return false; }

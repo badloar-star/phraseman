@@ -9,6 +9,7 @@
  * Логи: [DEV-STATE].
  */
 import { IS_STORE_RELEASE } from './config';
+import type { LinkedAuth } from './auth_provider';
 
 const LOG = '[DEV-STATE]';
 
@@ -67,8 +68,10 @@ type State = {
   confettiHold: boolean;
   /** `namecheck=`: подменённый ответ проверки имени, только в памяти; сервер при подмене не вызывается. */
   nameCheck: DevNameCheck | null;
+  /** `account=linked` (settings-gap-001): привязанный аккаунт только для показа; действия аккаунта отказывают до побочных эффектов. */
+  linkedDemo: boolean;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, deleteThrow: false, restoreRetired: false, restoreMode: null, signIn: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, deleteThrow: false, restoreRetired: false, restoreMode: null, signIn: null, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null, linkedDemo: false };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -94,6 +97,7 @@ export function setDevAccountState(patch: Partial<{
   greetName: string | null;
   confettiHold: boolean;
   nameCheck: DevNameCheck | null;
+  linkedDemo: boolean;
 }>): boolean {
   if (!devAccountAvailable()) {
     console.warn(`${LOG} account: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -112,6 +116,7 @@ export function setDevAccountState(patch: Partial<{
     greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
     confettiHold: patch.confettiHold ?? state.confettiHold,
     nameCheck: patch.nameCheck === undefined ? state.nameCheck : patch.nameCheck,
+    linkedDemo: patch.linkedDemo ?? state.linkedDemo,
   };
   console.log(`${LOG} account: ${JSON.stringify(state)}`); // guard-ok: единичный лог на ссылку
   return true;
@@ -248,3 +253,21 @@ export function resetDevAccountStateForTests(): void {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// ───────────────────── Привязанный аккаунт для показа (Авторизация 12.10, settings-gap-001) ─────────────────────
+// зачем: кадр «Главная — профиль привязан» требует настоящего входа (аккаунт №3, пароль — только владелец). `account=linked` рисует привязку
+// из памяти (подставные имя и почта на example.com), а выход, смена, вход, удаление аккаунта при флаге ОТКАЗЫВАЮТ первой строкой —
+// до замков, синхронизации, стирания и сети (auth_provider). Включается только на одноразовом госте (dev_state_fixtures). В сторе — заглушка.
+export const DEV_LINKED_DEMO_EMAIL = 'alex.demo@example.com';
+export const DEV_LINKED_DEMO_REFUSAL = 'dev_account_linked_demo';
+
+export function isDevAccountLinkedDemo(): boolean {
+  return devAccountAvailable() && state.linkedDemo;
+}
+
+/** Подставная привязка Google (вне dev или без флага — null). Время фиксированное, чтобы кадр был воспроизводим. */
+export function getDevLinkedAuthDemo(): LinkedAuth | null {
+  if (!isDevAccountLinkedDemo()) return null;
+  const at = Date.UTC(2026, 8, 1, 9, 0, 0);
+  return { provider: 'google', providerUid: 'dev_linked_demo', email: DEV_LINKED_DEMO_EMAIL, displayName: 'Alex Demo', linkedAt: at, lastSignInAt: at, devicePlatform: 'android' };
+}

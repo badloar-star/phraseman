@@ -25,3 +25,8 @@ export function getDevSignInStub(): null { return null; }
 // зачем (координатор 12.10, auth-gap-011): в стор-сборке удаление не подменяется и ввод «УДАЛИТЬ» обязателен ВСЕГДА.
 export function isDevDeleteThrow(): boolean { return false; }
 export function isDevDeleteConfirmBypass(): boolean { return false; }
+// зачем (Авторизация 12.10, settings-gap-001): привязанный аккаунт для показа в стор-сборке не подменяется
+export const DEV_LINKED_DEMO_EMAIL = 'alex.demo@example.com';
+export const DEV_LINKED_DEMO_REFUSAL = 'dev_account_linked_demo';
+export function isDevAccountLinkedDemo(): boolean { return false; }
+export function getDevLinkedAuthDemo(): null { return null; }

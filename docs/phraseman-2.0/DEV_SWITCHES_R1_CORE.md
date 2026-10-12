@@ -294,3 +294,15 @@ energy-modes: не проверено, есть ли у урока 1 перед 
 - community-013: фраза «свой код» выбирается случайно из 5 (так в коде).
 - community-023: ленты «Активность» в приложении нет — её удалил владелец 16.08 (friends.tsx). Есть только карточка опроса дня.
 - Плашка баланса монет на итоге показывает настоящий баланс устройства, а не «1 240» из макета.
+
+### Авторизация — дополнение: publish=ok и account=linked (12.10 ночь)
+
+| Параметр | Что делает | Где читается |
+|---|---|---|
+| `publish=ok\|off` | `publishLocalAuthorPack` сразу возвращает «submitted» — без callable, без отметки набора на устройстве; тост «Набор отправлен на публикацию.» | `community_packs/publishLocalPack.ts` |
+| `account=linked` | только на одноразовом госте (иначе ссылка обрывается целиком): привязка Google «Alex Demo / alex.demo@example.com» для показа; выход, смена, вход, удаление аккаунта отказывают первой строкой (до замков, синхронизации, стирания и сети) | `auth_provider.ts` (getLinkedAuthInfo, peekLinkedAuthFromCurrentUser, signOutAndWipeForAccountSwitch, signOutCurrentProvider, signInWithProvider, beginAccountDeletion) |
+
+| id | ссылка | шаги |
+|---|---|---|
+| cards-gap-025 | `B&cards=demo&plus=on&publish=ok&next=/flashcards_collection?pack=local_pack_dev_demo_work` | `tap:#fc-pack-publish; wait:400` (тост «Набор отправлен на публикацию.») |
+| settings-gap-001 | `onboarding=done&intros=seen&account=linked&plus=off&overlays=off&studyTarget=en&next=/(tabs)/settings` | `wait:1200` (строка аккаунта «привязан»; кнопки аккаунта не жать — они откажут) |

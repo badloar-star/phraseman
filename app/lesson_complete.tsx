@@ -53,6 +53,7 @@ import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation'
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from './account_generation';
 import type { SoftUpsellCandidate, SoftUpsellOpportunity, SoftUpsellStudyTarget } from './soft_upsell_core';
 import { getDevLessonUpsell } from './dev_paywall_state';
+import { isDevAccountLinkedDemo } from './dev_account_state';
 import {
   candidateAfterLessonGrant,
   createLessonSoftUpsellCtaHandler,
@@ -1094,6 +1095,11 @@ export default function LessonComplete() {
         const shown = await AsyncStorage.getItem(AUTH_PROMPT_SHOWN_KEY);
         if (shown === '1') return;
         const linked = await getLinkedAuthInfo();
+        // зачем (Авторизация 12.10, settings-gap-001): привязка `account=linked` подставная — отметку «окно входа уже показано» на диск не пишем
+        if (linked && isDevAccountLinkedDemo()) {
+          console.log('[DEV-STATE] lesson_complete: привязка для показа (account=linked) — отметка окна входа не пишется'); // guard-ok: dev-ветка
+          return;
+        }
         if (linked) {
           // Уже залогинен (через онбординг или из Settings) — помечаем чтобы больше не дёргать
           AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(noteSwallowedHandler('lesson_complete:useEffect.setItem'));

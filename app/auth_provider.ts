@@ -23,7 +23,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
+import { DEV_LINKED_DEMO_REFUSAL, getDevLinkedAuthDemo, getDevSignInError, getDevSignInStub, getDevSignOutOutcome, isDevAccountLinkedDemo, isDevAuthNone, isDevDeleteFail, isDevDeleteThrow } from './dev_account_state';
 import { ACCOUNT_DELETE_GUEST_BACKGROUND_ENQUEUE_TIMEOUT_MS } from './account_delete_timeout';
 import { markFirestoreCacheClearPending } from './firestore_cache_clear';
 import { DebugLogger } from './debug-logger';
@@ -1622,6 +1622,9 @@ function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
  * первого кадра экрана «Аккаунт» (без Firestore; уточнение — getLinkedAuthInfo).
  */
 export function peekLinkedAuthFromCurrentUser(): LinkedAuth | null {
+  // зачем (Авторизация 12.10, settings-gap-001): dev `account=linked` — привязка для показа из памяти; в сторе null.
+  const devLinked = getDevLinkedAuthDemo();
+  if (devLinked) return devLinked;
   try {
     return getLinkedAuthFromCurrentUser();
   } catch (error) {
@@ -1652,6 +1655,12 @@ export function peekAccountCreatedAtMs(): number | null {
  * Returns null если юзер ещё анонимный.
  */
 export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
+  // зачем (Авторизация 12.10, settings-gap-001): dev `account=linked` — привязка для показа из памяти, Firestore не читается; в сторе null.
+  const devLinked = getDevLinkedAuthDemo();
+  if (devLinked) {
+    console.log('[DEV-STATE] account: привязка для показа (account=linked), сеть не вызывалась'); // guard-ok: dev-ветка
+    return devLinked;
+  }
   if (!CLOUD_SYNC_ENABLED) return null;
   const db = getFirestore();
   if (!db) return null;
@@ -2298,6 +2307,11 @@ export async function signInWithProvider(
   options: SignInWithProviderOptions = {},
 ): Promise<SignInResult> {
   // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `switch=not_uploaded|backup_blocked`, `restore=retired` — ошибка входа ДО любых замков, сети и записи; в стор-сборке null.
+  // зачем (Авторизация 12.10, settings-gap-001): при подставной привязке вход/смена аккаунта не начинаются — до провайдера, замков и сети.
+  if (isDevAccountLinkedDemo()) {
+    console.warn('[DEV-STATE] account: вход отклонён — привязка только для показа (account=linked)'); // guard-ok: dev-ветка
+    return { result: 'error', error: DEV_LINKED_DEMO_REFUSAL };
+  }
   const devSignInError = getDevSignInError();
   if (devSignInError) {
     console.log(`[DEV-STATE] account: вход подменён ошибкой ${devSignInError} [AUTH-SIGNIN] ignored provider=${provider} reason=dev_state`); // guard-ok: dev-ветка; метка [AUTH-SIGNIN] ignored — сторож ранних выходов (aa_auth_double_tap_contract)
@@ -3916,6 +3930,11 @@ export type SignOutSwitchOptions = {
 export async function signOutAndWipeForAccountSwitch(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
+  // зачем (Авторизация 12.10, settings-gap-001): привязка подставная — выход/смена отказывают ДО замка, синхронизации и стирания.
+  if (isDevAccountLinkedDemo()) {
+    console.warn('[DEV-STATE] account: выход/смена отклонены — привязка только для показа (account=linked)'); // guard-ok: dev-ветка
+    return { ok: false, reason: 'unknown', detail: DEV_LINKED_DEMO_REFUSAL };
+  }
   // зачем (координатор 12.10, R1 «нет пути», аккаунт): dev `logout=` / `switch=` — отказ ДО резервации замка, синхронизации и стирания (и обычная, и форсированная попытка): реальное стирание недостижимо; в стор-сборке null.
   const devOutcome = getDevSignOutOutcome(options?.allowWipeWithoutSync === true || options?.allowPendingShardSpendDiscard === true);
   if (devOutcome) {
@@ -4386,6 +4405,11 @@ export type DeleteAccountHandoff =
 const legacyDeletionServerEnqueuedOperations = new Set<string>();
 
 export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
+  // зачем (Авторизация 12.10, settings-gap-001): привязка подставная — удаление отказывает ДО отмены входа, замков, записи и сети.
+  if (isDevAccountLinkedDemo()) {
+    console.warn('[DEV-STATE] account: удаление отклонено — привязка только для показа (account=linked)'); // guard-ok: dev-ветка
+    return { ok: false, reason: 'pending_guard_persist_failed' };
+  }
   // зачем (координатор 12.10, auth-gap-011): dev `delete=throw` — исключение ПЕРВОЙ строкой, до отмены входа, замков, записи и сети;
   // окно ловит его в catch и показывает «Удаление не завершилось» (текст макета). В стор-сборке геттер всегда false.
   if (isDevDeleteThrow()) {
@@ -5086,6 +5110,11 @@ export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
  * когда нужен ТОЛЬКО Firebase signOut без очистки прогресса.
  */
 export async function signOutCurrentProvider(): Promise<void> {
+  // зачем (Авторизация 12.10, settings-gap-001): привязка подставная — выход из провайдера отказывает до любых действий (вызвавший ловит исключение).
+  if (isDevAccountLinkedDemo()) {
+    console.warn('[DEV-STATE] account: выход из провайдера отклонён — привязка только для показа (account=linked)'); // guard-ok: dev-ветка
+    throw new Error(DEV_LINKED_DEMO_REFUSAL);
+  }
   // зачем (ревью L-1): обычный выход отменяет отложенный вход после смены.
   discardAccountSwitchResumeCredential('provider_sign_out');
   return runAccountAuthorityProviderSignOutTransition(performCurrentProviderSignOut);

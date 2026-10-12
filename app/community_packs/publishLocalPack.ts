@@ -8,7 +8,7 @@
  * и попадает в админку владельца.
  */
 import auth from '@react-native-firebase/auth';
-import { isDevCardsFail } from '../dev_cards_state';
+import { isDevCardsFail, isDevPublishOk } from '../dev_cards_state';
 
 import { getCanonicalUserId } from '../user_id_policy';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -98,6 +98,11 @@ export async function publishLocalAuthorPack(
   if (isDevCardsFail('publish_error')) {
     logPublish('submit:error', { packId, dev: true });
     return 'error';
+  }
+  // зачем (Авторизация 12.10, cards-gap-025): dev `publish=ok` — «отправлено» без сети и без записи (ни callable, ни локальной отметки). В сторе выключено.
+  if (isDevPublishOk()) {
+    logPublish('submit:submitted', { packId, dev: true, writes: 'none' });
+    return 'submitted';
   }
   const token = captureAccountGeneration();
   // зачем: КАЖДЫЙ ранний выход обязан назвать причину. Немой выход — это

@@ -328,3 +328,22 @@ export function resetDevCardsStateForTests(): void {
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }
+
+// ───────────────────── Публикация набора — «отправлено» (Авторизация 12.10, cards-gap-025) ─────────────────────
+// зачем: успешная публикация пишет в прод (callable communitySubmitPackForReview + локальная отметка). `publish=ok` возвращает «submitted»
+// первой строкой publishLocalAuthorPack — без сети и без записи; экран показывает тот же тост «Набор отправлен на публикацию.». В сторе — заглушка.
+let publishOk = false;
+
+export function setDevPublishOk(on: boolean): boolean {
+  if (!devCardsAvailable()) {
+    console.warn(`${LOG} publish: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  publishOk = on;
+  console.log(`${LOG} publish=${on ? 'ok' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevPublishOk(): boolean {
+  return devCardsAvailable() && publishOk;
+}

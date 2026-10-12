@@ -36,7 +36,7 @@ import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS
 import { setDevEnergyStopPlusGranted } from './dev_energy_stop_flag';
 import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
-import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevLessonIntroSkip, setDevPackDraft, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
+import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevLessonIntroSkip, setDevPackDraft, setDevPublishOk, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MEMORY, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMemory, type DevDialogMood } from './dev_dialog_state';
 import { DEV_DIALOG_SENDS, type DevDialogSendMode } from './dev_dialog_send';
 
@@ -214,7 +214,9 @@ export type DevStateRequest = Readonly<{
   /** `guest=required`: ссылка не применяет НИЧЕГО и не переходит на next, если на устройстве не анонимный гость (№1/№2/№3, Google/Apple). */
   guest?: 'required';
   /** `account=support_only`: ссылка не применяет НИЧЕГО и не переходит на next, если на устройстве не аккаунт №3 «Phraseman Support» (Google). */
-  account?: 'support_only';
+  account?: 'support_only' | 'linked';
+  /** Публикация набора «отправлено» без сети и записи (Авторизация 12.10, cards-gap-025). */
+  publish?: 'ok' | 'off';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
@@ -309,7 +311,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
   request.guest = pick('guest', ['required'] as const);
-  request.account = pick('account', ['support_only'] as const);
+  request.account = pick('account', ['support_only', 'linked'] as const);
+  request.publish = pick('publish', ['ok', 'off'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -430,6 +433,19 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     }
     console.log(`[DEV-STATE] account_support_only ok email=${support.emailMasked} providers=${support.providers}`); // guard-ok: единичный лог на ссылку
     applied.account = 'support_only';
+  }
+  // зачем (Авторизация 12.10, settings-gap-001): подставная привязка — только на одноразовом госте, иначе ссылка обрывается целиком (как guest=required).
+  if (request.account === 'linked') {
+    const { checkDisposableGuestNow } = await import('./dev_state_account_guard');
+    const verdict = checkDisposableGuestNow();
+    if (!verdict.ok) {
+      console.warn(`[DEV-STATE] refused account_linked uid=${verdict.uidMasked} isAnonymous=${String(verdict.isAnonymous)} reason=${verdict.reason} — ссылка не применена, шаги и переход отменены`); // guard-ok: ранний выход логируется
+      return { applied, skipped: { all: `account_linked_refused:${verdict.reason}` }, next: null };
+    }
+    const { setDevAccountState } = await import('./dev_account_state');
+    setDevAccountState({ linkedDemo: true });
+    console.log(`[DEV-STATE] account_linked ok uid=${verdict.uidMasked} — привязка для показа, действия аккаунта отказывают`); // guard-ok: единичный лог на ссылку
+    applied.account = 'linked';
   }
   // зачем (первый прогон робота 12.10: cards-002/008/009/013 — 40 с на «DEV-STATE…» без перехода): шаг фикстуры мог зависнуть (замок записи карточек, переход
   // аккаунта) и держать ВЕСЬ экран; логов по шагам не было. Теперь каждый шаг пишет старт/итог с длительностью, а зависший снимается потолком
@@ -743,6 +759,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.blitzAnswer !== undefined) {
     await step('blitz_answer', request.blitzAnswer, async () => setDevCardsState({ blitzAnswer: request.blitzAnswer === 'off' ? null : request.blitzAnswer! }));
+  }
+  if (request.publish !== undefined) {
+    await step('publish', request.publish, async () => setDevPublishOk(request.publish === 'ok'));
   }
   if (request.answer !== undefined) {
     await step('answer', request.answer, async () => setDevCardsState({ answer: request.answer === 'off' ? null : request.answer! }));

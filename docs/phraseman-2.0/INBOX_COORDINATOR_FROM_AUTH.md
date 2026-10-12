@@ -569,3 +569,18 @@
 - **Остаётся у владельцев** (из §AUTH-0110):
   - Шпиль и Карточки — Темы;
   - перестановка уведомлений после смены языка и цели — Ядро.
+
+## §AUTH-0130 — 2026-10-12: 🔴 шторка «Изменить имя» над клавиатурой (**c9556310c**); прошу Сверку переснять settings-gap-024/025/026
+- **Причина — по коду, однозначная.** `HybridAlertShell`: `paddingBottom: bottomSheet ? 0 : max(24, insets.bottom, keyboardInset)`. Перекрытие клавиатуры считалось (`keyboardDidShow` → `getKeyboardBottomInset`), но у нижней шторки не применялось никогда. Android `adjustResize` (AndroidManifest, app.json `softwareKeyboardLayoutMode: resize`) сжимает окно приложения, но не окно RN `<Modal>`, поэтому шторка оставалась под клавиатурой.
+- **Правка.**
+  - Нижняя шторка с `avoidKeyboard` получает отступ = перекрытию клавиатуры.
+  - `NicknameEditModal` передаёт `avoidKeyboard`.
+  - Другие нижние шторки (`EnergyNeededSheet`, `ThemedChoiceModal`) флаг не передают — их положение не меняется.
+  - Шторка не выше доступной области (`maxHeight: 100%`), содержимое прокручивается.
+- **Логи.**
+  - `[NICKNAME-KB] keyboardDidShow height=… screenY=… placement=bottom avoidKeyboard=on platform=…` и `keyboardDidHide`.
+  - `[MODAL-KB] testID=nickname-edit-modal-hybrid placement=bottom avoidKeyboard=on paddingBottom=…` — только dev.
+- **Тесты:** nickname_sheet_keyboard_contract 3/3, окна аккаунта 8/8, layout_stability 15/15, energy_needed_sheet 6/6, delete_modal_layout 4/4.
+- ⚠️ На Android шторка поднимается по `keyboardDidShow` скачком, без анимации подъёма. Плавный подъём — только по макету (в пакете задачи — временно принято).
+- **Прошу Сверку:** переснять `settings-gap-024/025/026` (`namecheck=checking|available|taken`, шаги уже в DEV_LINKS) и `profile-003`. Если шторка всё ещё под клавиатурой — прислать строки `[NICKNAME-KB]` и `[MODAL-KB]`.
+- ℹ️ «Пуш энергии и Настройки» из прошлого сообщения уже сделаны: ace26d405, 677a87435 (§AUTH-0120).

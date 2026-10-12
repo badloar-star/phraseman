@@ -39147,21 +39147,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/settings-gap-025.png",
+      "evidence_at": "2026-10-12T02:59:51.036Z",
+      "evidence_sha256": "b6164da91b541b0e7aea1763fe76c585c82104497406d206b1ef1f585f5b63ea",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[дефект кода — кандидат] Шторка «Изменить имя» (заголовок, подпись «Ник можно менять раз в 14 дней», поле «Alexey», «Имя свободно», «Отмена / Сохранить») скрыта под клавиатурой ОС — не поднимается над ней, поле ввода и кнопки недоступны глазу. Подтвердить: переснять с клавиатурой и проверить, что шторка сдвигается вверх (обработка клавиатуры на экране «Аккаунт»).",
+        "[состояние не то] Под затемнением в приложении «Аккаунт» с аватаром и «Не задано», строка «Изменить имя», блок «ДАННЫЕ» (Имя, Привязать аккаунт); в образце список «Имя · Алекс», «Способ входа · Google», «Выйти и войти под другим аккаунтом» (аккаунт с Google). Данные другие, вёрстка шторки сверяется после исправления."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T03:01:04.144Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=off&namecheck=available&overlays=off&next=/account_details"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:59, settings-gaps-states №25 «Имя — свободно»; образец нарисован с приложения): шторки «Изменить имя» на кадре не видно — экран «Аккаунт» затемнён, снизу открытая клавиатура с подсказками «Alexey / Alex eye / Alex eyes» (поле в фокусе и текст введён). [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "settings-gap-026",

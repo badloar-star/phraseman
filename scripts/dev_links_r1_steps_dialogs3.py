@@ -37,12 +37,13 @@ put('cards-v2-044', [], 'catalog=empty&fail=catalog_load', '/flashcards_packs', 
 
 
 # ── energy-modes: первый неверный вариант слова урока 1 помечен lesson1-word-option-wrong (Ядро 25775d555) — ошибка одним шагом
-# не проверено: есть ли перед первым заданием экран знакомства (Ядро) — проверит первая серия; 001/003 — только вход в урок, остальные unique=False до первых кадров
-EM = '/lesson_menu?id=1'
-START = ['tap:#lesson-menu-primary', 'wait:2500']
+# зачем (Ядро 12.10, кадры energy-modes-002…006 показали Главную): меню урока само уводит только при замке/пейволе, значит либо replace на /lesson_menu не дошёл, либо после него «назад» — пробуем
+# ПРЯМОЙ маршрут занятия, как его открывает само меню: /lesson1?id=1&from=lesson_menu (без тапа lesson-menu-primary). Если и он даст Главную — дело не в меню, нужен журнал (запрос Сверке).
+EM = '/lesson1?id=1&from=lesson_menu'
+START = ['wait:2500']
 WRONG = ['tap:#lesson1-word-option-wrong']
-put('energy-modes-001', START, 'plus=off&free=on&mode=b&energy=5', EM, note='Режим Б: первое задание урока 1, энергия 5 (вход через lesson-menu-primary)')
-put('energy-modes-003', START, 'plus=off&free=on&mode=b&energy=1', EM, note='Режим Б: осталась 1 энергия (energy=1)')
-put('energy-modes-002', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=b&energy=5', EM, unique=False, note='Режим Б: ошибка — тряска и «−1» (lesson1-word-option-wrong)')
-put('energy-modes-004', START + WRONG + ['wait:1500'], 'plus=off&free=on&mode=b&energy=1', EM, unique=False, note='Режим Б: ошибка на последней энергии → остановка')
-put('energy-modes-016', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=a&energy=5', EM, unique=False, note='Режим А: ошибка — сердечко и серия монет')
+put('energy-modes-001', START, 'plus=off&free=on&mode=b&energy=5', EM, unique=False, note='Режим Б: первое задание урока 1, энергия 5 (прямой маршрут /lesson1?id=1&from=lesson_menu; не проверено на кадре)')
+put('energy-modes-003', START, 'plus=off&free=on&mode=b&energy=1', EM, unique=False, note='Режим Б: осталась 1 энергия (energy=1; прямой маршрут занятия, не проверено на кадре)')
+put('energy-modes-002', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=b&energy=5', EM, unique=False, note='Режим Б: ошибка — тряска и «−1» (lesson1-word-option-wrong; прямой маршрут занятия)')
+put('energy-modes-004', START + WRONG + ['wait:1500'], 'plus=off&free=on&mode=b&energy=1', EM, unique=False, note='Режим Б: ошибка на последней энергии → остановка (прямой маршрут занятия)')
+put('energy-modes-016', START + WRONG + ['wait:300'], 'plus=off&free=on&mode=a&energy=5', EM, unique=False, note='Режим А: ошибка — сердечко и серия монет (прямой маршрут занятия)')

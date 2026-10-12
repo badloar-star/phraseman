@@ -14,6 +14,10 @@ if (!outDir) { console.error('Использование: node scripts/accent_ti
 const opt = (n, f) => { const i = process.argv.indexOf(n); return i >= 0 ? process.argv[i + 1] : f; };
 const themes = opt('--themes', 'graphite,ocean,grad_magma').split(',');
 const level = opt('--level', '1');
+// зачем: предметы и имя файла задаются параметрами (lessons,dialogs — по умолчанию; для intro_* — --items intro_cards_hub,intro_cards_swipe --name accent_tint_sheet_intro)
+const items = opt('--items', 'lessons,dialogs').split(',');
+const COLS = items.length * 2;
+const sheetName = opt('--name', 'accent_tint_sheet');
 const tokens = JSON.parse(fs.readFileSync(path.join(root, 'ART_STYLE_FOR_CODEX', 'league_tokens.json'), 'utf8'));
 const CELL = 300;
 const PAD = 14;
@@ -45,20 +49,20 @@ for (const theme of themes) {
     const t = tokens[theme]?.[mode]?.[level];
     if (!t) { console.warn(`[ACCENT-SHEET] нет токенов ${theme}/${mode}/${level}`); continue; }
     const cells = [];
-    for (const name of ['lessons', 'dialogs']) {
+    for (const name of items) {
       cells.push(await cell(mode, name, OLD, t)); // было
       cells.push(await cell(mode, name, NEW, t)); // стало
     }
     const [r, g, b] = hex(t.bgBottom);
-    const row = await sharp({ create: { width: CELL * 4 + PAD * 5, height: CELL + PAD * 2, channels: 4, background: { r, g, b, alpha: 1 } } })
+    const row = await sharp({ create: { width: CELL * COLS + PAD * (COLS + 1), height: CELL + PAD * 2, channels: 4, background: { r, g, b, alpha: 1 } } })
       .composite(cells.map((input, i) => ({ input, left: PAD + i * (CELL + PAD), top: PAD }))).png().toBuffer();
     rows.push(row);
   }
 }
-const W = CELL * 4 + PAD * 5;
+const W = CELL * COLS + PAD * (COLS + 1);
 const H = rows.length * (CELL + PAD * 2);
 const sheet = await sharp({ create: { width: W, height: H, channels: 4, background: { r: 20, g: 20, b: 24, alpha: 1 } } })
   .composite(rows.map((input, i) => ({ input, left: 0, top: i * (CELL + PAD * 2) }))).png().toBuffer();
-const target = path.join(outDir, 'accent_tint_sheet.png');
+const target = path.join(outDir, `${sheetName}.png`);
 fs.writeFileSync(target, sheet);
 console.log(`[ACCENT-SHEET] ${target} (${themes.length} темы × тёмное/светлое; колонки: lessons было | стало, dialogs было | стало)`);

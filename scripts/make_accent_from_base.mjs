@@ -30,6 +30,28 @@ const SPEC = {
     dark: { roi: [380, 470, 880, 680], count: 3, rMin: 50, rMax: 74 },
     light: { roi: [340, 470, 840, 680], count: 3, rMin: 50, rMax: 74 },
   },
+  // intro_* (кадр 1536×1024, прежний «кожаный» стиль): деталь заметна не яркостью вообще, а отличием от ближайшего фона (локальный контраст)
+  // intro_cards_hub: закладка на центральной карточке — светлая на тёмной карточке, тёмная на светлой
+  intro_cards_hub: {
+    kind: 'contrast',
+    dark: { roi: [700, 150, 762, 246], sign: 1, delta: 40, bgSigma: 20, fgSigma: 1.5, closeR: 3 },
+    // в светлом кадре композиция другая (закладка левее) и она СВЕТЛЕЕ тёмно-серой карточки
+    light: { roi: [640, 148, 690, 236], sign: 1, delta: 25, bgSigma: 30, fgSigma: 1.5, closeR: 3 },
+  },
+  // intro_cards_swipe: стрелка на верхней карточке стопки — чуть светлее карточки
+  intro_cards_swipe: {
+    kind: 'contrast',
+    dark: { roi: [720, 585, 885, 650], sign: 1, delta: 10, bgSigma: 25, fgSigma: 2, closeR: 4 },
+    light: { roi: [720, 585, 885, 650], sign: 1, delta: 10, bgSigma: 25, fgSigma: 2, closeR: 4 },
+  },
+  // intro_legacy_lessons: тёмная закладка-лента раскрытой книги: на кремовых страницах — по контрасту; где лента лежит на тёмной обложке (контраста нет) — полоса по оси ленты
+  intro_legacy_lessons: {
+    kind: 'contrast',
+    dark: { roi: [700, 470, 920, 925], absMax: 85, fgSigma: 2, closeR: 5, band: { x0: 868, y0: 470, x1: 745, y1: 925, half: 70 }, autoBand: { yFrom: 500, yTo: 820, yEnd: 925, half: 34, fillHalf: 26 }, fillFromY: 845 },
+    // светлый кадр: лента тёпло-серая и по яркости сливается с обложкой и тенью страниц — ни порог яркости, ни локальный контраст не отделяют её надёжно;
+    // неверная маска хуже отсутствующей, поэтому светлый слой НЕ вырезается (остаётся в долге сторожа до пересдачи Codex по новому правилу)
+    light: null,
+  },
 };
 
 async function loadRaw(file) {
@@ -87,6 +109,98 @@ function close(mask, w, h, r) {
     return out;
   };
   return pass(pass(mask, true), false);
+}
+
+/** Размытие одноканальной карты яркости (sharp.blur отдаёт 3 канала — берём один). */
+async function blurChan(values, w, h, sigma) {
+  return sharp(Buffer.from(values), { raw: { width: w, height: h, channels: 1 } }).blur(sigma).extractChannel(0).raw().toBuffer();
+}
+
+/** Заливка дыр внутри маски: всё, что не достижимо с краёв кадра по «пустым» пикселям, становится маской. */
+function fillHoles(mask, w, h) {
+  const reach = new Uint8Array(w * h);
+  const stack = [];
+  for (let x = 0; x < w; x += 1) { stack.push(x, (h - 1) * w + x); }
+  for (let y = 0; y < h; y += 1) { stack.push(y * w, y * w + w - 1); }
+  while (stack.length) {
+    const p = stack.pop();
+    if (reach[p] || mask[p]) continue;
+    reach[p] = 1;
+    const x = p % w;
+    const y = (p - x) / w;
+    if (x > 0) stack.push(p - 1);
+    if (x < w - 1) stack.push(p + 1);
+    if (y > 0) stack.push(p - w);
+    if (y < h - 1) stack.push(p + w);
+  }
+  const out = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) out[i] = mask[i] || !reach[i] ? 1 : 0;
+  return out;
+}
+
+/** Деталь = пиксели, заметно отличающиеся от локального фона (sign +1 — светлее, −1 — темнее), самая большая связная область в ROI (и в полосе вдоль оси ленты). */
+async function contrastMask(img, cfg) {
+  const { w, h } = img;
+  const L = new Uint8Array(w * h);
+  for (let i = 0; i < w * h; i += 1) L[i] = Math.round(luma(img.data, i * 4));
+  const fg = await blurChan(L, w, h, cfg.fgSigma ?? 1.5);
+  const bg = await blurChan(L, w, h, cfg.bgSigma ?? 30);
+  const [x0, y0, x1, y1] = cfg.roi;
+  const inBand = (x, y) => {
+    if (!cfg.band) return true;
+    const b = cfg.band;
+    if (y < b.y0 || y > b.y1) return false;
+    const cx = b.x0 + ((y - b.y0) / (b.y1 - b.y0)) * (b.x1 - b.x0);
+    return Math.abs(x - cx) <= b.half;
+  };
+  const m = new Uint8Array(w * h);
+  for (let y = y0; y < y1; y += 1) {
+    for (let x = x0; x < x1; x += 1) {
+      const i = y * w + x;
+      if (img.data[i * 4 + 3] < 200 || !inBand(x, y)) continue;
+      const hit = cfg.absMax !== undefined ? fg[i] < cfg.absMax : cfg.sign * (fg[i] - bg[i]) > cfg.delta;
+      if (hit) m[i] = 1;
+    }
+  }
+  let out = close(largestComponent(m, w, h), w, h, cfg.closeR ?? 3);
+  if (cfg.autoBand) {
+    // зачем: ось ленты берём ИЗ найденной маски (медиана x по строкам чистого участка → прямая), а не «на глаз»; полоса вдоль оси отсекает обложку, с которой лента сливается
+    const a = cfg.autoBand;
+    const rows = [];
+    for (let y = a.yFrom; y <= a.yTo; y += 1) {
+      const xs = [];
+      for (let x = x0; x < x1; x += 1) if (out[y * w + x]) xs.push(x);
+      if (xs.length >= 20 && xs.length <= 90) rows.push({ y, x: xs[Math.floor(xs.length / 2)] });
+    }
+    if (rows.length >= 20) {
+      const n = rows.length;
+      const sy = rows.reduce((q, r) => q + r.y, 0);
+      const sx = rows.reduce((q, r) => q + r.x, 0);
+      const syy = rows.reduce((q, r) => q + r.y * r.y, 0);
+      const sxy = rows.reduce((q, r) => q + r.y * r.x, 0);
+      const k = (n * sxy - sy * sx) / (n * syy - sy * sy || 1);
+      const b0 = (sx - k * sy) / n;
+      cfg = { ...cfg, band: { x0: k * rows[0].y + b0, y0: rows[0].y - 60, x1: k * a.yEnd + b0, y1: a.yEnd, half: a.half }, fillHalf: a.fillHalf };
+      console.log(`${LOG} ось ленты: x = ${k.toFixed(3)}·y + ${b0.toFixed(1)} (по ${n} строкам)`);
+      const keep = new Uint8Array(w * h);
+      const bandB = cfg.band;
+      const bandAt = (x, y) => { if (y < bandB.y0 || y > bandB.y1) return false; const cx = bandB.x0 + ((y - bandB.y0) / (bandB.y1 - bandB.y0)) * (bandB.x1 - bandB.x0); return Math.abs(x - cx) <= bandB.half; };
+      for (let y = y0; y < y1; y += 1) for (let x = x0; x < x1; x += 1) if (out[y * w + x] && bandAt(x, y)) keep[y * w + x] = 1;
+      out = keep;
+    }
+  }
+  out = fillHoles(out, w, h);
+  if (cfg.band && cfg.fillFromY) {
+    // зачем: на тёмной обложке лента сливается с фоном (контраста нет) — ниже fillFromY берём полосу целиком по оси ленты
+    out = Uint8Array.from(out);
+    const fillHalf = cfg.fillHalf ?? cfg.band.half;
+    const bnd = cfg.band;
+    for (let y = cfg.fillFromY; y <= bnd.y1; y += 1) {
+      const cx = bnd.x0 + ((y - bnd.y0) / (bnd.y1 - bnd.y0)) * (bnd.x1 - bnd.x0);
+      for (let x = Math.max(x0, Math.round(cx - fillHalf)); x <= Math.min(x1 - 1, Math.round(cx + fillHalf)); x += 1) out[y * w + x] = 1;
+    }
+  }
+  return out;
 }
 
 function ribbonMask(img, cfg) {
@@ -242,9 +356,11 @@ for (const [name, spec] of Object.entries(SPEC)) {
     if (!fs.existsSync(baseFile)) { console.warn(`${LOG} пропуск ${mode}/${name}: нет основы ${baseFile}`); continue; }
     const img = await loadRaw(baseFile);
     const cfg = spec[mode];
+    if (!cfg) { console.warn(`${LOG} ${mode}/${name}: вырезка не поддерживается (см. SPEC) — слой не создан`); continue; }
     let mask;
     let extra = '';
     if (spec.kind === 'ribbon') mask = ribbonMask(img, cfg);
+    else if (spec.kind === 'contrast') mask = await contrastMask(img, cfg);
     else { const r = dotsMask(img, cfg); mask = r.mask; extra = ` круги: ${r.centers.map((c) => `(${c.x},${c.y} r${c.r})`).join(' ')}`; }
     const outFile = path.join(outRoot, mode, `${name}.accent.webp`);
     const px = await toAccentWebp(mask, img, outFile);

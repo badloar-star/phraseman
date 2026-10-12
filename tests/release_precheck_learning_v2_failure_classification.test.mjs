@@ -30,6 +30,8 @@ test("Learning V2 parity failure cannot masquerade as a missing EAS secret", (t)
     "store_route_reachability.mjs",
     // зачем (12.10): гейт dev-строк стор-бандла подключён в precheck — без заглушки копия падала бы «модуль не найден».
     "store_bundle_dev_strings_gate.mjs",
+    // зачем (Ядро 12.10): гейт стор-заглушек dev-модулей подключён в precheck — без заглушки копия падала бы «модуль не найден».
+    "store_release_stubs_gate.mjs",
   ]) {
     fs.writeFileSync(path.join(scripts, script), "process.exitCode = 0;\n");
   }

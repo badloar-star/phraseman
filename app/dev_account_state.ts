@@ -15,8 +15,13 @@ const LOG = '[DEV-STATE]';
 /** Значения `switch=` (кроме ok). */
 export const DEV_SWITCH_MODES = ['not_uploaded', 'backup_blocked', 'unsaved_cards', 'pending_spend', 'quarantine', 'guard', 'slow'] as const;
 export type DevSwitchMode = (typeof DEV_SWITCH_MODES)[number];
-export const DEV_LOGOUT_MODES = ['fail', 'precommit'] as const;
+export const DEV_LOGOUT_MODES = ['fail', 'precommit', 'hold'] as const;
 export type DevLogoutMode = (typeof DEV_LOGOUT_MODES)[number];
+/** `namecheck=`: ответ проверки занятости имени в окне «Изменить имя» (settings-gap-024/025/026/031). */
+export const DEV_NAME_CHECKS = ['checking', 'available', 'taken', 'error'] as const;
+export type DevNameCheck = (typeof DEV_NAME_CHECKS)[number];
+/** Сколько держать «Выходим из аккаунта» при `logout=hold` (profile-028), потом отказ — стирание недостижимо. */
+const DEV_LOGOUT_HOLD_MS = 120_000;
 
 type SignOutReason = 'wipe_failed' | 'sync_failed' | 'pending_shard_spend' | 'shard_queue_quarantined' | 'unknown';
 export type DevSignOutOutcome = Readonly<{ reason: SignOutReason; detail?: string; delayMs: number }>;
@@ -32,8 +37,10 @@ type State = {
   greetName: string | null;
   /** `confetti=hold`: конфетти онбординга замирает на кадре пика (onboarding-019/020/021), только в памяти. */
   confettiHold: boolean;
+  /** `namecheck=`: подменённый ответ проверки имени, только в памяти; сервер при подмене не вызывается. */
+  nameCheck: DevNameCheck | null;
 };
-const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null, confettiHold: false };
+const EMPTY: State = { authNone: false, switchMode: null, logoutMode: null, deleteFail: false, restoreRetired: false, plusTransfer: false, greetName: null, confettiHold: false, nameCheck: null };
 let state: State = EMPTY;
 /**
  * Защёлка (ревью безопасности 12.10, R-2): после первого dev-отказа выхода ФОРСИРОВАННАЯ попытка («Сменить без сохранения») в этом процессе продолжает
@@ -55,6 +62,7 @@ export function setDevAccountState(patch: Partial<{
   plusTransfer: boolean;
   greetName: string | null;
   confettiHold: boolean;
+  nameCheck: DevNameCheck | null;
 }>): boolean {
   if (!devAccountAvailable()) {
     console.warn(`${LOG} account: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -69,6 +77,7 @@ export function setDevAccountState(patch: Partial<{
     plusTransfer: patch.plusTransfer ?? state.plusTransfer,
     greetName: patch.greetName === undefined ? state.greetName : patch.greetName,
     confettiHold: patch.confettiHold ?? state.confettiHold,
+    nameCheck: patch.nameCheck === undefined ? state.nameCheck : patch.nameCheck,
   };
   console.log(`${LOG} account: ${JSON.stringify(state)}`); // guard-ok: единичный лог на ссылку
   return true;
@@ -93,6 +102,9 @@ export function getDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null 
 function computeDevSignOutOutcome(forced: boolean): DevSignOutOutcome | null {
   if (state.logoutMode === 'fail') return { reason: 'wipe_failed', detail: 'dev_logout_fail', delayMs: 0 };
   if (state.logoutMode === 'precommit') return { reason: 'sync_failed', delayMs: 0 };
+  // зачем (координатор 12.10, profile-028 «выход выполняется»): окно стадии стирания живёт доли секунды — держим его, затем отказ
+  // (форсированная попытка тоже отказывает), настоящий выход и стирание недостижимы.
+  if (state.logoutMode === 'hold') return forced ? { reason: 'unknown', detail: 'dev_logout_hold', delayMs: DEV_LOGOUT_HOLD_MS } : { reason: 'sync_failed', delayMs: DEV_LOGOUT_HOLD_MS };
   const mode = state.switchMode;
   // зачем (ревью безопасности 12.10, R-1): при ЛЮБОМ включённом флаге зоны аккаунта (не только switch=/logout=) выход тоже отказывает — иначе тап «Сменить» в окне
   // plustransfer=on / restore=retired / auth=none / delete=fail запускал бы настоящее стирание.
@@ -130,6 +142,11 @@ export function getDevSignInError(): string | null {
 /** `switch=unsaved_cards`: перед сменой спросить про карточки, не доехавшие до облака (auth-gap-013). */
 export function isDevUnsavedCardsPrompt(): boolean {
   return devAccountAvailable() && state.switchMode === 'unsaved_cards';
+}
+
+/** `namecheck=`: ответ проверки занятости имени вместо сервера (null — нет подмены; вне dev всегда null). */
+export function getDevNameCheck(): DevNameCheck | null {
+  return devAccountAvailable() ? state.nameCheck : null;
 }
 
 /** `delete=fail`: локальная фаза удаления отказывает ДО любого побочного эффекта (auth-gap-011). */

@@ -259,6 +259,29 @@ add('overlays-campaigns-025', ref_send('ANNA42'), REF_BASE + '&refcode=disabled'
 add('overlays-campaigns-026', ref_send('ANNA42'), REF_BASE + '&refcode=error', REF, note='«Не получилось применить код…»')
 
 
+# ───────────────────────── Аккаунт: окно имени, выход, удаление (зона Авторизации) ─────────────────────────
+# Ответ проверки имени подменяет namecheck=<checking|available|taken|error> (app/dev_account_state.ts, память процесса) — сервер не вызывается;
+# «Сохранить» для состояний проверки робот не жмёт. Имена — как в макете settings-gaps-states.html (Alexey / Delta28).
+# Выход и удаление: logout=hold|fail и delete=fail отказывают ДО замка, синхронизации и стирания — настоящие выход и удаление недостижимы.
+# Кнопка выхода и окно удаления с «14 дней» есть только у ВОШЕДШЕГО аккаунта (под гостем шаг не найдёт кнопку).
+ACCT = '/account_details'
+NAME_OPEN = ['tap:#account-change-name', 'tap:#nickname-input']
+NAME_CLEAR = NAME_OPEN + ['key:MOVE_END'] + ['key:DEL'] * 22
+add('profile-003', ['tap:#account-change-name'], 'plus=off&namecheck=none', ACCT, note='шторка «Изменить имя» с текущим именем')
+add('settings-gap-024', NAME_CLEAR + ['type:Alexey'], 'plus=off&namecheck=checking', ACCT, note='«Проверяем имя…» держится (namecheck=checking)')
+add('settings-gap-025', NAME_CLEAR + ['type:Alexey'], 'plus=off&namecheck=available', ACCT, note='«Имя свободно»')
+add('settings-gap-026', NAME_CLEAR + ['type:Delta28'], 'plus=off&namecheck=taken', ACCT, note='«Имя уже занято», «Сохранить» недоступна')
+add('settings-gap-031', NAME_CLEAR + ['type:Alexey'], 'plus=off&namecheck=error', ACCT, note='«Проверим при сохранении», «Сохранить» доступна')
+add('settings-gap-032', NAME_CLEAR + ['tap:#nickname-save'], 'plus=off&namecheck=none', ACCT, note='пустое поле → окно «Введи имя» (проверка до сети)')
+add('settings-gap-033', NAME_CLEAR + ['type:A', 'tap:#nickname-save'], 'plus=off&namecheck=none', ACCT, note='один символ → окно «Минимум 2 символа» (проверка до сети)')
+add('profile-028', ['see:#account-logout-button', 'tap:#account-logout-button', 'wait:1500'], 'logout=hold', ACCT,
+    note='«Выходим из аккаунта» держится 2 мин (logout=hold), затем отказ; НУЖЕН ВХОД (кнопка выхода только у вошедшего)')
+add('profile-029', ['see:#account-logout-button', 'tap:#account-logout-button', 'wait:1500'], 'logout=fail', ACCT,
+    note='«Старый аккаунт не считается закрытым» (logout=fail, стирание недостижимо); НУЖЕН ВХОД')
+add('profile-030', ['see:#account-delete-button', 'tap:#account-delete-button'], 'delete=fail', ACCT,
+    note='окно «Удалить аккаунт?» с «14 дней», НЕ подтверждать (delete=fail — страховка); НУЖЕН ВХОД')
+
+
 # ───────────────────────── Карточки: прямые маршруты тренировок (вердикты Макетов 12.10) ─────────────────────────
 # Маршруты и параметры — из app/flashcards/training_entry.ts (deck=saved, quick=1, size=all). cards=* — только на анонимном госте (dev_state_account_guard).
 TF_ROUTE = '/flashcards_truefalse_session?deck=saved&quick=1&size=all'

@@ -42,6 +42,7 @@ import {
   type NameAvailabilityStatus,
 } from '../../app/firestore_leaderboard';
 import { patchAppSnapshot } from '../../app/app_snapshot_store';
+import { getDevNameCheck } from '../../app/dev_account_state';
 import {
   containsBadWord,
   updateLocalNameReferences,
@@ -141,6 +142,15 @@ export default function NicknameEditModal({
       || containsBadWord(trimmed)
     ) {
       setAvailabilityStatus('idle');
+      return;
+    }
+
+    // зачем (координатор 12.10, кадры settings-gap-024/025/026/031): ответ проверки решает сервер, «Проверяем…» живёт доли секунды.
+    // dev `namecheck=` подменяет ответ в памяти ДО кэша и сети; вне dev / в стор-сборке геттер всегда null.
+    const devNameCheck = getDevNameCheck();
+    if (devNameCheck !== null) {
+      console.log(`[DEV-STATE] namecheck=${devNameCheck}: ответ проверки имени подменён, сервер не вызывается`); // guard-ok: dev-ветка
+      setAvailabilityStatus(devNameCheck);
       return;
     }
 

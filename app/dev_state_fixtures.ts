@@ -22,7 +22,7 @@ import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
-import { DEV_LOGOUT_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
+import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevPaywallLinkState, type DevPaywallState } from './dev_paywall_state';
 import { DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, setDevCardsState, type DevCardsFail, type DevCardsHold, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
@@ -109,6 +109,8 @@ export type DevStateRequest = Readonly<{
   switch?: DevSwitchMode | 'ok';
   /** «Не удалось выйти» (profile-029): fail — после записи маркера, precommit — до него; ok снимает. */
   logout?: DevLogoutMode | 'ok';
+  /** Ответ проверки имени без сети (settings-gap-024/025/026/031): checking, available, taken, error, none=снять. */
+  namecheck?: DevNameCheck | 'none';
   /** «Удаление не завершилось» (auth-gap-011): имитация отказа, удаление не вызывается. */
   delete?: 'fail' | 'ok';
   /** `identity_retired` при входе (auth-gap-008). */
@@ -231,6 +233,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.auth = pick('auth', ['none', 'ok'] as const);
   request.switch = pick('switch', [...DEV_SWITCH_MODES, 'ok'] as const);
   request.logout = pick('logout', [...DEV_LOGOUT_MODES, 'ok'] as const);
+  request.namecheck = pick('namecheck', [...DEV_NAME_CHECKS, 'none'] as const);
   request.delete = pick('delete', ['fail', 'ok'] as const);
   request.restore = pick('restore', ['retired', 'ok'] as const);
   request.plustransfer = pick('plustransfer', ['on', 'off'] as const);
@@ -500,6 +503,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.auth !== undefined) await step('auth', request.auth, async () => setDevAccountState({ authNone: request.auth === 'none' }));
   if (request.switch !== undefined) await step('switch', request.switch, async () => setDevAccountState({ switchMode: request.switch === 'ok' ? null : request.switch! }));
   if (request.logout !== undefined) await step('logout', request.logout, async () => setDevAccountState({ logoutMode: request.logout === 'ok' ? null : request.logout! }));
+  if (request.namecheck !== undefined) await step('namecheck', request.namecheck, async () => setDevAccountState({ nameCheck: request.namecheck === 'none' ? null : request.namecheck! }));
   if (request.delete !== undefined) await step('delete', request.delete, async () => setDevAccountState({ deleteFail: request.delete === 'fail' }));
   if (request.restore !== undefined) await step('restore', request.restore, async () => setDevAccountState({ restoreRetired: request.restore === 'retired' }));
   if (request.streakJump !== undefined) {

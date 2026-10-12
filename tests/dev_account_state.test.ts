@@ -22,7 +22,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { applyDevState, parseDevStateParams } from '../app/dev_state_fixtures';
 import {
-  getDevGreetName, getDevSignInError, isDevConfettiHold, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
+  getDevGreetName, getDevNameCheck, getDevSignInError, isDevConfettiHold, getDevSignOutOutcome, isDevAuthNone, isDevDeleteFail, isDevPlusTransferNotice, isDevUnsavedCardsPrompt, resetDevAccountStateForTests, setDevAccountState,
 } from '../app/dev_account_state';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
@@ -159,6 +159,31 @@ describe('dev account states', () => {
     }
     expect(read('app/account_switch_unsaved_cards.ts')).toMatch(/isDevUnsavedCardsPrompt\(\)/);
     expect(read('app/plus_transfer_hold.ts')).toMatch(/hasFreshStorePlusEvidenceFor\(currentStableId\) \|\| isDevPlusTransferNotice\(\)/);
+  });
+
+  // зачем (координатор 12.10, кадры settings-gap-024/025/026/031 и profile-028): ответ проверки имени и «выход выполняется» — фикстурой в памяти.
+  it('answers the name check from namecheck= before the cache and the network, only in a dev build', async () => {
+    const { request, rejected } = parseDevStateParams({ namecheck: 'taken' });
+    expect([request.namecheck, rejected]).toEqual(['taken', {}]);
+    expect(Object.keys(parseDevStateParams({ namecheck: 'free' }).rejected)).toEqual(['namecheck']);
+    await applyDevState({ namecheck: 'checking' });
+    expect(getDevNameCheck()).toBe('checking');
+    await applyDevState({ namecheck: 'none' });
+    expect(getDevNameCheck()).toBeNull();
+    setDevAccountState({ nameCheck: 'error' });
+    mockStoreRelease = true;
+    expect(getDevNameCheck()).toBeNull();
+    const modal = read('components/account/NicknameEditModal.tsx');
+    expect(modal.indexOf('getDevNameCheck()')).toBeGreaterThan(-1);
+    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('availabilityCacheRef.current.get(cacheKey)'));
+    expect(modal.indexOf('getDevNameCheck()')).toBeLessThan(modal.indexOf('void checkNameAvailabilityDetailed(trimmed)'));
+  });
+
+  it('holds the sign-out stage with logout=hold and still refuses both attempts', () => {
+    setDevAccountState({ logoutMode: 'hold' });
+    expect(getDevSignOutOutcome(false)).toMatchObject({ reason: 'sync_failed' });
+    expect(getDevSignOutOutcome(false)?.delayMs).toBeGreaterThan(60_000);
+    expect(getDevSignOutOutcome(true)).toMatchObject({ reason: 'unknown', detail: 'dev_logout_hold' });
   });
 
   it('keeps the module free of storage, network and real account actions', () => {

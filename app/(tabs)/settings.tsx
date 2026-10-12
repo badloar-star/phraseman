@@ -33,7 +33,7 @@ import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
-import { emitAppEvent } from '../events';
+import { actionToastTri, emitAppEvent } from '../events';
 import { requestOpenDevHub } from '../dev_hub_bus';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { DebugLogger } from '../debug-logger';
@@ -814,7 +814,11 @@ export default function SettingsMain() {
             setClearCacheState('running');
             void clearAppCaches()
               .then((result) => { setClearCacheState(result.ok ? 'done' : 'failed'); }) // зачем: PM-199-A2 — сбой хранилища не выдаём за «Готово»
-              .catch(() => { setClearCacheState('failed'); });
+              .catch((error: unknown) => {
+                // зачем (аудит Optimistic UI «Настроек», 12.10): немой catch — причина сбоя чистки теперь в журнале
+                console.warn(`[CACHE-RESET] clear_failed_in_ui reason=${error instanceof Error ? error.message : String(error)}`);
+                setClearCacheState('failed');
+              });
           },
         },
       ],
@@ -868,9 +872,12 @@ export default function SettingsMain() {
       style={{ width: size, height: size }} contentFit="contain"
     />
   );
+  const hapticSeqRef = useRef(0);
   const toggleTapHaptics = (val: boolean) => {
-    // зачем (Optimistic UI): переключатель меняется мгновенно, диск догоняет фоном; сбой записи
-    // не откатывает UI (следующая гидрация возьмёт значение из снапшота), но причина пишется в лог.
+    // зачем (Optimistic UI): переключатель меняется мгновенно, диск догоняет фоном. Аудит «Настроек» 12.10: сбой записи теперь ОТКАТЫВАЕТ тумблер (иначе «включено»,
+    // а после перезапуска значение возвращалось) и показывает сообщение; поздний сбой старого тапа более свежий выбор не трогает.
+    const previous = hapticTap;
+    const seq = ++hapticSeqRef.current;
     setHapticTap(val);
     setHapticCacheEnabled(val);
     patchAppSnapshot((current) => current.settings ? {
@@ -881,8 +888,22 @@ export default function SettingsMain() {
         tapHaptics: val,
       },
     } : {});
-    AsyncStorage.setItem('haptics_tap', String(val)).catch((error) => {
+    AsyncStorage.setItem('haptics_tap', String(val)).catch((error: unknown) => {
       DebugLogger.error('settings.tsx:toggleTapHaptics:storage', error, 'warning');
+      const reason = error instanceof Error ? error.message : String(error);
+      if (hapticSeqRef.current !== seq) {
+        console.warn(`[OPT-UI] settings tap_haptics rollback skipped: выбор уже изменён позже reason=${reason}`);
+        return;
+      }
+      console.warn(`[OPT-UI] settings tap_haptics rollback ${String(val)} → ${String(previous)} reason=${reason}`);
+      setHapticTap(previous);
+      setHapticCacheEnabled(previous);
+      patchAppSnapshot((current) => current.settings ? { settings: { ...current.settings, source: 'local', updatedAt: Date.now(), tapHaptics: previous } } : {});
+      emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.",
+        es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.',
+        id: 'Pengaturan tidak dapat disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+      }));
     });
   };
   const fontSizeLabel = L('Размер шрифта', 'Розмір шрифту', 'Font size', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki');

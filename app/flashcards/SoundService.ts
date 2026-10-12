@@ -126,13 +126,18 @@ export function isFcSfxEnabled(): boolean {
 }
 
 export async function setFcSfxEnabled(on: boolean): Promise<void> {
+  const previous = cachedSfxOn;
   cachedSfxOn = on;
   if (!on) releasePool();
   try {
     await AsyncStorage.setItem(SFX_ON_KEY, on ? 'true' : 'false');
   } catch (e) {
-      DebugLogger.error('SoundService:setFcSfxEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    DebugLogger.error('SoundService:setFcSfxEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    // зачем (аудит Optimistic UI «Настроек», 12.10): раньше сбой глотался здесь, и откат переключателя в settings_edu был мёртвым кодом (.catch не срабатывал).
+    // Возвращаем кэш (если новым тапом он не менялся) и пробрасываем ошибку — экран откатит тумблер и покажет сообщение.
+    if (cachedSfxOn === on) cachedSfxOn = previous;
+    throw e;
+  }
 }
 
 // ── Тумблер «Автопроизношение» (`fc_autospeak_on`, дефолт true) — E9 ─────────
@@ -151,12 +156,16 @@ export function isFcAutoSpeakEnabled(): boolean {
 }
 
 export async function setFcAutoSpeakEnabled(on: boolean): Promise<void> {
+  const previous = cachedAutoSpeakOn;
   cachedAutoSpeakOn = on;
   try {
     await AsyncStorage.setItem(AUTOSPEAK_ON_KEY, on ? 'true' : 'false');
   } catch (e) {
-      DebugLogger.error('SoundService:setFcAutoSpeakEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    DebugLogger.error('SoundService:setFcAutoSpeakEnabled', e instanceof Error ? e : new Error(String(e)), 'warning');
+    // зачем: то же, что у setFcSfxEnabled — сбой записи доходит до экрана (откат тумблера + сообщение)
+    if (cachedAutoSpeakOn === on) cachedAutoSpeakOn = previous;
+    throw e;
+  }
 }
 
 /** Воспроизвести короткий SFX из пула. Синхронный fire-and-forget, ошибки глотаем. */

@@ -28,6 +28,7 @@ import {
   isNotificationPermissionGranted, requestNotificationPermissionWithFallback,
 } from './notifications';
 import { triLang, type Lang } from '../constants/i18n';
+import { actionToastTri, emitAppEvent } from './events';
 import { safeRouterBack } from './navigation_back';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
@@ -280,8 +281,18 @@ export default function SettingsNotifications() {
     return true;
   };
 
+  // зачем (аудит Optimistic UI «Настроек», 12.10): поздний сбой старого тапа не должен откатывать более свежий выбор — у каждой записи свой номер
+  const prefsSeqRef = useRef(0);
+  const scheduleSeqRef = useRef(0);
+  const rollbackToast = () => emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.",
+        es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.',
+        id: 'Pengaturan tidak dapat disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
+      }));
+
   const persistPrefs = async (next: NotifPrefs, enabling: boolean) => {
     const prevPrefs = prefsRef.current;
+    const seq = ++prefsSeqRef.current;
     // Optimistic: тумблер реагирует мгновенно, сеть и планирование догоняют фоном.
     setPrefs(next);
     flashSaved();
@@ -295,14 +306,21 @@ export default function SettingsNotifications() {
       }
     } catch (error: unknown) {
       // зачем: немого catch нет — откат тумблера и причина в журнале.
-      console.warn(`[NOTIF-PREFS] persist_failed rollback=1 reason=${error instanceof Error ? error.message : String(error)}`);
+      const reason = error instanceof Error ? error.message : String(error);
+      if (prefsSeqRef.current !== seq) {
+        console.warn(`[NOTIF-PREFS] persist_failed rollback=skipped reason=${reason}: выбор уже изменён позже`);
+        return;
+      }
+      console.warn(`[NOTIF-PREFS] persist_failed rollback=1 reason=${reason}`);
       setPrefs(prevPrefs);
       setSaved(false);
+      rollbackToast();
     }
   };
 
   const persistSchedule = async (next: NotifSettings, enabling: boolean) => {
     const prevS = sRef.current;
+    const seq = ++scheduleSeqRef.current;
     setS(next);
     flashSaved();
     try {
@@ -310,9 +328,17 @@ export default function SettingsNotifications() {
       const permitted = await ensurePermissionIfEnabling(enabling);
       if (!permitted) return;
       await scheduleNotifications(next, lang as Lang, 0, { requestPermission: false, studyTarget });
-    } catch {
+    } catch (error: unknown) {
+      // зачем: раньше `catch {` откатывал тумблер/время молча — теперь причина в журнале и сообщение человеку
+      const reason = error instanceof Error ? error.message : String(error);
+      if (scheduleSeqRef.current !== seq) {
+        console.warn(`[NOTIF-SCHEDULE] persist_failed rollback=skipped reason=${reason}: выбор уже изменён позже`);
+        return;
+      }
+      console.warn(`[NOTIF-SCHEDULE] persist_failed rollback=1 reason=${reason}`);
       setS(prevS);
       setSaved(false);
+      rollbackToast();
     }
   };
 

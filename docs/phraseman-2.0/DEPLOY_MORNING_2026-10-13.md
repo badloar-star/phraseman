@@ -160,7 +160,16 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 ровно по политике §20 и коду (`functions/src/account_delete_grace.ts`, 14 дней).
 
 Цель hosting — `knowlywww` (.firebaserc → сайт `knowlyapps`, папка `knowly-www`, без predeploy). Выкладывается ВЕСЬ `knowly-www`
-из коммита — тем же чистым срезом, что выше (папка `$D` уже есть):
+из коммита — тем же чистым срезом, что выше (папка `$D` уже есть).
+
+**Что поедет кроме юридических страниц — НИЧЕГО.** Опубликованный сайт = состояние коммита `472f8715e` (10.10: политика October 10,
+условия September 1, удаление October 10 — совпадает с живыми страницами). `git diff --stat 472f8715e HEAD -- knowly-www` — ровно 4 файла:
+- `legal/privacy/index.html` — политика October 12 (4c71ca720, 0af36379f: §20 удаление гостя, правки первого выпуска);
+- `legal/privacy-ios/index.html` — НОВАЯ страница, iOS-версия политики (78b23d514);
+- `legal/terms/index.html` — условия October 12 (§4, 9b905f582);
+- `legal/data-deletion/index.html` — дата и «14-day recovery window» (09ffadc73).
+Других страниц сайта (главная, /start/, тесты уровня, гайды) изменения не касаются; незакоммиченных правок в `knowly-www` нет (12.10, 17:15).
+Если перед выкладкой появятся новые коммиты в `knowly-www` — повторить `git diff --stat 472f8715e HEAD -- knowly-www`.
 
 ```bash
 FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_deploy/${FULL:0:9} && firebase deploy --only hosting:knowlywww --project phraseman-ea0b3

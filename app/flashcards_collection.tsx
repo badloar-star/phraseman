@@ -181,6 +181,21 @@ export function fullCategoryLabelForLang(cat: (typeof CATEGORIES)[number], lang:
   return labels[lang];
 }
 
+/** Тост «набор сейчас нельзя купить» (ревью 12.10 (д)): отказ гейта (нет цены / цены разошлись) повтором не лечится — без «попробуй ещё раз». */
+function packBuyUnavailableToast() {
+  return actionToastTri('error', {
+    ru: 'Этот набор сейчас нельзя купить.',
+    uk: 'Цей набір зараз не можна купити.',
+    en: 'This pack can’t be bought right now.',
+    es: 'Este paquete no se puede comprar ahora.',
+    'pt-BR': 'Este pacote não pode ser comprado agora.',
+    vi: 'Hiện chưa thể mua bộ thẻ này.',
+    id: 'Paket ini belum bisa dibeli sekarang.',
+    tr: 'Bu paket şu anda satın alınamıyor.',
+    pl: 'Tego zestawu nie można teraz kupić.',
+  });
+}
+
 /** Тост «покупка набора не удалась» (R1_PAYWALL_UX): окно покупки не должно молчать при отказе. */
 function packBuyFailedToast() {
   return actionToastTri('error', {
@@ -231,7 +246,7 @@ export default function FlashcardsScreen() {
     const gate = packPurchaseGate(p, price);
     if (!gate.ok) {
       console.warn(`[PACK-BUY] gate:refused pack=${p.id} price=${price} packPriceRunes=${String(p.priceRunes ?? '-')} reason=${gate.reason}`); // guard-ok: отказ окна покупки называет причину
-      emitAppEvent('action_toast', packBuyFailedToast()); // зачем (ревью 12.10 п.5): отказ гейта — не только строка журнала, человек должен увидеть, что покупка не открылась
+      emitAppEvent('action_toast', packBuyUnavailableToast()); // зачем (ревью 12.10 п.5 и (д)): отказ гейта — не только журнал; повтором он не лечится, поэтому без «попробуй ещё раз»
       return;
     }
     setPurchasePack(p);
@@ -1870,7 +1885,7 @@ export default function FlashcardsScreen() {
                 console.log(`[PACK-BUY] denied pack=${purchasePack.id} reason=${res.reason}`); // guard-ok: otkaz obyazan logirovat'sya i v relize
                 // зачем (R1_PAYWALL_UX, координатор 12.10): раньше при отказе крутилка просто пропадала и окно оставалось без слова. Нехватка рун сама
                 // переключает окно на «Пополнить» (mode считается по балансу), поэтому тост — для остальных причин (смена аккаунта, неверная цена).
-                if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', packBuyFailedToast());
+                if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', res.reason === 'invalid_price' ? packBuyUnavailableToast() : packBuyFailedToast()); // неверная цена повтором не лечится
                 return;
               }
               await addCommunityPackToLibrary(purchasePack);

@@ -13,6 +13,7 @@ import {
   purchaseFailurePhase,
   purchaseFailureUi,
   purchaseStaleUi,
+  purchaseUnverifiedUi,
   restoreStaleUi,
 } from '../app/paywall_purchase_failure';
 import { packPurchaseGate } from '../app/community_packs/packPurchaseGate';
@@ -109,11 +110,11 @@ describe('ревью п.3: онбординг после запроса окна
     expect(catchBlock).not.toContain('if (ONBOARDING_PURCHASE_SOURCES.has(source)) {');
   });
 
-  it('флаг «окно магазина запрошено» ставится после старта магазина и личности и до purchasePackage', () => {
-    const flagDecl = body.indexOf('let storeSheetRequested = false;');
-    const setTrue = body.indexOf('storeSheetRequested = true;');
-    expect(body.indexOf('storeSheetRequested = true;', setTrue + 1)).toBe(-1);
-    expect(flagDecl).toBeGreaterThan(-1);
+  it('ревью (в): общий catch решает по ЕДИНСТВЕННОМУ флагу purchaseInvoked (его ставит обёртка в момент вызова магазина); консервативного storeSheetRequested больше нет', () => {
+    expect(body).not.toContain('storeSheetRequested');
+    expect(catchBlock).toContain('purchaseFailurePhase(purchaseInvoked)');
+    expect(body.match(/purchaseInvoked = true;/g)?.length).toBe(1);
+    const setTrue = body.indexOf('purchaseInvoked = true;');
     expect(setTrue).toBeGreaterThan(body.indexOf('identityReady'));
     expect(setTrue).toBeGreaterThan(body.indexOf('setPayStarted(true);'));
     expect(setTrue).toBeLessThan(body.indexOf('Purchases.purchasePackage(pkg)'));
@@ -208,7 +209,7 @@ describe('ревью п.5: набор без цены не открывает о
     expect(host.match(/onRequestPurchase=\{requestPackPurchase\}/g)?.length).toBe(3);
     const gateBlock = between(host, 'const requestPackPurchase = useCallback', '}, []);');
     expect(gateBlock).toContain('[PACK-BUY] gate:refused');
-    expect(gateBlock).toContain("emitAppEvent('action_toast', packBuyFailedToast())");
+    expect(gateBlock).toContain("emitAppEvent('action_toast', packBuyUnavailableToast())");
   });
 
   it('соцбар: цена > 0 без обработчика покупки — отказ с логом и тостом, до бесплатного добавления', () => {
@@ -224,5 +225,69 @@ describe('ревью п.5: набор без цены не открывает о
 describe('п.2 исходной задачи: двойной тап по покупке набора гасится ref-ом', () => {
   it('остался', () => {
     expect(read('app/flashcards_collection.tsx')).toContain('if (purchasingRef.current || !purchasePack) return;');
+  });
+});
+
+describe('ревью (а): аккаунт сменился — отдельный текст без «Восстановить»', () => {
+  it('аккаунт тот же — обычный диалог; сменился — «покупка оформлена на предыдущий аккаунт»', () => {
+    expect(purchaseUnverifiedUi(true)).toBe('unverified_dialog');
+    expect(purchaseUnverifiedUi(false)).toBe('previous_account_alert');
+  });
+
+  const body = between(read('app/paywall_purchase.ts'), 'const handlePurchase = useCallback', 'const finishAfterTrialReminderPrompt');
+
+  it('единый диалог проверяет аккаунт: при смене — инфо-окно с одной кнопкой, до showUnverifiedPurchaseAlert; stale и not_applied идут через него', () => {
+    const dialog = between(body, 'const presentUnverifiedDialog = (why: string): void => {', 'try {');
+    expect(dialog.indexOf('purchaseUnverifiedUi(isOperationAccountCurrent())')).toBeGreaterThan(-1);
+    expect(dialog.indexOf("ui === 'previous_account_alert'")).toBeLessThan(dialog.indexOf('showUnverifiedPurchaseAlert(lang)'));
+    expect(dialog).toContain('enqueueThemedBlockingInfoAlert(copy.title, copy.message');
+    expect(body).toContain("presentUnverifiedDialog('stale после вызова purchasePackage')");
+    expect(body).toContain("presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально')");
+  });
+
+  it('текст говорит, куда войти и что платить заново не нужно (все 9 языков заполнены)', () => {
+    const src = read('app/paywall_purchase.ts');
+    const copy = between(src, 'function previousAccountPurchaseCopy', 'export function restoreRetryToast');
+    expect(copy).toContain('Покупка оформлена на предыдущий аккаунт — войди в него');
+    expect(copy).toContain('Платить заново не нужно.');
+    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) {
+      expect(copy.match(new RegExp(`${lang}: `, 'g'))?.length).toBeGreaterThanOrEqual(2); // заголовок и текст
+    }
+  });
+});
+
+describe('ревью (б): сбой пост-шага после применённого доступа всё равно закрывает окно покупки', () => {
+  const body = between(read('app/paywall_purchase.ts'), 'const handlePurchase = useCallback', 'const finishAfterTrialReminderPrompt');
+  const guard = between(body, 'if (accessApplied) {', 'const errCode');
+
+  it('окно закрывается / возвращает к уроку (не в онбординге, аккаунт тот же, окно живо), сбой закрытия — в журнал', () => {
+    expect(guard).toContain("source !== 'onboarding' && source !== 'onboarding_plan' && isOperationAccountCurrent() && !lifeRef.current.dead");
+    expect(guard).toContain('resumeLessonAfterPremium(router, resumeLessonId)');
+    expect(guard).toContain('dismissPaywallModal(router');
+    expect(guard).toContain('purchase:post_access_close_failed');
+    expect(guard).not.toContain('showUnverifiedPurchaseAlert');
+    expect(guard).not.toContain('presentUnverifiedDialog');
+  });
+});
+
+describe('ревью (г): повторный тап во время операции пишет причину', () => {
+  const src = read('app/paywall_purchase.ts');
+  it('и в покупке, и в восстановлении «if (operationRef.current) return;» больше нет', () => {
+    expect(src).not.toContain('if (operationRef.current) return;');
+    expect(src).toContain('покупка: тап проигнорирован — уже идёт операция');
+    expect(src).toContain('restore: тап проигнорирован — уже идёт операция');
+  });
+});
+
+describe('ревью (д): отказ гейта набора — без «попробуй ещё раз»', () => {
+  const host = read('app/flashcards_collection.tsx');
+  it('есть отдельный тост «нельзя купить»; гейт и неверная цена используют его, сбой/смена аккаунта — прежний', () => {
+    const unavailable = between(host, 'function packBuyUnavailableToast()', '/** Тост «покупка набора не удалась»');
+    expect(unavailable).toContain('Этот набор сейчас нельзя купить.');
+    expect(unavailable).not.toContain('ещё раз');
+    const gate = between(host, 'const requestPackPurchase = useCallback', '}, []);');
+    expect(gate).toContain('packBuyUnavailableToast()');
+    expect(gate).not.toContain('packBuyFailedToast()');
+    expect(host).toContain("res.reason === 'invalid_price' ? packBuyUnavailableToast() : packBuyFailedToast()");
   });
 });

@@ -48,3 +48,11 @@ export function purchaseStaleUi(purchaseInvoked: boolean): 'unverified_dialog' |
 export function restoreStaleUi(accountStillCurrent: boolean): 'account_changed_toast' | 'retry_toast' {
   return accountStillCurrent ? 'retry_toast' : 'account_changed_toast';
 }
+
+/**
+ * Диалог «статус не подтверждён» зовёт «Проверить статус / Восстановить» — но они работают на ТЕКУЩЕМ аккаунте. Если аккаунт уже не тот, на котором шла оплата,
+ * эти кнопки не помогут (и подтолкнут восстановить на чужом): нужен отдельный текст «покупка оформлена на предыдущий аккаунт — войди в него» без кнопок восстановления.
+ */
+export function purchaseUnverifiedUi(accountStillCurrent: boolean): 'unverified_dialog' | 'previous_account_alert' {
+  return accountStillCurrent ? 'unverified_dialog' : 'previous_account_alert';
+}

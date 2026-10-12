@@ -44,7 +44,7 @@ describe('R1_PAYWALL_UX: окно покупки набора', () => {
   const owner = read('app/flashcards_collection.tsx');
   it('отказ и сбой покупки не немые: тост «Не удалось купить набор» (кроме нехватки рун — её показывает само окно)', () => {
     expect(owner).toContain('function packBuyFailedToast() {');
-    expect(owner).toContain("if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', packBuyFailedToast());");
+    expect(owner).toContain("if (res.reason !== 'insufficient_runes') emitAppEvent('action_toast', res.reason === 'invalid_price' ? packBuyUnavailableToast() : packBuyFailedToast());");
     expect(owner).toContain("emitAppEvent('action_toast', packBuyFailedToast()); // зачем (R1_PAYWALL_UX)");
   });
   it('двойной тап по-прежнему гасится ref-ом', () => {

@@ -19,7 +19,7 @@ test.each([
   ['handleRestore', "operationRef.current = 'restore';"],
 ])('%s: ref lock is checked first and taken before any await', (name, take) => {
   const body = bodyOf(name);
-  const check = body.indexOf('if (operationRef.current) return;');
+  const check = body.indexOf('if (operationRef.current) {'); // зачем (ревью 12.10 (г)): повторный тап пишет причину, поэтому блок, а не голый return
   const set = body.indexOf(take);
   const firstAwait = body.indexOf('await ');
   expect(check).toBeGreaterThan(-1);

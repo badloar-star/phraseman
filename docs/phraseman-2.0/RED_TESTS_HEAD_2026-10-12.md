@@ -440,3 +440,15 @@
 | `android_clipping_crash_guard` | Codex | `components/learning-v2/horizons/LearningV2Horizons.tsx: FlatList` | — |
 | `theme_hardcoded_colors_ratchet.mjs` | Codex | +5 цветов в `modules/learning-v2/modes/mode_feedback_v1.tsx` (`app/dev_state.tsx` уже чист) | — |
 | `render_daily_phrase_content_preview.mjs` | контент фразы дня (конвейер `content/daily-phrases`) | сгенерированное превью ≠ закоммиченный `content/daily-phrases/es/REVIEW_PREVIEW.md` | перегенерировать превью владельцем конвейера |
+
+### Статус на вечер 12.10 (после ответов владельцев зон)
+
+- **Дизайн — 7 из 7 закрыты, `a7f4d2920`** (5 наборов раннера 52/52, два .mjs 10/10). Из них один — реальный дефект кода:
+  у списка наборов в `ExpandedCardV2.tsx` не было `decelerationRate="fast"`. Остальные — контракты под осознанные правки
+  (D158: цена с «≈», кружок покупки `g.accentInk`, `initRevenueCat` под потолком до оплаты; testID кнопки назад; мок
+  `getDevBlitzAnswer`; снимок текста поддержки — одно слово «вислів» из `41443be48`).
+- **Темы — 4 из 4 закрыты** (пакет TG-58DF6DACDEDC): базы AST трёх стеклянных экранов пересверены по diff (в т.ч. из-за
+  `41443be48`), тест иконок режимов переведён в проверку «старых ассетов и ссылок нет» (папка удалена в `96c32bb97`).
+- **Осталось 7:** Авторизация 1 (`account_provision_lock_android_runtime_entrypoint`), Codex 6 (`lesson1_release_parity`,
+  `kimi_voice_capture_session_lifecycle`, `android_no_square_outline_guard`, `android_clipping_crash_guard`,
+  `theme_hardcoded_colors_ratchet`, `render_daily_phrase_content_preview`).

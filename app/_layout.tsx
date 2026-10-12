@@ -15,13 +15,15 @@ const BOOT_T0 = Date.now();
 if (typeof __DEV__ !== 'undefined' && __DEV__) require('./dev_snapshot_clean');
 // зачем (координатор 05.10, пакет 01:26, «сперва логи»): таймеры ворот сплеша опаздывали на 1,5–2 с (FALLBACK 400 мс
 // сработал через ~2 с). Сторож простоя JS-потока: тик 100 мс, печатает каждый разрыв > 250 мс с временем от
-// старта — видно, КОГДА и НА СКОЛЬКО поток стоял. Только dev, сам снимается через 3 с после снятия сплеша
-// (и не позже 30 с).
+// старта — видно, КОГДА и НА СКОЛЬКО поток стоял. Только dev, сам снимается через 60 с от старта (12.10: был
+// «через 3 с после сплеша» — не доживал до зависания dev-ссылки).
 const JS_STALL_TICK_MS = 100;
 const JS_STALL_REPORT_MS = 250;
+const JS_HEARTBEAT_MS = 5_000;
 if (BOOT_TRACE_ENABLED) {
   let lastTickAt = Date.now();
-  let stopAt = BOOT_T0 + 30_000;
+  let lastHeartbeatAt = Date.now();
+  const stopAt = BOOT_T0 + 60_000;
   const watchdog = setInterval(() => {
     const now = Date.now();
     const gapMs = now - lastTickAt;
@@ -30,10 +32,21 @@ if (BOOT_TRACE_ENABLED) {
       console.warn(`[JS-STALL] +${now - BOOT_T0}ms поток стоял ${gapMs}ms (с +${now - gapMs - BOOT_T0}ms)`); // guard-ok: только dev
     }
     const splashHiddenAt = (globalThis as { __phrasemanNativeSplashHiddenAt?: number }).__phrasemanNativeSplashHiddenAt;
-    if (typeof splashHiddenAt === 'number') stopAt = Math.min(stopAt, splashHiddenAt + 3_000);
-    if (now >= stopAt) clearInterval(watchdog);
+    // зачем (координатор 12.10, холодный старт dev-ссылки 35 с, белый экран): сторож снимался через 3 с после сплеша и не
+    // доживал до зависания. Теперь живёт до 60 с от старта и раз в 5 с пишет пульс: пульс идёт — поток жив и чего-то ждёт;
+    // пульса нет, а потом большой разрыв — поток стоял. Временная трассировка, убрать после диагноза.
+    if (now - lastHeartbeatAt >= JS_HEARTBEAT_MS) {
+      lastHeartbeatAt = now;
+      console.warn(`[JS-STALL] heartbeat +${now - BOOT_T0}ms splash=${typeof splashHiddenAt === 'number' ? `hidden@+${splashHiddenAt - BOOT_T0}ms` : 'shown'}`); // guard-ok: только dev
+    }
+    if (now >= stopAt) {
+      console.warn(`[JS-STALL] watchdog stop +${now - BOOT_T0}ms`); // guard-ok: только dev
+      clearInterval(watchdog);
+    }
   }, JS_STALL_TICK_MS);
 }
+// зачем (12.10, [COLD-START-HOLD]): сколько раз монтировался AppContent за жизнь процесса.
+let appContentMountCount = 0;
 export function bootMark(step: string, extra?: unknown): void {
   if (!BOOT_TRACE_ENABLED) return;
   const ms = Date.now() - BOOT_T0;
@@ -970,6 +983,18 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
   const awaitingStoreReturnRef = useRef(false);
+  // зачем (координатор 12.10, холодный старт dev-ссылки 35 с, сперва логи): отмена отложенной задачи с пустыми зависимостями
+  // (lv2_completion_scheduler_install) бывает ТОЛЬКО при размонтировании корня. Печатаем номер монтирования и время жизни —
+  // видно, пересоздавался ли AppContent на старте и сколько раз.
+  useEffect(() => {
+    appContentMountCount += 1;
+    const mountNo = appContentMountCount;
+    const mountedAt = Date.now();
+    console.warn(`[COLD-START-HOLD] app_content:mount n=${mountNo} boot=+${mountedAt - BOOT_T0}ms`); // guard-ok: трассировка старта
+    return () => {
+      console.warn(`[COLD-START-HOLD] app_content:unmount n=${mountNo} lifeMs=${Date.now() - mountedAt} boot=+${Date.now() - BOOT_T0}ms`); // guard-ok: трассировка старта
+    };
+  }, []);
   useEffect(() => {
     void cleanupRetiredMistakePracticeStorage().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredMistakePracticeStorage'));
     void cleanupRetiredBlitzRecord().catch(noteSwallowedHandler('_layout:useEffect.cleanupRetiredBlitzRecord'));
@@ -1026,6 +1051,9 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const firstContentReadySetAtRef = useRef<number | null>(null);
   const runHeavyInitRef = useRef<(() => void) | null>(null);
   const heavyInitStartedRef = useRef(false);
+  // зачем (12.10, [COLD-START-HOLD]): отличить «инициализация прошла» от «отменена до запуска и потеряна».
+  const heavyInitRanRef = useRef(false);
+  const heavyInitCancelledBeforeRunRef = useRef(false);
   const postOnboardingGoldBridgeAnim = useRef(new Animated.Value(0)).current;
   const [postOnboardingGoldBridgeVisible, setPostOnboardingGoldBridgeVisible] = useState(false);
   const [postOnboardingGoldBridgeArmed, setPostOnboardingGoldBridgeArmed] = useState(false);
@@ -1857,17 +1885,36 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   }, [effectiveShowOnboarding, ready]);
 
   useEffect(() => {
-    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) return;
+    // зачем (координатор 12.10, сперва логи): у Сверки 8 раз `deferred:cancel label=heavy_init`. Флаг «начата» ставится до
+    // запуска, а отмена его не снимает — перезапуск эффекта тогда выходит здесь, и инициализация не идёт больше никогда.
+    // Печатаем значения, решившие ветку, и отдельно LOST, если прошлую отложенную инициализацию сняли до запуска.
+    const gate = { ready, effectiveShowOnboarding, isBanned, firstContentReady, started: heavyInitStartedRef.current, ran: heavyInitRanRef.current };
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady || heavyInitStartedRef.current) {
+      if (heavyInitStartedRef.current && !heavyInitRanRef.current && heavyInitCancelledBeforeRunRef.current) {
+        console.warn('[COLD-START-HOLD] heavy_init:LOST — прошлую отложенную инициализацию отменили до запуска, повтора не будет', JSON.stringify(gate)); // guard-ok: ранний выход логируется
+      } else {
+        console.log('[COLD-START-HOLD] heavy_init:skip', JSON.stringify(gate)); // guard-ok: ранний выход логируется
+      }
+      return;
+    }
     heavyInitStartedRef.current = true;
+    console.warn('[COLD-START-HOLD] heavy_init:schedule', JSON.stringify({ ...gate, boot: `+${Date.now() - BOOT_T0}ms` })); // guard-ok: трассировка старта
     let timer: ReturnType<typeof setTimeout> | null = null;
     // зачем: PM-211 — firstContentReady может прийти запасным таймером (400 мс) раньше,
     // чем доедет чанк Главной; тогда прогрев друзей/магазина/аналитики делил поток с её
     // первым кадром. Теперь ждём кадр Главной (или потолок 2,5 с), затем взаимодействия.
     const cancelDeferred = runAfterHomeFirstFrame('heavy_init', () => {
-      timer = setTimeout(() => runHeavyInitRef.current?.(), 250);
+      timer = setTimeout(() => {
+        timer = null;
+        heavyInitRanRef.current = true;
+        console.warn('[COLD-START-HOLD] heavy_init:run', JSON.stringify({ hasRunner: runHeavyInitRef.current !== null, boot: `+${Date.now() - BOOT_T0}ms` })); // guard-ok: трассировка старта
+        runHeavyInitRef.current?.();
+      }, 250);
     });
     return () => {
       if (timer) clearTimeout(timer);
+      if (!heavyInitRanRef.current) heavyInitCancelledBeforeRunRef.current = true;
+      console.warn('[COLD-START-HOLD] heavy_init:effect_cleanup', JSON.stringify({ ran: heavyInitRanRef.current, timerPending: timer !== null, boot: `+${Date.now() - BOOT_T0}ms` })); // guard-ok: трассировка старта
       cancelDeferred();
     };
   }, [effectiveShowOnboarding, firstContentReady, isBanned, ready]);

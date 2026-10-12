@@ -14,6 +14,11 @@ const INITIAL_DEEP_LINK_TTL_MS = 60_000;
 let pending: { target: string; atMs: number } | null = null;
 
 export function rememberInitialDeepLinkTarget(target: string, nowMs: number = Date.now()): void {
+  // зачем (координатор 12.10, «ссылка теряется на долгом старте», сперва логи): видно, что запомнили и затёрли ли прежнюю.
+  console.log('[DEEPLINK] initial_link_remember', JSON.stringify({
+    target: target.split('?')[0],
+    replaced: pending ? pending.target.split('?')[0] : null,
+  }));
   pending = { target, atMs: nowMs };
 }
 
@@ -21,7 +26,10 @@ export function rememberInitialDeepLinkTarget(target: string, nowMs: number = Da
 export function consumeInitialDeepLinkTarget(nowMs: number = Date.now()): string | null {
   const current = pending;
   pending = null;
-  if (!current) return null;
+  if (!current) {
+    console.log('[DEEPLINK] initial_link_none'); // guard-ok: ранний выход логируется
+    return null;
+  }
   const ageMs = nowMs - current.atMs;
   if (ageMs > INITIAL_DEEP_LINK_TTL_MS) {
     console.log('[DEEPLINK] initial_link_expired', JSON.stringify({ target: current.target.split('?')[0], ageMs }));
@@ -31,6 +39,7 @@ export function consumeInitialDeepLinkTarget(nowMs: number = Date.now()): string
     console.log('[DEEPLINK] initial_link_not_tab', JSON.stringify({ target: current.target.split('?')[0] }));
     return null;
   }
+  console.log('[DEEPLINK] initial_link_consume', JSON.stringify({ target: current.target.split('?')[0], ageMs }));
   return current.target;
 }
 

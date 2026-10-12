@@ -76,8 +76,15 @@ function describeError(error: unknown): string {
   return error instanceof Error ? `${error.name}: ${error.message}` : String(error);
 }
 
+/**
+ * зачем (координатор 12.10, холодный старт dev-ссылки 35 с: «JS замолчал после deferred:cancel», сперва логи): раньше отмена
+ * печатала только before/after_release — нельзя было понять, потеряна ли задача (отменена до запуска) или уже отработала.
+ */
+type DeferredPhase = 'waiting_home' | 'waiting_splash' | 'waiting_onboarding' | 'waiting_interactions' | 'running' | 'done';
+
 function runTask(label: string, task: () => void | Promise<unknown>): void {
   const startedAt = Date.now();
+  console.warn(`[FIRST-FRAME] deferred:start label=${label} proc=${coldStartProcessMs()}ms`);
   const fail = (error: unknown) => {
     console.warn(`[FIRST-FRAME] deferred:failed label=${label} after=${Date.now() - startedAt}ms reason=${describeError(error)}`);
   };
@@ -105,6 +112,7 @@ export function runAfterHomeFirstFrame(
   const registeredAt = Date.now();
   let released = false;
   let cancelled = false;
+  let phase: DeferredPhase = 'waiting_home';
   let interaction: { cancel?: () => void } | null = null;
   // зачем: объявлены до release — событие может прийти синхронно, без TDZ.
   let sub: { remove: () => void } | null = null;
@@ -117,6 +125,7 @@ export function runAfterHomeFirstFrame(
     sub?.remove();
     if (fallbackTimer) clearTimeout(fallbackTimer);
     if (trigger === 'home_painted') logHomePaintedOnce();
+    phase = 'waiting_splash';
     const proceed = (splash: 'hidden' | 'ceiling') => {
       if (cancelled) {
         console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_while_waiting_splash`);
@@ -124,19 +133,27 @@ export function runAfterHomeFirstFrame(
       }
       console.warn(`[FIRST-FRAME] deferred:release label=${label} trigger=${trigger} splash=${splash} waitedMs=${Date.now() - registeredAt}`);
       const schedule = () => {
+        phase = 'waiting_interactions';
+        const scheduledAt = Date.now();
         interaction = InteractionManager.runAfterInteractions(() => {
           interaction = null;
           if (cancelled) {
             console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_after_release`);
             return;
           }
+          // зачем (12.10, сперва логи): долгое ожидание взаимодействий = кто-то держит InteractionManager (анимация/переход).
+          const interactionWaitMs = Date.now() - scheduledAt;
+          if (interactionWaitMs > 1_000) console.warn(`[FIRST-FRAME] deferred:interactions_slow label=${label} waitedMs=${interactionWaitMs}`);
+          phase = 'running';
           runTask(label, task);
+          phase = 'done';
         });
       };
       if (!options.holdDuringOnboarding) {
         schedule();
         return;
       }
+      phase = 'waiting_onboarding';
       void whenOnboardingSettled(label).then((outcome) => {
         if (cancelled) {
           console.log(`[FIRST-FRAME] deferred:skip label=${label} reason=cancelled_while_onboarding outcome=${outcome}`);
@@ -160,7 +177,11 @@ export function runAfterHomeFirstFrame(
     sub?.remove();
     if (fallbackTimer) clearTimeout(fallbackTimer);
     interaction?.cancel?.();
-    console.log(`[FIRST-FRAME] deferred:cancel label=${label} stage=${released ? 'after_release' : 'before_release'}`);
+    // зачем (12.10): lost=1 — задача отменена ДО запуска и сама больше не запустится; виновник — тот, кто снял эффект.
+    const lost = phase !== 'running' && phase !== 'done';
+    const line = `[FIRST-FRAME] deferred:cancel label=${label} stage=${released ? 'after_release' : 'before_release'} phase=${phase} lost=${lost ? 1 : 0} aliveMs=${Date.now() - registeredAt} proc=${coldStartProcessMs()}ms`;
+    if (lost) console.warn(line);
+    else console.log(line);
   };
 }
 

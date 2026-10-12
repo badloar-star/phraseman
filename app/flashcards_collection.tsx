@@ -36,6 +36,7 @@ import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../constants/i18n';
+import { pluralWithCount } from '../constants/plural';
 import { packCardRemovalRefusalText } from './community_packs/packCardRemovalCopy';
 import { isLightThemeMode } from '../constants/theme';
 import { actionToastTri, emitAppEvent } from './events';
@@ -800,17 +801,19 @@ export default function FlashcardsScreen() {
     }
   }, [deleteCardsByIds, exitSelectionMode, selectedCardIds]);
 
+  // зачем (Макеты 776430946, cards-035: «Удалить 3 карточек?»): число подставлялось в фиксированную форму; склоняем через общий помощник constants/plural.ts
+  // (ru/uk/pl — три формы, в винительном падеже после «удалить»; en/es/pt-BR — две; vi/id/tr форму числа не меняют).
   const batchDeleteConfirmCopy = useMemo(() => ({
     title: triLang(lang, {
-      ru: `Удалить ${selectedCardIds.length} карточек?`,
-      uk: `Видалити ${selectedCardIds.length} карток?`,
-      en: `Delete ${selectedCardIds.length} cards?`,
-      es: `¿Eliminar ${selectedCardIds.length} tarjetas?`,
-      'pt-BR': `Excluir ${selectedCardIds.length} cartões?`,
+      ru: `Удалить ${pluralWithCount('ru', selectedCardIds.length, { one: 'карточку', few: 'карточки', many: 'карточек' })}?`,
+      uk: `Видалити ${pluralWithCount('uk', selectedCardIds.length, { one: 'картку', few: 'картки', many: 'карток' })}?`,
+      en: `Delete ${pluralWithCount('en', selectedCardIds.length, { one: 'card', few: 'cards', many: 'cards' })}?`,
+      es: `¿Eliminar ${pluralWithCount('es', selectedCardIds.length, { one: 'tarjeta', few: 'tarjetas', many: 'tarjetas' })}?`,
+      'pt-BR': `Excluir ${pluralWithCount('pt-BR', selectedCardIds.length, { one: 'cartão', few: 'cartões', many: 'cartões' })}?`,
       vi: `Xóa ${selectedCardIds.length} thẻ?`,
       id: `Hapus ${selectedCardIds.length} kartu?`,
       tr: `${selectedCardIds.length} kart silinsin mi?`,
-      pl: `Usunąć ${selectedCardIds.length} kart?`,
+      pl: `Usunąć ${pluralWithCount('pl', selectedCardIds.length, { one: 'kartę', few: 'karty', many: 'kart' })}?`,
     }),
     message: triLang(lang, {
       ru: 'Карточки исчезнут из «Сохранённых». Исходные уроки и видео не изменятся.',

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { triLang } from '../../constants/i18n';
 import { StyleSheet, Text, View } from 'react-native';
 import { useLineScale } from '../../hooks/useLineScale';
 import type { Theme } from '../../constants/theme';
@@ -187,23 +188,18 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               dataId={`flashcard_detail_${item.id}`}
               dataText={reportDataText}
               style={ss.flagCorner}
-              accessibilityLabel={
-                lang === 'uk'
-                  ? 'Повідомити про помилку в описі картки'
-                  : lang === 'es'
-                    ? 'Informar de un error en la nota de la tarjeta'
-                    : lang === 'pt-BR'
-                      ? 'Informar um erro na descrição do cartão'
-                      : lang === 'vi'
-                        ? 'Báo lỗi trong mô tả thẻ'
-                        : lang === 'id'
-                          ? 'Laporkan kesalahan pada deskripsi kartu'
-                          : lang === 'tr'
-                            ? 'Kart açıklamasındaki hatayı bildir'
-                            : lang === 'pl'
-                              ? 'Zgłoś błąd w opisie karty'
-                              : 'Сообщить об ошибке в описании карточки'
-              }
+              // зачем (скан непереведённого UI 191 > 189; английский уходил в русскую подпись): все 9 языков через triLang
+              accessibilityLabel={triLang(lang, {
+                ru: 'Сообщить об ошибке в описании карточки',
+                uk: 'Повідомити про помилку в описі картки',
+                en: 'Report an error in the card note',
+                es: 'Informar de un error en la nota de la tarjeta',
+                'pt-BR': 'Informar um erro na descrição do cartão',
+                vi: 'Báo lỗi trong mô tả thẻ',
+                id: 'Laporkan kesalahan pada deskripsi kartu',
+                tr: 'Kart açıklamasındaki hatayı bildir',
+                pl: 'Zgłoś błąd w opisie karty',
+              })}
             />
           )}
         </View>

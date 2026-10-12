@@ -216,3 +216,10 @@
 - `components/learning-v2-lab/LearningV2ModesLab.tsx:59` (icon) `<Ionicons name="sparkles" size={28} color={theme.accent} />`
 - `components/learning-v2-lab/ModeDemoPlayer.tsx:124` (alias) `const zoneTone = mode.group === 'understand' ? t.accent : mode.group === 'sound' ? t.gold : mode.group === 'build' ? t.correct : t.accent;`
 - `components/learning-v2-lab/ModeDemoPlayer.tsx:157` (text) `<Text style={[styles.simChipText, { color: t.accent }]}>СИМУЛЯЦИЯ</Text>`
+
+## Таблица замен (уточнено 13.10 по замеру Ядра)
+В тёмном `accentBorder` и `accentText` НЕ равны `accent` (graphite «Спокойно», rose, marine; aurora/marine/iris на «Максимуме»), поэтому прямая замена сдвинула бы тёмный вид. Заменять на производные токены (в тёмном — байт-в-байт `accent`):
+- кольца, полосы, точки, кромки, спиннеры, градиент-полосы → `accentGraphic` (`g.accentGraphic` / `t.accentGraphic ?? t.accent` / `P.accentGraphic` в v2-палитре);
+- текст и значки на поверхности → `accentTextSafe` (`t.accentTextSafe ?? t.accent`);
+- кнопка с текстом на заливке и полупрозрачные вуали — остаются, помечаются `light-accent-ok: причина`.
+Сторож считает строки с `accentGraphic`/`accentTextSafe` безопасными. Тест `tests/accent_graphic_token.test.ts` проверяет равенство accent в тёмном для всех 23 тем × уровни.

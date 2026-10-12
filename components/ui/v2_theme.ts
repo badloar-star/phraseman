@@ -20,6 +20,7 @@ export const T = Object.freeze({
   ghost: '#5B7A67',
   accent: '#47C870',
   accentGraphic: '#47C870', // зачем (светлый акцент): кольца/полосы турнира; из темы берётся t.accentGraphic
+  accentTextSafe: '#47C870', // зачем (светлый акцент): текст/значок цвета темы; в тёмном = accent
   accentSoft: 'rgba(71,200,112,0.14)',
   accentText: '#042010',
   accentDark: '#1E6B3A',
@@ -132,6 +133,7 @@ export function tournamentPaletteFromTheme(t: Theme): TournamentPalette {
     ghost: t.textGhost,
     accent: t.accent,
     accentGraphic: t.accentGraphic ?? t.accent,
+    accentTextSafe: t.accentTextSafe ?? t.accent,
     accentSoft: t.accentBg,
     gold: t.gold,
     goldSoft: t.goldBg,

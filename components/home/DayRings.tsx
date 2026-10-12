@@ -162,7 +162,7 @@ export default function DayRings({ lesson, practice, cards }: DayRingsProps) {
   }), [t]);
 
   const trackColor = useMemo(() => withAlphaColor(t.textMuted, 0.14), [t.textMuted]);
-  const announceTrackColor = useMemo(() => withAlphaColor(t.accent, 0.1), [t.accent]);
+  const announceTrackColor = useMemo(() => withAlphaColor(t.accent, 0.1), [t.accent]); // light-accent-ok: 10% вуаль дорожки, не контур
 
   return (
     <View style={s.row}>

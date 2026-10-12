@@ -271,8 +271,8 @@
     </div>`;
   const videoRail = () => `<div class="gs-sec"><div class="ti">Из видео</div><div class="ac">Все ${ic('fwd', 's16')}</div></div>
     <div class="gs-rail">${VIDS.map(([t, d, n, k]) => `<div class="gs-vc"><div class="gs-vfr">${vframe(k)}<span class="gs-dur">${d}</span></div><div class="gs-vt">${t}</div><div class="gs-vm">${n} фраз</div></div>`).join('')}</div>`;
-  const commChart = () => `<div class="gs-sec"><div class="ti">Лучшее у сообщества</div><div class="ac">Все ${ic('fwd', 's16')}</div></div>
-    <div>${COMM.slice(0, 3).map(([t, a, c, l, h, w], i) => `<div class="gs-cr"><span class="rk">${i + 1}</span><span class="cov"><span class="gs-mc">${w}</span></span><div class="grow"><div class="tt">${t}</div><div class="st">${a} · ${c}</div></div>${likes(h)}</div>`).join('')}</div>`;
+  // зачем (решение владельца п.85 (1), 12.10): блок «Лучшее у сообщества» на хабе Карточек убран из макета для R1 — хаб-фон кадров №11–17 рисуется без него
+  const commChart = () => '';
   const bgHub = () => `${hubTop}${heroBody({ ov: 'Продолжить', w: 'Layover', s: 'пересадка' })}
     <div class="flex" style="gap:10px;margin-top:14px"><div class="cta t grow">${ic('play', 's18')}Тренироваться · осталось 24 из 30</div><span class="gs-rb l t">${ic('layers', 's20')}</span></div>${yours()}${videoRail()}${commChart()}`;
 

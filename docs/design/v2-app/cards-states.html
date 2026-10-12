@@ -438,7 +438,9 @@ const deckPicker = () => phone(`<div class="lt" style="opacity:.35"><div class="
 
 // --- Видео-наборы: пусто, ничего не нашли, открытие кадра, видео не открывается
 const vHead = `<div class="flex" style="gap:12px">${back()}<div class="grow" style="font-size:20px;font-weight:700">Из видео</div>${lang()}</div><div class="srch" style="margin-top:18px">${icon('search', 's20')}Поиск по наборам</div>`;
-const vEmpty = () => phone(`${vHead}<div style="text-align:center;padding:110px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('play', 's24')}</div><div style="font-size:20px;font-weight:700;margin-top:18px">Пока пусто</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Наборы из роликов появятся здесь, как только выйдут.</div></div>`, { time: '12:52' });
+// зачем (решение координатора 12.10, Дизайн cbf5a615a): в пустом каталоге «Из видео» поля поиска нет (искать нечего; поиск открывается из меню ⋮) — шапка без строки «Поиск по наборам»
+const vHeadNoSearch = vHead.replace(/<div class="srch"[\s\S]*$/, '');
+const vEmpty = () => phone(`${vHeadNoSearch}<div style="text-align:center;padding:110px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('play', 's24')}</div><div style="font-size:20px;font-weight:700;margin-top:18px">Пока пусто</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Наборы из роликов появятся здесь, как только выйдут.</div></div>`, { time: '12:52' });
 const vNothing = () => phone(vHead.replace('Поиск по наборам', '<span style="color:#fff">квантовая физика</span>') + `<div style="text-align:center;padding:110px 20px 0"><div class="tile t61" style="margin:0 auto">${icon('search', 's24')}</div><div style="font-size:20px;font-weight:700;margin-top:18px">Ничего не нашли</div><div style="font-size:15px;color:var(--sec);margin-top:8px">Попробуй другое слово.</div><span class="cta sm t" style="display:inline-flex;margin-top:22px">Показать все</span></div>`, { time: '12:52' });
 const vOpening = () => videoPacks().replace('<span class="pb2">', '<span class="tilespin" style="border-radius:12px"><span class="spin"></span></span><span class="pb2" style="display:none">').replace('<div class="hi"></div></div>', `${toast('Видео сейчас не открывается. Карточки набора доступны как обычно.')}<div class="hi"></div></div>`);
 const hubLoading = () => phone(`${hubTop}<div class="stack">${[0, 1, 2].map(() => `<div class="card" style="height:74px;padding:14px 18px"><div class="skel" style="height:16px;width:36%"></div><div class="skel" style="height:14px;width:22%;margin-top:8px"></div><div class="skel" style="height:12px;width:30%;margin-top:8px"></div></div>`).join('')}</div>${hubMine}<div class="cta t" style="margin-top:22px">Тренироваться с карточками<span class="ar">${icon('arrowR', 's20')}</span></div>`, { time: '12:52' });
@@ -484,7 +486,7 @@ K.init();
   const cols = [...document.querySelectorAll('.col')];
   cols.forEach((c, i) => { const n = i + 1; if (ASK.has(n)) return; if (!KEEP.has(n)) c.style.display = 'none'; });
   // зачем (координатор 11.10): состояния со списками наборов (строки h85) показываем всегда — по подписи, а не по номеру
-  const SHOW = ['Лимит free: первые 50', 'Мои наборы', 'Удаление набора', 'Каталог · «Новые»', 'Выбор наборов', 'Мало карточек для блица'];
+  const SHOW = ['Пока пусто', 'Лимит free: первые 50', 'Мои наборы', 'Удаление набора', 'Каталог · «Новые»', 'Выбор наборов', 'Мало карточек для блица'];
   cols.forEach((c) => { if (SHOW.includes((c.querySelector('.lbl') || {}).textContent)) c.style.display = ''; });
   const ask = cols.filter((c, i) => ASK.has(i + 1));
   if (ask.length) {

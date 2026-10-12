@@ -102,3 +102,6 @@ put('community-021', ['wait:1000'], _F + '&dev_friends_fail=list', '/(tabs)/comm
 
 # ── cards-027 (владелец 12.10: п.82(2) → уточнение п.83): кнопка языка на настройке тренировки — фильтр наборов по языку (чип «EN ⌄» + меню), рядом пилюля остатка Free; у пользователя с наборами на одном языке чип без стрелки (R1_FC_LANG_FILTER.md)
 put('cards-027', [], 'cards=demo&plus=off&free=on', '/flashcards_training_setup?mode=blitz', unique=False, note='настройка тренировки: чип языка «EN» (+ стрелка и меню, если наборы на нескольких языках) и пилюля остатка (Free); образец cards-states №22 перерисован 12.10 по п.83; меню открывается тапом по чипу (в dev-демо наборы только на английском — стрелки может не быть)')
+
+# ── packs-simple-001 (вердикт 144): образец — вкладка «Наборы» внутри «Сообщества» (код: community-sections-packs), а не отдельный /flashcards_packs
+put('packs-simple-001', ['wait:1200', 'tap:#community-sections-packs', 'wait:1500'], 'catalog=demo&spire=open&plus=off&free=on', '/(tabs)/community', unique=False, note='каталог наборов внутри «Сообщества» (вкладка «Наборы» есть в коде: community-sections-packs, шапка «Шпиль · Друзья · Наборы»)')

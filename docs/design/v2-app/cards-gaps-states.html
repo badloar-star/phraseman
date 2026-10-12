@@ -281,8 +281,11 @@
         ${deck('Путешествия', '40 · A2', ['Layover', 'Gate', 'Customs'], playBtn)}
         ${deck('B2 глаголы', `<span class="gs-av">${ic('user', 's16')}</span>Ирина · 49 · B2`, ['Convince', 'Claim', 'Afford'], playBtn)}
         ${deck('Работа', '22 · B1', ['Follow up', 'Deadline', 'Refund'], playBtn)}</div>`;
-  const bgCatalog = () => `${back()}${ttl('Сообщество')}<div class="gs-srch gs-pl">${ic('search', 's18')}<span>Наборы и авторы</span></div>
-      <div class="gs-chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="gs-chip${i === 0 ? ' on' : ''}">${c}</span>`).join('')}</div>
+  // зачем (решение владельца п.81 (15), 12.10): в шапке каталога — чип языка «EN ⌄», тонкая линия под верхней строкой и круглая «+» справа от заголовка (как cards-v2 №25); по умолчанию «Новые»
+  const gsFlag = `<svg viewBox="0 0 24 16" width="24" height="16" aria-hidden="true" style="display:block;border-radius:3px"><rect width="24" height="16" fill="#1d3f9a"/><path d="M0 0L24 16M24 0L0 16" stroke="#fff" stroke-width="3.2"/><path d="M0 0L24 16M24 0L0 16" stroke="#c8202f" stroke-width="1.1"/><path d="M12 0V16M0 8H24" stroke="#fff" stroke-width="5.2"/><path d="M12 0V16M0 8H24" stroke="#c8202f" stroke-width="3"/></svg>`;
+  const gsEn = `<span class="t" style="display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 10px;border-radius:17px;background:rgba(255,255,255,.09);font-size:16px;font-weight:700">${gsFlag}EN${ic('down', 's16')}</span>`;
+  const bgCatalog = () => `${back(gsEn)}<div style="height:1px;margin:10px calc(-1 * var(--pad)) 0;background:rgba(255,255,255,.07)"></div><div class="flex" style="justify-content:space-between;align-items:center;margin-top:14px"><div class="gs-ttl" style="margin:0">Сообщество</div><span class="rb l t" style="background:var(--cta);color:var(--cta-ink)">${ic('plus', 's20')}</span></div><div class="gs-srch gs-pl" style="margin-top:16px">${ic('search', 's18')}<span>Наборы и авторы</span></div>
+      <div class="gs-chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="gs-chip${i === 1 ? ' on' : ''}">${c}</span>`).join('')}</div>
       <div class="gs-stk" style="margin-top:18px">${COMM.slice(0, 3).map(([t, a, c, l, h, w]) => deck(t, `<span class="gs-av">${ic('user', 's16')}</span>${a} · ${c} · ${l}`, [w, W[(c % 9) + 3][0], W[(c % 9) + 4][0]], likes(h))).join('')}</div>`;
   const packHead = (o) => `${back(`<span class="gs-rb s t">${ic('dotsV', 's18')}</span>`)}
       <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:14px;letter-spacing:-.5px">${o.t}</div>

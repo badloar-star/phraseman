@@ -74,6 +74,8 @@ export type DevStateRequest = Readonly<{
   energyStop?: 'plus_granted' | 'off';
   /** Вступление урока считается показанным (только память). */
   lessonIntro?: 'skip' | 'off';
+  /** Уведомления: системное разрешение отклонено (settings-gap-012), только память. */
+  notifPerm?: 'denied' | 'off';
   mode?: 'a' | 'b' | 'server';
   plus?: 'on' | 'off' | 'inherit';
   /** Плашка доступа в группе Plus Настроек: вид выдачи (локальный снимок VIP; после неё — перезапуск приложения). */
@@ -366,6 +368,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
   request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
   request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
+  request.notifPerm = pick('notifperm', ['denied', 'off'] as const);
   request.cache = pick('cache', ['failed', 'ok'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
   request.refcode = pick('refcode', DEV_REFCODE_RESULTS);
@@ -803,6 +806,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.aiExplain !== undefined) {
     await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit'));
+  }
+  if (request.notifPerm !== undefined) {
+    await step('notifperm', request.notifPerm, async () => setDevSocialState({ notifPermDenied: request.notifPerm === 'denied' }));
   }
   if (request.lessonIntro !== undefined) {
     await step('lessonintro', request.lessonIntro, async () => setDevLessonIntroSkip(request.lessonIntro === 'skip'));

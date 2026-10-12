@@ -18,6 +18,7 @@ import { persistPortablePreference } from './phone_state_preference_bridge';
 import { cancelRetiredLocalNotificationsOnce as runRetiredLocalNotificationsCancel } from './retired_local_notifications';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { ENGLISH_UI_LOCALE_ENABLED } from './config';
+import { isDevNotifPermDenied } from './dev_social_state';
 import {
   onboardingTrialReminderDelaySeconds,
   trialReminderDelaySeconds,
@@ -155,6 +156,12 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
 export const requestNotificationPermissionWithFallback = async (
   opts: { openSettingsIfBlocked?: boolean } = {},
 ): Promise<{ granted: boolean; blocked: boolean; openedSettings: boolean }> => {
+  // зачем (координатор 12.10, settings-gap-012): dev `notifperm=denied` — «телефон не разрешает» без системного окна и без ухода
+  // в системные настройки (робот не должен покидать приложение). В стор-сборке геттер false.
+  if (isDevNotifPermDenied()) {
+    console.warn('[DEV-STATE] notifications: разрешение подменено отказом (notifperm=denied)', JSON.stringify({ openSettingsIfBlocked: opts.openSettingsIfBlocked === true })); // guard-ok: dev-ветка
+    return { granted: false, blocked: true, openedSettings: false };
+  }
   try {
     const N = await getNotifications();
     if (!N) return { granted: false, blocked: false, openedSettings: false };
@@ -184,19 +191,23 @@ export const requestNotificationPermissionWithFallback = async (
       return { granted: false, blocked: true, openedSettings: false };
     }
     return { granted: false, blocked: false, openedSettings: false };
-  } catch {
+  } catch (error) {
+    // зачем: немой catch прятал сбой запроса разрешения — «нажал, ничего» без следа.
+    console.warn('[NOTIF-PERM] запрос разрешения упал', error instanceof Error ? error.message : String(error));
     return { granted: false, blocked: false, openedSettings: false };
   }
 };
 
 export const getNotificationPermissionStatus = async (): Promise<'granted' | 'denied' | 'undetermined' | 'unknown'> => {
+  if (isDevNotifPermDenied()) return 'denied';
   try {
     const N = await getNotifications();
     if (!N) return 'unknown';
     if (Platform.OS === 'web') return 'denied';
     const { status } = await N.getPermissionsAsync();
     return status as 'granted' | 'denied' | 'undetermined';
-  } catch {
+  } catch (error) {
+    console.warn('[NOTIF-PERM] статус разрешения не прочитан → unknown', error instanceof Error ? error.message : String(error));
     return 'unknown';
   }
 };
@@ -1296,6 +1307,13 @@ export function getNotifPrefsSnapshot(): NotifPrefs {
  * energy/offers/d1 не меняется).
  */
 export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
+  // зачем (settings-gap-012): красная плашка = «мастер включён, а разрешения нет». Под dev `notifperm=denied` мастер считается
+  // включённым только в отдаваемом снимке — в хранилище ничего не пишется (иначе миграция записала бы master=false).
+  if (isDevNotifPermDenied()) {
+    const base = notifPrefsMemory ?? { ...DEFAULT_NOTIF_PREFS, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
+    console.warn('[DEV-STATE] notifications: мастер включён в снимке (notifperm=denied), запись пропущена'); // guard-ok: dev-ветка
+    return { ...base, master: true, categories: { ...base.categories } };
+  }
   try {
     const raw = await AsyncStorage.getItem(NOTIF_PREFS_KEY);
     if (raw) {
@@ -1313,7 +1331,8 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
     // Синхронизируем легаси-флаг: его читают streak/weekly-refresh/bootstrap.
     if (master && legacy !== 'true') await persistPortablePreference('notifications_enabled', 'true');
     return getNotifPrefsSnapshot();
-  } catch {
+  } catch (error) {
+    console.warn('[NOTIF-PREFS] настройки уведомлений не прочитаны — по умолчанию', error instanceof Error ? error.message : String(error));
     notifPrefsMemory = notifPrefsMemory ?? { ...DEFAULT_NOTIF_PREFS, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
     return getNotifPrefsSnapshot();
   }

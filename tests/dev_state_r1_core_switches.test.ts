@@ -241,3 +241,14 @@ describe('dev_state R1 (Ядро): энергия и вступление уро
     expect(values).toMatchObject({ vip_active: 'true', vip_plan: 'telegram_tester', vip_until: String(now + 86_400_000) });
   });
 });
+
+describe('dev_state R1 (Ядро): notifperm=denied (settings-gap-012)', () => {
+  test('разбор и флаг в памяти', async () => {
+    const social = require('../app/dev_social_state') as typeof import('../app/dev_social_state');
+    expect(parseDevStateParams({ notifperm: 'denied' }).request.notifPerm).toBe('denied');
+    await applyDevState(parseDevStateParams({ notifperm: 'denied' }).request);
+    expect(social.isDevNotifPermDenied()).toBe(true);
+    await applyDevState(parseDevStateParams({ notifperm: 'off' }).request);
+    expect(social.isDevNotifPermDenied()).toBe(false);
+  });
+});

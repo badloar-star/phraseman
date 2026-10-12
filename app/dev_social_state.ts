@@ -60,8 +60,10 @@ type State = {
   supportSent: boolean;
   /** settings-gap-020/021: «начатые» языки изучения поверх хранилища (Авторизация 12.10, `started=en,es`) — шторка языка без мини-онбординга. */
   startedLanguages: readonly string[] | null;
+  /** settings-gap-012: «телефон не разрешает уведомления» — разрешение отклонено системой (только память, `notifperm=denied`). */
+  notifPermDenied: boolean;
 };
-const EMPTY: State = { referralOff: false, promo: null, refcode: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set(), supportSent: false, startedLanguages: null };
+const EMPTY: State = { referralOff: false, promo: null, refcode: null, friendsHolds: new Set(), friendsFails: new Set(), friendEvent: null, settingsFails: new Set(), supportSent: false, startedLanguages: null, notifPermDenied: false };
 let state: State = EMPTY;
 
 function devSocialAvailable(): boolean {
@@ -79,6 +81,7 @@ export function setDevSocialState(patch: Partial<{
   settingsFails: readonly DevSettingsFail[];
   supportSent: boolean;
   startedLanguages: readonly string[] | null;
+  notifPermDenied: boolean;
 }>): boolean {
   if (!devSocialAvailable()) {
     console.warn(`${LOG} social: отклонено — не dev-сборка`, { keys: Object.keys(patch) }); // guard-ok: ранний выход логируется
@@ -94,6 +97,7 @@ export function setDevSocialState(patch: Partial<{
     settingsFails: patch.settingsFails ? new Set(patch.settingsFails) : state.settingsFails,
     supportSent: patch.supportSent ?? state.supportSent,
     startedLanguages: patch.startedLanguages === undefined ? state.startedLanguages : patch.startedLanguages,
+    notifPermDenied: patch.notifPermDenied ?? state.notifPermDenied,
   };
   console.log(`${LOG} social: ${JSON.stringify({ referralOff: state.referralOff, promo: state.promo, refcode: state.refcode, holds: [...state.friendsHolds], fails: [...state.friendsFails], friendEvent: state.friendEvent, settingsFails: [...state.settingsFails], supportSent: state.supportSent, startedLanguages: state.startedLanguages })}`); // guard-ok: единичный лог на ссылку
   return true;
@@ -109,6 +113,11 @@ export function isDevSupportFakeSent(): boolean {
 }
 
 /** `started=en,es`: коды начатых языков, которые добавляются к сохранённому списку (вне dev — всегда null). */
+/** `notifperm=denied`: системное разрешение на уведомления считается отклонённым без возможности спросить снова. */
+export function isDevNotifPermDenied(): boolean {
+  return devSocialAvailable() && state.notifPermDenied;
+}
+
 export function getDevStartedLanguages(): readonly string[] | null {
   return devSocialAvailable() ? state.startedLanguages : null;
 }

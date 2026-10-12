@@ -35522,21 +35522,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-015.png",
+      "evidence_at": "2026-10-12T02:46:00.141Z",
+      "evidence_sha256": "7d431210cf84c43f112bd22a57be9330478ec85e60a2f1d193d5d25730fbb382",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] В образце между двумя строками тонкий разделитель, в приложении его нет; шторка в приложении выше (y≈905 против 885) и сверху светлее (градиент заметнее); заголовок «Диалог» крупнее.",
+        "[данные] Под затемнением другая сцена («Поздороваться после знакомства», цель 1 из 6, без пилюль «⚡ 4» и «29/30», подпись «Диалог» вместо настроения), лента из одной реплики."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:48:36.047Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&dquota=reset&energy=5&dev_dialog_send=ok&coinRank=6&aiConsent="
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:45, dialogs-gaps-states №15 «Сессия — меню «⋯» открыто»; образец нарисован с приложения): состав совпал — шторка «Диалог» с «✕», две строки «Задания ›» и «Завершить диалог ›» с иконками на плитках, затемнённый диалог за ней. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "dialogs-gap-016",
@@ -35843,21 +35847,26 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/spire-gap-007.png",
+      "evidence_at": "2026-10-12T02:46:17.497Z",
+      "evidence_sha256": "ef15d6c8aad9deb970d6de25d3a27cacf287bd01825dcaaa02ecaa560742f081",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[шапка] В образце «⚡ 3» в капсуле рядом с «i» и «Гранит · до конца недели…», в приложении капсулы нет и «Нефрит · до конца недели…» — решение Тем/владельца (тот же вопрос, что spire-010/012/015).",
+        "[вёрстка] В приложении жители башни — таблетки с инициалами («А М», «Д Я» …), в образце монеты рангов; башня выше и крупнее (этаж 7 против 4), «Этаж 7 · 2 из 10 ступеней · 70 монет» против «Этаж 4 · 7 из 8 ступеней · 40 монет»; низ строки комнаты (Алиса, Марк, Д) выглядывает из-под кнопки.",
+        "[данные] Нефрит, этаж 7, друзья Алиса/Марк против Аня/Kirill."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:48:36.047Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&overlays=off&next=/dev_spire_preview?state=block_offline%26spirePanel="
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:46, spire-gaps-states №7 «Старт — нет сети, задания недели не скачались»; образец нарисован с приложения): совпало — строка «Нет сети — задания недели не скачались» над светлой «Повторить →», башня с выделенным этажом, плашка «Этаж N», «Друзья на этой неделе», строка комнаты под кнопкой. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "spire-gap-008",
@@ -36433,21 +36442,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-001.png",
+      "evidence_at": "2026-10-12T02:46:35.876Z",
+      "evidence_sha256": "f18bc345cb9160ee6ce296be230c2e283da6d198441c7a086f6b38bfdd585b7d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] Блок в приложении выше образца на ~20 px (плитка на y≈560 против 580, кнопка на y≈740 против 755); кнопка выше (58 против 54 px) с более заметным свечением; круговая стрелка в приложении по часовой, в образце против часовой; значок облака детальнее. Поправить образец по приложению (рисую я)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:48:36.047Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&train_gate=fail_blitz&overlays=off&next=/flashcards"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:46, cards-gaps-states №1 «Блиц — «Тренировка не открылась»»; образец нарисован с приложения): совпало по составу и тексту — плитка со значком «нет облака», «Тренировка не открылась. Попробуй ещё раз.», светлая кнопка «Попробовать снова» с круговой стрелкой. [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-002",
@@ -36467,21 +36479,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-002.png",
+      "evidence_at": "2026-10-12T02:47:05.175Z",
+      "evidence_sha256": "18dbdc1f3efe9b4b20f8d8af275685fd33ce058c63dcfa24330d88a3fafb1cc1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо панели «Тренировка не открылась. Попробуй ещё раз.» + «Попробовать снова» — экран «Устно» в состоянии загрузки: «✕», «Устно», три сердца, серые заглушки карточки и кнопок микрофона. Либо ссылка train_gate для «Устно» не вызвала ошибку (кадр снят раньше сбоя), либо экран «Устно» при сбое остаётся на заглушке — подтвердить пересъёмкой через 5–10 с и сверкой с кодом app/flashcards_oral_session.",
+        "[кандидат в дефект кода] Если сбой наступил, а заглушка осталась — у «Устно» нет перехода в панель ошибки (в «Блице» он есть, cards-gap-001)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:48:36.047Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&train_gate=fail_speaking&overlays=off&next=/flashca"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:46, cards-gaps-states №2 «Устно — «Тренировка не открылась»»): на кадре не панель ошибки, а заглушка загрузки сессии «Устно»."
     },
     {
       "id": "cards-gap-003",
@@ -36643,21 +36659,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-007.png",
+      "evidence_at": "2026-10-12T02:47:22.152Z",
+      "evidence_sha256": "7fbbda921dd4d0fb4b576ec6580c4457001e0c1cd90da97d985768578757df93",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] В приложении выбран один набор («Сохранённые карточки · Личный список · 6 карточек»), второй («Свои карточки · Созданные вручную · 50 карточек») без отметки; в образце отмечены оба («Путешествия · Community pack · 40 карточек»). Данные другие.",
+        "[вёрстка, мелко] Назад в приложении «←» на круглой подложке, в образце «‹» без подложки; плитки наборов выше (~100 против 88 px) и текст крупнее; «Начать» выше (78 против 62 px). Поправить образец по приложению."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T02:48:36.047Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=notranslation&plus=on&overlays=off&next=/flashcards_truefalse_se"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 3:47, cards-gaps-states №7 «Правда / ложь — нет карточек с переводом»; образец нарисован с приложения): состав совпал — «‹», «Тренировка карточек», «Наборы», красное «В выбранных наборах нет карточек с переводом.», плитки наборов с отметкой, светлая «Начать». [образец нарисован с приложения, ждёт подтверждения владельца]"
     },
     {
       "id": "cards-gap-008",

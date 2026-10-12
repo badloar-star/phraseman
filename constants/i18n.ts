@@ -939,7 +939,20 @@ export function legacyRuUk(lang: Lang): 'ru' | 'uk' | 'es' {
   // зачем: EN — не кириллица, ближе к ES-паре в этом легаси-словаре, чем к RU;
   // сам словарь ещё не переведён на EN отдельно (см. UiBundleLang).
   if ((lang === 'es' || lang === 'en') && isInterfaceLangEnabled('es')) return 'es';
+  if (FIVE_FALLBACK_LANGS.has(lang) && isInterfaceLangEnabled('es')) return legacyFiveLangToEs('legacyRuUk', lang);
   return 'ru';
+}
+
+// зачем (координатор 12.10, решение «5 языков → es, как en»): словари за legacyRuUk/bundleLang только ru/uk/es, en нет; pt-BR/vi/id/tr/pl
+// получали русский. Латинский испанский ближе, чем кириллица. Журнал раз на помощник и язык, только в dev.
+const legacyFallbackLogged = new Set<string>();
+function legacyFiveLangToEs(helper: 'legacyRuUk' | 'bundleLang', lang: Lang): 'es' {
+  const key = `${helper}:${lang}`;
+  if ((typeof __DEV__ === 'undefined' || __DEV__) && !legacyFallbackLogged.has(key)) {
+    legacyFallbackLogged.add(key);
+    console.warn(`[I18N-FALLBACK] ${helper} lang=${lang}→es: словарь только ru/uk/es`); // guard-ok: под __DEV__, один раз на помощник и язык
+  }
+  return 'es';
 }
 
 /** Пакеты UI с полными строками RU / UK / ES (магазин осколков, paywall и т.д.). */
@@ -948,5 +961,6 @@ export type UiBundleLang = 'ru' | 'uk' | 'es';
 export function bundleLang(lang: Lang): UiBundleLang {
   if (lang === 'uk') return 'uk';
   if ((lang === 'es' || lang === 'en') && isInterfaceLangEnabled('es')) return 'es';
+  if (FIVE_FALLBACK_LANGS.has(lang) && isInterfaceLangEnabled('es')) return legacyFiveLangToEs('bundleLang', lang);
   return 'ru';
 }

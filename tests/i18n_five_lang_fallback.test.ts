@@ -1,4 +1,4 @@
-import { triLang } from '../constants/i18n';
+import { bundleLang, legacyRuUk, triLang } from '../constants/i18n';
 
 // зачем (координатор 12.10, 🔴): pt-BR/vi/id/tr/pl видимы в выпуске, а словарь без их ключа отдавал РУССКИЙ (~2400 словарей,
 // docs/phraseman-2.0/I18N_FALLBACK_5LANG_R1.md). Страховка: свой ключ → en → ru последним. ru/uk/es не меняются.
@@ -38,5 +38,38 @@ describe('triLang fallback for pt-BR/vi/id/tr/pl', () => {
     expect(calls).toHaveLength(2);
     expect(calls[0]).toContain('lang=pt-BR→en');
     expect(calls[1]).toContain('lang=vi→en');
+  });
+});
+
+// зачем (координатор 12.10, «5 языков → es, как en»): за legacyRuUk/bundleLang словари только ru/uk/es — вместо русского латинский es.
+describe('legacyRuUk / bundleLang for pt-BR/vi/id/tr/pl', () => {
+  let warn: jest.SpyInstance;
+  beforeEach(() => { warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined); });
+  afterEach(() => { warn.mockRestore(); });
+
+  it.each(FIVE)('%s → es, not ru', (lang) => {
+    expect(legacyRuUk(lang)).toBe('es');
+    expect(bundleLang(lang)).toBe('es');
+  });
+
+  it('ru, uk and es are unchanged', () => {
+    for (const fn of [legacyRuUk, bundleLang]) {
+      expect(fn('ru')).toBe('ru');
+      expect(fn('uk')).toBe('uk');
+      expect(fn('es')).toBe('es');
+    }
+  });
+
+  it('logs [I18N-FALLBACK] once per helper and language', () => {
+    // свежий модуль: «раз на помощник и язык» уже исчерпан вызовами из тестов выше
+    let fresh!: typeof import('../constants/i18n');
+    jest.isolateModules(() => { fresh = require('../constants/i18n'); });
+    fresh.legacyRuUk('tr');
+    fresh.legacyRuUk('tr');
+    fresh.bundleLang('tr');
+    const lines = warn.mock.calls.map((c) => String(c[0])).filter((l) => l.includes('[I18N-FALLBACK]') && l.includes('lang=tr→es'));
+    expect(lines).toHaveLength(2);
+    expect(lines.some((l) => l.includes('legacyRuUk'))).toBe(true);
+    expect(lines.some((l) => l.includes('bundleLang'))).toBe(true);
   });
 });

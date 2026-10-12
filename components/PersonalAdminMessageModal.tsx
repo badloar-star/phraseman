@@ -9,6 +9,7 @@ import { useTheme } from './ThemeContext';
 import { triLang } from '../constants/i18n';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import DuoPressable from './DuoPressable';
+import { plateBoxShadow } from './v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 
 type Props = {
@@ -86,7 +87,7 @@ function PersonalAdminMessageModal({ message, visible, onAcknowledge, motionVari
       <View style={[styles.root, { paddingBottom: normalizeSafeAreaBottomInset(insets.bottom) }]}>
         <View
           accessibilityViewIsModal
-          style={[styles.card, { backgroundColor: glass.opaqueSheet, borderColor: glass.glassEdge }]}
+          style={[styles.card, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}
         >
           <ScrollView style={{ flexShrink: 1, minHeight: 0 }} keyboardShouldPersistTaps="handled" bounces={false} decelerationRate="fast">
           {isHybrid ? (
@@ -119,7 +120,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 440,
     borderRadius: 26,
-    borderWidth: 1,
     paddingHorizontal: 20,
     paddingTop: 26,
     paddingBottom: 20,

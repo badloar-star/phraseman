@@ -9,11 +9,12 @@ const files = {
 };
 
 for (const [name, src] of Object.entries(files)) {
-  test(`${name}: neutral Liquid Glass tokens, hairline edge, no brand green`, () => {
+  test(`${name}: neutral Liquid Glass tokens, shadow instead of edge, no brand green`, () => {
     assert.ok(src.includes('liquidGlassTokens(liquidGlassThemeId)'), 'active 13-theme token registry');
     assert.ok(src.includes('glass.opaqueSheet'), 'opaque card base');
     assert.ok(src.includes('glass.accent') && src.includes('glass.accentInk'), 'neutral CTA');
-    assert.ok(src.includes('glass.glassEdge'), 'hairline edge');
+    // зачем (стиль «Тень», решение владельца 12.10; 15.10): карточка без кромки — отделяет тень из токенов темы
+    assert.ok(src.includes("plateBoxShadow(glass)") && !src.includes('glass.glassEdge'), 'shadow instead of edge');
     assert.ok(!/t\.accent|t\.correct|\$\{t\.accent\}/.test(src), 'no theme accent / correct surfaces');
     assert.ok(!/#63D98F/i.test(src), 'no brand green');
     assert.ok(!/borderWidth:\s*[2-9]/.test(src), 'no borderWidth above 1');

@@ -7,6 +7,7 @@ import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { nestedBoxShadow } from './v2/ShadowSurface';
 import { onAppEvent } from '../app/events';
 import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { LinearGradient } from './SafeLinearGradient';
@@ -177,8 +178,7 @@ export default function MaintenanceGate() {
                 height: 61,
                 borderRadius: 16,
                 backgroundColor: glass.card,
-                borderWidth: StyleSheet.hairlineWidth,
-                borderColor: glass.glassEdge,
+                boxShadow: nestedBoxShadow(glass),
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: 18,
@@ -239,8 +239,7 @@ export default function MaintenanceGate() {
           paddingHorizontal: 8,
           borderRadius: 20,
           backgroundColor: glass.sheet,
-          borderWidth: StyleSheet.hairlineWidth,
-          borderColor: glass.glassEdge,
+          boxShadow: nestedBoxShadow(glass),
           overflow: 'hidden',
         }}
       >

@@ -18,6 +18,7 @@ import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import FullscreenHybridEntrance from './feedback/FullscreenHybridEntrance';
 import DuoPressable from './DuoPressable';
+import { nestedBoxShadow, plateBoxShadow } from './v2/ShadowSurface';
 
 type Props = {
   payload: GlobalBroadcastModalPayload | null;
@@ -135,7 +136,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
           styles.card,
           {
             backgroundColor: glass.opaqueSheet,
-            borderColor: glass.glassEdge,
+            boxShadow: plateBoxShadow(glass),
           },
         ]}>
           <ScrollView style={{ flexShrink: 1, minHeight: 0, width: '100%' }} contentContainerStyle={{ alignItems: 'center' }} keyboardShouldPersistTaps="handled" decelerationRate="fast">
@@ -149,7 +150,7 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
             <View style={styles.rewardBlock}>
               {isCoinReward ? (
                 // зачем: паритет с макетом system.html system_16 — награда монетами это пилюля «монета + число».
-                <View style={[styles.coinPill, { backgroundColor: glass.opaqueControl, borderColor: glass.glassEdge }]}>
+                <View style={[styles.coinPill, { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }]}>
                   <RuneGlyph size={20} color={glass.text} />
                   <Text style={[styles.coinPillNum, { color: glass.text }]}>{String(payload?.rewardAmount ?? '')}</Text>
                 </View>
@@ -269,7 +270,6 @@ const styles = StyleSheet.create({
     maxHeight: '100%',
     maxWidth: 420,
     borderRadius: 26,
-    borderWidth: 1,
     paddingHorizontal: 20,
     paddingTop: 24,
     paddingBottom: 22,
@@ -304,7 +304,6 @@ const styles = StyleSheet.create({
     height: 36,
     paddingHorizontal: 14,
     borderRadius: 18,
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: тонкая кромка пилюли kit.css
   },
   coinPillNum: { fontSize: 16, fontWeight: '700' },
   rewardBlock: {

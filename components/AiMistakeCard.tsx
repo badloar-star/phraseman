@@ -172,7 +172,7 @@ export default function AiMistakeCard({
             testID="ai-mistake-refresh-button"
             accessibilityRole="button"
             onPress={onRefresh}
-            style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
+            style={({ pressed }) => [styles.simpleButton, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700' }}>
               {aiExplainRefreshLabel(lang)}
@@ -197,7 +197,7 @@ export default function AiMistakeCard({
           testID="ai-mistake-simple-button"
           accessibilityRole="button"
           onPress={onOpenSimple}
-          style={({ pressed }) => [styles.simpleButton, { borderColor: t.border, backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
+          style={({ pressed }) => [styles.simpleButton, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
         >
           <Ionicons name="sparkles-outline" size={16} color={t.accentText} />
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', flexShrink: 1 }}>
@@ -245,7 +245,7 @@ export default function AiMistakeCard({
               testID="ai-mistake-simple-button"
               accessibilityRole="button"
               onPress={onOpenSimple}
-              style={({ pressed }) => [styles.actionButton, styles.actionGhost, { borderColor: t.border }, pressed && { opacity: 0.78 }]}
+              style={({ pressed }) => [styles.actionButton, styles.actionGhost, { backgroundColor: t.bgSurface2 }, pressed && { opacity: 0.78 }]}
             >
               <Text style={[styles.actionText, { color: t.textPrimary }]}>
                 {triLang(lang, {
@@ -337,9 +337,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 8,
   },
-  actionGhost: {
-    borderWidth: StyleSheet.hairlineWidth, // guard-ok: ghost-кнопка `.cta.gh` макета — тонкая полупрозрачная кромка 2.0
-  },
+  // зачем (стиль «Тень», решение владельца 12.10): ghost-кнопка отделена заливкой контрола, а не кромкой
+  actionGhost: {},
   actionText: {
     flexShrink: 1,
     fontSize: 16,

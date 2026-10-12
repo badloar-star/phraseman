@@ -814,17 +814,19 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-018.png",
+      "evidence_at": "2026-10-12T17:22:53.014Z",
+      "evidence_sha256": "b9b2f7365ea818750d5d47b068b735e286ce4286ce3a1e4292358aae0569e48d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо экрана чужого набора «B2 глаголы» (автор Ирина, «B2 · 49 карточек · ♡ 3», «Добавить себе +», карточки списком) снят экран «Мои наборы»; ссылка ведёт на /flashcards_my_packs, а чужой набор открывается из каталога (тап по карточке «B2 глаголы» — dev_demo_community_2), и без сервера у демо-набора нет карточек («Набор ещё не скачан», cards-gap-034): нужна подмена содержимого демо-набора сообщества (Ядру: dev_pack_content=demo — 49 карточек Convince / Claim / Afford / Borrow / Deserve…)."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:24:02.790Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 13) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -837,7 +839,8 @@
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:22, cards-v2 №15 «Чужой набор — до добавления»): снят не тот экран — «Мои наборы» в состоянии загрузки (три серые заглушки)."
     },
     {
       "id": "cards-019",
@@ -856,17 +859,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-019.png",
+      "evidence_at": "2026-10-12T17:23:24.905Z",
+      "evidence_sha256": "bc80bc8e6280e3e233931874101ca599f1bd738136a9b705bd589875bc2ad8df",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Вместо экрана чужого набора «B2 глаголы» (автор Ирина, «B2 · 49 карточек · ♡ 3», «Добавить себе +», карточки списком) снят экран «Мои наборы»; ссылка ведёт на /flashcards_my_packs, а чужой набор открывается из каталога (тап по карточке «B2 глаголы» — dev_demo_community_2), и без сервера у демо-набора нет карточек («Набор ещё не скачан», cards-gap-034): нужна подмена содержимого демо-набора сообщества (Ядру: dev_pack_content=demo — 49 карточек Convince / Claim / Afford / Borrow / Deserve…).",
+        "[данные] Хорошо видно, что «B2 глаголы» (49 · B2) в «Моих наборах» есть: после подмены содержимого его экран откроется тапом по карточке."
+      ],
+      "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-12T17:24:02.790Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 14) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -879,7 +885,8 @@
       "triage": {
         "coverage": "manual_conditional",
         "coverage_note": "условный путь — условия в строке shot list"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 6:23, cards-v2 №16 «Чужой набор — добавлен»): снят не тот экран — «Мои наборы 5» (список наборов с тремя словами и кнопкой воспроизведения), а не экран набора «B2 глаголы» с «✓ В моих наборах» и «Тренировать»."
     },
     {
       "id": "cards-020",

@@ -2141,15 +2141,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   useEffect(() => {
     let cancelled = false;
     let primeTimer: ReturnType<typeof setTimeout> | null = null;
+    // зачем (координатор 12.10, R1 «Уроки 3,6 с»): [LESSONS-BOOT] — успевает ли прогрев до монтажа вкладки
+    // (вкладка монтируется заранее, сразу после первого кадра Главной); пропуск прогрева тоже пишет причину.
+    const primeScheduledAtMs = Date.now();
+    if (__DEV__) console.log(`[LESSONS-BOOT] layout_prime:scheduled ${JSON.stringify({ studyTarget, atEpochMs: primeScheduledAtMs })}`);
     const task = InteractionManager.runAfterInteractions(() => {
+      const interactionsDoneAtMs = Date.now();
       primeTimer = setTimeout(() => {
-        if (cancelled || AppState.currentState !== 'active') return;
+        if (cancelled || AppState.currentState !== 'active') {
+          if (__DEV__) console.log(`[LESSONS-BOOT] layout_prime:skip ${JSON.stringify({ studyTarget, reason: cancelled ? 'cancelled' : `app_state_${AppState.currentState}` })}`);
+          return;
+        }
+        if (__DEV__) {
+          console.log(`[LESSONS-BOOT] layout_prime:fire ${JSON.stringify({ studyTarget, waitInteractionsMs: interactionsDoneAtMs - primeScheduledAtMs, sinceScheduledMs: Date.now() - primeScheduledAtMs })}`);
+        }
         void (async () => {
           try {
             const tab = await import('./lessons_tab_state');
-            await tab.loadLessonsTabStateFromStorage(studyTarget);
+            await tab.loadLessonsTabStateFromStorage(studyTarget, 'layout_prime');
           } catch (e) {
-            if (__DEV__) console.warn('[_layout] lessons prime', e);
+            console.warn('[LESSONS-BOOT] layout_prime:failed', e instanceof Error ? e.message : String(e));
           }
         })();
       }, 600);

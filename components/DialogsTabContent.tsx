@@ -218,7 +218,7 @@ function DialogsTabContentBody({
 
   useEffect(() => {
     let cancelled = false;
-    void loadLessonsTabStateFromStorage(studyTarget)
+    void loadLessonsTabStateFromStorage(studyTarget, 'dialogs_tab')
       .then((snap) => {
         if (!cancelled) setUnlockedLessons(snap.persistedUnlocked);
       })

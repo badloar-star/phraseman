@@ -42,6 +42,20 @@ export type LessonsTabSnapshot = {
 let lastSnapshotByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 let lastSnapshotGeneration = -1;
 
+// зачем (координатор 12.10, R1 «Уроки 3,6 с до первого кадра», «сперва логи»): [LESSONS-BOOT] показывает, был ли снимок
+// списка готов к монтажу вкладки (hit/miss и его возраст), кто и когда читал хранилище (ранний прогрев _layout, сам экран,
+// Диалоги), сколько параллельных чтений шло и сколько заняли multiGet и разбор. Только dev — в релизе ни строки.
+const BOOT_TRACE = typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+const MODULE_LOADED_AT_MS = Date.now();
+const loadedAtByTarget: Partial<Record<string, number>> = {};
+const inflightByTarget: Partial<Record<string, number>> = {};
+const initialLogged = new Set<string>();
+
+function lessonsBootTrace(event: string, extra: Record<string, unknown>): void {
+  if (!BOOT_TRACE) return;
+  console.log(`[LESSONS-BOOT] ${event} ${JSON.stringify({ sinceModuleMs: Date.now() - MODULE_LOADED_AT_MS, atEpochMs: Date.now(), ...extra })}`);
+}
+
 function dropSnapshotsOfOtherGenerations(): void {
   const generation = captureAccountGeneration().generation;
   if (generation !== lastSnapshotGeneration) {
@@ -52,7 +66,23 @@ function dropSnapshotsOfOtherGenerations(): void {
 
 export function getLessonsTabInitialState(studyTarget?: RuntimeStudyTarget): LessonsTabSnapshot | null {
   dropSnapshotsOfOtherGenerations();
-  return lastSnapshotByTarget[storageStudyTarget(studyTarget)] ?? null;
+  const target = storageStudyTarget(studyTarget);
+  const snap = lastSnapshotByTarget[target] ?? null;
+  // Зовётся на КАЖДОМ рендере экрана — пишем только первый вызов и смену промаха на попадание.
+  const logKey = `${lastSnapshotGeneration}:${target}:${snap ? 'hit' : 'miss'}`;
+  if (BOOT_TRACE && !initialLogged.has(logKey)) {
+    initialLogged.add(logKey);
+    const loadedAt = loadedAtByTarget[target];
+    lessonsBootTrace('initial_state', {
+      target,
+      result: snap ? 'hit' : 'miss',
+      generation: lastSnapshotGeneration,
+      snapshotAgeMs: snap && loadedAt ? Date.now() - loadedAt : null,
+      inflight: inflightByTarget[target] ?? 0,
+      scoredLessons: snap ? snap.scores.filter((score) => score > 0).length : null,
+    });
+  }
+  return snap;
 }
 
 const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
@@ -62,8 +92,30 @@ const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
  */
 export async function loadLessonsTabStateFromStorage(
   studyTarget?: RuntimeStudyTarget,
+  caller: string = 'unspecified',
 ): Promise<LessonsTabSnapshot> {
   const target = storageStudyTarget(studyTarget);
+  const startedAtMs = Date.now();
+  inflightByTarget[target] = (inflightByTarget[target] ?? 0) + 1;
+  lessonsBootTrace('load:start', {
+    target,
+    caller,
+    inflight: inflightByTarget[target],
+    cached: Boolean(lastSnapshotByTarget[target]),
+  });
+  try {
+    return await readLessonsTabStateFromStorage(studyTarget, target, caller, startedAtMs);
+  } finally {
+    inflightByTarget[target] = Math.max(0, (inflightByTarget[target] ?? 1) - 1);
+  }
+}
+
+async function readLessonsTabStateFromStorage(
+  studyTarget: RuntimeStudyTarget | undefined,
+  target: string,
+  caller: string,
+  startedAtMs: number,
+): Promise<LessonsTabSnapshot> {
   const unlockedKey = unlockedLessonsKey(studyTarget);
   const legacyCapKey = legacyFreeLessonCapKey(studyTarget);
   // зачем: купленные уроки читаются ТЕМ ЖЕ multiGet — отдельное чтение диска
@@ -91,7 +143,10 @@ export async function loadLessonsTabStateFromStorage(
   // Штамп до чтения: если аккаунт сменится, пока multiGet в полёте, смешанный
   // снимок не должен осесть в кэше (last-write-guard, как у осколков).
   const generationAtLoadStart = captureAccountGeneration().generation;
+  const multiGetStartedAtMs = Date.now();
   const entries = await AsyncStorage.multiGet(allKeys);
+  const multiGetMs = Date.now() - multiGetStartedAtMs;
+  const parseStartedAtMs = Date.now();
   const map: Record<string, string | null> = Object.fromEntries(entries);
 
   const noLimits = map.tester_no_premium !== 'true'
@@ -102,7 +157,9 @@ export async function loadLessonsTabStateFromStorage(
   if (map[unlockedKey]) {
     try {
       persistedUnlocked = JSON.parse(map[unlockedKey] ?? '[]') as number[];
-    } catch {
+    } catch (error) {
+      // Битый список открытых уроков: показываем как «ничего не открыто сверх правил», но причину пишем всегда.
+      console.warn(`[LESSONS-BOOT] unlocked_parse_failed ${JSON.stringify({ target, bytes: (map[unlockedKey] ?? '').length, error: error instanceof Error ? error.message : String(error) })}`);
       persistedUnlocked = [];
     }
   }
@@ -164,11 +221,23 @@ export async function loadLessonsTabStateFromStorage(
   dropSnapshotsOfOtherGenerations();
   // В кэш — только снимок, дочитанный в том же поколении аккаунта; экрану
   // возвращаем в любом случае (его собственный refetch на фокусе догонит).
-  if (generationAtLoadStart === captureAccountGeneration().generation) {
+  const generationNow = captureAccountGeneration().generation;
+  if (generationAtLoadStart === generationNow) {
     dropSnapshotsOfOtherGenerations();
     lastSnapshotByTarget[target] = snap;
     lastSnapshotGeneration = generationAtLoadStart;
+    loadedAtByTarget[target] = Date.now();
   }
+  lessonsBootTrace('load:done', {
+    target,
+    caller,
+    keys: allKeys.length,
+    totalMs: Date.now() - startedAtMs,
+    multiGetMs,
+    parseMs: Date.now() - parseStartedAtMs,
+    cachedResult: generationAtLoadStart === generationNow ? 'stored' : 'skipped_generation_changed',
+    scoredLessons: scores.filter((score) => score > 0).length,
+  });
   return snap;
 }
 

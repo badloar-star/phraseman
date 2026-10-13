@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import V2Pressable from '../../v2/V2Pressable';
@@ -13,8 +13,50 @@ import type { HomeFeatureTile } from './home_v2_types';
  * не высокими, а равными, как квадраты»): плитка — квадрат, в ней только предмет и
  * название. Подпись осталась в данных — её читает экранный диктор.
  */
+
+/**
+ * зачем (аудит скорости Авторизации 13.10, п.2; координатор: «сперва лог [HOME-RENDER], потом memo»): Главная — один компонент с ~100 useState, каждый setState
+ * пересобирает плитки: новый массив, новые onPress-замыкания, новые объекты арта — и дети перерисовывались впустую. Здесь плитки разделены на тонкую обёртку
+ * (рендерится с родителем, только кладёт свежие tiles в ref) и memo-вид, который сравнивает ДАННЫЕ плитки (ключ, тексты, арт) и не смотрит на onPress:
+ * тап зовёт самый свежий onPress из ref, поэтому устаревших замыканий нет. Счётчики [HOME-RENDER] tiles — только dev, снять после проверки Сверкой.
+ */
+type TilesViewProps = Readonly<{ tiles: readonly HomeFeatureTile[]; pressRef: React.MutableRefObject<readonly HomeFeatureTile[]> }>;
+
+function sameTileData(a: readonly HomeFeatureTile[], b: readonly HomeFeatureTile[]): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((tile, i) => {
+    const other = b[i];
+    return tile.key === other.key && tile.title === other.title && tile.subtitle === other.subtitle && tile.art === other.art && tile.artAccent === other.artAccent;
+  });
+}
+
+let wrapperRenders = 0;
+let viewRenders = 0;
+
 export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeatureTile[] }) {
+  const pressRef = useRef<readonly HomeFeatureTile[]>(tiles);
+  pressRef.current = tiles;
+  if (__DEV__) {
+    wrapperRenders += 1;
+    console.log('[HOME-RENDER] tiles wrapper', JSON.stringify({ wrapperRenders, viewRenders, keys: tiles.map((tile) => tile.key) })); // guard-ok: счётчик рендеров плиток, только dev
+  }
+  return <HomeV2FeatureTilesView tiles={tiles} pressRef={pressRef} />;
+}
+
+const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pressRef }: TilesViewProps) {
   const p = useV2Palette();
+  const press = useCallback((key: HomeFeatureTile['key']) => {
+    const current = pressRef.current.find((tile) => tile.key === key);
+    if (!current) {
+      console.warn('[HOME-RENDER] tiles press:ignored', JSON.stringify({ key, reason: 'tile_missing_in_latest' })); // guard-ok: ранний выход логирует причину
+      return;
+    }
+    current.onPress();
+  }, [pressRef]);
+  if (__DEV__) {
+    viewRenders += 1;
+    console.log('[HOME-RENDER] tiles view', JSON.stringify({ wrapperRenders, viewRenders })); // guard-ok: счётчик рендеров плиток, только dev
+  }
   const glass = useHomePlateStyle(); // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся
   return (
     <View testID="home-v2-feature-tiles" style={s.row}>
@@ -24,7 +66,7 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
           testID={`home-quick-tile-${tile.key}`}
           accessibilityRole="button"
           accessibilityLabel={`${tile.title}. ${tile.subtitle}`}
-          onPress={tile.onPress}
+          onPress={() => press(tile.key)}
           scaleTo={0.96}
           outerStyle={s.tileSlot}
           style={[s.tile, glass]}
@@ -38,7 +80,7 @@ export default function HomeV2FeatureTiles({ tiles }: { tiles: readonly HomeFeat
       ))}
     </View>
   );
-}
+}, (prev, next) => prev.pressRef === next.pressRef && sameTileData(prev.tiles, next.tiles));
 
 const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются

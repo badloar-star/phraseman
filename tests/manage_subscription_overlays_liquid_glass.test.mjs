@@ -18,7 +18,8 @@ const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const OVERLAY_LP_BASELINE = [
   `Почему уходишь?|Чому йдеш?|Why are you leaving?|¿Por qué te vas?|Por que você vai sair?|Vì sao bạn rời đi?|Mengapa kamu pergi?|Neden ayrılıyorsun?|Dlaczego odchodzisz?`.split('|'),
   `Это поможет нам стать лучше.|Це допоможе нам стати кращими.|This helps us get better.|Nos ayuda a mejorar.|Isso nos ajuda a melhorar.|Điều này giúp chúng tôi cải thiện.|Ini membantu kami menjadi lebih baik.|Bu, daha iyi olmamıza yardımcı olur.|To pomoże nam się poprawić.`.split('|'),
-  ['r.ru', 'r.uk', 'r.ru', 'r.es', "r['pt-BR']", 'r.vi', 'r.id', 'r.tr', 'r.pl'],
+  // зачем (92c6d2206, 13.10): причины отмены получили en — в слоте en теперь r.en, а не русский r.ru (сторож охранял ошибку).
+  ['r.ru', 'r.uk', 'r.en', 'r.es', "r['pt-BR']", 'r.vi', 'r.id', 'r.tr', 'r.pl'],
   `Расскажи подробнее…|Розкажи детальніше…|Tell us more…|Cuéntanos más…|Conte mais…|Nói rõ hơn…|Ceritakan lebih lanjut…|Biraz daha anlat…|Napisz więcej…`.split('|'),
   `Перейти к отмене|Перейти до скасування|Continue to cancel|Ir a cancelar|Ir para o cancelamento|Đi tới hủy gói|Lanjut ke pembatalan|İptale git|Przejdź do anulowania`.split('|'),
   `Остаться в Plus|Залишитися в Plus|Stay on Plus|Quedarme en Plus|Ficar no Plus|Ở lại Plus|Tetap di Plus|Plus'da kal|Zostań w Plus`.split('|'),
@@ -314,8 +315,8 @@ test('renders reasons, Other input, selected state, and disabled Continue for ev
   assert.ok(byId(tree, 'manage-subscription-reason-other-input'));
 });
 
-test('keeps the six reason callbacks, Russian English fallback, Other text, and one-haptic Continue flow', () => {
-  assert.match(source, /LP\(r\.ru, r\.uk, r\.ru, r\.es, r\['pt-BR'\], r\.vi, r\.id, r\.tr, r\.pl\)/);
+test('keeps the six reason callbacks, English reason copy, Other text, and one-haptic Continue flow', () => {
+  assert.match(source, /LP\(r\.ru, r\.uk, r\.en, r\.es, r\['pt-BR'\], r\.vi, r\.id, r\.tr, r\.pl\)/);
   const harness = createHarness({ state: { 9: true, 12: 'reasons' }, offer: 'progress' });
   let tree = harness.measure(harness.render());
   byId(tree, 'manage-subscription-reason-other').props.onPress();
@@ -378,7 +379,7 @@ test('preserves the canonical ordered 19 overlay LP tuples from HEAD minus only 
 });
 
 test('renders reasons, progress, support, and empty restore in all nine retained locales', () => {
-  const tooExpensive = ['Слишком дорого', 'Занадто дорого', 'Слишком дорого', 'Demasiado caro', 'Muito caro', 'Quá đắt', 'Terlalu mahal', 'Çok pahalı', 'Za drogo'];
+  const tooExpensive = ['Слишком дорого', 'Занадто дорого', 'Too expensive', 'Demasiado caro', 'Muito caro', 'Quá đắt', 'Terlalu mahal', 'Çok pahalı', 'Za drogo'];
   for (const [localeIndex, lang] of LANGS.entries()) {
     const reasons = createHarness({ lang, state: { 9: true, 12: 'reasons' } });
     const reasonsTree = reasons.measure(reasons.render());

@@ -55,6 +55,9 @@ jest.mock('../app/feedback/feedback_kit', () => ({
   },
 }));
 jest.mock('../app/lesson_premium_gate', () => ({ openLessonAccessGate: jest.fn(), openLessonGateByRuntime: jest.fn(), shouldBlockLessonAccess: jest.fn() }));
+// зачем (d425ffa08, 13.10): шлюз урока рисует скелет LessonFirstFrame → LessonLoadingSkeleton → AppArtBackdrop (StyleSheet на заглушке
+// react-native падает при импорте); банку слов он не нужен.
+jest.mock('../modules/lesson_first_frame', () => ({ __esModule: true, default: () => null }));
 jest.mock('../app/vocabulary_target_gate', () => ({
   frenchVocabularyGateCopy: jest.fn(),
   vocabularyContentAvailableForTarget: jest.fn(() => true),

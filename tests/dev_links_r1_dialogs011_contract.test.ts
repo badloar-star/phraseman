@@ -10,7 +10,8 @@ describe('dialogs-011: no-energy window on the briefing', () => {
   it('the link uses real zero energy on Free, without the dev refusal', () => {
     const line = steps.split(/\r?\n/).find((l) => l.startsWith("add('dialogs-011'"));
     expect(line).toBeDefined();
-    expect(line).toContain("'plus=off&energy=0'");
+    // перепин 13.10 (№24): dc9b10b85 осознанно добавил dev_dialog_send=ok (сторож prod_write — старт сессии не в прод); смысл прежний — настоящий ноль энергии
+    expect(line).toContain("'plus=off&energy=0&dev_dialog_send=ok'");
     expect(line).not.toContain('dev_energy_fail=1'); // параметр ссылки; слово в пометке note допустимо
   });
 

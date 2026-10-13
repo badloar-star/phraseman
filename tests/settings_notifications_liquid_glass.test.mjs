@@ -51,9 +51,9 @@ const protectedHashes = {
   // зачем (30.09): немой .catch(() => {}) заменён на swallowError('settings_notifications:persistPrefs') в efe19ae9d — правило «немых catch нет».
   // 11.10: в catch добавлен лог [NOTIF-PREFS] persist_failed (правило владельца: немых catch нет), логика отката прежняя.
   // 12.10 (координатор, съёмка R1): dev robot_no_cloud=1 — после мгновенного обновления экрана выход ДО сохранения и облака (только dev, app/dev_robot_no_cloud.ts).
-  persistPrefs: 'aac4653efa549df6fcb77dada44ceed0f3b567fd681e5dbc51cb4e7e5b0249f7',
+  persistPrefs: '8d354fe49d3e6c504e64f8566e19079f1f64dce1bd4462ac4a2f35dfd692e92f', // перепин 13.10 (№24): только комментарий `// i18n-ok` в строке лога (Макеты 3321a8ce1), логика сохранения не менялась
   // 13.10 (умное напоминание, владелец вариант (а)): после планирования экран берёт фактическое время дней «авто» (setS снимка).
-  persistSchedule: 'fb8dec5624597a61dbdd83af2fafe87782f5d60e910269493da0b0ad769567a8', // 12.10: тот же выход robot_no_cloud
+  persistSchedule: '0084d34951676a8fa78c0777a3459fa9781bdad89df29120eab44ba5b608f4bf', // перепин 13.10 (№24): только комментарий `// i18n-ok` в строке лога (Макеты 3321a8ce1), планирование не менялось // 12.10: тот же выход robot_no_cloud
   toggleMaster: '48e7e186a958d38d5d0bd17198b5bfc65f5867b7bdd4b73d58c9bb2cd117b387',
   toggleCategory: 'c735bcda2ed9177b35deec2f91bc78663f8e2f25083628f76e3469de63a9c4f5',
   // 13.10 (умное напоминание): включение без выбора времени — mode 'auto', выбор времени — mode 'manual' (не перетираем никогда).

@@ -18,7 +18,7 @@ export const LANGUAGE_WELCOME_COPY = {
   lwGoalQuestion: T('Зачем тебе {lang}?', 'Навіщо тобі {lang}?', 'Why do you need {lang}?', '¿Para qué quieres aprender {lang}?', 'Por que você quer aprender {lang}?', 'Tại sao bạn cần {lang}?', 'Kenapa kamu perlu {lang}?', '{lang} sana neden lazım?', 'Po co ci {lang}?'),
   lwLevelQuestion: T('Сколько ты уже знаешь?', 'Скільки ти вже знаєш?', 'How much do you already know?', '¿Cuánto sabes ya?', 'Quanto você já sabe?', 'Bạn đã biết được bao nhiêu?', 'Seberapa banyak yang sudah kamu tahu?', 'Şimdiden ne kadar biliyorsun?', 'Ile już umiesz?'),
   lwGo: T('Поехали', 'Поїхали', 'Let’s go', 'Vamos', 'Vamos', 'Bắt đầu thôi', 'Ayo mulai', 'Hadi başlayalım', 'Jedziemy'),
-  lwStart: T('Начать {lang}', 'Почати {lang}', 'Start {lang}', 'Empezar {lang}', 'Começar {lang}', 'Bắt đầu học {lang}', 'Mulai {lang}', '{lang} öğrenmeye başla', 'Zacznij naukę: {lang}'),
+  lwStart: T('Начать {lang}', 'Почати {lang}', 'Start {lang}', 'Empezar {lang}', 'Começar {lang}', 'Bắt đầu học {lang}', 'Mulai {lang}', '{lang} öğren', 'Zacznij naukę: {lang}'), // зачем (LONG_STRINGS_ZONES_R1, координатор 13.10): tr было 22 знака в однострочной кнопке — короче текст, не шрифт
 
   // Название языка внутри вопроса «Зачем тебе …?» (ru — винительный, uk — именительный, en — с заглавной).
   langQFr: T('французский', 'французька', 'French', 'francés', 'francês', 'tiếng Pháp', 'bahasa Prancis', 'Fransızca', 'francuski'),

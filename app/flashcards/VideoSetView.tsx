@@ -253,7 +253,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   // `.pill` раскрытой фразы (cards-v2 videoSet): высота 38, поля 14/18, шрифт 15, зазор 8, сверху 14
   jumpRow: { marginTop: 14, flexDirection: 'row' },
   jump: { minHeight: 38, borderRadius: 19, paddingLeft: 14, paddingRight: 18, flexDirection: 'row', alignItems: 'center', gap: 8 },
-  jumpText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
+  jumpText: { fontSize: 16, lineHeight: 20, fontWeight: '700' }, // зачем (D145, ratchet 13.10): шкала 16/13 — было 15
   // `phrase()` макета: карточка r16 от 118 высотой, поля 14/18/16; таймкод-чип и озвучка в верхней строке.
   phraseCard: { minHeight: 118, borderRadius: 16, paddingTop: 14, paddingHorizontal: 18, paddingBottom: 16 },
   phraseTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

@@ -132,9 +132,9 @@ function YearActivityScreen() {
               </View>
 
               <View style={styles.legend}>
-                <Text style={{ color: glass.mutedText, fontSize: 11 }}>{triLang(lang, COPY.less)}</Text>{/* guard-ok: подпись легенды «меньше … больше» по макету results.html, не расшифровка под названием */}
+                <Text style={{ color: glass.mutedText, fontSize: 13 }}>{triLang(lang, COPY.less)}</Text>{/* guard-ok: подпись легенды «меньше … больше» по макету results.html, не расшифровка под названием */}
                 {[0, 2, 4].map((i) => <View key={`legend-${i}`} /* guard-ok: три статичных образца ступеней легенды, порядок не меняется */ style={{ width: 12, height: 12, borderRadius: 3, backgroundColor: palette[i] }} />)}
-                <Text style={{ color: glass.mutedText, fontSize: 11 }}>{triLang(lang, COPY.more)}</Text>
+                <Text style={{ color: glass.mutedText, fontSize: 13 }}>{triLang(lang, COPY.more)}</Text>
               </View>
             </View>
 

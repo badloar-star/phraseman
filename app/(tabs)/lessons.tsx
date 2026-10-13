@@ -1404,6 +1404,40 @@ type LessonsTabProps = {
 // входит всегда: там проверяют невыпущенные занятия кнопкой массовой разблокировки.
 const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS;
 
+// зачем (владелец 13.10, вопрос 18; макет learn.html A7/A8/A10 — вкладки «Уроки | V2»): выбранная вкладка хранится локально и при следующем
+// входе открывается сразу. Память процесса читается синхронно в первом кадре, диск (AsyncStorage) догружается один раз при загрузке модуля
+// и подхватывается тихо, если человек ещё не успел тапнуть. Диалоги не запоминаем: у них свой вход и свой доступ. Логи [LESSONS-TABS].
+const LESSONS_TAB_STORAGE_KEY = "lessons_tab_page_v1";
+type LessonsTabsPage = "lessons" | "v2";
+let rememberedLessonsPage: LessonsTabsPage | null = null;
+const rememberedLessonsPageLoad: Promise<LessonsTabsPage | null> = AsyncStorage.getItem(LESSONS_TAB_STORAGE_KEY)
+  .then((raw) => {
+    const value: LessonsTabsPage | null = raw === "v2" ? "v2" : raw === "lessons" ? "lessons" : null;
+    if (rememberedLessonsPage === null) rememberedLessonsPage = value;
+    console.log(`[LESSONS-TABS] диск: сохранено=${String(raw)} → память=${String(rememberedLessonsPage)}`); // guard-ok: чтение сохранённой вкладки
+    return rememberedLessonsPage;
+  })
+  .catch((error: unknown) => {
+    console.warn(`[LESSONS-TABS] чтение не удалось, остаёмся на «Уроки»: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина в журнале
+    return null;
+  });
+function rememberLessonsPage(page: "lessons" | "dialogs" | "v2"): void {
+  if (page === "dialogs") {
+    console.log("[LESSONS-TABS] выбраны «Диалоги» — не запоминаем"); // guard-ok: ранний выход
+    return;
+  }
+  rememberedLessonsPage = page;
+  console.log(`[LESSONS-TABS] выбрано=${page} → пишем на диск`); // guard-ok: действие пользователя
+  AsyncStorage.setItem(LESSONS_TAB_STORAGE_KEY, page).catch((error: unknown) => {
+    console.warn(`[LESSONS-TABS] запись не удалась: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина в журнале
+  });
+}
+function startLessonsPage(initial: "lessons" | "v2"): "lessons" | "dialogs" | "v2" {
+  const start = initial === "lessons" && rememberedLessonsPage === "v2" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial;
+  console.log(`[LESSONS-TABS] вход: initialPage=${initial} память=${String(rememberedLessonsPage)} v2Доступен=${String(LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY)} → старт=${start}`); // guard-ok: итог выбора стартовой вкладки
+  return start;
+}
+
 /**
  * Потолок ожидания подготовки занятия.
  *
@@ -2554,7 +2588,18 @@ export default function LessonsTab({
   // Learning V2 повторно использует этот же список и тот же LessonCard.
   // Карта раскрывается прямо под выбранной плашкой; одновременно открыта одна.
   const dialogsEnabled = isAiDialogEnabled();
-  const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(initialPage);
+  const [pageRaw, setPageRaw] = useState<"lessons" | "dialogs" | "v2">(() => startLessonsPage(initialPage));
+  const userPickedTabRef = useRef(false); // зачем: диск догрузился позже первого кадра — не перебивать выбор, уже сделанный тапом
+  useEffect(() => {
+    if (initialPage !== "lessons") return;
+    let cancelled = false;
+    rememberedLessonsPageLoad.then((saved) => {
+      if (cancelled || userPickedTabRef.current || saved !== "v2" || !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) return;
+      console.log("[LESSONS-TABS] тихо открываем сохранённую вкладку V2"); // guard-ok: поздняя подстановка
+      setPageRaw((current) => (current === "lessons" ? "v2" : current));
+    });
+    return () => { cancelled = true; };
+  }, [initialPage]);
   // зачем (владелец 22.09, «открываю урок — секунда — назад в раздел уроки»):
   // лог владения экраном лестницы. Карта V2 гаснет и открывается заново через
   // ~3с после открытия сессии (metro-console показал map:unmount сразу после
@@ -5326,6 +5371,8 @@ export default function LessonsTab({
               onPress={() => {
                 if (page !== "lessons") {
                   hapticTap();
+                  userPickedTabRef.current = true;
+                  rememberLessonsPage("lessons");
                   setPage("lessons");
                 }
               }}
@@ -5383,6 +5430,8 @@ export default function LessonsTab({
                       (globalThis as { __v2OpenT0?: number }).__v2OpenT0 = Date.now();
                       console.log("[V2-OPEN] tap", JSON.stringify({ from: "tab_v2" }));
                     }
+                    userPickedTabRef.current = true;
+                    rememberLessonsPage("v2");
                     setPage("v2");
                   }
                 }}

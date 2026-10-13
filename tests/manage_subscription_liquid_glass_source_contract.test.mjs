@@ -23,7 +23,8 @@ const parse = candidate => ts.createSourceFile(SOURCE_PATH, candidate, ts.Script
 
 const PROTECTED = {
   named: {
-    CANCEL_REASONS: '98774110e6449c88c6c7a38cee4543dd13cdbc16d5ceca9dde2fd22124b56877',
+    // зачем (13.10, перепин Авторизации; сверено по diff 92c6d2206): у причин отмены появился en — тип полный ManageSubscriptionCopy, ключи прежние.
+    CANCEL_REASONS: 'eac02528b352bfa352a7d717b8079fd6675ab10313491e22aae6432d628e4435',
     getStoreManageUrl: '889ed1b036067e1cf9398ee93d8f33a10cb2b54cddbb95066cf5bfb3de3bfd18',
     formatDate: '2b21987d10c5cbf17b7f4e4db7efb4ef404330f064c3cfeb903522c536472b5c',
     normalizeStoredPremiumPlan: '80b061538b95c3e412ca32d39839912a6145440350b67890e88d4370a7de0993',
@@ -31,7 +32,8 @@ const PROTECTED = {
     saveOfferBusyRef: '11c098352306821bedbf7a32ef18b62ae645c019dda94b2b653918b9dc635837',
     screenAccountRef: 'a87c8a558d3d5d19cd493847ae71a1b398779e64459f4b2139345a25edf7fdd7',
     // зачем (15.10, красные сторожи; сверено по diff eb716d9a0 и 23a4eb6f7): только dev-подмены съёмки — план `plan=` в памяти (getDevPlanOverride) и прогресс оффера удержания (getDevSaveOfferProgress); покупка, отмена и сохранение плана без изменений.
-    metadata: 'f9927407e615e5b15ad74a3f6de16d3ccc5e7527f5fc32a9933e0f1d140ef1dc',
+    // зачем (13.10, e225091d5): dev-план с датой (plan/planUntil) важнее пустого ответа RevenueCat эмулятора; в сторе getDevPlanOverride() = null — источник даты прежний.
+    metadata: '406bcff09aba38b38c913edeb206cccc6f4f724d6b48143c853d5b9215c6b95f',
     currentPlan: 'b3faa9100cbf1afd53f96d18550e6df6642c75f06b6fbf41c8267fc92eeeefd8',
     nextDate: '66bf1de86141b5428c525d2697c97107074c60e15ef3481279cf1c85a465ed3e',
     isLifetime: '4f7491ad8e638bd4e6ed1e0e1d3c0d84f9c0c64406ed2c5d86231c72c8293668',
@@ -51,7 +53,7 @@ const PROTECTED = {
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '24651baf84ebb807d5a14a5628362a43a0d0c938bd98a8d936889eef9b7a6fd5' /* перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */],
+  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '24651baf84ebb807d5a14a5628362a43a0d0c938bd98a8d936889eef9b7a6fd5' /* перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */],
 };
 
 function protectedSnapshot(candidate) {
@@ -226,7 +228,7 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './swallow_log': { noteSwallowedHandler: () => () => {} },
     // зачем (15.10, красные сторожи; тест устарел): dev-подмены плана и прогресса оффера удержания (eb716d9a0, 23a4eb6f7) — в харнессе выключены, как в проде.
     './dev_vip_override': { getDevPlanOverride: () => null },
-    './dev_save_offer_progress': { getDevSaveOfferProgress: () => null },
+    './dev_save_offer_progress': { getDevSaveOfferProgress: () => null, takeDevSaveOfferOpen: () => null, DEV_SAVE_OFFER_PROGRESS: { streak: 12, lessonsCompleted: 38 } }, // зачем (13.10, 92c6d2206): dev-эффект saveOffer — в харнессе выключен, как в сторе
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
   const mod = { exports: {} };
@@ -243,9 +245,14 @@ test('protects all 21 payment/account/business declarations and both account eff
 });
 
 test('requires English for benefits while keeping cancellation reasons type-safe and byte-stable', () => {
-  assert.match(source, /type ManageSubscriptionReasonCopy = Omit<ManageSubscriptionCopy, 'en'>;/);
-  assert.equal(initializerHash(source, 'CANCEL_REASONS'), '8e013629a7677c4b84a2c047632ce3cae4c33141ba7d72247da07fc9fb545d52');
+  // зачем (13.10, 92c6d2206): у причин отмены теперь обязателен en (раньше английский интерфейс показывал их по-русски) — тип полный.
+  assert.match(source, /const CANCEL_REASONS: \(\{ key: string \} & ManageSubscriptionCopy\)\[\] = \[/);
+  assert.doesNotMatch(source, /type ManageSubscriptionReasonCopy/);
+  assert.equal(initializerHash(source, 'CANCEL_REASONS'), '0bbdeb97d5ac7f07e5ed9993f4680ff4988afa08021c8b1b6e915e12cb531b40');
   assert.deepEqual(reasonCopyDiagnostics(source), []);
+  const missingReasonEnglish = source.replace(", en: 'Too expensive'", '');
+  assert.notEqual(missingReasonEnglish, source);
+  assert.ok(reasonCopyDiagnostics(missingReasonEnglish).some(message => message.includes("Property 'en' is missing")));
   const missingBenefitEnglish = source.replace(", en: 'Unlimited energy'", '');
   assert.notEqual(missingBenefitEnglish, source);
   assert.ok(reasonCopyDiagnostics(missingBenefitEnglish).some(message => message.includes("Property 'en' is missing")));

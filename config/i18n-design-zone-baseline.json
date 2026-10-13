@@ -1,0 +1,176 @@
+{
+  "totals": {
+    "literals": 106,
+    "incomplete": 47
+  },
+  "files": {
+    "app/community_pack_create.tsx": {
+      "literals": 0,
+      "incomplete": 1
+    },
+    "app/community_packs/PackCommentsSheet.tsx": {
+      "literals": 0,
+      "incomplete": 4
+    },
+    "app/community_packs/packCommentsFirestore.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/dialogue_v2_authorized_catalogue_projection.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/dialogue_v2_completion_client.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/dialogue_v2_memory.tsx": {
+      "literals": 0,
+      "incomplete": 21
+    },
+    "app/dialogue_v2_memory_client.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/dialogue_v2_turn_coaching_client.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/flashcards/CollectionGalleryView.tsx": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/flashcards/CollectionHeader.tsx": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/flashcards/CommunityPackPreview.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards/FlashcardsHubScreen.tsx": {
+      "literals": 0,
+      "incomplete": 1
+    },
+    "app/flashcards/PackVideoHero.tsx": {
+      "literals": 0,
+      "incomplete": 1
+    },
+    "app/flashcards/VideoPackRow.tsx": {
+      "literals": 0,
+      "incomplete": 1
+    },
+    "app/flashcards/VideoSetView.tsx": {
+      "literals": 0,
+      "incomplete": 1
+    },
+    "app/flashcards/VideoThumb.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards/cardStatus.ts": {
+      "literals": 5,
+      "incomplete": 0
+    },
+    "app/flashcards/constants.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/flashcards/fuzzy_match.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/flashcards/pack_languages.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards/selectors.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards/trainingSources.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards/useCollectionData.ts": {
+      "literals": 0,
+      "incomplete": 5
+    },
+    "app/flashcards/voice_display_name.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/flashcards_card_editor.tsx": {
+      "literals": 0,
+      "incomplete": 4
+    },
+    "app/flashcards_collection.tsx": {
+      "literals": 1,
+      "incomplete": 1
+    },
+    "app/flashcards_my_packs.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/flashcards_swipe.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lingman_youtube.ts": {
+      "literals": 14,
+      "incomplete": 0
+    },
+    "app/paywall_personalization.ts": {
+      "literals": 16,
+      "incomplete": 0
+    },
+    "app/paywall_purchase.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/paywall_purchase_failure.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/paywall_trial_info.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/premium_modal.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/youtube_seek_controller.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/cards-grid/useCardsScale.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "components/dialogs/DialogueV2CatalogueContainer.tsx": {
+      "literals": 0,
+      "incomplete": 4
+    },
+    "components/dialogs/DialogueV2PlusTools.tsx": {
+      "literals": 0,
+      "incomplete": 3
+    },
+    "components/dialogs/glass/useDialogInputLayoutTrace.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/paywall/PaywallBenefitComparison.tsx": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/paywall/PaywallPlusCopy.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "components/paywall/PaywallProofCards.tsx": {
+      "literals": 12,
+      "incomplete": 0
+    }
+  }
+}

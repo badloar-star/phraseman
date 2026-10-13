@@ -27,7 +27,7 @@ import {
 } from '../../modules/spire/report_queue';
 import { spireBuildRoomRows, spireMyPlace, type SpireRoomRow } from '../../modules/spire/room_rows';
 import type { SpireFriendChip } from '../../components/spire/spire_room_types';
-import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
+import { spireCurrentWeekKey, spireFloorOfSteps } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
 import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import { spireFlushNow, spireRecordStepResult } from '../spire_report_client';
@@ -219,6 +219,18 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     });
   }, [room, ids, config, week]);
   const myPlace = rows ? spireMyPlace(rows) : null;
+  // зачем (владелец через координатора 13.10, «сперва логи»): на кадре у этажей нет соперников — что реально пришло: откуда комната,
+  // сколько живых/ботов, строки и соперники по этажам (без себя). console — журналы кадров Сверки снимают logcat, DebugLogger туда не идёт.
+  useEffect(() => {
+    const floors: Record<number, number> = {};
+    for (const r of rows ?? []) if (!r.isMe) floors[spireFloorOfSteps(r.steps)] = (floors[spireFloorOfSteps(r.steps)] ?? 0) + 1;
+    const me = rows?.find((r) => r.isMe);
+    console.log('[SPIRE-RIVALS]', JSON.stringify({ // guard-ok: одна строка на смену строк комнаты, только счётчики
+      source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members.length ?? null,
+      botFaces: room?.roster.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null,
+      why: rows ? 'ok' : !room ? 'комнаты нет' : !ids ? 'нет личности' : 'нет конфига',
+    }));
+  }, [rows, roomLoad, room, ids]);
   const tier = room?.tier ?? week?.tier ?? null;
 
   // ── Старт ступени (защита от двойного тапа: один старт за раз) ──

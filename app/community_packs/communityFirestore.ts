@@ -292,7 +292,7 @@ export function seedCommunityCatalogForDev(studyTarget: RuntimeStudyTarget | und
   _communityCatalogCache = entry;
   writeCatalogToDisk('community', entry);
   // зачем (cards-v2-025, «в строке 1 слово вместо 3»): сколько слов превью лежит в посеянных наборах — вход строки каталога ([PACK-DECK] row читает то же поле).
-  console.log('[PACKS-CATALOG] dev seed', JSON.stringify({ key: entry.key, packs: packs.length, previewLens: packs.map((pack) => (Array.isArray((pack as { previewWords?: unknown }).previewWords) ? ((pack as { previewWords: unknown[] }).previewWords.length) : -1)) }));
+  console.log('[PACKS-CATALOG] dev seed', JSON.stringify({ key: entry.key, packs: packs.length, previewLens: packs.map((pack) => (Array.isArray(pack.previewWords) ? pack.previewWords.length : -1)) }));
   return true;
 }
 

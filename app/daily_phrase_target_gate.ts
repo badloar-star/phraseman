@@ -218,7 +218,9 @@ export function dailyPhraseGateCopyForTarget(
   if (studyTarget === 'fr') return frenchDailyPhraseGateCopy(sourceLocale);
   const ru = dailyPhraseGateCopyForTargetRuUk(studyTarget, 'ru');
   const uk = dailyPhraseGateCopyForTargetRuUk(studyTarget, 'uk');
-  const names = TARGET_NAME_OTHER[studyTarget === 'es' || studyTarget === 'de' || studyTarget === 'it' ? studyTarget : 'other'];
+  // зачем (проверка типов 13.10, TS7053): RuntimeStudyTarget содержит (string & {}) — сужение через тернарник не даёт ключ таблицы; ключ выбираем явно.
+  const nameKey: keyof typeof TARGET_NAME_OTHER = studyTarget === 'es' ? 'es' : studyTarget === 'de' ? 'de' : studyTarget === 'it' ? 'it' : 'other';
+  const names = TARGET_NAME_OTHER[nameKey];
   const title = (l: OtherLang) => TARGET_TITLE_OTHER[l](names[l]);
   const lang = (sourceLocale ?? 'ru') as Lang;
   return {

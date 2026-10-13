@@ -153,7 +153,9 @@ function catalogFromRows(rows: readonly CatalogRow[]): Map<string, VideoCatalogI
   return map;
 }
 
-type NetworkResult = { packs: FlashcardMarketPack[]; catalogVersion?: string; catalog?: CatalogRow[] };
+// зачем (проверка типов 13.10, TS18048): fetchFromNetwork ВСЕГДА кладёт catalog (единственный return — строки копии или свежие, при
+// пустом каталоге — []), поэтому поле обязательное; падения «catalog undefined» при пустом каталоге не было — тип был шире правды.
+type NetworkResult = { packs: FlashcardMarketPack[]; catalogVersion?: string; catalog: CatalogRow[] };
 
 async function fetchFromNetwork(cached: CachedVideoPacks | null): Promise<NetworkResult> {
   const startedAt = Date.now();

@@ -1,0 +1,36 @@
+# spiretop-000 · HEAD=15cd7128d · 17:39
+10-13 17:39:13.210 I/ReactNativeJS(28294): [DEV-STATE] spireTier override=0 (только наряд башни, неделя и комната не меняются)
+10-13 17:39:18.249 I/ReactNativeJS(28294): [DEV-STATE] spire_preview model state=room floor=14 outcome=none weekResult=none startBlock=null live=true
+10-13 17:39:18.313 I/ReactNativeJS(28294): [SPIRE-DOCK] energy-pill {"shown":true,"reason":"игрок без Plus","ownerActive":false}
+10-13 17:39:18.496 I/ReactNativeJS(28294): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=game.starting"}
+10-13 17:39:18.643 I/ReactNativeJS(28294): '[SPIRE-RIVALS]', '{"source":"нет загрузки","roomId":null,"live":null,"botFaces":null,"rows":null,"rivalsByFloor":{},"myFloor":null,"why":"комнаты нет"}'
+10-13 17:39:18.644 I/ReactNativeJS(28294): [SPIRE-DOCK] home {"source":"DEV-превью (моки)","weekFloor":14,"myFloor":14,"selected":null,"shownFloor":14,"rows":30,"tier":0,"live":true,"startBlock":"none","notReadyBecause":"готово","premium":false,"towerWillScrollTo":"свой этаж 14"}
+10-13 17:39:18.646 I/ReactNativeJS(28294): [SPIRE-LAYOUT] clearance {"floor":14,"myFloor":14,"dockH":0,"bottomPad":102,"tailFloor":120,"tailFromDock":0,"tailUsed":120,"endClearance":144,"minClearance":16,"source":"DEV-превью","outcome":"none","startBlock":"none"}
+10-13 17:39:18.648 I/ReactNativeJS(28294): [DEV-STATE] spire_preview route state=room fromParam=room step=false selector=false exit=false spirePanel=off showStrip=false showDot=false
+10-13 17:39:18.731 I/ReactNativeJS(28294): [SPIRE-DOCK] home {"source":"DEV-превью (моки)","weekFloor":14,"myFloor":14,"selected":14,"shownFloor":14,"rows":30,"tier":0,"live":true,"startBlock":"none","notReadyBecause":"готово","premium":false,"towerWillScrollTo":"свой этаж 14"}
+10-13 17:39:18.788 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll {"viewportH":914.3,"bottomPad":102,"paddingBottom":222}
+10-13 17:39:18.791 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll.content {"contentH":1272.4}
+10-13 17:39:18.792 I/ReactNativeJS(28294): [SPIRE-DOCK] energy-pill.layout {"w":72,"h":37,"x":299.4}
+10-13 17:39:18.794 I/ReactNativeJS(28294): '[SPIRE-SCROLL] размер содержимого', '{"h":0,"pending":null}'
+10-13 17:39:18.795 I/ReactNativeJS(28294): [SPIRE-LAYOUT] friends+podium {"y":945.1,"h":105.1,"bottom":1050.3,"friends":3,"startBlock":"none"}
+10-13 17:39:18.800 I/ReactNativeJS(28294): [SPIRE-LAYOUT] dock.wrap {"y":784.4,"h":51.8,"bottomOffset":78}
+10-13 17:39:18.801 I/ReactNativeJS(28294): [SPIRE-LAYOUT] dock {"block":"none","h":51.8,"w":371.4}
+10-13 17:39:18.802 I/ReactNativeJS(28294): [SPIRE-LAYOUT] dock.cta {"y":0,"h":51.8}
+10-13 17:39:19.920 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll-req#первый-показ {"floor":14,"scale":1,"cy":364.3,"requestedY":201.3,"contentH":0,"needH":1073,"ready":"нет → отложено","animated":"нет"}
+10-13 17:39:19.927 I/ReactNativeJS(28294): [SPIRE-LAYOUT] clearance {"floor":14,"myFloor":14,"dockH":51.8,"bottomPad":102,"tailFloor":120,"tailFromDock":44,"tailUsed":120,"endClearance":92.2,"minClearance":16,"source":"DEV-превью","outcome":"none","startBlock":"none"}
+10-13 17:39:19.982 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll.content {"contentH":1198.5}
+10-13 17:39:19.983 I/ReactNativeJS(28294): '[SPIRE-SCROLL] размер содержимого', '{"h":1072.8,"pending":{"floor":14}}'
+10-13 17:39:19.984 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll-req#после-layout {"floor":14,"scale":1,"cy":364.3,"requestedY":201.3,"contentH":1072.8,"needH":1073,"ready":"да","animated":"нет"}
+10-13 17:39:19.984 I/ReactNativeJS(28294): '[SPIRE-RIVALS] window', '{"why":"после-layout","floor":14,"requestedY":201.3,"rivalsInWindow":29,"floorsWithRivals":5,"total":5}'
+10-13 17:39:19.989 I/ReactNativeJS(28294): [SPIRE-LAYOUT] friends+podium {"y":871.2,"h":105.1,"bottom":976.4,"friends":3,"startBlock":"none"}
+10-13 17:39:19.989 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll {"viewportH":864,"bottomPad":102,"paddingBottom":222}
+10-13 17:39:19.990 I/ReactNativeJS(28294): [SPIRE-LAYOUT] dock.wrap {"y":734.1,"h":51.8,"bottomOffset":78}
+10-13 17:39:20.106 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll-req#окно-изменило-высоту {"floor":14,"scale":1,"cy":364.3,"requestedY":226.3,"contentH":1072.8,"needH":1073,"ready":"да","animated":"нет"}
+10-13 17:39:20.111 I/ReactNativeJS(28294): '[SPIRE-RIVALS] window', '{"why":"окно-изменило-высоту","floor":14,"requestedY":226.3,"rivalsInWindow":29,"floorsWithRivals":5,"total":5}'
+10-13 17:39:23.250 W/ReactNativeJS(28294): '[SPIRE-SCROLL] проверка: окно не на месте — повтор', '{"why":"окно-изменило-высоту","requestedY":226.3,"gotY":0,"attempt":1}'
+10-13 17:39:23.261 W/ReactNativeJS(28294): '[SPIRE-SCROLL] проверка: окно не на месте — повтор', '{"why":"окно-изменило-высоту","requestedY":226.3,"gotY":0,"attempt":1}'
+10-13 17:39:25.183 I/ReactNativeJS(28294): [SPIRE-LAYOUT] scroll.content {"contentH":1148.2}
+10-13 17:39:25.198 I/ReactNativeJS(28294): [SPIRE-LAYOUT] friends+podium {"y":821,"h":105.5,"bottom":926.5,"friends":3,"startBlock":"none"}
+10-13 17:39:25.218 I/ReactNativeJS(28294): '[SPIRE-SCROLL] получено', '{"why":"окно-изменило-высоту","gotY":226.3}'
+10-13 17:39:25.889 I/ReactNativeJS(28294): '[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":226.3,"gotY":226.3,"attempt":1}'
+10-13 17:39:25.901 I/ReactNativeJS(28294): '[SPIRE-SCROLL] проверка ok', '{"why":"окно-изменило-высоту","requestedY":226.3,"gotY":226.3,"attempt":1}'

@@ -41,6 +41,14 @@ status=$?
 if [ "$status" -ne 0 ]; then
   exit "$status"
 fi
+# Blocks commits whose staged .ts/.tsx/.js do not even parse (see scripts/syntax_check.mjs).
+# 2026-10-13 ~15:4x a «// зачем…» comment landed on the same line as code and swallowed «: null),» —
+# the SyntaxError was committed, Spire went red-screen and the parity robot stopped. Parse only, no type check: <2 s.
+node scripts/syntax_check.mjs --staged
+status=$?
+if [ "$status" -ne 0 ]; then
+  exit "$status"
+fi
 # Blocks snapshot-style commits that write an OLD tree over fresh work
 # (see scripts/guard_mass_deletion.mjs — commit 95eec1717 lost a Home fix).
 node scripts/guard_mass_deletion.mjs

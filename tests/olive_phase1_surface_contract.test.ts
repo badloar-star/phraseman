@@ -16,8 +16,9 @@ describe('Olive Phase 1 surfaces', () => {
 
   it('keeps a dedicated Olive card-pack shell (Home and tabs use 2.0 theme tokens)', () => {
     const paywall = read('app/flashcards/cardPackPaywallTheme.ts');
-    expect(paywall).toContain('function shellOlive(): CardPackPaywallTheme');
-    expect(paywall).toContain('olive: shellOlive()');
+    // зачем (регрессия 13.10, 5b1e4a80a): оболочка окна покупки набора построена из токенов темы (cardPackPaywallShellFromTokens), таблиц по id тем (shellOlive/shellGold) больше нет — Olive, как и все темы, идёт по токенам.
+    expect(paywall).toContain('cardPackPaywallShellFromTokens');
+    expect(paywall).not.toContain('function shellOlive()');
     expect(paywall).not.toContain('olive: shellGold()');
   });
 

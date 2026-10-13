@@ -53,13 +53,14 @@ describe('Sage Porcelain real-device visibility regressions', () => {
     const source = read('app/(tabs)/lessons.tsx');
 
     expect(source).toContain('const isSagePorcelainTheme = isLightThemeMode(themeMode);');
-    expect(source).toContain('const isSagePorcelainCard = isLightThemeMode(_themeMode);');
+    // зачем (регрессия 13.10, a573bc660): светлая карточка урока определяется и по токенам (`lightCard`), не только по режиму темы
+    expect(source).toContain('const isSagePorcelainCard = isLightThemeMode(_themeMode) || lightCard !== null;');
     // отступ ветки сменился — сверяем смысл, а не пробелы
     expect(source).toMatch(/isSagePorcelainTheme\s*\? t\.textPrimary/);
     expect(source).toMatch(/isSagePorcelainCard\s*\? \[bg, lightenHex\(bg, 1\.08\), lightenHex\(bg, 1\.14\)\]/);
     expect(source).toMatch(/isSagePorcelainCard\s*\? \[lightenHex\(bg, 1\.04\), bg, lightenHex\(bg, 1\.1\)\]/);
     expect(source).toContain('...(isSagePorcelainCard ? {} : LESSON_CARD_WHITE_TEXT_SHADOW)');
-    expect(source).toContain('const lockedCardHasLightFill = isLightThemeMode(_themeMode);');
+    expect(source).toContain('const lockedCardHasLightFill = isLightThemeMode(_themeMode) || lightCard !== null;');
   });
 
   it('keeps both Sage tournament hero gradient stops readable on the light hero surface', () => {

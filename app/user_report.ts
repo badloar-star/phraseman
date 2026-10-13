@@ -35,6 +35,11 @@ async function isReportThrottled(now: number): Promise<boolean> {
   return false;
 }
 
+/** Лимит жалоб 30 с по локальной отметке — для шторки жалобы: проверить ДО оптимистичного тоста (ревью Авторизации 13.10). Ничего не пишет. */
+export async function isReportThrottledNow(): Promise<boolean> {
+  return isReportThrottled(Date.now());
+}
+
 async function markReportSent(now: number): Promise<void> {
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
   reportThrottleCacheTs = now;

@@ -41,8 +41,20 @@ describe('жалоба на набор: нижняя шторка по маке�
     for (const phrase of ['открыта шторка', 'выбрана причина', 'отправка:', 'ответ:', 'тост ошибки', 'отправка нажата без причины']) expect(src).toContain(phrase);
   });
 
+  it('ревью Авторизации 13.10: лимит 30 с проверяется ДО оптимистичного тоста; черновик причины и комментария возвращается после сбоя; ru-подпись по-русски', () => {
+    const precheck = src.indexOf('await isReportThrottledNow()');
+    const toast = src.indexOf("actionToastTri('success'");
+    expect(precheck).toBeGreaterThan(-1);
+    expect(precheck).toBeLessThan(toast);
+    expect(src).toContain('reportDrafts.set(packId, { reason: selected, comment });');
+    expect(src).toContain('reportDrafts.get(packId)');
+    expect(src).toContain("if (r === 'sent') reportDrafts.delete(packId);");
+    expect(src).toContain("ru: 'Оскорбления / ненависть'");
+    expect(src).not.toContain("ru: 'Образа / ненависть'");
+  });
+
   it('отправка тем же путём: тот же submitPackReport и те же поля, комментарий до 500', () => {
-    expect(src).toContain("import { submitPackReport, type PackReportReason } from '../app/user_report';");
+    expect(src).toContain("import { isReportThrottledNow, submitPackReport, type PackReportReason } from '../app/user_report';");
     expect(src).toContain('{ packId, packTitle, authorStableId, studyTarget, reason: selected, comment: comment.trim() }');
     expect(src).toContain('maxLength={500}');
   });

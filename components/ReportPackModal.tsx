@@ -24,7 +24,7 @@ import {
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
-import { submitPackReport, type PackReportReason } from '../app/user_report';
+import { isReportThrottledNow, submitPackReport, type PackReportReason } from '../app/user_report';
 import { isDevCommunityPackId } from '../app/dev_cards_state';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { DebugLogger } from '../app/debug-logger';
@@ -34,6 +34,10 @@ import HybridSheetShell from './modal_fx/HybridSheetShell';
 import { useGlassSheetContentMaxHeight } from './modal_fx/useGlassSheetContentMaxHeight';
 
 const LOG = '[PACK-REPORT]';
+
+// зачем (ревью Авторизации 13.10): шторка закрывается сразу, а при сбое/лимите причина и комментарий пропадали — человек заполнял всё заново. Черновик по набору живёт в памяти процесса
+// (не диск, не durable) до успешной отправки и возвращается в форму при следующем открытии.
+const reportDrafts = new Map<string, Readonly<{ reason: PackReportReason; comment: string }>>();
 
 interface Props {
   visible: boolean;
@@ -52,7 +56,7 @@ interface Props {
 // зачем: подписи причин на всех 9 языках; образец cards-states `packReport` — шесть причин, радио слева, затем название.
 function reasonsFor(lang: Lang): { id: PackReportReason; label: string }[] {
   return [
-    { id: 'offensive', label: triLang(lang, { ru: 'Образа / ненависть', uk: 'Образа / ненависть', en: 'Insults or hate', es: 'Insultos u odio', 'pt-BR': 'Insulto ou ódio', vi: 'Xúc phạm / thù ghét', id: 'Hinaan / kebencian', tr: 'Hakaret / nefret', pl: 'Obraza / nienawiść' }) },
+    { id: 'offensive', label: triLang(lang, { ru: 'Оскорбления / ненависть', uk: 'Образа / ненависть', en: 'Insults or hate', es: 'Insultos u odio', 'pt-BR': 'Insulto ou ódio', vi: 'Xúc phạm / thù ghét', id: 'Hinaan / kebencian', tr: 'Hakaret / nefret', pl: 'Obraza / nienawiść' }) },
     { id: 'sexual', label: triLang(lang, { ru: 'Откровенный контент', uk: 'Відвертий контент', en: 'Explicit content', es: 'Contenido sexual', 'pt-BR': 'Conteúdo explícito', vi: 'Nội dung nhạy cảm', id: 'Konten eksplisit', tr: 'Müstehcen içerik', pl: 'Treści dla dorosłych' }) },
     { id: 'spam', label: triLang(lang, { ru: 'Спам / бессмыслица', uk: 'Спам / нісенітниця', en: 'Spam or nonsense', es: 'Spam', 'pt-BR': 'Spam ou besteira', vi: 'Spam / vô nghĩa', id: 'Spam / tidak bermakna', tr: 'Spam / anlamsız', pl: 'Spam / bezsens' }) },
     { id: 'copyright', label: triLang(lang, { ru: 'Авторское право', uk: 'Авторське право', en: 'Copyright', es: 'Derechos de autor', 'pt-BR': 'Direitos autorais', vi: 'Bản quyền', id: 'Hak cipta', tr: 'Telif hakkı', pl: 'Prawa autorskie' }) },
@@ -81,8 +85,10 @@ function ReportPackModal({
   // зачем: сброс при ОТКРЫТИИ, а не при закрытии — иначе за время анимации ухода шторка мигнула бы пустой формой.
   useEffect(() => {
     if (!visible) return;
-    setSelected(null);
-    setComment('');
+    const draft = reportDrafts.get(packId);
+    setSelected(draft?.reason ?? null);
+    setComment(draft?.comment ?? '');
+    if (draft) DebugLogger.info(LOG, `черновик возвращён в форму: pack=${packId} причина=${draft.reason} комментарий=${draft.comment.length} знаков`);
     DebugLogger.info(LOG, `открыта шторка: pack=${packId} target=${String(studyTarget)} lang=${lang} автор=${authorStableId ? 'есть' : 'нет'}`);
   }, [visible, packId, studyTarget, lang, authorStableId]);
 
@@ -117,6 +123,28 @@ function ReportPackModal({
     sendInFlightRef.current = true;
     const payload = { packId, packTitle, authorStableId, studyTarget, reason: selected, comment: comment.trim() };
     const startedAt = Date.now();
+    // зачем (ревью Авторизации 13.10): лимит 30 с проверяем ДО оптимистичного «Жалоба отправлена» — иначе за успехом тут же шёл бы противоречащий тост «Подожди 30 секунд». Шторка остаётся открытой, форма цела.
+    if (!isDevCommunityPackId(packId)) {
+      let throttledNow = false;
+      try {
+        throttledNow = await isReportThrottledNow();
+      } catch (error: unknown) {
+        DebugLogger.warn(LOG, `проверка лимита не удалась (${error instanceof Error ? error.message : String(error)}) — отправляем, сервер решит`);
+      }
+      if (throttledNow) {
+        hapticError();
+        DebugLogger.warn(LOG, 'лимит 30 с по локальной отметке: отправка отложена, шторка открыта, тост «Подожди»');
+        emitAppEvent('action_toast', actionToastTri('warning', {
+          ru: 'Подожди 30 секунд перед следующей жалобой', uk: 'Зачекай 30 секунд перед наступною скаргою', en: 'Wait 30 seconds before the next report',
+          es: 'Espera 30 segundos antes de la siguiente denuncia', 'pt-BR': 'Espere 30 segundos antes da próxima denúncia',
+          vi: 'Chờ 30 giây trước báo cáo tiếp theo', id: 'Tunggu 30 detik sebelum laporan berikutnya', tr: 'Sonraki şikayetten önce 30 saniye bekle',
+          pl: 'Poczekaj 30 sekund przed kolejnym zgłoszeniem',
+        }));
+        sendInFlightRef.current = false;
+        return;
+      }
+    }
+    reportDrafts.set(packId, { reason: selected, comment });
     // зачем (координатор 13.10, кадр cards-059): на демо-наборе (packcards=on) submitPackReport не ходит в сеть — сразу путь успеха; журнал называет это прямо
     const devSkipNetwork = isDevCommunityPackId(packId);
     DebugLogger.info(LOG, `отправка: pack=${packId} причина=${selected} комментарий=${payload.comment.length} знаков target=${String(studyTarget)}${devSkipNetwork ? ' dev=skip_network' : ''}`);
@@ -129,6 +157,8 @@ function ReportPackModal({
     try {
       const r = await submitPackReport(payload);
       DebugLogger.info(LOG, `ответ: ${String(r)} за ${Date.now() - startedAt} мс`);
+      if (r === 'sent') reportDrafts.delete(packId);
+      else DebugLogger.info(LOG, `черновик сохранён для следующего открытия pack=${packId} (ответ ${String(r)})`);
       if (r === 'throttled') {
         hapticError();
         DebugLogger.warn(LOG, 'лимит 30 с: жалоба не принята, показан тост');
@@ -142,6 +172,7 @@ function ReportPackModal({
       }
       if (r === 'failed') toastError('server_returned_failed');
     } catch (error: unknown) {
+      DebugLogger.info(LOG, `черновик сохранён для следующего открытия pack=${packId} (исключение)`);
       toastError(`exception: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       sendInFlightRef.current = false;

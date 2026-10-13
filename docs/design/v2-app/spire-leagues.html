@@ -145,7 +145,7 @@ const LEAGUES = [
     w0: 206, taper: 5.0, fh: 43, gh: 56, crownH: 150,
     body: 'jade', win: 'moon', winN: 3, rows: 1, corn: 'eave', guard: 'pagoda', crown: 'pagoda', plinth: 'water', numFmt: 'arabic',
     atmos: ['fireflies', 'mist', 'cloud'],
-    pal: { sky: ['#0A1713', '#102620', '#08120F'], star: '#D9FFE9', stone: ['#0F3B2C', '#1F7A58', '#4CC498', '#2E9A74', '#176048', '#0A2A20'], corn: ['#13503B', '#59D3A6', '#2F9674', '#0B3226'], roof: ['#0F3A2D', '#3DBE92', '#1F7A5A', '#08241B'], win: { lit: '#FFD38A', past: '#5E6A3C', dark: '#06100C', glow: '#FFB04A' }, accent: '#FFB04A', halo: '#FFB04A', num: '#E4FFF2', numDim: '#4F7A68' } },
+    pal: { sky: ['#0A1713', '#102620', '#08120F'], star: '#D9FFE9', stone: ['#0F3B2C', '#1F7A58', '#4CC498', '#2E9A74', '#176048', '#0A2A20'], corn: ['#13503B', '#59D3A6', '#2F9674', '#0B3226'], roof: ['#0F3A2D', '#3DBE92', '#1F7A5A', '#08241B'], win: { lit: '#FFD38A', past: '#9C8A4C', dark: '#0C3326', glow: '#FFB04A' }, accent: '#FFB04A', halo: '#FFB04A', num: '#E4FFF2', numDim: '#4F7A68' } },
   { id: 'quartz', ru: 'Кварц', uk: 'Кварц', mat: 'прозрачно-розовый кварц, граненые призмы',
     w0: 204, taper: 4.8, fh: 44, gh: 58, crownH: 168,
     body: 'facet', facets: 5, win: 'diamond', winN: 3, rows: 1, corn: 'flare', guard: 'crystals', crown: 'crystals', plinth: 'crystal', numFmt: 'arabic',
@@ -170,7 +170,7 @@ const LEAGUES = [
     w0: 196, taper: 4.0, fh: 48, gh: 63, crownH: 196,
     body: 'iris', win: 'round', winN: 3, rows: 2, corn: 'scallop', guard: 'pearls', crown: 'pearl', plinth: 'water', numFmt: 'arabic',
     atmos: ['aurora', 'bubbles', 'stars'],
-    pal: { sky: ['#14162B', '#1F2140', '#0E1022'], star: '#FFFFFF', stone: ['#8A8FB8', '#C9CCEA', '#F6F2FF', '#E3E1F6', '#AEB0D4', '#6F7396'], corn: ['#9EA2C6', '#FFFFFF', '#CFD0EA', '#6F7396'], roof: ['#B9BCE0', '#FFFFFF', '#DCD9F2', '#7C80A6'], win: { lit: '#FFFFFF', past: '#8A8FB8', dark: '#1B1D36', glow: '#B8F0FF' }, accent: '#9DEBFF', halo: '#B8D8FF', num: '#2A2D52', numDim: '#7E82A8' } },
+    pal: { sky: ['#14162B', '#1F2140', '#0E1022'], star: '#FFFFFF', stone: ['#8A8FB8', '#C9CCEA', '#F6F2FF', '#E3E1F6', '#AEB0D4', '#6F7396'], corn: ['#9EA2C6', '#FFFFFF', '#CFD0EA', '#6F7396'], roof: ['#B9BCE0', '#FFFFFF', '#DCD9F2', '#7C80A6'], win: { lit: '#FFFFFF', past: '#B9BCDD', dark: '#6D71A0', glow: '#B8F0FF' }, accent: '#9DEBFF', halo: '#B8D8FF', num: '#2A2D52', numDim: '#7E82A8' } },
   { id: 'topaz', ru: 'Топаз', uk: 'Топаз', mat: 'золотисто-янтарный топаз, позолота, шпили-пинакли',
     w0: 194, taper: 3.9, fh: 49, gh: 65, crownH: 214,
     body: 'facet', facets: 5, win: 'arch', winN: 4, rows: 2, corn: 'gold', guard: 'balustrade', crown: 'goldspire', plinth: 'steps', numFmt: 'roman', pinnacles: true,
@@ -417,12 +417,16 @@ function crownSvg(L, p, G, o) {
       return out;
     }
     case 'geode': {
-      out = drum(); const rr = rw / 2, hh = d * 0.55; const dy = yd - 4;
-      out += `<path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}Z" fill="url(#${p}roof)"/>`;
-      L.bands.slice(0, 4).forEach((c, k) => { const s = 1 - k * 0.14; out += `<path d="M${f1(CX - rr * s)} ${f1(dy)}A${f1(rr * s)} ${f1(hh * s)} 0 0 1 ${f1(CX + rr * s)} ${f1(dy)}" stroke="${c}" stroke-width="3" fill="none" opacity=".9"/>`; });
-      const ow = rr * 0.7, oh = hh * 0.62; out += `<path d="M${f1(CX - ow)} ${f1(dy)}A${f1(ow)} ${f1(oh)} 0 0 1 ${f1(CX + ow)} ${f1(dy)}Z" fill="#1A1020"/><circle cx="${CX}" cy="${f1(dy - oh * 0.4)}" r="${f1(ow * 0.9 * glowK)}" fill="url(#${p}glow)"/>`;
-      const rd = rnd(91); for (let k = 0; k < 14; k++) { const a = -Math.PI + (k + 0.5) * (Math.PI / 14); const bx = CX + Math.cos(a) * ow * 0.85, by = dy - Math.sin(a) * oh * 0.8; const sz = 9 + rd() * 14; out += poly([[bx - 4, by + 4], [bx + Math.cos(a) * 4, by - sz * Math.sin(a) * 0.9 - 4], [bx + 4, by + 4]], k % 2 ? '#8DB8FF' : '#E8F2FF', 'opacity=".95"'); }
-      out += `<circle cx="${CX}" cy="${f1(apex - 6)}" r="9" fill="${P.accent}" opacity=".5"/>`;
+      out = drum(); const rr = rw / 2, hh = d * 0.5; const dy = yd - 4;
+      const cid = `${p}geo`;
+      out += `<clipPath id="${cid}"><path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}Z"/></clipPath>`;
+      out += `<g clip-path="url(#${cid})">`;
+      L.bands.forEach((c, k) => { const s = 1 - k * 0.15; out += `<path d="M${f1(CX - rr * s)} ${f1(dy)}A${f1(rr * s)} ${f1(hh * s)} 0 0 1 ${f1(CX + rr * s)} ${f1(dy)}Z" fill="${c}"/>`; });
+      out += `</g><path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}" stroke="rgba(0,0,0,.35)" stroke-width="1.4" fill="none"/>`;
+      out += `<circle cx="${CX}" cy="${f1(dy - hh * 0.95)}" r="${f1(60 * glowK)}" fill="url(#${p}glow)"/>`;
+      const cs = [[-34, 0.5, 14, -12], [-17, 0.78, 16, -6], [0, 1, 20, 0], [17, 0.74, 16, 6], [34, 0.46, 14, 12]];
+      cs.forEach(([ox, hk, w2, lean], k) => { const x = CX + ox; const yb2 = dy - hh * 0.9 + Math.abs(ox) * 0.16; const hgt = d * 0.5 * hk; out += poly([[x - w2 / 2, yb2], [x + lean, yb2 - hgt], [x, yb2]], k % 2 ? '#8DB8FF' : '#CFE4FF') + poly([[x, yb2], [x + lean, yb2 - hgt], [x + w2 / 2, yb2]], '#F2F8FF', 'opacity=".95"') + `<path d="M${f1(x + lean)} ${f1(yb2 - hgt)}L${f1(x)} ${f1(yb2)}" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`; });
+      out += `<circle cx="${CX}" cy="${f1(dy - hh * 0.9 - d * 0.52)}" r="3" fill="#fff"/>`;
       return out;
     }
     case 'pearl': {
@@ -605,7 +609,7 @@ function weekPhone(L, prev, o = {}) {
   const head = top ? `Ты на вершине лиги ${L.ru}` : `Ты поднимаешься в лигу ${L.ru}`;
   const sub = top ? '1 место из 30 · 128 ступеней · +300 монет' : `2 место из 30 · 96 ступеней · +200 монет · +100 за повышение`;
   const row = `<div class="row">${prev ? `<div class="old">${badgeSvg(prev, 64)}</div><div class="arr">${icon('arrowR', 's24')}</div>` : ''}${badgeSvg(L, 96)}</div>`;
-  const tower = `<div style="margin:12px auto 0;width:300px;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45);background:${L.pal.sky[1]}">${towerSvg(L, { crop: true, summit: true, myFloor: 15, mini: true })}</div>`;
+  const tower = `<div style="margin:12px auto 0;width:300px;height:430px;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45);background:${L.pal.sky[1]}">${towerSvg(L, { crop: true, summit: true, myFloor: 15, mini: true, selected: 0 })}</div>`;
   const body = `<div class="wk"><div class="k">Итог недели</div><div class="h">${head}</div><div class="p">${sub}</div>${row}</div>${tower}`;
   const dock = `<div class="dockb"><div class="cta">${top ? 'Остаться на вершине' : 'Подняться'}${icon('arrowR', 's20')}</div></div>`;
   return phone(`<div style="margin-top:6px"></div>${body}`, { fixed: dock });

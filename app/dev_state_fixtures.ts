@@ -231,6 +231,8 @@ export type DevStateRequest = Readonly<{
   spireTier?: number | 'off';
   /** Исход карточки «Итог недели» Шпиля для ПОКАЗА (макет «Итог недели»): up — повышение в Базальт, stay — остаёшься в Граните, down — понижение, top — высшая лига Алмаз, marble — Мрамор, obsidian — остаёшься в Обсидиане; off — снять (dev_spire_tier.ts). */
   spireWeek?: 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian' | 'off';
+  /** Прокрутка окна башни Пика для ПОКАЗА: top — к началу сцены (конус и навершие в кадре), off — снять (координатор 13.10, №25б). */
+  spireScroll?: 'top' | 'off';
   /** Баланс монет для ПОКАЗА (0..10 000 000) на «Монетах» и «Повысить ранг»; при подмене настоящее повышение отказывает до сервера (dev_coin_rank.ts). off — снять. */
   coins?: number | 'off';
   /** hold — тап «Повысить» держит «Проверяем повышение…», сервер не вызывается. */
@@ -411,6 +413,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else rejected.spireTier = `ожидалось 0..11 или off, пришло ${spireTierRaw}`;
   }
   request.spireWeek = pick('spireWeek', ['up', 'stay', 'down', 'top', 'marble', 'obsidian', 'off'] as const);
+  request.spireScroll = pick('spireScroll', ['top', 'off'] as const);
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -920,6 +923,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('spireWeek', request.spireWeek, async () => {
       const { setDevSpireWeekResultOverride } = await import('./dev_spire_tier');
       return setDevSpireWeekResultOverride(request.spireWeek === 'off' ? null : request.spireWeek!);
+    });
+  }
+  if (request.spireScroll !== undefined) {
+    await step('spireScroll', request.spireScroll, async () => {
+      const { setDevSpireScrollOverride } = await import('./dev_spire_tier');
+      return setDevSpireScrollOverride(request.spireScroll === 'off' ? null : 'top');
     });
   }
   if (request.coinRank !== undefined) {

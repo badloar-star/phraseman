@@ -39,6 +39,32 @@ export function getDevSpireTierOverride(): number | null {
   return devAvailable() ? override : null;
 }
 
+// ───────────────────── Прокрутка окна башни для показа ─────────────────────
+// зачем (координатор 13.10, №25б): Сверке нужен кадр верха башни (конус и навершие). `dev_state?spireScroll=top` прокручивает окно башни к началу сцены
+// вместо центровки на своём этаже; `spireScroll=off` снимает. Только память процесса; в стор-сборке геттер всегда null.
+export type DevSpireScroll = 'top';
+let scrollOverride: DevSpireScroll | null = null;
+
+/** Выставить прокрутку окна башни ('top') или снять (null). В стор-сборке — отказ с логом. */
+export function setDevSpireScrollOverride(kind: DevSpireScroll | null): boolean {
+  if (!devAvailable()) {
+    console.warn('[DEV-STATE] spireScroll: отклонено — не dev-сборка', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  if (kind !== null && kind !== 'top') {
+    console.warn('[DEV-STATE] spireScroll: отклонено — допустимо top или off', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  scrollOverride = kind;
+  console.log(kind === null ? '[DEV-STATE] spireScroll override=off' : `[DEV-STATE] spireScroll override=${kind} (окно башни прокручено к началу сцены, только показ)`);
+  return true;
+}
+
+/** Подменённая прокрутка или null. В стор-сборке всегда null. */
+export function getDevSpireScrollOverride(): DevSpireScroll | null {
+  return devAvailable() ? scrollOverride : null;
+}
+
 // ───────────────────── Итог недели для показа ─────────────────────
 export type DevSpireWeekKind = 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian';
 export const DEV_SPIRE_WEEK_KINDS: readonly DevSpireWeekKind[] = ['up', 'stay', 'down', 'top', 'marble', 'obsidian'];

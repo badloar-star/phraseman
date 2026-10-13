@@ -4,3 +4,5 @@ export function setDevSpireTierOverride(): boolean { return false; }
 export function getDevSpireTierOverride(): null { return null; }
 export function setDevSpireWeekResultOverride(): boolean { return false; }
 export function getDevSpireWeekResultOverride(): null { return null; }
+export function setDevSpireScrollOverride(): boolean { return false; }
+export function getDevSpireScrollOverride(): null { return null; }

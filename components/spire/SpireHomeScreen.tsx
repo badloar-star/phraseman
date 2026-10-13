@@ -97,6 +97,7 @@ export default function SpireHomeScreen() {
   const [towerTop, setTowerTop] = useState(0);
   const [dockTop, setDockTop] = useState(0);
   const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP);
+  useEffect(() => { if (towerTop > 0 && dockTop > 0) console.log('[SPIRE-DOCK-INSET] window', JSON.stringify({ towerTop, dockTop, dockH: roundLayout(dockH), gap: DOCK_GAP, towerWindowH, bottomPad: roundLayout(bottomPad) })); }, [towerTop, dockTop, dockH, towerWindowH, bottomPad]); // guard-ok: журнал высоты окна башни до дока
 
   useEffect(() => {
     if (preview) {

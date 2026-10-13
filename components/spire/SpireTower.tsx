@@ -16,11 +16,12 @@ import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
 import { useSpireScene } from './useSpireScene';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
-import { getDevSpireTierOverride } from '../../app/dev_spire_tier';
+import { getDevSpireScrollOverride, getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
+import { spireCrownTopY, spireWindowScrollY } from './spire_tower_crown';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
 
 const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
@@ -145,7 +146,13 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     const fl = floor === null ? SPIRE_TOWER_GEOM.floors[0] : SPIRE_TOWER_GEOM.floors[Math.min(floor, SPIRE_FLOOR_COUNT) - 1];
     const cy = (fl.y + fl.h / 2) * scale;
     const wh = windowHeightRef.current;
-    const y = Math.max(0, cy - wh / 2);
+    // зачем (координатор 13.10, №25б): на 14–15 этаже окно прижимается к верху башни, чтобы конус и навершие были видны (свой этаж при этом остаётся в окне)
+    const crownTopY = spireCrownTopY(SPIRE_TOWER_GEOM.top, scale);
+    // dev_state?spireScroll=top: к началу сцены (конус и навершие в кадре) для Сверки; в стор-сборке геттер всегда null
+    const devTop = getDevSpireScrollOverride() === 'top';
+    const y = devTop ? 0 : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop: floor !== null && floor >= SPIRE_FLOOR_COUNT - 1 });
+    const contentH = SPIRE_TOWER_GEOM.height * scale;
+    console.log('[SPIRE-DOCK-INSET] top', JSON.stringify({ why, floor, windowH: roundLayout(wh), contentTop: 0, sceneTopY: roundLayout(crownTopY), requestedY: roundLayout(y), devTop, maxScroll: roundLayout(Math.max(0, contentH - wh)), topReachable: 'да (содержимое начинается с запаса над кровлей)', floor1Bottom: roundLayout(SPIRE_TOWER_GEOM.base * scale), contentH: roundLayout(contentH), floor1Reachable: SPIRE_TOWER_GEOM.base * scale <= contentH ? 'да' : 'нет' })); // guard-ok: журнал краёв окна башни
     const needH = SPIRE_TOWER_GEOM.height * scale;
     const ready = contentHRef.current >= needH - 1;
     logSpireLayout(`scroll-req#${why}`, { floor, scale: roundLayout(scale), cy: roundLayout(cy), requestedY: roundLayout(y), contentH: roundLayout(contentHRef.current), needH: roundLayout(needH), ready: ready ? 'да' : 'нет → отложено', animated: animated ? 'да' : 'нет' });
@@ -159,7 +166,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       if (mid >= y && mid <= y + wh && list && list.length > 0) { inWindow += list.length; floorsInWindow += 1; }
     }
     console.log('[SPIRE-RIVALS] window', JSON.stringify({ why, floor, requestedY: roundLayout(y), rivalsInWindow: inWindow, floorsWithRivals: floorsInWindow, total: rivalsRef.current?.size ?? 0 })); // guard-ok: журнал окна башни
-    echoRef.current = why;
+    echoRef.current = devTop ? 'dev-top' : why;
     draggedRef.current = false; // новый запрос — прежняя ручная прокрутка не мешает
     lastReqRef.current = { y: Math.min(y, Math.max(0, needH - wh)), why }; // ожидаемое смещение — не дальше низа содержимого
     scrollRef.current?.scrollTo({ y, animated });
@@ -178,7 +185,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     const why = echoRef.current;
     if (!why) return;
     echoRef.current = null;
-    console.log('[SPIRE-SCROLL] получено', JSON.stringify({ why, gotY: roundLayout(e.nativeEvent.contentOffset.y) })); // guard-ok: итог прокрутки
+    console.log(why === 'dev-top' ? '[SPIRE-SCROLL] top' : '[SPIRE-SCROLL] получено', JSON.stringify({ why, gotY: roundLayout(e.nativeEvent.contentOffset.y) })); // guard-ok: итог прокрутки
   }, []);
 
   // окно стало выше/ниже (измерили док) — свой этаж снова по центру нового окна, без анимации

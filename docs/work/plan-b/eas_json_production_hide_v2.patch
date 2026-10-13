@@ -1,0 +1,14 @@
+diff --git a/eas.json b/eas.json
+index b578245..24ac03c 100644
+--- a/eas.json
++++ b/eas.json
+@@ -22,7 +22,8 @@
+       "env": {
+         "EXPO_PUBLIC_STORE_RELEASE": "1",
+         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+-        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
++        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true",
++        "PHRASEMAN_R1_HIDE_V2": "1"
+       }
+     },
+     "ios-account-v2-proof": {

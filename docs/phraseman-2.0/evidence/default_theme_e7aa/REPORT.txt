@@ -1,0 +1,5 @@
+исходный системный режим: Night mode: no
+light: строк [DEFAULT-THEME]/theme: 0
+dark: строк [DEFAULT-THEME]/theme: 0
+средняя яркость серии (до/после переключения): [('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_dark', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7), ('to_light', 0.7)]
+при переключении строк [DEFAULT-THEME]: 0

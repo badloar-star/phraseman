@@ -119,7 +119,8 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
         {!mine ? left : null}
       </View>
       <View style={styles.actions}>
-        {added ? <PackGhostCta g={g} grow icon="checkmark" label={copy.inMine} onPress={noop} disabled testID="fc-pack-in-mine" /> : null}
+        {/* зачем (cards-section-014 / cards-v2-016): подпись «В моих наборах» переносилась на две строки в кнопке ровно вдвое уже ряда; образец — одна строка, кнопка шире. flex 1.25 против 1 у «Тренировать» (на узком экране перенос остаётся допустим — кнопка растёт по высоте). */}
+        {added ? <PackGhostCta g={g} grow icon="checkmark" label={copy.inMine} onPress={noop} disabled testID="fc-pack-in-mine" style={{ flex: 1.25 }} /> : null}
         {onTrain ? <PackCta g={g} grow icon="play" label={copy.train} onPress={onTrain} testID="fc-pack-train" /> : null}
         {mine ? left : null}
       </View>

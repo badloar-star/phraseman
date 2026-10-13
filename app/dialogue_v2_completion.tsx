@@ -14,6 +14,7 @@ import { readDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_stor
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useDialogueV2CoinReward } from '../hooks/useDialogueV2CoinReward';
 import {
   DialogueGlassBackButton,
   DialogueGlassCta,
@@ -224,6 +225,19 @@ export default function DialogueV2CompletionRoute() {
   const turns = Math.max(outcome?.learnerTurns ?? learnerTurns, mistakes);
   const correct = Math.max(0, turns - mistakes);
   const accuracy = turns > 0 ? Math.round((correct / turns) * 100) : 0;
+  // зачем (владелец 13.10 «Да, как в макете», dialogs.html D1–D4): монеты за диалог — +30 без ошибок, +25 с ошибками, +10 при
+  // ручном завершении; один раз на сессию, тем же путём, что за уроки. Начисляем, когда итог решён (готов или недоступен) и
+  // была хотя бы одна реплика. Блок «+N монет» рисует Дизайн по dialogCoinReward.coins.
+  const dialogCoinReward = useDialogueV2CoinReward({
+    sessionId: sessionId ?? null,
+    ready: state.kind !== 'loading' && turns > 0,
+    endedBy,
+    mistakes,
+  });
+  useEffect(() => {
+    if (dialogCoinReward.status === 'waiting') return;
+    console.log(`[COINS-EARN] dialog: экран итога статус=${dialogCoinReward.status} монеты=+${dialogCoinReward.coins}`); // guard-ok: итог для экрана
+  }, [dialogCoinReward.coins, dialogCoinReward.status]);
   // зачем (E9): локальные цифры есть, как только известны реплики (разбор ходов или параметр маршрута) — показываем сразу, не ждём ответ сервера
   const showLocalStats = outcome !== null || learnerTurns > 0;
   // число целей сцены известно из каталога (подписи целей) — скелет повторяет высоту будущего списка; нет подписей — три строки

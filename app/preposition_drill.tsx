@@ -25,6 +25,7 @@ import ClozeGapText from '../components/ClozeGapText';
 import { useAudio } from '../hooks/use-audio';
 import fk from './feedback/feedback_kit';
 import V2DoneScreen, { type V2DoneError } from '../components/completion/V2DoneScreen';
+import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { pluralWord } from '../constants/plural';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getLessonPrepositionPack } from './lesson_prepositions';
@@ -125,6 +126,25 @@ function PrepositionDrillScreen() {
   const total = activeItems.length;
   const done = total > 0 && itemIdx >= total;
   const accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+  // зачем (владелец 13.10 «Начислять»): тренажёр предлогов всегда давал +0. Монеты — как за урок той же длины: +3 за верный
+  // ответ, +1 на повторном проходе; зачёт одной серверной распиской на итоге (тот же usePracticeRunes, что у уроков и глаголов).
+  const prepositionRunes = usePracticeRunes({
+    activity: 'lesson',
+    sessionKey: `prep_${studyTarget}_${lessonId}`,
+    completionOrdinal: 1,
+    enabled: lessonId > 0 && Boolean(pack),
+  });
+  const prepositionSettledPassRef = useRef(false);
+  useEffect(() => {
+    if (!done || prepositionRunes.hydrating || prepositionSettledPassRef.current) return;
+    prepositionSettledPassRef.current = true;
+    console.log(`[COINS-EARN] prep: итог урок=${lessonId} верно=${correctCount}/${total} монеты=+${prepositionRunes.runes} → зачёт`); // guard-ok: итог
+    void prepositionRunes.settle().catch((error: unknown) => {
+      console.warn('[COINS-EARN] prep: зачёт не прошёл — копилка повторит при следующем запуске', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачёт один раз на проход; монеты печатаются как снимок
+  }, [done, prepositionRunes.hydrating]);
 
   // ── Энергия: 1 ⚡ только за доступное начатое упражнение ────────────────
   const { energyReady } = useEnergy();
@@ -312,6 +332,8 @@ function PrepositionDrillScreen() {
     if (ok) {
       fk.verdict({ correct: true });
       setCorrectCount(v => v + 1);
+      const coins = prepositionRunes.onCorrectAnswer(item.id);
+      console.log(`[COINS-EARN] prep: верно урок=${lessonId} item=${item.id} +${coins} (${coins === 0 ? 'уже засчитан в этом проходе' : 'в копилку'})`); // guard-ok: начисление
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = reviewMode ? wrongIds.filter(id => id !== item.id) : wrongIds;
       setAnsweredIds(nextAnswered);
@@ -338,7 +360,16 @@ function PrepositionDrillScreen() {
     setItemIdx(v => v + 1);
   };
 
+  // зачем (монеты): новый проход после итога — цена повтора (+1); засчитанные элементы прошлого прохода не платят дважды.
+  const startNextCoinPass = () => {
+    if (!prepositionSettledPassRef.current) return;
+    const started = prepositionRunes.startNewCompletionIfSettled();
+    console.log(`[COINS-EARN] prep: новый проход урок=${lessonId} ${started ? 'начат (цена повтора)' : 'отложен — прошлый зачёт ещё идёт'}`); // guard-ok: ветка
+    if (started) prepositionSettledPassRef.current = false;
+  };
+
   const restartWrong = () => {
+    startNextCoinPass();
     stopAudio();
     setReviewMode(true);
     setItemIdx(0);
@@ -349,6 +380,7 @@ function PrepositionDrillScreen() {
   };
 
   const restartAll = () => {
+    startNextCoinPass();
     stopAudio();
     setReviewMode(false);
     setItemIdx(0);
@@ -605,7 +637,7 @@ function PrepositionDrillScreen() {
             // зачем (владелец 01.10): итог предлогов = общий экран завершения 2.0 по макету learn.html.
             <V2DoneScreen
               testID="preposition-drill-complete"
-              title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practised', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
+              title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practiced', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
               subtitle={triLang(lang, {
                 ru: `Тренажёр предлогов · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'вызов', few: 'вызова', many: 'вызовов' })}`,
                 uk: `Тренажер прийменників · Урок ${lessonId} · ${total} ${pluralWord(lang, total, { one: 'завдання', few: 'завдання', many: 'завдань' })}`,
@@ -620,7 +652,7 @@ function PrepositionDrillScreen() {
               stars={null}
               correct={total > 0 ? correctCount : null}
               wrong={total > 0 ? Math.max(0, total - correctCount) : null}
-              coinsGained={0}
+              coinsGained={prepositionRunes.runes}
               errors={runErrorsRef.current}
               primaryLabel={wrongIds.length > 0 && !reviewMode
                 ? triLang(lang, { ru: 'Закрепить промахи', uk: 'Закріпити промахи', en: 'Fix mistakes', es: 'Repasar fallos', 'pt-BR': 'Corrigir erros', vi: 'Sửa lỗi', id: 'Perbaiki kesalahan', tr: 'Hataları düzelt', pl: 'Popraw błędy' })

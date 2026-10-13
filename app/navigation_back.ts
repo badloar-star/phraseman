@@ -74,6 +74,7 @@ const SECTION_ROOTS: ReadonlyMap<string, NavigationSection> = new Map([
   ['/(tabs)/settings', 'settings'],
 
   ['/streak_stats', 'stats'],
+  ['/year_activity', 'stats'], // зачем (737f2a192): «Активность за год» открывается из «Серии и статистики» — тот же раздел, back возвращает туда
 ]);
 
 // Порталы открываются из нескольких разделов и наследуют владельца точки входа.

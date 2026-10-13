@@ -2,6 +2,7 @@
 
 Governance-ID: TG-E7D9B4C1817D
 Governance-ID: TG-ECE99C855ACA
+Governance-ID: TG-DFB94E18C58B
 Status: в работе
 Owner: сессия «4 · ТЕМЫ 2.0» (поручение координатора от владельца; пункты 2–3 забраны у Дизайна)
 

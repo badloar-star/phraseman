@@ -168,3 +168,9 @@ add('onboarding-028', ['tap:#language-welcome-primary', 'wait:500', 'tap:#langua
                        'tap:#language-welcome-primary', 'wait:500'], '', LW, note='шаг «Уровень» (цель «каждый день» выбрана)')
 # «Новый язык выбран» без настоящего включения языка: devStep=done (только dev), язык гостя не меняется. «Начать учить» не жать.
 add('onboarding-029', ['wait:600'], '', LW + '&devStep=done', note='«Новый язык выбран · Английский · План под тебя готов…» (devStep=done, без сохранений)')
+
+# зачем (координатор 13.10, overlays-campaigns-013): промокод «Неверный формат» — состояние в приложении есть с 93c22d44c (п.81(13)): кнопка активна при любом
+# непустом коде, формат проверяется по нажатию ДО сети. `AB` — 2 знака < 3 (PROMO_CODE_FORMAT) → плашка «Проверь код», сеть не вызывается.
+# Строка попадёт в DEV_LINKS_R1, когда реестр переведёт её из blocked в pending (генератор берёт только pending/diff/match).
+add('overlays-campaigns-013', ['tap:#promo-code-input', 'type:AB', 'hidekb', 'tap:#promo-code-submit', 'wait:600'], 'plus=off&energy=3', '/promo_code_entry',
+    note='промокод: неверный формат (2 знака) — «Проверь код», без сети')

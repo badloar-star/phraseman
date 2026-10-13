@@ -117,7 +117,7 @@
 | `tests/learning_v2_activity_post_terminal_card_catalog_v1.test.ts` | 3 | learning_v2_post_terminal_card_meanings_invalid | давний |
 | `tests/learning_v2_activity_released_session_submission_spool_v2.test.ts` | 2 | learning_v2_activity_released_session_submission_invalid | давний |
 | `tests/learning_v2_all_ready_tasks_runtime_audit.test.ts` | 1 | assert.strictEqual(received, expected) — Received: | давний |
-| `tests/learning_v2_authored_sessions_reach_the_player.test.ts` | 2 | expect(received).toBe(expected) // Object.is equality — Expected: 14 / Received: 13 | давний |
+| `tests/learning_v2_authored_sessions_reach_the_player.test.ts` | 2 | expect(received).toBe(expected) // Object.is equality — Expected: 14 / Received: 13 | давний, вне R1 (только превью), не регрессия 13.10 — разбор 130488c8a, задача PM-293 (после R1, владелец LV2) |
 | `tests/learning_v2_bootstrap_audio_seed_v1.test.ts` | 2 | expect(jest.fn()).toHaveBeenCalledWith(...expected) — Expected: [101] | давний |
 | `tests/learning_v2_chapters_contract.test.mjs` | 1 | # AssertionError [ERR_ASSERTION]: the active chapter view must retain a locally selected lesson | давний |
 | `tests/learning_v2_content_quality_gate_wiring.test.ts` | 1 | expect(received).toContain(expected) // indexOf — Expected substring: "LEARNING_V2_CONTENT_QUALITY_REVIEW_RECEIPTS_V1" / Received string: "// зачем: недостающее звено между авторским текстом и приложе | давний |

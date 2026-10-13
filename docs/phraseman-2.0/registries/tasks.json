@@ -16057,5 +16057,53 @@
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
+  },
+  {
+    "id": "PM-293",
+    "epic": "E15",
+    "title": "Learning V2 (старый английский путь authored_sessions_v1): немые catch в computePlayableShard → лог причины; сессия 14 не проходит валидатор рантайма (zone/support)",
+    "requirement_ids": [
+      "R156"
+    ],
+    "basis": "LATER",
+    "stage": "LATER",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/work/tasks/lv2-authored-ceiling-red-2026-10-13.md",
+    "acceptance": [
+      {
+        "id": "PM-293-A1",
+        "text": "Оба catch в computePlayableShard (modules/learning-v2/content/source/authored_sessions_v1.ts) пишут причину отказа (стадия build/validate + сообщение), один раз на сессию",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-293-A2",
+        "text": "Решение по сессии 14: валидатор не пересчитывает хореографию из 20-карточного word-first для mode-native шардов с ≠20 карточками, либо путь архивируется вместе со старой системой; храповик MIN_PLAYABLE_SESSIONS_RATCHET не опускать",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-13 после R1, владелец зоны Learning V2 (Codex). Разбор Авторизации: 130488c8a (давний красный, не регрессия 13.10; английский путь только для превью, в рантайме R1 не используется). Решение координатора 13.10 ~18:15: вариант (б)."
+    ],
+    "actual_cost": null,
+    "kind": null,
+    "review_verdict": null,
+    "gate_evidence": null,
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

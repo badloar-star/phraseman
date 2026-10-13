@@ -77,3 +77,14 @@ for _rid in ('cards-v2-037', 'cards-section-046'):
 # Проверено и НЕ менялось (ссылка и шаги уже верны, кадр в пересклейке «старый»): cards-041 (#fc-pack-menu на экране набора), cards-gap-011 и cards-v2-027
 # (тап #fc-cards-hub-train + пауза), cards-v2-046 (ввод Layover), cards-v2-026 (cards=empty + hidekb), dialogs-gap-016 (hidekb), cards-v2-044 (fail=catalog_load).
 # spire-gap-019 — шторка правил на кадре закрыта; причина без журнала [SPIRE-RULES] не установлена, нужна пересъёмка с журналом.
+
+# spire-004/005/014/015 (Макеты 847b8151c): ссылка превью Шпиля не несла tier/floor, поэтому кадр снимался на умолчаниях «Нефрит · этаж 7». Образец — «Гранит, этаж 4».
+for _rid in ('spire-004', 'spire-005', 'spire-014', 'spire-015'):
+    _spire_row = _entry(_rid)
+    if 'tier=' not in _spire_row['link']:
+        _spire_row['link'] = _spire_row['link'] + '%26tier=0%26floor=4'
+
+# cards-081: на кадре панель ввода ОС (⌫, поиск, смайл) после type:zzzqq — прячем клавиатуру перед кадром.
+_c81 = _entry('cards-081')
+if _c81['steps'][-2:] != ['hidekb', 'wait:400']:
+    _c81['steps'] = _c81['steps'] + ['hidekb', 'wait:400']

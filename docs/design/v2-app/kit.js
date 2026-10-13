@@ -41,7 +41,7 @@
     trend: '<path d="M3.5 16.5l6-6 4 4 7-7.5"/><path d="M15 7h5.5v5.5"/>',
     thumb: '<path d="M7.5 10.5V20H4.5v-9.5z"/><path d="M7.5 10.5l3.5-6.5c1.4 0 2.4 1.2 2.1 2.6l-.6 3.4h5.3a2 2 0 012 2.3l-1.1 6a2 2 0 01-2 1.7H7.5"/>',
     flame: '<path d="M12 21c-3.6 0-6.5-2.6-6.5-6.3 0-3.3 2.3-5 3.3-7.7.6 1.6 1.6 2.6 2.7 3.1C11.4 7 12.8 4.6 15 3c-.2 3 3.5 5.4 3.5 11.2C18.5 18 15.6 21 12 21z"/>',
-    wifiOff: '<path d="M2.5 8.5a14 14 0 0119 0M5.5 12a9.5 9.5 0 0113 0M8.8 15.4a5 5 0 016.4 0"/><path d="M12 19h.01" stroke-width="2.6"/><path d="M3.5 3.5l17 17"/>',
+    wifiOff: '<path d="M7 18.5h9.5a4 4 0 00.9-7.9 5.5 5.5 0 00-10.4-1.2A4.6 4.6 0 007 18.5z"/><path d="M3.5 3.5l17 17"/>',
     user: '<circle cx="12" cy="9" r="4" fill="currentColor" stroke="none"/><path d="M4.5 20c.8-3.8 3.8-6 7.5-6s6.7 2.2 7.5 6z" fill="currentColor" stroke="none"/>',
   };
   const icon = (n, cls = '') => `<svg class="i ${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[n] || ''}</svg>`;

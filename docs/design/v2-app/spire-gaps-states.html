@@ -58,7 +58,8 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 .sg-all.off { opacity: .5; }
 
 /* ---------- нижняя зона: кнопка и затухание ---------- */
-.sg-bp { position: absolute; left: 20px; right: 20px; bottom: 40px; z-index: 20; }
+/* зачем (координатор 13.10, spire-gap-007/014/015): нижняя плашка в приложении стоит на 78 dp от низа — над панелью вкладок, которой нет в образцах состояний */
+.sg-bp { position: absolute; left: 20px; right: 20px; bottom: 78px; z-index: 20; }
 .sg-bp.sc::before { content: ""; position: absolute; left: -20px; right: -20px; top: -40px; bottom: -40px; background: linear-gradient(180deg, rgba(12,13,16,0), rgba(12,13,16,.96) 32%, #0C0D10); z-index: -1; pointer-events: none; }
 /* зачем: причина старта (SpireClimbDock:67-71) — строка над кнопкой, без красного */
 .sg-dnote { font-size: 13px; line-height: 18px; color: var(--sec); text-align: center; margin-bottom: 10px; }
@@ -134,7 +135,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 <body>
 <div class="page">
   <h1 class="page-h1">Шпиль — недостающие состояния</h1>
-  <p class="page-lead">Что есть в коде components/spire/**, но не нарисовано в spire.html: шесть видов заданий ступени, сбой старта, экран «откроется позже», три провала, три исхода недели, правила, «Готовим ступень…», флажок жалобы и «бета». Раскладка и башня — из spire.html, подача — в стиле «Тень». Тексты — русская ветка кода, примеры заданий и цифры условные.</p>
+  <p class="page-lead">В приложении снизу панель вкладок: нижняя плашка («Подняться», результат, ошибка) поднята над ней на 78 dp, на образцах панели нет. Что есть в коде components/spire/**, но не нарисовано в spire.html: шесть видов заданий ступени, сбой старта, экран «откроется позже», три провала, три исхода недели, правила, «Готовим ступень…», флажок жалобы и «бета». Раскладка и башня — из spire.html, подача — в стиле «Тень». Тексты — русская ветка кода, примеры заданий и цифры условные.</p>
   <nav class="page-nav"><a href="#tasks">Задания</a><a href="#start">Старт не удался</a><a href="#locked">Откроется позже</a><a href="#fails">Провалы</a><a href="#week">Итог недели</a><a href="#rules">Правила</a><a href="#misc">Мелочи</a></nav>
   <div id="root"></div>
 </div>

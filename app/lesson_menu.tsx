@@ -1309,7 +1309,7 @@ function LessonMenu() {
               glass={lessonMenuGlass}
               icon="settings-outline"
               testID="lesson-menu-settings"
-              accessibilityLabel={triLang(lang, { ru: 'Настройки обучения', uk: 'Налаштування навчання', en: 'Learning settings', es: 'Ajustes de aprendizaje', 'pt-BR': 'Configurações de estudo', vi: 'Cài đặt học', id: 'Pengaturan belajar', tr: 'Öğrenme ayarları', pl: 'Ustawienia nauki' })}
+              accessibilityLabel={triLang(lang, { ru: 'Настройки обучения', uk: 'Параметри навчання', en: 'Learning settings', es: 'Ajustes de aprendizaje', 'pt-BR': 'Configurações de estudo', vi: 'Cài đặt học', id: 'Pengaturan belajar', tr: 'Öğrenme ayarları', pl: 'Ustawienia nauki' })}
               onPress={() => { hapticTap(); router.push('/settings_edu'); }}
             />
             </View>

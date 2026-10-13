@@ -314,7 +314,7 @@ export default function SettingsEdu() {
       sub: L({
         // зачем: раздела «Внешний вид и отклик» больше нет — называем сам переключатель «Тактильный отклик» (он в Настройках, группа «Обучение»).
         ru: 'Работает при включённом тактильном отклике (Настройки → «Тактильный отклик»)',
-        uk: 'Працює за увімкненого тактильного відгуку (Налаштування → «Тактильний відгук»)',
+        uk: 'Працює за увімкненого тактильного відгуку (Параметри → «Тактильний відгук»)',
         en: 'Works when haptic feedback is enabled (Settings → “Haptic feedback”)',
         es: 'Requiere la respuesta háptica activa (Ajustes → «Respuesta háptica»)',
         'pt-BR': 'Requer a resposta tátil ativa (Configurações → “Resposta tátil”)',

@@ -939,7 +939,7 @@ export default function SettingsMain() {
           <Text accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
             {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): заголовок 40 пт рядом с монетой 44 — на телефоне
                 360 dp под слово остаётся ≈264 пт, «Configurações» (282) рвалось посреди слова. Те же слова, что у вкладки внизу ((tabs)/_layout.tsx). */}
-            {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Ajustes', 'Cài đặt', 'Setelan', 'Ayarlar', 'Ustawienia')}
+            {L('Настройки', 'Параметри', 'Settings', 'Ajustes', 'Ajustes', 'Cài đặt', 'Setelan', 'Ayarlar', 'Ustawienia')}
           </Text>
           <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
             {renderRankCoin('settings-header-coin', 44)}
@@ -1032,7 +1032,7 @@ export default function SettingsMain() {
             glass={glass}
             testID="settings-edu-row"
             icon="book-outline"
-            title={L('Настройки обучения', 'Налаштування навчання', 'Learning settings', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
+            title={L('Настройки обучения', 'Параметри навчання', 'Learning settings', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}
             onPress={() => router.push('/settings_edu')}
           />
           {/* зачем: экран расширился с расписания напоминаний до полноценного раздела
@@ -1594,7 +1594,7 @@ export default function SettingsMain() {
                             onPress: () => { void runAccountSwitchAttempt(); },
                           },
                           {
-                            text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                            text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Yine de değiştir', 'Zmień bez zapisywania'),
                             style: 'destructive',
                             onPress: () => { void runForcedAccountSwitchWithoutSavingNow(); },
                           },
@@ -1639,7 +1639,7 @@ export default function SettingsMain() {
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Yine de değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
@@ -1678,7 +1678,7 @@ export default function SettingsMain() {
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Yine de değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },
@@ -1709,7 +1709,7 @@ export default function SettingsMain() {
                           style: 'cancel',
                         },
                         {
-                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Switch without saving', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Yine de değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
                           onPress: runForcedAccountSwitchWithoutSaving,
                         },

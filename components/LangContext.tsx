@@ -155,7 +155,7 @@ const RU = {
 const UK: typeof RU = {
   tabs: {
     home: 'Головна', lessons: 'Уроки', flashcards: 'Картки',
-    settings: 'Налаштування',
+    settings: 'Параметри',
   },
   home: {
     greeting: (n: string) => `${n}`,
@@ -200,18 +200,18 @@ const UK: typeof RU = {
     backHome: 'На головну',
   },
   settings: {
-    title: 'Налаштування', profile: 'Профіль',
+    title: 'Параметри', profile: 'Профіль',
     name: 'Ім\'я / нікнейм', nameSub: (n: string) => n || 'Не вказано',
     lang: 'Мова інтерфейсу', appearance: 'Зовнішній вигляд',
     theme: 'Тема', themeDark: 'Темна', themeLight: 'Світла',
-    learning: 'Навчання', learnSet: 'Налаштування навчання',
+    learning: 'Навчання', learnSet: 'Параметри навчання',
     help: 'Допомога',
     premium: 'Plus', premiumSub: 'Уроки, ліміти й практика — за підпискою',
     changeName: 'Змінити ім\'я', cancel: 'Скасувати', save: 'Зберегти',
     nameError: 'Введи ім\'я', namePlaceholder: 'Введи ім\'я...',
   },
   edu: {
-    title: 'Налаштування навчання',
+    title: 'Параметри навчання',
     autoCheck: 'Автоперевірка', autoCheckSub: 'Перевіряти при наборі останнього слова',
     autoAdvance: 'Автоперехід після відповіді', autoAdvanceSub: 'Автоматично переходити при правильній відповіді',
     hardMode: 'Введення з клавіатури', hardModeSub: 'Вводити речення вручну',

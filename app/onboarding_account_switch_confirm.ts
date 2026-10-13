@@ -172,7 +172,7 @@ const FORCEABLE_SWITCH_REASONS: ReadonlySet<string> = new Set(['sync_failed', 'p
 export const ONBOARDING_SWITCH_SYNC_DEADLINE_MS = 3000;
 
 const STAY_LABEL = { ru: 'Остаться здесь', uk: 'Залишитися тут', en: 'Stay here', es: 'Quedarme aquí', 'pt-BR': 'Ficar aqui', vi: 'Ở lại đây', id: 'Tetap di sini', tr: 'Burada kal', pl: 'Zostań tutaj' } as const;
-const FORCE_LABEL = { ru: 'Сменить без сохранения', uk: 'Змінити без збереження', en: 'Switch without saving', es: 'Cambiar sin guardar', 'pt-BR': 'Trocar sem salvar', vi: 'Đổi mà không lưu', id: 'Ganti tanpa menyimpan', tr: 'Kaydetmeden değiştir', pl: 'Zmień bez zapisywania' } as const;
+const FORCE_LABEL = { ru: 'Сменить без сохранения', uk: 'Змінити без збереження', en: 'Switch without saving', es: 'Cambiar sin guardar', 'pt-BR': 'Trocar sem salvar', vi: 'Đổi mà không lưu', id: 'Ganti tanpa menyimpan', tr: 'Yine de değiştir', pl: 'Zmień bez zapisywania' } as const;
 
 function forcedSwitchTitle(lang: Lang, reason: string): string {
   if (reason === 'sync_failed') {

@@ -160,7 +160,7 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
         <View style={styles.actionContent}>
           <Ionicons name="settings-outline" size={18} color={glass.text} />
           <Text style={[styles.secondaryActionText, { color: glass.text }]}>
-            {triLang(lang, { ru: 'Настройки приватности', uk: 'Налаштування конфіденційності', en: 'Privacy settings', es: 'Ajustes de privacidad', 'pt-BR': 'Ajustes de privacidade', vi: 'Cài đặt quyền riêng tư', id: 'Pengaturan privasi', tr: 'Gizlilik ayarları', pl: 'Ustawienia prywatności' })}
+            {triLang(lang, { ru: 'Настройки приватности', uk: 'Параметри конфіденційності', en: 'Privacy settings', es: 'Ajustes de privacidad', 'pt-BR': 'Ajustes de privacidade', vi: 'Cài đặt quyền riêng tư', id: 'Pengaturan privasi', tr: 'Gizlilik ayarları', pl: 'Ustawienia prywatności' })}
           </Text>
         </View>
       </TouchableOpacity>

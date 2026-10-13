@@ -289,7 +289,7 @@ export const T = {
   },
   uk: {
     tabLessons:   'Уроки',
-    tabSettings:  'Налаштування',
+    tabSettings:  'Параметри',
 
     lessonN:      (n: number) => `Урок ${n}`,
     locked:       'Недоступно',
@@ -323,8 +323,8 @@ export const T = {
     allLearned:   'Всі слова вивчено!',
     wordsInLesson:(n: number) => `${n} слів у цьому уроці`,
 
-    settings:       'Налаштування',
-    learningSettings:'Налаштування навчання',
+    settings:       'Параметри',
+    learningSettings:'Параметри навчання',
     autoCheck:      'Автоперевірка',
     autoCheckSub:   'Перевіряти при наборі останнього слова',
     voiceOut:       'Озвучити відповідь',

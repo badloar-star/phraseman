@@ -30,7 +30,7 @@ export function localProgressBackupBlockedCopy(lang: Lang): LocalProgressBackupB
     }),
     body: triLang(lang, {
       ru: 'Сначала переключись на него в Настройках, чтобы ничего не потерять.',
-      uk: 'Спочатку перемкнися на нього в Налаштуваннях, щоб нічого не втратити.',
+      uk: 'Спочатку перемкнися на нього в Параметрах, щоб нічого не втратити.',
       en: 'Switch to that account in Settings first so nothing gets lost.',
       es: 'Primero cambia a esa cuenta en Ajustes para no perder nada.',
       'pt-BR': 'Primeiro troque para essa conta em Ajustes para não perder nada.',

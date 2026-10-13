@@ -1470,7 +1470,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       settings: triLang(lang, {
         ru: 'Настройки',
         en: 'Settings',
-        uk: 'Налаштування',
+        uk: 'Параметри',
         es: 'Ajustes',
         'pt-BR': "Configurações",
         vi: "Cài đặt",

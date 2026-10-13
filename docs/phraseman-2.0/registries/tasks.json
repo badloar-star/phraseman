@@ -6574,7 +6574,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -6583,17 +6583,18 @@
       {
         "id": "PM-114-A1",
         "text": "Переход не вызывает скачки позиции, перерисовку всех строк или внезапное скрытие действий",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (устройство + «Дизайн»): компактная строка → карточка с плеером меняет высоту строки в FlashList «Все видео» (app/lingman_videos.tsx:436, compact={compact && video.id !== activeVideoId}); renderItem замыкает activeVideoId без extraData — перерисовка/скачок проверяются только на телефоне с замером; правка экрана — зона «Дизайн»"
+          "2026-10-13 (Дизайн): компактной строки и раскрытия плеера в строке в коде больше нет — после редизайна 11.10 «Все видео» — сетка в две колонки одной геометрии (app/lingman_videos.tsx renderHomeVideo → YoutubeVideoGridCard), тап открывает экран ролика, встроенный плеер только вместо шапки-премьеры 16:9; renderHomeVideo не зависит от activeVideoId",
+          "tests/video_grid_row_height_stable.test.ts 4/4, коммит a8c2d2717"
         ]
       },
       {
         "id": "PM-114-A2",
         "text": "необязательная анимация обсуждена",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (владелец/«Дизайн»): анимация перехода компактной строки не обсуждалась, решения в 03_DECISIONS.md нет; spec VIDEO.md допускает компактность без сложной анимации layout"
+          "D178 (COORDINATOR 2026-10-13, docs/phraseman-2.0/03_DECISIONS.md): анимацию раскрытия строки не делаем, R1; spec VIDEO.md допускает компактность без сложной анимации layout"
         ]
       }
     ],
@@ -6608,7 +6609,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-13 сверка Дизайна: A1 закрыт сторожем (прыжка высоты строки в коде нет), A2 — решением координатора D178. Ждёт ревью."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6784,7 +6787,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6802,9 +6805,10 @@
       {
         "id": "PM-118-A2",
         "text": "уход с экрана освобождает плеер и возвращает аудиофокус TTS",
-        "accepted": false,
+        "accepted": true,
         "evidence": [
-          "NOT_MET (устройство): освобождение плеера есть — неактивный YoutubeInlinePlayer возвращает null (WebView размонтирован, components/youtube/YoutubeInlinePlayer.tsx:184), Главная снимает плеер при уходе (ownerActive), тест ea70142c4; возврат аудиофокуса TTS после закрытия WebView кодом не делается (нет вызова setManagedAudioMode в плеере) и проверяется только на iPhone/Android: включить ролик → закрыть → озвучка карточки"
+          "Код: закрытие плеера возвращает режим звука приложения (components/youtube/YoutubeInlinePlayer.tsx: cleanup-эффект setManagedAudioMode(UI_SFX_AUDIO_MODE), журнал \"[VIDEO-PLAYER] закрыт — возвращаю режим звука приложения\"), снимает аренду звука и keep-awake; коммит 8613677d6 (01.10). Сторож tests/video_player_lifecycle_contract.test.ts 4/4, коммит 5d8cc73ac",
+          "Решение координатора 13.10: закрыть по коду + журналу [VIDEO-PLAYER]; проверка на слух «ролик → закрыть → озвучка карточки» — DEVICE_CHECKLIST_R1_AFTER_BUILD.md п.13 (владелец на устройстве)"
         ]
       }
     ],
@@ -6819,7 +6823,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-13 сверка Дизайна: запись «нет вызова setManagedAudioMode в плеере» устарела (есть с 8613677d6). Слух — п.13 чек-листа устройства. Ждёт ревью."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -10734,13 +10740,19 @@
         "id": "PM-190-A1",
         "text": "Суммарные данные не смешивают обучение разных языков без метки",
         "accepted": false,
-        "evidence": []
+        "evidence": [
+          "PM-121-A3 f21997ff5: «За всё время» считает все языки раздельно (byTarget), экран подписывает сумму «по всем языкам» (app/streak_stats.tsx:1028). 13.10 найден и исправлен пробел: app/lesson1.tsx писал выученные фразы без языка (ключ по умолчанию en) — теперь studyTargetRef.current, коммит e05e107c8; сторож tests/stats_bump_calls_carry_study_target.test.ts 4/4",
+          "Старые накопленные значения es/fr/de/it в английском ключе не правим — D179 (после R1, миграция только по решению владельца)",
+          "NOT_MET до кадра: подпись «по всем языкам» на экране «За всё время» — кадр statsall-001 в пачке Сверки (ожидается)"
+        ]
       },
       {
         "id": "PM-190-A2",
         "text": "нет двойного счёта одной сессии",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "Контракт по коду (tests/stats_bump_calls_carry_study_target.test.ts 4/4, коммит e05e107c8): учёт идёт один раз на событие — фраза только при переходе в «выучено» (!wasLearned), слово при завершении слова (wordJustCompleted), урок при завершении, карточка при сохранении"
+        ]
       }
     ],
     "depends_on": [],
@@ -10754,7 +10766,9 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": [
+      "2026-10-13 сверка Дизайна: A2 принят по контракту; A1 ждёт кадра метки языка (Сверка, statsall-001), найден и исправлен учёт фраз без языка (e05e107c8)."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

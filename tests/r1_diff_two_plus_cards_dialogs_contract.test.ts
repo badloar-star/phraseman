@@ -24,7 +24,8 @@ describe('R1_DIFF_ONE_FIX: cards* и dialogs* (два и более пункта
 
   it('dialogs-gap-010 / dialogs-gap-003: экран-гейт стоит сверху (макет .gate margin-top 150), а не по центру; замок Plus заливной', () => {
     const kit = read('components/dialogs/glass/DialogueGlassKit.tsx');
-    expect(kit).toContain("gateBody: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 194,");
+    // 194 (= 150 + шапка 44) считал шапку «назад» дважды — она отдельный блок над телом; замер dialogs-033: значок на 296 dp при 246 в образце → верно 150 (b807e552d, tests/dialogs_gate_top_offset_contract)
+    expect(kit).toContain("gateBody: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 150,");
     expect(read('app/dialogue_v2_freeform.tsx')).toContain('icon="lock-closed" //');
   });
 

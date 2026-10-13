@@ -34,10 +34,12 @@ export function DialogueV2PlusTools({
       title: triLang(lang, {
         ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation',
         es: 'Conversación libre', fr: 'Conversation libre', de: 'Freies Gespräch',
+        'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Obrolan bebas', tr: 'Serbest sohbet', pl: 'Swobodna rozmowa',
       }),
       subtitle: triLang(lang, {
         ru: 'Практика без сценария', uk: 'Практика без сценарію', en: 'Practice without a scenario',
         es: 'Práctica sin escenario', fr: 'Pratique sans scénario', de: 'Üben ohne Szenario',
+        'pt-BR': 'Prática sem roteiro', vi: 'Luyện tập không theo kịch bản', id: 'Latihan tanpa skenario', tr: 'Senaryosuz pratik', pl: 'Ćwiczenie bez scenariusza',
       }),
       onPress: onOpenFreeform,
     },
@@ -62,6 +64,7 @@ export function DialogueV2PlusTools({
               es: 'Disponible con Plus. Abre la pantalla de Plus.',
               fr: 'Disponible avec Plus. Ouvre l’écran Plus.',
               de: 'Mit Plus verfügbar. Öffnet den Plus-Bildschirm.',
+              'pt-BR': 'Disponível no Plus. Abre a tela do Plus.', vi: 'Có trong Plus. Mở màn hình Plus.', id: 'Tersedia di Plus. Membuka layar Plus.', tr: 'Plus ile kullanılabilir. Plus ekranını açar.', pl: 'Dostępne w Plus. Otwiera ekran Plus.',
             })
             : row.subtitle}
           accessibilityState={{ disabled: !accessResolved }}

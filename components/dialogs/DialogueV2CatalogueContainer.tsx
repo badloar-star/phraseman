@@ -55,15 +55,19 @@ function dialogueV2WorldHeadings(lang: ReturnType<typeof useLang>['lang']): read
   return Object.freeze([
     Object.freeze({ id: 'social', title: fromUi('social', triLang(lang, {
       ru: 'Общение', uk: 'Спілкування', en: 'Social', es: 'Social', fr: 'Social', de: 'Soziales',
+      'pt-BR': 'Social', vi: 'Giao tiếp', id: 'Sosial', tr: 'Sosyal', pl: 'Towarzyskie',
     })) }),
     Object.freeze({ id: 'work', title: fromUi('work', triLang(lang, {
       ru: 'Дела', uk: 'Справи', en: 'Work', es: 'Trabajo', fr: 'Travail', de: 'Arbeit',
+      'pt-BR': 'Trabalho', vi: 'Công việc', id: 'Kerja', tr: 'İş', pl: 'Praca',
     })) }),
     Object.freeze({ id: 'travel', title: fromUi('travel', triLang(lang, {
       ru: 'Поездки', uk: 'Подорожі', en: 'Travel', es: 'Viajes', fr: 'Voyages', de: 'Reisen',
+      'pt-BR': 'Viagens', vi: 'Du lịch', id: 'Perjalanan', tr: 'Seyahat', pl: 'Podróże',
     })) }),
     Object.freeze({ id: 'everyday', title: fromUi('everyday', triLang(lang, {
       ru: 'Каждый день', uk: 'Щодня', en: 'Everyday', es: 'Día a día', fr: 'Quotidien', de: 'Alltag',
+      'pt-BR': 'Dia a dia', vi: 'Hằng ngày', id: 'Sehari-hari', tr: 'Günlük', pl: 'Na co dzień',
     })) }),
   ]);
 }

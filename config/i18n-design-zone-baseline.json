@@ -1,7 +1,7 @@
 {
   "totals": {
     "literals": 1321,
-    "incomplete": 56
+    "incomplete": 9
   },
   "files": {
     "app/(tabs)/friends.tsx": {
@@ -78,11 +78,11 @@
     },
     "app/community_pack_create.tsx": {
       "literals": 0,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/community_packs/PackCommentsSheet.tsx": {
       "literals": 0,
-      "incomplete": 4
+      "incomplete": 0
     },
     "app/community_packs/packCommentsFirestore.ts": {
       "literals": 2,
@@ -110,7 +110,7 @@
     },
     "app/dialogue_v2_memory.tsx": {
       "literals": 0,
-      "incomplete": 21
+      "incomplete": 0
     },
     "app/dialogue_v2_memory_client.ts": {
       "literals": 3,
@@ -146,19 +146,19 @@
     },
     "app/flashcards/FlashcardsHubScreen.tsx": {
       "literals": 0,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/flashcards/PackVideoHero.tsx": {
       "literals": 0,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/flashcards/VideoPackRow.tsx": {
       "literals": 0,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/flashcards/VideoSetView.tsx": {
       "literals": 0,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/flashcards/VideoThumb.tsx": {
       "literals": 1,
@@ -190,7 +190,7 @@
     },
     "app/flashcards/useCollectionData.ts": {
       "literals": 0,
-      "incomplete": 5
+      "incomplete": 0
     },
     "app/flashcards/voice_display_name.ts": {
       "literals": 4,
@@ -198,11 +198,11 @@
     },
     "app/flashcards_card_editor.tsx": {
       "literals": 0,
-      "incomplete": 4
+      "incomplete": 0
     },
     "app/flashcards_collection.tsx": {
       "literals": 1,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/flashcards_my_packs.tsx": {
       "literals": 1,
@@ -502,11 +502,11 @@
     },
     "components/dialogs/DialogueV2CatalogueContainer.tsx": {
       "literals": 0,
-      "incomplete": 4
+      "incomplete": 0
     },
     "components/dialogs/DialogueV2PlusTools.tsx": {
       "literals": 0,
-      "incomplete": 3
+      "incomplete": 0
     },
     "components/dialogs/glass/useDialogInputLayoutTrace.ts": {
       "literals": 2,

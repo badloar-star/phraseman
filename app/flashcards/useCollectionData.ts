@@ -839,6 +839,7 @@ export function applyPostLoadNavigation(
         ru: 'Открыт купленный DEV-набор в карточках.',
         uk: 'Відкрито придбаний DEV-набір у картках.',
         es: 'Pack DEV comprado abierto en Tarjetas.', en: 'Purchased DEV pack opened in Cards.',
+        'pt-BR': 'Pacote DEV comprado aberto em Cartões.', vi: 'Đã mở bộ thẻ DEV đã mua trong Thẻ.', id: 'Paket DEV yang dibeli dibuka di Kartu.', tr: 'Satın alınan DEV paketi Kartlar\'da açıldı.', pl: 'Otwarto kupiony zestaw DEV w Fiszkach.',
       }),
     );
   } else if (!rc && progress) {
@@ -908,6 +909,7 @@ export function usePackDeeplinkGuard(args: {
           ru: 'Набор ещё не открыт. Его можно открыть за монеты в магазине (вкладка с наборами карточек).',
           uk: 'Набір ще не відкрито. Його можна відкрити за монети в магазині (вкладка з наборами карток).',
           es: 'Aún no has desbloqueado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).', en: 'This pack isn\'t unlocked yet. You can unlock it with coins in the shop (the card packs tab).',
+          'pt-BR': 'Este pacote ainda não está desbloqueado. Você pode desbloqueá-lo com moedas na loja (aba de pacotes de cartões).', vi: 'Bộ thẻ này chưa được mở khóa. Bạn có thể mở bằng xu trong cửa hàng (mục bộ thẻ).', id: 'Paket ini belum terbuka. Kamu bisa membukanya dengan koin di toko (tab paket kartu).', tr: 'Bu paket henüz açılmadı. Mağazada madeni parayla açabilirsin (kart paketleri sekmesi).', pl: 'Ten zestaw nie jest jeszcze odblokowany. Możesz go odblokować za monety w sklepie (zakładka zestawów fiszek).',
         }),
       );
       onDeniedRef.current('not_owned');
@@ -1026,6 +1028,7 @@ export function useCollectionDeletion(args: {
           ru: 'Не удалось удалить карточку.',
           uk: 'Не вдалося видалити картку.',
           es: 'No se pudo eliminar la tarjeta.', en: 'Could not delete the card.',
+          'pt-BR': 'Não foi possível excluir o cartão.', vi: 'Không xóa được thẻ.', id: 'Kartu tidak bisa dihapus.', tr: 'Kart silinemedi.', pl: 'Nie udało się usunąć fiszki.',
         }),
       );
     } finally {
@@ -1088,6 +1091,7 @@ export function useCollectionDeletion(args: {
           ru: 'Не удалось удалить выбранные карточки.',
           uk: 'Не вдалося видалити вибрані картки.',
           es: 'No se pudieron eliminar las tarjetas seleccionadas.', en: 'Could not delete the selected cards.',
+          'pt-BR': 'Não foi possível excluir os cartões selecionados.', vi: 'Không xóa được các thẻ đã chọn.', id: 'Kartu yang dipilih tidak bisa dihapus.', tr: 'Seçilen kartlar silinemedi.', pl: 'Nie udało się usunąć wybranych fiszek.',
         }),
       );
       return false;
@@ -1163,6 +1167,7 @@ export function useCollectionDeletion(args: {
           ru: 'Не удалось вернуть карточку.',
           uk: 'Не вдалося повернути картку.',
           es: 'No se pudo restaurar la tarjeta.', en: 'Could not restore the card.',
+          'pt-BR': 'Não foi possível restaurar o cartão.', vi: 'Không khôi phục được thẻ.', id: 'Kartu tidak bisa dipulihkan.', tr: 'Kart geri yüklenemedi.', pl: 'Nie udało się przywrócić fiszki.',
         }),
       );
     }

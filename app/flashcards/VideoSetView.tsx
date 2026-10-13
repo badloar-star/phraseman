@@ -91,6 +91,7 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.', en: 'This video isn\'t opening right now. The pack\'s cards are available as usual.',
+    'pt-BR': 'O vídeo não abre agora. Os cartões do pacote continuam disponíveis.', vi: 'Video hiện không mở được. Các thẻ trong bộ thẻ vẫn dùng bình thường.', id: 'Video tidak bisa dibuka sekarang. Kartu dalam paket tetap tersedia seperti biasa.', tr: 'Video şu anda açılmıyor. Paketteki kartlar her zamanki gibi kullanılabilir.', pl: 'Film nie otwiera się teraz. Fiszki z zestawu są dostępne jak zwykle.',
   }), []);
 
   return (

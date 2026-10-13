@@ -947,7 +947,7 @@ export default function FlashcardsScreen() {
       router.push({ pathname: '/community_pack_create', params: { fresh: '1', stage: stageKey, origin: 'saved' } } as never);
     } catch (error: unknown) {
       console.warn('[OPT-UI] pack_from_selection rollback reason=stage_failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
-      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.' }));
+      emitAppEvent('action_toast', actionToastTri('error', { ru: 'Не удалось открыть редактор. Выбор сохранён, попробуй ещё раз.', uk: 'Не вдалося відкрити редактор. Спробуй ще раз.', en: 'Could not open the editor. Try again.', es: 'No se pudo abrir el editor. Inténtalo de nuevo.', 'pt-BR': 'Não foi possível abrir o editor. Tente de novo.', vi: 'Không mở được trình chỉnh sửa. Hãy thử lại.', id: 'Editor tidak bisa dibuka. Coba lagi.', tr: 'Düzenleyici açılamadı. Tekrar dene.', pl: 'Nie udało się otworzyć edytora. Spróbuj ponownie.' }));
     } finally {
       selectionCreateLockRef.current = false;
       setSelectionCreateBusy(false);

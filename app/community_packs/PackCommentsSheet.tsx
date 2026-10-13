@@ -581,6 +581,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       hapticError();
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось сохранить реакцию. Попробуй ещё раз.', uk: 'Не вдалося зберегти реакцію. Спробуй ще раз.', en: "Couldn't save the reaction. Try again.", es: 'No se pudo guardar la reacción. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível salvar a reação. Tente de novo.', vi: 'Không lưu được phản ứng. Hãy thử lại.', id: 'Reaksi tidak tersimpan. Coba lagi.', tr: 'Tepki kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać reakcji. Spróbuj ponownie.',
       }));
     });
   }, [myUserId, packId]);
@@ -608,6 +609,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         hapticError();
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Не удалось скрыть отклик. Попробуй ещё раз.', uk: 'Не вдалося приховати відгук. Спробуй ще раз.', en: "Couldn't hide the comment. Try again.", es: 'No se pudo ocultar el comentario. Inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível ocultar o comentário. Tente de novo.', vi: 'Không ẩn được bình luận. Hãy thử lại.', id: 'Komentar tidak bisa disembunyikan. Coba lagi.', tr: 'Yorum gizlenemedi. Tekrar dene.', pl: 'Nie udało się ukryć komentarza. Spróbuj ponownie.',
         }));
       }
       // зачем НЕ шлём community_pack_comments_changed (аудит 2026-09-17): скрытие
@@ -633,6 +635,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         hapticError();
         emitAppEvent('action_toast', actionToastTri('error', {
           ru: 'Не удалось удалить отклик. Попробуй ещё раз.', uk: 'Не вдалося видалити відгук. Спробуй ще раз.', en: "Couldn't delete the comment. Try again.", es: 'No se pudo eliminar el comentario. Inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível excluir o comentário. Tente de novo.', vi: 'Không xóa được bình luận. Hãy thử lại.', id: 'Komentar tidak bisa dihapus. Coba lagi.', tr: 'Yorum silinemedi. Tekrar dene.', pl: 'Nie udało się usunąć komentarza. Spróbuj ponownie.',
         }));
       }
     })();
@@ -656,6 +659,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
       hapticError();
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось изменить закрепление. Попробуй ещё раз.', uk: 'Не вдалося змінити закріплення. Спробуй ще раз.', en: "Couldn't change the pin. Try again.", es: 'No se pudo cambiar el anclaje. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível alterar a fixação. Tente de novo.', vi: 'Không đổi được trạng thái ghim. Hãy thử lại.', id: 'Sematan tidak bisa diubah. Coba lagi.', tr: 'Sabitleme değiştirilemedi. Tekrar dene.', pl: 'Nie udało się zmienić przypięcia. Spróbuj ponownie.',
       }));
     });
   }, [packId]);

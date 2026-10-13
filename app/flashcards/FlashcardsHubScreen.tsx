@@ -297,6 +297,7 @@ export default function FlashcardsHubScreen() {
     countUnavailable: triLang(lang, {
       ru: 'Количество ещё не известно', uk: 'Кількість ще невідома', en: 'Count not yet available',
       es: 'Cantidad aún no disponible',
+      'pt-BR': 'Quantidade ainda indisponível', vi: 'Chưa rõ số lượng', id: 'Jumlah belum tersedia', tr: 'Sayı henüz belli değil', pl: 'Liczba jeszcze nieznana',
     }),
     bestSegment: triLang(lang, {
       ru: 'Лучшее', uk: 'Найкраще', en: 'Best', es: 'Mejor', 'pt-BR': 'Melhores',

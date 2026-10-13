@@ -926,6 +926,7 @@ export default function CommunityPackCreateScreen() {
             uk: 'Набір збережено на пристрої. Для публікації натисни «Зберегти» ще раз після підключення.',
             en: 'Saved on this device. Publication is pending — save again when connected.',
             es: 'Guardado en este dispositivo. Vuelve a guardar con conexión para publicarlo.',
+            'pt-BR': 'Salvo neste dispositivo. A publicação está pendente — salve de novo quando estiver conectado.', vi: 'Đã lưu trên thiết bị này. Chưa xuất bản xong — hãy lưu lại khi có kết nối.', id: 'Tersimpan di perangkat ini. Publikasi belum selesai — simpan lagi saat terhubung.', tr: 'Bu cihaza kaydedildi. Yayın tamamlanmadı — bağlanınca tekrar kaydet.', pl: 'Zapisano na tym urządzeniu. Publikacja nie została zakończona — zapisz ponownie po połączeniu.',
           }));
           return;
         }

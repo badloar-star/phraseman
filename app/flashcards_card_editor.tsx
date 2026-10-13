@@ -478,6 +478,7 @@ export default function FlashcardsCardEditorScreen() {
           emitAppEvent('action_toast', actionToastTri('error', {
             ru: 'Карточка сохранена, но в набор не добавилась.', uk: 'Картку збережено, але до набору не додано.', es: 'La tarjeta se guardó, pero no se añadió al set.',
             en: 'The card was saved but not added to the pack.',
+            'pt-BR': 'O cartão foi salvo, mas não foi adicionado ao pacote.', vi: 'Thẻ đã được lưu nhưng chưa được thêm vào bộ thẻ.', id: 'Kartu tersimpan, tetapi tidak ditambahkan ke paket.', tr: 'Kart kaydedildi ama pakete eklenmedi.', pl: 'Fiszka została zapisana, ale nie trafiła do zestawu.',
           }));
         }
       }
@@ -492,6 +493,7 @@ export default function FlashcardsCardEditorScreen() {
           ru: isEdit ? 'Карточка обновлена.' : 'Карточка сохранена.',
           uk: isEdit ? 'Картку оновлено.' : 'Картку збережено.',
           es: isEdit ? 'Tarjeta actualizada.' : 'Tarjeta guardada.', en: isEdit ? 'Card updated.' : 'Card saved.',
+          'pt-BR': isEdit ? 'Cartão atualizado.' : 'Cartão salvo.', vi: isEdit ? 'Đã cập nhật thẻ.' : 'Đã lưu thẻ.', id: isEdit ? 'Kartu diperbarui.' : 'Kartu tersimpan.', tr: isEdit ? 'Kart güncellendi.' : 'Kart kaydedildi.', pl: isEdit ? 'Fiszka zaktualizowana.' : 'Fiszka zapisana.',
         }),
       );
       leaveEditorAfterSave();
@@ -510,6 +512,7 @@ export default function FlashcardsCardEditorScreen() {
         console.log('[OPT-UI] card_editor save refused by plus card limit'); // guard-ok: ранний выход пишет причину
         emitAppEvent('action_toast', actionToastTri('info', {
           ru: 'Достигнут лимит своих карточек. Удали ненужные, чтобы добавить новые.', uk: 'Досягнуто ліміт власних карток. Видали непотрібні, щоб додати нові.', en: 'You have reached the limit of your own cards. Delete some to add new ones.', es: 'Has alcanzado el límite de tarjetas propias. Elimina algunas para añadir nuevas.',
+          'pt-BR': 'Você atingiu o limite de cartões próprios. Exclua alguns para adicionar novos.', vi: 'Bạn đã đạt giới hạn thẻ của riêng mình. Hãy xóa bớt để thêm thẻ mới.', id: 'Kamu sudah mencapai batas kartu sendiri. Hapus beberapa untuk menambah yang baru.', tr: 'Kendi kartlarının sınırına ulaştın. Yenilerini eklemek için bazılarını sil.', pl: 'Osiągnięto limit własnych fiszek. Usuń niepotrzebne, aby dodać nowe.',
         }));
         return;
       }
@@ -520,6 +523,7 @@ export default function FlashcardsCardEditorScreen() {
             ru: 'Не удалось сохранить карточку.',
             uk: 'Не вдалося зберегти картку.',
             es: 'No se pudo guardar la tarjeta.', en: 'Could not save the card.',
+            'pt-BR': 'Não foi possível salvar o cartão.', vi: 'Không lưu được thẻ.', id: 'Kartu tidak bisa disimpan.', tr: 'Kart kaydedilemedi.', pl: 'Nie udało się zapisać fiszki.',
           }),
           // зачем (макет cards.html «Не удалось сохранить»): повтор в один тап,
           // черновик не теряется — форма остаётся на месте.

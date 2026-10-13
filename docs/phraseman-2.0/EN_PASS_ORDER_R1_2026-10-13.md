@@ -81,8 +81,8 @@
 
 | № | id | экран | ссылка | тапы | на что смотреть |
 |---|---|---|---|---|---|
-| 31 | settings-gap-028 | Настройки · Уведомления — окно выбора времени | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&robot_no_cloud=1&overlays=off&uiLang=en&enStudyPrompt=off&next=/settings_notifications` | tap:#notif-master-switch; wait:500; tap:#notif-daily-switch; wait:500; tap:#notif-time-label; wait:700 | окно выбора времени напоминания |
-| 32 | system-015 | Сообщения · Входящие — пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en&enStudyPrompt=off&next=/(tabs)/home` | scroll:up; wait:400; wait:1500; tap:#home-notification-center-button; await:#notification-center-screen; wait:600 | входящие (пусто): заголовок, пустое состояние |
+| 31 | settings-gap-028 | Настройки · Уведомления — окно выбора времени | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&robot_no_cloud=1&reminderTime=20:00&overlays=off&uiLang=en&enStudyPrompt=off&next=/settings_notifications` | tap:#notif-master-switch; wait:500; tap:#notif-daily-switch; wait:500; tap:#notif-time-label; wait:700 | окно выбора времени напоминания |
+| 32 | system-015 | Сообщения · Входящие — пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&inbox=empty&overlays=off&uiLang=en&enStudyPrompt=off&next=/(tabs)/home` | scroll:up; wait:400; wait:1500; tap:#home-notification-center-button; await:#notification-center-screen; wait:600 | входящие (пусто): заголовок, пустое состояние |
 
 ## Выбор языка изучения D164 (единственный кадр БЕЗ enStudyPrompt=off)
 

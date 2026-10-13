@@ -245,6 +245,9 @@ firebase deploy --only hosting:knowlywww --project phraseman-ea0b3
 ## 7. После релиза
 
 1. Снять `PARITY_GATE_WAIVER`, если задавали.
+1а. **Монеты спинов окна 17.10 → выход (владелец 13.10):** на 2–3 аккаунтах, игравших в 1.6.24 в это окно, после обновления до 2.0 — журнал
+   `[COIN-RECONCILE]` (`scan … missing=… foundTotal=… status=…`): спины окна дозачислены (`foundTotal` ≈ «только на телефоне»), статус не
+   `over_cap_review`. Если спинов окна в `level_spin_results` нет — сообщить Ядру (`R1_RUNBOOK_13_16_OCT.md` §3б, первая строка).
 2. После того как минимальная версия станет ≥ 2.0 — удалить старые облачные функции из
    [DEPLOY_NOW.md](DEPLOY_NOW.md), шаг 2: `friendsTogetherClaimLevel`, `videoWatchRunesClaim`, 14 функций без кода.
    **По одной**, с проверкой логов за 7 дней.

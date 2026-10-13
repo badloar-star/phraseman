@@ -80,6 +80,19 @@ interface Props {
   homeCardVisible?: boolean;
 }
 
+/**
+ * testID варианта ответа для робота Сверки (energy-modes-014): верный — daily-phrase-option-correct, неверные — daily-phrase-option-wrong-N
+ * (N — порядок среди неверных). Верность — той же функцией, что проверяет ответ. Вид и поведение не меняет.
+ */
+function dailyPhraseOptionTestId(options: Parameters<typeof isDailyPhraseQuestAnswerCorrect>[0], index: number): string {
+  if (isDailyPhraseQuestAnswerCorrect(options, options[index].id)) return 'daily-phrase-option-correct';
+  let wrongBefore = 0;
+  for (let i = 0; i < index; i += 1) {
+    if (!isDailyPhraseQuestAnswerCorrect(options, options[i].id)) wrongBefore += 1;
+  }
+  return `daily-phrase-option-wrong-${wrongBefore}`;
+}
+
 function DailyPhraseCard({
   userLevel: _userLevel,
   variant = 'default',
@@ -939,6 +952,7 @@ function DailyPhraseCard({
                     {questOptions.map((option, optionIndex) => (
                         <Pressable
                           key={option.id}
+                          testID={dailyPhraseOptionTestId(questOptions, optionIndex)}
                           onPress={() => handleQuestOptionPress(option.id)}
                           accessibilityRole="button"
                           accessibilityLabel={`${optionIndex + 1}. ${option.text}`}

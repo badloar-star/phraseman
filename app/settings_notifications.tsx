@@ -420,7 +420,7 @@ export default function SettingsNotifications() {
   const sectionMore = L({ ru:'ЕЩЁ', uk:'ЩЕ', en:'MORE', es:'MÁS', 'pt-BR':'MAIS', vi:'KHÁC', id:'LAINNYA', tr:'DİĞER', pl:'WIĘCEJ' });
   // «Вместе»: пуш «Позвал(а)» от друга — отдельная категория (владелец, 2026-08-16).
   // зачем: паритет profile.html PRF-04 (13.10) — Шпиль в первом выпуске, его пуши можно выключить отдельно.
-  const spireLabel = L({ ru:'События Шпиля', uk:'Події Шпиля', en:'Spire events', es:'Eventos de la Aguja', 'pt-BR':'Eventos da Torre', vi:'Sự kiện Tháp', id:'Acara Menara', tr:'Kule etkinlikleri', pl:'Wydarzenia Wieży' });
+  const spireLabel = L({ ru:'События Пика', uk:'Події Піка', en:'Peak events', es:'Eventos del Pico', 'pt-BR':'Eventos do Pico', vi:'Sự kiện Đỉnh', id:'Acara Puncak', tr:'Zirve etkinlikleri', pl:'Wydarzenia Szczytu' });
   const friendsLabel = L({ ru:'Друзья', uk:'Друзі', en:'Friends', es:'Amigos', 'pt-BR':'Amigos', vi:'Bạn bè', id:'Teman', tr:'Arkadaşlar', pl:'Znajomi' });
   const offersLabel = L({ ru:'Скидки и предложения', uk:'Знижки та пропозиції', en:'Discounts and offers', es:'Descuentos y ofertas', 'pt-BR':'Descontos e ofertas', vi:'Giảm giá và ưu đãi', id:'Diskon dan penawaran', tr:'İndirimler ve teklifler', pl:'Zniżki i oferty' });
   const savedLabel = L({ ru:'Сохранено', uk:'Збережено', en:'Saved', es:'Guardado', 'pt-BR':'Salvo', vi:'Đã lưu', id:'Tersimpan', tr:'Kaydedildi', pl:'Zapisano' });

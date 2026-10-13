@@ -10,7 +10,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 
 const S = {
-  title: ['Шпиль', 'Шпиль', 'Spire', 'Aguja', 'Torre', 'Tháp', 'Menara', 'Kule', 'Wieża'],
+  title: ['Пик', 'Пік', 'Peak', 'Pico', 'Pico', 'Đỉnh', 'Puncak', 'Zirve', 'Szczyt'], // зачем (владелец 13.10): «Шпиль» переименован в «Пик»
   untilEnd: ['до конца недели', 'до кінця тижня', 'until the week ends', 'hasta el fin de semana', 'até o fim da semana', 'đến hết tuần', 'sampai akhir minggu', 'haftanın sonuna', 'do końca tygodnia'],
   dayUnit: ['д', 'д', 'd', 'd', 'd', 'ngày', 'hr', 'gün', 'd'],
   hourUnit: ['ч', 'год', 'h', 'h', 'h', 'giờ', 'jam', 'sa', 'godz'],
@@ -27,7 +27,7 @@ const S = {
   youHere: ['Ты здесь', 'Ти тут', 'You are here', 'Estás aquí', 'Você está aqui', 'Bạn ở đây', 'Kamu di sini', 'Buradasın', 'Jesteś tutaj'],
   outOf: ['из', 'з', 'of', 'de', 'de', 'trên', 'dari', '/', 'z'],
   passed: ['Пройден', 'Пройдено', 'Cleared', 'Superado', 'Concluído', 'Đã qua', 'Selesai', 'Geçildi', 'Ukończone'],
-  lockedTitle: ['Шпиль откроется чуть позже', 'Шпиль відкриється трохи пізніше', 'The Spire opens a little later', 'La Aguja se abrirá un poco más tarde', 'A Torre abrirá um pouco mais tarde', 'Tháp sẽ mở muộn hơn một chút', 'Menara akan dibuka sedikit lebih lama', 'Kule biraz daha geç açılacak', 'Wieża otworzy się nieco później'],
+  lockedTitle: ['Пик откроется чуть позже', 'Пік відкриється трохи пізніше', 'The Peak opens a little later', 'El Pico se abrirá un poco más tarde', 'O Pico abrirá um pouco mais tarde', 'Đỉnh sẽ mở muộn hơn một chút', 'Puncak akan dibuka sedikit lebih lama', 'Zirve biraz daha geç açılacak', 'Szczyt otworzy się nieco później'],
   zoneUp: ['Зона повышения', 'Зона підвищення', 'Promotion zone', 'Zona de ascenso', 'Zona de subida', 'Vùng thăng hạng', 'Zona naik', 'Yükselme bölgesi', 'Strefa awansu'],
   zoneStay: ['Остаются', 'Залишаються', 'Stay', 'Se quedan', 'Permanecem', 'Ở lại', 'Bertahan', 'Kalanlar', 'Zostają'],
   zoneDown: ['Зона понижения', 'Зона пониження', 'Demotion zone', 'Zona de descenso', 'Zona de descida', 'Vùng xuống hạng', 'Zona turun', 'Düşme bölgesi', 'Strefa spadku'],

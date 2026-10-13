@@ -34,9 +34,9 @@ export function SpireTaskReportButton({
       variant="icon-flag"
       // зачем (аудит 11.10): подпись для скринридера на языке интерфейса и под именем раздела «Шпиль», а не «Spire» по-русски
       accessibilityLabel={triLang(lang, {
-        ru: 'Сообщить об ошибке в задании Шпиля', uk: 'Повідомити про помилку в завданні Шпиля', en: 'Report a mistake in this Spire task',
-        es: 'Informar de un error en esta tarea de la Aguja', 'pt-BR': 'Relatar um erro nesta tarefa da Torre', vi: 'Báo lỗi trong nhiệm vụ Tháp này',
-        id: 'Laporkan kesalahan di tugas Menara ini', tr: 'Bu Kule görevindeki hatayı bildir', pl: 'Zgłoś błąd w tym zadaniu Wieży',
+        ru: 'Сообщить об ошибке в задании Пика', uk: 'Повідомити про помилку в завданні Піка', en: 'Report a mistake in this Peak task',
+        es: 'Informar de un error en esta tarea del Pico', 'pt-BR': 'Relatar um erro nesta tarefa do Pico', vi: 'Báo lỗi trong nhiệm vụ Đỉnh này',
+        id: 'Laporkan kesalahan di tugas Puncak ini', tr: 'Bu Zirve görevindeki hatayı bildir', pl: 'Zgłoś błąd w tym zadaniu Szczytu',
       })}
       testID={testID}
       submitOverride={async ({ comment }) => {

@@ -84,9 +84,9 @@ export function energyActivityTitle(activity: EnergyActivityKey, lang: Lang): st
       });
     case 'spire_step':
       return triLang(lang, {
-        ru: 'ступени Шпиля', uk: 'сходинки Шпиля', en: 'a Spire step', es: 'un escalón de la Aguja',
-        'pt-BR': 'um degrau da Torre', vi: 'một bậc Tháp', id: 'satu anak tangga Menara',
-        tr: 'bir Kule basamağı', pl: 'stopnia Wieży',
+        ru: 'ступени Пика', uk: 'сходинки Піка', en: 'a Peak step', es: 'un escalón del Pico',
+        'pt-BR': 'um degrau do Pico', vi: 'một bậc Đỉnh', id: 'satu anak tangga Puncak',
+        tr: 'bir Zirve basamağı', pl: 'stopnia Szczytu',
       });
     case 'theory':
       return triLang(lang, {

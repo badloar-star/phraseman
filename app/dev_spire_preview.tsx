@@ -115,7 +115,7 @@ function Inner() {
         </ScreenGradient>
       )}
       {showDot ? (
-        <Pressable testID="dev-spire-panel-dot" onPress={() => setDotOpen((v) => !v)} accessibilityRole="button" accessibilityLabel="DEV: состояния Шпиля" hitSlop={12} style={s.dot} />
+        <Pressable testID="dev-spire-panel-dot" onPress={() => setDotOpen((v) => !v)} accessibilityRole="button" accessibilityLabel="DEV: состояния Пика" hitSlop={12} style={s.dot} />
       ) : null}
       {showStrip ? (
         <View style={s.selector} pointerEvents="box-none">

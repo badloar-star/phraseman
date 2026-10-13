@@ -2093,7 +2093,7 @@ const DEV_MESSAGE_TITLE: DevCampaignText = {
   en: "What's new in Phraseman",
 };
 const DEV_MESSAGE_BODY: DevCampaignText = {
-  ru: 'Мы добавили Шпиль и обновили Карточки. Загляни и расскажи, как тебе.', uk: 'Ми додали Шпиль і оновили Картки. Зазирни та розкажи, як тобі.',
+  ru: 'Мы добавили Пик и обновили Карточки. Загляни и расскажи, как тебе.', uk: 'Ми додали Пік і оновили Картки. Зазирни та розкажи, як тобі.',
   // зачем (владелец 11.10): Шпиль в первом выпуске только для интерфейса ru/uk — остальным о нём не рассказываем.
   es: 'Renovamos las Tarjetas. Échales un vistazo.', ptBr: 'Renovamos os Cartões. Dê uma olhada.',
   vi: 'Chúng tôi đã làm mới Thẻ. Hãy xem thử.', id: 'Kami memperbarui Kartu. Coba lihat.',

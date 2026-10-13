@@ -45,7 +45,7 @@ function copyFor(kind: TodayTaskKindCore, lang: Lang): { title: string; subtitle
     case 'mistakes':
       return { title: triLang(lang, { ru: 'Исправить ошибки', uk: 'Виправити помилки', en: 'Fix your mistakes', es: 'Corrige tus errores', 'pt-BR': 'Corrija seus erros', vi: 'Sửa lỗi của bạn', id: 'Perbaiki kesalahan', tr: 'Hatalarını düzelt', pl: 'Popraw błędy' }) };
     case 'spire_steps':
-      return { title: triLang(lang, { ru: 'Пройти ступени Шпиля', uk: 'Пройти сходинки Шпиля', en: 'Climb Spire steps', es: 'Sube escalones de la Aguja', 'pt-BR': 'Suba degraus da Torre', vi: 'Leo bậc Tháp', id: 'Naiki anak tangga Menara', tr: 'Kule basamaklarını çık', pl: 'Pokonaj stopnie Wieży' }) };
+      return { title: triLang(lang, { ru: 'Пройти ступени Пика', uk: 'Пройти сходинки Піка', en: 'Climb Peak steps', es: 'Sube escalones del Pico', 'pt-BR': 'Suba degraus do Pico', vi: 'Leo bậc Đỉnh', id: 'Naiki anak tangga Puncak', tr: 'Zirve basamaklarını çık', pl: 'Pokonaj stopnie Szczytu' }) };
     default: {
       const exhaustive: never = kind;
       return { title: String(exhaustive) };

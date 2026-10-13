@@ -450,15 +450,15 @@ export const DEV_TOOL_SECTIONS = [
   {
     id: 'spire-preview',
     order: 33,
-    title: 'Шпиль',
+    title: 'Пик',
     icon: 'rocket-outline',
     testID: 'dev-hub-section-spire-preview',
     tools: [
       {
         id: 'spire-preview-open',
         order: 10,
-        title: 'Шпиль на моках',
-        detail: 'Хаб, комната, итоги ступени, пустое и офлайн, ступень с заданиями — без сервера и без включения Шпиля. Внизу полоса переключения состояний.',
+        title: 'Пик на моках',
+        detail: 'Хаб, комната, итоги ступени, пустое и офлайн, ступень с заданиями — без сервера и без включения Пика. Внизу полоса переключения состояний.',
         actionLabel: 'Открыть',
         action: 'open-spire-preview',
         icon: 'map-outline',
@@ -470,7 +470,7 @@ export const DEV_TOOL_SECTIONS = [
         id: 'spire-refresh-remote-gates',
         order: 20,
         title: 'Обновить рубильники сейчас',
-        detail: 'Перечитать remote_config и config/spire_v1 с сервера, минуя кэш 6 ч. Вкладка «Шпиль» появится без перезапуска.',
+        detail: 'Перечитать remote_config и config/spire_v1 с сервера, минуя кэш 6 ч. Вкладка «Пик» появится без перезапуска.',
         actionLabel: 'Обновить',
         action: 'refresh-remote-gates',
         icon: 'rocket-outline',

@@ -87,7 +87,7 @@ export default function CommunityTabRoute() {
   }, [spireVisible, section]);
 
   const segments = useMemo<readonly { key: Section; label: string }[]>(() => [
-    ...(spireVisible ? [{ key: 'spire' as const, label: triLang(lang, { ru: 'Шпиль', uk: 'Шпиль', en: 'Spire', es: 'Aguja', 'pt-BR': 'Torre', vi: 'Tháp', id: 'Menara', tr: 'Kule', pl: 'Wieża' }) }] : []),
+    ...(spireVisible ? [{ key: 'spire' as const, label: triLang(lang, { ru: 'Пик', uk: 'Пік', en: 'Peak', es: 'Pico', 'pt-BR': 'Pico', vi: 'Đỉnh', id: 'Puncak', tr: 'Zirve', pl: 'Szczyt' }) }] : []),
     // зачем: паритет с макетом community.html COM-01 — порядок «Шпиль · Друзья · Наборы».
     { key: 'friends', label: triLang(lang, { ru: 'Друзья', uk: 'Друзі', en: 'Friends', es: 'Amigos', 'pt-BR': 'Amigos', vi: 'Bạn bè', id: 'Teman', tr: 'Arkadaşlar', pl: 'Znajomi' }) },
     { key: 'packs', label: triLang(lang, { ru: 'Наборы', uk: 'Набори', en: 'Packs', es: 'Packs', 'pt-BR': 'Pacotes', vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy' }) },

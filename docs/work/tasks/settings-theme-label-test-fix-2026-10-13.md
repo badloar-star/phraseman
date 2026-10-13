@@ -36,3 +36,4 @@ Contain: сторож-тест со списком допустимых вхож
 
 git revert коммита с правками строк; боевая логика не менялась.
 Governance-ID: TG-C28D4E87F4C8
+Governance-ID: TG-C792A77BABDB

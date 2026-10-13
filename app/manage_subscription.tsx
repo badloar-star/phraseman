@@ -68,7 +68,7 @@ import {
 } from './manage_subscription_purchase';
 import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
 import { peekHomeScreenHydration } from './home_screen_hydration';
-import { getDevSaveOfferProgress } from './dev_save_offer_progress';
+import { DEV_SAVE_OFFER_PROGRESS, getDevSaveOfferProgress, takeDevSaveOfferOpen } from './dev_save_offer_progress';
 import { isDevRestorePurchaseEmpty } from './dev_paywall_state';
 import {
   resolveSaveOffer,
@@ -93,8 +93,6 @@ type ManageSubscriptionCopy = {
   pl: string;
 };
 
-type ManageSubscriptionReasonCopy = Omit<ManageSubscriptionCopy, 'en'>;
-
 type ManageSubscriptionBenefit = ManageSubscriptionCopy & {
   benefitId: string;
   icon: React.ComponentProps<typeof Ionicons>['name'];
@@ -115,13 +113,14 @@ const INCLUDED: ManageSubscriptionBenefit[] = [
 ];
 
 // Причины отмены для шит-опроса (logCancelSurvey).
-const CANCEL_REASONS: ({ key: string } & ManageSubscriptionReasonCopy)[] = [
-  { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' },
-  { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', es: 'No lo uso lo suficiente', 'pt-BR': 'Não uso o suficiente', vi: 'Tôi không dùng đủ nhiều', id: 'Saya tidak cukup sering memakainya', tr: 'Yeterince kullanmıyorum', pl: 'Nie korzystam wystarczająco' },
-  { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', es: 'Faltan funciones', 'pt-BR': 'Faltam recursos', vi: 'Thiếu tính năng', id: 'Fitur kurang', tr: 'Özellikler eksik', pl: 'Brakuje funkcji' },
-  { key: 'technical', ru: 'Технические проблемы', uk: 'Технічні проблеми', es: 'Problemas técnicos', 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' },
-  { key: 'temporary', ru: 'Временно, вернусь позже', uk: 'Тимчасово, повернусь пізніше', es: 'Temporal, vuelvo luego', 'pt-BR': 'Temporário, volto depois', vi: 'Tạm thời, tôi sẽ quay lại sau', id: 'Sementara, nanti saya kembali', tr: 'Geçici, sonra döneceğim', pl: 'Tymczasowo, wrócę później' },
-  { key: 'other', ru: 'Другое', uk: 'Інше', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
+// зачем (координатор 13.10): у причин не было en, а вызов клал r.ru в слот en — 6 причин по-русски в английском интерфейсе.
+const CANCEL_REASONS: ({ key: string } & ManageSubscriptionCopy)[] = [
+  { key: 'too_expensive', ru: 'Слишком дорого', uk: 'Занадто дорого', en: 'Too expensive', es: 'Demasiado caro', 'pt-BR': 'Muito caro', vi: 'Quá đắt', id: 'Terlalu mahal', tr: 'Çok pahalı', pl: 'Za drogo' },
+  { key: 'not_using', ru: 'Не пользуюсь достаточно', uk: 'Не користуюся достатньо', en: 'I don’t use it enough', es: 'No lo uso lo suficiente', 'pt-BR': 'Não uso o suficiente', vi: 'Tôi không dùng đủ nhiều', id: 'Saya tidak cukup sering memakainya', tr: 'Yeterince kullanmıyorum', pl: 'Nie korzystam wystarczająco' },
+  { key: 'missing_features', ru: 'Не хватает функций', uk: 'Бракує функцій', en: 'Missing features', es: 'Faltan funciones', 'pt-BR': 'Faltam recursos', vi: 'Thiếu tính năng', id: 'Fitur kurang', tr: 'Özellikler eksik', pl: 'Brakuje funkcji' },
+  { key: 'technical', ru: 'Технические проблемы', uk: 'Технічні проблеми', en: 'Technical problems', es: 'Problemas técnicos', 'pt-BR': 'Problemas técnicos', vi: 'Sự cố kỹ thuật', id: 'Masalah teknis', tr: 'Teknik sorunlar', pl: 'Problemy techniczne' },
+  { key: 'temporary', ru: 'Временно, вернусь позже', uk: 'Тимчасово, повернусь пізніше', en: 'Temporary, I’ll come back later', es: 'Temporal, vuelvo luego', 'pt-BR': 'Temporário, volto depois', vi: 'Tạm thời, tôi sẽ quay lại sau', id: 'Sementara, nanti saya kembali', tr: 'Geçici, sonra döneceğim', pl: 'Tymczasowo, wrócę później' },
+  { key: 'other', ru: 'Другое', uk: 'Інше', en: 'Other', es: 'Otro', 'pt-BR': 'Outro', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 ];
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
@@ -697,6 +696,20 @@ export default function ManageSubscription() {
     setCancelStep('offer');
   }, [cancelReason, cancelText, screenAccount, closeCancelSheet, openStoreCancel]);
 
+  // зачем (координатор 13.10, dev `saveOffer=progress|support`): шаг удержания сразу, без тапов — кадры paywalls-024 / profile-022.
+  // В стор-сборке takeDevSaveOfferOpen — заглушка (null), эффект ничего не делает.
+  useEffect(() => {
+    const devStep = takeDevSaveOfferOpen();
+    if (!devStep) return;
+    const progress = getDevSaveOfferProgress() ?? DEV_SAVE_OFFER_PROGRESS;
+    console.log(`[DEV-STATE] manage_subscription: шаг удержания открыт подменой saveOffer=${devStep} серия=${progress.streak} уроков=${progress.lessonsCompleted}`); // guard-ok: dev-ветка
+    setCancelReason(devStep === 'progress' ? 'too_expensive' : 'technical');
+    setOfferProgress(devStep === 'progress' ? progress : null);
+    setSaveOffer(devStep);
+    setCancelStep('offer');
+    setShowCancelSheet(true);
+  }, []);
+
   /** Человек остаётся. Никаких тарифов и сумм — только продукт и поддержка. */
   const acceptSaveOffer = useCallback(() => {
     if (saveOfferBusyRef.current) return;
@@ -918,7 +931,7 @@ export default function ManageSubscription() {
                     contentStyle={[S.reasonRow, { backgroundColor: sel ? glass.selected : glass.opaqueControl }]}
                   >
                     <Ionicons name={sel ? 'radio-button-on' : 'radio-button-off'} size={20} color={sel ? glass.lightTint : glass.secondary} />
-                    <Text style={[S.reasonText, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}>{LP(r.ru, r.uk, r.ru, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
+                    <Text style={[S.reasonText, { color: glass.text, fontSize: scaled(15), lineHeight: scaled(21) }]}>{LP(r.ru, r.uk, r.en, r.es, r['pt-BR'], r.vi, r.id, r.tr, r.pl)}</Text>
                   </PressableHybrid>
                 );
               })}

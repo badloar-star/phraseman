@@ -18,7 +18,7 @@ import { ONBOARDING_COMPLETED_AT_KEY } from './fresh_install_gate';
 import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off';
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
-import { setDevSaveOfferProgress } from './dev_save_offer_progress';
+import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
 import { setDevEnStudyPromptOff, setDevUiLang } from './dev_ui_lang';
 import { setDevMistakesDemo } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
@@ -255,6 +255,8 @@ export type DevStateRequest = Readonly<{
   publish?: 'ok' | 'off';
   /** Прогресс для шага удержания в отмене подписки (dev_save_offer_progress.ts): on — 12 дней подряд и 38 уроков (только память), чтобы шаг робота не ушёл в браузер магазина. */
   offerProgress?: 'on' | 'off';
+  /** Экран подписки сразу на шаге удержания (dev_save_offer_progress.ts): progress / support, off — выключить (только память). */
+  saveOffer?: 'progress' | 'support' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
   uiLang?: 'en' | 'off';
   /** EN-проход R1: off — при паре «интерфейс en + изучаю en» не открывать выбор языка изучения (только память). */
@@ -375,6 +377,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.account = pick('account', ['support_only', 'linked'] as const);
   request.publish = pick('publish', ['ok', 'off'] as const);
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
+  request.saveOffer = pick('saveOffer', ['progress', 'support', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.enStudyPrompt = pick('enStudyPrompt', ['on', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
@@ -813,6 +816,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.offerProgress !== undefined) {
     await step('offerProgress', request.offerProgress, async () => setDevSaveOfferProgress(request.offerProgress === 'on'));
+  }
+  if (request.saveOffer !== undefined) {
+    // зачем (координатор 13.10, paywalls-024 / profile-022): шаг удержания без тапов — иначе кадр недостижим.
+    await step('saveOffer', request.saveOffer, async () => setDevSaveOfferOpen(request.saveOffer === 'off' ? null : request.saveOffer ?? null));
   }
   if (request.aiConsent !== undefined) {
     // зачем (координатор 12.10): у гостя нет согласия на ИИ — «Начать» открывает шторку согласия вместо сессии; подменяем ТОЛЬКО ответ гейта (память), recordAiDialogConsent не вызывается

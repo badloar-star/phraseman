@@ -30,7 +30,8 @@
   .opb { min-height: 58px; border-radius: 30px; background: #17191F; color: #fff; font-size: 17px; line-height: 22px; font-weight: 600; letter-spacing: -.2px; display: flex; align-items: center; justify-content: center; padding: 0 18px; text-align: center; } .opb.off { background: #B8BCC5; }
   .osb { min-height: 48px; border-radius: 24px; color: #596170; font-size: 16px; font-weight: 500; display: flex; align-items: center; justify-content: center; text-align: center; }
   .oapp { min-height: 58px; border-radius: 29px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 600; letter-spacing: -.2px; position: relative; } .oapp.dk { background: #1F1F1F; color: #fff; } .oapp.dk.ap { background: #000; } .oapp svg { position: absolute; left: 21px; top: 50%; transform: translateY(-50%); fill: #fff; } .oapp.lt { background: #fff; color: #0C111B; box-shadow: 0 1px 3px rgba(12,17,27,.09); } .oapp.off { opacity: .5; } .oapp b { font-size: 20px; font-weight: 800; }
-  .oerr { font-size: 13.5px; line-height: 18px; font-weight: 600; text-align: center; color: #0C111B; padding: 0 6px; }
+  .ospin { position: absolute; left: 21px; top: calc(50% - 10px); width: 20px; height: 20px; border-radius: 50%; box-sizing: border-box; border: 2px solid rgba(255,255,255,.28); border-top-color: #fff; animation: ospin .8s linear infinite; } @keyframes ospin { to { transform: rotate(360deg); } }
+  .oerr { font-size: 15px; line-height: 22px; font-weight: 800; text-align: center; color: #0C111B; padding: 0 6px; }
   .olg { font-size: 12px; line-height: 17px; text-align: center; color: #5B6270; padding: 0 8px; } .olg u { text-decoration: underline; }
   .odots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-bottom: 18px; height: 6px; } .odots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(12,17,27,.18); } .odots i.on { background: #17191F; }
   .owc { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 20px; }
@@ -154,7 +155,9 @@ const GL = `<div class="oapp dk t"><svg width="20" height="20" viewBox="0 0 24 2
 const AP = `<div class="oapp dk ap t"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>Войти через Apple</div>`;
 const welcome = () => wl('От первых слов до свободной речи.', '', dots(5, 0) + lg('Продолжая, ты принимаешь ', 'Условия') .replace('<u>Условия</u> и ', '<u>Условия</u> и ') + pb('Начать') + `<div style="margin-top:4px">${sb('У меня уже есть аккаунт')}</div>`);
 const authFoot = sb('Назад');
-const wAuth = (extra, off) => wl('Вернём твой прогресс', `<div style="display:flex;flex-direction:column;gap:11px">${GL.replace('oapp dk t', 'oapp dk t' + (off ? ' off' : ''))}${AP.replace('oapp dk ap t', 'oapp dk ap t' + (off ? ' off' : ''))}${extra || ''}</div>`, authFoot);
+// зачем (onboarding-003, AuthProviderButtons): пока идёт вход через Google, на месте значка «G» — маленький индикатор загрузки
+const GL_BUSY = GL.replace(/<svg[\s\S]*?<\/svg>/, '<span class="ospin" aria-hidden="true"></span>');
+const wAuth = (extra, off, busy) => wl('Вернём твой прогресс', `<div style="display:flex;flex-direction:column;gap:11px">${(busy ? GL_BUSY : GL).replace('oapp dk t', 'oapp dk t' + (off ? ' off' : ''))}${AP.replace('oapp dk ap t', 'oapp dk ap t' + (off ? ' off' : ''))}${extra || ''}</div>`, authFoot);
 const unknown = () => wl('Начнём с чистого листа', `<div style="display:flex;flex-direction:column;gap:11px"><div class="oun">Аккаунта alex@example.com у нас нет.</div>${pb('Создать аккаунт')}${sb('Войти другим способом')}</div>`, '');
 const authNo = () => wl('Вернём твой прогресс', '<div class="oerr">Вход через Google или Apple недоступен на этом устройстве.</div>', authFoot);
 // ── порт иллюстраций онбординга из components/CleanOnboarding.tsx (12.10, сессия «Макеты»): код — эталон ──
@@ -244,7 +247,7 @@ const moreOffers = () => {
 const S = [
   ['01 · Приветствие', welcome, 'ob wl', 'Серо-стальной градиент, тисненый знак, «От первых слов до свободной речи.», точки шага, согласие, чёрная «Начать» и «У меня уже есть аккаунт».'],
   ['02 · Вход: Google / Apple', () => wAuth(), 'ob wl', '«У меня уже есть аккаунт»: «Вернём твой прогресс», две чёрные таблетки, «Назад».'],
-  ['03 · Вход идёт долго', () => wAuth('<div class="oerr">Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.</div>', true), 'ob wl', 'Через 8 секунд: «Вход всё ещё выполняется…»; кнопки недоступны до ответа провайдера.'],
+  ['03 · Вход идёт долго', () => wAuth('<div class="oerr">Вход всё ещё выполняется. Кнопки останутся недоступны до ответа провайдера.</div>', true, true), 'ob wl', 'Через 8 секунд: «Вход всё ещё выполняется…»; кнопки недоступны до ответа провайдера.'],
   ['04 · Вход: нет сети', () => wAuth('<div class="oerr">Связь пропала. Попробуй ещё раз.</div>'), 'ob wl', 'Нет связи: «Связь пропала. Попробуй ещё раз.» Прочие сбои — «Не получилось войти. Попробуй ещё раз.»'],
   ['05 · Аккаунта нет', unknown, 'ob wl', '«Начнём с чистого листа», «Аккаунта … у нас нет.», «Создать аккаунт» / «Войти другим способом».'],
   ['06 · Вход недоступен', authNo, 'ob wl', 'На устройстве нет Google и Apple: «Вход через Google или Apple недоступен на этом устройстве.»'],

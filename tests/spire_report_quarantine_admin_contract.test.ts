@@ -28,7 +28,8 @@ describe('Spire report quarantine admin contract', () => {
     expect(backend).toContain('spire_task_incident_requires_verified_reopen');
     expect(exportsSource).toContain('adminSpireTaskIncidentSetState');
     expect(admin).toContain('На проверке');
-    expect(admin).toContain('Исправлено — вернуть в Spire');
+    // зачем (R1 §3а шаг 5а, 13.10): видимые подписи админки — «Пик» вместо «Spire»
+    expect(admin).toContain('Исправлено — вернуть в Пик');
     expect(admin).toContain("httpsCallable(functionsUs, 'adminSpireTaskIncidentSetState')");
     expect(admin).toContain("httpsCallable(functionsUs, 'adminSpireTaskReportList')");
     expect(admin).toContain("httpsCallable(functionsUs, 'adminSpireTaskIncidentStates')");
@@ -95,9 +96,9 @@ describe('Spire report quarantine admin contract', () => {
     const admin = read('admin/v2/legacy.html');
     const backend = read('functions/src/admin_spire_task_flag.ts');
     const reportBackend = read('functions/src/admin_reports_center.ts');
-    expect(admin).toContain('Ручная блокировка останется, поэтому задание НЕ вернётся в Spire');
+    expect(admin).toContain('Ручная блокировка останется, поэтому задание НЕ вернётся в Пик');
     expect(admin).toContain('Исправлено — закрыть жалобу');
-    expect(admin).toContain("r.spireManualHoldRemains ? 'Снова открыть жалобу' : 'Снова убрать из Spire'");
+    expect(admin).toContain("r.spireManualHoldRemains ? 'Снова открыть жалобу' : 'Снова убрать из Пика'");
     expect(admin).toContain('Сохраняем решение по ${taskId}…');
     expect(admin).toContain('spireManualHoldRemains');
     const markFixedStart = admin.indexOf('window.markFixed = async function');

@@ -82,14 +82,15 @@ function createControllerHarness() {
 describe('multilingual Spire admin control surface', () => {
   test('renames the preserved Arena content factory as Spire content', () => {
     expect(html).toContain("switchTab('arena-content')");
-    expect(html).toMatch(/switchTab\('arena-content'\)[^>]*>Контент Spire</u);
-    expect(panel).toContain('>Контент Spire</h2>');
-    expect(panel).toContain('Задания для игроков в «Шпиле»');
+    // зачем (R1 §3а шаг 5а, 13.10): видимые подписи — «Пик» вместо «Шпиль/Spire»
+    expect(html).toMatch(/switchTab\('arena-content'\)[^>]*>Контент Пика</u);
+    expect(panel).toContain('>Контент Пика</h2>');
+    expect(panel).toContain('Задания для игроков в «Пике»');
   });
 
   test('presents a plain-language owner workflow and hides diagnostics by default', () => {
     expect(panel).toContain('Что увидят игроки');
-    expect(panel).toContain('Подготовить задания для Шпиля');
+    expect(panel).toContain('Подготовить задания для Пика');
     expect(panel).toContain('Убрать плохое задание');
     expect(panel).toMatch(/<details[^>]*class="spire-admin-diagnostics"/u);
     expect(panel).toContain('<summary>Техническая информация</summary>');

@@ -38,6 +38,7 @@ import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../
 
 import { swallowError } from './debug-logger';
 import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
+import { SettingsGlassEyebrow } from '../components/settings/SettingsGlassRows';
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 const VISIBLE = 3;
@@ -390,16 +391,16 @@ export default function SettingsNotifications() {
   const masterLabel = L({ ru:'Разрешить уведомления', uk:'Дозволити сповіщення', en:'Allow notifications', es:'Permitir notificaciones', 'pt-BR':'Permitir notificações', vi:'Cho phép thông báo', id:'Izinkan notifikasi', tr:'Bildirimlere izin ver', pl:'Zezwól na powiadomienia' });
   const masterHint = L({ ru:'Системное разрешение телефона тоже должно быть включено.', uk:'Системний дозвіл телефона теж має бути ввімкнено.', en:'System notification permission must also be enabled on your phone.', es:'El permiso del sistema del teléfono también debe estar activado.', 'pt-BR':'A permissão do sistema do telefone também deve estar ativada.', vi:'Quyền thông báo hệ thống trên điện thoại cũng phải được bật.', id:'Izin notifikasi sistem di ponsel juga harus diaktifkan.', tr:'Telefonun sistem bildirim izni de açık olmalıdır.', pl:'Systemowe uprawnienie telefonu do powiadomień też musi być włączone.' });
   const backLabel = L({ ru:'Назад', uk:'Назад', en:'Back', es:'Atrás', 'pt-BR':'Voltar', vi:'Quay lại', id:'Kembali', tr:'Geri', pl:'Wstecz' });
-  const sectionStudy = L({ ru:'Занятия', uk:'Заняття', en:'Study', es:'Estudio', 'pt-BR':'Estudos', vi:'Học tập', id:'Belajar', tr:'Çalışma', pl:'Nauka' });
+  const sectionStudy = L({ ru:'ЗАНЯТИЯ', uk:'ЗАНЯТТЯ', en:'STUDY', es:'ESTUDIO', 'pt-BR':'ESTUDOS', vi:'HỌC TẬP', id:'BELAJAR', tr:'ÇALIŞMA', pl:'NAUKA' });
   const dailyLabel = L({ ru:'Ежедневное напоминание', uk:'Щоденне нагадування', en:'Daily reminder', es:'Recordatorio diario', 'pt-BR':'Lembrete diário', vi:'Nhắc nhở hằng ngày', id:'Pengingat harian', tr:'Günlük hatırlatıcı', pl:'Codzienne przypomnienie' });
   const timeLabel = L({ ru:'Время', uk:'Час', en:'Time', es:'Hora', 'pt-BR':'Horário', vi:'Thời gian', id:'Waktu', tr:'Saat', pl:'Godzina' });
   const streakLabel = L({ ru:'Серия под угрозой', uk:'Серія під загрозою', en:'Streak at risk', es:'Racha en riesgo', 'pt-BR':'Sequência em risco', vi:'Chuỗi gặp nguy', id:'Streak terancam', tr:'Seri risk altında', pl:'Seria zagrożona' });
   const phraseLabel = L({ ru:'Фраза дня', uk:'Вислів дня', en:'Phrase of the day', es:'Frase del día', 'pt-BR':'Frase do dia', vi:'Cụm từ hôm nay', id:'Frasa hari ini', tr:'Günün ifadesi', pl:'Zwrot dnia' });
   const energyLabel = L({ ru:'Энергия восстановилась', uk:'Енергію відновлено', en:'Energy restored', es:'Energía recargada', 'pt-BR':'Energia recarregada', vi:'Năng lượng đã hồi', id:'Energi pulih', tr:'Enerji doldu', pl:'Energia odnowiona' });
-  const sectionRecaps = L({ ru:'Итоги', uk:'Підсумки', en:'Recaps', es:'Resúmenes', 'pt-BR':'Resumos', vi:'Tổng kết', id:'Ringkasan', tr:'Özetler', pl:'Podsumowania' });
+  const sectionRecaps = L({ ru:'ИТОГИ', uk:'ПІДСУМКИ', en:'RECAPS', es:'RESÚMENES', 'pt-BR':'RESUMOS', vi:'TỔNG KẾT', id:'RINGKASAN', tr:'ÖZETLER', pl:'PODSUMOWANIA' });
   const weeklyLabel = L({ ru:'Итоги недели', uk:'Підсумки тижня', en:'Weekly recap', es:'Resumen semanal', 'pt-BR':'Resumo da semana', vi:'Tổng kết tuần', id:'Ringkasan mingguan', tr:'Haftalık özet', pl:'Podsumowanie tygodnia' });
   const monthlyLabel = L({ ru:'Итоги месяца', uk:'Підсумки місяця', en:'Monthly recap', es:'Resumen mensual', 'pt-BR':'Resumo do mês', vi:'Tổng kết tháng', id:'Ringkasan bulanan', tr:'Aylık özet', pl:'Podsumowanie miesiąca' });
-  const sectionMore = L({ ru:'Ещё', uk:'Ще', en:'More', es:'Más', 'pt-BR':'Mais', vi:'Khác', id:'Lainnya', tr:'Diğer', pl:'Więcej' });
+  const sectionMore = L({ ru:'ЕЩЁ', uk:'ЩЕ', en:'MORE', es:'MÁS', 'pt-BR':'MAIS', vi:'KHÁC', id:'LAINNYA', tr:'DİĞER', pl:'WIĘCEJ' });
   // «Вместе»: пуш «Позвал(а)» от друга — отдельная категория (владелец, 2026-08-16).
   // зачем: паритет profile.html PRF-04 (13.10) — Шпиль в первом выпуске, его пуши можно выключить отдельно.
   const spireLabel = L({ ru:'События Шпиля', uk:'Події Шпиля', en:'Spire events', es:'Eventos de la Aguja', 'pt-BR':'Eventos da Torre', vi:'Sự kiện Tháp', id:'Acara Menara', tr:'Kule etkinlikleri', pl:'Wydarzenia Wieży' });
@@ -425,7 +426,8 @@ export default function SettingsNotifications() {
   const timeRowActive = master && dailyEnabled;
 
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
-  const sectionTitleStyle = { color: glass.secondary, fontSize: 13, lineHeight: 18, fontWeight: '700' as const, letterSpacing: 1.7, marginTop: 24, marginHorizontal: 4, marginBottom: 10 };
+  // зачем (EN-проход 13.10, координатор): заголовки разделов — тот же eyebrow, что в Настройках (SettingsGlassEyebrow: 13 по D145,
+  // разрядка 1.7, прописные — как `.eyebrow` макета profile.html); раньше свой стиль без прописных («Study», «Занятия»).
   const statusCardStyle = { borderRadius: 14, paddingVertical: 14, paddingHorizontal: 16, gap: 12, flexDirection: 'row' as const, alignItems: 'flex-start' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) }; // зачем (стиль «Тень»): плашка с тенью, без кромки и клипа
   const rowStyle = { minHeight: 64, borderRadius: 14, paddingVertical: 10, paddingHorizontal: 14, gap: 14, flexDirection: 'row' as const, alignItems: 'center' as const, backgroundColor: glass.plateFillFrom, boxShadow: plateBoxShadow(glass) };
 
@@ -518,7 +520,7 @@ export default function SettingsNotifications() {
 
             {/* Категории видны всегда; мастер приглушает их и делает недоступными для нажатия и accessibility. */}
             <View style={{ opacity: master ? 1 : 0.45 }}>
-              <Text style={sectionTitleStyle}>{sectionStudy}</Text>
+              <SettingsGlassEyebrow glass={glass} title={sectionStudy} />
               <View style={{ gap: 10 }}>
                 <ToggleRow label={dailyLabel} icon="flame-outline" value={dailyEnabled} onValueChange={toggleDaily} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-daily-switch" />
                 <PressableHybrid
@@ -547,14 +549,14 @@ export default function SettingsNotifications() {
                 <ToggleRow label={energyLabel} icon="flash-outline" value={prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-energy" />
               </View>
 
-              <Text style={sectionTitleStyle}>{sectionRecaps}</Text>
+              <SettingsGlassEyebrow glass={glass} title={sectionRecaps} />
               <View style={{ gap: 10 }}>
                 <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-weekly_recap" />
                 <ToggleRow label={monthlyLabel} icon="calendar-outline" value={prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-monthly_recap" />
                 <ToggleRow label={spireLabel} icon="people-outline" value={prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-spire" />
               </View>
 
-              <Text style={sectionTitleStyle}>{sectionMore}</Text>
+              <SettingsGlassEyebrow glass={glass} title={sectionMore} />
               <View style={{ gap: 10 }}>
                 {/* «Вместе» (friends_together §4/§5): категория «Друзья» — пуш «Позвал(а)». */}
                 <ToggleRow label={friendsLabel} icon="people-outline" value={prefs.categories.friends} onValueChange={toggleCategory('friends')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-friends" />

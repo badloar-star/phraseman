@@ -38,7 +38,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
-import { isDevDeleteConfirmBypass } from '../app/dev_account_state';
+import { isDevAccountLinkedDemo, isDevDeleteConfirmBypass } from '../app/dev_account_state';
 import { reportAccountDeleteHandoffFailed, reportAccountDeleteHandoffThrew } from '../app/auth_release_reasons';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
@@ -79,7 +79,9 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
   const isHybrid = motionVariant === 'hybrid';
   // зачем (релизный пол 10.10, security-ревью M-1): восстановить в 14 дней можно только тем же
   // входом Google/Apple. Гостю (анонимный вход) после стирания вернуться нечем — ему без обещания.
-  const hasProviderSignIn = useMemo(() => visible && peekLinkedAuthFromCurrentUser() !== null, [visible]);
+  // зачем (EN-проход 13.10, auth-gap-009): dev `account=linked` (только память, в сторе всегда false; действия аккаунта при нём
+  // отказывают первой строкой) показывает вариант «удалится через 14 дней» без настоящего входа — иначе кадр снимается только с Google.
+  const hasProviderSignIn = useMemo(() => visible && (peekLinkedAuthFromCurrentUser() !== null || isDevAccountLinkedDemo()), [visible]);
   const reduceMotion = useReduceMotion();
   // зачем: приглушённый тон CTA «Удалить» + одна дрожь на подтверждении —
   // деструктивный паттерн из ThemedConfirmModal (destructive), но здесь кнопка

@@ -34,7 +34,8 @@ export const DEV_FRIENDS_HOLDS = ['add_request', 'search'] as const;
 export type DevFriendsHold = (typeof DEV_FRIENDS_HOLDS)[number];
 // зачем (Авторизация 12.10, съёмка R1): `search_offline` — поиск без сети, «Связь пропала» (community-015); `list` — список друзей
 // не обновился, пустое состояние «Связь пропала» без подписок Firestore (community-021).
-export const DEV_FRIENDS_FAILS = ['add', 'search', 'search_offline', 'list'] as const;
+// зачем (бэклог №18, съёмка R1 community-011/018/019): исходы заявки другу DEVFND без сервера — нет связи, «уже друзья», «заявка уже отправлена».
+export const DEV_FRIENDS_FAILS = ['add', 'search', 'search_offline', 'list', 'add_network', 'add_already_friends', 'add_already_sent'] as const;
 export type DevFriendsFail = (typeof DEV_FRIENDS_FAILS)[number];
 export const DEV_SETTINGS_FAILS = ['study_language', 'support_send', 'cache_clear'] as const;
 export type DevSettingsFail = (typeof DEV_SETTINGS_FAILS)[number];

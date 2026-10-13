@@ -72,13 +72,15 @@ export type DevPlanOverride = Readonly<{ plan: DevPlan; expiryMs: number | null 
 let planOverride: DevPlanOverride | null = null;
 
 /** Подменить план подписки в памяти (`plan=`). null снимает. */
-export function setDevPlanOverride(plan: DevPlan | null, nowMs: number = Date.now()): boolean {
+export function setDevPlanOverride(plan: DevPlan | null, nowMs: number = Date.now(), untilMs: number | null = null): boolean {
   if (!devVipAvailable()) {
     console.warn(`${LOG} plan: отклонено — не dev-сборка`, { plan }); // guard-ok: ранний выход логируется
     return false;
   }
   const day = 24 * 60 * 60 * 1000;
-  planOverride = plan === null ? null : { plan, expiryMs: plan === 'lifetime' ? null : nowMs + (plan === 'yearly' ? 365 : 30) * day };
+  // зачем (бэклог №18, profile-024 / paywalls-022): `planUntil=YYYY-MM-DD` — точная дата следующего списания, как в образце (14 января 2027)
+  const expiryMs = plan === 'lifetime' ? null : (untilMs ?? nowMs + (plan === 'yearly' ? 365 : 30) * day);
+  planOverride = plan === null ? null : { plan, expiryMs };
   console.log(`${LOG} plan memory_only`, JSON.stringify({ plan, expiryMs: planOverride?.expiryMs ?? null })); // guard-ok: единичный лог на ссылку
   return true;
 }

@@ -1758,6 +1758,10 @@ export default function FriendsTabScreen() {
       const result: Awaited<ReturnType<typeof sendFriendRequest>> = isDevFriendsHeld('add_request')
         ? await new Promise<never>(() => undefined)
         : isDevFriendsFail('add') ? 'error'
+          // зачем (бэклог №18, community-011/018/019): остальные исходы заявки для съёмки — тоже без сети; в стор-сборке геттер выключен.
+          : isDevFriendsFail('add_network') ? 'network'
+          : isDevFriendsFail('add_already_friends') ? 'already_friends'
+          : isDevFriendsFail('add_already_sent') ? 'already_sent'
           // зачем (съёмка R1): подставному другу DEVFND заявка не уходит в сеть — сразу «отправлена».
           : isDevFoundFriendUid(targetUser.uid) ? 'sent'
           : await sendFriendRequest(targetUser.uid);

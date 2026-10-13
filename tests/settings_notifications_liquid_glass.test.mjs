@@ -156,7 +156,9 @@ test('master hint and back label retain all nine existing locales', () => {
 test('all supported live controls are bound and retired or invented controls stay absent', () => {
   // зачем (settings-gap-012): при системном запрете строка показывает «выключено» (master = prefs.master && !needsPermission)
   assert.match(source, /label=\{dailyLabel\}[\s\S]*?value=\{master && dailyEnabled\}[\s\S]*?onValueChange=\{toggleDaily\}/);
-  assert.match(source, /const master = prefs\.master && !needsPermission;/);
+  assert.match(source, /const master = \(prefs\.master \|\| devShowcase\) && !needsPermission;/);
+  // зачем (№18, settings-gap-028): витрина робота — только при dev reminderTime (getDevReminderTime в сторе = null)
+  assert.match(source, /const devShowcase = getDevReminderTime\(\) !== null;/);
   assert.match(source, /value=\{master && prefs\.categories\.streak\}/);
   assert.match(source, /\[NOTIF-PERM\] display system_blocked=/);
   for (const [label, category] of [

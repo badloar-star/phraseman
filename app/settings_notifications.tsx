@@ -38,6 +38,7 @@ import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../
 
 import { swallowError } from './debug-logger';
 import { isDevRobotNoCloud, noteRobotNoCloudSkip } from './dev_robot_no_cloud';
+import { getDevReminderTime } from './dev_robot_display';
 import { SettingsGlassEyebrow } from '../components/settings/SettingsGlassRows';
 const HOURS   = Array.from({ length: 24 }, (_, i) => i);
 const MINUTES = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
@@ -436,11 +437,14 @@ export default function SettingsNotifications() {
     pl:'Telefon blokuje powiadomienia. Sprawdź uprawnienie w ustawieniach telefonu — sam przełącznik w aplikacji nie wystarczy.',
   });
 
-  const dailyEnabled = scheduleAnyEnabled(s);
+  // зачем (бэклог №18, settings-gap-028): dev_state?reminderTime=HH:MM — витрина для робота: напоминание показано включённым, чтобы шаг
+  // «Время» всегда открывал окно (стартовое состояние гостя между прогонами разное). Только показ, только dev (getDevReminderTime в сторе = null).
+  const devShowcase = getDevReminderTime() !== null;
+  const dailyEnabled = devShowcase || scheduleAnyEnabled(s);
   const { hour, minute } = scheduleTime(s);
   // зачем (settings-gap-012, образец settings-gaps-states №12): пока телефон запрещает уведомления, ни одно не придёт — экран показывает
   // ФАКТИЧЕСКОЕ состояние: мастер выключен, строки выключены и приглушены. Сохранённые выборы человека не трогаем — после разрешения они вернутся.
-  const master = prefs.master && !needsPermission;
+  const master = (prefs.master || devShowcase) && !needsPermission;
   const timeRowActive = master && dailyEnabled;
 
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)

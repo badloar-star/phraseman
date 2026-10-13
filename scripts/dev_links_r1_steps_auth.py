@@ -174,3 +174,21 @@ add('onboarding-029', ['wait:600'], '', LW + '&devStep=done', note='«Новый
 # Строка попадёт в DEV_LINKS_R1, когда реестр переведёт её из blocked в pending (генератор берёт только pending/diff/match).
 add('overlays-campaigns-013', ['tap:#promo-code-input', 'type:AB', 'hidekb', 'tap:#promo-code-submit', 'wait:600'], 'plus=off&energy=3', '/promo_code_entry',
     note='промокод: неверный формат (2 знака) — «Проверь код», без сети')
+
+# ── Бэклог №18 (координатор 13.10): состояния, до которых робот не доходил — по вердиктам Макетов «[состояние] не достигнуто».
+import dev_links_r1_steps_cards3 as _C3  # noqa: E402
+import dev_links_r1_steps_core1 as _K1  # noqa: E402
+
+# cards-054: меню СВОЕГО отклика («Удалить»). Отправленный в demo-режиме отклик получает id dev_cm_<время> (packCommentsFirestore) —
+# шаблон pack-comment-more-dev_cm_* выбирает только свой отклик (демо-отклики — dev_demo_cm_*).
+ENTRIES.pop('cards-054', None)
+add('cards-054', [_C3.WAIT, _C3.ADD, _C3.COMMENTS] + _C3.SEND + ['tap:#pack-comment-more-dev_cm_*', 'wait:500'], _C3.P2 + '&comments=demo', _C3.P2_ROUTE,
+    note='меню своего отклика («Удалить»): отклик отправлен в память, ⋯ по шаблону dev_cm_*; пункты не жать')
+
+# community-011/018/019: исходы заявки найденному другу DEVFND без сервера (dev_friends_fail=add_network|add_already_friends|add_already_sent).
+for _rid, _fail, _note in (('community-011', 'add_network', 'заявку не удалось отправить — «Связь пропала»'),
+                           ('community-018', 'add_already_friends', 'исход «Уже друзья»'),
+                           ('community-019', 'add_already_sent', 'исход «Заявка уже отправлена»')):
+    ENTRIES.pop(_rid, None)
+    add(_rid, _K1.search('DEVFND') + ['tap:#friends-add-found', 'wait:900'], _K1.FRIENDS + '&dev_friends_fail=' + _fail, _K1.COMMUNITY,
+        note=f'Друзья: {_note} (dev_friends_fail={_fail}, без сети)')

@@ -627,6 +627,8 @@ const LESSON_CARD_OPEN_META_TEXT = LESSON_CARD_FILLED_META_TEXT;
 
 interface TabUnderlineButtonProps {
   label: string;
+  /** зачем (бэклог №18, съёмка learn-003/004): робот переключает вкладку «Уроки | Диалоги | V2» по testID — выбор вкладки теперь запоминается. */
+  testID?: string;
   active: boolean;
   color: string;
   mutedColor: string;
@@ -662,6 +664,7 @@ function TabUnderlineButton({
   plusBadge,
   plusBadgeLabel,
   themeMode,
+  testID,
 }: TabUnderlineButtonProps) {
   // Дуга шириной по содержимому: оцениваем по длине надписи (моноширинного API нет).
   const arcWidth = Math.max(
@@ -673,6 +676,7 @@ function TabUnderlineButton({
   const arcPath = `M2 2 Q${arcWidth / 2} ${arcHeight - 1} ${arcWidth - 2} 2`;
   return (
     <TouchableOpacity
+      testID={testID}
       accessibilityRole="tab"
       accessibilityState={{ selected: active }}
       activeOpacity={0.7}
@@ -5369,6 +5373,7 @@ export default function LessonsTab({
           >
             <TabUnderlineButton
               label={s.tabs.lessons}
+              testID="lessons-tab-lessons"
               active={page === "lessons"}
               color={t.textPrimary}
               mutedColor={t.textMuted}
@@ -5397,6 +5402,7 @@ export default function LessonsTab({
                   tr: "Diyaloglar",
                   pl: "Dialogi",
                 })}
+                testID="lessons-tab-dialogs"
                 active={page === "dialogs"}
                 color={t.textPrimary}
                 mutedColor={t.textMuted}
@@ -5424,6 +5430,7 @@ export default function LessonsTab({
             {LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? (
               <TabUnderlineButton
                 label="V2"
+                testID="lessons-tab-v2"
                 active={page === "v2"}
                 color={t.textPrimary}
                 mutedColor={t.textMuted}

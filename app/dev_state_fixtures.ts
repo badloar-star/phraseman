@@ -183,6 +183,8 @@ export type DevStateRequest = Readonly<{
   confetti?: 'hold' | 'off';
   /** План подписки только в памяти (экран «Управление подпиской», значение «Год» в Настройках): yearly|monthly|lifetime, off снимает. */
   plan?: 'yearly' | 'monthly' | 'lifetime' | 'off';
+  /** зачем (бэклог №18, profile-024 / paywalls-022): дата следующего списания dev-плана, как в образце, «YYYY-MM-DD» (UTC-полдень). */
+  planUntilMs?: number;
   /** Сбой смены языка изучения (settings-gap-021). */
   studyfail?: 'on' | 'off';
   /** «Не отправилось» у обращения в поддержку (settings-gap-036); sent — «Обращение отправлено» без сети (settings-gap-023). */
@@ -467,6 +469,12 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   const greetRaw = Array.isArray(params.greet) ? params.greet[0] : params.greet;
   if (typeof greetRaw === 'string') request.greet = greetRaw.trim().slice(0, 24);
   request.plan = pick('plan', ['yearly', 'monthly', 'lifetime', 'off'] as const);
+  const rawPlanUntil = one(params.planUntil);
+  if (rawPlanUntil !== undefined) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(rawPlanUntil);
+    if (m) request.planUntilMs = Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3]), 12);
+    else rejected.planUntil = `ожидалось YYYY-MM-DD, пришло ${rawPlanUntil}`;
+  }
   request.studyfail = pick('studyfail', ['on', 'off'] as const);
   request.support = pick('support', ['fail', 'ok', 'sent'] as const);
   // зачем (Авторизация 12.10, съёмка R1): подмены только в памяти — manage/started/upsell/ai_explain.
@@ -1076,7 +1084,7 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.plan !== undefined) {
     await step('plan', request.plan, async () => {
       const { setDevPlanOverride } = await import('./dev_vip_override');
-      return setDevPlanOverride(request.plan === 'off' ? null : request.plan!);
+      return setDevPlanOverride(request.plan === 'off' ? null : request.plan!, Date.now(), request.planUntilMs ?? null);
     });
   }
   if (request.studyfail !== undefined || request.support !== undefined || request.cache !== undefined) {

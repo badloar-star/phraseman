@@ -402,7 +402,11 @@ export default function ManageSubscription() {
   }, [screenAccount]);
 
   const devPlanForMetadata = getDevPlanOverride();
-  const metadata = info ? revenueCatPremiumMetadata(info) : (devPlanForMetadata?.expiryMs ? { expiryMs: devPlanForMetadata.expiryMs } : {});
+  // зачем (бэклог №18, profile-024 / paywalls-022): у эмулятора RevenueCat отвечает пустой подпиской без даты — dev-план с датой (plan=…,
+  // planUntil=…) проигрывал ответу магазина, и строки «Следующее списание» не было. Dev-подмена важнее; в сторе getDevPlanOverride() = null.
+  const metadata = devPlanForMetadata?.expiryMs
+    ? { expiryMs: devPlanForMetadata.expiryMs }
+    : info ? revenueCatPremiumMetadata(info) : {};
   const currentPlan = inferPremiumPlanFromCustomerInfo(info, fallbackPlan);
   const nextDate = formatDate(metadata.expiryMs ?? null, L);
   const isLifetime = currentPlan === 'lifetime';
@@ -893,7 +897,8 @@ export default function ManageSubscription() {
                   >
                     <Ionicons name="open-outline" size={19} color={glass.secondary} />
                     <Text style={[S.cancelText, { color: glass.secondary, fontSize: scaled(15), lineHeight: scaled(20) }]}>
-                      {LP('Перейти к отмене', 'Скасувати підписку', 'Cancel subscription', 'Cancelar suscripción', 'Cancelar assinatura', 'Hủy gói đăng ký', 'Batalkan langganan', 'Aboneliği iptal et', 'Anuluj subskrypcję')}
+                      {/* зачем (profile-017, Макеты 13.10): кнопка ведёт к шагу причин, а не отменяет — тексты как у кнопки шага причин на всех языках */}
+                      {LP('Перейти к отмене', 'Перейти до скасування', 'Continue to cancel', 'Ir a cancelar', 'Ir para o cancelamento', 'Đi tới hủy gói', 'Lanjut ke pembatalan', 'İptale git', 'Przejdź do anulowania')}
                     </Text>
                   </PressableHybrid>
                 )}

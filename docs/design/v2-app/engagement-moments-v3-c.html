@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения v3 · C — диалоги, серия дней, Plus</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-v2.css">
+<link rel="stylesheet" href="engagement-moments-v3.css">
+<style>
+/* зачем (этап 3): брифинги — по-настоящему живые переписки: метки «прочитано», «записывает голосовое…», черновик первой фразы сам печатается в поле,
+   у каждой сцены свои чипы-подсказки; звонок с «автоответчиком». Огонь серии морфится при смене стадии с биркой «НОВАЯ СТАДИЯ»; «под угрозой» —
+   огонь дышит слабее с каждой минутой. Plus — контрфакт и персонаж, тайм-листы везде. */
+.em-page .diff { margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: #121214; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); max-width: 1100px; }
+.em-page .diff h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #8BE5B6; }
+.em-page .diff ol { margin: 0; padding-left: 20px; color: var(--sec); font-size: 14px; line-height: 1.6; }
+.em-page .diff li b { color: #E6E6E8; font-weight: 600; }
+.em-ph .chatbox { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 6px 0; }
+.em-ph .poster { position: absolute; inset: 0; background: linear-gradient(180deg, var(--pc), var(--bg) 62%); }
+.em-ph .call { position: absolute; inset: 0; z-index: 45; display: flex; flex-direction: column; align-items: center; padding: 110px 24px 50px; background: linear-gradient(180deg, var(--pc), var(--bg) 70%); animation: emFade 400ms both; }
+.em-ph .call .av { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 56px; background: var(--ti); position: relative; }
+.em-ph .call .btns { margin-top: auto; display: flex; gap: 40px; }
+.em-ph .call .b { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; }
+.em-ph .call .b.ok { background: #34C759; animation: emPulse 1.2s ease-in-out infinite; box-shadow: 0 10px 30px rgba(52,199,89,.5); }
+.em-ph .call .b.no { background: #FF3B30; }
+.em-ph .call .lbl { font-size: 13px; color: var(--sc); text-align: center; margin-top: 8px; font-weight: 600; }
+.em-ph .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.em-ph .calendar i { aspect-ratio: 1; border-radius: 8px; background: var(--ti); display: block; }
+.em-ph .calendar i.on { background: #3D8BFF; }
+.em-ph .calendar i.fz { background: #A8E0FF; }
+.em-ph .calendar i.tod { box-shadow: 0 0 0 2px var(--acc); }
+.em-ph .cd { font-size: 40px; font-weight: 900; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.em-ph .ice { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 60% at 50% 100%, rgba(126,200,255,.35), transparent 60%); animation: emFade 800ms both; }
+.em-ph .energy-cells { display: flex; gap: 6px; }
+.em-ph .energy-cells i { flex: 1; height: 14px; border-radius: 7px; background: var(--trk); }
+.em-ph .energy-cells i.fill { animation: emCellFill 600ms var(--em-ease) both; background: var(--bolt); }
+@keyframes emCellFill { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); } }
+.em-ph .inf { font-size: 44px; line-height: 44px; font-weight: 900; color: var(--bolt); }
+.em-ph .trial-days { display: flex; gap: 5px; }
+.em-ph .trial-days i { flex: 1; height: 8px; border-radius: 4px; background: var(--trk); }
+.em-ph .trial-days i.on { background: var(--gold); }
+.em-ph .recap-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; }
+.em-ph .recap-row + .recap-row { box-shadow: inset 0 1px 0 var(--ti); }
+.em-ph .recap-row b { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+.em-ph .dusk { position: absolute; inset: 0; background: linear-gradient(180deg, #2A1A3A, #0B0A14 60%); }
+.em-ph.lite .dusk { background: linear-gradient(180deg, #F2D7C8, #E8E4F2 60%); }
+.em-ph .goalline { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; padding: 10px 12px; border-radius: 14px; }
+.em-ph .goalline .n { width: 24px; height: 24px; border-radius: 50%; background: var(--ti); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex: none; }
+.em-ph .tower-cmp { display: flex; gap: 14px; align-items: flex-end; justify-content: center; }
+.em-ph .tower-cmp .t { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--sc); }
+.em-ph .beat { opacity: 0; }
+.em-ph .beat.on { animation: emUp 500ms var(--em-ease) both; }
+.em-ph .mood { font-size: 40px; line-height: 1; }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Этап 3 · v3 · часть C</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v3 — диалоги, серия дней, Plus</h1>
+  <p class="page-lead">Живые переписки брифингов («прочитано», «записывает голосовое…», черновик первой фразы печатается сам, чипы под сцену), звонок с автоответчиком, морф огня на рубеже с биркой «новая стадия», «огонь гаснет» с дыханием по минутам, Plus через контрфакт и персонажа. Под каждым телефоном — тайм-лист ударов.</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v2-c.html">v2 этой части</a><a class="em-btn" href="engagement-moments-v3-a.html">← Часть A</a><a class="em-btn" href="engagement-moments-v3-b.html">← Часть B</a></div></div>
+  <div class="diff"><h3>Что изменилось в v3 (часть C) и почему</h3><ol>
+    <li><b>Переписка стала настоящей.</b> У реплик — метки времени и «прочитано», собеседник «записывает голосовое…» (красная точка), а в поле ввода сам печатается черновик первой фразы с пульсирующим микрофоном — человек понимает, что от него ждут, до старта. Чипы-подсказки свои для каждой сцены (размеры кофе / симптомы / «как давно»).</li>
+    <li><b>Звонок с автоответчиком:</b> не ответил за 4 с — Эмма «оставила голосовое», и это тот же вход в диалог. Пуш-сценарий «Эмма звонит в 19:00» получает экран.</li>
+    <li><b>Морф огня.</b> На рубеже огонь физически меняет стадию (сжатие → вспышка → новый цвет) с биркой «НОВАЯ СТАДИЯ»; персонаж cheer рядом. Это ощущение эволюции, а не смены числа.</li>
+    <li><b>«Огонь гаснет» дышит слабее.</b> Шторка показывает уголёк, чьё дыхание замедляется с отсчётом; заморозка за монеты — одна анимация льда; «спасла» — огонь оживает морфом.</li>
+    <li><b>Возвращение:</b> монета спит → просыпается с «!» → обнимашка сердцами; рекап появляется строкой в секунду.</li>
+    <li><b>Plus:</b> контрфакт «две башни» с окнами, которые зажигаются в «версии с Plus» на глазах; после 10 подряд — замедление и персонаж; пробный — 7 делений заполняются «уже 2 минуты в Plus: вот что открылось».</li>
+  </ol></div>
+  <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v3-a.html">A · Пик</a><a class="file" href="engagement-moments-v3-b.html">B · Занятия</a><a class="file" href="engagement-moments-v3-c.html">C · Диалоги · Серия · Plus</a></nav>
+  <div id="root"></div>
+</div>
+<script src="engagement-moments.js"></script>
+<script src="engagement-moments-v2.js"></script>
+<script src="engagement-moments-v3.js"></script>
+<script>
+(() => {
+const { icon, coin, tower, rings, confetti, countUp, moment, render } = EM;
+const { coinChar, fire, shareCard } = EM2;
+const { attachBeats, emo, firework, seq, chatPlay3, ghostType } = EM3;
+
+const dialogsUnder = () => `<div class="top"><div class="ttl">Диалоги</div><span class="pill en">${icon('boltF', 's16')} 4</span></div><div class="small" style="margin-top:4px">Практикуй язык в жизненных ситуациях</div>
+  ${[['☕', 'Закажи кофе', 'A1 · пройден'], ['💊', 'В аптеке', 'A2'], ['🩺', 'У врача', 'B1'], ['🛒', 'В продуктовом', 'A1']].map(([e, t, s], i) => `<div class="row sf${i === 1 ? ' on' : ''}" style="margin-top:${i ? 10 : 18}px"><span class="tile" style="font-size:22px">${e}</span><div class="x">${t}<s>${s}</s></div>${icon('fwd', 's18')}</div>`).join('')}`;
+
+/* ---------- 16. Брифинг — живая переписка v3 ---------- */
+const VOICE = (sec) => `<span class="snd">${icon('play', 's16')}<span class="wave"><i></i><i></i><i></i><i></i><i></i></span>${sec}</span>`;
+const SCEN = {
+  cafe: { k: 'k-cafe', e: '☕', who: 'Эмма', role: 'бариста', sub: 'Кофейня «Corner» · утро', amb: '☕ шум кофемашины · очередь 2', t: 'Закажи кофе', lvl: 'A1', color: '#4A2A14', hint: 'Hi! Could I get a cappuccino, please?', chips: ['small', 'medium', 'large', 'oat milk', 'to go'],
+    steps: [{ who: 'sys', text: 'Ты у стойки. Пахнет корицей.', delay: 300 }, { who: 'them', text: 'Hi there! What can I get for you?', tr: 'Привет! Что вам принести?', meta: '9:41', delay: 500, typingMs: 1100 }, { who: 'them', text: VOICE('0:03') + '<span class="tr">голосовое · послушай акцент</span>', meta: '9:41', delay: 700, typingMs: 1400, rec: true }, { who: 'sys', text: 'Цель: капучино, размер, цена.', delay: 600 }] },
+  pharmacy: { k: 'k-pharm', e: '💊', who: 'Том', role: 'фармацевт', sub: 'Аптека · вечер', amb: '💊 тихо · кондиционер', t: 'В аптеке', lvl: 'A2', color: '#143A2E', hint: 'Good evening. I have a headache…', chips: ['headache', 'since yesterday', 'allergic to…', 'how often?'],
+    steps: [{ who: 'sys', text: 'Голова болит второй день.', delay: 300 }, { who: 'them', text: 'Good evening. How can I help you?', tr: 'Добрый вечер. Чем могу помочь?', meta: '19:02', delay: 500, typingMs: 1000 }, { who: 'them', text: 'Any allergies I should know about?', tr: 'Есть аллергии, о которых мне стоит знать?', meta: '19:02 · прочитано', delay: 800, typingMs: 1300 }, { who: 'sys', text: 'Цель: симптом, дозировка, аллергия.', delay: 600 }] },
+  doctor: { k: 'k-doc', e: '🩺', who: 'Доктор Рэй', role: 'терапевт', sub: 'Клиника · приём 10:30', amb: '🩺 кабинет 4 · приём через 1 мин', t: 'У врача', lvl: 'B1', color: '#1A2A4A', hint: 'I’ve been having a sore throat for three days…', chips: ['for 3 days', 'sore throat', 'any fever?', 'follow-up'],
+    steps: [{ who: 'sys', text: 'Медсестра вызвала тебя.', delay: 300 }, { who: 'them', text: 'Come in, have a seat. What brings you in today?', tr: 'Заходите, присаживайтесь. Что вас привело?', meta: '10:30', delay: 500, typingMs: 1300 }, { who: 'them', text: VOICE('0:05') + '<span class="tr">голосовое · быстрая речь, B1</span>', meta: '10:31', delay: 700, typingMs: 1600, rec: true }, { who: 'sys', text: 'Цель: история, рекомендации, повторный визит.', delay: 600 }] },
+};
+const briefLive = (s) => `<div class="full" style="padding-top:60px;--pc:${s.color}"><div class="poster"></div><div style="position:relative;display:flex;flex-direction:column;height:100%">
+  <div class="fl"><span class="chip">${icon('close', 's16')}</span><div class="who grow" style="margin-left:4px"><span class="av">${s.e}</span><div class="nm">${s.who} · ${s.role}<s>${s.sub}</s></div></div><span class="chip">${s.lvl}</span></div>
+  <div class="scene-bar tone" style="margin-top:10px"><span class="dot"></span><b>${s.who} онлайн</b><span class="ambient" style="margin-left:auto">${s.amb}</span></div>
+  <div class="chatbox" data-chat style="min-height:210px"></div>
+  <div class="chips" data-chips style="margin-top:6px">${s.chips.map((c, i) => `<span class="ch" style="animation-delay:${3800 + i * 120}ms">${c}</span>`).join('')}</div>
+  <div class="ghostin" style="margin-top:10px"><span class="mic">${icon('mic', 's18')}</span><span class="tx" data-ghost><span style="color:var(--mu)">Скажи или напиши…</span></span></div>
+  <div class="small" style="margin-top:8px;display:flex;justify-content:center;align-items:center;gap:4px">−1 ${icon('boltF', 's16')} · около 6 минут · <b style="color:var(--tx)">тап — ответить</b></div></div></div>`;
+const liveInit = (s) => (ph) => { const stop = chatPlay3(ph.querySelector('[data-chat]'), s.steps, { skin: s.k }); const t = setTimeout(() => ghostType(ph.querySelector('[data-ghost]'), s.hint, 38), 4600); return () => { stop(); clearTimeout(t); }; };
+const BEATS_LIVE = [{ t: 0.3, w: 'закадровая строка сцены', s: 'амбиент сцены (тихо, 20%)' }, { t: 0.8, w: 'три точки «печатает» 1,1 с', s: 'клик клавиш (тихо)' }, { t: 1.9, w: 'реплика всплывает, метка времени', h: 'light', s: '«бум» пузыря' }, { t: 2.6, w: '«записывает голосовое…» (красная точка) 1,4 с', s: '—' }, { t: 4.0, w: 'голосовое с волной', h: 'light', s: 'короткое превью голоса 0,5 с' }, { t: 4.6, w: 'чипы-подсказки pop по 120 мс; черновик первой фразы печатается в поле (38 мс/символ), микрофон пульсирует', s: 'тик печатной машинки' }];
+const briefCall3 = (s) => `<div class="call" style="--pc:${s.color}"><div class="ov" data-cl>Входящий · диалог ${s.lvl}</div><div class="av a-pop" data-av style="margin-top:22px">${s.e}<span class="ring"></span><span class="ring r2"></span></div>
+  <div class="h-lg a-up d2" style="margin-top:18px" data-h>${s.who} звонит</div><div class="p a-up d3" style="margin-top:4px" data-p>${s.sub}</div>
+  <div class="sf a-up d4" style="margin-top:22px;padding:12px 16px;width:100%;text-align:left" data-box><div class="ov">Что будет</div><div style="font-size:15px;font-weight:600;margin-top:6px;line-height:21px">Она спросит, что ты хочешь. Твоя цель — капучино, размер и цена.</div></div>
+  <div class="hintchip tone a-up d5" style="margin-top:10px">${icon('mic', 's18')}Начни с: <b>Hi! Could I get…</b></div>
+  <div class="btns" data-btns><div><div class="b no">${icon('close', 's28')}</div><div class="lbl">Потом</div></div><div><div class="b ok">${icon('mic', 's28')}</div><div class="lbl">Ответить</div></div></div></div>`;
+const callInit = (ph) => seq(ph, [[4000, () => { ph.querySelectorAll('.call .ring').forEach((r) => r.remove()); ph.querySelector('[data-cl]').textContent = 'Пропущенный · 9:41'; ph.querySelector('[data-h]').textContent = 'Эмма оставила голосовое'; ph.querySelector('[data-p]').innerHTML = `<span class="snd" style="background:var(--ti);color:var(--tx)">${icon('play', 's16')}<span class="wave"><i></i><i></i><i></i><i></i><i></i></span>0:04</span>`; ph.querySelector('[data-box]').innerHTML = '<div class="ov">Голосовое</div><div style="font-size:15px;font-weight:600;margin-top:6px;line-height:21px">«Hi! It’s Emma from Corner. Your usual? Call me back when you can.»</div>'; ph.querySelector('[data-btns]').innerHTML = `<div><div class="b ok" style="animation:none">${icon('mic', 's28')}</div><div class="lbl">Перезвонить</div></div>`; }]]);
+moment({ id: 'm16', num: '16', short: 'Брифинг · живая переписка', title: 'Брифинг диалога v3 — настоящая переписка', tag: 'new',
+  lead: 'Метки времени и «прочитано», «записывает голосовое…», голосовое с волной, чипы под сцену, черновик первой фразы печатается в поле ввода. Три сцены с одним тайм-листом; звонок — с автоответчиком через 4 с.',
+  variants: [
+    { k: 'A1', label: 'Кофейня · черновик печатается сам', time: '~7 с', phone: { under: dialogsUnder(), over: briefLive(SCEN.cafe) }, init: liveInit(SCEN.cafe), total: 7.5, beats: BEATS_LIVE,
+      why: 'Человек видит: собеседник живой, что спросят, как начать — три страха сняты до первого слова. Черновик в поле — «подсказка-подножка», которую можно просто произнести.', ref: 'iMessage (прочитано/печатает), Telegram voice, Praktika, Speak.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'A2', label: 'Аптека · «прочитано» + симптомы', time: '~7 с', phone: { under: dialogsUnder(), over: briefLive(SCEN.pharmacy) }, init: liveInit(SCEN.pharmacy), total: 7.5, beats: BEATS_LIVE, why: 'Чипы = словарь сцены (headache, since yesterday, allergic to…) — опора для A2.', ref: '—', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'A3', label: 'Клиника · «приём через 1 мин»', time: '~7 с', phone: { under: dialogsUnder(), over: briefLive(SCEN.doctor) }, init: liveInit(SCEN.doctor), total: 7.5, beats: BEATS_LIVE, why: 'Амбиент «приём через 1 мин» добавляет мягкий дедлайн — вход без раскачки.', ref: '—', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Звонок → автоответчик через 4 с', time: '~5 с', phone: { under: dialogsUnder(), over: briefCall3(SCEN.cafe) }, init: callInit, total: 5.5,
+      beats: [{ t: 0.0, w: 'аватар pop + два кольца, зелёная кнопка пульсирует', h: 'ringtone-паттерн (light-light-pause)', s: 'рингтон 2 с, можно выключить' }, { t: 4.0, w: 'не ответил: «Эмма оставила голосовое», кнопка «Перезвонить»', h: 'light', s: 'сигнал автоответчика' }],
+      why: 'Входящий звонок — игровой и быстрый вход; автоответчик делает пропуск не тупиком, а вторым приглашением.', ref: 'FaceTime, Duolingo «call from Lily».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 17–18. Первый диалог + итог ---------- */
+const first3 = () => `<div class="full"><div class="glowspot"></div><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'idle', glints: true })}</div>
+  <div class="ov beat" data-b style="margin-top:20px">Первый диалог</div><div class="h-xl beat" data-b style="margin-top:6px">6 реплик<br>по-английски</div><div class="p beat" data-b style="margin-top:8px">Эмма поняла всё с первого раза. 3 цели из 3.</div>
+  <div class="beat" data-b style="margin-top:18px">${shareCard({ k: 'ПЕРВЫЙ РАЗГОВОР', big: '“Could I get a large cappuccino, please?”', sub: 'моя лучшая фраза · Закажи кофе', bg: 'linear-gradient(160deg,#4A2A14,#1A0E06)', inner: '' })}</div></div>
+  <div class="foot beat" data-b><div class="cta white">Следующий — «В продуктовом»</div><div class="cta ghost">${icon('share', 's18')} Поделиться фразой</div></div></div>`;
+const done3 = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:8px"><div class="fl beat" data-b style="gap:14px"><span class="av" style="width:64px;height:64px;font-size:30px;border-radius:50%;background:var(--ti);display:flex;align-items:center;justify-content:center">☕</span><div class="mood" data-mood>😐</div><div data-cc>${coinChar(5, 56, { mood: 'idle', shadow: false })}</div></div>
+  <div class="h-lg beat" data-b style="margin-top:10px" data-h>Эмма думает…</div><div class="p beat" data-b style="margin-top:4px">Закажи кофе · 3 цели из 3</div>
+  <div style="width:100%;margin-top:16px">${['Заказать капучино', 'Выбрать размер', 'Спросить цену'].map((g) => `<div class="goalline sf beat" data-b style="margin-top:8px"><span class="n" style="background:var(--acc);color:var(--on)">${icon('check', 's16')}</span>${g}</div>`).join('')}</div>
+  <div class="sf beat" data-b style="margin-top:12px;padding:12px 16px;width:100%;text-align:left"><div class="small">Лучшая фраза</div><div style="font-size:16px;font-weight:700;margin-top:4px">“Could I get a large one, please?”</div></div>
+  <div class="sf beat" data-b style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div class="grow" style="text-align:left"><div style="font-size:17px;font-weight:700">+<span data-c>0</span> монет</div><div class="small">без ошибок · ×1,5</div></div></div></div>
+  <div class="foot beat" data-b><div class="cta white">Следующий сценарий</div><div class="cta ghost">Разобрать 2 фразы</div></div></div>`;
+moment({ id: 'm17', num: '17–18', short: 'Первый диалог · итог', title: 'Первый диалог и итог диалога v3', tag: 'new',
+  lead: 'Первый диалог: персонаж cheer «Ты говорил!» с сердцами, карточка-фраза. Итог: лицо собеседника «думает…» 0,8 с → 😊 с pop (микро-саспенс), цели закрываются каскадом с тиками, монеты в конце.',
+  variants: [
+    { k: 'A', label: '«Ты говорил!» + карточка', time: '~3 с', phone: { under: dialogsUnder(), over: first3() }, total: 3.5,
+      init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say big">Ты говорил!</span>'); }], [700, () => confetti(ph, { n: 90 })], [900, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
+      beats: [{ t: 0.3, w: 'монета cheer ♥ + «Ты говорил!»', h: 'success', s: '«йу-ху»', big: true }, { t: 0.7, w: 'конфетти', s: 'россыпь' }, { t: 0.9, w: 'текст и карточка лесенкой по 220 мс', h: 'light', s: '—' }], why: 'Эмоция «я смог» + артефакт.', ref: 'Speak, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Итог: «думает…» → 😊 → каскад', time: '~4 с', phone: { under: dialogsUnder(), over: done3() }, total: 4.5,
+      init: (ph) => { const beats = [...ph.querySelectorAll('[data-b]')]; return seq(ph, [[200, () => beats[0].classList.add('on')], [1000, () => { const m = ph.querySelector('[data-mood]'); m.textContent = '😊'; m.style.animation = 'emPop 500ms var(--em-ease-pop) both'; ph.querySelector('[data-h]').textContent = 'Эмма довольна'; beats[1].classList.add('on'); beats[2].classList.add('on'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('jump'); }], ...beats.slice(3).map((b, i) => [1600 + i * 300, () => { b.classList.add('on'); if (i === 4) countUp(ph.querySelector('[data-c]'), 0, 45, 800); }])]); },
+      beats: [{ t: 0.2, w: 'аватар Эммы, лицо 😐 «думает…»', s: 'тихо' }, { t: 1.0, w: '<b>😊 pop</b>, «Эмма довольна», монета прыгает', h: 'success', s: '«дзинь»', big: true }, { t: 1.6, w: 'цели закрываются по 300 мс', h: 'light ×3', s: 'тик ×3' }, { t: 2.8, w: 'лучшая фраза + монеты +45', s: 'звон' }],
+      why: 'Микро-саспенс перед реакцией собеседника делает оценку эмоциональной.', ref: 'DialogVerdictScreen, Praktika.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 19. Рубежи серии — морф огня ---------- */
+const stageRow = (now) => `<div class="fire-row" style="width:100%">${[[1, 1, '1'], [7, 2, '7'], [30, 3, '30'], [100, 4, '100'], [365, 4, '365']].map(([n, st, l]) => `<div class="f ${n < now ? 'on' : n === now ? 'now' : 'off'}">${fire(st, n === now ? 40 : 30)}${l}</div>`).join('')}</div>`;
+const streak7v3 = () => `<div class="full"><div class="dusk"></div><div class="body" style="position:relative"><div class="fl" style="gap:0;align-items:flex-end"><div data-fire>${fire(1, 150, '6')}</div><div style="margin-left:-20px;margin-bottom:10px" data-cc>${coinChar(5, 60, { mood: 'idle', shadow: false })}</div></div>
+  <div class="ov beat" data-b style="margin-top:14px;color:var(--flame)">Неделя подряд · новая стадия огня</div><div class="h-xl beat" data-b style="margin-top:6px">7 дней. Это привычка</div><div class="p beat" data-b style="margin-top:8px">Дошедшие до 7 возвращаются в 2,4 раза чаще.</div>
+  <div class="beat" data-b style="margin-top:20px;width:100%">${stageRow(7)}</div><div class="gain beat" data-b style="margin-top:16px;width:100%">${icon('snow', 's20')}<div><b>+1 заморозка</b> — страховка. Лежит у огня.</div></div></div>
+  <div class="foot beat" data-b><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const streak30v3 = () => `<div class="full"><div class="dusk"></div><div class="body" style="position:relative;justify-content:flex-start;padding-top:22px"><div class="fl" style="gap:12px"><div data-fire>${fire(2, 110, '29')}</div><div><div class="ov" style="color:#7EC8FF" data-k>Яркий огонь</div><div class="h-lg" style="margin-top:4px">Месяц. Каждый день</div></div></div>
+  <div class="calendar beat" data-b style="margin-top:16px;width:100%">${Array.from({ length: 35 }, (_, i) => `<i class="${i < 30 ? 'on' : ''} ${i === 29 ? 'tod' : ''} ${i === 12 ? 'fz' : ''}" style="animation:emPop 300ms var(--em-ease-pop) both;animation-delay:${i * 26}ms"></i>`).join('')}</div>
+  <div class="stat3 beat" data-b style="margin-top:16px"><div class="st sf"><b>412</b><span>фраз</span></div><div class="st sf"><b>9</b><span>диалогов</span></div><div class="st sf"><b>+1 240</b><span>монет</span></div></div>
+  <div class="gain beat" data-b style="margin-top:12px;width:100%">${coin(7, 32)}<div><b>Ранг 7 — в подарок</b> за месяц серии. Чеканим?</div></div></div><div class="foot beat" data-b><div class="cta gold">Отчеканить ранг 7</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const streak100v3 = () => `<div class="full"><div class="dusk"></div><div class="glowspot gold" style="top:34%"></div><div class="body" style="position:relative"><div data-fire>${fire(3, 170, '')}</div>
+  <div class="h-xl" style="margin-top:-40px;font-size:96px;line-height:96px;font-weight:900;letter-spacing:-5px;color:#fff;text-shadow:0 0 40px rgba(255,255,255,.6)"><span data-n>0</span></div>
+  <div class="ov beat" data-b style="margin-top:6px;color:var(--gold)">Белый огонь · 3% учеников</div><div class="h-lg beat" data-b style="margin-top:10px">Сто дней</div>
+  <div class="beat" data-b style="margin-top:16px;display:flex;align-items:center;gap:14px"><span class="frame-gold">${coin(5, 72)}</span><div style="text-align:left"><div style="font-size:15px;font-weight:700">Рамка «100» — навсегда</div><div class="small">видна друзьям и в комнате Пика</div></div></div>
+  <div class="beat" data-b style="margin-top:14px">${shareCard({ k: 'СЕРИЯ', big: '100', sub: 'дней подряд · белый огонь', bg: 'linear-gradient(160deg,#B9842A,#2A1A05)', inner: '' })}</div></div>
+  <div class="foot beat" data-b><div class="cta gold">Забрать: Plus 7 дней + рамка</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const morphTo = (ph, stage, n, size, label) => { const box = ph.querySelector('[data-fire]'); box.innerHTML = fire(stage, size, n); const f = box.querySelector('.fire'); f.classList.add('morph'); f.insertAdjacentHTML('beforeend', `<span class="lvlup">${label}</span>`); };
+moment({ id: 'm19', num: '19', short: 'Рубежи · морф огня', title: 'Рубежи серии v3 — морф огня', tag: 'new',
+  lead: 'На рубеже огонь меняет стадию физически: сжатие → вспышка → новый цвет и размер, бирка «НОВАЯ СТАДИЯ», персонаж cheer, дрожь на 30 и 100. Число 6 → 7 переключается в момент вспышки.',
+  variants: [
+    { k: 'A', label: '7 — огонь 1 → 2 (ярче)', time: '~3,5 с', phone: { under: dialogsUnder(), over: streak7v3() }, total: 4,
+      init: (ph) => seq(ph, [[800, () => { morphTo(ph, 2, '7', 150, 'НОВАЯ СТАДИЯ'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 3); }], [1400, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 180))]]),
+      beats: [{ t: 0.0, w: 'огонь стадии 1 с числом 6', s: 'потрескивание' }, { t: 0.8, w: '<b>морф</b>: сжатие → вспышка → стадия 2, число 7, бирка «НОВАЯ СТАДИЯ», монета cheer ✦', h: 'success', s: '«вуф» + высокий звон', big: true }, { t: 1.4, w: 'текст, шкала стадий, заморозка — по 180 мс', h: 'light', s: '—' }],
+      why: 'Эволюция, а не число: видно, что огонь стал другим.', ref: 'Pokémon evolution, Duolingo streak milestones.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: '30 — 2 → 3 (синий) + календарь', time: '~4 с', phone: { under: dialogsUnder(), over: streak30v3() }, total: 4.5,
+      init: (ph) => seq(ph, [[800, () => { morphTo(ph, 3, '30', 110, 'СИНИЙ ОГОНЬ'); ph.querySelector('[data-k]').textContent = 'Синий огонь'; ph.querySelector('.full').classList.add('rumble'); }], [1300, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
+      beats: [{ t: 0.8, w: '<b>морф в синий</b> + дрожь 700 мс', h: 'heavy', s: '«вуф» низкий + звон', big: true }, { t: 1.3, w: '30 клеток календаря pop по 26 мс', h: 'light ×5', s: 'россыпь тиков' }, { t: 2.0, w: 'статы, подарок — ранг 7', h: 'success', s: 'аккорд' }],
+      why: 'Синий огонь — статус, который видят друзья; подарок — ранг.', ref: 'Duolingo 30-day, GitHub.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'C', label: '100 — 3 → 4 (белый) + рамка + Plus', time: '~4,5 с', phone: { under: dialogsUnder(), over: streak100v3() }, total: 5,
+      init: (ph) => seq(ph, [[600, () => { morphTo(ph, 4, '', 170, 'БЕЛЫЙ ОГОНЬ'); ph.querySelector('.full').classList.add('rumble'); countUp(ph.querySelector('[data-n]'), 0, 100, 1400); firework(ph, 195, 200, { r: 120, colors: ['#fff', '#FFE08A', '#F0B33A'] }); }], [2000, () => { confetti(ph, { gold: true, n: 120 }); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220)); }]]),
+      beats: [{ t: 0.6, w: '<b>морф в белый</b> + дрожь + фейерверк, число бежит 0 → 100 за 1,4 с', h: 'heavy', s: 'удар + глиссандо', big: true }, { t: 2.0, w: 'золотой дождь; рамка «100» (вращается), карточка, Plus 7 дней', h: 'success', s: 'фанфара 1,5 с' }],
+      why: 'Редчайший статус + видимый атрибут навсегда + Plus на пробу.', ref: 'Duolingo 100-day, Strava.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 20. Огонь гаснет ---------- */
+const homeEvening = (st = 0) => `<div class="top"><span class="pill" style="color:var(--flame);gap:4px" data-topfire>${fire(st, 22)} 12</span><span class="pill gold" style="flex:1;justify-content:flex-start">${coin(5, 20)}1 240</span><span class="pill">${icon('moon', 's16')}</span></div>
+  <div class="sf" style="margin-top:14px;padding:16px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Отрицание</div><div class="bar" style="margin-top:10px"><i style="--w:30%"></i></div></div>
+  <div class="fl" style="gap:10px;margin-top:12px">${['Уроки', 'Диалоги', 'Карточки'].map((t) => `<div class="sf" style="flex:1;aspect-ratio:1;padding:12px;display:flex;align-items:flex-end;font-weight:800;font-size:16px">${t}</div>`).join('')}</div>`;
+const risk3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:14px"><div data-fire>${fire(0, 70, '12')}</div><div class="grow"><div class="ov" style="color:var(--flame)">Огонь гаснет</div><div class="cd" data-cd>02:14:09</div></div><div data-cc>${coinChar(5, 56, { mood: 'sleep', zz: true, shadow: false })}</div></div>
+  <div class="p" style="margin-top:12px">Любое занятие вернёт пламя. Самое короткое — ступень Пика.</div>
+  <div class="cta white" style="margin-top:16px">Ступень Пика · 2 мин</div>
+  <div class="fl" style="margin-top:10px;gap:10px"><div class="cta tone" style="flex:1;height:48px;font-size:15px" data-frz>${icon('snow', 's18')} Заморозить · 200 ${coin(5, 16)}</div><div class="cta tone" style="flex:1;height:48px;font-size:15px">${icon('bell', 's18')} Через час</div></div></div>`;
+const saved3 = () => `<div class="dim"></div><div class="ice"></div><div class="modal" style="text-align:center"><div class="fl" style="justify-content:center;gap:10px"><span style="font-size:44px;line-height:1;animation:emPop 600ms var(--em-ease-pop) both">🧊</span><div data-fire>${fire(0, 60, '12')}</div></div>
+  <div class="h-lg" style="margin-top:12px" data-h>Заморозка сработала</div><div class="p" style="margin-top:6px">Вчера ты пропустил — 12 дней целы. Осталась <b>1 заморозка</b>.</div>
+  <div class="gain" style="margin-top:16px;text-align:left"><span class="pill plus">PLUS</span><div>В Plus заморозка возвращается каждую неделю сама</div></div><div class="cta white" style="margin-top:16px">Заниматься сегодня</div></div>`;
+moment({ id: 'm20', num: '20', short: 'Огонь гаснет', title: '«Серия под угрозой» v3 — огонь гаснет и оживает', tag: 'old',
+  lead: 'Уголёк в шапке Главной дышит всё медленнее; в шторке отсчёт и спящая монета; тап «Заморозить» — лёд наползает, огонь замирает в стекле; «спасла» — огонь оживает морфом (0 → 1), монета просыпается.',
+  variants: [
+    { k: 'A', label: 'Шторка: уголёк дышит медленнее → заморозка', time: '~4 с', phone: { under: homeEvening(0), over: risk3() }, total: 4.5,
+      init: (ph) => { let s = 2 * 3600 + 14 * 60 + 9; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000); const stop = seq(ph, [[800, () => { ph.querySelectorAll('.fire svg').forEach((f) => { f.style.animationDuration = '2.6s'; }); }], [2600, () => { const ice = document.createElement('div'); ice.className = 'ice'; ph.appendChild(ice); ph.querySelector('[data-frz]').style.background = 'color-mix(in srgb, #7EC8FF 30%, transparent)'; ph.querySelectorAll('.fire svg').forEach((f) => { f.style.animationPlayState = 'paused'; f.style.filter = 'saturate(.3) brightness(1.3) drop-shadow(0 0 12px #7EC8FF)'; }); }]]); return () => { clearInterval(iv); stop(); }; },
+      beats: [{ t: 0.0, w: 'шторка, отсчёт; уголёк дышит 1,5 с', h: 'light', s: 'тихое потрескивание' }, { t: 0.8, w: 'дыхание замедляется до 2,6 с (тревога без слов)', s: '—' }, { t: 2.6, w: 'тап «Заморозить»: лёд наползает снизу, огонь замирает в стекле', h: 'rigid', s: 'кристалл', big: true }],
+      why: 'Дыхание уголька — невербальная тревога; заморозка — тактильно понятное действие за монеты.', ref: 'Duolingo streak freeze, Duo widget.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: '«Спасла» — огонь оживает морфом', time: '~2,5 с', phone: { under: homeEvening(1), over: saved3() }, total: 3,
+      init: (ph) => seq(ph, [[900, () => { const box = ph.querySelector('.modal [data-fire]'); box.innerHTML = fire(1, 60, '12'); box.querySelector('.fire').classList.add('morph'); ph.querySelector('[data-h]').textContent = 'Заморозка спасла огонь'; }]]),
+      beats: [{ t: 0.0, w: 'лёд снизу, кубик pop, уголёк', s: 'кристалл' }, { t: 0.9, w: '<b>огонь оживает (морф 0 → 1)</b>, «спасла огонь»', h: 'success', s: '«вуф»', big: true }],
+      why: 'Спасение видно и ощущается — заморозка ценится, Plus-строка «возвращается сама» читается.', ref: 'Duolingo «Streak freeze used».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 21. Возвращение ---------- */
+const back3 = () => `<div class="full"><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'sleep', zz: true })}</div>
+  <div class="h-xl beat" data-b style="margin-top:22px">Ты вернулся!</div><div class="p beat" data-b style="margin-top:8px">9 дней — и ничего не сгорело: 412 фраз, ранг 5, энергия полная.</div>
+  <div class="sf" style="margin-top:22px;padding:4px 16px;width:100%;text-align:left"><div class="recap-row beat" data-b>${icon('people', 's18')} Ира поднялась в Базальт<b>→</b></div><div class="recap-row beat" data-b>${icon('layers', 's18')} Карточек ждут повторения<b>14</b></div><div class="recap-row beat" data-b>${icon('chat', 's18')} Новый сценарий «Доставка»<b>A2</b></div></div></div>
+  <div class="foot beat" data-b><div class="cta white">5 карточек — 1 минута</div><div class="cta ghost">На Главную</div></div></div>`;
+moment({ id: 'm21', num: '21', short: 'Возвращение', title: 'Возвращение после перерыва v3', tag: 'new',
+  lead: 'Монета спит 1 с → просыпается с «!» → cheer с сердцами «Ты вернулся!» → рекап по строке в 0,4 с → лёгкий шаг. Ни слова вины.',
+  variants: [{ k: 'A', label: 'Спит → «!» → обнимашка', time: '~4 с', phone: { under: homeEvening(1), over: back3() }, total: 4.5,
+    init: (ph) => seq(ph, [[1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); }], [1800, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'heart', 5); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 400)); }]]),
+    beats: [{ t: 0.0, w: 'монета спит, z-z-z', s: 'сопение' }, { t: 1.0, w: 'просыпается (peek) + «!»', h: 'medium', s: '«хоп»' }, { t: 1.8, w: '<b>cheer + сердца ♥</b>, «Ты вернулся!»', h: 'success', s: '«йу-ху»', big: true }, { t: 2.2, w: 'рекап по строке в 0,4 с', h: 'light ×3', s: 'тик ×3' }],
+    why: 'Персонаж скучал — это снимает вину лучше любого текста.', ref: 'Tamagotchi, Duolingo welcome back.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+
+/* ---------- 22. Энергия → Plus ---------- */
+const energyUnder = () => `<div class="top"><span class="chip">${icon('close', 's16')}</span><div class="grow" style="text-align:center;font-size:15px;font-weight:700">Ступень 3 · 2 этаж</div><span class="pill en" style="color:var(--bad)">${icon('boltF', 's16')} 0</span></div>
+  <div class="bar" style="margin-top:14px"><i style="--w:100%"></i></div><div class="sf" style="margin-top:22px;padding:28px 22px;text-align:center"><div class="small">Переведи</div><div class="h-md" style="margin-top:12px">Сколько это стоит?</div></div>
+  <div class="tone" style="margin-top:12px;padding:16px;text-align:center;font-weight:600;background:color-mix(in srgb, var(--good) 18%, transparent);color:var(--good)">How much is it?</div>`;
+const energyA3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl"><div class="grow"><div class="ov">Энергия 0 / 5</div><div class="h-md" style="margin-top:4px">Следующая через <span class="num" data-cd>23:40</span></div></div><div data-cc>${coinChar(5, 52, { mood: 'idle', shadow: false })}</div></div>
+  <div class="energy-cells" style="margin-top:14px"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="tower-cmp" style="margin-top:18px"><div class="t">${tower(0, { w: 60, floors: 6, lit: 2 })}ты · 2 этаж</div><div class="t" data-plus-tower>${tower(0, { w: 60, floors: 6, lit: 2 })}<span style="color:var(--gold)">с Plus · <span data-fl>2</span> этаж</span></div></div>
+  <div class="p center" style="margin-top:10px;font-size:14px">За неделю ты ждал энергию 6 раз. В Plus был бы на 5 этаже.</div>
+  <div class="cta gold" style="margin-top:14px"><span class="two">Продолжить сейчас<span class="sub">Plus · 7 дней бесплатно</span></span></div><div class="cta ghost">Подожду</div></div>`;
+const energyB3 = () => `<div class="full"><div class="glowspot" style="top:28%"></div><div class="body"><div class="heat h3" style="width:220px"><i style="--w:100%"></i><span class="tip" style="--w:100%">10 подряд</span></div>
+  <div style="margin-top:30px" data-cc>${coinChar(5, 96, { mood: 'idle', glints: true })}</div><div class="h-xl beat" data-b style="margin-top:18px">Ты в ударе.<br>Энергия — нет</div><div class="energy-cells beat" data-b style="margin-top:18px;width:200px"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="loss beat" data-b style="margin-top:18px;width:100%">${icon('clock', 's20')}<div>Через 24 минуты серия 10 <b>остынет</b>. В Plus энергия не кончается.</div></div></div>
+  <div class="foot beat" data-b><div class="cta gold"><span class="two">Продолжить серию<span class="sub">7 дней бесплатно · потом 399 ₽/мес</span></span></div><div class="cta ghost">Вернусь через 24 минуты</div></div></div>`;
+moment({ id: 'm22', num: '22', short: 'Энергия → Plus', title: 'Энергия кончилась → Plus v3', tag: 'old',
+  lead: 'Контрфакт оживает: правая башня «с Plus» зажигает окна по одному (2 → 5 этаж) на глазах; после 10 подряд — замедление, персонаж «Не останавливайся!», названная потеря.',
+  variants: [
+    { k: 'A', label: 'Две башни: «с Plus» зажигается на глазах', time: '~3 с', phone: { under: energyUnder(), over: energyA3() }, total: 3.5,
+      init: (ph) => { let s = 23 * 60 + 40; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }, 1000); const stop = seq(ph, [[800, () => { const t = ph.querySelector('[data-plus-tower]'); const rects = [...t.querySelectorAll('.tw rect[opacity=".8"]')]; rects.slice(-6).reverse().forEach((r, i) => setTimeout(() => { r.setAttribute('opacity', '1'); r.style.fill = 'var(--acc)'; if (i % 2 === 1) ph.querySelector('[data-fl]').textContent = String(3 + Math.floor(i / 2)); }, i * 180)); }], [2100, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('nod'); }]]); return () => { clearInterval(iv); stop(); }; },
+      beats: [{ t: 0.0, w: 'шторка, таймер', h: 'light' }, { t: 0.8, w: 'окна башни «с Plus» зажигаются по одному (180 мс), подпись 2 → 5 этаж', h: 'light ×6', s: 'тики вверх', big: true }, { t: 2.1, w: 'монета кивает', s: '—' }],
+      why: 'Упущенная выгода показана как движение, не как цифра.', ref: 'Duolingo hearts sheet, Spotify «you could have…».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: '«Не останавливайся!» после 10 подряд', time: '~2,5 с', phone: { under: energyUnder(), over: energyB3() }, total: 3,
+      init: (ph) => seq(ph, [[300, () => { ph.querySelector('.full').classList.add('freeze'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('wow'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Не останавливайся!</span>'); }], [900, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
+      beats: [{ t: 0.3, w: '<b>стоп-кадр</b> на горячем баре, монета wow «Не останавливайся!»', h: 'medium', s: 'удар', big: true }, { t: 0.9, w: 'текст, пустые ячейки, потеря «серия остынет» — по 220 мс', h: 'light', s: '—' }],
+      why: 'Пиковая мотивация + персонаж + названная потеря.', ref: 'Candy Crush continue?, Duolingo contextual paywall.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 23. Пробный Plus ---------- */
+const trial3 = () => `<div class="full"><div class="glowspot gold" style="top:30%"></div><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'idle', glints: true, crown: true })}</div>
+  <div class="trial-days" style="margin-top:26px;width:220px" data-days><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="h-lg beat" data-b style="margin-top:14px">Уже в Plus. Вот что открылось</div>
+  <div class="row sf beat" data-b style="width:100%;margin-top:14px"><span class="tile">${icon('boltF', 's20')}</span><div class="x">Энергия ∞<s>ячейки больше не нужны</s></div><div class="energy-cells" style="width:70px" data-cells><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="row sf beat" data-b style="width:100%"><span class="tile">${icon('chat', 's20')}</span><div class="x">Свободный разговор с Эммой<s>без сценария · 2 минуты</s></div>${icon('fwd', 's18')}</div>
+  <div class="small beat" data-b style="margin-top:12px">Напомним за день до конца — без сюрпризов</div></div><div class="foot beat" data-b><div class="cta gold">Поговорить с Эммой</div></div></div>`;
+moment({ id: 'm23', num: '23', short: 'Пробный Plus', title: 'Пробный период Plus v3', tag: 'old',
+  lead: 'Сразу после включения: корона падает на монету, 7 делений заполняются как «7 дней впереди», ячейки энергии заливаются до ∞ на глазах, первое действие — разговор с Эммой.',
+  variants: [{ k: 'A', label: 'Корона → 7 делений → энергия ∞', time: '~3,5 с', phone: { under: homeEvening(1), over: trial3() }, total: 4,
+    init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say gold">Plus — 7 дней!</span>'); }], [900, () => { ph.querySelectorAll('[data-days] i').forEach((d, i) => setTimeout(() => d.classList.add('on'), i * 90)); confetti(ph, { gold: true, n: 60 }); }], [1600, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))], [2200, () => ph.querySelectorAll('[data-cells] i').forEach((c, i) => setTimeout(() => c.classList.add('fill'), i * 100))]]),
+    beats: [{ t: 0.3, w: 'монета cheer ✦, корона, «Plus — 7 дней!»', h: 'success', s: 'аккорд' }, { t: 0.9, w: '7 делений заполняются по 90 мс + золото', h: 'light ×7', s: 'тики вверх' }, { t: 2.2, w: 'ячейки энергии заливаются до ∞ по 100 мс', h: 'medium', s: 'заряд', big: true }],
+    why: 'Мгновенное ощущение «что изменилось» + первое действие.', ref: 'Spotify Premium onboarding, Duolingo Super welcome.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+attachBeats(document.getElementById('root'));
+})();
+</script>
+</body>
+</html>

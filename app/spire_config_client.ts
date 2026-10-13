@@ -28,6 +28,15 @@ const SPIRE_CONFIG_REFRESH_MS = 6 * 60 * 60 * 1000;
 
 type CachedSpireConfig = Readonly<{ fetchedAtMs: number; config: SpireConfigDoc }>;
 
+// зачем (аудит Optimistic UI Шпиля, координатор 13.10): вход на экран Шпиля рисовал пустой `spire-loading`, пока AsyncStorage отдавал конфиг. Последний настоящий
+// конфиг (кэш или сеть, но не дефолт «выключен» при сбое) держим в памяти процесса — повторный заход рисует Шпиль в первом же кадре, а loadSpireConfig освежает фоном.
+let configMemory: SpireConfigDoc | null = null;
+
+/** Синхронно: последний настоящий конфиг Шпиля в этом процессе или null (первый заход — читаем кэш как раньше). */
+export function peekSpireConfig(): SpireConfigDoc | null {
+  return configMemory;
+}
+
 // Ленивый импорт держит Expo Go / выключенный облачный sync тихими —
 // Тот же приём, что в прежнем сетевом клиенте лиг.
 function getFirestore(): unknown | null {
@@ -71,6 +80,7 @@ async function writeCache(config: SpireConfigDoc): Promise<void> {
  */
 export async function invalidateSpireConfigCache(reason: string): Promise<void> {
   try {
+    configMemory = null; // зачем: флаг сменился на сервере — память с прежним «выключен/включён» первым кадром не показываем
     await AsyncStorage.removeItem(SPIRE_CONFIG_CACHE_KEY);
     DebugLogger.info('[SPIRE-CONFIG]', `кэш конфига сброшен (${reason})`);
   } catch (error) {
@@ -92,6 +102,7 @@ export async function loadSpireConfig(options: { force?: boolean } = {}): Promis
   const cacheFresh = cached !== null && (Date.now() - cached.fetchedAtMs) < SPIRE_CONFIG_REFRESH_MS;
   if (cacheFresh && !options.force) {
     DebugLogger.info('[SPIRE-CONFIG]', `loadSpireConfig: из кэша (возраст=${Date.now() - cached!.fetchedAtMs}мс)`);
+    configMemory = cached!.config;
     return cached!.config;
   }
 
@@ -99,6 +110,7 @@ export async function loadSpireConfig(options: { force?: boolean } = {}): Promis
   if (!db) {
     // зачем: Expo Go / облако выключено — не сеть недоступна временно, а её здесь нет в принципе.
     DebugLogger.info('[SPIRE-CONFIG]', `loadSpireConfig: firestore недоступен (expoGo=${IS_EXPO_GO}, cloudSync=${CLOUD_SYNC_ENABLED}), отдаём ${cached ? 'старый кэш' : 'дефолт'}`);
+    if (cached) configMemory = cached.config;
     return cached?.config ?? SPIRE_CONFIG_DEFAULTS;
   }
 
@@ -107,6 +119,7 @@ export async function loadSpireConfig(options: { force?: boolean } = {}): Promis
     const snap = await (db as any).collection(SPIRE_CONFIG_COLLECTION).doc(SPIRE_CONFIG_DOC).get(); // guard-ok: один документ по фиксированному id, не листинг коллекции
     const status = spireConfigStatus(snap?.exists ? snap.data() : null);
     DebugLogger.info('[SPIRE-CONFIG]', `loadSpireConfig: сеть ok, exists=${status.exists} valid=${status.valid} liveForPlayers=${status.liveForPlayers}`);
+    configMemory = status.config;
     await writeCache(status.config);
     return status.config;
   } catch (error) {
@@ -114,6 +127,7 @@ export async function loadSpireConfig(options: { force?: boolean } = {}): Promis
     // старый кэш (пусть протухший), иначе дефолт. Причина отказа — в логе,
     // не проглочена.
     DebugLogger.warn('[SPIRE-CONFIG]', `loadSpireConfig: сетевой сбой (${String(error)}), отдаём ${cached ? 'старый кэш' : 'дефолт'}`);
+    if (cached) configMemory = cached.config;
     return cached?.config ?? SPIRE_CONFIG_DEFAULTS;
   }
 }

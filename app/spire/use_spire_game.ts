@@ -32,6 +32,7 @@ import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
 import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import { spireFlushNow, spireRecordStepResult } from '../spire_report_client';
+import { animateNextLayoutTransition } from '../smooth_layout';
 import { getStableId } from '../stable_id';
 import { getCanonicalUserId } from '../user_id_policy';
 import { spireLoadFriendChips } from './spire_friends_client';
@@ -163,6 +164,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     void spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang }).then((load) => {
       if (!alive) return;
       DebugLogger.info(LOG, `game: комната status=${load.status} reason=${load.reason} group=${load.room?.groupId ?? '—'}`);
+      // зачем (аудит Optimistic UI Шпиля, 13.10; Performance Bible «Layout Stability»): плашка «нет сети» вставляется в поток НАД башней — без перехода башня прыгала бы вниз.
+      if (load.status === 'offline') animateNextLayoutTransition();
       setRoomLoad(load);
       if (load.room) {
         // Прогрев пакета недели: «Подняться» стартует без ожидания сети. После анимаций
@@ -176,7 +179,12 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
       }
     });
     void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => { if (alive) setFriends(chips); });
-    void spireLoadWeekResult(gate, { uid: ids.uid, lang }).then((res) => { if (alive) setWeekResult(res); });
+    void spireLoadWeekResult(gate, { uid: ids.uid, lang }).then((res) => {
+      if (!alive) return;
+      // зачем (там же): карточка «Итог недели» встаёт НАД башней — сдвиг контента идёт плавно, а не скачком.
+      if (res) animateNextLayoutTransition();
+      setWeekResult(res);
+    });
     return () => { alive = false; };
   }, [gate, ids, lang]);
 
@@ -360,6 +368,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const dismissOutcome = useCallback(() => setOutcome(null), []);
   const dismissWeekResult = useCallback(() => {
     const res = weekResult;
+    if (res) animateNextLayoutTransition(); // зачем: крестик убирает карточку из потока — башня поднимается плавно
     setWeekResult(null);
     if (res && ids && lang) void spireDismissWeekResult(ids.uid, lang, res.weekId);
   }, [weekResult, ids, lang]);

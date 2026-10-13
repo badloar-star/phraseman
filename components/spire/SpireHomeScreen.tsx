@@ -21,7 +21,7 @@ import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { spireReadWeekLocal } from '../../app/spire_report_client';
-import { loadSpireConfig } from '../../app/spire_config_client';
+import { loadSpireConfig, peekSpireConfig } from '../../app/spire_config_client';
 import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
 import { peekSpireTourSeen, spireMarkTourSeen, spireReadTourSeen } from '../../app/spire/spire_local_store';
@@ -111,7 +111,8 @@ export default function SpireHomeScreen() {
   const myCoinRank = preview ? preview.coinRank : realCoinRank;
 
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
-  const [config, setConfig] = useState<SpireConfigDoc | null>(preview?.config ?? null);
+  // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
+  const [config, setConfig] = useState<SpireConfigDoc | null>(() => preview?.config ?? peekSpireConfig());
   const [week, setWeek] = useState<SpireWeekLocal | null>(preview?.week ?? null);
   const [selected, setSelected] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(preview?.showAll ?? false);
@@ -124,7 +125,7 @@ export default function SpireHomeScreen() {
       return undefined;
     }
     let alive = true;
-    DebugLogger.info(LOG, 'home: вход, читаем конфиг (кэш 6 ч)');
+    DebugLogger.info(LOG, `home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: ${config === null ? 'нет (первый заход)' : `да (enabled=${String(config.enabled)})`}`);
     loadSpireConfig()
       .then((next) => {
         if (!alive) return;

@@ -326,11 +326,11 @@ export default function SpireHomeScreen() {
           </View>
         ) : null}
         {game.rejectNotice ? (
-          // зачем (решение владельца 13.10, журнал п.86): сервер не засчитал пройденную ступень, маркер откатился — человек должен понять, почему этаж ниже. Текст пока общий «не сохранилась. Попробуй ещё раз»
-          // (saveFailed на 9 языках); точная строка «Ступень не засчиталась» — у Ядра на тексты.
+          // зачем (решение владельца 13.10, журнал п.86): сервер не засчитал пройденную ступень, маркер откатился — человек должен понять, почему этаж ниже. Текст — точная причина
+          // «Ступень не засчиталась. Пройди её ещё раз» (stepNotCounted на 9 языках, Ядро 13.10).
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-reject-notice">
             <Ionicons name="alert-circle-outline" size={20} color={p.textSecondary} />
-            <Text style={[s.noteText, { color: p.textSecondary }]}>{spireGameText(lang, 'saveFailed')}</Text>
+            <Text style={[s.noteText, { color: p.textSecondary }]}>{spireGameText(lang, 'stepNotCounted')}</Text>
           </View>
         ) : null}
         {game.weekResult ? (

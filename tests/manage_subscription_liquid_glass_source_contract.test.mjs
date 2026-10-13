@@ -42,7 +42,8 @@ const PROTECTED = {
     // зачем (15.10 вечер, перепрогон красных; сверено по diff d35cf5cec): в результаты handleChangePlan и openStoreCancel добавлено только поле messageEn (английский текст сообщения) — покупка, отмена и смена плана без изменений.
     handleChangePlan: 'edcaed7e3f6dc294a9030a9ae3802d8b1abd25231fb7f328fd257c3e6462892a',
     // хэш обновлён 10.10: в handleRestore добавлен синхронный замок restoringRef от двойного тапа (деньги/активация не менялись).
-    handleRestore: '4c5bf95c1a31d05e13d9a41cfd4f313d0a140a2bef4f21aa8d4a3c780b845497',
+    // хэш обновлён 13.10 (Авторизация, profile-024/paywalls-022): dev-ветка restorepurchase=empty ДО вызова магазина (в сторе геттер выключен); деньги/активация не менялись.
+    handleRestore: '2f879b25a72de5380be37eefbfad7ad57df78b29b68ed71f2ecf650e87688853',
     handleRestoreRef: '1b3dbed6ce5c65341dc1c80dac2a6478a19c791b36f0b38d6bb9d161c7663cf4',
     closeCancelSheet: 'f0f3df64441f33d8e9298e729fbe40fedf5ee81c3eade3bea7e3acc27c567090',
     openStoreCancel: 'bc53a7375ec8a9bab103ec11d2302ff01c79fa2995cc4424cd17aaf5ccee8892',
@@ -216,7 +217,7 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => customerInfo },
     './home_screen_hydration': { peekHomeScreenHydration: () => null },
     './manage_subscription_save_offer': { resolveSaveOffer: () => 'none' },
-    './dev_paywall_state': { isDevManageLoadingHold: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
+    './dev_paywall_state': { isDevManageLoadingHold: () => false, isDevRestorePurchaseEmpty: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
     './debug-logger': { DebugLogger: { error: () => {} } },
     // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
     './paywall_price_cache': { peekPaywallPriceCache: () => null },

@@ -69,6 +69,7 @@ import {
 import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_identity';
 import { peekHomeScreenHydration } from './home_screen_hydration';
 import { getDevSaveOfferProgress } from './dev_save_offer_progress';
+import { isDevRestorePurchaseEmpty } from './dev_paywall_state';
 import {
   resolveSaveOffer,
   type SaveOfferKind,
@@ -512,6 +513,13 @@ export default function ManageSubscription() {
     );
     if (!isOperationCurrent()) {
       console.warn('[RESTORE] ignored:stale_generation'); // guard-ok
+      return;
+    }
+    // зачем (Авторизация 13.10, profile-024/paywalls-022): dev `restorepurchase=empty` — «Покупок не нашлось» без магазина; в сторе геттер выключен
+    if (isDevRestorePurchaseEmpty()) {
+      console.log('[RESTORE] [DEV-STATE] restorepurchase=empty — магазин не вызывается, показываем «Покупок не нашлось»'); // guard-ok: dev-ветка
+      hapticTap();
+      setShowRestoreEmpty(true);
       return;
     }
     hapticTap();

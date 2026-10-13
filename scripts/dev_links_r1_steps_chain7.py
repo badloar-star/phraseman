@@ -28,8 +28,9 @@ FREE = 'plus=off&free=on&studyTarget=en'
 
 # ── A. Список уроков
 add('learn-001', ['wait:1500'], FREE, LESSONS, note='список уроков у Free (A1)')
-add('learn-003', ['wait:1500', 'tap:#legacy-lessons-search-toggle', 'wait:500'], 'plus=on&studyTarget=en', LESSONS, note='список уроков: поиск открыт (A3)')
-add('learn-004', ['wait:1500', 'tap:#legacy-lessons-search-toggle', 'tap:#legacy-lessons-search-input', 'type:zzqx', 'wait:600'],
+# зачем (Макеты d68195428): в образце A3 введён запрос «Present» и видны результаты; клавиатура ОС мешала кадру
+add('learn-003', ['wait:1500', 'tap:#legacy-lessons-search-toggle', 'tap:#legacy-lessons-search-input', 'type:Present', 'hidekb', 'wait:600'], 'plus=on&studyTarget=en', LESSONS, note='список уроков: поиск «Present» (A3)')
+add('learn-004', ['wait:1500', 'tap:#legacy-lessons-search-toggle', 'tap:#legacy-lessons-search-input', 'type:zzqx', 'hidekb', 'wait:600'],
     'plus=on&studyTarget=en', LESSONS, note='поиск — ничего не нашлось (A4; запрос «zzqx»)')
 add('learn-014', ['wait:1500', 'tap:#lessons-row-4', 'wait:1500'], FREE, LESSONS, note='Free тапает урок 4 → пейвол-вход (A13)')
 
@@ -119,3 +120,49 @@ add('dialogs-020', DLG_START + SEND + ['tap:#dialogue-v2-why-*', 'wait:800'], DL
 # ── Карточки: публикация набора — «отправлено» (Макеты 12.10, подмена publish=ok: ответ в памяти, без записи)
 add('cards-gap-025', ['tap:#fc-pack-menu', 'tap:#fc-pack-publish', 'wait:400'], 'cards=demo&plus=on&publish=ok', '/flashcards_collection?pack=local_pack_dev_demo_work',
     note='«Набор отправлен на публикацию» (publish=ok, без сети)')
+
+# ── Ссылки, не доводившие до состояния (Макеты d68195428, координатор 13.10). Общий модуль не трогаю — переопределяю здесь.
+# зачем: оба макета пейвола (paywall-gaps-states, paywall-price-states) нарисованы с входом «Энергия закончилась» (константа CX) —
+# context=generic давал общий пейвол. paywalls-014 уже совпал с образцом — не трогаю.
+PAYWALL_FREE_E = 'plus=off&free=on&energy=5'
+PWE = '/premium_modal?context=no_energy&source=no_energy_modal'
+_redo = {
+    'paywall-gap-001': ([], '', 'пейвол «Энергия закончилась» — верх шторки'),
+    'paywall-gap-002': (['see:#paywall-compare-toggle'], '', '«Free и Plus» свёрнуто (прокрутка до блока)'),
+    'paywall-gap-003': (['tap:#paywall-compare-toggle'], '', '«Free и Plus» развёрнуто'),
+    'paywall-gap-005': (['tap:#paywall-plan-monthly'], '', 'выбран план «Месяц»'),
+    'paywall-gap-004': ([], '&_force_trial_ui=1&_force_trial_days=3', 'лента пробного периода (образец N=3)'),
+    'paywall-gap-006': ([], '&_dev_state=reminder_prompt', 'после покупки: «Plus твой. Напомнить…»'),
+    'paywalls-011': ([], '&_dev_state=loading', 'покупка: загрузка условий'),
+    'paywalls-012': ([], '&_dev_state=store_unreachable', 'покупка: ошибка до checkout (тост через 0,7 с)'),
+    'paywalls-013': ([], '&_dev_state=purchasing', 'покупка: проверяем покупку'),
+    'paywalls-016': ([], '&_dev_state=status_unknown', 'покупка: статус неизвестен'),
+    'paywalls-018': ([], '&_dev_state=store_promo', 'покупка: промо от магазина'),
+}
+for _rid, (_steps, _extra, _note) in _redo.items():
+    ENTRIES.pop(_rid, None)
+    add(_rid, _steps, PAYWALL_FREE_E, PWE + _extra, note=_note + ' (вход «Энергия закончилась», как в образце)')
+for _rid, _toast, _note in (('paywall-gap-011', 'purchase_confirmed', 'тост «покупка подтверждена»'),
+                            ('paywall-gap-012', 'restored', 'тост «покупки восстановлены»'),
+                            ('paywall-gap-013', 'restore_failed', 'тост «не удалось восстановить покупки»')):
+    ENTRIES.pop(_rid, None)
+    add(_rid, ['wait:300'], PAYWALL_FREE_E + '&toast=' + _toast, PWE, note=_note + ' поверх пейвола (снимать сразу — тост живёт ~3 с)')
+
+# зачем: «Восстановить» уходил в настоящий магазин → «не удалось проверить»; restorepurchase=empty — «Покупок не нашлось» без магазина
+for _rid in ('paywalls-022', 'profile-024'):
+    ENTRIES.pop(_rid, None)
+add(['paywalls-022', 'profile-024'], ['tap:#manage-subscription-restore', 'wait:600'], 'plus=on&plan=yearly&restorepurchase=empty', '/manage_subscription',
+    note='«Восстановить» — покупок не найдено (restorepurchase=empty, магазин не вызывается)')
+
+# зачем: образцы Настроек прокручены вниз — «Размер шрифта», «PHRASEMAN PLUS», «Версия …»
+_SET_BOTTOM = ['wait:1200', 'see:#settings-plus-row', 'scroll:down', 'scroll:down', 'wait:500']
+for _rid, _params, _note in (('settings-gap-002', 'plus=off', 'Plus не активна'),
+                             ('settings-gap-003', 'plus=on&plan=yearly', 'Plus по подписке (годовой план)'),
+                             ('settings-gap-030', 'plus=off&referral=off', '«Пригласить друга» скрыта (referral=off)')):
+    ENTRIES.pop(_rid, None)
+    add(_rid, _SET_BOTTOM, _params, '/(tabs)/settings', note=f'главная Настроек прокручена до «PHRASEMAN PLUS»: {_note}')
+
+# зачем: строка «Время» активна, только если включено ежедневное напоминание (по умолчанию выключено); robot_no_cloud=1 — тумблер без записи
+ENTRIES.pop('settings-gap-028', None)
+add('settings-gap-028', ['tap:#notif-daily-switch', 'wait:400', 'tap:#notif-time-label', 'wait:600'], 'plus=off&robot_no_cloud=1', '/settings_notifications',
+    note='окно выбора времени: включить «Ежедневное напоминание» (без записи — robot_no_cloud) → «Время»')

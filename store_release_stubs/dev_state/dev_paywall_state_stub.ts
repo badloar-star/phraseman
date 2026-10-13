@@ -5,6 +5,9 @@ export function setDevPaywallLinkState(): boolean { return false; }
 export function getDevPaywallLinkState(): null { return null; }
 export function setDevManageLoadingHold(): boolean { return false; }
 export function isDevManageLoadingHold(): boolean { return false; }
+// зачем (Авторизация 13.10, profile-024/paywalls-022): «Восстановить — пусто» в стор-сборке не подменяется
+export function setDevRestorePurchaseEmpty(): boolean { return false; }
+export function isDevRestorePurchaseEmpty(): boolean { return false; }
 export const DEV_LESSON_UPSELLS = [] as const;
 export function setDevLessonUpsell(): boolean { return false; }
 export function getDevLessonUpsell(): null { return null; }

@@ -94,6 +94,26 @@ export function isDevManageLoadingHold(): boolean {
 }
 
 /**
+ * `dev_state?restorepurchase=empty` (Авторизация 13.10, profile-024 / paywalls-022): «Восстановить покупки» в «Управлении Plus» сразу показывает
+ * «Покупок не нашлось» — магазин не вызывается (без подмены тап уходил в настоящий магазин и давал «не удалось проверить»). Только память.
+ */
+let restorePurchaseEmpty = false;
+
+export function setDevRestorePurchaseEmpty(on: boolean): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: restorepurchase= отклонён — не dev-сборка`, { on }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  restorePurchaseEmpty = on;
+  console.log(`${LOG} paywall: restorepurchase=${on ? 'empty' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevRestorePurchaseEmpty(): boolean {
+  return devPaywallAvailable() && restorePurchaseEmpty;
+}
+
+/**
  * `dev_state?upsell=first_lesson|three_lessons` (Авторизация 12.10, paywalls-009/010): мягкое предложение Plus на итоге урока
  * без кулдаунов и отметок показа — экран рисует подставное предложение, отметка «показано» в хранилище НЕ пишется.
  * `dev_state?ai_explain=limit` (paywalls-008): карточка ИИ-разбора ошибки сразу в состоянии «лимит дня», без вызова сервера.

@@ -185,7 +185,7 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     './manage_subscription_purchase': { changeManageSubscriptionPlanForGeneration: async () => ({ status: 'stale' }), isManageSubscriptionOperationCurrent: () => true },
     './revenuecat_account_identity': { readRevenueCatCustomerInfoForGeneration: async () => null },
     './home_screen_hydration': { peekHomeScreenHydration: () => progress },
-    './manage_subscription_save_offer': { resolveSaveOffer: () => offer }, './dev_paywall_state': { isDevManageLoadingHold: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
+    './manage_subscription_save_offer': { resolveSaveOffer: () => offer }, './dev_paywall_state': { isDevManageLoadingHold: () => false, isDevRestorePurchaseEmpty: () => false }, // зачем (12.10, 7a79d3519): экран читает dev-подмену manage=loading; в сторе это заглушка, в харнесс-карте — выключено
     './debug-logger': { DebugLogger: { error: () => {} } },
     // зачем (Дизайн, приказ «пейволы все сделать»): подпись смены плана берёт цену магазин → кэш → справочная с «≈»; заглушки без кэша.
     './paywall_price_cache': { peekPaywallPriceCache: () => null },

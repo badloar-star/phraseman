@@ -35,7 +35,7 @@ import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SIGNIN_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSignInMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevEnergyStopPlusGranted } from './dev_energy_stop_flag';
-import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
+import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, setDevRestorePurchaseEmpty, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
 import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevLessonIntroSkip, setDevPackDraft, setDevPublishOk, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MEMORY, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMemory, type DevDialogMood } from './dev_dialog_state';
@@ -189,6 +189,8 @@ export type DevStateRequest = Readonly<{
   support?: 'fail' | 'ok' | 'sent';
   /** «Управление подпиской»: скелетон загрузки магазина держится (paywalls-020 = profile-019). */
   manage?: 'loading' | 'off';
+  /** empty — «Восстановить покупки» в «Управлении Plus» сразу «Покупок не нашлось», магазин не вызывается (dev_paywall_state.ts). */
+  restorePurchase?: 'empty' | 'off';
   /** Начатые языки изучения поверх хранилища, только память (settings-gap-020/021). */
   started?: readonly ('en' | 'es' | 'de' | 'fr' | 'it')[] | 'off';
   /** Мягкое предложение Plus на итоге урока без кулдаунов (paywalls-009/010). */
@@ -430,6 +432,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.support = pick('support', ['fail', 'ok', 'sent'] as const);
   // зачем (Авторизация 12.10, съёмка R1): подмены только в памяти — manage/started/upsell/ai_explain.
   request.manage = pick('manage', ['loading', 'off'] as const);
+  // зачем (Авторизация 13.10, profile-024/paywalls-022): «Восстановить — пусто» без магазина
+  request.restorePurchase = pick('restorepurchase', ['empty', 'off'] as const);
   request.started = list('started', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.upsell = pick('upsell', [...DEV_LESSON_UPSELLS, 'off'] as const);
   request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
@@ -836,6 +840,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       if (request.intros === 'seen') {
         const count = await registry.markAllFeatureIntrosSeen();
         console.log(`[DEV-STATE] intros: помечено показанными ${count} окон знакомства`); // guard-ok: итог фикстуры
+        // зачем (Авторизация 13.10, community-001): тур Шпиля хранит свой флаг вне реестра окон знакомства — без этого кадр «Сообщества» закрывал тур
+        const { spireMarkTourSeen } = await import('./spire/spire_local_store');
+        await spireMarkTourSeen();
+        console.log('[DEV-STATE] intros: тур Шпиля помечен показанным'); // guard-ok: итог фикстуры
       } else {
         await registry.resetAllFeatureIntrosSeen();
         console.log('[DEV-STATE] intros: «показано» сброшено — окна знакомства появятся снова'); // guard-ok: итог фикстуры
@@ -974,6 +982,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.manage !== undefined) {
     await step('manage', request.manage, async () => setDevManageLoadingHold(request.manage === 'loading'));
+  }
+  if (request.restorePurchase !== undefined) {
+    await step('restorepurchase', request.restorePurchase, async () => setDevRestorePurchaseEmpty(request.restorePurchase === 'empty'));
   }
   if (request.started !== undefined) {
     await step('started', request.started === 'off' ? 'off' : request.started.join(','), async () => setDevSocialState({ startedLanguages: request.started === 'off' ? null : request.started! }));

@@ -265,3 +265,24 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 
 **Для выкладки:** команда из раздела «Команда» берёт текущий HEAD — новый срез соберётся сам. После выкладки в журнале функций искать
 `[SERVER-CAUSE]` рядом с `[DIALOGUE-V2-COMPLETE] failed` / `[DIALOGUE-V2-TURN] failed`, чтобы видеть исходную причину.
+
+## Выкладка 13.10 07:28–08:02 (Ядро) — блоки А, Б, В, Д, Е ВЫЛОЖЕНЫ
+
+Решение владельца 13.10 ~07:05 «Да, всё одним заходом» (через координатора) и прямое подтверждение в сессии Ядра
+«Да, выкладывай А Б В Д Е». Блок Г (сайт), backfill старых обращений и опрос осколков — НЕ выкладывались.
+Срез **1cbbd489a** (`git -c core.autocrlf=false archive`, `.env*` скопированы без чтения, переходы на node_modules); серверных
+коммитов после проверенного 437edbd1d нет; `dialogue_v2_embedded_release.ts --check` rc=0. Все команды — `--only` по именам,
+`--non-interactive`, без `--force`.
+
+| Время | Блок | Что ушло | rc | Проверка после |
+|---|---|---|---|---|
+| 07:28:30–07:32:58 | А | dialogueV2TextTurn, dialogueV2SessionComplete, reEngagePushCron | 0 (268 с) | новые ревизии 06:32:36Z, STARTUP probe с 1-й попытки, ошибок нет |
+| 07:33:35–07:38:03 | Б | premiumExpiryReminderCron | 0 (268 с) | ревизия 06:37:45Z, STARTUP ok |
+| 07:38:04–07:46:49 | В | adminTranslateMessage, adminCreateAppMessage, adminUpdateAppMessage, adminLaunchVipSurveyCampaign | 0 (525 с) | 4/4 «Successful update», STARTUP ok у всех четырёх |
+| 07:47:07–07:48:03 | В | hosting:admin | 0 (56 с) | legacy.html 200, блок «EN · English» есть, `tr.claims.admin !== true` на месте, корень → /legacy.html (301) |
+| 07:48:21–07:53:26 | Д | submitClientReport, firestore:indexes | 0 (305 с) | индексы развёрнуты; «6 field overrides … not present» — НЕ удалены (без --force); TTL `error_reports.expireAt` = CREATING (до 24 ч); первый вызов 06:54:57Z принят |
+| 07:54:18–07:59:52 | Е | accountDeleteMine, accountDeleteWorker | 0 (334 с) | STARTUP ok у обеих |
+| 08:01:51 | — | уборка среза | — | переходы сняты до удаления, рабочие node_modules на месте |
+
+Что смотреть дальше: `[SERVER-CAUSE]` рядом с `[DIALOGUE-V2-COMPLETE] failed` / `[DIALOGUE-V2-TURN] failed`; через сутки — TTL
+«Serving» (`gcloud firestore fields ttls list --collection-group=error_reports`); у нового обращения `expireAt` ≈ +30 дней.

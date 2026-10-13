@@ -143,6 +143,8 @@ function loadComponent({ fontSize = 'medium', uiScale = 1, themeId = 'graphite' 
       liquidGlassTokens: id => ({ plateFillFrom: `plate-${id}`, opaqueCard: `opaque-${id}`, opaqueControl: `control-${id}`, glassEdge: `edge-${id}`, lightTint: `tint-${id}`, secondary: `secondary-${id}`, selected: `selected-${id}` }),
     },
     '../../app/stable_safe_area_metrics': { useStableSafeAreaInsets: () => ({ top: 11, right: 12, bottom: 13, left: 14 }) },
+    // EN-проход 13.10: склейка адреса почты (U+2060) — поведение проверяет tests/legal_text_format.test.ts; здесь текст как есть.
+    './legal_text_format': { keepEmailsUnbroken: text => text },
   };
   const exports = executeModule(componentSource, COMPONENT_PATH, modules);
   const props = {

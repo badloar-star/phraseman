@@ -9,6 +9,7 @@ import PressableHybrid from '../PressableHybrid';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
 import ScreenGradient from '../ScreenGradient';
 import { FONT_SCALE, useTheme } from '../ThemeContext';
+import { keepEmailsUnbroken } from './legal_text_format';
 
 export type LegalDocumentSection = Readonly<{
   heading: string;
@@ -183,7 +184,7 @@ export default function LegalDocumentSheet({
                         fontWeight: '400',
                       }}
                     >
-                      {section.body}
+                      {keepEmailsUnbroken(section.body)}
                     </Text>
                   </View>
                 );

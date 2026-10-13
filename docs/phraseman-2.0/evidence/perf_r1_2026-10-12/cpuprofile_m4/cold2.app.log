@@ -1,0 +1,39 @@
+10-13 06:11:45.855 W/ReactNativeJS( 6148): [JS-STALL] +741ms поток стоял 740ms (с +1ms)
+10-13 06:11:46.455 W/ReactNativeJS( 6148): [JS-STALL] +1341ms поток стоял 531ms (с +810ms)
+10-13 06:11:46.903 W/ReactNativeJS( 6148): [JS-STALL] +1789ms поток стоял 447ms (с +1342ms)
+10-13 06:11:47.886 W/ReactNativeJS( 6148): [JS-STALL] +2770ms поток стоял 779ms (с +1991ms)
+10-13 06:11:48.247 W/ReactNativeJS( 6148): [JS-STALL] +3133ms поток стоял 363ms (с +2770ms)
+10-13 06:11:49.283 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=home_lazy_modals_prewarm taskMs=6 syncMs=1 proc=11761374ms
+10-13 06:11:49.284 W/ReactNativeJS( 6148): [JS-STALL] +4170ms поток стоял 1023ms (с +3147ms)
+10-13 06:11:49.324 I/ReactNativeJS( 6148): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-13 06:11:49.334 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=paywall_price_cache_warmup taskMs=57 syncMs=0 proc=11761425ms
+10-13 06:11:49.645 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=heavy_init taskMs=0 syncMs=0 proc=11761735ms
+10-13 06:11:49.847 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=client_shard_phone_state_backfill taskMs=86 syncMs=1 proc=11761938ms
+10-13 06:11:50.542 W/ReactNativeJS( 6148): [JS-STALL] +5427ms поток стоял 449ms (с +4978ms)
+10-13 06:11:50.542 W/ReactNativeJS( 6148): [JS-STALL] heartbeat +5427ms splash=hidden@+3156ms
+10-13 06:11:51.042 W/ReactNativeJS( 6148): [JS-STALL] +5928ms поток стоял 274ms (с +5654ms)
+10-13 06:11:51.043 I/ReactNativeJS( 6148): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":1579,"quietReason":"quiet","quietWaitMs":643,"cleanTicks":4,"lastLagMs":15,"maxLagMs":18,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":1,"commitMs":645}'
+10-13 06:11:52.097 I/ReactNativeJS( 6148): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"mounted","queuedMs":1394,"totalMs":1048,"quietReason":"quiet","quietWaitMs":648,"cleanTicks":4,"lastLagMs":17,"maxLagMs":17,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":220}'
+10-13 06:11:54.609 W/ReactNativeJS( 6148): [SFX-PREWARM] startup start reason=startup:painted sinceMountMs=7994
+10-13 06:11:54.610 I/ReactNativeJS( 6148): [SFX-PREWARM] enqueue added=3 queued=3 running=false
+10-13 06:11:54.638 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.ui.tap_soft ms=26 left=2
+10-13 06:11:54.640 I/ReactNativeJS( 6148): [SFX-PREWARM] lesson_end reason=startup:painted
+10-13 06:11:54.641 I/ReactNativeJS( 6148): [SFX-PREWARM] enqueue added=4 queued=6 running=true
+10-13 06:11:54.643 W/ReactNativeJS( 6148): [JS-STALL] +9527ms поток стоял 1898ms (с +7629ms)
+10-13 06:11:54.909 I/ReactNativeJS( 6148): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"mounted","queuedMs":2404,"totalMs":2811,"quietReason":"quiet","quietWaitMs":646,"cleanTicks":4,"lastLagMs":17,"maxLagMs":18,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":1994}'
+10-13 06:11:54.951 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.ui.tap_primary ms=9 left=5
+10-13 06:11:55.266 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.ui.tap_blocked ms=7 left=4
+10-13 06:11:55.295 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=lv2_completion_scheduler_install taskMs=6017 syncMs=1 proc=11767387ms
+10-13 06:11:55.541 W/ReactNativeJS( 6148): [JS-STALL] heartbeat +10427ms splash=hidden@+3156ms
+10-13 06:11:55.584 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.complete.micro ms=7 left=3
+10-13 06:11:55.911 W/ReactNativeJS( 6148): [JS-STALL] +10797ms поток стоял 370ms (с +10427ms)
+10-13 06:11:55.987 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.reward.chest_open ms=70 left=2
+10-13 06:11:56.239 I/ReactNativeJS( 6148): '[TABS-PREMOUNT] step', '{"idx":4,"outcome":"mounted","queuedMs":5034,"totalMs":1330,"quietReason":"quiet","quietWaitMs":649,"cleanTicks":4,"lastLagMs":18,"maxLagMs":18,"sinceTouchMs":1200,"idleWaitMs":1,"prewarmMs":0,"commitMs":445}'
+10-13 06:11:56.319 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.reward.small ms=14 left=1
+10-13 06:11:56.643 I/ReactNativeJS( 6148): [SFX-PREWARM] step event=pm.streak.saved ms=11 left=0
+10-13 06:11:57.243 W/ReactNativeJS( 6148): [JS-STALL] +12129ms поток стоял 292ms (с +11837ms)
+10-13 06:11:57.329 I/ReactNativeJS( 6148): [V2-AUDIO-SEED] start paint=painted splash=hidden delayedMs=8045
+10-13 06:11:57.897 W/ReactNativeJS( 6148): [JS-STALL] +12783ms поток стоял 346ms (с +12437ms)
+10-13 06:11:58.531 I/ReactNativeJS( 6148): [V2-AUDIO-SEED] end outcome=ok ms=1199
+10-13 06:11:58.532 W/ReactNativeJS( 6148): [FIRST-FRAME] deferred:done label=v2_audio_seed taskMs=9249 syncMs=1 proc=11770622ms
+10-13 06:12:00.575 W/ReactNativeJS( 6148): [JS-STALL] heartbeat +15461ms splash=hidden@+3156ms

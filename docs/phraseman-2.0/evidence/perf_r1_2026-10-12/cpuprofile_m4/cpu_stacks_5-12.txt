@@ -1,0 +1,159 @@
+=== C:/Temp/claude/m_m4_1.cpuprofile: окно +5.0…+12.0 с, всего 7006 мс
+ включительное время (топ-35):
+    7006  [root]
+    3519  runWithFiberInDEV:20300
+    1788  recursivelyTraversePassiveMountEffects:25315
+    1788  commitPassiveMountOnFiber:25323
+    1788  commitPassiveMountOnFiber:25331
+    1788  flushPassiveEffects:26306
+    1788  commitPassiveMountOnFiber:25364
+    1788  commitPassiveMountOnFiber:25349
+    1788  react-stack-bottom-frame:28503
+    1788  commitHookEffectListMount:24707
+    1788  commitPassiveMountOnFiber:25356
+    1788  commitPassiveMountOnFiber:25327
+    1788  commitPassiveMountOnFiber:25338
+    1788  commitHookPassiveMountEffects:24744
+    1691  (anon):26127
+    1682  commitPassiveMountOnFiber:25324
+    1679  (anon):220423
+    1679  peekLearningV2ActiveCourseCatalogV1:1241323
+    1679  (anon):1205822
+    1679  callback:220405
+    1657  performWorkOnRoot:25627
+    1657  hashCanonicalBody:366615
+    1645  performWorkOnRootViaSchedulerTask:21641
+    1628  renderRootSync:25879
+    1628  workLoopSync:25895
+    1623  [Native] arrayPrototypeMap
+    1556  bundledEnCatalogV1:1241300
+    1451  materializeLearningV2FactoryPartialCourseCatalogV1:1241583
+    1357  (anon):1241584
+    1357  buildLearningV2CourseTopologyV1:822000
+    1357  courseTopology:1241428
+    1351  computeLearningV2CourseTopologyV1:822037
+    1027  performUnitOfWork:26002
+     923  [GC Young Gen]
+     733  rotateRight:366558
+ стэки листьев (топ-15):
+    2671  [root]
+     312  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     295  sha256Utf8:366559 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584 < [Native] arrayPrototypeMap
+     136  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194335 < (anon):57035
+     132  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+     123  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+     112  rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      91  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366576 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      91  rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      84  sha256Utf8:366559 < hashCanonicalBody:366615 < (anon):1241600 < [Native] arrayPrototypeMap < materializeLearningV2FactoryPartialCourseCatalogV1:1241583 < bundledEnCatalogV1:1241300 < peekLearningV2ActiveCourseCatalogV1:1241323
+      82  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+      76  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      66  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+      63  rotateRight:366558 < sha256Utf8:366576 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      55  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+=== C:/Temp/claude/m_m4_2.cpuprofile: окно +5.0…+12.0 с, всего 6984 мс
+ включительное время (топ-35):
+    6984  [root]
+    3383  runWithFiberInDEV:20300
+    2939  performWorkOnRootViaSchedulerTask:21641
+    2313  flushSyncWorkAcrossRoots_impl:21569
+    1981  performWorkOnRoot:25701
+    1981  commitRootWhenReady:25713
+    1956  react-stack-bottom-frame:28503
+    1956  commitHookEffectListMount:24707
+    1936  recursivelyTraversePassiveMountEffects:25315
+    1936  commitPassiveMountOnFiber:25323
+    1936  commitPassiveMountOnFiber:25331
+    1936  flushPassiveEffects:26306
+    1936  commitPassiveMountOnFiber:25364
+    1918  commitPassiveMountOnFiber:25349
+    1918  commitPassiveMountOnFiber:25356
+    1918  commitPassiveMountOnFiber:25327
+    1918  commitPassiveMountOnFiber:25338
+    1918  commitHookPassiveMountEffects:24744
+    1891  flushPendingEffects:26278
+    1858  commitRoot:26148
+    1825  performSyncWorkOnRoot:21646
+    1758  flushSpawnedWork:26256
+    1751  commitPassiveMountOnFiber:25324
+    1657  (anon):220423
+    1657  (anon):1205822
+    1657  callback:220405
+    1646  peekLearningV2ActiveCourseCatalogV1:1241323
+    1621  [Native] arrayPrototypeMap
+    1614  hashCanonicalBody:366615
+    1548  bundledEnCatalogV1:1241300
+    1460  performWorkOnRoot:25627
+    1432  renderRootSync:25879
+    1427  materializeLearningV2FactoryPartialCourseCatalogV1:1241583
+    1419  workLoopSync:25895
+    1337  (anon):1241584
+ стэки листьев (топ-15):
+    2706  [root]
+     397  sha256Utf8:366559 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584 < [Native] arrayPrototypeMap
+     226  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     182  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+     105  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+      98  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+      95  rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      85  rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      68  [Native] arrayPrototypePush < utf8Bytes:366546 < sha256Utf8:366560 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      64  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366576 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      64  completeWork:24451 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879 < performWorkOnRoot:25627
+      62  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      58  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      58  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194335 < (anon):57035
+      56  [Host Function] warn < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply < (anon):57036
+=== C:/Temp/claude/m_m4_3.cpuprofile: окно +5.0…+12.0 с, всего 7005 мс
+ включительное время (топ-35):
+    7005  [root]
+    3778  runWithFiberInDEV:20300
+    1909  performWorkOnRoot:25627
+    1874  recursivelyTraversePassiveMountEffects:25315
+    1874  commitPassiveMountOnFiber:25323
+    1874  commitPassiveMountOnFiber:25364
+    1874  commitPassiveMountOnFiber:25349
+    1874  commitPassiveMountOnFiber:25356
+    1874  commitPassiveMountOnFiber:25327
+    1874  commitPassiveMountOnFiber:25338
+    1865  renderRootSync:25879
+    1855  workLoopSync:25895
+    1854  commitHookPassiveMountEffects:24744
+    1849  commitPassiveMountOnFiber:25331
+    1849  flushPassiveEffects:26306
+    1829  react-stack-bottom-frame:28503
+    1829  commitHookEffectListMount:24707
+    1774  commitPassiveMountOnFiber:25324
+    1752  (anon):26127
+    1681  (anon):220423
+    1681  peekLearningV2ActiveCourseCatalogV1:1241323
+    1681  (anon):1205822
+    1681  callback:220405
+    1668  hashCanonicalBody:366615
+    1622  [Native] arrayPrototypeMap
+    1576  performWorkOnRootViaSchedulerTask:21641
+    1563  bundledEnCatalogV1:1241300
+    1428  materializeLearningV2FactoryPartialCourseCatalogV1:1241583
+    1330  computeLearningV2CourseTopologyV1:822037
+    1330  (anon):1241584
+    1330  buildLearningV2CourseTopologyV1:822000
+    1330  courseTopology:1241428
+    1163  (anon)
+    1163  tryCallOne
+    1134  performUnitOfWork:26002
+ стэки листьев (топ-15):
+    1528  [root]
+     364  sha256Utf8:366559 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584 < [Native] arrayPrototypeMap
+     325  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     139  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     126  rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+     114  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+      92  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194335 < (anon):57035
+      85  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      71  propagateParentContextChanges:21420 < bailoutOnAlreadyFinishedWork:24151 < attemptEarlyBailoutIfNoScheduledUpdate:24220 < beginWork:24249 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+      69  rotateRight:366558 < sha256Utf8:366577 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      64  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+      63  [Native] arrayPrototypePush < utf8Bytes:366546 < sha256Utf8:366560 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      62  [GC Young Gen] < rotateRight:366558 < sha256Utf8:366589 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428
+      61  rotateRight:366558 < sha256Utf8:366592 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584
+      56  rotateRight:366558 < sha256Utf8:366576 < hashCanonicalBody:366615 < computeLearningV2CourseTopologyV1:822037 < buildLearningV2CourseTopologyV1:822000 < courseTopology:1241428 < (anon):1241584

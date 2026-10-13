@@ -1,0 +1,79 @@
+[CPU-PROFILE] жду приложение на порту 8081… (запусти холодный старт)
+[CPU-PROFILE] цель: app.phraseman (sdk_gphone64_x86_64) (vm?)
+[CPU-PROFILE] Profiler.enable не поддержан целью (Unsupported method 'Profiler.enable') — иду сразу на Profiler.start
+[CPU-PROFILE] интервал не задан: Unsupported method 'Profiler.setSamplingInterval'
+[CPU-PROFILE] профиль идёт 14 с
+[CPU-PROFILE] записано C:/Temp/claude/m_m4_1.cpuprofile (1205 сэмплов, 14600 мс)
+[CPU-PROFILE] всего 14004 мс, занят 14004 мс, сэмплов 1205
+[CPU-PROFILE] ⚠ в профиле нет (idle)-сэмплов: процент «занят» завышен (простой записан последним кадром) — опирайтесь на собственное время функций
+[CPU-PROFILE] топ файлов по собственному времени:
+    5751 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+    3429 мс  [root]
+    2626 мс  [host]
+    1272 мс  [native]
+     905 мс  [suspended]
+      20 мс  unknown
+[CPU-PROFILE] непрерывные занятые участки JS-потока (≥ порога): 7
+  +2982 мс, 862 мс подряд
+      файл    369 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл    279 мс  [host]
+      файл    152 мс  [native]
+      файл     43 мс  [suspended]
+      функц    77 мс  [Native] functionPrototypeApply @ [native]:1
+      функц    43 мс  [GC Young Gen] @ [suspended]:1
+      функц    42 мс  loadModuleImplementation @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:207
+      функц    36 мс  [Native] errorStackGetter @ [native]:1
+  +0 мс, 771 мс подряд
+      файл    433 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл    285 мс  [host]
+      файл     28 мс  [suspended]
+      файл     15 мс  [root]
+      функц   191 мс  loadModuleImplementation @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:207
+      функц   160 мс  [Host Function] getConstants @ [host]:1
+      функц   125 мс  [Host Function] getConstantsForViewManager @ [host]:1
+      функц    46 мс  (anonymous) @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98399
+  +4825 мс, 664 мс подряд
+      файл    308 мс  [root]
+      файл    175 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл    139 мс  [host]
+      файл     31 мс  [native]
+      функц   308 мс  [root] @ [root]:1
+      функц    42 мс  [Host Function] promiseFn @ [host]:1
+      функц    31 мс  [Native] functionPrototypeApply @ [native]:1
+      функц    28 мс  [Host Function] log @ [host]:1
+  +5809 мс, 526 мс подряд
+      файл    411 мс  [root]
+      файл     45 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл     39 мс  [host]
+      файл     31 мс  [native]
+      функц   411 мс  [root] @ [root]:1
+      функц    31 мс  [Native] functionPrototypeApply @ [native]:1
+      функц    26 мс  utf8ToBytes @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:190469
+      функц    19 мс  ?anon_0_ @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:115727
+  +8591 мс, 483 мс подряд
+      файл    355 мс  [root]
+      файл     55 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл     35 мс  [native]
+      файл     26 мс  [suspended]
+      функц   355 мс  [root] @ [root]:1
+      функц    26 мс  [GC Young Gen] @ [suspended]:1
+      функц    21 мс  [Native] jsonStringify @ [native]:1
+      функц    15 мс  completeUnitOfWork @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:26057
+  +11545 мс, 473 мс подряд
+      файл    175 мс  [root]
+      файл    124 мс  [host]
+      файл    122 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл     29 мс  [native]
+      функц   175 мс  [root] @ [root]:1
+      функц    76 мс  [Host Function] completeRoot @ [host]:1
+      функц    32 мс  react-stack-bottom-frame @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:28437
+      функц    23 мс  [GC Young Gen] @ [suspended]:1
+  +771 мс, 432 мс подряд
+      файл    366 мс  index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable
+      файл     37 мс  [native]
+      файл     20 мс  [host]
+      файл      9 мс  [suspended]
+      функц   232 мс  loadModuleImplementation @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:207
+      функц    41 мс  (anonymous) @ index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:313448
+      функц    30 мс  [Native] arrayPrototypeForEach @ [native]:1
+      функц    20 мс  [Host Function] executeOnUIRuntimeSync @ [host]:1

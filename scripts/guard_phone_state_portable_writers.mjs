@@ -43,6 +43,11 @@ const ownerFacadeFragments = {
   learning_v2: ['modules/phone-state/domains/learning_v2.ts'],
 };
 const sharedAllowed = ['modules/phone-state/legacy_reader.ts', 'modules/phone-state/legacy_mirror.ts'];
+// зачем (координатор 13.10): dev-подмены НАМЕРЕННО пишут ключи прогресса прямо в AsyncStorage, мимо фасада, — фасад кладёт
+// операцию в phone-state store и запускает синк, а подставные значения (dev_state?onboarding=done, выдуманная серия 12→5
+// в dev_streak_restore_jump) не должны уехать в облачный профиль тестового аккаунта. Маршрут dev_state вырезан из
+// стор-сборки (router.ctx.js), dev_streak_restore_jump импортируется только из dev_state_fixtures. Новый файл сюда — только с причиной.
+const devOnlyLocalWriters = ['app/dev_state_fixtures.ts', 'app/dev_streak_restore_jump.ts'];
 const violations = [];
 const pattern = /(?:AsyncStorage\.(?:setItem|multiSet)|storageSet(?:String|Number))\(\s*['"]([^'"]+)['"]/g;
 for (const file of files) {
@@ -53,6 +58,7 @@ for (const file of files) {
     const owner = ownerForKey(match[1]);
     if (!owner || (filters.size > 0 && !filters.has(owner))) continue;
     if ([...sharedAllowed, ...(ownerFacadeFragments[owner] ?? [])].some((allowed) => relative.includes(allowed))) continue;
+    if (devOnlyLocalWriters.includes(relative)) continue;
     violations.push({ file: relative, line: source.slice(0, match.index).split(/\r?\n/).length, key: match[1], owner });
   }
 }

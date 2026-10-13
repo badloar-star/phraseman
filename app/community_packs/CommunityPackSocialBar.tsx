@@ -727,7 +727,8 @@ export default function CommunityPackSocialBar({
 
   return (
     <View style={{ gap: 10 }}>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+      {/* зачем (аудит длинных строк 9 языков 13.10): «лайк · N добавили · отклики · В топе» в es «lo añadieron» + «En tendencia» дают ≈340 из ≈379 dp — на крупном шрифте ОС ряд вылезал за край; перенос на вторую строку вместо сжатия. */}
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 12, rowGap: 6 }}>
         <TouchableOpacity
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"

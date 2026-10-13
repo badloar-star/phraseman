@@ -12,7 +12,7 @@ describe('Gustav French notification target isolation', () => {
     expect(source).toContain('lessonPassCountKey(i + 1, studyTarget)');
     expect(source).toContain('resolveNotificationStudyTarget(lang, opts.studyTarget)');
     expect(source).toContain('countCompletedLessonsFromStorage(studyTarget)');
-    expect(source).toContain("AsyncStorage.getItem('user_total_xp')");
+    // 13.10 (координатор): чтение 'user_total_xp' из итогов месяца убрано в efe19ae9d (30.09) — проверка устарела.
     expect(source).toContain("AsyncStorage.getItem('streak_count')");
     expect(source).not.toContain("`lesson${i + 1}_pass_count`");
   });
@@ -34,7 +34,8 @@ describe('Gustav French notification target isolation', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'notifications.ts'), 'utf8');
     const frenchReminderSlice = source.slice(
       source.indexOf('const MESSAGES_FR_TARGET_RU'),
-      source.indexOf('/** Испанский UX для напоминаний'),
+      // 13.10: после французских блоков теперь идут английские пуши (MESSAGES_EN, 12.10) — вырез заканчивается на них.
+      source.indexOf('const MESSAGES_EN = ['),
     );
 
     expect(source).toContain('scheduleDailyReminder = async');
@@ -59,7 +60,7 @@ describe('Gustav French notification target isolation', () => {
     expect(layoutSource).toContain('schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('await runSessionChecks(studyTarget)');
-    expect(layoutSource).toContain('await scheduleNotifications(snap, lang, 0, { studyTarget })');
+    expect(layoutSource).toContain('await notifications.scheduleNotifications(snap, lang, 0, { studyTarget })');
     expect(layoutSource).toContain("await notifications.enableSmartDailyReminder(lang, { studyTarget, caller: 'notif_nudge' })");
 
     expect(settingsSource).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");

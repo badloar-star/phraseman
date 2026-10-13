@@ -39,6 +39,11 @@ interface Props {
    * Флаг включают только экраны Диалогов; остальные (Learning V2, уроки) остаются как были.
    */
   solidBolt?: boolean;
+  /**
+   * зачем (приказ владельца 01.10, решение координатора 13.10 по spire-gap-016/017): в шапке Шпиля и ступени энергия —
+   * ТОЛЬКО значок и число, без капсулы. Цвета остаются стеклянными (glass), снимается лишь заливка и тень капсулы.
+   */
+  noCapsule?: boolean;
 }
 
 const ENERGY_PILL_WIDTH = 60;
@@ -61,7 +66,7 @@ const COLORS = Object.freeze({
   value: '#FFFFFF', // theme-exempt: значение на собственном тёмном фоне капсулы
 });
 
-function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Props) {
+function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, noCapsule = false }: Props) {
   const lg = useLv2Glass();
   const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -185,7 +190,7 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Pro
             styles.capsule,
             // зачем (сверка dialogs-001/007, Макеты 4fbcfc81d; образец kit.js `energy()` = `.pill`, эталон «Тень» etalon.html): в стеклянной шапке энергия сидит в капсуле — заливка токена темы + внутренняя тень «Тень», БЕЗ обводки.
             // Размер прежний (60×28, зафиксирован владельцем 24.09: тест energy_ui_owner_direction_probe); вне glass (старые шапки) пилюля по-прежнему без фона.
-            glass ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
+            glass && !noCapsule ? { backgroundColor: lg.opaqueControl, borderRadius: ENERGY_PILL_HEIGHT / 2, boxShadow: nestedBoxShadow(lg) } : null,
           ]}
         >
           <EnergyIcon

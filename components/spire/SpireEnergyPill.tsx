@@ -16,7 +16,8 @@ function SpireEnergyPill({ ownerActive }: Readonly<{ ownerActive: boolean }>) {
       style={s.pill}
       onLayout={(e) => logSpireDock('energy-pill.layout', { w: roundLayout(e.nativeEvent.layout.width), h: roundLayout(e.nativeEvent.layout.height), x: roundLayout(e.nativeEvent.layout.x) })}
     >
-      <EnergyBar ownerActive={ownerActive} glass />
+      {/* зачем (приказ владельца 01.10, координатор 13.10): капсулу стеклянной шапки (7b252fa06) в Шпиле не рисуем — только значок и число. */}
+      <EnergyBar ownerActive={ownerActive} glass noCapsule />
     </View>
   );
 }

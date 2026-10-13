@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Лаборатория: кольца «Сегодня» и огонь серии</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (владелец 13.10 вечером, через координатора): «кольца = задачи блока „Сегодня“ на Главной», «вот такое может быть в блоке
+   „Сегодня“, но переделай именно под тот блок»; огонь — «не красивый», переделать на основе LiveStreakFlame/StreakFlameFill.
+   Это лаборатория: блок «Сегодня» 1:1 по HomeV2TodayCard.tsx (заголовок overline 13/1.6, строки minHeight 58, radius 14, padding 10/14,
+   gap 12, кружок-отметка 20 с кромкой 1.5, плитка значка 36, название 16/700, счётчик 13/700 tabular; фон строк — плашка темы с альфой 0.5,
+   тень «Тень»), задачи — настоящие из modules/today-tasks (цели 1/1, 3, 10, 5…, названия из today_tasks_view.ts). Кольца — три концентрических
+   вокруг монеты ранга (coin_rank_*.webp), цвета — из токенов текущей темы, закрытие — докрутка с перехлёстом, вспышка, звук и хаптик из каталога.
+   Огонь — слои глифа Ionicons «flame» (как StreakFlameFill: контур + заливка по стадии + ядро) и burst из LiveStreakFlame
+   (scale 1.28→1.18→1.24→1.1→1 по 260/130 мс, skewX 5/−6/4/0 по 130 мс с задержкой 420, glow 240 мс in / 600 мс out). Звуки — только из приложения. */
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.lab { max-width: 1480px; margin: 0 auto; padding: 24px 16px 100px; }
+.lab h1 { font-size: 26px; font-weight: 800; letter-spacing: -.3px; margin: 0; }
+.lab .lead { color: var(--sec); font-size: 15px; line-height: 1.5; margin: 8px 0 0; max-width: 980px; }
+.bar { position: sticky; top: 0; z-index: 50; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px -16px 0; padding: 10px 16px; background: rgba(5,5,6,.9); backdrop-filter: blur(14px); }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 13px; border-radius: 17px; background: #1C1C20; color: #E6E6E8; font: 600 13px Inter, sans-serif; cursor: pointer; user-select: none; }
+.btn:active { transform: scale(.96); }
+.btn.on { background: #F2F1F6; color: #0B0C0E; }
+.labsec { margin-top: 40px; }
+.labsec h2 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.labsec p { color: var(--sec); font-size: 14px; line-height: 1.5; margin: 0 0 16px; max-width: 900px; }
+.lrow { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+.colx { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.colx .lbl { font-size: 14px; font-weight: 700; color: #ECECEE; }
+.colx .nt { font-size: 12px; color: var(--sec); max-width: 390px; line-height: 1.5; }
+
+/* ---------- телефон: темы приложения ---------- */
+.ph2 { position: relative; width: var(--pw, 390px); height: 844px; border-radius: 50px; overflow: hidden; flex: none; isolation: isolate; font-family: Inter, sans-serif; color: var(--tx);
+  box-shadow: 0 0 0 8px #121216, 0 0 0 9px #2A2A2E, 0 30px 80px rgba(0,0,0,.6); font-size: calc(16px * var(--fs, 1)); }
+/* grad_aurora «Аврора», тёмная, k=1 (constants/liquidGlassThemePalette.ts через liquidGlassTokens): bg #0C0D10, bgTop #181A1F, accent #7EF0C8, accentInk #04261D,
+   secondary #BCBDC0, dividerTone rgba(255,255,255,.07), plateFill #212224→#16171A (на Главной — с альфой 0.5), raised #303134→#1D1E21, пятна блума #38E0AA/#7C5CFF, warn #F0C551 */
+.ph2.aurora { --bg0: #181A1F; --bg1: #0C0D10; --bg2: #0C0D10; --tx: #FFFFFF; --sc: #BCBDC0; --mu: #BCBDC0; --acc: #7EF0C8; --on: #04261D; --r2: #7C5CFF; --r3: #F0C551;
+  --cta: #7EF0C8; --cta-ink: #04261D; --plate: rgba(33,34,36,.5); --raised: rgba(48,49,52,.5); --ti: rgba(255,255,255,.07); --check: #BCBDC0; --tile: rgba(255,255,255,.07);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sho: 0 26px 40px -14px rgba(0,0,0,.9); --sheet: #28282E;
+  background: radial-gradient(78% 36% at 6% 2%, rgba(56,224,170,.7), transparent 72%), radial-gradient(62% 32% at 108% 56%, rgba(124,92,255,.7), transparent 74%), radial-gradient(80% 28% at 26% 108%, rgba(56,224,170,.7), transparent 76%), linear-gradient(180deg, var(--bg0), var(--bg1) 60%); }
+/* grad_aurora «Аврора», светлая, k=1: bg #DED7F9, bgTop #CCF1E7, text #111114, secondary #5C5C63, cta #7EF0C8 / ink #04261D, accentText #185E47, accentGraphic #48816E,
+   plateFill #FFFFFF→#F5F5F6 (альфа 0.5 на Главной), тень plateShadow #0A0A1457 ×1.35 */
+.ph2.sage { --bg0: #CCF1E7; --bg1: #DED7F9; --bg2: #DED7F9; --tx: #111114; --sc: #5C5C63; --mu: #5B5B62; --acc: #48816E; --on: #FFFFFF; --r2: #5B49D6; --r3: #7F5700;
+  --cta: #7EF0C8; --cta-ink: #04261D; --plate: rgba(255,255,255,.5); --raised: rgba(255,255,255,.5); --ti: rgba(20,20,40,.06); --check: #5B5B62; --tile: rgba(20,20,40,.06);
+  --sh: 0 14px 26px -14px rgba(10,10,20,.46), 0 1px 3px rgba(10,10,20,.08); --sho: 0 26px 40px -14px rgba(10,10,20,.62), 0 2px 4px rgba(10,10,20,.11); --sheet: #FFFFFF;
+  background: linear-gradient(180deg, var(--bg0), var(--bg1) 60%); }
+.ph2 .sb { position: absolute; top: 0; left: 0; right: 0; height: 48px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 8px 28px 0 36px; font-weight: 600; font-size: 16px; }
+.ph2 .in { position: absolute; inset: 0; padding: 60px 12px 0; overflow: hidden; }
+.ph2 .hi { position: absolute; bottom: 8px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: var(--tx); opacity: .9; z-index: 80; }
+.io { font-family: IoniconsApp; font-style: normal; line-height: 1; display: inline-block; }
+/* шапка Главной (как в эталоне): серия · монеты · колокольчик */
+.hrow { display: flex; align-items: center; gap: 10px; }
+.pl { height: 46px; padding: 0 14px; border-radius: 23px; display: inline-flex; align-items: center; gap: 10px; background: var(--plate); box-shadow: var(--sh); }
+.pl b { font-size: 16px; line-height: 17px; font-weight: 700; } .pl span { display: block; font-size: 13px; line-height: 15px; color: var(--sc); }
+.cir { width: 46px; height: 46px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--plate); box-shadow: var(--sh); font-size: 22px; }
+
+/* ---------- блок «Сегодня» 1:1 (HomeV2TodayCard) ---------- */
+.today { border-radius: 18px; padding: 16px 6px 6px; margin-top: 18px; }
+.today .k { font-size: 13px; line-height: 17px; letter-spacing: 1.6px; font-weight: 700; color: var(--sc); margin: 0 0 12px 12px; text-transform: uppercase; }
+.today .list { display: flex; flex-direction: column; gap: 10px; }
+.trow { min-height: 58px; padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; gap: 12px; background: var(--raised); box-shadow: var(--sho); cursor: pointer; transition: transform 160ms cubic-bezier(.23,1,.32,1); }
+.trow:active { transform: scale(.98); }
+.trow .ck { width: 20px; height: 20px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid var(--check); display: flex; align-items: center; justify-content: center; flex: none; transition: background 240ms, border-color 240ms; }
+.trow .ck .io { font-size: 14px; color: var(--sheet); opacity: 0; transition: opacity 200ms; }
+.trow.done .ck { background: var(--rc); border-color: var(--rc); }
+.trow.done .ck .io { opacity: 1; }
+.trow .tile { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--tile); flex: none; }
+.trow .tile .io { font-size: 19px; color: var(--tx); }
+.trow .cp { flex: 1; min-width: 0; } .trow .tt { font-size: 16px; line-height: 20px; font-weight: 700; } .trow .st { font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 1px; }
+.trow .cn { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; }
+.trow.done .cn { color: var(--tx); }
+/* кольца — над строками, по центру; монета ранга в центре */
+.rings { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 2px 0 14px; }
+.rw { position: relative; width: 148px; height: 148px; }
+.rw svg { position: absolute; inset: 0; transform: rotate(-90deg); overflow: visible; }
+.rw .rg { fill: none; stroke-linecap: round; transition: stroke-dashoffset 900ms cubic-bezier(.23,1,.32,1); }
+.rw .bgr { fill: none; opacity: .16; }
+.rw .tip { fill: #fff; opacity: 0; filter: blur(.5px); }
+.rw .coin { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px; border-radius: 50%; display: block; transition: transform 500ms cubic-bezier(.3,1.6,.5,1); }
+.rw .flash { position: absolute; inset: -14px; border-radius: 50%; pointer-events: none; opacity: 0; }
+.rw .flash.on { animation: rflash 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes rflash { 0% { opacity: 0; transform: scale(.85); box-shadow: 0 0 0 0 var(--fc); } 25% { opacity: .9; } 100% { opacity: 0; transform: scale(1.12); box-shadow: 0 0 60px 20px transparent; } }
+.rw .spark { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: var(--fc); box-shadow: 0 0 8px var(--fc); animation: rspark 900ms cubic-bezier(.23,1,.32,1) both; pointer-events: none; }
+@keyframes rspark { 0% { transform: rotate(var(--a)) translateX(var(--r0)) scale(1); opacity: 1; } 100% { transform: rotate(var(--a)) translateX(var(--r1)) scale(.2); opacity: 0; } }
+.rw.closedall .coin { animation: coinjump 900ms cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes coinjump { 0% { transform: translateY(0) scale(1); } 20% { transform: translateY(3px) scale(1.08, .92); } 55% { transform: translateY(-16px) scale(.96, 1.06); } 80% { transform: translateY(2px) scale(1.04, .96); } 100% { transform: none; } }
+.dayok { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 16px; background: var(--raised); box-shadow: var(--sh); font-size: 13px; font-weight: 700; color: var(--tx); opacity: 0; transform: translateY(6px); transition: opacity 320ms, transform 420ms cubic-bezier(.23,1,.32,1); }
+.dayok .io { color: var(--acc); font-size: 16px; }
+.dayok.on { opacity: 1; transform: none; }
+
+/* ---------- огонь серии ---------- */
+.flame { position: relative; display: inline-block; width: var(--fs2, 160px); height: var(--fs2, 160px); }
+.flame .g { position: absolute; left: 0; top: 0; width: 100%; height: 100%; font-family: IoniconsApp; font-size: var(--fs2, 160px); line-height: 1; text-align: center; transform-origin: 50% 88%; }
+.flame .outline { color: var(--mu); opacity: .55; }
+.flame .fill { background: linear-gradient(180deg, var(--c3) 0%, var(--c2) 45%, var(--c1) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; clip-path: inset(calc(100% - var(--fillpct, 100%)) 0 0 0); transition: clip-path 900ms cubic-bezier(.23,1,.32,1); }
+.flame .l1 { animation: fl1 2.3s cubic-bezier(.45,.05,.55,.95) infinite alternate; }
+.flame .l2 { animation: fl2 3.1s cubic-bezier(.45,.05,.55,.95) infinite alternate; opacity: .55; mix-blend-mode: screen; }
+.flame .core { color: var(--core); font-size: calc(var(--fs2, 160px) * .5); left: 25%; top: 36%; width: 50%; height: auto; opacity: var(--coreop, .8); animation: fl3 1.7s cubic-bezier(.45,.05,.55,.95) infinite alternate; transform-origin: 50% 95%; }
+@keyframes fl1 { 0% { transform: skewX(-2.5deg) scaleY(.985) translateY(0); } 50% { transform: skewX(1.5deg) scaleY(1.01) translateY(-1px); } 100% { transform: skewX(3deg) scaleY(1.03) translateY(-2px); } }
+@keyframes fl2 { 0% { transform: skewX(3deg) scaleY(1.02) translateX(1px); } 100% { transform: skewX(-3.5deg) scaleY(.97) translateX(-1px); } }
+@keyframes fl3 { 0% { transform: scaleY(.94) skewX(-4deg); } 100% { transform: scaleY(1.08) skewX(4deg) translateY(-3px); } }
+.flame .glow { position: absolute; left: 50%; top: 58%; width: 70%; height: 70%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, var(--gl) 0%, transparent 65%); filter: blur(14px); opacity: .7; animation: glowp 3.4s ease-in-out infinite; pointer-events: none; }
+@keyframes glowp { 0%, 100% { opacity: .55; transform: translate(-50%, -50%) scale(1); } 50% { opacity: .85; transform: translate(-50%, -50%) scale(1.08); } }
+.flame .sp { position: absolute; left: 50%; bottom: 46%; width: 4px; height: 4px; border-radius: 50%; background: var(--c3); box-shadow: 0 0 6px var(--c3); opacity: 0; animation: spk 2.6s cubic-bezier(.23,1,.32,1) infinite; }
+@keyframes spk { 0% { opacity: 0; transform: translate(var(--dx), 0) scale(1); } 12% { opacity: .9; } 100% { opacity: 0; transform: translate(calc(var(--dx) * 1.6), -70px) scale(.3); } }
+.flame.burst .g.fill, .flame.burst .core { animation: burstS 780ms cubic-bezier(.23,1,.32,1) both, burstK 520ms cubic-bezier(.45,.05,.55,.95) 420ms both; }
+@keyframes burstS { 0% { transform: scale(1); } 33% { transform: scale(1.28); } 50% { transform: scale(1.18); } 66% { transform: scale(1.24); } 83% { transform: scale(1.1); } 100% { transform: scale(1); } }
+@keyframes burstK { 0% { filter: none; } 25% { transform: skewX(5deg); } 50% { transform: skewX(-6deg); } 75% { transform: skewX(4deg); } 100% { transform: skewX(0); } }
+.flame.burst .glow { animation: burstG 840ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes burstG { 0% { opacity: .55; } 28% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); } 100% { opacity: .6; transform: translate(-50%, -50%) scale(1); } }
+.flame .stars { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 600ms; }
+.flame.st-4 .stars { opacity: 1; }
+.flame .stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px #fff; animation: tw 2.2s ease-in-out infinite; }
+@keyframes tw { 0%, 100% { opacity: .2; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.2); } }
+.flame .n { position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; font-weight: 800; font-size: calc(var(--fs2, 160px) * .3); color: #fff; letter-spacing: -1px; text-shadow: 0 2px 14px rgba(0,0,0,.45); }
+.flame .veil { position: absolute; inset: -10%; border-radius: 50%; background: var(--c3); opacity: 0; pointer-events: none; filter: blur(10px); }
+.flame.morphing .veil { animation: veil 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes veil { 0% { opacity: 0; transform: scale(.7); } 30% { opacity: .75; } 100% { opacity: 0; transform: scale(1.3); } }
+/* стадии: 0 обычный — из токенов темы; 1 яркий (7) — акцент темы; 2 синий (30); 3 белый (100); 4 звёздный (365); 5 золотой (1000) */
+.flame.st-0 { --c1: color-mix(in srgb, var(--mu) 70%, var(--acc)); --c2: color-mix(in srgb, var(--sc) 60%, var(--acc)); --c3: var(--sc); --core: #fff; --gl: color-mix(in srgb, var(--acc) 35%, transparent); --coreop: .35; }
+.flame.st-1 { --c1: color-mix(in srgb, var(--acc) 75%, #000); --c2: var(--acc); --c3: color-mix(in srgb, var(--acc) 40%, #fff); --core: #fff; --gl: color-mix(in srgb, var(--acc) 55%, transparent); --coreop: .8; }
+.flame.st-2 { --c1: #1E4FD8; --c2: var(--r2); --c3: #A8E0FF; --core: #fff; --gl: color-mix(in srgb, var(--r2) 60%, transparent); --coreop: .9; }
+.flame.st-3 { --c1: #BFD6FF; --c2: #F2F8FF; --c3: #FFFFFF; --core: var(--acc); --gl: rgba(255,255,255,.55); --coreop: .7; }
+.flame.st-4 { --c1: #4A2DB8; --c2: #8C5CFF; --c3: #E0B3FF; --core: #fff; --gl: rgba(140,92,255,.6); --coreop: .9; }
+.flame.st-5 { --c1: #9A6A14; --c2: var(--r3); --c3: #FFF3C4; --core: #fff; --gl: color-mix(in srgb, var(--r3) 65%, transparent); --coreop: 1; }
+.stage-lbl { font-size: 13px; font-weight: 700; color: var(--sc); text-align: center; margin-top: 6px; }
+.fgrid { display: flex; flex-wrap: wrap; gap: 4px 8px; justify-content: center; }
+.fitem { display: flex; flex-direction: column; align-items: center; width: 108px; --fs2: 96px; }
+.fitem .flame { --fs2: 96px; }
+
+/* ---------- хаптик-импульс и звук ---------- */
+.hap { position: absolute; right: -58px; top: 50%; transform: translateY(-50%); width: 46px; display: flex; flex-direction: column; align-items: center; gap: 4px; font: 700 10px Inter, sans-serif; color: #D6B4FF; opacity: 0; pointer-events: none; }
+.hap.on { animation: hapin 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes hapin { 0% { opacity: 0; transform: translateY(-50%) scale(.6); } 20% { opacity: 1; transform: translateY(-50%) scale(1.15); } 100% { opacity: 0; transform: translateY(-50%) scale(1); } }
+.hap i { width: 22px; height: 22px; border-radius: 50%; background: #D6B4FF; box-shadow: 0 0 0 4px rgba(214,180,255,.25), 0 0 0 9px rgba(214,180,255,.1); }
+.hap.light i { transform: scale(.7); } .hap.heavy i { transform: scale(1.25); }
+.phwrap { position: relative; }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 390px; }
+</style>
+</head>
+<body>
+<div class="lab">
+  <h1>Лаборатория: кольца «Сегодня» и огонь серии</h1>
+  <p class="lead">Блок «Сегодня» Главной 1:1 по коду (HomeV2TodayCard) с тремя кольцами — это три настоящие задачи дня (цели из modules/today-tasks: урок 1, ступени Пика 3, карточки 10, видео 1, ошибки 5, диалог 1), в центре — монета ранга. Состояния: 0 → частично → одно закрыто → все закрыты («День выполнен»). Тема — grad_aurora «Аврора» в тёмном и светлом оформлении (токены из liquidGlassThemePalette: тёмная k=1, светлая k=1), 390 и 360 dp, крупный шрифт ×1,3. Огонь серии — слои глифа Ionicons «flame» как в StreakFlameFill + burst из LiveStreakFlame; 6 стадий и морф по кнопке. Звуки — только из приложения (кнопка 🔊 включает после первого клика).</p>
+  <div class="bar"><span class="btn on" id="snd">🔊 Звук: вкл</span><span class="btn" data-w="390">390 dp</span><span class="btn" data-w="360">360 dp</span><span class="btn" data-fs="1">Шрифт ×1</span><span class="btn" data-fs="1.3">Шрифт ×1,3</span><span style="color:#8A91A3;font-size:12px">звук/хаптик показаны импульсом у телефона · каталог звуков: assets/sounds/*.mp3</span></div>
+
+  <section class="labsec" id="rings"><h2>1 · Блок «Сегодня» с кольцами</h2><p>Кнопки под телефоном закрывают задачи по одной: кольцо докручивается с перехлёстом (0,9 с, ease-out), вспышка по кольцу, 10 искр, кружок-отметка строки заливается цветом своего кольца, звук fc_star + haptic success. Все три — «аккорд»: fc_session_complete, монета подпрыгивает, короткая плашка «День выполнен».</p>
+    <div class="lrow" id="ringsRow"></div></section>
+
+  <section class="labsec" id="flame"><h2>2 · Огонь серии — 6 стадий и морф</h2><p>Основа — глиф Ionicons «flame»: контур (muted), заливка градиентом стадии (снизу вверх, как StreakFlameFill), светлое ядро; три слоя языков с разной фазой и скоростью (2,3 / 3,1 / 1,7 с), мягкий glow, редкие искры вверх, лёгкий танец вершины. Burst «серия продлена» — тайминги LiveStreakFlame. Морф стадии — плавная смена градиента + вуаль-вспышка, не замена картинки.</p>
+    <div class="lrow" id="flameRow"></div></section>
+</div>
+<script>
+(() => {
+const IO = { book: '&#xf1a6;', chat: '&#xf213;', copy: '&#xf290;', play: '&#xf4ce;', refresh: '&#xf518;', trend: '&#xf5fc;', check: '&#xf21d;', flame: '&#xf313;', flameO: '&#xf314;', bell: '&#xf47f;' };
+// Настоящие задачи «Сегодня» (modules/today-tasks/today_tasks_core.ts + today_tasks_view.ts)
+const TASKS = [
+  { kind: 'lesson', title: 'Пройти урок', target: 1, icon: 'book' },
+  { kind: 'spire_steps', title: 'Пройти ступени Пика', target: 3, icon: 'trend' },
+  { kind: 'cards', title: 'Повторить карточки', sub: 'Не менее 10 слов', target: 10, icon: 'copy' },
+];
+const RING = ['var(--acc)', 'var(--r2)', 'var(--r3)']; // цвета колец — из токенов темы: акцент, второй цвет блума, золото темы
+
+/* ---------- звук (только каталог приложения) и хаптик-визуализация ---------- */
+const SND = { tick: 'fc_tick', star: 'fc_star', done: 'fc_session_complete', correct: 'fc_correct', riser: 'fc_riser', flip: 'fc_flip', chest: 'fc_chest_open', msg: 'message_received', purchase: 'ob_purchase_success' };
+const audio = {}; let soundOn = true, unlocked = false;
+Object.entries(SND).forEach(([k, f]) => { const a = new Audio(`assets/sounds/${f}.mp3`); a.preload = 'auto'; a.volume = .55; audio[k] = a; });
+const play = (k, gain = 1) => { if (!soundOn || !unlocked) return; const a = audio[k]; if (!a) return; try { const c = a.cloneNode(); c.volume = Math.min(1, .55 * gain); c.play().catch(() => {}); } catch (e) {} };
+document.addEventListener('pointerdown', () => { unlocked = true; }, { once: true });
+document.getElementById('snd').addEventListener('click', (e) => { soundOn = !soundOn; e.currentTarget.textContent = soundOn ? '🔊 Звук: вкл' : '🔇 Звук: выкл'; e.currentTarget.classList.toggle('on', soundOn); });
+const hap = (wrap, kind = 'light') => { let h = wrap.querySelector('.hap'); if (!h) { h = document.createElement('div'); h.className = 'hap'; h.innerHTML = '<i></i><span></span>'; wrap.appendChild(h); } h.className = `hap ${kind}`; h.querySelector('span').textContent = kind; void h.offsetWidth; h.classList.add('on'); };
+
+/* ---------- телефон ---------- */
+const sb = () => `<div class="sb"><span>9:41</span><span style="display:flex;gap:6px;align-items:center"><svg width="17" height="11" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><span style="width:25px;height:12px;border-radius:4px;border:1.5px solid currentColor;position:relative"><span style="position:absolute;inset:1.5px;right:3px;background:currentColor;border-radius:2px"></span></span></span></div>`;
+const coin = (r, s) => `<img class="coin" src="assets/coin_rank_${String(r).padStart(2, '0')}.webp" width="${s}" height="${s}" alt="">`;
+const head = () => `<div class="hrow"><span class="pl"><span class="io" style="font-size:18px;color:var(--acc)">${IO.flame}</span><div><b>5 дней</b><span>Серия</span></div></span><span class="pl" style="flex:1">${coin(5, 22)}<div><b>6 854</b><span>Монеты</span></div></span><span class="cir"><span class="io" style="font-size:20px">${IO.bell}</span></span><span style="width:52px;height:52px;flex:none">${coin(5, 52)}</span></div>`;
+const ringsSvg = (vals) => { const s = 148, c = 74, sw = 11, gap = 5; return `<svg viewBox="0 0 ${s} ${s}">${vals.map((v, i) => { const r = c - sw / 2 - i * (sw + gap); const len = 2 * Math.PI * r; return `<circle class="bgr" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}"/><circle class="rg" data-i="${i}" data-len="${len.toFixed(1)}" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - v)).toFixed(1)}"/>`; }).join('')}</svg>`; };
+const todayBlock = (prog) => `<div class="today"><div class="k">Сегодня</div>
+  <div class="rings"><div class="rw" data-rw><div class="flash"></div>${ringsSvg(prog.map((p, i) => p / TASKS[i].target))}${coin(5, 58)}</div><div class="dayok" data-dayok><span class="io">${IO.check}</span>День выполнен</div></div>
+  <div class="list">${TASKS.map((t, i) => `<div class="trow ${prog[i] >= t.target ? 'done' : ''}" data-row="${i}" style="--rc:${RING[i]}"><span class="ck"><span class="io">${IO.check}</span></span><span class="tile"><span class="io">${IO[t.icon]}</span></span><div class="cp"><div class="tt">${t.title}</div>${t.sub ? `<div class="st">${t.sub}</div>` : ''}</div><span class="cn" data-cn="${i}">${Math.min(prog[i], t.target)}/${t.target}</span></div>`).join('')}</div></div>`;
+const phone = (theme, inner) => `<div class="phwrap"><div class="ph2 ${theme}">${sb()}<div class="in">${inner}</div><div class="hi"></div></div></div>`;
+
+/* ---------- состояния колец ---------- */
+const STATES = [['0 из 3 — утро', [0, 0, 0]], ['Частично', [0, 1, 2]], ['Одно закрыто', [1, 1, 2]], ['Все закрыты — «День выполнен»', [1, 3, 10]]];
+const ringsRow = document.getElementById('ringsRow');
+const mk = (theme, label, prog, interactive) => { const col = document.createElement('div'); col.className = 'colx'; col.innerHTML = `<div class="lbl">${label} · ${theme === 'aurora' ? 'Аврора · тёмная' : 'Аврора · светлая'}</div>${phone(theme, head() + todayBlock(prog))}${interactive ? `<div class="ctl">${TASKS.map((t, i) => `<span class="btn" data-do="${i}">+1 ${t.title.replace('Пройти ', '').replace('Повторить ', '')}</span>`).join('')}<span class="btn" data-reset>Сброс</span></div>` : ''}<div class="nt">${interactive ? 'Жми +1: кольцо докручивается, на цели — вспышка, искры, отметка строки, звук fc_star + haptic success. Все три — fc_session_complete, монета подпрыгивает, «День выполнен».' : 'Статическое состояние. Цвет кольца = цвет отметки строки (токены темы).'}</div>`; ringsRow.appendChild(col); if (interactive) wire(col, prog.slice()); };
+function wire(col, prog) {
+  const ph = col.querySelector('.ph2'); const wrap = col.querySelector('.phwrap');
+  const setRing = (i, v, closed) => { const c = ph.querySelector(`.rg[data-i="${i}"]`); const len = +c.dataset.len; if (closed) { c.style.transition = 'stroke-dashoffset 900ms cubic-bezier(.23,1.3,.32,1)'; } c.style.strokeDashoffset = String(len * (1 - Math.min(1, v))); };
+  const closeFx = (i) => { const rw = ph.querySelector('[data-rw]'); const fl = rw.querySelector('.flash'); fl.style.setProperty('--fc', RING[i]); fl.classList.remove('on'); void fl.offsetWidth; fl.classList.add('on'); for (let k = 0; k < 10; k++) { const s = document.createElement('i'); s.className = 'spark'; s.style.setProperty('--fc', RING[i]); s.style.setProperty('--a', `${k * 36}deg`); const r0 = 68 - i * 16; s.style.setProperty('--r0', `${r0}px`); s.style.setProperty('--r1', `${r0 + 28}px`); s.style.animationDelay = `${Math.random() * 80}ms`; rw.appendChild(s); setTimeout(() => s.remove(), 1000); } ph.querySelector(`[data-row="${i}"]`).classList.add('done'); play('star'); hap(wrap, 'success'); };
+  const allFx = () => { const rw = ph.querySelector('[data-rw]'); rw.classList.add('closedall'); setTimeout(() => rw.classList.remove('closedall'), 1000); ph.querySelector('[data-dayok]').classList.add('on'); play('done'); setTimeout(() => hap(wrap, 'heavy'), 120); };
+  col.addEventListener('click', (e) => { const b = e.target.closest('[data-do]'); const r = e.target.closest('[data-reset]'); if (r) { prog = [0, 0, 0]; TASKS.forEach((t, i) => { setRing(i, 0, false); ph.querySelector(`[data-row="${i}"]`).classList.remove('done'); ph.querySelector(`[data-cn="${i}"]`).textContent = `0/${t.target}`; }); ph.querySelector('[data-dayok]').classList.remove('on'); play('tick'); return; } if (!b) return; const i = +b.dataset.do; const t = TASKS[i]; if (prog[i] >= t.target) return; prog[i]++; ph.querySelector(`[data-cn="${i}"]`).textContent = `${prog[i]}/${t.target}`; const closed = prog[i] >= t.target; setRing(i, prog[i] / t.target, closed); if (closed) { setTimeout(() => closeFx(i), 650); if (prog.every((p, j) => p >= TASKS[j].target)) setTimeout(allFx, 1250); } else { play('tick', .7); hap(wrap, 'light'); } });
+}
+mk('aurora', 'Интерактив', [0, 1, 2], true); mk('sage', 'Интерактив', [0, 1, 2], true);
+STATES.forEach(([l, p]) => { mk('aurora', l, p, false); }); STATES.forEach(([l, p]) => { mk('sage', l, p, false); });
+
+/* ---------- огонь ---------- */
+const STAGES = [['Обычный · 1–6', 0], ['Яркий · 7', 1], ['Синий · 30', 2], ['Белый · 100', 3], ['Звёздный · 365', 4], ['Золотой · 1000', 5]];
+const flame = (st, n, fillpct = 100) => `<div class="flame st-${st}" style="--fillpct:${fillpct}%" data-flame><div class="glow"></div><span class="g outline">${IO.flameO}</span><span class="g fill l2">${IO.flame}</span><span class="g fill l1">${IO.flame}</span><span class="g core">${IO.flame}</span>${[0, 1, 2, 3].map((k) => `<i class="sp" style="--dx:${(k - 1.5) * 14}px;animation-delay:${k * .65}s"></i>`).join('')}<div class="stars">${[[20, 18], [78, 12], [86, 48], [12, 60], [60, 6], [40, 30]].map(([x, y], k) => `<i style="left:${x}%;top:${y}%;animation-delay:${k * .37}s"></i>`).join('')}</div><div class="veil"></div>${n !== '' ? `<div class="n">${n}</div>` : ''}</div>`;
+const flameRow = document.getElementById('flameRow');
+const fcol = (theme) => { const col = document.createElement('div'); col.className = 'colx'; col.innerHTML = `<div class="lbl">${theme === 'aurora' ? 'Аврора · тёмная' : 'Аврора · светлая'} · морф по кнопке</div>${phone(theme, `<div style="display:flex;flex-direction:column;align-items:center;padding-top:40px"><div style="--fs2:180px" data-big>${flame(1, '7')}</div><div class="stage-lbl" data-stl>Яркий · 7</div><div class="fgrid" style="margin-top:26px">${STAGES.map(([l, s]) => `<div class="fitem">${flame(s, '', s === 0 ? 60 : 100)}<div class="stage-lbl">${l}</div></div>`).join('')}</div></div>`)}<div class="ctl">${STAGES.map(([l, s]) => `<span class="btn" data-st="${s}">${l.split(' ·')[0]}</span>`).join('')}<span class="btn" data-burst>Burst «серия продлена»</span></div><div class="nt">Морф: заливка стадии остаётся внутри того же глифа — меняются цвета градиента и glow (700 мс), поверх — вуаль-вспышка; burst — тайминги LiveStreakFlame (scale 1.28→1.18→1.24→1.1→1, skew 5/−6/4/0, glow in 240/out 600) + fc_riser.</div>`; flameRow.appendChild(col);
+  const big = col.querySelector('[data-big] [data-flame]'); const wrap = col.querySelector('.phwrap');
+  col.addEventListener('click', (e) => { const b = e.target.closest('[data-st]'); const bu = e.target.closest('[data-burst]'); if (bu) { big.classList.remove('burst'); void big.offsetWidth; big.classList.add('burst'); play('riser'); hap(wrap, 'medium'); return; } if (!b) return; const s = +b.dataset.st; big.className = `flame st-${s} morphing`; big.querySelector('.n').textContent = ['3', '7', '30', '100', '365', '1000'][s]; col.querySelector('[data-stl]').textContent = STAGES[s][0]; setTimeout(() => big.classList.remove('morphing'), 800); play('correct'); hap(wrap, 'success'); }); };
+fcol('aurora'); fcol('sage');
+
+/* ---------- ширина / шрифт ---------- */
+document.querySelectorAll('[data-w]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('.ph2').forEach((p) => p.style.setProperty('--pw', b.dataset.w + 'px')); document.querySelectorAll('[data-w]').forEach((x) => x.classList.toggle('on', x === b)); }));
+document.querySelectorAll('[data-fs]').forEach((b) => b.addEventListener('click', () => { document.querySelectorAll('.ph2').forEach((p) => p.style.setProperty('--fs', b.dataset.fs)); document.querySelectorAll('[data-fs]').forEach((x) => x.classList.toggle('on', x === b)); }));
+})();
+</script>
+</body>
+</html>

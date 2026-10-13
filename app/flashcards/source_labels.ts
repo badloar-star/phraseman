@@ -39,7 +39,7 @@ function sourcePrefix(source: string, lang: Lang): string {
     'pt-BR': 'Fonte: Verbos', vi: 'Nguồn: Động từ', id: 'Sumber: Kata kerja', tr: 'Kaynak: Fiiller', pl: 'Źródło: Czasowniki',
   });
   if (source === 'dialog') return triLang(lang, {
-    ru: 'Источник: Диалоги', uk: 'Джерело: Діалоги', en: 'Source: Dialogs', es: 'Fuente: Diálogos',
+    ru: 'Источник: Диалоги', uk: 'Джерело: Діалоги', en: 'Source: Dialogues', es: 'Fuente: Diálogos',
     'pt-BR': 'Fonte: Diálogos', vi: 'Nguồn: Hội thoại', id: 'Sumber: Dialog', tr: 'Kaynak: Diyaloglar', pl: 'Źródło: Dialogi',
   });
   if (source === 'community') return triLang(lang, {

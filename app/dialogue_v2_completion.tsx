@@ -505,7 +505,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },
   sub: { fontSize: 16, lineHeight: 21, marginTop: 6, textAlign: 'center' },
   neutral: { marginTop: 10, lineHeight: 22 },
-  mood: { flexDirection: 'row', alignItems: 'center', gap: 8, height: 32, paddingHorizontal: 14, borderRadius: 16, marginTop: 12 },
+  mood: { flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 32, paddingHorizontal: 14, borderRadius: 16, marginTop: 12 },
   moodText: { fontSize: 16, fontWeight: '700' },
   stateCard: { marginTop: 20, paddingHorizontal: 16, paddingVertical: 18, alignItems: 'center', gap: 12 },
   stateText: { fontSize: 16, lineHeight: 22, textAlign: 'center' },
@@ -531,6 +531,6 @@ const styles = StyleSheet.create({
   again: { marginTop: 14, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
   againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
   // кнопка «Повторить ошибки» в карточке «Ошибки» (dialogs.html .errc .cta.gh: высота 44, значок + подпись 16/600)
-  repeatMistakes: { height: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  repeatMistakes: { minHeight: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
   repeatMistakesText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
 });

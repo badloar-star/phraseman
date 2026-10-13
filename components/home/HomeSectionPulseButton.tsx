@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   slot: { alignItems: 'center', justifyContent: 'center', minHeight: 30 },
   halo: { position: 'absolute', left: 4, right: 4, top: 2, bottom: 2, borderRadius: 999 },
   pill: {
-    height: 30,
+    minHeight: 30,
     paddingLeft: 11,
     paddingRight: 4,
     borderRadius: 999,

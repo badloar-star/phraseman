@@ -237,7 +237,7 @@ export function DialogueGlassSummaryPill({ glass, label, onPress, testID }: Read
 }
 
 const styles = StyleSheet.create({
-  pill: { height: 32, paddingHorizontal: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  pill: { minHeight: 32, paddingHorizontal: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 6 },
   pillText: { fontSize: 13, fontWeight: '700', fontVariant: ['tabular-nums'] },
   goalHit: { alignSelf: 'stretch', marginTop: 14 },
   goal: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10, paddingLeft: 10, paddingRight: 12 },
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   hintButton: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   replyAction: { minHeight: 36, paddingHorizontal: 14, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 7 },
   replyActionText: { fontSize: 13, fontWeight: '700' },
-  fixButton: { marginTop: 8, height: 30, paddingHorizontal: 12, borderRadius: 15, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  fixButton: { marginTop: 8, minHeight: 30, paddingHorizontal: 12, borderRadius: 15, flexDirection: 'row', alignItems: 'center', gap: 6 },
   fixButtonText: { fontSize: 13, fontWeight: '600' },
   fixText: { marginTop: 8, marginHorizontal: 4, fontSize: 13, lineHeight: 18, textAlign: 'right' },
   fixStrong: { fontWeight: '600' },

@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 8,
   },
-  triggerPill: { minWidth: 0, height: 40, paddingLeft: 14, paddingRight: 14, borderRadius: 20, gap: 6 },
+  triggerPill: { minWidth: 0, minHeight: 40, paddingLeft: 14, paddingRight: 14, borderRadius: 20, gap: 6 },
   code: { fontSize: 16, fontWeight: '700' },
   overlay: {
     flex: 1,

@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: SIDE, paddingBottom: 150 },
   contentSelHint: { paddingBottom: 210 }, // панель выделения с плашкой-подсказкой выше обычной: 150 + плашка ≈ 40 + зазор
   gridWrap: { marginTop: 0 },
-  addBtn: { marginTop: 16, height: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  addBtn: { marginTop: 16, minHeight: 42, alignSelf: 'flex-start', paddingHorizontal: 18, borderRadius: 21, flexDirection: 'row', alignItems: 'center', gap: 8 },
   addText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
   limit: { marginTop: 16, borderRadius: 24, paddingVertical: 22, paddingHorizontal: 20, alignItems: 'center', gap: 6 },
   limitTitle: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
@@ -371,7 +371,7 @@ const styles = StyleSheet.create({
   limitBar: { position: 'absolute', left: 0, right: 0, paddingHorizontal: 20 },
   limitBtn: { minHeight: 56, borderRadius: 28, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   limitBtnText: { fontSize: 16, lineHeight: 22, fontWeight: '700' },
-  fab: { height: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
+  fab: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', gap: 10 },
   fabPressed: { opacity: 0.86 },
   fabText: { fontSize: 16, lineHeight: 20, fontWeight: '600' },
 });

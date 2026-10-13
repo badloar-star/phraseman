@@ -150,7 +150,7 @@ const s = StyleSheet.create({
   player: { minHeight: 62, borderRadius: 14, paddingVertical: 8, paddingLeft: 12, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
   place: { width: 26, textAlign: 'center', fontSize: 16, fontWeight: '700' },
   coin: { width: 40, height: 40 },
-  playerName: { flex: 1, minWidth: 0, fontSize: 17, fontWeight: '600' },
+  playerName: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: '600' }, // зачем: шкала Шпиля 16/13 (spire_design_layer_contract); в макете 17 px, ближайшая ступень шкалы — 16
   steps: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   stepsUnit: { fontSize: 13, fontWeight: '600' },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 34 },

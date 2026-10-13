@@ -296,7 +296,7 @@ const s = StyleSheet.create({
   statLabel: { fontSize: 13 },
   coinRow: { marginTop: 16, alignItems: 'center' },
   // `.pill`: 35 высотой, поля 17, зазор 9
-  pill: { height: 35, borderRadius: 18, paddingHorizontal: 17, flexDirection: 'row', alignItems: 'center', gap: 9 },
+  pill: { minHeight: 35, borderRadius: 18, paddingHorizontal: 17, flexDirection: 'row', alignItems: 'center', gap: 9 },
   pillText: { fontSize: 16, lineHeight: 22, fontWeight: '700', fontVariant: ['tabular-nums'] },
   plusNum: { flexDirection: 'row', alignItems: 'center' },
   coin: { width: 20, height: 20 },
@@ -306,7 +306,7 @@ const s = StyleSheet.create({
   two: { flexDirection: 'row', gap: 10 },
   flex: { flex: 1 },
   // kit `.cta` 48/r24, текст 17/700 → 16/700, зазор значка 12
-  cta: { height: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, overflow: 'hidden' },
+  cta: { minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 12, overflow: 'hidden' },
   // зачем (Тень 12.10): контурная `.cta.gh` заменена плашкой с малой тенью; overflow снят, чтобы тень не клипалась
   ghost: { overflow: 'visible' },
   ctaText: { fontSize: 16, fontWeight: '700' },

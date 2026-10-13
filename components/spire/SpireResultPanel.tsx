@@ -139,7 +139,7 @@ const s = StyleSheet.create({
   title: { fontSize: 24, lineHeight: 30, fontWeight: '700', textAlign: 'center', marginTop: 8 },
   sub: { fontSize: 16, lineHeight: 21, textAlign: 'center', marginTop: 6 },
   pills: { flexDirection: 'row', justifyContent: 'center', gap: 10, marginTop: 14 },
-  pill: { height: 36, borderRadius: 18, paddingLeft: 7, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  pill: { minHeight: 36, borderRadius: 18, paddingLeft: 7, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 8 },
   pillText: { fontSize: 16, fontWeight: '700' },
   cta: { marginTop: 18, minHeight: 56, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ghost: { marginTop: 8, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },

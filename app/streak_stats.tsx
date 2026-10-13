@@ -1120,7 +1120,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
 }) {
     const accentGfx = useAccentGraphics(); // зачем (светлый акцент, аудит 13.10 §1): графика на сыром accent невидима в светлых градиентных темах — глубокий токен accentBorder
     const isBusiness = false;
-    const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? t.accent : metrics.scoreColor;
+    const scoreAccent = isGoldTheme ? GOLD_RICH.champagne : isBusiness ? accentGraphicOf(t) : metrics.scoreColor;
     const scoreSoftBg = isGoldTheme ? GOLD_RICH.wash : isBusiness ? t.accentBg : metrics.scoreColor + '24';
     const scoreBorder = isGoldTheme ? GOLD_RICH.hairlineStrong : t.border;
     // Слияние «Баланс практики» + «Ритм недели»: одна карточка «Твоя неделя».
@@ -1167,7 +1167,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
           centerValue={metrics.isWarmup ? metrics.active7 : metrics.score}
           centerSubLabel={metrics.scoreSubLabel}
           accent={scoreAccent}
-          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'B0'}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? accentGraphicOf(t) : metrics.scoreColor + 'B0'}
           trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : accentTint(accentGfx.border, 'quiet')}
           size={104}
           strokeWidth={10}
@@ -1209,7 +1209,7 @@ function LearningCoachCard({ t, f, lang, metrics, isGoldTheme, themeMode, showAc
             highlight: d.isToday,
         }))}
           accent={scoreAccent}
-          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? t.accent : metrics.scoreColor + 'CC'}
+          accentSoft={isGoldTheme ? GOLD_RICH.paleGold : isBusiness ? accentGraphicOf(t) : metrics.scoreColor + 'CC'}
           inactiveColor={accentTint(accentGfx.border, 'quiet')}
           todayDotColor={scoreAccent}
           height={88}
@@ -2656,7 +2656,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                             textPrimary: t.textPrimary,
                             textSecond: t.textSecond,
                             textMuted: t.textMuted,
-                            accent: t.accent,
+                            accent: accentGraphicOf(t), // зачем (светлый акцент): блок «за всё время» берёт accent как графику
                             accentText: t.accentText,
                         }} f={f} lang={lang} data={lifetimeStats!} expandedKind={expandedLifetimeKind} onToggleMetric={(kind) => {
                             if (!isPremium && !statsDevUnlock)

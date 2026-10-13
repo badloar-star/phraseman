@@ -54,7 +54,7 @@ const PRIVACY_URL = 'https://phraseman.app/privacy';
 // зачем (темы 2.0, проверка в эмуляторе 30.09): выбор тарифа, плашка «Выгоднее всего» и значок
 // пробного периода красятся в цвет темы в «Акценте/Максимуме» — иначе в светлом режиме они
 // оставались чёрными рядом с синей кнопкой. В «Спокойно» — прежние g.text / g.bg.
-function markFill(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accent : g.text; }
+function markFill(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accent : g.text; } // light-accent-ok: диск с галкой чернилами markInk (accentInk на accent ≥ 4,98:1)
 function markInk(g: GlassTokens): string { return g.level === 'accent' || g.level === 'max' ? g.accentInk : g.bg; }
 
 function openLegal(url: string): void {

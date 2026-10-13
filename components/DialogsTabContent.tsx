@@ -340,7 +340,7 @@ function DialogsTabContentBody({
     : null;
   const quotaResetAt = quotaResetAtMs(quota);
   const quotaResetDate = formatAiDialogQuotaResetDate(quotaResetAt, lang);
-  const accent = t.accent;
+  const accent = t.accent; // light-accent-ok: используется только как вуаль (accent+альфа) и подложка значка 15 %
 
   const openScenarioDestination = useCallback(
     (scenario: DialogScenario, forceBriefing = false) => {
@@ -563,7 +563,7 @@ function DialogsTabContentBody({
         onPress={vm.onPress}
         onLongPress={vm.onLongPress}
         colors={{
-          accent: t.accent,
+          accent: t.accent, // light-accent-ok: плитка сценария поле accent не читает (только accentBg)
           accentBg: t.accentBg,
           bgCard: t.bgCard,
           bgSurface: t.bgSurface,

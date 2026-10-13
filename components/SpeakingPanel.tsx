@@ -243,7 +243,7 @@ export function buildSpeakingPanelTheme(t: SpeakingPanelThemeSource): SpeakingPa
     textPrimary: t.textPrimary,
     textSecond: t.textSecond,
     textMuted: t.textMuted,
-    accent: t.accent,
+    accent: t.accent, // light-accent-ok: заливка кнопок панели с текстом/значком accentInk (≥ 4,98:1), не график
     correct: t.correct,
     wrong: t.wrong,
     border: t.border,

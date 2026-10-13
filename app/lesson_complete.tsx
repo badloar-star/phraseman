@@ -15,6 +15,7 @@ import ContentWrap from '../components/ContentWrap';
 import { glassFill } from '../components/GlassSurface';
 import { ResultsGlassBackButton } from '../components/results/ResultsGlass';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
@@ -1281,7 +1282,7 @@ export default function LessonComplete() {
                       textPrimary: t.textPrimary,
                       textSecond: t.textSecond,
                       textMuted: t.textMuted,
-                      accent: t.accent,
+                      accent: accentGraphicOf(t), // зачем (светлый акцент): полосы разбора урока — графика, в тёмном равен accent
                       wrong: t.wrong,
                     }}
                     fonts={{ body: f.body, label: f.label }}

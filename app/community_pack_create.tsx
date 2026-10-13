@@ -27,7 +27,6 @@ import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import {
   CardsGlassBottomBar,
   CardsGlassPrimaryButton,
-  CardsGlassRoundButton,
   CardsGlassScreen,
   CardsGlassStateBlock,
   CardsGlassSurface,
@@ -997,13 +996,10 @@ export default function CommunityPackCreateScreen() {
     Keyboard.dismiss();
     safeRouterBack(router, '/flashcards' as any);
   };
-  const headerTitleStyle = { flex: 1, textAlign: 'center' as const, color: g.text, fontSize: 20, lineHeight: 26, fontWeight: '700' as const };
+  // зачем (Макеты cards-074, решение координатора 13.10): шапка вторичных экранов (недоступно для правки, недоступно в сборке, скелетон перед пейволом) — как у основной формы
+  // и в утверждённом cards-v2 edHead: × слева, заголовок слева, без ← и центровки; один общий EditorHeader вместо двух разных шапок
   const renderHeader = (title: string, right?: React.ReactNode) => (
-    <View style={styles.headerRow}>
-      <CardsGlassRoundButton g={g} testID="ugc-pack-back" label={backLabel} icon="arrow-back" onPress={goBack} />
-      <Text style={headerTitleStyle}>{title}</Text>
-      {right ?? <View style={{ width: 44 }} />}
-    </View>
+    <EditorHeader g={kg} title={title} closeLabel={backLabel} onClose={goBack} right={right} />
   );
   const newPackTitle = L('Новый набор', 'Новий набір', 'New pack', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet');
   const glassInput = { color: g.text, fontSize: 16, lineHeight: 22, paddingHorizontal: 0, paddingVertical: 0, marginTop: 6 } as const;
@@ -1039,7 +1035,7 @@ export default function CommunityPackCreateScreen() {
             <CardsGlassStateBlock
               g={g}
               testID="ugc-pack-load-error"
-              icon="lock-closed"
+              icon="lock-closed-outline" // зачем (Макеты cards-074): в образце замок контурный, а не залитый
               title={loadErr}
               actionLabel={backLabel}
               onAction={goBack}

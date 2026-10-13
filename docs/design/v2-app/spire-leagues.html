@@ -6,19 +6,20 @@
 <title>Башни лиг Шпиля</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-/* зачем (владелец 13.10): «башни ВСЕХ лиг отличаются и по цвету, и по типу, и все этажи»; стиль «Тень» — без обводок контейнеров, тон и тень вместо рамок */
+/* зачем (владелец 13.10, «ужасно, переделывай»; координатор): v2 — у каждой лиги СВОЙ силуэт и архитектура со своей геометрией, объём и материал на уровне эталонной чёрной башни (SpireTowerSvg.tsx). Стиль «Тень» — без обводок контейнеров. */
 .ph { --bg: #0C0D10; --bg-top: #181A1F; }
 .lg-wrap { display: grid; grid-template-columns: 430px 1fr; gap: 36px; align-items: start; margin-top: 22px; }
-@media (max-width: 1100px) { .lg-wrap { grid-template-columns: 1fr; } }
 .lg-wrap > div { min-width: 0; }
+@media (max-width: 1100px) { .lg-wrap { grid-template-columns: 1fr; } }
 .lg-bar { display: flex; align-items: center; gap: 10px; margin-top: 22px; }
-.lg-arrow { flex: none; width: 44px; height: 44px; border-radius: 22px; background: #1B1B1E; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 16px rgba(0,0,0,.35); user-select: none; }
+.lg-arrow { flex: none; width: 44px; height: 44px; border-radius: 22px; background: #1B1B1E; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 6px 16px rgba(0,0,0,.35); user-select: none; font-size: 22px; }
 .lg-arrow:active { transform: scale(.95); }
 .lg-chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding: 4px 2px 10px; flex: 1; }
 .lg-chips::-webkit-scrollbar { display: none; }
 .lg-chip { flex: none; display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 16px 0 8px; border-radius: 23px; background: #17171A; color: #A6A6A8; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); transition: background 160ms, color 160ms, transform 160ms; }
 .lg-chip svg { width: 32px; height: 32px; flex: none; }
 .lg-chip.on { background: #26262B; color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 8px 20px rgba(0,0,0,.4); }
+.lg-chip.soon { opacity: .38; cursor: default; }
 .lg-chip:active { transform: scale(.97); }
 .lg-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 4px; color: #A6A6A8; font-size: 14px; }
 .lg-btn { display: inline-flex; align-items: center; justify-content: center; height: 38px; padding: 0 16px; border-radius: 19px; background: #1B1B1E; color: #fff; font: 600 14px Inter, sans-serif; cursor: pointer; user-select: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
@@ -34,7 +35,7 @@
 .fi .st { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 2px; }
 .fi .bdg { flex: none; width: 44px; height: 44px; }
 .hd { display: flex; align-items: flex-start; gap: 12px; margin-top: 6px; }
-.hd .bd { flex: none; width: 54px; height: 54px; margin-top: 0; }
+.hd .bd { flex: none; width: 54px; height: 54px; }
 .hd .grow { flex: 1; min-width: 0; }
 .hd .ibtn { flex: none; width: 44px; height: 44px; border-radius: 22px; background: #1E1E22; display: flex; align-items: center; justify-content: center; color: #fff; }
 .dockb { position: absolute; left: 20px; right: 20px; bottom: 40px; z-index: 20; }
@@ -42,37 +43,37 @@
 .dockb .cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; border-radius: 28px; background: #F2F1F6; color: #0B0C0E; font-size: 17px; font-weight: 700; box-shadow: 0 10px 28px rgba(0,0,0,.45); }
 .ladder { margin-top: 30px; padding: 22px 12px 14px; border-radius: 26px; background: #121215; box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 18px 40px rgba(0,0,0,.4); overflow-x: auto; scrollbar-width: none; }
 .ladder::-webkit-scrollbar { display: none; }
-.ldr { display: flex; align-items: flex-end; gap: 4px; min-width: max-content; }
-.ldr .st { flex: none; width: 112px; cursor: pointer; text-align: center; opacity: .62; transition: opacity 180ms, transform 180ms; }
-.ldr .st:hover { opacity: .9; }
+.ldr { display: flex; align-items: flex-end; justify-content: center; gap: 10px; min-width: max-content; }
+.ldr .st { flex: none; width: 200px; cursor: pointer; text-align: center; opacity: .66; transition: opacity 180ms, transform 180ms; }
+.ldr .st:hover { opacity: .92; }
 .ldr .st.on { opacity: 1; transform: translateY(-6px); }
-.ldr .st svg { display: block; width: 100%; height: auto; }
-.ldr .nm { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; }
+.ldr .st svg { display: block; width: 100%; height: auto; border-radius: 18px; }
+.ldr .nm { font-size: 15px; font-weight: 700; margin-top: 8px; color: #fff; }
 .ldr .no { font-size: 12px; color: var(--sec); margin-top: 2px; }
+.ldr .st.soon { opacity: .3; cursor: default; }
+.ldr .st.soon .box { width: 200px; height: 360px; border-radius: 18px; background: #17171A; display: flex; align-items: center; justify-content: center; color: #6E6E72; font-size: 13px; }
+@media (max-width: 900px) { .ldr { flex-wrap: wrap; min-width: 0; row-gap: 12px; } }
 .sec-h { font-size: 22px; font-weight: 700; letter-spacing: -.3px; margin: 44px 0 4px; }
 .sec-p { color: var(--sec); font-size: 15px; line-height: 1.5; margin: 0 0 14px; max-width: 900px; }
 .wk { margin-top: 6px; text-align: center; }
 .wk .k { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #A6A6A8; text-transform: uppercase; }
 .wk .h { font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.3px; margin-top: 8px; }
 .wk .p { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 6px; }
-.wk .row { display: flex; align-items: flex-end; justify-content: center; gap: 6px; margin-top: 14px; }
-.wk .old { opacity: .6; transform: scale(.78); transform-origin: bottom center; }
-.wk .arr { align-self: center; color: #A6A6A8; }
-.wk .rw { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+.wk .row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 14px; }
+.wk .old { opacity: .6; transform: scale(.78); }
+.wk .arr { color: #A6A6A8; }
 .spec { width: 100%; border-collapse: separate; border-spacing: 0 6px; font-size: 13px; line-height: 18px; }
-.spec th { text-align: left; font-weight: 700; color: #A6A6A8; padding: 6px 10px; white-space: nowrap; position: sticky; top: 0; background: #050506; }
+.spec th { text-align: left; font-weight: 700; color: #A6A6A8; padding: 6px 10px; white-space: nowrap; }
 .spec td { padding: 10px; background: #121215; vertical-align: top; }
 .spec td:first-child { border-radius: 12px 0 0 12px; } .spec td:last-child { border-radius: 0 12px 12px 0; }
-.spec .sw { display: inline-block; width: 14px; height: 14px; border-radius: 4px; margin-right: 4px; vertical-align: -2px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
 .spec-wrap { overflow-x: auto; }
-@media (max-width: 900px) { .ldr { flex-wrap: wrap; min-width: 0; justify-content: center; row-gap: 12px; } .ldr .st { width: 124px !important; } }
-pre.js { background: #0E0E10; border-radius: 16px; padding: 16px; font-size: 12px; line-height: 17px; color: #C9C9CC; overflow: auto; max-height: 360px; }
+.note { color: var(--sec); font-size: 13px; line-height: 1.5; margin-top: 10px; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Башни лиг Шпиля</h1>
-  <p class="page-lead">Двенадцать лиг-камней (бывшие «лиги» → «шпили»): Гранит … Алмаз. У каждой лиги своя башня: свой материал, палитра, форма корпуса, кладка/фактура, карниз, парапет Стража, навершие и атмосфера вокруг. От низшей лиги к высшей башня выше, стройнее, богаче деталями и светом. Чёрная башня-эталон закреплена за лигой «Оникс» (чёрный камень). Всё нарисовано кодом (SVG/CSS), без картинок; башня = параметры лиги поверх одной модели этажей (15 этажей, Страж каждые 5, вершина — 15-й).</p>
+  <h1 class="page-h1">Башни лиг Шпиля · v2</h1>
+  <p class="page-lead">Двенадцать лиг-камней (Гранит … Алмаз). У каждой лиги — своя архитектура со своей геометрией: силуэт, материал, свет, атмосфера. Эталон качества — чёрная башня приложения, она закреплена за лигой «Оникс». Первый круг: <b>Гранит</b> (крепостной донжон), <b>Оникс</b> (эталон), <b>Алмаз</b> (ледяная игла с парящим бриллиантом). Остальные девять — после утверждения. Всё — SVG кодом, без картинок; каждая башня — параметры и набор форм поверх модели этажей (15 этажей, Страж каждые 5).</p>
   <div class="lg-bar">
     <div class="lg-arrow" id="prev" aria-label="Предыдущая лига">‹</div>
     <div class="lg-chips" id="chips"></div>
@@ -81,30 +82,25 @@ pre.js { background: #0E0E10; border-radius: 16px; padding: 16px; font-size: 12p
   <div class="lg-ctl">Мой этаж:
     <span class="lg-btn" id="fm">−</span><b id="fv" style="color:#fff;min-width:22px;text-align:center">7</b><span class="lg-btn" id="fp">+</span>
     <span class="lg-btn" id="sm">Вершина недели</span>
-    <span>Стрелки ← → на клавиатуре меняют лигу; тап по этажу выбирает его.</span>
+    <span>Стрелки ← → меняют лигу; тап по этажу выбирает его.</span>
   </div>
   <div class="lg-wrap">
     <div id="phoneMain"></div>
     <div>
       <h2 class="sec-h" style="margin-top:0">Лестница прогрессии</h2>
-      <p class="sec-p">Все двенадцать башен в одном масштабе, основания на одной линии: видно, как от лиги к лиге растут высота и стройность, появляются балконы, кристаллы, шпили и свет. Тап по башне — переключить лигу.</p>
+      <p class="sec-p">Башни в одном масштабе, основания на одной линии. Тап по башне — переключить лигу.</p>
       <div class="ladder"><div class="ldr" id="ladder"></div></div>
-      <h2 class="sec-h">Крупный план выбранной лиги</h2>
-      <p class="sec-p">Слева — навершие и верхние этажи, справа — основание и нижние этажи (в масштабе экрана).</p>
+      <h2 class="sec-h">Крупный план</h2>
+      <p class="sec-p">Слева — навершие и верхние этажи, справа — основание и нижние этажи.</p>
       <div id="closeup"></div>
-      <h2 class="sec-h">Значки рангов</h2>
-      <p class="sec-p">Значок лиги — в той же стилистике, что башня: для шапки Шпиля, итога недели и карточки игрока. Три размера.</p>
-      <div class="ladder"><div class="ldr" id="badges" style="gap:14px"></div></div>
     </div>
   </div>
-  <h2 class="sec-h">Итог недели — повышение в следующую лигу</h2>
-  <p class="sec-p">Игрок поднимается в лигу выше: старая башня остаётся позади, новая — в полный рост. Экран листается по лигам вместе с переключателем сверху.</p>
-  <div class="phones"><div id="phoneWeek"></div><div id="phoneWeek2"></div></div>
-  <h2 class="sec-h">Параметры башен (для переноса в код)</h2>
-  <p class="sec-p">Башня = палитра + набор форм поверх <code>spire_tower_model.ts</code>. Геометрия (высота этажа, сужение, ширина основания, высота навершия) растёт с номером лиги; формы (корпус, кладка, окна, карниз, парапет, навершие, атмосфера) — по таблице.</p>
+  <h2 class="sec-h">Итог недели — повышение</h2>
+  <p class="sec-p">Старая башня остаётся позади, новая — в полный рост.</p>
+  <div class="phones" id="phoneWeek"></div>
+  <h2 class="sec-h">Параметры (для переноса в код)</h2>
+  <p class="sec-p">Каждая лига = архетип (своя геометрия и набор форм) + палитра. Общая модель этажей — <code>spire_tower_model.ts</code>: 15 этажей, Страж каждые 5, состояния «пройден / мой / впереди / вершина недели».</p>
   <div class="spec-wrap"><table class="spec" id="spec"></table></div>
-  <h2 class="sec-h">Параметры в JSON</h2>
-  <pre class="js" id="json"></pre>
 </div>
 <script src="kit.js"></script>
 <script>
@@ -112,6 +108,7 @@ pre.js { background: #0E0E10; border-radius: 16px; padding: 16px; font-size: 12p
 const TW = 390, CX = 195, FLOORS = 15;
 const isGuard = (f) => f % 5 === 0;
 const isSummit = (f) => f === FLOORS;
+const f1 = (n) => (Math.round(n * 10) / 10).toString();
 const hex2rgb = (h) => { h = h.replace('#', ''); return [0, 2, 4].map((i) => parseInt(h.substr(i, 2), 16)); };
 const rgb2hex = (a) => '#' + a.map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0')).join('');
 const mix = (a, b, t) => { const A = hex2rgb(a), B = hex2rgb(b); return rgb2hex(A.map((v, i) => v + (B[i] - v) * t)); };
@@ -119,558 +116,559 @@ const lighten = (c, t) => mix(c, '#ffffff', t);
 const darken = (c, t) => mix(c, '#000000', t);
 const rgba = (c, a) => { const [r, g, b] = hex2rgb(c); return `rgba(${r},${g},${b},${a})`; };
 const rnd = (seed) => { let s = (seed >>> 0) || 1; return () => { s ^= s << 13; s >>>= 0; s ^= s >>> 17; s ^= s << 5; s >>>= 0; return (s % 100000) / 100000; }; };
-const f1 = (n) => n.toFixed(1);
-const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV', 'XV'];
-
-/* ===================== ЛИГИ (параметры) ===================== */
-// зачем (владелец 13.10): у каждой лиги своя башня; геометрия растёт с номером лиги (выше, стройнее, богаче), формы и палитра — свои.
-// ЭТАЛОН: «Оникс» = текущая чёрная башня приложения (SpireTowerSvg.tsx) — чёрный камень, ближайшее по смыслу имя.
-const LEAGUES = [
-  { id: 'granite', ru: 'Гранит', uk: 'Граніт', mat: 'серый зернистый гранит, грубые блоки',
-    w0: 214, taper: 6.2, fh: 40, gh: 52, crownH: 96,
-    body: 'ashlar', brick: 12, seam: 0.4, speckle: true, win: 'slit', winN: 2, rows: 1, corn: 'ring', guard: 'merlon', crown: 'cone', plinth: 'stone', numFmt: 'arabic',
-    atmos: ['dust', 'cloud'],
-    pal: { sky: ['#14161A', '#1B1D22', '#101215'], star: '#E6E8EE', stone: ['#2A2C2F', '#4F5358', '#767B82', '#5F6369', '#42464B', '#242628'], corn: ['#34373B', '#7A7F86', '#575B61', '#222427'], roof: ['#2E3034', '#5A5148', '#3D3730', '#1D1B19'], win: { lit: '#FFD9A0', past: '#5A4A38', dark: '#0B0B0C', glow: '#FFB45E' }, accent: '#FFB45E', halo: '#FFB45E', num: '#FFFFFF', numDim: '#6E7075' } },
-  { id: 'basalt', ru: 'Базальт', uk: 'Базальт', mat: 'тёмные шестигранные колонны вулканического камня',
-    w0: 212, taper: 5.8, fh: 41, gh: 54, crownH: 112,
-    body: 'columns', win: 'slit', winN: 3, rows: 1, corn: 'ring', guard: 'column', crown: 'columns', plinth: 'stone', numFmt: 'arabic',
-    atmos: ['mist', 'rain', 'cloud'],
-    pal: { sky: ['#0F151C', '#16202B', '#0C1218'], star: '#CFE8F2', stone: ['#161C24', '#2A3745', '#3F5265', '#324355', '#222E3A', '#12171E'], corn: ['#1E2733', '#566C80', '#38485A', '#131A22'], roof: ['#1B2330', '#46586C', '#2B3849', '#10151C'], win: { lit: '#BDF3FF', past: '#35505C', dark: '#080C10', glow: '#5EC8D8' }, accent: '#5EC8D8', halo: '#5EC8D8', num: '#E8F8FF', numDim: '#5C6F7C' } },
-  { id: 'marble', ru: 'Мрамор', uk: 'Мармур', mat: 'белый мрамор с прожилками, колонны, золото',
-    w0: 210, taper: 5.4, fh: 42, gh: 56, crownH: 128,
-    body: 'marble', win: 'arch', winN: 3, rows: 1, corn: 'gold', guard: 'balustrade', crown: 'dome', plinth: 'steps', numFmt: 'roman',
-    atmos: ['warmcloud', 'sunset'],
-    pal: { sky: ['#1E1B26', '#2C2430', '#18141C'], star: '#FFEBC2', stone: ['#8D8678', '#DCD6C8', '#F7F3EA', '#E6E0D3', '#BDB6A6', '#7B7568'], corn: ['#9A9384', '#F3EEE2', '#CFC8B8', '#8A8477'], roof: ['#B88B3A', '#F2D27A', '#D8AE55', '#7E5D22'], win: { lit: '#FFF1C9', past: '#8C8068', dark: '#201C22', glow: '#FFD98A' }, accent: '#E6BE6A', halo: '#FFD98A', num: '#6A5320', numDim: '#8E8573', gold: '#E1B95D' } },
-  { id: 'jade', ru: 'Нефрит', uk: 'Нефрит', mat: 'зелёный лакированный нефрит, пагода с загнутыми карнизами',
-    w0: 206, taper: 5.0, fh: 43, gh: 56, crownH: 150,
-    body: 'jade', win: 'moon', winN: 3, rows: 1, corn: 'eave', guard: 'pagoda', crown: 'pagoda', plinth: 'water', numFmt: 'arabic',
-    atmos: ['fireflies', 'mist', 'cloud'],
-    pal: { sky: ['#0A1713', '#102620', '#08120F'], star: '#D9FFE9', stone: ['#0F3B2C', '#1F7A58', '#4CC498', '#2E9A74', '#176048', '#0A2A20'], corn: ['#13503B', '#59D3A6', '#2F9674', '#0B3226'], roof: ['#0F3A2D', '#3DBE92', '#1F7A5A', '#08241B'], win: { lit: '#FFD38A', past: '#9C8A4C', dark: '#0C3326', glow: '#FFB04A' }, accent: '#FFB04A', halo: '#FFB04A', num: '#E4FFF2', numDim: '#4F7A68' } },
-  { id: 'quartz', ru: 'Кварц', uk: 'Кварц', mat: 'прозрачно-розовый кварц, граненые призмы',
-    w0: 204, taper: 4.8, fh: 44, gh: 58, crownH: 168,
-    body: 'facet', facets: 5, win: 'diamond', winN: 3, rows: 1, corn: 'flare', guard: 'crystals', crown: 'crystals', plinth: 'crystal', numFmt: 'arabic',
-    atmos: ['glitter', 'frost', 'stars'],
-    pal: { sky: ['#17142A', '#241C3A', '#110F20'], star: '#FFF1FA', stone: ['#8C6F95', '#C8A1C4', '#F4DDF0', '#DDBBD8', '#A883A8', '#6B5272'], corn: ['#8C6F95', '#FBE9F7', '#D5B0D1', '#6B5272'], roof: ['#B38FB8', '#FFF0FB', '#DDBBD8', '#7A5F82'], win: { lit: '#FFFFFF', past: '#8F7A98', dark: '#241C34', glow: '#FFD6F2' }, accent: '#FFB8E6', halo: '#FFB8E6', num: '#FFF6FD', numDim: '#8D7798' } },
-  { id: 'agate', ru: 'Агат', uk: 'Агат', mat: 'слоистый агат: полосы янтаря, меди и молочного камня',
-    w0: 202, taper: 4.6, fh: 45, gh: 60, crownH: 176,
-    body: 'bands', bands: ['#C9742A', '#F0C58A', '#7A3B1C', '#E9DCC6', '#3F6A8F', '#B04A25'], win: 'arch', winN: 3, rows: 2, corn: 'terrace', guard: 'balustrade', crown: 'geode', plinth: 'steps', numFmt: 'arabic', terrace: true,
-    atmos: ['sparks', 'warmcloud', 'dust'],
-    pal: { sky: ['#1B1410', '#2B1D14', '#120D0A'], star: '#FFE3C2', stone: ['#3A2216', '#8B4E24', '#D9904A', '#B5702F', '#74401E', '#2A180F'], corn: ['#5A3319', '#F0C58A', '#B5702F', '#2A180F'], roof: ['#6A3B1B', '#E8A860', '#A85F28', '#2E190C'], win: { lit: '#FFE9B8', past: '#7A5A38', dark: '#120C08', glow: '#FFC46A' }, accent: '#FFC46A', halo: '#FFC46A', num: '#FFF2DD', numDim: '#8A6A4C' } },
-  { id: 'onyx', ru: 'Оникс', uk: 'Онікс', mat: 'чёрный полированный камень — ЭТАЛОН (текущая башня приложения)',
-    w0: 200, taper: 4.4, fh: 46, gh: 60, crownH: 168,
-    body: 'ashlar', brick: 11, seam: 0.34, win: 'arch', winN: 3, rows: 1, corn: 'ring', guard: 'merlon', crown: 'cone', plinth: 'stone', numFmt: 'arabic', ref: true,
-    atmos: ['stars', 'cloud'],
-    pal: { sky: ['#101013', '#17171A', '#0E0E10'], star: '#FFFFFF', stone: ['#1F1F23', '#3D3D44', '#5A5A62', '#46464D', '#2C2C31', '#18181B'], corn: ['#2A2A2F', '#77777F', '#55555C', '#222226'], roof: ['#1E1E22', '#55555D', '#3A3A41', '#151518'], win: { lit: '#EEF0F6', past: '#3A3A40', dark: '#0B0B0D', glow: '#EEF0F6' }, accent: '#FFFFFF', halo: '#FFFFFF', num: '#FFFFFF', numDim: '#6E6E72' } },
-  { id: 'amethyst', ru: 'Аметист', uk: 'Аметист', mat: 'фиолетовый аметист, друзы кристаллов из стен',
-    w0: 198, taper: 4.2, fh: 47, gh: 62, crownH: 186,
-    body: 'facet', facets: 6, win: 'lancet', winN: 3, rows: 2, corn: 'flare', guard: 'crystals', crown: 'crystals', plinth: 'crystal', numFmt: 'roman', druse: true,
-    atmos: ['nebula', 'sparks', 'stars'],
-    pal: { sky: ['#120A24', '#1F1238', '#0C0618'], star: '#EBDDFF', stone: ['#2A1250', '#5B2FA3', '#A872F0', '#8650D8', '#4A238A', '#1D0C3A'], corn: ['#3A1A6E', '#C9A0FF', '#8650D8', '#1D0C3A'], roof: ['#3A1A6E', '#BE8CFF', '#7B45CF', '#1A0A36'], win: { lit: '#F4E6FF', past: '#5E4688', dark: '#0C0618', glow: '#C58CFF' }, accent: '#C58CFF', halo: '#C58CFF', num: '#F5EAFF', numDim: '#7A64A0' } },
-  { id: 'opal', ru: 'Опал', uk: 'Опал', mat: 'молочный опал с радужной игрой света, витые раковинные ярусы',
-    w0: 196, taper: 4.0, fh: 48, gh: 63, crownH: 196,
-    body: 'iris', win: 'round', winN: 3, rows: 2, corn: 'scallop', guard: 'pearls', crown: 'pearl', plinth: 'water', numFmt: 'arabic',
-    atmos: ['aurora', 'bubbles', 'stars'],
-    pal: { sky: ['#14162B', '#1F2140', '#0E1022'], star: '#FFFFFF', stone: ['#8A8FB8', '#C9CCEA', '#F6F2FF', '#E3E1F6', '#AEB0D4', '#6F7396'], corn: ['#9EA2C6', '#FFFFFF', '#CFD0EA', '#6F7396'], roof: ['#B9BCE0', '#FFFFFF', '#DCD9F2', '#7C80A6'], win: { lit: '#FFFFFF', past: '#B9BCDD', dark: '#6D71A0', glow: '#B8F0FF' }, accent: '#9DEBFF', halo: '#B8D8FF', num: '#2A2D52', numDim: '#7E82A8' } },
-  { id: 'topaz', ru: 'Топаз', uk: 'Топаз', mat: 'золотисто-янтарный топаз, позолота, шпили-пинакли',
-    w0: 194, taper: 3.9, fh: 49, gh: 65, crownH: 214,
-    body: 'facet', facets: 5, win: 'arch', winN: 4, rows: 2, corn: 'gold', guard: 'balustrade', crown: 'goldspire', plinth: 'steps', numFmt: 'roman', pinnacles: true,
-    atmos: ['rays', 'goldust', 'sunset'],
-    pal: { sky: ['#2A1420', '#47231F', '#1A0C12'], star: '#FFE9A8', stone: ['#5A3408', '#B97A16', '#FFD36B', '#F0B23A', '#9A6410', '#4A2A06'], corn: ['#7A4A0C', '#FFE9A0', '#E6B040', '#4A2A06'], roof: ['#8A560E', '#FFE79A', '#E0A62E', '#4E2E06'], win: { lit: '#FFFBE0', past: '#9A7A3A', dark: '#241408', glow: '#FFD36B' }, accent: '#FFD36B', halo: '#FFC24A', num: '#FFF6DA', numDim: '#9A8250', gold: '#FFD36B' } },
-  { id: 'obsidian', ru: 'Обсидиан', uk: 'Обсидіан', mat: 'вулканическое стекло: глянцевый чёрный камень с жилами лавы',
-    w0: 192, taper: 3.8, fh: 50, gh: 67, crownH: 232,
-    body: 'veins', win: 'slit', winN: 3, rows: 2, corn: 'flare', guard: 'spikes', crown: 'shards', plinth: 'lava', numFmt: 'arabic',
-    atmos: ['embers', 'smoke', 'stars'],
-    pal: { sky: ['#140608', '#241012', '#0C0405'], star: '#FFB07A', stone: ['#050507', '#16161E', '#34343F', '#242430', '#111118', '#040406'], corn: ['#0B0B10', '#4B4B5A', '#22222C', '#050507'], roof: ['#0E0E14', '#454554', '#1E1E28', '#040406'], win: { lit: '#FFC38A', past: '#6A3A22', dark: '#060506', glow: '#FF6A22' }, accent: '#FF6A22', halo: '#FF5A1F', num: '#FFE2CC', numDim: '#6A5048', vein: '#FF6A22' } },
-  { id: 'diamond', ru: 'Алмаз', uk: 'Алмаз', mat: 'бриллиантовая огранка: лёд, радужные блики, парящая корона',
-    w0: 190, taper: 3.6, fh: 52, gh: 70, crownH: 250,
-    body: 'facet', facets: 7, win: 'star', winN: 4, rows: 2, corn: 'flare', guard: 'crystals', crown: 'diamond', plinth: 'mirror', numFmt: 'arabic', prism: true,
-    atmos: ['aurora', 'beams', 'stars', 'glitter'],
-    pal: { sky: ['#0A1230', '#132048', '#070C22'], star: '#FFFFFF', stone: ['#5C7DB8', '#A9C6F0', '#F2F8FF', '#D2E4FA', '#8DB0E0', '#4A6AA0'], corn: ['#6F90C8', '#FFFFFF', '#BED6F4', '#4A6AA0'], roof: ['#86A8DC', '#FFFFFF', '#CFE2F8', '#587CB4'], win: { lit: '#FFFFFF', past: '#7C98C4', dark: '#0E1630', glow: '#BDEBFF' }, accent: '#9FE6FF', halo: '#A8E0FF', num: '#12224A', numDim: '#7C98C4' } },
-];
-LEAGUES.forEach((L, i) => { L.i = i; });
-
-/* ===================== ГЕОМЕТРИЯ ===================== */
-function geomOf(L) {
-  const fh = (f) => (isGuard(f) ? L.gh : L.fh);
-  const topPad = L.crownH + 250, basePad = 100;
-  let h = 0; for (let f = 1; f <= FLOORS; f++) h += fh(f);
-  const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
-  for (let f = 1; f <= FLOORS; f++) {
-    const hh = fh(f); const w = L.w0 - (f - 1) * L.taper + (L.terrace ? (f % 2 ? 0 : 6) : 0);
-    yb -= hh; floors.push({ f, y: yb, h: hh, w, x0: CX - w / 2 });
-  }
-  return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y };
-}
-const GEO = LEAGUES.map(geomOf);
-
-/* ===================== РЕНДЕР БАШНИ ===================== */
-let UID = 0;
 const poly = (pts, fill, extra = '') => `<polygon points="${pts.map((p) => f1(p[0]) + ',' + f1(p[1])).join(' ')}" fill="${fill}" ${extra}/>`;
 const stp = (c, o, a) => `<stop offset="${o}" stop-color="${c}"${a !== undefined ? ` stop-opacity="${a}"` : ''}/>`;
+let UID = 0;
 
-function defsOf(L, p) {
-  const P = L.pal, S = P.stone, offs = [0, 0.16, 0.36, 0.55, 0.8, 1], o4 = [0, 0.35, 0.6, 1];
-  const lin = (id, stops, x2 = '1', y2 = '0') => `<linearGradient id="${p}${id}" x1="0" x2="${x2}" y1="0" y2="${y2}">${stops}</linearGradient>`;
-  const rad = (id, stops, cx = '.5', cy = '.5') => `<radialGradient id="${p}${id}" cx="${cx}" cy="${cy}" r=".5">${stops}</radialGradient>`;
-  return `<defs>`
-    + lin('cyl', S.map((c, k) => stp(c, offs[k])).join(''))
-    + lin('cylG', S.map((c, k) => stp(lighten(c, 0.1), offs[k])).join(''))
-    + lin('corn', P.corn.map((c, k) => stp(c, o4[k])).join(''))
-    + lin('roof', P.roof.map((c, k) => stp(c, o4[k])).join(''))
-    + lin('under', stp('#000', 0, 0.42) + stp('#000', 0.3, 0) + stp('#000', 1, 0.12), '0', '1')
-    + lin('shade', stp('#000', 0, 0.55) + stp('#000', 0.42, 0) + stp('#000', 0.62, 0) + stp('#000', 1, 0.62))
-    + lin('sky', P.sky.map((c, k) => stp(c, [0, 0.5, 1][k])).join(''), '0', '1')
-    + lin('iri', stp('#FFB8E6', 0, 0.55) + stp('#9DEBFF', 0.5, 0.5) + stp('#FFF2B0', 1, 0.5))
-    + lin('lava', stp(P.vein || P.accent, 0, 0) + stp(P.vein || P.accent, 0.5, 0.9) + stp(P.vein || P.accent, 1, 0))
-    + rad('glow', stp(P.accent, 0, 0.55) + stp(P.accent, 0.45, 0.12) + stp(P.accent, 1, 0))
-    + rad('halo', stp(P.halo, 0, 0.26) + stp(P.halo, 1, 0))
-    + rad('ground', stp(S[1], 0, 0.9) + stp(S[5], 1, 0), '.5', '.2')
-    + rad('cloud', stp(P.star, 0, 0.09) + stp(P.star, 1, 0))
-    + rad('orb', stp('#FFFFFF', 0, 0.95) + stp(P.accent, 0.5, 0.75) + stp(P.accent, 1, 0))
-    + `<filter id="${p}wg" x="-120%" y="-120%" width="340%" height="340%"><feGaussianBlur stdDeviation="3.6"/></filter>`
-    + `<filter id="${p}bl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>`
-    + `</defs>`;
-}
+/* ===================== ЛИГИ ===================== */
+// зачем (владелец 13.10): каждая лига — свой архетип башни со своей геометрией (не общая стопка колец). Названия — modules/spire/tier_names.ts.
+const LEAGUES = [
+  { id: 'granite', ru: 'Гранит', uk: 'Граніт', arch: 'fortress', ready: true, mat: 'крепостной донжон из грубых гранитных блоков: две грани с углом на зрителя, бойницы, факелы, зубцы, угловые башенки у Стражей, жаровня-маяк на вершине' },
+  { id: 'basalt', ru: 'Базальт', uk: 'Базальт' },
+  { id: 'marble', ru: 'Мрамор', uk: 'Мармур' },
+  { id: 'jade', ru: 'Нефрит', uk: 'Нефрит' },
+  { id: 'quartz', ru: 'Кварц', uk: 'Кварц' },
+  { id: 'agate', ru: 'Агат', uk: 'Агат' },
+  { id: 'onyx', ru: 'Оникс', uk: 'Онікс', arch: 'cylinder', ready: true, mat: 'ЭТАЛОН — чёрная круглая башня приложения: цилиндрическая светотень, кладка рядами, окна по окружности, карнизы-кольца, зубцы и машикули Стражей, конус с черепицей и светящимся навершием' },
+  { id: 'amethyst', ru: 'Аметист', uk: 'Аметист' },
+  { id: 'opal', ru: 'Опал', uk: 'Опал' },
+  { id: 'topaz', ru: 'Топаз', uk: 'Топаз' },
+  { id: 'obsidian', ru: 'Обсидиан', uk: 'Обсидіан' },
+  { id: 'diamond', ru: 'Алмаз', uk: 'Алмаз', arch: 'needle', ready: true, mat: 'ледяная огранённая игла: три грани с преломлениями, ярусы-кристаллы, фонари во льду, венцы шардов у Стражей, парящий бриллиант над остриём, сияние и лучи' },
+];
+LEAGUES.forEach((L, i) => { L.i = i; });
+const READY = LEAGUES.filter((L) => L.ready);
 
-/* ---------- окна ---------- */
-function winPath(L, x, y, k) {
-  switch (L.win) {
-    case 'slit': { const w = 6; return `M${f1(x)} ${f1(y + 3)}a3 3 0 0 1 6 0V${f1(y + 26)}H${f1(x)}Z`; }
-    case 'round': case 'moon': { const r = L.win === 'moon' ? 8 : 7; return `M${f1(x - r)} ${f1(y + r)}a${r} ${r} 0 1 0 ${2 * r} 0a${r} ${r} 0 1 0 ${-2 * r} 0Z`; }
-    case 'lancet': return `M${f1(x - 5)} ${f1(y + 26)}V${f1(y + 12)}Q${f1(x - 5)} ${f1(y + 3)} ${f1(x)} ${f1(y)}Q${f1(x + 5)} ${f1(y + 3)} ${f1(x + 5)} ${f1(y + 12)}V${f1(y + 26)}Z`;
-    case 'diamond': return `M${f1(x)} ${f1(y)}L${f1(x + 6.5)} ${f1(y + 11)}L${f1(x)} ${f1(y + 22)}L${f1(x - 6.5)} ${f1(y + 11)}Z`;
-    case 'star': return `M${f1(x)} ${f1(y)}L${f1(x + 2.6)} ${f1(y + 6.4)}L${f1(x + 9)} ${f1(y + 9)}L${f1(x + 2.6)} ${f1(y + 11.6)}L${f1(x)} ${f1(y + 18)}L${f1(x - 2.6)} ${f1(y + 11.6)}L${f1(x - 9)} ${f1(y + 9)}L${f1(x - 2.6)} ${f1(y + 6.4)}Z`;
-    default: { const w = 12 * k; return `M${f1(x - w / 2)} ${f1(y + w / 2)}a${f1(w / 2)} ${f1(w / 2)} 0 0 1 ${f1(w)} 0V${f1(y + 20)}H${f1(x - w / 2)}Z`; }
-  }
-}
-function windowsOf(L, p, fl, tone) {
-  const { f, y, w } = fl; const r = w / 2; const g = isGuard(f); const W = L.pal.win;
-  let ang = L.winN >= 4 ? [-0.92, -0.3, 0.3, 0.92] : L.winN === 3 ? [-0.72, 0, 0.72] : [-0.5, 0.5];
-  if (f >= 12 && ang.length > 2) ang = ang.length === 4 ? [-0.7, 0, 0.7] : [-0.55, 0.55];
-  let out = '';
-  ang.forEach((t) => {
-    const k = Math.cos(t); const x = CX + r * Math.sin(t); const yy = y + (g ? 20 : 11);
-    const d = winPath(L, x, yy, k);
-    if (tone === 'lit') out += `<path d="${d}" fill="${W.glow}" opacity=".85" filter="url(#${p}wg)"/>`;
-    out += `<path d="${d}" fill="${W[tone]}"/>`;
-    if (L.win === 'moon') out += `<path d="M${f1(x - 8)} ${f1(yy + 8)}h16M${f1(x)} ${f1(yy)}v16" stroke="rgba(0,0,0,.35)" stroke-width="1" fill="none"/>`;
-    if (L.win === 'slit' || L.win === 'arch' || L.win === 'lancet') out += `<rect x="${f1(x - 5)}" y="${f1(yy + 26)}" width="10" height="2.4" rx="1" fill="${rgba(L.pal.corn[2], 0.9)}"/>`;
-  });
-  if (L.rows === 2) {
-    [-0.46, 0.46, -0.9, 0.9].forEach((t, k) => {
-      if (f >= 13 && k > 1) return; const x = CX + r * Math.sin(t); const yy = y + (g ? 50 : 36);
-      if (yy > y + fl.h - 4) return;
-      out += `<circle cx="${f1(x)}" cy="${f1(yy)}" r="2.2" fill="${W[tone]}"${tone === 'lit' ? '' : ' opacity=".8"'}/>`;
-    });
-  }
-  return out;
-}
-
-/* ---------- фактуры корпуса ---------- */
-function bodySvg(L, p, fl, clip, o) {
-  const { f, y, h, w, x0 } = fl; const r = w / 2; const P = L.pal, S = P.stone; const g = isGuard(f);
-  const rd = rnd(f * 977 + L.i * 131 + 7);
-  const cyl = `url(#${p}${g ? 'cylG' : 'cyl'})`;
-  const cp = `clip-path="url(#${clip})"`;
-  let out = '';
-  if (L.body === 'facet') {
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${S[5]}"/>`;
-    const n = L.facets; const a0 = -1.25, da = 2.5 / n;
-    for (let k = 0; k < n; k++) {
-      const ta = a0 + k * da, tb = ta + da, tm = (ta + tb) / 2;
-      const xa = CX + r * Math.sin(ta), xb = CX + r * Math.sin(tb);
-      const sh = (Math.cos(tm - 0.5) + 1) / 2;
-      let c = mix(S[1], S[2], sh); if (k % 2) c = darken(c, 0.07);
-      if (L.prism) c = mix(c, `hsl(0,0%,100%)`.length ? '#FFFFFF' : '#fff', 0.0);
-      out += `<polygon points="${f1(xa)},${f1(y)} ${f1(xb)},${f1(y)} ${f1(xb)},${f1(y + h)} ${f1(xa)},${f1(y + h)}" fill="${c}"/>`;
-      out += `<path d="M${f1(xa)} ${f1(y + 1)}L${f1(xb)} ${f1(y + h * 0.56)}M${f1(xb)} ${f1(y + h - 1)}L${f1(xa)} ${f1(y + h * 0.42)}" stroke="rgba(255,255,255,${0.2 + 0.22 * sh})" stroke-width="1" fill="none"/>`;
-      out += `<line x1="${f1(xa)}" x2="${f1(xa)}" y1="${f1(y)}" y2="${f1(y + h)}" stroke="rgba(0,0,0,.22)" stroke-width="1"/>`;
-      if (L.prism && (k + f) % 3 === 0) out += `<rect x="${f1(xa)}" y="${f1(y)}" width="${f1(xb - xa)}" height="${f1(h)}" fill="${['#FF9BD0', '#9BE3FF', '#FFF29B', '#B9A0FF'][(k + f) % 4]}" opacity=".16"/>`;
-    }
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}shade)" opacity=".7"/>`;
-    return out;
-  }
-  out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${cyl}"/>`;
-  if (L.body === 'ashlar') {
-    const bh = L.brick || 11; let seams = '', light = ''; let row = 0;
-    for (let yy = y + bh; yy < y + h; yy += bh, row++) {
-      seams += `M${f1(x0)} ${f1(yy)}Q${CX} ${f1(yy + 4)} ${f1(x0 + w)} ${f1(yy)}`;
-      light += `M${f1(x0)} ${f1(yy + 1.2)}Q${CX} ${f1(yy + 5.2)} ${f1(x0 + w)} ${f1(yy + 1.2)}`;
-      for (let t = -1.35 + (row % 2) * 0.14; t < 1.4; t += 0.28) { const x = CX + r * Math.sin(t); seams += `M${f1(x)} ${f1(yy - bh + 1.5 * Math.cos(t))}V${f1(yy + 3 * Math.cos(t))}`; }
-    }
-    out += `<path d="${seams}" stroke="rgba(0,0,0,${L.seam || 0.34})" stroke-width="1.1" fill="none" ${cp}/><path d="${light}" stroke="rgba(255,255,255,.05)" stroke-width="1" fill="none" ${cp}/>`;
-    if (L.speckle) { let dots = ''; for (let k = 0; k < 26; k++) dots += `<circle cx="${f1(x0 + rd() * w)}" cy="${f1(y + rd() * h)}" r="${f1(0.6 + rd() * 0.9)}" fill="${k % 2 ? 'rgba(255,255,255,.16)' : 'rgba(0,0,0,.28)'}"/>`; out += `<g ${cp}>${dots}</g>`; }
-  } else if (L.body === 'columns') {
-    let ln = '', hi = '';
-    for (let t = -1.4; t <= 1.41; t += 0.21) { const x = CX + r * Math.sin(t); ln += `M${f1(x)} ${f1(y)}V${f1(y + h)}`; const x2 = CX + r * Math.sin(t + 0.07); hi += `M${f1(x2)} ${f1(y + 1)}V${f1(y + h - 1)}`; }
-    out += `<path d="${ln}" stroke="rgba(0,0,0,.55)" stroke-width="1.6" fill="none" ${cp}/><path d="${hi}" stroke="rgba(190,230,255,.1)" stroke-width="1.2" fill="none" ${cp}/>`;
-    let br = ''; for (let t = -1.3; t <= 1.3; t += 0.21) { if (rd() > 0.5) { const x = CX + r * Math.sin(t); const yy = y + h * (0.3 + rd() * 0.5); br += `M${f1(x - 4)} ${f1(yy)}l8 2`; } }
-    out += `<path d="${br}" stroke="rgba(0,0,0,.4)" stroke-width="1" fill="none" ${cp}/>`;
-  } else if (L.body === 'marble') {
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}shade)" opacity=".5"/>`;
-    let vn = '';
-    for (let k = 0; k < 3; k++) { const xa = x0 + rd() * w, ya = y + rd() * h * 0.4; vn += `M${f1(xa)} ${f1(ya)}C${f1(xa + 20 - rd() * 40)} ${f1(ya + h * 0.3)} ${f1(xa + 30 - rd() * 60)} ${f1(ya + h * 0.6)} ${f1(xa + 10 - rd() * 20)} ${f1(y + h)}`; }
-    out += `<path d="${vn}" stroke="rgba(110,100,92,.32)" stroke-width="0.9" fill="none" ${cp}/>`;
-    [-1.0, 1.0].forEach((t) => { const x = CX + r * Math.sin(t); const pw = 8 * Math.cos(t); out += `<rect x="${f1(x - pw / 2)}" y="${f1(y + 3)}" width="${f1(pw)}" height="${f1(h - 6)}" fill="rgba(255,255,255,.22)" ${cp}/><path d="M${f1(x - pw / 4)} ${f1(y + 4)}v${f1(h - 8)}M${f1(x + pw / 4)} ${f1(y + 4)}v${f1(h - 8)}" stroke="rgba(0,0,0,.12)" stroke-width=".8" fill="none"/>`; });
-  } else if (L.body === 'bands') {
-    const bs = L.bands; const nb = Math.max(3, Math.round(h / 12)); const bh = h / nb;
-    for (let j = 0; j < nb; j++) { const yy = y + j * bh; const c = bs[(f + j) % bs.length]; out += `<path d="M${f1(x0)} ${f1(yy)}Q${CX} ${f1(yy + 3)} ${f1(x0 + w)} ${f1(yy)}V${f1(yy + bh)}Q${CX} ${f1(yy + bh + 3)} ${f1(x0)} ${f1(yy + bh)}Z" fill="${c}" opacity=".9" ${cp}/><path d="M${f1(x0)} ${f1(yy + bh * 0.5)}Q${CX} ${f1(yy + bh * 0.5 + 3)} ${f1(x0 + w)} ${f1(yy + bh * 0.5)}" stroke="rgba(255,255,255,.2)" stroke-width="1" fill="none" ${cp}/>`; }
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}shade)"/>`;
-  } else if (L.body === 'veins') {
-    out += `<rect x="${f1(x0 + w * 0.24)}" y="${f1(y + 2)}" width="${f1(w * 0.09)}" height="${f1(h - 4)}" fill="rgba(255,255,255,.07)" ${cp}/>`;
-    let cr = ''; for (let k = 0; k < 3; k++) { let xx = x0 + rd() * w, yy = y; cr += `M${f1(xx)} ${f1(yy)}`; for (let s = 0; s < 4; s++) { xx += (rd() - 0.5) * 22; yy += h / 4; cr += `L${f1(xx)} ${f1(Math.min(yy, y + h))}`; } }
-    const lit = o.tone !== 'dark';
-    out += `<path d="${cr}" stroke="${L.pal.vein}" stroke-width="${lit ? 4 : 3}" opacity="${lit ? 0.35 : 0.16}" fill="none" ${cp} filter="url(#${p}bl)"/><path d="${cr}" stroke="${lighten(L.pal.vein, 0.35)}" stroke-width="1.1" opacity="${lit ? 1 : 0.55}" fill="none" ${cp}/>`;
-  } else if (L.body === 'iris') {
-    for (let k = 0; k < 3; k++) { const hue = (f * 29 + k * 118 + 20) % 360; out += `<ellipse cx="${f1(CX + (k - 1) * r * 0.5)}" cy="${f1(y + h * (0.3 + 0.2 * k))}" rx="${f1(r * 0.7)}" ry="${f1(h * 0.55)}" fill="hsl(${hue},90%,74%)" opacity=".24" ${cp}/>`; }
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}shade)" opacity=".55"/>`;
-    out += `<path d="M${f1(x0 + w * 0.2)} ${f1(y + 4)}Q${f1(x0 + w * 0.4)} ${f1(y + h * 0.5)} ${f1(x0 + w * 0.2)} ${f1(y + h - 4)}" stroke="rgba(255,255,255,.5)" stroke-width="1.6" fill="none" opacity=".6"/>`;
-  } else if (L.body === 'jade') {
-    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}shade)" opacity=".4"/>`;
-    out += `<path d="M${f1(x0)} ${f1(y + h * 0.34)}h${f1(w)}M${f1(x0)} ${f1(y + h * 0.7)}h${f1(w)}" stroke="rgba(0,0,0,.22)" stroke-width="1.2" fill="none"/><path d="M${f1(x0)} ${f1(y + h * 0.34 + 1.4)}h${f1(w)}M${f1(x0)} ${f1(y + h * 0.7 + 1.4)}h${f1(w)}" stroke="rgba(255,255,255,.12)" stroke-width="1" fill="none"/>`;
-    out += `<rect x="${f1(x0 + w * 0.2)}" y="${f1(y + 3)}" width="${f1(w * 0.06)}" height="${f1(h - 6)}" fill="rgba(255,255,255,.18)" ${cp}/>`;
-  }
-  return out;
-}
-
-/* ---------- карнизы ---------- */
-function cornSvg(L, p, fl) {
-  const { f, y, h, w, x0 } = fl; const g = isGuard(f); const P = L.pal; const r = w / 2;
-  switch (L.corn) {
-    case 'ring': return g ? '' : `<rect x="${f1(x0 - 5)}" y="${f1(y - 3)}" width="${f1(w + 10)}" height="7" rx="3" fill="url(#${p}corn)"/><rect x="${f1(x0 - 5)}" y="${f1(y - 3)}" width="${f1(w + 10)}" height="1.4" rx=".7" fill="rgba(255,255,255,.28)"/>`;
-    case 'gold': return `<rect x="${f1(x0 - 6)}" y="${f1(y - 3)}" width="${f1(w + 12)}" height="7" rx="3" fill="url(#${p}corn)"/><rect x="${f1(x0 - 6)}" y="${f1(y - 3)}" width="${f1(w + 12)}" height="2" rx="1" fill="${P.gold}"/><path d="M${f1(x0 - 2)} ${f1(y + 4)}h${f1(w + 4)}" stroke="${rgba(P.gold, 0.5)}" stroke-width="1"/>`;
-    case 'eave': return `<path d="M${f1(x0 - 20)} ${f1(y - 6)}Q${f1(x0 - 4)} ${f1(y + 5)} ${CX} ${f1(y + 5)}Q${f1(x0 + w + 4)} ${f1(y + 5)} ${f1(x0 + w + 20)} ${f1(y - 6)}L${f1(x0 + w + 8)} ${f1(y + 9)}L${f1(x0 - 8)} ${f1(y + 9)}Z" fill="url(#${p}roof)"/><path d="M${f1(x0 - 8)} ${f1(y + 9)}H${f1(x0 + w + 8)}" stroke="rgba(0,0,0,.4)" stroke-width="1.6"/><circle cx="${f1(x0 - 16)}" cy="${f1(y - 3)}" r="2.4" fill="${P.win.lit}"/><circle cx="${f1(x0 + w + 16)}" cy="${f1(y - 3)}" r="2.4" fill="${P.win.lit}"/>`;
-    case 'flare': { let t = ''; for (let a = -1.2; a <= 1.21; a += 0.3) { const x = CX + (r + 2) * Math.sin(a); const cw = 8 * Math.cos(a) + 2; t += poly([[x - cw / 2, y + 3], [x, y - (g ? 12 : 8) - 2 * Math.cos(a)], [x + cw / 2, y + 3]], lighten(P.corn[1], 0.1 + 0.2 * Math.cos(a)), 'opacity=".95"'); } return `<rect x="${f1(x0 - 3)}" y="${f1(y)}" width="${f1(w + 6)}" height="4" fill="url(#${p}corn)"/>${t}`; }
-    case 'terrace': return `<rect x="${f1(x0 - 9)}" y="${f1(y - 4)}" width="${f1(w + 18)}" height="9" rx="2" fill="url(#${p}corn)"/><rect x="${f1(x0 - 9)}" y="${f1(y - 4)}" width="${f1(w + 18)}" height="1.6" fill="rgba(255,255,255,.3)"/><rect x="${f1(x0 - 9)}" y="${f1(y + 5)}" width="${f1(w + 18)}" height="3" fill="rgba(0,0,0,.35)"/>`;
-    case 'scallop': { let t = ''; for (let a = -1.3; a <= 1.31; a += 0.22) { const x = CX + (r + 3) * Math.sin(a); t += `<circle cx="${f1(x)}" cy="${f1(y + 1)}" r="${f1(3.4 * Math.cos(a) + 1)}" fill="${lighten(P.corn[1], 0.2)}" opacity=".95"/>`; } return `<rect x="${f1(x0 - 4)}" y="${f1(y - 1)}" width="${f1(w + 8)}" height="4" rx="2" fill="url(#${p}corn)"/>${t}`; }
-    default: return '';
-  }
-}
-
-/* ---------- парапет Стража ---------- */
-function guardTopSvg(L, p, fl) {
-  const { y, w, x0, f } = fl; const P = L.pal; const r = w / 2 + 7; let out = '';
-  const base = `<rect x="${f1(x0 - 7)}" y="${f1(y - 4)}" width="${f1(w + 14)}" height="10" rx="2" fill="url(#${p}corn)"/>`;
-  switch (L.guard) {
-    case 'merlon': {
-      out = base; for (let t = -1.32; t <= 1.33; t += 0.3) { const mw = 11 * Math.cos(t); const x = CX + r * Math.sin(t) - mw / 2; const c = Math.round(66 + 44 * (0.62 - 0.38 * Math.sin(t + 0.45))); const col = L.ref ? `rgb(${c},${c},${c + 5})` : mix(P.stone[1], P.stone[3], 0.5 + 0.5 * Math.cos(t)); out += `<rect x="${f1(x)}" y="${f1(y - 17)}" width="${f1(mw)}" height="14" rx="1.2" fill="${col}"/>`; }
-      let br = ''; for (let t = -1.25; t <= 1.26; t += 0.25) { const cw = 6 * Math.cos(t); const x = CX + (w / 2 + 3) * Math.sin(t) - cw / 2; br += `M${f1(x)} ${f1(y + 6)}h${f1(cw)}l-1 7h${f1(-cw + 2)}Z`; } return out + `<path d="${br}" fill="rgba(0,0,0,.45)"/>`; }
-    case 'column': { out = base; const rd = rnd(f * 53); for (let t = -1.3; t <= 1.31; t += 0.22) { const x = CX + r * Math.sin(t); const hh = 8 + rd() * 18; const cw = 12 * Math.cos(t); out += poly([[x - cw / 2, y - 3], [x - cw / 2, y - 3 - hh], [x, y - 6 - hh], [x + cw / 2, y - 3 - hh], [x + cw / 2, y - 3]], mix(P.stone[2], P.stone[3], 0.5 + 0.5 * Math.cos(t)), 'stroke="rgba(0,0,0,.4)" stroke-width="0.8"'); } return out; }
-    case 'balustrade': { out = base + `<rect x="${f1(x0 - 5)}" y="${f1(y - 19)}" width="${f1(w + 10)}" height="3.4" rx="1.6" fill="${P.gold || P.corn[1]}"/>`; for (let t = -1.3; t <= 1.31; t += 0.19) { const x = CX + (w / 2 + 2) * Math.sin(t); const cw = 5 * Math.cos(t) + 1; out += `<path d="M${f1(x - cw / 2)} ${f1(y - 3)}h${f1(cw)}l-.8 -3.5h${f1(-cw + 1.6)}ZM${f1(x - cw * 0.35)} ${f1(y - 15)}h${f1(cw * 0.7)}v-0.1l.7 4h${f1(-cw * 0.7 - 1.4)}Z" fill="${lighten(P.corn[1], 0.25)}" opacity=".95"/><rect x="${f1(x - cw * 0.28)}" y="${f1(y - 16)}" width="${f1(cw * 0.56)}" height="14" fill="${lighten(P.corn[1], 0.1)}" opacity=".9"/>`; } if (L.pinnacles) { [x0 - 4, x0 + w + 4].forEach((px) => { out += poly([[px - 4, y - 4], [px, y - 40], [px + 4, y - 4]], P.gold, '') + `<circle cx="${f1(px)}" cy="${f1(y - 42)}" r="2.8" fill="#FFF3C0"/>`; }); } return out; }
-    case 'pagoda': { out = `<path d="M${f1(x0 - 24)} ${f1(y - 4)}Q${f1(x0 - 6)} ${f1(y + 8)} ${CX} ${f1(y + 8)}Q${f1(x0 + w + 6)} ${f1(y + 8)} ${f1(x0 + w + 24)} ${f1(y - 4)}L${f1(x0 + w + 8)} ${f1(y + 10)}L${f1(x0 - 8)} ${f1(y + 10)}Z" fill="url(#${p}roof)"/>`; [x0 - 2, CX, x0 + w + 2].forEach((lx, k) => { out += `<rect x="${f1(lx - 3)}" y="${f1(y - 14)}" width="6" height="9" rx="2" fill="${P.win.lit}"/><circle cx="${f1(lx)}" cy="${f1(y - 10)}" r="9" fill="${P.win.glow}" opacity=".22"/>`; }); return out; }
-    case 'crystals': { out = base; const rd = rnd(f * 71 + L.i); for (let t = -1.28; t <= 1.29; t += 0.24) { const x = CX + r * Math.sin(t); const hh = 14 + rd() * 22 + (L.i >= 7 ? 8 : 0); const cw = 11 * Math.cos(t) + 3; const lean = (rd() - 0.5) * 10; out += poly([[x - cw / 2, y - 3], [x + lean, y - 3 - hh], [x, y - 3]], mix(P.stone[1], P.stone[3], 0.5 + 0.5 * Math.cos(t)), 'opacity=".95"') + poly([[x, y - 3], [x + lean, y - 3 - hh], [x + cw / 2, y - 3]], lighten(P.stone[2], 0.28), 'opacity=".92"'); } return out; }
-    case 'spikes': { out = base; const rd = rnd(f * 67); for (let t = -1.3; t <= 1.31; t += 0.2) { const x = CX + r * Math.sin(t); const hh = 12 + rd() * 26; const cw = 10 * Math.cos(t) + 2; out += poly([[x - cw / 2, y - 3], [x + (rd() - 0.5) * 6, y - 3 - hh], [x + cw / 2, y - 3]], '#0A0A0F', `stroke="${P.vein}" stroke-width="0.9" stroke-opacity=".7"`); } return out + `<path d="M${f1(x0 - 4)} ${f1(y + 5)}H${f1(x0 + w + 4)}" stroke="${P.vein}" stroke-width="1.4" opacity=".6"/>`; }
-    case 'pearls': { out = base; for (let t = -1.3; t <= 1.31; t += 0.2) { const x = CX + r * Math.sin(t); out += `<circle cx="${f1(x)}" cy="${f1(y - 8)}" r="${f1(5.4 * Math.cos(t) + 1)}" fill="url(#${p}iri)"/><circle cx="${f1(x - 1.2)}" cy="${f1(y - 9.4)}" r="1.4" fill="#fff" opacity=".85"/>`; } return out; }
-    default: return base;
-  }
-}
-
-/* ---------- навершия ---------- */
-function crownSvg(L, p, G, o) {
-  const t = G.floors[FLOORS - 1]; const P = L.pal; const d = L.crownH;
-  const dw = t.w - 22, dx = CX - dw / 2, yd = t.y - 34, apex = yd - d, rw = dw + 26;
-  const sm = o.summit; const glowK = sm ? 1.9 : 1;
-  const drum = (extra = '') => `<rect x="${f1(dx)}" y="${f1(yd)}" width="${f1(dw)}" height="34" fill="url(#${p}cyl)"/>${extra}<rect x="${f1(CX - rw / 2)}" y="${f1(yd - 4)}" width="${f1(rw)}" height="8" rx="4" fill="url(#${p}corn)"/>`;
-  let out = '';
-  switch (L.crown) {
-    case 'cone': {
-      let sh = ''; const stepY = L.ref ? 11 : 13;
-      for (let yy = yd - 10; yy > apex + 10; yy -= stepY) { const k = (yd - yy) / (yd - apex); const hw = (rw / 2) * (1 - k); sh += `M${f1(CX - hw)} ${f1(yy)}Q${CX} ${f1(yy + 4 * (1 - k))} ${f1(CX + hw)} ${f1(yy)}`; }
-      out = drum() + poly([[CX - rw / 2, yd], [CX + rw / 2, yd], [CX, apex]], `url(#${p}roof)`) + `<path d="${sh}" stroke="rgba(0,0,0,.38)" stroke-width="1.1" fill="none"/>`;
-      if (L.ref) out += `<circle cx="${CX}" cy="${f1(apex - 14)}" r="${34 * glowK}" fill="url(#${p}glow)"/><rect x="${CX - 1}" y="${f1(apex - 12)}" width="2" height="16" fill="#D6D6D8"/><circle cx="${CX}" cy="${f1(apex - 16)}" r="5.5" fill="#FFFFFF"/>`;
-      else out += `<rect x="${CX - 1}" y="${f1(apex - 30)}" width="2" height="34" fill="${lighten(P.stone[2], 0.3)}"/>` + poly([[CX + 1, apex - 30], [CX + 24, apex - 24], [CX + 1, apex - 17]], P.accent, 'opacity=".95"') + `<circle cx="${CX + 8}" cy="${f1(apex - 24)}" r="${22 * glowK}" fill="url(#${p}glow)" opacity=".6"/>`;
-      return out;
-    }
-    case 'columns': {
-      out = drum(); const hs = [0.55, 0.8, 1, 0.74, 0.5]; const xs = [-40, -20, 0, 20, 40];
-      xs.forEach((dx2, k) => { const hh = d * hs[k] * 0.78; const cw = 18; const cx = CX + dx2; const ytop = yd - hh; out += `<rect x="${f1(cx - cw / 2)}" y="${f1(ytop)}" width="${cw}" height="${f1(hh)}" fill="url(#${p}cyl)"/><path d="M${f1(cx - cw / 2)} ${f1(ytop)}L${f1(cx - cw / 2 + 4)} ${f1(ytop - 6)}H${f1(cx + cw / 2 - 4)}L${f1(cx + cw / 2)} ${f1(ytop)}Z" fill="${lighten(P.stone[2], 0.15)}"/><path d="M${f1(cx - cw / 2)} ${f1(ytop)}V${f1(yd)}M${f1(cx + cw / 2)} ${f1(ytop)}V${f1(yd)}" stroke="rgba(0,0,0,.5)" stroke-width="1.4"/>`; });
-      const top = yd - d * 0.78 - 8; out += `<circle cx="${CX}" cy="${f1(top - 6)}" r="${30 * glowK}" fill="url(#${p}glow)"/><circle cx="${CX}" cy="${f1(top - 6)}" r="4.5" fill="${P.win.lit}"/><path d="M${CX} ${f1(top - 10)}V${f1(top - 90)}" stroke="${rgba(P.accent, 0.25)}" stroke-width="10" opacity=".5" filter="url(#${p}bl)"/>`;
-      return out;
-    }
-    case 'dome': {
-      out = drum() + `<rect x="${f1(dx - 4)}" y="${f1(yd - 8)}" width="${f1(dw + 8)}" height="5" fill="${P.gold}"/>`;
-      const rr = rw / 2, hh = d * 0.62; const dy = yd - 8;
-      out += `<path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}Z" fill="url(#${p}roof)"/>`;
-      for (let k = -3; k <= 3; k++) out += `<path d="M${f1(CX + k * rr * 0.28)} ${f1(dy)}Q${f1(CX + k * rr * 0.16)} ${f1(dy - hh * 0.8)} ${CX} ${f1(dy - hh)}" stroke="${rgba(P.gold, 0.7)}" stroke-width="1.3" fill="none"/>`;
-      out += `<rect x="${CX - 6}" y="${f1(dy - hh - 12)}" width="12" height="14" fill="${P.gold}"/><path d="M${CX} ${f1(dy - hh - 12)}V${f1(apex)}" stroke="${P.gold}" stroke-width="2.4"/><circle cx="${CX}" cy="${f1(apex - 4)}" r="${6}" fill="#FFF3C0"/><circle cx="${CX}" cy="${f1(apex - 4)}" r="${30 * glowK}" fill="url(#${p}glow)"/>`;
-      return out;
-    }
-    case 'pagoda': {
-      out = drum(); let yy = yd; const ws = [rw * 0.92, rw * 0.7, rw * 0.5]; const hs = [d * 0.3, d * 0.27, d * 0.25];
-      ws.forEach((wk, k) => { const bh = hs[k] * 0.45; out += `<rect x="${f1(CX - wk / 2 + 8)}" y="${f1(yy - bh)}" width="${f1(wk - 16)}" height="${f1(bh)}" fill="url(#${p}cyl)"/><circle cx="${CX}" cy="${f1(yy - bh / 2)}" r="${f1(bh * 0.28)}" fill="${P.win.lit}"/><circle cx="${CX}" cy="${f1(yy - bh / 2)}" r="9" fill="${P.win.glow}" opacity=".3"/>`; yy -= bh; const ew = wk + 22; out += `<path d="M${f1(CX - ew / 2 - 8)} ${f1(yy - 2)}Q${f1(CX - ew / 4)} ${f1(yy + 8)} ${CX} ${f1(yy + 8)}Q${f1(CX + ew / 4)} ${f1(yy + 8)} ${f1(CX + ew / 2 + 8)} ${f1(yy - 2)}Q${f1(CX + ew / 3)} ${f1(yy - hs[k] * 0.5)} ${CX} ${f1(yy - hs[k] * 0.62)}Q${f1(CX - ew / 3)} ${f1(yy - hs[k] * 0.5)} ${f1(CX - ew / 2 - 8)} ${f1(yy - 2)}Z" fill="url(#${p}roof)"/>`; yy -= hs[k] * 0.55; });
-      out += `<path d="M${CX} ${f1(yy)}V${f1(apex)}" stroke="${P.stone[2]}" stroke-width="2.4"/><circle cx="${CX}" cy="${f1(apex - 6)}" r="7" fill="url(#${p}orb)"/><circle cx="${CX}" cy="${f1(apex - 6)}" r="${34 * glowK}" fill="url(#${p}glow)"/>`;
-      return out;
-    }
-    case 'crystals': {
-      const n = L.i >= 7 ? 7 : 5; const rd = rnd(L.i * 311 + 5);
-      out = drum(); out += `<circle cx="${CX}" cy="${f1(yd - d * 0.45)}" r="${f1(d * 0.55 * glowK)}" fill="url(#${p}glow)"/>`;
-      const items = [];
-      for (let k = 0; k < n; k++) { const off = (k - (n - 1) / 2); items.push({ x: CX + off * (rw * 0.2), h: d * (k === (n - 1) / 2 ? 1 : 0.5 + 0.35 * (1 - Math.abs(off) / (n / 2)) + rd() * 0.1), w: k === (n - 1) / 2 ? rw * 0.34 : rw * 0.22, lean: off * 10, z: Math.abs(off) }); }
-      items.sort((a, b) => b.z - a.z).forEach((c) => {
-        const yb2 = yd, yt = yd - c.h, hw = c.w / 2; const mid = c.x + c.lean * 0.2; const topx = c.x + c.lean;
-        out += poly([[c.x - hw, yb2], [c.x - hw * 0.9, yt + c.h * 0.22], [topx, yt], [mid, yb2 - c.h * 0.05]], mix(P.stone[1], P.stone[0], 0.3));
-        out += poly([[c.x - hw * 0.9, yt + c.h * 0.22], [topx, yt], [mid, yb2 - c.h * 0.05]], mix(P.stone[2], P.stone[3], 0.4));
-        out += poly([[mid, yb2 - c.h * 0.05], [topx, yt], [c.x + hw * 0.9, yt + c.h * 0.22], [c.x + hw, yb2]], lighten(P.stone[2], 0.3));
-        out += `<path d="M${f1(topx)} ${f1(yt)}L${f1(mid)} ${f1(yb2)}" stroke="rgba(255,255,255,.55)" stroke-width="1"/>`;
-      });
-      out += `<circle cx="${CX}" cy="${f1(apex)}" r="4" fill="#fff"/><path d="M${CX - 12} ${f1(apex)}h24M${CX} ${f1(apex - 12)}v24" stroke="rgba(255,255,255,.8)" stroke-width="1"/>`;
-      return out;
-    }
-    case 'geode': {
-      out = drum(); const rr = rw / 2, hh = d * 0.5; const dy = yd - 4;
-      const cid = `${p}geo`;
-      out += `<clipPath id="${cid}"><path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}Z"/></clipPath>`;
-      out += `<g clip-path="url(#${cid})">`;
-      L.bands.forEach((c, k) => { const s = 1 - k * 0.15; out += `<path d="M${f1(CX - rr * s)} ${f1(dy)}A${f1(rr * s)} ${f1(hh * s)} 0 0 1 ${f1(CX + rr * s)} ${f1(dy)}Z" fill="${c}"/>`; });
-      out += `</g><path d="M${f1(CX - rr)} ${f1(dy)}A${f1(rr)} ${f1(hh)} 0 0 1 ${f1(CX + rr)} ${f1(dy)}" stroke="rgba(0,0,0,.35)" stroke-width="1.4" fill="none"/>`;
-      out += `<circle cx="${CX}" cy="${f1(dy - hh * 0.95)}" r="${f1(60 * glowK)}" fill="url(#${p}glow)"/>`;
-      const cs = [[-34, 0.5, 14, -12], [-17, 0.78, 16, -6], [0, 1, 20, 0], [17, 0.74, 16, 6], [34, 0.46, 14, 12]];
-      cs.forEach(([ox, hk, w2, lean], k) => { const x = CX + ox; const yb2 = dy - hh * 0.9 + Math.abs(ox) * 0.16; const hgt = d * 0.5 * hk; out += poly([[x - w2 / 2, yb2], [x + lean, yb2 - hgt], [x, yb2]], k % 2 ? '#8DB8FF' : '#CFE4FF') + poly([[x, yb2], [x + lean, yb2 - hgt], [x + w2 / 2, yb2]], '#F2F8FF', 'opacity=".95"') + `<path d="M${f1(x + lean)} ${f1(yb2 - hgt)}L${f1(x)} ${f1(yb2)}" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`; });
-      out += `<circle cx="${CX}" cy="${f1(dy - hh * 0.9 - d * 0.52)}" r="3" fill="#fff"/>`;
-      return out;
-    }
-    case 'pearl': {
-      out = drum(); let yy = yd; const ws = [rw * 0.96, rw * 0.78, rw * 0.58, rw * 0.38]; const hs = [d * 0.2, d * 0.18, d * 0.16, d * 0.14];
-      ws.forEach((wk, k) => { const hh = hs[k]; const hue = (k * 70 + 40) % 360; out += `<ellipse cx="${CX}" cy="${f1(yy - hh * 0.4)}" rx="${f1(wk / 2)}" ry="${f1(hh * 0.62)}" fill="url(#${p}cyl)"/><ellipse cx="${CX}" cy="${f1(yy - hh * 0.4)}" rx="${f1(wk / 2)}" ry="${f1(hh * 0.62)}" fill="hsl(${hue},90%,78%)" opacity=".28"/><path d="M${f1(CX - wk / 2 + 4)} ${f1(yy - hh * 0.4)}Q${CX} ${f1(yy + hh * 0.3)} ${f1(CX + wk / 2 - 4)} ${f1(yy - hh * 0.4)}" stroke="rgba(255,255,255,.6)" stroke-width="1.2" fill="none"/>`; yy -= hh * 0.85; });
-      out += `<ellipse cx="${CX}" cy="${f1(yy - 20)}" rx="30" ry="9" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4" transform="rotate(-12 ${CX} ${f1(yy - 20)})"/><circle cx="${CX}" cy="${f1(yy - 20)}" r="16" fill="url(#${p}orb)"/><circle cx="${CX - 5}" cy="${f1(yy - 26)}" r="4" fill="#fff" opacity=".9"/><circle cx="${CX}" cy="${f1(yy - 20)}" r="${44 * glowK}" fill="url(#${p}glow)" opacity=".7"/>`;
-      return out;
-    }
-    case 'goldspire': {
-      out = drum(); const dyy = yd - 6; const rr = rw * 0.42;
-      out += `<path d="M${f1(CX - rr)} ${f1(dyy)}C${f1(CX - rr * 1.2)} ${f1(dyy - 24)} ${f1(CX - rr * 0.3)} ${f1(dyy - 34)} ${CX} ${f1(dyy - 52)}C${f1(CX + rr * 0.3)} ${f1(dyy - 34)} ${f1(CX + rr * 1.2)} ${f1(dyy - 24)} ${f1(CX + rr)} ${f1(dyy)}Z" fill="url(#${p}roof)"/>`;
-      out += poly([[CX - 7, dyy - 46], [CX, apex], [CX + 7, dyy - 46]], `url(#${p}roof)`);
-      [0.3, 0.52, 0.72].forEach((k) => { const yy = dyy - 46 - (dyy - 46 - apex) * k; const w2 = 7 * (1 - k) + 2; out += `<rect x="${f1(CX - w2 - 2)}" y="${f1(yy - 2)}" width="${f1((w2 + 2) * 2)}" height="4" rx="2" fill="${P.gold}"/>`; });
-      out += poly([[CX, apex - 24], [CX + 11, apex - 10], [CX, apex + 4], [CX - 11, apex - 10]], '#FFE9A0') + poly([[CX, apex - 24], [CX + 11, apex - 10], [CX, apex - 10]], '#FFF8D8') + `<circle cx="${CX}" cy="${f1(apex - 10)}" r="${44 * glowK}" fill="url(#${p}glow)"/>`;
-      return out;
-    }
-    case 'shards': {
-      out = drum(); const rd = rnd(401); out += `<circle cx="${CX}" cy="${f1(yd - d * 0.4)}" r="${f1(d * 0.5 * glowK)}" fill="url(#${p}glow)"/>`;
-      const sh = [[-46, 0.5, 20], [-28, 0.78, 22], [-8, 1, 26], [14, 0.88, 22], [34, 0.62, 20], [52, 0.38, 16]];
-      sh.forEach(([ox, hk, w2], k) => { const hh = d * hk; const x = CX + ox; const lean = (rd() - 0.5) * 16; out += poly([[x - w2 / 2, yd], [x - w2 * 0.2 + lean, yd - hh * 0.55], [x + lean, yd - hh], [x + w2 * 0.3 + lean, yd - hh * 0.5], [x + w2 / 2, yd]], '#0A0A10', `stroke="${P.vein}" stroke-width="1.2" stroke-opacity=".85"`) + `<path d="M${f1(x + lean)} ${f1(yd - hh)}L${f1(x)} ${f1(yd)}" stroke="rgba(255,255,255,.18)" stroke-width="1"/>`; });
-      out += `<path d="M${CX - 4} ${f1(yd)}L${CX - 1} ${f1(yd - d * 0.6)}L${CX + 3} ${f1(yd)}Z" fill="${P.vein}" opacity=".9" filter="url(#${p}bl)"/>`;
-      return out;
-    }
-    case 'diamond': {
-      out = drum(); const nh = d * 0.42; const nw = 18;
-      out += poly([[CX - nw, yd], [CX - 3, yd - nh], [CX + 3, yd - nh], [CX + nw, yd]], `url(#${p}roof)`) + `<path d="M${CX} ${f1(yd)}V${f1(yd - nh)}" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`;
-      const cy2 = apex + 24; const R = 52;
-      out += `<circle cx="${CX}" cy="${f1(cy2)}" r="${f1(110 * glowK)}" fill="url(#${p}glow)"/>`;
-      for (let k = -2; k <= 2; k++) out += `<path d="M${CX} ${f1(cy2)}L${f1(CX + k * 70)} ${f1(cy2 - 160)}" stroke="${rgba(P.accent, 0.22)}" stroke-width="${k === 0 ? 14 : 8}" opacity=".6" filter="url(#${p}bl)"/>`;
-      out += `<ellipse cx="${CX}" cy="${f1(cy2)}" rx="${R + 26}" ry="12" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4" transform="rotate(-10 ${CX} ${f1(cy2)})"/>`;
-      const T = [[CX - R * 0.55, cy2 - 22], [CX + R * 0.55, cy2 - 22]]; const g0 = cy2 - 22;
-      out += poly([[CX - R, g0 + 14], [CX - R * 0.55, g0 - 14], [CX - R * 0.2, g0 - 20], [CX - R * 0.2, g0 + 14]], '#CFE4FF') + poly([[CX - R * 0.2, g0 - 20], [CX + R * 0.2, g0 - 20], [CX + R * 0.2, g0 + 14], [CX - R * 0.2, g0 + 14]], '#FFFFFF') + poly([[CX + R * 0.2, g0 - 20], [CX + R * 0.55, g0 - 14], [CX + R, g0 + 14], [CX + R * 0.2, g0 + 14]], '#9DC3F0');
-      out += poly([[CX - R, g0 + 14], [CX - R * 0.2, g0 + 14], [CX, g0 + 70]], '#7FA8E0') + poly([[CX - R * 0.2, g0 + 14], [CX + R * 0.2, g0 + 14], [CX, g0 + 70]], '#E8F2FF') + poly([[CX + R * 0.2, g0 + 14], [CX + R, g0 + 14], [CX, g0 + 70]], '#A9CBF5');
-      out += `<path d="M${f1(CX - R)} ${f1(g0 + 14)}H${f1(CX + R)}M${f1(CX - R * 0.55)} ${f1(g0 - 14)}L${f1(CX - R * 0.2)} ${f1(g0 + 14)}M${f1(CX + R * 0.55)} ${f1(g0 - 14)}L${f1(CX + R * 0.2)} ${f1(g0 + 14)}" stroke="rgba(255,255,255,.6)" stroke-width="1" fill="none"/>`;
-      out += `<path d="M${CX - 20} ${f1(g0 - 4)}h40M${CX} ${f1(g0 - 24)}v40" stroke="#fff" stroke-width="1.4" opacity=".9"/><circle cx="${CX - 22}" cy="${f1(g0 - 6)}" r="2" fill="#fff"/>`;
-      return out;
-    }
-    default: return '';
-  }
-}
-
-/* ---------- атмосфера ---------- */
-function atmosSvg(L, p, G, o) {
-  const P = L.pal; const H = G.H; const top = G.top; let out = '';
-  const rd = rnd(L.i * 17 + 3);
-  (L.atmos || []).forEach((a) => {
-    switch (a) {
-      case 'stars': for (let k = 0; k < 34; k++) { const x = rd() * TW, y = rd() * (top + 120); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(0.5 + rd() * (L.i > 8 ? 1.5 : 1))}" fill="${P.star}" opacity="${f1(0.25 + rd() * 0.55)}"/>`; } break;
-      case 'cloud': [[60, -150, 130, 28], [330, -170, 140, 30], [80, -96, 110, 22], [320, -90, 120, 22]].forEach(([x, dy, rx, ry]) => { out += `<ellipse cx="${x}" cy="${f1(top + dy)}" rx="${rx}" ry="${ry}" fill="url(#${p}cloud)"/>`; }); break;
-      case 'warmcloud': [[70, -140, 150, 30], [320, -110, 160, 32], [190, -60, 190, 26]].forEach(([x, dy, rx, ry]) => { out += `<ellipse cx="${x}" cy="${f1(top + dy)}" rx="${rx}" ry="${ry}" fill="${rgba(P.accent, 0.1)}"/>`; }); break;
-      case 'dust': for (let k = 0; k < 22; k++) out += `<circle cx="${f1(rd() * TW)}" cy="${f1(top - 100 + rd() * (H - top))}" r="${f1(0.6 + rd())}" fill="${rgba(P.accent, 0.3)}"/>`; break;
-      case 'mist': out += `<rect x="0" y="${f1(G.base - 150)}" width="${TW}" height="230" fill="${rgba(P.accent, 0.07)}" filter="url(#${p}bl)"/>`; break;
-      case 'rain': { let rr = ''; for (let k = 0; k < 40; k++) { const x = rd() * TW, y = top - 120 + rd() * (H - top + 80); rr += `M${f1(x)} ${f1(y)}l-3 12`; } out += `<path d="${rr}" stroke="${rgba(P.accent, 0.22)}" stroke-width="1" fill="none"/>`; } break;
-      case 'fireflies': for (let k = 0; k < 20; k++) { const x = rd() * TW, y = top - 60 + rd() * (H - top); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="6" fill="${P.win.glow}" opacity=".16"/><circle cx="${f1(x)}" cy="${f1(y)}" r="1.5" fill="${P.win.lit}"/>`; } break;
-      case 'glitter': for (let k = 0; k < 26; k++) { const x = rd() * TW, y = top - 140 + rd() * (H - top + 80); const s = 2 + rd() * 3; out += `<path d="M${f1(x - s)} ${f1(y)}h${f1(2 * s)}M${f1(x)} ${f1(y - s)}v${f1(2 * s)}" stroke="#fff" stroke-width=".9" opacity="${f1(0.3 + rd() * 0.5)}"/>`; } break;
-      case 'frost': out += `<rect x="0" y="${f1(G.base - 120)}" width="${TW}" height="200" fill="rgba(255,255,255,.05)" filter="url(#${p}bl)"/>`; break;
-      case 'sparks': for (let k = 0; k < 24; k++) { const x = CX + (rd() - 0.5) * 300, y = top - 120 + rd() * (H - top); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(0.8 + rd() * 1.4)}" fill="${P.accent}" opacity="${f1(0.3 + rd() * 0.6)}"/>`; } break;
-      case 'nebula': out += `<ellipse cx="90" cy="${f1(top - 40)}" rx="170" ry="120" fill="rgba(140,80,255,.16)" filter="url(#${p}bl)"/><ellipse cx="320" cy="${f1(top - 120)}" rx="150" ry="100" fill="rgba(255,90,200,.1)" filter="url(#${p}bl)"/>`; break;
-      case 'aurora': { const cols = L.i === 8 ? ['#FF9ED8', '#9DEBFF', '#FFF2A0'] : ['#52FFC4', '#5AA9FF', '#B58CFF']; cols.forEach((c, k) => { const y0 = top - 190 + k * 46; out += `<path d="M-20 ${f1(y0)}C90 ${f1(y0 - 70)} 150 ${f1(y0 + 60)} 230 ${f1(y0 - 20)}S360 ${f1(y0 - 60)} 420 ${f1(y0 + 10)}V${f1(y0 + 70)}C340 ${f1(y0 + 20)} 250 ${f1(y0 + 110)} 150 ${f1(y0 + 40)}S10 ${f1(y0 + 90)} -20 ${f1(y0 + 60)}Z" fill="${c}" opacity=".16" filter="url(#${p}bl)"/>`; }); } break;
-      case 'bubbles': for (let k = 0; k < 14; k++) { const x = rd() * TW, y = top + rd() * (H - top); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(3 + rd() * 6)}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1"/><circle cx="${f1(x - 1)}" cy="${f1(y - 1)}" r="1" fill="#fff" opacity=".6"/>`; } break;
-      case 'rays': for (let k = -4; k <= 4; k++) out += `<path d="M${CX} ${f1(top - L.crownH - 30)}L${f1(CX + k * 110)} ${f1(top + 260)}L${f1(CX + k * 110 + 34)} ${f1(top + 260)}Z" fill="${rgba(P.accent, 0.07)}"/>`; break;
-      case 'goldust': for (let k = 0; k < 30; k++) { const x = CX + (rd() - 0.5) * 330, y = top - 150 + rd() * (H - top); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(0.7 + rd() * 1.5)}" fill="#FFE08A" opacity="${f1(0.3 + rd() * 0.6)}"/>`; } break;
-      case 'sunset': out += `<ellipse cx="${CX}" cy="${f1(G.base - 40)}" rx="300" ry="180" fill="${rgba(P.accent, 0.12)}" filter="url(#${p}bl)"/>`; break;
-      case 'embers': for (let k = 0; k < 36; k++) { const x = CX + (rd() - 0.5) * 340, y = top - 160 + rd() * (H - top + 40); out += `<circle cx="${f1(x)}" cy="${f1(y)}" r="${f1(0.8 + rd() * 1.8)}" fill="${k % 3 ? '#FF7A2A' : '#FFC27A'}" opacity="${f1(0.35 + rd() * 0.6)}"/>`; } break;
-      case 'smoke': out += `<ellipse cx="${CX}" cy="${f1(top - 160)}" rx="190" ry="50" fill="rgba(60,30,30,.35)" filter="url(#${p}bl)"/><ellipse cx="${CX + 60}" cy="${f1(top - 90)}" rx="150" ry="36" fill="rgba(60,30,30,.28)" filter="url(#${p}bl)"/>`; break;
-      case 'beams': for (let k = 0; k < 7; k++) { const x = 20 + k * 58; out += `<path d="M${CX} ${f1(top - L.crownH + 10)}L${x} ${f1(H)}" stroke="rgba(190,230,255,.07)" stroke-width="${k % 2 ? 9 : 16}"/>`; } break;
-      default: break;
-    }
-  });
-  return out;
-}
-
-/* ---------- основание ---------- */
-function plinthSvg(L, p, G) {
-  const b = G.floors[0]; const P = L.pal; let out = `<ellipse cx="${CX}" cy="${f1(G.base + 44)}" rx="210" ry="40" fill="url(#${p}ground)"/>`;
-  const stone = `<ellipse cx="${CX}" cy="${f1(G.base + 30)}" rx="${f1(b.w / 2 + 64)}" ry="12" fill="rgba(0,0,0,.55)"/><rect x="${f1(b.x0 - 30)}" y="${f1(G.base + 16)}" width="${f1(b.w + 60)}" height="14" rx="3" fill="url(#${p}corn)" opacity=".7"/><rect x="${f1(b.x0 - 16)}" y="${f1(G.base + 2)}" width="${f1(b.w + 32)}" height="16" rx="3" fill="url(#${p}corn)"/>`;
-  switch (L.plinth) {
-    case 'steps': return out + stone + `<rect x="${f1(b.x0 - 44)}" y="${f1(G.base + 28)}" width="${f1(b.w + 88)}" height="10" rx="2" fill="url(#${p}corn)" opacity=".55"/>`;
-    case 'water': return out + `<ellipse cx="${CX}" cy="${f1(G.base + 40)}" rx="180" ry="26" fill="${rgba(P.accent, 0.18)}"/>` + [60, 100, 140].map((rx) => `<ellipse cx="${CX}" cy="${f1(G.base + 40)}" rx="${rx}" ry="${f1(rx * 0.14)}" fill="none" stroke="${rgba(P.accent, 0.4)}" stroke-width="1"/>`).join('') + stone;
-    case 'crystal': { let c = ''; const rd = rnd(L.i * 29); for (let k = 0; k < 9; k++) { const x = b.x0 - 40 + rd() * (b.w + 80); const hh = 14 + rd() * 26; c += poly([[x - 6, G.base + 20], [x + (rd() - 0.5) * 6, G.base + 20 - hh], [x + 6, G.base + 20]], mix(P.stone[2], '#ffffff', 0.15 + rd() * 0.3), 'opacity=".92"'); } return out + stone + c; }
-    case 'lava': return out + `<ellipse cx="${CX}" cy="${f1(G.base + 40)}" rx="190" ry="28" fill="${rgba(P.vein, 0.35)}" filter="url(#${p}bl)"/><path d="M60 ${f1(G.base + 38)}Q130 ${f1(G.base + 26)} 200 ${f1(G.base + 40)}T340 ${f1(G.base + 34)}" stroke="${P.vein}" stroke-width="2" fill="none" opacity=".9"/>` + stone;
-    case 'mirror': return out + `<ellipse cx="${CX}" cy="${f1(G.base + 44)}" rx="190" ry="30" fill="${rgba(P.accent, 0.2)}"/><path d="M${CX} ${f1(G.base + 20)}V${f1(G.base + 70)}" stroke="rgba(255,255,255,.35)" stroke-width="10" filter="url(#${p}bl)"/>` + stone;
-    default: return out + stone;
-  }
-}
-
-/* ---------- этаж целиком ---------- */
-function floorSvg(L, p, fl, st, o) {
-  const { f, y, h, w, x0 } = fl; const g = isGuard(f); const P = L.pal;
-  const tone = o.summit ? 'lit' : st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark';
-  const mine = st === 'mine' && !o.summit; const clip = `${p}c${f}`;
-  const sel = f === o.selected;
-  let out = `<g class="fl" data-f="${f}" style="cursor:pointer">`;
-  out += `<clipPath id="${clip}"><rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}"/></clipPath>`;
-  if (mine || (o.summit && f === FLOORS)) out += `<ellipse cx="${CX}" cy="${f1(y + h / 2)}" rx="${f1(w / 2 + 74)}" ry="${f1(h * 1.05)}" fill="url(#${p}halo)"/>`;
-  out += bodySvg(L, p, fl, clip, { tone });
-  out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="url(#${p}under)"/>`;
-  out += windowsOf(L, p, fl, tone);
-  out += cornSvg(L, p, fl);
-  if (st === 'ahead' && !o.summit) out += `<rect x="${f1(x0 - 6)}" y="${f1(y - 4)}" width="${f1(w + 12)}" height="${f1(h + 6)}" fill="${P.sky[0]}" opacity=".26"/>`;
-  const label = o.clean ? '' : isSummit(f) ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '';
-  const num = L.numFmt === 'roman' ? ROMAN[f] : String(f);
-  const serif = L.numFmt === 'roman' ? 'font-family="Georgia,serif" ' : '';
-  out += `<text x="${L.numFmt === 'roman' ? 20 : 14}" y="${f1(y + h / 2 + (label ? 0 : 5))}" font-size="${L.numFmt === 'roman' ? 12 : 14}" ${serif}font-weight="${mine ? 700 : 600}" fill="${mine ? P.accent : P.numDim}" text-anchor="middle">${num}</text>`;
-  if (label) out += `<text x="20" y="${f1(y + h / 2 + 14)}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="${o.summit && isSummit(f) ? P.accent : P.numDim}" text-anchor="middle" opacity=".9">${label}</text>`;
-  if (sel) out += `<rect x="${f1(x0 - 9)}" y="${f1(y - (g ? 20 : 6))}" width="${f1(w + 18)}" height="${f1(h + (g ? 23 : 9))}" rx="5" fill="none" stroke="${P.accent}" stroke-opacity=".85" stroke-width="1.4"/>`;
-  out += `<rect x="0" y="${f1(y - 4)}" width="${TW}" height="${f1(h + 4)}" fill="transparent"/></g>`;
-  return out;
-}
-
-function towerSvg(L, o = {}) {
-  const p = 't' + (++UID) + '_'; const G = GEO[L.i]; const P = L.pal;
-  const myFloor = o.myFloor == null ? 7 : o.myFloor; const sm = !!o.summit;
-  const opts = { ...o, selected: o.selected == null ? myFloor : o.selected, summit: sm, clean: o.mini };
-  let body = `<rect width="${TW}" height="${G.H}" fill="url(#${p}sky)"/>`;
-  body += atmosSvg(L, p, G, opts);
-  body += `<ellipse cx="${CX}" cy="${f1(G.top - 120)}" rx="200" ry="260" fill="${rgba(P.accent, 0.035)}"/>`;
-  body += plinthSvg(L, p, G);
-  G.floors.forEach((fl) => { const st = fl.f === myFloor ? 'mine' : fl.f < myFloor ? 'passed' : 'ahead'; body += floorSvg(L, p, fl, st, opts); });
-  G.floors.filter((fl) => isGuard(fl.f) && !isSummit(fl.f)).forEach((fl) => { body += guardTopSvg(L, p, fl); });
-  body += crownSvg(L, p, G, opts);
-  if (sm) body += `<text x="${CX}" y="${f1(G.top - L.crownH - 70)}" font-size="11" font-weight="700" letter-spacing="3" fill="${P.accent}" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>`;
-  if (!o.mini && !sm) {
-    const fl = G.floors[myFloor - 1]; if (fl) { const mx = fl.x0 + fl.w + 34, my = fl.y + fl.h / 2 + 2; body += `<g><circle cx="${f1(mx)}" cy="${f1(my)}" r="22" fill="${P.accent}" opacity=".22" filter="url(#${p}bl)"/><circle cx="${f1(mx)}" cy="${f1(my)}" r="15" fill="#101012" stroke="${P.accent}" stroke-width="2"/><text x="${f1(mx)}" y="${f1(my + 5)}" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Д</text><path d="M${f1(mx - 16)} ${f1(my)}l-7 -5v10z" fill="${P.accent}"/></g>`; }
-    [[3, 'А'], [9, 'К'], [12, 'О']].forEach(([f, ch]) => { const fl = G.floors[f - 1]; if (f === myFloor) return; body += `<circle cx="${f1(fl.x0 - 26)}" cy="${f1(fl.y + fl.h / 2)}" r="11" fill="#17171A"/><text x="${f1(fl.x0 - 26)}" y="${f1(fl.y + fl.h / 2 + 4)}" font-size="11" font-weight="700" fill="#9A9A9E" text-anchor="middle">${ch}</text>`; });
-  }
-  const vbc = o.vb ? o.vb : null;
-  const vb = vbc ? vbc : o.crop ? `${CX - 135} ${f1(G.top - L.crownH - 120)} 270 ${f1(G.H - (G.top - L.crownH - 120))}` : `0 0 ${TW} ${G.H}`;
-  const vbH = o.crop ? G.H - (G.top - L.crownH - 120) : G.H;
-  return `<svg viewBox="${vb}" data-tower="${L.id}" preserveAspectRatio="xMidYMax meet" ${vbc ? '' : o.crop ? `style="aspect-ratio:270/${f1(vbH)}"` : ''}>${defsOf(L, p)}${body}</svg>`;
-}
-
-/* ===================== ЗНАЧКИ РАНГОВ ===================== */
+/* ===================== ЗНАЧКИ РАНГОВ (3 готовые лиги) ===================== */
 function badgeSvg(L, size = 48) {
-  const p = 'b' + (++UID) + '_'; const P = L.pal; const S = P.stone; const a = P.accent;
-  const lg = (id, stops, x2 = '1', y2 = '1') => `<linearGradient id="${p}${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">${stops}</linearGradient>`;
-  const body = lg('b', stp(S[2], 0) + stp(S[3], 0.5) + stp(S[0], 1));
-  const lite = lg('l', stp(lighten(S[2], 0.35), 0) + stp(S[2], 1));
-  let g = `<defs>${body}${lite}<radialGradient id="${p}r" cx=".5" cy=".5" r=".5">${stp(a, 0, 0.5)}${stp(a, 1, 0)}</radialGradient><linearGradient id="${p}i" x1="0" y1="0" x2="1" y2="1">${stp('#FFB8E6', 0)}${stp('#9DEBFF', 0.5)}${stp('#FFF2B0', 1)}</linearGradient></defs>`;
-  g += `<circle cx="24" cy="24" r="23" fill="url(#${p}r)"/>`;
-  switch (L.id) {
-    case 'granite': g += `<path d="M24 4L40 10L43 26L36 41L22 45L9 38L5 22L12 9Z" fill="url(#${p}b)" stroke="${S[5]}" stroke-width="1.4"/><path d="M14 12L24 22L33 14M24 22L22 38M9 31L24 22M33 14L40 24" stroke="rgba(0,0,0,.4)" stroke-width="1" fill="none"/><circle cx="17" cy="29" r="1.3" fill="rgba(255,255,255,.4)"/><circle cx="30" cy="33" r="1" fill="rgba(255,255,255,.35)"/><circle cx="31" cy="21" r="1.2" fill="rgba(0,0,0,.4)"/>`; break;
-    case 'basalt': g += `<polygon points="24,3 41,13 41,35 24,45 7,35 7,13" fill="${S[1]}" stroke="${S[5]}" stroke-width="1.4"/><polygon points="24,3 41,13 24,23 7,13" fill="${S[3]}"/><polygon points="24,23 41,13 41,35 24,45" fill="${S[0]}"/><path d="M24 23V45M7 13L24 23" stroke="${a}" stroke-width="1.4" opacity=".7"/><path d="M24 3L41 13" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/>`; break;
-    case 'marble': g += `<circle cx="24" cy="24" r="19" fill="${S[2]}" stroke="${P.gold}" stroke-width="3"/><circle cx="24" cy="24" r="14.5" fill="none" stroke="${rgba(P.gold, 0.5)}" stroke-width="1"/><path d="M16 17h16M16 31h16M19 17v14M24 17v14M29 17v14" stroke="${P.gold}" stroke-width="2.2" stroke-linecap="round"/><path d="M12 14Q17 10 22 12" stroke="rgba(120,110,100,.5)" stroke-width="1" fill="none"/>`; break;
-    case 'jade': g += `<circle cx="24" cy="24" r="20" fill="url(#${p}b)"/><circle cx="24" cy="24" r="7.5" fill="${P.sky[0]}"/><circle cx="24" cy="24" r="14" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.2"/><path d="M12 14Q18 8 27 9" stroke="rgba(255,255,255,.7)" stroke-width="2.4" stroke-linecap="round" fill="none"/>`; break;
-    case 'quartz': g += `<polygon points="24,2 34,12 34,40 24,46 14,40 14,12" fill="${S[2]}" stroke="${S[0]}" stroke-width="1.2"/><polygon points="24,2 34,12 24,14 14,12" fill="#fff"/><polygon points="14,12 24,14 24,46 14,40" fill="${S[1]}"/><polygon points="34,12 24,14 24,46 34,40" fill="${S[3]}"/><path d="M24 14V46" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`; break;
-    case 'agate': { const bs = L.bands; g += `<ellipse cx="24" cy="24" rx="20" ry="17" fill="${bs[0]}"/>` + [0.82, 0.64, 0.46, 0.3].map((s, k) => `<ellipse cx="24" cy="24" rx="${20 * s}" ry="${17 * s}" fill="${bs[(k + 1) % bs.length]}"/>`).join('') + `<ellipse cx="24" cy="24" rx="20" ry="17" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/><path d="M10 17Q16 9 26 9" stroke="rgba(255,255,255,.5)" stroke-width="1.6" fill="none"/>`; } break;
-    case 'onyx': g += `<polygon points="24,3 38,11 43,26 36,41 24,45 12,41 5,26 10,11" fill="#17171A" stroke="#5A5A62" stroke-width="1.4"/><polygon points="24,3 38,11 24,20 10,11" fill="#3D3D44"/><polygon points="10,11 24,20 24,45 12,41 5,26" fill="#232327"/><path d="M24 20V45M10 11L24 20L38 11" stroke="rgba(255,255,255,.35)" stroke-width="1" fill="none"/>`; break;
-    case 'amethyst': g += poly([[12, 40], [9, 22], [15, 12], [21, 40]], S[1]) + poly([[21, 40], [24, 4], [32, 14], [34, 40]], S[2]) + poly([[24, 4], [32, 14], [28, 40], [21, 40]], lighten(S[2], 0.3)) + poly([[34, 40], [37, 20], [42, 28], [42, 40]], S[3]) + `<path d="M24 4L21 40M15 12L21 40" stroke="rgba(255,255,255,.5)" stroke-width="1"/><path d="M8 41H42" stroke="${S[5]}" stroke-width="3" stroke-linecap="round"/>`; break;
-    case 'opal': g += `<ellipse cx="24" cy="25" rx="20" ry="16" fill="${S[3]}"/><ellipse cx="24" cy="25" rx="20" ry="16" fill="url(#${p}i)" opacity=".85"/><ellipse cx="18" cy="19" rx="8" ry="4.5" fill="#fff" opacity=".55" transform="rotate(-20 18 19)"/><circle cx="33" cy="29" r="2.4" fill="#fff" opacity=".8"/><ellipse cx="24" cy="25" rx="20" ry="16" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="1.2"/>`; break;
-    case 'topaz': g += `<polygon points="14,4 34,4 44,14 44,34 34,44 14,44 4,34 4,14" fill="${S[2]}" stroke="${P.gold}" stroke-width="1.6"/><polygon points="17,12 31,12 36,17 36,31 31,36 17,36 12,31 12,17" fill="${S[1]}"/><polygon points="17,12 31,12 24,24" fill="#FFF3C0"/><polygon points="31,12 36,17 24,24" fill="#FFE08A"/><polygon points="12,17 17,12 24,24" fill="#FFD36B"/><path d="M14 4L24 24L34 4M4 14L24 24L4 34M44 14L24 24L44 34M14 44L24 24L34 44" stroke="rgba(255,255,255,.35)" stroke-width="1" fill="none"/>`; break;
-    case 'obsidian': g += `<polygon points="24,2 36,14 42,30 30,46 18,44 6,32 10,14" fill="#0C0C12" stroke="#3A3A48" stroke-width="1.4"/><path d="M24 2L22 18L28 26L20 36L24 46" stroke="${P.vein}" stroke-width="2.4" fill="none" stroke-linejoin="round"/><path d="M24 2L22 18L28 26L20 36L24 46" stroke="#FFD0A0" stroke-width="0.8" fill="none"/><polygon points="24,2 36,14 24,18" fill="rgba(255,255,255,.12)"/>`; break;
-    case 'diamond': g += `<polygon points="6,18 14,6 34,6 42,18 24,44" fill="${S[3]}" stroke="${S[0]}" stroke-width="1.2"/><polygon points="14,6 34,6 30,18 18,18" fill="#fff"/><polygon points="6,18 14,6 18,18" fill="${S[1]}"/><polygon points="42,18 34,6 30,18" fill="${S[2]}"/><polygon points="6,18 18,18 24,44" fill="${S[1]}"/><polygon points="18,18 30,18 24,44" fill="#E8F2FF"/><polygon points="30,18 42,18 24,44" fill="${S[2]}"/><path d="M6 18H42M18 18L24 44L30 18" stroke="rgba(255,255,255,.7)" stroke-width="1" fill="none"/><path d="M38 6v8M34 10h8" stroke="#fff" stroke-width="1.4"/>`; break;
-    default: break;
-  }
+  const p = 'b' + (++UID) + '_';
+  let g = '';
+  if (L.id === 'granite') g = `<defs><linearGradient id="${p}b" x1="0" y1="0" x2="1" y2="1">${stp('#8A8E96', 0)}${stp('#5A5E66', 0.55)}${stp('#2A2C31', 1)}</linearGradient><radialGradient id="${p}r" cx=".5" cy=".5" r=".5">${stp('#FFB45E', 0, 0.35)}${stp('#FFB45E', 1, 0)}</radialGradient></defs><circle cx="24" cy="24" r="23" fill="url(#${p}r)"/><path d="M24 4L40 10L43 26L36 41L22 45L9 38L5 22L12 9Z" fill="url(#${p}b)" stroke="#1C1D21" stroke-width="1.4"/><path d="M14 12L24 22L33 14M24 22L22 38M9 31L24 22M33 14L40 24" stroke="rgba(0,0,0,.42)" stroke-width="1" fill="none"/><path d="M24 4L40 10" stroke="rgba(255,255,255,.4)" stroke-width="1.2"/><circle cx="17" cy="29" r="1.3" fill="rgba(255,255,255,.45)"/><circle cx="30" cy="33" r="1" fill="rgba(255,255,255,.35)"/>`;
+  else if (L.id === 'onyx') g = `<defs><radialGradient id="${p}r" cx=".5" cy=".5" r=".5">${stp('#FFFFFF', 0, 0.35)}${stp('#FFFFFF', 1, 0)}</radialGradient></defs><circle cx="24" cy="24" r="23" fill="url(#${p}r)"/><polygon points="24,3 38,11 43,26 36,41 24,45 12,41 5,26 10,11" fill="#17171A" stroke="#5A5A62" stroke-width="1.4"/><polygon points="24,3 38,11 24,20 10,11" fill="#3D3D44"/><polygon points="10,11 24,20 24,45 12,41 5,26" fill="#232327"/><path d="M24 20V45M10 11L24 20L38 11" stroke="rgba(255,255,255,.35)" stroke-width="1" fill="none"/>`;
+  else if (L.id === 'diamond') g = `<defs><radialGradient id="${p}r" cx=".5" cy=".5" r=".5">${stp('#9FE6FF', 0, 0.45)}${stp('#9FE6FF', 1, 0)}</radialGradient></defs><circle cx="24" cy="24" r="23" fill="url(#${p}r)"/><polygon points="6,18 14,6 34,6 42,18 24,44" fill="#D2E4FA" stroke="#4A6AA0" stroke-width="1.2"/><polygon points="14,6 34,6 30,18 18,18" fill="#fff"/><polygon points="6,18 14,6 18,18" fill="#A9C6F0"/><polygon points="42,18 34,6 30,18" fill="#F2F8FF"/><polygon points="6,18 18,18 24,44" fill="#A9C6F0"/><polygon points="18,18 30,18 24,44" fill="#E8F2FF"/><polygon points="30,18 42,18 24,44" fill="#BED6F4"/><path d="M6 18H42M18 18L24 44L30 18" stroke="rgba(255,255,255,.7)" stroke-width="1" fill="none"/><path d="M38 6v8M34 10h8" stroke="#fff" stroke-width="1.4"/>`;
+  else g = `<circle cx="24" cy="24" r="18" fill="#2A2A30"/><text x="24" y="29" font-size="14" font-weight="700" fill="#8E8E92" text-anchor="middle">${L.i + 1}</text>`;
   return `<svg viewBox="0 0 48 48" width="${size}" height="${size}" aria-label="${L.ru}">${g}</svg>`;
 }
 
-/* ===================== ЭКРАНЫ ===================== */
-const { phone, icon, energy } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"');
-const stepsIn = (f) => (f <= 5 ? 4 + f : 10);
-const coinsOf = (f) => 10 * f * (isGuard(f) ? 2 : 1);
-const state = { cur: 0, mf: 7, sm: false, sel: 7 };
+/* ===================== ОБЩИЕ ЧАСТИ СЦЕНЫ ===================== */
+// Марkер игрока справа от этажа и соперники слева — как в эталоне (markerSvg / avs), чтобы ничего не лежало поверх кладки.
+function markerSvg(p, x, y, accent) {
+  return `<g><line x1="${f1(x - 24)}" y1="${f1(y)}" x2="${f1(x - 13)}" y2="${f1(y)}" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-dasharray="2 3"/><circle cx="${f1(x)}" cy="${f1(y)}" r="28" fill="url(#${p}glow)"/><circle cx="${f1(x)}" cy="${f1(y)}" r="20" fill="#0C0D10" stroke="${accent}" stroke-width="1.6"/><text x="${f1(x)}" y="${f1(y + 5)}" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">Д</text></g>`;
+}
+function rivalsSvg(fl, x0) {
+  const R = { 3: 'А', 9: 'К', 12: 'О' }; const ch = R[fl.f]; if (!ch) return '';
+  const x = x0 - 26, y = fl.y + fl.h / 2;
+  return `<circle cx="${f1(x)}" cy="${f1(y)}" r="11.5" fill="#0C0D10"/><circle cx="${f1(x)}" cy="${f1(y)}" r="10" fill="#2A2A30"/><text x="${f1(x)}" y="${f1(y + 4)}" font-size="11" font-weight="700" fill="#C6C6CA" text-anchor="middle">${ch}</text>`;
+}
+function floorLabelSvg(fl, mine, label, colors) {
+  const { f, y, h } = fl;
+  return `<text x="14" y="${f1(y + h / 2 + (label ? 0 : 5))}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? colors.num : colors.numDim}" text-anchor="middle">${f}</text>` + (label ? `<text x="20" y="${f1(y + h / 2 + 14)}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="${colors.lab}" text-anchor="middle">${label}</text>` : '');
+}
+const stateOf = (f, myFloor, summit) => summit ? (f === FLOORS ? 'mine' : 'passed') : f === myFloor ? 'mine' : f < myFloor ? 'passed' : 'ahead';
 
-function floorInfoHtml(L) {
-  const f = state.sel; const mine = !state.sm && f === state.mf; const passed = state.sm || f < state.mf;
-  const title = `Этаж ${f}${isSummit(f) ? ' · Вершина' : isGuard(f) ? ' · Страж' : ''}`;
-  const sub = state.sm ? `Все этажи пройдены · +${coinsOf(f)} монет` : mine ? `Ты здесь · ещё ${Math.max(1, stepsIn(f) - 3)} из ${stepsIn(f)} ступеней` : passed ? `Пройден · +${coinsOf(f)} монет` : `${stepsIn(f)} ступеней · +${coinsOf(f)} монет`;
-  return `<div class="fi"><div class="bdg">${badgeSvg(L, 44)}</div><div><div class="tt">${title}</div><div class="st">${sub}</div></div></div>`;
+/* ===================== АРХЕТИП 1: КРЕПОСТНОЙ ДОНЖОН (Гранит) ===================== */
+// зачем: квадратный донжон, повёрнутый углом к зрителю — две грани (левая освещена, правая в тени), угол — светлое ребро.
+// Объём даёт разная светотень граней и ребро, а не кольца; этажи = ярусы кладки с бойницами, Стражи = машикули + зубцы + угловая башенка, вершина = зубцы и жаровня-маяк.
+const FORT = {
+  pal: {
+    sky: ['#13161B', '#1B1F26', '#0F1114'], star: '#DCE3EE',
+    lf: ['#4E525B', '#6B6F78', '#5A5E67'], rf: ['#33363D', '#2A2D33', '#1F2126'], // левая и правая грани
+    edge: 'rgba(255,255,255,.26)', seam: 'rgba(0,0,0,.42)', seamL: 'rgba(255,255,255,.06)',
+    course: ['#5C6069', '#7A7E87', '#45484F'], roof: '#2A2C31',
+    win: { lit: '#FFD48A', past: '#4A4034', dark: '#0A0A0C', glow: '#FFB75A' },
+    fire: ['#FFF0B0', '#FFB142', '#F0612A'], flag: '#7E2F2F', flag2: '#5A2222',
+    accent: '#FFB75A', num: '#FFFFFF', numDim: '#6E7075', lab: '#8E8E92',
+  },
+  geom() {
+    const w0 = 232, fh = 44, gh = 58, crownH = 150, topPad = crownH + 240, basePad = 100;
+    let h = 0; for (let f = 1; f <= FLOORS; f++) h += isGuard(f) ? gh : fh;
+    const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
+    for (let f = 1; f <= FLOORS; f++) { const hh = isGuard(f) ? gh : fh; const w = w0 - (f === 1 ? 0 : f === 2 ? 6 : 10); yb -= hh; floors.push({ f, y: yb, h: hh, w, x0: CX - w / 2 }); }
+    return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y, crownH, w0 };
+  },
+  defs(p) {
+    const P = this.pal; const lin = (id, cols, x2 = '1', y2 = '0') => `<linearGradient id="${p}${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">${cols.map((c, i) => stp(c, i / (cols.length - 1))).join('')}</linearGradient>`;
+    return lin('lf', P.lf) + lin('rf', P.rf) + lin('lfC', P.lf.map((c) => lighten(c, 0.12))) + lin('rfC', P.rf.map((c) => lighten(c, 0.1)))
+      + lin('turret', ['#2A2D33', '#5A5E67', '#777B84', '#5A5E67', '#2E3137', '#1C1E22']) + lin('cap', ['#1F2126', '#43464D', '#2A2C31', '#15161A'])
+      + lin('sky', P.sky, '0', '1')
+      + `<radialGradient id="${p}glow" cx=".5" cy=".5" r=".5">${stp(P.accent, 0, 0.5)}${stp(P.accent, 0.45, 0.1)}${stp(P.accent, 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}halo" cx=".5" cy=".5" r=".5">${stp(P.accent, 0, 0.2)}${stp(P.accent, 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}fire" cx=".5" cy=".6" r=".5">${stp('#FFC56A', 0, 0.7)}${stp('#FF8A2A', 0.4, 0.22)}${stp('#FF8A2A', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}ground" cx=".5" cy=".2" r=".5">${stp('#2A2D33', 0)}${stp('#0F1114', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}mist" cx=".5" cy=".5" r=".5">${stp('#9AA6B8', 0, 0.12)}${stp('#9AA6B8', 1, 0)}</radialGradient>`
+      + `<filter id="${p}wg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.6"/></filter><filter id="${p}bl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7"/></filter>`;
+  },
+  // кладка одной грани: курсы 14 px, швы вертикальные со смещением через курс
+  masonry(x0, x1, y, h, seed, p, clip) {
+    const P = this.pal; const rd = rnd(seed); let d = '', dl = '', st = ''; const cw = 30;
+    let row = 0;
+    for (let yy = y + 14; yy < y + h - 1; yy += 14, row++) { d += `M${f1(x0)} ${f1(yy)}H${f1(x1)}`; dl += `M${f1(x0)} ${f1(yy + 1.2)}H${f1(x1)}`; }
+    row = 0;
+    for (let yy = y; yy < y + h; yy += 14, row++) {
+      const hh = Math.min(14, y + h - yy); const off = (row % 2) * (cw / 2);
+      for (let xx = x0 + off; xx < x1; xx += cw) { d += `M${f1(xx)} ${f1(yy + 1)}v${f1(hh - 2)}`; const r = rd(); if (r < 0.14) st += `<rect x="${f1(xx + 1)}" y="${f1(yy + 1)}" width="${f1(Math.min(cw, x1 - xx) - 2)}" height="${f1(hh - 2)}" fill="rgba(255,255,255,.05)"/>`; else if (r > 0.9) st += `<rect x="${f1(xx + 1)}" y="${f1(yy + 1)}" width="${f1(Math.min(cw, x1 - xx) - 2)}" height="${f1(hh - 2)}" fill="rgba(0,0,0,.14)"/>`; }
+    }
+    return `<g clip-path="url(#${clip})">${st}<path d="${d}" stroke="${P.seam}" stroke-width="1.1" fill="none"/><path d="${dl}" stroke="${P.seamL}" stroke-width="1" fill="none"/></g>`;
+  },
+  slit(x, y, tone, p, mirror) {
+    const P = this.pal; const w = 7, h = 24; const d = `M${f1(x - w / 2)} ${f1(y + 3)}a${f1(w / 2)} ${f1(w / 2)} 0 0 1 ${w} 0V${f1(y + h)}H${f1(x - w / 2)}Z`;
+    let out = `<rect x="${f1(x - 8)}" y="${f1(y - 2)}" width="16" height="${h + 5}" rx="2" fill="${mirror ? 'rgba(255,255,255,.07)' : 'rgba(0,0,0,.22)'}"/>`;
+    if (tone === 'lit') out += `<path d="${d}" fill="${P.win.glow}" opacity=".9" filter="url(#${p}wg)"/>`;
+    out += `<path d="${d}" fill="${P.win[tone]}"/><path d="M${f1(x - w / 2 - 1)} ${f1(y + h + 1)}h${w + 2}" stroke="rgba(255,255,255,.18)" stroke-width="1.2"/>`;
+    return out;
+  },
+  torch(x, y, p, side) {
+    const P = this.pal; const k = side; // -1 левая грань, 1 правая
+    return `<g><circle cx="${f1(x)}" cy="${f1(y - 8)}" r="26" fill="url(#${p}fire)"/><path d="M${f1(x - 3)} ${f1(y + 2)}l${f1(6)} 0 ${f1(-2 + k * 2)} 16 -2 0Z" fill="#1A1A1E"/><rect x="${f1(x - 5)}" y="${f1(y)}" width="10" height="4" rx="1" fill="#2F3238"/>${poly([[x - 5, y + 1], [x, y - 16], [x + 5, y + 1]], P.fire[2])}${poly([[x - 3, y], [x, y - 11], [x + 3, y]], P.fire[1])}${poly([[x - 1.4, y - 1], [x, y - 6], [x + 1.4, y - 1]], P.fire[0])}</g>`;
+  },
+  crenels(x0, x1, y, p, side) { // зубцы на грани side (-1/1) с верхней площадкой
+    const P = this.pal; let out = ''; const tw = 12, gap = 8;
+    for (let xx = x0 + 3; xx + tw <= x1 - 2; xx += tw + gap) { out += `<rect x="${f1(xx)}" y="${f1(y - 13)}" width="${tw}" height="14" fill="url(#${p}${side < 0 ? 'lfC' : 'rfC'})"/><rect x="${f1(xx)}" y="${f1(y - 14)}" width="${tw}" height="2" fill="${side < 0 ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.14)'}"/>`; }
+    return out;
+  },
+  machicolation(fl, p) { // консоли + выступающий парапет + зубцы на обеих гранях
+    const { y, w, x0 } = fl; const x1 = x0 + w; let out = '';
+    for (let xx = x0 + 6; xx < x1 - 4; xx += 16) { const left = xx < CX; out += poly([[xx, y + 14], [xx + 8, y + 14], [xx + 7, y + 6], [xx + 1, y + 6]], left ? '#3F434B' : '#24272C'); }
+    out += `<rect x="${f1(x0 - 6)}" y="${f1(y - 4)}" width="${f1(w / 2 + 6)}" height="11" fill="url(#${p}lfC)"/><rect x="${f1(CX)}" y="${f1(y - 4)}" width="${f1(w / 2 + 6)}" height="11" fill="url(#${p}rfC)"/><rect x="${f1(x0 - 6)}" y="${f1(y - 4)}" width="${f1(w + 12)}" height="1.4" fill="rgba(255,255,255,.3)"/>`;
+    out += this.crenels(x0 - 6, CX, y - 4, p, -1) + this.crenels(CX, x1 + 6, y - 4, p, 1);
+    return out;
+  },
+  bartizan(fl, p, tone) { // угловые башенки у Стража: висят на ДВУХ внешних углах донжона (консоли снизу, короткий колпак сверху), а не торчат посреди грани
+    const { y, x0, w } = fl; const bw = 22; let out = '';
+    [[x0 + 1, -1], [x0 + w - 1, 1]].forEach(([cx, side]) => {
+      const top = y - 6, bot = y + 24; const grad = side < 0 ? 'lfC' : 'rfC';
+      // консоли-ступени под башенкой
+      for (let i = 0; i < 3; i++) { const sw = bw - 4 - i * 5; out += `<rect x="${f1(cx - sw / 2)}" y="${f1(bot + i * 5)}" width="${f1(sw)}" height="5" fill="${side < 0 ? '#3A3E46' : '#202328'}"/><rect x="${f1(cx - sw / 2)}" y="${f1(bot + i * 5)}" width="${f1(sw)}" height="1" fill="rgba(255,255,255,.14)"/>`; }
+      out += `<rect x="${f1(cx - bw / 2)}" y="${f1(top)}" width="${bw}" height="${f1(bot - top)}" fill="url(#${p}turret)"/>`;
+      out += `<path d="M${f1(cx - bw / 2)} ${f1(top + 12)}h${bw}M${f1(cx - bw / 2)} ${f1(top + 24)}h${bw}" stroke="rgba(0,0,0,.35)" stroke-width="1"/>`;
+      out += this.slit(cx, top + 4, tone, p, side < 0).replace(/height="\d+"/, 'height="22"');
+      out += `<rect x="${f1(cx - bw / 2 - 3)}" y="${f1(top - 3)}" width="${bw + 6}" height="5" fill="url(#${p}${grad})"/><rect x="${f1(cx - bw / 2 - 3)}" y="${f1(top - 3)}" width="${bw + 6}" height="1.2" fill="rgba(255,255,255,.3)"/>`;
+      out += poly([[cx - bw / 2 - 4, top - 2], [cx + bw / 2 + 4, top - 2], [cx, top - 24]], `url(#${p}cap)`) + `<path d="M${f1(cx - bw / 2 - 4)} ${f1(top - 2)}L${f1(cx)} ${f1(top - 24)}" stroke="rgba(255,255,255,.22)" stroke-width="1"/><circle cx="${f1(cx)}" cy="${f1(top - 26)}" r="1.8" fill="#8E929A"/>`;
+    });
+    return out;
+  },
+  floor(fl, st, o, p) {
+    const { f, y, h, w, x0 } = fl; const x1 = x0 + w; const P = this.pal; const g = isGuard(f);
+    const tone = st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark'; const mine = st === 'mine';
+    const clip = `${p}c${f}`; let out = `<g class="fl" data-f="${f}" style="cursor:pointer"><clipPath id="${clip}"><rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}"/></clipPath>`;
+    if (mine) out += `<ellipse cx="${CX}" cy="${f1(y + h / 2)}" rx="${f1(w / 2 + 80)}" ry="${f1(h * 1.1)}" fill="url(#${p}halo)"/>`;
+    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w / 2)}" height="${f1(h)}" fill="url(#${p}lf)"/><rect x="${CX}" y="${f1(y)}" width="${f1(w / 2)}" height="${f1(h)}" fill="url(#${p}rf)"/>`;
+    out += this.masonry(x0, CX, y, h, f * 131 + 7, p, clip) + this.masonry(CX, x1, y, h, f * 173 + 3, p, clip);
+    out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="6" fill="rgba(0,0,0,.28)"/><rect x="${f1(x0)}" y="${f1(y + h - 3)}" width="${f1(w)}" height="3" fill="rgba(0,0,0,.18)"/>`;
+    out += `<line x1="${CX}" y1="${f1(y)}" x2="${CX}" y2="${f1(y + h)}" stroke="${P.edge}" stroke-width="1.6"/><line x1="${CX + 1.6}" y1="${f1(y)}" x2="${CX + 1.6}" y2="${f1(y + h)}" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/>`;
+    if (st === 'ahead') out += `<rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="${P.sky[0]}" opacity=".3"/>`;
+    const wy = y + (g ? 20 : 11);
+    out += this.slit(x0 + w * 0.27, wy, tone, p, true) + this.slit(CX + w * 0.23, wy, tone, p, false);
+    if (f >= 12) out += this.slit(x0 + w * 0.12, wy + 4, tone, p, true);
+    if (g) out += this.slit(x0 + w * 0.42, wy + 4, tone, p, true) + this.slit(CX + w * 0.08, wy + 4, tone, p, false);
+    if (mine) out += this.torch(x0 + w * 0.1, y + h * 0.5, p, -1) + this.torch(x1 - w * 0.1, y + h * 0.52, p, 1);
+    if (!g) out += `<rect x="${f1(x0 - 3)}" y="${f1(y - 2)}" width="${f1(w / 2 + 3)}" height="5" fill="url(#${p}lfC)"/><rect x="${CX}" y="${f1(y - 2)}" width="${f1(w / 2 + 3)}" height="5" fill="url(#${p}rfC)"/><rect x="${f1(x0 - 3)}" y="${f1(y - 2)}" width="${f1(w + 6)}" height="1.2" fill="rgba(255,255,255,.22)"/>`;
+    out += rivalsSvg(fl, x0) + floorLabelSvg(fl, mine, o.clean ? '' : isSummit(f) ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '', P);
+    if (f === o.selected) out += `<rect x="${f1(x0 - 9)}" y="${f1(y - (g ? 22 : 6))}" width="${f1(w + 18)}" height="${f1(h + (g ? 25 : 9))}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>`;
+    out += `<rect x="0" y="${f1(y - 4)}" width="${TW}" height="${f1(h + 4)}" fill="transparent"/></g>`;
+    return out;
+  },
+  // Стражи 5 и 10: машикули с зубцами и угловая башенка на ребре — рисуются ПОСЛЕ всех этажей, чтобы лежать поверх кладки верхнего этажа
+  after(G, o, p, st) {
+    return G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map((fl) => { const s = st(fl.f); return this.machicolation(fl, p) + this.bartizan(fl, p, s === 'mine' ? 'lit' : s === 'passed' ? 'past' : 'dark'); }).join('');
+  },
+  crown(G, o, p) {
+    const t = G.floors[FLOORS - 1]; const P = this.pal; const y = t.y; const x0 = t.x0, x1 = t.x0 + t.w; const sm = o.summit;
+    let out = this.machicolation({ y, w: t.w, x0 }, p);
+    // верхняя площадка (ромб, вид чуть сверху), жаровня-маяк, знамя
+    out += poly([[x0 + 10, y - 10], [CX, y - 22], [x1 - 10, y - 10], [CX, y + 2]], '#1A1C20', 'opacity=".9"');
+    const by = y - 16; const r = sm ? 140 : 74;
+    out += `<circle cx="${CX}" cy="${f1(by - 26)}" r="${r}" fill="url(#${p}fire)" opacity="${sm ? 1 : 0.85}"/>`;
+    out += `<path d="M${CX - 16} ${f1(by - 10)}q16 14 32 0l-4 12h-24z" fill="#15161A" stroke="#4A4E56" stroke-width="1.2"/><path d="M${CX - 10} ${f1(by + 2)}l-4 12M${CX + 10} ${f1(by + 2)}l4 12M${CX} ${f1(by + 2)}v12" stroke="#4A4E56" stroke-width="2"/>`;
+    const fh = sm ? 56 : 36;
+    out += poly([[CX - 14, by - 8], [CX - 4, by - fh * 0.7], [CX, by - fh], [CX + 6, by - fh * 0.6], [CX + 14, by - 8]], P.fire[2]) + poly([[CX - 8, by - 8], [CX - 2, by - fh * 0.55], [CX + 1, by - fh * 0.7], [CX + 5, by - fh * 0.4], [CX + 8, by - 8]], P.fire[1]) + poly([[CX - 3.5, by - 8], [CX, by - fh * 0.38], [CX + 3.5, by - 8]], P.fire[0]);
+    const fx = x1 - 22, fy = y - 12;
+    out += `<rect x="${f1(fx - 1)}" y="${f1(fy - 78)}" width="2" height="78" fill="#8E929A"/><path d="M${f1(fx + 1)} ${f1(fy - 76)}h34l-8 11 8 11h-34z" fill="${P.flag}"/><path d="M${f1(fx + 1)} ${f1(fy - 76)}h34l-8 11h-26z" fill="${P.flag2}" opacity=".6"/>`;
+    if (sm) out += `<text x="${CX}" y="${f1(y - 118)}" font-size="11" font-weight="700" letter-spacing="3" fill="${P.accent}" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>`;
+    return out;
+  },
+  scene(G, o, p) {
+    const P = this.pal; const b = G.floors[0]; const rd = rnd(17); let out = '';
+    for (let k = 0; k < 18; k++) out += `<circle cx="${f1(rd() * TW)}" cy="${f1(rd() * (G.top - 60))}" r="${f1(0.5 + rd() * 0.9)}" fill="${P.star}" opacity="${f1(0.2 + rd() * 0.4)}"/>`;
+    out += `<ellipse cx="${CX}" cy="${f1(G.top - 110)}" rx="210" ry="240" fill="rgba(255,255,255,.025)"/>`;
+    out += `<g filter="url(#${p}bl)"><ellipse cx="70" cy="${f1(G.top - 120)}" rx="130" ry="16" fill="rgba(255,255,255,.05)"/><ellipse cx="330" cy="${f1(G.top - 150)}" rx="140" ry="18" fill="rgba(255,255,255,.045)"/></g>`;
+    // земля: скальное основание, валуны, туман
+    out += `<ellipse cx="${CX}" cy="${f1(G.base + 48)}" rx="220" ry="42" fill="url(#${p}ground)"/><ellipse cx="${CX}" cy="${f1(G.base + 30)}" rx="${f1(b.w / 2 + 70)}" ry="13" fill="rgba(0,0,0,.6)"/>`;
+    out += poly([[b.x0 - 22, G.base + 30], [b.x0 - 6, G.base], [CX, G.base - 2], [b.x0 + b.w + 6, G.base], [b.x0 + b.w + 22, G.base + 30]], '#2A2D33') + poly([[b.x0 - 6, G.base], [CX, G.base - 2], [CX, G.base + 30], [b.x0 - 22, G.base + 30]], 'rgba(255,255,255,.07)');
+    out += `<path d="M${f1(b.x0 - 14)} ${f1(G.base + 14)}H${f1(b.x0 + b.w + 14)}M${f1(b.x0 - 8)} ${f1(G.base + 6)}H${f1(b.x0 + b.w + 8)}" stroke="rgba(0,0,0,.4)" stroke-width="1.2"/>`;
+    [[b.x0 - 40, 18, 9], [b.x0 - 14, 13, 7], [b.x0 + b.w + 18, 20, 10], [b.x0 + b.w + 44, 12, 6]].forEach(([x, rx, ry]) => { out += `<ellipse cx="${f1(x)}" cy="${f1(G.base + 34)}" rx="${rx}" ry="${ry}" fill="#23262B"/><ellipse cx="${f1(x - rx * 0.25)}" cy="${f1(G.base + 31)}" rx="${f1(rx * 0.5)}" ry="${f1(ry * 0.35)}" fill="rgba(255,255,255,.07)"/>`; });
+    out += `<ellipse cx="${CX}" cy="${f1(G.base + 20)}" rx="260" ry="46" fill="url(#${p}mist)"/>`;
+    return out;
+  },
+};
+
+/* ===================== АРХЕТИП 2: КРУГЛАЯ ЧЁРНАЯ БАШНЯ — ЭТАЛОН (Оникс) ===================== */
+// зачем: дословный порт towerSvg из spire.html (= components/spire/SpireTowerSvg.tsx): та же геометрия, те же градиенты и кладка.
+// Отличия только технические: id градиентов с префиксом p (несколько башен на одной странице), окна — явным fill вместо CSS-классов.
+const CYL = {
+  pal: { accent: '#F2F1F6', num: '#FFFFFF', numDim: '#6E6E72', lab: '#8E8E92', win: { lit: '#EEF0F6', past: '#3A3A40', dark: '#0B0B0D' } },
+  FH: (f) => (isGuard(f) ? 60 : 46),
+  FW: (f) => 196 - (f - 1) * 5,
+  geom() {
+    const topPad = 300, basePad = 96; let h = 0;
+    for (let f = 1; f <= FLOORS; f++) h += this.FH(f);
+    const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
+    for (let f = 1; f <= FLOORS; f++) { const fh = this.FH(f), w = this.FW(f); yb -= fh; floors.push({ f, y: yb, h: fh, w, x0: CX - w / 2 }); }
+    return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y };
+  },
+  defs(p) {
+    return `<linearGradient id="${p}cyl" x1="0" x2="1"><stop offset="0" stop-color="#1F1F23"/><stop offset=".16" stop-color="#3D3D44"/><stop offset=".36" stop-color="#5A5A62"/><stop offset=".55" stop-color="#46464D"/><stop offset=".8" stop-color="#2C2C31"/><stop offset="1" stop-color="#18181B"/></linearGradient>
+    <linearGradient id="${p}cylG" x1="0" x2="1"><stop offset="0" stop-color="#232328"/><stop offset=".16" stop-color="#46464D"/><stop offset=".36" stop-color="#67676F"/><stop offset=".55" stop-color="#505058"/><stop offset=".8" stop-color="#303035"/><stop offset="1" stop-color="#1A1A1D"/></linearGradient>
+    <linearGradient id="${p}cylCorn" x1="0" x2="1"><stop offset="0" stop-color="#2A2A2F"/><stop offset=".35" stop-color="#77777F"/><stop offset=".6" stop-color="#55555C"/><stop offset="1" stop-color="#222226"/></linearGradient>
+    <linearGradient id="${p}cone" x1="0" x2="1"><stop offset="0" stop-color="#1E1E22"/><stop offset=".35" stop-color="#55555D"/><stop offset=".6" stop-color="#3A3A41"/><stop offset="1" stop-color="#151518"/></linearGradient>
+    <linearGradient id="${p}under" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
+    <radialGradient id="${p}glow"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".45" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <radialGradient id="${p}litfloor"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+    <linearGradient id="${p}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101013"/><stop offset=".5" stop-color="#17171A"/><stop offset="1" stop-color="#0E0E10"/></linearGradient>
+    <radialGradient id="${p}ground" cy=".2"><stop offset="0" stop-color="#26262A"/><stop offset="1" stop-color="#0E0E10" stop-opacity="0"/></radialGradient>
+    <filter id="${p}wglow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter>
+    <filter id="${p}blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>`;
+  },
+  winPath: (x, y, w, hh) => `M${x.toFixed(1)} ${(y + w / 2).toFixed(1)}a${(w / 2).toFixed(1)} ${(w / 2).toFixed(1)} 0 0 1 ${w.toFixed(1)} 0V${y + hh}H${x.toFixed(1)}Z`,
+  stones(fl, p) {
+    // ряды кладки с лёгким изгибом (смотрим на цилиндр снизу) и швы, сгущающиеся к краям
+    const { f, y, h, w, x0 } = fl; const r = w / 2; let d = '', hl = ''; let row = 0;
+    for (let yy = y + 11; yy < y + h; yy += 11, row++) {
+      d += `M${x0} ${yy}Q${CX} ${yy + 4} ${x0 + w} ${yy}`;
+      hl += `M${x0} ${yy + 1.2}Q${CX} ${yy + 5.2} ${x0 + w} ${yy + 1.2}`;
+      for (let t = -1.35 + (row % 2) * 0.14; t < 1.4; t += 0.28) { const x = CX + r * Math.sin(t); d += `M${x.toFixed(1)} ${(yy - 11 + 1.5 * Math.cos(t)).toFixed(1)}V${(yy + 3 * Math.cos(t)).toFixed(1)}`; }
+    }
+    return `<path d="${d}" stroke="rgba(0,0,0,.34)" stroke-width="1.1" fill="none" clip-path="url(#${p}cl${f})"/><path d="${hl}" stroke="rgba(255,255,255,.045)" stroke-width="1" fill="none" clip-path="url(#${p}cl${f})"/>`;
+  },
+  windows(fl, tone, mine, p) {
+    const { f, y, w } = fl; const r = w / 2; const g = isGuard(f); const W = this.pal.win;
+    const ts = f >= 12 ? [-0.55, 0.55] : [-0.72, 0, 0.72];
+    let out = '';
+    ts.forEach((t) => {
+      const big = g && t === 0; const ww = (big ? 16 : 12) * Math.cos(t), wh = big ? 30 : 20;
+      const x = CX + r * Math.sin(t) - ww / 2, yy = y + (g ? 22 : 12) - (big ? 6 : 0);
+      const d = this.winPath(x, yy, ww, wh);
+      out += `<path d="${d}" fill="${W[tone]}"/>`;
+      if (mine) out += `<path d="${d}" fill="#EEF0F6" filter="url(#${p}wglow)"/>`;
+      out += `<rect x="${(x - 2).toFixed(1)}" y="${yy + wh}" width="${(ww + 4).toFixed(1)}" height="2.6" rx="1" fill="#6B6B72"/>`;
+    });
+    return out;
+  },
+  parapet(fl, p) {
+    // зубцы Стража по кругу: ширина и свет зависят от угла
+    const { y, w, x0 } = fl; const r = w / 2 + 7;
+    let out = `<rect x="${x0 - 7}" y="${y - 4}" width="${w + 14}" height="10" rx="2" fill="url(#${p}cylCorn)"/>`;
+    for (let t = -1.32; t <= 1.33; t += 0.3) {
+      const mw = 11 * Math.cos(t), x = CX + r * Math.sin(t) - mw / 2, sh = 0.62 - 0.38 * Math.sin(t + 0.45);
+      const c = Math.round(66 + 44 * sh);
+      out += `<rect x="${x.toFixed(1)}" y="${y - 17}" width="${mw.toFixed(1)}" height="14" rx="1.2" fill="rgb(${c},${c},${c + 5})"/>`;
+    }
+    // машикули — ряд кронштейнов под парапетом
+    for (let t = -1.25; t <= 1.26; t += 0.25) { const cw = 6 * Math.cos(t), x = CX + (w / 2 + 3) * Math.sin(t) - cw / 2; out += `<path d="M${x.toFixed(1)} ${y + 6}h${cw.toFixed(1)}l-1 7h${(-cw + 2).toFixed(1)}Z" fill="rgba(0,0,0,.45)"/>`; }
+    return out;
+  },
+  floor(fl, st, o, p) {
+    const { f, y, h, w, x0 } = fl; const g = isGuard(f); const P = this.pal;
+    const tone = st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark'; const mine = st === 'mine';
+    const label = o.clean ? '' : isSummit(f) ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '';
+    return `<g class="fl" data-f="${f}" style="cursor:pointer">
+    <clipPath id="${p}cl${f}"><rect x="${x0}" y="${y}" width="${w}" height="${h}"/></clipPath>
+    ${mine ? `<ellipse cx="${CX}" cy="${y + h / 2}" rx="${w / 2 + 70}" ry="${h}" fill="url(#${p}litfloor)"/>` : ''}
+    <rect x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#${p}${g ? 'cylG' : 'cyl'})"/>
+    ${this.stones(fl, p)}
+    <rect x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#${p}under)"/>
+    ${this.windows(fl, tone, mine, p)}
+    ${g ? '' : `<rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="7" rx="3" fill="url(#${p}cylCorn)"/><rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="1.4" rx=".7" fill="rgba(255,255,255,.28)"/>`}
+    ${rivalsSvg(fl, x0)}
+    ${floorLabelSvg(fl, mine, label, P)}
+    ${f === o.selected ? `<rect x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>` : ''}
+    <rect x="0" y="${y - 4}" width="${TW}" height="${h + 4}" fill="transparent"/>
+  </g>`;
+  },
+  after(G, o, p) { return G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map((fl) => this.parapet(fl, p)).join(''); },
+  crown(G, o, p) {
+    const t = G.floors[FLOORS - 1]; const dw = t.w - 22, dx = CX - dw / 2, yd = t.y - 34, apex = yd - 168, rw = dw + 26;
+    const big = o.summit; let shingles = ''; const W = this.pal.win;
+    for (let yy = yd - 10; yy > apex + 10; yy -= 11) { const k = (yd - yy) / (yd - apex); const hw = (rw / 2) * (1 - k); shingles += `M${(CX - hw).toFixed(1)} ${yy}Q${CX} ${(yy + 4 * (1 - k)).toFixed(1)} ${(CX + hw).toFixed(1)} ${yy}`; }
+    const dwin = [-0.5, 0, 0.5].map((a) => { const ww = 9 * Math.cos(a), x = CX + (dw / 2) * Math.sin(a) - ww / 2; return `<path d="${this.winPath(x, yd + 9, ww, 15)}" fill="${big ? W.lit : W.dark}"/>`; }).join('');
+    return `<g>
+    <rect x="${dx}" y="${yd}" width="${dw}" height="34" fill="url(#${p}cyl)"/>
+    ${dwin}
+    <rect x="${CX - rw / 2}" y="${yd - 4}" width="${rw}" height="8" rx="4" fill="url(#${p}cylCorn)"/>
+    <polygon points="${CX - rw / 2},${yd} ${CX + rw / 2},${yd} ${CX},${apex}" fill="url(#${p}cone)"/>
+    <path d="${shingles}" stroke="rgba(0,0,0,.38)" stroke-width="1.1" fill="none"/>
+    <polygon points="${CX - rw / 2},${yd} ${CX - rw * 0.12},${yd} ${CX},${apex}" fill="rgba(255,255,255,.06)"/>
+    <circle cx="${CX}" cy="${apex - 14}" r="${big ? 90 : 34}" fill="url(#${p}glow)"/>
+    <line x1="${CX}" y1="${apex + 4}" x2="${CX}" y2="${apex - 12}" stroke="#D6D6D8" stroke-width="2"/>
+    <circle cx="${CX}" cy="${apex - 16}" r="${big ? 7 : 5.5}" fill="#FFFFFF"/>
+    ${big ? `<text x="${CX}" y="${apex - 60}" font-size="11" font-weight="700" letter-spacing="3" fill="#F2F1F6" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>` : ''}
+  </g>`;
+  },
+  scene(G, o, p) {
+    const b = G.floors[0]; const y = G.top - 250; let stars = '';
+    const pts = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
+    pts.forEach(([x, yy], i) => { stars += `<circle cx="${x}" cy="${y - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="rgba(255,255,255,${i % 2 ? 0.35 : 0.55})"/>`; });
+    return `${o.clean ? '' : `<ellipse cx="${CX}" cy="${G.top - 120}" rx="200" ry="260" fill="rgba(255,255,255,.03)"/>`}
+    ${stars}<g filter="url(#${p}blur)"><ellipse cx="60" cy="${G.top - 150}" rx="120" ry="14" fill="rgba(255,255,255,.07)"/><ellipse cx="330" cy="${G.top - 170}" rx="130" ry="16" fill="rgba(255,255,255,.06)"/><ellipse cx="80" cy="${G.top - 96}" rx="100" ry="10" fill="rgba(255,255,255,.04)"/><ellipse cx="320" cy="${G.top - 90}" rx="110" ry="11" fill="rgba(255,255,255,.045)"/></g>
+    ${o.clean ? '' : `<text x="${CX}" y="${G.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="#5E5E62" text-anchor="middle">НАД ОБЛАКАМИ</text>`}
+    <ellipse cx="${CX}" cy="${G.base + 44}" rx="210" ry="40" fill="url(#${p}ground)"/>
+    <ellipse cx="${CX}" cy="${G.base + 30}" rx="${b.w / 2 + 64}" ry="12" fill="rgba(0,0,0,.55)"/>
+    <rect x="${b.x0 - 30}" y="${G.base + 16}" width="${b.w + 60}" height="14" rx="3" fill="url(#${p}cylCorn)" opacity=".7"/>
+    <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="16" rx="3" fill="url(#${p}cylCorn)"/>
+    <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="1.5" fill="rgba(255,255,255,.25)"/>`;
+  },
+};
+
+/* ===================== АРХЕТИП 3: ЛЕДЯНАЯ ИГЛА С ПАРЯЩИМ БРИЛЛИАНТОМ (Алмаз) ===================== */
+// зачем: высшая лига — не камень, а огранённый лёд. Силуэт — узкая игла, сужающаяся к острию (трапеции этажей сходятся в одну линию);
+// объём — три вертикальные грани (левая светлая, центральная — блик, правая в глубокой тени) с косыми преломлениями;
+// этажи — ярусы с яркими кромками льда и сосульками, фонари-ромбы во льду; Стражи — венцы шардов; над остриём парит бриллиант с кольцом и лучами.
+const NEEDLE = {
+  pal: {
+    sky: ['#0A1226', '#10203F', '#060A14'], accent: '#9FE6FF', num: '#FFFFFF', numDim: '#6F86A8', lab: '#8FA6C8',
+    edge: 'rgba(255,255,255,.72)', win: { lit: '#EAFBFF', past: '#7FA6D2', dark: '#15305C', glow: '#8FE4FF' },
+    shardL: '#DCEEFF', shardR: '#6B96CC', ledge: '#F3F9FF',
+  },
+  taper: 8.5,
+  geom() {
+    const w0 = 200, fh = 44, gh = 58, topPad = 440, basePad = 110; let h = 0;
+    for (let f = 1; f <= FLOORS; f++) h += isGuard(f) ? gh : fh;
+    const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
+    for (let f = 1; f <= FLOORS; f++) { const hh = isGuard(f) ? gh : fh; const w = w0 - (f - 1) * this.taper, wt = w - this.taper; yb -= hh; floors.push({ f, y: yb, h: hh, w, wt, x0: CX - w / 2, xt0: CX - wt / 2 }); }
+    const top = floors[FLOORS - 1].y;
+    return { floors, H, base: H - basePad, top, apex: top - 190 };
+  },
+  fx: (fl, k, top) => (top ? fl.xt0 + fl.wt * k : fl.x0 + fl.w * k),
+  facet(fl, k0, k1, fill, extra = '') { const yb = fl.y + fl.h; return poly([[this.fx(fl, k0, false), yb], [this.fx(fl, k1, false), yb], [this.fx(fl, k1, true), fl.y], [this.fx(fl, k0, true), fl.y]], fill, extra); },
+  defs(p) {
+    const lin = (id, cols, x2 = '1', y2 = '0') => `<linearGradient id="${p}${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">${cols.map((c, i) => stp(c, i / (cols.length - 1))).join('')}</linearGradient>`;
+    return lin('L', ['#A6C9EE', '#D4E9FA', '#BBD9F4']) + lin('C', ['#DDEFFF', '#FFFFFF', '#E2F0FF']) + lin('R', ['#5E88C2', '#3A61A1', '#213F78'])
+      + lin('Lm', ['#C4DEF6', '#EAF5FF', '#D2E7FA']) + lin('Rm', ['#7CA3D6', '#527BB8', '#365A95'])
+      + lin('sky', this.pal.sky, '0', '1')
+      + `<radialGradient id="${p}glow" cx=".5" cy=".5" r=".5">${stp('#BFF0FF', 0, 0.75)}${stp('#8FE4FF', 0.35, 0.22)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}halo" cx=".5" cy=".5" r=".5">${stp('#8FE4FF', 0, 0.22)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}ground" cx=".5" cy=".25" r=".5">${stp('#2C4B7E', 0)}${stp('#0B1426', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}ice" cx=".5" cy=".5" r=".5">${stp('#BFDCF7', 0, 0.55)}${stp('#7FA9DC', 0.6, 0.22)}${stp('#7FA9DC', 1, 0)}</radialGradient>`
+      + `<filter id="${p}wg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.4"/></filter><filter id="${p}bl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter><filter id="${p}bl2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2"/></filter>`;
+  },
+  streaks(fl, seed, clip) {
+    const rd = rnd(seed); let out = ''; const yb = fl.y + fl.h;
+    for (let i = 0; i < 3; i++) { const k = 0.05 + rd() * 0.5; const x = this.fx(fl, k, false), xt = this.fx(fl, k, true) + 14 + rd() * 10; const ww = 4 + rd() * 5; out += poly([[x, yb], [x + ww, yb], [xt + ww, fl.y], [xt, fl.y]], `rgba(255,255,255,${f1(0.1 + rd() * 0.14)})`); }
+    out += poly([[this.fx(fl, 0.7, false), yb], [this.fx(fl, 0.73, false), yb], [this.fx(fl, 0.86, true), fl.y], [this.fx(fl, 0.83, true), fl.y]], 'rgba(255,255,255,.08)');
+    return `<g clip-path="url(#${clip})">${out}</g>`;
+  },
+  lantern(x, y, tone, p, s = 1) {
+    const W = this.pal.win; const w = 10 * s, h = 17 * s;
+    const d = `M${f1(x)} ${f1(y - h / 2)}L${f1(x + w / 2)} ${f1(y)}L${f1(x)} ${f1(y + h / 2)}L${f1(x - w / 2)} ${f1(y)}Z`;
+    let out = `<path d="${d}" transform="translate(1.5 2)" fill="rgba(0,20,60,.35)"/>`;
+    if (tone === 'lit') out += `<path d="${d}" fill="${W.glow}" filter="url(#${p}wg)"/>`;
+    out += `<path d="${d}" fill="${W[tone]}"/>`;
+    if (tone !== 'dark') out += `<path d="M${f1(x)} ${f1(y - h / 2 + 2)}L${f1(x + w / 2 - 2)} ${f1(y)}" stroke="rgba(255,255,255,.85)" stroke-width="1"/>`;
+    else out += `<path d="M${f1(x)} ${f1(y - h / 2 + 2)}L${f1(x + w / 2 - 2)} ${f1(y)}" stroke="rgba(255,255,255,.22)" stroke-width="1"/>`;
+    return out;
+  },
+  ledge(fl, seed) {
+    const { y, xt0, wt } = fl; const rd = rnd(seed); let out = '';
+    out += poly([[xt0 - 4, y - 1], [xt0 + wt + 4, y - 1], [xt0 + wt + 2, y + 4], [xt0 - 2, y + 4]], this.pal.ledge);
+    out += poly([[xt0 - 4, y - 1], [xt0 + wt * 0.6, y - 1], [xt0 + wt * 0.6, y + 1], [xt0 - 4, y + 1]], 'rgba(255,255,255,.9)');
+    out += poly([[xt0 - 2, y + 4], [xt0 + wt + 2, y + 4], [this.fx(fl, 1, true) + 1, y + 9], [this.fx(fl, 0, true) - 1, y + 9]], 'rgba(10,30,70,.22)');
+    for (let i = 0; i < 5; i++) { const k = 0.52 + i * 0.1 + rd() * 0.04; const x = xt0 + wt * k; const len = 5 + rd() * 9; out += poly([[x - 2.2, y + 4], [x + 2.2, y + 4], [x, y + 4 + len]], 'rgba(225,242,255,.72)'); }
+    for (let i = 0; i < 3; i++) { const k = 0.08 + i * 0.14 + rd() * 0.04; const x = xt0 + wt * k; const len = 3 + rd() * 5; out += poly([[x - 1.8, y + 4], [x + 1.8, y + 4], [x, y + 4 + len]], 'rgba(255,255,255,.55)'); }
+    return out;
+  },
+  shardCrown(fl) {
+    const { y, xt0, wt } = fl; const P = this.pal; let out = '';
+    for (let i = 0; i < 3; i++) { const bx = xt0 + i * wt * 0.13, by = y + 3 + i * 6; const tip = [bx - 20 - i * 3, by - 30 - i * 7]; out += poly([[bx, by], [bx + 9, by + 5], tip], P.shardL) + poly([[bx, by], tip, [bx - 3, by - 2]], 'rgba(255,255,255,.55)'); out += `<line x1="${f1(bx + 9)}" y1="${f1(by + 5)}" x2="${f1(tip[0])}" y2="${f1(tip[1])}" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`; }
+    for (let i = 0; i < 3; i++) { const bx = xt0 + wt - i * wt * 0.13, by = y + 3 + i * 6; const tip = [bx + 20 + i * 3, by - 30 - i * 7]; out += poly([[bx, by], [bx - 9, by + 5], tip], P.shardR) + poly([[bx, by], tip, [bx + 3, by - 2]], 'rgba(255,255,255,.28)'); out += `<line x1="${f1(bx)}" y1="${f1(by)}" x2="${f1(tip[0])}" y2="${f1(tip[1])}" stroke="rgba(255,255,255,.55)" stroke-width="1"/>`; }
+    out += poly([[CX - 7, y - 1], [CX + 7, y - 1], [CX + 1.5, y - 34]], '#EEF7FF') + poly([[CX - 7, y - 1], [CX + 1.5, y - 34], [CX - 2, y - 1]], '#FFFFFF');
+    out += poly([[CX - 20, y - 1], [CX - 10, y - 1], [CX - 16, y - 22]], '#D5E8FB') + poly([[CX + 10, y - 1], [CX + 20, y - 1], [CX + 13, y - 22]], '#9DBEE6');
+    return out;
+  },
+  floor(fl, st, o, p) {
+    const { f, y, h, w, x0 } = fl; const P = this.pal; const g = isGuard(f); const yb = y + h;
+    const tone = st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark'; const mine = st === 'mine';
+    const clip = `${p}c${f}`;
+    let out = `<g class="fl" data-f="${f}" style="cursor:pointer"><clipPath id="${clip}">${poly([[this.fx(fl, 0, false) - 1, yb + 1], [this.fx(fl, 1, false) + 1, yb + 1], [this.fx(fl, 1, true) + 1, y - 1], [this.fx(fl, 0, true) - 1, y - 1]], '#000')}</clipPath>`;
+    if (mine) out += `<ellipse cx="${CX}" cy="${f1(y + h / 2)}" rx="${f1(w / 2 + 90)}" ry="${f1(h * 1.2)}" fill="url(#${p}halo)"/>`;
+    out += this.facet(fl, 0, 0.42, `url(#${p}${mine ? 'Lm' : 'L'})`) + this.facet(fl, 0.42, 0.62, `url(#${p}C)`) + this.facet(fl, 0.62, 1, `url(#${p}${mine ? 'Rm' : 'R'})`);
+    out += this.streaks(fl, f * 97 + 11, clip);
+    // внутренние трещины-преломления в правой грани
+    out += `<path d="M${f1(this.fx(fl, 0.7, false))} ${f1(yb - 4)}L${f1(this.fx(fl, 0.78, true))} ${f1(y + h * 0.5)}L${f1(this.fx(fl, 0.9, true))} ${f1(y + 4)}" stroke="rgba(190,220,255,.35)" stroke-width="1" fill="none"/>`;
+    // рёбра граней
+    const edge = (k, col, wdt) => `<line x1="${f1(this.fx(fl, k, false))}" y1="${f1(yb)}" x2="${f1(this.fx(fl, k, true))}" y2="${f1(y)}" stroke="${col}" stroke-width="${wdt}"/>`;
+    out += edge(0.42, 'rgba(255,255,255,.9)', 1.2) + edge(0.62, 'rgba(255,255,255,.55)', 1) + edge(0, 'rgba(255,255,255,.6)', 1) + edge(1, 'rgba(10,30,70,.5)', 1);
+    if (st === 'ahead') out += poly([[this.fx(fl, 0, false), yb], [this.fx(fl, 1, false), yb], [this.fx(fl, 1, true), y], [this.fx(fl, 0, true), y]], P.sky[0], 'opacity=".34"');
+    out += this.ledge(fl, f * 53 + 5);
+    const ly = y + h * 0.55;
+    out += this.lantern(this.fx(fl, 0.2, false) + (this.fx(fl, 0.2, true) - this.fx(fl, 0.2, false)) * 0.45, ly, tone, p, g ? 1.1 : 1);
+    out += this.lantern(this.fx(fl, 0.82, false) + (this.fx(fl, 0.82, true) - this.fx(fl, 0.82, false)) * 0.45, ly, tone, p, g ? 1.1 : 1);
+    if (g) out += this.lantern(CX + 1, ly - 2, tone, p, 1.5);
+    if (mine) out += `<g clip-path="url(#${clip})"><rect x="${f1(x0 - 2)}" y="${f1(y)}" width="${f1(w + 4)}" height="${f1(h)}" fill="rgba(255,255,255,.08)"/>${poly([[this.fx(fl, 0.46, false), yb], [this.fx(fl, 0.52, false), yb], [this.fx(fl, 0.62, true), y], [this.fx(fl, 0.56, true), y]], 'rgba(255,255,255,.35)')}</g>`;
+    if (g && f < FLOORS) out += this.shardCrown(fl);
+    out += rivalsSvg(fl, x0) + floorLabelSvg(fl, mine, o.clean ? '' : isSummit(f) ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '', P);
+    if (f === o.selected) out += `<rect x="${f1(x0 - 9)}" y="${f1(y - (g ? 36 : 6))}" width="${f1(w + 18)}" height="${f1(h + (g ? 39 : 9))}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>`;
+    out += `<rect x="0" y="${f1(y - 4)}" width="${TW}" height="${f1(h + 4)}" fill="transparent"/></g>`;
+    return out;
+  },
+  sparkle(x, y, r, col = '#FFFFFF', op = 0.9) { return `<path d="M${f1(x)} ${f1(y - r)}Q${f1(x)} ${f1(y)} ${f1(x + r)} ${f1(y)}Q${f1(x)} ${f1(y)} ${f1(x)} ${f1(y + r)}Q${f1(x)} ${f1(y)} ${f1(x - r)} ${f1(y)}Q${f1(x)} ${f1(y)} ${f1(x)} ${f1(y - r)}Z" fill="${col}" opacity="${op}"/>`; },
+  crown(G, o, p) {
+    const t = G.floors[FLOORS - 1]; const y = t.y, apex = G.apex; const sm = o.summit; const P = this.pal;
+    const xa = t.xt0, xb = t.xt0 + t.wt; const kA = xa + t.wt * 0.42, kB = xa + t.wt * 0.62; let out = '';
+    // остриё: три грани сходятся в точку
+    out += poly([[xa, y], [kA, y], [CX, apex]], `url(#${p}L)`) + poly([[kA, y], [kB, y], [CX, apex]], `url(#${p}C)`) + poly([[kB, y], [xb, y], [CX, apex]], `url(#${p}R)`);
+    out += poly([[xa + 8, y], [xa + 14, y], [CX - 1, apex + 30]], 'rgba(255,255,255,.22)') + poly([[kB + 4, y], [kB + 8, y], [CX + 1, apex + 40]], 'rgba(255,255,255,.12)');
+    out += `<path d="M${f1(kA)} ${y}L${CX} ${f1(apex)}" stroke="rgba(255,255,255,.9)" stroke-width="1.2"/><path d="M${f1(kB)} ${y}L${CX} ${f1(apex)}" stroke="rgba(255,255,255,.5)" stroke-width="1"/><path d="M${f1(xa)} ${y}L${CX} ${f1(apex)}L${f1(xb)} ${y}" stroke="rgba(255,255,255,.55)" stroke-width="1" fill="none"/>`;
+    out += poly([[xa - 4, y - 1], [xb + 4, y - 1], [xb + 2, y + 4], [xa - 2, y + 4]], P.ledge);
+    out += `<circle cx="${CX}" cy="${f1(apex)}" r="2.2" fill="#FFFFFF"/>`;
+    // парящий бриллиант
+    const gy = apex - 52; const s = sm ? 1.3 : 1; const gw = 24 * s, ch = 13 * s, pv = 30 * s, tw = 12 * s;
+    out += `<circle cx="${CX}" cy="${f1(gy + 4)}" r="${sm ? 130 : 78}" fill="url(#${p}glow)"/>`;
+    // лучи
+    for (let i = 0; i < 8; i++) { const a = -Math.PI / 2 + i * Math.PI / 4 + 0.2; const L = (sm ? 70 : 46) * (i % 2 ? 0.62 : 1); out += `<line x1="${f1(CX + Math.cos(a) * 20 * s)}" y1="${f1(gy + 4 + Math.sin(a) * 20 * s)}" x2="${f1(CX + Math.cos(a) * L)}" y2="${f1(gy + 4 + Math.sin(a) * L)}" stroke="#DFF6FF" stroke-width="${i % 2 ? 0.8 : 1.3}" opacity="${i % 2 ? 0.35 : 0.6}"/>`; }
+    // кольцо
+    out += `<ellipse cx="${CX}" cy="${f1(gy + 6)}" rx="${f1(gw + 18)}" ry="${f1(7 * s)}" fill="none" stroke="#BFEAFF" stroke-width="1.4" opacity=".7"/><ellipse cx="${CX}" cy="${f1(gy + 6)}" rx="${f1(gw + 18)}" ry="${f1(7 * s)}" fill="none" stroke="#FFFFFF" stroke-width="2.2" opacity=".9" stroke-dasharray="${f1(gw * 0.9)} ${f1(gw * 3.5)}"/>`;
+    // корона (верх) и павильон (низ)
+    out += poly([[CX - gw, gy], [CX - tw, gy - ch], [CX + tw, gy - ch], [CX + gw, gy]], '#CFE4FF');
+    out += poly([[CX - tw, gy - ch], [CX + tw, gy - ch], [CX + tw * 0.55, gy], [CX - tw * 0.55, gy]], '#FFFFFF');
+    out += poly([[CX - gw, gy], [CX - tw, gy - ch], [CX - tw * 0.55, gy]], '#E7F2FF') + poly([[CX + gw, gy], [CX + tw, gy - ch], [CX + tw * 0.55, gy]], '#9EC3F0');
+    out += poly([[CX - gw, gy], [CX - tw * 0.55, gy], [CX, gy + pv]], '#A9CCF3') + poly([[CX - tw * 0.55, gy], [CX + tw * 0.55, gy], [CX, gy + pv]], '#E9F5FF') + poly([[CX + tw * 0.55, gy], [CX + gw, gy], [CX, gy + pv]], '#6C98D4');
+    out += `<path d="M${f1(CX - gw)} ${f1(gy)}H${f1(CX + gw)}M${f1(CX - tw * 0.55)} ${f1(gy)}L${CX} ${f1(gy + pv)}L${f1(CX + tw * 0.55)} ${f1(gy)}M${f1(CX - tw)} ${f1(gy - ch)}L${f1(CX - tw * 0.55)} ${f1(gy)}M${f1(CX + tw)} ${f1(gy - ch)}L${f1(CX + tw * 0.55)} ${f1(gy)}" stroke="rgba(255,255,255,.85)" stroke-width="1" fill="none"/>`;
+    out += this.sparkle(CX + gw + 4, gy - ch - 2, 7 * s) + this.sparkle(CX - gw - 8, gy + 10, 4 * s, '#FFFFFF', 0.7);
+    // ореол под бриллиантом — он парит над остриём
+    out += `<ellipse cx="${CX}" cy="${f1(apex - 6)}" rx="10" ry="3" fill="#BFEAFF" opacity=".5" filter="url(#${p}bl2)"/>`;
+    if (sm) out += `<text x="${CX}" y="${f1(gy - ch - 46)}" font-size="11" font-weight="700" letter-spacing="3" fill="${P.accent}" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>`;
+    return out;
+  },
+  scene(G, o, p) {
+    const b = G.floors[0]; const rd = rnd(29); let out = ''; const top = G.apex - 80;
+    for (let k = 0; k < 26; k++) out += `<circle cx="${f1(rd() * TW)}" cy="${f1(rd() * (top - 20))}" r="${f1(0.5 + rd() * 1)}" fill="#E8F3FF" opacity="${f1(0.25 + rd() * 0.5)}"/>`;
+    // северное сияние
+    const ay = top - 40;
+    out += `<g filter="url(#${p}bl)"><path d="M-40 ${f1(ay + 60)}Q${CX - 40} ${f1(ay - 70)} 430 ${f1(ay + 30)}" stroke="#4FE3B0" stroke-width="34" fill="none" opacity="${o.summit ? 0.22 : 0.13}"/><path d="M-40 ${f1(ay + 110)}Q${CX + 30} ${f1(ay - 10)} 430 ${f1(ay + 90)}" stroke="#7FD4FF" stroke-width="28" fill="none" opacity="${o.summit ? 0.2 : 0.12}"/><path d="M-40 ${f1(ay + 150)}Q${CX - 60} ${f1(ay + 60)} 430 ${f1(ay + 150)}" stroke="#B48CFF" stroke-width="24" fill="none" opacity="${o.summit ? 0.16 : 0.09}"/></g>`;
+    for (let k = 0; k < 6; k++) out += this.sparkle(20 + rd() * 350, top + 40 + rd() * (G.base - top - 120), 2 + rd() * 3, '#FFFFFF', 0.25 + rd() * 0.3);
+    // земля: ледяное зеркало, кристаллы, отражение нижних этажей
+    out += `<ellipse cx="${CX}" cy="${f1(G.base + 50)}" rx="236" ry="48" fill="url(#${p}ground)"/><ellipse cx="${CX}" cy="${f1(G.base + 24)}" rx="${f1(b.w / 2 + 90)}" ry="22" fill="url(#${p}ice)"/>`;
+    out += `<clipPath id="${p}refl"><ellipse cx="${CX}" cy="${f1(G.base + 22)}" rx="${f1(b.w / 2 + 50)}" ry="30"/></clipPath><g clip-path="url(#${p}refl)" opacity=".2" transform="translate(0 ${f1(2 * G.base)}) scale(1 -1)">${G.floors.slice(0, 2).map((fl) => this.facet(fl, 0, 0.42, `url(#${p}L)`) + this.facet(fl, 0.42, 0.62, `url(#${p}C)`) + this.facet(fl, 0.62, 1, `url(#${p}R)`)).join('')}</g>`;
+    out += `<ellipse cx="${CX}" cy="${f1(G.base + 2)}" rx="${f1(b.w / 2 + 30)}" ry="7" fill="#DCEFFF" opacity=".85"/><ellipse cx="${CX}" cy="${f1(G.base + 3)}" rx="${f1(b.w / 2 + 30)}" ry="7" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".7"/>`;
+    [[b.x0 - 48, 26, -12], [b.x0 - 24, 18, -6], [b.x0 + b.w + 26, 30, 10], [b.x0 + b.w + 52, 16, 14], [b.x0 - 70, 14, -16]].forEach(([x, hh, lean]) => { out += poly([[x - 7, G.base + 8], [x + 7, G.base + 8], [x + lean, G.base + 8 - hh]], lean < 0 ? '#C9DFF6' : '#7FA6D8') + poly([[x - 7, G.base + 8], [x + lean, G.base + 8 - hh], [x - 2, G.base + 8]], 'rgba(255,255,255,.5)'); });
+    return out;
+  },
+};
+
+/* ===================== СБОРКА БАШНИ ИЗ АРХЕТИПА ===================== */
+const { icon, phone, energy } = K;
+const ARCH = { fortress: FORT, cylinder: CYL, needle: NEEDLE };
+const ARCH_RU = { fortress: 'Крепостной донжон', cylinder: 'Круглая башня (эталон)', needle: 'Ледяная игла' };
+// зачем: одна точка сборки — архетип даёт геометрию, defs, этаж, навершие, сцену; состояния этажей и маркер общие (как SpireTowerSvg: модель этажей отдельно от рисунка)
+function towerSvg(L, o = {}) {
+  const A = ARCH[L.arch]; const G = A.geom(); const p = `t${++UID}_`;
+  const my = Math.min(Math.max(o.myFloor ?? 7, 1), FLOORS);
+  const oo = { ...o, myFloor: my, selected: o.selected ?? my };
+  const st = (f) => stateOf(f, my, oo.summit);
+  let body = '';
+  G.floors.forEach((fl) => { body += A.floor(fl, st(fl.f), oo, p); });
+  if (A.after) body += A.after(G, oo, p, st);
+  body += A.crown(G, oo, p);
+  const mfl = G.floors[(oo.summit ? FLOORS : my) - 1];
+  const mk = oo.noMarker ? '' : markerSvg(p, mfl.x0 + mfl.w + 34, mfl.y + mfl.h / 2 + 2, A.pal.accent);
+  // зачем: crop 'top'/'base' — крупные планы режем viewBox-ом, а не прокруткой контейнера (детерминированно и в превью, и на странице)
+  const vb = oo.crop === 'top' ? [G.top - 380, G.top + 110] : oo.crop === 'base' ? [G.base - 270, G.base + 90] : [0, G.H];
+  return `<svg viewBox="0 ${f1(vb[0])} ${TW} ${f1(vb[1] - vb[0])}" width="${TW}" height="${f1(vb[1] - vb[0])}" xmlns="http://www.w3.org/2000/svg" data-tower data-league="${L.id}" data-center="${f1(mfl.y + mfl.h / 2)}" data-top="${f1(G.top)}" data-base="${f1(G.base)}"><defs>${A.defs(p)}</defs>${oo.clean ? '' : `<rect width="${TW}" height="${G.H}" fill="url(#${p}sky)"/>`}${A.scene(G, oo, p)}${body}${mk}</svg>`;
 }
-function mainPhone(L) {
-  const head = `<div class="hd"><div class="bd">${badgeSvg(L, 54)}</div><div class="grow"><div class="lg-title">Шпиль</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div><span class="ibtn">${icon('info', 's20')}</span>${energyBare(3)}</div>`;
-  const tower = `<div class="tv" id="tv" style="margin-top:18px;background:${L.pal.sky[1]}">${towerSvg(L, { myFloor: state.mf, summit: state.sm, selected: state.sel })}</div>`;
-  const dock = `<div class="dockb"><div class="cta">${state.sm ? 'Забрать награду' : 'Подняться'}${icon('arrowR', 's20')}</div></div>`;
-  return phone(head + tower + floorInfoHtml(L), { fixed: dock });
+
+/* ===================== ЭКРАН ШПИЛЯ (телефон) ===================== */
+const stepsIn = (f) => (f <= 5 ? 4 + f : 10);
+const floorCoins = (f) => 10 * f * (isGuard(f) ? 2 : 1);
+function floorInfo(L, f, my, summit) {
+  const g = isGuard(f);
+  const tt = `Этаж ${f}${isSummit(f) ? ' · Вершина' : g ? ' · Страж' : ''}`;
+  const st = summit ? (f === FLOORS ? 'Вершина взята · ты здесь' : `Пройден · ${stepsIn(f)} ступеней`) : f === my ? `Ты здесь · 3 из ${stepsIn(f)} ступеней` : f < my ? `Пройден · ${stepsIn(f)} ступеней` : `${stepsIn(f)} ступеней`;
+  const c = `${floorCoins(f)} монет${g ? ' (×2)' : ''}${isSummit(f) ? ' + 200' : ''}`;
+  return `<div class="fi"><div class="bdg">${badgeSvg(L, 44)}</div><div class="grow"><div class="tt">${tt}</div><div class="st">${st} · ${c}</div></div></div>`;
 }
-function weekPhone(L, prev, o = {}) {
-  const top = !prev;
-  const head = top ? `Ты на вершине лиги ${L.ru}` : `Ты поднимаешься в лигу ${L.ru}`;
-  const sub = top ? '1 место из 30 · 128 ступеней · +300 монет' : `2 место из 30 · 96 ступеней · +200 монет · +100 за повышение`;
-  const row = `<div class="row">${prev ? `<div class="old">${badgeSvg(prev, 64)}</div><div class="arr">${icon('arrowR', 's24')}</div>` : ''}${badgeSvg(L, 96)}</div>`;
-  const tower = `<div style="margin:12px auto 0;width:300px;height:430px;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45);background:${L.pal.sky[1]}">${towerSvg(L, { crop: true, summit: true, myFloor: 15, mini: true, selected: 0 })}</div>`;
-  const body = `<div class="wk"><div class="k">Итог недели</div><div class="h">${head}</div><div class="p">${sub}</div>${row}</div>${tower}`;
-  const dock = `<div class="dockb"><div class="cta">${top ? 'Остаться на вершине' : 'Подняться'}${icon('arrowR', 's20')}</div></div>`;
-  return phone(`<div style="margin-top:6px"></div>${body}`, { fixed: dock });
+function phoneSpire(L, S) {
+  const head = `<div class="hd"><div class="grow"><div class="lg-title">Шпиль</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div><div class="bd">${badgeSvg(L, 54)}</div></div>`;
+  const tv = `<div class="tv" style="margin-top:14px" data-tv="main">${towerSvg(L, { myFloor: S.my, summit: S.summit, selected: S.sel })}</div>`;
+  const dock = `<div class="dockb"><div class="cta">${icon('fwd', 's20')}Подняться · 1 ${energy ? '⚡' : ''}</div></div>`;
+  return phone(head + tv + floorInfo(L, S.sel, S.my, S.summit) + '<div style="height:110px"></div>', { fixed: dock });
+}
+
+/* ===================== ЛЕСТНИЦА, КРУПНЫЙ ПЛАН, ИТОГ НЕДЕЛИ, ТАБЛИЦА ===================== */
+function ladderHtml(S) {
+  return READY.map((L) => `<div class="st${L.i === S.li ? ' on' : ''}" data-li="${L.i}">${towerSvg(L, { myFloor: 7, noMarker: true, clean: false })}<div class="nm">${L.ru}</div><div class="no">лига ${L.i + 1} · ${ARCH_RU[L.arch]}</div></div>`).join('')
+    + `<div class="st soon"><div class="box">остальные 9 —<br>после утверждения</div></div>`;
+}
+function closeupHtml(L, S) {
+  const o = { myFloor: S.my, summit: S.summit, selected: 0 };
+  return `<div class="pv" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start"><div class="tv" style="height:auto">${towerSvg(L, { ...o, crop: 'top' })}</div><div class="tv" style="height:auto">${towerSvg(L, { ...o, crop: 'base' })}</div></div>`;
+}
+function weekHtml() {
+  const pairs = [[READY[0], READY[1]], [READY[1], READY[2]]];
+  return pairs.map(([a, b]) => phone(`<div class="wk"><div class="k">Итог недели</div><div class="h">Повышение: ${a.ru} → ${b.ru}</div><div class="p">Вершина взята. Новая башня ждёт — с первого этажа.</div><div class="row"><div class="old" style="width:120px">${towerSvg(a, { summit: true, noMarker: true, clean: true })}</div><div class="arr">${icon('fwd', 's20')}</div><div style="width:190px">${towerSvg(b, { myFloor: 1, noMarker: true, clean: true })}</div></div><div class="dockb" style="position:static;margin-top:18px"><div class="cta">Войти в ${b.ru}</div></div></div>`)).join('');
+}
+const SPEC = {
+  fortress: { geom: 'квадрат углом к зрителю: две грани (левая свет, правая тень), светлое ребро; w₁ 232 → 222, этаж 44 / Страж 58', mat: 'грубая кладка 14 px курсами со смещением, случайные светлые/тёмные блоки; сверху каждого этажа карниз-полка', floors: 'бойницы-арки 7×24 (2 на этаж, с 12-го — 3); «мой» — факелы по бокам + тёплое гало', guards: 'машикули на консолях, зубцы по обеим граням, угловая башенка на ребре с колпаком', top: 'площадка с зубцами, жаровня-маяк (огонь 36 / 56 на вершине), знамя; вершина недели — огонь на всю высоту', pal: 'гранит #4E525B–#6B6F78 / #33363D–#1F2126, огонь #FFB75A, небо #13161B' },
+  cylinder: { geom: 'цилиндр: w 196 − (f−1)·5, этаж 46 / Страж 60, topPad 300, basePad 96 (= SpireTowerSvg)', mat: 'градиент cyl (6 стопов #1F1F23→#5A5A62→#18181B), кладка рядами 11 px с изгибом, швы по cos', floors: 'окна по окружности (ширина·cos t), углы −.72/0/.72 (с 12-го — 2), lit #EEF0F6 / past #3A3A40 / dark #0B0B0D', guards: 'зубцы 11·cos t с тоном по углу, машикули-кронштейны', top: 'барабан 34 + конус 168 с черепицей, навершие: шар 5.5 / 7, сияние r 34 / 90', pal: 'как в приложении: #1F1F23…#5A5A62, карниз cylCorn, небо #101013→#17171A' },
+  needle: { geom: 'игла: трапеции этажей, w 200 − (f−1)·8.5, сходятся в остриё (190 над 15-м); три грани 0–.42 / .42–.62 / .62–1', mat: 'лёд: грани L #A6C9EE–#D4E9FA, C #DDEFFF–#FFFFFF, R #5E88C2–#213F78; косые преломления, трещины', floors: 'кромка-полка #F3F9FF с сосульками; фонари-ромбы 10×17 (lit #EAFBFF + свечение #8FE4FF, past #7FA6D2, dark #15305C)', guards: 'венец шардов: по 3 с каждой стороны + центральный шпиль; центральный фонарь ×1.5', top: 'остриё из трёх граней, над ним парящий бриллиант (корона + павильон, 6 граней), кольцо, 8 лучей, сияние r 78 / 130', pal: 'небо #0A1226→#10203F, сияние #9FE6FF, северное сияние #4FE3B0 / #7FD4FF / #B48CFF' },
+};
+function specHtml() {
+  const cols = ['Лига', 'Архетип', 'Геометрия', 'Материал и свет', 'Этажи и окна', 'Стражи', 'Навершие', 'Палитра'];
+  return `<tr>${cols.map((c) => `<th>${c}</th>`).join('')}</tr>` + READY.map((L) => { const s = SPEC[L.arch]; return `<tr><td><div style="display:flex;align-items:center;gap:8px;white-space:nowrap">${badgeSvg(L, 28)}<b>${L.i + 1} · ${L.ru}</b></div></td><td>${ARCH_RU[L.arch]}</td><td>${s.geom}</td><td>${s.mat}</td><td>${s.floors}</td><td>${s.guards}</td><td>${s.top}</td><td>${s.pal}</td></tr>`; }).join('');
+}
+
+/* ===================== СОСТОЯНИЕ И РЕНДЕР ===================== */
+const S = { li: READY[0].i, my: 7, summit: false, sel: 7 };
+const curL = () => LEAGUES[S.li];
+function centerTv(tv, mode) {
+  const svg = tv.querySelector('svg'); if (!svg) return;
+  const k = svg.clientWidth / TW; const H = tv.clientHeight;
+  let y;
+  if (mode === 'top') y = Number(svg.dataset.top) * k - H + 60;
+  else if (mode === 'base') y = Number(svg.dataset.base) * k - H + 70;
+  else y = Number(svg.dataset.center) * k - H / 2;
+  tv.scrollTop = Math.max(0, y);
 }
 function renderChips() {
-  document.getElementById('chips').innerHTML = LEAGUES.map((L, i) => `<div class="lg-chip${i === state.cur ? ' on' : ''}" data-i="${i}">${badgeSvg(L, 32)}${i + 1} · ${L.ru}</div>`).join('');
+  document.getElementById('chips').innerHTML = LEAGUES.map((L) => `<div class="lg-chip${L.ready ? '' : ' soon'}${L.i === S.li ? ' on' : ''}" data-li="${L.i}" title="${L.ready ? '' : 'после утверждения'}">${badgeSvg(L, 32)}${L.ru}</div>`).join('');
+  // зачем: scrollIntoView дёргал всю страницу по вертикали — крутим только ленту чипов
+  const on = document.querySelector('.lg-chip.on'), ch = document.getElementById('chips'); if (on) ch.scrollTo({ left: on.offsetLeft - ch.clientWidth / 2 + on.clientWidth / 2, behavior: 'smooth' });
 }
 function renderMain() {
-  const L = LEAGUES[state.cur];
-  document.getElementById('phoneMain').innerHTML = `<div class="col"><div class="lbl">${state.cur + 1} из 12 · ${L.ru} (${L.uk}) — ${L.mat}</div>${mainPhone(L)}</div>`;
-  const tv = document.getElementById('tv'); const G = GEO[L.i];
-  const fl = G.floors[Math.min(FLOORS, Math.max(1, state.mf)) - 1]; const sc = tv.clientWidth / TW;
-  tv.scrollTop = Math.max(0, (state.sm ? G.top - L.crownH : fl.y + fl.h / 2) * sc - tv.clientHeight / 2);
-  K.init();
+  const L = curL();
+  document.getElementById('phoneMain').innerHTML = phoneSpire(L, S);
+  document.getElementById('closeup').innerHTML = closeupHtml(L, S);
+  document.getElementById('fv').textContent = S.my;
+  document.getElementById('sm').classList.toggle('on', S.summit);
+  document.querySelectorAll('[data-tv]').forEach((tv) => centerTv(tv, tv.dataset.tv));
 }
-function renderClose() {
-  const L = LEAGUES[state.cur]; const G = GEO[L.i];
-  const topY = G.top - L.crownH - 130, topH = L.crownH + 130 + 330;
-  const midY = G.base - 470, midH = 470 + 120;
-  const w = 'width:100%;border-radius:22px;overflow:hidden;box-shadow:0 14px 34px rgba(0,0,0,.45)';
-  document.getElementById('closeup').innerHTML = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div style="${w}">${towerSvg(L, { vb: `0 ${f1(topY)} ${TW} ${f1(topH)}`, myFloor: state.mf, summit: state.sm, selected: state.sel })}</div><div style="${w}">${towerSvg(L, { vb: `0 ${f1(midY)} ${TW} ${f1(midH)}`, myFloor: state.mf, summit: state.sm, selected: state.sel })}</div></div>`;
+function renderAll() {
+  renderChips();
+  renderMain();
+  document.getElementById('ladder').innerHTML = ladderHtml(S);
+  document.getElementById('phoneWeek').innerHTML = weekHtml();
+  document.getElementById('spec').innerHTML = specHtml();
 }
-function renderWeek() {
-  const L = LEAGUES[Math.max(1, state.cur)]; const prev = LEAGUES[Math.max(1, state.cur) - 1];
-  document.getElementById('phoneWeek').innerHTML = `<div class="col"><div class="lbl">Итог недели · повышение в ${L.ru}</div>${weekPhone(L, prev)}</div>`;
-  const D = LEAGUES[11];
-  document.getElementById('phoneWeek2').innerHTML = `<div class="col"><div class="lbl">Итог недели · вершина лиги ${D.ru}</div>${weekPhone(D, null)}</div>`;
-  K.init();
+function setLeague(i) { if (!LEAGUES[i] || !LEAGUES[i].ready) return; S.li = i; renderChips(); renderMain(); document.querySelectorAll('#ladder .st').forEach((el) => el.classList.toggle('on', Number(el.dataset.li) === S.li)); }
+function stepLeague(d) { const k = READY.findIndex((L) => L.i === S.li); const n = READY[(k + d + READY.length) % READY.length]; setLeague(n.i); }
+document.getElementById('chips').addEventListener('click', (e) => { const c = e.target.closest('.lg-chip'); if (c) setLeague(Number(c.dataset.li)); });
+document.getElementById('ladder').addEventListener('click', (e) => { const c = e.target.closest('.st[data-li]'); if (c) setLeague(Number(c.dataset.li)); });
+document.getElementById('prev').addEventListener('click', () => stepLeague(-1));
+document.getElementById('next').addEventListener('click', () => stepLeague(1));
+document.getElementById('fm').addEventListener('click', () => { S.my = Math.max(1, S.my - 1); S.sel = S.my; S.summit = false; renderMain(); });
+document.getElementById('fp').addEventListener('click', () => { S.my = Math.min(FLOORS, S.my + 1); S.sel = S.my; S.summit = false; renderMain(); });
+document.getElementById('sm').addEventListener('click', () => { S.summit = !S.summit; S.sel = S.summit ? FLOORS : S.my; renderMain(); });
+document.getElementById('phoneMain').addEventListener('click', (e) => { const g = e.target.closest('.fl'); if (!g) return; S.sel = Number(g.dataset.f); renderMain(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') stepLeague(-1); else if (e.key === 'ArrowRight') stepLeague(1); });
+// зачем: ?preview=ladder / ?preview=closeups — чистые кадры для previews/ (три башни в ряд; навершия и основания), без шапки страницы
+const PV = new URLSearchParams(location.search).get('preview');
+if (PV === 'ladder') {
+  document.body.innerHTML = `<style>.pv svg{display:block;width:100%;height:auto}</style><div class="pv" style="display:flex;gap:6px;padding:6px;background:#0C0D10;align-items:flex-end">${READY.map((L) => `<div style="width:258px;flex:none;text-align:center">${towerSvg(L, { myFloor: 7 })}<div class="nm" style="font:700 15px Inter,sans-serif;color:#fff;margin-top:6px">${L.i + 1} · ${L.ru} — ${ARCH_RU[L.arch]}</div></div>`).join('')}</div>`;
+} else if (PV === 'closeups') {
+  document.body.innerHTML = `<style>.pv svg{display:block;width:100%;height:auto}</style><div class="pv" style="display:grid;grid-template-columns:repeat(3,258px);gap:6px;padding:6px;background:#0C0D10">${['top', 'base'].map((m) => READY.map((L) => `<div>${towerSvg(L, { myFloor: m === 'top' ? 14 : 4, crop: m })}</div>`).join('')).join('')}</div>`;
+} else {
+  renderAll();
+  window.addEventListener('resize', () => document.querySelectorAll('[data-tv]').forEach((tv) => centerTv(tv, tv.dataset.tv)));
 }
-function renderLadder() {
-  document.getElementById('ladder').innerHTML = LEAGUES.map((L, i) => `<div class="st${i === state.cur ? ' on' : ''}" data-i="${i}" style="width:${108 + i * 2}px">${towerSvg(L, { crop: true, mini: true, myFloor: 8 })}<div class="nm">${L.ru}</div><div class="no">№ ${i + 1} · ${L.uk}</div></div>`).join('');
-  document.getElementById('badges').innerHTML = LEAGUES.map((L, i) => `<div class="st${i === state.cur ? ' on' : ''}" data-i="${i}" style="width:92px;opacity:${i === state.cur ? 1 : 0.8}"><div style="display:flex;justify-content:center">${badgeSvg(L, 64)}</div><div style="display:flex;justify-content:center;gap:8px;margin-top:8px;align-items:center">${badgeSvg(L, 40)}${badgeSvg(L, 24)}</div><div class="nm">${L.ru}</div></div>`).join('');
-}
-function renderAll() { renderChips(); renderMain(); renderClose(); renderWeek(); document.querySelectorAll('#ladder .st,#badges .st').forEach((n) => n.classList.toggle('on', +n.dataset.i === state.cur)); }
-function setLeague(i) { state.cur = (i + 12) % 12; renderChips(); renderMain(); renderClose(); renderWeek(); document.querySelectorAll('#ladder .st,#badges .st').forEach((n) => n.classList.toggle('on', +n.dataset.i === state.cur)); document.querySelector('.lg-chip.on')?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); }
-
-/* ===================== ТАБЛИЦА ПАРАМЕТРОВ ===================== */
-function renderSpec() {
-  const sw = (c) => `<span class="sw" style="background:${c}"></span>`;
-  const heightOf = (L) => Math.round(GEO[L.i].H - GEO[L.i].top + (GEO[L.i].floors[0].y + GEO[L.i].floors[0].h - GEO[L.i].top));
-  const rows = LEAGUES.map((L) => `<tr><td><b>${L.i + 1}</b></td><td><b>${L.ru}</b><br><span style="color:#A6A6A8">${L.uk}</span></td><td>${L.mat}</td>
-    <td>${sw(L.pal.stone[2])}${L.pal.stone[2]}<br>${sw(L.pal.accent)}${L.pal.accent} (свечение)<br>${sw(L.pal.win.lit)}${L.pal.win.lit} (окна)<br>${sw(L.pal.roof[1])}${L.pal.roof[1]} (кровля/шпиль)<br>${sw(L.pal.sky[1])}${L.pal.sky[1]} (небо)</td>
-    <td>${L.body}${L.facets ? ' ×' + L.facets : ''}${L.brick ? ', ряд ' + L.brick : ''}${L.terrace ? ', террасы' : ''}${L.prism ? ', радужные грани' : ''}${L.druse ? ', друзы' : ''}</td>
-    <td>${L.win} ×${L.winN}, рядов ${L.rows}</td><td>${L.corn}</td><td>${L.guard}${L.pinnacles ? ' + пинакли' : ''}</td><td>${L.crown}</td><td>${L.plinth}</td><td>${(L.atmos || []).join(', ')}</td><td>${L.numFmt}</td>
-    <td>w0 ${L.w0}, сужение ${L.taper}/этаж<br>этаж ${L.fh} / Страж ${L.gh}<br>навершие ${L.crownH}<br>башня ≈ ${heightOf(L)} px</td></tr>`).join('');
-  document.getElementById('spec').innerHTML = `<thead><tr><th>№</th><th>Лига</th><th>Материал</th><th>Палитра</th><th>Корпус / фактура</th><th>Окна</th><th>Карниз</th><th>Парапет Стража</th><th>Навершие</th><th>Основание</th><th>Атмосфера</th><th>Номера</th><th>Геометрия</th></tr></thead><tbody>${rows}</tbody>`;
-  document.getElementById('json').textContent = JSON.stringify(LEAGUES.map((L) => ({ index: L.i, id: L.id, ru: L.ru, uk: L.uk, material: L.mat, geometry: { w0: L.w0, taper: L.taper, floorH: L.fh, guardH: L.gh, crownH: L.crownH }, forms: { body: L.body, facets: L.facets, brick: L.brick, window: L.win, windowsPerRow: L.winN, windowRows: L.rows, cornice: L.corn, guardTop: L.guard, crown: L.crown, plinth: L.plinth, numerals: L.numFmt }, atmosphere: L.atmos, palette: L.pal })), null, 1);
-}
-
-/* ===================== СТАРТ ===================== */
-document.getElementById('prev').onclick = () => setLeague(state.cur - 1);
-document.getElementById('next').onclick = () => setLeague(state.cur + 1);
-document.getElementById('chips').onclick = (e) => { const c = e.target.closest('.lg-chip'); if (c) setLeague(+c.dataset.i); };
-document.getElementById('ladder').onclick = (e) => { const c = e.target.closest('.st'); if (c) setLeague(+c.dataset.i); };
-document.getElementById('badges').onclick = (e) => { const c = e.target.closest('.st'); if (c) setLeague(+c.dataset.i); };
-document.getElementById('fm').onclick = () => { state.mf = Math.max(1, state.mf - 1); state.sel = state.mf; state.sm = false; document.getElementById('fv').textContent = state.mf; document.getElementById('sm').classList.remove('on'); renderMain(); renderClose(); };
-document.getElementById('fp').onclick = () => { state.mf = Math.min(15, state.mf + 1); state.sel = state.mf; state.sm = false; document.getElementById('fv').textContent = state.mf; document.getElementById('sm').classList.remove('on'); renderMain(); renderClose(); };
-document.getElementById('sm').onclick = (e) => { state.sm = !state.sm; if (state.sm) state.sel = 15; e.currentTarget.classList.toggle('on', state.sm); renderMain(); renderClose(); };
-document.getElementById('phoneMain').addEventListener('click', (e) => { const fl = e.target.closest('.fl'); if (!fl) return; state.sel = +fl.dataset.f; const tv = document.getElementById('tv'); const keep = tv.scrollTop; renderMain(); document.getElementById('tv').scrollTop = keep; });
-document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') setLeague(state.cur + 1); if (e.key === 'ArrowLeft') setLeague(state.cur - 1); });
-renderLadder(); renderAll(); renderSpec();
 
 </script>
 </body>

@@ -88,3 +88,6 @@ for _rid in ('spire-004', 'spire-005', 'spire-014', 'spire-015'):
 _c81 = _entry('cards-081')
 if _c81['steps'][-2:] != ['hidekb', 'wait:400']:
     _c81['steps'] = _c81['steps'] + ['hidekb', 'wait:400']
+
+# dialogs-041: настроение «Очень доволен» берётся из mood последнего хода (Ядро), а подставной ход приходил с mood:null — без dev_dialog_mood=happy состояние не показывается.
+set_param('dialogs-041', 'dev_dialog_mood', 'happy')

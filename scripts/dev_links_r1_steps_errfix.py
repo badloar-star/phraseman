@@ -309,3 +309,20 @@ set_param('profile-008', 'level', '0.5')
 set_param('overlays-campaigns-014', 'promo', 'disabled')
 # settings-gap-023: «Test» короче ERROR_REPORT_COMMENT_MIN_LEN (10) — «Отправить» неактивна, итог «отправлено» недостижим. Ответ подменяет support=sent.
 set_steps('settings-gap-023', ['tap:#support-report-input', 'type:Cards_audio_does_not_play', 'hidekb', 'wait:300', 'tap:#support-report-submit', 'wait:800'])
+
+# ── Срез паритета «Диалоги» (координатор 13.10 ~15:30): разбор по коду.
+from dev_links_r1_steps import DLG_START as _DLG_START  # noqa: E402
+_DLG_SEND = ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send']
+# Итог «Диалог пройден» — только endedBy=bot (dialogue_v2_completion.tsx); меню «⋯ → Завершить» даёт manual — «Разговор завершён».
+# Подставной ход завершает диалог (dev_dialog_end=on), тап по завесе → openSummary('bot'), как у dialogs-041. dialogs-043 («вручную») — на меню.
+for _rid, _tail in (('dialogs-gap-007', []), ('dialogs-gap-008', []), ('dialogs-040', []), ('dialogs-044', []),
+                    ('dialogs-042', ['tap:#dialogue-v2-completion-feedback-header', 'tap:#dialogue-v2-completion-feedback-star-4'])):
+    set_param(_rid, 'dev_dialog_end', 'on')
+    set_steps(_rid, list(_DLG_START) + _DLG_SEND + ['wait:2500', 'see:#dialogue-v2-session-end-veil', 'tap:#dialogue-v2-session-end-veil', 'wait:1500'] + _tail)
+# dialogs-010: «AI-диалоги выключены» рисует гейт сессии, а не хаб — войти в диалог (aiConsent=denied — подмена в памяти).
+set_steps('dialogs-010', list(_DLG_START[:-1]) + ['wait:1500'])
+set_param('dialogs-010', 'dev_dialog_send', 'ok')  # вход в сессию — старт подменяется, в прод не уходит (сторож prod_write)
+# dialogs-021: раскрыть «Лучше так» под своей репликой.
+set_steps('dialogs-021', list(_DLG_START) + _DLG_SEND + ['wait:2500', 'tap:#dialogue-v2-better-*', 'wait:600'])
+# dialogs-037: строка настроения в шапке («Очень доволен») — как у dialogs-041.
+set_param('dialogs-037', 'dev_dialog_mood', 'happy')

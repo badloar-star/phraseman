@@ -81,6 +81,16 @@ function completionLabels(lang: Lang) {
     unavailable: triLang(lang, { ru: 'Итог пока недоступен', uk: 'Підсумок поки недоступний', en: 'The summary is unavailable', es: 'El resumen no está disponible', 'pt-BR': 'O resumo está indisponível', vi: 'Chưa có tổng kết', id: 'Ringkasan belum tersedia', tr: 'Özet şu an yok', pl: 'Podsumowanie jest niedostępne', fr: 'Le bilan est indisponible', de: 'Die Auswertung ist nicht verfügbar' }),
     retry: triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów', fr: 'Réessayer', de: 'Erneut versuchen' }),
     done: triLang(lang, { ru: 'Готово', uk: 'Готово', en: 'Done', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe', fr: 'Terminé', de: 'Fertig' }),
+    // зачем (решение владельца 13.10, dialogs.html D2: под «Готово» «Добить: Ещё учу (N)» при ошибках; в карточке «Ошибки» — «Повторить ошибки»): N — ошибки диалога, записанные в «Мои ошибки»
+    finishMistakes: (n: number) => triLang(lang, {
+      ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
+      'pt-BR': `Finalizar: Ainda aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Masih belajar (${n})`,
+      tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dobij: Jeszcze się uczę (${n})`, fr: `Finir : encore à apprendre (${n})`, de: `Abschließen: Noch am Lernen (${n})`,
+    }),
+    repeatMistakes: triLang(lang, {
+      ru: 'Повторить ошибки', uk: 'Повторити помилки', en: 'Practise mistakes', es: 'Repasar errores', 'pt-BR': 'Revisar erros', vi: 'Ôn lại lỗi',
+      id: 'Ulangi kesalahan', tr: 'Hataları tekrarla', pl: 'Powtórz błędy', fr: 'Revoir les erreurs', de: 'Fehler wiederholen',
+    }),
     again: triLang(lang, { ru: 'Ещё раз', uk: 'Ще раз', en: 'Once more', es: 'Otra vez', 'pt-BR': 'De novo', vi: 'Làm lại', id: 'Sekali lagi', tr: 'Bir daha', pl: 'Jeszcze raz', fr: 'Encore', de: 'Noch einmal' }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij', fr: 'Fermer', de: 'Schließen' }),
     rateTitle: triLang(lang, { ru: 'Диалог был полезен?', uk: 'Діалог був корисним?', en: 'Was this dialogue useful?', es: '¿Te sirvió el diálogo?', 'pt-BR': 'O diálogo foi útil?', vi: 'Hội thoại có hữu ích không?', id: 'Apakah dialog ini berguna?', tr: 'Diyalog faydalı oldu mu?', pl: 'Czy dialog był przydatny?', fr: 'Ce dialogue t’a été utile ?', de: 'War der Dialog hilfreich?' }),
@@ -246,6 +256,8 @@ export default function DialogueV2CompletionRoute() {
     rows: errorRows,
     ready: state.kind !== 'loading',
   });
+  // зачем (решение владельца 13.10): «Добить» и «Повторить ошибки» — одно действие; кнопки только когда ошибки записаны (status 'ready') и их N > 0; иначе остаётся «Ещё раз»
+  const finishableMistakes = dialogMistakes.status === 'ready' && dialogMistakes.mistakeIds.length > 0;
   // зачем (решение владельца 13.10, practice.html#done / dialogs.html D1–D4): пилюля баланса справа в шапке и «+N монет» с монетой под цифрами.
   // Блок появляется, когда монеты легли в копилку (status='awarded'); повторный заход на экран ('already', coins=0) его не рисует — поздравляем фактом, а не записью.
   const lv2Glass = useLv2Glass();
@@ -378,6 +390,18 @@ export default function DialogueV2CompletionRoute() {
                     <Text maxFontSizeMultiplier={1.4} style={[styles.ok, { color: LV2_GOOD }]}>{correction.corrected}</Text>
                   </View>
                 ))}
+                {finishableMistakes ? (
+                  <Pressable
+                    testID="dialogue-v2-completion-repeat-mistakes"
+                    accessibilityRole="button"
+                    accessibilityLabel={labels.repeatMistakes}
+                    onPress={dialogMistakes.openPractice}
+                    style={({ pressed }) => [styles.repeatMistakes, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.7 }]}
+                  >
+                    <Ionicons name="refresh" size={18} color={glass.text} />
+                    <Text maxFontSizeMultiplier={1.3} style={[styles.repeatMistakesText, { color: glass.text }]}>{labels.repeatMistakes}</Text>
+                  </Pressable>
+                ) : null}
               </View>
             ) : null}
           {review ? (
@@ -402,17 +426,17 @@ export default function DialogueV2CompletionRoute() {
         </ScrollView>
         <View style={styles.footer}>
           <DialogueGlassCta glass={glass} label={labels.done} trailingArrow onPress={close} testID="dialogue-v2-completion-done" />
-          {scenarioId ? (
+          {scenarioId || finishableMistakes ? (
             // зачем (сверка dialogs-041, макет `.quiet`): «Ещё раз» — тихая текстовая ссылка по центру (16/600, вторичным), а не кнопка-пилюля
             <Pressable
-              testID="dialogue-v2-completion-again"
+              testID={finishableMistakes ? 'dialogue-v2-completion-finish-mistakes' : 'dialogue-v2-completion-again'}
               accessibilityRole="button"
-              accessibilityLabel={labels.again}
+              accessibilityLabel={finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}
               hitSlop={8}
-              onPress={again}
+              onPress={finishableMistakes ? dialogMistakes.openPractice : again}
               style={({ pressed }) => [styles.again, pressed && { opacity: 0.6 }]}
             >
-              <Text style={[styles.againText, { color: glass.secondary }]}>{labels.again}</Text>
+              <Text style={[styles.againText, { color: glass.secondary }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
             </Pressable>
           ) : null}
         </View>
@@ -500,4 +524,7 @@ const styles = StyleSheet.create({
   footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 },
   again: { marginTop: 14, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
   againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
+  // кнопка «Повторить ошибки» в карточке «Ошибки» (dialogs.html .errc .cta.gh: высота 44, значок + подпись 16/600)
+  repeatMistakes: { height: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  repeatMistakesText: { fontSize: 16, lineHeight: 22, fontWeight: '600' },
 });

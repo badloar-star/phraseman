@@ -86,6 +86,11 @@ async function markSpireStreakDay(report: SpireStepReport): Promise<void> {
   try {
     const { updateStreakOnActivity } = await import('./hall_of_fame_utils');
     const streak = await updateStreakOnActivity();
+    if (streak < 0) {
+      // зачем (аудит Optimistic UI 13.10): -1 = серия не сохранена — день не помечаем, следующая ступень попробует снова.
+      DebugLogger.warn(LOG, `streak: день ${today} не сохранён (серия=${streak}) — повтор на следующей ступени`);
+      return;
+    }
     spireStreakDayMarked = today;
     DebugLogger.info(LOG, `streak: день ${today} засчитан ступенью ${report.reportId}, серия=${streak}`);
   } catch (error) {

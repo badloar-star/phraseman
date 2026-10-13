@@ -81,7 +81,8 @@ function normalizeStoredMarkers(raw: string | null, weekKey: string): StoredWeek
       return { weekKey, marks: {} };
     }
     return { weekKey, marks: parsed.marks };
-  } catch {
+  } catch (error) {
+    console.warn('[STREAK-WEEK] parse_failed →пустая неделя', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return { weekKey, marks: {} };
   }
 }

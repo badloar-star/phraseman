@@ -115,7 +115,8 @@ function activeDatesFromStats(raw: unknown): string[] {
       })
       .map(([date]) => date)
       .sort();
-  } catch {
+  } catch (error) {
+    console.warn('[STREAK-SAFETY] parse_failed →[]', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return [];
   }
 }

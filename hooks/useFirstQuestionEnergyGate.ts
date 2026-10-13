@@ -17,6 +17,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 
 import { useEnergy } from '../components/EnergyContext';
+import { actionToastTri, emitAppEvent } from '../app/events';
 import { captureAccountGeneration } from '../app/account_generation';
 import { energyActivityForSessionKind, type EnergyActivityKey } from '../app/energy_contract';
 import {
@@ -158,7 +159,22 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
       }
       console.log(`[ENERGY-GATE] auto: result=${result} screen=${screen} op=${operationId} → ${result === 'insufficient' ? 'onInsufficient (modal)' : 'onCancelled (back)'} handler=${result === 'insufficient' ? typeof onInsufficientRef.current : typeof onCancelledRef.current}`);
       if (result === 'insufficient') onInsufficientRef.current?.();
-      else onCancelledRef.current?.();
+      else {
+        // зачем (аудит Optimistic UI 13.10): 'cancelled' — это сбой (хранилище энергии не прочиталось, журнал не записался,
+        // сменился аккаунт), а экраны молча уходили назад — человек видел, что занятие закрылось само. Говорим причину.
+        emitAppEvent('action_toast', actionToastTri('error', {
+          ru: 'Не получилось начать занятие. Энергия не списана — попробуй ещё раз.',
+          uk: 'Не вдалося почати заняття. Енергію не списано — спробуй ще раз.',
+          en: "Couldn't start the session. No energy was spent — please try again.",
+          es: 'No se pudo empezar la sesión. No se gastó energía, inténtalo de nuevo.',
+          'pt-BR': 'Não foi possível começar a sessão. Nenhuma energia foi gasta — tente de novo.',
+          vi: 'Không thể bắt đầu buổi học. Chưa trừ năng lượng — hãy thử lại.',
+          id: 'Sesi tidak bisa dimulai. Energi tidak terpakai — coba lagi.',
+          tr: 'Ders başlatılamadı. Enerji harcanmadı — tekrar dene.',
+          pl: 'Nie udało się rozpocząć zajęć. Energia nie została zużyta — spróbuj ponownie.',
+        }));
+        onCancelledRef.current?.();
+      }
       // Не списано — разрешаем новую попытку того же входа (пополнил энергию).
       autoTriggeredRef.current = null;
     });

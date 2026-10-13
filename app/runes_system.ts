@@ -106,7 +106,8 @@ export async function getRunesBalanceRead(): Promise<RunesBalanceRead> {
       earnedTotal: result.earnedTotal,
     }));
     return Object.freeze({ wallet: result, quality: 'durable' });
-  } catch {
+  } catch (error) {
+    console.warn('[RUNES] balance_read:projection_failed →снапшот', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     // Проекция битая или аккаунт сменился — показываем то, что уже в снапшоте,
     // вместо нуля: занижать баланс на глазах у пользователя хуже, чем отстать.
     // The quality marker keeps this potentially incomplete value from becoming

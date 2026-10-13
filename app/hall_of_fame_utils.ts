@@ -208,6 +208,12 @@ function countStreakDay(reason: string, day: string): Promise<number> {
     .catch((error: unknown) => console.warn('[STREAK-DAY] count:read_last_failed', error instanceof Error ? error.message : String(error)))
     .then(() => updateStreakOnActivity())
     .then((streak) => {
+      if (streak < 0) {
+        // зачем (аудит Optimistic UI 13.10): запись серии не удалась — день НЕ помечаем (следующее учебное действие
+        // попробует снова) и «засчитано» не публикуем, иначе тост врёт.
+        console.warn(`[STREAK-DAY] count:not_saved reason=${reason} day=${day} — день не помечен, повтор при следующем действии`);
+        return -1;
+      }
       streakTouchedDayKey = day;
       streakSweptDayKey = day;
       markStreakDayCounted({ wasCountedBefore, days: streak, source: reason, today: day });
@@ -219,7 +225,7 @@ function countStreakDay(reason: string, day: string): Promise<number> {
     })
     .catch((error: unknown) => {
       console.warn('[STREAK-DAY] count:failed', error instanceof Error ? error.message : String(error));
-      return 0;
+      return -1;
     });
 }
 
@@ -426,7 +432,9 @@ export const updateStreakOnActivity = async (
   } catch (e) {
     // зачем: сбой обновления серии раньше был слышен только в dev — теперь всегда (catch не немой).
     console.warn('[STREAK] update:failed', e instanceof Error ? e.message : String(e));
-    return 0;
+    // зачем (аудит Optimistic UI 13.10): прежний `0` вызывающие принимали за успех — день помечался засчитанным, тост
+    // «День засчитан 🔥 1» показывался, хотя ничего не записано. `-1` — общий знак «серии нет / не сохранено».
+    return -1;
   }
 };
 

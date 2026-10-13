@@ -356,7 +356,8 @@ function parseOperation(raw: string | null, owner: string): EnergySessionOperati
     ) return null;
     validateIntent({ operationId: value.operationId, grant: value.grant });
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:operation_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -368,7 +369,8 @@ function parsePrepared(raw: string | null, owner: string): Prepared | null {
     if (value.schemaVersion !== 'energy-session-prepared.v1' || value.ownerStableId !== owner) return null;
     const operation = parseOperation(JSON.stringify(value.operation), owner);
     return operation ? { ...value, operation } : null;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:prepared_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -388,7 +390,8 @@ function parseState(raw: string | null, owner: string): LedgerState | null {
       || (value.headOperationId !== null && !OP_ID_RE.test(value.headOperationId))
     ) return null;
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:state_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -406,7 +409,8 @@ function parseGrantReceipt(raw: string | null, owner: string, operationId: strin
       || finiteInt(value.createdAtMs, 1) === null
     ) return null;
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:grant_receipt_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -423,7 +427,8 @@ function parseEnergySessionAck(raw: string | null, owner: string, operationId: s
       || finiteInt(value.acknowledgedAtMs, 1) === null
     ) return null;
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:ack_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -440,7 +445,8 @@ function parseRefundRequest(raw: string | null, owner: string): RefundRequest | 
       || finiteInt(value.requestedAtMs, 1) === null
     ) return null;
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:refund_request_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -457,7 +463,8 @@ function parseAbort(raw: string | null, owner: string, operationId: string): Abo
       || !/^[a-f0-9]{64}$/.test(value.requestFingerprint)
     ) return null;
     return value;
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] parse:abort_invalid →null', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     return null;
   }
 }
@@ -1076,7 +1083,8 @@ export async function acknowledgeEnergySessionStart(
       await AsyncStorage.setItem(ackKey(owner, operationId), encoded);
       return await AsyncStorage.getItem(ackKey(owner, operationId)) === encoded;
     }));
-  } catch {
+  } catch (error) {
+    console.warn('[ENERGY-LEDGER] ack:write_failed →false (чек списания — источник правды, повтор тем же op)', error instanceof Error ? error.message : String(error)); // guard-ok: причина в catch
     // Ack is metadata only. The durable debit+grant receipt remains the source
     // of truth and will be replayed with the same operation id.
     return false;

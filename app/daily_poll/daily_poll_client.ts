@@ -17,6 +17,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { DebugLogger } from '../debug-logger';
 import { getLocalDayKey } from '../local_date';
 import { getCanonicalUserId } from '../user_id_policy';
+import { withCallableTimeout } from '../callable_timeout';
 import { normalizeDailyPollCounts, parseDailyPoll, type DailyPoll, type DailyPollVote } from './daily_poll_model';
 import { devDailyPollVote, getDevDailyPoll } from '../dev_social_state';
 
@@ -26,6 +27,10 @@ const POLL_CACHE_PREFIX = 'daily_poll_cache_v1';
 const VOTE_PREFIX = 'daily_poll_vote_v1';
 /** Нет опроса на сегодня — не дёргаем сеть чаще, чем раз в 3 часа. */
 const NO_POLL_RECHECK_MS = 3 * 60 * 60 * 1000;
+// зачем (аудит Optimistic UI 13.10, координатор): без своего потолка голос на медленной сети держал строки опроса запертыми
+// до нативного потолка RN Firebase (~60–70 с). 10 с — дальше «нет связи», откат выбора и разблокировка строк (карточка уже умеет).
+export const DAILY_POLL_VOTE_TIMEOUT_MS = 10_000;
+const POLL_VOTE_LOG = '[POLL-VOTE]';
 
 export type DailyPollSnapshot = Readonly<{
   dateKey: string;
@@ -163,7 +168,7 @@ function classifyVoteError(error: unknown): DailyPollVoteErrorReason {
     return 'unknown';
   }
   if (text.includes('archived') || text.includes('not_today') || text.includes('option_invalid') || text.includes('options_broken')) return 'closed';
-  if (text.includes('unavailable') || text.includes('network') || text.includes('deadline')) return 'offline';
+  if (text.includes('unavailable') || text.includes('network') || text.includes('deadline') || text.includes('callable_timeout') || text.includes('timed out')) return 'offline';
   return 'unknown';
 }
 
@@ -175,11 +180,14 @@ let voteInFlight = false;
  */
 export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId: string): Promise<DailyPollVoteOutcome> {
   const { dateKey, poll } = snapshot;
+  console.log(`${POLL_VOTE_LOG} вход dateKey=${dateKey} option=${optionId} poll=${poll ? 'есть' : 'нет'} inFlight=${String(voteInFlight)}`); // guard-ok: вход
   if (voteInFlight) {
+    console.warn(`${POLL_VOTE_LOG} ранний выход reason=in_flight option=${optionId}`); // guard-ok: ранний выход
     DebugLogger.info(DAILY_POLL_LOG, `голос: ранний выход — предыдущий ещё в полёте (option=${optionId})`);
     return { ok: false, reason: 'unknown' };
   }
   if (!poll) {
+    console.warn(`${POLL_VOTE_LOG} ранний выход reason=no_poll dateKey=${dateKey}`); // guard-ok: ранний выход
     DebugLogger.warn(DAILY_POLL_LOG, `голос: ранний выход — опроса нет (dateKey=${dateKey})`);
     return { ok: false, reason: 'not_found' };
   }
@@ -190,6 +198,7 @@ export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId:
     return { ok: true, vote: devVote, alreadyVoted: false };
   }
   if (!isCloudEnabled()) {
+    console.warn(`${POLL_VOTE_LOG} ранний выход reason=cloud_disabled`); // guard-ok: ранний выход
     DebugLogger.info(DAILY_POLL_LOG, 'голос: ранний выход — облако выключено');
     return { ok: false, reason: 'offline' };
   }
@@ -198,6 +207,7 @@ export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId:
   try {
     const stableId = await ensureAnonUser();
     if (!stableId) {
+      console.warn(`${POLL_VOTE_LOG} ранний выход reason=no_stable_id ms=${Date.now() - startedAt}`); // guard-ok: ранний выход
       DebugLogger.warn(DAILY_POLL_LOG, 'голос: ранний выход — нет stableId');
       return { ok: false, reason: 'offline' };
     }
@@ -205,7 +215,7 @@ export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId:
       { dateKey: string; optionId: string; stableId: string },
       { ok: boolean; status: 'accepted' | 'already_voted'; optionId: string; counts: Record<string, number> }
     >(getFunctions(getApp(), REGION), 'dailyPollVote');
-    const res = await fn({ dateKey, optionId, stableId });
+    const res = await withCallableTimeout(fn({ dateKey, optionId, stableId }), 'dailyPollVote', DAILY_POLL_VOTE_TIMEOUT_MS);
     const ids = poll.options.map((o) => o.id);
     const serverOption = ids.includes(String(res.data?.optionId)) ? String(res.data.optionId) : optionId;
     const vote: DailyPollVote = { optionId: serverOption, counts: normalizeDailyPollCounts(res.data?.counts, ids) };
@@ -215,9 +225,11 @@ export async function submitDailyPollVote(snapshot: DailyPollSnapshot, optionId:
     const ownerId = snapshot.ownerId || stableId;
     await writeJson(voteKey(ownerId, dateKey), vote);
     memory = { ...snapshot, ownerId, vote };
+    console.log(`${POLL_VOTE_LOG} итог ok status=${String(res.data?.status)} option=${serverOption} ms=${Date.now() - startedAt}`); // guard-ok: итог
     return { ok: true, vote, alreadyVoted: res.data?.status === 'already_voted' };
   } catch (error) {
     const reason = classifyVoteError(error);
+    console.warn(`${POLL_VOTE_LOG} итог fail reason=${reason} code=${String((error as { code?: unknown })?.code ?? '')} ms=${Date.now() - startedAt}${String((error as { code?: unknown })?.code ?? '') === 'callable_timeout' ? ` — потолок ${DAILY_POLL_VOTE_TIMEOUT_MS} мс, откат выбора` : ''}`); // guard-ok: catch пишет причину
     DebugLogger.warn(DAILY_POLL_LOG, `голос: ошибка ${JSON.stringify({
       dateKey, optionId, reason, code: String((error as { code?: unknown })?.code ?? ''), message: String((error as { message?: unknown })?.message ?? error), ms: Date.now() - startedAt,
     })}`);

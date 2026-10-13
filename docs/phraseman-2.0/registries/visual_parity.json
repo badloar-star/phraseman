@@ -1235,9 +1235,9 @@
       "id": "cards-026",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 21,
-        "label": "Мало карточек для блица",
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 29,
+        "label": "Настройка — пусто",
         "mapping": "manual_rebind"
       },
       "screen": "Подготовка тренировки",
@@ -1256,14 +1256,12 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перепривязать к cards-v2 (настройка Блица, №28) или дорисовать там состояние ошибки",
-        "красной ошибки из образца в приложении нет",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец сменён — сверить кадр на ru с новым образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "_remap_note": "телефон макета 22 (\"Мало карточек для блица\") — склейка снята с 26; переснять",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 37) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
@@ -1271,7 +1269,8 @@
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре"
+        "coverage_note": "подмены Авторизации (DEV_SWITCHES_R1_CORE «Авторизация — Карточки и Друзья»); шаги не проверены на кадре",
+        "macets_rebind_2026_10_13": "перепривязано по решению координатора 13.10: был cards-states №21 (старый список с красной ошибкой); код — настройка Блица cards-v2 (TrainingSetupV2): мало карточек = серая «Начать»."
       },
       "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir",
@@ -2024,9 +2023,9 @@
       "id": "cards-044",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 38,
-        "label": "Открытие набора · сеть упала",
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 12,
+        "label": "Мои наборы",
         "mapping": "manual_rebind"
       },
       "screen": "Мои наборы — остальные состояния",
@@ -2045,19 +2044,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перепривязать к cards-v2 «Мои наборы»",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец сменён — сверить кадр на ru с новым образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "code_mapping_note": "уточнено Сверкой 11.10 по импортам экранов (V2-компоненты)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_rebind_2026_10_13": "перепривязано по решению координатора 13.10: был cards-states №38; код — список «Мои наборы» cards-v2 (MyPacksV2), сбой сети показывается общим тостом поверх списка."
       },
       "sverka_verdict": "Образец ≠ код: в приложении список «Мои наборы» нового вида cards-v2, в образце старый список cards-states. Текст тоста совпадает.",
       "shot_at": "2026-10-13T10:25:44.671Z",
@@ -2289,9 +2288,9 @@
       "id": "cards-050",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/cards-states.html",
-        "phone": 44,
-        "label": "Лайк после добавления",
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 16,
+        "label": "Чужой — добавлен: «В моих наборах»",
         "mapping": "manual_rebind"
       },
       "screen": "Отклик, лайк и жалобы",
@@ -2309,18 +2308,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перепривязать к cards-v2 (чужой набор после добавления)",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец сменён — сверить кадр на ru с новым образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_rebind_2026_10_13": "перепривязано по решению координатора 13.10: был cards-states №44; код — экран набора cards-v2: ♥ со счётчиком, «В моих наборах» + «Тренировать», сетка 2 столбца."
       },
       "sverka_verdict": "Образец ≠ код: в приложении экран набора cards-v2 (♥, «В моих наборах» + зелёная «Тренировать», сетка 2 столбца), в образце старый cards-states.",
       "shot_at": "2026-10-13T10:25:44.671Z",
@@ -15935,10 +15934,10 @@
       "id": "community-001",
       "source": "STATE_CHECKLIST",
       "mockup": {
-        "file": "docs/design/v2-app/community.html",
-        "phone": 1,
-        "label": "вкладка сообщества",
-        "mapping": "label_match"
+        "file": "docs/design/v2-app/spire.html",
+        "phone": 4,
+        "label": "Шпиль — башня, я на 4 этаже",
+        "mapping": "manual_rebind"
       },
       "screen": "Вкладка и Шпиль",
       "state": "вкладка сообщества",
@@ -15956,12 +15955,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перепривязать к spire.html или к текущей вкладке",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец сменён — сверить кадр на ru с новым образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:20:11.128Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -15980,7 +15978,8 @@
         "final_who": "Макеты",
         "final_group": "",
         "final_note": "",
-        "final_at": "2026-10-12"
+        "final_at": "2026-10-12",
+        "macets_rebind_2026_10_13": "перепривязано по решению координатора 13.10: был community.html №1 (старый хаб «Сообщество» из трёх карточек); код — вкладка «Шпиль · Друзья · Наборы», по умолчанию открыт Шпиль."
       },
       "shot_at": "2026-10-13T10:56:02.480Z",
       "shot_at_source": "bare_run_dir"
@@ -20411,10 +20410,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "match",
+      "diffs": [
+        "[пересъёмка] кадр 07:11 снят до правки кода экрана (07:31 / 08:01) — гейт не принимает match; раскладка совпадала"
+      ],
+      "status": "pending",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-12T01:41:34.931Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 1, пейволл Plus: цена и покупка), эталон сразу; светлая тема — телефоны 10–18",
       "precheck": {
         "date": "2026-10-11",
@@ -20641,10 +20642,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "match",
+      "diffs": [
+        "[пересъёмка] кадр 07:11 снят до правки кода экрана (07:31 / 08:01) — гейт не принимает match; раскладка совпадала"
+      ],
+      "status": "pending",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-12T18:13:18.774Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -20683,10 +20686,12 @@
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "match",
+      "diffs": [
+        "[пересъёмка] кадр 07:11 снят до правки кода экрана (07:31 / 08:01) — гейт не принимает match; раскладка совпадала"
+      ],
+      "status": "pending",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-12T02:21:38.479Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -33900,19 +33905,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перерисовать фон по текущему dialogs.html или перепривязать",
-        "подсказки «Ошибка в диалоге энергию не снимает…» в приложении нет — в образце это пояснение, уточнить, нужна ли она в коде"
+        "[образец перерисован] сверить новый кадр на ru с образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)",
+        "macets_redraw_2026_10_13": "образец energy-modes-states №21 перерисован по коду (Макеты 13.10): экран диалога — шапка с ⚡ 4 и квотой 29/30, плашка цели, аватары, «Перевод / Почему так», поле ввода; подпись внутри телефона убрана."
       },
       "sverka_verdict": "Поведение совпадает: после ошибочной реплики «I goed home» энергия осталась 4. Образец устарел: старый вид диалога без плашки цели и аватаров.",
       "shot_at": "2026-10-13T07:11:09.304Z",
@@ -33943,20 +33948,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перерисовать по шторке «Фраза дня» или перепривязать",
-        "энергия на кадре не видна — проверить «не снимается» нельзя",
-        "состояние ошибки (красный вариант) не снято"
+        "[образец перерисован] сверить новый кадр на ru с образцом"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "reviewed_at": "2026-10-13T12:25:29.630Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)",
+        "macets_redraw_2026_10_13": "образец energy-modes-states №22 перерисован по коду DailyPhraseCard: шторка «Фраза дня» на Главной после неверного ответа — варианты скрыты, «Дословно / Что значит / Пример». Сверке: тапнуть неверный вариант перед кадром."
       },
       "sverka_verdict": "Образец ≠ код: «Фраза дня» в приложении — шторка на Главной с тремя вариантами, в образце отдельный экран «Квиз» с энергией в шапке.",
       "shot_at": "2026-10-13T07:11:09.304Z",

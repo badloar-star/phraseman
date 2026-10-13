@@ -66,7 +66,10 @@
   .caret { display: inline-block; width: 2px; height: 20px; background: #fff; margin-left: 1px; vertical-align: middle; border-radius: 1px; animation: blink 1.05s steps(2) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
   /* зачем (Темы + координатор 13.10, cards-v2-027): шторка «Режим тренировки» в приложении — нейтральный градиент #28282E→#1E1E24 (как .sheet в shadow-skin.css), а не плоский #1B1B1D; перепривязка на cards-section.shadow не годится — там старая раскладка (тексты «Минута на скорость», «Вспомни и напиши»), поэтому тот же градиент задан здесь только для шторок режима (mode, m2) */
-  .ph .sheet[data-sheet="m2"], .ph .sheet[data-sheet="mode"] { background: linear-gradient(180deg, rgba(40,40,46,.98), rgba(30,30,36,.98)); }
+  /* зачем (D175, координатор 13.10: плитки режимов — образец к коду): тона сняты с кадра приложения cards-v2-027 (FlashcardsTrainingModeSheet: шторка shadowSheetGradient, плитки sheetPlateFill, плашка значка iconTileColors) */
+  .ph .sheet[data-sheet="m2"], .ph .sheet[data-sheet="mode"] { background: linear-gradient(180deg, #43454A, #2F3136); }
+  .ph .sheet[data-sheet="m2"] .mt, .ph .sheet[data-sheet="mode"] .mt { background: linear-gradient(180deg, #34363A, #2C2E33); box-shadow: 0 8px 18px -12px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06); }
+  .ph .sheet[data-sheet="m2"] .mt .tile, .ph .sheet[data-sheet="mode"] .mt .tile { background: linear-gradient(160deg, #858589, #5E5E60); color: #fff; box-shadow: 0 4px 10px -4px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.18); }
   .chips { display: flex; gap: 8px; overflow-x: auto; margin: 0 -20px; padding: 0 20px; scrollbar-width: none; }
   .chips::-webkit-scrollbar { display: none; }
   .chipbtn { height: 36px; padding: 0 16px; border-radius: 18px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600; color: var(--sec); background: #18181A; border: 1px solid var(--line); white-space: nowrap; flex: none; cursor: pointer; transition: background 200ms, color 200ms; }

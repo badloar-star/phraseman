@@ -62,6 +62,9 @@
   .gs-sheadr { text-align: center; font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 4px; }
   .gs-mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 22px; }
   .gs-mgrid.dis { opacity: .48; }
+  /* зачем (D175, координатор 13.10: плитки режимов — образец к коду): тона сняты с кадра приложения cards-v2-027 (FlashcardsTrainingModeSheet: шторка shadowSheetGradient, плитки sheetPlateFill, плашка значка iconTileColors) */
+  .gs-mgrid .gs-mt { background: linear-gradient(180deg, #34363A, #2C2E33); box-shadow: 0 8px 18px -12px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06); }
+  .gs-mgrid .gs-tl { background: linear-gradient(160deg, #858589, #5E5E60); color: #fff; box-shadow: 0 4px 10px -4px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.18); }
   .gs-mt { border-radius: 20px; padding: 16px; min-height: 112px; display: flex; flex-direction: column; justify-content: space-between; }
   .gs-mt .n { font-size: 16px; line-height: 22px; font-weight: 700; margin-top: 14px; }
   .gs-mt .s { font-size: 13px; color: var(--sec); margin-top: 2px; }
@@ -79,7 +82,7 @@
   .gs-al .cta { margin-top: 18px; height: 44px; border-radius: 22px; font-size: 16px; }
 
   /* зачем (Темы DIFF_COLOR_TRIAGE группа В + координатор 13.10, cards-gap-011): шторка режима тренировки — нейтральный градиент #28282E→#1E1E24 стиля «Тень» (как .sheet в shadow-skin.css), а не плоский kit #1B1B1D */
-  .ph .sheet[data-sheet="mw"], .ph .sheet[data-sheet="mf"] { background: linear-gradient(180deg, rgba(40,40,46,.98), rgba(30,30,36,.98)); }
+  .ph .sheet[data-sheet="mw"], .ph .sheet[data-sheet="mf"] { background: linear-gradient(180deg, #43454A, #2F3136); } /* D175: тон шторки с кадра приложения */
   /* ---------- тост ActionToast ---------- */
   /* зачем: по коду ActionToast: карточка от 76, радиус 20, слева рейка 3, плитка значка 44, подпись-тон 13/800 капсом и сообщение 16/22; цвета не зависят от типа — отличаются только значок и подпись тона */
   .gs-toast { position: absolute; left: 14px; right: 14px; bottom: 42px; z-index: 60; min-height: 76px; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;

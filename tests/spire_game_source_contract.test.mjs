@@ -19,7 +19,7 @@ const dirFiles = (dir) => readdirSync(new URL(`../${dir}/`, import.meta.url))
 const appSpire = dirFiles('app/spire');
 const gameComponents = [
   'SpireStepScreen.tsx', 'SpireTaskView.tsx', 'SpireTimerRing.tsx', 'SpireExitSheet.tsx', 'SpireResultPanel.tsx',
-  'SpireWeekResultCard.tsx', 'SpireRulesSheet.tsx', 'SpireTour.tsx', 'SpireClimbDock.tsx', 'spire_game_strings.ts',
+  'SpireWeekResultCard.tsx', 'SpireTour.tsx', 'SpireClimbDock.tsx', 'spire_game_strings.ts',
 ].map((n) => [`components/spire/${n}`, read(`components/spire/${n}`)]);
 const pureModules = ['modules/spire/pack_plan.ts', 'modules/spire/answer_reveal.ts', 'modules/spire/room_rows.ts']
   .map((p) => [p, read(p)]);
@@ -109,7 +109,7 @@ test('glass tokens: palette, opaque sheets, safe-area, no thick borders or text 
     for (const m of src.matchAll(/borderWidth:\s*([0-9.]+)/g)) assert.ok(Number(m[1]) <= 1, `${name}: borderWidth ${m[1]}`);
     assert.ok(!/#[0-9A-Fa-f]{6}\b/.test(src), `${name}: colours come from tokens, not literals`);
   }
-  for (const sheet of ['SpireExitSheet.tsx', 'SpireRulesSheet.tsx']) {
+  for (const sheet of ['SpireExitSheet.tsx']) {
     assert.ok(read(`components/spire/${sheet}`).includes('material="liquid-glass-opaque"'), `${sheet}: opaque glass sheet`);
   }
   for (const full of ['SpireStepScreen.tsx', 'SpireTour.tsx']) {

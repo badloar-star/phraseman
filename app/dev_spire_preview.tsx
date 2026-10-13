@@ -3,7 +3,7 @@
 //
 // зачем (координатор 11.10): живую комнату снять нельзя, пока на сервере config.enabled=false (его включает владелец в админке).
 // Здесь все состояния Шпиля открываются на готовых моках, чтобы Эмулятор и Сверка снимали их рядом со spire.html:
-//   /dev_spire_preview?state=lobby | room | win | summit | lose | save_failed | empty | offline | weekresult | tour | rules | all | locked
+//   /dev_spire_preview?state=lobby | room | win | summit | lose | save_failed | empty | offline | weekresult | tour | all | locked
 //                            | step_choice | step_build | step_items | step_wrong | step_prep
 //                            | weekresult_stay | weekresult_down | passed | guard | block_missing | block_offline
 //                            | step_gap | step_odd | step_listen_choose | step_listen_build

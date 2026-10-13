@@ -27,10 +27,6 @@ const EXPECTED_NUMBERS: Readonly<Record<string, readonly number[]>> = {
   hearts: [SPIRE_STEP_MAX_HEARTS],
   failSub: [SPIRE_STEP_TASK_COUNT],
   newWeekFromOne: [1],
-  rule1: [SPIRE_FLOOR_COUNT, SPIRE_ROOM_SIZE],
-  rule2: [SPIRE_STEP_TASK_COUNT, SPIRE_STEP_MAX_HEARTS],
-  rule5: [PERCENT, PERCENT],
-  rule8: [1],
 };
 
 describe('Spire dictionaries cover all 9 interface languages', () => {

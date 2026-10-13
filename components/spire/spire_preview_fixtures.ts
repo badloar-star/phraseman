@@ -16,7 +16,7 @@ import { spireCurrentWeekKey } from './spire_tower_model';
 import type { SpirePreviewGame, SpirePreviewModel } from './spire_preview_context';
 
 export const SPIRE_PREVIEW_STATES = [
-  'locked', 'lobby', 'room', 'win', 'summit', 'lose', 'save_failed', 'empty', 'offline', 'weekresult', 'tour', 'rules', 'all',
+  'locked', 'lobby', 'room', 'win', 'summit', 'lose', 'save_failed', 'empty', 'offline', 'weekresult', 'tour', 'all',
   'step_choice', 'step_build', 'step_items', 'step_wrong', 'step_prep',
   // зачем (координатор 14.10, R1_SHOT_LIST «нет пути»): итог недели «остаёшься»/«спускаешься», итог ступени «passed», этаж перед стражем,
   // плашки «задания готовятся»/«нет сети» у кнопки «Подняться» и четыре вида заданий, которых не было в превью.
@@ -251,8 +251,6 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
       return { ...base, week: week(7, 2, 31), game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS, startBlock: 'pack_offline' }) };
     case 'tour':
       return { ...base, tourSeen: false, week: week(1, 0, 0), game: game({ rows: rows(0), myPlace: 12 }) };
-    case 'rules':
-      return { ...base, rulesOpen: true, week: week(7, 2, 31), game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS }) };
     case 'all':
       return { ...base, showAll: true, week: week(7, 2, 31), game: game({ rows: rows(31, 14), myPlace: 5, friends: FRIENDS }) };
     default:

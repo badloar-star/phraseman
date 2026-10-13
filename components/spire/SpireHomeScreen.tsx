@@ -38,10 +38,8 @@ import EnergyBar from '../EnergyBar';
 import { useLang } from '../LangContext';
 import { usePremium } from '../PremiumContext';
 import { useStudyTarget } from '../StudyTargetContext';
-import V2Pressable from '../v2/V2Pressable';
 import { useSpireBgBottom, useSpirePalette } from './useSpirePalette';
 import { spireScreenLangLock } from './spire_screen_lang_lock';
-import { useSpireShadow } from './useSpireShadow';
 import SpireEnergyPill from './SpireEnergyPill';
 import SpireAllMembers from './SpireAllMembers';
 import SpireClimbDock from './SpireClimbDock';
@@ -52,7 +50,6 @@ import SpireLockedState from './SpireLockedState';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
 import SpireHomeSkeleton from './SpireHomeSkeleton';
-import SpireRulesSheet from './SpireRulesSheet';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
 import SpireTower from './SpireTower';
@@ -74,7 +71,7 @@ const DOCK_LIFT = 24;
 const DOCK_GAP = 16;
 export default function SpireHomeScreen() {
   const { lang } = useLang();
-  const p = useSpirePalette(); const sh = useSpireShadow();
+  const p = useSpirePalette();
   const bgBottom = useSpireBgBottom();
   const { studyTarget } = useStudyTarget();
   const { runtimeOwnerId } = useTabNav();
@@ -92,7 +89,6 @@ export default function SpireHomeScreen() {
   const [week, setWeek] = useState<SpireWeekLocal | null>(() => preview?.week ?? peekFirstFrameWeek(studyTarget));
   const [selected, setSelected] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(preview?.showAll ?? false);
-  const [rulesOpen, setRulesOpen] = useState(preview?.rulesOpen ?? false);
   const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
   // Измеренная высота дока (кнопка «Подняться» / панель итога): от неё считается нижний запас списка. 0 — ещё не измерен.
   const [dockH, setDockH] = useState(0);
@@ -145,8 +141,8 @@ export default function SpireHomeScreen() {
   // (unlocked/langLock/config/weekFloor) или показан замок/загрузка. Только dev, одна строка на смену.
   useEffect(() => {
     if (typeof __DEV__ === 'undefined' || !__DEV__) return;
-    console.log('[SPIRE-RULES] home', JSON.stringify({ rulesOpen, unlocked, langLocked: langLock.locked, lang, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', preview: preview !== null, weekFloor: week ? week.floor : null, tier: week ? week.tier : null, rendered: config === null ? 'spire-loading' : langLock.locked || !unlocked ? 'SpireLockedState' : 'home' })); // guard-ok: dev-журнал, что за шторкой правил
-  }, [rulesOpen, unlocked, langLock.locked, lang, config, preview, week]);
+    console.log('[SPIRE-RULES] home', JSON.stringify({ unlocked, langLocked: langLock.locked, lang, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', preview: preview !== null, weekFloor: week ? week.floor : null, tier: week ? week.tier : null, rendered: config === null ? 'spire-loading' : langLock.locked || !unlocked ? 'SpireLockedState' : 'home' })); // guard-ok: dev-журнал, что за шторкой правил
+  }, [unlocked, langLock.locked, lang, config, preview, week]);
   const spireLang = asSpireLang(studyTarget);
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка неделя и выбранный этаж старого языка не должны оставаться до конца чтения новой недели.
   const prevSpireLangRef = useRef(spireLang);
@@ -230,8 +226,6 @@ export default function SpireHomeScreen() {
   const onSelect = useCallback((floor: number) => setSelected(floor), []);
   const openAll = useCallback(() => setShowAll(true), []);
   const closeAll = useCallback(() => setShowAll(false), []);
-  const openRules = useCallback(() => setRulesOpen(true), []);
-  const closeRules = useCallback(() => setRulesOpen(false), []);
   const finishTour = useCallback(() => {
     DebugLogger.info(LOG, 'home: тур закрыт');
     setTourSeen(true);
@@ -291,15 +285,6 @@ export default function SpireHomeScreen() {
             </View>
             <Text style={[s.subtitle, { color: p.textSecondary }]}>{subtitle}</Text>
           </View>
-          <V2Pressable
-            onPress={openRules}
-            accessibilityRole="button"
-            accessibilityLabel={spireGameText(lang, 'rulesTitle')}
-            style={[s.rulesBtn, { backgroundColor: p.control }, sh.nested]}
-            testID="spire-rules-open"
-          >
-            <Ionicons name="information" size={20} color={p.text} />
-          </V2Pressable>
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
         </View>
         {offline ? (
@@ -372,7 +357,6 @@ export default function SpireHomeScreen() {
           onAbort={game.onStepAbort}
         />
       ) : null}
-      <SpireRulesSheet lang={lang} visible={rulesOpen} coins={config.coins} onClose={closeRules} />
       <SpireTour lang={lang} visible={game.live && tourSeen === false} onDone={finishTour} />
     </View>
   );
@@ -388,7 +372,6 @@ const s = StyleSheet.create({
   betaPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
   betaText: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 0.3 }, // зачем (аудит D145, 11.10): межстрочный ≥ 1.25× — шкала V2_TYPE 13/17
   subtitle: { fontSize: 16, lineHeight: 20, marginTop: 6 },
-  rulesBtn: { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
   note: { marginTop: 16, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
   noteText: { flex: 1, fontSize: 16, lineHeight: 21 },
   towerWrap: { marginTop: 18 },

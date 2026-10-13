@@ -22,26 +22,11 @@ describe('Шпиль: перенос срока недели', () => {
   });
 });
 
-describe('Шпиль: правила', () => {
-  it.each(['ru', 'uk'] as const)('%s: 8 непустых правил, 8-е — про понедельник', (lang) => {
-    const keys = ['rule1', 'rule2', 'rule3', 'rule4', 'rule5', 'rule6', 'rule7', 'rule8'] as const;
-    keys.forEach((key) => expect(spireGameText(lang, key, { step: 1, floor: 2, g: 2, summit: 50, p1: 200, p2: 120, p3: 80, promo: 100 } as never).trim().length).toBeGreaterThan(5));
-    expect(spireGameText(lang, 'rule8')).toMatch(lang === 'ru' ? /понедельник/i : /понеділок/i);
-  });
-
-  it('высота списка правил считается от экрана, шрифт не ужимается', () => {
-    const src = read('components', 'spire', 'SpireRulesSheet.tsx');
-    expect(src).toMatch(/useWindowDimensions/);
-    expect(src).toMatch(/style=\{\[s\.list, \{ maxHeight: listMaxHeight \}\]\}/);
-    expect(src).not.toMatch(/adjustsFontSizeToFit=/);
-  });
-});
-
 describe('Шпиль: стиль «Тень» и пилюля энергии', () => {
   const dir = join(root, 'components', 'spire');
   const mustUseShadow = [
-    'SpireAllMembers.tsx', 'SpireClimbDock.tsx', 'SpireExitSheet.tsx', 'SpireFriendsRow.tsx', 'SpireHomeScreen.tsx', 'SpirePodium.tsx',
-    'SpireResultPanel.tsx', 'SpireRulesSheet.tsx', 'SpireStepScreen.tsx', 'SpireTaskView.tsx', 'SpireTour.tsx', 'SpireWeekResultCard.tsx',
+    'SpireAllMembers.tsx', 'SpireClimbDock.tsx', 'SpireExitSheet.tsx', 'SpireFriendsRow.tsx', 'SpirePodium.tsx',
+    'SpireResultPanel.tsx', 'SpireStepScreen.tsx', 'SpireTaskView.tsx', 'SpireTour.tsx', 'SpireWeekResultCard.tsx',
   ];
 
   it.each(mustUseShadow)('%s берёт тень из useSpireShadow (plate / nested / action)', (name) => {

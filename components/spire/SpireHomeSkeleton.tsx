@@ -29,7 +29,6 @@ function SpireHomeSkeleton({ lang }: Readonly<{ lang: Lang }>) {
             <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{spireText(lang, 'title')}</Text>
             <View style={s.subtitleBox}><View style={[s.bar, { width: '58%', backgroundColor: p.cardRaised }]} /></View>
           </View>
-          <View style={[s.rulesBtn, { backgroundColor: p.control }]} />
         </View>
         <View style={[s.tower, { boxShadow: plateBoxShadow(g) }]}><PlateFill g={g} radius={22} /></View>
         <View style={[s.info, { boxShadow: plateBoxShadow(g) }]}>
@@ -51,7 +50,6 @@ const s = StyleSheet.create({
   title: { ...V2_TYPE.largeTitle, letterSpacing: -0.5 },
   subtitleBox: { height: 20, marginTop: 6, justifyContent: 'center' },
   bar: { height: 14, borderRadius: 7 },
-  rulesBtn: { width: 44, height: 44, borderRadius: 22 },
   tower: { marginTop: 18, height: TOWER_H, borderRadius: 22, overflow: 'hidden' },
   info: { marginTop: 12, minHeight: INFO_H, paddingHorizontal: 16, paddingVertical: 14, borderRadius: 16, justifyContent: 'center' },
 });

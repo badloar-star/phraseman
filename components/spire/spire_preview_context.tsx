@@ -20,8 +20,6 @@ export type SpirePreviewModel = Readonly<{
   /** true — тур уже виден/закрыт; false — показать тур поверх экрана. */
   tourSeen: boolean;
   coinRank: number | null;
-  /** Показать шторку правил сразу. */
-  rulesOpen?: boolean;
   /** Показать «Всех участников» сразу. */
   showAll?: boolean;
 }>;

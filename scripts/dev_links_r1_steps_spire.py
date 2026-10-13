@@ -40,9 +40,6 @@ add('spire-gap-011', [], '', preview('locked', 'tier=0&floor=4'), note='«Шпи
 add('spire-006', ['tap:#spire-all-members'], '', preview('room', 'tier=0&floor=4'), note='«Все участники»')
 add('community-003', [], '', preview('all'), note='в превью нет состояния offline-safe: плашки «Последнее обновление…» нет', unique=False)
 # зачем (координатор 12.10, Темы f8c38da27): превью принимает tier= (0 = Гранит) и floor= — данные образцов «Гранит, этаж 4» (spire-007/011/gap-018) и «Базальт, этаж 1» (gap-015)
-add('community-004', [], '', preview('rules'), note='шторка правил, начало списка')
-add('spire-gap-018', [], '', preview('rules', 'tier=0&floor=4'), note='шторка правил, начало списка (данные образца: Гранит, этаж 4)')
-add('spire-gap-019', ['scroll:down'], '', preview('rules', 'tier=0&floor=4'), note='прокрутка списка внутри шторки — шаг не отлажен', unique=False)
 
 # ── Ступень
 add('spire-007', [], '', preview('step_choice', 'tier=0&floor=4'), note='задание с выбором ответа')

@@ -1,6 +1,6 @@
 # Task packet: DEV_LINKS_R1 — энергия 2 у Шпиля, демо «Активности за год», spire-gap-021 вне R1 (координатор 13.10 ~11:25)
 
-Governance-ID: TG-C5A5F4F81AD3
+Governance-ID: TG-60430AE80BE4
 Status: Done — 38 строк обновлены (37 × energy=2, results-009 yearActivity=demo), spire-016 без изменений (energy=0), spire-gap-021 убрана; сторож 4/4
 Owner: 5 · АВТОРИЗАЦИЯ
 
@@ -46,3 +46,11 @@ Out of scope:
 ## Rollback
 
 `git revert` коммита; ссылки вернутся к прежним.
+
+## Revision 13.10 ~11:40 — spire-gap-021 возвращена
+
+Координатор: «моя ошибка — spire-gap-021 (тестерский флажок) по заметке реестра рабочая функция в сборке магазина; верни её в DEV_LINKS_R1 с energy=2».
+
+- `EXCLUDE_IDS` в errfix становится пустым (механизм оставлен, в нём нет id).
+- Строка spire-gap-021 возвращается в DEV_LINKS_R1 на прежнее место, с `energy=2`.
+- Проверка: строка есть, у неё `energy=2`, numstat — одна вставка и правки в errfix.

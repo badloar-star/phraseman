@@ -215,6 +215,6 @@ for _rid in sorted(ENTRIES):
 # results-009: подмена Ядра 0bc13b5b7 — yearActivity=demo даёт заполненную сетку и итоги образца (только __DEV__ и память).
 set_param('results-009', 'yearActivity', 'demo')
 
-# зачем (координатор 13.10): spire-gap-021 исключена из R1 — в DEV_LINKS_R1 не попадает. Реестр не трогаем (release снимают Сверка/Макеты);
-# генератор читает EXCLUDE_IDS рядом с INCLUDE_IDS.
-_STEPS_ROBOT.EXCLUDE_IDS = set(getattr(_STEPS_ROBOT, 'EXCLUDE_IDS', set())) | {'spire-gap-021'}
+# зачем (координатор 13.10): EXCLUDE_IDS — строки, которые не попадают в DEV_LINKS_R1 (генератор читает рядом с INCLUDE_IDS). Сейчас пусто:
+# spire-gap-021 (флажок жалобы тестера) исключали по ошибке — по заметке реестра это рабочая функция стор-сборки, координатор вернул её (~11:40).
+_STEPS_ROBOT.EXCLUDE_IDS = set(getattr(_STEPS_ROBOT, 'EXCLUDE_IDS', set()))

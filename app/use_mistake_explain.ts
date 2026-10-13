@@ -50,7 +50,7 @@ import {
 } from './ai_explain_consent';
 import { AI_EXPLAIN_AUTO_RETRIES, AI_EXPLAIN_RETRY_PAUSE_MS } from './load_gate_config';
 import { buildMistakeExplainFallbackText } from './mistake_explain_fallback';
-import { isDevAiExplainLimit } from './dev_paywall_state';
+import { getDevAiExplainDemoText, isDevAiExplainLimit } from './dev_paywall_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
@@ -560,6 +560,17 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         console.warn(`[DEV-STATE] explain: лимит дня подменён (ai_explain=limit) phrase=${phraseId}`); // guard-ok: dev-ветка
         setAiMistakeText(null);
         setAiMistakeState('limit');
+        releaseInFlight();
+        return;
+      }
+      const devDemoText = getDevAiExplainDemoText();
+      if (devDemoText !== null) {
+        // зачем (координатор 13.10, mistakes-panel-016): dev `ai_explain=demo` — объяснение образца без сервера и без расхода разбора дня.
+        console.warn(`[DEV-STATE] explain: объяснение подменено (ai_explain=demo) phrase=${phraseId}`); // guard-ok: dev-ветка
+        setAiMistakeText(devDemoText);
+        setAiMistakeRemaining(null);
+        setAiMistakeFallback(false);
+        setAiMistakeState('ready');
         releaseInFlight();
         return;
       }

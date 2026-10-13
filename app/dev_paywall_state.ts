@@ -122,6 +122,12 @@ export const DEV_LESSON_UPSELLS = ['first_lesson', 'three_lessons'] as const;
 export type DevLessonUpsell = (typeof DEV_LESSON_UPSELLS)[number];
 let lessonUpsell: DevLessonUpsell | null = null;
 let aiExplainLimit = false;
+/**
+ * зачем (координатор 13.10, mistakes-panel-016): «Почему» на кадре показывало отказ ИИ (лимит дня), а в образце — объяснение
+ * с «Объясни проще». `ai_explain=demo` подставляет текст образца без вызова сервера и без расхода бесплатного разбора дня.
+ */
+const DEV_AI_EXPLAIN_DEMO_TEXT = 'Grand- добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это children.';
+let aiExplainDemo = false;
 
 export function setDevLessonUpsell(value: DevLessonUpsell | null): boolean {
   if (!devPaywallAvailable()) {
@@ -149,6 +155,21 @@ export function setDevAiExplainLimit(on: boolean): boolean {
 
 export function isDevAiExplainLimit(): boolean {
   return devPaywallAvailable() && aiExplainLimit;
+}
+
+export function setDevAiExplainDemo(on: boolean): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} paywall: ai_explain=demo отклонён — не dev-сборка`, { on }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  aiExplainDemo = on;
+  console.log(`${LOG} paywall: ai_explain=${on ? 'demo' : 'off (demo)'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Текст демо-объяснения или null (подмена выключена / не dev-сборка). */
+export function getDevAiExplainDemoText(): string | null {
+  return devPaywallAvailable() && aiExplainDemo ? DEV_AI_EXPLAIN_DEMO_TEXT : null;
 }
 
 /**

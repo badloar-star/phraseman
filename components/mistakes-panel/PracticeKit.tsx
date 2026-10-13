@@ -65,18 +65,28 @@ export const Tray = memo(function Tray({ g, children, testID }: Readonly<{ g: Lv
 export type OptionMark = 'ok' | 'no' | undefined;
 
 /** Варианты ответа сеткой 2 колонки; после ответа верный подсвечен зелёным, выбранный неверный — красным. */
-export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, disabled }: Readonly<{ g: Lv2Glass; options: readonly string[]; marks?: Readonly<Record<string, OptionMark>>; onPick?: (option: string) => void; disabled?: boolean }>) {
+/**
+ * зачем (координатор 13.10, mistakes-panel-014/015): робот Сверки выбирал вариант координатами. testIDPrefix даёт `<prefix>-N`;
+ * devIsCorrect (передаётся ТОЛЬКО в dev-сборке) даёт `<prefix>-correct` / `<prefix>-wrong-N` — в стор-сборке признака верного нет.
+ */
+export const OptionGrid = memo(function OptionGrid({ g, options, marks, onPick, disabled, testIDPrefix, devIsCorrect }: Readonly<{ g: Lv2Glass; options: readonly string[]; marks?: Readonly<Record<string, OptionMark>>; onPick?: (option: string) => void; disabled?: boolean; testIDPrefix?: string; devIsCorrect?: (option: string) => boolean }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   // зачем (владелец 12.10, стиль «Тень»): плита варианта — плашка (градиент 180° и тень), без кромки; плитки верно/неверно рисуют своё
   // кольцо-состояние (это индикатор исхода ответа, а не обводка контейнера) и без градиента.
   return (
     <View style={styles.grid}>
-      {options.map((option) => {
+      {options.map((option, index) => {
         const mark = marks?.[option];
+        const testID = !testIDPrefix
+          ? undefined
+          : devIsCorrect
+            ? (devIsCorrect(option) ? `${testIDPrefix}-correct` : `${testIDPrefix}-wrong-${index}`)
+            : `${testIDPrefix}-${index}`;
         return (
           <Pressable
             key={option}
+            testID={testID}
             accessibilityRole="button"
             accessibilityState={{ disabled: !!(disabled || !onPick) }}
             disabled={disabled || !onPick}

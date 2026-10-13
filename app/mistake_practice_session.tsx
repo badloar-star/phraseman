@@ -64,6 +64,7 @@ import MistakeSessionFinale, { type MistakeFinaleFixed } from '../components/mis
 import MistakeEli5Modal from '../components/MistakeEli5Modal';
 import AiExplainConsentModal from '../components/AiExplainConsentModal';
 import { useMistakeExplain } from './use_mistake_explain';
+import { IS_STORE_RELEASE } from './config';
 import { prewarmMistakeSessionExplanations } from './mistake_explain_prewarm';
 import { commitPreparedMistakePracticeSession, prepareMistakePracticeSession } from './mistake_practice_session_runtime';
 import { trackMistakePracticeEvent } from './mistake_practice_analytics';
@@ -1469,7 +1470,13 @@ function MistakePracticeSessionScreen() {
     if (isChoice) {
       return (
         <Tray g={g} testID="mistake-practice-tray-choices">
-          <OptionGrid g={g} options={options} disabled={submitting} onPick={(option) => { answerValueRef.current = option; void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget)); }} />
+          <OptionGrid
+            g={g}
+            options={options}
+            testIDPrefix="mistake-practice-option"
+            // зачем (координатор 13.10, mistakes-panel-014/015): признак верного варианта — только для робота dev-сборки
+            devIsCorrect={__DEV__ && !IS_STORE_RELEASE ? (option) => matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget) : undefined}
+            disabled={submitting} onPick={(option) => { answerValueRef.current = option; void submitVerdict(matchesMistakePracticeAnswer(option, entry.exercise.correctAnswer, studyTarget)); }} />
         </Tray>
       );
     }

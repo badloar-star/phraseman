@@ -13,6 +13,8 @@ export function setDevLessonUpsell(): boolean { return false; }
 export function getDevLessonUpsell(): null { return null; }
 export function setDevAiExplainLimit(): boolean { return false; }
 export function isDevAiExplainLimit(): boolean { return false; }
+export function setDevAiExplainDemo(): boolean { return false; }
+export function getDevAiExplainDemoText(): string | null { return null; }
 // зачем (Ядро 12.10, learn-007…013): подмена прогресса уроков в стор-сборке выключена
 export function setDevLessonsProgress(): boolean { return false; }
 export function getDevLessonsProgress(): null { return null; }

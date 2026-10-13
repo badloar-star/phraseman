@@ -35,7 +35,7 @@ import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
 import { DEV_LOGOUT_MODES, DEV_NAME_CHECKS, type DevNameCheck, DEV_RESTORE_MODES, DEV_SIGNIN_MODES, DEV_SWITCH_MODES, setDevAccountState, type DevLogoutMode, type DevSignInMode, type DevSwitchMode } from './dev_account_state';
 import { DEV_FRIEND_EVENTS, isDevSettingsFail, type DevSettingsFail, DEV_FRIENDS_FAILS, DEV_FRIENDS_HOLDS, DEV_PROMO_RESULTS, DEV_REFCODE_RESULTS, setDevSocialState, type DevFriendEvent, type DevFriendsFail, type DevFriendsHold, type DevPromoResult, type DevRefcodeResult } from './dev_social_state';
 import { setDevEnergyStopPlusGranted } from './dev_energy_stop_flag';
-import { DEV_LESSON_UPSELLS, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, setDevRestorePurchaseEmpty, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
+import { DEV_LESSON_UPSELLS, setDevAiExplainDemo, setDevAiExplainLimit, setDevLessonUpsell, setDevManageLoadingHold, setDevPaywallLinkState, setDevRestorePurchaseEmpty, type DevLessonUpsell, type DevPaywallState } from './dev_paywall_state';
 import { ONBOARDING_STEP_CATALOG } from './onboarding_flow';
 import { DEV_BLITZ_ANSWERS, DEV_CARDS_FAILS, DEV_CARDS_HOLDS, DEV_CARDS_VOICES, DEV_COMMUNITY_COMMENTS, DEV_SPEECH_MODES, DEV_TRAIN_GATES, DEV_PACK_DRAFTS, setDevCardsState, setDevCommunityState, setDevLessonIntroSkip, setDevPackDraft, setDevPublishOk, type DevCardsFail, type DevCardsHold, type DevCommunityComments, type DevSpeechMode, type DevTrainGate } from './dev_cards_state';
 import { DEV_DIALOG_COMPLETIONS, DEV_DIALOG_FAILS, DEV_DIALOG_MEMORY, DEV_DIALOG_MOODS, setDevDialogState, type DevDialogCompletion, type DevDialogFail, type DevDialogMemory, type DevDialogMood } from './dev_dialog_state';
@@ -196,7 +196,7 @@ export type DevStateRequest = Readonly<{
   /** Мягкое предложение Plus на итоге урока без кулдаунов (paywalls-009/010). */
   upsell?: DevLessonUpsell | 'off';
   /** Карточка ИИ-разбора ошибки сразу «лимит дня» (paywalls-008). */
-  aiExplain?: 'limit' | 'off';
+  aiExplain?: 'limit' | 'off' | 'demo';
   /** learn-007…013 (Ядро 12.10): первые N уроков пройдены на 5 звёзд — только память, хранилище не трогается. */
   lessonsDone?: number | 'off';
   /** learn-007/008 (Ядро 12.10): результат экзамена A1 в памяти — «почти» (61%) или «сдан». */
@@ -451,7 +451,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.restorePurchase = pick('restorepurchase', ['empty', 'off'] as const);
   request.started = list('started', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.upsell = pick('upsell', [...DEV_LESSON_UPSELLS, 'off'] as const);
-  request.aiExplain = pick('ai_explain', ['limit', 'off'] as const);
+  request.aiExplain = pick('ai_explain', ['limit', 'off', 'demo'] as const);
   // зачем (координатор 12.10, разбор Авторизации d5888041c): состояния списка уроков и «Почему так» без настоящего прогресса и лимита
   const lessonsDoneRaw = one(params.lessonsDone);
   if (lessonsDoneRaw !== undefined) {
@@ -1064,7 +1064,8 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('dialogWhy', request.dialogWhy, async () => setDevDialogState({ whySpent: request.dialogWhy === 'spent' }));
   }
   if (request.aiExplain !== undefined) {
-    await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit'));
+    // зачем (координатор 13.10, mistakes-panel-016): demo — готовое объяснение образца без сервера; limit и demo взаимоисключающие.
+    await step('ai_explain', request.aiExplain, async () => setDevAiExplainLimit(request.aiExplain === 'limit') && setDevAiExplainDemo(request.aiExplain === 'demo'));
   }
   if (request.notifPerm !== undefined) {
     await step('notifperm', request.notifPerm, async () => setDevSocialState({ notifPermDenied: request.notifPerm === 'denied' }));

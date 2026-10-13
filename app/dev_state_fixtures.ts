@@ -229,6 +229,8 @@ export type DevStateRequest = Readonly<{
   errorScreen?: 'on' | 'off';
   /** announcement — демо-сообщение в окно «сообщение команды» из памяти, без сети. */
   appMessage?: 'announcement' | 'off';
+  /** show — окно «включить напоминания» (notifNudge) тем же событием, что в релизе; нужен overlays=on (умное напоминание, 13.10). */
+  notifNudge?: 'show';
   /** Разовая подсказка «Зажми карточку…» (dev_state_cards_demo.ts): show — вернуть (cards-033), seen — пометить увиденной; фикстуры карточек сами помечают её увиденной. Только анонимный гость. */
   hint?: 'show' | 'seen';
   /** п.83 (cards-027): наборы ДРУГИХ языков для кнопки языка на настройке тренировки — только память (dev_fc_lang_state.ts); off — снять. */
@@ -402,6 +404,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.coinUpgrade = pick('coinupgrade', ['hold', 'off'] as const);
   request.errorScreen = pick('errorscreen', ['on', 'off'] as const);
   request.appMessage = pick('appmessage', ['announcement', 'off'] as const);
+  request.notifNudge = pick('notifnudge', ['show'] as const);
   request.energyFail = onOff('dev_energy_fail');
   request.toast = pick('toast', ['purchase_confirmed', 'restored', 'status_not_found', 'no_active_subscriptions', 'status_check_failed', 'restore_failed', 'store_unreachable'] as const);
   // зачем (R1 «нет пути», Карточки): списки через запятую; любое неизвестное имя отбрасывается с причиной, остальные применяются.
@@ -870,6 +873,19 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('appmessage', request.appMessage, async () => {
       const { setDevAppMessage } = await import('./dev_social_state');
       return setDevAppMessage(request.appMessage === 'off' ? null : request.appMessage!);
+    });
+  }
+  if (request.notifNudge === 'show') {
+    await step('notifnudge', 'show', async () => {
+      // зачем (координатор 13.10, проверка умного напоминания Сверкой): окно показывается раз в день — стираем отметку и шлём
+      // то же событие, что и реальный путь (пропущенные дни). Дальше окно и расписание работают кодом релиза. Окно идёт
+      // через арбитр окон — ссылке нужен overlays=on. Разрешение ОС уже дано или напоминания включены → окно не покажется (как в релизе).
+      await AsyncStorage.removeItem('notif_permission_nudge_last_day');
+      setTimeout(() => {
+        console.log('[DEV-STATE] notifnudge: событие notif_permission_nudge missedDays=3'); // guard-ok: трассировка подмены
+        emitAppEvent('notif_permission_nudge', { missedDays: 3 });
+      }, 2500);
+      return true;
     });
   }
   if (request.intros) {

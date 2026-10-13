@@ -5,8 +5,12 @@
  * (spire-* по лигам). Подменяется ТОЛЬКО лига, по которой SpireTower выбирает наряд (память процесса): неделя, ступени, комната и
  * облако не трогаются. Только `__DEV__ && !IS_STORE_RELEASE`: в стор-сборке геттер всегда null, установка отклоняется.
  * Перезапуск приложения сбрасывает. Лог: [DEV-STATE] spireTier override=N.
+ *
+ * Там же — подмена карточки «Итог недели» (`dev_state?spireWeek=up|stay|down|top|marble|obsidian|off`): готовые исходы из макета «Итог недели»
+ * (повышение, остаёшься, понижение, высшая лига, Мрамор, Обсидиан) вместо ответа сервера. Недели, ступени и облако не трогаются.
  */
 import { IS_STORE_RELEASE } from './config';
+import type { SpireWeekResultView } from './spire/spire_week_result_client';
 
 const MAX_TIER = 11;
 let override: number | null = null;
@@ -33,4 +37,41 @@ export function setDevSpireTierOverride(tier: number | null): boolean {
 /** Подменённая лига или null. В стор-сборке всегда null. */
 export function getDevSpireTierOverride(): number | null {
   return devAvailable() ? override : null;
+}
+
+// ───────────────────── Итог недели для показа ─────────────────────
+export type DevSpireWeekKind = 'up' | 'stay' | 'down' | 'top' | 'marble' | 'obsidian';
+export const DEV_SPIRE_WEEK_KINDS: readonly DevSpireWeekKind[] = ['up', 'stay', 'down', 'top', 'marble', 'obsidian'];
+
+// зачем: значения 1-в-1 из макета spire-leagues.html (раздел «Итог недели»): место · ступени · монеты
+const WEEK_FIXTURES: Readonly<Record<DevSpireWeekKind, Omit<SpireWeekResultView, 'weekId' | 'lang'>>> = {
+  up: { steps: 47, roomRank: 3, roomTotal: 30, promoted: true, demoted: false, prevTier: 0, newTier: 1, placeCoins: 150, promotionCoins: 100 },
+  stay: { steps: 25, roomRank: 12, roomTotal: 30, promoted: false, demoted: false, prevTier: 0, newTier: 0, placeCoins: 0, promotionCoins: 0 },
+  down: { steps: 5, roomRank: 27, roomTotal: 30, promoted: false, demoted: true, prevTier: 2, newTier: 1, placeCoins: 0, promotionCoins: 0 },
+  top: { steps: 112, roomRank: 1, roomTotal: 30, promoted: true, demoted: false, prevTier: 10, newTier: 11, placeCoins: 300, promotionCoins: 100 },
+  marble: { steps: 64, roomRank: 2, roomTotal: 30, promoted: true, demoted: false, prevTier: 1, newTier: 2, placeCoins: 200, promotionCoins: 100 },
+  obsidian: { steps: 31, roomRank: 9, roomTotal: 30, promoted: false, demoted: false, prevTier: 10, newTier: 10, placeCoins: 0, promotionCoins: 0 },
+};
+
+let weekOverride: DevSpireWeekKind | null = null;
+
+/** Выставить исход «Итога недели» или снять (null). В стор-сборке — отказ с логом. */
+export function setDevSpireWeekResultOverride(kind: DevSpireWeekKind | null): boolean {
+  if (!devAvailable()) {
+    console.warn('[DEV-STATE] spireWeek: отклонено — не dev-сборка', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  if (kind !== null && !DEV_SPIRE_WEEK_KINDS.includes(kind)) {
+    console.warn('[DEV-STATE] spireWeek: отклонено — неизвестный исход', { kind }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  weekOverride = kind;
+  console.log(kind === null ? '[DEV-STATE] spireWeek override=off' : `[DEV-STATE] spireWeek override=${kind} (только карточка «Итог недели», сервер и недели не меняются)`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Подменённый итог недели для карточки или null. В стор-сборке всегда null. */
+export function getDevSpireWeekResultOverride(): SpireWeekResultView | null {
+  if (!devAvailable() || weekOverride === null) return null;
+  return { weekId: 'dev-week', lang: 'ru', ...WEEK_FIXTURES[weekOverride] };
 }

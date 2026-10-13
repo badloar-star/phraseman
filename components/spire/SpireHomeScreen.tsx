@@ -21,6 +21,7 @@ import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { peekSpireWeekLocal, spireReadWeekLocal } from '../../app/spire_report_client';
+import { getDevSpireWeekResultOverride } from '../../app/dev_spire_tier';
 import { loadSpireConfig, peekSpireConfig } from '../../app/spire_config_client';
 import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
@@ -226,6 +227,7 @@ export default function SpireHomeScreen() {
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
   const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek });
   const game = preview ? preview.game : realGame;
+  const devWeekResult = getDevSpireWeekResultOverride(); // dev_state?spireWeek=…: готовый исход «Итога недели» для кадров Сверки (в стор-сборке null)
   // зачем (смета Firebase 13.10, п. 5): потянуть экран = обновить друзей мимо кэша 30 мин. Спиннер держится, пока идёт вызов; повторное потягивание хук игнорирует.
   const [friendsRefreshing, setFriendsRefreshing] = useState(false);
   const onPullRefreshFriends = useCallback(() => {
@@ -355,8 +357,9 @@ export default function SpireHomeScreen() {
             <Text style={[s.noteText, { color: p.textSecondary }]}>{spireGameText(lang, 'stepNotCounted')}</Text>
           </View>
         ) : null}
-        {game.weekResult ? (
-          <SpireWeekResultCard lang={lang} result={game.weekResult} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
+        {/* зачем (координатор 13.10): dev_state?spireWeek=… подставляет готовый исход для кадров Сверки; в стор-сборке всегда null */}
+        {(devWeekResult ?? game.weekResult) ? (
+          <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
         ) : null}
         <View style={s.towerWrap}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={game.tier ?? week?.tier ?? null} />

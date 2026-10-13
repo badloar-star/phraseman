@@ -1,0 +1,14 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-gap-022: шаг see:#spire-beta-pill
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (5/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (6/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (7/8)
+[BATCH-SHOOT] spire-gap-022: элемент #spire-beta-pill не виден — ищем прокруткой вниз (8/8)
+[BATCH-SHOOT] spire-gap-022: шаг не выполнен: Error: step_target_not_found:#spire-beta-pill
+[BATCH-SHOOT] spire-gap-022: журнал приложения → 26 строк в _runs
+[BATCH-SHOOT] spire-gap-022: error 16077мс step_target_not_found:#spire-beta-pill+ждали_metro_28мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-39-29-911Z/spire-gap-022.error.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=1 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-39-29-911Z.tsv

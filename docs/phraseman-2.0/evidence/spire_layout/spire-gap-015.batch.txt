@@ -1,0 +1,5 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-gap-015: журнал приложения → 43 строк в _runs
+[BATCH-SHOOT] spire-gap-015: пустой кадр (доминанта 96.0%, цветов 583) — ждём и снимаем снова
+[BATCH-SHOOT] spire-gap-015: ok 13358мс marker+пусто_1441мс+склейка+ждали_metro_29мс → docs/phraseman-2.0/evidence/parity/spire-gap-015.png
+[BATCH-SHOOT] готово (все попытки): ok=1 timeout=0 error=0 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"ok":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-36-34-020Z.tsv

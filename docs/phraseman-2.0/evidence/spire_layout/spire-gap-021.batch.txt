@@ -1,0 +1,6 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-gap-021: шаг see:#spire-task-report-0
+[BATCH-SHOOT] spire-gap-021: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-gap-021: журнал приложения → 34 строк в _runs
+[BATCH-SHOOT] spire-gap-021: ok 12455мс marker+шагов_1+склейка+ждали_metro_30мс → docs/phraseman-2.0/evidence/parity/spire-gap-021.png
+[BATCH-SHOOT] готово (все попытки): ok=1 timeout=0 error=0 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"ok":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-39-02-404Z.tsv

@@ -22,7 +22,10 @@ import {
   useDialogueGlass,
 } from '../components/dialogs/glass/DialogueGlassKit';
 import { DialogueGlassMoodFace, dialogueMoodLabel } from '../components/dialogs/glass/DialogueGlassSessionParts';
-import { LV2_BAD, LV2_GOOD } from '../components/learning-v2/LearningV2Glass';
+import { LV2_BAD, LV2_GOOD, useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { BalancePill, CoinAward } from '../components/completion/V2DoneScreen';
+import { useReducedMotion } from 'react-native-reanimated';
+import { animateNextLayoutTransition } from './smooth_layout';
 import type { DialogueV2CoachingMood } from './dialogue_v2_turn_coaching_client';
 import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { triLang, type Lang } from '../constants/i18n';
@@ -234,6 +237,17 @@ export default function DialogueV2CompletionRoute() {
     endedBy,
     mistakes,
   });
+  // зачем (решение владельца 13.10, practice.html#done / dialogs.html D1–D4): пилюля баланса справа в шапке и «+N монет» с монетой под цифрами.
+  // Блок появляется, когда монеты легли в копилку (status='awarded'); повторный заход на экран ('already', coins=0) его не рисует — поздравляем фактом, а не записью.
+  const lv2Glass = useLv2Glass();
+  const reduceMotion = useReducedMotion();
+  const showCoinAward = dialogCoinReward.status === 'awarded' && dialogCoinReward.coins > 0;
+  const coinAwardShownRef = useRef(false);
+  useEffect(() => {
+    if (!showCoinAward || coinAwardShownRef.current) return;
+    coinAwardShownRef.current = true;
+    animateNextLayoutTransition(); // зачем: блок вставляется в поток после первого кадра — сдвиг плавный, а не скачком
+  }, [showCoinAward]);
   useEffect(() => {
     if (dialogCoinReward.status === 'waiting') return;
     console.log(`[COINS-EARN] dialog: экран итога статус=${dialogCoinReward.status} монеты=+${dialogCoinReward.coins}`); // guard-ok: итог для экрана
@@ -254,6 +268,8 @@ export default function DialogueV2CompletionRoute() {
       <SafeAreaView style={styles.fill} edges={['top', 'bottom']}>
         <View style={styles.header} testID="dialogue-v2-completion-header">
           <DialogueGlassBackButton glass={glass} icon="close" onPress={close} accessibilityLabel={labels.close} />
+          <View style={styles.headerSpacer} />
+          <BalancePill g={lv2Glass} lang={lang} />
         </View>
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <View style={styles.titleBlock}>
@@ -298,6 +314,12 @@ export default function DialogueV2CompletionRoute() {
                 <Stat glass={glass} value={`${mistakes}`} label={labels.mistakes} color={LV2_BAD} divider />
                 <Stat glass={glass} value={`${accuracy}%`} label={labels.accuracy} divider />
               </View>
+              {showCoinAward ? (
+                <View testID="dialogue-v2-completion-coins">
+                  {/* guard-ok: только отображение начисленного, баланс не меняется (начисляет useDialogueV2CoinReward) */}
+                  <CoinAward amount={dialogCoinReward.coins} lang={lang} g={lv2Glass} animate={!reduceMotion} />
+                </View>
+              ) : null}
             </>
           ) : null}
           {review ? (
@@ -438,6 +460,7 @@ function Stat({ glass, value, suffix, label, color, divider }: Readonly<{
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   header: { paddingHorizontal: 16, paddingTop: 2, flexDirection: 'row', alignItems: 'center' },
+  headerSpacer: { flex: 1 },
   scroll: { paddingHorizontal: 16, paddingBottom: 24 },
   titleBlock: { alignItems: 'center', marginTop: 18 },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, textAlign: 'center' },

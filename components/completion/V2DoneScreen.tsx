@@ -89,7 +89,8 @@ const Star = memo(function Star({ on, index, g, animate }: { on: boolean; index:
   );
 });
 
-const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: { amount: number; lang: Lang; g: Lv2Glass; animate: boolean }) {
+// зачем (решение владельца 13.10, монеты за диалог): тот же блок «+N монет» нужен итогу диалога — не дублируем анимацию.
+export const CoinAward = memo(function CoinAward({ amount, lang, g, animate }: { amount: number; lang: Lang; g: Lv2Glass; animate: boolean }) {
   // Макет: монета «пружинит», счёт растёт от 0 до суммы.
   const [shown, setShown] = useState(animate ? 0 : amount);
   const pop = useSharedValue(animate ? 0.5 : 1);

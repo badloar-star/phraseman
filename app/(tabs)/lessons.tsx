@@ -316,7 +316,8 @@ const EXEMPT_COLOR_27 = 'rgba(255,255,255,0.30)'; // theme-exempt: карточ�
 const EXEMPT_COLOR_28 = 'rgba(255,255,255,0.30)'; // theme-exempt: карточка урока: заливка и чернила — палитра уровня/темы списка (токены A1–B2 — у сессии «Темы»); тени текста на заливке — чёрные в любой теме
 // зачем (58, сперва замер): когда и кем вычисляется модуль маршрута «Уроки» — на старте роутером или прогревом
 // вкладки/тапом. Временно; снять вместе с решением по 58.
-console.warn('[ROUTE-EVAL] lessons module evaluated', JSON.stringify({ epochMs: Date.now(), stack: String(new Error().stack ?? '').split(String.fromCharCode(10)).slice(1, 9).map((line) => line.trim()) })); // guard-ok: временная трассировка
+// зачем (Авторизация 13.10, аудит скорости): трассировка писала стек в релизной сборке при каждом вычислении модуля — теперь только в dev
+if (__DEV__) console.warn('[ROUTE-EVAL] lessons module evaluated', JSON.stringify({ epochMs: Date.now(), stack: String(new Error().stack ?? '').split(String.fromCharCode(10)).slice(1, 9).map((line) => line.trim()) })); // guard-ok: временная трассировка, только dev
 /** Снимок UI списка уроков переживает ремоунт push-экрана в рамках ОДНОГО аккаунта.
  *  Штамп поколения дополняет LessonsPaneBoundary retained-вкладки: кэш прежнего
  *  аккаунта не должен мигнуть ни в одном из двух presentation-режимов. */

@@ -25,11 +25,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { DebugLogger } from './debug-logger';
 import { getLocalDayKey } from './local_date';
+import { peekStableId } from './stable_id';
+import { spireCurrentWeekKey } from '../components/spire/spire_tower_model';
 import {
   type SpireFlushResponse,
   type SpireFlushTrigger,
   type SpireLang,
   type SpireStepReport,
+  type SpireWeekLocal,
 } from '../modules/spire/report_queue';
 import {
   spireFlushReports,
@@ -99,9 +102,36 @@ async function markSpireStreakDay(report: SpireStepReport): Promise<void> {
   }
 }
 
+/**
+ * Последняя прочитанная с диска неделя по uid+языку — для первого кадра экрана Шпиля (peek).
+ * зачем (аудит скорости Авторизации 13.10, п.1): неделя читалась только асинхронно, и маркер «ты здесь» с блоком этажа дорисовывались позже, а выбранный этаж
+ * прыгал с 1 на настоящий. Память процесса, не диск: холодный старт читает как раньше, повторный заход рисует сразу.
+ */
+const weekMemory = new Map<string, SpireWeekLocal>();
+const weekMemoryKey = (uid: string, lang: SpireLang): string => `${uid}|${lang}`;
+
+/** Синхронно: локальная неделя ТЕКУЩЕЙ ISO-недели из памяти процесса или null (нет uid, не читали, неделя устарела). */
+export function peekSpireWeekLocal(lang: SpireLang): SpireWeekLocal | null {
+  const uid = CLOUD_SYNC_ENABLED ? peekStableId() : null;
+  if (!uid) return null;
+  const hit = weekMemory.get(weekMemoryKey(uid, lang)) ?? null;
+  if (!hit) return null;
+  const expected = spireCurrentWeekKey(Date.now());
+  if (hit.weekKey !== expected) {
+    DebugLogger.info(LOG, `peekWeek: в памяти неделя ${hit.weekKey}, сейчас ${expected} — первый кадр без недели`);
+    return null;
+  }
+  return hit;
+}
+
 /** Записать результат ступени на диск (очередь). Сеть не трогает. */
 export async function spireRecordStepResult(uid: string, lang: SpireLang, report: SpireStepReport) {
   const applied = await spireRecordStep(store, { uid, lang, report, logger });
+  // зачем: после записи ступени память недели устарела — перечитываем фоном (локальный диск, 0 чтений облака), чтобы следующий вход нарисовал свежую.
+  weekMemory.delete(weekMemoryKey(uid, lang));
+  void spireReadWeekLocal(uid, lang).catch((error: unknown) => {
+    DebugLogger.warn(LOG, `peekWeek: перечитать неделю после ступени не удалось (${error instanceof Error ? error.message : String(error)})`);
+  });
   // Серия — только за ПРОЙДЕННУЮ и новую ступень (провал и повтор дня не дают).
   if (report.outcome === 'passed' && applied.effect !== 'duplicate_ignored') {
     void markSpireStreakDay(report);
@@ -110,8 +140,12 @@ export async function spireRecordStepResult(uid: string, lang: SpireLang, report
 }
 
 /** Текущее локальное состояние недели — для первого кадра экрана из снапшота. */
-export function spireReadWeekLocal(uid: string, lang: SpireLang) {
-  return spireLoadWeekLocal(store, uid, lang, logger);
+export function spireReadWeekLocal(uid: string, lang: SpireLang): Promise<SpireWeekLocal | null> {
+  return spireLoadWeekLocal(store, uid, lang, logger).then((local) => {
+    if (local) weekMemory.set(weekMemoryKey(uid, lang), local);
+    else weekMemory.delete(weekMemoryKey(uid, lang));
+    return local;
+  });
 }
 
 /**

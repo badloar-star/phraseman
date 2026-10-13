@@ -27,7 +27,8 @@ describe('Шпиль: смена изучаемого языка', () => {
     expect(at).toBeGreaterThan(0);
     expect(at).toBeLessThan(home.indexOf('readCurrentLocalWeek(spireLang)'));
     expect(home).toMatch(/if \(before === spireLang\) return;/);
-    expect(home).toMatch(/setWeek\(null\);\s+setSelected\(null\);/);
+    // зачем (аудит скорости 13.10): неделя нового языка берётся из памяти процесса по ЕГО ключу (uid+язык); чужая неделя прежнего языка не остаётся
+    expect(home).toMatch(/setWeek\(peekFirstFrameWeek\(spireLang\)\);[^\n]*\s+setSelected\(null\);/);
   });
 
   it('оба сброса пишут [SPIRE-TARGET] с было/стало', () => {

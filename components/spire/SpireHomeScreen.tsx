@@ -20,7 +20,7 @@ import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { spireReadWeekLocal } from '../../app/spire_report_client';
+import { peekSpireWeekLocal, spireReadWeekLocal } from '../../app/spire_report_client';
 import { loadSpireConfig, peekSpireConfig } from '../../app/spire_config_client';
 import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
@@ -78,6 +78,16 @@ function asSpireLang(value: unknown): SpireLang | null {
   return SPIRE_LANGS.includes(value as SpireLang) ? (value as SpireLang) : null;
 }
 
+/**
+ * Неделя для ПЕРВОГО кадра из памяти процесса (peek), без чтения диска.
+ * зачем (аудит скорости Авторизации 13.10, п.1): без неё маркер «ты здесь» и блок этажа дорисовывались после асинхронного чтения, а выбранный этаж
+ * прыгал с 1 на настоящий — экран дёргался. Настоящее чтение ниже подтверждает или заменяет значение.
+ */
+function peekFirstFrameWeek(studyTarget: unknown): SpireWeekLocal | null {
+  const lang = asSpireLang(studyTarget);
+  return lang ? peekSpireWeekLocal(lang) : null;
+}
+
 /** Локальная неделя текущей ISO-недели или null (чужая/старая неделя — не показываем как свою). */
 async function readCurrentLocalWeek(lang: SpireLang): Promise<SpireWeekLocal | null> {
   const uid = await getCanonicalUserId();
@@ -119,7 +129,7 @@ export default function SpireHomeScreen() {
   // Замок 2: null = конфиг ещё не прочитан (кэш), дальше решает config.enabled.
   // зачем (аудит Optimistic UI Шпиля, 13.10): повторный заход не рисует пустой `spire-loading` — берём последний настоящий конфиг из памяти процесса; loadSpireConfig ниже освежает его фоном.
   const [config, setConfig] = useState<SpireConfigDoc | null>(() => preview?.config ?? peekSpireConfig());
-  const [week, setWeek] = useState<SpireWeekLocal | null>(preview?.week ?? null);
+  const [week, setWeek] = useState<SpireWeekLocal | null>(() => preview?.week ?? peekFirstFrameWeek(studyTarget));
   const [selected, setSelected] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(preview?.showAll ?? false);
   const [rulesOpen, setRulesOpen] = useState(preview?.rulesOpen ?? false);
@@ -185,7 +195,7 @@ export default function SpireHomeScreen() {
     if (before === spireLang) return;
     prevSpireLangRef.current = spireLang;
     console.log('[SPIRE-TARGET] home: язык', JSON.stringify({ from: before, to: spireLang, reset: { weekFloor: week ? week.floor : null, selected } })); // guard-ok: трассировка сброса при смене изучаемого языка
-    setWeek(null);
+    setWeek(peekFirstFrameWeek(spireLang)); // неделя нового языка, если её уже читали в этом процессе; иначе null до чтения
     setSelected(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [spireLang]);

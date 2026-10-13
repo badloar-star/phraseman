@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { withoutLocallyHiddenMistakes } from './mistake_local_hidden';
 import { rememberMistakeDetailDraft } from './mistake_detail_draft';
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import { GlassRim } from '../components/mistakes-panel/GlassRim';
 import { useScaledTextStyles } from '../hooks/useLineScale';
@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
+import { useLv2Glass, type Lv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { BackButton, FilterChips, MiniDots, Panel, PanelCta, PanelDock, PanelRow, ScreenTitle, type PanelChip } from '../components/mistakes-panel/PanelKit';
 import { MISTAKE_GROUPS, mistakeGroupLabel, mistakeGroupOf, type MistakeGroupFilter } from '../components/mistakes-panel/mistakeGroups';
 import { triLang, type Lang } from '../constants/i18n';
@@ -46,6 +46,23 @@ const copyFor = (lang: Lang) => triLang(lang, {
 });
 
 const PAGE = 40;
+
+// зачем (аудит скорости Авторизации 13.10, п.3): PanelRow уже в memo, но onPress и right создавались заново в каждом рендере экрана — каждый ввод в поиске
+// перерисовывал все строки. Строка-обёртка в memo получает item и стабильный onOpen, остальное собирает внутри.
+const MistakeListRow = memo(function MistakeListRow({ g, item, first, onOpen }: Readonly<{ g: Lv2Glass; item: MistakePracticeListItem; first: boolean; onOpen: (item: MistakePracticeListItem) => void }>) {
+  const open = useCallback(() => onOpen(item), [item, onOpen]);
+  return (
+    <PanelRow
+      g={g}
+      first={first}
+      testID={`mistakes-list-row-${item.mistakeId}`}
+      title={item.phrase}
+      subtitle={item.meaning}
+      right={<MiniDots g={g} n={item.status === 'corrected' ? 3 : item.qualifyingDays} />}
+      onPress={open}
+    />
+  );
+});
 
 export default function MistakesListScreen() {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
@@ -149,9 +166,13 @@ export default function MistakesListScreen() {
     router.push({ pathname: '/mistake_practice_session', params: group === 'all' ? { pool: 'corrected', length: 'all' } : { pool: 'corrected', length: 'all', facetGroup: group } } as never);
   }, [correctedInGroup, gate, group, router, target]);
 
+  // зачем (аудит скорости 13.10): подскролл у низа срабатывал на КАЖДОЕ событие и даже при показанных всех строках двигал limit — лишние перерисовки всего экрана.
+  // Теперь при limit ≥ числа строк состояние не меняется (React пропускает перерисовку для того же значения).
+  const visibleCountRef = useRef(0);
+  visibleCountRef.current = visible.length;
   const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { contentOffset, contentSize, layoutMeasurement } = event.nativeEvent;
-    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - 400) setLimit((value) => value + PAGE);
+    if (contentOffset.y + layoutMeasurement.height >= contentSize.height - 400) setLimit((value) => (value >= visibleCountRef.current ? value : value + PAGE));
   }, []);
 
   const goBack = useCallback(() => safeRouterBack(router, '/mistakes_hub' as never), [router]);
@@ -226,16 +247,7 @@ export default function MistakesListScreen() {
                 <View style={[styles.skel, { backgroundColor: g.line, height: 12, width: '30%', marginTop: 8 }]} />
               </View>
             )) : visible.slice(0, limit).map((item, index) => (
-              <PanelRow
-                key={item.mistakeId}
-                g={g}
-                first={index === 0}
-                testID={`mistakes-list-row-${item.mistakeId}`}
-                title={item.phrase}
-                subtitle={item.meaning}
-                right={<MiniDots g={g} n={item.status === 'corrected' ? 3 : item.qualifyingDays} />}
-                onPress={() => openOne(item)}
-              />
+              <MistakeListRow key={item.mistakeId} g={g} first={index === 0} item={item} onOpen={openOne} />
             ))}
           </Panel>
         </ScrollView>

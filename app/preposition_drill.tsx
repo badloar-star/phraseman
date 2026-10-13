@@ -136,6 +136,8 @@ function PrepositionDrillScreen() {
     enabled: lessonId > 0 && Boolean(pack),
   });
   const prepositionSettledPassRef = useRef(false);
+  // зачем (ревью Авторизации 13.10): итог повтора внутри экрана показывает +0 — поздравляем фактом, а не прошлым проходом.
+  const [repeatRunWithoutCoins, setRepeatRunWithoutCoins] = useState(false);
   useEffect(() => {
     if (!done || prepositionRunes.hydrating || prepositionSettledPassRef.current) return;
     prepositionSettledPassRef.current = true;
@@ -332,8 +334,14 @@ function PrepositionDrillScreen() {
     if (ok) {
       fk.verdict({ correct: true });
       setCorrectCount(v => v + 1);
-      const coins = prepositionRunes.onCorrectAnswer(item.id);
-      console.log(`[COINS-EARN] prep: верно урок=${lessonId} item=${item.id} +${coins} (${coins === 0 ? 'уже засчитан в этом проходе' : 'в копилку'})`); // guard-ok: начисление
+      // зачем (ревью Авторизации 13.10, 🔴): монеты — только в проходе, за который списана энергия (вход в экран). После зачёта
+      // «Ещё раз» / «Повторить ошибки» идут без энергии — и без монет, иначе это бесконечный фарм (в т.ч. «провалить нарочно → повторить ошибки»).
+      if (prepositionSettledPassRef.current) {
+        console.log(`[COINS-EARN] prep: верно урок=${lessonId} item=${item.id} +0 (повтор после итога — проход без энергии, монет нет)`); // guard-ok: ветка
+      } else {
+        const coins = prepositionRunes.onCorrectAnswer(item.id);
+        console.log(`[COINS-EARN] prep: верно урок=${lessonId} item=${item.id} +${coins} (${coins === 0 ? 'уже засчитан в этом проходе' : 'в копилку'})`); // guard-ok: начисление
+      }
       const nextAnswered = answeredIds.includes(item.id) ? answeredIds : [...answeredIds, item.id];
       const nextWrong = reviewMode ? wrongIds.filter(id => id !== item.id) : wrongIds;
       setAnsweredIds(nextAnswered);
@@ -360,16 +368,15 @@ function PrepositionDrillScreen() {
     setItemIdx(v => v + 1);
   };
 
-  // зачем (монеты): новый проход после итога — цена повтора (+1); засчитанные элементы прошлого прохода не платят дважды.
-  const startNextCoinPass = () => {
-    if (!prepositionSettledPassRef.current) return;
-    const started = prepositionRunes.startNewCompletionIfSettled();
-    console.log(`[COINS-EARN] prep: новый проход урок=${lessonId} ${started ? 'начат (цена повтора)' : 'отложен — прошлый зачёт ещё идёт'}`); // guard-ok: ветка
-    if (started) prepositionSettledPassRef.current = false;
+  // зачем (ревью Авторизации 13.10, 🔴): нового прохода копилки после итога больше НЕТ — повтор внутри экрана энергию не платит,
+  // поэтому и монет не даёт. Новый оплачиваемый проход — только повторный вход в тренажёр (снова гейт энергии), как у уроков.
+  const logRepeatWithoutCoins = (kind: 'wrong' | 'all') => {
+    setRepeatRunWithoutCoins(true);
+    console.log(`[COINS-EARN] prep: повтор ${kind} урок=${lessonId} — без монет (энергия за вход уже списана, проход зачтён=${String(prepositionSettledPassRef.current)})`); // guard-ok: ветка
   };
 
   const restartWrong = () => {
-    startNextCoinPass();
+    logRepeatWithoutCoins('wrong');
     stopAudio();
     setReviewMode(true);
     setItemIdx(0);
@@ -380,7 +387,7 @@ function PrepositionDrillScreen() {
   };
 
   const restartAll = () => {
-    startNextCoinPass();
+    logRepeatWithoutCoins('all');
     stopAudio();
     setReviewMode(false);
     setItemIdx(0);
@@ -652,7 +659,7 @@ function PrepositionDrillScreen() {
               stars={null}
               correct={total > 0 ? correctCount : null}
               wrong={total > 0 ? Math.max(0, total - correctCount) : null}
-              coinsGained={prepositionRunes.runes}
+              coinsGained={repeatRunWithoutCoins ? 0 : prepositionRunes.runes}
               errors={runErrorsRef.current}
               primaryLabel={wrongIds.length > 0 && !reviewMode
                 ? triLang(lang, { ru: 'Закрепить промахи', uk: 'Закріпити промахи', en: 'Fix mistakes', es: 'Repasar fallos', 'pt-BR': 'Corrigir erros', vi: 'Sửa lỗi', id: 'Perbaiki kesalahan', tr: 'Hataları düzelt', pl: 'Popraw błędy' })

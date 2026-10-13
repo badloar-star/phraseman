@@ -83,7 +83,16 @@ describe('dialogue coin reward', () => {
     expect(drill).toContain('sessionKey: `prep_${studyTarget}_${lessonId}`,');
     expect(drill).toContain('prepositionRunes.onCorrectAnswer(item.id)');
     expect(drill).toContain('void prepositionRunes.settle()');
-    expect(drill).toContain('coinsGained={prepositionRunes.runes}');
+    expect(drill).toContain('coinsGained={repeatRunWithoutCoins ? 0 : prepositionRunes.runes}');
     expect(drill).not.toContain('coinsGained={0}');
+  });
+
+  // зачем (ревью Авторизации 13.10, 🔴): «Ещё раз» / «Повторить ошибки» после итога идут без энергии — нового прохода копилки нет,
+  // ответы после зачёта в копилку не идут (иначе бесконечный фарм, в т.ч. «провалить нарочно → повторить ошибки»).
+  it('тренажёр предлогов: повтор внутри экрана после итога монет не даёт', () => {
+    const drill = read('app/preposition_drill.tsx');
+    expect(drill).not.toContain('startNewCompletionIfSettled');
+    expect(drill).not.toContain('startNextCoinPass');
+    expect(drill).toMatch(/if \(prepositionSettledPassRef\.current\) \{[\s\S]{0,260}\+0 \(повтор после итога[\s\S]{0,160}\} else \{\s*const coins = prepositionRunes\.onCorrectAnswer\(item\.id\);/);
   });
 });

@@ -30,6 +30,7 @@ import {
   type DialogueV2CatalogueWorld,
 } from './DialogueV2CatalogueSection';
 import { DialogueV2PlusTools } from './DialogueV2PlusTools';
+import { HubHeaderCollapsible } from './hub_header_collapse';
 import { DialogueV2CatalogueSkeleton } from './DialogueV2CatalogueSkeleton';
 import { isDevDialogLanguageGateHeld } from '../../app/dev_dialog_state';
 import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../app/dialogue_v2_done_store';
@@ -267,11 +268,14 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: 
   const plusTools = (
     <>
       {quotaRow}
-      <DialogueV2PlusTools
-        accessResolved={accessResolved}
-        hasPremiumAccess={hasPremiumAccess}
-        onOpenFreeform={openFreeform}
-      />
+      {/* зачем (dialogs-003, координатор 13.10; образец dialogs.html №4): плашка «Свободный разговор PLUS» уходит, пока открыта категория; обёртка читает контекст сама — каталог не перерисовывается */}
+      <HubHeaderCollapsible>
+        <DialogueV2PlusTools
+          accessResolved={accessResolved}
+          hasPremiumAccess={hasPremiumAccess}
+          onOpenFreeform={openFreeform}
+        />
+      </HubHeaderCollapsible>
     </>
   );
   // A6: язык без проверенных сценариев — карточка с замком вместо миров.

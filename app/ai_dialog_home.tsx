@@ -15,11 +15,22 @@ import { hapticTap } from '../hooks/use-haptics';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { safeRouterBack } from './navigation_back';
+import { HubHeaderCollapseProvider, useHubHeaderCollapsed } from '../components/dialogs/hub_header_collapse';
 
+// зачем (dialogs-003, координатор 13.10): состояние «шапка схлопнута, пока открыта категория» живёт в провайдере над экраном — перерисовывается только шапка, список миров нет.
 export default function AiDialogHome() {
+  return (
+    <HubHeaderCollapseProvider>
+      <AiDialogHomeBody />
+    </HubHeaderCollapseProvider>
+  );
+}
+
+function AiDialogHomeBody() {
   const { lang } = useLang();
   const router = useRouter();
   const { width, fontScale } = useWindowDimensions();
+  const subtitleHidden = useHubHeaderCollapsed();
   const isNarrowOrLargeText = width < 360 || fontScale >= 1.3;
 
   const backLabel = triLang(lang, {
@@ -81,14 +92,14 @@ export default function AiDialogHome() {
             {headerRight}
           </View>
           <View style={{ marginTop: 12 }}>
-            <V2LargeTitle title={title} subtitle={subtitle} />
+            <V2LargeTitle title={title} subtitle={subtitle} subtitleHidden={subtitleHidden} />
           </View>
         </View>
       ) : (
         <View testID="ai-dialog-home-header-row" style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
           {backButton}
           <View style={{ flex: 1, minWidth: 0 }}>
-            <V2LargeTitle title={title} subtitle={subtitle} right={headerRight} />
+            <V2LargeTitle title={title} subtitle={subtitle} right={headerRight} subtitleHidden={subtitleHidden} />
           </View>
         </View>
       )}

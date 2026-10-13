@@ -59,6 +59,7 @@ import { useTheme } from './ThemeContext';
 import { noAndroidOutline } from '../constants/androidGlow';
 import { V2 } from '../constants/v2Style';
 import { DialogueV2CatalogueContainer } from './dialogs/DialogueV2CatalogueContainer';
+import { useHubHeaderCollapseActions } from './dialogs/hub_header_collapse';
 import type { DialogueV2CatalogueLearnerItem } from './dialogs/DialogueV2CatalogueSection';
 import { prestartDialogueV2TextSession } from '../app/dialogue_v2_turn_client';
 import { useDialogueV2Warmup } from '../hooks/use_dialogue_v2_warmup';
@@ -156,6 +157,12 @@ export default function DialogsTabContent({
       params: { scenarioId: item.id },
     } as never);
   }, [router, studyTarget]);
+  // зачем (dialogs-003, координатор 13.10): хаб помнит прокрутку ленты — шапка схлопывается, только пока она в поле зрения (иначе открытая категория прыгнула бы). Вне хаба действий нет.
+  const hubCollapse = useHubHeaderCollapseActions();
+  const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (hubCollapse) hubCollapse.scrollYRef.current = event.nativeEvent.contentOffset.y;
+    onScroll?.(event);
+  }, [hubCollapse, onScroll]);
 
   return (
     <Animated.ScrollView
@@ -163,7 +170,7 @@ export default function DialogsTabContent({
       // под статус-баром и навигацией, на экране выходили «полосы». Прозрачно: виден тот же общий фон, что на Главной; в «Графите» пятен нет — вид плоский.
       style={{ flex: 1, backgroundColor: 'transparent' }}
       contentContainerStyle={{ paddingTop: topPadding, paddingBottom: bottomPadding }}
-      onScroll={onScroll}
+      onScroll={handleScroll}
       scrollEventThrottle={16} decelerationRate="fast"
     >
       {headerSlot}

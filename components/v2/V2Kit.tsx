@@ -143,14 +143,15 @@ export function V2ScreenHeader({ title, subtitle, onBack, backLabel = 'Back', ri
 }
 
 /** Крупный заголовок экрана («Карточки», «Диалоги») с подписью. */
-export function V2LargeTitle({ title, subtitle, right }: { title: string; subtitle?: string; right?: React.ReactNode }) {
+// зачем (dialogs-003, координатор 13.10): `subtitleHidden` — хаб «Диалоги» прячет подзаголовок, пока открыта категория (образец №4); подзаголовок снимается из потока, лента сдвигается layout-анимацией хоста.
+export function V2LargeTitle({ title, subtitle, right, subtitleHidden = false }: { title: string; subtitle?: string; right?: React.ReactNode; subtitleHidden?: boolean }) {
   const p = useV2Palette();
   const s = useScaledTextStyles(styles);
   return (
     <View style={s.largeTitleRow}>
       <View style={{ flex: 1, minWidth: 0 }}>
         <Text accessibilityRole="header" style={[s.largeTitle, { color: p.text }]}>{title}</Text>
-        {subtitle ? <Text style={[s.largeSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
+        {subtitle && !subtitleHidden ? <Text style={[s.largeSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
       </View>
       {right}
     </View>

@@ -14,6 +14,7 @@ import { PressableScale } from '../feedback/PressableScale';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
 import { dialogueGlassCardStyle, useDialogueGlass } from './glass/DialogueGlassKit';
 import { glassTone } from './glass/glassTone';
+import { useHubHeaderCollapseActions } from './hub_header_collapse';
 
 /** Ступени тона поверх карточки категории: строка +4,5 %, плитка +9 % цвета текста темы (макет dialogs.html A4: #161618 → #1D1D1F → #28282A); светлая тема темнеет, а не светлеет. */
 const ROW_TONE_ALPHA = 0.045;
@@ -90,9 +91,14 @@ export function DialogueV2CatalogueSection({
   // compact until the learner chooses one world; access still comes entirely
   // from the projection supplied by the caller.
   const [activeWorldId, setActiveWorldId] = useState<string | null>(null);
+  // зачем (dialogs-003, координатор 13.10): шапка хаба схлопывается, пока открыта категория (образец №4). Сообщаем «открыта/закрыта» через стабильный контекст действий — состояние шапки живёт не здесь,
+  // поэтому этот список от него не перерисовывается. Вне хаба (вкладка «Уроки») действий нет.
+  const collapseActions = useHubHeaderCollapseActions();
   const toggleWorld = (worldId: string) => {
     animateNextLayoutTransition();
-    setActiveWorldId((current) => current === worldId ? null : worldId);
+    const next = activeWorldId === worldId ? null : worldId;
+    setActiveWorldId(next);
+    collapseActions?.setCategoryOpen(next !== null);
   };
 
   return (

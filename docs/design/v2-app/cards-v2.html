@@ -251,6 +251,12 @@
   .empty .cta.sm { height: 48px; padding: 0 28px; font-size: 16px; font-weight: 700; gap: 8px; }
   .sk { border-radius: 12px; background: linear-gradient(100deg, #18181A 30%, #222225 50%, #18181A 70%); background-size: 300% 100%; animation: shim 1.4s linear infinite; }
   @keyframes shim { from { background-position: 100% 0; } to { background-position: -50% 0; } }
+  .atoast { position: absolute; left: 14px; right: 14px; bottom: 42px; z-index: 60; min-height: 76px; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #2D2D30, #232326); box-shadow: 0 14px 34px rgba(0,0,0,.4); color: #fff; }
+  .atoast .rail { align-self: stretch; width: 3px; border-radius: 3px; background: #D9DBE1; flex: none; }
+  .atoast .tb { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; flex: none; }
+  .atoast .tc { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .atoast .tk { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+  .atoast .tm { font-size: 16px; line-height: 22px; color: #C9C9CC; }
   .toast { position: absolute; left: 16px; right: 16px; bottom: 34px; z-index: 30; display: flex; align-items: center; gap: 12px; padding: 0 8px 0 18px; height: 56px; border-radius: 28px;
     background: rgba(40,40,43,.92); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); font-size: 16px; font-weight: 600; }
   .toast .cta { margin-left: auto; }
@@ -439,7 +445,7 @@
   const backC = (r = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><span class="flex" style="gap:10px">${r}</span></div>`;
   const hearts = (lost = 0) => `<span class="hrts">${[0, 1, 2].map((i) => icon(i >= 3 - lost ? 'heart' : 'heartF', 's20')).join('')}</span>`;
   const coinP = (n) => `<span class="pill" style="height:37px;padding:0 10px;gap:6px">${coinImg(5, 18)}${n}</span>`;
-  const flagB = `<span class="rb sq t" style="width:36px;height:36px">${icon('flag', 's18')}</span>`;
+  const flagB = ''; // флажок-жалоба скрыт в обычной сборке (тестерская кнопка, 57da354da)
   const prg = (l, r) => `<div class="prg"><span>${l}</span><span>${r}</span></div>`;
   const sessTools = () => `<span class="flex" style="gap:6px">${hearts(0)}${coinP(40)}${flagB}</span>`;
   const prow = (ic, t, red) => `<div class="prow t${red ? ' red' : ''}"><span class="ti2">${X[ic] || icon(ic, 's20')}</span>${t}</div>`;
@@ -537,7 +543,7 @@
   const setHead = (o) => `${back(`<span class="rb sq t" data-open="sa">${icon('dotsV', 's18')}</span>`)}
       <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:14px;letter-spacing:-.5px">${o.t}</div>
       ${o.author ? `<div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px"><span class="av" style="width:23px;height:23px">${icon('user', 's16')}</span>${o.author}</div>` : ''}
-      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px">${o.l ? `<span class="lvl">${o.l}</span>` : ''}<span>${o.n} карточек</span>${o.status || ''}${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
+      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px">${o.l ? `<span class="lvl">${o.l}</span>` : ''}<span>${o.n} карточек</span>${o.status || ''}${o.likes != null ? likes(o.likes, o.liked) : ''}${o.comments != null ? `<span class="likes">${icon('chat', 's18')}${o.comments}</span>` : ''}</div>
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   // зачем (код, PackHeaderV2; кадр cards-040 12.10): строка мета своего набора — чип уровня, «N карточек», затем статус «Только ты» / «В сообществе»; у добавленного набора уровень не рисуется
   const OWN_STATUS = `<span style="display:inline-flex;align-items:center;gap:6px">${X.lock}Только ты</span>`;
@@ -547,10 +553,11 @@
   const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });
   // зачем (код, CommunityPackSocialBar): до добавления сердце приглушено наполовину; после — «✓ В моих наборах» (кнопка неактивна) и «Тренировать»; лайк добавлением не ставится
-  const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: added ? '' : 'B2', n: 49, likes: 3, liked: false,
+  // зачем (координатор 13.10, cards-v2-015/016; код CommunityPackPreview): экран чужого набора — чип уровня и счётчик откликов «💬 3» в мете, сетка 2 колонки; после добавления внизу тост «ГОТОВО · Набор «B2 глаголы» добавлен в «Карточки».» (communityPackActions)
+  const setOther = (added) => phone(`${setHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: 3, comments: 3, liked: false,
         btns: added ? `<div class="cta gh t grow" style="opacity:.7">${icon('check', 's18')}В моих наборах</div><div class="cta t grow">${icon('play', 's18')}Тренировать</div>`
           : `<div class="cta t grow">Добавить себе ${icon('plus', 's18')}</div><span class="rb l t" style="opacity:.5">${icon('heart', 's20')}</span>` })}
-      ${zoomBar()}${zgrid(0, W.slice(13, 28))}`, { time: '9:41', overlay: cardSheet });
+      ${zoomBar()}${zgrid(1, W.slice(13, 25), 1)}`, { time: '9:41', overlay: cardSheet, fixed: added ? `<div class="atoast"><i class="rail"></i><span class="tb">${icon('check', 's22')}</span><div class="tc"><div class="tk">Готово</div><div class="tm">Набор «B2 глаголы» добавлен в «Карточки».</div></div></div>` : '' });
   const setActionsOpen = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}${zoomBar()}${zgrid(1, W.slice(0, 10), 1)}`, { time: '9:41', overlay: sheet('sa2', packRows, true) });
 
 

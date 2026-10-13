@@ -207,7 +207,7 @@ const recall = (o = {}) => phone(`
 // комментарием (поле ввода)». Состав: результат → монеты (анимация) → ошибки → оценка → дальше.
 const star3 = (n) => `<div class="stars3">${[1, 2, 3].map((i) => li('starF', i <= n ? '' : 'off')).join('')}</div>`;
 const statsRow = (c, w) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
-const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+0</span><small>монет</small></span></div>`;
+const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+${n}</span><small>монет</small></span></div>`;
 const errs = (rows, o = {}) => `<div class="errc"><div class="h">Ошибки<span class="n">${rows.length}</span></div>${rows.map((r) => `<div class="er"><div class="w">${r[0]}</div><div class="tx"><span class="was">${r[1]}</span><span class="ar">${li('arrowR', 's16')}</span><span class="ok">${r[2]}</span></div></div>`).join('')}<div class="cta gh t">${li('refresh', 's18')}Повторить ошибки</div></div>`;
 const rate = (o = {}) => o.open
   ? `<div class="rate"><div class="h">${o.title || 'Слова того стоили?'}</div><div class="stars">${[1, 2, 3, 4, 5].map((i) => `<span class="t">${li('starF', i <= (o.stars || 0) ? '' : 'off')}</span>`).join('')}</div><div class="fld${o.text ? ' on' : ''}">${o.text || o.ph || 'Каких слов не хватило? Какие лишние?'}</div><span class="cta sm t${o.text || o.stars ? '' : ' dis'}">Отправить ${li('send', 's16')}</span></div>`
@@ -276,6 +276,8 @@ function playDone(ph) {
   const aw = ph.querySelector('[data-award]'); if (!aw) return;
   const gain = +aw.dataset.award, cnt = aw.querySelector('.cnt'), coin = aw.querySelector('.coin');
   const pill = ph.querySelector('[data-coins]'), pnum = pill.querySelector('.num'), base = +pill.dataset.coins;
+  /* зачем (13.10): снимок робота или «меньше движения» — сразу итог, иначе сверка видит «+0» */
+  if (navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches) { cnt.textContent = '+' + gain; pnum.textContent = (base + gain).toLocaleString('ru-RU'); return; }
   cnt.textContent = '+0'; pnum.textContent = base.toLocaleString('ru-RU');
   coin.classList.remove('pop'); void coin.offsetWidth; coin.classList.add('pop');
   setTimeout(() => tween(900, (p) => { cnt.textContent = '+' + Math.round(gain * p); }, () => {

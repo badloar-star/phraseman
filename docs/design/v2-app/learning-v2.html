@@ -585,7 +585,7 @@ const savedToast = (t) => `<div class="toast">${li('checkC', 's22')}<div>${t}</d
 // ================= итог (общий макет из practice.html) =================
 const star3 = (n) => `<div class="flex" style="justify-content:center;gap:14px;margin-top:22px">${[1, 2, 3].map((i) => li('starF', (i <= n ? '' : 'off ') + 's26')).join('')}</div>`.replace(/class="i off s26"/g, 'class="i s26" style="color:#2C2C2E;width:46px;height:46px"').replace(/class="i s26"(?! style)/g, 'class="i s26" style="width:46px;height:46px"');
 const statsRow = (c, w) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
-const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+0</span><small>монет</small></span></div>`;
+const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+${n}</span><small>монет</small></span></div>`;
 const errs = (rows) => `<div class="errc"><div class="h">Споткнулся на ${rows.length === 1 ? 'одной' : rows.length}<span class="n">${rows.length}</span></div>${rows.map((r) => `<div class="er"><div class="w">${r[0]}</div><div class="tx"><span class="was">${r[1]}</span><span class="ar">${icon('arrowR', 's16')}</span><span class="ok">${r[2]}</span></div></div>`).join('')}<div class="cta gh t">${li('refresh', 's18')}Повторить ошибки</div></div>`;
 const skills = (rows) => `<div class="skl"><div class="h">Что вы теперь умеете</div>${rows.map((r) => `<div class="skr ${r[1]}">${li(r[1] === 'ok' ? 'checkC' : 'refreshC', 's22')}${r[0]}<span class="tag">${r[1] === 'ok' ? 'Закрепилось' : 'Стоит повторить'}</span></div>`).join('')}</div>`;
 const rate = (o = {}) => o.open
@@ -754,6 +754,8 @@ function playDone(ph) {
   const aw = ph.querySelector('[data-award]'); if (!aw) return;
   const gain = +aw.dataset.award, cnt = aw.querySelector('.cnt'), coin = aw.querySelector('.coin');
   const pill = ph.querySelector('[data-coins]'), pnum = pill.querySelector('.num'), base = +pill.dataset.coins;
+  /* зачем (13.10): снимок робота или «меньше движения» — сразу итог, иначе сверка видит «+0» */
+  if (navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches) { cnt.textContent = '+' + gain; pnum.textContent = (base + gain).toLocaleString('ru-RU'); return; }
   cnt.textContent = '+0'; pnum.textContent = base.toLocaleString('ru-RU');
   coin.classList.remove('pop'); void coin.offsetWidth; coin.classList.add('pop');
   setTimeout(() => tween(900, (p) => { cnt.textContent = '+' + Math.round(gain * p); }, () => { pnum.classList.remove('up'); void pnum.offsetWidth; pnum.classList.add('up'); tween(700, (p) => { pnum.textContent = Math.round(base + gain * p).toLocaleString('ru-RU'); }); }), 350);

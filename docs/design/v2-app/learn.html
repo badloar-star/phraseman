@@ -278,7 +278,7 @@
 .wl .en { font-size: 17px; font-weight: 600; }
 .wl .ru { font-size: 15px; color: var(--sec); margin-top: 1px; }
 .wl.done .en { color: var(--sec); }
-.gh { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--sec); font-weight: 700; margin: 22px 2px 10px; }
+.gh:not(.cta) { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--sec); font-weight: 700; margin: 22px 2px 10px; } /* зачем (13.10): заголовок группы не должен задевать вторичные кнопки .cta.gh — иначе «ПОВТОРИТЬ ОШИБКИ» капсом с разрядкой и серым */
 .vtab { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-top: 1px solid var(--line); }
 .vtab:first-child { border-top: none; }
 .vtab > span { flex: 1; min-width: 0; }
@@ -622,7 +622,7 @@ const loadErr = () => phone(`${lhead({ en: 4 })}<div class="big" style="margin-t
 // ================= E. Итог урока (общий экран из practice.html) =================
 const star3 = (n, anim) => `<div class="stars3" data-stars="${n}">${[1, 2, 3].map((i) => li('starF', i <= n ? (anim ? 'pop' : '') : 'off')).join('')}</div>`;
 const statsRow = (c, w) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
-const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+0</span><small>монет</small></span></div>`;
+const award = (n) => `<div class="award" data-award="${n}">${coinImg(5, 44)}<span class="n"><span class="cnt">+${n}</span><small>монет</small></span></div>`;
 const errs = (rows) => `<div class="errc"><div class="h">Ошибки<span class="n">${rows.length}</span></div>${rows.map((r) => `<div class="er"><div class="w">${r[0]}</div><div class="tx"><span class="was">${r[1]}</span><span class="ar">${li('arrowR', 's16')}</span><span class="ok">${r[2]}</span></div></div>`).join('')}<div class="cta gh t">${li('refresh', 's18')}Повторить ошибки</div></div>`;
 const rate = (title) => `<div class="rate t"><div class="h">${title}<span class="ch">${icon('down', 's20')}</span></div></div>`;
 const done = (o) => phone(`
@@ -868,6 +868,8 @@ function playDone(ph) {
   const aw = ph.querySelector('[data-award]'); if (!aw) return;
   const gain = +aw.dataset.award, cnt = aw.querySelector('.cnt'), coin = aw.querySelector('.coin');
   const pill = ph.querySelector('[data-coins]'), pnum = pill.querySelector('.num'), base = +pill.dataset.coins;
+  /* зачем (13.10): снимок робота или «меньше движения» — сразу итог, иначе сверка видит «+0» */
+  if (navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches) { cnt.textContent = '+' + gain; pnum.textContent = (base + gain).toLocaleString('ru-RU'); return; }
   cnt.textContent = '+0'; pnum.textContent = base.toLocaleString('ru-RU');
   coin.classList.remove('pop'); reflow(coin); coin.classList.add('pop');
   setTimeout(() => tween(900, (p) => { cnt.textContent = '+' + Math.round(gain * p); }, () => { pnum.classList.remove('up'); reflow(pnum); pnum.classList.add('up'); tween(700, (p) => { pnum.textContent = Math.round(base + gain * p).toLocaleString('ru-RU'); }); }), 1100);

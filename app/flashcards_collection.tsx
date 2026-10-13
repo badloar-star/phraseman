@@ -90,6 +90,8 @@ import HomeV2VideoPlayerModal from '../components/home/v2/HomeV2VideoPlayerModal
 import { packSupportsVideoMoments, resolveVideoMoment, type VideoMoment } from './flashcards/video_moment';
 import PackCommentsSheet from './community_packs/PackCommentsSheet';
 import ReportPackModal from '../components/ReportPackModal';
+import PackMoreMenu from '../components/PackMoreMenu';
+import { hidePackWithUndo } from './community_packs/packHideWithUndo';
 import { packTitleForInterface } from './flashcards/marketplace';
 import { publishLocalAuthorPack } from './community_packs/publishLocalPack';
 import { PACK_PUBLISH_DAILY_LIMIT_COPY } from './community_packs/publish_limit_copy';
@@ -223,6 +225,8 @@ export default function FlashcardsScreen() {
   // в каталоге долгим тапом по плитке. На самой странице набора — там, где
   // человек и читает чужие карточки, — жалобы не было вовсе.
   const [packReportOpen, setPackReportOpen] = useState(false);
+  // зачем (решение владельца 13.10, Apple 1.2): «⋮» на экране набора — меню «Пожаловаться на набор» / «Скрыть набор», а не сразу жалоба.
+  const [packMoreOpen, setPackMoreOpen] = useState(false);
   // зачем: раскрытая карточка (ExpandedCardV2) — состояние нужно уже Back-обработчику выше по файлу
   const [openedCardId, setOpenedCardId] = useState<string | null>(null);
   const [openedSaved, setOpenedSaved] = useState(false);
@@ -1454,7 +1458,7 @@ export default function FlashcardsScreen() {
             lang={lang}
             cardContentLang={cardContentLang}
             onBack={handleCollectionBack}
-            onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackReportOpen(true) : null}
+            onMore={currentMarketPack.isCommunityUgc && !packMine ? () => setPackMoreOpen(true) : null}
             onSpeak={(text) => onSpeakCb(text)}
             onOpenMoment={videoMomentPack ? openVideoMoment : null}
             // зачем (cards-v2 videoSet(), 12.10): «Добавить +» / «✓ В моих наборах» — кнопка ряда под названием (CommunityPackSocialBar variant="setAdd"),
@@ -1474,7 +1478,7 @@ export default function FlashcardsScreen() {
             cardContentLang={cardContentLang}
             t={t}
             onBack={handleCollectionBack}
-            onMore={() => setPackReportOpen(true)}
+            onMore={() => setPackMoreOpen(true)}
             onAdded={() => { void loadAll(); }}
             onRequestPurchase={requestPackPurchase}
             onOpenComments={() => { setHighlightCommentId(null); setCommentsSheetOpen(true); }}
@@ -1835,6 +1839,27 @@ export default function FlashcardsScreen() {
           video={{ id: videoMoment.videoId, title: videoMoment.title }}
           startSec={videoMoment.startSec}
           onClose={closeVideoMoment}
+        />
+      ) : null}
+
+      {packMoreOpen && currentMarketPack ? (
+        <PackMoreMenu
+          visible
+          lang={lang}
+          onClose={() => setPackMoreOpen(false)}
+          onReport={() => { setPackMoreOpen(false); setPackReportOpen(true); }}
+          onHide={() => {
+            const hiding = currentMarketPack;
+            setPackMoreOpen(false);
+            // Optimistic UI: набор пропадает сразу (экран набора закрывается, каталог убирает плитку по событию), запись и «Отменить» — в packHideWithUndo.
+            void hidePackWithUndo({
+              packId: hiding.id,
+              studyTarget,
+              lang,
+              onHiddenOptimistic: () => { openCommunityPacks(); },
+              onRestored: () => {},
+            });
+          }}
         />
       ) : null}
 

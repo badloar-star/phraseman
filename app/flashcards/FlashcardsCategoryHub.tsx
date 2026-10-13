@@ -410,6 +410,19 @@ export default function FlashcardsCategoryHub({
     setHiddenCommunityPackIds(new Set(ids));
   }, [studyTarget]);
 
+  // зачем (решение владельца 13.10, «Скрыть набор» с «Отменить» на экране набора): скрытие/возврат из другого экрана доходит до плиток сразу, без нового чтения хранилища.
+  useEffect(() => {
+    const sub = onAppEvent('community_pack_hidden_changed', ({ packId, hidden }) => {
+      setHiddenCommunityPackIds((prev) => {
+        if (prev.has(packId) === hidden) return prev;
+        const next = new Set(prev);
+        if (hidden) next.add(packId); else next.delete(packId);
+        return next;
+      });
+    });
+    return () => sub.remove();
+  }, []);
+
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;

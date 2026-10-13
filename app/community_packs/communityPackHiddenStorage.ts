@@ -16,6 +16,13 @@ export async function loadHiddenCommunityPackIds(studyTarget?: RuntimeStudyTarge
   }
 }
 
+/** Отмена «Скрыть набор» (тост «Отменить»): набор снова виден на этом устройстве. */
+export async function unhideCommunityPackOnDevice(packId: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
+  const cur = await loadHiddenCommunityPackIds(studyTarget);
+  if (!cur.includes(packId)) return;
+  await AsyncStorage.setItem(flashcardsHiddenCommunityPacksKey(studyTarget), JSON.stringify(cur.filter((id) => id !== packId)));
+}
+
 export async function hideCommunityPackOnDevice(packId: string, studyTarget?: RuntimeStudyTarget): Promise<void> {
   const cur = await loadHiddenCommunityPackIds(studyTarget);
   if (cur.includes(packId)) return;

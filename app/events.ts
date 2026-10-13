@@ -219,6 +219,8 @@ export type AppEventMap = {
   last_opened_lesson_changed: { lessonId: number; progress: number; score: string; studyTarget?: RuntimeStudyTarget };
   /** Cards 2.1 §1.3: набор сообщества добавлен себе (бесплатно, без списаний) — обновить каталог/коллекцию. */
   community_pack_added: { packId: string };
+  /** «Скрыть набор» / «Отменить» (packHideWithUndo): набор скрыт или возвращён на этом устройстве — списки обновляют плитки сразу, без повторного чтения хранилища. */
+  community_pack_hidden_changed: { packId: string; hidden: boolean };
   /** Cards 2.1 §2.2: лайк набора поставлен/снят — плитки и экран набора обновляют счётчик. */
   community_pack_like_changed: { packId: string; liked: boolean };
   /**

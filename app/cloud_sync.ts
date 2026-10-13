@@ -844,8 +844,11 @@ const MISTAKE_RESTORE_FULL_DONE_PREFIX = 'mistake_restore_full_done_v1';
 // непрерывности экономики (economy_daily_stats_reporter.ts) — ключи «константа + stableId», их не видел ни инвентарь, ни сторож.
 const FRIEND_BLOCKED_CACHE_PREFIX = 'friend_blocked_v1';
 const ECONOMY_DAILY_STATS_TAIL_PREFIX = 'economy_daily_stats_tail_v1';
+// зачем (координатор 13.10, 1804b52ab): дисковая копия визиток друзей (profile_card_public.ts, до 64 записей) принадлежит аккаунту — после смены аккаунта визитки друзей прошлого не должны остаться.
+// Ключ без stableId (одна копия на устройство), поэтому он совпадает с префиксом целиком; память модуля сбрасывается отдельным шагом ниже (clearPublicProfileCardCache).
+const PROFILE_CARD_PUBLIC_CACHE_PREFIX = 'profile_card_public_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
-  ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX,
+  ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
 ];
 const WIPE_ONLY_ACCOUNT_EXACT_KEYS: ReadonlySet<string> = new Set(APP_MESSAGES_ACCOUNT_WIPE_LEGACY_KEYS);
 
@@ -6030,6 +6033,14 @@ async function wipeLocalAccountDataUnsafeBody(): Promise<void> {
   // аккаунта. Функция никогда не бросает — общую чистку не ломает.
   await clearAllDialogueV2MemoryDiskCache();
   markWipeStage('dialogueMemory');
+  // зачем (координатор 13.10): память и дисковая копия визиток друзей — вместе (иначе отложенная запись или поздний ответ вернули бы чужие визитки). Не бросает; сбой импорта — в журнал, чистка выхода идёт дальше.
+  try {
+    const { clearPublicProfileCardCache } = await import('./profile_card_public');
+    await clearPublicProfileCardCache('account_wipe');
+  } catch (error: unknown) {
+    console.warn(`[ACC-WIPE] profile_card_public clear_failed code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину
+  }
+  markWipeStage('profileCardPublic');
   // зачем (PRIVACY_DELTA_R1 п.5): ключи сообщений аккаунта и отметка восстановления ошибок — тем же removeExactly (с проверкой
   // остатка), отдельным шагом после основного; порядок прежних шагов не тронут. Денежные очереди сюда не входят.
   const wipeOnlyKeys = (await listAllAccountLocalStorageKeys())

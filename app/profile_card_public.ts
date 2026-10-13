@@ -37,12 +37,15 @@ const inFlight = new Map<string, Promise<PublicProfileCard>>();
 // зачем (координатор 13.10, аудит Optimistic UI Профиля): карточка Pro-друга при первом открытии за запуск рисовалась «обычной» и потом перекрашивалась после чтения public_profiles.
 // Последние прочитанные визитки лежат на диске (stale-while-revalidate): первый кадр берёт устаревшую копию, а свежесть и число чтений Firestore прежние — после TTL чтение, как и раньше, одно.
 // Данные публичные (то, что любой игрок и так читает), хранится только то, что мы уже прочитали; новых запросов эта копия не делает.
-const DISK_KEY = 'profile_card_public_v1';
+export const PROFILE_CARD_PUBLIC_DISK_KEY = 'profile_card_public_v1'; // зачем: тот же ключ стирает выход/смена/удаление аккаунта (cloud_sync.ts, WIPE_ONLY_ACCOUNT_KEY_PREFIXES)
+const DISK_KEY = PROFILE_CARD_PUBLIC_DISK_KEY;
 const DISK_MAX = 64;
 const DISK_SAVE_DEBOUNCE_MS = 2000;
 const staleCards = new Map<string, PublicProfileCard>();
 let diskLoad: Promise<void> | null = null;
 let diskSaveTimer: ReturnType<typeof setTimeout> | null = null;
+// Поколение копии: чистка аккаунта поднимает его, и всё, что стартовало ДО чистки (чтение сети, загрузка с диска, отложенная запись), результат уже не применяет.
+let cacheEpoch = 0;
 
 export function normalizePublicProfileCard(data: Record<string, unknown> | null | undefined): PublicProfileCard {
   if (!data) return EMPTY_CARD;
@@ -71,8 +74,13 @@ export function peekPublicProfileCardOrStale(uid: string): PublicProfileCard | n
 
 function persistSoon(): void {
   if (diskSaveTimer) return;
+  const epoch = cacheEpoch;
   diskSaveTimer = setTimeout(() => {
     diskSaveTimer = null;
+    if (epoch !== cacheEpoch) {
+      DebugLogger.info(LOG, 'чужая визитка: отложенная запись на диск отменена — аккаунт сменился');
+      return;
+    }
     const items: Record<string, PublicProfileCard> = {};
     const known = new Map<string, PublicProfileCard>(staleCards);
     cache.forEach((entry, uid) => known.set(uid, entry.card));
@@ -86,10 +94,15 @@ function persistSoon(): void {
 /** Один раз за запуск, после анимаций: читает дисковую копию визиток в память (не блокирует первый кадр). Повторные вызовы возвращают тот же промис. */
 export function loadPublicProfileCardDisk(): Promise<void> {
   if (diskLoad) return diskLoad;
+  const epoch = cacheEpoch;
   diskLoad = new Promise<void>((resolve) => {
     InteractionManager.runAfterInteractions(() => {
       const startedAt = Date.now();
       AsyncStorage.getItem(DISK_KEY).then((raw) => {
+        if (epoch !== cacheEpoch) {
+          DebugLogger.info(LOG, 'чужая визитка: загрузка с диска отброшена — аккаунт сменился');
+          return;
+        }
         if (!raw) {
           DebugLogger.info(LOG, 'чужая визитка: дисковой копии ещё нет');
           return;
@@ -112,6 +125,26 @@ export function loadPublicProfileCardDisk(): Promise<void> {
     });
   });
   return diskLoad;
+}
+
+/**
+ * Стереть все копии визиток друзей (память и диск) при выходе, смене и удалении аккаунта (cloud_sync.wipeLocalAccountData).
+ * зачем (координатор 13.10): после смены аккаунта на телефоне не должно остаться визиток друзей прошлого аккаунта. Никогда не бросает — общую чистку не ломает.
+ */
+export async function clearPublicProfileCardCache(reason: string): Promise<void> {
+  const before = { memory: cache.size, stale: staleCards.size, timer: diskSaveTimer !== null };
+  cacheEpoch += 1;
+  cache.clear();
+  inFlight.clear();
+  staleCards.clear();
+  diskLoad = null;
+  if (diskSaveTimer) { clearTimeout(diskSaveTimer); diskSaveTimer = null; }
+  try {
+    await AsyncStorage.removeItem(DISK_KEY);
+    DebugLogger.info(LOG, `чужая визитка: копии стёрты (${reason}) ${JSON.stringify(before)}`);
+  } catch (error) {
+    DebugLogger.warn(LOG, `чужая визитка: диск не очистился (${reason}): ${error instanceof Error ? error.message : String(error)}`);
+  }
 }
 
 function remember(uid: string, card: PublicProfileCard): void {
@@ -142,6 +175,7 @@ export function fetchPublicProfileCard(uid: string): Promise<PublicProfileCard> 
   const pending = inFlight.get(id);
   if (pending) return pending;
   const startedAt = Date.now();
+  const epochAtStart = cacheEpoch;
   const run = (async () => {
     try {
       const snap = await firestore().collection('public_profiles').doc(id).get(); // guard-ok: один документ по id
@@ -150,6 +184,10 @@ export function fetchPublicProfileCard(uid: string): Promise<PublicProfileCard> 
       DebugLogger.info(LOG, `чужая визитка: прочитана ${JSON.stringify({
         uid: id, exists: snap.exists, pro: card.pro, style: card.style, bioLength: card.bio.length, ms: Date.now() - startedAt,
       })}`);
+      if (epochAtStart !== cacheEpoch) {
+        DebugLogger.info(LOG, `чужая визитка: ответ ${id} пришёл после смены аккаунта — в копию не кладём`);
+        return card;
+      }
       remember(id, card);
       return card;
     } catch (error) {

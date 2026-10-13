@@ -226,8 +226,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     for (const r of rows ?? []) if (!r.isMe) floors[spireFloorOfSteps(r.steps)] = (floors[spireFloorOfSteps(r.steps)] ?? 0) + 1;
     const me = rows?.find((r) => r.isMe);
     console.log('[SPIRE-RIVALS]', JSON.stringify({ // guard-ok: одна строка на смену строк комнаты, только счётчики
-      source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members.length ?? null,
-      botFaces: room?.roster.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null,
+      source: roomLoad ? `${roomLoad.status}/${roomLoad.reason}` : 'нет загрузки', roomId: room?.groupId ?? null, live: room?.members?.length ?? null,
+      botFaces: room?.roster?.length ?? null, rows: rows?.length ?? null, rivalsByFloor: floors, myFloor: me ? spireFloorOfSteps(me.steps) : null,
       why: rows ? 'ok' : !room ? 'комнаты нет' : !ids ? 'нет личности' : 'нет конфига',
     }));
   }, [rows, roomLoad, room, ids]);

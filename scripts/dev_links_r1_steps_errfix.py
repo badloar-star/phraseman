@@ -179,6 +179,17 @@ set_steps('settings-gap-004', ['wait:1200', 'scroll:down', 'scroll:down', 'see:#
 for _rid in ('paywalls-024', 'paywalls-025', 'profile-022', 'profile-023'):
     if _rid in ENTRIES:
         ENTRIES[_rid]['steps'] = [x for x in ENTRIES[_rid]['steps'] if x != 'tap:#manage-subscription-reasons-continue']
+# зачем (координатор 13.10, фикстура Ядра 92c6d2206): dev_state?saveOffer=progress|support открывает шаг удержания сам — тапы «Отменить → причина → Продолжить»
+# больше не нужны (и не рискуют увести в магазин). 024/022 — «Сохранить доступ» (progress: 12 дней и 38 уроков подставляет сама фикстура, offerProgress не нужен),
+# 025/023 — «Поддержка или отмена» (support). Ссылка получает saveOffer, шаги — только ожидание открытия шторки.
+for _rid, _kind in (('paywalls-024', 'progress'), ('profile-022', 'progress'), ('paywalls-025', 'support'), ('profile-023', 'support')):
+    if _rid in ENTRIES:
+        _e = ENTRIES[_rid]
+        _e['steps'] = ['wait:2000']
+        _link = _e['link'].replace('&offerProgress=on', '')
+        if 'saveOffer=' not in _link:
+            _link = _link.replace('&next=', '&saveOffer=' + _kind + '&next=', 1)  # overlays=off дописывает генератор
+        _e['link'] = _link
 
 # ── Итог урока (Дизайн 13.10: dev-параметр devResult=верно:ошибок в /lesson_complete — цифры, медаль, пример ошибки; без него итог «пустой» без прогресса).
 # Числа — из образцов: learn.html E1 48:2 (3★ ≥85 %), E2 38:12 (2★), E3 27:23 (1★), E4 47:3 («следующий в Plus»), practice.html «Урок V1 — 2 звезды» 15:5.

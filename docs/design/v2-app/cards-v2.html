@@ -547,9 +547,9 @@
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   // зачем (код, PackHeaderV2; кадр cards-040 12.10): строка мета своего набора — чип уровня, «N карточек», затем статус «Только ты» / «В сообществе»; у добавленного набора уровень не рисуется
   const OWN_STATUS = `<span style="display:inline-flex;align-items:center;gap:6px">${X.lock}Только ты</span>`;
-  // зачем (координатор 13.10, cards-041; код CollectionHeaderV2 + flashcards_collection.tsx:1106): «Править набор» есть только у УЖЕ опубликованного набора автора, у личного (local_only) — «Отправить в сообщество», «Новая карточка», «Удалить набор»
+  // зачем (координатор 13.10, поправка после кадра cards-041; код flashcards_collection.tsx:1774 packMine || showEditButton + владелец 17.09 «юзер должен иметь возможность редактировать свои наборы даже если они опубликованы»): «Править набор» есть у ЛЮБОГО своего набора, в том числе личного (local_only) — «Отправить в сообщество», «Править набор», «Новая карточка», «Удалить набор»; прежнее «только у опубликованного» относилось к бейджу «В сообществе», а не к пункту меню
   // зачем (код, CollectionMenuSheet): шторка своего набора — название, «Отправить в сообщество» (пока не опубликован), «Править набор», «Новая карточка», «Удалить набор»; «Показать стопкой» — только у «Сохранённых»
-  const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
+  const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('edit', 'Править набор')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
   const setActions = sheet('sa', packRows);
   const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });

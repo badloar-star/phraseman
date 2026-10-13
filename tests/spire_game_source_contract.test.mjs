@@ -39,7 +39,9 @@ test('gate: both locks are checked and the gate type is branded', () => {
 });
 
 test('all canonical Spire language contours are selectable without cross-language fallback', () => {
-  assert.match(home, /SPIRE_LANGS:\s*readonly SpireLang\[\]\s*=\s*\['en', 'es', 'de', 'fr', 'it'\]/u);
+  // зачем (вынос из SpireHomeScreen ≤ 400 строк, 13.10): список языков Шпиля переехал в spire_home_week.ts, экран берёт его оттуда через asSpireLang
+  assert.match(read('components/spire/spire_home_week.ts'), /SPIRE_LANGS:\s*readonly SpireLang\[\]\s*=\s*\['en', 'es', 'de', 'fr', 'it'\]/u);
+  assert.ok(home.includes('asSpireLang'), 'the screen resolves the study target through asSpireLang');
 });
 
 test('every rendered Spire task exposes the standard report flag and skips a reported task without penalty', () => {

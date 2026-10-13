@@ -199,3 +199,9 @@ for _rid, _res, _plus, _note in (
 # генератор (dev_links_r1_generate.py:37) берёт только r1 или INCLUDE_IDS, и ссылки выше молча не попадали в DEV_LINKS_R1.
 import dev_links_r1_steps_robot as _STEPS_ROBOT  # noqa: E402
 _STEPS_ROBOT.INCLUDE_IDS.update({'learn-047', 'learn-048', 'learn-049', 'learn-050', 'practice-024', 'mistakes-panel-005', 'mistakes-panel-010'})
+
+# results-009 (владелец 13.10, вопрос 17): «Активность за год» теперь ОТДЕЛЬНЫЙ экран /year_activity (раньше — полоска внутри «Серии и статистики»). Прямая ссылка на экран,
+# данные из кэша активности гостя (демо-подмены активности пока нет — сетка может быть пустой, итоги 0); тап по полоске на «Серии…» ведёт туда же.
+_ya = _entry('results-009')
+_ya['link'] = _ya['link'].replace('next=/streak_stats', 'next=/year_activity')
+_ya['steps'] = ['wait:2000']

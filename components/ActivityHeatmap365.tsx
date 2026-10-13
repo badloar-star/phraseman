@@ -1,5 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'expo-router';
 import {
   Modal,
   ScrollView,
@@ -109,7 +110,7 @@ function copy(
   return values[lang as keyof typeof values] ?? values.en;
 }
 
-function buildCanonicalYear(days: readonly Activity365Day[]): CanonicalYearModel {
+export function buildCanonicalYear(days: readonly Activity365Day[]): CanonicalYearModel {
   const todayKey = latestObservedActivity365Date(days) ?? toDateKey(new Date());
   const firstDateKey = addUtcDays(todayKey, -(YEAR_DAYS - 1));
   const leadingBlanks = mondayIndex(firstDateKey);
@@ -150,7 +151,7 @@ function monthComparisonSummary(
 
 // зачем (координатор 12.10, R1_THEMEMODE_LEGACY_MAP): акцент тепловой карты — акцент ТЕМЫ (theme.accent), а не statsThemeAccent(themeMode):
 // themeMode в приложении всегда 'dark', и карта была зелёной на любой теме и в светлом оформлении.
-function heatPalette(themeMode: ThemeMode, themeAccent: string): readonly string[] {
+export function heatPalette(themeMode: ThemeMode, themeAccent: string): readonly string[] {
   // BUG 2: palette[0] (пустые дни) обязан быть виден на фоне поверхности —
   // раньше он совпадал с цветом фона, и годовая сетка выглядела «пустой».
   // BUG 4: вся рампа — от главного акцента темы (единый hue), gold — из GOLD_RICH.
@@ -438,7 +439,7 @@ const PRACTICE_MINUTE_FORMS: Record<string, CountForms> = {
   en: { one: 'minute of practice', other: 'minutes of practice' },
 };
 
-function MonthExplorerModal({
+export function MonthExplorerModal({
   days,
   monthKeys,
   monthKey,
@@ -736,7 +737,7 @@ function ActivityHeatmap365() {
     status: initialSnapshot ? 'ready' : 'loading',
     stale: initialSnapshot?.stale ?? false,
   }));
-  const [selectedMonthKey, setSelectedMonthKey] = useState<string | null>(null);
+  const router = useRouter();
 
   const currentSnapshot = loadState.target === studyTarget
     ? loadState
@@ -778,10 +779,6 @@ function ActivityHeatmap365() {
     };
   }, [studyTarget]);
 
-  useEffect(() => {
-    setSelectedMonthKey(null);
-  }, [studyTarget]);
-
   const days = currentSnapshot.analytics?.days ?? [];
   const yearModel = useMemo(() => buildCanonicalYear(days), [days]);
   const hasActivity = days.some((day) => day.active && !day.future);
@@ -791,18 +788,14 @@ function ActivityHeatmap365() {
 
   return (
     <View testID="stats-activity-365">
+      {/* зачем (владелец 13.10, вопрос 17; results-009): тап по полоске «Год» открывает отдельный экран «Активность за год» (окно месяца теперь на нём); данные те же, из кэша. */}
       <CanonicalYearHeatmap
         model={yearModel}
         statusText={statusText}
-        onOpenMonth={setSelectedMonthKey}
-      />
-      <MonthExplorerModal
-        days={days}
-        monthKeys={yearModel.monthKeys}
-        monthKey={selectedMonthKey}
-        visible={selectedMonthKey !== null}
-        onMonthChange={setSelectedMonthKey}
-        onClose={() => setSelectedMonthKey(null)}
+        onOpenMonth={() => {
+          console.log(`[YEAR-ACTIVITY] тап по полоске → /year_activity (studyTarget=${studyTarget}, дней в кэше=${days.length})`); // guard-ok: действие пользователя
+          router.push('/year_activity' as never);
+        }}
       />
     </View>
   );

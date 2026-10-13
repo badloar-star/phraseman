@@ -3610,6 +3610,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       </Stack.Protected>
       {/* зачем: D83 — клиентская Арена удалена целиком, её маршруты сняты вместе с файлами. */}
       <Stack.Screen name="streak_stats" />
+      <Stack.Screen name="year_activity" />{/* зачем (владелец 13.10, results-009): экран «Активность за год» */}
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
       <Stack.Screen name="survey_screen" />

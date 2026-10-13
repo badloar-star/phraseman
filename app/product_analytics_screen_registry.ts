@@ -13,7 +13,7 @@ const STATIC_SCREEN_NAMES = [
   'premium_modal',
   'preposition_drill', 'privacy_screen', 'promo_code_entry',
   'referrals', 'settings_edu', 'settings_language',
-  'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
+  'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen', 'year_activity',
   'mistake_practice_session',
 ] as const;
 

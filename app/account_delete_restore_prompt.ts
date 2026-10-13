@@ -14,7 +14,15 @@ import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
 import { getDevAccountRestoreMode } from './dev_account_state';
-import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+import {
+  THEMED_ALERT_DISMISSED,
+  enqueueThemedBlockingChoiceAlert,
+  enqueueThemedBlockingInfoAlert,
+  type ThemedBlockingAlertSlotWait,
+} from './themed_blocking_alert_queue';
+
+/** Потолок ожидания слота арбитра для «Восстановить аккаунт?»: лог через 2 с, окно поверх через 8 с. */
+export const ACCOUNT_RESTORE_SLOT_WAIT: ThemedBlockingAlertSlotWait = { logPrefix: '[ACCOUNT-RESTORE]', warnAfterMs: 2_000, forceAfterMs: 8_000 };
 
 /**
  * Текст окна «Восстановить аккаунт?»: сколько дней до удаления — с правильной формой слова «день».
@@ -145,6 +153,9 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
         value: 'restore',
       },
     ],
+    // зачем (ревью Ядра 2dba22af6, координатор 13.10): окно ждёт слот арбитра; держит его чужая модалка — вход ждал молча.
+    // 2 с — лог «кто держит слот», 8 с — окно поверх. Кнопки и «назад» прежние.
+    { slotWait: ACCOUNT_RESTORE_SLOT_WAIT },
   );
   console.log(`[ACCOUNT-RESTORE] choice=${String(choice)} daysLeft=${days}`);
   if (choice !== 'restore') {

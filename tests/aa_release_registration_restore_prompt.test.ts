@@ -17,12 +17,14 @@ jest.mock('react-native', () => ({
 // зачем (координатор 13.10, auth-gap-007): окно «Восстановить аккаунт?» идёт через тёмную очередь, не через Alert.
 // Кнопка очереди → та же запись { text, onPress }; dismissLast — системная «назад».
 let lastChoiceResolve: ((value: string) => void) | null = null;
+let lastChoiceOpts: unknown = null;
 jest.mock('../app/themed_blocking_alert_queue', () => ({
   THEMED_ALERT_DISMISSED: 'dismiss',
   enqueueThemedBlockingInfoAlert: () => Promise.resolve(),
-  enqueueThemedBlockingChoiceAlert: (title: string, _message: string, actions: Array<{ label: string; value: string; ghost?: boolean }>) =>
+  enqueueThemedBlockingChoiceAlert: (title: string, _message: string, actions: Array<{ label: string; value: string; ghost?: boolean }>, opts?: unknown) =>
     new Promise<string>((resolve) => {
       lastChoiceResolve = resolve;
+      lastChoiceOpts = opts ?? null;
       alerts.push({ title, buttons: actions.map((action) => ({ text: action.label, ghost: action.ghost, onPress: () => resolve(action.value) })) });
     }),
 }));
@@ -95,6 +97,8 @@ describe('промпт восстановления удалённого акк�
     const pending = promptAccountRestoreAfterSignInRefusal('ru');
     for (let i = 0; i < 20 && alerts.length === 0; i += 1) await Promise.resolve();
     expect(alerts[0].buttons.map((b) => [b.text, b.ghost === true])).toEqual([['Не восстанавливать', true], ['Восстановить', false]]);
+    // зачем (ревью Ядра 2dba22af6): окно не ждёт слот арбитра вечно — лог через 2 с, поверх через 8 с.
+    expect(lastChoiceOpts).toEqual({ slotWait: { logPrefix: '[ACCOUNT-RESTORE]', warnAfterMs: 2000, forceAfterMs: 8000 } });
     lastChoiceResolve?.('dismiss');
     await expect(pending).resolves.toBe('declined');
     expect(restoreMock).not.toHaveBeenCalled();

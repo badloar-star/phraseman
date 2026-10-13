@@ -14,14 +14,14 @@ import { StyleSheet, Text, View, type ImageSourcePropType } from 'react-native';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { thumbTrace, traceThumbMissing, type ThumbSurface } from '../thumb_trace';
 
-/** Локальные превью для dev-фикстуры роликов: уже лежат в сборке (картинки Главной), новых ассетов нет. */
-const DEV_DEMO_THUMBS: readonly ImageSourcePropType[] = [
-  require('../../assets/images/home_last_lesson/home-last-lesson-aurora.webp'),
-  require('../../assets/images/home_last_lesson/home-last-lesson-ember.webp'),
-  require('../../assets/images/home_last_lesson/home-last-lesson-forest.webp'),
-  require('../../assets/images/home_last_lesson/home-last-lesson-gold.webp'),
-  require('../../assets/images/home_last_lesson/home-last-lesson-indigo.webp'),
-];
+/**
+ * Превью для dev-фикстуры роликов.
+ * зачем (координатор 13.10, cards-028 / cards-v2-018, вариант «а»): кадры сверяем с НАСТОЯЩИМ превью ролика, как его видят люди, —
+ * поэтому выдуманным id фикстуры (devDemoVid0…4) подставляем превью реальных роликов канала (публичная RSS-лента канала приложения),
+ * а не локальные иллюстрации. id фикстуры не меняются — ссылки съёмки и тесты прежние. Только dev: в стор-сборке ветки нет.
+ */
+const DEV_DEMO_REAL_VIDEO_IDS = ['cnrVN_uz7Sg', 'rGPfdiI3S1k', 'OHxgJuazJO0', 'Tyo95ydzoPs', 'GKn9GmHndMQ'] as const;
+const DEV_DEMO_THUMBS: readonly ImageSourcePropType[] = DEV_DEMO_REAL_VIDEO_IDS.map((realId) => ({ uri: `https://i.ytimg.com/vi/${realId}/hqdefault.jpg` }));
 const DEV_DEMO_VIDEO_RE = /^devDemoVid(\d+)$/;
 
 /** Картинка dev-фикстуры по id ролика; вне dev и для настоящих id — null. */
@@ -68,8 +68,8 @@ export const VideoThumb = React.memo(function VideoThumb({ surface, id, videoId,
   const [failedUrl, setFailedUrl] = useState<string | null>(null);
   const local = devDemoThumbSource(videoId);
   if (local) {
-    // dev-фикстура: локальная картинка, сети нет
-    return <Image accessible={false} source={local} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} />;
+    // dev-фикстура: превью реального ролика канала (см. DEV_DEMO_THUMBS)
+    return <Image accessible={false} source={local} style={StyleSheet.absoluteFill} contentFit="cover" transition={120} recyclingKey={videoId} cachePolicy="memory-disk" />;
   }
   if (!thumbUrl) {
     traceThumbMissing(surface, id, `videoId пуст в наборе (${String(videoId ?? '')})`);

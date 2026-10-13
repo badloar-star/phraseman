@@ -23,7 +23,7 @@ describe('PM-274: энергия за ступень Шпиля', () => {
   it('ступень — своё занятие в каталоге цен и стоит ровно 1', () => {
     expect(energyActivityForSessionKind('spire_step')).toBe('spire_step');
     expect(activityEnergyCost('spire_step')).toBe(1);
-    expect(energyActivityTitle('spire_step', 'ru')).toContain('Шпиля');
+    expect(energyActivityTitle('spire_step', 'ru')).toContain('Пика');
   });
 
   it('повтор mount/prefetch той же попытки даёт тот же id операции (журнал не спишет дважды)', () => {

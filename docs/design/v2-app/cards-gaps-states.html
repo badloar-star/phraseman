@@ -216,7 +216,7 @@
     // зачем (Дизайн CARDS_LAYOUT_ROWS_R1 п.6, кадр cards-gap-022): значок общего тоста ошибки — белый заливной круг с тёмным «!» (не кольцо)
     alertC: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.4"/>', 's22'),
     infoC: svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8h.01" stroke-width="2.4"/>', 's22'),
-    radioOn: svg('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/>', 's20'),
+    radioOn: svg('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5.4" fill="currentColor" stroke="none"/>', 's20'),
     radioOff: svg('<circle cx="12" cy="12" r="8.5"/>', 's20'),
     zoomS: svg('<rect x="3" y="5" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="5" width="7.5" height="3.6" rx="1.2"/><rect x="3" y="10.2" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="10.2" width="7.5" height="3.6" rx="1.2"/><rect x="3" y="15.4" width="7.5" height="3.6" rx="1.2"/><rect x="13.5" y="15.4" width="7.5" height="3.6" rx="1.2"/>'),
     zoomL: svg('<rect x="2.5" y="6.5" width="19" height="11" rx="2.8"/>', 's20'),
@@ -362,7 +362,7 @@ const savedTop = back(`<span class="gs-rb t">${ic('search', 's20')}</span><span 
   const pickEmpty = () => `<div class="gs-pick-t">В какой набор?</div><div class="gs-pick-e">Своих наборов пока нет</div>${sr('plus', 'Создать набор')}`;
   const toast = (kind, msg) => { const [i, l] = { success: [X.checkC, 'Готово'], error: [X.alertC, 'Что-то пошло не так'], info: [X.infoC, 'Сообщение'] }[kind]; return `<div class="gs-toast"><i class="rail"></i><span class="tb">${i}</span><div class="tc"><div class="tk">${l}</div><div class="tm">${msg}</div></div></div>`; };
   const dimSaved = () => `<div style="opacity:.5">${bgSaved()}</div>`;
-  const pickFrame = (inner, t) => phone(dimSaved(), { time: '9:41', overlay: sheet('pk', `<div>${inner}</div>`, true) + (t || '') });
+  const pickFrame = (inner, t, bg) => phone(bg || dimSaved(), { time: '9:41', overlay: sheet('pk', `<div>${inner}</div>`, true) + (t || '') });
   const pickAdded = () => phone(bgSaved(), { time: '9:41', fixed: savedFab, overlay: toast('success', 'Добавлено в набор') });
 
   // 23–24. Фильтр
@@ -425,8 +425,8 @@ const savedTop = back(`<span class="gs-rb t">${ic('search', 's20')}</span><span 
     ['msg', 'Тосты и сообщения', 'Тост снизу: рейка, значок, подпись тона («Готово» / «Сообщение» / «Что-то пошло не так») и текст.', [
       col('Мои наборы — «Открыть сообществу»: отправлено', msgFrame(bgMine(), 'success', T_PUB.ok)),
       col('Мои наборы — суточный лимит публикаций', msgFrame(bgMine(), 'info', T_PUB.lim)),
-      col('Мои наборы — для публикации не хватает данных', msgFrame(bgMine(), 'error', T_PUB.inv)),
-      col('Мои наборы — не удалось отправить', msgFrame(bgMine(), 'error', T_PUB.fail)),
+      col('Свой набор — для публикации не хватает данных', msgFrame(bgPackOwn(), 'error', T_PUB.inv)), /* зачем (кадры cards-gap-027/028): ошибка публикации показывается на экране самого набора */
+      col('Свой набор — не удалось отправить', msgFrame(bgPackOwn(), 'error', T_PUB.fail)),
       col('Свой набор — «минимум 10 карточек»', msgFrame(bgPackOwn(), 'error', T_DEL.cnt)),
       col('Свой набор — «Набор на проверке»', msgFrame(bgPackOwn(), 'error', T_DEL.pend)),
       col('Свой набор — «Нет связи»', msgFrame(bgPackOwn(), 'error', T_DEL.net)),
@@ -439,7 +439,7 @@ const savedTop = back(`<span class="gs-rb t">${ic('search', 's20')}</span><span 
       col('Загрузка списка голосов', voiceLoading()),
       col('Список пуст — только «Системный (авто)»', voiceOnlySystem())]],
     ['pick2', '«В какой набор?»: есть только опубликованные наборы', 'У автора нет ни одного набора, куда можно добавить карточку, но опубликованные есть (в них добавлять нельзя). Текст другой, кнопка «Создать набор» остаётся.', [
-      col('Нет наборов, куда можно добавить', pickFrame(pickOnlyPublished()))]],
+      col('Нет наборов, куда можно добавить', pickFrame(pickOnlyPublished(), '', `<div style="opacity:.5">${bgPackOwn()}</div>`)) /* зачем (cards-gap-039): в коде шторка открывается с экрана набора */]],
     ['flag', 'Под флагом energy_mistake_charge (выкл. по умолчанию)', 'В первом выпуске флаг выключен — в шапках сессий сердца (кадры выше). Если его включить, вместо сердец стоит пилюля энергии с числом (EnergyMistakeHud, energy_mode.ts); при ошибке «−1». Кадр показан только как запасной вариант.', [
       col('Напиши — нет карточек: под флагом energy_mistake_charge (выкл.) — пилюля энергии вместо сердец', recallEmpty(true))]],
   ];

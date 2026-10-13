@@ -23,7 +23,9 @@ add('auth-gap-012', SIGNIN + ['tap:#auth-switch-account', 'wait:1500'], 'switch=
 add('auth-gap-008', SIGNIN, 'restore=retired', ACCT, note='вход в удалённый навсегда аккаунт → окно «Аккаунт удалён» (identity_retired до сети); ТОЛЬКО ГОСТЬ')
 
 # ── Удаление: только открыть окно
-add('auth-gap-009', DELETE_OPEN, 'delete=fail', ACCT, note='окно «Удалить аккаунт?» с «14 дней», НЕ подтверждать; НУЖЕН ВХОД')
+# зачем (EN-проход 13.10): вариант «через 14 дней» показывается только при входе Google/Apple; dev account=linked (только память,
+# только на одноразовом госте, действия аккаунта отказывают) даёт тот же вариант без настоящего входа.
+add('auth-gap-009', DELETE_OPEN, 'delete=fail&account=linked', ACCT, note='окно «Удалить аккаунт?» с «14 дней», НЕ подтверждать; вход — подменой account=linked (без настоящего входа)')
 add('auth-gap-010', DELETE_OPEN, 'delete=fail', ACCT, note='гость: окно «Прогресс удалится безвозвратно», НЕ подтверждать; ТОЛЬКО ГОСТЬ')
 add('auth-gap-011', DELETE_OPEN, 'delete=fail', ACCT, unique=False,
     note='«Удаление не завершилось» — ВРУЧНУЮ: нужно ввести слово подтверждения кириллицей (робот вводит только ASCII) и нажать «Удалить»; '

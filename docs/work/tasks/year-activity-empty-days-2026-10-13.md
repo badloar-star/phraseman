@@ -24,3 +24,6 @@ Owner: сессия «4 · ТЕМЫ 2.0»
 
 ## Rollback
 git revert коммита.
+
+## Дополнение (13.10, координатор)
+Тем же коммитом перепинён эталон `panel` в `tests/flashcards_speaking_liquid_glass_source_contract.test.mjs`: c9037920f добавил в `SpeakingPanel.tsx` только комментарий `light-accent-ok`, код панели не менялся. Откат — git revert.

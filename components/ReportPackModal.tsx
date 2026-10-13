@@ -5,20 +5,16 @@
 // користувачу простий механізм поскаржитися на контент. Виклик з paywall
 // набору, коли набір помічений як community (isCommunityUgc).
 //
-// Логіка:
-//   • Запит причини (одна з 6 категорій).
-//   • Опціональний коментар (до 500 символів).
-//   • Запис у `community_pack_reports` через submitPackReport().
-//   • Throttle 30 c (спільний з user_reports).
+// зачем (решение владельца 13.10 09:20, реестр cards-020, образец cards-states.html `packReport`):
+// «Пожаловаться на набор» — нижняя шторка с выбором причины и полем комментария, а не окно по центру.
+// Отправка — тем же путём (submitPackReport), Optimistic UI: шторка закрывается сразу, тост «Жалоба отправлена»,
+// при сбое/лимите — тост; ref-замок от двойного тапа. Журнал [PACK-REPORT] — вход, выбор, отправка, ответ, тосты.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   Keyboard,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -27,18 +23,16 @@ import {
 } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
-import { hideCommunityPackOnDevice } from '../app/community_packs/communityPackHiddenStorage';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
 import { actionToastTri, emitAppEvent } from '../app/events';
+import { DebugLogger } from '../app/debug-logger';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import HybridAlertShell, { CascadeItem } from './modal_fx/HybridAlertShell';
-import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { LUM } from '../constants/motionHybrid';
-import { plateBoxShadow } from './v2/ShadowSurface';
+import HybridSheetShell from './modal_fx/HybridSheetShell';
+import { useGlassSheetContentMaxHeight } from './modal_fx/useGlassSheetContentMaxHeight';
 
-const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
+const LOG = '[PACK-REPORT]';
 
 interface Props {
   visible: boolean;
@@ -48,14 +42,13 @@ interface Props {
   lang: Lang;
   studyTarget?: RuntimeStudyTarget;
   onClose: () => void;
-  /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). */
+  /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). Шторка-форма «Скарга» его больше не вызывает (решение 13.10: после отправки только тост). */
   onPackHiddenOnDevice?: (optimisticPackId?: string | null) => void | Promise<void>;
-  /** dev-only: витрина движения запускает гибрид «Световод» рядом с боевым видом. Default 'classic'. */
+  /** dev-only: витрина движения передаёт вариант; у нижней шторки один вид. */
   motionVariant?: 'classic' | 'hybrid';
 }
 
-// зачем: подписи причин на всех 9 языках (раньше en/pt/vi/id/tr/pl получали русский
-// список); описания под названиями убраны — макет CARD-23 показывает только названия.
+// зачем: подписи причин на всех 9 языках; образец cards-states `packReport` — шесть причин, радио слева, затем название.
 function reasonsFor(lang: Lang): { id: PackReportReason; label: string }[] {
   return [
     { id: 'offensive', label: triLang(lang, { ru: 'Образа / ненависть', uk: 'Образа / ненависть', en: 'Insults or hate', es: 'Insultos u odio', 'pt-BR': 'Insulto ou ódio', vi: 'Xúc phạm / thù ghét', id: 'Hinaan / kebencian', tr: 'Hakaret / nefret', pl: 'Obraza / nienawiść' }) },
@@ -75,387 +68,205 @@ function ReportPackModal({
   lang,
   studyTarget,
   onClose,
-  onPackHiddenOnDevice,
-  motionVariant = 'classic',
 }: Props) {
   const { f, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
-  const reduceMotion = useReduceMotion();
-  const isHybrid = motionVariant === 'hybrid';
+  const sheetContentMaxHeight = useGlassSheetContentMaxHeight(visible);
   const reasons = reasonsFor(lang);
 
   const [selected, setSelected] = useState<PackReportReason | null>(null);
-  const [comment, setComment]   = useState('');
-  const [loading, setLoading]   = useState(false);
-  const [done, setDone]         = useState(false);
-  const [throttled, setThrottled] = useState(false);
-  const [hiding, setHiding]     = useState(false);
+  const [comment, setComment] = useState('');
 
-  const reset = () => {
+  // зачем: сброс при ОТКРЫТИИ, а не при закрытии — иначе за время анимации ухода шторка мигнула бы пустой формой.
+  useEffect(() => {
+    if (!visible) return;
     setSelected(null);
     setComment('');
-    setLoading(false);
-    setDone(false);
-    setThrottled(false);
-    setHiding(false);
-  };
+    DebugLogger.info(LOG, `открыта шторка: pack=${packId} target=${String(studyTarget)} lang=${lang} автор=${authorStableId ? 'есть' : 'нет'}`);
+  }, [visible, packId, studyTarget, lang, authorStableId]);
 
   const handleClose = () => {
     Keyboard.dismiss();
-    reset();
+    DebugLogger.info(LOG, `шторка закрыта: pack=${packId}`);
     onClose();
   };
 
-  // зачем: «Отправить» сразу показывает «готово» (Optimistic UI); ref-замок не даёт второму тапу
-  // в том же кадре отправить жалобу дважды, а откат больше не молчит — человек видит причину.
+  // зачем: «Отправить» сразу закрывает шторку и показывает тост (Optimistic UI); ref-замок не даёт второму тапу
+  // в том же кадре отправить жалобу дважды, а откат больше не молчит — человек видит причину тостом.
   const sendInFlightRef = useRef(false);
-  const handleSend = async () => {
-    if (!selected) return;
+  const toastError = (reason: string) => {
+    hapticError();
+    DebugLogger.warn(LOG, `тост ошибки: ${reason}`);
+    emitAppEvent('action_toast', actionToastTri('error', {
+      ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
+      es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
+      vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
+      pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
+    }));
+  };
+  const handleSend = async (requestDismiss: () => void) => {
+    if (!selected) {
+      DebugLogger.warn(LOG, 'отправка нажата без причины — пропуск');
+      return;
+    }
     if (sendInFlightRef.current) {
-      console.warn('[REPORT-PACK] send: уже в пути — повторный тап пропущен');
+      DebugLogger.warn(LOG, 'отправка: уже в пути — повторный тап пропущен');
       return;
     }
     sendInFlightRef.current = true;
-    const payload = {
-      packId,
-      packTitle,
-      authorStableId,
-      studyTarget,
-      reason: selected,
-      comment: comment.trim(),
-    };
+    const payload = { packId, packTitle, authorStableId, studyTarget, reason: selected, comment: comment.trim() };
+    const startedAt = Date.now();
+    DebugLogger.info(LOG, `отправка: pack=${packId} причина=${selected} комментарий=${payload.comment.length} знаков target=${String(studyTarget)}`);
+    hapticSuccess();
+    emitAppEvent('action_toast', actionToastTri('success', {
+      ru: 'Жалоба отправлена', uk: 'Скаргу надіслано', en: 'Report sent', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada',
+      vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane',
+    }));
+    requestDismiss();
     try {
-      hapticTap();
-      setThrottled(false);
-      setLoading(false);
-      setDone(true);
-      hapticSuccess();
       const r = await submitPackReport(payload);
+      DebugLogger.info(LOG, `ответ: ${String(r)} за ${Date.now() - startedAt} мс`);
       if (r === 'throttled') {
-        setDone(false);
-        setThrottled(true);
         hapticError();
+        DebugLogger.warn(LOG, 'лимит 30 с: жалоба не принята, показан тост');
+        emitAppEvent('action_toast', actionToastTri('warning', {
+          ru: 'Подожди 30 секунд перед следующей жалобой', uk: 'Зачекай 30 секунд перед наступною скаргою', en: 'Wait 30 seconds before the next report',
+          es: 'Espera 30 segundos antes de la siguiente denuncia', 'pt-BR': 'Espere 30 segundos antes da próxima denúncia',
+          vi: 'Chờ 30 giây trước báo cáo tiếp theo', id: 'Tunggu 30 detik sebelum laporan berikutnya', tr: 'Sonraki şikayetten önce 30 saniye bekle',
+          pl: 'Poczekaj 30 sekund przed kolejnym zgłoszeniem',
+        }));
         return;
       }
-      if (r === 'failed') throw new Error('pack_report_failed');
+      if (r === 'failed') toastError('server_returned_failed');
     } catch (error: unknown) {
-      console.warn('[REPORT-PACK] send: не удалось — откат', error instanceof Error ? error.message : String(error));
-      setLoading(false);
-      setDone(false);
-      hapticError();
-      emitAppEvent('action_toast', actionToastTri('error', {
-  ru: 'Жалоба не отправилась. Попробуй ещё раз', uk: 'Скаргу не надіслано. Спробуй ще раз', en: "Couldn't send the report. Try again",
-  es: 'No se pudo enviar el reporte. Inténtalo de nuevo', 'pt-BR': 'Não foi possível enviar a denúncia. Tente de novo',
-  vi: 'Không gửi được báo cáo. Hãy thử lại', id: 'Laporan gagal dikirim. Coba lagi', tr: 'Şikayet gönderilemedi. Tekrar dene',
-  pl: 'Nie udało się wysłać zgłoszenia. Spróbuj ponownie',
-}));
+      toastError(`exception: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       sendInFlightRef.current = false;
     }
   };
 
-  const overlayBg = 'rgba(0,0,0,0.58)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
-
-  // зачем: Liquid Glass 1 в 1 с макета cards.html (CARD-23 «Жалоба на набор»):
-  // непрозрачная панель темы, тональные строки причин, светлая нейтральная CTA;
-  // зелёный фирменный цвет и толстые рамки убраны. Логика отправки/скрытия не менялась.
-  const primaryCta = (label: string, onPress: () => void, extra?: { flex?: number; disabled?: boolean; muted?: boolean; testID?: string }) => (
-    <TouchableOpacity
-      testID={extra?.testID}
-      disabled={extra?.disabled}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: !!extra?.disabled }}
-      style={{
-        flex: extra?.flex,
-        minHeight: 48,
-        borderRadius: 24,
-        paddingHorizontal: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: extra?.muted ? glass.opaqueControl : glass.cta,
-      }}
-    >
-      <Text style={{ color: extra?.muted ? glass.mutedText : glass.ctaInk, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>{label}</Text>
-    </TouchableOpacity>
-  );
-  const ghostCta = (label: string, onPress: () => void, extra?: { flex?: number; disabled?: boolean; testID?: string }) => (
-    <TouchableOpacity
-      testID={extra?.testID}
-      disabled={extra?.disabled}
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: !!extra?.disabled }}
-      style={{
-        flex: extra?.flex,
-        minHeight: 48,
-        borderRadius: 24,
-        paddingHorizontal: 16,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: glass.opaqueControl,
-        opacity: extra?.disabled ? 0.6 : 1,
-      }}
-    >
-      <Text style={{ color: glass.text, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>{label}</Text>
-    </TouchableOpacity>
-  );
-  const closeText = triLang(lang, { uk: 'Закрити', ru: 'Закрыть', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
-
-  const panelContent = (
-          <View
-            style={{
-              backgroundColor: glass.opaqueSheet,
-              boxShadow: plateBoxShadow(glass),
-              borderRadius: 26,
-              padding: 22,
-              maxHeight: '85%',
-            }}
-          >
-            {done ? (
-              <View style={{ alignItems: 'stretch', paddingVertical: 8 }}>
-                {/* зачем: эмодзи в UI запрещены владельцем — иконка набора приложения */}
-                <View style={{ width: 55, height: 55, borderRadius: 16, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', alignSelf: 'center', marginBottom: 14 }}>
-                  <Ionicons name="checkmark" size={26} color={glass.text} />
-                </View>
-                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 23, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', en: 'Report sent', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
-                </Text>
-                <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
-                  {triLang(lang, {
-                    // зачем (координатор 12.10, cards-059 / образец cards-states №53): коротко, как в одобренном образце — «Спасибо — мы проверим набор.»; прежний длинный абзац сокращён по правилу «без воды»
-                    uk: 'Дякуємо — ми перевіримо набір.',
-                    ru: 'Спасибо — мы проверим набор.',
-                    en: 'Thank you — we will review the pack.',
-                    es: 'Gracias: revisaremos el pack.',
-                    'pt-BR': 'Obrigado — vamos analisar o pack.',
-                    vi: 'Cảm ơn bạn — chúng tôi sẽ kiểm tra bộ thẻ.',
-                    id: 'Terima kasih — kami akan memeriksa paket ini.',
-                    tr: 'Teşekkürler — paketi inceleyeceğiz.',
-                    pl: 'Dziękujemy — sprawdzimy zestaw.',
-                  })}
-                </Text>
-                <View style={{ marginTop: 20, gap: 10 }}>
-                  {primaryCta(closeText, handleClose)}
-                  {ghostCta(
-                    triLang(lang, {
-                      uk: 'Не показувати мені цей набір',
-                      ru: 'Не показывать мне этот набор',
-                      en: "Don't show me this pack again",
-                      es: 'No volver a mostrarme este pack',
-                      'pt-BR': 'Não mostrar este pack novamente',
-                      vi: 'Không hiển thị bộ này nữa',
-                      id: 'Jangan tampilkan pack ini lagi',
-                      tr: 'Bu paketi bir daha gösterme',
-                      pl: 'Nie pokazuj mi już tego pakietu',
-                    }),
-                    async () => {
-                      try {
-                        hapticTap();
-                        setHiding(true);
-                        void onPackHiddenOnDevice?.(packId);
-                        handleClose();
-                        await hideCommunityPackOnDevice(packId, studyTarget);
-                        await onPackHiddenOnDevice?.(null);
-                        hapticSuccess();
-                      } catch {
-                        hapticError();
-                        await onPackHiddenOnDevice?.(null);
-                      }
-                    },
-                    { disabled: hiding },
-                  )}
-                </View>
-                <Text style={{ color: glass.mutedText, fontSize: f.caption, marginTop: 10, textAlign: 'center' }}>
-                  {triLang(lang, {
-                    uk: 'Лише на цьому пристрої. Можна скинути, перевстановивши застосунок.',
-                    ru: 'Только на этом устройстве. Сброс при удалении приложения.',
-                    en: 'This device only. It resets if you delete the app.',
-                    es: 'Solo en este dispositivo. Se restablece si borras la app.',
-                    'pt-BR': 'Apenas neste dispositivo. É redefinido se você apagar o app.',
-                    vi: 'Chỉ trên thiết bị này. Sẽ đặt lại nếu bạn xóa ứng dụng.',
-                    id: 'Hanya di perangkat ini. Akan direset jika kamu menghapus aplikasi.',
-                    tr: 'Yalnızca bu cihazda. Uygulamayı silersen sıfırlanır.',
-                    pl: 'Tylko na tym urządzeniu. Resetuje się po usunięciu aplikacji.',
-                  })}
-                </Text>
-              </View>
-            ) : throttled ? (
-              <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                <View style={{ width: 68, height: 68, borderRadius: 23, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center', marginBottom: 15 }}>
-                  <Ionicons name="flag-outline" size={26} color={glass.text} />
-                </View>
-                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 23, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', en: 'Wait 30 seconds', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
-                </Text>
-                <Text style={{ color: glass.secondary, fontSize: f.body, marginTop: 8, textAlign: 'center' }}>
-                  {triLang(lang, {
-                    uk: 'Можна надсилати скарги не частіше за раз на 30 с.',
-                    ru: 'Можно отправлять жалобы не чаще раза в 30 с.',
-                    en: 'You can send a report no more than once every 30 s.',
-                    es: 'Solo se puede enviar una denuncia cada 30 s.',
-                    'pt-BR': 'Você só pode enviar uma denúncia a cada 30 s.',
-                    vi: 'Bạn chỉ có thể gửi một báo cáo mỗi 30 giây.',
-                    id: 'Kamu hanya bisa mengirim laporan setiap 30 detik.',
-                    tr: 'Her 30 saniyede yalnızca bir şikayet gönderebilirsin.',
-                    pl: 'Zgłoszenie można wysłać nie częściej niż raz na 30 s.',
-                  })}
-                </Text>
-                {/* зачем (аудит по Библии, 2026-08-26): непереведённое «OK» —
-                    и не глагол (Правило 1), и русский интерфейс показывал
-                    латиницу. Жалоба отправлена, окно закрывается. */}
-                <View style={{ alignSelf: 'stretch', marginTop: 18 }}>
-                  {primaryCta(closeText, handleClose)}
-                </View>
-              </View>
-            ) : (
-              <>
-                <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 22, fontWeight: '700', marginBottom: 6 }}>
-                  {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
-                </Text>
-                <Text style={{ color: glass.secondary, fontSize: f.body, marginBottom: 14 }}>
-                  {packTitle}
-                </Text>
-
-                <ScrollView decelerationRate="fast"
-                  style={{ maxHeight: 320 }}
-                  showsVerticalScrollIndicator={false}
-                  keyboardShouldPersistTaps="handled"
-                  keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
-                >
-                  {reasons.map((r) => {
-                    const active = selected === r.id;
-                    return (
-                      <TouchableOpacity
-                        key={r.id}
-                        accessibilityRole="radio"
-                        accessibilityState={{ selected: active }}
-                        onPress={() => { hapticTap(); setSelected(r.id); }}
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: 12,
-                          minHeight: 52,
-                          paddingHorizontal: 16,
-                          borderRadius: 16,
-                          marginBottom: 8,
-                          backgroundColor: active ? glass.selected : glass.opaqueControl,
-                        }}
-                      >
-                        <Text style={{ color: glass.text, fontSize: f.body, fontWeight: active ? '700' : '400', flexShrink: 1 }}>
-                          {r.label}
-                        </Text>
-                        <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: active ? glass.cta : glass.opaqueSheet }}>
-                          {active ? <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: glass.ctaInk }} /> : null}
-                        </View>
-                      </TouchableOpacity>
-                    );
-                  })}
-
-                  <TextInput
-                    value={comment}
-                    onChangeText={setComment}
-                    multiline
-                    maxLength={500}
-                    accessibilityLabel={triLang(lang, {
-                      uk: 'Коментар (необов\'язково)',
-                      ru: 'Комментарий (необязательно)',
-                      en: 'Comment (optional)',
-                      es: 'Comentario (opcional)',
-                      'pt-BR': 'Comentário (opcional)',
-                      vi: 'Bình luận (không bắt buộc)',
-                      id: 'Komentar (opsional)',
-                      tr: 'Yorum (isteğe bağlı)',
-                      pl: 'Komentarz (opcjonalnie)',
-                    })}
-                    placeholder={triLang(lang, {
-                      uk: 'Опиши проблему...',
-                      ru: 'Опиши проблему...',
-                      en: 'Describe the issue...',
-                      es: 'Describe el problema…',
-                      'pt-BR': 'Descreva o problema...',
-                      vi: 'Mô tả vấn đề...',
-                      id: 'Jelaskan masalahnya...',
-                      tr: 'Sorunu açıkla...',
-                      pl: 'Opisz problem...',
-                    })}
-                    placeholderTextColor={glass.mutedText}
-                    style={{
-                      color: glass.text,
-                      backgroundColor: glass.opaqueControl,
-                      borderRadius: 16,
-                      paddingHorizontal: 16,
-                      paddingVertical: 14,
-                      fontSize: f.body,
-                      minHeight: 74,
-                      marginTop: 4,
-                      textAlignVertical: 'top',
-                    }}
-                  />
-                  <Text style={{ color: glass.mutedText, fontSize: f.caption, marginTop: 6, textAlign: 'right' }}>
-                    {comment.length}/500
-                  </Text>
-                </ScrollView>
-
-                <View style={{ flexDirection: 'row', gap: 10, marginTop: 16 }}>
-                  {ghostCta(
-                    triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' }),
-                    handleClose,
-                    { flex: 1 },
-                  )}
-                  {primaryCta(
-                    triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' }),
-                    handleSend,
-                    { flex: 1.4, disabled: !selected || loading, muted: !selected || loading },
-                  )}
-                </View>
-              </>
-            )}
-          </View>
-  );
-
-  if (isHybrid) {
-    return (
-      <HybridAlertShell scrollContent={false}
-        visible={visible}
-        onRequestClose={handleClose}
-        shadowColor={EXEMPT_COLOR_1}
-        backdropColor={overlayBg}
-        testID="report-pack-modal-hybrid"
-      >
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} style={{ width: '100%', maxWidth: 460 }}>
-          <CascadeItem delay={LUM.ladder[2]} reduceMotion={reduceMotion}>
-            {panelContent}
-          </CascadeItem>
-        </KeyboardAvoidingView>
-      </HybridAlertShell>
-    );
-  }
+  const closeLabel = triLang(lang, { uk: 'Закрити', ru: 'Закрыть', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  const canSend = !!selected;
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={{ flex: 1 }}
-      >
-        <TouchableOpacity
-          style={{
-            flex: 1,
-            backgroundColor: overlayBg,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingHorizontal: 18,
-          }}
-          activeOpacity={1}
-          onPress={handleClose}
-        >
-          <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ width: '100%', maxWidth: 460 }}>
-            {panelContent}
-          </TouchableOpacity>
-        </TouchableOpacity>
-      </KeyboardAvoidingView>
-    </Modal>
+    <HybridSheetShell
+      visible={visible}
+      onClose={handleClose}
+      closeLabel={closeLabel}
+      testID="report-pack-sheet"
+      material="liquid-glass-opaque"
+      backdropAccessible={false}
+    >
+      {({ requestDismiss }) => (
+        <View style={{ maxHeight: sheetContentMaxHeight, minHeight: 0, flexShrink: 1 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 4 }}>
+            <Text accessibilityRole="header" maxFontSizeMultiplier={1.15} style={{ color: glass.text, fontSize: 22, fontWeight: '700', flex: 1 }}>
+              {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', en: 'Report the pack', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
+            </Text>
+            <TouchableOpacity
+              testID="report-pack-close"
+              onPress={requestDismiss}
+              accessibilityRole="button"
+              accessibilityLabel={closeLabel}
+              style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
+            >
+              <View style={{ width: 36, height: 36, borderRadius: 18, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="close" size={18} color={glass.text} />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView
+            decelerationRate="fast"
+            style={{ flexShrink: 1, flexGrow: 0, marginTop: 14 }}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+          >
+            {reasons.map((r) => {
+              const active = selected === r.id;
+              return (
+                <TouchableOpacity
+                  key={r.id}
+                  testID={`report-pack-reason-${r.id}`}
+                  accessibilityRole="radio"
+                  accessibilityState={{ selected: active }}
+                  onPress={() => { hapticTap(); setSelected(r.id); DebugLogger.info(LOG, `выбрана причина ${r.id}`); }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 12,
+                    minHeight: 52,
+                    paddingHorizontal: 16,
+                    borderRadius: 16,
+                    marginBottom: 8,
+                    backgroundColor: active ? glass.selected : glass.opaqueControl,
+                  }}
+                >
+                  {/* макет `.opt2`: радио слева, затем название */}
+                  <View style={{ width: 22, height: 22, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: active ? glass.cta : glass.opaqueSheet }}>
+                    {active ? <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: glass.ctaInk }} /> : null}
+                  </View>
+                  <Text style={{ color: glass.text, fontSize: f.body, fontWeight: active ? '700' : '400', flexShrink: 1 }}>{r.label}</Text>
+                </TouchableOpacity>
+              );
+            })}
+
+            <TextInput
+              testID="report-pack-comment"
+              value={comment}
+              onChangeText={setComment}
+              multiline
+              maxLength={500}
+              accessibilityLabel={triLang(lang, {
+                uk: 'Коментар (необов\'язково)', ru: 'Комментарий (необязательно)', en: 'Comment (optional)', es: 'Comentario (opcional)',
+                'pt-BR': 'Comentário (opcional)', vi: 'Bình luận (không bắt buộc)', id: 'Komentar (opsional)', tr: 'Yorum (isteğe bağlı)', pl: 'Komentarz (opcjonalnie)',
+              })}
+              placeholder={triLang(lang, {
+                uk: 'Опиши проблему...', ru: 'Опиши проблему...', en: 'Describe the issue...', es: 'Describe el problema…',
+                'pt-BR': 'Descreva o problema...', vi: 'Mô tả vấn đề...', id: 'Jelaskan masalahnya...', tr: 'Sorunu açıkla...', pl: 'Opisz problem...',
+              })}
+              placeholderTextColor={glass.mutedText}
+              style={{
+                color: glass.text,
+                backgroundColor: glass.opaqueControl,
+                borderRadius: 16,
+                paddingHorizontal: 16,
+                paddingVertical: 14,
+                fontSize: f.body,
+                minHeight: 74,
+                marginTop: 6,
+                textAlignVertical: 'top',
+              }}
+            />
+          </ScrollView>
+
+          <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
+            <TouchableOpacity
+              testID="report-pack-cancel"
+              onPress={requestDismiss}
+              accessibilityRole="button"
+              style={{ flex: 1, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
+            >
+              <Text style={{ color: glass.text, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID="report-pack-send"
+              disabled={!canSend}
+              onPress={() => { void handleSend(requestDismiss); }}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: !canSend }}
+              style={{ flex: 1.4, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: canSend ? glass.cta : glass.opaqueControl }}
+            >
+              <Text style={{ color: canSend ? glass.ctaInk : glass.mutedText, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>
+                {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+    </HybridSheetShell>
   );
 }
 

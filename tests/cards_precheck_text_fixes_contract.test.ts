@@ -22,11 +22,11 @@ describe('Cards text precheck fixes', () => {
     expect(src).toMatch(/\) : writeCheckDone \? \(\s*<Text testID="pack-comments-write-locked"/);
   });
 
-  it('cards-059: the report-sent body is the short approved line on all nine languages', () => {
+  it('cards-059/020: the report-sent toast is the short line on all nine languages (13.10: bottom sheet closes at once, toast only)', () => {
     const src = read('components/ReportPackModal.tsx');
-    const at = src.indexOf("ru: 'Спасибо — мы проверим набор.'");
+    const at = src.indexOf("ru: 'Жалоба отправлена'");
     expect(at).toBeGreaterThan(-1);
-    const block = src.slice(at - 400, at + 900);
+    const block = src.slice(at - 60, at + 700);
     for (const lang of LANGS) expect(block).toContain(lang);
     expect(src).not.toContain('Твоя жалоба сохранена. Мы рассмотрим её');
   });

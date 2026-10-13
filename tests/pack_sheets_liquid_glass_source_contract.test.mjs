@@ -49,16 +49,16 @@ test('no green brand CTA (t.correct*), no thick borders, no font shrinking', () 
 });
 
 test('comments sheet and report modals use the opaque Liquid Glass sheet shell', () => {
-  for (const [name, src] of [['PackCommentsSheet', comments], ['ReportCommentModal', reportComment]]) {
+  for (const [name, src] of [['PackCommentsSheet', comments], ['ReportCommentModal', reportComment], ['ReportPackModal', reportPack]]) {
     assert.ok(src.includes('HybridSheetShell'), `${name}: shared sheet shell`);
     assert.ok(src.includes('material="liquid-glass-opaque"'), `${name}: opaque material`);
     assert.ok(src.includes('useGlassSheetContentMaxHeight'), `${name}: bounded scroll height`);
     assert.ok(src.includes('glass.cta'), `${name}: neutral theme CTA`);
     assert.ok(src.includes('glass.ctaInk'), `${name}: neutral CTA ink`);
   }
-  assert.ok(reportPack.includes('HybridAlertShell'), 'ReportPackModal keeps its alert shell');
-  assert.ok(reportPack.includes('glass.opaqueSheet'), 'ReportPackModal panel is an opaque glass surface');
-  assert.ok(reportPack.includes('glass.cta'), 'ReportPackModal neutral CTA');
+  // зачем (решение владельца 13.10, cards-020): жалоба на набор — нижняя шторка (HybridSheetShell), не окно по центру (HybridAlertShell).
+  assert.ok(!reportPack.includes('HybridAlertShell') && !reportPack.includes('<Modal'), 'ReportPackModal is a bottom sheet, not a centered alert');
+  assert.ok(reportPack.includes('glass.opaqueControl'), 'ReportPackModal rows are tonal plates');
 });
 
 test('comments sheet keeps every behavior: optimistic send, retry, reactions, moderation, report', () => {
@@ -81,11 +81,13 @@ test('report comment modal keeps submit, throttle and failure semantics', () => 
   ]) assert.ok(reportComment.includes(needle), `ReportCommentModal keeps ${needle}`);
 });
 
-test('report pack modal keeps props, hide-on-device flow and both shell variants', () => {
+test('report pack sheet keeps props and the send path, adds optimistic close, toasts and [PACK-REPORT] log', () => {
   for (const needle of [
-    'submitPackReport', 'hideCommunityPackOnDevice', 'onPackHiddenOnDevice', "motionVariant = 'classic'",
-    'authorStableId', 'studyTarget', "r === 'throttled'", "r === 'failed'", 'maxLength={500}', 'report-pack-modal-hybrid',
+    'submitPackReport', 'onPackHiddenOnDevice', 'motionVariant',
+    'authorStableId', 'studyTarget', "r === 'throttled'", "r === 'failed'", 'maxLength={500}',
+    'sendInFlightRef', "const LOG = '[PACK-REPORT]'", 'requestDismiss();', "actionToastTri('success'", "actionToastTri('error'", "actionToastTri('warning'",
   ]) assert.ok(reportPack.includes(needle), `ReportPackModal keeps ${needle}`);
+  assert.ok(!reportPack.includes('hideCommunityPackOnDevice'), 'the centered done step with hide-on-device is gone (13.10: toast only)');
 });
 
 test('actions menu and delete-pack modal: glass tokens, shadow plate without edges (Тень 12.10)', () => {

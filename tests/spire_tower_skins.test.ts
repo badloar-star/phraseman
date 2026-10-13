@@ -91,6 +91,13 @@ describe('наряды башни Шпиля', () => {
     expect(spireSkinForTier(2).underTop).toBeLessThan(spireSkinForTier(6).underTop);
   });
 
+  it('нет стержня между навершием и крышей (приёмка Макетов SK1): древко только у флаговых лиг и только выше навершия', () => {
+    expect(svg).not.toContain('y1={apex + 4}'); // прежний стержень от острия до флага
+    expect(svg).toContain('skin.pennant && poleBase > poleTop');
+    expect(svg).toContain('spireFinialTopY(skin.finial, apex - 16, big)');
+    expect(finial).toContain('export function spireFinialTopY');
+  });
+
   it('башня красится из skin и по рецепту спеки: один Pattern, отлив и ободки одним узлом, без фильтров', () => {
     for (const piece of ['skin = SPIRE_DEFAULT_SKIN', 'stopColor={skin.cyl[i]}', 'stopColor={skin.cylG[i]}', 'stopColor={skin.corn[i]}', 'stopColor={skin.cone[i]}',
       'skin.sky[2]', 'skin.ground[1]', 'id="spireGloss"', 'id="spireMetal"', 'url(#spireGloss)', 'skinTextureDefs(skin.tex)', 'skin.rim === \'full\' ? <CornRims />',

@@ -29,6 +29,27 @@ function star4(k: string, x: number, y: number, r: number, c: string, a: number)
 
 type Props = Readonly<{ skin: SpireTowerSkin; cx: number; cy: number; big: boolean }>;
 
+/**
+ * Верх навершия по Y (меньше = выше). зачем (приёмка Макетов 13.10, SK1: «между навершием и крышей виден стержень»): у образца
+ * spire-leagues.html навершие висит в свечении над острием, а древко флага есть только ВЫШЕ навершия — значит древку надо знать,
+ * где навершие кончается. Цифры — те же, что в отрисовке ниже.
+ */
+export function spireFinialTopY(finial: SpireTowerSkin['finial'], cy: number, big: boolean): number {
+  const s = big ? 1.25 : 1;
+  switch (finial) {
+    case 'ball': return cy - 5.5 * s;
+    case 'gem': return cy - 7.8 * s;
+    case 'crystal': return cy - 14 * s;
+    case 'cabochon': return cy - 6 * s;
+    case 'cluster': return cy + 6 - 17 * s;
+    case 'orb': return cy - 7 * s;
+    case 'crown': return cy - 4 * s - 3;
+    case 'shard': return cy - 20 * s;
+    case 'brilliant': return cy - 13.2 * s;
+    default: return cy - 5.5;
+  }
+}
+
 function SpireTowerFinial({ skin, cx, cy, big }: Props) {
   const s = big ? 1.25 : 1;
   const g = skin.gem;

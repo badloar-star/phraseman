@@ -17,7 +17,7 @@ import Svg, {
 import type { Lang } from '../../constants/i18n';
 import { SPIRE_DEFAULT_SKIN, mixHex, type SpireTowerSkin } from '../../modules/spire/tower_skins';
 import { spireText } from './spire_strings';
-import SpireTowerFinial from './SpireTowerFinial';
+import SpireTowerFinial, { spireFinialTopY } from './SpireTowerFinial';
 import { SPIRE_TEX_ID, skinTextureDefs } from './SpireTowerTextures';
 import {
   SPIRE_CX, SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireFloorState, spireIsGuard, spireIsSummit,
@@ -175,6 +175,9 @@ const Crown = memo(function Crown({ skin, summit }: CrownProps) {
   const conePts = `${SPIRE_CX - rw / 2},${yd} ${SPIRE_CX + rw / 2},${yd} ${SPIRE_CX},${apex}`;
   const ring = <Rect x={SPIRE_CX - rw / 2} y={yd - 4} width={rw} height={8} rx={4} fill={skin.rim === 'none' ? 'url(#spireCylCorn)' : 'url(#spireMetal)'} />;
   const poleTop = apex - (skin.pennant ? 34 : 12);
+  // зачем (приёмка Макетов 13.10, SK1: стержень от навершия до крыши во всех 12 лигах): как в образце — между навершием и острием пусто,
+  // острие кровли тонкое и острое; древко флага начинается у верха навершия и идёт только вверх (нет флага — нет древка).
+  const poleBase = spireFinialTopY(skin.finial, apex - 16, big) + 1;
   return (
     <G>
       <Rect x={dx} y={yd} width={dw} height={34} fill="url(#spireCyl)" />
@@ -192,7 +195,7 @@ const Crown = memo(function Crown({ skin, summit }: CrownProps) {
       <Circle cx={SPIRE_CX} cy={apex - 14} r={big ? skin.glowR * 2.6 : skin.glowR} fill="url(#spireGlow)" />
       {premium ? (
         <>
-          <Line x1={SPIRE_CX} y1={apex + 4} x2={SPIRE_CX} y2={poleTop} stroke="url(#spireMetal)" strokeWidth={2} />
+          {skin.pennant && poleBase > poleTop ? <Line x1={SPIRE_CX} y1={poleBase} x2={SPIRE_CX} y2={poleTop} stroke="url(#spireMetal)" strokeWidth={2} /> : null}
           {skin.pennant ? (
             <>
               <Path d={`M${SPIRE_CX + 1} ${poleTop}h18l-5 5.5 5 5.5h-18z`} fill={skin.pennant} />

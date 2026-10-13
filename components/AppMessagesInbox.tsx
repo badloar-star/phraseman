@@ -38,7 +38,6 @@ import {
   pickAppMessageText,
   setAppMessageReaction,
   setAppMessagePollVote,
-  claimReportReplyCoinsOptimistically,
   readAnimatedMessageIds,
   markMessageIdsAnimated,
   readCachedAppMessagesSnapshot,
@@ -160,7 +159,6 @@ function AppMessagesInbox({
   const [vipSurveyReviewPromptVisible, setVipSurveyReviewPromptVisible] = useState(false);
   const [undoMessage, setUndoMessage] = useState<AppMessageWithState | null>(null);
   const [embeddedPage, setEmbeddedPage] = useState(0);
-  const optimisticReportClaimIdsRef = useRef<Set<string>>(new Set());
   const [renderButton, setRenderButton] = useState(runtimeActive);
   const [animatedIdsReady, setAnimatedIdsReady] = useState(false);
   const badgePulse = useRef(new Animated.Value(1)).current;
@@ -584,23 +582,6 @@ function AppMessagesInbox({
     void setAppMessagePollVote(selected.id, optionId);
   };
 
-  // Local UI overlay: hide the CTA immediately; persistence is handled in the background.
-  const markReplyClaimedLocally = (messageId: string) => {
-    setMessages((prev) => prev.map((m) => (
-      m.id === messageId && m.reportReply ? { ...m, reportReply: { ...m.reportReply, claimed: true } } : m
-    )));
-  };
-
-  const claimReportReward = (message: AppMessageWithState) => {
-    const reward = message.reportReply;
-    if (!reward || reward.coins <= 0 || reward.claimed) return;
-    if (optimisticReportClaimIdsRef.current.has(message.id)) return;
-    optimisticReportClaimIdsRef.current.add(message.id);
-    hapticTap();
-    markReplyClaimedLocally(message.id);
-    void claimReportReplyCoinsOptimistically(message.id, reward.coins);
-  };
-
   const dismissSurveyMessage = (messageId: string) => {
     const target = messages.find((message) => message.id === messageId);
     if (target) dismissMessage(target);
@@ -666,8 +647,6 @@ function AppMessagesInbox({
   const vipSurveyAccentText = glass.ctaInk;
   const vipSurveyTint = glass.selected;
   // Награда (монеты) и «получено» — цвета темы приложения, как и раньше «награда».
-  const rewardColor = theme?.gold ?? glass.text;
-  const successColor = theme?.correct ?? glass.text;
   // Ошибка/«не нравится» остаётся красной.
   const dangerColor = theme?.wrong ?? 'red';
   const bellColor = theme?.accentText ?? glass.accentText;
@@ -848,12 +827,7 @@ function AppMessagesInbox({
                         <Ionicons name="chatbox-ellipses-outline" size={11} color={chrome.soft} />
                         <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
                       </View>
-                      {(message.reportReply?.coins ?? 0) > 0 && !message.reportReply?.claimed ? (
-                        <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
-                          <Ionicons name="diamond-outline" size={11} color={rewardColor} />
-                          <Text style={[styles.pollBadgeText, { color: rewardColor }]}>+{message.reportReply?.coins}</Text>
-                        </View>
-                      ) : null}
+                      {/* зачем (координатор 13.10, D70/D104): «+N» старой награды не показываем — она ничего не начисляет */}
                     </>
                   ) : message.poll ? (
                     <View style={[styles.pollBadge, { backgroundColor: chrome.card }]}>
@@ -967,42 +941,6 @@ function AppMessagesInbox({
     );
   };
 
-  // Legacy fallback for historical one-pearl replies. Modern reward bundles are
-  // rendered once by NotificationCenterButton and filtered from this embedded list.
-  // Никаких модалок при начислении — вся выдача живёт здесь, в уведомлении.
-  const renderReportReplyClaim = (message: AppMessageWithState) => {
-    if (message.kind !== 'report_reply') return null;
-    const reward = message.reportReply;
-    if (!reward || reward.coins <= 0) return null;
-    return (
-      <View style={[styles.vipSurveyCard, { backgroundColor: chrome.card }]}>
-        <View style={styles.vipSurveyCardTop}>
-          <View style={[styles.vipSurveyIcon, { backgroundColor: glass.opaqueControl }]}>
-            <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond'} size={18} color={reward.claimed ? successColor : rewardColor} />
-          </View>
-          <View style={styles.vipSurveyTextWrap}>
-            <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>
-              {reward.claimed ? copy.claimed : `+${reward.coins}`}
-            </Text>
-          </View>
-        </View>
-        {!reward.claimed ? (
-          <KitTouchable
-            testID="report-reply-claim-cta"
-            activeOpacity={0.86}
-            accessibilityRole="button"
-            accessibilityLabel={copy.claim}
-            onPress={() => { void claimReportReward(message); }}
-            style={[styles.vipSurveyButton, { backgroundColor: glass.accent }]}
-          >
-            <Ionicons name="gift-outline" size={17} color={glass.ctaInk} />
-            <Text style={[styles.vipSurveyButtonText, { color: glass.accentInk }]}>{copy.claim}</Text>
-          </KitTouchable>
-        ) : null}
-      </View>
-    );
-  };
-
   const renderVipSurveyCta = (message: AppMessageWithState) => {
     if (message.kind !== 'vip_survey') return null;
     return (
@@ -1056,7 +994,6 @@ function AppMessagesInbox({
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
           {renderVipSurveyCta(selected)}
-          {renderReportReplyClaim(selected)}
           {renderPoll(selected)}
 
           {selected.kind === 'vip_survey' ? null : <View style={styles.reactions}>
@@ -1120,7 +1057,6 @@ function AppMessagesInbox({
           <Text style={[styles.detailTitle, { color: chrome.text }]}>{text.title}</Text>
           <Text style={[styles.detailBody, { color: chrome.muted }]}>{text.body}</Text>
           {renderVipSurveyCta(selected)}
-          {renderReportReplyClaim(selected)}
           {renderPoll(selected)}
           {selected.kind === 'vip_survey' ? null : (
             <View style={styles.reactions}>

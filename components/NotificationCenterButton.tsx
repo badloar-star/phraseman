@@ -392,6 +392,9 @@ function NotificationCenterButton({
     }));
   }, []);
 
+  // зачем (аудит Ядра adc40dad2, координатор 13.10): state `claimingMessageId` обновляется после рендера — второй тап в том же кадре
+  // проходил проверку и запускал вторую выдачу. Синхронный замок по id сообщения, снимается в finally.
+  const claimLockRef = useRef<Set<string>>(new Set());
   const claimReportReward = useCallback(async (row: UserNotification) => {
     const reward = row.reportReply;
     // зачем (PM-047, владелец): спин убран из наград — claimReportRewardBundle
@@ -404,6 +407,11 @@ function NotificationCenterButton({
       if (__DEV__) console.info('[REPORT-REWARD] claim tap ignored', { messageId: reward?.messageId, hasReward, claimed: reward?.claimed, busy: claimingMessageId });
       return;
     }
+    if (claimLockRef.current.has(reward.messageId)) {
+      console.info('[REPORT-REWARD] claim tap ignored reason=lock', { messageId: reward.messageId }); // guard-ok: ранний выход логируется
+      return;
+    }
+    claimLockRef.current.add(reward.messageId);
     hapticTap();
     setClaimErrorMessageId(null);
     setClaimingMessageId(reward.messageId);
@@ -420,6 +428,7 @@ function NotificationCenterButton({
       markReportReplyClaimedLocally(row.id, reward.messageId, false);
       setClaimErrorMessageId(reward.messageId);
     } finally {
+      claimLockRef.current.delete(reward.messageId);
       setClaimingMessageId(null);
     }
   }, [claimingMessageId, markReportReplyClaimedLocally]);

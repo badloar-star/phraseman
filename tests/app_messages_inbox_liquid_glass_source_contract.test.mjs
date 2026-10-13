@@ -30,8 +30,8 @@ test('AppMessagesInbox keeps public props, behaviors and touch targets', () => {
     'onMessageCountChange?: (count: number) => void', 'onDetailOpenChange?: (open: boolean) => void',
     'notificationTargetRef?: React.RefObject<View | null>', 'ownerActive?: boolean',
     'testID="notification-center-team-section"', 'testID="notification-center-team-detail"',
-    'testID="team-message-undo"', 'testID="vip-survey-inbox-cta"', 'testID="report-reply-claim-cta"',
-    'consumeVipCelebration', 'claimReportReplyCoinsOptimistically', 'setAppMessagePollVote', 'setAppMessageReaction',
+    'testID="team-message-undo"', 'testID="vip-survey-inbox-cta"',
+    'consumeVipCelebration', 'setAppMessagePollVote', 'setAppMessageReaction',
     'VipSurveyModal', 'VipCelebrationModal', 'HOME_NOTIFICATION_BADGE_COLOR', 'accessibilityViewIsModal',
   ]) assert.ok(inbox.includes(s), `keeps ${s}`);
   assert.match(inbox, /roundIcon: \{[^}]*width: 44,[^}]*height: 44/, 'close/back button is at least 44dp');

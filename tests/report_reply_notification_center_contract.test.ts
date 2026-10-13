@@ -45,6 +45,10 @@ describe('report replies in home notification center', () => {
     expect(button).toContain('markReportReplyClaimedLocally(row.id, reward.messageId, false);');
     expect(button.indexOf('markReportReplyClaimedLocally(row.id, reward.messageId, true);'))
       .toBeLessThan(button.indexOf('await claimReportRewardBundle(reward.messageId, reward.rewardBundle)'));
+    // зачем (аудит Ядра adc40dad2, 13.10): синхронный замок до вызова — второй тап в том же кадре не запускает вторую выдачу; снимается в finally
+    expect(button.indexOf('if (claimLockRef.current.has(reward.messageId))'))
+      .toBeLessThan(button.indexOf('await claimReportRewardBundle(reward.messageId, reward.rewardBundle)'));
+    expect(button).toContain('claimLockRef.current.delete(reward.messageId);');
     expect(button).toContain("ru: 'монет'");
     expect(button).not.toContain("ru: 'рун'");
     expect(button).toContain("import { AppState, FlatList, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");

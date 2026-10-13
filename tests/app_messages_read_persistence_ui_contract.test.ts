@@ -46,11 +46,12 @@ describe('app messages read persistence UI contract', () => {
     expect(inboxSource).toContain('if (!runtimeActive) return;');
   });
 
-  it('claims report-reply rewards optimistically without a visible network wait', () => {
-    // 04.10: осколки → монеты (D70/D104, 53063c465) — та же оптимистичная функция под новым именем.
-    expect(inboxSource).toContain('claimReportReplyCoinsOptimistically');
-    expect(inboxSource).toContain('optimisticReportClaimIdsRef');
-    expect(inboxSource).toContain('markReplyClaimedLocally(message.id);');
+  it('does not show the legacy one-pearl report reward that credits nothing (D70/D104)', () => {
+    // зачем (координатор 13.10, аудит Ядра adc40dad2): старая награда «+1» за репорт ничего не начисляет — «Получено» было нечестным.
+    // «+N» и кнопка во входящих скрыты; современные награды рисует NotificationCenterButton.
+    expect(inboxSource).not.toContain('claimReportReplyCoinsOptimistically');
+    expect(inboxSource).not.toContain('testID="report-reply-claim-cta"');
+    expect(inboxSource).not.toContain('+{message.reportReply?.coins}');
     expect(inboxSource).not.toContain('await claimReportReplyShards');
     expect(inboxSource).not.toContain('claimErrorId');
     expect(inboxSource).not.toContain('ActivityIndicator');

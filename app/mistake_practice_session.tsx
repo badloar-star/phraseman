@@ -500,6 +500,10 @@ function MistakePracticeSessionScreen() {
   const analyticsSessionRef = useRef<MistakePracticeSession | null>(null);
   const analyticsCompletedRef = useRef(false);
   const submissionLatchRef = useRef(false);
+  // зачем (аудит Optimistic UI Уроков, координатор 13.10): «Скрыть»/«Вернуть» меняют экран сразу, а запись на диск идёт фоном по очереди. hideOpRef — последняя фоновая запись скрытия (true — записана),
+  // undoInFlightRef — идёт запись «вернуть»; пока любая идёт, верные/неверные ответы не принимаются (порядок событий в журнале, как раньше держал диалог).
+  const hideOpRef = useRef<Promise<boolean> | null>(null);
+  const undoInFlightRef = useRef(false);
   const verdictTapAtRef = useRef(0);
   // зачем (§126, «Мои ошибки» 15–18 с на ответ): журнал ответов живёт в памяти, запись — фоном по очереди (см. модуль)
   const answerJournalRef = useRef<{ key: string; journal: MistakeAnswerJournal } | null>(null);
@@ -831,9 +835,9 @@ function MistakePracticeSessionScreen() {
   }, [feedback]);
 
   const submitVerdict = useCallback(async (correct: boolean) => {
-    if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current) {
+    if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current || hideOpRef.current || undoInFlightRef.current) {
       // зачем (аудит Optimistic UI Уроков, 13.10; «ранний выход пишет причину»): тап по «Верно/Неверно» молча терялся — теперь видно, какое условие его остановило
-      console.log('[MISTAKE-SESSION] verdict:ignored', JSON.stringify({ session: !!session, entry: !!entry, accountScope: !!accountScope, submitting, feedback: !!feedback, latch: submissionLatchRef.current })); // guard-ok: редкий ранний выход, одна строка
+      console.log('[MISTAKE-SESSION] verdict:ignored', JSON.stringify({ session: !!session, entry: !!entry, accountScope: !!accountScope, submitting, feedback: !!feedback, latch: submissionLatchRef.current, hideWriting: !!hideOpRef.current, undoWriting: undoInFlightRef.current })); // guard-ok: редкий ранний выход, одна строка
       return;
     }
     // зачем (сверка 22:33, «шторка вердикта на экране через 1,2–2,2 с, хотя verdict:shown 0–1 мс»): метка тапа для логов по этапам —
@@ -1109,91 +1113,133 @@ function MistakePracticeSessionScreen() {
     leavePractice();
   }, [attempts.endAttemptsSession, leavePractice]);
 
+  const hideToast = useCallback(() => emitAppEvent('action_toast', actionToastTri('error', {
+    ru: 'Не удалось скрыть ошибку. Попробуй ещё раз.',
+    uk: 'Не вдалося приховати помилку. Спробуй ще раз.',
+    es: 'No se pudo ocultar el error. Inténtalo de nuevo.', en: 'Couldn\'t hide the mistake. Try again.',
+    'pt-BR': 'Não foi possível ocultar o erro. Tente de novo.', vi: 'Không ẩn được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa disembunyikan. Coba lagi.', tr: 'Hata gizlenemedi. Tekrar dene.', pl: 'Nie udało się ukryć błędu. Spróbuj ponownie.',
+  })), []);
+
+  const restoreToast = useCallback(() => emitAppEvent('action_toast', actionToastTri('error', {
+    ru: 'Не удалось вернуть ошибку. Попробуй ещё раз.',
+    uk: 'Не вдалося повернути помилку. Спробуй ще раз.',
+    es: 'No se pudo restaurar el error. Inténtalo de nuevo.', en: 'Couldn\'t restore the mistake. Try again.',
+    'pt-BR': 'Não foi possível restaurar o erro. Tente de novo.', vi: 'Không khôi phục được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa dikembalikan. Coba lagi.', tr: 'Hata geri getirilemedi. Tekrar dene.', pl: 'Nie udało się przywrócić błędu. Spróbuj ponownie.',
+  })), []);
+
+  // зачем (аудит Optimistic UI Уроков, 13.10): диалог «Скрыть» висел, пока шли whenIdle → запись события → запись сессии. Теперь экран «Ошибка скрыта» появляется В ТОТ ЖЕ кадр,
+  // запись идёт фоном; сбой → откат (панель скрытия исчезает, задание на месте) + тост. Двойной тап: hideOpRef/undoInFlightRef/latch; каждый ранний выход пишет причину.
   const hideCurrentMistake = useCallback(async () => {
-    if (!session || !entry || !accountScope || submissionLatchRef.current) return;
-    submissionLatchRef.current = true;
-    try {
-      const occurredAtMs = Date.now();
-      const hiddenEventId = `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({
-        cursor: session.cursor,
-        sessionId: session.sessionId,
-        type: 'hidden',
-      }))}`;
-      await answerJournalRef.current?.journal.whenIdle();
-      await appendMistakeEvent({
-        accountScope,
-        studyTarget: studyTarget as 'en' | 'fr',
-        event: {
-          eventId: hiddenEventId,
-          mistakeId: entry.mistakeId,
-          cycleId: entry.cycleId,
-          type: 'hidden',
-          occurredAtMs,
-          studyTarget: studyTarget as 'en' | 'fr',
-          payload: { sessionId: session.sessionId },
-        },
-      });
-      answerJournalRef.current?.journal.invalidate();
-      trackMistakePracticeEvent('mistake_practice_hidden', {
-        study_target: studyTarget,
-        entry_source: entrySource,
-        exercise_mode: entry.exercise.mode,
-      });
-      const nextSession: MistakePracticeSession = Object.freeze({
-        ...session,
-        cursor: session.cursor + 1,
-      });
-      if (persistSession) {
-        await saveMistakePracticeSession({
+    if (!session || !entry || !accountScope) {
+      console.log('[MISTAKE-HIDE] ignored', JSON.stringify({ reason: 'no_context', session: !!session, entry: !!entry, accountScope: !!accountScope })); // guard-ok: редкий ранний выход
+      return;
+    }
+    if (submissionLatchRef.current || hideOpRef.current || undoInFlightRef.current) {
+      console.log('[MISTAKE-HIDE] ignored', JSON.stringify({ reason: 'busy', verdictLatch: submissionLatchRef.current, hideWriting: !!hideOpRef.current, undoWriting: undoInFlightRef.current })); // guard-ok: двойной тап
+      return;
+    }
+    const tapAt = Date.now();
+    const occurredAtMs = tapAt;
+    const hiddenEventId = `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({
+      cursor: session.cursor,
+      sessionId: session.sessionId,
+      type: 'hidden',
+    }))}`;
+    const nextSession: MistakePracticeSession = Object.freeze({
+      ...session,
+      cursor: session.cursor + 1,
+    });
+    // Мгновенный локальный шаг: панель «Ошибка скрыта» и закрытый диалог — до любой записи.
+    setHiddenUndo({ entry, nextSession, hiddenEventId });
+    setHideConfirmVisible(false);
+    console.log('[MISTAKE-HIDE] optimistic', JSON.stringify({ mistakeId: entry.mistakeId, cursor: session.cursor, shownInMs: Date.now() - tapAt })); // guard-ok: одна строка на действие
+    const op = (async (): Promise<boolean> => {
+      try {
+        await answerJournalRef.current?.journal.whenIdle();
+        await appendMistakeEvent({
           accountScope,
           studyTarget: studyTarget as 'en' | 'fr',
-          session: nextSession,
+          event: {
+            eventId: hiddenEventId,
+            mistakeId: entry.mistakeId,
+            cycleId: entry.cycleId,
+            type: 'hidden',
+            occurredAtMs,
+            studyTarget: studyTarget as 'en' | 'fr',
+            payload: { sessionId: session.sessionId },
+          },
         });
+        answerJournalRef.current?.journal.invalidate();
+        trackMistakePracticeEvent('mistake_practice_hidden', {
+          study_target: studyTarget,
+          entry_source: entrySource,
+          exercise_mode: entry.exercise.mode,
+        });
+        if (persistSession) {
+          await saveMistakePracticeSession({
+            accountScope,
+            studyTarget: studyTarget as 'en' | 'fr',
+            session: nextSession,
+          });
+        }
+        console.log('[MISTAKE-HIDE] written', JSON.stringify({ mistakeId: entry.mistakeId, writeMs: Date.now() - tapAt })); // guard-ok: итог записи
+        return true;
+      } catch (error: unknown) {
+        // зачем (аудит Optimistic UI, 04.10 + 13.10): отказ записи «скрыть» — откат ТОЛЬКО своей панели (по id события) и понятный тост; событие могло не записаться, поэтому ошибка остаётся на экране.
+        console.warn('[MISTAKES-GATE] hide:failed', error instanceof Error ? error.message : String(error));
+        setHiddenUndo((cur) => (cur && cur.hiddenEventId === hiddenEventId ? null : cur));
+        hideToast();
+        return false;
       }
-      setHiddenUndo({ entry, nextSession, hiddenEventId });
-      setHideConfirmVisible(false);
-    } catch (error: unknown) {
-      // зачем (аудит Optimistic UI, 04.10): отказ записи «скрыть» уходил в неотловленный rejection — окно висело без объяснения. Состояние не меняем
-      // (событие могло не записаться), пишем причину и говорим пользователю.
-      console.warn('[MISTAKES-GATE] hide:failed', error instanceof Error ? error.message : String(error));
-      emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось скрыть ошибку. Попробуй ещё раз.',
-        uk: 'Не вдалося приховати помилку. Спробуй ще раз.',
-        es: 'No se pudo ocultar el error. Inténtalo de nuevo.', en: 'Couldn\'t hide the mistake. Try again.',
-        'pt-BR': 'Não foi possível ocultar o erro. Tente de novo.', vi: 'Không ẩn được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa disembunyikan. Coba lagi.', tr: 'Hata gizlenemedi. Tekrar dene.', pl: 'Nie udało się ukryć błędu. Spróbuj ponownie.',
-      }));
-    } finally {
-      submissionLatchRef.current = false;
-    }
-  }, [accountScope, entry, entrySource, persistSession, session, studyTarget]);
+    })();
+    hideOpRef.current = op;
+    void op.finally(() => { if (hideOpRef.current === op) hideOpRef.current = null; });
+  }, [accountScope, entry, entrySource, hideToast, persistSession, session, studyTarget]);
 
+  // зачем (там же): «Вернуть» — задание появляется сразу; запись события «restored» идёт фоном ПОСЛЕ записи скрытия (если она ещё идёт). Сбой → панель скрытия возвращается + тост.
   const undoHiddenMistake = useCallback(async () => {
-    if (!hiddenUndo || !accountScope || submissionLatchRef.current) return;
-    submissionLatchRef.current = true;
+    if (!hiddenUndo || !accountScope) {
+      console.log('[MISTAKE-HIDE] undo:ignored', JSON.stringify({ reason: 'no_context', hiddenUndo: !!hiddenUndo, accountScope: !!accountScope })); // guard-ok: редкий ранний выход
+      return;
+    }
+    if (undoInFlightRef.current) {
+      console.log('[MISTAKE-HIDE] undo:ignored', JSON.stringify({ reason: 'already_restoring' })); // guard-ok: двойной тап
+      return;
+    }
+    undoInFlightRef.current = true;
+    const undoState = hiddenUndo;
+    const tapAt = Date.now();
+    setHiddenUndo(null);
+    console.log('[MISTAKE-HIDE] undo:optimistic', JSON.stringify({ mistakeId: undoState.entry.mistakeId, hideStillWriting: !!hideOpRef.current, shownInMs: Date.now() - tapAt })); // guard-ok: одна строка на действие
     try {
-      const occurredAtMs = Date.now();
+      const hideWritten = hideOpRef.current ? await hideOpRef.current : true;
+      if (!hideWritten) {
+        // Скрытие не записалось и уже откатилось само (тост показан) — возвращать нечего.
+        console.log('[MISTAKE-HIDE] undo:skipped', JSON.stringify({ reason: 'hide_not_written' })); // guard-ok: причина раннего выхода
+        return;
+      }
       await answerJournalRef.current?.journal.whenIdle();
       await appendMistakeEvent({
         accountScope,
         studyTarget: studyTarget as 'en' | 'fr',
         event: {
           eventId: `mistake-practice:v1:${sha256Utf8(canonicalJsonV1({
-            hiddenEventId: hiddenUndo.hiddenEventId,
+            hiddenEventId: undoState.hiddenEventId,
             type: 'restored',
           }))}`,
-          mistakeId: hiddenUndo.entry.mistakeId,
-          cycleId: hiddenUndo.entry.cycleId,
+          mistakeId: undoState.entry.mistakeId,
+          cycleId: undoState.entry.cycleId,
           type: 'restored',
-          occurredAtMs,
+          occurredAtMs: tapAt,
           studyTarget: studyTarget as 'en' | 'fr',
-          payload: { hiddenEventId: hiddenUndo.hiddenEventId },
+          payload: { hiddenEventId: undoState.hiddenEventId },
         },
       });
       answerJournalRef.current?.journal.invalidate();
       trackMistakePracticeEvent('mistake_practice_restored', {
         study_target: studyTarget,
         entry_source: entrySource,
-        exercise_mode: hiddenUndo.entry.exercise.mode,
+        exercise_mode: undoState.entry.exercise.mode,
       });
       if (persistSession && session) {
         await saveMistakePracticeSession({
@@ -1202,37 +1248,54 @@ function MistakePracticeSessionScreen() {
           session,
         });
       }
-      setHiddenUndo(null);
+      console.log('[MISTAKE-HIDE] undo:written', JSON.stringify({ mistakeId: undoState.entry.mistakeId, writeMs: Date.now() - tapAt })); // guard-ok: итог записи
     } catch (error: unknown) {
       console.warn('[MISTAKES-GATE] restore:failed', error instanceof Error ? error.message : String(error));
-      emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось вернуть ошибку. Попробуй ещё раз.',
-        uk: 'Не вдалося повернути помилку. Спробуй ще раз.',
-        es: 'No se pudo restaurar el error. Inténtalo de nuevo.', en: 'Couldn\'t restore the mistake. Try again.',
-        'pt-BR': 'Não foi possível restaurar o erro. Tente de novo.', vi: 'Không khôi phục được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa dikembalikan. Coba lagi.', tr: 'Hata geri getirilemedi. Tekrar dene.', pl: 'Nie udało się przywrócić błędu. Spróbuj ponownie.',
-      }));
+      // Откат: панель «Ошибка скрыта» возвращается (если за это время не появилась другая), человек видит, что вернуть не вышло.
+      setHiddenUndo((cur) => cur ?? undoState);
+      restoreToast();
     } finally {
-      submissionLatchRef.current = false;
+      undoInFlightRef.current = false;
     }
-  }, [accountScope, entrySource, hiddenUndo, persistSession, session, studyTarget]);
+  }, [accountScope, entrySource, hiddenUndo, persistSession, restoreToast, session, studyTarget]);
 
+  // зачем (там же): «Продолжить» не ждёт запись скрытия, но и не уходит дальше, пока скрытие не записано: если запись упадёт, задание останется на месте (панель скрытия откатилась).
   const continueAfterHidden = useCallback(() => {
-    if (!hiddenUndo) return;
-    const next = hiddenUndo.nextSession;
-    setSession(next);
-    setHiddenUndo(null);
-    setInput('');
-    setBuilderTokenIndexes([]);
-    setSpeechRecovery(null);
-    if (next.cursor >= next.queue.length) {
-      analyticsCompletedRef.current = true;
-      setComplete(true);
-      // зачем (22.09): без этого сохранённая сессия испанского/немецкого не
-      // очищалась и всплывала снова. Язык вне курса отсечён на входе в экран.
-      if (persistSession && accountScope) {
-        void clearMistakePracticeSession({ accountScope, studyTarget, pool: reviewPool });
-      }
+    if (!hiddenUndo) {
+      console.log('[MISTAKE-HIDE] continue:ignored', JSON.stringify({ reason: 'no_hidden_state' })); // guard-ok: редкий ранний выход
+      return;
     }
+    const target = hiddenUndo;
+    const goOn = () => {
+      const next = target.nextSession;
+      setSession(next);
+      setHiddenUndo(null);
+      setInput('');
+      setBuilderTokenIndexes([]);
+      setSpeechRecovery(null);
+      if (next.cursor >= next.queue.length) {
+        analyticsCompletedRef.current = true;
+        setComplete(true);
+        // зачем (22.09): без этого сохранённая сессия испанского/немецкого не
+        // очищалась и всплывала снова. Язык вне курса отсечён на входе в экран.
+        if (persistSession && accountScope) {
+          void clearMistakePracticeSession({ accountScope, studyTarget, pool: reviewPool });
+        }
+      }
+    };
+    const writing = hideOpRef.current;
+    if (!writing) {
+      goOn();
+      return;
+    }
+    console.log('[MISTAKE-HIDE] continue:waiting', JSON.stringify({ reason: 'hide_still_writing' })); // guard-ok: ждём запись скрытия, не больше пары десятков мс
+    void writing.then((written) => {
+      if (!written) {
+        console.log('[MISTAKE-HIDE] continue:cancelled', JSON.stringify({ reason: 'hide_not_written' })); // guard-ok: скрытие откатилось, остаёмся на задании
+        return;
+      }
+      goOn();
+    });
   }, [accountScope, hiddenUndo, persistSession, reviewPool, studyTarget]);
 
   if (loading) {

@@ -5,7 +5,9 @@
 // документ public_profiles/{uid} по явному открытию визитки, с кэшем в памяти на
 // 10 минут и склейкой одновременных запросов (Firebase-экономия: повторное
 // открытие той же визитки не читает сеть).
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import { InteractionManager } from 'react-native';
 
 import { withCallableTimeout } from './callable_timeout';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -32,6 +34,16 @@ type CacheEntry = { card: PublicProfileCard; fetchedAt: number };
 const cache = new Map<string, CacheEntry>();
 const inFlight = new Map<string, Promise<PublicProfileCard>>();
 
+// зачем (координатор 13.10, аудит Optimistic UI Профиля): карточка Pro-друга при первом открытии за запуск рисовалась «обычной» и потом перекрашивалась после чтения public_profiles.
+// Последние прочитанные визитки лежат на диске (stale-while-revalidate): первый кадр берёт устаревшую копию, а свежесть и число чтений Firestore прежние — после TTL чтение, как и раньше, одно.
+// Данные публичные (то, что любой игрок и так читает), хранится только то, что мы уже прочитали; новых запросов эта копия не делает.
+const DISK_KEY = 'profile_card_public_v1';
+const DISK_MAX = 64;
+const DISK_SAVE_DEBOUNCE_MS = 2000;
+const staleCards = new Map<string, PublicProfileCard>();
+let diskLoad: Promise<void> | null = null;
+let diskSaveTimer: ReturnType<typeof setTimeout> | null = null;
+
 export function normalizePublicProfileCard(data: Record<string, unknown> | null | undefined): PublicProfileCard {
   if (!data) return EMPTY_CARD;
   const pro = data.profileCardPro === true;
@@ -48,9 +60,65 @@ export function peekPublicProfileCard(uid: string): PublicProfileCard | null {
   return entry.card;
 }
 
+/** Синхронно: свежая копия, а если её нет — последняя известная (в т.ч. с диска). Только для первого кадра; освежение — fetchPublicProfileCard. */
+export function peekPublicProfileCardOrStale(uid: string): PublicProfileCard | null {
+  const fresh = peekPublicProfileCard(uid);
+  if (fresh) return fresh;
+  const stale = cache.get(uid)?.card ?? staleCards.get(uid) ?? null;
+  if (stale) DebugLogger.info(LOG, `чужая визитка: первый кадр из устаревшей копии ${JSON.stringify({ uid, pro: stale.pro, style: stale.style, source: cache.has(uid) ? 'память' : 'диск' })}`);
+  return stale;
+}
+
+function persistSoon(): void {
+  if (diskSaveTimer) return;
+  diskSaveTimer = setTimeout(() => {
+    diskSaveTimer = null;
+    const items: Record<string, PublicProfileCard> = {};
+    const known = new Map<string, PublicProfileCard>(staleCards);
+    cache.forEach((entry, uid) => known.set(uid, entry.card));
+    [...known.entries()].slice(-DISK_MAX).forEach(([uid, card]) => { items[uid] = card; });
+    AsyncStorage.setItem(DISK_KEY, JSON.stringify({ v: 1, items })).catch((error: unknown) => {
+      DebugLogger.warn(LOG, `чужая визитка: копия на диск не записалась (${error instanceof Error ? error.message : String(error)})`);
+    });
+  }, DISK_SAVE_DEBOUNCE_MS);
+}
+
+/** Один раз за запуск, после анимаций: читает дисковую копию визиток в память (не блокирует первый кадр). Повторные вызовы возвращают тот же промис. */
+export function loadPublicProfileCardDisk(): Promise<void> {
+  if (diskLoad) return diskLoad;
+  diskLoad = new Promise<void>((resolve) => {
+    InteractionManager.runAfterInteractions(() => {
+      const startedAt = Date.now();
+      AsyncStorage.getItem(DISK_KEY).then((raw) => {
+        if (!raw) {
+          DebugLogger.info(LOG, 'чужая визитка: дисковой копии ещё нет');
+          return;
+        }
+        const parsed = JSON.parse(raw) as { v?: unknown; items?: Record<string, Record<string, unknown>> };
+        if (parsed.v !== 1 || !parsed.items || typeof parsed.items !== 'object') {
+          DebugLogger.warn(LOG, 'чужая визитка: дисковая копия чужой схемы — игнорируем');
+          return;
+        }
+        let loaded = 0;
+        for (const [uid, data] of Object.entries(parsed.items)) {
+          // normalizePublicProfileCard принимает поля public_profiles; копия хранит уже нормализованный вид {pro, style, bio}
+          const card = normalizePublicProfileCard({ profileCardPro: data.pro, profileCardStyle: data.style, profileCardBio: data.bio });
+          if (!staleCards.has(uid)) { staleCards.set(uid, card); loaded += 1; }
+        }
+        DebugLogger.info(LOG, `чужая визитка: с диска загружено ${loaded} копий за ${Date.now() - startedAt}мс`);
+      }).catch((error: unknown) => {
+        DebugLogger.warn(LOG, `чужая визитка: дисковая копия не прочиталась (${error instanceof Error ? error.message : String(error)})`);
+      }).finally(resolve);
+    });
+  });
+  return diskLoad;
+}
+
 function remember(uid: string, card: PublicProfileCard): void {
   cache.delete(uid);
   cache.set(uid, { card, fetchedAt: Date.now() });
+  staleCards.set(uid, card);
+  persistSoon();
   while (cache.size > PUBLIC_CARD_CACHE_MAX) {
     const oldest = cache.keys().next().value as string | undefined;
     if (oldest === undefined) break;
@@ -69,7 +137,7 @@ export function fetchPublicProfileCard(uid: string): Promise<PublicProfileCard> 
   if (cached) return Promise.resolve(cached);
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
     DebugLogger.info(LOG, `чужая визитка: облако выключено ${JSON.stringify({ uid: id, IS_EXPO_GO, CLOUD_SYNC_ENABLED })}`);
-    return Promise.resolve(EMPTY_CARD);
+    return Promise.resolve(staleCards.get(id) ?? EMPTY_CARD);
   }
   const pending = inFlight.get(id);
   if (pending) return pending;
@@ -85,8 +153,10 @@ export function fetchPublicProfileCard(uid: string): Promise<PublicProfileCard> 
       remember(id, card);
       return card;
     } catch (error) {
-      DebugLogger.warn(LOG, `чужая визитка: чтение упало — показываем обычную ${JSON.stringify({ uid: id, error: String(error) })}`);
-      return EMPTY_CARD;
+      // зачем: сбой чтения не должен перекрасить Pro-друга в «обычного», если мы уже знали его визитку (память или диск)
+      const known = cache.get(id)?.card ?? staleCards.get(id) ?? null;
+      DebugLogger.warn(LOG, `чужая визитка: чтение упало — показываем ${known ? 'последнюю известную' : 'обычную'} ${JSON.stringify({ uid: id, error: String(error) })}`);
+      return known ?? EMPTY_CARD;
     } finally {
       inFlight.delete(id);
     }
@@ -173,6 +243,10 @@ export async function saveMyProfileCardBio(
 }
 
 export const __profileCardPublicTestHooks = {
-  reset: (): void => { cache.clear(); inFlight.clear(); },
+  reset: (): void => {
+    cache.clear(); inFlight.clear(); staleCards.clear(); diskLoad = null;
+    if (diskSaveTimer) { clearTimeout(diskSaveTimer); diskSaveTimer = null; }
+  },
+  staleCards,
   remember,
 };

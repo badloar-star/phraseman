@@ -38,7 +38,7 @@ import { useMyCoinRank } from '../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle } from '../app/coin_rank_table_v1';
 import { resolvePlayerProfileVisibleRank } from '../app/player_profile_v2_state';
 import { DebugLogger } from '../app/debug-logger';
-import { fetchPublicProfileCard, peekPublicProfileCard, type PublicProfileCard } from '../app/profile_card_public';
+import { fetchPublicProfileCard, loadPublicProfileCardDisk, peekPublicProfileCardOrStale, type PublicProfileCard } from '../app/profile_card_public';
 import { PROFILE_CARD_PRO_PRICE_COINS } from '../app/profile_card_pro_v1';
 import { resolveProfileCardLook } from '../app/profile_card_styles';
 import InGameToast from './InGameToast';
@@ -193,8 +193,9 @@ function PlayerProfileModalBody({
   const providedCard: PublicProfileCard | null = player.profileCardPro !== undefined
     ? { pro: player.profileCardPro === true, style: null, bio: '' }
     : null;
+  // зачем (координатор 13.10): первый кадр берёт свежую ИЛИ устаревшую копию (память, диск) — Pro-друг не мигает «обычным»; свежесть обеспечивает fetchPublicProfileCard ниже, число чтений прежнее.
   const [otherCard, setOtherCard] = useState<PublicProfileCard | null>(() => (
-    !isMe && targetUid ? peekPublicProfileCard(targetUid) : null
+    !isMe && targetUid ? peekPublicProfileCardOrStale(targetUid) : null
   ));
   useEffect(() => {
     if (isMe || !targetUid || isSyntheticUid(targetUid)) {
@@ -202,7 +203,10 @@ function PlayerProfileModalBody({
       return undefined;
     }
     let cancelled = false;
-    setOtherCard(peekPublicProfileCard(targetUid));
+    void loadPublicProfileCardDisk().then(() => {
+      if (!cancelled) setOtherCard((current) => current ?? peekPublicProfileCardOrStale(targetUid));
+    });
+    setOtherCard(peekPublicProfileCardOrStale(targetUid));
     void fetchPublicProfileCard(targetUid).then((card) => {
       if (!cancelled) setOtherCard(card);
     });

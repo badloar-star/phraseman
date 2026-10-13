@@ -2555,18 +2555,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние] нет подписей «отправляется…» и «не отправлено» с кнопками «Повторить» / «Удалить» — нужна ссылка dev_state",
-        "[язык] кадр на uk — переснять на ru"
+        "[разбор 13.10] подписи статуса отправки комментария — Дизайн f46f48f47; переснять на ru"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T13:34:30.364Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10",
+        "macets_triage_fix_2026_10_13": "подписи статуса отправки комментария — Дизайн f46f48f47"
       },
       "sverka_verdict": "Состояние не достигнуто: свой комментарий «Thanks» показан без статуса отправки.",
       "shot_at": "2026-10-13T10:42:59.580Z",
@@ -2761,18 +2761,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[съёмка] живое превью в коде есть (flashcards_card_editor.tsx:712); снимать без фокуса с заполненными полями — dev-ссылка cardsdraft=filled (Дизайн добавляет)"
+        "[разбор 13.10] снимать по dev-ссылке Дизайна 39548e8d9: phraseman://dev_state?cardsdraft=filled&next=/flashcards_card_editor?create=1%26cat=custom (Layover/пересадка без клавиатуры); переснять на ru"
       ],
       "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:05:18.839Z",
+      "reviewed_at": "2026-10-13T13:34:30.364Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_b_2026_10_13": "не дефект по слову Дизайна 13.10"
+        "macets_triage_b_2026_10_13": "не дефект по слову Дизайна 13.10",
+        "macets_triage_fix_2026_10_13": "снимать по dev-ссылке Дизайна 39548e8d9: phraseman://dev_state?cardsdraft=filled&next=/flashcards_card_editor?create=1%26cat=custom (Layover/пересадка без клавиатуры)"
       },
       "sverka_verdict": "Полноэкранный редактор «Новая карточка» есть, поля и строка «Мои карточки» на месте.",
       "shot_at": "2026-10-13T10:42:59.580Z",
@@ -3316,19 +3317,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[код, Дизайн] шапка редактора: ← и заголовок по центру, в утверждённом cards-v2 №78 — × и заголовок слева; правим код (координатор 13.10)",
-        "замок залитый, в образце контурный",
-        "[язык] кадр на uk — переснять на ru"
+        "[разбор 13.10] исправлено Дизайном b366cfc3e: шапка редактора — × и заголовок слева, замок контурный (как утверждённый cards-v2); переснять на ru"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:06:59.866Z",
+      "reviewed_at": "2026-10-13T13:34:30.364Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (двойник или служебный маршрут, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (двойник или служебный маршрут, 12.10, Макеты)",
+        "macets_triage_fix_2026_10_13": "исправлено Дизайном b366cfc3e: шапка редактора — × и заголовок слева, замок контурный (как утверждённый cards-v2)"
       },
       "sverka_verdict": "Пустое состояние «Набор недоступен для редактирования» совпадает: иконка замка, заголовок, кнопка «Назад».",
       "shot_at": "2026-10-13T10:18:17.111Z",
@@ -38890,16 +38890,16 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[разбор 13.10] D167: 🔊 только у реплик с подготовленной озвучкой (норма); ▶ голосового в круге — Дизайн, окно 14:30; переснять на ru"
+        "[разбор 13.10] исправлено Дизайном 564758551: ▶ голосовой реплики в круге; 🔊 — по D167; переснять на ru"
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T13:11:42.340Z",
+      "reviewed_at": "2026-10-13T13:34:30.364Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
-        "macets_triage_fix_2026_10_13": "D167: 🔊 только у реплик с подготовленной озвучкой (норма); ▶ голосового в круге — Дизайн, окно 14:30"
+        "macets_triage_fix_2026_10_13": "исправлено Дизайном 564758551: ▶ голосовой реплики в круге; 🔊 — по D167"
       },
       "shot_at": "2026-10-13T06:51:21.774Z",
       "shot_at_source": "bare_run_dir",

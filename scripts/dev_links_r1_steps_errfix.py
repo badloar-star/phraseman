@@ -326,3 +326,11 @@ set_param('dialogs-010', 'dev_dialog_send', 'ok')  # вход в сессию �
 set_steps('dialogs-021', list(_DLG_START) + _DLG_SEND + ['wait:2500', 'tap:#dialogue-v2-better-*', 'wait:600'])
 # dialogs-037: строка настроения в шапке («Очень доволен») — как у dialogs-041.
 set_param('dialogs-037', 'dev_dialog_mood', 'happy')
+
+# ── Координатор 13.10 ~15:45. Диалоги: образцы нарисованы в теме Аврора — тема только в памяти dev-сборки (шаг theme в dev_state_fixtures);
+# сверка — раскладка и элементы, цвета всех тем проверены аудитом Тем (cba3ec844).
+for _rid in [r for r in ENTRIES if r.startswith('dialogs-')]:
+    set_param(_rid, 'theme', 'grad_aurora')
+    set_param(_rid, 'level', '1')
+# «Правила Шпиля» удалены (Темы 21e0e9348: справка и кнопка «i») — строк в DEV_LINKS нет; в реестре статус ставит его владелец.
+_STEPS_ROBOT.EXCLUDE_IDS |= {'community-004', 'spire-gap-018', 'spire-gap-019'}

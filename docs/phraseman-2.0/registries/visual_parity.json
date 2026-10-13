@@ -42918,6 +42918,41 @@
         "restitch_note": "образец home-by-language-mockup перерисован по HomeV2 (координатор 13.10): шапка «серия · монеты · колокол · аватар», ряд из трёх плиток всегда (D143), «Видео · Смотреть все ›», «СЕГОДНЯ» строками со счётчиками, «ФРАЗА ДНЯ», таббар из 4 иконок без подписей. Нужна пересклейка"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Главная · итальянский: приложение показывает плитки «Карточки / Шпиль / Наборы из видео», «СЕГОДНЯ» с «Посмотреть видео 0/1…», «ФРАЗА ДНЯ avere la puzza sotto il naso» — в образце «1 раздел в таббаре»."
+    },
+    {
+      "id": "cards-v2-088",
+      "source": "STATE_CHECKLIST",
+      "mockup": {
+        "file": "docs/design/v2-app/cards-v2.html",
+        "phone": 88,
+        "label": "Настройка тренировки — наборы на 2 языках: чип ES ⌄ + меню языков",
+        "mapping": "new_macets_2026-10-13"
+      },
+      "screen": "Подготовка тренировки",
+      "state": "Наборы на 2 языках — чип ES ⌄ и меню языков",
+      "code": [
+        "app/flashcards/PackLanguagePicker.tsx",
+        "app/flashcards/TrainingSetupV2.tsx"
+      ],
+      "matrix_status": "🟠",
+      "has_animation": false,
+      "anim_notes": [],
+      "evidence": null,
+      "evidence_at": null,
+      "evidence_sha256": null,
+      "anim_evidence": null,
+      "anim_evidence_at": null,
+      "anim_evidence_sha256": null,
+      "diffs": [],
+      "status": "pending",
+      "blocked_reason": null,
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "release": "r1",
+      "triage": {
+        "coverage": "ready",
+        "coverage_note": "решение Дизайна 13.10 (ledger 87): при наборах ОДНОГО языка чипа языка нет; при ≥2 языках — «ES ⌄», кнопка фильтра наборов по языку (п.83), единственный способ сменить язык тренировки. Новая строка (не трогая cards-027 / cards-076 / section-034…036): снять настройку Блица при наборах на двух языках (выбран ES, чип со стрелкой; меню открыто тапом по чипу), образец cards-v2 №88; DEV-ссылки — кадры п.83 №2/№4/№5 (R1_FC_LANG_FILTER.md)."
+      }
     }
   ]
 }

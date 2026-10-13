@@ -15,6 +15,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
+import { getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
@@ -151,7 +152,9 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря
-  const skin = useMemo(() => spireSkinForTier(tier), [tier]);
+  // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
+  const devTier = getDevSpireTierOverride();
+  const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);
   const label = useMemo(
     () => `${spireText(lang, 'floor')} ${selected}`,
     [lang, selected],

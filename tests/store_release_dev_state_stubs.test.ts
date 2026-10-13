@@ -15,7 +15,7 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   // зачем (Ядро 12.10, energy-modes-006): energy_stop=plus_granted — Plus в памяти на шторке остановки; в стор-бандле заглушка
   'dev_energy_stop_flag',
   // зачем (Авторизация 12.10): показ ранга и баланса монет для съёмки — в стор-бандле заглушка
-  'dev_coin_rank'] as const;
+  'dev_coin_rank', 'dev_spire_tier'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {

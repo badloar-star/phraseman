@@ -284,6 +284,8 @@ const storeReleaseDevStateStubs = new Map(
     'dev_robot_no_cloud',
     // зачем (Авторизация 12.10): coinRank/coins/coinupgrade — показ ранга и баланса для съёмки; в стор-сборке заглушка
     'dev_coin_rank',
+    // зачем (координатор 13.10): spireTier — лига башни Шпиля для съёмки; в стор-сборке заглушка
+    'dev_spire_tier',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

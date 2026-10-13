@@ -41,6 +41,8 @@ module.exports = {
     '<rootDir>/tests/theme_selection_runtime.test.tsx',
     '<rootDir>/tests/use_session_attempts.test.tsx',
     '<rootDir>/tests/flashcard_grant_boot_maintenance_schedule.test.tsx',
+    // зачем (координатор 13.10, башни лиг): бюджет узлов SVG ≤ +55 на каждую из 12 лиг — настоящая сборка SpireTowerSvg
+    '<rootDir>/tests/spire_tower_skins_nodes.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

@@ -223,6 +223,8 @@ export type DevStateRequest = Readonly<{
   intros?: 'seen' | 'reset';
   /** Ранг монеты для ПОКАЗА (0..19): подмена значения хука useMyCoinRank в памяти процесса — монеты и ранг в хранилище/облако НЕ пишутся (dev_coin_rank.ts). off — снять. */
   coinRank?: number | 'off';
+  /** Лига башни Шпиля для ПОКАЗА (0..11, Гранит…Алмаз): подмена выбора наряда башни в памяти процесса — неделя, комната и облако не меняются (dev_spire_tier.ts). off — снять. */
+  spireTier?: number | 'off';
   /** Баланс монет для ПОКАЗА (0..10 000 000) на «Монетах» и «Повысить ранг»; при подмене настоящее повышение отказывает до сервера (dev_coin_rank.ts). off — снять. */
   coins?: number | 'off';
   /** hold — тап «Повысить» держит «Проверяем повышение…», сервер не вызывается. */
@@ -391,6 +393,14 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.hint = pick('hint', ['show', 'seen'] as const);
   request.cardsLangs = pick('cardslangs', ['on', 'off'] as const);
   request.videoPacks = pick('videopacks', ['empty', 'demo', 'catalog', 'catalog_upcoming'] as const);
+  // зачем (координатор 13.10, наряды башен лиг): у гостя лиги нет — Сверке нужны кадры всех 12 лиг; подмена ТОЛЬКО выбора наряда башни
+  const spireTierRaw = one(params.spireTier);
+  if (spireTierRaw !== undefined) {
+    const tierN = Number(spireTierRaw);
+    if (spireTierRaw === 'off') request.spireTier = 'off';
+    else if (Number.isInteger(tierN) && tierN >= 0 && tierN <= 11) request.spireTier = tierN;
+    else rejected.spireTier = `ожидалось 0..11 или off, пришло ${spireTierRaw}`;
+  }
   const coinRankRaw = one(params.coinRank);
   if (coinRankRaw !== undefined) {
     const rankN = Number(coinRankRaw);
@@ -854,6 +864,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('yearActivity', request.yearActivity, async () => {
       const { setDevYearActivityDemo } = await import('./dev_year_activity');
       return setDevYearActivityDemo(request.yearActivity === 'demo');
+    });
+  }
+  if (request.spireTier !== undefined) {
+    await step('spireTier', String(request.spireTier), async () => {
+      const { setDevSpireTierOverride } = await import('./dev_spire_tier');
+      return setDevSpireTierOverride(request.spireTier === 'off' ? null : (request.spireTier as number));
     });
   }
   if (request.coinRank !== undefined) {

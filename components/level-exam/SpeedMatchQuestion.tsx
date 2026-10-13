@@ -4,6 +4,8 @@ import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated'
 
 import type { LevelExamSpeedMatchTask } from '../../app/level_exam_types';
 import { useTheme } from '../ThemeContext';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { ExamOption, type ExamOptionState } from './ExamGlassParts';
 
@@ -14,6 +16,7 @@ type Props = {
 };
 
 export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
+  const { lang } = useLang();
   const { theme: t, ds, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const optionColors = { okColor: t.correct, okBg: t.correctBg, noColor: t.wrong, noBg: t.wrongBg } as const;
@@ -49,8 +52,9 @@ export default function SpeedMatchQuestion({ task, matches, onChange }: Props) {
     setActiveSourceId(null);
   };
 
+  // зачем (LANG_AUDIT_CORE_R1): подпись для диктора была английской на любом языке
   return (
-    <View accessibilityLabel="Speed match" style={[styles.board, { gap: ds.spacing.md }]}> 
+    <View accessibilityLabel={triLang(lang, { ru: 'Найди пары на скорость', uk: 'Знайди пари на швидкість', en: 'Speed match', es: 'Parejas rápidas', 'pt-BR': 'Pares rápidos', vi: 'Nối cặp nhanh', id: 'Cocokkan cepat', tr: 'Hızlı eşleştir', pl: 'Szybkie pary' })} style={[styles.board, { gap: ds.spacing.md }]}> 
       <View style={[styles.column, { gap: ds.spacing.sm }]}> 
         {sourcePairs.map((pair) => {
           const active = activeSourceId === pair.scoreUnitId;

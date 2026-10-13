@@ -209,7 +209,7 @@ export default function WordBankBuilder({
 
   return (
     <View style={[styles.wrap, { borderColor: `${accent}33` }]}>
-      <Text style={[styles.hint, { color: theme.textMuted }]}>Подсказка</Text>
+      <Text style={[styles.hint, { color: theme.textMuted }]}>{/* зачем (LANG_AUDIT_CORE_R1, слово владельца 13.10): было «Подсказка» по-русски на любом языке */}{triLang(lang, { ru: 'Подсказка', uk: 'Підказка', en: 'Hint', es: 'Pista', 'pt-BR': 'Dica', vi: 'Gợi ý', id: 'Petunjuk', tr: 'İpucu', pl: 'Podpowiedź' })}</Text>
       <Text style={[styles.prompt, { color: theme.textPrimary }]}>{prompt}</Text>
 
       <View style={[styles.slots, { backgroundColor: theme.chipBgFaint }]}>

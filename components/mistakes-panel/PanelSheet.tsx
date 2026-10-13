@@ -15,12 +15,15 @@ import { shadowSheetGradient } from '../v2/shadow_sheet_paint';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
+import { useLang } from '../LangContext';
+import { triLang } from '../../constants/i18n';
 
 const SHEET_EASE = Easing.bezier(...KIT_MOTION.sheetEase);
 
 export const PanelSheet = memo(function PanelSheet({ visible, onClose, children, testID }: Readonly<{ visible: boolean; onClose: () => void; children: React.ReactNode; testID?: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
+  const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
   // зачем (замечание владельца 10.10): подложка шторки и кромка — токены выбранной темы, а не #1B1B1D под «Аврору»
   const g = useLv2Glass();
@@ -57,7 +60,7 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   return (
     <View ref={rootRef} collapsable={false} style={StyleSheet.absoluteFill} pointerEvents="box-none" testID={testID}>
       <Animated.View entering={FadeIn.duration(dimMs)} exiting={FadeOut.duration(dimMs)} style={[styles.dim, { backgroundColor: dimColor, top: -scrimExtend }]}>
-        <Pressable accessibilityRole="button" accessibilityLabel="close" style={StyleSheet.absoluteFill} onPress={onClose} />
+        <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
       <Animated.View
         entering={SlideInDown.duration(sheetMs).easing(SHEET_EASE)}

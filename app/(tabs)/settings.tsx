@@ -153,6 +153,11 @@ const STUDY_TARGET_FLAG: Partial<Record<StudyTarget, number>> = {
 // Другой аккаунт снимок не увидит (ключ — владелец); связка/отвязка входа сбрасывает его (auth_provider_linked).
 type SettingsPeek = { owner: string; linkedAuth: LinkedAuth | null | undefined; notifEnabled: boolean | undefined; notifHour: number | undefined };
 let settingsPeek: SettingsPeek | null = null;
+// зачем (бэклог №16, координатор 13.10: «Настройки» 1,3–1,4 с по кадрам Сверки — сперва логи): отметки до первого кадра —
+// вычисление модуля → первый рендер → коммит → раскладка шапки → первый фокус. Премаунт вкладки (фокус сильно позже коммита)
+// отличается от холодного входа маршрутом dev_state. Временный замер, снять после решения по №16.
+const SETTINGS_MODULE_EVAL_AT = Date.now();
+console.warn(`[SETTINGS-PERF] module_eval at=${SETTINGS_MODULE_EVAL_AT}`); // guard-ok: временный замер №16
 function readSettingsPeek(): SettingsPeek | null {
   const owner = peekStableId();
   const hit = owner && settingsPeek && settingsPeek.owner === owner ? settingsPeek : null;
@@ -169,6 +174,24 @@ function writeSettingsPeek(patch: Partial<Omit<SettingsPeek, 'owner'>>): void {
 }
 
 export default function SettingsMain() {
+  // зачем (№16, сперва логи): первый рендер этого монтирования — сколько прошло от вычисления модуля.
+  const perfRef = React.useRef({ firstRenderAt: 0, committedAt: 0, layoutLogged: false, focusLogged: false });
+  if (perfRef.current.firstRenderAt === 0) {
+    perfRef.current.firstRenderAt = Date.now();
+    console.warn(`[SETTINGS-PERF] first_render sinceModuleMs=${perfRef.current.firstRenderAt - SETTINGS_MODULE_EVAL_AT}`); // guard-ok: временный замер №16
+  }
+  React.useEffect(() => {
+    perfRef.current.committedAt = Date.now();
+    console.warn(`[SETTINGS-PERF] commit renderToCommitMs=${perfRef.current.committedAt - perfRef.current.firstRenderAt}`); // guard-ok: временный замер №16
+  }, []);
+  useFocusEffect(React.useCallback(() => {
+    if (perfRef.current.focusLogged) return;
+    perfRef.current.focusLogged = true;
+    const now = Date.now();
+    // premounted=да, если фокус пришёл заметно позже коммита: вкладку подготовили фоном, человек открыл её потом
+    const sinceCommit = perfRef.current.committedAt > 0 ? now - perfRef.current.committedAt : -1;
+    console.warn(`[SETTINGS-PERF] first_focus sinceRenderMs=${now - perfRef.current.firstRenderAt} sinceCommitMs=${sinceCommit} premounted=${sinceCommit > 500 ? 'да' : 'нет'}`); // guard-ok: временный замер №16
+  }, []));
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   // зачем (координатор 11.10, «сперва логи»): phraseman://settings вешал приложение (addViewAt «already has a parent»,
@@ -935,7 +958,7 @@ export default function SettingsMain() {
         {/* зачем (redesign-round-1 вариант A «Группы одним блоком», владелец 04.10): шапка «Настройки» 40/46
             без подзаголовка, справа монета ранга; Dev Hub переехал в подвал строкой рядом с версией. */}
         <View
-          onLayout={(event) => { if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
+          onLayout={(event) => { if (!perfRef.current.layoutLogged) { perfRef.current.layoutLogged = true; console.warn(`[SETTINGS-PERF] header_layout sinceRenderMs=${Date.now() - perfRef.current.firstRenderAt}`); } /* guard-ok: временный замер №16 */ if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
           style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
           <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
             {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): заголовок 40 пт рядом с монетой 44 — на телефоне

@@ -26,6 +26,7 @@ import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 // счётчика владельца). Внутри залоченной секции нельзя звать spendOne/refundOne
 // и любой другой код, который берёт этот же замок — будет вечная блокировка.
 import { withStorageLock } from '../app/storage_mutex';
+import { peekDevEnergyPinRaw } from '../app/dev_energy_tools';
 import type { Lang } from '../constants/i18n';
 import { resolveNotificationLang } from '../app/notification_lang';
 import { energyCountdownClock } from './energy_countdown_clock';
@@ -465,13 +466,21 @@ async function readAndRecoverState(
   return withStorageLock(async () => {
     if (!isCurrentAccountGeneration(accountToken)) throw new Error('energy_account_changed_before_recovery');
     const now = Date.now();
-    const [bonus, raw] = await Promise.all([
+    const [bonus, diskRaw] = await Promise.all([
       readBonusEnergyForMutation(accountToken),
       AsyncStorage.getItem(ENERGY_KEY),
     ]);
+    // зачем (координатор 13.10, energy-modes-003/007): dev-подмена энергии стиралась сменой аккаунта на свежей установке →
+    // пустой ключ → полный бак 5. Только dev: пустой ключ + закреп подмены → берём подмену. В релизе закреп всегда null.
+    const devPinRaw = diskRaw === null ? peekDevEnergyPinRaw() : null;
+    if (devPinRaw) console.warn('[DEV-STATE] энергия: energy_state пуст после подмены (смена/сброс аккаунта) → подмена возвращена', devPinRaw); // guard-ok: dev-ветка видна в журнале робота
+    const raw = diskRaw ?? devPinRaw;
     let parsed: unknown = null;
     if (raw) {
-      try { parsed = JSON.parse(raw); } catch { parsed = null; }
+      try { parsed = JSON.parse(raw); } catch (error) {
+        console.warn('[ENERGY-LOAD] energy_state не разобран — полный бак', error instanceof Error ? error.message : String(error)); // guard-ok: catch логируется
+        parsed = null;
+      }
     }
     const opening = raw ? coerceEnergyStateV2(parsed, now) : createFullEnergyState(now, dynMax);
     const openingPools = {

@@ -21,6 +21,15 @@ const TAG = '[ENERGY-DEV]';
 let override: EnergyMode | null = null;
 // зачем: загрузка с диска стартует при импорте асинхронно; поздний ответ не должен затереть выбор, сделанный раньше (как в dev_as_free_flag).
 let setRevision = 0;
+// зачем (координатор 13.10, energy-modes-003/007: «step energy=1 ок», а на кадре 5): energy_state — ключ аккаунта, на свежей
+// установке смена/сброс аккаунта стирает его ПОСЛЕ подмены, и загрузка ставит полный бак. Подмена держится в памяти до
+// перезапуска: если ключ пуст, EnergyContext берёт её (peekDevEnergyPinRaw). Трата пишет непустой ключ — закреп её не откатывает.
+let energyPinRaw: string | null = null;
+
+/** Последняя dev-подмена энергии (сериализованный energy_state) или null. В релизе всегда null. */
+export function peekDevEnergyPinRaw(): string | null {
+  return devBuild() ? energyPinRaw : null;
+}
 
 function devBuild(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true;
@@ -86,7 +95,8 @@ export async function devSetEnergy(amount: number): Promise<boolean> {
       }
       const prev = coerceEnergyStateV2(parsed, now);
       const next = { ...prev, current: target, lastSettledAt: now };
-      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
+      energyPinRaw = JSON.stringify(next);
+      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, energyPinRaw);
       console.warn(TAG, 'energy set', JSON.stringify({ from: prev.current, to: target })); // guard-ok: dev-действие видно в логе
     });
     emitAppEvent('energy_reload');
@@ -117,7 +127,8 @@ export async function devSetEnergyRestoringIn(seconds: number): Promise<boolean>
       }
       const prev = coerceEnergyStateV2(parsed, now);
       const next = { ...prev, current: 0, lastSettledAt: now - Math.max(0, ENERGY_RECOVERY_INTERVAL_MS - restoreInMs), recoveryCreditMicrounits: 0, recoveryDivisionRemainder: 0 };
-      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(next));
+      energyPinRaw = JSON.stringify(next);
+      await AsyncStorage.setItem(ENERGY_STORAGE_KEY, energyPinRaw);
       console.warn(TAG, 'energy restoring', JSON.stringify({ from: prev.current, restoreInMs, intervalMs: ENERGY_RECOVERY_INTERVAL_MS })); // guard-ok: dev-действие видно в логе
     });
     emitAppEvent('energy_reload');

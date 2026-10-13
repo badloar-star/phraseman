@@ -8,7 +8,10 @@
  */
 import { IS_STORE_RELEASE } from './config';
 
-let granted = false;
+// зачем (координатор 13.10, dialogs-010): экран «AI-диалоги выключены» достигается только решением «отказ» — добавлен режим denied
+// (тоже только память, без записи и облака). null — подмены нет, гейт отвечает по настоящему решению.
+export type DevAiConsentOverride = 'granted' | 'denied';
+let override: DevAiConsentOverride | null = null;
 
 function devAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
@@ -16,16 +19,26 @@ function devAvailable(): boolean {
 
 /** Включить/выключить подмену. В стор-сборке — отказ с логом, значение не меняется. Возвращает true, если применено. */
 export function setDevAiConsentGranted(next: boolean): boolean {
+  return setDevAiConsentOverride(next ? 'granted' : null);
+}
+
+/** Подмена решения: granted / denied / null (снять). В стор-сборке — отказ с логом. Возвращает true, если применено. */
+export function setDevAiConsentOverride(next: DevAiConsentOverride | null): boolean {
   if (!devAvailable()) {
     console.warn('[DEV-STATE] aiConsent: отклонено — не dev-сборка', { next }); // guard-ok: ранний выход логируется
     return false;
   }
-  granted = next;
-  console.log(next ? '[DEV-STATE] aiConsent override=granted (только ответ гейта в памяти; запись и облако не вызываются)' : '[DEV-STATE] aiConsent override=off'); // guard-ok: единичный лог на ссылку
+  override = next;
+  console.log(`[DEV-STATE] aiConsent override=${next ?? 'off'}${next ? ' (только ответ гейта в памяти; запись и облако не вызываются)' : ''}`); // guard-ok: единичный лог на ссылку
   return true;
+}
+
+/** Текущая подмена решения или null. В стор-сборке всегда null. */
+export function getDevAiConsentOverride(): DevAiConsentOverride | null {
+  return devAvailable() ? override : null;
 }
 
 /** true — гейт согласия в dev отвечает «согласие дано». В стор-сборке всегда false. */
 export function getDevAiConsentGranted(): boolean {
-  return devAvailable() && granted;
+  return getDevAiConsentOverride() === 'granted';
 }

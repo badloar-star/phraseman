@@ -16,15 +16,25 @@ import { applyDevState, isDevStateAvailable, parseDevStateParams, type DevStateR
 
 // зачем: потолок ожидания перечитывания энергии (см. комментарий в эффекте).
 const ENERGY_RELOAD_CEILING_MS = 3000;
+// зачем (координатор 13.10, energy-modes-003/007: «перечитывание энергии → потолок», на кадре 5): на свежей установке загрузка
+// энергии стоит за замком аккаунта дольше 3 с, и робот уходил на экран раньше, чем контекст узнал подмену. Если подменяется
+// энергия — ждём дольше (робот ждёт маркер до 20 с).
+const ENERGY_RELOAD_CEILING_WITH_ENERGY_MS = 12000;
 
 export default function DevStateRoute() {
   const params = useLocalSearchParams();
   const router = useRouter();
-  const { reload } = useEnergy();
+  const { reload, energy: contextEnergy, energyReady } = useEnergy();
   // зачем (храповик цветов, координатор 15.10): служебный экран робота берёт цвета у активной темы, а не хардкодом #111/#fff/#aaa.
   const { theme: devTheme } = useTheme();
   const [result, setResult] = useState<DevStateResult | null>(null);
   const available = isDevStateAvailable();
+
+  // зачем: журнал робота пропускает только [DEV-STATE] — видно, какое значение энергии реально у экранов после подмены.
+  useEffect(() => {
+    if (!available) return;
+    console.warn('[DEV-STATE] энергия в контексте =', contextEnergy, `ready=${String(energyReady)}`); // guard-ok: трассировка робот-ссылки
+  }, [available, contextEnergy, energyReady]);
 
   useEffect(() => {
     if (!available) return undefined;
@@ -46,7 +56,10 @@ export default function DevStateRoute() {
         // Энергия и Plus читаются контекстом — перечитываем, чтобы экран после перехода показал новое состояние.
         const reloadOutcome = await Promise.race([
           reload().then(() => 'ok', (error: unknown) => `error: ${String(error)}`),
-          new Promise<string>((resolve) => { ceilingTimer = setTimeout(() => resolve('потолок'), ENERGY_RELOAD_CEILING_MS); }),
+          new Promise<string>((resolve) => {
+            const ceilingMs = request.energy !== undefined || request.energyRestoreInSec !== undefined ? ENERGY_RELOAD_CEILING_WITH_ENERGY_MS : ENERGY_RELOAD_CEILING_MS;
+            ceilingTimer = setTimeout(() => resolve(`потолок ${ceilingMs}мс`), ceilingMs);
+          }),
         ]);
         console.warn('[DEV-STATE] route: перечитывание энергии →', reloadOutcome, since()); // guard-ok: трассировка
         if (!alive) {

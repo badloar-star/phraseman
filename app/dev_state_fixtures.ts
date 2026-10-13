@@ -235,8 +235,8 @@ export type DevStateRequest = Readonly<{
   cardsLangs?: 'on' | 'off';
   /** п.85(2) («Из видео — Пока пусто»): empty — каталог роликов пуст (пустой ответ в памяти и локальном кэше, Firestore не трогается), demo — 5 демо-роликов; catalog / catalog_upcoming — демо-каталог YouTube («Видео»: ролики, плейлисты, премьера «сейчас» / «скоро», фразы с таймкодами) + те же 5 наборов, только память (app/dev_youtube_demo.ts). */
   videoPacks?: 'empty' | 'demo' | 'catalog' | 'catalog_upcoming';
-  /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. off — снять. */
-  aiConsent?: 'granted' | 'off';
+  /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. denied — экран «AI-диалоги выключены» (dialogs-010). off — снять. */
+  aiConsent?: 'granted' | 'denied' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
@@ -354,7 +354,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dialogsPaused = onOff('dialogs_paused');
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
-  request.aiConsent = pick('aiConsent', ['granted', 'off'] as const);
+  request.aiConsent = pick('aiConsent', ['granted', 'denied', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
@@ -801,8 +801,8 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.aiConsent !== undefined) {
     // зачем (координатор 12.10): у гостя нет согласия на ИИ — «Начать» открывает шторку согласия вместо сессии; подменяем ТОЛЬКО ответ гейта (память), recordAiDialogConsent не вызывается
     await step('aiConsent', request.aiConsent, async () => {
-      const { setDevAiConsentGranted } = await import('./dev_ai_consent');
-      return setDevAiConsentGranted(request.aiConsent === 'granted');
+      const { setDevAiConsentOverride } = await import('./dev_ai_consent');
+      return setDevAiConsentOverride(request.aiConsent === 'off' ? null : request.aiConsent!);
     });
   }
   if (request.coinRank !== undefined) {

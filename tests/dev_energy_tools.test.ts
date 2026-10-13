@@ -58,11 +58,31 @@ describe('dev_energy_tools', () => {
     expect(JSON.parse(mockStore.get('energy_state') as string).current).toBe(0);
   });
 
+  // зачем (координатор 13.10, energy-modes-003/007): подмена стиралась сменой аккаунта на свежей установке → на кадре 5.
+  test('закреп подмены: держится в памяти после стирания ключа, последняя подмена побеждает', async () => {
+    const tools = require('../app/dev_energy_tools');
+    expect(tools.peekDevEnergyPinRaw()).toBeNull();
+    await tools.devSetEnergy(1);
+    mockStore.delete('energy_state');
+    expect(JSON.parse(tools.peekDevEnergyPinRaw()).current).toBe(1);
+    await tools.devSetEnergyRestoringIn(3);
+    expect(JSON.parse(tools.peekDevEnergyPinRaw()).current).toBe(0);
+  });
+
+  test('загрузка энергии берёт закреп только при пустом ключе', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'EnergyContext.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(src).toContain("const devPinRaw = diskRaw === null ? peekDevEnergyPinRaw() : null;");
+    expect(src).toContain('const raw = diskRaw ?? devPinRaw;');
+  });
+
   test('релиз (__DEV__ = false): ничего не меняется и не пишется', async () => {
     (globalThis as { __DEV__?: boolean }).__DEV__ = false;
     const tools = require('../app/dev_energy_tools');
     await expect(tools.setDevEnergyModeOverride('mistake_charge')).resolves.toBe(false);
     await expect(tools.devSetEnergy(0)).resolves.toBe(false);
+    expect(tools.peekDevEnergyPinRaw()).toBeNull();
     expect(tools.peekDevEnergyModeOverride()).toBeNull();
     expect(mockStore.size).toBe(0);
     expect(mockEmit).not.toHaveBeenCalled();

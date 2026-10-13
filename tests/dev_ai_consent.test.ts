@@ -29,6 +29,7 @@ describe('dev_ai_consent', () => {
   it('parses aiConsent=granted|off; rejects anything else', () => {
     expect(parseDevStateParams({ aiConsent: 'granted' }).request.aiConsent).toBe('granted');
     expect(parseDevStateParams({ aiConsent: 'off' }).request.aiConsent).toBe('off');
+    expect(parseDevStateParams({ aiConsent: 'denied' }).request.aiConsent).toBe('denied');
     expect(parseDevStateParams({ aiConsent: 'yes' }).rejected).toHaveProperty('aiConsent');
   });
 
@@ -48,6 +49,22 @@ describe('dev_ai_consent', () => {
     expect(consent.getAiDialogConsentState()).toBe('unset');
   });
 
+  // зачем (координатор 13.10, dialogs-010): экран «AI-диалоги выключены» достигается только решением «отказ».
+  it('aiConsent=denied: the gate answers denied/decided/hydrated without writing anything', async () => {
+    const fixtures = require('../app/dev_state_fixtures') as typeof import('../app/dev_state_fixtures');
+    const consent = require('../app/ai_dialog_consent') as typeof import('../app/ai_dialog_consent');
+    const result = await fixtures.applyDevState({ aiConsent: 'denied' });
+    expect(result.applied).toHaveProperty('aiConsent');
+    expect(consent.isAiDialogConsentGranted()).toBe(false);
+    expect(consent.getAiDialogConsentState()).toBe('denied');
+    expect(consent.hasAiDialogConsentDecision()).toBe(true);
+    expect(consent.isAiDialogConsentHydrated()).toBe(true);
+    expect(mockSetItem).not.toHaveBeenCalled();
+    expect(mockEnsureAnonUser).not.toHaveBeenCalled();
+    await fixtures.applyDevState({ aiConsent: 'off' });
+    expect(consent.getAiDialogConsentState()).toBe('unset');
+  });
+
   it('applying the fixture writes nothing to storage and never calls the cloud', async () => {
     const fixtures = require('../app/dev_state_fixtures') as typeof import('../app/dev_state_fixtures');
     const consent = require('../app/ai_dialog_consent') as typeof import('../app/ai_dialog_consent');
@@ -64,6 +81,8 @@ describe('dev_ai_consent', () => {
     const consent = require('../app/ai_dialog_consent') as typeof import('../app/ai_dialog_consent');
     expect(dev.setDevAiConsentGranted(true)).toBe(false);
     expect(dev.getDevAiConsentGranted()).toBe(false);
+    expect(dev.setDevAiConsentOverride('denied')).toBe(false);
+    expect(dev.getDevAiConsentOverride()).toBeNull();
     expect(consent.isAiDialogConsentGranted()).toBe(false);
   });
 

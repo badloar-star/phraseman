@@ -11,19 +11,22 @@
  */
 
 import { createAiConsentModule, type AiConsentState } from './ai_consent_factory';
-import { getDevAiConsentGranted } from './dev_ai_consent';
+import { getDevAiConsentOverride } from './dev_ai_consent';
 
 export type AiDialogConsentState = AiConsentState;
 
 const consent = createAiConsentModule('ai_dialog_consent_v1', 'recordAiDialogConsent');
 
 // зачем (координатор 12.10): dev_state?aiConsent=granted подменяет ТОЛЬКО ответы гейта (память процесса) — запись согласия и облачный вызов не затрагиваются;
-// в стор-сборке getDevAiConsentGranted() всегда false, поведение прежнее.
-export const isAiDialogConsentGranted = (): boolean => getDevAiConsentGranted() || consent.isGranted();
-export const getAiDialogConsentState = (): AiDialogConsentState => (getDevAiConsentGranted() ? 'granted' : consent.getState());
+// в стор-сборке getDevAiConsentOverride() всегда null, поведение прежнее. aiConsent=denied (13.10, dialogs-010) — экран «AI-диалоги выключены».
+export const isAiDialogConsentGranted = (): boolean => {
+  const dev = getDevAiConsentOverride();
+  return dev ? dev === 'granted' : consent.isGranted();
+};
+export const getAiDialogConsentState = (): AiDialogConsentState => getDevAiConsentOverride() ?? consent.getState();
 export const subscribeAiDialogConsent = consent.subscribe;
-export const hasAiDialogConsentDecision = (): boolean => getDevAiConsentGranted() || consent.hasDecision();
-export const isAiDialogConsentHydrated = (): boolean => getDevAiConsentGranted() || consent.isHydrated();
+export const hasAiDialogConsentDecision = (): boolean => getDevAiConsentOverride() !== null || consent.hasDecision();
+export const isAiDialogConsentHydrated = (): boolean => getDevAiConsentOverride() !== null || consent.isHydrated();
 export const hydrateAiDialogConsentFromStorage = consent.hydrateFromStorage;
 export const setAiDialogConsent = consent.setConsent;
 export const recordAiDialogConsentToCloud = consent.recordToCloud;

@@ -15,6 +15,8 @@ test("Learning V2 parity failure cannot masquerade as a missing EAS secret", (t)
   const scripts = path.join(root, "scripts");
   fs.mkdirSync(scripts, { recursive: true });
   fs.copyFileSync(PRECHECK, path.join(scripts, "release_precheck.mjs"));
+  // зачем (план Б R1, 7747a43d8): precheck зовёт гейты V2 через обёртку — копируем настоящую, она зовёт заглушки ниже.
+  fs.copyFileSync(path.resolve(HERE, "../scripts/learning_v2_plan_b_gates.mjs"), path.join(scripts, "learning_v2_plan_b_gates.mjs"));
   fs.writeFileSync(path.join(root, "app.json"), JSON.stringify({
     expo: { android: { versionCode: 1 }, ios: { buildNumber: "1" } },
   }));

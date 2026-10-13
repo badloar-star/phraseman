@@ -9,6 +9,9 @@ import test from "node:test";
 const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
 const releasePrecheck = fs.readFileSync("scripts/release_precheck.mjs", "utf8");
 const updateReleaseGate = fs.readFileSync("scripts/update_release_gate.mjs", "utf8");
+// зачем (план Б R1, 7747a43d8): сборка и precheck зовут гейты №3/№4 через обёртку плана Б; без PHRASEMAN_R1_HIDE_V2 она
+// запускает оба гейта (сначала выпуск = исходник), при плане Б и потолке 0 — «НЕПРИМЕНИМО».
+const planBWrapper = fs.readFileSync("scripts/learning_v2_plan_b_gates.mjs", "utf8");
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -71,10 +74,22 @@ function createRouteFixture() {
     path.join(scriptsDir, "update_release_gate.mjs"),
   );
 
+  fs.copyFileSync(
+    path.resolve("scripts/learning_v2_plan_b_gates.mjs"),
+    path.join(scriptsDir, "learning_v2_plan_b_gates.mjs"),
+  );
+  // Гейт выпуска в цепочке сборки идёт через обёртку (node, не npm run) — заглушка пишет в журнал и падает.
+  fs.writeFileSync(
+    path.join(scriptsDir, "learning_v2_release_parity_gate.mjs"),
+    `import { appendFileSync } from "node:fs";\nappendFileSync(process.env.ROUTE_TEST_LOG, "stub learning_v2_release_parity_gate.mjs\\n");\nprocess.exit(process.env.ROUTE_TEST_FORCE_PARITY_SUCCESS === "1" ? 0 : 42);\n`,
+    "utf8",
+  );
+
   for (const name of [
     "deploy_lock_guard.mjs",
     "eas_production_version_gate.mjs",
     "learning_v2_audio_coverage_gate.mjs",
+    "store_route_reachability.mjs",
     "visual_parity_gate.mjs",
   ]) {
     fs.writeFileSync(
@@ -198,15 +213,17 @@ test("exposes one canonical Learning V2 parity command", () => {
 test("native build post-install blocks stale Learning V2 app content", () => {
   assert.match(
     packageJson.scripts["eas-build-post-install"],
-    /(?:^|&&\s*)npm run learning-v2:release-parity-gate(?:\s*&&|$)/u,
+    /(?:^|&&\s*)node scripts\/learning_v2_plan_b_gates\.mjs(?:\s*&&|$)/u,
   );
+  assert.match(planBWrapper, /GATES\s*=\s*\['scripts\/learning_v2_release_parity_gate\.mjs'/u);
 });
 
 test("local release precheck blocks stale Learning V2 app content", () => {
   assert.match(
     releasePrecheck,
-    /script:\s*['"]scripts\/learning_v2_release_parity_gate\.mjs['"]/u,
+    /script:\s*['"]scripts\/learning_v2_plan_b_gates\.mjs['"]/u,
   );
+  assert.match(planBWrapper, /GATES\s*=\s*\['scripts\/learning_v2_release_parity_gate\.mjs'/u);
   assert.match(releasePrecheck, /if\s*\(result\.status\s*!==\s*0\)[\s\S]*?failed\s*\+=\s*1/u);
   assert.match(releasePrecheck, /if\s*\(failed\s*>\s*0\)[\s\S]*?process\.exit\(1\)/u);
 });
@@ -240,6 +257,7 @@ test("the routed production gate blocks on release-quality evidence", () => {
 test("the EAS archive contains the parity gate while omitted authorities fail closed at runtime", () => {
   const easArchive = ignore().add(fs.readFileSync(".easignore", "utf8"));
   assert.equal(easArchive.ignores("scripts/learning_v2_release_parity_gate.mjs"), false);
+  assert.equal(easArchive.ignores("scripts/learning_v2_plan_b_gates.mjs"), false);
   assert.equal(easArchive.ignores("scripts/unrelated-authoring-tool.mjs"), true);
   assert.equal(easArchive.ignores("content/learning-v2-course/release/en/l01/s01/learner.json"), true);
   assert.equal(easArchive.ignores("assets/audio/learning-v2/factory-production-v1/manifest.json"), true);
@@ -300,8 +318,9 @@ test("EAS post-install stops before later build gates when Learning V2 parity fa
     assert.notEqual(result.status, 0, `${result.stdout}\n${result.stderr}`);
     assert.ok(commands.includes("npm run release:keys"), commands.join("\n"));
     assert.ok(commands.includes("stub eas_production_version_gate.mjs"), commands.join("\n"));
-    assert.ok(commands.includes("npm run learning-v2:release-parity-gate"), commands.join("\n"));
-    assert.ok(!commands.includes("stub learning_v2_audio_coverage_gate.mjs"), commands.join("\n"));
+    assert.ok(commands.includes("stub learning_v2_release_parity_gate.mjs"), commands.join("\n"));
+    // обёртка запускает оба гейта V2 (все причины сразу), но цепочка дальше не идёт
+    assert.ok(!commands.includes("stub store_route_reachability.mjs"), commands.join("\n"));
     assert.ok(!commands.includes("stub visual_parity_gate.mjs"), commands.join("\n"));
   } finally {
     fixture.cleanup();

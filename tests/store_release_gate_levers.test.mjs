@@ -165,7 +165,14 @@ test('каждые ворота Learning V2 в eas-build-post-install и release
   const postInstall = scriptsOfShellChain(pkg.scripts['eas-build-post-install'], pkg.scripts);
   const precheck = fs.readFileSync(path.join(ROOT, 'scripts', 'release_precheck.mjs'), 'utf8');
   const precheckScripts = [...precheck.matchAll(/script:\s*'(scripts\/[\w./-]+\.mjs)'/g)].map((m) => m[1]);
-  const v2Gates = [...new Set([...postInstall, ...precheckScripts])].filter((file) => /learning[_-]v2/.test(file));
+  // зачем (план Б R1, 7747a43d8): гейты №3/№4 зовёт обёртка learning_v2_plan_b_gates.mjs — раскрываем её список GATES,
+  // проверяем сами гейты; обёртка — диспетчер, в стор-режиме решают гейты внутри.
+  const wrapper = 'scripts/learning_v2_plan_b_gates.mjs';
+  const expand = (file) => (file === wrapper
+    ? [...fs.readFileSync(path.join(ROOT, wrapper), 'utf8').matchAll(/'(scripts\/learning_v2_[\w]+\.mjs)'/g)].map((m) => m[1])
+    : [file]);
+  const v2Gates = [...new Set([...postInstall, ...precheckScripts].flatMap(expand))].filter((file) => /learning[_-]v2/.test(file));
+  assert.ok(v2Gates.includes('scripts/learning_v2_release_parity_gate.mjs'), 'ворота выпуск = исходник на месте');
   assert.ok(v2Gates.includes('scripts/learning_v2_audio_coverage_gate.mjs'), 'ворота озвучки V2 на месте');
   for (const gate of v2Gates) {
     const source = fs.readFileSync(path.join(ROOT, gate), 'utf8');

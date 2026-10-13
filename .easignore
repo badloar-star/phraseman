@@ -15,6 +15,8 @@ scripts/*
 !scripts/store_release_surface.mjs
 !scripts/store_route_reachability.mjs
 !scripts/learning_v2_release_parity_gate.mjs
+# зачем (репетиция release:precheck 13.10): обёртка плана Б зовётся из eas-build-post-install — без строки сервер EAS упадёт «модуль не найден»
+!scripts/learning_v2_plan_b_gates.mjs
 docs/
 qa-artifacts/
 tmp/

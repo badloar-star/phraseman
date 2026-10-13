@@ -79,6 +79,7 @@ import {
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import { isLearnTabVisibleForTarget } from '../learning_language_surface_readiness';
 import { shouldLoadTabScreen } from '../tab_mount_policy';
+import { whenOnboardingSettled } from '../onboarding_defer_gate';
 
 type IconName = React.ComponentProps<typeof Ionicons>['name'];
 
@@ -1041,7 +1042,15 @@ function ReleasedTabLayout() {
         afterPaintTimer = null;
       }
       console.log('[TABS-PREMOUNT] start', JSON.stringify({ reason, startTabIdx: startTabIdxRef.current, startedAlready: backgroundPremountStartedRef.current })); // guard-ok: причина старта премаунта (СПЕРВА ЛОГИ)
-      scheduleBackgroundPremount();
+      // зачем (координатор 13.10, B1 «Авторизация: скорость входа»): под онбордингом Главная не рисуется, потолок whenHomePainted (6 с) срабатывал,
+      // и цепочка премаунта (вкладки 1…4, «тихое окно» до 8 с) собирала «Уроки» (52 импорта) поверх входа, ≈9 с общего времени входа.
+      // Ждём конец онбординга; онбординга нет или он не известен — прежнее поведение. Тап по вкладке монтирует её сразу (mountNow) и не ждёт.
+      const requestedAt = Date.now();
+      void whenOnboardingSettled('tabs_premount').then((outcome) => {
+        console.log('[LESSONS-REBUILD] premount_release', JSON.stringify({ reason, outcome, heldMs: Date.now() - requestedAt, cancelled })); // guard-ok: итог ожидания онбординга
+        if (cancelled) return;
+        scheduleBackgroundPremount();
+      });
     };
 
     if (startTabIdxRef.current === 0) {

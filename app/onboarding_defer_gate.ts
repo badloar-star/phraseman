@@ -45,6 +45,11 @@ export function whenOnboardingSettled(label: string): Promise<OnboardingSettledO
   });
 }
 
+/** Идёт ли онбординг сейчас: true/false, null — корень ещё не сообщил. Для журналов ([LESSONS-REBUILD]); задачам — whenOnboardingSettled. */
+export function isOnboardingDeferActive(): boolean | null {
+  return active;
+}
+
 /** Сколько задач ждёт (для логов и тестов). */
 export function onboardingDeferWaitingCount(): number {
   return waiters.length;

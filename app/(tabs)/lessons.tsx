@@ -82,6 +82,7 @@ import ListTopEdgeFade from "../../components/lessons/ListTopEdgeFade";
 import { triLang, type Lang } from "../../constants/i18n";
 import { liquidGlassTokens, type GlassTokens } from "../../constants/liquidGlassThemePalette";
 import { perfR1BodyMark, perfR1BodyStart, usePerfR1Probe } from "../perf_r1_probe";
+import { isOnboardingDeferActive } from "../onboarding_defer_gate";
 import { lessonCardLightSurface, type LessonCardLightSurface } from "../../components/lessons/lessonCardLightSurface";
 import { LessonsListGlassCard, type LessonsListCardState } from "../../components/lessons/LessonsListGlassCard";
 import { KitGlassLayer } from "../../components/v2/KitLiquidGlass";
@@ -2481,6 +2482,14 @@ export default function LessonsTab({
         JSON.stringify({ instanceId: instanceIdRef.current, presentation, initialPage }),
       );
     };
+  }, []);
+  useEffect(() => {
+    // зачем (координатор 13.10, B1: «Уроки» собираются под онбордингом ≈9 с входа): журнал — смонтирована ли вкладка при открытом онбординге; после правки ждём onboardingActive=false
+    console.log("[LESSONS-REBUILD] lessons_tab_mounted", JSON.stringify({ instanceId: instanceIdRef.current, presentation, onboardingActive: isOnboardingDeferActive(), atMs: Date.now() }));
+    return () => {
+      console.log("[LESSONS-REBUILD] lessons_tab_unmounted", JSON.stringify({ instanceId: instanceIdRef.current, onboardingActive: isOnboardingDeferActive() }));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   usePerfR1Probe("lessons"); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   const isRetainedTab = presentation === "tab";

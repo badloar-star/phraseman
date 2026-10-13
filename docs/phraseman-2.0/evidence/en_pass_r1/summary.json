@@ -1,0 +1,41 @@
+[
+ {
+  "id": "en-warmup",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "en-home-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "paywalls-023",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "profile-006",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "auth-gap-009",
+  "notes": [
+   "нет tap:#account-delete-button"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "settings-gap-028",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "system-015",
+  "notes": [
+   "нет tap:#home-notification-center-button"
+  ],
+  "fallback_lines": 0
+ }
+]

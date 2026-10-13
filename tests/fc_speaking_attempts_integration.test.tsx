@@ -13,7 +13,11 @@ describe('flashcard speaking shared session attempts integration', () => {
 
   test('only a final accepted speaking score can consume an attempt', () => {
     expect(SOURCE).toContain("verdict: attempt.passed ? 'correct' : 'pedagogical_wrong'");
-    expect(SOURCE).toContain("attemptEffect === 'attempts_exhausted'");
+    // 13.10 (750314a24, режим Б энергии; координатор): экран останавливается по ОБЩЕМУ предикату — attempts_exhausted ИЛИ energy_exhausted. Проверяем не только строку предиката,
+    // но и что прямого сравнения только с attempts_exhausted не осталось (иначе на последней энергии занятие шло бы дальше бесплатно).
+    expect(SOURCE).toContain("from './session_attempts/session_attempts_stop'");
+    expect(SOURCE).toContain('isAttemptsStopEffect(attemptEffect)');
+    expect(SOURCE).not.toContain("attemptEffect === 'attempts_exhausted'");
     expect(SOURCE).toContain("verdict: status === 'no_speech' ? 'no_speech' : 'technical_error'");
     expect(SOURCE).toContain("verdict: 'cancelled'");
   });

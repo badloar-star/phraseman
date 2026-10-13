@@ -1,0 +1,142 @@
+/* PhraseMan 2.0 — «Моменты вовлечения» v2: расширение каркаса (13.10.2026). Подключается ПОСЛЕ engagement-moments.css, v1 не трогает.
+   зачем (этап 2 — критический пересмотр v1): персонаж-монета (наш «Дуо»), подъём камеры при повышении лиги, лестница позиции,
+   «нагрев» комбо, стадии огня серии, скины переписок под сценарий, пружинные тайминги вместо линейных. */
+
+/* ---------- персонаж-монета ---------- */
+.em-ph .cc { position: relative; display: inline-flex; flex-direction: column; align-items: center; }
+.em-ph .cc .face { position: relative; display: block; border-radius: 50%; filter: drop-shadow(0 14px 24px rgba(0,0,0,.5)); }
+.em-ph .cc.idle .face { animation: emCcIdle 2.8s ease-in-out infinite; }
+.em-ph .cc.jump .face { animation: emCcJump 900ms var(--em-ease-pop) both; }
+.em-ph .cc.wow .face { animation: emCcWow 1100ms var(--em-ease-pop) both; }
+.em-ph .cc.nod .face { animation: emCcNod 1200ms ease-in-out both; }
+.em-ph .cc.sleep .face { animation: emCcSleep 3s ease-in-out infinite; filter: drop-shadow(0 14px 24px rgba(0,0,0,.5)) saturate(.6) brightness(.8); }
+.em-ph .cc .zz { position: absolute; right: -8px; top: -4px; font-size: 18px; font-weight: 800; color: var(--sc); animation: emZz 2.2s ease-in-out infinite; }
+.em-ph .cc .say { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%); white-space: nowrap; padding: 10px 14px; border-radius: 18px; border-bottom-left-radius: 6px; background: var(--sheet); box-shadow: var(--sho); font-size: 15px; font-weight: 700; animation: emSay 500ms var(--em-ease-pop) both; }
+.em-ph.lite .cc .say { background: #fff; }
+.em-ph .cc .say::after { content: ""; position: absolute; left: 50%; bottom: -6px; width: 12px; height: 12px; margin-left: -14px; background: inherit; transform: rotate(45deg); border-radius: 2px; }
+.em-ph .cc .say.l { left: auto; right: 50%; transform: none; border-bottom-left-radius: 18px; border-bottom-right-radius: 6px; margin-right: -30px; }
+.em-ph .cc .say.l::after { left: auto; right: 14px; margin: 0; }
+.em-ph .cc .glint { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; animation: emGlint 1.4s ease-in-out infinite; }
+.em-ph .cc .crown { position: absolute; left: 50%; top: -22px; transform: translateX(-50%) rotate(-8deg); animation: emCrownIn 800ms var(--em-ease-pop) .8s both; }
+.em-ph .cc .shadow { width: 60%; height: 10px; border-radius: 50%; background: rgba(0,0,0,.45); filter: blur(4px); margin-top: 6px; animation: emShadowIdle 2.8s ease-in-out infinite; }
+@keyframes emCcIdle { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(2deg); } }
+@keyframes emShadowIdle { 0%, 100% { transform: scaleX(1); opacity: .45; } 50% { transform: scaleX(.8); opacity: .3; } }
+@keyframes emCcJump { 0% { transform: translateY(0) scale(1, 1); } 20% { transform: translateY(4px) scale(1.1, .9); } 55% { transform: translateY(-34px) scale(.95, 1.08) rotate(6deg); } 80% { transform: translateY(2px) scale(1.06, .94); } 100% { transform: none; } }
+@keyframes emCcWow { 0% { transform: scale(.3) rotate(-30deg); opacity: 0; } 50% { transform: scale(1.18) rotate(6deg); opacity: 1; } 70% { transform: scale(.96) rotate(-3deg); } 100% { transform: none; } }
+@keyframes emCcNod { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg) translateY(2px); } 50% { transform: rotate(0); } 75% { transform: rotate(-9deg) translateY(2px); } }
+@keyframes emCcSleep { 0%, 100% { transform: rotate(-12deg) translateY(2px); } 50% { transform: rotate(-14deg) translateY(4px); } }
+@keyframes emZz { 0% { opacity: 0; transform: translate(0, 0) scale(.6); } 40% { opacity: 1; } 100% { opacity: 0; transform: translate(14px, -22px) scale(1.2); } }
+@keyframes emSay { from { opacity: 0; transform: translateX(-50%) translateY(8px) scale(.8); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
+@keyframes emGlint { 0%, 100% { opacity: 0; transform: scale(.3); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes emCrownIn { from { opacity: 0; transform: translateX(-50%) translateY(-30px) rotate(-30deg); } to { opacity: 1; transform: translateX(-50%) rotate(-8deg); } }
+
+/* ---------- подъём камеры между башнями ---------- */
+.em-ph .sky { position: absolute; inset: 0; overflow: hidden; }
+.em-ph .sky .stars { position: absolute; inset: -100% 0 0; background-image: radial-gradient(1.5px 1.5px at 20% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 60%, rgba(255,255,255,.8) 50%, transparent 51%), radial-gradient(1.2px 1.2px at 40% 80%, rgba(255,255,255,.6) 50%, transparent 51%), radial-gradient(1px 1px at 85% 15%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 10% 70%, rgba(255,255,255,.7) 50%, transparent 51%); background-size: 180px 220px; opacity: .5; }
+.em-ph .climb { position: absolute; left: 0; right: 0; bottom: 0; height: 1800px; transform: translateY(var(--from, 0)); animation: emClimb var(--ms, 2400ms) var(--em-ease-in-out) var(--delay, 400ms) both; }
+@keyframes emClimb { from { transform: translateY(var(--from)); } to { transform: translateY(var(--to)); } }
+.em-ph .climb .t1, .em-ph .climb .t2 { position: absolute; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.em-ph .climb .cloud { position: absolute; left: 50%; width: 520px; height: 160px; margin-left: -260px; border-radius: 50%; background: radial-gradient(ellipse, var(--bg) 40%, transparent 70%); }
+.em-ph .lgtag { padding: 6px 14px; border-radius: 999px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; background: var(--ti); }
+
+/* ---------- лестница позиций ---------- */
+.em-ph .ladder { position: relative; display: flex; flex-direction: column; gap: 6px; }
+.em-ph .ladder .lrow { transition: transform 1100ms var(--em-ease); }
+.em-ph .ladder .lrow.me { z-index: 2; }
+.em-ph .ladder .lrow.me.rise { animation: emRowGlow 1100ms ease-out 1s both; }
+@keyframes emRowGlow { 0% { box-shadow: var(--sh); } 40% { box-shadow: 0 0 0 2px var(--acc), 0 20px 40px -10px color-mix(in srgb, var(--acc) 50%, transparent); } 100% { box-shadow: var(--sh); } }
+.em-ph .delta { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 800; color: var(--good); animation: emPop 500ms var(--em-ease-pop) 1.4s both; }
+
+/* ---------- лиги-лестница 12 камней ---------- */
+.em-ph .lgs { display: flex; flex-direction: column; gap: 4px; }
+.em-ph .lgs .lg { display: flex; align-items: center; gap: 10px; height: 30px; padding: 0 10px; border-radius: 10px; font-size: 13px; font-weight: 700; color: var(--sc); opacity: .55; }
+.em-ph .lgs .lg i { width: 14px; height: 14px; border-radius: 4px; flex: none; }
+.em-ph .lgs .lg.me { opacity: 1; color: var(--tx); background: var(--ti); box-shadow: var(--sh2); animation: emLgUp 900ms var(--em-ease) 1.2s both; }
+@keyframes emLgUp { from { transform: translateY(34px); } to { transform: none; } }
+.em-ph .lgs .lg.was { opacity: .35; }
+
+/* ---------- комбо-нагрев ---------- */
+.em-ph .heat { position: relative; height: 8px; border-radius: 4px; background: var(--trk); overflow: visible; }
+.em-ph .heat > i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; width: var(--w, 60%); background: linear-gradient(90deg, var(--acc), #FFD166 60%, #FF7A45); transition: width 700ms var(--em-ease); }
+.em-ph .heat.h2 > i { box-shadow: 0 0 14px rgba(255,180,80,.6); }
+.em-ph .heat.h3 > i { box-shadow: 0 0 22px rgba(255,120,60,.9); animation: emHeatPulse 700ms ease-in-out infinite; }
+@keyframes emHeatPulse { 50% { filter: brightness(1.3); } }
+.em-ph .heat .tip { position: absolute; top: -34px; right: calc(100% - var(--w, 60%)); transform: translateX(50%); padding: 4px 9px; border-radius: 10px; background: #FFD166; color: #2A1500; font-size: 12px; font-weight: 800; white-space: nowrap; animation: emPop 400ms var(--em-ease-pop) both; }
+.em-ph .heat .tip::after { content: ""; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 8px; margin-left: -4px; background: inherit; transform: rotate(45deg); }
+.em-ph svg.zap { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 58; pointer-events: none; }
+.em-ph svg.zap path { fill: none; stroke: #FFF3C4; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; filter: drop-shadow(0 0 10px #FFD166) drop-shadow(0 0 24px #FF7A45); stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: emZap 420ms ease-out both, emFade 400ms 900ms reverse both; }
+@keyframes emZap { to { stroke-dashoffset: 0; } }
+.em-ph .shake { animation: emShake 400ms ease-in-out both; }
+.em-ph .opt.burn { background: linear-gradient(90deg, color-mix(in srgb, var(--good) 20%, transparent), color-mix(in srgb, #FFD166 25%, transparent)); color: #FFE08A; }
+
+/* ---------- огонь по стадиям ---------- */
+.em-ph .fire { position: relative; display: flex; align-items: flex-end; justify-content: center; }
+.em-ph .fire svg { animation: emFlame 1.5s ease-in-out infinite; transform-origin: bottom; }
+.em-ph .fire .n { position: absolute; bottom: 22%; left: 0; right: 0; text-align: center; font-weight: 900; color: #fff; letter-spacing: -2px; text-shadow: 0 4px 20px rgba(0,0,0,.5); }
+.em-ph .fire .core { position: absolute; left: 50%; bottom: 10%; width: 60%; height: 60%; transform: translateX(-50%); border-radius: 50% 50% 40% 40%; filter: blur(16px); opacity: .7; animation: emGlow 1.2s ease-in-out infinite; }
+.em-ph .fire-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; }
+.em-ph .fire-row .f { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--mu); flex: 1; }
+.em-ph .fire-row .f.on { color: var(--tx); }
+.em-ph .fire-row .f.now { color: var(--tx); }
+.em-ph .fire-row .f.now svg { filter: drop-shadow(0 0 14px rgba(255,140,60,.9)); }
+.em-ph .fire-row .f.off svg { opacity: .25; filter: grayscale(1); }
+
+/* ---------- share-карточка ---------- */
+.em-ph .sharecard { width: 240px; border-radius: 22px; padding: 16px; position: relative; overflow: hidden; color: #fff; text-align: left; transform: rotate(-4deg); box-shadow: 0 30px 50px -20px rgba(0,0,0,.8); animation: emUp 700ms var(--em-ease) both; }
+.em-ph .sharecard .brand { position: absolute; right: 14px; bottom: 12px; font-size: 11px; font-weight: 800; letter-spacing: 2px; opacity: .7; }
+.em-ph .sharecard .big { font-size: 44px; line-height: 44px; font-weight: 900; letter-spacing: -2px; }
+
+/* ---------- переписка: скины сцен ---------- */
+.em-ph .scene-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 14px; font-size: 13px; font-weight: 600; color: var(--sc); }
+.em-ph .scene-bar b { color: var(--tx); }
+.em-ph .scene-bar .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); box-shadow: 0 0 8px var(--good); animation: emGlow 1.6s ease-in-out infinite; }
+.em-ph .bub.them.k-cafe { background: linear-gradient(180deg, #4A2E1C, #3A2214); color: #FFF2E6; }
+.em-ph .bub.them.k-pharm { background: linear-gradient(180deg, #1E4A3C, #15362C); color: #E6FFF5; }
+.em-ph .bub.them.k-doc { background: linear-gradient(180deg, #243A5E, #1A2A48); color: #EAF2FF; }
+.em-ph.lite .bub.them.k-cafe { background: #F3E3D6; color: #3A2214; } .em-ph.lite .bub.them.k-pharm { background: #D8F0E6; color: #15362C; } .em-ph.lite .bub.them.k-doc { background: #DCE6F6; color: #1A2A48; }
+.em-ph .bub .snd { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; padding: 4px 8px; border-radius: 10px; background: rgba(255,255,255,.1); font-size: 12px; font-weight: 700; }
+.em-ph .bub .snd .wave { display: inline-flex; gap: 2px; align-items: center; height: 12px; }
+.em-ph .bub .snd .wave i { width: 2px; background: currentColor; border-radius: 1px; animation: emWave .9s ease-in-out infinite; }
+.em-ph .bub .snd .wave i:nth-child(1) { height: 4px; } .em-ph .bub .snd .wave i:nth-child(2) { height: 10px; animation-delay: .1s; } .em-ph .bub .snd .wave i:nth-child(3) { height: 7px; animation-delay: .2s; } .em-ph .bub .snd .wave i:nth-child(4) { height: 12px; animation-delay: .3s; } .em-ph .bub .snd .wave i:nth-child(5) { height: 5px; animation-delay: .4s; }
+@keyframes emWave { 50% { transform: scaleY(.4); } }
+.em-ph .hintchip { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 16px; font-size: 14px; font-weight: 600; color: var(--sc); animation: emUp 500ms var(--em-ease) both; }
+.em-ph .hintchip b { color: var(--tx); }
+.em-ph .receipt { font-family: 'Inter', monospace; background: #F6F1E8; color: #2A2218; border-radius: 6px; padding: 10px 12px; font-size: 12px; line-height: 17px; transform: rotate(2deg); box-shadow: 0 10px 20px -8px rgba(0,0,0,.6); }
+.em-ph .receipt b { display: block; letter-spacing: 2px; text-align: center; }
+
+/* ---------- кольца v2 ---------- */
+.em-ph .ringwrap .spark { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #fff; animation: emSpark 900ms ease-out both; }
+@keyframes emSpark { 0% { transform: rotate(var(--a)) translateX(var(--r0)) scale(1); opacity: 1; } 100% { transform: rotate(var(--a)) translateX(var(--r1)) scale(.2); opacity: 0; } }
+.em-ph .rings .rg.closed { animation: emRingClose 700ms var(--em-ease-pop) both; transform-origin: center; }
+@keyframes emRingClose { 0% { stroke-width: 12; } 40% { stroke-width: 18; filter: brightness(1.6); } 100% { stroke-width: 12; } }
+.em-ph .day-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+/* ---------- деньги: «потеря» ---------- */
+.em-ph .loss { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: color-mix(in srgb, var(--bad) 14%, transparent); font-size: 14px; line-height: 19px; }
+.em-ph .loss b { color: var(--bad); }
+.em-ph .gain { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; background: color-mix(in srgb, var(--gold) 16%, transparent); font-size: 14px; line-height: 19px; }
+.em-ph .gain b { color: var(--gold); }
+.em-ph .tickdown { font-variant-numeric: tabular-nums; }
+.em-ph .faces { display: flex; }
+.em-ph .faces img { margin-left: -8px; border-radius: 50%; box-shadow: 0 0 0 2px var(--sheet); }
+.em-ph .faces img:first-child { margin-left: 0; }
+
+/* ---------- сравнение / «до и после» ---------- */
+.em-ph .ghost { opacity: .35; filter: grayscale(.6); }
+.em-ph .tapme { position: absolute; width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,.8); animation: emRing 1.2s ease-out infinite; pointer-events: none; }
+
+/* ---------- решения владельца 13.10 ---------- */
+/* окна башни окрашены по теме приложения, а не по камню лиги: зажжённые окна (opacity=1) берут акцент темы */
+.em-ph .tw rect[opacity="1"] { fill: var(--acc); }
+/* энергия без капсулы-фона — только значок и цифра */
+.em-ph .pill.en { background: transparent; padding: 0 4px; color: var(--bolt); }
+/* «Комната недели» — подиум в самом верху экрана Пика, выше башни */
+.em-ph .room { display: flex; align-items: flex-end; justify-content: center; gap: 14px; padding: 12px 12px 10px; border-radius: 22px; }
+.em-ph .room .p { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--sc); }
+.em-ph .room .p b { font-size: 11px; color: var(--mu); }
+.em-ph .room .p.p1 { transform: translateY(-6px); }
+.em-ph .room .p.me { color: var(--tx); }
+/* соседи по этажу — монеты рангов */
+.em-ph .floor-mates { display: flex; align-items: center; gap: 6px; }
+.em-ph .floor-mates img { border-radius: 50%; box-shadow: 0 0 0 2px var(--bg); }
+.em-ph .floor-mates .more { font-size: 12px; font-weight: 700; color: var(--sc); margin-left: 4px; }

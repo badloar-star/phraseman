@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения v2 · B — занятия, кольца дня, монета</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-v2.css">
+<style>
+/* зачем (этап 2): в v1 комбо было бейджем «сбоку», кольца — копией Apple, идеальный урок — «звёзды + текст». v2: комбо греет сам прогресс-бар и бьёт молнией
+   по экрану, кольца живут вокруг монеты-персонажа и питают огонь серии, идеальный урок — «чекан» (штамп ИДЕАЛ), итог урока — одна цепная реакция. */
+.em-page .diff { margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: #121214; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); max-width: 1100px; }
+.em-page .diff h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #8BE5B6; }
+.em-page .diff ol { margin: 0; padding-left: 20px; color: var(--sec); font-size: 14px; line-height: 1.6; }
+.em-page .diff li b { color: #E6E6E8; font-weight: 600; }
+.em-ph .q-under .opt { padding: 14px 16px; border-radius: 16px; font-size: 16px; font-weight: 600; margin-top: 8px; }
+.em-ph .q-under .opt.ok { background: color-mix(in srgb, var(--good) 20%, transparent); color: var(--good); }
+.em-ph .lesson-under .q { padding: 26px 20px; text-align: center; border-radius: 22px; }
+.em-ph .stamp { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-12deg) scale(3); opacity: 0; padding: 8px 18px; border: 4px solid var(--gold); border-radius: 12px; color: var(--gold); font-size: 34px; font-weight: 900; letter-spacing: 6px; z-index: 56; animation: emStamp 600ms var(--em-ease-in-out) both; }
+@keyframes emStamp { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-12deg) scale(3); } 60% { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(.95); } 75% { transform: translate(-50%, -50%) rotate(-12deg) scale(1.05); } 100% { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(1); } }
+.em-ph .stars { display: flex; gap: 10px; justify-content: center; }
+.em-ph .stars .ic { width: 44px; height: 44px; color: var(--gold); animation: emPop 500ms var(--em-ease-pop) both; }
+.em-ph .stars .ic.off { color: var(--trk); }
+.em-ph .ringwrap { position: relative; display: inline-block; }
+.em-ph .ringwrap .c { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.em-ph .legend { display: flex; flex-direction: column; gap: 10px; }
+.em-ph .legend .l { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.em-ph .legend .l i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.em-ph .legend .l s { text-decoration: none; margin-left: auto; color: var(--sc); font-weight: 700; font-variant-numeric: tabular-nums; }
+.em-ph .legend .l.done s { color: var(--tx); }
+.em-ph .legend .l.done::after { content: "✓"; color: var(--acc); font-weight: 800; }
+.em-ph .home-card { padding: 16px; border-radius: 24px; }
+.em-ph .steps3 { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
+.em-ph .steps3 .s { flex: 1; border-radius: 14px 14px 6px 6px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; padding-bottom: 10px; font-size: 12px; font-weight: 700; color: var(--sc); background: var(--ti); position: relative; overflow: hidden; }
+.em-ph .steps3 .s i { position: absolute; left: 0; right: 0; bottom: 0; background: var(--acc); height: var(--h, 0%); transition: height 1000ms var(--em-ease); opacity: .9; }
+.em-ph .steps3 .s span { position: relative; z-index: 1; }
+.em-ph .steps3 .s.done span { color: var(--on); }
+.em-ph .steps3 .s.s1 { height: 60px; } .em-ph .steps3 .s.s2 { height: 84px; } .em-ph .steps3 .s.s3 { height: 110px; }
+.em-ph .wk7 { display: flex; justify-content: space-between; }
+.em-ph .wk7 .d { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--mu); }
+.em-ph .wk7 .d.today { color: var(--tx); }
+.em-ph .rank-shelf { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.em-ph .rank-shelf .r { aspect-ratio: 1; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: var(--ti); }
+.em-ph .rank-shelf .r img { width: 70%; height: 70%; }
+.em-ph .rank-shelf .r.lock img { filter: grayscale(1) brightness(.4); }
+.em-ph .rank-shelf .r.next img { filter: grayscale(1) brightness(.7); animation: emGlow 1.6s ease-in-out infinite; }
+.em-ph .rank-shelf .r.new { background: color-mix(in srgb, var(--gold) 25%, transparent); box-shadow: 0 0 0 2px var(--gold), 0 0 22px color-mix(in srgb, var(--gold) 50%, transparent); animation: emPulse 1.6s ease-in-out infinite; }
+.em-ph .fly { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE9A8, #E2A62A 60%, #9A6A14); z-index: 65; animation: emFlyTo 900ms var(--em-ease-in-out) both; }
+@keyframes emFlyTo { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.5); opacity: 0; } }
+.em-ph .beat { opacity: 0; }
+.em-ph .beat.on { animation: emUp 500ms var(--em-ease) both; }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Этап 2 · v2 · часть B</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v2 — занятия, кольца дня, монета</h1>
+  <p class="page-lead">Комбо греет прогресс-бар и бьёт молнией; идеальный урок — «чекан»; итог урока — одна цепная реакция; кольца дня — вокруг монеты-персонажа и питают огонь серии; ранг монеты — персонаж сам просится расти.</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v1-b.html">v1 этой части</a><a class="em-btn" href="engagement-moments-v2-a.html">← Часть A</a><a class="em-btn" href="engagement-moments-v2-c.html">Часть C →</a></div></div>
+  <div class="diff"><h3>Что изменилось в v2 (часть B) и почему</h3><ol>
+    <li><b>Комбо — в прогресс-баре, а не сбоку.</b> Бар «нагревается» от бирюзы к огню, подсказка «ещё 2 до ×2» сидит на кончике; на 10 — молния через весь экран и правильный ответ «вспыхивает» золотом. Ошибка остужает на одну ступень, а не обнуляет — азарт без наказания.</li>
+    <li><b>Идеальный урок — «чекан».</b> Вместо «звёзд + текст» — штамп ИДЕАЛ с ударом (наш язык «Световод + Чекан»), монета-персонаж с бликами, ×1,5 монет начисляется у всех на глазах.</li>
+    <li><b>Итог урока — цепная реакция.</b> Одна последовательность ударов: звёзды → монеты летят → день серии зажигается → кольцо «Урок» докручивается. Четыре счётчика двигает одно действие — это и есть ощущение прогресса.</li>
+    <li><b>Кольца дня связаны с серией.</b> Образ C: кольцо дня «питает» огонь серии — закрыл кольцо, огонь вырос. Два главных счётчика приложения (день и серия) стали одной системой.</li>
+    <li><b>Персонаж в кольцах.</b> Кольца вокруг монеты: при закрытии монета прыгает, искры, реплика. Это «сова», которой у нас не было.</li>
+    <li><b>Ранг — просьба персонажа.</b> «Я подрос?» вместо системного «Ранг доступен». Полка коллекции — с силуэтом следующей монеты и двумя путями (монеты / идеалы).</li>
+    <li><b>Выход из урока — персонаж просит остаться</b> конкретикой («2 минуты», «комбо 7 сгорит»).</li>
+  </ol></div>
+  <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v2-a.html">A · Пик</a><a class="file" href="engagement-moments-v2-b.html">B · Занятия</a><a class="file" href="engagement-moments-v2-c.html">C · Диалоги · Серия · Plus</a></nav>
+  <div id="root"></div>
+</div>
+<script src="engagement-moments.js"></script>
+<script src="engagement-moments-v2.js"></script>
+<script>
+(() => {
+const { icon, coin, tower, rings, confetti, countUp, moment, render } = EM;
+const { coinChar, zap, fire, shareCard, sparks } = EM2;
+const RING3 = (v) => [{ v: v[0], color: 'var(--acc)' }, { v: v[1], color: 'var(--acc2)' }, { v: v[2], color: 'var(--gold)' }];
+
+/* ---------- подложка: вопрос урока с «нагревом» ---------- */
+const lessonUnder = (o = {}) => `<div class="lesson-under"><div class="top"><span class="chip">${icon('close', 's16')}</span><div class="heat grow ${o.heat || ''}" style="margin:0 10px" data-heat><i style="--w:${o.w || '62%'}"></i>${o.tip ? `<span class="tip" style="--w:${o.w || '62%'}">${o.tip}</span>` : ''}</div><span class="pill en">${icon('boltF', 's16')} 4</span></div>
+  <div class="small" style="margin-top:26px;text-align:center">Выбери перевод</div>
+  <div class="q sf" style="margin-top:10px"><div class="h-md">${o.q || 'Можно мне счёт, пожалуйста?'}</div></div>
+  <div class="q-under" style="margin-top:14px"><div class="opt sf ok ${o.burn ? 'burn' : ''}" data-opt>${o.a || 'Can I have the bill, please?'}</div><div class="opt sf">Could you call me back?</div><div class="opt sf">Where is the station?</div></div>
+  <div class="dock"><div class="cta white">Дальше</div></div></div>`;
+
+/* ---------- 08. Комбо v2 ---------- */
+const comboB = () => `<div style="position:absolute;left:0;right:0;top:118px;z-index:60;display:flex;justify-content:center">${coinChar(5, 56, { mood: 'jump', say: '5 подряд — огонь!', shadow: false })}</div>`;
+const comboC = () => `<div class="toast" style="top:96px;gap:14px"><div style="display:flex;flex-direction:column;align-items:center"><span style="font-size:34px;line-height:34px;font-weight:900;color:var(--gold)">×2</span><span class="small">до ×3 — 3</span></div><div class="x" style="flex:1">Серия 7<s>монеты за ответ: 2 → <b style="color:var(--gold)">4</b></s><s>ошибка остудит на одну ступень, не обнулит</s></div>${coin(5, 36)}</div>`;
+moment({ id: 'm08', num: '08', short: 'Комбо · нагрев', title: '«Молния» v2 — нагрев бара и разряд', tag: 'new',
+  lead: 'v1: бейдж рядом. v2: сам прогресс-бар греется (бирюза → золото → огонь), подсказка «ещё 2 до ×2» на кончике; на 10 — молния через экран, правильный вариант вспыхивает золотом. Правило: ошибка остужает на ступень, не обнуляет.',
+  variants: [
+    { k: 'A', label: 'Нагрев бара 3 → 5 → 10 + молния', time: '~4 с', phone: { under: lessonUnder({ w: '30%', tip: '3 подряд' }) },
+      init: (ph) => { const h = ph.querySelector('[data-heat]'); const tip = h.querySelector('.tip'); const t1 = setTimeout(() => { h.classList.add('h2'); h.querySelector('i').style.setProperty('--w', '55%'); tip.style.setProperty('--w', '55%'); tip.textContent = '5 · ещё 5 до ×2'; }, 1300); const t2 = setTimeout(() => { h.classList.add('h3'); h.querySelector('i').style.setProperty('--w', '85%'); tip.style.setProperty('--w', '85%'); tip.textContent = '10 · ×2 монет'; zap(ph); ph.querySelector('[data-opt]').classList.add('burn'); ph.querySelector('.q').classList.add('shake'); }, 2800); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Комбо живёт там, куда смотрит глаз — на прогрессе. Нагрев = нарастающее напряжение, молния = разрядка. «Ещё N до ×2» даёт цель в каждом ответе.', ref: 'Guitar Hero star power, Beat Saber, Candy Crush «Sweet!», Duolingo combo.', fx: 'ширина и цвет бара (bezier .2/1/.3/1), подсказка pop на кончике, молния stroke-dash 420 мс + вспышка 60% + тряска вопроса 400 мс.', snd: '3: «тик», 5: «тик-тик» выше, 10: разряд 300 мс; haptic: light → medium → heavy. Ошибка — без звука, бар остывает на ступень.' },
+    { k: 'B', label: 'Персонаж на баре: «5 подряд — огонь!»', time: '~1,5 с', phone: { under: lessonUnder({ w: '55%', heat: 'h2' }), over: comboB() },
+      why: 'Монета радуется за серию — эмоция, которой у приложения не было. Коротко, не мешает.', ref: 'Duo реакции в уроке, Clippy (в хорошем смысле).', fx: 'прыжок монеты 0,9 с, реплика-пузырь.', snd: '«йу-ху» 200 мс; haptic medium.' },
+    { k: 'C', label: 'Экономика: ×2 → ×3, остывание вместо обнуления', time: '~1 с', phone: { under: lessonUnder({ w: '70%', heat: 'h2' }), over: comboC() },
+      why: 'Прозрачная выгода (2 → 4 монеты за ответ) и мягкое правило (ошибка остужает на ступень) — азарт без страха. Создаёт спрос на монеты → ×2 в Plus.', ref: 'Candy Crush множители, Duolingo XP boost, Brawl Stars win streak.', fx: 'тост, ×2 pop.', snd: 'звон; haptic light.' },
+  ] });
+
+/* ---------- 09. Идеальный урок v2 ---------- */
+const perfectA = () => `<div class="full"><div class="glowspot gold" style="top:36%"></div><div class="body">
+  <div style="position:relative">${coinChar(5, 128, { mood: 'wow', glints: true })}<div class="stamp" style="animation-delay:.9s">ИДЕАЛ</div></div>
+  <div class="h-xl a-up d6" style="margin-top:24px">20 из 20</div>
+  <div class="p a-up d7" style="margin-top:6px">Ни одной ошибки · Present Simple</div>
+  <div class="sf a-up d8" style="margin:20px 0 0;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span><span class="chip" style="color:var(--gold)">×1,5 за идеал</span></div>
+  </div><div class="foot a-up d8"><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const perfectB = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:26px">
+  <div style="display:flex;justify-content:center">${coinChar(5, 84, { mood: 'jump', say: 'Три идеала подряд!', sayStyle: 'animation-delay:.6s' })}</div>
+  <div class="h-lg" style="margin-top:12px">До ранга 6 — два урока</div>
+  <div class="p" style="margin-top:6px">5 идеальных подряд — ранг бесплатно. Серию видно у монеты.</div>
+  <div class="fl" style="justify-content:center;gap:8px;margin-top:16px">${[1, 2, 3, 4, 5].map((i) => `<span class="day-dot" style="background:${i <= 3 ? 'var(--gold)' : 'var(--ti)'};color:#3A2400;animation:emPop 400ms var(--em-ease-pop) ${i * 120}ms both">${i <= 3 ? icon('starF', 's18') : ''}</span>`).join('')}</div>
+  <div class="cta white" style="margin-top:20px">Следующий урок</div></div>`;
+moment({ id: 'm09', num: '09', short: 'Идеальный урок', title: 'Идеальный урок v2 — «чекан»', tag: 'new',
+  lead: 'v1: три звезды и текст. v2: удар штампа ИДЕАЛ по монете-персонажу (наш язык «Чекан»: одна ударная точка), монеты ×1,5 бегут; «серия идеалов» показана точками у монеты и ведёт к рангу.',
+  variants: [
+    { k: 'A', label: 'Штамп ИДЕАЛ по монете', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%', heat: 'h3' }), over: perfectA() }, init: (ph) => { const t = setTimeout(() => { ph.querySelector('.full').classList.add('shake'); confetti(ph, { gold: true, n: 80 }); countUp(ph.querySelector('[data-c]'), 0, 45, 900); }, 1400); return () => clearTimeout(t); },
+      why: 'Редкий момент получил физический удар (штамп + тряска + золото) — запоминается телом. Персонаж с бликами «сияет».', ref: 'Наш LevelUpMintCeremony (чекан), Duolingo Legendary, Candy Crush.', fx: 'монета wow → штамп падает (scale 3 → .95 → 1) с тряской экрана → золотой дождь → счётчик.', snd: 'удар штампа (низкий) + звон; haptic heavy на удар.' },
+    { k: 'B', label: 'Серия идеалов → ранг (точки у монеты)', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectB() },
+      why: 'Длинная цель на 5 уроков с видимым прогрессом; бесплатный ранг — мотивация без оплаты, создаёт ценность рангов.', ref: 'Clash Royale crown chest, Duolingo Legendary trophy.', fx: 'точки pop по 120 мс, прыжок монеты.', snd: 'три «тика»; haptic light.' },
+  ] });
+
+/* ---------- 10. Итог урока v2 — цепная реакция ---------- */
+const resultA = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:6px">
+  <div class="stars beat" data-b="0">${icon('starF')}<span class="ic" style="animation-delay:.15s">${icon('starF')}</span><span class="ic off" style="animation-delay:.3s">${icon('starF')}</span></div>
+  <div class="h-lg beat" data-b="1" style="margin-top:16px">Урок пройден</div>
+  <div class="stat3 beat" data-b="2" style="margin-top:18px"><div class="st sf"><b style="color:var(--good)">17</b><span>верно</span></div><div class="st sf"><b style="color:var(--bad)">3</b><span>ошибки</span></div><div class="st sf"><b>85%</b><span>точность</span></div></div>
+  <div class="sf beat" data-b="3" style="margin-top:12px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px"><span data-src>${coin(5, 30)}</span><div class="grow" style="text-align:left"><div style="font-size:17px;font-weight:700">+<span data-c>0</span> монет</div><div class="small">1 240 → 1 275</div></div><span class="pill gold" data-dst>${coin(5, 18)}<span data-bal>1 240</span></span></div>
+  <div class="sf beat" data-b="4" style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${fire(1, 44)}<div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">Серия — 6 дней</div><div class="small">сегодня засчитан</div></div><div class="week" style="gap:4px">${['П', 'В', 'С', 'Ч', 'П', 'С'].map((d, i) => `<div class="d ${i < 6 ? 'on' : ''}" style="font-size:10px"><i style="width:22px;height:22px">${i < 6 ? icon('flameF', 's16') : ''}</i></div>`).join('')}</div></div>
+  <div class="sf beat" data-b="5" style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px"><div data-r>${rings(RING3([.7, .33, .2]), { size: 52, stroke: 6, gap: 3 })}</div><div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">Кольцо «Урок» — закрыто</div><div class="small">Пик 1/3 · Карточки 2/10</div></div></div>
+  </div><div class="foot beat" data-b="6"><div class="cta white">Следующий урок ${icon('arrowR', 's18')}</div><div class="cta ghost">Разобрать 3 ошибки</div></div></div>`;
+moment({ id: 'm10', num: '10', short: 'Итог урока', title: 'Итог урока v2 — цепная реакция', tag: 'old',
+  lead: 'v1: всё появлялось лесенкой. v2: шесть ударов с паузами — звёзды, цифры, монеты летят в баланс (и баланс бежит), день серии зажигается, кольцо «Урок» докручивается. Одно занятие двигает четыре счётчика — и это видно за 4 секунды.',
+  variants: [
+    { k: 'A', label: 'Шесть ударов: звёзды → монеты → серия → кольцо', time: '~4,5 с', phone: { under: lessonUnder({ w: '100%' }), over: resultA() },
+      init: (ph) => { const beats = [...ph.querySelectorAll('.beat')]; const ts = beats.map((b, i) => setTimeout(() => { b.classList.add('on'); if (i === 3) { countUp(ph.querySelector('[data-c]'), 0, 35, 700); setTimeout(() => { for (let k = 0; k < 6; k++) { const f = document.createElement('i'); f.className = 'fly'; f.style.left = '50px'; f.style.top = '372px'; f.style.setProperty('--dx', `${250 + (k % 3) * 6}px`); f.style.setProperty('--dy', '0px'); f.style.animationDelay = `${k * 60}ms`; ph.appendChild(f); setTimeout(() => f.remove(), 1300); } setTimeout(() => countUp(ph.querySelector('[data-bal]'), 1240, 1275, 600), 700); }, 300); } if (i === 5) setTimeout(() => { ph.querySelector('[data-r] .rg').style.strokeDashoffset = '0'; }, 200); }, 300 + i * 620)); return () => ts.forEach(clearTimeout); },
+      why: 'Ритм (удар — пауза — удар) вместо равномерной лесенки: внимание ведут. Монеты реально «долетают» до баланса, серия и кольцо закрываются на глазах — ощущение, что день сделан.', ref: 'Наш «Световод + Чекан», Duolingo lesson complete (XP → streak → quest), Apple Fitness summary.', fx: 'удары каждые 620 мс; монеты летят 0,9 с и баланс бежит; кольцо докручивается.', snd: 'на каждый удар — своя нота по возрастанию (6 нот); haptic light×3, success на кольце.' },
+  ] });
+
+/* ---------- 11. Кольца дня v2 — три образа ---------- */
+const homeTop = () => `<div class="top"><span class="pill" style="color:var(--flame)">${icon('flameF', 's16')} 5</span><span class="pill gold" style="flex:1;justify-content:flex-start">${coin(5, 20)}1 240</span><span class="pill">${icon('bell', 's16')}</span></div>`;
+const ringsA = (v = [.7, .33, .2], o = {}) => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl" style="gap:16px"><div class="ringwrap" data-rw>${rings(RING3(v), { size: 138, stroke: 11, gap: 4, from0: !o.noAnim })}<div class="c">${coinChar(5, 58, { mood: o.mood || 'idle', shadow: false })}</div></div>
+  <div class="legend grow"><div class="l ${v[0] >= 1 ? 'done' : ''}"><i style="background:var(--acc)"></i>Урок<s data-l1>${v[0] >= 1 ? '20/20' : '14/20'}</s></div><div class="l ${v[1] >= 1 ? 'done' : ''}"><i style="background:var(--acc2)"></i>Пик<s>${v[1] >= 1 ? '3/3' : '1/3'}</s></div><div class="l ${v[2] >= 1 ? 'done' : ''}"><i style="background:var(--gold)"></i>Карточки<s>${v[2] >= 1 ? '10/10' : '2/10'}</s></div></div></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div><div class="bar" style="margin-top:10px"><i style="--w:70%"></i></div></div>`;
+const ringsB = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl" style="gap:14px;align-items:flex-end"><div class="steps3 grow" data-steps><div class="s s1 done"><i style="--h:100%"></i><span>Урок</span></div><div class="s s2"><i style="--h:33%"></i><span>Пик</span></div><div class="s s3"><i style="--h:20%"></i><span>Карточки</span></div></div><div style="flex:none;display:flex;flex-direction:column;align-items:center;gap:6px">${coinChar(5, 56, { mood: 'idle', shadow: false })}<span class="small">1 этаж</span></div></div>
+  <div class="small" style="margin-top:12px">Три ступени дня — как в Пике. Монета поднимается по ним; на третьей — день засчитан.</div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const ringsC = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl" style="gap:14px"><div class="ringwrap" data-rw>${rings([{ v: .42, color: 'var(--flame)' }], { size: 110, stroke: 12, from0: true })}<div class="c">${fire(1, 54, '')}</div></div>
+  <div class="grow"><div class="ov">Сегодня · серия 5</div><div style="font-size:20px;font-weight:700;margin-top:4px">Кольцо кормит огонь</div><div class="small" style="margin-top:4px">Урок ✓ · Пик 1/3 · Карточки 2/10</div><div class="small" style="margin-top:4px">Замкни кольцо — огонь вырастет на день.</div></div></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const fillRings = (ph) => { const t = setTimeout(() => ph.querySelectorAll('.rg').forEach((c) => { c.style.strokeDashoffset = c.dataset.to; }), 150); return () => clearTimeout(t); };
+moment({ id: 'm11', num: '11', short: 'Кольца дня · образы', title: '«Кольца дня» v2 — три образа', tag: 'new',
+  lead: 'v1 был слишком «Apple Watch». v2: A — кольца вокруг монеты-персонажа (рекомендуем); B — «три ступени дня», как этажи Пика, по которым поднимается монета; C — одно кольцо, которое «кормит» огонь серии (кольцо дня и серия дней — одна система).',
+  variants: [
+    { k: 'A', label: 'Кольца вокруг монеты-персонажа', time: '1,2 с', phone: { under: ringsA() }, init: fillRings, why: 'Персонаж внутри колец: закрытие = радость монеты. Галочки у закрытых. Самый понятный и самый «наш».', ref: 'Apple Activity, Duolingo quests, Tamagotchi.', fx: 'дуги от нуля с шагом 120 мс, монета дышит.', snd: '—' },
+    { k: 'B', label: '«Три ступени дня» — монета поднимается', time: '1 с', phone: { under: ringsB() }, why: 'Язык Пика на Главной: ступени заполняются снизу, монета на них «стоит». Для тех, кому кольца чужды.', ref: 'Clash Royale trophy road, Monument Valley, Пик.', fx: 'заливка ступеней 1 с.', snd: '—' },
+    { k: 'C', label: 'Кольцо кормит огонь серии', time: '1,2 с', phone: { under: ringsC() }, init: fillRings, why: 'Связывает две главные метрики удержания: закрыл кольцо — огонь серии вырос. Одно кольцо, но с историей.', ref: 'Duolingo streak + daily goal, Forest.', fx: 'кольцо огненного цвета вокруг огня, огонь дышит.', snd: '—' },
+  ] });
+
+/* ---------- 12. Закрытие кольца v2 ---------- */
+const closeInline = () => ringsA([.7, .33, .2], { noAnim: true });
+const closeFull = () => `<div class="full"><div class="glowspot"></div><div class="body">
+  <div class="ringwrap a-pop" data-rw>${rings(RING3([1, .33, .2]), { size: 210, stroke: 16, gap: 6, from0: true })}<div class="c">${coinChar(5, 80, { mood: 'idle', shadow: false })}</div></div>
+  <div class="ov a-up d4" style="margin-top:24px">Кольцо «Урок» закрыто</div>
+  <div class="h-xl a-up d5" style="margin-top:6px">Первое из трёх</div>
+  <div class="p a-up d6" style="margin-top:6px">+50 монет. Пик — 2 ступени, это 4 минуты. Карточки — 8, это 3 минуты.</div>
+  </div><div class="foot a-up d7"><div class="cta white">Пик · 4 минуты ${icon('arrowR', 's18')}</div><div class="cta ghost">На Главную</div></div></div>`;
+moment({ id: 'm12', num: '12', short: 'Закрытие кольца', title: 'Закрытие кольца v2 — искры и прыжок', tag: 'new',
+  lead: 'v1: дуга докрутилась + тост. v2: дуга докручивается с перехлёстом (overshoot), кольцо «вспыхивает» толщиной, искры разлетаются, монета прыгает и говорит; хаптик — двойной success. Полноэкранная версия даёт следующий шаг с оценкой времени.',
+  variants: [
+    { k: 'A', label: 'На Главной: вспышка, искры, прыжок', time: '~2 с', phone: { under: closeInline() },
+      init: (ph) => { const rw = ph.querySelector('[data-rw]'); const rg = rw.querySelector('.rg'); const cc = rw.querySelector('.cc'); const t1 = setTimeout(() => { rg.style.strokeDashoffset = '0'; }, 400); const t2 = setTimeout(() => { rg.classList.add('closed'); sparks(rw, 16, 62, 120); cc.classList.remove('idle'); cc.classList.add('jump'); cc.insertAdjacentHTML('afterbegin', '<span class="say" style="font-size:13px;padding:7px 10px">Есть!</span>'); ph.querySelector('[data-l1]').textContent = '20/20'; ph.querySelector('.legend .l').classList.add('done'); }, 1300); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Ежедневный ритуал: 2 секунды, но «вкусные» — искры, прыжок, «Есть!». Не блокирует экран.', ref: 'Apple Watch ring close, Duolingo quest chest, Headspace.', fx: 'докрутка 0,9 с → вспышка толщины stroke 12→18→12 за 0,7 с → 16 искр → прыжок монеты.', snd: '«блим» + короткий звон; haptic success ×2 (две лёгкие ноты).' },
+    { k: 'B', label: 'Полноэкранно: следующее кольцо — 4 минуты', time: '~2,5 с', phone: { under: closeInline(), over: closeFull() },
+      init: (ph) => { const rw = ph.querySelector('.full [data-rw]'); const t1 = setTimeout(() => rw.querySelectorAll('.rg').forEach((c) => { c.style.strokeDashoffset = c.dataset.to; }), 300); const t2 = setTimeout(() => { rw.querySelector('.rg').classList.add('closed'); sparks(rw, 20, 95, 170); const cc = rw.querySelector('.cc'); cc.classList.remove('idle'); cc.classList.add('jump'); }, 1500); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Для первого закрытия дня: «следующее — 4 минуты» снижает барьер второй сессии — главный рычаг DAU.', ref: 'Apple Fitness goal reached, Duolingo «next quest».', fx: 'кольца от нуля, вспышка, искры, прыжок.', snd: '«блим»; haptic success ×2.' },
+  ] });
+
+/* ---------- 13. Неделя + полный день v2 ---------- */
+const wk = (vals, o = {}) => `<div class="wk7">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d, i) => `<div class="d ${i === (o.today ?? 4) ? 'today' : ''}">${rings(RING3(vals[i] || [0, 0, 0]), { size: 40, stroke: 4, gap: 2 })}${d}</div>`).join('')}</div>`;
+const weekA = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl"><div class="grow"><div class="ov">Неделя</div><div style="font-size:19px;font-weight:700;margin-top:4px">4 полных дня из 5</div></div>${coinChar(5, 44, { mood: 'nod', shadow: false })}</div>
+  <div style="margin-top:14px">${wk([[1, 1, 1], [1, 1, 1], [1, .6, 1], [1, 1, 1], [1, .33, .2], [0, 0, 0], [0, 0, 0]])}</div>
+  <div class="gain" style="margin-top:12px">${icon('target', 's18')}<div>Среда — без Пика. Закрой сегодня все три — <b>5 из 5</b> и +100 за полный день.</div></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const fullDay = () => `<div class="full"><div class="glowspot gold"></div><div class="body">
+  <div class="ringwrap a-pop" data-rw>${rings(RING3([1, 1, 1]), { size: 220, stroke: 16, gap: 6, from0: true })}<div class="c">${coinChar(5, 84, { mood: 'idle', crown: true, glints: true, shadow: false })}</div></div>
+  <div class="ov a-up d4" style="margin-top:24px;color:var(--gold)">Все кольца закрыты</div>
+  <div class="h-xl a-up d5" style="margin-top:6px">Полный день · 4-й подряд</div>
+  <div class="p a-up d6" style="margin-top:6px">Урок, Пик, карточки. <b>+100 монет.</b> Ещё 3 полных дня — «Полная неделя» и рамка монеты.</div>
+  <div class="a-up d7" style="margin-top:16px;width:100%">${wk([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [0, 0, 0], [0, 0, 0]])}</div>
+  </div><div class="foot a-up d8"><div class="cta gold">Забрать 100</div><div class="small center">в Plus за полный день — 200</div></div></div>`;
+moment({ id: 'm13', num: '13', short: 'Неделя · полный день', title: 'Неделя колец и «Полный день» v2', tag: 'new',
+  lead: 'v2: персонаж на неделе, «дырявый день» подан как цель с бонусом; «Полный день» — корона на монете, серия полных дней и цель «Полная неделя» (рамка монеты). Строка «в Plus — 200» — деньги без давления.',
+  variants: [
+    { k: 'A', label: 'Неделя: 7 мини-колец + цель на сегодня', time: '1 с', phone: { under: weekA() }, why: 'Паттерн недели и конкретный бонус за «5 из 5». Персонаж кивает.', ref: 'Apple Fitness week, Duolingo Perfect Week.', fx: 'мини-кольца, кивок.', snd: '—' },
+    { k: 'B', label: '«Полный день» — корона и серия', time: '~3 с', phone: { under: weekA(), over: fullDay() }, init: (ph) => { const rw = ph.querySelector('.full [data-rw]'); const t1 = setTimeout(() => rw.querySelectorAll('.rg').forEach((c) => { c.style.strokeDashoffset = '0'; }), 300); const t2 = setTimeout(() => { rw.querySelectorAll('.rg').forEach((c) => c.classList.add('closed')); sparks(rw, 24, 100, 180); confetti(ph, { gold: true, n: 100 }); }, 1500); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Редкий момент → золото + корона; «4-й подряд» — вторая серия поверх серии дней для вовлечённых. Plus-строка показывает, сколько теряешь без Plus, не давя.', ref: 'Apple «all rings», Duolingo Streak Society, Clash Royale pass.', fx: 'три кольца в унисон, тройная вспышка, искры, золото.', snd: 'аккорд три ноты; haptic heavy.' },
+  ] });
+
+/* ---------- 14. Ранг монеты v2 ---------- */
+const rankA = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:30px"><div class="glowspot gold" style="top:28%;width:220px;height:220px;margin:-110px 0 0 -110px"></div>
+  <div style="display:flex;justify-content:center;position:relative">${coinChar(5, 100, { mood: 'jump', glints: true, say: 'Я подрос?', sayStyle: 'animation-delay:.7s' })}</div>
+  <div class="h-lg" style="margin-top:14px">1 500 монет — хватает на ранг 6</div>
+  <div class="p" style="margin-top:6px">Новую монету увидят друзья и вся комната Пика.</div>
+  <div class="fl" style="justify-content:center;gap:10px;margin-top:14px"><span class="ghost">${coin(5, 36)}</span>${icon('arrowR', 's18')}<span style="animation:emPulse 1.6s ease-in-out infinite">${coin(6, 48)}</span></div>
+  <div class="cta gold" style="margin-top:18px">Повысить за 1 200 ${coin(5, 18)}</div><div class="cta ghost">Позже</div></div>`;
+const rankB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:8px">
+  <div class="ov a-up">Коллекция монет</div><div class="h-lg a-up d1" style="margin-top:6px">6 из 20</div>
+  <div class="rank-shelf a-up d2" style="margin-top:18px;width:100%">${Array.from({ length: 20 }, (_, i) => `<div class="r ${i < 6 ? '' : i === 6 ? 'next' : 'lock'} ${i === 5 ? 'new' : ''}">${coin(i, 40)}</div>`).join('')}</div>
+  <div class="fl a-up d4" style="margin-top:16px;gap:10px;width:100%"><div class="sf" style="flex:1;padding:12px"><div class="small">Путь 1</div><div style="font-size:15px;font-weight:700;margin-top:4px">2 400 монет</div><div class="bar gold" style="margin-top:8px"><i style="--w:12%"></i></div></div><div class="sf" style="flex:1;padding:12px"><div class="small">Путь 2</div><div style="font-size:15px;font-weight:700;margin-top:4px">5 идеалов подряд</div><div class="fl" style="gap:4px;margin-top:8px">${[1, 2, 3, 4, 5].map((i) => `<i style="width:14px;height:14px;border-radius:50%;background:${i <= 2 ? 'var(--gold)' : 'var(--trk)'}"></i>`).join('')}</div></div></div>
+  </div><div class="foot a-up d5"><div class="cta white">Продолжить</div></div></div>`;
+moment({ id: 'm14', num: '14', short: 'Ранг монеты', title: 'Повышение ранга монеты v2', tag: 'old',
+  lead: 'v2: не система сообщает — персонаж просит («Я подрос?»), тап ведёт в существующую церемонию чеканки. Полка: силуэт следующей монеты пульсирует, два пути к ней рядом.',
+  variants: [
+    { k: 'A', label: '«Я подрос?» — персонаж просит', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankA() }, why: 'Эмоциональная просьба конвертирует лучше системного уведомления; трата монет создаёт спрос на монеты (Plus ×2).', ref: 'Pokémon evolution, Tamagotchi, Clash Royale upgrade arrow.', fx: 'прыжок, реплика, следующая монета пульсирует.', snd: 'звон; haptic medium.' },
+    { k: 'B', label: 'Полка 20 рангов + два пути', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankB() }, why: 'Коллекция + понятные пути: монеты (экономика) или идеалы (мастерство).', ref: 'Brawl Stars grid, Pokédex, Duolingo achievements.', fx: 'новая пульсирует золотом, следующая мерцает серым.', snd: '—' },
+  ] });
+
+/* ---------- 15. Тосты / выход v2 ---------- */
+const toastCoins = () => `<div class="toast"><span class="tile">${coin(5, 26)}</span><div class="x">+50 монет<s>«Повторить карточки» — готово</s></div><span class="pill gold"><span data-bal>1 240</span></span></div>`;
+const exitSheet = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:14px">${coinChar(5, 60, { mood: 'nod', say: 'Ещё 2 минуты?', sayStyle: 'animation-delay:.5s' })}<div class="grow"><div class="h-md">Выйти из урока?</div><div class="p" style="margin-top:4px;font-size:15px">12 из 20 сохранится. Комбо 7 — сгорит.</div></div></div>
+  <div class="heat h2" style="margin-top:18px"><i style="--w:60%"></i></div>
+  <div class="cta white" style="margin-top:18px">Доделать — 8 вопросов</div><div class="cta ghost" style="color:var(--bad)">Выйти</div></div>`;
+moment({ id: 'm15', num: '15', short: 'Тосты · выход', title: 'Тосты и выход из занятия v2', tag: 'old',
+  lead: 'v2: баланс в тосте бежит; выход — персонаж просит остаться конкретикой и показывает «горячий» бар комбо, который сгорит.',
+  variants: [
+    { k: 'A', label: 'Тост: баланс бежит', time: '0,8 с', phone: { under: ringsA([1, .33, .2], { noAnim: true }), over: toastCoins() }, init: (ph) => { const t = setTimeout(() => countUp(ph.querySelector('[data-bal]'), 1240, 1290, 700), 500); return () => clearTimeout(t); }, why: 'Видно «за что» и «сколько теперь» — доверие к экономике.', ref: 'Duolingo reward toast, Revolut.', fx: 'пружина сверху, счётчик.', snd: 'звон; haptic light.' },
+    { k: 'B', label: 'Выход: «Ещё 2 минуты?» + горячее комбо', time: '0,6 с', phone: { under: lessonUnder({ w: '60%', heat: 'h2' }), over: exitSheet() }, why: 'Персонаж + потеря комбо + «8 вопросов» возвращают в урок чаще, чем «Вы уверены?».', ref: 'Duolingo quit screen, Headspace.', fx: 'шторка, кивок, нагретый бар.', snd: 'haptic light.' },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+})();
+</script>
+</body>
+</html>

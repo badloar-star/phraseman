@@ -259,3 +259,22 @@ set_steps('settings-gap-004', ['wait:1200', 'see:#settings-plus-access-details',
 set_steps('settings-gap-022', ['tap:#support-report-input', 'type:Cards_audio_does_not_play', 'hidekb', 'wait:300', 'tap:#support-diagnostics-disclosure', 'wait:400'])
 # settings-gap-035: в образце журнал диагностики ВЫКЛЮЧЕН («журнал выключен») и клавиатуры нет.
 set_steps('settings-gap-035', ['tap:#support-diagnostics-attach-switch', 'wait:300', 'tap:#support-report-input', 'type:short', 'hidekb', 'wait:400'])
+
+# ── Разбор Ядра 13.10 (журналы кадров _runs/*/<id>.log): ссылка давала бракованный кадр. Код не меняется, testID на месте.
+# paywalls-008: меню урока без шагов — до карточки ИИ-разбора робот не доходил. Неверный ответ → проверка → разбор грузится сам,
+# ai_explain=limit сразу ставит «лимит» без сервера (use_mistake_explain.ts).
+ENTRIES.pop('paywalls-008', None)
+add('paywalls-008',
+    ['wait:2500', 'tap:#lesson1-word-option-wrong', 'tap:#lesson1-word-option-correct', 'tap:#lesson1-word-option-correct',
+     'tap:#lesson1-check', 'await:#ai-mistake-limit-card', 'see:#ai-mistake-limit-card', 'wait:400'],
+    'plus=off&aiConsent=granted&ai_explain=limit&free=on&lessonintro=skip&mode=a&energy=5', '/lesson1?id=1%26from=lesson_menu',
+    unique=False, note='карточка ИИ-разбора «лимит» после неверной проверки (ai_explain=limit — подмена в памяти, без сервера)')
+# paywalls-009/010: подмена upsell применялась, но кадр снимался через 3 с — анимация наград дольше; ждём саму карточку.
+for _rid in ('paywalls-009', 'paywalls-010'):
+    set_steps(_rid, ['await:#soft-upsell-card', 'see:#soft-upsell-card', 'wait:500'])
+# dialogs-032 / dialogs-gap-012: отказ хода достигнут («ход подменён отказом»), но кадр с открытой клавиатурой.
+for _rid in ('dialogs-032', 'dialogs-gap-012'):
+    if _entry(_rid)['steps'][-2:] != ['hidekb', 'wait:400']:
+        _entry(_rid)['steps'] = _entry(_rid)['steps'] + ['hidekb', 'wait:400']
+# dialogs-032: пилюля квоты «30/30» как в образце (как dialogs-012).
+set_param('dialogs-032', 'dquota', '30')

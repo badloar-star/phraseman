@@ -663,6 +663,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const snapshotStreak = appSnapshot.progress?.streak ?? 0;
     const initialVisuals = resolveHomeProfileVisuals({ hydration: hh, snapshot: appSnapshot.profile });
     const [userName, setUserName] = useState(() => hh?.userName ?? snapshotName);
+    // зачем (аудит Авторизации 057dfb6ac, координатор 13.10): `userName` задавался один раз при монтировании, а дальше — только загрузкой данных или «заполнить, если пусто» (ниже), поэтому после смены ника в профиле Главная держала старое имя до перезапуска.
+    // Эффект зависит ТОЛЬКО от имени в слепке профиля: срабатывает при его смене; пустое имя не затирает показанное; `setUserName` возвращает то же значение, если имя уже совпало (лишнего рендера нет). Имя в журнал не пишем (персональные данные) — только длины.
+    const snapshotNameSeenRef = useRef(snapshotName);
+    useEffect(() => {
+        const previous = snapshotNameSeenRef.current;
+        if (previous === snapshotName)
+            return;
+        snapshotNameSeenRef.current = snapshotName;
+        if (!snapshotName) {
+            console.log('[HOME-NAME] snapshot_changed → пустое имя, показанное не трогаем', JSON.stringify({ fromLen: previous.length, toLen: 0 })); // guard-ok: ранний выход логируется
+            return;
+        }
+        console.log('[HOME-NAME] snapshot_changed → обновляем имя на Главной', JSON.stringify({ fromLen: previous.length, toLen: snapshotName.length })); // guard-ok: смена имени из слепка профиля
+        setUserName((current) => (current === snapshotName ? current : snapshotName));
+    }, [snapshotName]);
     const [streak, setStreak] = useState(() => hh?.streak ?? snapshotStreak);
     const [displayStreak, setDisplayStreak] = useState(() => hh?.displayStreak ?? hh?.streak ?? snapshotStreak);
     const streakRingAnim = useRef(new Animated.Value(0)).current;

@@ -23,6 +23,7 @@ import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial
 import { DebugLogger } from '../../app/debug-logger';
 import SkeletonBlock from '../SkeletonShimmer';
 import { LinearGradient } from '../SafeLinearGradient';
+import { paywallPlateBg, paywallSheetBg } from './paywall_surfaces';
 import V2Pressable from '../v2/V2Pressable';
 import { nestedBoxShadow, PlateFill, raisedBoxShadow, RAISED_LIFT } from '../v2/ShadowSurface';
 import type { PaywallPriceSource } from '../../app/paywall_reference_prices';
@@ -39,7 +40,8 @@ export type GlassTokens = ReturnType<typeof liquidGlassTokens>;
  * поэтому плитки на шторке сливались с ней. Тёмная: шторка на opaqueCard (темнее), плитки на opaqueControl; светлая: шторка белая,
  * плитки #ECECEF. Один источник для экрана и вложенных элементов.
  */
-export function paywallSheetBg(g: GlassTokens): string { return g.isLight ? g.opaqueSheet : g.opaqueCard; }
+// зачем (paywall-gap-001, координатор 13.10): поверхности листа и плашек живут в paywall_surfaces.ts (нейтраль «Тени» в тёмном); здесь реэкспорт для прежних импортов.
+export { paywallSheetBg, paywallPlateBg };
 export type PaywallPlusState = 'ready' | 'loading' | 'error';
 
 /** Высота плашек тарифов (и скелета/«недоступно» на их месте) — первый кадр без прыжка, когда придут цены. */
@@ -86,7 +88,7 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
       withHaptic={false}
       scaleTo={0.92}
       // зачем (R1_PAYWALL_UX): пока идёт оплата, закрыть нельзя — кнопка это показывает приглушением, а не молча не отзывается.
-      style={[S.close, { backgroundColor: g.opaqueControl, opacity: closeDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}
+      style={[S.close, { backgroundColor: paywallPlateBg(g), opacity: closeDisabled ? PAYWALL_DISABLED_OPACITY : 1 }]}
     >
       <Ionicons name="close" size={18} color={g.text} />
     </V2Pressable>
@@ -98,7 +100,7 @@ export const PaywallPlusHeader = memo(function PaywallPlusHeader({ lang, g, tria
         <View style={S.ctxRow}>
           <View testID="paywall-context-icon" style={[S.ctxTile, { backgroundColor: `${g.accent}2E` }]}>{contextIcon}</View>
           {contextPill ? (
-            <View testID="paywall-context-pill" style={[S.ctxPill, { backgroundColor: g.opaqueControl }]}>
+            <View testID="paywall-context-pill" style={[S.ctxPill, { backgroundColor: paywallPlateBg(g) }]}>
               <Text style={[S.ctxPillText, { color: g.text }]}>{contextPill}</Text>
             </View>
           ) : null}
@@ -122,7 +124,7 @@ export const PaywallPlusTrialTimeline = memo(function PaywallPlusTrialTimeline({
   lang: Lang; g: GlassTokens; trialDays: number; yearlyPrice: string;
 }) {
   // зачем (Сверка 11.10, светлая тема): на шторке поверхности сплошные (g.opaqueControl), полупрозрачное стекло там было белым по белому.
-  const surface = { backgroundColor: g.opaqueControl };
+  const surface = { backgroundColor: paywallPlateBg(g) };
   const reminderDay = trialReminderDayNumber(trialDays);
   const steps: { icon: keyof typeof Ionicons.glyphMap; title: string; detail: string }[] = [
     { icon: 'gift-outline', title: pick(lang, COPY.today), detail: pick(lang, COPY.todayDetail) },
@@ -182,7 +184,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
   return (
     <View>
       {promo ? (
-        <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: g.opaqueControl }]}>
+        <View testID="paywall-promo-plate" style={[S.promo, { backgroundColor: paywallPlateBg(g) }]}>
           <Text style={[S.promoKicker, { color: g.mutedText }]}>{pick(lang, COPY.promoNow)}</Text>
           <View style={S.promoRow}>
             <View style={[S.promoPill, { backgroundColor: paywallSheetBg(g) }]}>
@@ -256,7 +258,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
 // зачем (Сверка 11.10: «плитки пустые, нет скелета»): прежний мигающий прямоугольник тона opaqueControl при самом тусклом такте был почти
 // неотличим от шторки. Теперь общий shimmer-блок проекта (бегущий блик, Reanimated, уважает «уменьшить движение») с явными цветами по теме.
 export const PaywallPlusPlansSkeleton = memo(function PaywallPlusPlansSkeleton({ g }: { g: GlassTokens }) {
-  const baseColor = g.opaqueControl;
+  const baseColor = paywallPlateBg(g);
   const highlightColor = g.isLight ? g.opaqueSheet : `${g.text}24`;
   return (
     <View testID="paywall-plans-skeleton" accessibilityRole="progressbar">
@@ -292,7 +294,7 @@ export const PaywallPlusDetails = memo(function PaywallPlusDetails({ lang, g, le
   // (`.ben.glass`); общие «Что входит» и «Free и Plus» остаются только у входа без своего текста.
   if (leadBenefit) {
     return (
-      <View testID="paywall-lead-benefit" style={[S.card, S.leadRow, { backgroundColor: g.opaqueControl }]}>
+      <View testID="paywall-lead-benefit" style={[S.card, S.leadRow, { backgroundColor: paywallPlateBg(g) }]}>
         <View style={[S.leadCheck, { backgroundColor: g.accent }]}>
           <Ionicons name="checkmark" size={16} color={g.accentInk} />
         </View>

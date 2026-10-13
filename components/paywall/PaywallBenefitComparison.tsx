@@ -21,6 +21,7 @@ import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
 import { RowDivider } from '../v2/RowDivider';
+import { paywallPlateBg } from './paywall_surfaces';
 import { COPY, LP, compareMore, pick, type L9 } from './PaywallPlusCopy';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
@@ -100,14 +101,14 @@ export const PAYWALL_COMPARISON_VISIBLE_ROWS = 6;
 type SectionProps = Readonly<{ lang: Lang; g: GlassTokens }>;
 
 export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }: SectionProps) {
-  const glass = { backgroundColor: g.opaqueControl }; // зачем: на шторке поверхности сплошные (светлая тема, Сверка 11.10)
+  const glass = { backgroundColor: paywallPlateBg(g) }; // зачем: на шторке поверхности сплошные (светлая тема, Сверка 11.10)
   // зачем: общий список «Что входит» — только у входа без своего текста; контекстная выгода рисуется в PaywallPlusDetails (макет paywall-context-redesign #c1).
   return (
     <View style={[S.card, glass]}>
       {PAYWALL_MAIN_BENEFITS.map((benefit, index) => (
         <View key={benefit.icon} style={S.benefitRow}>
           {index > 0 ? <RowDivider color={g.line} /> : null}
-          <View style={[S.iconTile, { backgroundColor: g.opaqueControl }]}>
+          <View style={[S.iconTile, { backgroundColor: paywallPlateBg(g) }]}>
             <Ionicons name={benefit.icon} size={20} color={g.text} />
           </View>
           <View style={S.benefitCopy}>
@@ -121,7 +122,7 @@ export const PaywallPlusBenefits = memo(function PaywallPlusBenefits({ lang, g }
 });
 
 export const PaywallPlusComparison = memo(function PaywallPlusComparison({ lang, g }: SectionProps) {
-  const glass = { backgroundColor: g.opaqueControl };
+  const glass = { backgroundColor: paywallPlateBg(g) };
   const [open, setOpen] = useState(false);
   // зачем: раскрытие — вставка строк в поток, поэтому только через общий
   // animateNextLayoutTransition (Performance Bible: flow inserts), без окна.

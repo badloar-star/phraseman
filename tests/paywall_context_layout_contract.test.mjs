@@ -53,12 +53,16 @@ test('without any price the plans area shows a quiet note instead of the «price
 test('sheet surfaces are solid so they stay visible on the light sheet (Сверка 11.10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
   assert.ok(!plus.includes('useV2GlassStyle') && !plus.includes('V2GlassSheen'), 'на шторке нет полупрозрачного стекла и блика');
-  assert.match(plus, /backgroundColor: g\.opaqueControl/);
+  assert.match(plus, /backgroundColor: paywallPlateBg\(g\)/);
 });
 
 test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet == opaqueControl (Сверка 11.10)', () => {
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
-  assert.match(plus, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueSheet : g\.opaqueCard; \}/);
+  // зачем (координатор 13.10, paywall-gap-001): в тёмном лист и плашки — нейтраль «Тени» (paywall_surfaces.ts), светлое прежнее; PaywallPlus реэкспортирует paywallSheetBg
+  const surfaces = read('components', 'paywall', 'paywall_surfaces.ts');
+  assert.match(surfaces, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueSheet : SHADOW_SHEET_DARK_TOP; \}/);
+  assert.match(surfaces, /export function paywallPlateBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueControl : shadowSheetPlateTokens\(g\)\.plateFillFrom; \}/);
+  assert.match(plus, /export \{ paywallSheetBg, paywallPlateBg \};/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');
   assert.match(screen, /backgroundColor: paywallSheetBg\(g\)/);
   assert.ok(!/backgroundColor: g\.opaqueSheet/.test(screen), 'шторка не на opaqueSheet (в графите он равен плиткам)');

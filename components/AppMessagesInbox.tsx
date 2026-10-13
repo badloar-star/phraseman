@@ -54,6 +54,7 @@ import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } fro
 import { noAndroidOutline } from '../constants/androidGlow';
 import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
 import { RowDivider } from './v2/RowDivider';
+import { isDevInboxEmpty } from '../app/dev_robot_display';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -339,6 +340,14 @@ function AppMessagesInbox({
   const effectiveVisible = mode === 'notification-center' ? centerVisible : visible;
 
   const applyAppMessagesSnapshot = useCallback((snapshot: AppMessagesSnapshot) => {
+    // зачем (координатор 13.10, system-015): dev_state?inbox=empty — образец «Сообщений нет»; закреплённое серверное сообщение
+    // не показываем (закрыть его крестиком нельзя — dismiss пишет в облако). Только dev-сборка, только показ.
+    if (isDevInboxEmpty()) {
+      console.log(`[DEV-STATE] inbox: пусто по подмене (с сервера пришло ${snapshot.messages.length})`); // guard-ok: dev-ветка
+      setMessages([]);
+      setUnreadCount(0);
+      return;
+    }
     // зачем (settings-gap-002): сообщения без текста на языке интерфейса не показываем и не считаем в непрочитанных.
     const filtered = filterAppMessagesSnapshotForAudience(snapshot, hasPremiumAccess, undefined, lang);
     // Modern report replies are mirrored atomically into users/{uid}/notifications

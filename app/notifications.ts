@@ -25,6 +25,7 @@ import {
   trialReminderDelaySeconds,
   type TrialReminderTiming,
 } from './trial_end_reminder_schedule';
+import { getDevReminderTime } from './dev_robot_display';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -1194,7 +1195,16 @@ function cloneNotif(s: NotifSettings): NotifSettings {
 let notifMemory: NotifSettings = cloneNotif(DEFAULT_NOTIF);
 
 export function getNotifSettingsSnapshot(): NotifSettings {
-  return cloneNotif(notifMemory);
+  const snapshot = cloneNotif(notifMemory);
+  // зачем (координатор 13.10, settings-gap-028): dev_state?reminderTime=HH:MM — экран показывает это время. Подменяется только
+  // отдаваемая копия: notifMemory, хранилище и расписание уведомлений не меняются. Только dev-сборка.
+  const devTime = getDevReminderTime();
+  if (!devTime) return snapshot;
+  return {
+    schedule: Object.fromEntries(
+      Object.entries(snapshot.schedule).map(([day, entry]) => [day, { ...entry, hour: devTime.hour, minute: devTime.minute }]),
+    ),
+  };
 }
 
 /** Вызывать в app bootstrap до setReady — первый кадр расписания с правильными тумблерами */

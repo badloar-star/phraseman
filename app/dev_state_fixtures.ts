@@ -237,6 +237,10 @@ export type DevStateRequest = Readonly<{
   videoPacks?: 'empty' | 'demo' | 'catalog' | 'catalog_upcoming';
   /** Подмена ответа гейта согласия на AI-диалоги (dev_ai_consent.ts): только память, запись согласия и облако НЕ вызываются. denied — экран «AI-диалоги выключены» (dialogs-010). off — снять. */
   aiConsent?: 'granted' | 'denied' | 'off';
+  /** system-015: empty — входящие пусты (только показ, dismiss в облако не уходит); off — снять (dev_robot_display.ts). */
+  inbox?: 'empty' | 'off';
+  /** settings-gap-028: HH:MM — время напоминания на экране настроек уведомлений (только показ); off — снять. */
+  reminderTime?: string;
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
@@ -355,6 +359,15 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.shadows = onOff('shadows');
   request.intros = pick('intros', ['seen', 'reset'] as const);
   request.aiConsent = pick('aiConsent', ['granted', 'denied', 'off'] as const);
+  request.inbox = pick('inbox', ['empty', 'off'] as const);
+  {
+    const rawTime = one(params.reminderTime);
+    if (rawTime !== undefined) {
+      if (rawTime === 'off') request.reminderTime = 'off';
+      else if (/^([01]?\d|2[0-3]):[0-5]\d$/.test(rawTime)) request.reminderTime = rawTime;
+      else rejected.reminderTime = `ожидалось HH:MM или off, пришло ${rawTime}`;
+    }
+  }
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
@@ -620,6 +633,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         // без отметки тестовый гость считался старым пользователем, и «Замочки ушли в отпуск!» всплывало поверх кадра. Только dev: этот модуль вырезан из стор-сборки.
         await AsyncStorage.setItem(ONBOARDING_COMPLETED_AT_KEY, String(Date.now()));
         requestDevOverlayRecheck('onboarding_done');
+        // зачем (EN_EXTRA2 13.10, en-home-001/paywalls-023): онбординг, открытый предыдущей ссылкой (onbstep), живёт в памяти
+        // _layout — без этого события он оставался поверх next= до холодного старта.
+        emitAppEvent('dev_onboarding_done');
       } else {
         await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']);
         if (request.onbStep) {
@@ -803,6 +819,18 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('aiConsent', request.aiConsent, async () => {
       const { setDevAiConsentOverride } = await import('./dev_ai_consent');
       return setDevAiConsentOverride(request.aiConsent === 'off' ? null : request.aiConsent!);
+    });
+  }
+  if (request.inbox !== undefined) {
+    await step('inbox', request.inbox, async () => {
+      const { setDevInboxEmpty } = await import('./dev_robot_display');
+      return setDevInboxEmpty(request.inbox === 'empty');
+    });
+  }
+  if (request.reminderTime !== undefined) {
+    await step('reminderTime', request.reminderTime, async () => {
+      const { parseDevReminderTime, setDevReminderTime } = await import('./dev_robot_display');
+      return setDevReminderTime(request.reminderTime === 'off' ? null : parseDevReminderTime(request.reminderTime!));
     });
   }
   if (request.coinRank !== undefined) {

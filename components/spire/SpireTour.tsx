@@ -8,17 +8,20 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useState } from 'react';
 import { Modal, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle } from 'react-native-svg';
-import type { Lang } from '../../constants/i18n';
+import { triLang, type Lang } from '../../constants/i18n';
 import { V2 } from '../../constants/v2Style';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { COIN_RANK_TABLE } from '../../app/coin_rank_table_v1';
 import { spireTierName } from '../../modules/spire/tier_names';
 import V2Pressable from '../v2/V2Pressable';
 import SpireTowerSvg from './SpireTowerSvg';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText } from './spire_game_strings';
+import { spireStepsShort } from './spire_plurals';
 
 const IMG_HEIGHT = 340;
 const TOWER_WIDTH = 240;
@@ -46,7 +49,8 @@ function TourRing() {
           <Circle cx={66} cy={66} r={r} fill="none" stroke={p.control} strokeWidth={7} />
           <Circle cx={66} cy={66} r={r} fill="none" stroke={p.text} strokeWidth={7} strokeLinecap="round" strokeDasharray={`${c} ${c}`} strokeDashoffset={c * 0.25} transform="rotate(-90 66 66)" />
         </Svg>
-        <View style={s.ringCenter}><Text style={[s.ringText, { color: p.text }]}>10</Text></View>
+        {/* зачем (владелец 13.10, spire-002): в кольце тура — таймер ступени «1:42», как в макете spire.html (раньше «10» — число заданий) */}
+        <View style={s.ringCenter}><Text style={[s.ringText, { color: p.text }]}>1:42</Text></View>
       </View>
       <View style={[s.heartPill, { backgroundColor: p.control }, sh.nested]}>
         <Ionicons name="heart" size={20} color={p.text} />
@@ -57,16 +61,34 @@ function TourRing() {
   );
 }
 
-function TourStones({ lang }: Readonly<{ lang: Lang }>) {
+// зачем (владелец 13.10, spire-003): арт «повышение» — три игрока с монетами ранга, стрелка вверх и число ступеней, как в макете spire.html (tourTop:
+// ранги 12/9/7, Аня 47, Марк 39, Ольга 33). Это иллюстрация правила «верхние 15% переходят выше», а не данные комнаты; имена — образец макета.
+const TOUR_PLAYERS: ReadonlyArray<Readonly<{ rank: number; steps: number }>> = [
+  { rank: 12, steps: 47 }, { rank: 9, steps: 39 }, { rank: 7, steps: 33 },
+];
+const tourNames = (lang: Lang): readonly [string, string, string] => [
+  triLang(lang, { ru: 'Аня', uk: 'Аня', en: 'Anna', es: 'Ana', 'pt-BR': 'Ana', vi: 'Anh', id: 'Ani', tr: 'Ayşe', pl: 'Ania' }),
+  triLang(lang, { ru: 'Марк', uk: 'Марк', en: 'Mark', es: 'Marcos', 'pt-BR': 'Marcos', vi: 'Mark', id: 'Marko', tr: 'Mark', pl: 'Marek' }),
+  triLang(lang, { ru: 'Ольга', uk: 'Ольга', en: 'Olga', es: 'Olga', 'pt-BR': 'Olga', vi: 'Olga', id: 'Olga', tr: 'Olga', pl: 'Olga' }),
+];
+
+function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   const p = useSpirePalette(); const sh = useSpireShadow();
+  const names = tourNames(lang);
   return (
     <View style={s.stones}>
-      {[2, 1, 0].map((tier) => (
-        <View key={`tier-${tier}`} style={[s.stone, { backgroundColor: tier === 1 ? p.cardRaised : p.card }, sh.nested]}>
-          <Text style={[s.stoneText, { color: p.text }]}>{spireTierName(tier, lang)}</Text>
-          {tier < 2 ? <Ionicons name="arrow-up" size={18} color={p.correct} /> : null}
-        </View>
-      ))}
+      {TOUR_PLAYERS.map((player, i) => {
+        const coin = COIN_RANK_TABLE.find((row) => row.rank === player.rank);
+        return (
+          <View key={`top-${player.rank}`} style={[s.player, { backgroundColor: p.cardRaised }, sh.nested]}>
+            <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
+            {coin ? <Image source={coin.source} contentFit="contain" style={s.coin} accessible={false} /> : null}
+            <Text style={[s.playerName, { color: p.text }]}>{names[i]}</Text>
+            <Ionicons name="arrow-up" size={18} color={p.correct} />
+            <Text style={[s.steps, { color: p.text }]}>{player.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {spireStepsShort(lang, player.steps)}</Text></Text>
+          </View>
+        );
+      })}
     </View>
   );
 }
@@ -95,7 +117,7 @@ function SpireTour({ lang, visible, onDone }: Props) {
           </V2Pressable>
         </View>
         <View style={s.img}>
-          {page === 0 ? <TourTower lang={lang} /> : page === 1 ? <TourRing /> : <TourStones lang={lang} />}
+          {page === 0 ? <TourTower lang={lang} /> : page === 1 ? <TourRing /> : <TourTop lang={lang} />}
         </View>
         <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
         <Text style={[s.text, { color: p.textSecondary }]}>{text}</Text>
@@ -122,11 +144,15 @@ const s = StyleSheet.create({
   towerClip: { height: IMG_HEIGHT, width: TOWER_WIDTH, overflow: 'hidden', alignSelf: 'center' },
   center: { alignItems: 'center', gap: 26 },
   ringCenter: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' },
-  ringText: { fontSize: 30, fontWeight: '700' },
+  ringText: { fontSize: 30, fontWeight: '700', fontVariant: ['tabular-nums'], letterSpacing: -0.3 },
   heartPill: { height: 40, borderRadius: 20, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 9 },
   stones: { width: '100%', gap: 12, paddingHorizontal: 34 },
-  stone: { minHeight: 60, borderRadius: 18, paddingHorizontal: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  stoneText: { fontSize: 16, fontWeight: '700' },
+  player: { minHeight: 62, borderRadius: 14, paddingVertical: 8, paddingLeft: 12, paddingRight: 14, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  place: { width: 26, textAlign: 'center', fontSize: 16, fontWeight: '700' },
+  coin: { width: 40, height: 40 },
+  playerName: { flex: 1, minWidth: 0, fontSize: 17, fontWeight: '600' },
+  steps: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
+  stepsUnit: { fontSize: 13, fontWeight: '600' },
   title: { fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.4, marginTop: 34 },
   text: { fontSize: 16, lineHeight: 23, marginTop: 12 },
   // зачем (Сверка spire-001, spire.html `.dots`): активная точка — вытянутая пилюля 22×7, прочие 7×7, зазор 7, отступ 26

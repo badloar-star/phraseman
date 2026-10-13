@@ -272,9 +272,9 @@ export default function DialogueV2MemoryRoute() {
       disabled={clearing || !supportedTarget(studyTarget)}
       accessibilityRole="button"
       accessibilityState={{ disabled: clearing || !supportedTarget(studyTarget) }}
-      style={{ minHeight: V2.cta.height, borderRadius: V2.cta.radius, boxShadow: plateBoxShadow(g), alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: clearing ? 0.65 : 1 }}
+      // зачем (владелец 13.10, dialogs-gap-001/002): «Очистить память этого языка» — красный текст БЕЗ заливки и плашки; опасное действие не должно выглядеть главной кнопкой.
+      style={{ minHeight: V2.cta.height, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: clearing ? 0.65 : 1 }}
     >
-      <PlateFill g={g} radius={V2.cta.radius} />{/* зачем (стиль «Тень»): кнопка — плашка с тенью вместо контура */}
       <Text style={{ color: p.wrong, ...V2_TYPE.headline, textAlign: 'center' }}>{clearing ? copy.clearing : copy.clear}</Text>
     </PressableScale>
   );

@@ -6,6 +6,8 @@
 <title>Шпиль 2.0</title>
 <link rel="stylesheet" href="kit.css">
 <style>
+/* зачем (D170): у энергии в шапке Шпиля нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+.pill.encap.bare::after { display: none; }
 /* Локальные детали Шпиля. Ничего из kit.* не переопределяем — только добавляем. */
 .tview { position: relative; height: 400px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; background: #131315; border: 1px solid var(--line); scrollbar-width: none; }
 .tview::-webkit-scrollbar { display: none; }
@@ -103,7 +105,7 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
 const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
 
 /* ===================== ДАННЫЕ КОМНАТЫ (30 человек, боты не раскрываются) ===================== */

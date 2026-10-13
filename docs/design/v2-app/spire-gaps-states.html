@@ -6,6 +6,8 @@
 <title>Шпиль — недостающие состояния</title>
 <link rel="stylesheet" href="kit.css">
 <style>
+/* зачем (D170): у энергии в шапке Шпиля нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+.pill.encap.bare::after { display: none; }
 /* зачем (координатор 12.10, аудит покрытия): в spire.html нет 22 состояний, которые есть в коде components/spire/**.
    Раскладка, шапки, башня, пьедестал и стиль — из spire.html, но в стиле «Тень» (SHADOW_STYLE_SPEC.md):
    плашки без обводок — градиент 180° белый 8,5% → 4% и тень, вложенное — малая тень. Классы с префиксом sg-. */
@@ -142,7 +144,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coinImg } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
 
 /* ===================== ДАННЫЕ КОМНАТЫ (как в spire.html, 30 человек) ===================== */
 const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];

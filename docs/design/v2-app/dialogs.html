@@ -536,7 +536,7 @@ document.getElementById('root').innerHTML = [
     pc(S('c1p', 'C · Сессия — Plus', 'Сессия — Plus'), 'Сессия — Plus', sess({ body: S2, goal: 2, mood: 'smile', plus: true }), 'нет пилюли квоты, нет стены лимита'),
   ]),
   block('done', 'D. Итог диалога — единый экран завершения', 'Тот же макет, что во всех режимах (practice.html): результат → цели → монеты (анимация) → ошибки → «Диалог был полезен?» с полем → «Готово». Заменяет DialogVerdictScreen и салют. Опыта нет.', [
-    pc(S('d1', 'D1 Диалог пройден — без ошибок', 'Итог — без ошибок'), `Диалог пройден — без ошибок ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Повседневное', mood: 'happy', c: 6, w: 0, goals: 5, gain: 30, balance: 1240 })),
+    pc(S('d1', 'D1 Диалог пройден — без ошибок', 'Итог — без ошибок'), `Диалог пройден — без ошибок ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Повседневное', neutral: 'Отличный разговор — все цели выполнены.', mood: 'happy', c: 6, w: 0, goals: 5, gain: 30, balance: 1240 })),
     pc(S('d2', 'D2 Диалог пройден — с ошибками', 'Итог — с ошибками'), `Диалог пройден — с ошибками ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Повседневное', mood: 'smile', c: 6, w: 2, goals: 4, gain: 25, balance: 1240, errs: E_DLG })),
     pc(S('d3', 'D3 Оценка раскрыта, комментарий', 'Итог — оценка раскрыта'), `Оценка раскрыта, есть комментарий ${rp('d')}`, done({ title: 'Диалог пройден', sub: 'Закажи кофе · Повседневное', mood: 'smile', c: 6, w: 1, goals: 5, gain: 25, balance: 1240, errs: E_DLG.slice(1), rate: { open: true, stars: 4, text: 'Бариста переспросила про молоко дважды.' } })),
     pc(S('d4', 'D4 Разговор завершён вручную', 'Итог — завершён вручную'), `Разговор завершён вручную ${rp('d')}`, done({ title: 'Разговор завершён', sub: 'Закажи кофе · Повседневное', neutral: 'Твоих реплик: 3.', mood: 'smile', c: 3, w: 0, goals: 2, gain: 10, balance: 1240 })),
@@ -572,6 +572,8 @@ function playDone(ph) {
   const aw = ph.querySelector('[data-award]'); if (!aw) return;
   const gain = +aw.dataset.award, cnt = aw.querySelector('.cnt'), coin = aw.querySelector('.coin');
   const pill = ph.querySelector('[data-coins]'), pnum = pill.querySelector('.num'), base = +pill.dataset.coins;
+  /* зачем (кадр dialogs-040): снимок роботом или «меньше движения» — сразу итог, иначе сверка видит «+0» */
+  if (navigator.webdriver || matchMedia('(prefers-reduced-motion: reduce)').matches) { cnt.textContent = '+' + gain; pnum.textContent = (base + gain).toLocaleString('ru-RU'); return; }
   cnt.textContent = '+0'; pnum.textContent = base.toLocaleString('ru-RU');
   coin.classList.remove('pop'); void coin.offsetWidth; coin.classList.add('pop');
   setTimeout(() => tween(900, (p) => { cnt.textContent = '+' + Math.round(gain * p); }, () => {

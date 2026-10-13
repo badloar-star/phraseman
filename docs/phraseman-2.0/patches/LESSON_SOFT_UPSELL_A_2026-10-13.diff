@@ -1,0 +1,135 @@
+diff --git a/app/lesson_complete.tsx b/app/lesson_complete.tsx
+index 8979b40b0..d499ad84d 100644
+--- a/app/lesson_complete.tsx
++++ b/app/lesson_complete.tsx
+@@ -736,6 +736,18 @@ export default function LessonComplete() {
+   const [seqDone, setSeqDone] = useState(false);
+   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
+   const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
++  // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
++  // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
++  // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть
++  // «после секвенции наград», поэтому решение — по sequenceShowing. Вставка в уже показанный экран — через плавный переход.
++  const lessonSoftUpsellWanted = shouldRenderLessonSoftUpsell(sequenceShowing, upsellOpportunity);
++  const [lessonSoftUpsellVisible, setLessonSoftUpsellVisible] = useState(false);
++  useEffect(() => {
++    if (lessonSoftUpsellWanted === lessonSoftUpsellVisible) return;
++    console.warn(`[LESSON-SOFT-UPSELL] ${lessonSoftUpsellWanted ? 'показ' : 'скрыто'} lesson=${lessonId} trigger=${upsellOpportunity?.trigger ?? 'нет'} dev=${String(devUpsellOpportunity != null)} экранИтога=${String(sequenceShowing)}`); // guard-ok: решение показа видно в журнале
++    animateNextLayoutTransition();
++    setLessonSoftUpsellVisible(lessonSoftUpsellWanted);
++  }, [devUpsellOpportunity, lessonId, lessonSoftUpsellVisible, lessonSoftUpsellWanted, sequenceShowing, upsellOpportunity]);
+   // зачем (аудит Optimistic UI Уроков, 13.10; сперва логи): «Сохраняю результат…» ждёт ТРИ готовности — по строке видно, какая пришла последней и сколько прошло с монтирования.
+   const completeMountedAtRef = useRef(Date.now());
+   useEffect(() => {
+@@ -842,6 +854,7 @@ export default function LessonComplete() {
+         accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
+         freeLessonLimit: FREE_LESSON_LIMIT,
+       });
++      console.warn(`[LESSON-SOFT-UPSELL] кандидат lesson=${lessonId} firstBonus=${firstBonus.status} → ${softUpsellCandidate ? softUpsellCandidate.trigger : 'нет'} scope=${capturedSoftUpsellIdentity.accountScope ? 'есть' : 'нет'}`); // guard-ok: ветка решения видна в журнале
+       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
+ 
+       try {
+@@ -1275,8 +1288,24 @@ export default function LessonComplete() {
+                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
+                 body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. After that — with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
+               } : undefined}
+-              feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
++              feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
+                 <View style={{ width: '100%', gap: 12 }}>
++                {lessonSoftUpsellVisible && upsellOpportunity ? (
++                  <SoftContextualUpsellCard
++                    title={softUpsellCopy.title}
++                    body={softUpsellCopy.body}
++                    ctaLabel={softUpsellCopy.ctaLabel}
++                    dismissLabel={softUpsellCopy.dismissLabel}
++                    dismissAccessibilityLabel={softUpsellCopy.dismissAccessibilityLabel}
++                    dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
++                    ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
++                    ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
++                    opportunity={upsellOpportunity}
++                    onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}
++                    onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}
++                    onCta={devUpsellOpportunity ? devUpsellNoop : handleSoftUpsellCta}
++                  />
++                ) : null}
+                 {isComboCompletion && comboBreakdown.length > 0 ? (
+                   <CombinedLessonBreakdown
+                     rows={comboBreakdown}
+@@ -1502,25 +1531,6 @@ export default function LessonComplete() {
+           </View>
+ 
+           {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
+-          {shouldRenderLessonSoftUpsell(seqDone, upsellOpportunity) && upsellOpportunity && (
+-            <View style={{ width: '100%', marginBottom: 20 }}>
+-              <SoftContextualUpsellCard
+-                title={softUpsellCopy.title}
+-                body={softUpsellCopy.body}
+-                ctaLabel={softUpsellCopy.ctaLabel}
+-                dismissLabel={softUpsellCopy.dismissLabel}
+-                dismissAccessibilityLabel={softUpsellCopy.dismissAccessibilityLabel}
+-                dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
+-                ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
+-                ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
+-                opportunity={upsellOpportunity}
+-                onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}
+-                onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}
+-                onCta={devUpsellOpportunity ? devUpsellNoop : handleSoftUpsellCta}
+-              />
+-            </View>
+-          )}
+-
+           {lessonId < 32 && !showPremiumBanner && (
+             <DuoPressable
+               testID="lesson-complete-next-lesson"
+diff --git a/tests/lesson_complete_single_finish_surface.test.ts b/tests/lesson_complete_single_finish_surface.test.ts
+index 7d60c5229..e85c3095d 100644
+--- a/tests/lesson_complete_single_finish_surface.test.ts
++++ b/tests/lesson_complete_single_finish_surface.test.ts
+@@ -31,10 +31,12 @@ describe('lesson completion single finish surface', () => {
+       'RegistrationPromptModal',
+       'CollectibleDropModal',
+       'CoachToast',
+-      'SoftContextualUpsellCard',
+     ]) {
+       expect(completionSurface).not.toContain(removedSurface);
+     }
++    // зачем (решение владельца 14, 13.10, вариант А): мягкое предложение Plus (макет embedded-plus-states.html, paywalls-009/010) —
++    // единственная разрешённая вставка на итоге, и только через feedbackSlot экрана 2.0.
++    expect(completionSurface).toMatch(/feedbackSlot=\{lessonSoftUpsellVisible \|\|[\s\S]{0,400}<SoftContextualUpsellCard/);
+   });
+ 
+   it('exits to the lessons list on Android Back instead of revealing a blank completion state', () => {
+diff --git a/tests/lesson_complete_soft_upsell_contract.test.ts b/tests/lesson_complete_soft_upsell_contract.test.ts
+index 3cf95f57e..c15d39252 100644
+--- a/tests/lesson_complete_soft_upsell_contract.test.ts
++++ b/tests/lesson_complete_soft_upsell_contract.test.ts
+@@ -25,9 +25,15 @@ describe('lesson completion soft upsell integration', () => {
+     expect(source).toContain('hasPremiumAccess');
+   });
+ 
+-  it('renders only after the reward sequence and preserves existing controls', () => {
+-    expect(source).toContain('shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity)');
+-    expect(source).toContain('<SoftContextualUpsellCard');
++  // зачем (координатор 13.10, paywalls-009/010): карточка жила только в выключенном старом варианте итога и ждала seqDone, который
++  // ставит лишь старая секвенция, — на экране 2.0 предложение Plus не показывалось никогда. Теперь она во вставке V2DoneScreen.
++  it('renders on the 2.0 completion screen once it is showing and preserves existing controls', () => {
++    expect(source).toContain('shouldRenderLessonSoftUpsell(sequenceShowing, upsellOpportunity)');
++    const v2Branch = source.slice(source.indexOf('<V2DoneScreen'), source.indexOf('</SafeAreaView>', source.indexOf('<V2DoneScreen')));
++    expect(v2Branch).toContain('<SoftContextualUpsellCard');
++    expect(v2Branch).toMatch(/feedbackSlot=\{lessonSoftUpsellVisible \|\|/);
++    expect(source).not.toContain('shouldRenderLessonSoftUpsell(seqDone');
++    expect(source).toMatch(/animateNextLayoutTransition\(\);\s*setLessonSoftUpsellVisible\(lessonSoftUpsellWanted\);/);
+     expect(source).toContain('testID="lesson-complete-next-lesson"');
+     expect(source).toContain('testID="lesson-complete-repeat"');
+     expect(source).toContain('testID="lesson-complete-back-home"');
+@@ -48,8 +54,8 @@ describe('lesson completion soft upsell integration', () => {
+     for (const prop of ['title', 'body', 'ctaLabel', 'dismissLabel', 'dismissAccessibilityLabel', 'dismissAccessibilityHint', 'ctaAccessibilityLabel', 'ctaAccessibilityHint']) {
+       expect(source).toContain(`${prop}={softUpsellCopy.${prop}}`);
+     }
+-    expect(source).toContain('onImpression={softUpsell.onImpression}');
+-    expect(source).toContain('onDismiss={softUpsell.onDismiss}');
++    expect(source).toContain('onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}');
++    expect(source).toContain('onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}');
+     expect(source).not.toContain('OverlayKey');
+     expect(source).not.toContain('softUpsellQueue');
+   });

@@ -29,6 +29,7 @@
 |---|---|---|---|
 | accounts_v2_client_wiring_v2 | 52429d419 (19:15) | Авторизация | дедлайн гостя 4-м аргументом — **исправлено 1eb649b0d** |
 | en_readiness_dictionaries_contract | 963d8b8e5 / cca3a2602 (15:xx) | i18n-сторож | `maskLocaleKeyedEntries(source, original = source)` — тест ждёт прежнюю подпись |
+| lesson_complete_soft_upsell_contract | 7a79d3519 (12.10) | Итог урока / Plus | **ждёт решения владельца (вопрос 14).** Карточка «Первый урок — готово» стоит только в выключенном старом итоге — на экране 2.0 не показывается никогда; макет paywalls-009/010 её требует, а `lesson_complete_single_finish_surface` запрещает. Вариант А (вернуть) готов: `docs/phraseman-2.0/patches/LESSON_SOFT_UPSELL_A_2026-10-13.diff` (Ядро), при Б — удаление мёртвого состояния |
 | olive_phase1_surface_contract | 5b1e4a80a (19:11) | Темы | оболочка окна покупки набора переведена на токены — нет `shellOlive()` |
 | r1_candidates_makety_2026_10_12_contract | 016488a3c (17:42) | Настройки (dev) | `DEV_POLL_EMPTY_BODY` → `DEV_POLL_BODY` |
 | r1_candidates_pack_header_oral_offline | b662f70df (20:32) | Сверка / ссылки | cards-gap-034 `wait:3500` → `wait:5500` |

@@ -1,7 +1,7 @@
 # Task packet: список ручных проверок на настоящем телефоне после сборки 16.10 + журнал ожидания слота виден в релизе
 
 Governance-ID: TG-A8D69AAA989C
-Status: In progress
+Status: Done
 Owner: 5 · АВТОРИЗАЦИЯ (координатор 13.10 ~03:30)
 
 ## Outcome

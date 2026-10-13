@@ -70,12 +70,13 @@ function armSlotWait(item: Queued, slotWait: ThemedBlockingAlertSlotWait): void 
   const waiting = () => queue.includes(item) && item.shownAt == null;
   item.timers = [
     setTimeout(() => {
-      if (waiting()) console.log(`${slotWait.logPrefix} waiting_slot ${describe()}`);
+      // зачем: warn, а не log — релиз вырезает console.log (babel transform-remove-console), а эти строки нужны на телефоне.
+      if (waiting()) console.warn(`${slotWait.logPrefix} waiting_slot ${describe()}`);
     }, slotWait.warnAfterMs),
     setTimeout(() => {
       if (!waiting()) return;
       item.forceVisible = true;
-      console.log(`${slotWait.logPrefix} slot_timeout_force_visible ${describe()}`);
+      console.warn(`${slotWait.logPrefix} slot_timeout_force_visible ${describe()}`);
       notify();
     }, slotWait.forceAfterMs),
   ];

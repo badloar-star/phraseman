@@ -48,7 +48,8 @@ describe('themed blocking alert queue — slotWait', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     __resetThemedBlockingAlertQueueForTests();
-    logSpy = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    // релиз вырезает console.log — строки ожидания слота обязаны идти через warn
+    logSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
   afterEach(() => {
     __resetThemedBlockingAlertQueueForTests();

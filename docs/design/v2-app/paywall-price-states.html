@@ -36,7 +36,8 @@
   .wlead .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
   .wrow { display: flex; gap: 10px; margin-top: 14px; } .wcell { flex: 1; min-width: 0; }
   .wcard { min-height: 160px; border-radius: 22px; padding: 14px; background: var(--w-surf); }
-  .wcard.on { background: color-mix(in srgb, var(--acc) 14%, var(--w-surf)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); }
+  /* зачем (Ядро 13.10, paywall-gap-004; стиль «Тень» владельца 12.10, 4edcf536c): выбранный план — приподнят тенью и чуть светлее, без мятной заливки и кромки */
+  .wcard.on { background: color-mix(in srgb, var(--w-tx) 6%, var(--w-surf)); box-shadow: 0 12px 26px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); transform: translateY(-2px); }
   .wnm { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 16px; line-height: 22px; font-weight: 700; }
   .wbadge { min-height: 22px; padding: 0 9px; border-radius: 11px; background: var(--acc); color: var(--w-ink); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; }
   .wbig { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; } .wmon { font-size: 16px; line-height: 22px; font-weight: 700; }
@@ -121,8 +122,8 @@ const CTA_TRIAL = 'Начать 7 дней бесплатно';
 const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
 
 const S = [
-  ['011 · Загрузка условий', 'Цены ещё грузятся: два блока-«скелета» той же высоты, что и тарифы, кнопка «Оформить Plus» уже активна, «Восстановить» неактивно. После 12 секунд — состояние «Цены не загрузились».',
-    () => und + sheet({ body: lead + skel, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.', restoreOff: true }) })],
+  ['011 · Загрузка условий', 'Цены ещё грузятся: два блока-«скелета» той же высоты, что и тарифы, кнопка «Оформить Plus» уже активна, «Восстановить» тоже активна (R1_PAYWALL_UX, 303ec6392: вернувшийся покупатель идёт именно туда). После 12 секунд — состояние «Цены не загрузились».',
+    () => und + sheet({ body: lead + skel, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.' }) })],
   ['012 · Ошибка до checkout (оплата не началась)', 'Тап по кнопке: магазин не ответил. Сверху тост, под кнопкой «Попробуй через минуту». Деньги не списаны.',
     () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: 'Попробуй через минуту' }) }) + errToast('Не удалось связаться с магазином. Попробуй позже.')],
   ['012 · Цен нет совсем (сеть): тихая строка', 'Тарифа нет совсем (магазин ответил, а плана нет — сеть): на месте плиток тихая строка «Цена уточнится в магазине» той же высоты, без красного и без «Ещё раз»; цены докачиваются в фоне. Кнопка покупки жива.',

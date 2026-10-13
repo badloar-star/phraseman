@@ -36,7 +36,8 @@
   .wlead .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 700; }
   .wrow { display: flex; gap: 10px; margin-top: 14px; } .wcell { flex: 1; min-width: 0; }
   .wcard { min-height: 160px; border-radius: 22px; padding: 14px; background: var(--w-surf); }
-  .wcard.on { background: color-mix(in srgb, var(--acc) 14%, var(--w-surf)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc) 55%, transparent); }
+  /* зачем (Ядро 13.10, paywall-gap-004; стиль «Тень» владельца 12.10, 4edcf536c): выбранный план — приподнят тенью и чуть светлее, без мятной заливки и кромки */
+  .wcard.on { background: color-mix(in srgb, var(--w-tx) 6%, var(--w-surf)); box-shadow: 0 12px 26px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.08); transform: translateY(-2px); }
   .wnm { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 16px; line-height: 22px; font-weight: 700; }
   .wbadge { min-height: 22px; padding: 0 9px; border-radius: 11px; background: var(--acc); color: var(--w-ink); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; }
   .wbig { font-size: 22px; line-height: 27px; font-weight: 800; letter-spacing: -.3px; } .wmon { font-size: 16px; line-height: 22px; font-weight: 700; }
@@ -91,11 +92,11 @@
   .pg-cmp .a { flex: 1; min-width: 0; font-size: 16px; font-weight: 600; line-height: 21px; } .pg-cmp .f { width: 84px; color: var(--w-mu); } .pg-cmp .p { width: 88px; font-weight: 700; color: var(--w-tx); } .pg-cmp .h .p { color: var(--w-tx); }
   .pg-cmp .more { min-height: 46px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--w-sc); box-shadow: inset 0 1px 0 var(--w-edge); }
   /* лента пробного (PaywallPlusTrialTimeline): диск 36, диски 2–3 цвета шторки, поля сверху и снизу 12 */
-  .pg-tl { margin: 12px 0; border-radius: 22px; background: var(--w-surf); padding: 16px 16px 4px; }
+  .pg-tl { margin: 10px 0; border-radius: 22px; background: var(--w-surf); padding: 12px 14px 0; } /* зачем (Ядро 13.10, paywall-gap-004): лента плотнее, чтобы строка «🎁 3 дня бесплатно» у «Год» не уходила под док, как в коде */
   .pg-tl .row { display: flex; gap: 12px; } .pg-tl .rail { display: flex; flex-direction: column; align-items: center; width: 36px; flex: none; }
   .pg-tl .dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--w-sheet); } .pg-tl .dot.on { background: var(--acc); color: var(--w-ink); }
-  .pg-tl .ln { flex: 1; width: 2px; background: var(--w-edge); margin: 2px 0; min-height: 14px; }
-  .pg-tl .cp { padding: 2px 0 16px; } .pg-tl .row:last-child .cp { padding-bottom: 12px; } .pg-tl .t1 { font-size: 16px; line-height: 22px; font-weight: 700; } .pg-tl .t2 { font-size: 13px; line-height: 17px; color: var(--w-sc); margin-top: 2px; }
+  .pg-tl .ln { flex: 1; width: 2px; background: var(--w-edge); margin: 2px 0; min-height: 6px; }
+  .pg-tl .cp { padding: 0 0 8px; } .pg-tl .row:last-child .cp { padding-bottom: 10px; } .pg-tl .t1 { font-size: 16px; line-height: 22px; font-weight: 700; } .pg-tl .t2 { font-size: 13px; line-height: 17px; color: var(--w-sc); margin-top: 2px; }
   .pg-bell { width: 88px; height: 88px; border-radius: 28px; margin: 110px auto 0; display: flex; align-items: center; justify-content: center; background: var(--w-surf); }
   .pg-h { margin: 24px 24px 0; font-size: 28px; line-height: 33px; font-weight: 800; letter-spacing: -.5px; text-align: center; } .pg-p { margin: 10px 24px 0; font-size: 16px; line-height: 22px; text-align: center; color: var(--w-sc); }
   .pg-btm { position: absolute; left: 24px; right: 24px; bottom: 34px; } .pg-ghost { min-height: 50px; margin-top: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--w-sc); }

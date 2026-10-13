@@ -173,6 +173,8 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
   icon: GlobalBroadcastRewardIconName;
   labelRu: string;
   labelUk: string;
+  /** зачем (LANG_AUDIT 13.10): английский интерфейс брал подпись из labelRu — показывал русский текст. */
+  labelEn: string;
   labelEs: string;
   labelPtBr: string;
   labelVi: string;
@@ -190,6 +192,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
         icon: 'rune',
         labelRu: `+${amount} ${ruCoinsAfterNumber(amount)}`,
         labelUk: `+${amount} ${ukCoinsAfterNumber(amount)}`,
+        labelEn: amount === 1 ? '+1 coin' : `+${amount} coins`,
         labelEs: amount === 1 ? '+1 moneda' : `+${amount} monedas`,
         labelPtBr: amount === 1 ? '+1 moeda' : `+${amount} moedas`,
         labelVi: `+${amount} xu`,
@@ -202,6 +205,7 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
         icon: 'cube',
         labelRu: 'Пробный набор на 48 часов',
         labelUk: 'Пробний набір на 48 годин',
+        labelEn: '48-hour trial pack',
         labelEs: 'Paquete de prueba de 48 horas',
         labelPtBr: 'Pacote de teste por 48 horas',
         labelVi: 'Gói dùng thử 48 giờ',

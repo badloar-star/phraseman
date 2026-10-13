@@ -7,6 +7,7 @@ import { useStudyTarget } from './StudyTargetContext';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import RuneGlyph from './RuneGlyph';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   claimAndDismissGlobalBroadcastModal,
   getGlobalBroadcastRewardBadge,
@@ -155,14 +156,18 @@ function GlobalBroadcastModal({ payload, visible, onClose, motionVariant = 'clas
                   <Text style={[styles.coinPillNum, { color: glass.text }]}>{String(payload?.rewardAmount ?? '')}</Text>
                 </View>
               ) : (
-                <Text style={styles.rewardEmoji}>{reward.icon}</Text>
+                // зачем (координатор 13.10): имя значка ('cube') выводилось ТЕКСТОМ; тип GlobalBroadcastRewardIconName — имена Ionicons,
+                // 'rune' — собственный RuneGlyph (как в пилюле монет выше).
+                reward.icon === 'rune'
+                  ? <RuneGlyph size={44} color={glass.text} />
+                  : <Ionicons testID="global-broadcast-reward-icon" name={reward.icon} size={44} color={glass.text} />
               )}
               {!isCoinReward ? (
               <Text style={[styles.rewardLine, { color: glass.text, fontSize: f.bodyLg }]}>
                 {triLang(lang, {
                   ru: reward.labelRu,
                   uk: reward.labelUk,
-                  en: reward.labelRu,
+                  en: reward.labelEn,
                   es: reward.labelEs,
                   'pt-BR': reward.labelPtBr,
                   vi: reward.labelVi,
@@ -315,10 +320,6 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontWeight: '700',
     textAlign: 'center',
-  },
-  rewardEmoji: {
-    fontSize: 44,
-    lineHeight: 50,
   },
   reviewNote: {
     marginTop: 12,

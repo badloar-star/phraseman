@@ -33,7 +33,8 @@ export const ACHIEVEMENT_ICON: Readonly<Record<string, string>> = {
   streak_100:         'diamond',
   streak_200:         'diamond-outline',
   streak_365:         'star',
-  streak_500:         'crown',
+  // зачем (координатор 13.10): 'crown' нет в Ionicons — на экране был «?»; пьедестал — «вершина», значок не занят другими.
+  streak_500:         'podium',
   comeback:           'rocket',
   shards_100:         'diamond',
 };

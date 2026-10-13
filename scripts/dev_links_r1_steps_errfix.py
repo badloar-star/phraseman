@@ -11,8 +11,8 @@
 #   video-004, dialogs-006 — переснято успешно после появления демо-каталога videopacks=catalog / повторного прогона.
 #   results-009        — запись уже тапает #stats-primary-metric-year перед see:#stats-activity-365 (ошибка была на старых шагах).
 #   dialogs-016        — НУЖЕН ЖИВОЙ ХОД: кнопка озвучки только у реплики с готовым голосом, подставной ход звук не подделывает.
-#   mistakes-panel-021 — НУЖНА ПОДМЕНА: практика требует ≥5 готовых ошибок (`minFive`), демо-снимок хаба даёт две; подмена в
-#                        app/mistake_practice_session_runtime.ts (владелец экрана/Ядро), шагами не лечится.
+#   mistakes-panel-021 — подмена сделана: mistakes=demo теперь засевает журнал гостя ≥5 готовыми ошибками (app/dev_mistakes_seed.ts,
+#                        лог [DEV-STATE] mistakes seeded N ready); практика читает этот журнал, `minFive` больше не срабатывает. Ссылка прежняя.
 import re
 
 from dev_links_r1_steps import ENTRIES
@@ -60,3 +60,7 @@ if 'state=room' in _spire['link']:
     _spire['link'] = _spire['link'].replace('state=room', 'state=lobby', 1)
 set_param('spire-gap-022', 'studyTarget', 'es')
 set_steps('spire-gap-022', ['wait:2500', 'see:#spire-beta-pill'])
+
+# mistakes-panel-021: ссылка обязана включать mistakes=demo (засев журнала); шаги прежние — хаб → «Начать» → шторка → практика → меню.
+if 'mistakes=demo' not in _entry('mistakes-panel-021')['link']:
+    set_param('mistakes-panel-021', 'mistakes', 'demo')

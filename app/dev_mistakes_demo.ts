@@ -25,6 +25,16 @@ export async function setDevMistakesDemo(on: boolean): Promise<boolean> {
     assertDisposableGuest('mistakes=demo');
   }
   demoOn = on;
+  if (on) {
+    // зачем (координатор 13.10, mistakes-panel-021): практика читает НАСТОЯЩИЙ журнал и требует ≥5 готовых ошибок (minFive), а демо-снимок хаба даёт две — засеваем журнал одноразового гостя той же записью, что пишет урок.
+    // Засев — в отдельном модуле app/dev_mistakes_seed.ts: в стор-сборке этот файл заменяется заглушкой и засев в бандл не попадает.
+    try {
+      const { seedDevMistakesReadyForCurrentGuest } = await import('./dev_mistakes_seed');
+      await seedDevMistakesReadyForCurrentGuest();
+    } catch (error: unknown) {
+      console.warn('[DEV-STATE] mistakes: засев журнала не удался —', error instanceof Error ? error.message : String(error)); // guard-ok: причина отказа засева, не немой catch
+    }
+  }
   console.log(`[DEV-STATE] mistakes: ${on ? 'демо-ошибки включены (6 штук, только память)' : 'демо-ошибки выключены'}`); // guard-ok: единичный лог на ссылку
   return true;
 }

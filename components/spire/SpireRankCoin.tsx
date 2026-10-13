@@ -8,6 +8,7 @@
 // показывается никогда. Мемо по (ранг, размер): строки списков не перерисовываются зря.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
+import { View } from 'react-native';
 import AvatarView from '../AvatarView';
 
 /** Ранг 0 — бесплатный старт (app/coin_rank_table_v1): монета «по умолчанию» для неизвестного ранга. */
@@ -20,7 +21,13 @@ type Props = Readonly<{
 }>;
 
 function SpireRankCoin({ rank, size }: Props) {
-  return <AvatarView avatar="" coinRank={rank ?? SPIRE_BASE_COIN_RANK} size={size} />;
+  // зачем (№28, доступность 13.10): монета — картинка без смысла для TalkBack; имя, место и ступени читает подпись строки/колонки-родителя (
+  // подиум, «Все участники», «кто на этаже»). Скрываем потомков, чтобы читалка не пыталась озвучить безымянную картинку; размер обёртки = размеру монеты.
+  return (
+    <View importantForAccessibility="no-hide-descendants" accessibilityElementsHidden style={{ width: size, height: size }}>
+      <AvatarView avatar="" coinRank={rank ?? SPIRE_BASE_COIN_RANK} size={size} />
+    </View>
+  );
 }
 
 export default memo(SpireRankCoin);

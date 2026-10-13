@@ -171,10 +171,42 @@ PHRASEMAN_R1_HIDE_V2=1 node scripts/learning_v2_plan_b_gates.mjs
 | Ситуация | Решение | Действия |
 |---|---|---|
 | Оба гейта зелёные, потолок > 0 | **V2 в выпуске** | Ничего не включать. День сборки как есть: шаг 7 без переменной. На телефоне вкладка «V2» видна, l1s1 открывается и звучит. |
-| Хоть один гейт красный, потолок 0 | **План Б** | Ядро: `"PHRASEMAN_R1_HIDE_V2": "1"` в `eas.json` → `build.production.env`, коммит. Проверить `PHRASEMAN_R1_HIDE_V2=1 npm run release:precheck` → строка «НЕПРИМЕНИМО», отказа по V2 нет. |
+| Хоть один гейт красный, потолок 0 | **План Б** | Ядро: правка `eas.json` — шаг 3а ниже, отдельный коммит. Проверить `PHRASEMAN_R1_HIDE_V2=1 npm run release:precheck` → строка «НЕПРИМЕНИМО», отказа по V2 нет. **Без шага 3а сборка EAS упадёт на сервере** в `eas-build-post-install`: там те же гейты, а переменная берётся только из профиля. |
 | Гейт красный, потолок > 0 (Codex перегенерировал, но не дотянул) | **План Б + вернуть потолок 0** | Codex возвращает generated-файл к 0 (`git checkout <коммит до перегенерации> -- app/learning_v2_bundle_availability_v1.generated.ts`, его зона). Иначе обёртка даст ОТКАЗ — это правильно: V2 в бандле нельзя выдать за скрытый. Дальше — как строка «План Б». |
 
-**4. Проверка плана Б на телефоне — стор-сборка или стор-режим:**
+**3а. Правка `eas.json` при плане Б — ТОЛЬКО 15.10 после решения, сейчас не менять** (Ядро, отдельный коммит; файл не код — окно не нужно).
+
+`eas.json` → `build.production.env`, было (проверено 13.10):
+```json
+"env": {
+  "EXPO_PUBLIC_STORE_RELEASE": "1",
+  "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+  "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
+}
+```
+стало:
+```json
+"env": {
+  "EXPO_PUBLIC_STORE_RELEASE": "1",
+  "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+  "EXPO_PUBLIC_EXPLAIN_ENABLED": "true",
+  "PHRASEMAN_R1_HIDE_V2": "1"
+}
+```
+
+Проверка правки:
+```bash
+node -e "const e=require('./eas.json').build.production.env;console.log(e.PHRASEMAN_R1_HIDE_V2==='1'?'OK план Б в профиле':'НЕТ переменной')"
+```
+Проверка гейтов:
+```bash
+PHRASEMAN_R1_HIDE_V2=1 npm run release:precheck
+```
+На сервере EAS в логе фазы post-install должна стоять строка `[V2-PLAN-B] НЕПРИМЕНИМО: V2 скрыт (потолок 0)`. Если там `run_gates` — переменная не дошла до хука, сборку остановить.
+
+Откат — убрать строку `"PHRASEMAN_R1_HIDE_V2": "1"` и запятую перед ней (`git revert <коммит правки>`). После отката гейты №3/№4 снова обязательны.
+
+**4. Проверка плана Б на телефоне — ТОЛЬКО release-сборка** (production или локальная стор-сборка, `EXPO_PUBLIC_STORE_RELEASE=1`, без dev-инструментов). На dev-эмуляторе V2 открывается всегда: `ENABLE_DEV_TOOLS` делает `LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = true`, и `[V2-ROUTE]` там не появится — это не провал проверки.
 - нет вкладки «V2»;
 - чип «Новые уроки» показывает «закрыто»;
 - `phraseman://learning-v2/course` открывает список уроков, в журнале `[V2-ROUTE] reason=ceiling0`.

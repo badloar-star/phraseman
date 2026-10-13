@@ -139,3 +139,32 @@ set_param('settings-gap-028', 'reminderTime', '20:00')
 
 # energy-modes-017 (Ядро/координатор 13.10): кадр снимался на скелете меню урока — после тапа «Начать» нет паузы под окно «Нет энергии» (NoEnergyModal): ждём 2,5 с.
 set_steps('energy-modes-017', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:2500'])
+
+# ── Промокод и код друга (Сверка R7, заметки Макетов): на кадрах клавиатура ОС и код «TESTCODE» вместо кода образца.
+# Образцы (promo-code-states.html / referral-code-states.html): 007 WELCOME30, 008 FOREVER, 009 ABC123, 010 SPRING24, 011 FRIENDS50, 012 TRY12345, 014/015 WELCOME30.
+# Шаги: тап в поле → ввод кода образца → hidekb (убирает клавиатуру, только если показана) → «Активировать» → пауза под ответ. Подмены promo=/refcode= в ссылках прежние.
+_PROMO = {7: 'WELCOME30', 8: 'FOREVER', 9: 'ABC123', 10: 'SPRING24', 11: 'FRIENDS50', 12: 'TRY12345', 15: 'WELCOME30'}
+for _n, _code in _PROMO.items():
+    _rid = 'overlays-campaigns-%03d' % _n
+    if _rid in ENTRIES:
+        set_steps(_rid, ['tap:#promo-code-input', 'type:' + _code, 'hidekb', 'tap:#promo-code-submit', 'wait:800'])
+
+# код друга: после type прячем клавиатуру (hidekb) перед тапом «Применить» и перед кадром; у 017 (кнопка не нажимается) — просто спрятать после ввода.
+for _n in range(17, 27):
+    _rid = 'overlays-campaigns-%03d' % _n
+    if _rid not in ENTRIES:
+        continue
+    _st = list(ENTRIES[_rid]['steps'])
+    if 'hidekb' in _st or not any(x.startswith('type:') for x in _st):
+        continue
+    _i = max(i for i, x in enumerate(_st) if x.startswith('type:'))
+    _st[_i + 1:_i + 1] = ['hidekb', 'wait:200']
+    ENTRIES[_rid]['steps'] = _st
+
+# ── «Мои ошибки»: строки 005 («Все ошибки — ждут») и 010 («Выбери перевод») не имели записи в DEV_LINKS — кадры были ручными (11.10) и старше кода. Путь:
+# 005 — хаб → список /mistakes_list?filter=ready (mistakes=demo засевает журнал; нужен свежий гость — Ядро cc8a35a65); 010 — хаб → «Начать» → шторка → первый вопрос практики (как 021 без меню).
+add('mistakes-panel-005', ['wait:1500'], 'mistakes=demo&studyTarget=en', '/mistakes_list?filter=ready', unique=False, note='список «Все ошибки», вкладка «Ждут» (mistakes=demo — демо-журнал)')
+add('mistakes-panel-010', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800', 'tap:#mistakes-hub-sheet-start', 'wait:2500'], 'mistakes=demo&studyTarget=en&energy=5', '/mistakes_hub', unique=False, note='первый вопрос отработки «Выбери перевод» (демо-ошибки; energy=5 — ворота энергии)')
+
+# onboarding-018 (Сверка): шаг «Уведомления» играет анимацию появления — кадр нужен после паузы ≥ 3 с (меняются только шаги, вид онбординга заморожен владельцем 11.10).
+set_steps('onboarding-018', ['wait:3500'])

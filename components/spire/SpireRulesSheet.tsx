@@ -68,14 +68,16 @@ function SpireRulesSheet({ lang, visible, coins, onClose }: Props) {
 
 const s = StyleSheet.create({
   body: { paddingTop: 8 },
-  title: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
-  list: { marginTop: 14, maxHeight: 440 },
-  listContent: { gap: 14, paddingBottom: 4 },
-  row: { flexDirection: 'row', alignItems: 'flex-start', gap: 12 },
-  num: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontSize: 13, fontWeight: '700' },
+  // зачем (реестр community-004, разбор размеров 13.10; образец community.html `leagueRules`): заголовок 19/24, список с отступом 10, строки с padding 10 сверху и снизу,
+  // кружок 32 с цифрой 15, зазор кружок→текст 14, «Закрыть» высотой 48 с отступом 14 — dp = css px макета, масштаб кадра 411/390 не учитывается
+  title: { fontSize: 19, lineHeight: 24, fontWeight: '700' },
+  list: { marginTop: 10, maxHeight: 440 },
+  listContent: { paddingBottom: 4 },
+  row: { flexDirection: 'row', alignItems: 'flex-start', gap: 14, paddingVertical: 10 },
+  num: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
+  numText: { fontSize: 15, fontWeight: '700' },
   line: { flex: 1, fontSize: 16, lineHeight: 22 },
-  cta: { marginTop: 20, minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center' },
+  cta: { marginTop: 14, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, fontWeight: '700' },
 });
 

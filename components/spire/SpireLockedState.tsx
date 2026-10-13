@@ -21,7 +21,8 @@ function SpireLockedState({ lang }: Readonly<{ lang: Lang }>) {
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: V2.screenPad * 2 },
+  // зачем (реестр spire-gap-011, разбор размеров 13.10): у макета `.in` с нижним отступом 60 — блок по центру на 49,5 % высоты; без него центр был на 52,7 % (≈29 dp ниже)
+  root: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: V2.screenPad * 2, paddingBottom: 60 },
   // зачем (Сверка spire-gap-011, spire-gaps-states.html `.sg-lock`): 24/30, начертание 800, межбуквенный −0,3
   title: { ...V2_TYPE.title, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.3, textAlign: 'center' },
 });

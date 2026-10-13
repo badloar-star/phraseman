@@ -114,7 +114,7 @@ describe('наряды башни Шпиля', () => {
   });
 
   it('экран Шпиля передаёт лигу в башню; SpireTower выбирает наряд мемо по лиге, с dev-подменой для Сверки', () => {
-    expect(home).toContain('tier={game.tier ?? week?.tier ?? null}');
+    expect(home).toContain('tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null}'); // в кадре spireWeek= лига — новая лига карточки, иначе лига игрока
     expect(tower).toContain('getDevSpireTierOverride()');
     expect(tower).toContain('const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);');
     expect(tower).toContain('skin={skin}');

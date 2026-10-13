@@ -16,7 +16,7 @@
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -213,6 +213,12 @@ export default function SpireHomeScreen() {
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
   const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek });
   const game = preview ? preview.game : realGame;
+  // зачем (смета Firebase 13.10, п. 5): потянуть экран = обновить друзей мимо кэша 30 мин. Спиннер держится, пока идёт вызов; повторное потягивание хук игнорирует.
+  const [friendsRefreshing, setFriendsRefreshing] = useState(false);
+  const onPullRefreshFriends = useCallback(() => {
+    setFriendsRefreshing(true);
+    void game.refreshFriends().finally(() => setFriendsRefreshing(false));
+  }, [game]);
   // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью
   // над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
   const scrollTailPad = game.outcome ? 300 : game.startBlock ? 150 : 120;
@@ -291,6 +297,8 @@ export default function SpireHomeScreen() {
         contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }]}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
+        // зачем (смета Firebase 13.10, п. 5): друзья в кэше 30 мин — вручную обновляются потягиванием; спиннер системный, экран не блокируется
+        refreshControl={<RefreshControl refreshing={friendsRefreshing} onRefresh={onPullRefreshFriends} tintColor={p.text} colors={[p.text]} progressBackgroundColor={p.control} testID="spire-pull-refresh" />}
         onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >

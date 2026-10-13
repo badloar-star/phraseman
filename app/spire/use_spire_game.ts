@@ -37,6 +37,7 @@ import { animateNextLayoutTransition } from '../smooth_layout';
 import { getStableId } from '../stable_id';
 import { getCanonicalUserId } from '../user_id_policy';
 import { spireLoadFriendChips } from './spire_friends_client';
+import { useSpireFriendsRefresh } from './use_spire_friends_refresh';
 import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
@@ -182,7 +183,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         });
       }
     });
-    void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => { if (alive) setFriends(chips); });
+    void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => { if (alive && chips) setFriends(chips); });
     void spireLoadWeekResult(gate, { uid: ids.uid, lang }).then((res) => {
       if (!alive) return;
       // зачем (там же): карточка «Итог недели» встаёт НАД башней — сдвиг контента идёт плавно, а не скачком.
@@ -379,11 +380,14 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     if (res && ids && lang) void spireDismissWeekResult(ids.uid, lang, res.weekId);
   }, [weekResult, ids, lang]);
 
+  // зачем (смета Firebase 13.10, п. 5): ручное обновление друзей (потянуть экран) вынесено в отдельный хук — файл остаётся ≤ 400 строк (контракт spire_game_source_contract).
+  const refreshFriends = useSpireFriendsRefresh({ gate, ids, lang, friendsCount: friends.length, setFriends });
+
   return {
     live: gate !== null,
     uid: ids?.uid ?? null,
     stableId: ids?.stableId ?? null,
-    roomLoad, rows, myPlace, tier, friends, weekResult, dismissWeekResult, rejectNotice,
+    roomLoad, rows, myPlace, tier, friends, refreshFriends, weekResult, dismissWeekResult, rejectNotice,
     session, pending, cancelPendingStep, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
   };
 }

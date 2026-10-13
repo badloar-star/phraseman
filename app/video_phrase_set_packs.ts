@@ -7,16 +7,16 @@
 // искал `community_packs` с videoId (их 0) и был пуст. Источник переключён на тот
 // же, что под роликом; новых документов не создаём.
 //
-// Стоимость: 1 запрос `video_phrase_sets` (limit) + манифест каналов + каталог
-// каждого канала с роликами (те же документы, что читает экран видео) — не чаще
-// раза в 6 ч; первый кадр — из кэша на диске.
+// Стоимость: 1 запрос `video_phrase_sets` (limit) + манифест каналов (1 чтение) — не чаще
+// раза в 6 ч; первый кадр — из кэша на диске. Каталог каналов (ролики без плейлистов) читается
+// только при смене его версии (смета Firebase 13.10, п. 3), иначе берётся копия рядом с наборами.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerHubCacheProbe } from './hub_lifecycle_probe';
 import { DebugLogger } from './debug-logger';
 import type { FlashcardMarketPack } from './flashcards/marketplace';
 import { normalizePackLanguage, type PackLanguage } from './flashcards/pack_languages';
-import { fetchYoutubeCatalogManifest, fetchYoutubeChannelCatalog } from './youtube_catalog_client';
+import { fetchYoutubeCatalogManifest, fetchYoutubeVideoIndex } from './youtube_catalog_client';
 
 const LOG = '[VIDEO-PACKS]';
 // зачем (Карточки 2.0, 12.10): v2 несёт длительность ролика. v1 читаем как устаревший — первый кадр мгновенный,
@@ -28,7 +28,11 @@ const SETS_LIMIT = 200;
 /** Префикс id: отличает набор фраз ролика от community-набора при открытии. */
 export const VIDEO_PHRASE_SET_PACK_PREFIX = 'video:';
 
-type CachedVideoPacks = { savedAtMs: number; packs: FlashcardMarketPack[] };
+/** Строка сжатой копии каталога: [id ролика, название, id канала, язык, длительность в секундах или 0]. */
+type CatalogRow = [string, string, string, PackLanguage, number];
+// зачем (смета Firebase 13.10, п. 3): версия каталога и его копия лежат рядом с наборами — пока версия не сменилась, каналы не перечитываются.
+// Поля необязательные: копия без них (до 13.10) даёт один полный проход, ключ кэша не менялся.
+type CachedVideoPacks = { savedAtMs: number; packs: FlashcardMarketPack[]; catalogVersion?: string; catalog?: CatalogRow[] };
 
 let memory: CachedVideoPacks | null = null;
 let inFlight: Promise<FlashcardMarketPack[]> | null = null;
@@ -141,7 +145,17 @@ async function readDiskCache(): Promise<CachedVideoPacks | null> {
   }
 }
 
-async function fetchFromNetwork(): Promise<FlashcardMarketPack[]> {
+function catalogFromRows(rows: readonly CatalogRow[]): Map<string, VideoCatalogInfo> {
+  const map = new Map<string, VideoCatalogInfo>();
+  for (const [id, title, channelId, packLanguage, durationSec] of rows) {
+    map.set(id, { title, channelId, packLanguage, ...(durationSec > 0 ? { durationSec } : {}) });
+  }
+  return map;
+}
+
+type NetworkResult = { packs: FlashcardMarketPack[]; catalogVersion?: string; catalog?: CatalogRow[] };
+
+async function fetchFromNetwork(cached: CachedVideoPacks | null): Promise<NetworkResult> {
   const startedAt = Date.now();
   const firestoreModule = await import('@react-native-firebase/firestore');
   const snap = await firestoreModule.default()
@@ -158,33 +172,52 @@ async function fetchFromNetwork(): Promise<FlashcardMarketPack[]> {
     };
   });
 
-  const catalog = new Map<string, VideoCatalogInfo>();
+  // зачем (смета Firebase 13.10, п. 3): манифест один раз; та же версия каталога, что в копии, — каналы не читаем вовсе.
+  // Версия сменилась — корень один раз + на канал только сам канал и его ролики (без плейлистов). Сбой манифеста или канала
+  // не затирает хорошую копию каталога: берём её строки, а версию в копию не пишем, чтобы следующий заход прошёл заново.
+  let catalogRows: CatalogRow[] = cached?.catalog ?? [];
+  let catalogVersion: string | undefined = cached?.catalogVersion;
+  let catalogSource: 'cache_same_version' | 'network' | 'cache_fallback' = 'cache_fallback';
+  let catalogChannelErrors = 0;
   try {
     const manifest = await fetchYoutubeCatalogManifest();
-    for (const channel of manifest.channels) {
-      const packLanguage = packLanguageFromTags(channel.languageTags);
-      try {
-        const channelCatalog = await fetchYoutubeChannelCatalog(channel.id);
-        for (const video of channelCatalog.videos) {
-          catalog.set(video.id, {
-            title: video.title,
-            channelId: channel.id,
-            packLanguage,
-            ...(typeof video.durationSec === 'number' ? { durationSec: video.durationSec } : {}),
-          });
+    if (cached?.catalogVersion === manifest.activeVersion && cached.catalog) {
+      catalogSource = 'cache_same_version';
+      catalogVersion = manifest.activeVersion;
+      DebugLogger.info(LOG, `catalog: версия ${manifest.activeVersion} та же, что в копии — каналы не читаю (строк ${cached.catalog.length})`);
+    } else {
+      DebugLogger.info(LOG, `catalog: версия копии=${cached?.catalogVersion ?? '—'} манифеста=${manifest.activeVersion} — читаю каналы (${manifest.channels.length}) без плейлистов`);
+      const channels = await fetchYoutubeVideoIndex(manifest);
+      const rows: CatalogRow[] = [];
+      for (const channel of channels) {
+        if (channel.error) {
+          catalogChannelErrors += 1;
+          // Один канал без каталога не должен прятать наборы остальных.
+          // зачем: строки этого канала из прежней копии остаются — названия не превращаются в id из-за разового сбоя.
+          const kept = (cached?.catalog ?? []).filter((row) => row[2] === channel.channelId);
+          rows.push(...kept);
+          DebugLogger.warn(LOG, `catalog: канал ${channel.channelId} не прочитан (${channel.error}) — оставляю строк из копии: ${kept.length}`);
+          continue;
         }
-      } catch (error) {
-        // Один канал без каталога не должен прятать наборы остальных.
-        DebugLogger.error(`${LOG}:channelCatalog:${channel.id}`, error, 'warning');
+        const tags = manifest.channels.find((c) => c.id === channel.channelId)?.languageTags ?? [];
+        const packLanguage = packLanguageFromTags(tags);
+        for (const video of channel.videos) {
+          rows.push([video.id, video.title, channel.channelId, packLanguage, typeof video.durationSec === 'number' && video.durationSec > 0 ? video.durationSec : 0]);
+        }
       }
+      catalogRows = rows;
+      catalogSource = 'network';
+      catalogVersion = catalogChannelErrors === 0 ? manifest.activeVersion : undefined;
     }
   } catch (error) {
     DebugLogger.error(`${LOG}:manifest`, error, 'warning');
+    DebugLogger.warn(LOG, `catalog: манифест/корень не прочитан — беру копию (строк ${catalogRows.length}), версию не обновляю`);
   }
 
+  const catalog = catalogFromRows(catalogRows);
   const packs = buildVideoPhraseSetPacks(sets, catalog);
-  DebugLogger.info(LOG, `source=video_phrase_sets сеть: роликов ${sets.length}, с каталогом ${sets.filter((s) => catalog.has(s.videoId)).length}, с длительностью ${packs.filter((p) => (p.videoDurationSec ?? 0) > 0).length}, наборов ${packs.length}, ${Date.now() - startedAt} мс`);
-  return packs;
+  DebugLogger.info(LOG, `source=video_phrase_sets сеть: роликов ${sets.length}, каталог=${catalogSource} (строк ${catalogRows.length}, ошибок каналов ${catalogChannelErrors}), с каталогом ${sets.filter((s) => catalog.has(s.videoId)).length}, с длительностью ${packs.filter((p) => (p.videoDurationSec ?? 0) > 0).length}, наборов ${packs.length}, ${Date.now() - startedAt} мс`);
+  return { packs, ...(catalogVersion ? { catalogVersion } : {}), catalog: catalogRows };
 }
 
 /**
@@ -204,12 +237,12 @@ export async function loadVideoPhraseSetPacks(options?: { forceRemote?: boolean 
   if (inFlight) return inFlight;
   inFlight = (async () => {
     try {
-      const packs = await fetchFromNetwork();
+      const { packs, catalogVersion, catalog } = await fetchFromNetwork(memory);
       if (packs.length === 0 && memory && memory.packs.length > 0) {
         DebugLogger.warn(LOG, `сеть вернула 0 — оставляю кэш (${memory.packs.length})`);
         return memory.packs;
       }
-      memory = { savedAtMs: Date.now(), packs };
+      memory = { savedAtMs: Date.now(), packs, ...(catalogVersion ? { catalogVersion } : {}), ...(catalog.length > 0 ? { catalog } : {}) };
       await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(memory)).catch((error: unknown) => {
         DebugLogger.error(`${LOG}:writeDiskCache`, error, 'warning');
       });

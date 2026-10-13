@@ -122,7 +122,7 @@ const noopAsync = async (): Promise<void> => undefined;
 function game(over: Partial<SpirePreviewGame> = {}): SpirePreviewGame {
   return {
     live: true, uid: null, stableId: null, roomLoad: null, rows: null, myPlace: null, tier: previewTier(), friends: [], weekResult: null,
-    dismissWeekResult: noop, session: null,
+    dismissWeekResult: noop, refreshFriends: noopAsync, session: null,
     // зачем (Сверка spire-005, поручение координатора 15.10): в боевом useSpireGame pending === null, пока шаг не ждёт; без этих полей в превью pending был undefined, и
     // climbReady (…&& pending === null) был ложным во ВСЕХ состояниях — «Подняться» рисовалась неактивной даже при живой комнате.
     pending: null, cancelPendingStep: noop,

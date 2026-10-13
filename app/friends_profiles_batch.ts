@@ -21,6 +21,10 @@ import { noteSwallowed } from './swallow_log'; // зачем: PM-229 — нем�
 
 const REGION = 'us-central1';
 const BATCH_CACHE_TTL_MS = 5 * 60 * 1000;
+// зачем (смета Firebase 13.10, п. 5; координатор): ряд «Друзья на этой неделе» в Шпиле входит в кэш на 30 мин — рейтинг друзей не меняется ежеминутно,
+// а каждый вход стоил 8 + 5 × F серверных чтений. Срок задаёт вызывающий (`maxAgeMs`); вкладка «Друзья» остаётся на 5 мин.
+export const FRIENDS_BATCH_LONG_TTL_MS = 30 * 60 * 1000;
+const BATCH_CACHE_KEEP_MS = FRIENDS_BATCH_LONG_TTL_MS;
 const BATCH_CACHE_MAX_ENTRIES = 256;
 /** Размер пачки должен совпадать с MAX_UIDS_PER_CALL в functions/src/friends_profiles.ts. */
 const BATCH_SIZE = 100;
@@ -78,7 +82,8 @@ const inFlight = new Map<string, Promise<FriendProfileBatchRecord | null>>();
 
 function pruneExpiredBatchCache(now: number): void {
   for (const [uid, entry] of batchCache) {
-    if (now - entry.fetchedAt >= BATCH_CACHE_TTL_MS) batchCache.delete(uid);
+    // зачем: записи старше 5 мин, но моложе 30 мин, остаются — их ждёт вызывающий с длинным сроком (Шпиль).
+    if (now - entry.fetchedAt >= BATCH_CACHE_KEEP_MS) batchCache.delete(uid);
   }
 }
 
@@ -100,6 +105,19 @@ async function fetchBatch(uids: string[]): Promise<Record<string, FriendProfileB
   return res.data?.profiles ?? {};
 }
 
+/** Сколько из uid лежат в кэше свежими при данном сроке (для журнала вызывающего; кэш не меняет). */
+export function countFreshFriendProfiles(uids: readonly string[], maxAgeMs: number = BATCH_CACHE_TTL_MS): number {
+  const now = Date.now();
+  let fresh = 0;
+  for (const uid of new Set(uids)) {
+    const hit = batchCache.get(uid);
+    if (!hit) continue;
+    const ttl = hit.profile ? Math.max(BATCH_CACHE_TTL_MS, Math.min(maxAgeMs, BATCH_CACHE_KEEP_MS)) : BATCH_CACHE_TTL_MS;
+    if (now - hit.fetchedAt < ttl) fresh += 1;
+  }
+  return fresh;
+}
+
 /** Инвалидировать кэш (например после принятия заявки — у нового друга профиль нужен свежий). */
 export function invalidateFriendsProfilesBatchCache(uids?: string[]): void {
   if (!uids) {
@@ -116,7 +134,7 @@ export function invalidateFriendsProfilesBatchCache(uids?: string[]): void {
  */
 export async function fetchFriendProfilesBatch(
   uids: string[],
-  options: { force?: boolean } = {},
+  options: { force?: boolean; maxAgeMs?: number } = {},
 ): Promise<Record<string, FriendProfileBatchRecord | null>> {
   const unique = [...new Set(uids.map((u) => String(u ?? '').trim()).filter(Boolean))];
   const result: Record<string, FriendProfileBatchRecord | null> = {};
@@ -127,7 +145,9 @@ export async function fetchFriendProfilesBatch(
   const toFetch: string[] = [];
   for (const uid of unique) {
     const hit = batchCache.get(uid);
-    if (!options.force && hit && now - hit.fetchedAt < BATCH_CACHE_TTL_MS) {
+    // зачем: длинный срок только для записей с профилем — пустая запись (сбой вызова) живёт прежние 5 мин, иначе сбой спрятал бы друзей на 30 мин.
+    const ttl = options.maxAgeMs !== undefined && hit?.profile ? Math.max(BATCH_CACHE_TTL_MS, Math.min(options.maxAgeMs, BATCH_CACHE_KEEP_MS)) : BATCH_CACHE_TTL_MS;
+    if (!options.force && hit && now - hit.fetchedAt < ttl) {
       batchCache.delete(uid);
       batchCache.set(uid, hit);
       result[uid] = hit.profile;

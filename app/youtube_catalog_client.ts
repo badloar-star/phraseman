@@ -144,6 +144,48 @@ export async function fetchYoutubeCatalogManifest(): Promise<YoutubeCatalogManif
   return fetchYoutubeCatalogManifestWithReader(await createFirestoreReader());
 }
 
+export type YoutubeVideoIndexChannel = Readonly<{ channelId: string; videos: YoutubeVideoSnapshot[]; error?: string }>;
+
+/**
+ * Ролики ВСЕХ каналов манифеста без плейлистов — для списка «Из видео» (названия, длительность, канал).
+ * зачем (смета Firebase 13.10, п. 3; координатор): раньше на каждый канал заново читались манифест, корень снимка, канал,
+ * до 100 роликов и до 50 плейлистов (≈ 350 чтений на канал). Здесь манифест уже известен, корень читается ОДИН раз,
+ * на канал — сам документ и его ролики; плейлисты не нужны. Сбой одного канала не роняет остальные (error в строке канала).
+ */
+export async function fetchYoutubeVideoIndexWithReader(
+  reader: YoutubeCatalogReader,
+  manifest: YoutubeCatalogManifest,
+): Promise<YoutubeVideoIndexChannel[]> {
+  const rootPath = `youtube_catalog_snapshots/${manifest.activeVersion}`;
+  const root = requireRecord(await reader.get(rootPath), 'youtube_catalog_snapshot_missing');
+  if (root.status !== 'ready') throw new Error('youtube_catalog_snapshot_not_ready');
+  const rootManifest = parseYoutubeCatalogManifest(root.manifest);
+  if (rootManifest.activeVersion !== manifest.activeVersion) {
+    throw new Error('youtube_catalog_snapshot_version_mismatch');
+  }
+  const rows: YoutubeVideoIndexChannel[] = [];
+  for (const entry of manifest.channels) {
+    try {
+      const channelPath = `${rootPath}/channels/${entry.id}`;
+      const [channelRaw, videosRaw] = await Promise.all([reader.get(channelPath), reader.list(`${channelPath}/videos`)]);
+      const channel = parseYoutubeChannelSnapshot(channelRaw);
+      if (channel.id !== entry.id) throw new Error('youtube_catalog_channel_mismatch');
+      const videos = orderedByIds(
+        videosRaw.map(parseYoutubeVideoSnapshot).filter((video) => video.channelId === entry.id),
+        channel.recentVideoIds,
+      );
+      rows.push({ channelId: entry.id, videos });
+    } catch (error) {
+      rows.push({ channelId: entry.id, videos: [], error: error instanceof Error ? error.message : String(error) });
+    }
+  }
+  return rows;
+}
+
+export async function fetchYoutubeVideoIndex(manifest: YoutubeCatalogManifest): Promise<YoutubeVideoIndexChannel[]> {
+  return fetchYoutubeVideoIndexWithReader(await createFirestoreReader(), manifest);
+}
+
 /**
  * Lightweight Home projection of the same atomic YouTube catalog.
  * Reads root + channel + one featured video instead of listing up to 100

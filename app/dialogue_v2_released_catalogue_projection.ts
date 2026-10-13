@@ -1,5 +1,7 @@
 import {
   getDialogueV2LocalRankAccess,
+  logDialogueV2RankGate,
+  type DialogueV2RankGateRow,
 } from './dialogue_v2_local_rank_access';
 import type {
   DialogueV2CatalogueLearnerItem,
@@ -104,6 +106,7 @@ export function projectReleasedDialogueV2Catalogue(
     if (!packets) return null;
 
     const items: DialogueV2CatalogueLearnerItem[] = [];
+    const gateRows: DialogueV2RankGateRow[] = [];
     for (const entry of DIALOGUE_V2_CATALOGUE_INDEX) {
       const packet = packets.get(entry.id);
       const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank);
@@ -113,10 +116,13 @@ export function projectReleasedDialogueV2Catalogue(
         worldId: entry.worldId,
         title: packet.content.title,
         cefr: entry.cefr,
-        rankRequired: entry.rankRequired,
+        // зачем (правило владельца 13.10): ранг открытия из таблицы, не номер сценария в разделе
+        rankRequired: entry.unlockRank,
         status: rankAccess.access.status === 'unlocked' ? 'available' : 'locked',
       }));
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: rankAccess.access.status === 'unlocked' ? 'открыт' : 'закрыт' });
     }
+    logDialogueV2RankGate('released', input.studyTarget, input.localCoinRank, gateRows);
     return Object.freeze({ worlds, items: Object.freeze(items) });
   } catch {
     return null;

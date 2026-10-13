@@ -14,7 +14,8 @@ export type DialogueV2ScenarioAccess =
   | Readonly<{ status: 'unlocked' }>
   | Readonly<{ status: 'locked_by_rank'; rankRequired: number | null }>;
 
-const FIRST_DIALOGUE_V2_RANK = 1;
+// зачем (правило владельца 13.10): ранг 0 — стартовый и допустим: на нём открыт ровно один диалог (social_01); раньше ранги < 1 отбрасывались
+const FIRST_DIALOGUE_V2_RANK = 0;
 const LAST_DIALOGUE_V2_RANK = 19;
 
 function requiredCatalogueRank(value: unknown): number | null {

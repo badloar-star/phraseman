@@ -84,7 +84,7 @@ describe('released dialogue v2 catalogue projection', () => {
       worlds: WORLD_HEADINGS,
       items: expect.arrayContaining([
         expect.objectContaining({
-          id: 'social_01', title: 'Released social_01', cefr: 'A1', rankRequired: 1, status: 'available',
+          id: 'social_01', title: 'Released social_01', cefr: 'A1', rankRequired: 0, status: 'available', // ранг открытия из таблицы (правило владельца 13.10)
         }),
         expect.objectContaining({
           id: 'work_04', title: 'Released work_04', cefr: 'A1', rankRequired: 4, status: 'locked',

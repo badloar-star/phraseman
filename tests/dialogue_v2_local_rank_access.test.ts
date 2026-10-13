@@ -1,20 +1,22 @@
 import { getDialogueV2LocalRankAccess } from '../app/dialogue_v2_local_rank_access';
 
 describe('dialogue v2 local rank catalogue access', () => {
-  test('derives each canonical entry state only from its required rank and the local player rank', () => {
-    expect(getDialogueV2LocalRankAccess('social_01', 1)).toEqual({
-      entry: expect.objectContaining({ id: 'social_01', rankRequired: 1 }),
+  // правило владельца 13.10: замок решает ранг открытия из таблицы (unlockRank), структурный rankRequired остаётся номером сценария в разделе
+  test('derives each canonical entry state only from its unlock rank and the local player rank', () => {
+    expect(getDialogueV2LocalRankAccess('social_01', 0)).toEqual({
+      entry: expect.objectContaining({ id: 'social_01', rankRequired: 1, unlockRank: 0 }),
       access: { status: 'unlocked' },
     });
-    expect(getDialogueV2LocalRankAccess('social_02', 1)).toEqual({
-      entry: expect.objectContaining({ id: 'social_02', rankRequired: 2 }),
-      access: { status: 'locked_by_rank', rankRequired: 2 },
+    expect(getDialogueV2LocalRankAccess('social_02', 0)).toEqual({
+      entry: expect.objectContaining({ id: 'social_02', rankRequired: 2, unlockRank: 1 }),
+      access: { status: 'locked_by_rank', rankRequired: 1 },
     });
+    expect(getDialogueV2LocalRankAccess('social_02', 1)?.access).toEqual({ status: 'unlocked' });
   });
 
-  test('keeps the first dialogue locked for the valid starting rank zero', () => {
+  test('at the valid starting rank zero only the first social dialogue is open', () => {
     expect(getDialogueV2LocalRankAccess('work_01', 0)).toEqual({
-      entry: expect.objectContaining({ id: 'work_01', rankRequired: 1 }),
+      entry: expect.objectContaining({ id: 'work_01', rankRequired: 1, unlockRank: 1 }),
       access: { status: 'locked_by_rank', rankRequired: 1 },
     });
   });
@@ -23,7 +25,7 @@ describe('dialogue v2 local rank catalogue access', () => {
     'fails closed for corrupt local rank %p',
     (rank) => {
       expect(getDialogueV2LocalRankAccess('travel_19', rank)).toEqual({
-        entry: expect.objectContaining({ id: 'travel_19', rankRequired: 19 }),
+        entry: expect.objectContaining({ id: 'travel_19', rankRequired: 19, unlockRank: 19 }),
         access: { status: 'locked_by_rank', rankRequired: 19 },
       });
     },

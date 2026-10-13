@@ -28,7 +28,34 @@ export function getDialogueV2LocalRankAccess(
     entry,
     access: decideDialogueV2ScenarioAccess({
       achievedRank: isValidCoinRank(localCoinRank) ? localCoinRank : null,
-      rankRequired: entry.rankRequired,
+      // зачем (правило владельца 13.10): замок берёт ранг открытия из таблицы (unlockRank), а не номер сценария в разделе (rankRequired структурный, для пакетов)
+      rankRequired: entry.unlockRank,
     }),
   };
+}
+
+export type DialogueV2RankGateRow = Readonly<{
+  id: string;
+  cefr: string;
+  unlockRank: number;
+  decision: 'открыт' | 'закрыт' | 'пройден';
+}>;
+
+let lastRankGateLogKey = '';
+
+/**
+ * Журнал [DIALOG-RANK-GATE] (правило «сперва логи», 13.10): что решил замок по каждому диалогу — id, уровень, ранг открытия, мой ранг, решение.
+ * Одна строка на проекцию; повтор с теми же входами не пишется (каталог перерисовывается часто).
+ */
+export function logDialogueV2RankGate(
+  source: 'released' | 'authorized',
+  studyTarget: unknown,
+  myRank: unknown,
+  rows: readonly DialogueV2RankGateRow[],
+): void {
+  const key = `${source}|${String(studyTarget)}|${String(myRank)}|${rows.map((row) => row.decision[0]).join('')}`;
+  if (key === lastRankGateLogKey) return;
+  lastRankGateLogKey = key;
+  const count = (decision: DialogueV2RankGateRow['decision']) => rows.filter((row) => row.decision === decision).length;
+  console.log(`[DIALOG-RANK-GATE] ${source} target=${String(studyTarget)} мой_ранг=${String(myRank)} открыто=${count('открыт')} закрыто=${count('закрыт')} пройдено=${count('пройден')} | ${rows.map((row) => `${row.id}:${row.cefr}@${row.unlockRank}=${row.decision}`).join(' ')}`); // guard-ok: журнал замков по рангам
 }

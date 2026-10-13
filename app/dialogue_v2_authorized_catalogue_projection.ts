@@ -12,7 +12,11 @@ import {
   type DialogueV2StudyTarget,
 } from '../shared/dialogue_v2_language_pack_contract';
 import { DIALOGUE_V2_WORLD_IDS, type DialogueV2WorldId } from '../shared/dialogue_v2_contract';
-import { getDialogueV2LocalRankAccess } from './dialogue_v2_local_rank_access';
+import {
+  getDialogueV2LocalRankAccess,
+  logDialogueV2RankGate,
+  type DialogueV2RankGateRow,
+} from './dialogue_v2_local_rank_access';
 
 export type DialogueV2AuthorizedCatalogueProjection = Readonly<{
   worlds: readonly DialogueV2CatalogueWorld[];
@@ -154,6 +158,7 @@ export function projectAuthorizedDialogueV2Catalogue(
     const items: DialogueV2CatalogueLearnerItem[] = [];
     const doneIds = input.doneScenarioIds ?? null;
     const statusLog: string[] = [];
+    const gateRows: DialogueV2RankGateRow[] = [];
     for (const entry of DIALOGUE_V2_CATALOGUE_INDEX) {
       const packet = input.packets.find((candidate) => plainRecord(candidate)?.scenario
         && plainRecord(plainRecord(candidate)?.scenario)?.id === entry.id);
@@ -164,16 +169,19 @@ export function projectAuthorizedDialogueV2Catalogue(
       const unlocked = rankAccess.access.status === 'unlocked';
       const isDone = doneIds?.has(entry.id) === true;
       const status: DialogueV2CatalogueLearnerItem['status'] = isDone ? 'done' : unlocked ? 'available' : 'locked';
-      if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.rankRequired}_закрыт`})`);
+      if (isDone || !unlocked) statusLog.push(`${entry.id}:${status}(${isDone ? 'в_хранилище_прохождений' : `ранг_${entry.unlockRank}_закрыт`})`);
+      gateRows.push({ id: entry.id, cefr: entry.cefr, unlockRank: entry.unlockRank, decision: isDone ? 'пройден' : unlocked ? 'открыт' : 'закрыт' });
       items.push(Object.freeze({
         id: entry.id,
         worldId: entry.worldId,
         title,
         cefr: entry.cefr,
-        rankRequired: entry.rankRequired,
+        // зачем (правило владельца 13.10): в подписи «Откроется на ранге N» и в брифинге — ранг открытия из таблицы, не номер в разделе
+        rankRequired: entry.unlockRank,
         status,
       }));
     }
+    logDialogueV2RankGate('authorized', input.studyTarget, input.localCoinRank, gateRows);
     console.log(`[DIALOG-DONE] projection target=${String(input.studyTarget)} rank=${String(input.localCoinRank)} сценариев=${items.length} известно_пройденных=${doneIds?.size ?? 0} done=${items.filter((item) => item.status === 'done').length} locked=${items.filter((item) => item.status === 'locked').length} available=${items.filter((item) => item.status === 'available').length} решения=[${statusLog.join(' ')}]`); // guard-ok: итог проекции
     return observed.size === DIALOGUE_V2_CATALOGUE_INDEX.length
       ? Object.freeze({ worlds, items: Object.freeze(items) })

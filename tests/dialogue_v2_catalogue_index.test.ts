@@ -10,7 +10,7 @@ describe('dialogue v2 catalogue index', () => {
     expect(Object.isFrozen(DIALOGUE_V2_CATALOGUE_INDEX)).toBe(true);
     expect(DIALOGUE_V2_CATALOGUE_INDEX.every((entry) => Object.isFrozen(entry))).toBe(true);
     expect(DIALOGUE_V2_CATALOGUE_INDEX.every((entry) => (
-      Object.keys(entry).every((key) => ['id', 'worldId', 'rankRequired', 'cefr'].includes(key))
+      Object.keys(entry).every((key) => ['id', 'worldId', 'rankRequired', 'unlockRank', 'cefr'].includes(key))
     ))).toBe(true);
 
     for (const worldId of DIALOGUE_V2_WORLD_IDS) {
@@ -24,7 +24,7 @@ describe('dialogue v2 catalogue index', () => {
 
   test('resolves an immutable scenario id to its rank and CEFR', () => {
     expect(getDialogueV2CatalogueEntry('social_19')).toEqual({
-      id: 'social_19', worldId: 'social', rankRequired: 19, cefr: 'C2',
+      id: 'social_19', worldId: 'social', rankRequired: 19, unlockRank: 18, cefr: 'C2',
     });
     expect(getDialogueV2CatalogueEntry('coffee')).toBeNull();
   });

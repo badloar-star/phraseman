@@ -30,6 +30,9 @@ export function spireCloudAvailable(): boolean {
 export function spireClassifyNetError(error: unknown): SpireNetFailure {
   const message = String((error as { message?: unknown } | null)?.message ?? error ?? '');
   if (/league_finalization_pending|spire_migration_paused/u.test(message)) return 'paused';
+  // зачем (аудит «пропала сеть», 13.10, п.6): потолок вызова истёк — для человека это «нет сети»: кэш недели и понятное сообщение.
+  const code = String((error as { code?: unknown } | null)?.code ?? '').replace(/^functions\//u, '');
+  if (code === 'deadline-exceeded' || /deadline[-_ ]exceeded/iu.test(message)) return 'offline';
   return spireClassifyFlushError(error);
 }
 
@@ -38,6 +41,9 @@ export function spireErrorText(error: unknown): string {
   const message = error instanceof Error ? error.message : String(error);
   return code ? `${code}: ${message}` : message;
 }
+
+/** Потолок одного callable Шпиля на телефоне (сервер — 15 с). */
+export const SPIRE_CALLABLE_TIMEOUT_MS = 18_000;
 
 /** Один callable. Бросает — вызывающий классифицирует через spireClassifyNetError. */
 export async function spireCall<TReq extends Readonly<Record<string, unknown>>, TRes>(
@@ -48,11 +54,18 @@ export async function spireCall<TReq extends Readonly<Record<string, unknown>>, 
   if (!spireGateStillOpen(gate, `call:${name}`)) throw new Error('spire_gate_closed');
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
-  const fn = httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name);
+  // зачем (аудит «пропала сеть», 13.10, п.6): без потолка вход в комнату ждал нативные ~60–70 с, и тап «Подняться» без кэша висел.
+  // Сервер (HOT_CALLABLE_OPTIONS) работает до 15 с — ждём 18 с, дальше deadline-exceeded → 'offline' (spireClassifyNetError).
+  const fn = httpsCallable<TReq, TRes>(getFunctions(getApp(), FUNCTIONS_REGION), name, { timeout: SPIRE_CALLABLE_TIMEOUT_MS });
   const startedAt = Date.now();
-  const res = await fn(payload);
-  DebugLogger.info(LOG, `call ${name}: ok за ${Date.now() - startedAt}мс`);
-  return res.data;
+  try {
+    const res = await fn(payload);
+    DebugLogger.info(LOG, `call ${name}: ok за ${Date.now() - startedAt}мс`);
+    return res.data;
+  } catch (error) {
+    DebugLogger.warn(LOG, `call ${name}: сбой за ${Date.now() - startedAt}мс (${spireErrorText(error)}) потолок=${SPIRE_CALLABLE_TIMEOUT_MS}мс`);
+    throw error;
+  }
 }
 
 /** Firestore или null (Expo Go / облако выключено / модуль не поднялся). */

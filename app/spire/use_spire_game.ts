@@ -15,8 +15,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager } from 'react-native';
 
-import { spireStepBudgetMs, type SpireConfigDoc, type SpireTimerConfig } from '../../modules/spire/config_contract';
-import { SPIRE_STEP_TASK_COUNT } from '../../modules/spire/step_machine';
+import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
   SPIRE_REPORT_FLUSH_INTERVAL_MS,
@@ -39,6 +38,7 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { spireLoadFriendChips } from './spire_friends_client';
 import { useSpireFriendsRefresh } from './use_spire_friends_refresh';
 import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
+import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step_budget';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
 import { peekSpireRoom, spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
@@ -55,24 +55,8 @@ export type SpireStepSession = Readonly<{ pick: SpireStepPick; ctx: SpireStepCon
  */
 export type SpirePendingStep = Readonly<{ prepId: string; ctx: SpireStepContext; budgetMs: number }>;
 
-// зачем: до пакета точного бюджета нет (он зависит от видов заданий набора). Повтор того же этажа берёт
-// последний настоящий бюджет из памяти процесса, иначе — среднее по видам × 10 заданий с тем же спадом по этажу.
-const lastBudgetByFloor = new Map<number, number>();
-
-export function spireEstimateStepBudgetMs(timer: SpireTimerConfig, floor: number): number {
-  const known = lastBudgetByFloor.get(floor);
-  if (typeof known === 'number' && known > 0) return known;
-  const bases = Object.values(timer.baseMsByKind).filter((n): n is number => typeof n === 'number' && n > 0);
-  if (bases.length === 0) return 0;
-  const avg = bases.reduce((a, b) => a + b, 0) / bases.length;
-  const decay = Math.max(timer.floorMinRatio, 1 - timer.perFloorDecay * Math.max(0, floor - 1));
-  return Math.round(avg * SPIRE_STEP_TASK_COUNT * decay);
-}
-
-/** Только для тестов. */
-export function __resetSpireBudgetEstimateForTests(): void {
-  lastBudgetByFloor.clear();
-}
+// зачем (≤ 400 строк, 13.10): оценка бюджета до пакета — в spire_step_budget.ts; прежние имена реэкспортом для тестов.
+export { spireEstimateStepBudgetMs, __resetSpireBudgetEstimateForTests } from './spire_step_budget';
 
 /** Итог ступени для панели на сцене башни — только память экрана. */
 export type SpireStepOutcome = Readonly<{
@@ -290,7 +274,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         failStart('pack_missing', `в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
         return;
       }
-      lastBudgetByFloor.set(floor, pick.plan.budgetMs);
+      spireRememberStepBudget(floor, pick.plan.budgetMs);
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
       DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
       setSession({ pick, ctx: { lang, weekKey, tier, floor, stepInFloor }, attempt, runId });

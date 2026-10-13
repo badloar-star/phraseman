@@ -10,8 +10,8 @@
           "uk": "`is` — про когось одного збоку: `he is`, `she is`. Про себе завжди `am`."
         },
         "en:lesson-01:session-37:intro1:r3": {
-          "ru": "Скрепка выпала. По-русски её нет, по-английски без `am` фразы не будет.",
-          "uk": "Скріпка випала. Українською її немає, англійською без `am` фрази не буде."
+          "ru": "После `I` нужно `am`: I am tired.",
+          "uk": "Після `I` потрібне `am`: I am tired."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c09ef4dbdf250db245250f750fe7b60944da56b59c729aa4d1917a74cb26d015"
+  "auxiliaryFingerprint": "0af519c3a70b3fdbc418bf588f0a2ab5d2ce5b9facf494346be90b74bdda48fa"
 }

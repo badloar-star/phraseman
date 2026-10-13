@@ -115,6 +115,15 @@
               "ru": "Это «тёмный». В `drunk` после первой буквы идёт `r`, а потом ещё `n` перед концом.",
               "uk": "Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Выбрано `drunk`: именно это слово звучит в аудио и значит «пьяный».",
+              "uk": "Обрано `drunk`: саме це слово звучить в аудіо й означає «п'яний»."
+            }
           }
         ],
         "isWordCard": false,
@@ -191,7 +200,26 @@
           "am",
           "he's"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: оно уже спрятано в `I'm sober.`",
+              "uk": "`am` зайве: воно вже заховане в `I'm sober`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i04:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+            "feedbackByLocale": {
+              "ru": "`he's` не подходит: говорите о себе — `I'm sober.`",
+              "uk": "`he's` не підходить: говорите про себе — `I'm sober`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -307,6 +335,15 @@
               "ru": "Другой хвост, и это уже не про состояние: `sleeper` — тот, кто спит.",
               "uk": "Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-47:i06:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Выбрано `sleepy`: именно это слово звучит в аудио и значит «сонный».",
+              "uk": "Обрано `sleepy`: саме це слово звучить в аудіо й означає «сонний»."
+            }
           }
         ],
         "isWordCard": false,
@@ -404,6 +441,15 @@
         ],
         "testedDimension": "Вставьте слово — друг залпом допил кофе ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
+            "feedbackByLocale": {
+              "ru": "Кофе разбудил друга, поэтому он `awake` — «не спит».",
+              "uk": "Кава розбудила друга, тому він `awake` — «не спить»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-47:i08:r2",
             "correct": false,
@@ -547,6 +593,15 @@
         "testedDimension": "Вставьте слово — Мира спрашивает, трезвы ли вы",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-47:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира спрашивает, трезвы ли вы, прежде чем доверить вам руль её машины",
+            "feedbackByLocale": {
+              "ru": "Перед вождением нужно быть `sober` — «трезвым».",
+              "uk": "Перед водінням треба бути `sober` — «тверезим»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-47:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — Мира спрашивает, трезвы ли вы",
@@ -659,6 +714,15 @@
         "testedDimension": "Вставьте слово — друг весь день таскал я",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-47:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
+            "feedbackByLocale": {
+              "ru": "После ящиков друг `tired` — «устал», хотя ещё не хочет спать.",
+              "uk": "Після ящиків друг `tired` — «втомився», хоча ще не хоче спати."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-47:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — друг весь день таскал я",
@@ -709,7 +773,17 @@
         "authoredDistractorTokens": [
           "aren't"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «она не сонная»",
+            "feedbackByLocale": {
+              "ru": "`aren't` не подходит к `She`: в аудио `She isn't sleepy.`",
+              "uk": "`aren't` не підходить до `She`: в аудіо `She isn't sleepy`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -739,7 +813,17 @@
         "authoredDistractorTokens": [
           "isn't"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — друзья у выхода, все бодрые",
+            "feedbackByLocale": {
+              "ru": "`isn't` не подходит к `They`: нужно `They aren't sleepy.`",
+              "uk": "`isn't` не підходить до `They`: потрібно `They aren't sleepy`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -834,6 +918,15 @@
         "testedDimension": "Вставьте слово — час ночи, музыку выключ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-47:i16:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — час ночи, музыку выключили, все замолчали",
+            "feedbackByLocale": {
+              "ru": "Музыку выключили и все молчат, значит здесь `quiet` — «тихо».",
+              "uk": "Музику вимкнули й усі мовчать, отже тут `quiet` — «тихо»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-47:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — час ночи, музыку выключ",
@@ -876,7 +969,17 @@
         "authoredDistractorTokens": [
           "quiet"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-47:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вас ждали к одиннадцати, а на часах полночь",
+            "feedbackByLocale": {
+              "ru": "`quiet` лишнее: на часах полночь, поэтому `I'm late.`",
+              "uk": "`quiet` зайве: на годиннику північ, тому `I'm late`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1049,5 +1152,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "283f5100b85bd8a058d2188ceffd76bb025ad22d9e605ffa2842903242baeae9"
+  "learnerFingerprint": "8beb706f7a903a34de7b7da023111061f2ccdf353a53fe07aad8179b8170e2a0"
 }

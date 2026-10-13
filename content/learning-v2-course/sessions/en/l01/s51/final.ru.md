@@ -105,6 +105,8 @@ He is ___ . → **upstairs** · outside · here
 **10 · Соберите фразу — сосед стоит рядом с вами**
 <!-- interaction_id: en:lesson-01:session-51:i10; family: phrase_builder -->
 Плитки: `He` `is` `here.` `there.` `are` → **He is here.**
+*(плитка `there.` лишняя: `there` — «там», а сосед стоит рядом с вами, то есть `here`)*
+*(плитка `are` лишняя: после единственного `he` нужна форма `is`)*
 
 **11 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-51:i11; family: speed_match -->

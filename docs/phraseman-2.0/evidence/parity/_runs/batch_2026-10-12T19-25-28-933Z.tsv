@@ -1,0 +1,5 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-030	2026-10-12T19:25:52.392Z	ok	7622	marker+шагов_2+склейка+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/profile-030.png	0
+cards-043	2026-10-12T19:26:12.344Z	ok	10903	marker+пусто_1306мс+склейка+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/cards-043.png	1306
+cards-081	2026-10-12T19:26:48.441Z	ok	10853	marker+шагов_4+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-081.png	0
+energy-modes-007	2026-10-12T19:27:21.274Z	ok	10872	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-007.png	0

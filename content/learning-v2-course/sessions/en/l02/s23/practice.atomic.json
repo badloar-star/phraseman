@@ -288,7 +288,7 @@
               "text": "shops"
             }
           ],
-          "testedDimension": "Вставьте слово — вам сказали «ждите на у",
+          "testedDimension": "Вставьте слово — вам сказали «ждите на углу», а вы не поняли на каком",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i05:r2",
@@ -370,7 +370,17 @@
           "authoredDistractorTokens": [
             "behind"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он рядом»",
+              "feedbackByLocale": {
+                "ru": "в записи сказано `near` — «рядом», а не `behind` — «позади».",
+                "uk": "у записі сказано `near` — «поруч», а не `behind` — «позаду»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -419,7 +429,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставьте слово — вокзал стоит прямо за р",
+          "testedDimension": "Вставьте слово — вокзал стоит прямо за рядом магазинов",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i08:r2",
@@ -480,7 +490,7 @@
             "audioTargetId": "en:lesson-02:session-23:i09:audioB",
             "transcript": "fridge"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «мос",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «мост»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i09:r2",
@@ -613,7 +623,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставьте слово — магазины видно, только ",
+          "testedDimension": "Вставьте слово — магазины видно, только когда перейдёшь мост",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i11:r2",
@@ -664,7 +674,17 @@
           "authoredDistractorTokens": [
             "it"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
+              "feedbackByLocale": {
+                "ru": "вопрос о месте начинается с `Where is`; `It is` начинает ответ, а не вопрос.",
+                "uk": "запитання про місце починається з `Where is`; `It is` починає відповідь, а не запитання."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -713,7 +733,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставьте слово — вы спрашиваете, как про",
+          "testedDimension": "Вставьте слово — вы спрашиваете, как пройти к поездам",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i13:r2",
@@ -797,7 +817,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
+              "feedbackByLocale": {
+                "ru": "речь об одном вокзале, поэтому ответ начинается с `It is`.",
+                "uk": "йдеться про один вокзал, тому відповідь починається з `It is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -810,14 +840,26 @@
         "prompt": "Послушайте и соберите — сотрудник у схемы объясняет, где находится улица",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-23:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i16:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — сотрудник у схемы объясняет, где находится улица",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-23:i16:audio", "transcript": "The street is behind the station."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i16:audio",
+            "transcript": "The street is behind the station."
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "The street is behind the station.",
-          "orderedTokens": ["The", "street", "is", "behind", "the", "station"],
+          "orderedTokens": [
+            "The",
+            "street",
+            "is",
+            "behind",
+            "the",
+            "station"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1207,7 +1249,7 @@
               "text": "shops"
             }
           ],
-          "testedDimension": "Вставте слово — вам сказали «чекайте на ",
+          "testedDimension": "Вставте слово — вам сказали «чекайте на розі», а ви не зрозуміли на якому",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i05:r2",
@@ -1289,7 +1331,17 @@
           "authoredDistractorTokens": [
             "behind"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он рядом»",
+              "feedbackByLocale": {
+                "ru": "в записи сказано `near` — «рядом», а не `behind` — «позади».",
+                "uk": "у записі сказано `near` — «поруч», а не `behind` — «позаду»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1338,7 +1390,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставте слово — вокзал стоїть просто за ",
+          "testedDimension": "Вставте слово — вокзал стоїть просто за рядом магазинів",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i08:r2",
@@ -1399,7 +1451,7 @@
             "audioTargetId": "en:lesson-02:session-23:i09:audioB",
             "transcript": "fridge"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «міст»",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «міст»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i09:r2",
@@ -1532,7 +1584,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставте слово — магазини видно, тільки к",
+          "testedDimension": "Вставте слово — магазини видно, тільки коли перейдеш міст",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i11:r2",
@@ -1583,7 +1635,17 @@
           "authoredDistractorTokens": [
             "it"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в руке записка с названием улицы, а вокруг незнакомый район",
+              "feedbackByLocale": {
+                "ru": "вопрос о месте начинается с `Where is`; `It is` начинает ответ, а не вопрос.",
+                "uk": "запитання про місце починається з `Where is`; `It is` починає відповідь, а не запитання."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1632,7 +1694,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставте слово — ви питаєте, як пройти до",
+          "testedDimension": "Вставте слово — ви питаєте, як пройти до поїздів",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-23:i13:r2",
@@ -1716,7 +1778,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-23:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — у вас спросили про вокзал, а он в двух шагах",
+              "feedbackByLocale": {
+                "ru": "речь об одном вокзале, поэтому ответ начинается с `It is`.",
+                "uk": "йдеться про один вокзал, тому відповідь починається з `It is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1729,14 +1801,26 @@
         "prompt": "Послухайте й складіть — працівник біля схеми пояснює, де розташована вулиця",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-23:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-23:i16:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть — працівник біля схеми пояснює, де розташована вулиця",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-23:i16:audio", "transcript": "The street is behind the station."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-23:i16:audio",
+            "transcript": "The street is behind the station."
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "The street is behind the station.",
-          "orderedTokens": ["The", "street", "is", "behind", "the", "station"],
+          "orderedTokens": [
+            "The",
+            "street",
+            "is",
+            "behind",
+            "the",
+            "station"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },

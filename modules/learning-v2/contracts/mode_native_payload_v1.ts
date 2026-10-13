@@ -1,5 +1,4 @@
 import type { LearningV2Localized } from "../content/generator_course_contract";
-import type { LearningV2ModeNativeFamilyV1 } from "./mode_native_authoring_contract_v1";
 
 export type LearningV2ModeAudioReferenceV1 = Readonly<{
   audioTargetId: string;
@@ -14,6 +13,55 @@ export type LearningV2ModeChoiceFeedbackV1 = Readonly<{
   // вместо выдумывания значений в сотнях записей.
   testedDimension?: string;
   feedbackByLocale: LearningV2Localized<string>;
+  analysisV1?: LearningV2ModeTextAnalysisV1;
+  errorType?: string;
+  whyTemptingByLocale?: LearningV2Localized<string>;
+  whyWrongHereByLocale?: LearningV2Localized<string>;
+  minimalContrastByLocale?: LearningV2Localized<string>;
+  acceptabilityBoundaryByLocale?: LearningV2Localized<string>;
+}>;
+
+export type LearningV2ModePhraseUnitExplanationV1 = Readonly<{
+  text: string;
+  start: number;
+  end: number;
+  lemma: string;
+  partOfSpeech: string;
+  partOfSpeechLabelByLocale: LearningV2Localized<string>;
+  meaningByLocale: LearningV2Localized<string>;
+  functionByLocale: LearningV2Localized<string>;
+  sourceRefs: readonly string[];
+}>;
+
+export type LearningV2ModeTextAnalysisV1 = Readonly<{
+  text: string;
+  meaningByLocale: LearningV2Localized<string>;
+  explanationByLocale: LearningV2Localized<string>;
+  units: readonly LearningV2ModePhraseUnitExplanationV1[];
+}>;
+
+export type LearningV2ModeChoiceDiagnosticV1 = Readonly<{
+  errorType: string;
+  whyTemptingByLocale: LearningV2Localized<string>;
+  whyWrongHereByLocale: LearningV2Localized<string>;
+  minimalContrastByLocale: LearningV2Localized<string>;
+  acceptabilityBoundaryByLocale: LearningV2Localized<string>;
+}>;
+
+export type LearningV2ModePhraseExplanationV1 = Readonly<{
+  completionFeedbackByLocale: LearningV2Localized<string>;
+  phrase: LearningV2ModeTextAnalysisV1;
+}>;
+
+export type LearningV2ModeSpeedPairAnalysisV1 = Readonly<{
+  lemma: string;
+  partOfSpeech: string;
+  partOfSpeechLabelByLocale: LearningV2Localized<string>;
+  meaningByLocale: LearningV2Localized<string>;
+  functionByLocale: LearningV2Localized<string>;
+  matchExplanationByLocale: LearningV2Localized<string>;
+  sourceRefs: readonly string[];
+  phrase?: LearningV2ModeTextAnalysisV1;
 }>;
 
 export type LearningV2ModeNativePayloadV1 =
@@ -24,6 +72,8 @@ export type LearningV2ModeNativePayloadV1 =
       orderedTokens: readonly string[];
       authoredDistractorTokens: readonly string[];
       slotFeedback: readonly LearningV2ModeChoiceFeedbackV1[];
+      completionFeedbackByLocale?: LearningV2Localized<string>;
+      explanationV1?: LearningV2ModePhraseExplanationV1;
     }>
   | Readonly<{
       family: "listen_choose";
@@ -56,6 +106,8 @@ export type LearningV2ModeNativePayloadV1 =
       orderedTokens: readonly string[];
       authoredDistractorTokens: readonly string[];
       slotFeedback: readonly LearningV2ModeChoiceFeedbackV1[];
+      completionFeedbackByLocale?: LearningV2Localized<string>;
+      explanationV1?: LearningV2ModePhraseExplanationV1;
     }>
   | Readonly<{
       family: "context_gap_grammar";
@@ -74,6 +126,7 @@ export type LearningV2ModeNativePayloadV1 =
         pairId: string;
         target: string;
         meaningByLocale: LearningV2Localized<string>;
+        analysisV1?: LearningV2ModeSpeedPairAnalysisV1;
       }>[];
       leftColumn: readonly string[];
       rightColumn: readonly string[];
@@ -99,6 +152,7 @@ export type LearningV2ModeNativePayloadV1 =
         "UNCERTAIN",
         "INVALID_AUDIO_OR_SYSTEM",
       ];
+      explanationV1?: Readonly<{ phrase: LearningV2ModeTextAnalysisV1 }>;
     }>;
 
 const FAMILY_REQUIRED_FIELDS: Readonly<
@@ -179,7 +233,91 @@ export function validateLearningV2ModeNativePayloadV1(
       throw new Error(`learning_v2_mode_native_payload_field_missing:${family}:${field}`);
     }
   }
+  validateOptionalAnalyses(payload, family);
   return Object.freeze(payload) as unknown as LearningV2ModeNativePayloadV1;
+}
+
+function localizedTextPresent(value: unknown): boolean {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const localized = value as Record<string, unknown>;
+  if (["ru", "uk"].some((locale) => typeof localized[locale] !== "string" || !(localized[locale] as string).trim())) return false;
+  const entries = Object.values(localized);
+  return entries.every((entry) => typeof entry === "string" && entry.trim().length > 0);
+}
+
+export function validateLearningV2ModeTextAnalysisV1(value: unknown, expectedText?: string): LearningV2ModeTextAnalysisV1 {
+  if (!value || typeof value !== "object" || Array.isArray(value))
+    throw new Error("learning_v2_mode_text_analysis_invalid");
+  const analysis = value as Record<string, unknown>;
+  if (typeof analysis.text !== "string" || !analysis.text.trim() || (expectedText !== undefined && analysis.text !== expectedText))
+    throw new Error("learning_v2_mode_text_analysis_text_mismatch");
+  if (!localizedTextPresent(analysis.meaningByLocale) || !localizedTextPresent(analysis.explanationByLocale))
+    throw new Error("learning_v2_mode_text_analysis_localized_copy_missing");
+  if (!Array.isArray(analysis.units) || analysis.units.length === 0)
+    throw new Error("learning_v2_mode_text_analysis_units_missing");
+  const covered = new Set<number>();
+  let previousEnd = -1;
+  for (const rawUnit of analysis.units) {
+    if (!rawUnit || typeof rawUnit !== "object" || Array.isArray(rawUnit))
+      throw new Error("learning_v2_mode_text_analysis_unit_invalid");
+    const unit = rawUnit as Record<string, unknown>;
+    if (!Number.isInteger(unit.start) || !Number.isInteger(unit.end) || (unit.start as number) < 0 || (unit.end as number) <= (unit.start as number) || (unit.start as number) < previousEnd)
+      throw new Error("learning_v2_mode_text_analysis_unit_offsets");
+    if (analysis.text.slice(unit.start as number, unit.end as number) !== unit.text)
+      throw new Error("learning_v2_mode_text_analysis_unit_offsets");
+    if (typeof unit.lemma !== "string" || !unit.lemma.trim() || typeof unit.partOfSpeech !== "string" || !unit.partOfSpeech.trim())
+      throw new Error("learning_v2_mode_text_analysis_unit_grammar_missing");
+    if (!localizedTextPresent(unit.partOfSpeechLabelByLocale) || !localizedTextPresent(unit.meaningByLocale) || !localizedTextPresent(unit.functionByLocale))
+      throw new Error("learning_v2_mode_text_analysis_unit_localized_copy_missing");
+    if (!Array.isArray(unit.sourceRefs) || unit.sourceRefs.length === 0 || unit.sourceRefs.some((ref) => typeof ref !== "string" || !ref.trim()))
+      throw new Error("learning_v2_mode_text_analysis_unit_source_missing");
+    for (let offset = unit.start as number; offset < (unit.end as number); offset += 1) covered.add(offset);
+    previousEnd = unit.end as number;
+  }
+  for (let offset = 0; offset < analysis.text.length; offset += 1) {
+    if (!/\s/u.test(analysis.text[offset]!) && !covered.has(offset))
+      throw new Error("learning_v2_mode_text_analysis_unit_gap");
+  }
+  return Object.freeze(value as LearningV2ModeTextAnalysisV1);
+}
+
+function validateFeedbackAnalyses(rows: unknown, expectedTextById: ReadonlyMap<string, string>): void {
+  if (!Array.isArray(rows)) return;
+  for (const rawRow of rows) {
+    if (!rawRow || typeof rawRow !== "object" || Array.isArray(rawRow)) continue;
+    const row = rawRow as Record<string, unknown>;
+    if (row.analysisV1 !== undefined) validateLearningV2ModeTextAnalysisV1(row.analysisV1, expectedTextById.get(String(row.responseId)));
+    if (row.analysisV1 !== undefined && row.correct === false) {
+      if (typeof row.errorType !== "string" || !row.errorType.trim() ||
+        !localizedTextPresent(row.whyTemptingByLocale) || !localizedTextPresent(row.whyWrongHereByLocale) ||
+        !localizedTextPresent(row.minimalContrastByLocale) || !localizedTextPresent(row.acceptabilityBoundaryByLocale))
+        throw new Error("learning_v2_mode_choice_wrong_reason_missing");
+    }
+  }
+}
+
+function validateOptionalAnalyses(payload: Record<string, unknown>, family: LearningV2ModeNativePayloadV1["family"]): void {
+  if (family === "context_gap_grammar") {
+    const expected = new Map((payload.gapOptions as Array<Record<string, unknown>>).map((entry) => [String(entry.responseId), String(entry.text)]));
+    validateFeedbackAnalyses(payload.choiceFeedback, expected);
+  } else if (family === "listen_choose") {
+    const expected = new Map((payload.localizedMeaningChoices as Array<Record<string, unknown>>).map((entry) => [String(entry.responseId), String(entry.targetText)]));
+    validateFeedbackAnalyses(payload.choiceFeedback, expected);
+  } else if (family === "phrase_builder" || family === "listen_build_dictation") {
+    const distractors = (payload.authoredDistractorTokens as unknown[]).map(String);
+    const expected = new Map((payload.slotFeedback as Array<Record<string, unknown>>).map((entry, index) => [String(entry.responseId), distractors[index] ?? ""]));
+    validateFeedbackAnalyses(payload.slotFeedback, expected);
+    const explanation = payload.explanationV1 as Record<string, unknown> | undefined;
+    if (explanation?.phrase !== undefined) validateLearningV2ModeTextAnalysisV1(explanation.phrase, String(family === "phrase_builder" ? payload.targetPhrase : payload.hiddenTargetPhrase));
+  } else if (family === "speed_match") {
+    for (const rawPair of payload.pairGrid as Array<Record<string, unknown>>) {
+      const analysis = rawPair.analysisV1 as Record<string, unknown> | undefined;
+      if (analysis?.phrase !== undefined) validateLearningV2ModeTextAnalysisV1(analysis.phrase, String(rawPair.target));
+    }
+  } else if (family === "scripted_repeat_compare") {
+    const explanation = payload.explanationV1 as Record<string, unknown> | undefined;
+    if (explanation?.phrase !== undefined) validateLearningV2ModeTextAnalysisV1(explanation.phrase, String(payload.targetPhrase));
+  }
 }
 
 export function learningV2ModeNativeAudioTargetIdsV1(

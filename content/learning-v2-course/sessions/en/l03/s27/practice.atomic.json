@@ -88,12 +88,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Выберите название — у дальней стены находится выключатель",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i05:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i05:r2", "text": "button" }, { "responseId": "en:lesson-03:session-27:i05:r3", "text": "remote" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i05:r1",
+            "text": "switch"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i05:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i05:r3",
+            "text": "remote"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Выберите название — у дальней стены находится выключатель",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "У дальней стены находится выключатель. Выберите его название.", "uk": "Біля дальньої стіни знаходиться вимикач. Виберіть його назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-27:i05:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i05:r2", "text": "button" }, { "responseId": "en:lesson-03:session-27:i05:r3", "text": "remote" }], "testedDimension": "Выключатель у дальней стены: switch", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i05:r2", "correct": false, "testedDimension": "Выключатель у дальней стены: switch", "feedbackByLocale": { "ru": "Button — кнопка. Здесь нужен выключатель: switch.", "uk": "Button — кнопка. Тут потрібен вимикач: switch." } }, { "responseId": "en:lesson-03:session-27:i05:r3", "correct": false, "testedDimension": "Выключатель у дальней стены: switch", "feedbackByLocale": { "ru": "Remote — пульт. Здесь нужен выключатель: switch.", "uk": "Remote — пульт. Тут потрібен вимикач: switch." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите название — у дальней стены находится выключатель",
+            "uk": "Біля дальньої стіни знаходиться вимикач. Виберіть його назву."
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-27:i05:r1",
+              "text": "switch"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r2",
+              "text": "button"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r3",
+              "text": "remote"
+            }
+          ],
+          "testedDimension": "Выключатель у дальней стены: switch",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Выключатель у дальней стены: switch",
+              "feedbackByLocale": {
+                "ru": "Button — кнопка. Здесь нужен выключатель: switch.",
+                "uk": "Button — кнопка. Тут потрібен вимикач: switch."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Выключатель у дальней стены: switch",
+              "feedbackByLocale": {
+                "ru": "Remote — пульт. Здесь нужен выключатель: switch.",
+                "uk": "Remote — пульт. Тут потрібен вимикач: switch."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -243,12 +296,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — switch или stitch",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i06:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i06:r2", "text": "stitch" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i06:r1",
+            "text": "switch"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i06:r2",
+            "text": "stitch"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-27:i06:audioA", "en:lesson-03:session-27:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-27:i06:audioA",
+          "en:lesson-03:session-27:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — switch или stitch",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "switch", "contrastB": "stitch", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-27:i06:audioA", "transcript": "switch" }, "audioB": { "audioTargetId": "en:lesson-03:session-27:i06:audioB", "transcript": "stitch" }, "testedPhoneticContrast": "В switch после s слышится w; в stitch — t", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i06:r2", "correct": false, "testedDimension": "В switch после s слышится w; в stitch — t", "feedbackByLocale": { "ru": "В stitch после s слышится t. В записи после s слышится w: switch.", "uk": "У stitch після s чути t. У записі після s чути w: switch." } }]
+          "family": "sound_contrast",
+          "contrastA": "switch",
+          "contrastB": "stitch",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-27:i06:audioA",
+            "transcript": "switch"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-27:i06:audioB",
+            "transcript": "stitch"
+          },
+          "testedPhoneticContrast": "В switch после s слышится w; в stitch — t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "В switch после s слышится w; в stitch — t",
+              "feedbackByLocale": {
+                "ru": "В stitch после s слышится t. В записи после s слышится w: switch.",
+                "uk": "У stitch після s чути t. У записі після s чути w: switch."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -332,13 +421,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите указательное слово — this или that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i08:r1", "text": "This" }, { "responseId": "en:lesson-03:session-27:i08:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i08:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i08:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "audioTargetIds": ["en:lesson-03:session-27:i08:audioA", "en:lesson-03:session-27:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-27:i08:audioA",
+          "en:lesson-03:session-27:i08:audioB"
+        ],
         "accessibilityLabel": "Различите указательное слово — this или that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-27:i08:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-27:i08:audioB", "transcript": "That" }, "testedPhoneticContrast": "Предмет рядом: this, не that", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i08:r2", "correct": false, "testedDimension": "Предмет рядом: this, не that", "feedbackByLocale": { "ru": "That указывает на предмет дальше. Здесь предмет рядом: this.", "uk": "That вказує на предмет далі. Тут предмет поруч: this." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-27:i08:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-27:i08:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "Предмет рядом: this, не that",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Предмет рядом: this, не that",
+              "feedbackByLocale": {
+                "ru": "That указывает на предмет дальше. Здесь предмет рядом: this.",
+                "uk": "That вказує на предмет далі. Тут предмет поруч: this."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -349,12 +473,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставьте форму — один предмет лежит рядом",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-27:i09:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i09:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте форму — один предмет лежит рядом",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Рядом лежит один предмет. Закончите сообщение о нём.", "uk": "Поруч лежить один предмет. Закінчіть повідомлення про нього." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-27:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-27:i09:r2", "text": "are" }], "testedDimension": "Один предмет рядом: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i09:r2", "correct": false, "testedDimension": "Один предмет рядом: This is here.", "feedbackByLocale": { "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.", "uk": "Are використовують з кількома предметами. Тут предмет один, тому is." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте форму — один предмет лежит рядом",
+            "uk": "Поруч лежить один предмет. Закінчіть повідомлення про нього."
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-27:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i09:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет рядом: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Один предмет рядом: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.",
+                "uk": "Are використовують з кількома предметами. Тут предмет один, тому is."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -449,7 +609,8 @@
             "a",
             "button?"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -506,7 +667,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте указатель — выключатель находит",
+          "testedDimension": "Вставьте указатель — выключатель находится у дальней стены",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-27:i13:r2",
@@ -718,7 +879,7 @@
               "text": "A"
             }
           ],
-          "testedDimension": "Вставьте первое слово — вы держите рядом",
+          "testedDimension": "Вставьте первое слово — вы держите рядом одну кнопку и уточняете, что это",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-27:i16:r2",
@@ -778,7 +939,8 @@
             "a",
             "remote?"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -929,12 +1091,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Виберіть назву — біля дальньої стіни знаходиться вимикач",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i05:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i05:r2", "text": "button" }, { "responseId": "en:lesson-03:session-27:i05:r3", "text": "remote" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i05:r1",
+            "text": "switch"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i05:r2",
+            "text": "button"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i05:r3",
+            "text": "remote"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Виберіть назву — біля дальньої стіни знаходиться вимикач",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "У дальней стены находится выключатель. Выберите его название.", "uk": "Біля дальньої стіни знаходиться вимикач. Виберіть його назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-27:i05:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i05:r2", "text": "button" }, { "responseId": "en:lesson-03:session-27:i05:r3", "text": "remote" }], "testedDimension": "Выключатель у дальней стены: switch", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i05:r2", "correct": false, "testedDimension": "Выключатель у дальней стены: switch", "feedbackByLocale": { "ru": "Button — кнопка. Здесь нужен выключатель: switch.", "uk": "Button — кнопка. Тут потрібен вимикач: switch." } }, { "responseId": "en:lesson-03:session-27:i05:r3", "correct": false, "testedDimension": "Выключатель у дальней стены: switch", "feedbackByLocale": { "ru": "Remote — пульт. Здесь нужен выключатель: switch.", "uk": "Remote — пульт. Тут потрібен вимикач: switch." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У дальней стены находится выключатель. Выберите его название.",
+            "uk": "Виберіть назву — біля дальньої стіни знаходиться вимикач"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-27:i05:r1",
+              "text": "switch"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r2",
+              "text": "button"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r3",
+              "text": "remote"
+            }
+          ],
+          "testedDimension": "Выключатель у дальней стены: switch",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i05:r2",
+              "correct": false,
+              "testedDimension": "Выключатель у дальней стены: switch",
+              "feedbackByLocale": {
+                "ru": "Button — кнопка. Здесь нужен выключатель: switch.",
+                "uk": "Button — кнопка. Тут потрібен вимикач: switch."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i05:r3",
+              "correct": false,
+              "testedDimension": "Выключатель у дальней стены: switch",
+              "feedbackByLocale": {
+                "ru": "Remote — пульт. Здесь нужен выключатель: switch.",
+                "uk": "Remote — пульт. Тут потрібен вимикач: switch."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1084,12 +1299,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — switch чи stitch",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i06:r1", "text": "switch" }, { "responseId": "en:lesson-03:session-27:i06:r2", "text": "stitch" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i06:r1",
+            "text": "switch"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i06:r2",
+            "text": "stitch"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-27:i06:audioA", "en:lesson-03:session-27:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-27:i06:audioA",
+          "en:lesson-03:session-27:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — switch чи stitch",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "switch", "contrastB": "stitch", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-27:i06:audioA", "transcript": "switch" }, "audioB": { "audioTargetId": "en:lesson-03:session-27:i06:audioB", "transcript": "stitch" }, "testedPhoneticContrast": "В switch после s слышится w; в stitch — t", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i06:r2", "correct": false, "testedDimension": "В switch после s слышится w; в stitch — t", "feedbackByLocale": { "ru": "В stitch после s слышится t. В записи после s слышится w: switch.", "uk": "У stitch після s чути t. У записі після s чути w: switch." } }]
+          "family": "sound_contrast",
+          "contrastA": "switch",
+          "contrastB": "stitch",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-27:i06:audioA",
+            "transcript": "switch"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-27:i06:audioB",
+            "transcript": "stitch"
+          },
+          "testedPhoneticContrast": "В switch после s слышится w; в stitch — t",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i06:r2",
+              "correct": false,
+              "testedDimension": "В switch после s слышится w; в stitch — t",
+              "feedbackByLocale": {
+                "ru": "В stitch после s слышится t. В записи после s слышится w: switch.",
+                "uk": "У stitch після s чути t. У записі після s чути w: switch."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1173,13 +1424,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть вказівне слово — this чи that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i08:r1", "text": "This" }, { "responseId": "en:lesson-03:session-27:i08:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i08:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i08:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": [],
-        "audioTargetIds": ["en:lesson-03:session-27:i08:audioA", "en:lesson-03:session-27:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-27:i08:audioA",
+          "en:lesson-03:session-27:i08:audioB"
+        ],
         "accessibilityLabel": "Розрізніть вказівне слово — this чи that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-27:i08:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-27:i08:audioB", "transcript": "That" }, "testedPhoneticContrast": "Предмет рядом: this, не that", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i08:r2", "correct": false, "testedDimension": "Предмет рядом: this, не that", "feedbackByLocale": { "ru": "That указывает на предмет дальше. Здесь предмет рядом: this.", "uk": "That вказує на предмет далі. Тут предмет поруч: this." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-27:i08:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-27:i08:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "Предмет рядом: this, не that",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i08:r2",
+              "correct": false,
+              "testedDimension": "Предмет рядом: this, не that",
+              "feedbackByLocale": {
+                "ru": "That указывает на предмет дальше. Здесь предмет рядом: this.",
+                "uk": "That вказує на предмет далі. Тут предмет поруч: this."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1190,12 +1476,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставте форму — один предмет лежить поруч",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-27:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-27:i09:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-27:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-27:i09:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте форму — один предмет лежить поруч",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Рядом лежит один предмет. Закончите сообщение о нём.", "uk": "Поруч лежить один предмет. Закінчіть повідомлення про нього." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-27:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-27:i09:r2", "text": "are" }], "testedDimension": "Один предмет рядом: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-27:i09:r2", "correct": false, "testedDimension": "Один предмет рядом: This is here.", "feedbackByLocale": { "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.", "uk": "Are використовують з кількома предметами. Тут предмет один, тому is." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Рядом лежит один предмет. Закончите сообщение о нём.",
+            "uk": "Вставте форму — один предмет лежить поруч"
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-27:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-27:i09:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет рядом: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-27:i09:r2",
+              "correct": false,
+              "testedDimension": "Один предмет рядом: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.",
+                "uk": "Are використовують з кількома предметами. Тут предмет один, тому is."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1290,7 +1612,8 @@
             "a",
             "button?"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1619,7 +1942,8 @@
             "a",
             "remote?"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

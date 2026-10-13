@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — home",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-06:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — home",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -181,7 +181,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — back",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i04:r1",
@@ -289,9 +289,10 @@
             {
               "responseId": "en:lesson-01:session-06:i05:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — «я дома»",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             }
           ]
@@ -372,17 +373,19 @@
             {
               "responseId": "en:lesson-01:session-06:i07:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i07:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
               "feedbackByLocale": {
-                "ru": "`not` изменило бы смысл на `I am not ok.` — «со мной не всё в порядке», но по условию всё хорошо.",
-                "uk": "`not` змінило б зміст на `I am not ok.` — «зі мною не все гаразд», але за умовою все добре."
+                "ru": "она изменила бы смысл на «со мной не всё в порядке», но по условию всё хорошо",
+                "uk": "вона змінила б зміст на «зі мною не все гаразд», але за умовою все добре"
               }
             }
           ]
@@ -395,7 +398,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — done",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i08:r1",
@@ -499,6 +502,10 @@
         "accessibilityLabel": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
         "modePayload": {
           "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+            "uk": "Вставте слово — друг питає, чи все з вами гаразд після довгої дороги"
+          },
           "gappedTargetPhrase": "I am ___.",
           "gapOptions": [
             {
@@ -665,7 +672,7 @@
               "text": "back"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, как вы",
+          "testedDimension": "Вставьте слово — друг спрашивает, как вы там вообще",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-06:i11:r1",
@@ -730,25 +737,28 @@
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `are` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `are` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d3",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "`not` изменило бы смысл: `I am not back.` — вы ещё не вернулись. Но по условию вы уже вернулись.",
-                "uk": "`not` змінило б зміст: `I am not back.` — ви ще не повернулися. Але за умовою ви вже повернулися."
+                "ru": "она изменила бы смысл на «я ещё не вернулся», но по условию вы уже вернулись",
+                "uk": "вона змінила б зміст на «я ще не повернувся», але за умовою ви вже повернулися"
               }
             }
           ]
@@ -788,9 +798,10 @@
             {
               "responseId": "en:lesson-01:session-06:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — «я закончил»",
               "feedbackByLocale": {
-                "ru": "В записи звучит `done` — «закончил»; `home` значит «дома».",
-                "uk": "У записі звучить `done` — «закінчив»; `home` означає «вдома»."
+                "ru": "в записи звучит `done` — «закончил», а `home` значит «дома»",
+                "uk": "у записі звучить `done` — «закінчив», а `home` означає «вдома»"
               }
             }
           ]
@@ -893,17 +904,19 @@
             {
               "responseId": "en:lesson-01:session-06:i16:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
               "feedbackByLocale": {
-                "ru": "В записи после `I` звучит `am`; `is` здесь лишнее.",
-                "uk": "У записі після `I` звучить `am`; `is` тут зайве."
+                "ru": "после `I` в записи звучит `am`",
+                "uk": "після `I` у записі звучить `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i16:tile:d2",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
               "feedbackByLocale": {
-                "ru": "В записи звучит `I am free.` — «у меня есть время»; с `not` получилось бы «у меня нет времени».",
-                "uk": "У записі звучить `I am free.` — «у мене є час»; із `not` вийшло б «у мене немає часу»."
+                "ru": "она изменила бы смысл на «у меня нет времени»",
+                "uk": "вона змінила б зміст на «у мене немає часу»"
               }
             }
           ]
@@ -942,25 +955,28 @@
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `are` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `are` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d3",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `not` получилось бы `I am not tired.` — усталости нет. Но после ночного рейса вы сообщаете, что устали.",
-                "uk": "Із `not` вийшло б `I am not tired.` — втоми немає. Але після нічного рейсу ви повідомляєте, що втомилися."
+                "ru": "она изменила бы смысл на «я не устал», но после ночного рейса вы сообщаете, что устали",
+                "uk": "вона змінила б зміст на «я не втомився», але після нічного рейсу ви повідомляєте, що втомилися"
               }
             }
           ]
@@ -1124,7 +1140,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — home",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i02:r1",
@@ -1143,7 +1159,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-06:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть — home",
+        "accessibilityLabel": "Послухайте і виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1251,7 +1267,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — back",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i04:r1",
@@ -1359,9 +1375,10 @@
             {
               "responseId": "en:lesson-01:session-06:i05:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — «я дома»",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             }
           ]
@@ -1442,17 +1459,19 @@
             {
               "responseId": "en:lesson-01:session-06:i07:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i07:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — после дел вы говорите, что с вами всё в порядке",
               "feedbackByLocale": {
-                "ru": "`not` изменило бы смысл на `I am not ok.` — «со мной не всё в порядке», но по условию всё хорошо.",
-                "uk": "`not` змінило б зміст на `I am not ok.` — «зі мною не все гаразд», але за умовою все добре."
+                "ru": "она изменила бы смысл на «со мной не всё в порядке», но по условию всё хорошо",
+                "uk": "вона змінила б зміст на «зі мною не все гаразд», але за умовою все добре"
               }
             }
           ]
@@ -1465,7 +1484,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — done",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-06:i08:r1",
@@ -1569,6 +1588,10 @@
         "accessibilityLabel": "Вставте слово — друг питає, чи все з вами гаразд після довгої дороги",
         "modePayload": {
           "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, всё ли с вами в порядке после долгой дороги",
+            "uk": "Вставте слово — друг питає, чи все з вами гаразд після довгої дороги"
+          },
           "gappedTargetPhrase": "I am ___.",
           "gapOptions": [
             {
@@ -1735,7 +1758,7 @@
               "text": "back"
             }
           ],
-          "testedDimension": "Вставте слово — друг питає, як ви там уз",
+          "testedDimension": "Вставте слово — друг питає, як ви там узагалі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-06:i11:r1",
@@ -1800,25 +1823,28 @@
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `are` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `are` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i12:tile:d3",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы пишете Диме, что уже вернулись",
               "feedbackByLocale": {
-                "ru": "`not` изменило бы смысл: `I am not back.` — вы ещё не вернулись. Но по условию вы уже вернулись.",
-                "uk": "`not` змінило б зміст: `I am not back.` — ви ще не повернулися. Але за умовою ви вже повернулися."
+                "ru": "она изменила бы смысл на «я ещё не вернулся», но по условию вы уже вернулись",
+                "uk": "вона змінила б зміст на «я ще не повернувся», але за умовою ви вже повернулися"
               }
             }
           ]
@@ -1858,9 +1884,10 @@
             {
               "responseId": "en:lesson-01:session-06:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — «я закончил»",
               "feedbackByLocale": {
-                "ru": "В записи звучит `done` — «закончил»; `home` значит «дома».",
-                "uk": "У записі звучить `done` — «закінчив»; `home` означає «вдома»."
+                "ru": "в записи звучит `done` — «закончил», а `home` значит «дома»",
+                "uk": "у записі звучить `done` — «закінчив», а `home` означає «вдома»"
               }
             }
           ]
@@ -1963,17 +1990,19 @@
             {
               "responseId": "en:lesson-01:session-06:i16:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
               "feedbackByLocale": {
-                "ru": "В записи после `I` звучит `am`; `is` здесь лишнее.",
-                "uk": "У записі після `I` звучить `am`; `is` тут зайве."
+                "ru": "после `I` в записи звучит `am`",
+                "uk": "після `I` у записі звучить `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i16:tile:d2",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — вы отвечаете Олегу, что завтра можете пойти гулять",
               "feedbackByLocale": {
-                "ru": "В записи звучит `I am free.` — «у меня есть время»; с `not` получилось бы «у меня нет времени».",
-                "uk": "У записі звучить `I am free.` — «у мене є час»; із `not` вийшло б «у мене немає часу»."
+                "ru": "она изменила бы смысл на «у меня нет времени»",
+                "uk": "вона змінила б зміст на «у мене немає часу»"
               }
             }
           ]
@@ -2012,25 +2041,28 @@
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `is` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `is` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d2",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `I` нужна форма `am`, поэтому `are` здесь лишнее.",
-                "uk": "З `I` потрібна форма `am`, тому `are` тут зайве."
+                "ru": "с `I` нужна форма `am`",
+                "uk": "з `I` потрібна форма `am`"
               }
             },
             {
               "responseId": "en:lesson-01:session-06:i17:tile:d3",
               "correct": false,
+              "testedDimension": "Соберите фразу — после ночного рейса вы говорите Лене, что устали",
               "feedbackByLocale": {
-                "ru": "С `not` получилось бы `I am not tired.` — усталости нет. Но после ночного рейса вы сообщаете, что устали.",
-                "uk": "Із `not` вийшло б `I am not tired.` — втоми немає. Але після нічного рейсу ви повідомляєте, що втомилися."
+                "ru": "она изменила бы смысл на «я не устал», но после ночного рейса вы сообщаете, что устали",
+                "uk": "вона змінила б зміст на «я не втомився», але після нічного рейсу ви повідомляєте, що втомилися"
               }
             }
           ]

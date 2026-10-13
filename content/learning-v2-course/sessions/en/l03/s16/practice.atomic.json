@@ -50,7 +50,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — кассир кладёт в корзину",
+          "testedDimension": "Вставьте слово — кассир кладёт в корзину документ с суммой покупки; назовите его полной фразой (`invoice` — «счёт на оплату»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i01:r2",
@@ -98,7 +98,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -132,17 +137,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i03:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — кассир пока",
-              "feedbackByLocale": {
-                "ru": "В начале `uniform` слышен согласный «й», поэтому выбираем `A`.",
-                "uk": "На початку `uniform` чути приголосний «й», тому обираємо `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -191,7 +186,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — сборка займёт шестьдеся",
+          "testedDimension": "Вставьте слово — сборка займёт шестьдесят минут; назовите срок двумя словами (`hour` — «час»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i04:r2",
@@ -336,7 +331,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — кассир уточняет товар в",
+          "testedDimension": "Вставьте слово — кассир уточняет товар в горшке; назовите растение полной фразой (`plant` — «растение»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i06:r2",
@@ -392,17 +387,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i07:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — кассир достал документ",
-              "feedbackByLocale": {
-                "ru": "После `Is it` идёт `an invoice`: название начинается с гласного звука.",
-                "uk": "Після `Is it` іде `an invoice`: назва починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -439,17 +424,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i08:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — сотрудник говори",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `An hour`. Перед гласным началом `hour` выбираем `An`.",
-                "uk": "У записі звучить `An hour`. Перед голосним звуком на початку `hour` обираємо `An`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -571,7 +546,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — кассир уточняет, счёт л",
+          "testedDimension": "Вставьте слово — кассир уточняет, счёт ли перед ним",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i10:r2",
@@ -703,17 +678,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — кассир просит назвать п",
-              "feedbackByLocale": {
-                "ru": "Полная фраза начинается с `It is`. Перед согласным началом `plant` нужно `a`.",
-                "uk": "Повна фраза починається з `It is`. Перед приголосним звуком на початку `plant` потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -725,28 +690,70 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — что кассир подтвердил о документе",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-16:i13:r1","text":"It is an invoice."},
-          {"responseId":"en:lesson-03:session-16:i13:r2","text":"It is not an invoice."},
-          {"responseId":"en:lesson-03:session-16:i13:r3","text":"Is it an invoice?"}
+          {
+            "responseId": "en:lesson-03:session-16:i13:r1",
+            "text": "It is an invoice."
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i13:r2",
+            "text": "It is not an invoice."
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i13:r3",
+            "text": "Is it an invoice?"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-16:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-16:i13:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите — что кассир подтвердил о документе",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-16:i13:audio","transcript":"It is an invoice."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-16:i13:audio",
+            "transcript": "It is an invoice."
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[
-            {"responseId":"en:lesson-03:session-16:i13:r1","targetText":"It is an invoice.","meaningByLocale":null},
-            {"responseId":"en:lesson-03:session-16:i13:r2","targetText":"It is not an invoice.","meaningByLocale":null},
-            {"responseId":"en:lesson-03:session-16:i13:r3","targetText":"Is it an invoice?","meaningByLocale":null}
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-16:i13:r1",
+              "targetText": "It is an invoice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r2",
+              "targetText": "It is not an invoice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r3",
+              "targetText": "Is it an invoice?",
+              "meaningByLocale": null
+            }
           ],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[
-            {"responseId":"en:lesson-03:session-16:i13:r2","correct":false,"testedDimension":"утверждение или отрицание","feedbackByLocale":{"ru":"В записи нет `not`: кассир подтверждает, что это счёт.","uk":"У записі немає `not`: касир підтверджує, що це рахунок."}},
-            {"responseId":"en:lesson-03:session-16:i13:r3","correct":false,"testedDimension":"утверждение или вопрос","feedbackByLocale":{"ru":"Это вопрос с порядком `Is it`. В записи утверждение: `It is`.","uk":"Це запитання з порядком `Is it`. У записі твердження: `It is`."}}
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-16:i13:r2",
+              "correct": false,
+              "testedDimension": "утверждение или отрицание",
+              "feedbackByLocale": {
+                "ru": "В записи нет `not`: кассир подтверждает, что это счёт.",
+                "uk": "У записі немає `not`: касир підтверджує, що це рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r3",
+              "correct": false,
+              "testedDimension": "утверждение или вопрос",
+              "feedbackByLocale": {
+                "ru": "Это вопрос с порядком `Is it`. В записи утверждение: `It is`.",
+                "uk": "Це запитання з порядком `Is it`. У записі твердження: `It is`."
+              }
+            }
           ],
-          "isWordCard":false
+          "isWordCard": false
         },
         "scriptedAlternate": null
       },
@@ -786,17 +793,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i14:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — кассир исправляе",
-              "feedbackByLocale": {
-                "ru": "В записи после `not` звучит `an invoice`. Название начинается с гласного звука.",
-                "uk": "У записі після `not` звучить `an invoice`. Назва починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -835,26 +832,7 @@
             "A",
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — кассир спра",
-              "feedbackByLocale": {
-                "ru": "`invoice` начинается с гласного звука, поэтому короткое название — `An invoice`.",
-                "uk": "`invoice` починається з голосного звука, тому коротка назва — `An invoice`."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-16:i15:r2",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — кассир спра",
-              "feedbackByLocale": {
-                "ru": "Здесь нужно короткое название из двух слов, без `is`.",
-                "uk": "Тут потрібна коротка назва з двох слів, без `is`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -922,16 +900,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i17:s01:r1",
-              "correct": false,
-              "testedDimension": "артикль перед invoice",
-              "feedbackByLocale": {
-                "ru": "В `invoice` первый звук гласный, поэтому нужно `an`: `It is an invoice.`"
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -943,21 +912,34 @@
         "inputMode": "ordered_tokens",
         "prompt": "Послушайте и соберите вопрос — кассир уточняет документ",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-16:i17:s02:r1","text":"Are"}
+          {
+            "responseId": "en:lesson-03:session-16:i17:s02:r1",
+            "text": "Are"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-16:i17:s02:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-16:i17:s02:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите вопрос — кассир уточняет документ",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-16:i17:s02:audio","transcript":"Is it an invoice?"},
-          "slowReferenceAudio":null,
-          "hiddenTargetPhrase":"Is it an invoice?",
-          "orderedTokens":["Is","it","an","invoice"],
-          "authoredDistractorTokens":["Are"],
-          "slotFeedback":[
-            {"responseId":"en:lesson-03:session-16:i17:s02:r1","correct":false,"testedDimension":"форма глагола be","feedbackByLocale":{"ru":"С `it` в вопросе используем `is`, не `are`.","uk":"З `it` у запитанні вживаємо `is`, не `are`."}}
-          ]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-16:i17:s02:audio",
+            "transcript": "Is it an invoice?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it an invoice?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "invoice"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1041,7 +1023,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — касир кладе до кошика до",
+          "testedDimension": "Вставте слово — касир кладе до кошика документ із сумою покупки; назвіть його повною фразою (`invoice` — «рахунок на оплату»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i01:r2",
@@ -1089,7 +1071,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1123,17 +1110,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i03:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — касир показує р",
-              "feedbackByLocale": {
-                "ru": "В начале `uniform` слышен согласный «й», поэтому выбираем `A`.",
-                "uk": "На початку `uniform` чути приголосний «й», тому обираємо `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1182,7 +1159,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — складання триватиме шіст",
+          "testedDimension": "Вставте слово — складання триватиме шістдесят хвилин; назвіть час двома словами (`hour` — «година»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i04:r2",
@@ -1327,7 +1304,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — касир уточнює товар у го",
+          "testedDimension": "Вставте слово — касир уточнює товар у горщику; назвіть рослину повною фразою (`plant` — «рослина»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i06:r2",
@@ -1383,17 +1360,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i07:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — касир дістав докуме",
-              "feedbackByLocale": {
-                "ru": "После `Is it` идёт `an invoice`: название начинается с гласного звука.",
-                "uk": "Після `Is it` іде `an invoice`: назва починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1430,17 +1397,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i08:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — працівник говори",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `An hour`. Перед гласным началом `hour` выбираем `An`.",
-                "uk": "У записі звучить `An hour`. Перед голосним звуком на початку `hour` обираємо `An`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1562,7 +1519,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — касир уточнює, чи рахуно",
+          "testedDimension": "Вставте слово — касир уточнює, чи рахунок перед ним",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-16:i10:r2",
@@ -1694,17 +1651,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — касир просить назвати п",
-              "feedbackByLocale": {
-                "ru": "Полная фраза начинается с `It is`. Перед согласным началом `plant` нужно `a`.",
-                "uk": "Повна фраза починається з `It is`. Перед приголосним звуком на початку `plant` потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1716,28 +1663,70 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте й оберіть — що касир підтвердив про документ",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-16:i13:r1","text":"It is an invoice."},
-          {"responseId":"en:lesson-03:session-16:i13:r2","text":"It is not an invoice."},
-          {"responseId":"en:lesson-03:session-16:i13:r3","text":"Is it an invoice?"}
+          {
+            "responseId": "en:lesson-03:session-16:i13:r1",
+            "text": "It is an invoice."
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i13:r2",
+            "text": "It is not an invoice."
+          },
+          {
+            "responseId": "en:lesson-03:session-16:i13:r3",
+            "text": "Is it an invoice?"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-16:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-16:i13:audio"
+        ],
         "accessibilityLabel": "Послухайте й оберіть — що касир підтвердив про документ",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-16:i13:audio","transcript":"It is an invoice."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-16:i13:audio",
+            "transcript": "It is an invoice."
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[
-            {"responseId":"en:lesson-03:session-16:i13:r1","targetText":"It is an invoice.","meaningByLocale":null},
-            {"responseId":"en:lesson-03:session-16:i13:r2","targetText":"It is not an invoice.","meaningByLocale":null},
-            {"responseId":"en:lesson-03:session-16:i13:r3","targetText":"Is it an invoice?","meaningByLocale":null}
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-16:i13:r1",
+              "targetText": "It is an invoice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r2",
+              "targetText": "It is not an invoice.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r3",
+              "targetText": "Is it an invoice?",
+              "meaningByLocale": null
+            }
           ],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[
-            {"responseId":"en:lesson-03:session-16:i13:r2","correct":false,"testedDimension":"твердження чи заперечення","feedbackByLocale":{"ru":"В записи нет `not`: кассир подтверждает, что это счёт.","uk":"У записі немає `not`: касир підтверджує, що це рахунок."}},
-            {"responseId":"en:lesson-03:session-16:i13:r3","correct":false,"testedDimension":"твердження чи запитання","feedbackByLocale":{"ru":"Это вопрос с порядком `Is it`. В записи утверждение: `It is`.","uk":"Це запитання з порядком `Is it`. У записі твердження: `It is`."}}
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-16:i13:r2",
+              "correct": false,
+              "testedDimension": "твердження чи заперечення",
+              "feedbackByLocale": {
+                "ru": "В записи нет `not`: кассир подтверждает, что это счёт.",
+                "uk": "У записі немає `not`: касир підтверджує, що це рахунок."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-16:i13:r3",
+              "correct": false,
+              "testedDimension": "твердження чи запитання",
+              "feedbackByLocale": {
+                "ru": "Это вопрос с порядком `Is it`. В записи утверждение: `It is`.",
+                "uk": "Це запитання з порядком `Is it`. У записі твердження: `It is`."
+              }
+            }
           ],
-          "isWordCard":false
+          "isWordCard": false
         },
         "scriptedAlternate": null
       },
@@ -1777,17 +1766,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i14:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — касир виправляє ",
-              "feedbackByLocale": {
-                "ru": "В записи после `not` звучит `an invoice`. Название начинается с гласного звука.",
-                "uk": "У записі після `not` звучить `an invoice`. Назва починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1826,26 +1805,7 @@
             "A",
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — касир питає, що",
-              "feedbackByLocale": {
-                "ru": "`invoice` начинается с гласного звука, поэтому короткое название — `An invoice`.",
-                "uk": "`invoice` починається з голосного звука, тому коротка назва — `An invoice`."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-16:i15:r2",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — касир питає, що",
-              "feedbackByLocale": {
-                "ru": "Здесь нужно короткое название из двух слов, без `is`.",
-                "uk": "Тут потрібна коротка назва з двох слів, без `is`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1913,16 +1873,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-16:i17:s01:r1",
-              "correct": false,
-              "testedDimension": "артикль перед invoice",
-              "feedbackByLocale": {
-                "uk": "У `invoice` перший звук голосний, тому потрібно `an`: `It is an invoice.`"
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1934,21 +1885,34 @@
         "inputMode": "ordered_tokens",
         "prompt": "Послухайте й складіть запитання — касир уточнює документ",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-16:i17:s02:r1","text":"Are"}
+          {
+            "responseId": "en:lesson-03:session-16:i17:s02:r1",
+            "text": "Are"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-16:i17:s02:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-16:i17:s02:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть запитання — касир уточнює документ",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-16:i17:s02:audio","transcript":"Is it an invoice?"},
-          "slowReferenceAudio":null,
-          "hiddenTargetPhrase":"Is it an invoice?",
-          "orderedTokens":["Is","it","an","invoice"],
-          "authoredDistractorTokens":["Are"],
-          "slotFeedback":[
-            {"responseId":"en:lesson-03:session-16:i17:s02:r1","correct":false,"testedDimension":"форма дієслова be","feedbackByLocale":{"ru":"С `it` в вопросе используем `is`, не `are`.","uk":"З `it` у запитанні вживаємо `is`, не `are`."}}
-          ]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-16:i17:s02:audio",
+            "transcript": "Is it an invoice?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Is it an invoice?",
+          "orderedTokens": [
+            "Is",
+            "it",
+            "an",
+            "invoice"
+          ],
+          "authoredDistractorTokens": [
+            "Are"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywall-gap-005	2026-10-13T10:49:55.873Z	error	13646	step_target_not_found:#paywall-plan-monthly+ждали_metro_64мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-49-03-127Z/paywall-gap-005.error.png	0

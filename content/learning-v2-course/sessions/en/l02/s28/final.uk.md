@@ -61,6 +61,9 @@
 <!-- interaction_id: en:lesson-02:session-28:i01; family: listen_choose -->
 Ціль: `what`
 Варіанти: `what` · `water` · `walk`
+- water — *«Вода». Довше: у `water` два склади, у `what` один.*
+- walk — *«Іти пішки». У `what` голосний короткий, ближчий до «а», у `walk` — довге округле «оо».*
+
 
 **2 · Картка слова — price**
 <!-- interaction_id: en:lesson-02:session-28:i02; family: listen_choose -->
@@ -70,15 +73,22 @@
 **3 · Розрізніть звуки — яке з двох про «ціну»?**
 <!-- interaction_id: en:lesson-02:session-28:i03; family: sound_contrast -->
 Варіанти: `price` · `nice`
+- nice — *Це «приємний». Різниця в першому звуці: «пр» проти «н».*
+
 
 **4 · Послухайте і зберіть — «що це?»**
 <!-- interaction_id: en:lesson-02:session-28:i04; family: listen_build_dictation -->
 Ціль: `What is this?`
+🔊 *What is this?* Плитки: `What` `is` `this` `the`
+*Плитка `the` зайва: після `this` у короткому запитанні немає іменника; фраза закінчується на `this?`*
 
 **5 · Послухайте і виберіть — про що запитали**
 <!-- interaction_id: en:lesson-02:session-28:i05; family: listen_choose -->
 Ціль: `What is the price?`
 Варіанти: `ціна` · `назва` · `час`
+- назва — *Прозвучало `price`. `name` — це «назва».*
+- час — *Прозвучало `price`. `time` — «час», і звучить зовсім інакше.*
+
 
 **6 · Картка слова — time**
 <!-- interaction_id: en:lesson-02:session-28:i06; family: listen_choose -->
@@ -93,6 +103,9 @@
 <!-- interaction_id: en:lesson-02:session-28:i08; family: listen_choose -->
 Ціль: `weather`
 Варіанти: `weather` · `water` · `winter`
+- water — *«Вода». Всередині різні приголосні: у `weather` язик між зубами, у `water` — «т».*
+- winter — *«Зима». Голосний інший: у `weather` чути «е», у `winter` — коротке «і».*
+
 
 **9 · Картка слова — street**
 <!-- interaction_id: en:lesson-02:session-28:i09; family: listen_choose -->
@@ -107,27 +120,41 @@
 <!-- interaction_id: en:lesson-02:session-28:i11; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `name` · `price` · `weather`
+- price — *«Ціна». Цифру ви бачите, а от слово в меню незрозуміле.*
+- weather — *«Погода». Про погоду в меню не пишуть.*
+
 
 **12 · Складіть запитання — ви записуєте адресу кафе й просите офіціанта назвати вулицю**
 <!-- interaction_id: en:lesson-02:session-28:i12; family: phrase_builder -->
 Ціль: `What is the street?`
+Плитки: `What` `is` `the` `street` `price`
+*Плитка `price` зайва: ви питаєте назву вулиці — `street`, а не ціну.*
 
 **13 · Послухайте і зберіть — «котра година?»**
 <!-- interaction_id: en:lesson-02:session-28:i13; family: listen_build_dictation -->
 Ціль: `What is the time?`
+🔊 *What is the time?* Плитки: `What` `is` `the` `time` `price`
+*Плитка `price` зайва: у записі питають час — `time`, а не ціну — `price`.*
 
 **14 · Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну**
 <!-- interaction_id: en:lesson-02:session-28:i14; family: phrase_builder -->
 Ціль: `What is the price?`
+Плитки: `What` `is` `the` `price` `name`
+*Плитка `name` зайва: ви питаєте ціну — `price`, а не назву.*
 
 **15 · Вставте слово — за вікном злива, супутник питає, що там надворі**
 <!-- interaction_id: en:lesson-02:session-28:i15; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `weather` · `street` · `name`
+- street — *«Вулиця». Вулицю ви знаєте, вам незрозуміло, що з небом.*
+- name — *«Назва». У дощу назви немає.*
 
-**16 · Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну**
+
+**16 · Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву**
 <!-- interaction_id: en:lesson-02:session-28:i16; family: phrase_builder -->
 Ціль: `What is the name?`
+Плитки: `What` `is` `the` `name` `price`
+*Плитка `price` зайва: тут треба дізнатися назву — `name`, а не ціну.*
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-28:i17:s01; family: scripted_repeat_compare -->

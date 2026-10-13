@@ -37,11 +37,11 @@
   {
     "interactionId": "en:lesson-01:session-12:i08",
     "correctText": "smart",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-12:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-12:i09",
-    "correctText": "honest",
+    "correctText": "are",
     "correctResponseId": "en:lesson-01:session-12:i09:r1"
   },
   {
@@ -56,8 +56,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-12:i12",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-12:i12:r1"
+    "correctText": "You are honest.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-12:i13",
@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-12:i16",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-12:i16:r1"
+    "correctText": "You are quiet.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-12:i17",
@@ -95,18 +95,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-12:i20:s01",
+    "interactionId": "en:lesson-01:session-12:i20",
     "correctText": "You are brave.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-12:i20:s02",
-    "correctText": "You are calm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-12:i20:s03",
-    "correctText": "You are right.",
     "correctResponseId": null
   }
 ]

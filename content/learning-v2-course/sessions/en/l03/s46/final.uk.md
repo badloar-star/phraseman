@@ -57,6 +57,9 @@
 <!-- interaction_id: en:lesson-03:session-46:i05; family: listen_choose -->
 Ціль: `stairs`
 Варіанти: `stairs` · `stars` · `stares`
+- stars — *`stars` — зірки, а не сходи.*
+- stares — *`stares` — пильно дивиться, а не сходи.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-46:i02; family: scripted_repeat_compare -->
@@ -67,6 +70,10 @@
 Значення варіантів: `lift` — ліфт · `left` — лівий · `lived` — жив · `list` — список.
 Ціль: `lift`
 Варіанти: `lift` · `left` · `lived` · `list`
+- left — *У `left` голосний /e/, а в `lift` — /ɪ/.*
+- lived — *`lived` закінчується /d/, а `lift` — /t/.*
+- list — *У `list` після /lɪ/ чути /s/, а в `lift` — /f/.*
+
 
 **6 · Промовте слово — сходи між поверхами**
 <!-- interaction_id: en:lesson-03:session-46:i06; family: scripted_repeat_compare -->
@@ -85,6 +92,9 @@
 <!-- interaction_id: en:lesson-03:session-46:i10; family: context_gap_grammar -->
 Ціль: `___ roof is here.`
 Варіанти: `the` · `a` · `an`
+- a — *`a` вводить один новий дах, а тут ідеться про дах цього будинку, який ви вже бачите.*
+- an — *`an` потрібне перед голосним звуком, а `roof` починається зі звуку /r/.*
+
 
 **10 · Складіть одну фразу — дах цього будинку старий**
 <!-- interaction_id: en:lesson-03:session-46:i07; family: phrase_builder -->
@@ -94,11 +104,18 @@
 <!-- interaction_id: en:lesson-03:session-46:i11; family: listen_choose -->
 Ціль: `The lift is here.`
 Варіанти: `The lift is here.` · `The roof is old.` · `The stairs are here.`
+- The roof is old. — *Тут говорять про ліфт, а не про дах.*
+- The stairs are here. — *Тут говорять про ліфт, а не про сходи.*
+
 
 **12 · Вставте початок — зрозумілий ліфт у холі**
 <!-- interaction_id: en:lesson-03:session-46:i12; family: context_gap_grammar -->
 Ціль: `___ lift is here.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- A — *У холі ви вказуєте на ліфт цього будинку.*
+- An — *Перед `lift` потрібен не `an`.*
+- без артикля — *Для зрозумілого ліфта потрібен `the`.*
+
 
 **13 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-46:i13; family: listen_build_dictation -->
@@ -112,16 +129,28 @@
 <!-- interaction_id: en:lesson-03:session-46:i15; family: context_gap_grammar -->
 Ціль: `___ stairs are here.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- A — *Перед множинним `stairs` не ставлять `a`.*
+- An — *Перед `stairs` не ставлять `an`.*
+- без артикля — *Для сходів цього будинку потрібен `the`.*
+
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-03:session-46:i16; family: listen_choose -->
 Ціль: `The roof is old.`
 Варіанти: `Дах старий.` · `Дах новий.` · `Ліфт старий.` · `Де дах?`
+- Дах новий. — *Звучить `old`, а не `new`.*
+- Ліфт старий. — *Звучить `roof`, а не `lift`.*
+- Де дах? — *Це твердження, не запитання.*
+
 
 **17 · Вставте артикль — інспектор уперше показує ліфт у будинку**
 <!-- interaction_id: en:lesson-03:session-46:i17; family: context_gap_grammar -->
 Ціль: `___ lift is open.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- A — *`a` підходить для невідомого ліфта, але тут інспектор показує єдиний ліфт цього будинку. Тому потрібне `the`. У новій розмові обирайте `the`, коли предмет однозначний за місцем.*
+- An — *`an` теж вводить один предмет, але перед `lift` він не потрібен: слово починається зі звука /l/. Головне тут — уже зрозумілий ліфт, тому `the`.*
+- без артикля — *Без артикля не називають один злічуваний предмет. Тут один ліфт, який інспектор показує вам, тому `the lift`.*
+
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

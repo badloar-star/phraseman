@@ -98,6 +98,8 @@ early — рано · right — правий · wrong — неправий · la
 **8 · Складіть фразу — «вони помилилися»**
 <!-- interaction_id: en:lesson-01:session-39:i08; family: phrase_builder -->
 Плитки: `wrong` `they` `are` `is` → **They are wrong.**
+*(плитка `is` зайва: `is` зайве: з `They` кажуть `They are wrong.`)*
+
 
 **9 · Картка слова — fine**
 <!-- interaction_id: en:lesson-01:session-39:i09; family: listen_choose -->
@@ -116,6 +118,8 @@ We ___ sorry. → **are** · am · is
 **12 · Послухайте й складіть — «ми прийшли рано»**
 <!-- interaction_id: en:lesson-01:session-39:i12; family: listen_build_dictation -->
 🔊 *We are early.* Плитки: `are` `early` `we` `late` → **We are early.**
+*(плитка `late` зайва: `late` тут зайве: в аудіо `We are early.` — «ми прийшли рано».)*
+
 
 **13 · Вставте слово — про двох із сусіднього відділу: поза роботою не спілкуються**
 <!-- interaction_id: en:lesson-01:session-39:i13; family: context_gap_grammar -->
@@ -136,6 +140,8 @@ They are ___ . → **friends** · colleagues · sorry
 **16 · Складіть фразу — ви вдвох устигли до початку**
 <!-- interaction_id: en:lesson-01:session-39:i16; family: phrase_builder -->
 Плитки: `late` `we` `not` `are` `is` → **We are not late.**
+*(плитка `is` зайва: `is` зайве: з `We` кажуть `We are not late.`)*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-39:i17:s01; family: scripted_repeat_compare -->

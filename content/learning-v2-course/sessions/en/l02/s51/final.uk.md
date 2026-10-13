@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i02; family: listen_choose -->
 Ціль: `Excuse me.`
 Варіанти: `Excuse me.` · `Excuse us.` · `Excuse you.`
+- Excuse us. — *Слово `us` починається з голосного звука: рот відкритий. У записі останнє слово починається зі звука «м» із зімкненими губами: `me`.*
+- Excuse you. — *У `you` початок як в українському слові «йод», потім губи округлюються. У записі звучить `me`: спочатку «м» із зімкненими губами.*
+
 
 **3 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i03:s01; family: scripted_repeat_compare -->
@@ -73,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-51:i04; family: context_gap_grammar -->
 Ціль: `Is it ___ ?`
 Варіанти: `near` · `ready` · `sorry`
+- ready — *Це «готово». Ви уточнюєте відстань до станції: `near`.*
+- sorry — *Це слово для вибачення. Зараз потрібне запитання про близькість станції: `Is it near?`*
+
 
 **6 · Послухайте й виберіть — яка репліка перехожого прозвучала у відповідь**
 <!-- interaction_id: en:lesson-02:session-51:i05; family: listen_choose -->
 Ціль: `It is near.`
 Варіанти: `It is near.` · `Is it near?` · `It is here.`
+- Is it near? — *Це запитання. У записі спочатку `It is`: перехожий повідомляє про відстань.*
+- It is here. — *Це «Це тут». Останнє слово в записі — `near`, «близько».*
+
 
 **7 · Складіть фразу — друг запитує, чи впевнені ви, що зрозуміли дорогу; ви сумніваєтеся, скажіть про це**
 <!-- interaction_id: en:lesson-02:session-51:i06; family: phrase_builder -->
@@ -87,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i07; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `sure` · `sorry` · `near`
+- sorry — *Так ви запитаєте, чи шкодує друг. Вам треба перевірити його впевненість: `sure`.*
+- near — *Це «близько». Ви запитуєте не про відстань до друга, а про його впевненість.*
+
 
 **9 · Складіть фразу — ви перебили перехожого, поки він уточнював поворот; скажіть повну фразу «Я перепрошую»**
 <!-- interaction_id: en:lesson-02:session-51:i08; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i10:s01; family: context_gap_grammar -->
 Ціль: `___ .`
 Варіанти: `Excuse me` · `I am sure` · `We are ready`
+- I am sure — *Це «Я впевнений». Щоб привернути увагу, тут підходить готове звертання `Excuse me`.*
+- We are ready — *Це «Ми готові». Зараз ви починаєте звертання до перехожого: `Excuse me`.*
+
 
 **12 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i10:s02; family: scripted_repeat_compare -->
@@ -110,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i11; family: listen_choose -->
 Ціль: `Where is the station?`
 Варіанти: `Where is the station?` · `What is the station?` · `Is the station near?`
+- What is the station? — *Так запитують, що це за станція. У записі запитання починається з `Where`: друг запитує про місце.*
+- Is the station near? — *Це запитання про відстань. У записі звучить запитання «Де станція?»*
+
 
 **14 · Послухайте й складіть — перехожий показує місце станції на вашій карті**
 <!-- interaction_id: en:lesson-02:session-51:i12; family: listen_build_dictation -->
@@ -119,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i13; family: context_gap_grammar -->
 Ціль: `Yes, it ___ .`
 Варіанти: `is` · `are` · `am`
+- are — *У цій короткій відповіді після `it` потрібна форма `is`: `Yes, it is`.*
+- am — *Форма `am` поєднується з `I`. Тут зберігаємо `it is`: `Yes, it is`.*
+
 
 **16 · Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу**
 <!-- interaction_id: en:lesson-02:session-51:i14:s01; family: phrase_builder -->
@@ -128,6 +149,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i14:s02; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `busy` · `station` · `name`
+- station — *Це «станція». Про зайнятість людини запитуємо зі словом `busy`.*
+- name — *Це «ім’я». Щоб дізнатися, чи зайнятий перехожий, потрібне `Are you busy?`*
+
 
 **18 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i15; family: scripted_repeat_compare -->

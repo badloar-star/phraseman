@@ -100,6 +100,10 @@
 <!-- interaction_id: en:lesson-03:session-39:i09; family: context_gap_grammar -->
 Цель: `___ are grapes.`
 Варианты: `Those` · `These` · `That` · `This`
+- These — *`These are grapes` подходит для винограда рядом. Эта группа дальше, поэтому нужно `Those`.*
+- That — *`That` относится к одному предмету и требует `is`. Здесь называют группу.*
+- This — *`This` относится к одному предмету рядом. Здесь группа находится дальше.*
+
 
 **12 · Соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-39:i12:s01; family: phrase_builder -->
@@ -113,6 +117,10 @@
 <!-- interaction_id: en:lesson-03:session-39:i13; family: listen_choose -->
 Цель: `These onions, please.`
 Варианты: `Эти луковицы, пожалуйста` · `Те луковицы, пожалуйста` · `Эти лимоны, пожалуйста` · `Это луковицы`
+- Те луковицы, пожалуйста — *В записи слышно `these`, а не `those`: выбирают близкую группу.*
+- Эти лимоны, пожалуйста — *Названо `onions` — луковицы, а не `lemons` — лимоны.*
+- Это луковицы — *В записи нет `are`: это просьба добавить товар, а не сообщение о его названии.*
+
 
 **15 · Соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-39:i14:s01; family: phrase_builder -->

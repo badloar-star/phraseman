@@ -316,7 +316,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — прохожий показывает: ид",
+          "testedDimension": "Вставьте слово — прохожий показывает: идти пару минут",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i06:r2",
@@ -415,7 +415,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставьте слово — туалеты с другой сторон",
+          "testedDimension": "Вставьте слово — туалеты с другой стороны вокзала",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i08:r2",
@@ -476,7 +476,7 @@
             "audioTargetId": "en:lesson-02:session-19:i09:audioB",
             "transcript": "far"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «ряд",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «рядом»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i09:r2",
@@ -536,7 +536,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставьте слово — где искать кафе? Магази",
+          "testedDimension": "Вставьте слово — где искать кафе? Магазины совсем близко",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i10:r2",
@@ -591,7 +591,17 @@
           "authoredDistractorTokens": [
             "at"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «это рядом с улицей»",
+              "feedbackByLocale": {
+                "ru": "чтобы сказать «рядом с улицей», нужна связка `near the street`, а не `at`.",
+                "uk": "щоб сказати «поруч із вулицею», потрібна сполука `near the street`, а не `at`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -713,7 +723,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставьте слово — на улице не протолкнуть",
+          "testedDimension": "Вставьте слово — на улице не протолкнуться",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i13:r2",
@@ -763,7 +773,17 @@
           "authoredDistractorTokens": [
             "the"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Собери фразу — вы спрашиваете, а не отвечаете: «это рядом?»",
+              "feedbackByLocale": {
+                "ru": "после `near` здесь нет существительного; вопрос заканчивается на `near?`.",
+                "uk": "після `near` тут немає іменника; запитання закінчується на `near?`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -776,10 +796,18 @@
         "prompt": "Послушайте и соберите — у входа вы объясняете, что объект за магазинами",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-19:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-19:i15:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — у входа вы объясняете, что объект за магазинами",
         "modePayload": {
-          "family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-02:session-19:i15:audio","transcript":"It is behind the shops."},"slowReferenceAudio":null,"hiddenTargetPhrase":"It is behind the shops.",
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-19:i15:audio",
+            "transcript": "It is behind the shops."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is behind the shops.",
           "orderedTokens": [
             "It",
             "is",
@@ -862,7 +890,23 @@
         "interactionId": "en:lesson-02:session-19:i17:s01",
         "ordinal": 21,
         "purpose": "independent_check",
-        "family": "listen_choose","inputMode": "single_choice","prompt": "Послушайте ответ на вопрос «Где вокзал?» и выберите услышанную фразу","responseOptions": [{"responseId":"en:lesson-02:session-19:i17:s01:r1","text":"It is near."},{"responseId":"en:lesson-02:session-19:i17:s01:r2","text":"Is it near?"},{"responseId":"en:lesson-02:session-19:i17:s01:r3","text":"It is behind the shops."}],
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте ответ на вопрос «Где вокзал?» и выберите услышанную фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r1",
+            "text": "It is near."
+          },
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r2",
+            "text": "Is it near?"
+          },
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r3",
+            "text": "It is behind the shops."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-19:i17:s01:audio"
@@ -875,7 +919,46 @@
             "transcript": "It is near."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-19:i17:s01:r1","targetText":"It is near.","meaningByLocale":null},{"responseId":"en:lesson-02:session-19:i17:s01:r2","targetText":"Is it near?","meaningByLocale":null},{"responseId":"en:lesson-02:session-19:i17:s01:r3","targetText":"It is behind the shops.","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-19:i17:s01:r2","correct":false,"testedDimension":"вопрос или ответ","feedbackByLocale":{"ru":"В записи ответ: сначала звучит `It`, а не `Is`.","uk":"У записі відповідь: спочатку звучить `It`, а не `Is`."}},{"responseId":"en:lesson-02:session-19:i17:s01:r3","correct":false,"testedDimension":"место","feedbackByLocale":{"ru":"В записи `near` — «рядом», а не `behind the shops` — «за магазинами».","uk":"У записі `near` — «поруч», а не `behind the shops` — «за крамницями»."}}],"isWordCard":false,"wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r1",
+              "targetText": "It is near.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r2",
+              "targetText": "Is it near?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r3",
+              "targetText": "It is behind the shops.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r2",
+              "correct": false,
+              "testedDimension": "вопрос или ответ",
+              "feedbackByLocale": {
+                "ru": "В записи ответ: сначала звучит `It`, а не `Is`.",
+                "uk": "У записі відповідь: спочатку звучить `It`, а не `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r3",
+              "correct": false,
+              "testedDimension": "место",
+              "feedbackByLocale": {
+                "ru": "В записи `near` — «рядом», а не `behind the shops` — «за магазинами».",
+                "uk": "У записі `near` — «поруч», а не `behind the shops` — «за крамницями»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1258,7 +1341,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — перехожий показує: іти х",
+          "testedDimension": "Вставте слово — перехожий показує: іти хвилини дві",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i06:r2",
@@ -1357,7 +1440,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставте слово — туалети з іншого боку во",
+          "testedDimension": "Вставте слово — туалети з іншого боку вокзалу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i08:r2",
@@ -1418,7 +1501,7 @@
             "audioTargetId": "en:lesson-02:session-19:i09:audioB",
             "transcript": "far"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «поруч",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «поруч»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i09:r2",
@@ -1478,7 +1561,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставте слово — де шукати кав'ярню? Крам",
+          "testedDimension": "Вставте слово — де шукати кав'ярню? Крамниці зовсім близько",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i10:r2",
@@ -1533,7 +1616,17 @@
           "authoredDistractorTokens": [
             "at"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «это рядом с улицей»",
+              "feedbackByLocale": {
+                "ru": "чтобы сказать «рядом с улицей», нужна связка `near the street`, а не `at`.",
+                "uk": "щоб сказати «поруч із вулицею», потрібна сполука `near the street`, а не `at`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1655,7 +1748,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставте слово — на вулиці не проштовхнут",
+          "testedDimension": "Вставте слово — на вулиці не проштовхнутися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-19:i13:r2",
@@ -1705,7 +1798,17 @@
           "authoredDistractorTokens": [
             "the"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Собери фразу — вы спрашиваете, а не отвечаете: «это рядом?»",
+              "feedbackByLocale": {
+                "ru": "после `near` здесь нет существительного; вопрос заканчивается на `near?`.",
+                "uk": "після `near` тут немає іменника; запитання закінчується на `near?`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1718,10 +1821,18 @@
         "prompt": "Послухайте й складіть — біля входу ви пояснюєте, що об’єкт за крамницями",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-19:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-19:i15:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть — біля входу ви пояснюєте, що об’єкт за крамницями",
         "modePayload": {
-          "family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-02:session-19:i15:audio","transcript":"It is behind the shops."},"slowReferenceAudio":null,"hiddenTargetPhrase":"It is behind the shops.",
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-19:i15:audio",
+            "transcript": "It is behind the shops."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "It is behind the shops.",
           "orderedTokens": [
             "It",
             "is",
@@ -1804,7 +1915,23 @@
         "interactionId": "en:lesson-02:session-19:i17:s01",
         "ordinal": 21,
         "purpose": "independent_check",
-        "family": "listen_choose","inputMode": "single_choice","prompt": "Послухайте відповідь на запитання «Де вокзал?» і виберіть почуту фразу","responseOptions": [{"responseId":"en:lesson-02:session-19:i17:s01:r1","text":"It is near."},{"responseId":"en:lesson-02:session-19:i17:s01:r2","text":"Is it near?"},{"responseId":"en:lesson-02:session-19:i17:s01:r3","text":"It is behind the shops."}],
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте відповідь на запитання «Де вокзал?» і виберіть почуту фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r1",
+            "text": "It is near."
+          },
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r2",
+            "text": "Is it near?"
+          },
+          {
+            "responseId": "en:lesson-02:session-19:i17:s01:r3",
+            "text": "It is behind the shops."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-19:i17:s01:audio"
@@ -1817,7 +1944,46 @@
             "transcript": "It is near."
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-19:i17:s01:r1","targetText":"It is near.","meaningByLocale":null},{"responseId":"en:lesson-02:session-19:i17:s01:r2","targetText":"Is it near?","meaningByLocale":null},{"responseId":"en:lesson-02:session-19:i17:s01:r3","targetText":"It is behind the shops.","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-19:i17:s01:r2","correct":false,"testedDimension":"запитання чи відповідь","feedbackByLocale":{"ru":"В записи ответ: сначала звучит `It`, а не `Is`.","uk":"У записі відповідь: спочатку звучить `It`, а не `Is`."}},{"responseId":"en:lesson-02:session-19:i17:s01:r3","correct":false,"testedDimension":"місце","feedbackByLocale":{"ru":"В записи `near` — «рядом», а не `behind the shops` — «за магазинами».","uk":"У записі `near` — «поруч», а не `behind the shops` — «за крамницями»."}}],"isWordCard":false,"wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r1",
+              "targetText": "It is near.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r2",
+              "targetText": "Is it near?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r3",
+              "targetText": "It is behind the shops.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r2",
+              "correct": false,
+              "testedDimension": "запитання чи відповідь",
+              "feedbackByLocale": {
+                "ru": "В записи ответ: сначала звучит `It`, а не `Is`.",
+                "uk": "У записі відповідь: спочатку звучить `It`, а не `Is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-19:i17:s01:r3",
+              "correct": false,
+              "testedDimension": "місце",
+              "feedbackByLocale": {
+                "ru": "В записи `near` — «рядом», а не `behind the shops` — «за магазинами».",
+                "uk": "У записі `near` — «поруч», а не `behind the shops` — «за крамницями»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },

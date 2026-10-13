@@ -62,6 +62,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i05; family: listen_choose -->
 Цель: `wooden`
 Варианты: `wooden` · `square`
+- square — *В записи звучит `wooden` — «деревянный», а не `square` — «квадратный».*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-52:i02; family: scripted_repeat_compare -->
@@ -76,6 +78,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i06; family: sound_contrast -->
 Цель: `wooden`
 Варианты: `wooden` · `woollen`
+- woollen — *`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».*
+
 
 **7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-52:i08; family: speed_match -->
@@ -86,6 +90,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i09; family: sound_contrast -->
 Цель: `square`
 Варианты: `square` · `scare`
+- scare — *`round` значит «круглый», а зеркало в сцене квадратное.*
+
 
 **9 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-52:i10; family: scripted_repeat_compare -->
@@ -104,16 +110,28 @@
 <!-- interaction_id: en:lesson-03:session-52:i12; family: context_gap_grammar -->
 Цель: `___ square mirror, please.`
 Варианты: `That` · `This` · `It` · `Is`
+- This — *`This` выбирает предмет рядом, а зеркало стоит дальше.*
+- It — *`It square mirror` не образует короткую просьбу. Перед предметом нужен `That`.*
+- Is — *`Is square mirror` не подходит для просьбы. Здесь скажите `That square mirror, please`.*
+
 
 **13 · Послушайте и выберите точное значение просьбы**
 <!-- interaction_id: en:lesson-03:session-52:i13; family: listen_choose -->
 Цель: `That square mirror, please.`
 Варианты: `То квадратное зеркало, пожалуйста.` · `Это квадратное зеркало, пожалуйста.` · `То круглое зеркало, пожалуйста.` · `Тот квадратный стол, пожалуйста.`
+- Это квадратное зеркало, пожалуйста. — *В записи `That`, а этот вариант передаёт `This`.*
+- То круглое зеркало, пожалуйста. — *В записи звучит `square`, а не `round`.*
+- Тот квадратный стол, пожалуйста. — *В записи назвали `mirror`, а не `table`.*
+
 
 **14 · Вставьте форму — круглый стул стоит дальше у стены**
 <!-- interaction_id: en:lesson-03:session-52:i14; family: context_gap_grammar -->
 Цель: `That ___ chair is here.`
 Варианты: `round` · `square` · `wooden` · `this`
+- square — *В сцене стул круглый, поэтому нужна форма `round`, а не `square`.*
+- wooden — *`Wooden` называет материал, а здесь выбирают круглую форму.*
+- this — *После `That` перед `chair` нужна форма предмета: `round`.*
+
 
 **15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-52:i15; family: listen_build_dictation -->
@@ -123,6 +141,10 @@
 <!-- interaction_id: en:lesson-03:session-52:i16; family: listen_choose -->
 Цель: `This wooden mirror is here.`
 Варианты: `Это деревянное зеркало здесь.` · `То деревянное зеркало здесь.` · `Это квадратное зеркало здесь.` · `Этот деревянный стул здесь.`
+- То деревянное зеркало здесь. — *В записи `This`, а этот вариант передаёт `That`.*
+- Это квадратное зеркало здесь. — *В записи звучит `wooden`, а не `square`.*
+- Этот деревянный стул здесь. — *В записи назвали `mirror`, а не `chair`.*
+
 
 **17 · мастер ждёт решения у дальней стены**
 <!-- interaction_id: en:lesson-03:session-52:i17; family: phrase_builder -->

@@ -6,6 +6,7 @@ exports.executeV2RepositorySingleflightFinalizeTransactionV1 = executeV2Reposito
 exports.persistV2ImmutableRepositoryObjectV1 = persistV2ImmutableRepositoryObjectV1;
 const node_crypto_1 = require("node:crypto");
 const v2_repository_singleflight_state_v1_1 = require("./v2_repository_singleflight_state_v1");
+const swallowed_error_1 = require("../swallowed_error"); // зачем: PM-229 — немой catch пишет причину [PM-229]
 exports.V2_REPOSITORY_IMMUTABLE_JSON_CONTENT_TYPE_V1 = "application/json; charset=utf-8";
 exports.V2_REPOSITORY_IMMUTABLE_BINARY_CONTENT_TYPE_V1 = "application/octet-stream";
 exports.V2_REPOSITORY_IMMUTABLE_AUDIO_CONTENT_TYPE_V1 = "audio/mpeg";
@@ -185,7 +186,8 @@ async function quarantineBestEffort(storage, conflict) {
     try {
         await storage.quarantineConflict(Object.freeze(conflict));
     }
-    catch {
+    catch (pm229Error) {
+        (0, swallowed_error_1.reportSwallowedServer)('content_factory_v2_firebase_repository_persistence_v1:quarantineBestEffort', pm229Error);
         // Quarantine is audit-only; its failure must never mask the primary conflict.
     }
 }

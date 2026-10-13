@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-028	2026-10-13T16:58:16.553Z	blank_too_long	20789	marker+пусто_3772мс+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T16-57-45-634Z/cards-028.blank_too_long.png	3772

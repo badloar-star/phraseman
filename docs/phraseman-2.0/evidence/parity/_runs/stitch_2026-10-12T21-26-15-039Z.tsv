@@ -1,0 +1,4 @@
+id	time	result	detail	file
+cards-077	2026-10-12T21:26:16.323Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-077.png
+auth-gap-015	2026-10-12T21:26:17.585Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\auth-gap-015.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=574905 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/auth-gap-015.png
+auth-gap-017	2026-10-12T21:26:20.346Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-017.png

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-seven-formulaic-extraction-map.v1",
+  "rawSources": {
+    "redemittel": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+    "wortliste": "45fb648bc0ac02338f7898cae065953e320ab72ed0c14e13e0deffe6f1c5d64e"
+  },
+  "rows": [
+    { "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1", "source": "redemittel", "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN", "normalizedOccurrence": "Guten Tag! / Hallo!" },
+    { "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1", "source": "wortliste", "pdfPage": 24, "heading": "alphabetical Wortliste > T", "normalizedOccurrence": "tschüss Junge Leute sagen meistens „tschüss!“ und nicht „auf Wiedersehen“." },
+    { "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1", "source": "redemittel", "pdfPage": 2, "heading": "INFORMATIONEN ZUR PERSON", "normalizedOccurrence": "Ich heiße Max." },
+    { "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1", "source": "redemittel", "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN", "normalizedOccurrence": "Guten Tag! / Hallo!" },
+    { "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1", "source": "redemittel", "pdfPage": 60, "heading": "FOTOS BESCHREIBEN > Wer?", "normalizedOccurrence": "Das ist / Das sind …" },
+    { "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1", "source": "redemittel", "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN", "normalizedOccurrence": "Auf Wiedersehen! / Tschüs!" },
+    { "sourcePlanId": "de_lex_plan_l01_c07_guten_abend_v1", "source": "redemittel", "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN", "normalizedOccurrence": "Guten Abend! / Hallo!" }
+  ]
+}

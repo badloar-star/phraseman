@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-17:i02; family: listen_choose -->
 Цель: `ticket`
 Варианты: `ticket` · `cricket` · `picket`
+- cricket — *`cricket` — «крикет», спортивная игра. Начинается со звука «к», а `ticket` — с «т». Дальше звучание похоже.*
+- picket — *`picket` — «участник пикета». Первым слышно «п», а у `ticket` — «т». Слушайте начало слова.*
+
 
 **3 · Карточка слова — coin**
 <!-- interaction_id: en:lesson-03:session-17:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-17:i04; family: listen_choose -->
 Цель: `coin`
 Варианты: `coin` · `coil` · `join`
+- coil — *`coil` — «моток». На конце слышно «л», а в `coin` — «н». Начало слов одинаковое, поэтому дослушайте конец.*
+- join — *`join` — «соединять». В начале звучит «дж», а в `coin` — «к». Гласная часть и конец похожи.*
+
 
 **5 · Соберите фразу — коллега спрашивает про пачку из конверта; скажите «Это билеты»**
 <!-- interaction_id: en:lesson-03:session-17:i05; family: phrase_builder -->
@@ -83,11 +89,17 @@
 <!-- interaction_id: en:lesson-03:session-17:i07; family: listen_choose -->
 Цель: `card`
 Варианты: `card` · `cart` · `guard`
+- cart — *`cart` — «тележка». На конце слышно «т», а в `card` — «д». Начало у слов одинаковое.*
+- guard — *`guard` — «охранник». Первым звучит «г», а в `card` — «к». Остальная часть звучит одинаково.*
+
 
 **8 · Вставьте название — курьер указывает на несколько растений в горшках; скажите «Это растения» (`plant` — «растение», `plants` — «растения», с добавленным `s`)**
 <!-- interaction_id: en:lesson-03:session-17:i08; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `plants` · `plant` · `is`
+- plant — *Растений несколько, поэтому к названию нужно добавить `s`: `plants`.*
+- is — *В начале уже стоит `They are`. Дальше нужно название растений — `plants`, а не ещё одно слово для начала фразы.*
+
 
 **9 · Соберите вопрос — коллега сортирует монеты и жетоны у кассы; укажите на несколько кружков перед ней и спросите «Это монеты?»**
 <!-- interaction_id: en:lesson-03:session-17:i09; family: phrase_builder -->
@@ -98,6 +110,9 @@
 <!-- interaction_id: en:lesson-03:session-17:i10; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `cushions` · `cushion` · `are`
+- cushion — *Название одной подушки не подходит для всей группы. Добавьте `s`: `cushions`.*
+- are — *`are` уже есть после `They`. Теперь нужно назвать предметы: `cushions`.*
+
 
 **11 · Послушайте и соберите — коллега говорит о содержимом конверта**
 <!-- interaction_id: en:lesson-03:session-17:i11; family: listen_build_dictation -->
@@ -113,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-17:i13; family: listen_choose -->
 Цель: `Are they tickets?`
 Варианты: `Are they tickets?` · `They are tickets.` · `Are they cards?`
+- They are tickets. — *Этот вариант начинается с `They are` и называет предметы. В записи сначала звучит `Are they` — курьер спрашивает.*
+- Are they cards? — *Здесь спрашивают о карточках: `cards`. В записи в конце звучит `tickets` — «билеты».*
+
 
 **14 · Соберите вопрос — в оставшейся коробке несколько мягких свёртков; уточните, подушки ли это**
 <!-- interaction_id: en:lesson-03:session-17:i14; family: phrase_builder -->

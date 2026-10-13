@@ -385,7 +385,8 @@
             "is",
             "here."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -417,7 +418,7 @@
           "family": "context_gap_grammar",
           "gappedTargetPhrase": "___ box is here.",
           "localizedScene": {
-            "ru": "Вы уже видите эту коробку на прилавке.",
+            "ru": "Выберите артикль для уже известного предмета",
             "uk": "Ви вже бачите цю коробку на прилавку."
           },
           "gapOptions": [
@@ -984,7 +985,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Продавец впервые кладёт на прилавок один новый молоток. До этого о нём не говорили.",
+            "ru": "Вставьте артикль — продавец впервые кладёт новый молоток на прилавок",
             "uk": "Продавець уперше кладе на прилавок один новий молоток. До цього про нього не говорили."
           },
           "gappedTargetPhrase": "___ hammer is on the counter.",
@@ -1418,7 +1419,8 @@
             "is",
             "here."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1451,7 +1453,7 @@
           "gappedTargetPhrase": "___ box is here.",
           "localizedScene": {
             "ru": "Вы уже видите эту коробку на прилавке.",
-            "uk": "Ви вже бачите цю коробку на прилавку."
+            "uk": "Виберіть артикль для вже відомого предмета"
           },
           "gapOptions": [
             {
@@ -2018,7 +2020,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Продавец впервые кладёт на прилавок один новый молоток. До этого о нём не говорили.",
-            "uk": "Продавець уперше кладе на прилавок один новий молоток. До цього про нього не говорили."
+            "uk": "Вставте артикль — продавець уперше кладе новий молоток на прилавок"
           },
           "gappedTargetPhrase": "___ hammer is on the counter.",
           "gapOptions": [

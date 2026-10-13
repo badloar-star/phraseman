@@ -327,7 +327,7 @@
               "text": "What"
             }
           ],
-          "testedDimension": "Вставьте слово — вы держите оставленный ",
+          "testedDimension": "Вставьте слово — вы держите оставленный шарф и спрашиваете гостей, чей он",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i06:r2",
@@ -501,7 +501,7 @@
               "text": "host"
             }
           ],
-          "testedDimension": "Вставьте слово — вы точно знаете, кто хо",
+          "testedDimension": "Вставьте слово — вы точно знаете, кто хозяин вечера; подтвердите другу: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i09:r2",
@@ -741,7 +741,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-  "prompt": "Вставьте слово — Илья говорит, что Алекс не хозяин; спросите Илью, кто тогда хозяин вечеринки",
+        "prompt": "Вставьте слово — Илья говорит, что Алекс не хозяин; спросите Илью, кто тогда хозяин вечеринки",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-37:i14:r1",
@@ -758,14 +758,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-  "accessibilityLabel": "Вставьте слово — Илья говорит, что Алекс не хозяин; спросите Илью, кто тогда хозяин вечеринки",
+        "accessibilityLabel": "Вставьте слово — Илья говорит, что Алекс не хозяин; спросите Илью, кто тогда хозяин вечеринки",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-      "ru": "Илья говорит, что Алекс не хозяин. Вы спрашиваете Илью, кто тогда хозяин вечеринки.",
-      "uk": "Ілля каже, що Алекс не господар. Ви запитуєте Іллю, хто тоді господар вечірки."
+            "ru": "Вставьте слово — Илья говорит, что Алекс не хозяин; спросите Илью, кто тогда хозяин вечеринки",
+            "uk": "Ілля каже, що Алекс не господар. Ви запитуєте Іллю, хто тоді господар вечірки."
           },
-    "gappedTargetPhrase": "Who ___ the host?",
+          "gappedTargetPhrase": "Who ___ the host?",
           "gapOptions": [
             {
               "responseId": "en:lesson-02:session-37:i14:r1",
@@ -780,24 +780,24 @@
               "text": "am"
             }
           ],
-    "testedDimension": "выбор is для одного человека: the host",
+          "testedDimension": "выбор is для одного человека: the host",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i14:r2",
               "correct": false,
-      "testedDimension": "выбор is для одного человека: the host",
+              "testedDimension": "выбор is для одного человека: the host",
               "feedbackByLocale": {
-        "ru": "С `are` вопрос не складывается: речь об одном хозяине. Правильно: `Who is the host?`",
-        "uk": "З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`"
+                "ru": "С `are` вопрос не складывается: речь об одном хозяине. Правильно: `Who is the host?`",
+                "uk": "З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`"
               }
             },
             {
               "responseId": "en:lesson-02:session-37:i14:r3",
               "correct": false,
-      "testedDimension": "выбор is для одного человека: the host",
+              "testedDimension": "выбор is для одного человека: the host",
               "feedbackByLocale": {
-        "ru": "`Am` ставим после `I`. Здесь вопрос начинается с `Who`, поэтому нужен `is`: `Who is the host?`",
-        "uk": "`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`"
+                "ru": "`Am` ставим после `I`. Здесь вопрос начинается с `Who`, поэтому нужен `is`: `Who is the host?`",
+                "uk": "`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`"
               }
             }
           ]
@@ -1224,7 +1224,7 @@
               "text": "What"
             }
           ],
-          "testedDimension": "Вставте слово — ви тримаєте залишений ша",
+          "testedDimension": "Вставте слово — ви тримаєте залишений шарф і питаєте гостей, чий він",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i06:r2",
@@ -1398,7 +1398,7 @@
               "text": "host"
             }
           ],
-          "testedDimension": "Вставте слово — ви точно знаєте, хто гос",
+          "testedDimension": "Вставте слово — ви точно знаєте, хто господар вечірки; підтвердьте другові: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i09:r2",
@@ -1638,7 +1638,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-  "prompt": "Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки",
+        "prompt": "Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-37:i14:r1",
@@ -1655,14 +1655,14 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-  "accessibilityLabel": "Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки",
+        "accessibilityLabel": "Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-      "ru": "Илья говорит, что Алекс не хозяин. Вы спрашиваете Илью, кто тогда хозяин вечеринки.",
-      "uk": "Ілля каже, що Алекс не господар. Ви запитуєте Іллю, хто тоді господар вечірки."
+            "ru": "Илья говорит, что Алекс не хозяин. Вы спрашиваете Илью, кто тогда хозяин вечеринки.",
+            "uk": "Вставте слово — Ілля каже, що Алекс не господар; запитайте Іллю, хто тоді господар вечірки"
           },
-    "gappedTargetPhrase": "Who ___ the host?",
+          "gappedTargetPhrase": "Who ___ the host?",
           "gapOptions": [
             {
               "responseId": "en:lesson-02:session-37:i14:r1",
@@ -1677,24 +1677,24 @@
               "text": "am"
             }
           ],
-    "testedDimension": "вибір is для однієї людини: the host",
+          "testedDimension": "вибір is для однієї людини: the host",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-37:i14:r2",
               "correct": false,
-      "testedDimension": "вибір is для однієї людини: the host",
+              "testedDimension": "вибір is для однієї людини: the host",
               "feedbackByLocale": {
-        "ru": "С `are` вопрос не складывается: речь об одном хозяине. Правильно: `Who is the host?`",
-        "uk": "З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`"
+                "ru": "С `are` вопрос не складывается: речь об одном хозяине. Правильно: `Who is the host?`",
+                "uk": "З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`"
               }
             },
             {
               "responseId": "en:lesson-02:session-37:i14:r3",
               "correct": false,
-      "testedDimension": "вибір is для однієї людини: the host",
+              "testedDimension": "вибір is для однієї людини: the host",
               "feedbackByLocale": {
-        "ru": "`Am` ставим после `I`. Здесь вопрос начинается с `Who`, поэтому нужен `is`: `Who is the host?`",
-        "uk": "`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`"
+                "ru": "`Am` ставим после `I`. Здесь вопрос начинается с `Who`, поэтому нужен `is`: `Who is the host?`",
+                "uk": "`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`"
               }
             }
           ]

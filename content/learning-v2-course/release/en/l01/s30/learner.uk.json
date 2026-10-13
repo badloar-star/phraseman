@@ -115,6 +115,15 @@
               "ru": "Один слог. `busy` — два: «би-зи».",
               "uk": "Один склад. `busy` — два: «бі-зі»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`busy` — «занято, людно»: слышно два слога, «би-зи». Не `bus` и не `bee`.",
+              "uk": "`busy` — «зайнято, людно»: чути два склади, «бі-зі». Не `bus` і не `bee`."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Начало то же, дальше расходятся. `quiet` — два слога.",
               "uk": "Початок той самий, далі розходяться. `quiet` — два склади."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`quiet` — «тихо». В слове два слога: «ку-айет»; это не `white` и не `queen`.",
+              "uk": "`quiet` — «тихо». У слові два склади: «ку-айет»; це не `white` і не `queen`."
+            }
           }
         ],
         "isWordCard": false,
@@ -247,7 +265,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — супутник питає про кав'ярню, а там черга до дверей",
+      "prompt": "Вставте слово — у кав'ярні черга до дверей і гомін голосів",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-30:i05:r1",
@@ -264,12 +282,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — супутник питає про кав'ярню, а там черга до дверей",
+      "accessibilityLabel": "Вставте слово — у кав'ярні черга до дверей і гомін голосів",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спутник спрашивает про кафе, а там очередь до двери",
-          "uk": "Вставте слово — супутник питає про кав'ярню, а там черга до дверей"
+          "ru": "Вставьте слово — в кафе очередь до двери и гул голосов",
+          "uk": "Вставте слово — у кав'ярні черга до дверей і гомін голосів"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -286,12 +304,21 @@
             "text": "small"
           }
         ],
-        "testedDimension": "Вставте слово — супутник питає про кав'я",
+        "testedDimension": "Вставте слово — у кав'ярні черга до дверей",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — у кав'ярні черга до дверей і гомін голосів",
+            "feedbackByLocale": {
+              "ru": "Очередь и гул означают `busy` — «людно». Полная фраза: `It is busy.`",
+              "uk": "Черга й гомін означають `busy` — «людно». Повна фраза: `It is busy`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-30:i05:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — супутник питає про кав'я",
+            "testedDimension": "Вставте слово — у кав'ярні черга до дверей",
             "feedbackByLocale": {
               "ru": "«Тихо» — но там очередь и гул.",
               "uk": "«Тихо» — а там черга й гамір."
@@ -300,7 +327,7 @@
           {
             "responseId": "en:lesson-01:session-30:i05:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — супутник питає про кав'я",
+            "testedDimension": "Вставте слово — у кав'ярні черга до дверей",
             "feedbackByLocale": {
               "ru": "«Маленькое» — про размер, а вы говорите про толпу.",
               "uk": "«Маленька» — про розмір, а ви кажете про натовп."
@@ -336,7 +363,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «тут тихо»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: после `It` ставят `is` — `It is quiet.`",
+              "uk": "`are` зайве: після `It` ставлять `is` — `It is quiet`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -451,6 +488,15 @@
             "feedbackByLocale": {
               "ru": "Без «-д» на конце. `loud` заканчивается на «д».",
               "uk": "Без «-д» на кінці. `loud` закінчується на «д»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i08:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`loud` — «громко»: в конце слышно «-ауд». Это не `lot` и не `low`.",
+              "uk": "`loud` — «гучно»: наприкінці чути «-ауд». Це не `lot` і не `low`."
             }
           }
         ],
@@ -570,6 +616,15 @@
             "feedbackByLocale": {
               "ru": "«Дерево». Первый звук «т», а нужен «ф».",
               "uk": "«Дерево». Перший звук «т», а потрібен «ф»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-30:i10:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`free` — «свободно». Начало — звук «ф», поэтому это не `three` и не `tree`.",
+              "uk": "`free` — «вільно». Початок — звук «ф», тому це не `three` і не `tree`."
             }
           }
         ],
@@ -699,6 +754,15 @@
         "testedDimension": "Вставте слово — у кав'ярні нікого, грає ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-30:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — у кав'ярні нікого, грає одна тиха пісня",
+            "feedbackByLocale": {
+              "ru": "Пустой зал и тихая песня означают `quiet` — «тихо». Полная фраза: `It is quiet.`",
+              "uk": "Порожня зала й тиха пісня означають `quiet` — «тихо». Повна фраза: `It is quiet`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-30:i12:r2",
             "correct": false,
             "testedDimension": "Вставте слово — у кав'ярні нікого, грає ",
@@ -746,7 +810,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — за столиком никого, он ",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: про один столик говорят `It is free.`",
+              "uk": "`are` зайве: про один столик кажуть `It is free`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -756,7 +830,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — супутник питає, чи працює кав'ярня. Двері навстіж",
+      "prompt": "Вставте слово — кав'ярня працює, двері відчинені й горить вивіска",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-30:i14:r1",
@@ -773,12 +847,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — супутник питає, чи працює кав'ярня. Двері навстіж",
+      "accessibilityLabel": "Вставте слово — кав'ярня працює, двері відчинені й горить вивіска",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — спутник спрашивает, работает ли кафе. Дверь нараспашку",
-          "uk": "Вставте слово — супутник питає, чи працює кав'ярня. Двері навстіж"
+          "ru": "Вставьте слово — кафе работает, дверь открыта и горит вывеска",
+          "uk": "Вставте слово — кав'ярня працює, двері відчинені й горить вивіска"
         },
         "gappedTargetPhrase": "It is ___ .",
         "gapOptions": [
@@ -795,12 +869,21 @@
             "text": "free"
           }
         ],
-        "testedDimension": "Вставте слово — супутник питає, чи працю",
+        "testedDimension": "Вставте слово — кав'ярня працює",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — кав'ярня працює, двері відчинені й горить вивіска",
+            "feedbackByLocale": {
+              "ru": "Кафе работает, дверь открыта: `open` — «открыто». Полная фраза: `It is open.`",
+              "uk": "Кав'ярня працює, двері відчинені: `open` — «відчинено». Повна фраза: `It is open`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-30:i14:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — супутник питає, чи працю",
+            "testedDimension": "Вставте слово — кав'ярня працює",
             "feedbackByLocale": {
               "ru": "«Закрыто» — а дверь как раз открыта.",
               "uk": "«Зачинено» — а двері якраз відчинені."
@@ -809,7 +892,7 @@
           {
             "responseId": "en:lesson-01:session-30:i14:r3",
             "correct": false,
-            "testedDimension": "Вставте слово — супутник питає, чи працю",
+            "testedDimension": "Вставте слово — кав'ярня працює",
             "feedbackByLocale": {
               "ru": "«Свободно» — про столик, а вы говорите про само кафе.",
               "uk": "«Вільно» — про столик, а ви кажете про саму кав'ярню."
@@ -823,65 +906,32 @@
       "interactionId": "en:lesson-01:session-30:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — у кав'ярні всього чотири столи, і вони стоять впритул",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-30:i15:r1",
-          "text": "small"
-        },
-        {
-          "responseId": "en:lesson-01:session-30:i15:r2",
-          "text": "loud"
-        },
-        {
-          "responseId": "en:lesson-01:session-30:i15:r3",
-          "text": "free"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — у кафе лише чотири столики, і вони стоять впритул",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — у кав'ярні всього чотири столи, і вони стоять впритул",
+      "accessibilityLabel": "Складіть фразу — у кафе лише чотири столики, і вони стоять впритул",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — в кафе всего четыре стола, и они стоят вплотную",
-          "uk": "Вставте слово — у кав'ярні всього чотири столи, і вони стоять впритул"
-        },
-        "gappedTargetPhrase": "It is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-30:i15:r1",
-            "text": "small"
-          },
-          {
-            "responseId": "en:lesson-01:session-30:i15:r2",
-            "text": "loud"
-          },
-          {
-            "responseId": "en:lesson-01:session-30:i15:r3",
-            "text": "free"
-          }
+        "family": "phrase_builder",
+        "targetPhrase": "It is small.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "small"
         ],
-        "testedDimension": "Вставте слово — у кав'ярні всього чотири",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-30:i15:r2",
+            "responseId": "en:lesson-01:session-30:i15:tile:d1",
             "correct": false,
-            "testedDimension": "Вставте слово — у кав'ярні всього чотири",
+            "testedDimension": "Соберите фразу — в кафе всего четыре сто",
             "feedbackByLocale": {
-              "ru": "Про шум, а вы говорите про размер.",
-              "uk": "Про шум, а ви кажете про розмір."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-30:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — у кав'ярні всього чотири",
-            "feedbackByLocale": {
-              "ru": "«Свободно» — про то, есть ли место за столиком. А тут про само кафе.",
-              "uk": "«Вільно» — про те, чи є місце за столиком. А тут про саму кав'ярню."
+              "ru": "`are` лишнее: про одно кафе говорят `It is small.`",
+              "uk": "`are` зайве: про одну кав'ярню кажуть `It is small`."
             }
           }
         ]
@@ -917,7 +967,17 @@
         "authoredDistractorTokens": [
           "open"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-30:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «уже закрыто»",
+            "feedbackByLocale": {
+              "ru": "`open` лишнее: в записи сказано `It is closed.` — «уже закрыто».",
+              "uk": "`open` зайве: у записі сказано `It is closed` — «уже зачинено»."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -927,13 +987,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 2",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-30:i17:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 2",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -960,13 +1020,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 2",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-30:i17:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 2",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -994,5 +1054,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "63b69a14c8faec960b88ddcd8eb4a1ea97ea9df1e4eb99778c355c0267f6bb9a"
+  "learnerFingerprint": "ab983c349646d381016bdf200f59a8a1decf4c62fd0580fb1adb792bab2532f8"
 }

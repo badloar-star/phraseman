@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-008	2026-10-13T09:19:22.972Z	ok	16105	marker+пусто_1500мс+голый_кадр+ждали_metro_64мс	docs/phraseman-2.0/evidence/parity/profile-008.png	1500

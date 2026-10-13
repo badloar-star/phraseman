@@ -115,6 +115,15 @@
               "ru": "Начинается с «ш», а `cheap` — с «ч». Слушайте самый первый звук.",
               "uk": "Починається з «ш», а `cheap` — з «ч». Слухайте найперший звук."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `cheap`: гласная тянется, а слово начинается со звука «ч». Поэтому не `chip` и не `sheep`.",
+              "uk": "У записі чути `cheap`: голосна тягнеться, а слово починається зі звуку «ч». Тому не `chip` і не `sheep`."
+            }
           }
         ],
         "isWordCard": false,
@@ -233,6 +242,15 @@
             "feedbackByLocale": {
               "ru": "Губы почти не открываются. В `far` рот открыт широко.",
               "uk": "Губи майже не відкриваються. У `far` рот відкритий широко."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `far`: рот открыт широко. Поэтому не `four` и не `fur`.",
+              "uk": "У записі чути `far`: рот відкритий широко. Тому не `four` і не `fur`."
             }
           }
         ],
@@ -360,6 +378,15 @@
         ],
         "testedDimension": "Вставьте слово — до остановки пять минут",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — до остановки пять минут",
+            "feedbackByLocale": {
+              "ru": "До остановки пять минут, поэтому `far` — «далеко» — не подходит: нужна фраза `It is not far.`",
+              "uk": "До зупинки п'ять хвилин, тому `far` — «далеко» — не підходить: потрібна фраза `It is not far`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-27:i07:r2",
             "correct": false,
@@ -537,6 +564,15 @@
               "ru": "Короткое, обрывается сразу. `hard` длиннее и тянется.",
               "uk": "Коротке, обривається одразу. `hard` довше і тягнеться."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-27:i10:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи слышно `hard`: звук тянется дольше, чем в `hat`; это не `heart` — «сердце».",
+              "uk": "У записі чути `hard`: звук тягнеться довше, ніж у `hat`; це не `heart` — «серце»."
+            }
           }
         ],
         "isWordCard": false,
@@ -634,6 +670,15 @@
         ],
         "testedDimension": "Вставьте слово — замок заедает, ключ про",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — замок заедает, ключ проворачивается с трудом",
+            "feedbackByLocale": {
+              "ru": "Ключ проворачивается с трудом, поэтому `hard` — «трудно». `easy` означает наоборот, а `warm` — про температуру.",
+              "uk": "Ключ провертається важко, тому `hard` — «важко». `easy` означає навпаки, а `warm` — про температуру."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-27:i12:r2",
             "correct": false,
@@ -778,7 +823,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
+      "prompt": "Вставьте слово — риелтор называет комнату тесной, а вам в ней просторно",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-27:i15:r1",
@@ -795,12 +840,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
+      "accessibilityLabel": "Вставьте слово — агент называет комнату тесной, а вам в ней просторно",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — агент называет комнату тесной, а вам в ней просторно",
-          "uk": "Вставте скріпку — агент називає кімнату тісною, а вам у ній просторо"
+          "ru": "Вставьте слово — риелтор называет комнату тесной, а вам в ней просторно",
+          "uk": "Вставте слово — агент називає кімнату тісною, а вам у ній просторо"
         },
         "gappedTargetPhrase": "It ___ not small.",
         "gapOptions": [
@@ -817,12 +862,21 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте скрепку — агент называет комнат",
+        "testedDimension": "Вставьте слово — агент называет комнату",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — риелтор называет комнату тесной, а вам в ней просторно",
+            "feedbackByLocale": {
+              "ru": "После `It` нужна форма `is`: `It is not small.` `am` ставят с `I`, а `are` — с you/we/they.",
+              "uk": "Після `It` потрібна форма `is`: `It is not small.` `am` ставлять з `I`, а `are` — з you/we/they."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-27:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — агент называет комнат",
+            "testedDimension": "Вставьте слово — агент называет комнату",
             "feedbackByLocale": {
               "ru": "`am` живёт только рядом с `I`. Про вещь — `is`.",
               "uk": "`am` живе тільки поруч з `I`. Про річ — `is`."
@@ -831,10 +885,10 @@
           {
             "responseId": "en:lesson-01:session-27:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — агент называет комнат",
+            "testedDimension": "Вставьте слово — агент называет комнату",
             "feedbackByLocale": {
-              "ru": "Чужая скрепка. Про одну вещь — `is`.",
-              "uk": "Чужа скріпка. Про одну річ — `is`."
+              "ru": "Для одной вещи после `it` нужно `is`.",
+              "uk": "Для однієї речі після `it` потрібне `is`."
             }
           }
         ]
@@ -871,7 +925,17 @@
         "authoredDistractorTokens": [
           "no"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «это не далеко»",
+            "feedbackByLocale": {
+              "ru": "`no` лишнее: внутри фразы после `is` нужно `not` — `It is not far.`",
+              "uk": "`no` зайве: усередині фрази після `is` потрібне `not` — `It is not far`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -951,29 +1015,32 @@
       "interactionId": "en:lesson-01:session-27:i19",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Правда или возражение? В комнате действительно темно — согласитесь",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате действительно темно",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Правда или возражение? В комнате действительно темно — согласитесь",
+      "audioTargetIds": [
+        "en:lesson-01:session-27:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате действительно темно",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is dark.",
-        "localizedMeaning": {
-          "ru": "Правда или возражение? В комнате действительно темно — согласитесь",
-          "uk": "Правда чи заперечення? У кімнаті справді темно — погодьтеся"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-27:i19:audio",
+          "transcript": "It is dark."
         },
-        "orderedTokens": [
-          "It",
-          "is",
-          "dark"
-        ],
-        "authoredDistractorTokens": [
-          "not"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is dark.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1087,31 +1154,39 @@
       "interactionId": "en:lesson-01:session-27:i21:s02",
       "ordinal": 25,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — «это не далеко»",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-27:i21:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — «это не далеко»",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-27:i21:s02:audio",
-          "transcript": "It is not far."
-        },
-        "slowReferenceAudio": null,
+        "family": "phrase_builder",
         "targetPhrase": "It is not far.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "localizedMeaning": {
+          "ru": "Соберите фразу — «это не далеко»",
+          "uk": "Складіть фразу — «це не далеко»"
+        },
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "far"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i21:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «это не далеко»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `It` ставят `is` — `It is not far.`",
+              "uk": "`are` зайве: з `It` ставлять `is` — `It is not far`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1120,31 +1195,42 @@
       "interactionId": "en:lesson-01:session-27:i21:s03",
       "ordinal": 26,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «это не просто»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-27:i21:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите — «это не просто»",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-27:i21:s03:audio",
           "transcript": "It is not easy."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is not easy.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "hiddenTargetPhrase": "It is not easy.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "not",
+          "easy"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-27:i21:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «это не просто»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `It` ставят `is` — `It is not easy.`",
+              "uk": "`are` зайве: з `It` ставлять `is` — `It is not easy`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1189,5 +1275,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f5d74154fd7a1cafa8ec6f622e82661df2d74daf011c8bdd5e597a4097dcd39b"
+  "learnerFingerprint": "405297d1b47332bb789f84985acf5da62b9bb874551db09de68df2efc676525a"
 }

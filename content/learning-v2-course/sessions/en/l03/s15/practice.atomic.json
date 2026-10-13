@@ -154,17 +154,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i03:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг спраши",
-              "feedbackByLocale": {
-                "ru": "Перед согласным началом `candle` нужно `A`. Короткое название тоже включает это маленькое слово.",
-                "uk": "Оскільки `candle` починається з приголосного, перед ним потрібне `A`. Коротка назва теж містить це маленьке слово."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -332,7 +322,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг предлагает встрети",
+          "testedDimension": "Вставьте слово — друг предлагает встретиться у кресла; назовите этот предмет (`armchair` — «кресло»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-15:i06:r2",
@@ -520,7 +510,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг предлагает встрети",
+          "testedDimension": "Вставьте слово — друг предлагает встретиться у духовки в отделе техники; назовите прибор (`oven` — «духовка»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-15:i09:r2",
@@ -579,17 +569,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i10:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — друг называет то",
-              "feedbackByLocale": {
-                "ru": "Перед `oven` в записи звучит `an`. Слово начинается с гласного звука, поэтому `a` здесь лишнее.",
-                "uk": "Перед `oven` у записі звучить `an`. Слово починається з голосного звуку, тому `a` тут зайве."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -698,17 +678,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг положил в корзину",
-              "feedbackByLocale": {
-                "ru": "После `Is it` нужно `a cushion`. Название начинается с согласного «к».",
-                "uk": "Після `Is it` потрібне `a cushion`. Назва починається з приголосного «к»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -821,17 +791,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — продавец уточняет, ",
-              "feedbackByLocale": {
-                "ru": "После `It is not` название свечи остаётся с `a`: первый звук `candle` согласный.",
-                "uk": "Після `It is not` назва свічки лишається з `a`: перший звук `candle` приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -903,17 +863,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i16:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец уточняе",
-              "feedbackByLocale": {
-                "ru": "В записи после `Is it` звучит `a plant`. Перед согласным началом названия нужно `a`.",
-                "uk": "У записі після `Is it` звучить `a plant`. Назва починається з приголосного, тому перед нею потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -949,17 +899,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — продавец просит назвать",
-              "feedbackByLocale": {
-                "ru": "Начните с `It is`, затем добавьте `a cushion`. Первый звук названия подушки согласный.",
-                "uk": "Почніть з `It is`, а потім додайте `a cushion`. Перший звук назви подушки приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1114,17 +1054,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i03:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг питає, що ",
-              "feedbackByLocale": {
-                "ru": "Перед согласным началом `candle` нужно `A`. Короткое название тоже включает это маленькое слово.",
-                "uk": "Оскільки `candle` починається з приголосного, перед ним потрібне `A`. Коротка назва теж містить це маленьке слово."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1292,7 +1222,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг пропонує зустрітися",
+          "testedDimension": "Вставте слово — друг пропонує зустрітися біля крісла; назвіть цей предмет (`armchair` — «крісло»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-15:i06:r2",
@@ -1480,7 +1410,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг пропонує зустрітися",
+          "testedDimension": "Вставте слово — друг пропонує зустрітися біля духовки у відділі техніки; назвіть прилад (`oven` — «духовка»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-15:i09:r2",
@@ -1539,17 +1469,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i10:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — друг називає тов",
-              "feedbackByLocale": {
-                "ru": "Перед `oven` в записи звучит `an`. Слово начинается с гласного звука, поэтому `a` здесь лишнее.",
-                "uk": "Перед `oven` у записі звучить `an`. Слово починається з голосного звуку, тому `a` тут зайве."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1658,17 +1578,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — друг поклав до кошика",
-              "feedbackByLocale": {
-                "ru": "После `Is it` нужно `a cushion`. Название начинается с согласного «к».",
-                "uk": "Після `Is it` потрібне `a cushion`. Назва починається з приголосного «к»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1781,17 +1691,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i14:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — продавець уточнює",
-              "feedbackByLocale": {
-                "ru": "После `It is not` название свечи остаётся с `a`: первый звук `candle` согласный.",
-                "uk": "Після `It is not` назва свічки лишається з `a`: перший звук `candle` приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1863,17 +1763,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i16:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець уточню",
-              "feedbackByLocale": {
-                "ru": "В записи после `Is it` звучит `a plant`. Перед согласным началом названия нужно `a`.",
-                "uk": "У записі після `Is it` звучить `a plant`. Назва починається з приголосного, тому перед нею потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1909,17 +1799,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-15:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — продавець просить назва",
-              "feedbackByLocale": {
-                "ru": "Начните с `It is`, затем добавьте `a cushion`. Первый звук названия подушки согласный.",
-                "uk": "Почніть з `It is`, а потім додайте `a cushion`. Перший звук назви подушки приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

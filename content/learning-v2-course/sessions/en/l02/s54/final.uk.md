@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
 Ціль: `landlord`
 Варіанти: `landlord` · `landmark` · `landslide`
+- landmark — *Це «орієнтир». Друга частина починається зі звука «м», для якого губи змикаються. У `landlord` після `land` одразу звучить «л».*
+- landslide — *Це «зсув». Друга частина починається зі сполуки «сл». У записі після `land` одразу звучить «л»: `landlord`.*
+
 
 **3 · Складіть фразу — друг указує на чоловіка, який відповідає на запитання; уточніть, чи він орендодавець**
 <!-- interaction_id: en:lesson-02:session-54:i03; family: phrase_builder -->
@@ -73,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i05; family: listen_choose -->
 Ціль: `rent`
 Варіанти: `rent` · `lent` · `sent`
+- lent — *Це «позичив». Перший звук такий самий, як у `landlord`. У записі початок звучить як у `ready`: `rent`.*
+- sent — *Це «надіслав», зі звуком «с» на початку. У записі перший звук такий самий, як у `ready`: `rent`.*
+
 
 **6 · Складіть фразу — господар показує суму в оголошенні; уточніть, чи це орендна плата**
 <!-- interaction_id: en:lesson-02:session-54:i06; family: phrase_builder -->
@@ -82,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-54:i07; family: context_gap_grammar -->
 Ціль: `The ___ is small.`
 Варіанти: `flat` · `landlord` · `rules`
+- landlord — *Це «орендодавець». Ви описуєте розмір квартири, тому потрібне `flat`.*
+- rules — *Це «правила». Щоб сказати про квартиру, оберіть `flat`: `The flat is small`.*
+
 
 **8 · Послухайте й виберіть — яка репліка друга прозвучала після огляду**
 <!-- interaction_id: en:lesson-02:session-54:i08; family: listen_choose -->
 Ціль: `The flat is quiet.`
 Варіанти: `The flat is quiet.` · `Is the flat quiet?` · `The flat is quite small.`
+- Is the flat quiet? — *Це запитання. У записі друг повідомляє: спочатку `The flat is`.*
+- The flat is quite small. — *Це «Квартира доволі маленька». У записі після `is` звучить `quiet` — «тиха».*
+
 
 **9 · Складіть фразу — господар пояснив правила; уточніть у друга, чи зрозумілі вони йому**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i11; family: context_gap_grammar -->
 Ціль: `Yes, he ___ .`
 Варіанти: `is` · `are` · `am`
+- are — *Після `he` у цій короткій відповіді потрібне `is`: `Yes, he is`.*
+- am — *Форма `am` поєднується з `I`. Тут ви відповідаєте про чоловіка: `he is`.*
+
 
 **12 · Складіть фразу — Лена звіряє оголошення з аркушем Михайла: суми різні; запитайте, чи правильно зазначено ціну**
 <!-- interaction_id: en:lesson-02:session-54:i12; family: phrase_builder -->
@@ -115,6 +130,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i14; family: context_gap_grammar -->
 Ціль: `The rules ___ clear.`
 Варіанти: `are` · `is` · `am`
+- is — *У цьому повідомленні з `the rules` потрібна форма `are`: `The rules are clear`.*
+- am — *Форма `am` поєднується з `I`. Тут ви говорите про правила, тому потрібне `are`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-54:i15; family: scripted_repeat_compare -->

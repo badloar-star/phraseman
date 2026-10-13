@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
 Цель: `sofa`
 Варианты: `sofa` · `safer` · `suffer`
+- safer — *В первом слоге `safer` слышно «эй», а в `sofa` — «оу». В записи `sofa`.*
+- suffer — *В первом слоге `suffer` гласный ближе к «а», а в `sofa` слышно «оу». Здесь звучит `sofa`.*
+
 
 **3 · Карточка слова — bed**
 <!-- interaction_id: en:lesson-03:session-02:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i04; family: listen_choose -->
 Цель: `bed`
 Варианты: `bed` · `red` · `bad`
+- red — *В `red` начальный `r` звучит плавно, без удара кончиком языка; `bed` начинается со смыкания губ для `b`. В записи `bed`.*
+- bad — *В `bad` гласный произносится с более открытым ртом, чем в `bed`. Здесь звучит `bed`.*
+
 
 **5 · Соберите фразу — сестра спрашивает, что вы освободили от чехла; скажите «Это диван»**
 <!-- interaction_id: en:lesson-03:session-02:i05; family: phrase_builder -->
@@ -82,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i07; family: listen_choose -->
 Цель: `desk`
 Варианты: `desk` · `disk` · `dusk`
+- disk — *В середине `disk` гласный ближе к «и», а в `desk` — к «э». В записи `desk`.*
+- dusk — *В середине `dusk` гласный ближе к «а», а в `desk` — к «э». Здесь звучит `desk`.*
+
 
 **8 · Соберите вопрос — из-под чехла виден край мебели; спросите, письменный ли это стол**
 <!-- interaction_id: en:lesson-03:session-02:i08; family: phrase_builder -->
@@ -106,6 +115,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i12; family: context_gap_grammar -->
 Цель: `It ___ bed.`
 Варианты: `is a` · `is` · `a`
+- is — *Получится `It is bed`: перед названием кровати не хватает `a`.*
+- a — *Получится `It a bed`: после `It` не хватает `is`. Здесь нужны оба слова: `is a`.*
+
 
 **13 · Соберите фразу — сестра спрашивает, что вы поставите у окна; назовите письменный стол**
 <!-- interaction_id: en:lesson-03:session-02:i13; family: phrase_builder -->
@@ -116,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i14; family: context_gap_grammar -->
 Цель: `It ___ heavy.`
 Варианты: `is` · `are` · `am`
+- are — *Об одном предмете здесь говорим `It is heavy`. Форма `are` с `It` не подходит.*
+- am — *Форма `am` нужна с `I`, когда говорим о себе. Здесь речь о столе: `It is heavy`.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-02:i15; family: scripted_repeat_compare -->

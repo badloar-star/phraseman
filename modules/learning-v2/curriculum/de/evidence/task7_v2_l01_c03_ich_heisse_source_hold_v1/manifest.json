@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c03-ich-heisse-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ALLOCATION_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3",
+    "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+    "checkpointPacketId": "de_l01_c03_s24",
+    "planCanonicalBodySha256": "a662ebaefd39513200017a67eab99380e84a5d5c45d4b0d37fb97a88585cc459"
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "8cb5f30fd298ddd1d5e058b0ff9a9984e0c79895e4a0fb9e339f4bc5e65b5b9c",
+      "bytes": 2235
+    },
+    "dwds": {
+      "headword": "heißen",
+      "sourcePartOfSpeech": "Verb",
+      "meaningAnchor": "d-1-1"
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "sourceHeadword": "heißen",
+      "sourcePartOfSpeech": "Verb",
+      "nameMeaning": "DWDS_D_1_1_GENANNT_WERDEN_DEN_NAMEN_HABEN",
+      "thirdPersonPresent": "heißt"
+    },
+    "unsupportedClaims": {
+      "exactFirstPersonInflection": "UNSUPPORTED_BY_CAPTURED_DWDS_ENTRY",
+      "officialPedagogicalOccurrence": "RAW_PDF_CAPTURED_TEXT_LOCATOR_NOT_REEXTRACTED_IN_THIS_PACKET"
+    }
+  },
+  "allocations": [
+    {
+      "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+      "checkpointPacketId": "de_l01_c03_s24",
+      "sessionId": "de_l01_s03",
+      "chapterId": "de_l01_c03",
+      "supportedFields": [
+        "lemmaOrExpression",
+        "sourceHeadword",
+        "sourcePartOfSpeech",
+        "nameMeaning",
+        "grammarAnchor"
+      ],
+      "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING"
+    }
+  ]
+}

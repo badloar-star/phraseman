@@ -126,7 +126,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — вы не уверены, успели л",
+          "testedDimension": "Вставьте слово — вы не уверены, успели ли к началу прогулки; спросите: «Я опоздал?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i02:r2",
@@ -223,7 +223,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставьте слово — друг звонит узнать, дош",
+          "testedDimension": "Вставьте слово — друг звонит узнать, дошли ли вы до места встречи; скажите: «Я здесь»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i04:r2",
@@ -396,7 +396,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставьте слово — вы впервые пришли в эту",
+          "testedDimension": "Вставьте слово — вы впервые пришли в эту компанию; спросите друга, рады ли вам здесь",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i07:r2",
@@ -569,7 +569,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставьте слово — организатор ещё готовит",
+          "testedDimension": "Вставьте слово — организатор ещё готовится к встрече; уточните, не пришли ли вы раньше нужного времени",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i10:r2",
@@ -771,7 +771,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставьте слово — новый участник спрашива",
+          "testedDimension": "Вставьте слово — новый участник спрашивает вас, как задать вопрос «Я рано?»; помогите ему",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i14:r2",
@@ -1015,7 +1015,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — ви не впевнені, чи встиг",
+          "testedDimension": "Вставте слово — ви не впевнені, чи встигли до початку прогулянки; запитайте: «Я запізнився?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i02:r2",
@@ -1112,7 +1112,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставте слово — друг телефонує дізнатися",
+          "testedDimension": "Вставте слово — друг телефонує дізнатися, чи ви дійшли до місця зустрічі; скажіть: «Я тут»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i04:r2",
@@ -1285,7 +1285,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставте слово — ви вперше прийшли в цю к",
+          "testedDimension": "Вставте слово — ви вперше прийшли в цю компанію; запитайте друга, чи вам тут раді",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i07:r2",
@@ -1458,7 +1458,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставте слово — організатор ще готується",
+          "testedDimension": "Вставте слово — організатор ще готується до зустрічі; уточніть, чи не прийшли ви раніше, ніж потрібно",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i10:r2",
@@ -1660,7 +1660,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставте слово — новий учасник запитує ва",
+          "testedDimension": "Вставте слово — новий учасник запитує вас, як поставити запитання «Я прийшов раніше запланованого?»; допоможіть йому",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-42:i14:r2",

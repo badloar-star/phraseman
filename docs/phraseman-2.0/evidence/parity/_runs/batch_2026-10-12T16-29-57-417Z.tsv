@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+learn-002	2026-10-12T16:30:17.402Z	blank_too_long	12166	marker+пусто_3042мс+ждали_metro_26мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T16-29-57-417Z/learn-002.blank_too_long.png	3042

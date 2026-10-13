@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-v2-037	2026-10-13T14:40:43.901Z	timeout	90827	нет маркера+ждали_metro_25мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T14-39-06-687Z/cards-v2-037.timeout.png	0

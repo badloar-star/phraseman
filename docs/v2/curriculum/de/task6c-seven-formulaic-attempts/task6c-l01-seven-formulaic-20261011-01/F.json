@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-seven-formulaic-attempt-final.v1",
+  "attemptId": "task6c-l01-seven-formulaic-20261011-01",
+  "snapshotSha256": "34d38d82927c5c3f17838a07b39c06c1299d31a2139d1b3a28edb9871021ae1e",
+  "preReceiptSha256": "8f3b34ebe24e6d0960bfd2ded00eb0609159767b5c9d421327b5d5c79f47a9e4",
+  "bindings": {
+    "preManifestSha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98",
+    "nativeReviewSha256": "b44713c957530bffffea97e76f50d2fc95d2fe49d1c7d4ca5cb34914caa0f694",
+    "adversarialReviewSha256": "64a19bd3a8e918ecc79b1462117223f8a73602daff6f8023cb29c98b2d96be08",
+    "closureReceiptSha256": "48040a29b481c4c29f325f0f2529b95e6ef58e212196ac68298272a611c1e1be"
+  },
+  "status": {
+    "attemptAcceptance": "PARTIAL_TASK6C_CURRENT_STATE_ACCEPTED",
+    "status": "HOLD",
+    "canonicalAdmission": "FORBIDDEN",
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "phraseClaim": false,
+    "task6Completion": "NOT_ESTABLISHED",
+    "release": "HOLD"
+  },
+  "limitations": [
+    "ATTEMPT_DOES_NOT_MUTATE_CANONICAL_REGISTRY_OR_RELEASE",
+    "This is a partial Task6C current-state acceptance attempt only.",
+    "Task 6 completion, Task 7 materialization, learner authoring, and release remain unestablished."
+  ]
+}

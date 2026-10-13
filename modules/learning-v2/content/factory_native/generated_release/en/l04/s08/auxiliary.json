@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-08",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-08:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-08:intro1:r2": {
+          "ru": "`Building` — один дом. `Neighbourhood` — район вокруг дома.",
+          "uk": "`Building` — один будинок. `Neighbourhood` — район навколо дому."
+        },
+        "en:lesson-04:session-08:intro1:r3": {
+          "ru": "`Street` — одна улица. Здесь нужен весь ближайший район: `neighbourhood`.",
+          "uk": "`Street` — одна вулиця. Тут потрібен увесь найближчий район: `neighbourhood`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-08:intro2:r2": {
+          "ru": "Аптека одна, поэтому нужно `There is a pharmacy`.",
+          "uk": "Аптека одна, тому потрібне `There is a pharmacy`."
+        },
+        "en:lesson-04:session-08:intro2:r3": {
+          "ru": "Перед одной аптекой нужен `a`: `a pharmacy`.",
+          "uk": "Перед однією аптекою потрібен `a`: `a pharmacy`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-08:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-08:intro3:r2": {
+          "ru": "Магазинов несколько, поэтому нужно `There are shops`.",
+          "uk": "Магазинів кілька, тому потрібне `There are shops`."
+        },
+        "en:lesson-04:session-08:intro3:r3": {
+          "ru": "После `There are` нужно множественное число: `shops`.",
+          "uk": "Після `There are` потрібна множина: `shops`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "da9e27d3cd58c143a39560c9da90a5f8a52fb8e37867603464d7efc9b75465ac"
+}

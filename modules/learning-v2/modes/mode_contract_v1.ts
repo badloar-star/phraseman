@@ -26,6 +26,7 @@ import type {
   LearningV2InterfaceLocale,
 } from "../content/generator_course_contract";
 import type { LearningV2ModeNativePayloadV1 } from "../contracts/mode_native_payload_v1";
+import type { LearningV2ModeLearnerFeedbackV1 } from "./mode_feedback_v1";
 
 /** Единая машина состояний режима. Совпадает по смыслу с "Контракт состояний"
  * из каждого макета (prompt→active, processing, success, needs_work...). */
@@ -73,6 +74,10 @@ export interface LearningV2ModeCommonPropsV1 {
   readonly resolved: boolean;
   /** Текст подсказки после второй ошибки (wrongExplanation в player'е), если есть. */
   readonly explanation: string | null;
+  /** Visible result of the latest submitted answer. Authored response-specific
+   * copy is preserved when available; a correct ordered-token submission uses
+   * only a neutral verdict and never invents an explanation. */
+  readonly learnerFeedback: LearningV2ModeLearnerFeedbackV1 | null;
 
   /** Ученик выбрал один вариант (single_choice режимы: listen_choose,
    * sound_contrast, context_gap_grammar, speed_match). */

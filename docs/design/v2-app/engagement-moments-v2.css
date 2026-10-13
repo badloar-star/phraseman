@@ -127,9 +127,9 @@
 
 /* ---------- решения владельца 13.10 ---------- */
 /* окна башни окрашены по теме приложения, а не по камню лиги: зажжённые окна (opacity=1) берут акцент темы */
-.em-ph .tw rect[opacity="1"] { fill: var(--acc); }
+/* окна башни цветом темы — делает EM.tower (подмена fill на var(--acc)) */
 /* энергия без капсулы-фона — только значок и цифра */
-.em-ph .pill.en { background: transparent; padding: 0 4px; color: var(--bolt); }
+/* D170: капсула энергии прячется только в Пике — правило перенесено в базовый css (.pik .pill.en) */
 /* «Комната недели» — подиум в самом верху экрана Пика, выше башни */
 .em-ph .room { display: flex; align-items: flex-end; justify-content: center; gap: 14px; padding: 12px 12px 10px; border-radius: 22px; }
 .em-ph .room .p { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--sc); }

@@ -1,0 +1,22 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-018	2026-10-12T17:22:53.102Z	ok	17239	marker+склейка+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/cards-018.png	0
+cards-019	2026-10-12T17:23:24.996Z	ok	22288	marker+пусто_1412мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-019.png	1412
+cards-022	2026-10-12T17:23:47.253Z	ok	14659	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-022.png	0
+cards-030	2026-10-12T17:24:16.125Z	ok	17554	marker+пусто_1659мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-030.png	1659
+cards-040	2026-10-12T17:24:40.879Z	ok	16995	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-040.png	0
+cards-041	2026-10-12T17:25:03.905Z	ok	13237	marker+пусто_1703мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-041.png	1703
+cards-042	2026-10-12T17:25:36.465Z	ok	15459	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-042.png	0
+cards-043	2026-10-12T17:26:35.648Z	stitch_failed	19473	marker+пусто_1543мс+склейка_не_удалась: nto view action[22m [2m - waiting 100ms[22m [2m 55 × waiting for element to be stable[22m [2m - element is not visible[22m [2m - retrying scroll into view action[22m [2m - waiting 500ms[22m+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T17-22-26-351Z/cards-043.bare.png	1543
+cards-044	2026-10-12T17:27:11.244Z	ok	24326	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-044.png	0
+cards-049	2026-10-12T17:27:43.798Z	ok	21367	marker+пусто_1367мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-049.png	1367
+cards-050	2026-10-12T17:28:05.036Z	ok	14441	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-050.png	0
+cards-051	2026-10-12T17:28:25.833Z	ok	13314	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-051.png	0
+cards-052	2026-10-12T17:28:53.343Z	ok	17715	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-052.png	0
+cards-053	2026-10-12T17:29:26.980Z	ok	24975	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-053.png	0
+cards-054	2026-10-12T17:29:54.866Z	ok	16382	marker+пусто_1824мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-054.png	1824
+cards-055	2026-10-12T17:30:25.314Z	ok	20059	marker+пусто_1379мс+склейка+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/cards-055.png	1379
+cards-056	2026-10-12T17:30:51.036Z	ok	16462	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-056.png	0
+cards-057	2026-10-12T17:31:20.207Z	ok	16779	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-057.png	0
+cards-058	2026-10-12T17:31:44.662Z	ok	17386	marker+склейка+ждали_metro_9мс	docs/phraseman-2.0/evidence/parity/cards-058.png	0
+cards-059	2026-10-12T17:32:10.500Z	ok	17507	marker+пусто_1362мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-059.png	1362
+cards-060	2026-10-12T17:32:33.740Z	ok	16301	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-060.png	0

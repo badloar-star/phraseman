@@ -5,6 +5,10 @@
     {
       "interactionId": "en:lesson-01:session-52:intro1:q",
       "responseFeedbackById": {
+        "en:lesson-01:session-52:intro1:r1": {
+          "ru": "Неделя одна, поэтому `is`; `busy` говорит, что неделя загруженная.",
+          "uk": "Тиждень один, тому `is`; `busy` каже, що тиждень завантажений."
+        },
         "en:lesson-01:session-52:intro1:r2": {
           "ru": "Между «неделей» и словом о ней нужно `is`.",
           "uk": "Між «тижнем» і словом про нього потрібне `is`."
@@ -18,29 +22,37 @@
     {
       "interactionId": "en:lesson-01:session-52:intro2:q",
       "responseFeedbackById": {
+        "en:lesson-01:session-52:intro2:r1": {
+          "ru": "Ночей несколько, поэтому `are`; `quiet` говорит, что ночью тихо.",
+          "uk": "Ночей кілька, тому `are`; `quiet` каже, що вночі тихо."
+        },
         "en:lesson-01:session-52:intro2:r2": {
-          "ru": "Ночей несколько, поэтому нужна форма `are`.",
-          "uk": "Ночей кілька, тому потрібна форма `are`."
+          "ru": "`Nights` — это несколько ночей, поэтому нужна форма `are`, не `is`.",
+          "uk": "`Nights` — це кілька ночей, тому потрібне `are`, а не `is`."
         },
         "en:lesson-01:session-52:intro2:r3": {
-          "ru": "Ночь одна, поэтому нужна форма `is`.",
-          "uk": "Ніч одна, тому потрібна форма `is`."
+          "ru": "`Night` в единственном числе требует `is`; здесь ночей несколько, поэтому `nights are`.",
+          "uk": "`Night` в однині потребує `is`; тут ночей кілька, тому `nights are`."
         }
       }
     },
     {
       "interactionId": "en:lesson-01:session-52:intro3:q",
       "responseFeedbackById": {
+        "en:lesson-01:session-52:intro3:r1": {
+          "ru": "В этой фразе после `I` нужна `am`; `tired` говорит, что по утрам вы чувствуете усталость.",
+          "uk": "У цій фразі після `I` потрібне `am`; `tired` каже, що вранці ви відчуваєте втому."
+        },
         "en:lesson-01:session-52:intro3:r2": {
           "ru": "Получилось «я — утро». Про себя нужно слово о состоянии: `tired`.",
           "uk": "Вийшло «я — ранок». Про себе потрібне слово про стан: `tired`."
         },
         "en:lesson-01:session-52:intro3:r3": {
-          "ru": "Не хватает `am`. С `I` всегда нужно `am`, даже если в конце есть `in the morning`.",
-          "uk": "Бракує `am`. З `I` завжди потрібне `am`, навіть якщо наприкінці є `in the morning`."
+          "ru": "В этой фразе после `I` не хватает `am`, даже если в конце есть `in the morning`.",
+          "uk": "У цій фразі після `I` бракує `am`, навіть якщо наприкінці є `in the morning`."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3c0a513decf8565a762b3178a434dd999d550579a33323c293caa6d731198f87"
+  "auxiliaryFingerprint": "69741ed40ac421b997af685dabeeadb3b88fc08f1a2202afe0b93a6f1f429fa8"
 }

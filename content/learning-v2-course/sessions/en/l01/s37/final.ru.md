@@ -72,6 +72,8 @@ I ___ tired. → **am** · is · are
 **2 · Соберите фразу — все за столом довольны**
 <!-- interaction_id: en:lesson-01:session-37:i02; family: phrase_builder -->
 Плитки: `happy` `We` `are` `is` → **We are happy.**
+*(плитка `is` лишняя: `is` лишнее: `We are happy.`)*
+
 
 **3 · Послушайте — в комнате душно. Какое слово вы услышали?**
 <!-- interaction_id: en:lesson-01:session-37:i03; family: listen_choose -->
@@ -96,6 +98,8 @@ tired — усталый · happy — довольный · cold — замёр�
 **7 · Послушайте и соберите — после дороги ваши коллеги устали**
 <!-- interaction_id: en:lesson-01:session-37:i07; family: listen_build_dictation -->
 🔊 *They are tired.* Плитки: `are` `tired` `they` `is` → **They are tired.**
+*(плитка `is` лишняя: `is` лишнее: `They are tired.`)*
+
 
 **8 · Вставьте слово — коллега напротив весь обед молчит и трёт глаза**
 <!-- interaction_id: en:lesson-01:session-37:i08; family: context_gap_grammar -->

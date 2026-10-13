@@ -316,7 +316,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вещей несколько, спраши",
+          "testedDimension": "Вставьте слово — вещей несколько, спрашиваете, что это",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i06:r2",
@@ -362,23 +362,33 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-27:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-27:i07:audio"
+        ],
         "accessibilityLabel": "Послушайте — Анна смотрит на несколько ценников в меню. Выберите, о чём она спрашивает",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-27:i07:audio", "transcript": "What are these prices?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-27:i07:audio",
+            "transcript": "What are these prices?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-27:i07:r1", "targetText": "ціни", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r2", "targetText": "правила", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r3", "targetText": "назви", "meaningByLocale": null}
-          ],
-          "transcriptRevealPolicy": "after_first_attempt",
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-27:i07:r1", "targetText": "цены", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r2", "targetText": "правила", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r3", "targetText": "названия", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-27:i07:r1",
+              "targetText": "цены",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i07:r2",
+              "targetText": "правила",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i07:r3",
+              "targetText": "названия",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
@@ -443,7 +453,7 @@
             "audioTargetId": "en:lesson-02:session-27:i08:audioB",
             "transcript": "tools"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «пра",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «правила»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i08:r2",
@@ -534,7 +544,7 @@
               "text": "these"
             }
           ],
-          "testedDimension": "Вставьте слово — на прилавке одна вещь, ",
+          "testedDimension": "Вставьте слово — на прилавке одна вещь, и вы про неё спрашиваете",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i10:r2",
@@ -590,7 +600,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-27:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — реакция покупателя на ценники",
+              "feedbackByLocale": {
+                "ru": "цен несколько — `prices`, поэтому в вопросе нужна форма `are`.",
+                "uk": "цін кілька — `prices`, тому в запитанні потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -639,7 +659,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставьте слово — вы обошли ряд и удивили",
+          "testedDimension": "Вставьте слово — вы обошли ряд и удивились, до чего тут недорого",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i12:r2",
@@ -763,7 +783,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-27:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вас удивили две высокие цены: «Что это за цены?»",
+              "feedbackByLocale": {
+                "ru": "цен несколько — `prices`, поэтому нужна форма `are`.",
+                "uk": "цін кілька — `prices`, тому потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -812,7 +842,7 @@
               "text": "streets"
             }
           ],
-          "testedDimension": "Вставьте слово — вы говорите спутнику, ч",
+          "testedDimension": "Вставьте слово — вы говорите спутнику, что тут целая улица недорогих лавок",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i15:r2",
@@ -844,9 +874,18 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте — Лина показывает продавцу несколько предметов на прилавке. Выберите, о чём она спрашивает",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-27:i16:s01:r1", "text": "что это за предметы"},
-          {"responseId": "en:lesson-02:session-27:i16:s01:r2", "text": "сколько они стоят"},
-          {"responseId": "en:lesson-02:session-27:i16:s01:r3", "text": "где находится магазин"}
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r1",
+            "text": "что это за предметы"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r2",
+            "text": "сколько они стоят"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r3",
+            "text": "где находится магазин"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -861,14 +900,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-27:i16:s01:r1", "targetText": "что это за предметы", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r2", "targetText": "сколько они стоят", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r3", "targetText": "где находится магазин", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r1",
+              "targetText": "что это за предметы",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r2",
+              "targetText": "сколько они стоят",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r3",
+              "targetText": "где находится магазин",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-27:i16:s01:r2", "correct": false, "testedDimension": "meaning of What are these?", "feedbackByLocale": {"ru": "О цене спрашивают `What are these prices?`.", "uk": "Про ціну питають `What are these prices?`."}},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r3", "correct": false, "testedDimension": "meaning of What are these?", "feedbackByLocale": {"ru": "Здесь спрашивают о предметах перед Линой, не о местоположении магазина.", "uk": "Тут питають про предмети перед Ліною, а не про місце магазину."}}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r2",
+              "correct": false,
+              "testedDimension": "meaning of What are these?",
+              "feedbackByLocale": {
+                "ru": "О цене спрашивают `What are these prices?`.",
+                "uk": "Про ціну питають `What are these prices?`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r3",
+              "correct": false,
+              "testedDimension": "meaning of What are these?",
+              "feedbackByLocale": {
+                "ru": "Здесь спрашивают о предметах перед Линой, не о местоположении магазина.",
+                "uk": "Тут питають про предмети перед Ліною, а не про місце магазину."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -883,26 +950,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-27:i16:s02:r1", "text": "prices"},
-          {"responseId": "en:lesson-02:session-27:i16:s02:r2", "text": "rules"},
-          {"responseId": "en:lesson-02:session-27:i16:s02:r3", "text": "shops"}
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r1",
+            "text": "prices"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r2",
+            "text": "rules"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r3",
+            "text": "shops"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах", "uk": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни"},
+          "localizedScene": {
+            "ru": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах",
+            "uk": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни"
+          },
           "gappedTargetPhrase": "What are these ___ ?",
           "gapOptions": [
-            {"responseId": "en:lesson-02:session-27:i16:s02:r1", "text": "prices"},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r2", "text": "rules"},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r3", "text": "shops"}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r1",
+              "text": "prices"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r2",
+              "text": "rules"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r3",
+              "text": "shops"
+            }
           ],
           "testedDimension": "plural prices at the checkout",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-27:i16:s02:r2", "correct": false, "testedDimension": "plural prices at the checkout", "feedbackByLocale": {"ru": "`Rules` — правила. На товарах вы видите ценники, то есть `prices`.", "uk": "`Rules` — правила. На товарах ви бачите цінники, тобто `prices`."}},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r3", "correct": false, "testedDimension": "plural prices at the checkout", "feedbackByLocale": {"ru": "`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.", "uk": "`Shops` — магазини. Мова про цифри на товарах, тобто про `prices`."}}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r2",
+              "correct": false,
+              "testedDimension": "plural prices at the checkout",
+              "feedbackByLocale": {
+                "ru": "`Rules` — правила. На товарах вы видите ценники, то есть `prices`.",
+                "uk": "`Rules` — правила. На товарах ви бачите цінники, тобто `prices`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r3",
+              "correct": false,
+              "testedDimension": "plural prices at the checkout",
+              "feedbackByLocale": {
+                "ru": "`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.",
+                "uk": "`Shops` — магазини. Мова про цифри на товарах, тобто про `prices`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1319,7 +1423,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — речей кілька, питаєте, щ",
+          "testedDimension": "Вставте слово — речей кілька, питаєте, що це",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i06:r2",
@@ -1365,16 +1469,33 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-27:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-27:i07:audio"
+        ],
         "accessibilityLabel": "Послухайте — Анна дивиться на кілька цінників у меню. Виберіть, про що вона питає",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-27:i07:audio", "transcript": "What are these prices?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-27:i07:audio",
+            "transcript": "What are these prices?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-27:i07:r1", "targetText": "ціни", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r2", "targetText": "правила", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i07:r3", "targetText": "назви", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-27:i07:r1",
+              "targetText": "ціни",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i07:r2",
+              "targetText": "правила",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i07:r3",
+              "targetText": "назви",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "isWordCard": false,
@@ -1439,7 +1560,7 @@
             "audioTargetId": "en:lesson-02:session-27:i08:audioB",
             "transcript": "tools"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «прави",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «правила»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i08:r2",
@@ -1528,7 +1649,7 @@
               "text": "these"
             }
           ],
-          "testedDimension": "Вставте слово — на прилавку одна річ, і ",
+          "testedDimension": "Вставте слово — на прилавку одна річ, і ви про неї питаєте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i10:r2",
@@ -1582,7 +1703,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-27:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — реакция покупателя на ценники",
+              "feedbackByLocale": {
+                "ru": "цен несколько — `prices`, поэтому в вопросе нужна форма `are`.",
+                "uk": "цін кілька — `prices`, тому в запитанні потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1631,7 +1762,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставте слово — ви обійшли ряд і здивува",
+          "testedDimension": "Вставте слово — ви обійшли ряд і здивувалися, як тут недорого",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i12:r2",
@@ -1755,7 +1886,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-27:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вас удивили две высокие цены: «Что это за цены?»",
+              "feedbackByLocale": {
+                "ru": "цен несколько — `prices`, поэтому нужна форма `are`.",
+                "uk": "цін кілька — `prices`, тому потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1804,7 +1945,7 @@
               "text": "streets"
             }
           ],
-          "testedDimension": "Вставте слово — ви кажете супутнику, що ",
+          "testedDimension": "Вставте слово — ви кажете супутнику, що тут ціла вулиця недорогих крамниць",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-27:i15:r2",
@@ -1836,9 +1977,18 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте — Ліна показує продавцеві кілька предметів на прилавку. Виберіть, про що вона питає",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-27:i16:s01:r1", "text": "що це за предмети"},
-          {"responseId": "en:lesson-02:session-27:i16:s01:r2", "text": "скільки вони коштують"},
-          {"responseId": "en:lesson-02:session-27:i16:s01:r3", "text": "де розташований магазин"}
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r1",
+            "text": "що це за предмети"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r2",
+            "text": "скільки вони коштують"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s01:r3",
+            "text": "де розташований магазин"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -1853,14 +2003,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-27:i16:s01:r1", "targetText": "що це за предмети", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r2", "targetText": "скільки вони коштують", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r3", "targetText": "де розташований магазин", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r1",
+              "targetText": "що це за предмети",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r2",
+              "targetText": "скільки вони коштують",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r3",
+              "targetText": "де розташований магазин",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-27:i16:s01:r2", "correct": false, "testedDimension": "meaning of What are these?", "feedbackByLocale": {"ru": "О цене спрашивают `What are these prices?`.", "uk": "Про ціну питають `What are these prices?`."}},
-            {"responseId": "en:lesson-02:session-27:i16:s01:r3", "correct": false, "testedDimension": "meaning of What are these?", "feedbackByLocale": {"ru": "Здесь спрашивают о предметах перед Линой, не о местоположении магазина.", "uk": "Тут питають про предмети перед Ліною, а не про місце магазину."}}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r2",
+              "correct": false,
+              "testedDimension": "meaning of What are these?",
+              "feedbackByLocale": {
+                "ru": "О цене спрашивают `What are these prices?`.",
+                "uk": "Про ціну питають `What are these prices?`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s01:r3",
+              "correct": false,
+              "testedDimension": "meaning of What are these?",
+              "feedbackByLocale": {
+                "ru": "Здесь спрашивают о предметах перед Линой, не о местоположении магазина.",
+                "uk": "Тут питають про предмети перед Ліною, а не про місце магазину."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1875,26 +2053,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-27:i16:s02:r1", "text": "prices"},
-          {"responseId": "en:lesson-02:session-27:i16:s02:r2", "text": "rules"},
-          {"responseId": "en:lesson-02:session-27:i16:s02:r3", "text": "shops"}
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r1",
+            "text": "prices"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r2",
+            "text": "rules"
+          },
+          {
+            "responseId": "en:lesson-02:session-27:i16:s02:r3",
+            "text": "shops"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах", "uk": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни"},
+          "localizedScene": {
+            "ru": "Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах",
+            "uk": "Вставте слово — біля каси на двох товарах стоять незрозумілі цінники, і ви питаєте про ціни"
+          },
           "gappedTargetPhrase": "What are these ___ ?",
           "gapOptions": [
-            {"responseId": "en:lesson-02:session-27:i16:s02:r1", "text": "prices"},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r2", "text": "rules"},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r3", "text": "shops"}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r1",
+              "text": "prices"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r2",
+              "text": "rules"
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r3",
+              "text": "shops"
+            }
           ],
           "testedDimension": "plural prices at the checkout",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-27:i16:s02:r2", "correct": false, "testedDimension": "plural prices at the checkout", "feedbackByLocale": {"ru": "`Rules` — правила. На товарах вы видите ценники, то есть `prices`.", "uk": "`Rules` — правила. На товарах ви бачите цінники, тобто `prices`."}},
-            {"responseId": "en:lesson-02:session-27:i16:s02:r3", "correct": false, "testedDimension": "plural prices at the checkout", "feedbackByLocale": {"ru": "`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.", "uk": "`Shops` — магазини. Мова про цифри на товарах, тобто про `prices`."}}
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r2",
+              "correct": false,
+              "testedDimension": "plural prices at the checkout",
+              "feedbackByLocale": {
+                "ru": "`Rules` — правила. На товарах вы видите ценники, то есть `prices`.",
+                "uk": "`Rules` — правила. На товарах ви бачите цінники, тобто `prices`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-27:i16:s02:r3",
+              "correct": false,
+              "testedDimension": "plural prices at the checkout",
+              "feedbackByLocale": {
+                "ru": "`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.",
+                "uk": "`Shops` — магазини. Мова про цифри на товарах, тобто про `prices`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -2033,7 +2248,7 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i07",
-    "correctText": "цены",
+      "correctText": "цены",
       "correctResponseId": "en:lesson-02:session-27:i07:r1"
     },
     {
@@ -2078,13 +2293,13 @@
     },
     {
       "interactionId": "en:lesson-02:session-27:i16:s01",
-    "correctText": "что это за предметы",
-    "correctResponseId": "en:lesson-02:session-27:i16:s01:r1"
+      "correctText": "что это за предметы",
+      "correctResponseId": "en:lesson-02:session-27:i16:s01:r1"
     },
     {
       "interactionId": "en:lesson-02:session-27:i16:s02",
-    "correctText": "prices",
-    "correctResponseId": "en:lesson-02:session-27:i16:s02:r1"
+      "correctText": "prices",
+      "correctResponseId": "en:lesson-02:session-27:i16:s02:r1"
     },
     {
       "interactionId": "en:lesson-02:session-27:i17:s01",

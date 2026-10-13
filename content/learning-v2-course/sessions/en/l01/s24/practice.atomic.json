@@ -1131,7 +1131,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите форму — Денис у кассы смешной",
-            "uk": "Оберіть форму — Денис біля каси смішний"
+            "uk": "Оберіть форму — Ліна прямо каже: «Денис біля каси смішний»"
           },
           "gappedTargetPhrase": "He ___ funny.",
           "gapOptions": [
@@ -1294,7 +1294,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — Мия за соседним столом молчит весь обед",
-            "uk": "Вставте слово — Мія за сусіднім столом мовчить увесь обід"
+            "uk": "Вставте слово — Ліна прямо каже: «Мія за сусіднім столом тиха»"
           },
           "gappedTargetPhrase": "She is ___ .",
           "gapOptions": [
@@ -1374,7 +1374,7 @@
             {
               "responseId": "en:lesson-01:session-24:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Ліна прямо каже: «Денис голодний»",
+              "testedDimension": "Соберите фразу — Лина прямо говорит: «Денис голоден»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `He` ставят `is` — `He is hungry.`",
                 "uk": "`are` зайве: з `He` ставлять `is` — `He is hungry`."
@@ -1412,7 +1412,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — Лина сказала, что Анна вымоталась, а вы не согласны",
-            "uk": "Вставте слово — Ліна сказала, що Анна вимоталася, а ви не згодні"
+            "uk": "Вставте слово — Ліна прямо каже: «Анна не втомилася»"
           },
           "gappedTargetPhrase": "She is not ___ .",
           "gapOptions": [
@@ -1607,7 +1607,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — она утром помогла вам с почтой",
-            "uk": "Вставте слово — вона вранці допомогла вам з поштою"
+            "uk": "Вставте слово — Ліна прямо каже: «Анна добра»"
           },
           "gappedTargetPhrase": "She is ___ .",
           "gapOptions": [
@@ -1830,7 +1830,7 @@
             {
               "responseId": "en:lesson-01:session-24:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «Денис тихий»",
+              "testedDimension": "Послушайте и соберите — «Денис тихий»",
               "feedbackByLocale": {
                 "ru": "`she` лишнее: в записи про Дениса говорят `He is quiet.`",
                 "uk": "`she` зайве: у записі про Дениса кажуть `He is quiet`."
@@ -1944,7 +1944,7 @@
             {
               "responseId": "en:lesson-01:session-24:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Ліна прямо каже: «Анна не втомилася»",
+              "testedDimension": "Соберите фразу — Лина прямо говорит: «Анна не устала»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `She` ставят `is` — `She is not tired.`",
                 "uk": "`are` зайве: з `She` ставлять `is` — `She is not tired`."

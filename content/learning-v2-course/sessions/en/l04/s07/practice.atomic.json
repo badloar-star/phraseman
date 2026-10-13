@@ -287,7 +287,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+                "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
               }
             }
           ]
@@ -497,11 +497,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите сообщение о площадке и зданиях",
+        "prompt": "Соберите сообщение о площадке и зданиях",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите сообщение о площадке и зданиях",
+        "accessibilityLabel": "Соберите сообщение о площадке и зданиях",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a playground near the buildings.",
@@ -805,7 +805,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+                "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
               }
             }
           ]
@@ -1015,11 +1015,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть повідомлення про майданчик і будинки",
+        "prompt": "Складіть повідомлення про майданчик і будинки",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть повідомлення про майданчик і будинки",
+        "accessibilityLabel": "Складіть повідомлення про майданчик і будинки",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a playground near the buildings.",

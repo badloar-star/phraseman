@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-independent-review-record.v1",
+  "recordKind": "ORCHESTRATION_ATTESTED_TRANSCRIPT_SUMMARY",
+  "source": "root message transcript",
+  "reviewTaskIdentity": "/root/formulaic_native_review",
+  "reviewerRole": "economy-reviewer",
+  "reviewedManifest": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+    "sha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+  },
+  "verdict": "PASS",
+  "scope": [
+    "Bounded HOLD candidate review reported no P0-P2.",
+    "Reported revalidation of occurrence, Task5 binding, and durable extraction map.",
+    "Reported no canonical, Task 7, learner, register, region, or productivity authority."
+  ],
+  "limitations": [
+    "THIS_RECORD_DOES_NOT_SELF_PROVE_INDEPENDENCE",
+    "This is an orchestration-attested transcript summary, not the reviewer transcript.",
+    "The review did not exercise canonical admission, Task 7, learner delivery, registry mutation, or release."
+  ],
+  "status": "HOLD_ONLY"
+}

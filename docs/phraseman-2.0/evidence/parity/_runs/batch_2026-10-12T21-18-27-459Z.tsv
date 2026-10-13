@@ -1,0 +1,7 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+learn-016	2026-10-12T21:18:49.016Z	ok	14138	marker+склейка+ждали_metro_30мс	docs/phraseman-2.0/evidence/parity/learn-016.png	0
+learn-017	2026-10-12T21:19:29.133Z	ok	14582	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/learn-017.png	0
+learn-018	2026-10-12T21:20:28.628Z	ok	14714	marker+шагов_6+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/learn-018.png	0
+video-007	2026-10-12T21:20:55.534Z	ok	14396	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/video-007.png	0
+coins-002	2026-10-12T21:21:13.282Z	ok	10088	marker+пусто_1281мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/coins-002.png	1281
+coins-005	2026-10-12T21:21:31.386Z	ok	9857	marker+пусто_1458мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/coins-005.png	1458

@@ -317,7 +317,7 @@
               "text": "intern"
             }
           ],
-          "testedDimension": "Вставьте слово — друг указывает на челов",
+          "testedDimension": "Вставьте слово — друг указывает на человека, который принимает всех у себя; скажите: «Он хозяин вечера»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i06:r2",
@@ -491,7 +491,7 @@
               "text": "neighbours"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, знаком",
+          "testedDimension": "Вставьте слово — друг спрашивает, знакомы ли вам люди у окна; вы впервые их видите, скажите: «Они незнакомцы»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i09:r2",
@@ -662,7 +662,7 @@
               "text": "managers"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, кто эт",
+          "testedDimension": "Вставьте слово — друг спрашивает, кто эти люди; хозяин пригласил их на вечеринку, скажите: «Они гости»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i12:r2",
@@ -1157,7 +1157,7 @@
               "text": "intern"
             }
           ],
-          "testedDimension": "Вставте слово — друг указує на людину, я",
+          "testedDimension": "Вставте слово — друг указує на людину, яка приймає всіх у себе; скажіть: «Він господар вечірки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i06:r2",
@@ -1331,7 +1331,7 @@
               "text": "neighbours"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, чи знайомі",
+          "testedDimension": "Вставте слово — друг запитує, чи знайомі вам люди біля вікна; ви бачите їх уперше, скажіть: «Вони незнайомці»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i09:r2",
@@ -1502,7 +1502,7 @@
               "text": "managers"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, хто ці люд",
+          "testedDimension": "Вставте слово — друг запитує, хто ці люди; господар запросив їх на вечірку, скажіть: «Вони гості»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-39:i12:r2",

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c03-briefkasten-source-extraction-map.v1",
+  "rawSources": {
+    "dwds": {
+      "requestedUrl": "https://www.dwds.de/wb/Briefkasten",
+      "canonicalUrl": "https://www.dwds.de/wb/Briefkasten",
+      "path": "raw/dwds_briefkasten.html",
+      "sha256": "d6e63ca2942fb05841e2a89cd30a3c335228dc4d6ba296e4d010e9515bd18342",
+      "bytes": 61841,
+      "metadataPath": "raw/dwds_briefkasten.http_metadata.txt",
+      "metadataSha256": "b9314f5e8b3f0b8c884b617ef967b531f06d80fdd8b83c07f89cb172706dfb50",
+      "metadataBytes": 283,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "extractions": {
+    "sourceHeadword": "Briefkasten",
+    "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+    "article": "der",
+    "singular": "Briefkasten",
+    "nominativePlural": "Briefkästen",
+    "senseAnchor": "d-1-2",
+    "sourceCoreGerman": "Kasten, der an der Haustür angebracht ist und in den von der Post die Sendungen für die einzelnen Empfänger eingeworfen werden"
+  },
+  "unsupportedClaims": {
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "inventoryResolution": "OUT_OF_SCOPE",
+    "learnerPhraseAuthority": "OUT_OF_SCOPE",
+    "broaderMorphology": "NOT_CLAIMED_BEYOND_CAPTURED_ARTICLE_SINGULAR_NOMINATIVE_PLURAL",
+    "register": "NOT_CLAIMED_BY_THIS_PACKET"
+  }
+}

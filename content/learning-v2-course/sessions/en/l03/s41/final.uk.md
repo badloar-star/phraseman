@@ -100,6 +100,10 @@
 <!-- interaction_id: en:lesson-03:session-41:i09:s01; family: context_gap_grammar -->
 Ціль: `This is ___ receipt.`
 Варіанти: `a` · `the` · `an` · `без артикля`
+- the — *Перший чек ще не названо, тому потрібне `a`; у другій фразі це вже той самий чек, тому `The`.*
+- an — *`receipt` починається звуком /r/, тому перед ним `a`, а не `an`.*
+- без артикля — *Коли вперше називаємо один чек, потрібне `a`; для вже названого чека — `The`.*
+
 
 **12 · Послухайте та складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-41:i10:s01; family: listen_build_dictation -->
@@ -113,6 +117,10 @@
 <!-- interaction_id: en:lesson-03:session-41:i11; family: listen_choose -->
 Ціль: `The receipt is wrong.`
 Варіанти: `У цьому чеку помилка.` · `У якомусь чеку помилка.` · `У цій стійці помилка.` · `Цей касир помиляється.`
+- У якомусь чеку помилка. — *`the receipt` — уже названий конкретний чек, а не якийсь новий.*
+- У цій стійці помилка. — *У записі звучить `receipt` — «чек», а не `counter` — «стійка».*
+- Цей касир помиляється. — *Фраза говорить про чек, `receipt`, а не про касира, `cashier`.*
+
 
 **15 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-41:i12:s01; family: phrase_builder -->
@@ -126,6 +134,10 @@
 <!-- interaction_id: en:lesson-03:session-41:i13:s01; family: context_gap_grammar -->
 Ціль: `She is ___ cashier.`
 Варіанти: `a` · `the` · `an` · `без артикля`
+- the — *Спершу ви називаєте професію однієї жінки: `a cashier`; потім говорите про неї ж: `The cashier`.*
+- an — *`cashier` починається звуком /k/, тому потрібне `a`, а не `an`.*
+- без артикля — *Коли називаємо професію однієї людини, потрібне `a`; для вже названого касира — `The`.*
+
 
 **18 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-41:i13:s02; family: phrase_builder -->
@@ -139,11 +151,19 @@
 <!-- interaction_id: en:lesson-03:session-41:i14:s02; family: listen_choose -->
 Ціль: `The cashier is here.`
 Варіанти: `The cashier is here.` · `receipt` · `counter` · `cashier`
+- receipt — *У записі звучить `The cashier is here.`, а не `receipt`.*
+- counter — *У записі звучить `The cashier is here.`, а не `counter`.*
+- cashier — *У записі звучить `The cashier is here.`, а не `cashier`.*
+
 
 **21 · Вставте одну відповідь в одну фразу**
 <!-- interaction_id: en:lesson-03:session-41:i15:s01; family: context_gap_grammar -->
 Ціль: `That is ___ counter.`
 Варіанти: `a` · `the` · `an` · `без артикля`
+- the — *Спочатку ви лише називаєте стійку: `a counter`. У другій фразі це та сама стійка: `The counter`.*
+- an — *`counter` починається звуком /k/, тому перед ним потрібне `a`.*
+- без артикля — *Коли вперше називаємо одну стійку, потрібне `a`; для вже названої стійки — `The`.*
+
 
 **22 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-41:i15:s02; family: scripted_repeat_compare -->

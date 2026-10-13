@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-43:i01; family: listen_choose -->
 Цель: `Are we lost?`
 Варианты: `Are we lost?` · `Am I lost?` · `Are you lost?`
+- Am I lost? — *Это вопрос только о себе. В записи звучит `Are we`: друг спрашивает о вас обоих.*
+- Are you lost? — *Это вопрос к собеседнику. На записи после `Are` стоит `we` — «мы».*
+
 
 **2 · Вставьте слово — вы с другом не узнаёте улицу; спросите, не заблудились ли вы оба**
 <!-- interaction_id: en:lesson-02:session-43:i02; family: context_gap_grammar -->
 Цель: `Are ___ lost?`
 Варианты: `we` · `I` · `he`
+- I — *Это «я». Здесь вопрос о вас обоих, поэтому нужно `we`.*
+- he — *Это «он». Вы включаете в вопрос и себя, и друга: `Are we lost?`*
+
 
 **3 · Соберите фразу — после поворота вы перестали понимать, где находитесь; спросите друга, не заблудились ли вы**
 <!-- interaction_id: en:lesson-02:session-43:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-43:i04; family: context_gap_grammar -->
 Цель: `We are ___ .`
 Варианты: `sure` · `lost` · `tired`
+- lost — *Получится «Мы заблудились». Сейчас вы говорите, что уверены в прочитанном названии: `sure`.*
+- tired — *Это «устали». Вы сообщаете об уверенности, а не об усталости.*
+
 
 **5 · Послушайте и выберите — что друг спросил, показывая на карту**
 <!-- interaction_id: en:lesson-02:session-43:i05; family: listen_choose -->
 Цель: `Are we here?`
 Варианты: `Are we here?` · `Are you here?` · `We are here.`
+- Are you here? — *Здесь вопрос о собеседнике. В записи друг говорит `we` — «мы».*
+- We are here. — *Это сообщение. На записи сначала `Are we`: друг задаёт вопрос.*
+
 
 **6 · Соберите фразу — друг спрашивает, верно ли вы выбрали поворот; вы сомневаетесь и признаётесь в этом**
 <!-- interaction_id: en:lesson-02:session-43:i06; family: phrase_builder -->
@@ -84,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-43:i07; family: context_gap_grammar -->
 Цель: `___ we near?`
 Варианты: `Are` · `Am` · `Is`
+- Am — *Вопрос о вас обоих начинается с `Are we`. Здесь нужно `Are`.*
+- Is — *Сочетание `Is we` не подходит для этого вопроса. Скажите `Are we near?`*
+
 
 **8 · Соберите фразу — прохожий остановился помочь; спросите его, где станция**
 <!-- interaction_id: en:lesson-02:session-43:i08; family: phrase_builder -->
@@ -98,16 +113,25 @@
 <!-- interaction_id: en:lesson-02:session-43:i10; family: context_gap_grammar -->
 Цель: `We are ___ .`
 Варианты: `here` · `ready` · `welcome`
+- ready — *Это «готовы». Сейчас вы указываете ваше место на карте: `here`.*
+- welcome — *С `welcome` получится «Нам рады». Для «Мы здесь» нужно `We are here`.*
+
 
 **11 · Послушайте и выберите — что друг сказал у станции**
 <!-- interaction_id: en:lesson-02:session-43:i11; family: listen_choose -->
 Цель: `We are not lost.`
 Варианты: `We are not lost.` · `We are lost.` · `They are not lost.`
+- We are lost. — *Без `not` получается «Мы заблудились». На записи друг это отрицает: `We are not lost`.*
+- They are not lost. — *Это «Они не заблудились». В записи первое слово `We` — «мы».*
+
 
 **12 · Вставьте слово — вы выбрали по карте дорогу от станции к музею; перед поворотом спросите: «Мы уверены?»**
 <!-- interaction_id: en:lesson-02:session-43:i12; family: context_gap_grammar -->
 Цель: `Are we ___ ?`
 Варианты: `sure` · `near` · `lost`
+- near — *Это вопрос о расстоянии. Сейчас вы проверяете уверенность в выбранной дороге: `sure`.*
+- lost — *Получится «Мы заблудились?» Вы ещё стоите у знакомой станции и проверяете решение о повороте.*
+
 
 **13 · Послушайте и соберите — друг объясняет прохожему ваше место на карте**
 <!-- interaction_id: en:lesson-02:session-43:i13; family: listen_build_dictation -->
@@ -117,6 +141,9 @@
 <!-- interaction_id: en:lesson-02:session-43:i14; family: context_gap_grammar -->
 Цель: `Are ___ here?`
 Варианты: `we` · `you` · `they`
+- you — *Так вы спросите, где находится прохожий. Вы уточняете место для себя и друга: `we`.*
+- they — *Это «они». Чтобы включить себя в вопрос, выберите `we` — «мы».*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-43:i15; family: scripted_repeat_compare -->

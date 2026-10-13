@@ -98,6 +98,8 @@ He is ___ . → **married** · single · funny
 <!-- interaction_id: en:lesson-01:session-20:i07; family: phrase_builder -->
 Плитки: `single` `she` `is` `are` → **She is single.**
 *`are` зайве: після `She` тут потрібне `is` — `She is single`.*
+*(плитка `are` зайва: `are` зайве: після `She` тут потрібне `is` — `She is single`.)*
+
 
 **8 · Картка слова — famous**
 <!-- interaction_id: en:lesson-01:session-20:i08; family: listen_choose -->
@@ -125,6 +127,8 @@ He is ___ . → **married** · single · funny
 <!-- interaction_id: en:lesson-01:session-20:i12; family: listen_build_dictation -->
 🔊 *He is rich.* Плитки: `is` `rich` `he` `famous` → **He is rich.**
 *`famous` зайве: у записі й фразі сказано `He is rich`.*
+*(плитка `famous` зайва: `famous` зайве: у записі й фразі сказано `He is rich`.)*
+
 
 **13 · Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася**
 <!-- interaction_id: en:lesson-01:session-20:i13; family: context_gap_grammar -->
@@ -148,8 +152,12 @@ He is ___. → **quiet** · funny · rich
 <!-- interaction_id: en:lesson-01:session-20:i16; family: listen_build_dictation -->
 🔊 *She is kind.* Плитки: `kind` `she` `is` `young` → **She is kind.**
 *`young` зайве: у записі й фразі сказано `She is kind`.*
+*(плитка `young` зайва: `young` зайве: у записі й фразі сказано `She is kind`.)*
+
 
 **17 · Складіть фразу — Антон цілий вечір усіх смішить**
 <!-- interaction_id: en:lesson-01:session-20:i17; family: phrase_builder -->
 Плитки: `funny` `he` `is` `young` → **He is funny.**
 *`young` зайве: Антон смішить усіх, тому `He is funny`.*
+*(плитка `young` зайва: `young` зайве: Антон смішить усіх, тому `He is funny`.)*
+

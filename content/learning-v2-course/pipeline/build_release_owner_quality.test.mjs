@@ -11,6 +11,14 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 
 const master = `# Проверка\n\n**Операция:** короткий ответ\n**Новые слова:** —\n\n## Интро 1\n\n### Форма\n\nТекст.\n\n**Ответьте коротко.**\n\n- ✅ **Yes, I am.**\n- ❌ Yes, I are. — *После I нужно am.*\n- ❌ Yes, am I. — *Это порядок вопроса.*\n\n---\n\n## Интро 2\n\n### Порядок слов\n\nВ коротком ответе сначала идёт \`Yes\`, затем местоимение и форма \`am\`.\n\n**Выберите короткий ответ на вопрос \`Are you ready?\`**\n\n- ✅ **Yes, I am.**\n- ❌ Yes, I is. — *С I нужна форма am.*\n- ❌ Am I yes. — *Это порядок вопроса, а не ответа.*\n\n---\n\n## Интро 3\n\n### Одна форма\n\nПосле \`I\` в этой модели всегда остаётся \`am\`.\n\n**Закончите ответ: \`Yes, I ___ .\`**\n\n- ✅ **am**\n- ❌ are — *Are сочетается с you, а не с I.*\n- ❌ is — *Is сочетается с he, she или it, а не с I.*\n\n---\n\n## Практика\n\n**1 · Вставьте слово — ответьте коротко**\nYes, I ___ . → **am** · are · is\n- are — *После I нужно am.*\n- is — *После I нужно am.*\n\nmodes: 1=context_gap_grammar\n`;
 
+const cleanMaster = master
+  .replace("**Операция:**", "**Как сказать:**")
+  .replaceAll("- ✅ **Yes, I am.**", "- ✅ **Yes, I am.** — *This short answer is formed correctly.*")
+  .replace("- ✅ **am**", "- ✅ **am** — *After I, this pattern uses am.*")
+  .replaceAll("*Это порядок вопроса.*", "*Неверный порядок вопроса.*")
+  .replace("*Это порядок вопроса, а не ответа.*", "*Неверный порядок вопроса, а не ответа.*")
+  .replace("Yes, I ___ . → **am** · are · is\n", "Yes, I ___ . → **am** · are · is\n- am — *After I, use am.*\n");
+
 function exactBindings(dir) {
   const digest = (name) => crypto.createHash("sha256").update(fs.readFileSync(path.join(dir, name))).digest("hex");
   const ru = digest("final.ru.md");
@@ -21,7 +29,7 @@ function exactBindings(dir) {
 function completeMaster(session) {
   const [language, lesson, sessionNumber] = session.split("/");
   const interactionId = `${language}:lesson-${lesson.slice(1)}:session-${sessionNumber.slice(1)}:i01`;
-  return master
+  return cleanMaster
     .replace("**Ответьте коротко.**", "**На вопрос `Are you ready?` ответьте коротко.**")
     .replace("**1 · Вставьте слово — ответьте коротко**", `**1 · Вставьте слово — ответьте коротко**\n<!-- interaction_id: ${interactionId}; family: context_gap_grammar -->`);
 }
@@ -37,7 +45,7 @@ function evidenceItem(locale, coverage) {
 
 function validTaste(session, bindings = {}) {
   return {
-    sourceSha256: crypto.createHash("sha256").update(master).digest("hex"),
+    sourceSha256: crypto.createHash("sha256").update(cleanMaster).digest("hex"),
     pairwise: "equal",
     pairwise_reason: "Текст сравнили с эталоном по голосу и ясности; уровень сохранён.",
     voice: { score: 4, evidence: ["Выберите короткий ответ на вопрос `Are you ready?`"] },
@@ -55,7 +63,11 @@ function validTaste(session, bindings = {}) {
 function factory(session = "en/l02/s33") {
   const root = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), "learning-v2-release-quality-"));
   fs.mkdirSync(path.join(root, "pipeline"));
-  for (const name of ["build_release.mjs", "single_phrase_release.mjs", "session_readiness.mjs", "session_header.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "write_mockup_file.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  for (const name of ["build_release.mjs", "single_phrase_release.mjs", "session_readiness.mjs", "session_header.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "write_mockup_file.mjs", "practice_explanations_v1.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  const visibleTextModule = path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
+  const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
+  fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });
+  fs.copyFileSync(visibleTextModule, fixtureVisibleTextModule);
   const dir = path.join(root, "sessions", session);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, "final.ru.md"), completeMaster(session));
@@ -127,6 +139,22 @@ test("private review output remains buildable before judges", () => {
     const result = run("--out", review);
     assert.equal(result.status, 0, result.stderr + result.stdout);
     assert.equal(fs.existsSync(path.join(review, "en/l02/s33/learner.json")), true);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("candidate preview never rewrites a source status even when a stale block is removable", () => {
+  const { root, dir, run } = factory();
+  try {
+    const statusPath = path.join(dir, "status.json");
+    const before = JSON.stringify({ blocked: ["judge_learner"], note: "source status must remain untouched by preview" }, null, 2);
+    fs.writeFileSync(statusPath, before);
+    fs.writeFileSync(path.join(dir, "final.judge_learner.json"), JSON.stringify({ verdict: "PASS" }));
+    const result = run("--out", path.join(root, "candidate"), "--candidate-preview");
+    assert.equal(result.status, 0, result.stderr + result.stdout);
+    assert.equal(fs.readFileSync(statusPath, "utf8"), before);
+    assert.equal(fs.existsSync(path.join(root, "release/en/l02/s33/learner.json")), false);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

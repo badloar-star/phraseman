@@ -1,0 +1,4 @@
+id	time	result	detail	file
+cards-027	2026-10-12T22:02:08.865Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-027.png
+cards-080	2026-10-12T22:02:10.323Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-080.png
+cards-030	2026-10-12T22:02:12.049Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-030.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=123420 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-030.png

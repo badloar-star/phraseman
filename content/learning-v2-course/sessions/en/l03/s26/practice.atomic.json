@@ -89,26 +89,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — на сцене стоит колонка; выберите её название",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-26:i05:r1", "text": "speaker" },
-          { "responseId": "en:lesson-03:session-26:i05:r2", "text": "screen" },
-          { "responseId": "en:lesson-03:session-26:i05:r3", "text": "picture" }
+          {
+            "responseId": "en:lesson-03:session-26:i05:r1",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i05:r2",
+            "text": "screen"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i05:r3",
+            "text": "picture"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — на сцене стоит колонка; выберите её название",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "На сцене стоит колонка. Выберите её название.", "uk": "На сцені стоїть колонка. Виберіть її назву." },
+          "localizedScene": {
+            "ru": "Вставьте слово — на сцене стоит колонка; выберите её название",
+            "uk": "На сцені стоїть колонка. Виберіть її назву."
+          },
           "gappedTargetPhrase": "___",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-26:i05:r1", "text": "speaker" },
-            { "responseId": "en:lesson-03:session-26:i05:r2", "text": "screen" },
-            { "responseId": "en:lesson-03:session-26:i05:r3", "text": "picture" }
+            {
+              "responseId": "en:lesson-03:session-26:i05:r1",
+              "text": "speaker"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r2",
+              "text": "screen"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r3",
+              "text": "picture"
+            }
           ],
           "testedDimension": "Вставьте слово — на сцене стоит колонка; выберите её название",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-26:i05:r2", "correct": false, "testedDimension": "Вставьте слово — на сцене стоит колонка; выберите её название", "feedbackByLocale": { "ru": "screen — экран. Здесь нужна колонка: speaker.", "uk": "screen — екран. Тут потрібна колонка: speaker." } },
-            { "responseId": "en:lesson-03:session-26:i05:r3", "correct": false, "testedDimension": "Вставьте слово — на сцене стоит колонка; выберите её название", "feedbackByLocale": { "ru": "picture — картина. Здесь нужна колонка: speaker.", "uk": "picture — картина. Тут потрібна колонка: speaker." } }
+            {
+              "responseId": "en:lesson-03:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на сцене стоит колонка; выберите её название",
+              "feedbackByLocale": {
+                "ru": "screen — экран. Здесь нужна колонка: speaker.",
+                "uk": "screen — екран. Тут потрібна колонка: speaker."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на сцене стоит колонка; выберите её название",
+              "feedbackByLocale": {
+                "ru": "picture — картина. Здесь нужна колонка: speaker.",
+                "uk": "picture — картина. Тут потрібна колонка: speaker."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -259,18 +296,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите звук — speaker или sticker",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i06:r1", "text": "speaker" }, { "responseId": "en:lesson-03:session-26:i06:r2", "text": "sticker" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i06:r1",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r2",
+            "text": "sticker"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-03:session-26:i06:audioA", "en:lesson-03:session-26:i06:audioB"
+          "en:lesson-03:session-26:i06:audioA",
+          "en:lesson-03:session-26:i06:audioB"
         ],
         "accessibilityLabel": "Различите звук — speaker или sticker",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "speaker", "contrastB": "sticker", "ipaA": "", "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-26:i06:audioA", "transcript": "speaker" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-26:i06:audioB", "transcript": "sticker" },
+          "family": "sound_contrast",
+          "contrastA": "speaker",
+          "contrastB": "sticker",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-26:i06:audioA",
+            "transcript": "speaker"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-26:i06:audioB",
+            "transcript": "sticker"
+          },
           "testedPhoneticContrast": "Различите звук — speaker или sticker",
-          "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i06:r2", "correct": false, "testedDimension": "Различите звук — speaker или sticker", "feedbackByLocale": { "ru": "В speaker после `s` слышно `p`; в sticker — `t`.", "uk": "У speaker після `s` чути `p`; у sticker — `t`." } }]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Различите звук — speaker или sticker",
+              "feedbackByLocale": {
+                "ru": "В speaker после `s` слышно `p`; в sticker — `t`.",
+                "uk": "У speaker після `s` чути `p`; у sticker — `t`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -354,12 +421,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите указательное слово — this или that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i08:r1", "text": "That" }, { "responseId": "en:lesson-03:session-26:i08:r2", "text": "This" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i08:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r2",
+            "text": "This"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-26:i08:audioA", "en:lesson-03:session-26:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i08:audioA",
+          "en:lesson-03:session-26:i08:audioB"
+        ],
         "accessibilityLabel": "Различите указательное слово — this или that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "That", "contrastB": "This", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-26:i08:audioA", "transcript": "That" }, "audioB": { "audioTargetId": "en:lesson-03:session-26:i08:audioB", "transcript": "This" }, "testedPhoneticContrast": "Различите указательное слово — this или that", "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i08:r2", "correct": false, "testedDimension": "Различите указательное слово — this или that", "feedbackByLocale": { "ru": "This указывает на предмет рядом; в задании нужен предмет вдали: that.", "uk": "This вказує на предмет поруч; у завданні потрібен предмет далеко: that." } }]
+          "family": "sound_contrast",
+          "contrastA": "That",
+          "contrastB": "This",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-26:i08:audioA",
+            "transcript": "That"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-26:i08:audioB",
+            "transcript": "This"
+          },
+          "testedPhoneticContrast": "Различите указательное слово — this или that",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Различите указательное слово — this или that",
+              "feedbackByLocale": {
+                "ru": "This указывает на предмет рядом; в задании нужен предмет вдали: that.",
+                "uk": "This вказує на предмет поруч; у завданні потрібен предмет далеко: that."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -370,12 +473,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставьте форму — один предмет стоит вдали",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-26:i09:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте форму — один предмет стоит вдали",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На дальнем столе стоит один предмет. Закончите сообщение о нём.", "uk": "На дальньому столі стоїть один предмет. Закінчіть повідомлення про нього." }, "gappedTargetPhrase": "That ___ there.", "gapOptions": [{ "responseId": "en:lesson-03:session-26:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-26:i09:r2", "text": "are" }], "testedDimension": "Один дальний предмет: That is there.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i09:r2", "correct": false, "testedDimension": "Один дальний предмет: That is there.", "feedbackByLocale": { "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.", "uk": "Are використовують з кількома предметами. Тут предмет один, тому is." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте форму — один предмет стоит вдали",
+            "uk": "На дальньому столі стоїть один предмет. Закінчіть повідомлення про нього."
+          },
+          "gappedTargetPhrase": "That ___ there.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один дальний предмет: That is there.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Один дальний предмет: That is there.",
+              "feedbackByLocale": {
+                "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.",
+                "uk": "Are використовують з кількома предметами. Тут предмет один, тому is."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -424,7 +563,24 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соберите фразу — картина находится на сцене вдали",
         "modePayload": {
-          "family": "phrase_builder", "targetPhrase": "That is a picture.", "localizedMeaning": { "ru": "Соберите фразу — картина находится на сцене вдали", "uk": "Складіть фразу — картина стоїть на сцені вдалині" }, "orderedTokens": ["That", "is", "a", "picture"], "authoredDistractorTokens": ["This", "are", "pictures"], "slotFeedback": []
+          "family": "phrase_builder",
+          "targetPhrase": "That is a picture.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — картина находится на сцене вдали",
+            "uk": "Складіть фразу — картина стоїть на сцені вдалині"
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "This",
+            "are",
+            "pictures"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -455,7 +611,8 @@
             "a",
             "screen."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -512,7 +669,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте слово — колонка стоит у дальней",
+          "testedDimension": "Вставьте слово — колонка стоит у дальней стены",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-26:i13:r2",
@@ -724,7 +881,7 @@
               "text": "A"
             }
           ],
-          "testedDimension": "Вставьте указатель — одна картина стоит ",
+          "testedDimension": "Вставьте указатель — одна картина стоит у дальней стены",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-26:i16:r2",
@@ -876,26 +1033,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — на сцені стоїть колонка; виберіть її назву",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-26:i05:r1", "text": "speaker" },
-          { "responseId": "en:lesson-03:session-26:i05:r2", "text": "screen" },
-          { "responseId": "en:lesson-03:session-26:i05:r3", "text": "picture" }
+          {
+            "responseId": "en:lesson-03:session-26:i05:r1",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i05:r2",
+            "text": "screen"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i05:r3",
+            "text": "picture"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — на сцені стоїть колонка; виберіть її назву",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "На сцене стоит колонка. Выберите её название.", "uk": "На сцені стоїть колонка. Виберіть її назву." },
+          "localizedScene": {
+            "ru": "На сцене стоит колонка. Выберите её название.",
+            "uk": "Вставте слово — на сцені стоїть колонка; виберіть її назву"
+          },
           "gappedTargetPhrase": "___",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-26:i05:r1", "text": "speaker" },
-            { "responseId": "en:lesson-03:session-26:i05:r2", "text": "screen" },
-            { "responseId": "en:lesson-03:session-26:i05:r3", "text": "picture" }
+            {
+              "responseId": "en:lesson-03:session-26:i05:r1",
+              "text": "speaker"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r2",
+              "text": "screen"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r3",
+              "text": "picture"
+            }
           ],
           "testedDimension": "Вставте слово — на сцені стоїть колонка; виберіть її назву",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-26:i05:r2", "correct": false, "testedDimension": "Вставте слово — на сцені стоїть колонка; виберіть її назву", "feedbackByLocale": { "ru": "screen — экран. Здесь нужна колонка: speaker.", "uk": "screen — екран. Тут потрібна колонка: speaker." } },
-            { "responseId": "en:lesson-03:session-26:i05:r3", "correct": false, "testedDimension": "Вставте слово — на сцені стоїть колонка; виберіть її назву", "feedbackByLocale": { "ru": "picture — картина. Здесь нужна колонка: speaker.", "uk": "picture — картина. Тут потрібна колонка: speaker." } }
+            {
+              "responseId": "en:lesson-03:session-26:i05:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — на сцені стоїть колонка; виберіть її назву",
+              "feedbackByLocale": {
+                "ru": "screen — экран. Здесь нужна колонка: speaker.",
+                "uk": "screen — екран. Тут потрібна колонка: speaker."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i05:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — на сцені стоїть колонка; виберіть її назву",
+              "feedbackByLocale": {
+                "ru": "picture — картина. Здесь нужна колонка: speaker.",
+                "uk": "picture — картина. Тут потрібна колонка: speaker."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1046,18 +1240,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть звук — speaker чи sticker",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i06:r1", "text": "speaker" }, { "responseId": "en:lesson-03:session-26:i06:r2", "text": "sticker" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i06:r1",
+            "text": "speaker"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i06:r2",
+            "text": "sticker"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-03:session-26:i06:audioA", "en:lesson-03:session-26:i06:audioB"
+          "en:lesson-03:session-26:i06:audioA",
+          "en:lesson-03:session-26:i06:audioB"
         ],
         "accessibilityLabel": "Розрізніть звук — speaker чи sticker",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "speaker", "contrastB": "sticker", "ipaA": "", "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-26:i06:audioA", "transcript": "speaker" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-26:i06:audioB", "transcript": "sticker" },
+          "family": "sound_contrast",
+          "contrastA": "speaker",
+          "contrastB": "sticker",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-26:i06:audioA",
+            "transcript": "speaker"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-26:i06:audioB",
+            "transcript": "sticker"
+          },
           "testedPhoneticContrast": "Розрізніть звук — speaker чи sticker",
-          "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i06:r2", "correct": false, "testedDimension": "Розрізніть звук — speaker чи sticker", "feedbackByLocale": { "ru": "В speaker после `s` слышно `p`; в sticker — `t`.", "uk": "У speaker після `s` чути `p`; у sticker — `t`." } }]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i06:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть звук — speaker чи sticker",
+              "feedbackByLocale": {
+                "ru": "В speaker после `s` слышно `p`; в sticker — `t`.",
+                "uk": "У speaker після `s` чути `p`; у sticker — `t`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1141,12 +1365,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть вказівне слово — this чи that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i08:r1", "text": "That" }, { "responseId": "en:lesson-03:session-26:i08:r2", "text": "This" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i08:r1",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i08:r2",
+            "text": "This"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-26:i08:audioA", "en:lesson-03:session-26:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-26:i08:audioA",
+          "en:lesson-03:session-26:i08:audioB"
+        ],
         "accessibilityLabel": "Розрізніть вказівне слово — this чи that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "That", "contrastB": "This", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-26:i08:audioA", "transcript": "That" }, "audioB": { "audioTargetId": "en:lesson-03:session-26:i08:audioB", "transcript": "This" }, "testedPhoneticContrast": "Розрізніть вказівне слово — this чи that", "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i08:r2", "correct": false, "testedDimension": "Розрізніть вказівне слово — this чи that", "feedbackByLocale": { "ru": "This указывает на предмет рядом; в задании нужен предмет вдали: that.", "uk": "This вказує на предмет поруч; у завданні потрібен предмет далеко: that." } }]
+          "family": "sound_contrast",
+          "contrastA": "That",
+          "contrastB": "This",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-26:i08:audioA",
+            "transcript": "That"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-26:i08:audioB",
+            "transcript": "This"
+          },
+          "testedPhoneticContrast": "Розрізніть вказівне слово — this чи that",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i08:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть вказівне слово — this чи that",
+              "feedbackByLocale": {
+                "ru": "This указывает на предмет рядом; в задании нужен предмет вдали: that.",
+                "uk": "This вказує на предмет поруч; у завданні потрібен предмет далеко: that."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1157,12 +1417,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставте форму — один предмет стоїть удалині",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-26:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-26:i09:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-26:i09:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-26:i09:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте форму — один предмет стоїть удалині",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На дальнем столе стоит один предмет. Закончите сообщение о нём.", "uk": "На дальньому столі стоїть один предмет. Закінчіть повідомлення про нього." }, "gappedTargetPhrase": "That ___ there.", "gapOptions": [{ "responseId": "en:lesson-03:session-26:i09:r1", "text": "is" }, { "responseId": "en:lesson-03:session-26:i09:r2", "text": "are" }], "testedDimension": "Один дальний предмет: That is there.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-26:i09:r2", "correct": false, "testedDimension": "Один дальний предмет: That is there.", "feedbackByLocale": { "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.", "uk": "Are використовують з кількома предметами. Тут предмет один, тому is." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На дальнем столе стоит один предмет. Закончите сообщение о нём.",
+            "uk": "Вставте форму — один предмет стоїть удалині"
+          },
+          "gappedTargetPhrase": "That ___ there.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один дальний предмет: That is there.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-26:i09:r2",
+              "correct": false,
+              "testedDimension": "Один дальний предмет: That is there.",
+              "feedbackByLocale": {
+                "ru": "Are используют с несколькими предметами. Здесь предмет один, поэтому is.",
+                "uk": "Are використовують з кількома предметами. Тут предмет один, тому is."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1211,7 +1507,24 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Складіть фразу — картина знаходиться на сцені вдалині",
         "modePayload": {
-          "family": "phrase_builder", "targetPhrase": "That is a picture.", "localizedMeaning": { "ru": "Соберите фразу — картина находится на сцене вдали", "uk": "Складіть фразу — картина знаходиться на сцені вдалині" }, "orderedTokens": ["That", "is", "a", "picture"], "authoredDistractorTokens": ["This", "are", "pictures"], "slotFeedback": []
+          "family": "phrase_builder",
+          "targetPhrase": "That is a picture.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — картина находится на сцене вдали",
+            "uk": "Складіть фразу — картина знаходиться на сцені вдалині"
+          },
+          "orderedTokens": [
+            "That",
+            "is",
+            "a",
+            "picture"
+          ],
+          "authoredDistractorTokens": [
+            "This",
+            "are",
+            "pictures"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1242,7 +1555,8 @@
             "a",
             "screen."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

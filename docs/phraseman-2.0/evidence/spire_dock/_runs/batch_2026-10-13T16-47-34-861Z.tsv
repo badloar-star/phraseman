@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spirecheck-001	2026-10-13T16:48:02.744Z	ok	17739	marker+шагов_1+пусто_1498мс+голый_кадр+ждали_metro_80мс	docs/phraseman-2.0/evidence/spire_dock/spirecheck-001.png	1498

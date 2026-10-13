@@ -1,0 +1,7 @@
+canonical-url: https://www.dwds.de/wb/tsch%C3%BCss
+requested-url: https://www.dwds.de/wb/tsch%C3%BCss
+http-status: 200
+content-type: text/html; charset=UTF-8
+transport: DIRECT_PUBLIC_HTTPS
+body-sha256: 78c9f5c885d69b0719a5910e207c5f73113ef4ea7cbf45c57a794ef55df15650
+body-bytes: 61803

@@ -81,7 +81,7 @@
   },
   {
     "interactionId": "en:lesson-02:session-50:i17",
-    "correctText": "Yes, I am.",
-    "correctResponseId": null
+    "correctText": "am",
+    "correctResponseId": "en:lesson-02:session-50:i17:r1"
   }
 ]

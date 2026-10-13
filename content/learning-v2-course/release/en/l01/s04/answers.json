@@ -66,8 +66,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i14",
-    "correctText": "free",
-    "correctResponseId": "en:lesson-01:session-04:i14:r1"
+    "correctText": "I am free.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i15",
@@ -91,8 +91,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-04:i19",
-    "correctText": "happy",
-    "correctResponseId": "en:lesson-01:session-04:i19:r1"
+    "correctText": "I am happy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-04:i20",
@@ -100,28 +100,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-04:i21:s01",
-    "correctText": "early",
-    "correctResponseId": "en:lesson-01:session-04:i21:s01:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i21:s02",
-    "correctText": "en:lesson-01:session-04:i21:s02:p1=late\nen:lesson-01:session-04:i21:s02:p2=ready\nen:lesson-01:session-04:i21:s02:p3=fine\nen:lesson-01:session-04:i21:s02:p4=happy",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i21:s03",
-    "correctText": "wrong",
-    "correctResponseId": "en:lesson-01:session-04:i21:s03:r1"
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i21:s04",
-    "correctText": "I am free.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-04:i21:s05",
-    "correctText": "not",
-    "correctResponseId": "en:lesson-01:session-04:i21:s05:r1"
+    "interactionId": "en:lesson-01:session-04:i21",
+    "correctText": "not busy",
+    "correctResponseId": "en:lesson-01:session-04:i21:r1"
   }
 ]

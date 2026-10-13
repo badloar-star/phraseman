@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "learning-v2-german-lexical-item-evidence.v3",
+  "evidenceId": "DE-LEX-ITEM-L01-C01-HALLO-SENSE-REGISTER-001",
+  "sourcePlanId": "de_lex_plan_l01_c01_hallo_v2",
+  "canonicalSenseId": "de_lex_l01_c01_hallo_v2",
+  "lemmaOrExpression": "Hallo",
+  "exactSurface": "Hallo!",
+  "sourcePartOfSpeech": "Interjektion",
+  "curriculumPartOfSpeech": "fixed_expression",
+  "partOfSpeechInterpretation": "SOURCE_GROUNDED_INTERJECTION_TO_FIXED_EXPRESSION",
+  "senseGloss": "colloquial greeting on meeting",
+  "register": "colloquial",
+  "neutralRegisterClaim": false,
+  "sourceSupport": {
+    "dwds": {
+      "canonicalUrl": "https://www.dwds.de/wb/hallo",
+      "sourceAnchor": "d-1-1-2",
+      "headword": "hallo",
+      "sourcePartOfSpeech": "Interjektion",
+      "exactDefinitionGerman": "Anrede zur Begrüßung",
+      "rawPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_hallo_interjection.html",
+      "rawSha256": "b9dd475eb8828c1d38b000404cd519b3d66012941b2a13eead5325bda5e39467",
+      "senseSpanSha256": "085d816983ebf50aa05254a390414e4e9169b1b49e3cf391ca4bb7808531c5b1"
+    },
+    "goetheA1": {
+      "canonicalUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "rawPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/goethe_a1_redemittel.pdf",
+      "rawSha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "exactOccurrence": "Guten Tag! / Hallo!",
+      "exactAlternative": "Hallo!",
+      "pdfPage": 3,
+      "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN"
+    },
+    "registerAdjudication": {
+      "basis": "DWDS marks the greeting sense as colloquial; Goethe supplies the exact A1 surface occurrence",
+      "admittedRegister": "colloquial",
+      "forbiddenRegister": "neutral"
+    }
+  },
+  "packetAllocation": {
+    "firstIntroductionPacketId": "de_l01_c01_s01",
+    "firstScoredUsePacketId": "de_l01_c01_s08"
+  },
+  "canonicalAdmission": "ADMITTED_EXACT_HALLO_ONLY",
+  "learnerFacingAuthority": false,
+  "releaseAuthorized": false
+}

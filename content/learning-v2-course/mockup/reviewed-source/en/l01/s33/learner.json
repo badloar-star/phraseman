@@ -115,6 +115,15 @@
               "ru": "На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.",
               "uk": "На слух початок той самий. Слухайте, що йде далі: у `together` є закінчення `-er`."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — вы с Олегом идёте на обед вместе",
+            "feedbackByLocale": {
+              "ru": "`together` — «вместе»: вы с Олегом идёте не поодиночке.",
+              "uk": "`together` — «разом»: ви з Олегом ідете не окремо."
+            }
           }
         ],
         "isWordCard": false,
@@ -169,6 +178,15 @@
         ],
         "testedDimension": "Вставьте слово — команда собралась у две",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i03:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — команда собралась у двери",
+            "feedbackByLocale": {
+              "ru": "Команда — это несколько людей, поэтому `We are`.",
+              "uk": "Команда — це кілька людей, тому `We are`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-33:i03:r2",
             "correct": false,
@@ -267,6 +285,15 @@
         "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы вышли из офиса всей компанией, не поодиночке",
+            "feedbackByLocale": {
+              "ru": "Вышли всей компанией: `together` — «вместе».",
+              "uk": "Вийшли всією компанією: `together` — «разом"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
@@ -317,7 +344,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мы вместе»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` ставят `are` — `We are together.`",
+              "uk": "`is` зайве: з `We` ставлять `are` — `We are together`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -368,6 +405,15 @@
         ],
         "testedDimension": "Вставьте слово — коллега смотрит на часы",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега смотрит на часы: перерыв начался десять минут назад",
+            "feedbackByLocale": {
+              "ru": "Перерыв начался раньше, значит вы `late` — «опоздали».",
+              "uk": "Перерва почалася раніше, отже ви `late` — «запізнилися"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-33:i07:r2",
             "correct": false,
@@ -539,6 +585,15 @@
         "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — в кафе смотрят на вас четверых: один столик или разные?",
+            "feedbackByLocale": {
+              "ru": "Вас четверо за одним столом: `We` — «мы».",
+              "uk": "Вас четверо за одним столом: `We` — «ми"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
@@ -683,7 +738,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит",
+            "feedbackByLocale": {
+              "ru": "`late` лишнее: здесь собирают `We are hungry.`",
+              "uk": "`late` зайве: тут складають `We are hungry`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -734,6 +799,15 @@
         ],
         "testedDimension": "Вставьте слово — коллега зовёт есть, все",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Ира зовёт всю команду обедать",
+            "feedbackByLocale": {
+              "ru": "Команда идёт обедать, потому что `hungry` — «голодные».",
+              "uk": "Команда йде обідати, бо `hungry` — «голодні"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-33:i14:r2",
             "correct": false,
@@ -858,6 +932,15 @@
               "ru": "Готовность — другое значение. Здесь все голодны.",
               "uk": "Готовність — інше значення. Тут усі голодні."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите фразу — вся команда хочет есть",
+            "feedbackByLocale": {
+              "ru": "Вся команда хочет есть: `We are hungry.`",
+              "uk": "Уся команда хоче їсти: `We are hungry`."
+            }
           }
         ],
         "isWordCard": false,
@@ -927,7 +1010,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i16:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вся команда уже в куртках и ждёт у двери",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: `We are ready.`",
+              "uk": "`is` зайве: `We are ready`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     }
@@ -938,5 +1031,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48011fc598d9bac71626c9c9503c92aba0ebe0a3fd9ddfed916426d7996f8c32"
+  "learnerFingerprint": "3d3b7b2c2ecddb960e89f9b9f720c0155a736e768da1c5856afe2013fe38cc74"
 }

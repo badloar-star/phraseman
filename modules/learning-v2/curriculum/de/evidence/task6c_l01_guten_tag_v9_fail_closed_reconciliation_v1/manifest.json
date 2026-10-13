@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "learning-v2-de-guten-tag-v9-fail-closed-reconciliation-manifest.v1",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "provenance": "LOCAL_WORKTREE_NOT_IMMUTABLE_EXTERNAL_RUNNER",
+  "inputs": [
+    {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_final_review_closure_v1/closure.json",
+      "sha256": "7d12e8f92cc4f190a53cbd2a04463fbd04dde42d39063b704059400e8af0577c"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/lexical_evidence.json",
+      "sha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v7.json",
+      "sha256": "a52b925ee5e6d3adbd1de87749e7722424f6fc9c1fb5a50e3f306d2ad2fce5b1"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v7.json",
+      "sha256": "29e2c6b7e379acd2fa69431e28d25eb6c1e97466555bc7751eafe05693b33195"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v7.json",
+      "sha256": "d409e6cc0a909fdcf486c69308f8d2de84b2a6db688d7a90d31f933e14c0f69b"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v8.json",
+      "sha256": "f80c085f75f3c09bb84072ea56d4809ed11110248b6f5958365b6d0197019ff7"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v8.json",
+      "sha256": "b051f67de024c149f734167b25f18b88849d6c79502ea59a2d33bdee3b5af536"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v9.json",
+      "sha256": "808093390dfb8d6074021a9af55721ba251ad296c0bd5ecefa025947ea49239d"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v9.json",
+      "sha256": "83529d0021c399dc1d6b8c4f310d49f783d582c3effa094380c8823270a84c1e"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v9_fail_closed_reconciliation_de_v1.ts",
+      "sha256": "6455d9abfa65e7483aa0200352d809b085e6a2a53ee549a4f053f799ee03e69e"
+    },
+    {
+      "path": "tests/learning_v2_de_task6c_l01_guten_tag_v9_fail_closed_reconciliation_gate.ts",
+      "sha256": "0358a742889fc9670bec88163ff3afb0840f000542d01d928898bfeb9ed7ca0c"
+    },
+    {
+      "path": "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v9_typescript_evidence.mjs",
+      "sha256": "77fb56d0b872b9ef60ee602d7c0983c51923333b7da5e822365d8a55c5e2e9ad"
+    }
+  ],
+  "rejectedAudits": {
+    "status": "REJECTED_NOT_AUTHORITY",
+    "reason": "V7_V8_AUDITS_REJECTED_FAIL_CLOSED_RECONCILIATION_REQUIRED",
+    "task6V7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v7.json",
+      "byteSha256": "29e2c6b7e379acd2fa69431e28d25eb6c1e97466555bc7751eafe05693b33195"
+    },
+    "inventoryV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v7.json",
+      "byteSha256": "d409e6cc0a909fdcf486c69308f8d2de84b2a6db688d7a90d31f933e14c0f69b"
+    },
+    "task6V8": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v8.json",
+      "byteSha256": "f80c085f75f3c09bb84072ea56d4809ed11110248b6f5958365b6d0197019ff7"
+    },
+    "inventoryV8": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v8.json",
+      "byteSha256": "b051f67de024c149f734167b25f18b88849d6c79502ea59a2d33bdee3b5af536"
+    }
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

@@ -233,11 +233,20 @@
         "inputMode": "single_choice",
         "prompt": "Различите слово — wooden или woollen",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-52:i06:r1", "text": "wooden"},
-          {"responseId": "en:lesson-03:session-52:i06:r2", "text": "woollen"}
+          {
+            "responseId": "en:lesson-03:session-52:i06:r1",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i06:r2",
+            "text": "woollen"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-52:i06:audioA", "en:lesson-03:session-52:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i06:audioA",
+          "en:lesson-03:session-52:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — wooden или woollen",
         "modePayload": {
           "family": "sound_contrast",
@@ -245,11 +254,25 @@
           "contrastB": "woollen",
           "ipaA": "",
           "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-52:i06:audioA", "transcript": "wooden"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-52:i06:audioB", "transcript": "woollen"},
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audioA",
+            "transcript": "wooden"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audioB",
+            "transcript": "woollen"
+          },
           "testedPhoneticContrast": "В `wooden` слышится /d/, а в `woollen` — /l/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i06:r2", "correct": false, "testedDimension": "Различите wooden и woollen", "feedbackByLocale": {"ru": "`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».", "uk": "`woollen` — «вовняний». У записі звучить `wooden` — «дерев’яний»."}}
+            {
+              "responseId": "en:lesson-03:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Различите wooden и woollen",
+              "feedbackByLocale": {
+                "ru": "`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».",
+                "uk": "`woollen` — «вовняний». У записі звучить `wooden` — «дерев’яний»."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -268,15 +291,56 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            {"pairId": "en:lesson-03:session-52:i08:p1", "target": "round", "meaningByLocale": {"ru": "круглый", "uk": "круглий"}},
-            {"pairId": "en:lesson-03:session-52:i08:p2", "target": "table", "meaningByLocale": {"ru": "стол", "uk": "стіл"}},
-            {"pairId": "en:lesson-03:session-52:i08:p3", "target": "mirror", "meaningByLocale": {"ru": "зеркало", "uk": "дзеркало"}},
-            {"pairId": "en:lesson-03:session-52:i08:p4", "target": "chair", "meaningByLocale": {"ru": "стул", "uk": "стілець"}}
+            {
+              "pairId": "en:lesson-03:session-52:i08:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p2",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p4",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "стул",
+                "uk": "стілець"
+              }
+            }
           ],
-          "leftColumn": ["round", "table", "mirror", "chair"],
+          "leftColumn": [
+            "round",
+            "table",
+            "mirror",
+            "chair"
+          ],
           "testedPhoneticContrast": "В `round` после /r/ слышится /aʊ/, а в `brown` — /aʊ/ после /br/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i08:r2", "correct": false, "testedDimension": "Различите round и brown", "feedbackByLocale": {"ru": "`brown` — «коричневый». В записи звучит `round` — «круглый».", "uk": "`brown` — «коричневий». У записі звучить `round` — «круглий»."}}
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Различите round и brown",
+              "feedbackByLocale": {
+                "ru": "`brown` — «коричневый». В записи звучит `round` — «круглый».",
+                "uk": "`brown` — «коричневий». У записі звучить `round` — «круглий»."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -289,11 +353,20 @@
         "inputMode": "single_choice",
         "prompt": "Различите слово — square или scare",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-52:i09:r1", "text": "square"},
-          {"responseId": "en:lesson-03:session-52:i09:r2", "text": "scare"}
+          {
+            "responseId": "en:lesson-03:session-52:i09:r1",
+            "text": "square"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i09:r2",
+            "text": "scare"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-52:i09:audioA", "en:lesson-03:session-52:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i09:audioA",
+          "en:lesson-03:session-52:i09:audioB"
+        ],
         "accessibilityLabel": "Различите слово — square или scare",
         "modePayload": {
           "family": "sound_contrast",
@@ -301,11 +374,25 @@
           "contrastB": "scare",
           "ipaA": "",
           "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-52:i09:audioA", "transcript": "square"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-52:i09:audioB", "transcript": "scare"},
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-52:i09:audioA",
+            "transcript": "square"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-52:i09:audioB",
+            "transcript": "scare"
+          },
           "testedPhoneticContrast": "В `square` после /skw/ слышится /eə/, а в `scare` нет /kw/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i09:r2", "correct": false, "testedDimension": "Выберите форму квадратного зеркала", "feedbackByLocale": {"ru": "`round` значит «круглый», а зеркало в сцене квадратное.", "uk": "`round` означає «круглий», а дзеркало в сцені квадратне."}}
+            {
+              "responseId": "en:lesson-03:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Выберите форму квадратного зеркала",
+              "feedbackByLocale": {
+                "ru": "`round` значит «круглый», а зеркало в сцене квадратное.",
+                "uk": "`round` означає «круглий», а дзеркало в сцені квадратне."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -533,7 +620,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте указатель — квадратное зеркало ",
+          "testedDimension": "Вставьте указатель — квадратное зеркало стоит дальше",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-52:i12:r2",
@@ -713,7 +800,7 @@
               "text": "this"
             }
           ],
-          "testedDimension": "Вставьте форму — круглый стул стоит даль",
+          "testedDimension": "Вставьте форму — круглый стул стоит дальше у стены",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-52:i14:r2",
@@ -767,8 +854,16 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "This wooden chair, please.",
-          "orderedTokens": ["This", "wooden", "chair,", "please"],
-          "distractorTokens": ["That"]
+          "orderedTokens": [
+            "This",
+            "wooden",
+            "chair,",
+            "please"
+          ],
+          "distractorTokens": [
+            "That"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -872,11 +967,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "мастер ждёт решения у дальней стены",
+        "prompt": "Мастер ждёт решения у дальней стены",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "мастер ждёт решения у дальней стены",
+        "accessibilityLabel": "Мастер ждёт решения у дальней стены",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "That wooden table, please.",
@@ -986,26 +1081,59 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-52:i05:r1", "text": "wooden"},
-          {"responseId": "en:lesson-03:session-52:i05:r2", "text": "square"}
+          {
+            "responseId": "en:lesson-03:session-52:i05:r1",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i05:r2",
+            "text": "square"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-52:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-03:session-52:i05:audio", "transcript": "wooden"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-52:i05:audio",
+            "transcript": "wooden"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-03:session-52:i05:r1", "targetText": "wooden", "meaningByLocale": null},
-            {"responseId": "en:lesson-03:session-52:i05:r2", "targetText": "square", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-03:session-52:i05:r1",
+              "targetText": "wooden",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "targetText": "square",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i05:r2", "correct": false, "testedDimension": "Виберіть почутий матеріал", "feedbackByLocale": {"ru": "В записи звучит `wooden` — «деревянный», а не `square` — «квадратный».", "uk": "У записі звучить `wooden` — «дерев’яний», а не `square` — «квадратний»."}}
+            {
+              "responseId": "en:lesson-03:session-52:i05:r2",
+              "correct": false,
+              "testedDimension": "Виберіть почутий матеріал",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `wooden` — «деревянный», а не `square` — «квадратный».",
+                "uk": "У записі звучить `wooden` — «дерев’яний», а не `square` — «квадратний»."
+              }
+            }
           ],
           "isWordCard": true,
-          "wordCard": {"word": "wooden", "definitionByLocale": {"ru": "«деревянный». Так можно описать стул или стол из дерева.", "uk": "«дерев’яний». Так можна описати стілець або стіл із дерева."}}
+          "wordCard": {
+            "word": "wooden",
+            "definitionByLocale": {
+              "ru": "«деревянный». Так можно описать стул или стол из дерева.",
+              "uk": "«дерев’яний». Так можна описати стілець або стіл із дерева."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1095,11 +1223,20 @@
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — wooden чи woollen",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-52:i06:r1", "text": "wooden"},
-          {"responseId": "en:lesson-03:session-52:i06:r2", "text": "woollen"}
+          {
+            "responseId": "en:lesson-03:session-52:i06:r1",
+            "text": "wooden"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i06:r2",
+            "text": "woollen"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-52:i06:audioA", "en:lesson-03:session-52:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i06:audioA",
+          "en:lesson-03:session-52:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — wooden чи woollen",
         "modePayload": {
           "family": "sound_contrast",
@@ -1107,11 +1244,25 @@
           "contrastB": "woollen",
           "ipaA": "",
           "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-52:i06:audioA", "transcript": "wooden"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-52:i06:audioB", "transcript": "woollen"},
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audioA",
+            "transcript": "wooden"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-52:i06:audioB",
+            "transcript": "woollen"
+          },
           "testedPhoneticContrast": "У `wooden` чути /d/, а у `woollen` — /l/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i06:r2", "correct": false, "testedDimension": "Розрізніть wooden і woollen", "feedbackByLocale": {"ru": "`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».", "uk": "`woollen` — «вовняний». У записі звучить `wooden` — «дерев’яний»."}}
+            {
+              "responseId": "en:lesson-03:session-52:i06:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть wooden і woollen",
+              "feedbackByLocale": {
+                "ru": "`woollen` — «шерстяной». В записи звучит `wooden` — «деревянный».",
+                "uk": "`woollen` — «вовняний». У записі звучить `wooden` — «дерев’яний»."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1130,15 +1281,56 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            {"pairId": "en:lesson-03:session-52:i08:p1", "target": "round", "meaningByLocale": {"ru": "круглый", "uk": "круглий"}},
-            {"pairId": "en:lesson-03:session-52:i08:p2", "target": "table", "meaningByLocale": {"ru": "стол", "uk": "стіл"}},
-            {"pairId": "en:lesson-03:session-52:i08:p3", "target": "mirror", "meaningByLocale": {"ru": "зеркало", "uk": "дзеркало"}},
-            {"pairId": "en:lesson-03:session-52:i08:p4", "target": "chair", "meaningByLocale": {"ru": "стул", "uk": "стілець"}}
+            {
+              "pairId": "en:lesson-03:session-52:i08:p1",
+              "target": "round",
+              "meaningByLocale": {
+                "ru": "круглый",
+                "uk": "круглий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p2",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p3",
+              "target": "mirror",
+              "meaningByLocale": {
+                "ru": "зеркало",
+                "uk": "дзеркало"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-52:i08:p4",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "стул",
+                "uk": "стілець"
+              }
+            }
           ],
-          "leftColumn": ["round", "table", "mirror", "chair"],
+          "leftColumn": [
+            "round",
+            "table",
+            "mirror",
+            "chair"
+          ],
           "testedPhoneticContrast": "У `round` після /r/ чути /aʊ/, а у `brown` — /aʊ/ після /br/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i08:r2", "correct": false, "testedDimension": "Розрізніть round і brown", "feedbackByLocale": {"ru": "`brown` — «коричневый». В записи звучит `round` — «круглый».", "uk": "`brown` — «коричневий». У записі звучить `round` — «круглий»."}}
+            {
+              "responseId": "en:lesson-03:session-52:i08:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть round і brown",
+              "feedbackByLocale": {
+                "ru": "`brown` — «коричневый». В записи звучит `round` — «круглый».",
+                "uk": "`brown` — «коричневий». У записі звучить `round` — «круглий»."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1151,11 +1343,20 @@
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — square чи scare",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-52:i09:r1", "text": "square"},
-          {"responseId": "en:lesson-03:session-52:i09:r2", "text": "scare"}
+          {
+            "responseId": "en:lesson-03:session-52:i09:r1",
+            "text": "square"
+          },
+          {
+            "responseId": "en:lesson-03:session-52:i09:r2",
+            "text": "scare"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-52:i09:audioA", "en:lesson-03:session-52:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-52:i09:audioA",
+          "en:lesson-03:session-52:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — square чи scare",
         "modePayload": {
           "family": "sound_contrast",
@@ -1163,11 +1364,25 @@
           "contrastB": "scare",
           "ipaA": "",
           "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-52:i09:audioA", "transcript": "square"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-52:i09:audioB", "transcript": "scare"},
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-52:i09:audioA",
+            "transcript": "square"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-52:i09:audioB",
+            "transcript": "scare"
+          },
           "testedPhoneticContrast": "У `square` після /skw/ чути /eə/, а у `scare` немає /kw/.",
           "choiceFeedback": [
-            {"responseId": "en:lesson-03:session-52:i09:r2", "correct": false, "testedDimension": "Виберіть форму квадратного дзеркала", "feedbackByLocale": {"ru": "`round` значит «круглый», а зеркало в сцене квадратное.", "uk": "`round` означає «круглий», а дзеркало в сцені квадратне."}}
+            {
+              "responseId": "en:lesson-03:session-52:i09:r2",
+              "correct": false,
+              "testedDimension": "Виберіть форму квадратного дзеркала",
+              "feedbackByLocale": {
+                "ru": "`round` значит «круглый», а зеркало в сцене квадратное.",
+                "uk": "`round` означає «круглий», а дзеркало в сцені квадратне."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1629,8 +1844,16 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "This wooden chair, please.",
-          "orderedTokens": ["This", "wooden", "chair,", "please"],
-          "distractorTokens": ["That"]
+          "orderedTokens": [
+            "This",
+            "wooden",
+            "chair,",
+            "please"
+          ],
+          "distractorTokens": [
+            "That"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1734,11 +1957,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "майстер чекає рішення біля дальньої стіни",
+        "prompt": "Майстер чекає рішення біля дальньої стіни",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "майстер чекає рішення біля дальньої стіни",
+        "accessibilityLabel": "Майстер чекає рішення біля дальньої стіни",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "That wooden table, please.",

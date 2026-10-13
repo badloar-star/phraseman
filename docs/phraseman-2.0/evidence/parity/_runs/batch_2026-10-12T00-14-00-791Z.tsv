@@ -1,0 +1,24 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-002	2026-10-12T00:14:51.191Z	error	36828	step_target_not_found:#fc-cards-hub-train	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-002.error.png	0
+cards-006	2026-10-12T00:15:38.343Z	timeout	45037	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-006.timeout.png	0
+cards-007	2026-10-12T00:16:25.551Z	timeout	45153	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-007.timeout.png	0
+cards-008	2026-10-12T00:17:07.709Z	ok	33417	marker+шагов_2	docs/phraseman-2.0/evidence/parity/cards-008.png	0
+cards-009	2026-10-12T00:17:54.935Z	timeout	45077	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-009.timeout.png	0
+cards-010	2026-10-12T00:18:30.662Z	ok	33539	marker	docs/phraseman-2.0/evidence/parity/cards-010.png	0
+cards-012	2026-10-12T00:19:14.608Z	ok	31462	marker+шагов_2	docs/phraseman-2.0/evidence/parity/cards-012.png	0
+cards-013	2026-10-12T00:19:45.839Z	ok	28998	marker	docs/phraseman-2.0/evidence/parity/cards-013.png	0
+cards-014	2026-10-12T00:20:33.250Z	timeout	45205	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-014.timeout.png	0
+cards-015	2026-10-12T00:21:16.445Z	ok	32288	marker+шагов_3	docs/phraseman-2.0/evidence/parity/cards-015.png	0
+cards-016	2026-10-12T00:21:47.038Z	ok	28421	marker	docs/phraseman-2.0/evidence/parity/cards-016.png	0
+cards-017	2026-10-12T00:22:17.143Z	ok	23672	marker+шагов_2	docs/phraseman-2.0/evidence/parity/cards-017.png	0
+cards-024	2026-10-12T00:22:54.166Z	error	28812	step_target_not_found:#ugc-pack-add-card	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-024.error.png	0
+cards-032	2026-10-12T00:23:49.066Z	blank_too_long	41163	marker+шагов_1+пусто_6_повторов	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-032.blank_too_long.png	0
+cards-034	2026-10-12T00:24:26.353Z	ok	30076	marker+шагов_1	docs/phraseman-2.0/evidence/parity/cards-034.png	0
+cards-035	2026-10-12T00:25:18.991Z	ok	28967	marker+шагов_6	docs/phraseman-2.0/evidence/parity/cards-035.png	0
+cards-036	2026-10-12T00:26:07.593Z	timeout	46048	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-036.timeout.png	0
+cards-037	2026-10-12T00:26:51.025Z	ok	30067	marker+шагов_3	docs/phraseman-2.0/evidence/parity/cards-037.png	0
+cards-038	2026-10-12T00:27:43.884Z	error	38645	step_target_not_found:#fc-search-input	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-038.error.png	0
+cards-045	2026-10-12T00:28:33.058Z	ok	34775	marker+шагов_3	docs/phraseman-2.0/evidence/parity/cards-045.png	0
+cards-046	2026-10-12T00:29:29.685Z	ok	42711	marker+шагов_4	docs/phraseman-2.0/evidence/parity/cards-046.png	0
+cards-048	2026-10-12T00:29:57.082Z	ok	24976	marker	docs/phraseman-2.0/evidence/parity/cards-048.png	0
+cards-063	2026-10-12T00:30:45.285Z	timeout	46082	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-14-00-791Z/cards-063.timeout.png	0

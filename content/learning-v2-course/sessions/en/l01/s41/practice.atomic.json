@@ -74,6 +74,15 @@
                 "ru": "Другие слова. В записи звучит короткое `I'm`.",
                 "uk": "Інші слова. У записі звучить коротке `I'm`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i01:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — как звучит сокращение",
+              "feedbackByLocale": {
+                "ru": "В аудио сокращение `I'm`, а не два отдельных слова `I am`.",
+                "uk": "В аудіо скорочення `I'm`, а не два окремі слова `I am`."
+              }
             }
           ],
           "isWordCard": false,
@@ -145,6 +154,15 @@
                 "ru": "Одного `I` мало: в `I'm` уже сокращено `am`.",
                 "uk": "Самого `I` замало: у `I'm` уже скорочене `am`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы пришли позже всех",
+              "feedbackByLocale": {
+                "ru": "Про себя говорят `I'm late.`",
+                "uk": "Про себе кажуть `I'm late`."
+              }
             }
           ]
         },
@@ -175,7 +193,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «я в порядке»",
+              "feedbackByLocale": {
+                "ru": "она уже спрятана в `I'm`",
+                "uk": "вона вже схована в `I'm`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -248,6 +276,15 @@
                 "ru": "«Твой». Звучит точно так же, но в предложении о состоянии нужно `you're`.",
                 "uk": "«Твій». Звучить точно так само, але у фразі про стан потрібне `you're`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i04:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — про собеседника",
+              "feedbackByLocale": {
+                "ru": "В аудио `you're`: это `you are` в одном коротком слове.",
+                "uk": "В аудіо `you're`: це `you are` в одному короткому слові."
+              }
             }
           ],
           "isWordCard": false,
@@ -300,7 +337,7 @@
               "text": "You"
             }
           ],
-          "testedDimension": "Вставьте слово — друг переживает, что оп",
+          "testedDimension": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i05:r2",
@@ -318,6 +355,15 @@
               "feedbackByLocale": {
                 "ru": "`you` + `are` сокращается до `you're`.",
                 "uk": "`you` + `are` скорочується до `you're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг переживает, что опоздал, а всё нормально",
+              "feedbackByLocale": {
+                "ru": "Другу говорят `You're fine.`",
+                "uk": "Другові кажуть `You're fine`."
               }
             }
           ]
@@ -349,7 +395,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «ты опоздал»",
+              "feedbackByLocale": {
+                "ru": "она внутри `You're`",
+                "uk": "вона всередині `You're`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -398,7 +454,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — вас спросили дорогу, и ",
+          "testedDimension": "Вставьте слово — вас спросили дорогу, и вы точно знаете",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i07:r2",
@@ -416,6 +472,15 @@
               "feedbackByLocale": {
                 "ru": "«Опоздал». Речь про уверенность.",
                 "uk": "«Спізнився». Ідеться про впевненість."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вас спросили дорогу, и вы точно знаете",
+              "feedbackByLocale": {
+                "ru": "Вы знаете ответ, поэтому `I'm sure.`",
+                "uk": "Ви знаєте відповідь, тому `I'm sure`."
               }
             }
           ]
@@ -494,7 +559,7 @@
               "text": "You"
             }
           ],
-          "testedDimension": "Вставьте слово — друг сомневается, а вы ",
+          "testedDimension": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i09:r2",
@@ -512,6 +577,15 @@
               "feedbackByLocale": {
                 "ru": "После `you` здесь нужно `are`, поэтому получается `you're`.",
                 "uk": "Після `you` тут потрібне `are`, тому виходить `you're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i09:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг сомневается, а вы видите, что он не ошибся",
+              "feedbackByLocale": {
+                "ru": "Вы говорите другу `You're sure.`",
+                "uk": "Ви кажете другові `You're sure`."
               }
             }
           ]
@@ -539,7 +613,17 @@
           "authoredDistractorTokens": [
             "sorry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы отвечаете человеку, который зря извинился",
+              "feedbackByLocale": {
+                "ru": "`sorry` лишнее: человеку отвечают `You're fine.`",
+                "uk": "`sorry` зайве: людині відповідають `You're fine`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -644,7 +728,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я уверен»",
+              "feedbackByLocale": {
+                "ru": "`am` лишнее: оно уже спрятано в `I'm sure.`",
+                "uk": "`am` зайве: воно вже заховане в `I'm sure`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -693,7 +787,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — вы всё ещё за столом, и",
+          "testedDimension": "Вставьте слово — вы всё ещё за столом, и вам хорошо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i13:r2",
@@ -711,6 +805,15 @@
               "feedbackByLocale": {
                 "ru": "«Уверен» — ответ на вопрос, а не про самочувствие.",
                 "uk": "«Упевнений» — відповідь на запитання, а не про самопочуття."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы всё ещё за столом, и вам хорошо",
+              "feedbackByLocale": {
+                "ru": "Вам хорошо: `I'm fine.`",
+                "uk": "Вам добре: `I'm fine`."
               }
             }
           ]
@@ -785,6 +888,15 @@
               "feedbackByLocale": {
                 "ru": "«You're late» — это про опоздание. После извинения вы говорите, что всё в порядке.",
                 "uk": "«You're late» — це про запізнення. Після вибачення ви кажете, що все гаразд."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i14:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — вы успокаиваете человека после извинения",
+              "feedbackByLocale": {
+                "ru": "Вы успокаиваете другого человека: `You're fine.`",
+                "uk": "Ви заспокоюєте іншу людину: `You're fine`."
               }
             }
           ],
@@ -993,6 +1105,15 @@
                 "ru": "Другие слова. В записи звучит короткое `I'm`.",
                 "uk": "Інші слова. У записі звучить коротке `I'm`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i01:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть — як звучить скорочення",
+              "feedbackByLocale": {
+                "ru": "В аудио сокращение `I'm`, а не два отдельных слова `I am`.",
+                "uk": "В аудіо скорочення `I'm`, а не два окремі слова `I am`."
+              }
             }
           ],
           "isWordCard": false,
@@ -1045,7 +1166,7 @@
               "text": "I"
             }
           ],
-          "testedDimension": "Вставте слово — ви прийшли пізніше за вс",
+          "testedDimension": "Вставте слово — ви прийшли пізніше за всіх",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i02:r2",
@@ -1063,6 +1184,15 @@
               "feedbackByLocale": {
                 "ru": "Одного `I` мало: в `I'm` уже сокращено `am`.",
                 "uk": "Самого `I` замало: у `I'm` уже скорочене `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви прийшли пізніше за всіх",
+              "feedbackByLocale": {
+                "ru": "Про себя говорят `I'm late.`",
+                "uk": "Про себе кажуть `I'm late`."
               }
             }
           ]
@@ -1094,7 +1224,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «я в порядке»",
+              "feedbackByLocale": {
+                "ru": "она уже спрятана в `I'm`",
+                "uk": "вона вже схована в `I'm`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1167,6 +1307,15 @@
                 "ru": "«Твой». Звучит точно так же, но в предложении о состоянии нужно `you're`.",
                 "uk": "«Твій». Звучить точно так само, але у фразі про стан потрібне `you're`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i04:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть — про співрозмовника",
+              "feedbackByLocale": {
+                "ru": "В аудио `you're`: это `you are` в одном коротком слове.",
+                "uk": "В аудіо `you're`: це `you are` в одному короткому слові."
+              }
             }
           ],
           "isWordCard": false,
@@ -1219,7 +1368,7 @@
               "text": "You"
             }
           ],
-          "testedDimension": "Вставте слово — друг переживає, що спізн",
+          "testedDimension": "Вставте слово — друг переживає, що спізнився, а все гаразд",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i05:r2",
@@ -1237,6 +1386,15 @@
               "feedbackByLocale": {
                 "ru": "`you` + `are` сокращается до `you're`.",
                 "uk": "`you` + `are` скорочується до `you're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг переживає, що спізнився, а все гаразд",
+              "feedbackByLocale": {
+                "ru": "Другу говорят `You're fine.`",
+                "uk": "Другові кажуть `You're fine`."
               }
             }
           ]
@@ -1268,7 +1426,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «ты опоздал»",
+              "feedbackByLocale": {
+                "ru": "она внутри `You're`",
+                "uk": "вона всередині `You're`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1317,7 +1485,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — у вас спитали дорогу, і ",
+          "testedDimension": "Вставте слово — у вас спитали дорогу, і ви точно знаєте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i07:r2",
@@ -1335,6 +1503,15 @@
               "feedbackByLocale": {
                 "ru": "«Опоздал». Речь про уверенность.",
                 "uk": "«Спізнився». Ідеться про впевненість."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — у вас спитали дорогу, і ви точно знаєте",
+              "feedbackByLocale": {
+                "ru": "Вы знаете ответ, поэтому `I'm sure.`",
+                "uk": "Ви знаєте відповідь, тому `I'm sure`."
               }
             }
           ]
@@ -1413,7 +1590,7 @@
               "text": "You"
             }
           ],
-          "testedDimension": "Вставте слово — друг сумнівається, а ви ",
+          "testedDimension": "Вставте слово — друг сумнівається, а ви бачите, що він не помилився",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i09:r2",
@@ -1431,6 +1608,15 @@
               "feedbackByLocale": {
                 "ru": "После `you` здесь нужно `are`, поэтому получается `you're`.",
                 "uk": "Після `you` тут потрібне `are`, тому виходить `you're`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i09:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг сумнівається, а ви бачите, що він не помилився",
+              "feedbackByLocale": {
+                "ru": "Вы говорите другу `You're sure.`",
+                "uk": "Ви кажете другові `You're sure`."
               }
             }
           ]
@@ -1458,7 +1644,17 @@
           "authoredDistractorTokens": [
             "sorry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы отвечаете человеку, который зря извинился",
+              "feedbackByLocale": {
+                "ru": "`sorry` лишнее: человеку отвечают `You're fine.`",
+                "uk": "`sorry` зайве: людині відповідають `You're fine`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1563,7 +1759,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-41:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я уверен»",
+              "feedbackByLocale": {
+                "ru": "`am` лишнее: оно уже спрятано в `I'm sure.`",
+                "uk": "`am` зайве: воно вже заховане в `I'm sure`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1612,7 +1818,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — ви все ще за столом, і в",
+          "testedDimension": "Вставте слово — ви все ще за столом, і вам добре",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-41:i13:r2",
@@ -1630,6 +1836,15 @@
               "feedbackByLocale": {
                 "ru": "«Уверен» — ответ на вопрос, а не про самочувствие.",
                 "uk": "«Упевнений» — відповідь на запитання, а не про самопочуття."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви все ще за столом, і вам добре",
+              "feedbackByLocale": {
+                "ru": "Вам хорошо: `I'm fine.`",
+                "uk": "Вам добре: `I'm fine`."
               }
             }
           ]
@@ -1704,6 +1919,15 @@
               "feedbackByLocale": {
                 "ru": "«You're late» — это про опоздание. После извинения вы говорите, что всё в порядке.",
                 "uk": "«You're late» — це про запізнення. Після вибачення ви кажете, що все гаразд."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-41:i14:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+              "feedbackByLocale": {
+                "ru": "Вы успокаиваете другого человека: `You're fine.`",
+                "uk": "Ви заспокоюєте іншу людину: `You're fine`."
               }
             }
           ],

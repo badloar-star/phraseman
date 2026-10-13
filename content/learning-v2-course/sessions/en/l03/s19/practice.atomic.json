@@ -274,17 +274,7 @@
           "authoredDistractorTokens": [
             "story"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — сестра спрашивает, что ",
-              "feedbackByLocale": {
-                "ru": "В сборнике несколько историй. Нужна форма `stories`, с заменой конечной `y` на `ies`.",
-                "uk": "У збірці кілька історій. Потрібна форма `stories`, із заміною кінцевої `y` на `ies`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -452,7 +442,7 @@
               "text": "country"
             }
           ],
-          "testedDimension": "Вставьте название — сестра читает на кор",
+          "testedDimension": "Вставьте название — сестра читает на коробке пазла «Франция, Германия»; скажите об этих местах «Это страны»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i08:r2",
@@ -507,17 +497,7 @@
           "authoredDistractorTokens": [
             "battery"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i09:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — сестра держит упаковку",
-              "feedbackByLocale": {
-                "ru": "Спрашиваем о нескольких предметах. После `Are they` нужно `batteries`.",
-                "uk": "Питаємо про кілька предметів. Після `Are they` потрібне `batteries`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -566,7 +546,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставьте название — сестра спрашивает пр",
+          "testedDimension": "Вставьте название — сестра спрашивает про две пустые коробки, которые вы оставили для хранения; скажите «Это коробки» (`box` — «коробка», `boxes` — «коробки`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i10:r2",
@@ -625,17 +605,7 @@
           "authoredDistractorTokens": [
             "story"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — сестра говорит о",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `stories`. Речь о нескольких текстах, поэтому название после `not` сохраняет `ies`.",
-                "uk": "У записі звучить `stories`. Йдеться про кілька текстів, тому назва після `not` зберігає `ies`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -819,17 +789,7 @@
           "authoredDistractorTokens": [
             "box"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — сестра складывает две ",
-              "feedbackByLocale": {
-                "ru": "Вопрос о двух упаковках. Для нескольких коробок нужно название `boxes`.",
-                "uk": "Це питання про два паковання. Для кількох коробок потрібна назва `boxes`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -878,7 +838,7 @@
               "text": "battery"
             }
           ],
-          "testedDimension": "Вставьте название — на пакете обозначены",
+          "testedDimension": "Вставьте название — на пакете обозначены четыре батарейки для лампы; скажите «Это батарейки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i15:r2",
@@ -966,17 +926,7 @@
           "authoredDistractorTokens": [
             "battery"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — сестра спрашивает, что ",
-              "feedbackByLocale": {
-                "ru": "Вы называете четыре батарейки. В названии для нескольких конечная `y` меняется на `ies`: `batteries`.",
-                "uk": "Ви називаєте чотири батарейки. У назві для кількох кінцева `y` міняється на `ies`: `batteries`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1251,17 +1201,7 @@
           "authoredDistractorTokens": [
             "story"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i05:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — сестра питає, що це за т",
-              "feedbackByLocale": {
-                "ru": "В сборнике несколько историй. Нужна форма `stories`, с заменой конечной `y` на `ies`.",
-                "uk": "У збірці кілька історій. Потрібна форма `stories`, із заміною кінцевої `y` на `ies`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1429,7 +1369,7 @@
               "text": "country"
             }
           ],
-          "testedDimension": "Вставте назву — сестра читає на коробці ",
+          "testedDimension": "Вставте назву — сестра читає на коробці пазла «Франція, Німеччина»; скажіть про ці місця «Це країни»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i08:r2",
@@ -1484,17 +1424,7 @@
           "authoredDistractorTokens": [
             "battery"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i09:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — сестра тримає пакованн",
-              "feedbackByLocale": {
-                "ru": "Спрашиваем о нескольких предметах. После `Are they` нужно `batteries`.",
-                "uk": "Питаємо про кілька предметів. Після `Are they` потрібне `batteries`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1543,7 +1473,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставте назву — сестра питає про дві пор",
+          "testedDimension": "Вставте назву — сестра питає про дві порожні коробки, які ви лишили для зберігання; скажіть «Це коробки» (`box` — «коробка», `boxes` — «коробки`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i10:r2",
@@ -1602,17 +1532,7 @@
           "authoredDistractorTokens": [
             "story"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — сестра говорить п",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `stories`. Речь о нескольких текстах, поэтому название после `not` сохраняет `ies`.",
-                "uk": "У записі звучить `stories`. Йдеться про кілька текстів, тому назва після `not` зберігає `ies`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1796,17 +1716,7 @@
           "authoredDistractorTokens": [
             "box"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i14:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — сестра складає два пак",
-              "feedbackByLocale": {
-                "ru": "Вопрос о двух упаковках. Для нескольких коробок нужно название `boxes`.",
-                "uk": "Це питання про два паковання. Для кількох коробок потрібна назва `boxes`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1855,7 +1765,7 @@
               "text": "battery"
             }
           ],
-          "testedDimension": "Вставте назву — на пакованні позначено ч",
+          "testedDimension": "Вставте назву — на пакованні позначено чотири батарейки для лампи; скажіть «Це батарейки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-19:i15:r2",
@@ -1943,17 +1853,7 @@
           "authoredDistractorTokens": [
             "battery"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-19:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — сестра питає, що лежить",
-              "feedbackByLocale": {
-                "ru": "Вы называете четыре батарейки. В названии для нескольких конечная `y` меняется на `ies`: `batteries`.",
-                "uk": "Ви називаєте чотири батарейки. У назві для кількох кінцева `y` міняється на `ies`: `batteries`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

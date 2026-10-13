@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-einladung-immutable-attempt.v1",
+  "status": "PARTIAL_TASK6C_CURRENT_STATE_ACCEPTED",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "task6Completion": "NOT_ESTABLISHED",
+  "releaseStatus": "HOLD",
+  "snapshot": {
+    "admissionManifestSha256": "2573f1435c6f5a5e1da1240fcf87bfb4458141193950190c2cbd59fccd5b4256",
+    "receiptClosureSha256": "4db2ee8b314b8f9e3375ae5187342a850ecac53a8918fd694a2c7436787c46d9"
+  },
+  "bindings": {
+    "admissionManifest": { "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_einladung_admission_v1/manifest.json", "sha256": "2573f1435c6f5a5e1da1240fcf87bfb4458141193950190c2cbd59fccd5b4256" },
+    "nativeReview": { "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_einladung_receipt_closure_v1/native_review.json", "sha256": "4ded9890bbd1ae2cdb5c48ddf9720ed77e591901ef1de6193bb89ac8b4b31b05" },
+    "adversarialReview": { "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_einladung_receipt_closure_v1/adversarial_review.json", "sha256": "de245c242a574e215aeb42eec940d2d71abe246bf0f71304374cfbacb6cb79ff" },
+    "receiptClosure": { "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_einladung_receipt_closure_v1/closure.json", "sha256": "4db2ee8b314b8f9e3375ae5187342a850ecac53a8918fd694a2c7436787c46d9" }
+  },
+  "verification": {
+    "command": "npx tsx tests/learning_v2_de_task6c_l01_einladung_direct_capture_gate.ts; npx tsx tests/learning_v2_de_task6c_l01_einladung_facts_gate.ts; npx tsx tests/learning_v2_de_task6c_l01_einladung_admission_gate.ts; npx tsx tests/learning_v2_de_task6c_l01_einladung_receipt_closure_gate.ts",
+    "evidence": "ALL_FOUR_EINLADUNG_GATES_EXIT_0_IN_CURRENT_WORKTREE",
+    "scope": "CURRENT_STATE_ONLY_NO_CANONICAL_OR_RELEASE_AUTHORITY"
+  }
+}

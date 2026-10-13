@@ -260,7 +260,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — руководитель отошёл, и ",
+          "testedDimension": "Вставьте слово — руководитель отошёл, и вы потеряли его из виду; спросите сотрудницу, где он",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i05:r2",
@@ -405,7 +405,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — вы показываете на зал; ",
+          "testedDimension": "Вставьте слово — вы показываете на зал; спросите сотрудницу, открыт ли он",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i07:r2",
@@ -612,7 +612,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг показал ваше место",
+          "testedDimension": "Вставьте слово — друг показал ваше место на плане и спросил «Мы здесь?»; место указано верно, ответьте коротко «Да»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i10:r2",
@@ -899,7 +899,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1193,7 +1196,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — керівник відійшов, і ви ",
+          "testedDimension": "Вставте слово — керівник відійшов, і ви втратили його з поля зору; запитайте працівницю, де він",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i05:r2",
@@ -1338,7 +1341,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — ви показуєте на залу; за",
+          "testedDimension": "Вставте слово — ви показуєте на залу; запитайте працівницю, чи відкрита вона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i07:r2",
@@ -1545,7 +1548,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг показав ваше місце ",
+          "testedDimension": "Вставте слово — друг показав ваше місце на плані й запитав «Ми тут?»; місце вказано правильно, дайте коротку відповідь «Так»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-52:i10:r2",
@@ -1832,7 +1835,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },

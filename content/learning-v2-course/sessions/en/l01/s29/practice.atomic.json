@@ -117,6 +117,15 @@
                 "ru": "Тоже на «х», но это не про вес. `heavy` — «хэ-ви».",
                 "uk": "Теж на «х», але це не про вагу. `heavy` — «хе-ві»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи `heavy`: это «тяжёлый», не `happy` и не `hairy`.",
+                "uk": "У записі `heavy`: це «важкий», не `happy` і не `hairy."
+              }
             }
           ],
           "isWordCard": false,
@@ -212,7 +221,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставьте слово — коробка пустая, вы подн",
+          "testedDimension": "Вставьте слово — коробка пустая, вы поднимаете её мизинцем",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i04:r2",
@@ -230,6 +239,15 @@
               "feedbackByLocale": {
                 "ru": "«Новая» — может быть, но сейчас вы говорите про вес, а не про то, новая она или нет.",
                 "uk": "«Нова» — може бути, але зараз ви говорите про вагу, а не про те, нова вона чи ні."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i04:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — коробка пустая, вы поднимаете её мизинцем",
+              "feedbackByLocale": {
+                "ru": "Пустую коробку легко поднять, поэтому `light` — «лёгкая». `heavy` — наоборот.",
+                "uk": "Порожню коробку легко підняти, тому `light` — «легка». `heavy` — навпаки."
               }
             }
           ]
@@ -262,7 +280,17 @@
           "authoredDistractorTokens": [
             "light"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «оно тяжёлое»",
+              "feedbackByLocale": {
+                "ru": "`light` лишнее: предмет тяжёлый — `It is heavy.`",
+                "uk": "`light` зайве: предмет важкий — `It is heavy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -377,6 +405,15 @@
               "feedbackByLocale": {
                 "ru": "Конец похож, а начало нет. `clean` начинается с «кл».",
                 "uk": "Кінець схожий, а початок ні. `clean` починається з «кл»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i07:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи `clean`: это «чистый», не `clear` и не `queen`.",
+                "uk": "У записі `clean`: це «чистий», не `clear` і не `queen`."
               }
             }
           ],
@@ -496,6 +533,15 @@
               "feedbackByLocale": {
                 "ru": "Тоже с «д», но внутри «дэ-ди», а в `dirty` тянется «дё».",
                 "uk": "Теж із «д», але всередині «де-ді», а в `dirty` тягнеться «де»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "В записи `dirty`: это «грязный», не `thirty` и не `daddy`.",
+                "uk": "У записі `dirty`: це «брудний», не `thirty` і не `daddy`."
               }
             }
           ],
@@ -622,7 +668,7 @@
               "text": "heavy"
             }
           ],
-          "testedDimension": "Вставьте слово — вы вытряхнули сумку, вн",
+          "testedDimension": "Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i11:r2",
@@ -640,6 +686,15 @@
               "feedbackByLocale": {
                 "ru": "Пустая сумка тяжёлой не бывает. Вы говорите, что в ней пусто.",
                 "uk": "Порожня сумка важкою не буває. Ви кажете, що в ній порожньо."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i11:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы вытряхнули сумку, внутри ничего не осталось",
+              "feedbackByLocale": {
+                "ru": "В сумке ничего не осталось, поэтому `empty` — «пустая».",
+                "uk": "У сумці нічого не лишилося, тому `empty` — «порожня»."
               }
             }
           ]
@@ -668,7 +723,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рубашку только что постирали, она чистая",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: после `It` ставят `is` — `It is clean.`",
+                "uk": "`are` зайве: після `It` ставлять `is` — `It is clean`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -701,7 +766,17 @@
           "authoredDistractorTokens": [
             "clean"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «оно грязное»",
+              "feedbackByLocale": {
+                "ru": "`clean` лишнее: фраза о грязном предмете — `It is dirty.`",
+                "uk": "`clean` зайве: фраза про брудний предмет — `It is dirty`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -774,7 +849,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — чашка выпала из рук и раскололась",
+              "feedbackByLocale": {
+                "ru": "`he` лишнее: речь о чашке, поэтому `It is broken.`",
+                "uk": "`he` зайве: йдеться про чашку, тому `It is broken`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -823,7 +908,7 @@
               "text": "clean"
             }
           ],
-          "testedDimension": "Вставьте слово — квартира маленькая, две",
+          "testedDimension": "Вставьте слово — квартира маленькая, две комнаты и всё",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i16:r2",
@@ -841,6 +926,15 @@
               "feedbackByLocale": {
                 "ru": "Чистая — возможно, но вы говорите про размер.",
                 "uk": "Чиста — можливо, але ви говорите про розмір."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i16:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — квартира маленькая, две комнаты и всё",
+              "feedbackByLocale": {
+                "ru": "Две комнаты и всё: квартира `small` — «маленькая», не лёгкая и не чистая.",
+                "uk": "Дві кімнати і все: квартира `small` — «маленька», не легка й не чиста."
               }
             }
           ]
@@ -1166,6 +1260,15 @@
                 "ru": "Тоже на «х», но это не про вес. `heavy` — «хэ-ви».",
                 "uk": "Теж на «х», але це не про вагу. `heavy` — «хе-ві»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i02:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи `heavy`: это «тяжёлый», не `happy` и не `hairy`.",
+                "uk": "У записі `heavy`: це «важкий», не `happy` і не `hairy."
+              }
             }
           ],
           "isWordCard": false,
@@ -1261,7 +1364,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставте слово — коробка порожня, ви підн",
+          "testedDimension": "Вставте слово — коробка порожня, ви піднімаєте її мізинцем",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i04:r2",
@@ -1279,6 +1382,15 @@
               "feedbackByLocale": {
                 "ru": "«Новая» — может быть, но сейчас вы говорите про вес, а не про то, новая она или нет.",
                 "uk": "«Нова» — може бути, але зараз ви говорите про вагу, а не про те, нова вона чи ні."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i04:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — коробка порожня, ви піднімаєте її мізинцем",
+              "feedbackByLocale": {
+                "ru": "Пустую коробку легко поднять, поэтому `light` — «лёгкая». `heavy` — наоборот.",
+                "uk": "Порожню коробку легко підняти, тому `light` — «легка». `heavy` — навпаки."
               }
             }
           ]
@@ -1311,7 +1423,17 @@
           "authoredDistractorTokens": [
             "light"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «оно тяжёлое»",
+              "feedbackByLocale": {
+                "ru": "`light` лишнее: предмет тяжёлый — `It is heavy.`",
+                "uk": "`light` зайве: предмет важкий — `It is heavy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1426,6 +1548,15 @@
               "feedbackByLocale": {
                 "ru": "Конец похож, а начало нет. `clean` начинается с «кл».",
                 "uk": "Кінець схожий, а початок ні. `clean` починається з «кл»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i07:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи `clean`: это «чистый», не `clear` и не `queen`.",
+                "uk": "У записі `clean`: це «чистий», не `clear` і не `queen`."
               }
             }
           ],
@@ -1545,6 +1676,15 @@
               "feedbackByLocale": {
                 "ru": "Тоже с «д», но внутри «дэ-ди», а в `dirty` тянется «дё».",
                 "uk": "Теж із «д», але всередині «де-ді», а в `dirty` тягнеться «де»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i09:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "В записи `dirty`: это «грязный», не `thirty` и не `daddy`.",
+                "uk": "У записі `dirty`: це «брудний», не `thirty` і не `daddy`."
               }
             }
           ],
@@ -1671,7 +1811,7 @@
               "text": "heavy"
             }
           ],
-          "testedDimension": "Вставте слово — ви витрусили сумку, всер",
+          "testedDimension": "Вставте слово — ви витрусили сумку, всередині нічого не залишилося",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i11:r2",
@@ -1689,6 +1829,15 @@
               "feedbackByLocale": {
                 "ru": "Пустая сумка тяжёлой не бывает. Вы говорите, что в ней пусто.",
                 "uk": "Порожня сумка важкою не буває. Ви кажете, що в ній порожньо."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i11:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви витрусили сумку, всередині нічого не залишилося",
+              "feedbackByLocale": {
+                "ru": "В сумке ничего не осталось, поэтому `empty` — «пустая».",
+                "uk": "У сумці нічого не лишилося, тому `empty` — «порожня»."
               }
             }
           ]
@@ -1717,7 +1866,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рубашку только что постирали, она чистая",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: после `It` ставят `is` — `It is clean.`",
+                "uk": "`are` зайве: після `It` ставлять `is` — `It is clean`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1750,7 +1909,17 @@
           "authoredDistractorTokens": [
             "clean"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «оно грязное»",
+              "feedbackByLocale": {
+                "ru": "`clean` лишнее: фраза о грязном предмете — `It is dirty.`",
+                "uk": "`clean` зайве: фраза про брудний предмет — `It is dirty`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1823,7 +1992,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-29:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — чашка выпала из рук и раскололась",
+              "feedbackByLocale": {
+                "ru": "`he` лишнее: речь о чашке, поэтому `It is broken.`",
+                "uk": "`he` зайве: йдеться про чашку, тому `It is broken`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1872,7 +2051,7 @@
               "text": "clean"
             }
           ],
-          "testedDimension": "Вставте слово — квартира маленька, дві к",
+          "testedDimension": "Вставте слово — квартира маленька, дві кімнати і все",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-29:i16:r2",
@@ -1890,6 +2069,15 @@
               "feedbackByLocale": {
                 "ru": "Чистая — возможно, но вы говорите про размер.",
                 "uk": "Чиста — можливо, але ви говорите про розмір."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-29:i16:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — квартира маленька, дві кімнати і все",
+              "feedbackByLocale": {
+                "ru": "Две комнаты и всё: квартира `small` — «маленькая», не лёгкая и не чистая.",
+                "uk": "Дві кімнати і все: квартира `small` — «маленька», не легка й не чиста."
               }
             }
           ]

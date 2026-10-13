@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-005	2026-10-13T02:12:12.387Z	error	8811	step_target_not_found:#onboarding-existing-account+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T02-11-38-477Z/onboarding-005.error.png	0

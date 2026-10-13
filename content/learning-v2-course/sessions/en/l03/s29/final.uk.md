@@ -71,6 +71,9 @@
 <!-- interaction_id: en:lesson-03:session-29:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `stamp` · `letter` · `parcel`
+- letter — *Letter — лист. На конверті лежить марка: stamp.*
+- parcel — *Parcel — посилка. На конверті лежить марка: stamp.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-29:i02; family: scripted_repeat_compare -->
@@ -85,16 +88,22 @@
 <!-- interaction_id: en:lesson-03:session-29:i06; family: sound_contrast -->
 Ціль: `stamp`
 Варіанти: `stamp` · `stand`
+- stand — *Stand — стояти. У записі перед останнім звуком чути p: stamp.*
+
 
 **7 · Виберіть форму — ця річ лежить тут**
 <!-- interaction_id: en:lesson-03:session-29:i08; family: context_gap_grammar -->
 Ціль: `This ___ here.`
 Варіанти: `is` · `are`
+- are — *Are — для кількох предметів. Тут один предмет: This is here.*
+
 
 **8 · Розрізніть слово — This або That**
 <!-- interaction_id: en:lesson-03:session-29:i09; family: sound_contrast -->
 Ціль: `This`
 Варіанти: `This` · `That`
+- That — *That використовують для предмета далі. Тут предмет поруч: This.*
+
 
 **9 · Промовте одну фразу — марка лежить поруч на столі**
 <!-- interaction_id: en:lesson-03:session-29:i10; family: scripted_repeat_compare -->
@@ -129,11 +138,18 @@
 <!-- interaction_id: en:lesson-03:session-29:i13:s02; family: context_gap_grammar -->
 Ціль: `___ is heavy.`
 Варіанти: `It` · `This` · `That` · `Is`
+- This — *`This is heavy` знову вказує на ближню річ. За умовою посилку вже названо, тому `It` повертається до неї.*
+- That — *`That` указує на іншу далеку річ. Тут продовжуємо говорити про вже названу посилку: `It is heavy`.*
+- Is — *`Is is heavy` не утворює речення. Про названу річ починаємо зі слова `It`.*
+
 
 **17 · Послухайте одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i14:s01; family: listen_choose -->
 Ціль: `That is a letter.`
 Варіанти: `То лист.` · `Ось лист.` · `То посилка.`
+- Ось лист. — *У записі перше слово — `That`, а варіант передає `This`: змінилося вказівне слово.*
+- То посилка. — *У записі назвали `letter`, а не `parcel`; слово `It` потім повертається саме до листа.*
+
 
 **18 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i14:s02; family: phrase_builder -->
@@ -155,6 +171,10 @@
 <!-- interaction_id: en:lesson-03:session-29:i16:s02; family: context_gap_grammar -->
 Ціль: `___ is wet.`
 Варіанти: `It` · `That` · `This` · `Am`
+- That — *`That` знову вказує на річ вдалині. Лист уже названо, тому далі використовуємо `It`.*
+- This — *`This` укаже на ближню річ і змінить точку відліку. Тут продовжуємо говорити про названий лист: `It`.*
+- Am — *`am` уживаємо з `I`, коли говоримо про себе. Про вже названий лист потрібно `It`.*
+
 
 **23 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i17:s01; family: scripted_repeat_compare -->

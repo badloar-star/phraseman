@@ -126,7 +126,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставьте слово — в студии ещё расставляю",
+          "testedDimension": "Вставьте слово — в студии ещё расставляют стулья; уточните, не рано ли вы пришли",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i02:r2",
@@ -327,7 +327,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, точно ",
+          "testedDimension": "Вставьте слово — друг спрашивает, точно ли вы записались на это занятие; вы проверили запись и подтверждаете: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i06:r2",
@@ -574,7 +574,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставьте слово — друг заглядывает в студ",
+          "testedDimension": "Вставьте слово — друг заглядывает в студию и зовёт вас; ответьте: «Я здесь»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i10:r2",
@@ -671,7 +671,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставьте слово — преподаватель подошёл к",
+          "testedDimension": "Вставьте слово — преподаватель подошёл к вам; задайте обычный вопрос о себе: «Я опоздал?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i12:r2",
@@ -771,7 +771,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — вы назвали номер комнат",
+          "testedDimension": "Вставьте слово — вы назвали номер комнаты, но сомневаетесь; спросите преподавателя: «Я ошибаюсь?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i14:r2",
@@ -1015,7 +1015,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставте слово — у студії ще розставляють",
+          "testedDimension": "Вставте слово — у студії ще розставляють стільці; уточніть, чи ви прийшли раніше запланованого часу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i02:r2",
@@ -1216,7 +1216,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, чи точно в",
+          "testedDimension": "Вставте слово — друг запитує, чи точно ви записалися на це заняття; ви перевірили запис і підтверджуєте: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i06:r2",
@@ -1463,7 +1463,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставте слово — друг зазирає до студії й",
+          "testedDimension": "Вставте слово — друг зазирає до студії й гукає вас; дайте відповідь: «Я тут»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i10:r2",
@@ -1560,7 +1560,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставте слово — викладач підійшов до вас",
+          "testedDimension": "Вставте слово — викладач підійшов до вас; поставте звичайне запитання про себе: «Я запізнився?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i12:r2",
@@ -1660,7 +1660,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — ви назвали номер кімнати",
+          "testedDimension": "Вставте слово — ви назвали номер кімнати, але сумніваєтеся; запитайте викладача: «Я помиляюся?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-45:i14:r2",

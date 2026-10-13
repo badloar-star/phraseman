@@ -62,11 +62,17 @@
 <!-- interaction_id: en:lesson-02:session-29:i01; family: listen_choose -->
 Ціль: `which`
 Варіанти: `which` · `cheap` · `price`
+- cheap — *Це «дешево». Слово інше: `which` про вибір, `cheap` про ціну.*
+- price — *«Ціна». Прозвучало `which` — це про вибір, а не про гроші.*
+
 
 **2 · Вставте слово — на бирці немає цифри, питаєте про вартість**
 <!-- interaction_id: en:lesson-02:session-29:i02; family: context_gap_grammar -->
 Ціль: `___ is the price?`
 Варіанти: `what` · `which` · `one`
+- which — *`which` просить показати одну річ із кількох. А ви чекаєте у відповідь цифру.*
+- one — *`one` стає замість речі, а тут річ названо прямо — `price`. Початок питання інший.*
+
 
 **3 · Картка слова — one**
 <!-- interaction_id: en:lesson-02:session-29:i03; family: listen_choose -->
@@ -76,6 +82,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i04; family: context_gap_grammar -->
 Ціль: `Which ___ ?`
 Варіанти: `one` · `what` · `price`
+- what — *`what` уже не потрібне: питання почато з `Which`. Після нього йде те, що обирають.*
+- price — *«Ціна» — це річ. А тут ви про сумку, яку вже назвали.*
+
 
 **5 · Складіть фразу — продавець назвав дві вулиці, де є його крамниці**
 <!-- interaction_id: en:lesson-02:session-29:i05; family: phrase_builder -->
@@ -85,11 +94,17 @@
 <!-- interaction_id: en:lesson-02:session-29:i06; family: listen_choose -->
 Ціль: `cheap`
 Варіанти: `cheap` · `street` · `name`
+- street — *«Вулиця». Прозвучало `cheap` — це про ціну, а не про місце.*
+- name — *«Назва». Прозвучало `cheap` — це оцінка ціни, а не те, як річ звуть.*
+
 
 **7 · Вставте слово — на прилавку дві сумки, ви питаєте про гарну**
 <!-- interaction_id: en:lesson-02:session-29:i07; family: context_gap_grammar -->
 Ціль: `___ one is elegant?`
 Варіанти: `which` · `what` · `name`
+- what — *Сумки лежать перед вами, вибір із двох. Отже `which`.*
+- name — *`name` — «назва». Питання не з нього починають.*
+
 
 **8 · Складіть фразу — «скільки це коштує?»**
 <!-- interaction_id: en:lesson-02:session-29:i08; family: phrase_builder -->
@@ -98,6 +113,8 @@
 **9 · Послухайте і складіть — «котра з них?»**
 <!-- interaction_id: en:lesson-02:session-29:i09; family: listen_build_dictation -->
 Ціль: `Which one?`
+🔊 *Which one?* Плитки: `Which` `one` `is`
+*Плитка `is` зайва: це коротке запитання вибору; після `Which one?` більше нічого не потрібно.*
 
 **10 · Картка слова — elegant**
 <!-- interaction_id: en:lesson-02:session-29:i10; family: listen_choose -->
@@ -107,6 +124,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i11; family: context_gap_grammar -->
 Ціль: `___ is the name?`
 Варіанти: `What` · `Which` · `One`
+- Which — *`which` просить обрати з кількох. А ви чекаєте, що вам назвуть слово.*
+- One — *`one` заміняє річ, а питання з нього не починають.*
+
 
 **12 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-29:i12; family: speed_match -->
@@ -117,10 +137,15 @@
 <!-- interaction_id: en:lesson-02:session-29:i13; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `cheap` · `elegant` · `street`
+- elegant — *«Вишуканий» — про вигляд речі, а не про ціну. Три євро — це `cheap`.*
+- street — *«Вулиця». Про вартість так не скажеш.*
+
 
 **14 · Складіть повідомлення — продавець показує просту, але вишукану сумку**
 <!-- interaction_id: en:lesson-02:session-29:i14; family: phrase_builder -->
 Ціль: `It is elegant.`
+Плитки: `It` `is` `elegant` `cheap`
+*Плитка `cheap` зайва: сумка може бути недорогою, але в цьому повідомленні ви описуєте її як вишукану — `elegant`.*
 
 **15 · Промовте фразу — «котра з них дешева?»**
 <!-- interaction_id: en:lesson-02:session-29:i15; family: scripted_repeat_compare -->
@@ -130,6 +155,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i16; family: context_gap_grammar -->
 Ціль: `Which one is ___ ?`
 Варіанти: `elegant` · `cheap` · `price`
+- cheap — *`cheap` — «дешева». У питанні треба назвати вишукану сумку.*
+- price — *`price` — «ціна». Тут описують вигляд сумки, а не її вартість.*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-29:i17:s01; family: scripted_repeat_compare -->

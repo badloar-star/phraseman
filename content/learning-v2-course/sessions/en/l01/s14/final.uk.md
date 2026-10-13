@@ -84,6 +84,8 @@
 **5 · Складіть фразу — турист перестав озиратися**
 <!-- interaction_id: en:lesson-01:session-14:i05; family: phrase_builder -->
 Плитки: `safe` `You` `are` `am` → **You are safe.**
+*(плитка `am` зайва: З `you` не можна `am`: правильна фраза — `You are safe`.)*
+
 
 **6 · Вставте слово — турист крутить головою на перехресті й не розуміє, куди йти**
 <!-- interaction_id: en:lesson-01:session-14:i06; family: context_gap_grammar -->
@@ -120,10 +122,14 @@ You ___ safe. → **are** · am · is
 **12 · Послухайте і складіть — «тобі тепло»**
 <!-- interaction_id: en:lesson-01:session-14:i12; family: listen_build_dictation -->
 🔊 *You are warm.* Плитки: `are` `warm` `You` `dry` → **You are warm.**
+*(плитка `dry` зайва: `dry` означає «сухий», але в записі звучить `You are warm`.)*
+
 
 **13 · Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»**
 <!-- interaction_id: en:lesson-01:session-14:i13; family: phrase_builder -->
 Плитки: `ready` `You` `are` `not` → **You are ready.**
+*(плитка `not` зайва: `not` змінить зміст на «ти не готовий». Потрібна фраза `You are ready`.)*
+
 
 **14 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-14:i14; family: speed_match -->
@@ -138,10 +144,14 @@ safe — у безпеці · warm — тепло · dry — сухий · ready
 **16 · Складіть фразу — повз із ревом проноситься машина, турист здригається; скажіть, що він наляканий**
 <!-- interaction_id: en:lesson-01:session-14:i16; family: phrase_builder -->
 Плитки: `You` `are` `scared` `is` → **You are scared.**
+*(плитка `is` зайва: Після `you` потрібне `are`, не `is`: `You are scared`.)*
+
 
 **17 · Послухайте і складіть — «тобі холодно»**
 <!-- interaction_id: en:lesson-01:session-14:i17; family: listen_build_dictation -->
 🔊 *You are cold.* Плитки: `cold` `You` `are` `scared` → **You are cold.**
+*(плитка `scared` зайва: `scared` означає «наляканий», але в записі звучить `You are cold`.)*
+
 
 **18 · Скажіть уголос — ви відвели туриста під дах після зливи; скажіть йому: «ти в безпеці»**
 <!-- interaction_id: en:lesson-01:session-14:i18; family: scripted_repeat_compare -->

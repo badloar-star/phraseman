@@ -334,6 +334,9 @@ export default function DialogueV2CompletionRoute() {
               <View testID="dialogue-v2-completion-stats" style={[dialogueGlassCardStyle(glass, 16), styles.stats]}>
                 {review ? (
                   <Stat glass={glass} value={`${goalsMet}`} suffix={`/${goalsTotal}`} label={labels.goals} />
+                ) : state.kind === 'unavailable' ? (
+                  // зачем (Макеты, координатор 13.10): в «Итог пока недоступен» ячейка целей мерцала скелетом — выглядело как вечная загрузка рядом с «недоступен». «—» без мерцания, ячейку не прячем: раскладка не прыгает
+                  <GoalsStatUnavailable glass={glass} label={labels.goals} />
                 ) : (
                   <GoalsStatSkeleton glass={glass} label={labels.goals} />
                 )}
@@ -449,6 +452,14 @@ export default function DialogueV2CompletionRoute() {
       </SafeAreaView>
     </View>
   );
+}
+
+/** Ячейка целей при «Итог пока недоступен»: прочерк вместо скелета, та же геометрия, что у настоящей цифры. Журнал — на ветку. */
+function GoalsStatUnavailable({ glass, label }: Readonly<{ glass: ReturnType<typeof useDialogueGlass>; label: string }>) {
+  useEffect(() => {
+    console.log('[DIALOGUE-V2] completion goals stat: итог недоступен → «—» вместо скелета (раскладка не прыгает)'); // guard-ok: ветка «недоступен»
+  }, []);
+  return <Stat glass={glass} value="—" label={label} />;
 }
 
 function GoalsStatSkeleton({ glass, label }: Readonly<{ glass: ReturnType<typeof useDialogueGlass>; label: string }>) {

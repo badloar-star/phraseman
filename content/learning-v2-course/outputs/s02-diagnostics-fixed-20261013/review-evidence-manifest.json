@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "candidateRoot": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013",
+  "candidateBundleSha256": "4fe3e22277235529e89c6171a1a51c6b92faddbe94acc8a0973ebc69f56e9497",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/content-receipt.json",
+  "candidateReceiptInventorySha256": "5f9e237a554c3431855310a7ce74970f4d3738a03c45afcaf66aad153469243d",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

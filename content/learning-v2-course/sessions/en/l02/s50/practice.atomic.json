@@ -74,6 +74,15 @@
                 "ru": "Это сообщение. На записи сначала `Are you`: сотрудник задаёт вопрос.",
                 "uk": "Це повідомлення. Запис починається з `Are you`: працівник ставить запитання."
               }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i01:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — какая реплика прозвучала у стойки проката",
+              "feedbackByLocale": {
+                "ru": "Верно: в записи сотрудник спрашивает `Are you ready?` — «Вы готовы?»",
+                "uk": "Правильно: у записі працівник запитує `Are you ready?` — «Ви готові?»"
+              }
             }
           ],
           "isWordCard": false,
@@ -177,6 +186,15 @@
               "feedbackByLocale": {
                 "ru": "Это вопрос о готовности. На записи последнее слово `free` — «свободна».",
                 "uk": "Це запитання про готовність. Останнє слово в записі — `free`, «вільна»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — какая реплика друга прозвучала у стойки",
+              "feedbackByLocale": {
+                "ru": "Верно: друг спрашивает о сотруднице: `Is she free?`",
+                "uk": "Правильно: друг питає про працівницю: `Is she free?`"
               }
             }
           ],
@@ -315,6 +333,15 @@
                 "ru": "Это ответ о мужчине. В записи звучит `it`: речь о парке.",
                 "uk": "Це відповідь про чоловіка. У записі звучить `it`: ідеться про парк."
               }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i06:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — какая реплика сотрудника прозвучала в ответ",
+              "feedbackByLocale": {
+                "ru": "Верно: сотрудник подтверждает близость парка: `Yes, it is.`",
+                "uk": "Правильно: працівник підтверджує близькість парку: `Yes, it is`."
+              }
             }
           ],
           "isWordCard": false,
@@ -346,7 +373,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -526,7 +558,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — пока сотрудник подбирае",
+          "testedDimension": "Вставьте слово — пока сотрудник подбирает вам шлем, спросите друга, готов ли он к поездке",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-50:i11:r2",
@@ -544,6 +576,15 @@
               "feedbackByLocale": {
                 "ru": "Это вопрос об уверенности. Вам нужно узнать, готов ли он: `Are you ready?`",
                 "uk": "Це запитання про впевненість. Вам треба дізнатися, чи він готовий: `Are you ready?`"
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i11:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — пока сотрудник подбирает вам шлем, спросите друга, готов ли он к поездке",
+              "feedbackByLocale": {
+                "ru": "Верно: вопрос о готовности к поездке — `Are you ready?`",
+                "uk": "Правильно: це запитання про готовність їхати — `Are you ready?`"
               }
             }
           ]
@@ -618,6 +659,15 @@
               "feedbackByLocale": {
                 "ru": "Это ответ о собеседнике. В записи друг говорит о себе: `I am`.",
                 "uk": "Це відповідь про співрозмовника. У записі друг говорить про себе: `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i12:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — какая реплика друга прозвучала в ответ",
+              "feedbackByLocale": {
+                "ru": "Верно: друг говорит о своей готовности: `Yes, I am ready.`",
+                "uk": "Правильно: друг говорить про свою готовність: `Yes, I am ready`."
               }
             }
           ],
@@ -702,7 +752,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — сотрудник сказал вам, ч",
+          "testedDimension": "Вставьте слово — сотрудник сказал вам, что работает в прокате первую неделю; на вопрос друга, новенький ли он, ответьте коротко: «Да»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-50:i14:r2",
@@ -720,6 +770,15 @@
               "feedbackByLocale": {
                 "ru": "Форма `am` сочетается с `I`. Здесь речь о сотруднике, поэтому нужно `he is`.",
                 "uk": "Форма `am` поєднується з `I`. Тут ідеться про працівника, тому потрібне `he is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — сотрудник сказал вам, что работает в прокате первую неделю; на вопрос друга, новенький ли он, ответьте коротко: «Да»",
+              "feedbackByLocale": {
+                "ru": "Верно: о сотруднике отвечают `Yes, he is.`",
+                "uk": "Правильно: про працівника відповідають `Yes, he is`."
               }
             }
           ]
@@ -828,6 +887,15 @@
                 "ru": "Это вопрос об уверенности вас обоих. В записи друг спрашивает именно вас: `Are you sure?`",
                 "uk": "Це запитання про впевненість вас обох. У записі друг запитує саме вас: `Are you sure?`"
               }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i16:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — какая реплика друга прозвучала после объяснения маршрута сотрудником",
+              "feedbackByLocale": {
+                "ru": "Верно: после объяснения маршрута друг спрашивает `Are you sure?`",
+                "uk": "Правильно: після пояснення маршруту друг питає `Are you sure?`"
+              }
             }
           ],
           "isWordCard": false,
@@ -839,19 +907,77 @@
         "interactionId": "en:lesson-02:session-50:i17",
         "ordinal": 20,
         "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — сотрудник показал дорогу, вы сверили её с картой и уверены; на вопрос друга ответьте коротко: «Да»",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i17:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i17:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i17:r3",
+            "text": "is"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — сотрудник показал дорогу, вы сверили её с картой и уверены; на вопрос друга ответьте коротко: «Да»",
+        "accessibilityLabel": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Yes, I am.",
-          "localizedMeaning": {"ru":"Соберите фразу — сотрудник показал дорогу, вы сверили её с картой и уверены; на вопрос друга ответьте коротко: «Да»","uk":"Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»"},
-          "orderedTokens": ["Yes,", "I", "am"],
-          "authoredDistractorTokens": ["are"]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+            "uk": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе."
+          },
+          "gappedTargetPhrase": "Yes, I ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i17:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i17:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+              "feedbackByLocale": {
+                "ru": "Верно: о себе отвечают `Yes, I am.`",
+                "uk": "Правильно: про себе відповідають `Yes, I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+              "feedbackByLocale": {
+                "ru": "`are` было в вопросе `Are you sure?`, но о себе отвечают с `I am`.",
+                "uk": "`are` було в запитанні `Are you sure?`, але про себе відповідають з `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+              "feedbackByLocale": {
+                "ru": "`is` подходит к `he`, `she` или `it`. Здесь вы отвечаете о себе: `I am`.",
+                "uk": "`is` підходить до `he`, `she` або `it`. Тут ви відповідаєте про себе: `I am`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }
@@ -925,6 +1051,15 @@
               "feedbackByLocale": {
                 "ru": "Это сообщение. На записи сначала `Are you`: сотрудник задаёт вопрос.",
                 "uk": "Це повідомлення. Запис починається з `Are you`: працівник ставить запитання."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i01:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й виберіть — яка репліка прозвучала біля стійки прокату",
+              "feedbackByLocale": {
+                "ru": "Верно: в записи сотрудник спрашивает `Are you ready?` — «Вы готовы?»",
+                "uk": "Правильно: у записі працівник запитує `Are you ready?` — «Ви готові?»"
               }
             }
           ],
@@ -1029,6 +1164,15 @@
               "feedbackByLocale": {
                 "ru": "Это вопрос о готовности. На записи последнее слово `free` — «свободна».",
                 "uk": "Це запитання про готовність. Останнє слово в записі — `free`, «вільна»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i03:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й виберіть — яка репліка друга прозвучала біля стійки",
+              "feedbackByLocale": {
+                "ru": "Верно: друг спрашивает о сотруднице: `Is she free?`",
+                "uk": "Правильно: друг питає про працівницю: `Is she free?`"
               }
             }
           ],
@@ -1167,6 +1311,15 @@
                 "ru": "Это ответ о мужчине. В записи звучит `it`: речь о парке.",
                 "uk": "Це відповідь про чоловіка. У записі звучить `it`: ідеться про парк."
               }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i06:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й виберіть — яка репліка працівника прозвучала у відповідь",
+              "feedbackByLocale": {
+                "ru": "Верно: сотрудник подтверждает близость парка: `Yes, it is.`",
+                "uk": "Правильно: працівник підтверджує близькість парку: `Yes, it is`."
+              }
             }
           ],
           "isWordCard": false,
@@ -1198,7 +1351,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1378,7 +1536,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — поки працівник підбирає ",
+          "testedDimension": "Вставте слово — поки працівник підбирає вам шолом, запитайте друга, чи готовий він їхати",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-50:i11:r2",
@@ -1396,6 +1554,15 @@
               "feedbackByLocale": {
                 "ru": "Это вопрос об уверенности. Вам нужно узнать, готов ли он: `Are you ready?`",
                 "uk": "Це запитання про впевненість. Вам треба дізнатися, чи він готовий: `Are you ready?`"
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i11:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — поки працівник підбирає вам шолом, запитайте друга, чи готовий він їхати",
+              "feedbackByLocale": {
+                "ru": "Верно: вопрос о готовности к поездке — `Are you ready?`",
+                "uk": "Правильно: це запитання про готовність їхати — `Are you ready?`"
               }
             }
           ]
@@ -1470,6 +1637,15 @@
               "feedbackByLocale": {
                 "ru": "Это ответ о собеседнике. В записи друг говорит о себе: `I am`.",
                 "uk": "Це відповідь про співрозмовника. У записі друг говорить про себе: `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i12:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й виберіть — яка репліка друга прозвучала у відповідь",
+              "feedbackByLocale": {
+                "ru": "Верно: друг говорит о своей готовности: `Yes, I am ready.`",
+                "uk": "Правильно: друг говорить про свою готовність: `Yes, I am ready`."
               }
             }
           ],
@@ -1554,7 +1730,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — працівник сказав вам, що",
+          "testedDimension": "Вставте слово — працівник сказав вам, що працює в пункті прокату перший тиждень; на запитання друга, чи він новенький, дайте коротку відповідь: «Так»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-50:i14:r2",
@@ -1572,6 +1748,15 @@
               "feedbackByLocale": {
                 "ru": "Форма `am` сочетается с `I`. Здесь речь о сотруднике, поэтому нужно `he is`.",
                 "uk": "Форма `am` поєднується з `I`. Тут ідеться про працівника, тому потрібне `he is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — працівник сказав вам, що працює в пункті прокату перший тиждень; на запитання друга, чи він новенький, дайте коротку відповідь: «Так»",
+              "feedbackByLocale": {
+                "ru": "Верно: о сотруднике отвечают `Yes, he is.`",
+                "uk": "Правильно: про працівника відповідають `Yes, he is`."
               }
             }
           ]
@@ -1680,6 +1865,15 @@
                 "ru": "Это вопрос об уверенности вас обоих. В записи друг спрашивает именно вас: `Are you sure?`",
                 "uk": "Це запитання про впевненість вас обох. У записі друг запитує саме вас: `Are you sure?`"
               }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i16:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й виберіть — яка репліка друга прозвучала після пояснення маршруту працівником",
+              "feedbackByLocale": {
+                "ru": "Верно: после объяснения маршрута друг спрашивает `Are you sure?`",
+                "uk": "Правильно: після пояснення маршруту друг питає `Are you sure?`"
+              }
             }
           ],
           "isWordCard": false,
@@ -1691,19 +1885,77 @@
         "interactionId": "en:lesson-02:session-50:i17",
         "ordinal": 20,
         "purpose": "independent_check",
-        "family": "phrase_builder",
-        "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»",
-        "responseOptions": [],
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-50:i17:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i17:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-50:i17:r3",
+            "text": "is"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»",
+        "accessibilityLabel": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
         "modePayload": {
-          "family": "phrase_builder",
-          "targetPhrase": "Yes, I am.",
-          "localizedMeaning": {"ru":"Соберите фразу — сотрудник показал дорогу, вы сверили её с картой и уверены; на вопрос друга ответьте коротко: «Да»","uk":"Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»"},
-          "orderedTokens": ["Yes,", "I", "am"],
-          "authoredDistractorTokens": ["are"]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, уверены ли вы после сверки маршрута. Подтвердите о себе.",
+            "uk": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе."
+          },
+          "gappedTargetPhrase": "Yes, I ___ .",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-50:i17:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r3",
+              "text": "is"
+            }
+          ],
+          "testedDimension": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-50:i17:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
+              "feedbackByLocale": {
+                "ru": "Верно: о себе отвечают `Yes, I am.`",
+                "uk": "Правильно: про себе відповідають `Yes, I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
+              "feedbackByLocale": {
+                "ru": "`are` было в вопросе `Are you sure?`, но о себе отвечают с `I am`.",
+                "uk": "`are` було в запитанні `Are you sure?`, але про себе відповідають з `I am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-50:i17:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.",
+              "feedbackByLocale": {
+                "ru": "`is` подходит к `he`, `she` или `it`. Здесь вы отвечаете о себе: `I am`.",
+                "uk": "`is` підходить до `he`, `she` або `it`. Тут ви відповідаєте про себе: `I am`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1792,8 +2044,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-50:i17",
-      "correctText": "Yes, I am.",
-      "correctResponseId": null
+      "correctText": "am",
+      "correctResponseId": "en:lesson-02:session-50:i17:r1"
     }
   ]
 }

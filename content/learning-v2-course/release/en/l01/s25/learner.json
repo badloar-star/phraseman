@@ -115,6 +115,15 @@
               "ru": "Конец тот же, начало разное. `small` начинается со «см».",
               "uk": "Кінець той самий, початок різний. `small` починається зі «см»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `small` начинается со «см» и заканчивается звуком «ол», не как `smell` и не как `tall`.",
+              "uk": "У записі `small` починається зі «см» і закінчується звуком «ол», не як `smell` і не як `tall`."
+            }
           }
         ],
         "isWordCard": false,
@@ -305,6 +314,15 @@
               "ru": "Похоже, но в середине «т»: экс-ТЕН-сив. В нашем слове «п».",
               "uk": "Схоже, але в середині «т»: екс-ТЕН-сив. У нашому слові «п»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-25:i06:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `expensive` после `ex-` слышно «пен», не короткое `expense` и не `extensive` с «тен».",
+              "uk": "У записі `expensive` після `ex-` чути «пен», а не коротке `expense` чи `extensive` з «тен»."
+            }
           }
         ],
         "isWordCard": false,
@@ -359,6 +377,15 @@
         ],
         "testedDimension": "Вставьте слово — комната три на четыре",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — комната три на четыре",
+            "feedbackByLocale": {
+              "ru": "Комната три на четыре метра, поэтому `small` — «маленькая»; не речь о свете или цене.",
+              "uk": "Кімната три на чотири метри, тому `small` — «маленька»; не йдеться ні про світло, ні про ціну."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-25:i07:r2",
             "correct": false,
@@ -430,7 +457,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — про воду из крана",
+      "prompt": "Вставьте слово — про воду из крана",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-25:i09:r1",
@@ -447,12 +474,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — про воду из крана",
+      "accessibilityLabel": "Вставьте слово — про воду из крана",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — про воду из крана",
-          "uk": "Вставте скріпку — про воду з крана"
+          "ru": "Вставьте слово — про воду из крана",
+          "uk": "Вставте слово — про воду з крана"
         },
         "gappedTargetPhrase": "It ___ cold.",
         "gapOptions": [
@@ -469,12 +496,21 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте скрепку — про воду из крана",
+        "testedDimension": "Вставьте слово — про воду из крана",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — про воду из крана",
+            "feedbackByLocale": {
+              "ru": "Про воду говорят `It`, поэтому в `It is cold.` нужна форма `is`.",
+              "uk": "Про воду кажуть `It`, тому у `It is cold.` потрібна форма `is`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про воду из крана",
+            "testedDimension": "Вставьте слово — про воду из крана",
             "feedbackByLocale": {
               "ru": "`am` стоит только рядом с `I`. Про вещь — `is`.",
               "uk": "`am` стоїть тільки поряд з `I`. Про річ — `is`."
@@ -483,7 +519,7 @@
           {
             "responseId": "en:lesson-01:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — про воду из крана",
+            "testedDimension": "Вставьте слово — про воду из крана",
             "feedbackByLocale": {
               "ru": "`are` — не для одного предмета. Тут `is`.",
               "uk": "`are` — не для одного предмета. Тут `is`."
@@ -519,7 +555,17 @@
         "authoredDistractorTokens": [
           "he"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы посмотрели на счёт",
+            "feedbackByLocale": {
+              "ru": "`he` — про мужчину, а счёт — вещь",
+              "uk": "`he` — про чоловіка, а рахунок — річ"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -644,6 +690,15 @@
         "testedDimension": "Вставьте слово — квартира вам досталась ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-25:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — квартира вам досталась только что снятая, всё в ней с иголочки",
+            "feedbackByLocale": {
+              "ru": "Квартиру только что сняли, поэтому `new` — «новая», не про свет и не про размер.",
+              "uk": "Квартиру щойно зняли, тому `new` — «нова», не про світло й не про розмір."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-25:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — квартира вам досталась ",
@@ -741,6 +796,15 @@
         "testedDimension": "Вставьте слово — вы включили обогревател",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-25:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы включили обогреватель, через час в комнате хорошо",
+            "feedbackByLocale": {
+              "ru": "После обогревателя в комнате `warm` — «тепло», не холодно и не темно.",
+              "uk": "Після обігрівача в кімнаті `warm` — «тепло», не холодно і не темно."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-25:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы включили обогревател",
@@ -791,7 +855,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «это красиво»",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `It` ставят `is` — `It is nice.`",
+              "uk": "`am` зайве: з `It` ставлять `is` — `It is nice`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -907,13 +981,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — в комнате темно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-25:i17:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — в комнате темно",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -938,31 +1012,41 @@
       "interactionId": "en:lesson-01:session-25:i17:s03",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — во дворе тихо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-25:i17:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите — во дворе тихо",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-25:i17:s03:audio",
           "transcript": "It is quiet."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "It is quiet.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "hiddenTargetPhrase": "It is quiet.",
+        "orderedTokens": [
+          "It",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-25:i17:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — во дворе тихо",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `It` ставят `is` — `It is quiet.`",
+              "uk": "`are` зайве: з `It` ставлять `is` — `It is quiet`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1007,5 +1091,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "45b7a44b11f9695b8cf866a8b556b3dd5eb2fafefaeaba6634ce16c96c4a1c29"
+  "learnerFingerprint": "10039ab75ee069693b96dcbc8121cf6c5e1a605e30a78299ff5d0db00f59440d"
 }

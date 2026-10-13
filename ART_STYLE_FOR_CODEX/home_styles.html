@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Главная: стили картинок</title>
+<style>
+:root{--ui:#0c0c0e;--uifg:#ececec;--uimut:#8d8d93}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ui);color:var(--uifg);font:14px/1.4 -apple-system,"SF Pro Text",Segoe UI,Roboto,sans-serif}
+.top{position:sticky;top:0;z-index:50;background:rgba(12,12,14,.94);backdrop-filter:blur(14px);padding:10px 16px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;border-bottom:1px solid #222}
+.top h1{font-size:16px;margin:0 6px 0 0}
+.grp{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.grp b{font-weight:600;color:var(--uimut);font-size:12px;margin-right:2px}
+.btn{background:#1d1e22;color:var(--uifg);border:0;border-radius:10px;padding:6px 10px;cursor:pointer;font:inherit;font-size:13px}
+.btn.on{background:#ececec;color:#111}
+.sw{width:22px;height:22px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.sw.on{border-color:#fff}
+input[type=range]{width:150px}
+.wrap{padding:18px 16px 40px}
+.mx{display:grid;gap:14px 12px;align-items:start}
+.mx .hd{font-size:14px;font-weight:700;text-align:center;line-height:1.25}
+.mx .hd small{display:block;font-weight:400;color:var(--uimut);font-size:11.5px;margin-top:3px}
+.mx .md{writing-mode:vertical-rl;transform:rotate(180deg);font-size:13px;font-weight:700;color:var(--uimut);align-self:center;justify-self:center}
+.note{font-size:12px;color:var(--uimut);margin-top:16px;max-width:110ch}
+
+/* ===== телефон 1:1 с приложением (снимки HOME_light.png, home_es_ru_plus11s.png; 1080 px = 390 pt) ===== */
+.ph{width:calc(390px*var(--s));height:calc(844px*var(--s));position:relative}
+.sc{position:absolute;inset:0;width:390px;height:844px;transform:scale(var(--s));transform-origin:0 0;border-radius:46px;overflow:hidden;
+  background:var(--bg);color:var(--fg);box-shadow:0 0 0 6px #000,0 0 0 7px #2b2b2e,0 30px 60px -20px #000;font-family:Roboto,"SF Pro Text",Segoe UI,sans-serif}
+.sb{height:44px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font-size:15px;font-weight:600;color:var(--fg)}
+.sb i{display:inline-block;width:24px;height:11px;border-radius:3px;box-shadow:inset 0 0 0 1.5px currentColor;opacity:.85}
+.hdr{position:absolute;top:54px;left:12px;right:12px;height:42px;display:flex;align-items:center;gap:11px}
+.stat{width:115px;height:42px;border-radius:14px;background:var(--card);box-shadow:var(--cs);display:flex;align-items:center;gap:8px;padding:0 10px;flex:none}
+.stat .n{font-size:13.5px;font-weight:700;line-height:15px}.stat .l{font-size:12.5px;color:var(--sec);line-height:15px}
+.stat svg{width:16px;height:16px;flex:none}
+.stat img{width:20px;height:20px;flex:none}
+.bell{width:40px;height:40px;border-radius:20px;background:var(--card);box-shadow:var(--cs);display:flex;align-items:center;justify-content:center;flex:none}
+.bell svg{width:19px;height:19px}
+.ava{width:46px;height:46px;border-radius:23px;margin-left:auto;flex:none}
+.cont{position:absolute;top:107px;left:12px;right:12px;height:76px;overflow:hidden;border-radius:20px;background:var(--card);box-shadow:var(--cs);padding:12px 14px}
+.cont .tt{font-size:15.5px;font-weight:800;letter-spacing:-.2px;max-width:262px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cont .pr{display:flex;align-items:center;gap:10px;margin-top:10px;max-width:262px}
+.cont .trk{flex:1;height:5px;border-radius:3px;background:var(--trk);overflow:hidden}.cont .trk i{display:block;height:100%;width:9%;min-width:10px;background:var(--acc)}
+.cont .cnt{font-size:13px;color:var(--sec);font-weight:600}
+.chev{width:28px;height:28px;border-radius:14px;background:var(--chip);display:flex;align-items:center;justify-content:center}
+.chev svg{width:14px;height:14px}
+.cont .art{position:absolute;right:12px;top:8px;width:60px;height:60px}
+.tiles{position:absolute;left:12px;right:12px;height:115px;display:flex;gap:10px}
+.tl{flex:1;border-radius:20px;background:var(--card);box-shadow:var(--cs);position:relative;overflow:hidden}
+.tl .art{position:absolute;left:50%;top:9px;width:72px;height:72px;transform:translateX(-50%)}
+.tl .t{position:absolute;left:10px;bottom:11px;font-size:16.5px;font-weight:700;letter-spacing:-.1px}
+.vh{position:absolute;left:12px;right:12px;display:flex;justify-content:space-between;align-items:center}
+.vh b{font-size:16.5px;font-weight:700}.vh span{font-size:14px;color:var(--sec);font-weight:500;display:flex;align-items:center;gap:4px}
+.rail{position:absolute;left:12px;height:131px;display:flex;gap:8px}
+.rail img{height:131px;width:233px;object-fit:cover;display:block}.rail img+img{width:150px}
+.td{position:absolute;left:28px;font-size:13px;font-weight:700;letter-spacing:2.2px;color:var(--sec)}
+.rows{position:absolute;left:17px;right:17px;display:flex;flex-direction:column;gap:10.5px}
+.r{height:54px;border-radius:16px;background:var(--card);box-shadow:var(--cs);display:flex;align-items:center;padding:0 14px 0 13px;gap:0}
+.r .ck{width:19px;height:19px;border-radius:10px;box-shadow:inset 0 0 0 1.6px var(--sec);flex:none}
+.r .ic{width:34px;height:34px;border-radius:11px;background:var(--chip);display:flex;align-items:center;justify-content:center;margin-left:11px;flex:none}
+.r .ic svg{width:16px;height:16px}
+.r .tx{margin-left:12px;min-width:0;flex:1}
+.r .a{font-size:15.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.r .b{font-size:13px;color:var(--sec);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.r .c{font-size:14px;font-weight:700;color:var(--sec);margin-left:8px}
+.phr{position:absolute;left:12px;right:12px;height:120px;border-radius:22px;background:var(--card);box-shadow:var(--cs);padding:14px 14px}
+.phr .o{font-size:13px;font-weight:700;letter-spacing:2.2px;color:var(--sec)}
+.phr .p{font-size:19px;font-weight:700;margin-top:4px;max-width:240px}
+.phr .spk{position:absolute;right:82px;top:10px;width:32px;height:32px;border-radius:16px;background:var(--chip);display:flex;align-items:center;justify-content:center}
+.phr .spk svg{width:15px;height:15px}
+.phr .art{position:absolute;right:8px;top:8px;width:62px;height:62px}
+.tb{position:absolute;left:13px;right:13px;top:778px;height:58px;border-radius:29px;background:var(--tab);box-shadow:var(--tbs);display:flex;align-items:center;padding:0 6px;backdrop-filter:blur(18px)}
+.tb div{flex:1;height:46px;display:flex;align-items:center;justify-content:center;border-radius:23px}
+.tb div.on{background:var(--chip);box-shadow:var(--onb)}
+.tb svg{width:22px;height:22px}
+.hi{position:absolute;left:50%;bottom:8px;width:102px;height:4px;border-radius:2px;background:var(--fg);opacity:.85;transform:translateX(-50%)}
+.art img,.art .tint{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.tint{-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;background:var(--acc)}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+</style></head><body>
+<div class="top">
+  <h1>Главная · стили картинок</h1>
+  <div class="grp"><b>Цвет темы</b><span id="sws"></span><input id="hue" type="range" min="0" max="359" value="150"><span id="hv" class="note" style="margin:0"></span></div>
+  <div class="grp"><b>Яркость</b><button class="btn" data-lv="calm">Спокойно</button><button class="btn on" data-lv="accent">Акцент</button><button class="btn" data-lv="max">Максимум</button></div>
+  <div class="grp"><b>Язык</b><button class="btn on" data-lang="en">Английский</button><button class="btn" data-lang="es">Испанский (со Шпилем)</button></div>
+  <div class="grp"><b>Показать</b><button class="btn on" data-show="both">Тёмная + светлая</button><button class="btn" data-show="dark">Тёмная</button><button class="btn" data-show="light">Светлая</button></div>
+</div>
+<div class="wrap" id="out"></div>
+<script>
+// зачем: владелец 12.10 — макет Главной 1:1 как в приложении (снимки HOME_light.png и home_es_ru_plus11s.png), картинки в своих местах и по центру плиток;
+// все стили Codex рядом, тёмная и светлая, любой цвет темы. Слой .accent красится в цвет темы, как ThemedArtLayers в приложении.
+const STYLES=[['S0','Сейчас','нынешние, без перекраски'],['S1_glass','S1 · Стекло','цветная деталь'],['S2_clay','S2 · Глина','один тон + деталь'],
+ ['S3_pearl','S3 · Перламутр','светлый вышел тёмным'],['S4_toy','S4 · Игрушка','слой сплошной — объём пропал'],['S5_line','S5 · Контур','тёмная — плоский силуэт']];
+const DRAWN=['lessons','dialogs','spire_tile']; // что Codex нарисовал в пробе
+const SW=[0,25,50,90,150,175,200,230,265,295,325];
+let hue=150,lv='accent',show='both',lang='en';
+const LV={calm:{c:.07,bc:0},accent:{c:.15,bc:.012},max:{c:.21,bc:.03}};
+const I={
+ drop:'<path d="M12 3.5c3 3.6 5 6.6 5 9.4a5 5 0 01-10 0c0-2.8 2-5.8 5-9.4z" fill="currentColor" stroke="none"/>',
+ bell:'<path d="M6 16.5V11a6 6 0 1112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
+ chev:'<path d="M9 5l7 7-7 7"/>',
+ book:'<path d="M3 5.5c3-1 6-1 9 1 3-2 6-2 9-1v13c-3-1-6-1-9 1-3-2-6-2-9-1z"/><path d="M12 6.5v13"/>',
+ chat:'<path d="M4 12a8 8 0 1114.2 5L20 20.5l-3.6-1A8 8 0 014 12z"/><circle cx="8.5" cy="12" r=".6" fill="currentColor"/><circle cx="12" cy="12" r=".6" fill="currentColor"/><circle cx="15.5" cy="12" r=".6" fill="currentColor"/>',
+ cards:'<rect x="7" y="7" width="13" height="13" rx="3"/><path d="M4 16V7a3 3 0 013-3h9"/>',
+ clip:'<rect x="6" y="4.5" width="12" height="16" rx="2.5"/><path d="M9.5 3.5h5v3h-5z"/>',
+ play:'<circle cx="12" cy="12" r="9"/><path d="M10 8.8v6.4l5-3.2z"/>',
+ home:'<path d="M3.5 11L12 3.8 20.5 11v8.7a1.3 1.3 0 01-1.3 1.3H15v-6h-6v6H4.8a1.3 1.3 0 01-1.3-1.3z" fill="currentColor"/>',
+ people:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.7"/><path d="M16.5 14.6c2.8.1 4.5 1.8 5 4.6"/>',
+ gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5l1.6 2.4 2.8-.7.7 2.8 2.4 1.6-1.2 2.6 1.2 2.6-2.4 1.6-.7 2.8-2.8-.7L12 21.5l-1.6-2.4-2.8.7-.7-2.8-2.4-1.6L5.7 12 4.5 9.4l2.4-1.6.7-2.8 2.8.7z"/>',
+ spk:'<path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/><path d="M15.5 9a4 4 0 010 6M18 6.5a7.5 7.5 0 010 11"/>',
+};
+const ic=(k,st='')=>`<svg class="i" viewBox="0 0 24 24" style="${st}">${I[k]}</svg>`;
+function vars(mode){
+  const {c,bc}=LV[lv],h=hue;
+  return mode==='dark'?{
+    bg:`oklch(0.17 ${bc} ${h})`,fg:'#F4F4F6',sec:'#A3A3AA',card:`oklch(0.235 ${bc*1.3} ${h})`,chip:`oklch(0.29 ${bc*1.3} ${h})`,cs:'none',
+    trk:'rgba(255,255,255,.12)',acc:`oklch(0.77 ${c} ${h})`,tab:`oklch(0.22 ${bc} ${h} / .94)`,tbs:'0 16px 36px -14px rgba(0,0,0,.7)',onb:'none'
+  }:{
+    bg:`linear-gradient(180deg, oklch(0.975 ${bc*.6} ${h}), oklch(0.955 ${bc} ${h}))`,fg:'#18181B',sec:'#6B6B73',card:'#FFFFFF',chip:`oklch(0.965 ${bc} ${h})`,
+    cs:'0 6px 16px -8px rgba(30,30,60,.18), 0 1px 2px rgba(30,30,60,.05)',
+    trk:'rgba(0,0,0,.08)',acc:`oklch(0.56 ${Math.max(c,.08)} ${h})`,tab:'rgba(255,255,255,.94)',tbs:'0 0 0 1px rgba(0,0,0,.12), 0 14px 30px -14px rgba(30,30,60,.25)',onb:'0 0 0 1.5px rgba(0,0,0,.55)'
+  };
+}
+function src(st,mode,name,acc){
+  if(st==='S0'||!DRAWN.includes(name)){
+    const m={lessons:'lessons',dialogs:'dialogs',spire_tile:'spire_tile',cards:'cards',continue:'continue',phrase:'phrase_of_day'}[name];
+    return acc?null:`examples_GOOD/${mode}__${m}.png`;
+  }
+  return `trials/${st}/${mode}/${name}${acc?'.accent':''}.webp`;
+}
+function art(st,mode,name){
+  const a=src(st,mode,name,true);
+  return `<div class="art"><img src="${src(st,mode,name,false)}" alt="">${a?`<div class="tint" style="-webkit-mask-image:url('${a}');mask-image:url('${a}')"></div>`:''}</div>`;
+}
+function phone(st,mode){
+  const v=vars(mode),style=Object.entries(v).map(([k,x])=>`--${k}:${x}`).join(';');
+  const en=lang==='en';
+  // en: Продолжить + Уроки/Диалоги/Карточки (HOME_light.png); es: без «Продолжить», Диалоги/Карточки/Шпиль (home_es_ru_plus11s.png)
+  const tilesTop=en?193:115, y=(d)=>tilesTop+d;
+  const tiles=en?[['lessons','Уроки'],['dialogs','Диалоги'],['cards','Карточки']]:[['dialogs','Диалоги'],['cards','Карточки'],['spire_tile','Шпиль']];
+  const rows=en?[['book','Пройти урок','','0/1'],['chat','Потренировать диалог','','0/1'],['cards','Повторить карточки','Не менее 10 слов','0/10']]
+                :[['cards','Повторить карточки','Не менее 10 слов','0/10'],['chat','Потренировать диалог','','0/1'],['play','Посмотреть видео','Хотя бы минуту','0/1']];
+  const tabs=en?['home','book','play','people','gear']:['home','play','people','gear'];
+  const th=en?['ui/thumb_en1.jpg','ui/thumb_en2.jpg']:['ui/thumb_es1.jpg','ui/thumb_es2.jpg'];
+  const phrase=en?'Push the envelope':'No hay mal que por bien';
+  return `<div class="ph"><div class="sc" style="${style}">
+   <div class="sb"><span>9:41</span><i></i></div>
+   <div class="hdr"><div class="stat">${ic('drop','color:var(--fg)')}<div><div class="n">1 день</div><div class="l">Серия</div></div></div>
+     <div class="stat"><img src="ui/coin.png" alt=""><div><div class="n">0</div><div class="l">Монеты</div></div></div>
+     <div class="bell">${ic('bell')}</div><img class="ava" src="ui/avatar.png" alt=""></div>
+   ${en?`<div class="cont"><div class="tt">Местоимения и глагол To Be</div><div class="pr"><div class="trk"><i></i></div><span class="cnt">4 / 50</span><span class="chev">${ic('chev')}</span></div>${art(st,mode,'continue')}</div>`:''}
+   <div class="tiles" style="top:${y(0)}px">${tiles.map(([k,t])=>`<div class="tl">${art(st,mode,k)}<div class="t">${t}</div></div>`).join('')}</div>
+   <div class="vh" style="top:${y(130)}px"><b>Видео</b><span>Смотреть все ${ic('chev','width:13px;height:13px')}</span></div>
+   <div class="rail" style="top:${y(155)}px"><img src="${th[0]}" alt=""><img src="${th[1]}" alt=""></div>
+   <div class="td" style="top:${y(316)}px">СЕГОДНЯ</div>
+   <div class="rows" style="top:${y(342)}px">${rows.map(([k,a,b,c])=>`<div class="r"><span class="ck"></span><span class="ic">${ic(k)}</span><div class="tx"><div class="a">${a}</div>${b?`<div class="b">${b}</div>`:''}</div><span class="c">${c}</span></div>`).join('')}</div>
+   <div class="phr" style="top:${y(542)}px"><div class="o">ФРАЗА ДНЯ</div><div class="p">${phrase}</div><span class="spk">${ic('spk')}</span>${art(st,mode,'phrase')}</div>
+   <div class="tb">${tabs.map((k,i)=>`<div class="${i===0?'on':''}">${ic(k,i===0?'color:var(--fg)':'color:var(--sec)')}</div>`).join('')}</div>
+   <div class="hi"></div>
+  </div></div>`;
+}
+function render(){
+  const modes=show==='both'?['dark','light']:[show];
+  const n=STYLES.length, avail=Math.max(600,document.documentElement.clientWidth-32-28-(n-1)*12);
+  const z=Math.min(1,Math.max(.3,avail/n/390));document.documentElement.style.setProperty('--s',z.toFixed(3));
+  document.getElementById('hv').textContent=hue+'°';
+  document.querySelectorAll('.sw').forEach(b=>b.classList.toggle('on',+b.dataset.h===hue));
+  let h=`<div class="mx" style="grid-template-columns:28px repeat(${n},calc(390px*var(--s)))"><div></div>`;
+  h+=STYLES.map(([st,t,p])=>`<div class="hd">${t}<small>${p}</small></div>`).join('');
+  for(const m of modes){h+=`<div class="md">${m==='dark'?'Тёмная':'Светлая'}</div>`+STYLES.map(([st])=>`<div>${phone(st,m)}</div>`).join('')}
+  h+=`</div><p class="note">Раскладка, размеры и тексты — по снимкам Главной из приложения (английский: «Продолжить» + Уроки · Диалоги · Карточки; испанский: Диалоги · Карточки · Шпиль). В пробе Codex нарисовал только Уроки, Диалоги и Шпиль — на месте «Карточек», «Продолжить» и «Фразы дня» в каждом стиле стоят нынешние картинки.</p>`;
+  document.getElementById('out').innerHTML=h;
+}
+const sws=document.getElementById('sws');
+SW.forEach(h=>{const b=document.createElement('button');b.className='sw';b.dataset.h=h;b.style.background=`oklch(0.7 0.16 ${h})`;b.onclick=()=>{hue=h;document.getElementById('hue').value=h;render()};sws.appendChild(b)});
+document.getElementById('hue').oninput=e=>{hue=+e.target.value;render()};
+const grp=(attr,set)=>document.querySelectorAll(`[${attr}]`).forEach(b=>b.onclick=()=>{set(b.getAttribute(attr));document.querySelectorAll(`[${attr}]`).forEach(x=>x.classList.toggle('on',x===b));render()});
+grp('data-lv',v=>lv=v);grp('data-show',v=>show=v);grp('data-lang',v=>lang=v);
+addEventListener('resize',render);
+render();
+</script></body></html>

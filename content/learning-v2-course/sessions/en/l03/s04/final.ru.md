@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-04:i02; family: listen_choose -->
 Цель: `key`
 Варианты: `key` · `tea` · `fee`
+- tea — *Первый звук в `tea` — «т», а в `key` — «к». В записи `key`.*
+- fee — *Первый звук в `fee` — «ф», а в `key` — «к». Здесь звучит `key`.*
+
 
 **3 · Карточка слова — door**
 <!-- interaction_id: en:lesson-03:session-04:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-04:i04; family: listen_choose -->
 Цель: `door`
 Варианты: `door` · `four` · `more`
+- four — *В `four` первым слышно «ф», а в `door` — «д». В записи `door`.*
+- more — *В `more` первым слышно «м», а в `door` — «д». Здесь звучит `door`.*
+
 
 **5 · Послушайте и соберите — хозяин коротко называет предмет**
 <!-- interaction_id: en:lesson-03:session-04:i05; family: listen_build_dictation -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-04:i07; family: listen_choose -->
 Цель: `window`
 Варианты: `window` · `willow` · `winter`
+- willow — *В середине `willow` слышно «л», а в `window` — сочетание «н» и «д». В записи `window`.*
+- winter — *Во второй части `winter` слышно «т», а в `window` — «д». Здесь звучит `window`.*
+
 
 **8 · Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»**
 <!-- interaction_id: en:lesson-03:session-04:i08; family: phrase_builder -->

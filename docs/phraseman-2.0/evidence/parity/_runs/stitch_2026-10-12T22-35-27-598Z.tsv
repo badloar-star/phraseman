@@ -1,0 +1,6 @@
+id	time	result	detail	file
+spire-004	2026-10-12T22:35:29.130Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-004.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=389622 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-004.png
+spire-005	2026-10-12T22:35:30.603Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-005.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=377089 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-005.png
+spire-gap-012	2026-10-12T22:35:32.193Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/spire-gap-012.png
+spire-gap-017	2026-10-12T22:35:33.525Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/spire-gap-017.png
+spire-gap-019	2026-10-12T22:35:34.896Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-019.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=656847 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-gap-019.png

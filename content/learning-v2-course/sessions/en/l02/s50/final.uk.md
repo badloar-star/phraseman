@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-02:session-50:i01; family: listen_choose -->
 Ціль: `Are you ready?`
 Варіанти: `Are you ready?` · `Am I ready?` · `You are ready.`
+- Am I ready? — *Це запитання про себе. У записі працівник починає з `Are you` й звертається до вас.*
+- You are ready. — *Це повідомлення. Запис починається з `Are you`: працівник ставить запитання.*
+
 
 **2 · Складіть фразу — працівник запитав, чи готові ви вибрати велосипед; ви вже визначилися, дайте коротку відповідь**
 <!-- interaction_id: en:lesson-02:session-50:i02; family: phrase_builder -->
@@ -65,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-50:i03; family: listen_choose -->
 Ціль: `Is she free?`
 Варіанти: `Is she free?` · `Is he free?` · `Is she ready?`
+- Is he free? — *Це запитання про чоловіка. У записі звучить `she` — «вона».*
+- Is she ready? — *Це запитання про готовність. Останнє слово в записі — `free`, «вільна».*
+
 
 **4 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-50:i04; family: scripted_repeat_compare -->
@@ -78,6 +84,9 @@
 <!-- interaction_id: en:lesson-02:session-50:i06; family: listen_choose -->
 Ціль: `Yes, it is.`
 Варіанти: `Yes, it is.` · `No, it is not.` · `Yes, he is.`
+- No, it is not. — *Це заперечна відповідь. У записі працівник підтверджує: `Yes, it is`.*
+- Yes, he is. — *Це відповідь про чоловіка. У записі звучить `it`: ідеться про парк.*
+
 
 **7 · Скажіть уголос — друг перевіряє, чи ви впевнені, що велосипеди залишені біля правильного входу**
 <!-- interaction_id: en:lesson-02:session-50:i07; family: scripted_repeat_compare -->
@@ -100,11 +109,17 @@
 <!-- interaction_id: en:lesson-02:session-50:i11; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `ready` · `free` · `sure`
+- free — *Це запитання про те, чи вільний друг. Зараз ви перевіряєте його готовність їхати: `ready`.*
+- sure — *Це запитання про впевненість. Вам треба дізнатися, чи він готовий: `Are you ready?`*
+
 
 **12 · Послухайте й виберіть — яка репліка друга прозвучала у відповідь**
 <!-- interaction_id: en:lesson-02:session-50:i12; family: listen_choose -->
 Ціль: `Yes, I am ready.`
 Варіанти: `Yes, I am ready.` · `No, I am not.` · `Yes, you are.`
+- No, I am not. — *Це заперечна відповідь. У записі друг відповідає `Yes, I am`.*
+- Yes, you are. — *Це відповідь про співрозмовника. У записі друг говорить про себе: `I am`.*
+
 
 **13 · Послухайте й складіть — друг запитує про чоловіка, який допомагає вам із шоломом**
 <!-- interaction_id: en:lesson-02:session-50:i13; family: listen_build_dictation -->
@@ -114,6 +129,9 @@
 <!-- interaction_id: en:lesson-02:session-50:i14; family: context_gap_grammar -->
 Ціль: `Yes, he ___ .`
 Варіанти: `is` · `are` · `am`
+- are — *Після `he` потрібне `is`, а не `are`: `Yes, he is`.*
+- am — *Форма `am` поєднується з `I`. Тут ідеться про працівника, тому потрібне `he is`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-50:i15; family: scripted_repeat_compare -->
@@ -123,12 +141,17 @@
 <!-- interaction_id: en:lesson-02:session-50:i16; family: listen_choose -->
 Ціль: `Are you sure?`
 Варіанти: `Are you sure?` · `You are sure.` · `Are we sure?`
+- You are sure. — *Це повідомлення. Запис починається з `Are you`: друг ставить запитання.*
+- Are we sure? — *Це запитання про впевненість вас обох. У записі друг запитує саме вас: `Are you sure?`*
 
-**17 · Складіть фразу — працівник показав дорогу, ви звірили її з картою й упевнені; на запитання друга дайте коротку відповідь: «Так»**
-<!-- interaction_id: en:lesson-02:session-50:i17; family: phrase_builder -->
-Ціль: `Yes, I am.`
+
+**17 · Вставте слово — друг питає, чи ви впевнені після звірки маршруту. Підтвердьте про себе.**
+<!-- interaction_id: en:lesson-02:session-50:i17; family: context_gap_grammar -->
+Yes, I ___ . → **am** · are · is
+- are — *`are` було в запитанні `Are you sure?`, але про себе відповідають з `I am`.*
+- is — *`is` підходить до `he`, `she` або `it`. Тут ви відповідаєте про себе: `I am`.*
 
 ## Для сборщика
 atomic_practice: practice.atomic.json
-modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_compare, 5=phrase_builder, 6=listen_choose, 7=scripted_repeat_compare, 8=phrase_builder, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_choose, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=listen_choose, 17=phrase_builder
+modes: 1=listen_choose, 2=phrase_builder, 3=listen_choose, 4=scripted_repeat_compare, 5=phrase_builder, 6=listen_choose, 7=scripted_repeat_compare, 8=phrase_builder, 9=speed_match, 10=phrase_builder, 11=context_gap_grammar, 12=listen_choose, 13=listen_build_dictation, 14=context_gap_grammar, 15=scripted_repeat_compare, 16=listen_choose, 17=context_gap_grammar
 

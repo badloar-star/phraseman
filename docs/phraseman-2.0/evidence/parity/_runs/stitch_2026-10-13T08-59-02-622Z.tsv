@@ -1,0 +1,15 @@
+id	time	result	detail	file
+auth-gap-001	2026-10-13T08:59:02.624Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-001.png
+auth-gap-003	2026-10-13T08:59:02.627Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-003.png
+auth-gap-004	2026-10-13T08:59:02.628Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-004.png
+auth-gap-005	2026-10-13T08:59:02.629Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-005.png
+auth-gap-008	2026-10-13T08:59:02.630Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-008.png
+auth-gap-012	2026-10-13T08:59:02.632Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-012.png
+auth-gap-016	2026-10-13T08:59:02.633Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-016.png
+overlays-campaigns-004	2026-10-13T08:59:04.837Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T08:58:01.777Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/overlays-campaigns-004.png
+profile-018	2026-10-13T08:59:06.260Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T08:51:01.869Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/profile-018.png
+profile-019	2026-10-13T08:59:08.410Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T08:56:42.949Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/profile-019.png
+settings-gap-012	2026-10-13T08:59:08.411Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/settings-gap-012.png
+settings-gap-035	2026-10-13T08:59:10.509Z	stitched	склейка_1800x1328 raw_shot_at=2026-10-13T08:50:20.339Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/settings-gap-035.png
+spire-gap-021	2026-10-13T08:59:12.031Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:57:08.835Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/spire-gap-021.png
+spire-gap-022	2026-10-13T08:59:13.475Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:57:38.657Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/spire-gap-022.png

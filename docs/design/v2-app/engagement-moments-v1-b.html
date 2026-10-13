@@ -105,17 +105,17 @@ const perfectB = () => `<div class="dim"></div><div class="modal" style="text-al
   <div style="position:relative;display:inline-block">${coin(5, 88, 'coin-flip')}<span class="ring"></span></div>
   <div class="ov" style="margin-top:16px;color:var(--gold)">Идеальный урок</div>
   <div class="h-lg" style="margin-top:6px">Это 3-й подряд</div>
-  <div class="p" style="margin-top:6px">Ещё два без ошибок — и ранг 6 твой бесплатно.</div>
-  <div class="bar gold" style="margin:18px 10px 0"><i style="--w:60%"></i></div><div class="small" style="margin-top:8px">3 из 5 идеальных</div>
+  <div class="p" style="margin-top:6px">Ещё два без ошибок — и +90 монет бонусом. До ранга 6 — ещё 120 монет.</div>
+  <div class="bar gold" style="margin:18px 10px 0"><i style="--w:60%"></i></div><div class="small" style="margin-top:8px">1 380 из 1 500 монет до ранга 6</div>
   <div class="cta white" style="margin-top:20px">Следующий урок</div></div>`;
 moment({ id: 'm09', num: '09', short: 'Идеальный урок', title: 'Идеальный урок — без единой ошибки', tag: 'new',
-  lead: 'Сейчас отличие от обычного итога — только звук третьей звезды. Делаем отдельный момент: золотой ореол, 3 звезды по очереди, бонус ×1,5 к монетам; вариант с «серией идеалов» ведёт к рангу монеты (цель на несколько уроков).',
+  lead: 'Сейчас отличие от обычного итога — только звук третьей звезды. Делаем отдельный момент: золотой ореол, 3 звезды по очереди, бонус ×1,5 к монетам; вариант с «серией идеалов» даёт бонус монет и показывает прогресс к рангу в монетах (ранг покупается за монеты — правило владельца).',
   variants: [
     { k: 'A', label: 'Золотой ореол + ×1,5', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectA() },
       init: (ph) => { const c = ph.querySelector('[data-c]'); const t = setTimeout(() => { countUp(c, 0, 45, 900); confetti(ph, { gold: true, n: 70 }); }, 1100); return () => clearTimeout(t); },
       why: 'Редкий (≈15% уроков) и заслуженный — повышает ценность ошибок-нет. Шеринг даёт органику.', ref: 'Duolingo Legendary (золото), Candy Crush 3 звезды.', fx: 'звёзды pop 0/200/400 мс, медленно вращающийся золотой ореол, счётчик монет.', snd: 'три «дзинь» по возрастанию + финал; haptic success ×3.' },
-    { k: 'B', label: 'Серия идеалов → ранг монеты', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectB() },
-      why: 'Связывает идеальный урок с рангом монеты (бесплатное повышение за 5 идеалов подряд) — длинная цель, удержание на неделю. Предложение механики.', ref: 'Duolingo Legendary → trophy, Clash Royale crown chest (10 корон).', fx: 'монета-флип 1,6 с, золотой бар.', snd: 'флип-шорох + звон; haptic medium.' },
+    { k: 'B', label: 'Серия идеалов → монеты к рангу', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectB() },
+      why: 'Связывает идеальный урок с рангом монеты: серия идеалов даёт бонус монет, а полоска показывает «ещё 120 монет до ранга 6». Ранг — только покупкой за монеты.', ref: 'Duolingo Legendary → trophy, Clash Royale crown chest (10 корон).', fx: 'монета-флип 1,6 с, золотой бар.', snd: 'флип-шорох + звон; haptic medium.' },
   ] });
 
 /* ---------- 10. Итог урока (есть — улучшаем) ---------- */
@@ -231,7 +231,7 @@ const rankA = () => `<div class="dim"></div><div class="modal" style="text-align
 const rankB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:10px">
   <div class="ov a-up">Коллекция монет</div><div class="h-lg a-up d1" style="margin-top:6px">Ранг 6 из 20</div>
   <div class="rank-shelf a-up d2" style="margin-top:20px;width:100%">${Array.from({ length: 20 }, (_, i) => `<div class="r ${i < 6 ? '' : 'lock'} ${i === 5 ? 'new' : ''}">${coin(i, 40)}</div>`).join('')}</div>
-  <div class="p a-up d4" style="margin-top:18px">Следующая — ранг 7, нужно 2 400. Или 5 идеальных уроков подряд — бесплатно.</div>
+  <div class="p a-up d4" style="margin-top:18px">Следующая — ранг 7, цена 2 400 монет. Идеальные уроки и комбо ускоряют: ×1,5 и ×2 к монетам.</div>
   <div class="bar gold a-up d5" style="width:100%;margin-top:12px"><i style="--w:12%"></i></div><div class="small a-up d5" style="margin-top:6px">300 из 2 400</div>
   </div><div class="foot a-up d6"><div class="cta white">Продолжить</div></div></div>`;
 moment({ id: 'm14', num: '14', short: 'Ранг монеты', title: 'Повышение ранга монеты', tag: 'old',

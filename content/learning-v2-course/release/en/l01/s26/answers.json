@@ -61,8 +61,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-26:i13",
-    "correctText": "early",
-    "correctResponseId": "en:lesson-01:session-26:i13:r1"
+    "correctText": "It is early.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-26:i14",

@@ -69,6 +69,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
 Цель: `station`
 Варианты: `station` · `stand` · `nation`
+- stand — *Это «стоять». Короче: в `station` два слога, в `stand` один.*
+- nation — *«Нация». Отличается началом: `station` начинается со «с», `nation` — с «н».*
+
 
 **3 · Карточка слова — street**
 <!-- interaction_id: en:lesson-02:session-17:i03; family: listen_choose -->
@@ -78,6 +81,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i04; family: listen_choose -->
 Цель: `street`
 Варианты: `street` · `treat` · `sweet`
+- treat — *«Угощение». Начинается с «тр», а `street` — со «стр».*
+- sweet — *«Сладкий». После «с» в `street` идёт «тр», а в `sweet` — «в».*
+
 
 **5 · Соберите фразу — спросите про вокзал**
 <!-- interaction_id: en:lesson-02:session-17:i05; family: phrase_builder -->
@@ -87,11 +93,17 @@
 <!-- interaction_id: en:lesson-02:session-17:i06; family: context_gap_grammar -->
 Цель: `Where ___ the street?`
 Варианты: `is` · `are` · `am`
+- are — *`are` идёт с `you` и `they`. Про одну улицу — `is`.*
+- am — *`am` бывает только рядом с `I`. Про улицу — `is`.*
+
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-02:session-17:i07; family: listen_choose -->
 Цель: `cold`
 Варианты: `cold` · `gold` · `call`
+- gold — *«Золото». Первый звук другой: `cold` начинается с «к», `gold` — с «г».*
+- call — *«Звонить». Гласная другая: в `cold` слышно «оу», в `call` — долгое «о».*
+
 
 **8 · Соберите фразу — спросите про улицу**
 <!-- interaction_id: en:lesson-02:session-17:i08; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i09; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `lost` · `cold` · `noisy`
+- cold — *Это «замёрз». Про холод вы ничего не говорили — вы не понимаете, где находитесь.*
+- noisy — *«Шумный». Так говорят про место, а не про человека, который ищет дорогу.*
+
 
 **10 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-17:i10; family: speed_match -->
@@ -110,20 +125,30 @@
 **11 · Послушайте и соберите — «где вокзал?»**
 <!-- interaction_id: en:lesson-02:session-17:i11; family: listen_build_dictation -->
 Цель: `Where is the station?`
+🔊 *Where is the station?* Плитки: `Where` `is` `the` `station` `are`
+*Плитка `are` лишняя: с одной станцией нужна форма `is`: `Where is the station?`*
 
 **12 · Вставьте слово — на вокзале в час пик не протолкнуться**
 <!-- interaction_id: en:lesson-02:session-17:i12; family: context_gap_grammar -->
 Цель: `The station is ___ .`
 Варианты: `crowded` · `lost` · `street`
+- lost — *«Заблудился» — про человека, который не понимает, где он. Вокзал стоит на месте.*
+- street — *Это «улица», отдельное место. А тут надо сказать, какой вокзал.*
+
 
 **13 · Соберите фразу — сначала о себе, потом вопрос**
 <!-- interaction_id: en:lesson-02:session-17:i13; family: phrase_builder -->
 Цель: `I am lost.`
+Плитки: `I` `am` `lost` `is`
+*Плитка `is` лишняя: о себе говорят `I am`, а не `I is`: `I am lost.`*
 
 **14 · Вставьте слово — мимо идут машины, и вы не слышите ответа**
 <!-- interaction_id: en:lesson-02:session-17:i14; family: context_gap_grammar -->
 Цель: `The street is ___ .`
 Варианты: `noisy` · `lost` · `station`
+- lost — *Про улицу так не говорят: `lost` — это про того, кто не понимает, где он.*
+- station — *`station` — вокзал, само место. А тут надо сказать, какая улица.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-17:i15:s01; family: scripted_repeat_compare -->
@@ -137,6 +162,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i16; family: listen_choose -->
 Цель: `Where is the street?`
 Варианты: `Where is the street?` · `Where is the station?` · `The street is crowded.`
+- Where is the station? — *В записи звучит `street` — «улица», а не `station` — «станция».*
+- The street is crowded. — *В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на улице людно.*
+
 
 **18 · Послушайте и соберите — у станции вы говорите прохожему, что заблудились**
 <!-- interaction_id: en:lesson-02:session-17:i17:s01; family: listen_build_dictation -->
@@ -146,6 +174,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i17:s02; family: listen_choose -->
 Цель: `Where is the station?`
 Варианты: `Where is the station?` · `Where is the street?` · `The station is crowded.`
+- Where is the street? — *В записи звучит `station` — «станция», а не `street` — «улица».*
+- The station is crowded. — *В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на станции людно.*
+
 
 **20 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-17:i17:s03; family: scripted_repeat_compare -->

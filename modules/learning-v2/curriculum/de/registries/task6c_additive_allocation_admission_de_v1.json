@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "learning-v2-german-task6c-additive-allocation-admission.v1",
+  "status": "ADMITTED_FOR_TASK6C_ALLOCATION_ONLY",
+  "rowsAdmitted": 2,
+  "rowsPromoted": 0,
+  "canonicalRegistryStatus": "NOT_CANONICAL",
+  "canonicalPromotion": false,
+  "task7Unlock": false,
+  "packetMaterializationAuthority": false,
+  "learnerFacingAuthority": false,
+  "releaseAuthority": false,
+  "sourceBindings": {
+    "factsPath": "modules/learning-v2/curriculum/de/task6c_l01_c01_haus_name_facts_de_v1.ts",
+    "factsSha256": "eeb5dd9b72695e663c16fa3a9e2382e52651904156537defc83f044677a7131b",
+    "capturePath": "modules/learning-v2/curriculum/de/task6c_l01_c01_haus_name_direct_capture_de_v1.ts",
+    "captureSha256": "0292070c09f2f086493c8d654f549b2cb285d7dddb551d4df8406b2ef33866f6",
+    "contactContractPath": "modules/learning-v2/curriculum/de/task6c_additive_source_plan_contract_de_v1.ts",
+    "contactContractSha256": "33d0e3bc1fc31b2785291dfd7cc8519d582d26b5a4d9e6a1e0d86208269cb480",
+    "targetAllocationPath": "docs/v2/curriculum/de/task6c-full-registry-l01-v1/target-allocation.json",
+    "targetAllocationSha256": "b6ddd2e2fb665fe6c295a624c7009791539473ee23e9141b89b30cbfd507e0f0",
+    "canonicalRegistryPath": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+    "canonicalRegistrySha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31"
+  },
+  "rows": [
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_haus_v1",
+      "canonicalSenseId": "de_lex_task6c_l01_c01_haus_v1",
+      "targetPlaceholderPlanId": "de_plan_l01_nonc01_03_v1",
+      "sourceChapterId": "de_l01_c01",
+      "situationContextSignature": "arrival-greeting-neighbour-door",
+      "firstIntroductionPacketId": "de_l01_c01_s03",
+      "scoredContactId": "de_task6c_contact_l01_c01_haus_s05_v1",
+      "scoredPacketId": "de_l01_c01_s05",
+      "sourceAnchor": "d-1-1-1",
+      "lemma": "Haus",
+      "article": "das",
+      "plural": "Häuser",
+      "sourceGenderLabel": "Neutrum",
+      "definitionGerman": "zum Wohnen, Wohnhaus"
+    },
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_name_v1",
+      "canonicalSenseId": "de_lex_task6c_l01_c01_name_v1",
+      "targetPlaceholderPlanId": "de_plan_l01_nonc01_04_v1",
+      "sourceChapterId": "de_l01_c01",
+      "situationContextSignature": "arrival-greeting-neighbour-door",
+      "firstIntroductionPacketId": "de_l01_c01_s04",
+      "scoredContactId": "de_task6c_contact_l01_c01_name_s06_v1",
+      "scoredPacketId": "de_l01_c01_s06",
+      "sourceAnchor": "d-1-1-1",
+      "lemma": "Name",
+      "article": "der",
+      "plural": "Namen",
+      "sourceGenderLabel": "Maskulinum",
+      "definitionGerman": "Bezeichnung für eine Person, Familienname oder Vorname"
+    }
+  ]
+}

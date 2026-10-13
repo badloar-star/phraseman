@@ -474,7 +474,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставьте слово — вы пришли к магазину в ",
+          "testedDimension": "Вставьте слово — вы пришли к магазину в девять вечера, свет внутри выключен",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i08:r2",
@@ -796,7 +796,7 @@
               "text": "empty"
             }
           ],
-          "testedDimension": "Вставьте слово — `cold` значит «холодно»",
+          "testedDimension": "Вставьте слово — `cold` значит «холодно». Вы взяли чашку с полки, а чай в ней остыл ещё утром",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i13:r2",
@@ -861,8 +861,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — форточка на кухне отошла, и в комнату тянет воздухом",
               "feedbackByLocale": {
-                "ru": "`not` лишнее: форточка отошла, поэтому `It is open.`",
-                "uk": "`not` зайве: кватирка відчинена, тому `It is open`."
+                "ru": "окно действительно открыто, отрицать нечего",
+                "uk": "вікно справді відчинене, заперечувати нічого"
               }
             }
           ]
@@ -906,7 +906,7 @@
             "audioTargetId": "en:lesson-01:session-28:i15:audioB",
             "transcript": "cold"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «зак",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «закрыто»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i15:r2",
@@ -975,7 +975,7 @@
               "text": "broken"
             }
           ],
-          "testedDimension": "Вставьте слово — `hot` значит «горячо». ",
+          "testedDimension": "Вставьте слово — `hot` значит «горячо». Вы дотронулись до батареи, и руку пришлось отдёрнуть",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i16:r2",
@@ -1093,7 +1093,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставьте слово — `new` значит «новый». В",
+          "testedDimension": "Вставьте слово — `new` значит «новый». Вы въехали неделю назад, обои ещё пахнут краской",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i18:r2",
@@ -1659,7 +1659,7 @@
             {
               "responseId": "en:lesson-01:session-28:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — лампочка в коридорі не горить",
+              "testedDimension": "Соберите фразу — лампочка в коридоре не горит",
               "feedbackByLocale": {
                 "ru": "`open` лишнее: лампочка не горит, значит `It is broken.`",
                 "uk": "`open` зайве: лампочка не світиться, отже `It is broken`."
@@ -1842,7 +1842,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставте слово — ви прийшли до магазину о",
+          "testedDimension": "Вставте слово — ви прийшли до магазину о дев'ятій вечора, світло всередині вимкнене",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i08:r2",
@@ -2036,7 +2036,7 @@
             {
               "responseId": "en:lesson-01:session-28:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «воно порожнє»",
+              "testedDimension": "Послушайте и соберите — «оно пустое»",
               "feedbackByLocale": {
                 "ru": "`closed` лишнее: фраза о пустом предмете — `It is empty.`",
                 "uk": "`closed` зайве: фраза про порожній предмет — `It is empty`."
@@ -2164,7 +2164,7 @@
               "text": "empty"
             }
           ],
-          "testedDimension": "Вставте слово — `cold` означає «холодно»",
+          "testedDimension": "Вставте слово — `cold` означає «холодно». Ви взяли чашку з полиці, а чай у ній вистиг ще зранку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i13:r2",
@@ -2227,10 +2227,10 @@
             {
               "responseId": "en:lesson-01:session-28:i14:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — кватирка на кухні відійшла, і в кімнату тягне повітрям",
+              "testedDimension": "Соберите фразу — форточка на кухне отошла, и в комнату тянет воздухом",
               "feedbackByLocale": {
-                "ru": "`not` лишнее: форточка отошла, поэтому `It is open.`",
-                "uk": "`not` зайве: кватирка відчинена, тому `It is open`."
+                "ru": "окно действительно открыто, отрицать нечего",
+                "uk": "вікно справді відчинене, заперечувати нічого"
               }
             }
           ]
@@ -2343,7 +2343,7 @@
               "text": "broken"
             }
           ],
-          "testedDimension": "Вставте слово — `hot` означає «гаряче». ",
+          "testedDimension": "Вставте слово — `hot` означає «гаряче». Ви торкнулися батареї, і руку довелося відсмикнути",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i16:r2",
@@ -2406,7 +2406,7 @@
             {
               "responseId": "en:lesson-01:session-28:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — комора два кроки завдовжки, шафа і все",
+              "testedDimension": "Соберите фразу — кладовка два шага в длину, шкаф и всё",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is small.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is small`."
@@ -2461,7 +2461,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставте слово — `new` означає «новий». В",
+          "testedDimension": "Вставте слово — `new` означає «новий». Ви заїхали тиждень тому, шпалери ще пахнуть фарбою",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-28:i18:r2",
@@ -2696,7 +2696,7 @@
             {
               "responseId": "en:lesson-01:session-28:i21:s01:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть одну фразу",
+              "testedDimension": "Соберите одну фразу",
               "feedbackByLocale": {
                 "ru": "`new` лишнее: фраза о закрытом месте — `It is closed.`",
                 "uk": "`new` зайве: фраза про зачинене місце — `It is closed`."

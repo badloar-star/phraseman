@@ -366,7 +366,8 @@
           ],
           "distractorTokens": [
             "The"
-          ]
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -529,7 +530,7 @@
               "text": "sofa"
             }
           ],
-          "testedDimension": "Вставьте цвет — вы показываете один дива",
+          "testedDimension": "Вставьте цвет — вы показываете один диван",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-50:i09:r2",
@@ -647,7 +648,7 @@
               "text": "chair"
             }
           ],
-          "testedDimension": "Вставьте предмет — у стены стоят знакомы",
+          "testedDimension": "Вставьте предмет — у стены стоят знакомые серые вещи",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-50:i13:r2",
@@ -869,7 +870,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы и друг уже выбрали один белый стул у двери. Через минуту друг спрашивает, на месте ли именно этот стул.",
+            "ru": "Вставьте артикль — вы снова показываете тот же белый стул у двери",
             "uk": "Ви з другом уже вибрали один білий стілець біля дверей. За хвилину друг питає, чи на місці саме цей стілець."
           },
           "gappedTargetPhrase": "___ white chair is here.",
@@ -1284,7 +1285,8 @@
           ],
           "distractorTokens": [
             "The"
-          ]
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1788,7 +1790,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы и друг уже выбрали один белый стул у двери. Через минуту друг спрашивает, на месте ли именно этот стул.",
-            "uk": "Ви з другом уже вибрали один білий стілець біля дверей. За хвилину друг питає, чи на місці саме цей стілець."
+            "uk": "Вставте артикль — ви знову показуєте той самий білий стілець біля дверей"
           },
           "gappedTargetPhrase": "___ white chair is here.",
           "gapOptions": [

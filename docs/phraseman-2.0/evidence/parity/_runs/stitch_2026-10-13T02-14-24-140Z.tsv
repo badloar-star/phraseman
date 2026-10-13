@@ -1,0 +1,3 @@
+id	time	result	detail	file
+onboarding-002	2026-10-13T02:14:25.311Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-002.png
+onboarding-028	2026-10-13T02:14:27.248Z	failed	склейка_не_удалась:  error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-028.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=126629 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/onboarding-028.png

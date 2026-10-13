@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-02:session-19:i02; family: listen_choose -->
 Ціль: `near`
 Варіанти: `near` · `nine` · `name`
+- nine — *Це «дев'ять» — лічба, а не місце. Голосний інший: у `nine` чути «ай».*
+- name — *Це «ім'я». Голосний інший: у `name` чути «ей».*
+
 
 **3 · Картка слова — behind**
 <!-- interaction_id: en:lesson-02:session-19:i03; family: listen_choose -->
@@ -74,6 +77,9 @@
 <!-- interaction_id: en:lesson-02:session-19:i04; family: listen_choose -->
 Ціль: `behind`
 Варіанти: `behind` · `find` · `bell`
+- find — *Це «знайти». Перший звук інший: `find` починається з «ф», `behind` — з «б».*
+- bell — *Це «дзвінок». Коротше: у `behind` два склади, у `bell` один.*
+
 
 **5 · Складіть фразу — «це поруч»**
 <!-- interaction_id: en:lesson-02:session-19:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-02:session-19:i06; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `near` · `behind` · `crowded`
+- behind — *Це «позаду», про бік, а не про відстань.*
+- crowded — *Це «людно», про натовп. Про «хвилини дві» — `near`.*
+
 
 **7 · Складіть фразу — «це за вокзалом»**
 <!-- interaction_id: en:lesson-02:session-19:i07; family: phrase_builder -->
@@ -92,19 +101,29 @@
 <!-- interaction_id: en:lesson-02:session-19:i08; family: context_gap_grammar -->
 Ціль: `It is ___ the station.`
 Варіанти: `behind` · `near` · `street`
+- near — *«Поруч із вокзалом» — це не «з іншого боку».*
+- street — *`street` — «вулиця», це місце, а не бік. Після пропуску вже стоїть `the station`, друге місце туди не стане.*
+
 
 **9 · Розрізніть звуки — яке з двох про «поруч»?**
 <!-- interaction_id: en:lesson-02:session-19:i09; family: sound_contrast -->
 Варіанти: `near` · `far`
+- far — *Це «далеко» — протилежне за змістом. І звучить інакше: `far` починається з «ф».*
+
 
 **10 · Вставте слово — де шукати кав'ярню? Крамниці зовсім близько**
 <!-- interaction_id: en:lesson-02:session-19:i10; family: context_gap_grammar -->
 Ціль: `It is near the ___ .`
 Варіанти: `shops` · `near` · `behind`
+- near — *`near` уже стоїть перед пропуском. Тут потрібне місце.*
+- behind — *Це «позаду», а не місце. Після `the` називають, що саме.*
+
 
 **11 · Послухайте і складіть — «це поруч із вулицею»**
 <!-- interaction_id: en:lesson-02:session-19:i11; family: listen_build_dictation -->
 Ціль: `It is near the street.`
+🔊 *It is near the street.* Плитки: `It` `is` `near` `the` `street` `at`
+*Плитка `at` зайва: щоб сказати «поруч із вулицею», потрібна сполука `near the street`, а не `at`.*
 
 **12 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-19:i12; family: speed_match -->
@@ -115,10 +134,15 @@
 <!-- interaction_id: en:lesson-02:session-19:i13; family: context_gap_grammar -->
 Ціль: `The street is ___ .`
 Варіанти: `crowded` · `near` · `behind`
+- near — *«Вулиця поруч» — про відстань, а не про натовп.*
+- behind — *«Вулиця позаду» — про бік. Про натовп — `crowded`.*
+
 
 **14 · Складіть фразу — ви запитуєте, а не відповідаєте: «це поруч?»**
 <!-- interaction_id: en:lesson-02:session-19:i14; family: phrase_builder -->
 Ціль: `Is it near?`
+Плитки: `Is` `it` `near` `the`
+*Плитка `the` зайва: після `near` тут немає іменника; запитання закінчується на `near?`.*
 
 **15 · Послухайте й складіть — біля входу ви пояснюєте, що об’єкт за крамницями**
 <!-- interaction_id: en:lesson-02:session-19:i15; family: listen_build_dictation -->
@@ -136,6 +160,9 @@
 <!-- interaction_id: en:lesson-02:session-19:i17:s01; family: listen_choose -->
 Ціль: `It is near.`
 Варіанти: `It is near.` · `Is it near?` · `It is behind the shops.`
+- Is it near? — *У записі відповідь: спочатку звучить `It`, а не `Is`.*
+- It is behind the shops. — *У записі `near` — «поруч», а не `behind the shops` — «за крамницями».*
+
 
 **19 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-19:i17:s02; family: scripted_repeat_compare -->

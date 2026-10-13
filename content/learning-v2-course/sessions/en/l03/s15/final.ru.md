@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-15:i02; family: listen_choose -->
 Цель: `candle`
 Варианты: `candle` · `candy` · `sandal`
+- candy — *`candy` — «конфета». `candy` начинается так же, /kæn/, но заканчивается /di/; `candle` заканчивается /dəl/.*
+- sandal — *`sandal` — «сандалия». Начинается с «с», а `candle` — с «к». Похожее окончание здесь не помогает: слушайте начало.*
+
 
 **3 · Соберите короткое название — друг спрашивает, что ещё осталось купить; ответьте двумя словами «свеча»**
 <!-- interaction_id: en:lesson-03:session-15:i03; family: phrase_builder -->
@@ -74,11 +77,17 @@
 <!-- interaction_id: en:lesson-03:session-15:i05; family: listen_choose -->
 Цель: `cushion`
 Варианты: `cushion` · `kitchen` · `pushing`
+- kitchen — *`kitchen` — «кухня». В середине слышно «ч», а в `cushion` — «ш». Начальный «к» и ритм похожи, поэтому слушайте середину.*
+- pushing — *`pushing` — «толкая». Первым звучит «п», а в `cushion` — «к». В середине у обоих слов слышно «ш».*
+
 
 **6 · Вставьте слово — друг предлагает встретиться у кресла; назовите этот предмет (`armchair` — «кресло»)**
 <!-- interaction_id: en:lesson-03:session-15:i06; family: context_gap_grammar -->
 Цель: `It is ___ armchair.`
 Варианты: `an` · `a` · `is`
+- a — *`armchair` начинается с гласного звука. Перед названием кресла в этой фразе нужно `an`.*
+- is — *После `It` уже есть `is`. Перед названием одного кресла нужно `an`, а не ещё одно `is`.*
+
 
 **7 · Карточка слова — plant**
 <!-- interaction_id: en:lesson-03:session-15:i07; family: listen_choose -->
@@ -88,11 +97,17 @@
 <!-- interaction_id: en:lesson-03:session-15:i08; family: listen_choose -->
 Цель: `plant`
 Варианты: `plant` · `grant` · `chant`
+- grant — *`grant` — «грант». Первым слышно «г», а в `plant` — «п». Окончания похожи, поэтому различайте начало.*
+- chant — *`chant` — «скандирование». Начинается с «ч». В `plant` сначала слышно «пл», хотя дальше слова звучат похоже.*
+
 
 **9 · Вставьте слово — друг предлагает встретиться у духовки в отделе техники; назовите прибор (`oven` — «духовка»)**
 <!-- interaction_id: en:lesson-03:session-15:i09; family: context_gap_grammar -->
 Цель: `It is ___ oven.`
 Варианты: `an` · `a` · `am`
+- a — *В начале `oven` слышен гласный звук. В этой фразе перед названием нужен вариант `an`.*
+- am — *Начало `It is` уже готово. Между ним и названием духовки нужно `an`, а не `am`.*
+
 
 **10 · Послушайте и соберите — друг называет товар в отделе техники**
 <!-- interaction_id: en:lesson-03:session-15:i10; family: listen_build_dictation -->
@@ -113,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-15:i13; family: listen_choose -->
 Цель: `It is not a plant.`
 Варианты: `It is not a plant.` · `It is a plant.` · `It is not a cushion.`
+- It is a plant. — *Этот вариант подтверждает название. В записи после `is` слышно `not`: название отрицают.*
+- It is not a cushion. — *Здесь названо `cushion` — «подушка». В записи после `a` звучит `plant` — «растение».*
+
 
 **14 · Соберите отрицание — продавец уточняет, свеча ли в вашей коробочке; там другой товар, скажите «Это не свеча»**
 <!-- interaction_id: en:lesson-03:session-15:i14; family: phrase_builder -->

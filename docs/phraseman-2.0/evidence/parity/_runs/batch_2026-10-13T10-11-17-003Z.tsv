@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-071	2026-10-13T10:12:05.110Z	error	10291	step_target_not_found:#ugc-pack-add-card+ждали_metro_30мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-11-17-003Z/cards-071.error.png	0

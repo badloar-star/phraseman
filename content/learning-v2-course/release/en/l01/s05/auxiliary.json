@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-05:intro3:r2": {
-          "ru": "Скрепка `am` снова осталась в кармане. `I am new` — три слова.",
-          "uk": "Скріпка `am` знову лишилася в кишені. `I am new` — три слова."
+          "ru": "Не хватает `am`. О себе по-английски говорим `I am new`.",
+          "uk": "Бракує `am`. Про себе англійською кажемо `I am new`."
         },
         "en:lesson-01:session-05:intro3:r3": {
           "ru": "Вы сказали обратное: «я тут не новенький». А вы как раз новенький.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4696676d7956706a634ff9e78496a713b5253745ad01860655b42077bd462b86"
+  "auxiliaryFingerprint": "7fd4a7435c34905771dd8409be7fcf72786fe73ebf4bcff1e9e4042b1cdc5a51"
 }

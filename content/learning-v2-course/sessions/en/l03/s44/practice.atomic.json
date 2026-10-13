@@ -131,9 +131,18 @@
           "testedDimension": "Роль помощника у кассы",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
+              "feedbackByLocale": {
+                "ru": "Рядом с кассиром стоит помощник: `assistant`.",
+                "uk": "Поруч із касиром стоїть помічник: `assistant`."
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i05:r2",
               "correct": false,
-              "testedDimension": "Роль помощника у кассы",
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
               "feedbackByLocale": {
                 "ru": "`seller` — продавец. В условии назван помощник, поэтому нужен `assistant`.",
                 "uk": "`seller` — продавець. В умові названо помічника, тому потрібне `assistant`."
@@ -142,7 +151,7 @@
             {
               "responseId": "en:lesson-03:session-44:i05:r3",
               "correct": false,
-              "testedDimension": "Роль помощника у кассы",
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
               "feedbackByLocale": {
                 "ru": "`customer` — покупатель. Рядом с кассиром стоит помощник: `assistant`.",
                 "uk": "`customer` — покупець. Поруч із касиром стоїть помічник: `assistant`."
@@ -265,7 +274,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i07",
-        "ordinal": 13,
+        "ordinal": 10,
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -338,7 +347,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i08",
-        "ordinal": 10,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -367,7 +376,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i10",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -392,13 +401,14 @@
             "is",
             "here"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-44:i11",
-        "ordinal": 12,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -484,6 +494,15 @@
           ],
           "testedDimension": "Вставьте начало — покупателя уже назвали",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r1",
+              "correct": true,
+              "testedDimension": "Вставьте начало — покупателя уже назвали",
+              "feedbackByLocale": {
+                "ru": "Покупателя уже назвали, поэтому нужен `The customer`.",
+                "uk": "Покупця вже назвали, тому потрібне `The customer`."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-44:i09:r2",
               "correct": false,
@@ -578,7 +597,17 @@
           "authoredDistractorTokens": [
             "The"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "помощника называют впервые, поэтому нужен `An assistant`.",
+                "uk": "помічника називають уперше, тому потрібне `An assistant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -609,7 +638,17 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — помощника уже назвали",
+              "feedbackByLocale": {
+                "ru": "помощника уже назвали, поэтому нужен `The assistant`.",
+                "uk": "помічника вже назвали, тому потрібне `The assistant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -668,6 +707,15 @@
           ],
           "testedDimension": "Вставьте начало — новый помощник",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r1",
+              "correct": true,
+              "testedDimension": "Вставьте начало — новый помощник",
+              "feedbackByLocale": {
+                "ru": "Перед новым `assistant` нужен `An`: слово начинается с гласного звука.",
+                "uk": "Перед новим `assistant` потрібне `An`: слово починається з голосного звука."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-44:i15:r2",
               "correct": false,
@@ -761,6 +809,15 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i16:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите точное значение фр",
+              "feedbackByLocale": {
+                "ru": "`The customer is here.` — это утверждение о конкретном покупателе.",
+                "uk": "`The customer is here.` — це твердження про конкретного покупця."
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i16:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите точное значение фр",
@@ -824,7 +881,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "К кассе подошёл новый покупатель. Кассир впервые сообщает, что этот покупатель готов к обслуживанию.",
+            "ru": "Вставьте маленькое слово — кассир впервые сообщает, что покупатель готов к обслуживанию",
             "uk": "До каси підійшов новий покупець. Касир уперше повідомляє, що цей покупець готовий до обслуговування."
           },
           "gappedTargetPhrase": "___ customer is ready.",
@@ -849,9 +906,18 @@
           "testedDimension": "новый один покупатель у кассы",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i17:r1",
+              "correct": true,
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
+              "feedbackByLocale": {
+                "ru": "Кассир видит нового одного покупателя впервые: `A customer is ready.`",
+                "uk": "Касир бачить нового одного покупця вперше: `A customer is ready.`"
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i17:r2",
               "correct": false,
-              "testedDimension": "новый один покупатель у кассы",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "`the customer` может казаться знакомой формой для конкретного человека. Но кассир видит этого покупателя впервые, поэтому сначала нужен `a customer`. В новой сцене выбирайте `the` только для человека, который уже понятен обоим.",
                 "uk": "`the customer` може здаватися знайомою формою для конкретної людини. Але касир бачить цього покупця вперше, тому спочатку потрібне `a customer`. У новій сцені обирайте `the` лише для людини, яку вже розуміють обидва."
@@ -860,7 +926,7 @@
             {
               "responseId": "en:lesson-03:session-44:i17:r3",
               "correct": false,
-              "testedDimension": "новый один покупатель у кассы",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "`an` — тоже артикль для одного человека, поэтому его легко вспомнить. Но `customer` начинается со звука /k/, не с гласного, поэтому нужен `a`. В новой фразе сначала слушайте первый звук следующего слова.",
                 "uk": "`an` — теж артикль для однієї людини, тому його легко пригадати. Але `customer` починається зі звуку /k/, не з голосного, тому потрібне `a`. У новій фразі спершу слухайте перший звук наступного слова."
@@ -869,7 +935,7 @@
             {
               "responseId": "en:lesson-03:session-44:i17:r4",
               "correct": false,
-              "testedDimension": "новый один покупатель у кассы",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "Форма без артикля бывает во множественном числе или с неисчисляемыми словами. Здесь один новый покупатель, поэтому перед `customer` нужен `a`. В новой фразе проверьте: предмет один и исчисляемый? Тогда артикль обязателен.",
                 "uk": "Форма без артикля буває у множині або з незлічуваними словами. Тут один новий покупець, тому перед `customer` потрібне `a`. У новій фразі перевірте: предмет один і злічуваний? Тоді артикль обов’язковий."
@@ -1007,9 +1073,18 @@
           "testedDimension": "Роль помічника біля каси",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
+              "feedbackByLocale": {
+                "ru": "Рядом с кассиром стоит помощник: `assistant`.",
+                "uk": "Поруч із касиром стоїть помічник: `assistant`."
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i05:r2",
               "correct": false,
-              "testedDimension": "Роль помічника біля каси",
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
               "feedbackByLocale": {
                 "ru": "`seller` — продавец. В условии назван помощник, поэтому нужен `assistant`.",
                 "uk": "`seller` — продавець. В умові названо помічника, тому потрібне `assistant`."
@@ -1018,7 +1093,7 @@
             {
               "responseId": "en:lesson-03:session-44:i05:r3",
               "correct": false,
-              "testedDimension": "Роль помічника біля каси",
+              "testedDimension": "Вставьте слово — помощник стоит рядом с ",
               "feedbackByLocale": {
                 "ru": "`customer` — покупатель. Рядом с кассиром стоит помощник: `assistant`.",
                 "uk": "`customer` — покупець. Поруч із касиром стоїть помічник: `assistant`."
@@ -1141,7 +1216,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i07",
-        "ordinal": 13,
+        "ordinal": 10,
         "purpose": "guided_practice",
         "family": "speed_match",
         "inputMode": "pair_grid",
@@ -1214,7 +1289,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i08",
-        "ordinal": 10,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1243,7 +1318,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-44:i10",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1268,13 +1343,14 @@
             "is",
             "here"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-44:i11",
-        "ordinal": 12,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1360,6 +1436,15 @@
           ],
           "testedDimension": "Вставьте начало — покупателя уже назвали",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i09:r1",
+              "correct": true,
+              "testedDimension": "Вставьте начало — покупателя уже назвали",
+              "feedbackByLocale": {
+                "ru": "Покупателя уже назвали, поэтому нужен `The customer`.",
+                "uk": "Покупця вже назвали, тому потрібне `The customer`."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-44:i09:r2",
               "correct": false,
@@ -1454,7 +1539,17 @@
           "authoredDistractorTokens": [
             "The"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите фразу",
+              "feedbackByLocale": {
+                "ru": "помощника называют впервые, поэтому нужен `An assistant`.",
+                "uk": "помічника називають уперше, тому потрібне `An assistant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1485,7 +1580,17 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — помощника уже назвали",
+              "feedbackByLocale": {
+                "ru": "помощника уже назвали, поэтому нужен `The assistant`.",
+                "uk": "помічника вже назвали, тому потрібне `The assistant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1544,6 +1649,15 @@
           ],
           "testedDimension": "Вставьте начало — новый помощник",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-44:i15:r1",
+              "correct": true,
+              "testedDimension": "Вставьте начало — новый помощник",
+              "feedbackByLocale": {
+                "ru": "Перед новым `assistant` нужен `An`: слово начинается с гласного звука.",
+                "uk": "Перед новим `assistant` потрібне `An`: слово починається з голосного звука."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-44:i15:r2",
               "correct": false,
@@ -1637,6 +1751,15 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i16:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите точное значение фр",
+              "feedbackByLocale": {
+                "ru": "`The customer is here.` — это утверждение о конкретном покупателе.",
+                "uk": "`The customer is here.` — це твердження про конкретного покупця."
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i16:r2",
               "correct": false,
               "testedDimension": "Послушайте и выберите точное значение фр",
@@ -1701,7 +1824,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "К кассе подошёл новый покупатель. Кассир впервые сообщает, что этот покупатель готов к обслуживанию.",
-            "uk": "До каси підійшов новий покупець. Касир уперше повідомляє, що цей покупець готовий до обслуговування."
+            "uk": "Вставте маленьке слово — касир уперше повідомляє, що покупець готовий до обслуговування"
           },
           "gappedTargetPhrase": "___ customer is ready.",
           "gapOptions": [
@@ -1725,9 +1848,18 @@
           "testedDimension": "новий один покупець біля каси",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-44:i17:r1",
+              "correct": true,
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
+              "feedbackByLocale": {
+                "ru": "Кассир видит нового одного покупателя впервые: `A customer is ready.`",
+                "uk": "Касир бачить нового одного покупця вперше: `A customer is ready.`"
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-44:i17:r2",
               "correct": false,
-              "testedDimension": "новий один покупець біля каси",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "`the customer` может казаться знакомой формой для конкретного человека. Но кассир видит этого покупателя впервые, поэтому сначала нужен `a customer`. В новой сцене выбирайте `the` только для человека, который уже понятен обоим.",
                 "uk": "`the customer` може здаватися знайомою формою для конкретної людини. Але касир бачить цього покупця вперше, тому спочатку потрібне `a customer`. У новій сцені обирайте `the` лише для людини, яку вже розуміють обидва."
@@ -1736,7 +1868,7 @@
             {
               "responseId": "en:lesson-03:session-44:i17:r3",
               "correct": false,
-              "testedDimension": "новий один покупець біля каси",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "`an` — тоже артикль для одного человека, поэтому его легко вспомнить. Но `customer` начинается со звука /k/, не с гласного, поэтому нужен `a`. В новой фразе сначала слушайте первый звук следующего слова.",
                 "uk": "`an` — теж артикль для однієї людини, тому його легко пригадати. Але `customer` починається зі звуку /k/, не з голосного, тому потрібне `a`. У новій фразі спершу слухайте перший звук наступного слова."
@@ -1745,7 +1877,7 @@
             {
               "responseId": "en:lesson-03:session-44:i17:r4",
               "correct": false,
-              "testedDimension": "новий один покупець біля каси",
+              "testedDimension": "Вставьте маленькое слово — кассир впервы",
               "feedbackByLocale": {
                 "ru": "Форма без артикля бывает во множественном числе или с неисчисляемыми словами. Здесь один новый покупатель, поэтому перед `customer` нужен `a`. В новой фразе проверьте: предмет один и исчисляемый? Тогда артикль обязателен.",
                 "uk": "Форма без артикля буває у множині або з незлічуваними словами. Тут один новий покупець, тому перед `customer` потрібне `a`. У новій фразі перевірте: предмет один і злічуваний? Тоді артикль обов’язковий."
@@ -1764,24 +1896,24 @@
       "correctResponseId": "en:lesson-03:session-44:i01:r1"
     },
     {
-      "interactionId": "en:lesson-03:session-44:i02",
-      "correctText": "customer",
+      "interactionId": "en:lesson-03:session-44:i03",
+      "correctText": "seller",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-03:session-44:i03",
-      "correctText": "seller",
+      "interactionId": "en:lesson-03:session-44:i05",
+      "correctText": "assistant",
+      "correctResponseId": "en:lesson-03:session-44:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i02",
+      "correctText": "customer",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-03:session-44:i04",
       "correctText": "seller",
       "correctResponseId": "en:lesson-03:session-44:i04:r1"
-    },
-    {
-      "interactionId": "en:lesson-03:session-44:i05",
-      "correctText": "assistant",
-      "correctResponseId": "en:lesson-03:session-44:i05:r1"
     },
     {
       "interactionId": "en:lesson-03:session-44:i06",
@@ -1799,11 +1931,6 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-03:session-44:i09",
-      "correctText": "The",
-      "correctResponseId": "en:lesson-03:session-44:i09:r1"
-    },
-    {
       "interactionId": "en:lesson-03:session-44:i10",
       "correctText": "A seller is here.",
       "correctResponseId": null
@@ -1812,6 +1939,11 @@
       "interactionId": "en:lesson-03:session-44:i11",
       "correctText": "receipt",
       "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-44:i09",
+      "correctText": "The",
+      "correctResponseId": "en:lesson-03:session-44:i09:r1"
     },
     {
       "interactionId": "en:lesson-03:session-44:i12",

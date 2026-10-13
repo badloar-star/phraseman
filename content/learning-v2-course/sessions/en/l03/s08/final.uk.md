@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-03:session-08:i01; family: context_gap_grammar -->
 Ціль: `It is ___ shelf.`
 Варіанти: `a` · `is` · `am`
+- is — *`is` уже стоїть після `It`. Перед назвою `shelf` тут потрібне `a`.*
+- am — *`am` не ставимо перед назвою предмета. Потрібна частина `a shelf`.*
+
 
 **2 · Послухайте й складіть — друг говорить про предмет біля стіни**
 <!-- interaction_id: en:lesson-03:session-08:i02; family: listen_build_dictation -->
@@ -75,11 +78,17 @@
 <!-- interaction_id: en:lesson-03:session-08:i05; family: listen_choose -->
 Ціль: `It is a basket.`
 Варіанти: `It is a basket.` · `Is it a basket?` · `It is not a basket.`
+- Is it a basket? — *Це запитання починається з `Is it`. У записі спершу звучить `It`, а потім `is`: `It is a basket`.*
+- It is not a basket. — *У цьому варіанті є додаткове `not`. У записі після `is` одразу звучить `a basket`.*
+
 
 **6 · Вставте слово — друг позначив табурет як полицю; скажіть «Це не полиця»**
 <!-- interaction_id: en:lesson-03:session-08:i06; family: context_gap_grammar -->
 Ціль: `It ___ not a shelf.`
 Варіанти: `is` · `are` · `am`
+- are — *Для цієї фрази про предмет потрібне `It is not`. `are` після `It` не підходить.*
+- am — *`am` поєднується з `I`. Тут початок — `It is not`.*
+
 
 **7 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-08:i07; family: scripted_repeat_compare -->
@@ -99,6 +108,9 @@
 <!-- interaction_id: en:lesson-03:session-08:i10; family: context_gap_grammar -->
 Ціль: `It ___ a tag.`
 Варіанти: `is` · `are` · `am`
+- are — *Називаючи цей предмет, говоримо `It is a tag`. `are` з `It` не поєднується.*
+- am — *Після `It` тут потрібне `is`, а `am` підходить до `I`.*
+
 
 **11 · Послухайте й складіть — друг виправляє один рядок списку**
 <!-- interaction_id: en:lesson-03:session-08:i11; family: listen_build_dictation -->
@@ -118,6 +130,9 @@
 <!-- interaction_id: en:lesson-03:session-08:i14; family: context_gap_grammar -->
 Ціль: `It is ___ door.`
 Варіанти: `a` · `am` · `are`
+- am — *Після `It is` тут потрібна назва `a door`. Додаткове `am` перед `door` не ставимо.*
+- are — *У повній фразі вже є `is`. Перед назвою `door` потрібне `a`.*
+
 
 **15 · З’єднайте назви з українськими значеннями — решта у списку**
 <!-- interaction_id: en:lesson-03:session-08:i15; family: speed_match -->
@@ -137,6 +152,9 @@
 <!-- interaction_id: en:lesson-03:session-08:i17:s02; family: listen_choose -->
 Ціль: `Is it a shelf?`
 Варіанти: `Is it a shelf?` · `It is a shelf.` · `Is it a mirror?`
+- It is a shelf. — *У записі запитання: `Is it a shelf?`, а не твердження.*
+- Is it a mirror? — *У записі назвали `shelf`, а не `mirror`.*
+
 
 **19 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-08:i17:s03; family: scripted_repeat_compare -->

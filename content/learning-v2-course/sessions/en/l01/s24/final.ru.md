@@ -89,6 +89,8 @@ She is ___ . → **quiet** · funny · hungry
 <!-- interaction_id: en:lesson-01:session-24:i05; family: phrase_builder -->
 Плитки: `hungry` `he` `are` `is` → **He is hungry.**
 Лишняя плитка `are`: с `He` ставят `is` — `He is hungry.`
+*(плитка `are` лишняя: `are` лишнее: с `He` ставят `is` — `He is hungry.`)*
+
 
 **6 · Вставьте слово — Лина прямо говорит: «Анна не устала»**
 <!-- interaction_id: en:lesson-01:session-24:i06; family: context_gap_grammar -->
@@ -135,6 +137,8 @@ She ___ not late. → **is** · are · not
 <!-- interaction_id: en:lesson-01:session-24:i13; family: listen_build_dictation -->
 🔊 *He is quiet.* Плитки: `quiet` `is` `he` `she` → **He is quiet.**
 Лишняя плитка `she`: в записи про Дениса говорят `He is quiet.`
+*(плитка `she` лишняя: `she` лишнее: в записи про Дениса говорят `He is quiet.`)*
+
 
 **14 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-24:i14; family: speed_match -->
@@ -144,6 +148,8 @@ tired — устал · kind — добрый · he — он · she — она
 <!-- interaction_id: en:lesson-01:session-24:i15; family: phrase_builder -->
 Плитки: `she` `not` `tired` `is` `are` → **She is not tired.**
 Лишняя плитка `are`: с `She` ставят `is` — `She is not tired.`
+*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is` — `She is not tired.`)*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-24:i16:s01; family: scripted_repeat_compare -->

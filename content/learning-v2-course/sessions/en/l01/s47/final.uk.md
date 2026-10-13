@@ -76,6 +76,9 @@
 **4 · Складіть фразу — ви за кермом, друг тягнеться до вашої склянки**
 <!-- interaction_id: en:lesson-01:session-47:i04; family: phrase_builder -->
 Плитки: `sober` `I'm` `am` `he's` → **I'm sober.**
+*(плитка `am` зайва: `am` зайве: воно вже заховане в `I'm sober`.)*
+*(плитка `he's` зайва: `he's` не підходить: говорите про себе — `I'm sober`.)*
+
 
 **5 · Картка слова — sleepy**
 <!-- interaction_id: en:lesson-01:session-47:i05; family: listen_choose -->
@@ -120,10 +123,14 @@ He's ___ . → **tired** · sleepy · drunk
 **13 · Послухайте і складіть — «вона не сонна»**
 <!-- interaction_id: en:lesson-01:session-47:i13; family: listen_build_dictation -->
 🔊 *She isn't sleepy.* Плитки: `isn't` `She` `sleepy` `aren't` → **She isn't sleepy.**
+*(плитка `aren't` зайва: `aren't` не підходить до `She`: в аудіо `She isn't sleepy`.)*
+
 
 **14 · Складіть фразу — друзі біля виходу, усі бадьорі**
 <!-- interaction_id: en:lesson-01:session-47:i14; family: phrase_builder -->
 Плитки: `They` `aren't` `sleepy` `isn't` → **They aren't sleepy.**
+*(плитка `isn't` зайва: `isn't` не підходить до `They`: потрібно `They aren't sleepy`.)*
+
 
 **15 · Картка слова — quiet**
 <!-- interaction_id: en:lesson-01:session-47:i15; family: listen_choose -->
@@ -138,6 +145,8 @@ It's ___ . → **quiet** · awake · drunk
 **17 · Складіть фразу — на вас чекали об одинадцятій, а на годиннику північ**
 <!-- interaction_id: en:lesson-01:session-47:i17; family: phrase_builder -->
 Плитки: `I'm` `late` `quiet` → **I'm late.**
+*(плитка `quiet` зайва: `quiet` зайве: на годиннику північ, тому `I'm late`.)*
+
 
 **18 · Послухайте і складіть — ви прощаєтеся і їдете до себе**
 <!-- interaction_id: en:lesson-01:session-47:i18; family: listen_build_dictation -->

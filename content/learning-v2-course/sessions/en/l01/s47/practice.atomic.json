@@ -117,6 +117,15 @@
                 "ru": "Это «тёмный». В `drunk` после первой буквы идёт `r`, а потом ещё `n` перед концом.",
                 "uk": "Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Выбрано `drunk`: именно это слово звучит в аудио и значит «пьяный».",
+                "uk": "Обрано `drunk`: саме це слово звучить в аудіо й означає «п'яний»."
+              }
             }
           ],
           "isWordCard": false,
@@ -193,7 +202,26 @@
             "am",
             "he's"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+              "feedbackByLocale": {
+                "ru": "`am` лишнее: оно уже спрятано в `I'm sober.`",
+                "uk": "`am` зайве: воно вже заховане в `I'm sober`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i04:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+              "feedbackByLocale": {
+                "ru": "`he's` не подходит: говорите о себе — `I'm sober.`",
+                "uk": "`he's` не підходить: говорите про себе — `I'm sober`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -309,6 +337,15 @@
                 "ru": "Другой хвост, и это уже не про состояние: `sleeper` — тот, кто спит.",
                 "uk": "Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i06:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Выбрано `sleepy`: именно это слово звучит в аудио и значит «сонный».",
+                "uk": "Обрано `sleepy`: саме це слово звучить в аудіо й означає «сонний»."
+              }
             }
           ],
           "isWordCard": false,
@@ -404,7 +441,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставьте слово — друг залпом допил кофе ",
+          "testedDimension": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i08:r2",
@@ -422,6 +459,15 @@
               "feedbackByLocale": {
                 "ru": "`drunk` — «пьяный», а тут человек взбодрился.",
                 "uk": "`drunk` — «п'яний», а тут людина збадьорилася."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг залпом допил кофе и глаза загорелись",
+              "feedbackByLocale": {
+                "ru": "Кофе разбудил друга, поэтому он `awake` — «не спит».",
+                "uk": "Кава розбудила друга, тому він `awake` — «не спить»."
               }
             }
           ]
@@ -565,6 +611,15 @@
                 "ru": "`late` — «опоздал». Про время, а не про выпитое.",
                 "uk": "`late` — «спізнився». Про час, а не про випите."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — Мира спрашивает, трезвы ли вы, прежде чем доверить вам руль её машины",
+              "feedbackByLocale": {
+                "ru": "Перед вождением нужно быть `sober` — «трезвым».",
+                "uk": "Перед водінням треба бути `sober` — «тверезим»."
+              }
             }
           ]
         },
@@ -658,7 +713,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставьте слово — друг весь день таскал я",
+          "testedDimension": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i12:r2",
@@ -676,6 +731,15 @@
               "feedbackByLocale": {
                 "ru": "«Пьяный» тут ни при чём: человек работал, а не пил.",
                 "uk": "«П'яний» тут ні до чого: людина працювала, а не пила."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг весь день таскал ящики, но спать не хочет",
+              "feedbackByLocale": {
+                "ru": "После ящиков друг `tired` — «устал», хотя ещё не хочет спать.",
+                "uk": "Після ящиків друг `tired` — «втомився», хоча ще не хоче спати."
               }
             }
           ]
@@ -711,7 +775,17 @@
           "authoredDistractorTokens": [
             "aren't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она не сонная»",
+              "feedbackByLocale": {
+                "ru": "`aren't` не подходит к `She`: в аудио `She isn't sleepy.`",
+                "uk": "`aren't` не підходить до `She`: в аудіо `She isn't sleepy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -741,7 +815,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — друзья у выхода, все бодрые",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `They`: нужно `They aren't sleepy.`",
+                "uk": "`isn't` не підходить до `They`: потрібно `They aren't sleepy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -833,7 +917,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставьте слово — час ночи, музыку выключ",
+          "testedDimension": "Вставьте слово — час ночи, музыку выключили, все замолчали",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i16:r2",
@@ -851,6 +935,15 @@
               "feedbackByLocale": {
                 "ru": "«Пьяный» — тоже про человека. Про тишину нужно `quiet`.",
                 "uk": "«П'яний» — теж про людину. Про тишу потрібно `quiet`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i16:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — час ночи, музыку выключили, все замолчали",
+              "feedbackByLocale": {
+                "ru": "Музыку выключили и все молчат, значит здесь `quiet` — «тихо».",
+                "uk": "Музику вимкнули й усі мовчать, отже тут `quiet` — «тихо»."
               }
             }
           ]
@@ -878,7 +971,17 @@
           "authoredDistractorTokens": [
             "quiet"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i17:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вас ждали к одиннадцати, а на часах полночь",
+              "feedbackByLocale": {
+                "ru": "`quiet` лишнее: на часах полночь, поэтому `I'm late.`",
+                "uk": "`quiet` зайве: на годиннику північ, тому `I'm late`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1158,6 +1261,15 @@
                 "ru": "Это «тёмный». В `drunk` после первой буквы идёт `r`, а потом ещё `n` перед концом.",
                 "uk": "Це «темний». У `drunk` після першої літери йде `r`, а потім ще `n` перед кінцем."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i02:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Выбрано `drunk`: именно это слово звучит в аудио и значит «пьяный».",
+                "uk": "Обрано `drunk`: саме це слово звучить в аудіо й означає «п'яний»."
+              }
             }
           ],
           "isWordCard": false,
@@ -1234,7 +1346,26 @@
             "am",
             "he's"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+              "feedbackByLocale": {
+                "ru": "`am` лишнее: оно уже спрятано в `I'm sober.`",
+                "uk": "`am` зайве: воно вже заховане в `I'm sober`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i04:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы за рулём, друг тянется к вашему стакану",
+              "feedbackByLocale": {
+                "ru": "`he's` не подходит: говорите о себе — `I'm sober.`",
+                "uk": "`he's` не підходить: говорите про себе — `I'm sober`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1350,6 +1481,15 @@
                 "ru": "Другой хвост, и это уже не про состояние: `sleeper` — тот, кто спит.",
                 "uk": "Інший хвіст, і це вже не про стан: `sleeper` — той, хто спить."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i06:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Выбрано `sleepy`: именно это слово звучит в аудио и значит «сонный».",
+                "uk": "Обрано `sleepy`: саме це слово звучить в аудіо й означає «сонний»."
+              }
             }
           ],
           "isWordCard": false,
@@ -1445,7 +1585,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставте слово — друг залпом допив каву і",
+          "testedDimension": "Вставте слово — друг залпом допив каву і очі загорілися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i08:r2",
@@ -1463,6 +1603,15 @@
               "feedbackByLocale": {
                 "ru": "`drunk` — «пьяный», а тут человек взбодрился.",
                 "uk": "`drunk` — «п'яний», а тут людина збадьорилася."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i08:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг залпом допив каву і очі загорілися",
+              "feedbackByLocale": {
+                "ru": "Кофе разбудил друга, поэтому он `awake` — «не спит».",
+                "uk": "Кава розбудила друга, тому він `awake` — «не спить»."
               }
             }
           ]
@@ -1606,6 +1755,15 @@
                 "ru": "`late` — «опоздал». Про время, а не про выпитое.",
                 "uk": "`late` — «спізнився». Про час, а не про випите."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — Міра питає, чи ви тверезі, перш ніж довірити вам кермо її машини",
+              "feedbackByLocale": {
+                "ru": "Перед вождением нужно быть `sober` — «трезвым».",
+                "uk": "Перед водінням треба бути `sober` — «тверезим»."
+              }
             }
           ]
         },
@@ -1699,7 +1857,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставте слово — друг цілий день тягав ящ",
+          "testedDimension": "Вставте слово — друг цілий день тягав ящики, але спати не хоче",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i12:r2",
@@ -1717,6 +1875,15 @@
               "feedbackByLocale": {
                 "ru": "«Пьяный» тут ни при чём: человек работал, а не пил.",
                 "uk": "«П'яний» тут ні до чого: людина працювала, а не пила."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг цілий день тягав ящики, але спати не хоче",
+              "feedbackByLocale": {
+                "ru": "После ящиков друг `tired` — «устал», хотя ещё не хочет спать.",
+                "uk": "Після ящиків друг `tired` — «втомився», хоча ще не хоче спати."
               }
             }
           ]
@@ -1752,7 +1919,17 @@
           "authoredDistractorTokens": [
             "aren't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она не сонная»",
+              "feedbackByLocale": {
+                "ru": "`aren't` не подходит к `She`: в аудио `She isn't sleepy.`",
+                "uk": "`aren't` не підходить до `She`: в аудіо `She isn't sleepy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1782,7 +1959,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — друзья у выхода, все бодрые",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `They`: нужно `They aren't sleepy.`",
+                "uk": "`isn't` не підходить до `They`: потрібно `They aren't sleepy`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1874,7 +2061,7 @@
               "text": "drunk"
             }
           ],
-          "testedDimension": "Вставте слово — перша ночі, музику вимкн",
+          "testedDimension": "Вставте слово — перша ночі, музику вимкнули, усі замовкли",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-47:i16:r2",
@@ -1892,6 +2079,15 @@
               "feedbackByLocale": {
                 "ru": "«Пьяный» — тоже про человека. Про тишину нужно `quiet`.",
                 "uk": "«П'яний» — теж про людину. Про тишу потрібно `quiet`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-47:i16:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — перша ночі, музику вимкнули, усі замовкли",
+              "feedbackByLocale": {
+                "ru": "Музыку выключили и все молчат, значит здесь `quiet` — «тихо».",
+                "uk": "Музику вимкнули й усі мовчать, отже тут `quiet` — «тихо»."
               }
             }
           ]
@@ -1919,7 +2115,17 @@
           "authoredDistractorTokens": [
             "quiet"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-47:i17:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вас ждали к одиннадцати, а на часах полночь",
+              "feedbackByLocale": {
+                "ru": "`quiet` лишнее: на часах полночь, поэтому `I'm late.`",
+                "uk": "`quiet` зайве: на годиннику північ, тому `I'm late`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

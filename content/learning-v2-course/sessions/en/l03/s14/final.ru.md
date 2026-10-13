@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i02; family: listen_choose -->
 Цель: `sandwich`
 Варианты: `sandwich` · `bandage` · `language`
+- bandage — *`bandage` — «повязка». Первым слышен «б». В `sandwich` первым звучит «с»; ритм слов похож.*
+- language — *`language` — «язык». Слово начинается с «л», а `sandwich` — с «с». Слушайте начало, а не только похожую вторую часть.*
+
 
 **3 · Карточка слова — salad**
 <!-- interaction_id: en:lesson-03:session-14:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i04; family: listen_choose -->
 Цель: `salad`
 Варианты: `salad` · `valid` · `sallow`
+- valid — *`valid` — «действительный». Начинается с «в», а `salad` — с «с». Похожий ритм не делает слова одинаковыми.*
+- sallow — *`sallow` — «нездорово-бледный». Начало похоже, но на конце звучит гласный с переходом к другому звучанию. В `salad` слово заканчивается согласным «д».*
+
 
 **5 · Соберите короткое название — официант уточняет, что вы выбрали; ответьте двумя словами «сэндвич»**
 <!-- interaction_id: en:lesson-03:session-14:i05; family: phrase_builder -->
@@ -83,11 +89,17 @@
 <!-- interaction_id: en:lesson-03:session-14:i07; family: listen_choose -->
 Цель: `egg`
 Варианты: `egg` · `edge` · `leg`
+- edge — *`edge` — «край». На конце звучит сочетание «дж», а в `egg` — «г». Начало похоже, поэтому дослушайте слово.*
+- leg — *`leg` — «нога». Сначала слышно «л», затем гласный. В `egg` начало сразу гласное, а конец у слов одинаковый.*
+
 
 **8 · Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)**
 <!-- interaction_id: en:lesson-03:session-14:i08; family: context_gap_grammar -->
 Цель: `It is ___ clock.`
 Варианты: `a` · `an` · `is`
+- an — *В начале `clock` слышно согласный «к». Перед этим названием выбираем `a`.*
+- is — *После `It` уже стоит `is`. Перед названием часов здесь нужно `a`, а не второе `is`.*
+
 
 **9 · Послушайте и соберите — официант говорит о еде**
 <!-- interaction_id: en:lesson-03:session-14:i09; family: listen_build_dictation -->
@@ -98,6 +110,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i10; family: context_gap_grammar -->
 Цель: `___ hour.`
 Варианты: `An` · `A` · `Is`
+- A — *Первая буква `h` в `hour` не звучит: слово начинается с гласного. Перед ним нужно `An`.*
+- Is — *Нужно короткое название промежутка времени: `An hour`. Одно `Is` перед `hour` такого названия не образует.*
+
 
 **11 · Соедините названия с русскими значениями — что встретилось в кафе**
 <!-- interaction_id: en:lesson-03:session-14:i11; family: speed_match -->
@@ -113,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i13; family: listen_choose -->
 Цель: `It is not a sandwich.`
 Варианты: `It is not a sandwich.` · `It is a sandwich.` · `It is not an egg.`
+- It is a sandwich. — *В этом варианте название подтверждают. В записи после `is` слышно `not` — название отрицают.*
+- It is not an egg. — *Здесь названо яйцо: `an egg`. В записи после отрицания звучит `a sandwich`.*
+
 
 **14 · Послушайте и соберите — друг говорит о времени до встречи**
 <!-- interaction_id: en:lesson-03:session-14:i14; family: listen_build_dictation -->

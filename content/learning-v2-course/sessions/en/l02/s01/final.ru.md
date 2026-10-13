@@ -68,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-01:i02; family: listen_choose -->
 Цель: `awake`
 Варианты: `awake` · `away` · `wake`
+- away — *Это «прочь, в отъезде». Про сон в нём ничего нет.*
+- wake — *То же слово без начального слога. В `awake` перед ним есть ещё один короткий слог.*
+
 
 **3 · Карточка слова — thirsty**
 <!-- interaction_id: en:lesson-02:session-01:i03; family: listen_choose -->
@@ -77,10 +80,15 @@
 <!-- interaction_id: en:lesson-02:session-01:i04; family: listen_choose -->
 Цель: `thirsty`
 Варианты: `thirsty` · `thirty` · `sixty`
+- thirty — *Это «тридцать», число. Речь была не про счёт, а про воду.*
+- sixty — *Это «шестьдесят». Тоже число, к жажде отношения не имеет.*
+
 
 **5 · Соберите фразу — спросите, проснулся ли сосед**
 <!-- interaction_id: en:lesson-02:session-01:i05; family: phrase_builder -->
 Цель: `Are you awake?`
+Плитки: `Are` `you` `awake` `am` → **Are you awake?**
+*Плитка `am` лишняя: `am` употребляют только с `I`; в вопросе к `you` нужна форма `are`: `Are you awake?`*
 
 **6 · Карточка слова — hungry**
 <!-- interaction_id: en:lesson-02:session-01:i06; family: listen_choose -->
@@ -94,11 +102,17 @@
 <!-- interaction_id: en:lesson-02:session-01:i08; family: listen_choose -->
 Цель: `dizzy`
 Варианты: `dizzy` · `busy` · `lucky`
+- busy — *Это «занят». Про самочувствие оно ничего не говорит.*
+- lucky — *Это «везучий». К кружению головы отношения не имеет.*
+
 
 **9 · Вставьте слово — сосед протягивает бутерброд и спрашивает про еду**
 <!-- interaction_id: en:lesson-02:session-01:i09; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `hungry` · `dizzy` · `awake`
+- dizzy — *Это про кружение головы. Бутерброд тут не поможет.*
+- awake — *Это «проснулся». Спрашивают не об этом, а про голод.*
+
 
 **10 · Карточка слова — lost**
 <!-- interaction_id: en:lesson-02:session-01:i10; family: listen_choose -->
@@ -108,15 +122,21 @@
 <!-- interaction_id: en:lesson-02:session-01:i11; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `lost` · `thirsty` · `hungry`
+- thirsty — *Это «хотите пить?». Карта в руках говорит о другом.*
+- hungry — *Это про голод. С картой на углу человек ищет дорогу.*
+
 
 **12 · Соберите вопрос — сосед накрывает на стол и зовёт вас есть**
 <!-- interaction_id: en:lesson-02:session-01:i12; family: phrase_builder -->
 Цель: `Are you hungry?`
 Плитки: `Are` · `you` · `hungry` · `is`
+*Плитка `is` лишняя: в вопросе к `you` нужна форма `are`: `Are you hungry?`*
 
 **13 · Послушайте и соберите — «вы хотите пить?»**
 <!-- interaction_id: en:lesson-02:session-01:i13; family: listen_build_dictation -->
 Цель: `Are you thirsty?`
+🔊 *Are you thirsty?* Плитки: `Are` `you` `thirsty` `hungry` → **Are you thirsty?**
+*Плитка `hungry` лишняя: `hungry` — «голодный», а здесь спрашивают, хотите ли вы пить: `Are you thirsty?`*
 
 **14 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-01:i14; family: speed_match -->

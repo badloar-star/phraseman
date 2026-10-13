@@ -1,0 +1,2 @@
+[PARITY-SHOT] FAILED reason=adb_failed args=-s emulator-5554 exec-out screencap -p status=
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/dialogs-001.png bytes=326971 mockup

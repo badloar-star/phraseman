@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "learning-v2-de-direct-public-https-capture-metadata.v1",
+  "requestedUrl": "https://www.dwds.de/wb/guten%20Tag",
+  "effectiveUrl": "https://www.dwds.de/wb/guten%20Tag",
+  "transport": "DIRECT_PUBLIC_HTTPS_CURL",
+  "capturedAtHttpDate": "Tue, 13 Oct 2026 12:53:19 GMT",
+  "curlExit": 0,
+  "httpStatus": 200,
+  "contentType": "text/html; charset=UTF-8",
+  "contentLengthHeader": 44909,
+  "downloadedBytes": 44909,
+  "sha256": "542050aad29117960da3264eaa73dbb41ffe252b7330d1809a4dc6e47c97ebf2",
+  "responseHeaders": {
+    "server": "Apache",
+    "strictTransportSecurity": "max-age=31536000; includeSubDomains",
+    "cacheControl": "no-cache",
+    "pragma": "no-cache",
+    "vary": "Accept-Encoding"
+  }
+}

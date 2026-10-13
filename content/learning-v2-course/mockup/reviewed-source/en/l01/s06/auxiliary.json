@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-01:session-06:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-06:intro2:r2": {
-          "ru": "После `back` перед `home` не ставят `to`: говорят `I am back home` или просто `I am back`.",
-          "uk": "Після `back` перед `home` не ставлять `to`: кажуть `I am back home` або просто `I am back`."
+          "ru": "Перед `home` не ставят `to`: `home` здесь уже значит «домой».",
+          "uk": "Перед `home` не ставлять `to`: `home` тут уже означає «додому»."
         },
         "en:lesson-01:session-06:intro2:r3": {
-          "ru": "Опять без `am`. Оно короткое, поэтому и вылетает первым.",
-          "uk": "Знову без `am`. Воно коротке, тому й вилітає першим."
+          "ru": "После `I` нужно `am`: говорят `I am back`.",
+          "uk": "Після `I` потрібне `am`: кажуть `I am back`."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "48ede7a42003973b78721ad5dc4f80960a10eace8410b051ecec56c73020743d"
+  "auxiliaryFingerprint": "8ab2509c27a646b20d187b0d2977591876e3e0d2111712a39ace7d354e1e7776"
 }

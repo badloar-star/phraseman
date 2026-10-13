@@ -126,7 +126,7 @@
               "text": "one"
             }
           ],
-          "testedDimension": "Вставьте слово — на бирке нет цифры, спр",
+          "testedDimension": "Вставьте слово — на бирке нет цифры, спрашиваете про стоимость",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i02:r2",
@@ -238,7 +238,7 @@
               "text": "price"
             }
           ],
-          "testedDimension": "Вставьте слово — перед вами две сумки, и",
+          "testedDimension": "Вставьте слово — перед вами две сумки, и называть их второй раз незачем",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i04:r2",
@@ -410,7 +410,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставьте слово — на прилавке две сумки, ",
+          "testedDimension": "Вставьте слово — на прилавке две сумки, вы спрашиваете про красивую",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i07:r2",
@@ -491,7 +491,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-29:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «которая из них?»",
+              "feedbackByLocale": {
+                "ru": "это короткий вопрос выбора; после `Which one?` больше ничего не нужно.",
+                "uk": "це коротке запитання вибору; після `Which one?` більше нічого не потрібно."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -583,7 +593,7 @@
               "text": "One"
             }
           ],
-          "testedDimension": "Вставьте слово — продавец назвал вещь не",
+          "testedDimension": "Вставьте слово — продавец назвал вещь незнакомым словом, вы ждёте, что он его повторит",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i11:r2",
@@ -725,7 +735,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставьте слово — сумка стоит три евро, и",
+          "testedDimension": "Вставьте слово — сумка стоит три евро, и это дёшево",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i13:r2",
@@ -767,9 +777,25 @@
             "ru": "Соберите сообщение — продавец показывает простую, но изящную сумку",
             "uk": "Складіть повідомлення — продавець показує просту, але вишукану сумку"
           },
-          "orderedTokens": ["It", "is", "elegant"],
-          "authoredDistractorTokens": ["cheap"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "It",
+            "is",
+            "elegant"
+          ],
+          "authoredDistractorTokens": [
+            "cheap"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-29:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите сообщение — продавец показывает простую, но изящную сумку",
+              "feedbackByLocale": {
+                "ru": "сумка может быть недорогой, но в этом сообщении вы описываете её как изящную — `elegant`.",
+                "uk": "сумка може бути недорогою, але в цьому повідомленні ви описуєте її як вишукану — `elegant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -782,17 +808,27 @@
         "prompt": "Произнесите фразу — «которая из них дешёвая?»",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-29:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-29:i15:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — «которая из них дешёвая?»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "Which one is cheap?",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-29:i15:audio", "transcript": "Which one is cheap?" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-29:i15:audio",
+            "transcript": "Which one is cheap?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -804,9 +840,18 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — перед вами две сумки; спросите, какая из них изящная",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-29:i16:r1", "text": "elegant" },
-          { "responseId": "en:lesson-02:session-29:i16:r2", "text": "cheap" },
-          { "responseId": "en:lesson-02:session-29:i16:r3", "text": "price" }
+          {
+            "responseId": "en:lesson-02:session-29:i16:r1",
+            "text": "elegant"
+          },
+          {
+            "responseId": "en:lesson-02:session-29:i16:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-02:session-29:i16:r3",
+            "text": "price"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
@@ -814,19 +859,44 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Перед вами две сумки; спросите, какая из них изящная",
+            "ru": "Вставьте слово — перед вами две сумки; спросите, какая из них изящная",
             "uk": "Перед вами дві сумки; запитайте, котра з них вишукана"
           },
           "gappedTargetPhrase": "Which one is ___ ?",
           "gapOptions": [
-            { "responseId": "en:lesson-02:session-29:i16:r1", "text": "elegant" },
-            { "responseId": "en:lesson-02:session-29:i16:r2", "text": "cheap" },
-            { "responseId": "en:lesson-02:session-29:i16:r3", "text": "price" }
+            {
+              "responseId": "en:lesson-02:session-29:i16:r1",
+              "text": "elegant"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r3",
+              "text": "price"
+            }
           ],
           "testedDimension": "Выбор слова по двум видимым сумкам",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-29:i16:r2", "correct": false, "testedDimension": "Выбор слова по двум видимым сумкам", "feedbackByLocale": { "ru": "`cheap` — «дешёвая». Вопрос просит назвать изящную сумку.", "uk": "`cheap` — «дешева». У питанні треба назвати вишукану сумку." } },
-            { "responseId": "en:lesson-02:session-29:i16:r3", "correct": false, "testedDimension": "Выбор слова по двум видимым сумкам", "feedbackByLocale": { "ru": "`price` — «цена». Здесь описывают вид сумки, не её стоимость.", "uk": "`price` — «ціна». Тут описують вигляд сумки, а не її вартість." } }
+            {
+              "responseId": "en:lesson-02:session-29:i16:r2",
+              "correct": false,
+              "testedDimension": "Выбор слова по двум видимым сумкам",
+              "feedbackByLocale": {
+                "ru": "`cheap` — «дешёвая». Вопрос просит назвать изящную сумку.",
+                "uk": "`cheap` — «дешева». У питанні треба назвати вишукану сумку."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r3",
+              "correct": false,
+              "testedDimension": "Выбор слова по двум видимым сумкам",
+              "feedbackByLocale": {
+                "ru": "`price` — «цена». Здесь описывают вид сумки, не её стоимость.",
+                "uk": "`price` — «ціна». Тут описують вигляд сумки, а не її вартість."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1053,7 +1123,7 @@
               "text": "one"
             }
           ],
-          "testedDimension": "Вставте слово — на бирці немає цифри, пи",
+          "testedDimension": "Вставте слово — на бирці немає цифри, питаєте про вартість",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i02:r2",
@@ -1165,7 +1235,7 @@
               "text": "price"
             }
           ],
-          "testedDimension": "Вставте слово — перед вами дві сумки, і ",
+          "testedDimension": "Вставте слово — перед вами дві сумки, і називати їх удруге ні до чого",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i04:r2",
@@ -1337,7 +1407,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставте слово — на прилавку дві сумки, в",
+          "testedDimension": "Вставте слово — на прилавку дві сумки, ви питаєте про гарну",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i07:r2",
@@ -1418,7 +1488,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-29:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «которая из них?»",
+              "feedbackByLocale": {
+                "ru": "это короткий вопрос выбора; после `Which one?` больше ничего не нужно.",
+                "uk": "це коротке запитання вибору; після `Which one?` більше нічого не потрібно."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1510,7 +1590,7 @@
               "text": "One"
             }
           ],
-          "testedDimension": "Вставте слово — продавець назвав річ нез",
+          "testedDimension": "Вставте слово — продавець назвав річ незнайомим словом, ви чекаєте, що він його повторить",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i11:r2",
@@ -1652,7 +1732,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставте слово — сумка коштує три євро, і",
+          "testedDimension": "Вставте слово — сумка коштує три євро, і це дешево",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-29:i13:r2",
@@ -1694,9 +1774,25 @@
             "ru": "Соберите сообщение — продавец показывает простую, но изящную сумку",
             "uk": "Складіть повідомлення — продавець показує просту, але вишукану сумку"
           },
-          "orderedTokens": ["It", "is", "elegant"],
-          "authoredDistractorTokens": ["cheap"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "It",
+            "is",
+            "elegant"
+          ],
+          "authoredDistractorTokens": [
+            "cheap"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-29:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите сообщение — продавец показывает простую, но изящную сумку",
+              "feedbackByLocale": {
+                "ru": "сумка может быть недорогой, но в этом сообщении вы описываете её как изящную — `elegant`.",
+                "uk": "сумка може бути недорогою, але в цьому повідомленні ви описуєте її як вишукану — `elegant`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1709,17 +1805,27 @@
         "prompt": "Промовте фразу — «котра з них дешева?»",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-29:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-29:i15:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — «котра з них дешева?»",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "Which one is cheap?",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-29:i15:audio", "transcript": "Which one is cheap?" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-29:i15:audio",
+            "transcript": "Which one is cheap?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1731,9 +1837,18 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — перед вами дві сумки; запитайте, котра з них вишукана",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-29:i16:r1", "text": "elegant" },
-          { "responseId": "en:lesson-02:session-29:i16:r2", "text": "cheap" },
-          { "responseId": "en:lesson-02:session-29:i16:r3", "text": "price" }
+          {
+            "responseId": "en:lesson-02:session-29:i16:r1",
+            "text": "elegant"
+          },
+          {
+            "responseId": "en:lesson-02:session-29:i16:r2",
+            "text": "cheap"
+          },
+          {
+            "responseId": "en:lesson-02:session-29:i16:r3",
+            "text": "price"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
@@ -1742,18 +1857,43 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Перед вами две сумки; спросите, какая из них изящная",
-            "uk": "Перед вами дві сумки; запитайте, котра з них вишукана"
+            "uk": "Вставте слово — перед вами дві сумки; запитайте, котра з них вишукана"
           },
           "gappedTargetPhrase": "Which one is ___ ?",
           "gapOptions": [
-            { "responseId": "en:lesson-02:session-29:i16:r1", "text": "elegant" },
-            { "responseId": "en:lesson-02:session-29:i16:r2", "text": "cheap" },
-            { "responseId": "en:lesson-02:session-29:i16:r3", "text": "price" }
+            {
+              "responseId": "en:lesson-02:session-29:i16:r1",
+              "text": "elegant"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r2",
+              "text": "cheap"
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r3",
+              "text": "price"
+            }
           ],
           "testedDimension": "Вибір слова за двома видимими сумками",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-29:i16:r2", "correct": false, "testedDimension": "Вибір слова за двома видимими сумками", "feedbackByLocale": { "ru": "`cheap` — «дешёвая». Вопрос просит назвать изящную сумку.", "uk": "`cheap` — «дешева». У питанні треба назвати вишукану сумку." } },
-            { "responseId": "en:lesson-02:session-29:i16:r3", "correct": false, "testedDimension": "Вибір слова за двома видимими сумками", "feedbackByLocale": { "ru": "`price` — «цена». Здесь описывают вид сумки, не её стоимость.", "uk": "`price` — «ціна». Тут описують вигляд сумки, а не її вартість." } }
+            {
+              "responseId": "en:lesson-02:session-29:i16:r2",
+              "correct": false,
+              "testedDimension": "Вибір слова за двома видимими сумками",
+              "feedbackByLocale": {
+                "ru": "`cheap` — «дешёвая». Вопрос просит назвать изящную сумку.",
+                "uk": "`cheap` — «дешева». У питанні треба назвати вишукану сумку."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-29:i16:r3",
+              "correct": false,
+              "testedDimension": "Вибір слова за двома видимими сумками",
+              "feedbackByLocale": {
+                "ru": "`price` — «цена». Здесь описывают вид сумки, не её стоимость.",
+                "uk": "`price` — «ціна». Тут описують вигляд сумки, а не її вартість."
+              }
+            }
           ]
         },
         "scriptedAlternate": null

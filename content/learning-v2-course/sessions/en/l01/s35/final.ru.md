@@ -105,6 +105,8 @@ We are not ___ . → **sure** · wrong · busy
 **10 · Послушайте и соберите — «мы не одни»**
 <!-- interaction_id: en:lesson-01:session-35:i10; family: listen_build_dictation -->
 🔊 *We are not alone.* Плитки: `alone` `are` `not` `we` `no` → **We are not alone.**
+*(плитка `no` лишняя: `no` лишнее: отрицание здесь — `not`: `We are not alone.`)*
+
 
 **11 · Выберите форму — Ира и Олег уже пообедали и не голодны**
 <!-- interaction_id: en:lesson-01:session-35:i11; family: context_gap_grammar -->
@@ -130,6 +132,8 @@ We are not ___ . → **free** · alone · ready
 **15 · Послушайте и соберите — вы закончили все дела и можете уйти**
 <!-- interaction_id: en:lesson-01:session-35:i15; family: listen_build_dictation -->
 🔊 *We are not busy.* Плитки: `busy` `we` `not` `are` `is` → **We are not busy.**
+*(плитка `is` лишняя: `is` лишнее: после `We` ставят `are` — `We are not busy.`)*
+
 
 **16 · Соберите фразу — «мы не ошибаемся»**
 <!-- interaction_id: en:lesson-01:session-35:i16; family: phrase_builder -->

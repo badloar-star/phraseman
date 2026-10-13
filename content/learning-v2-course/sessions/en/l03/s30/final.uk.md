@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-30:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `glove` · `scarf` · `sweater`
+- scarf — *Scarf — шарф. Тут потрібна рукавичка: glove.*
+- sweater — *Sweater — светр. Тут потрібна рукавичка: glove.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-30:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значення варіантів: `scarf` — шарф · `scar` — шрам · `scale` — шкала · `star` — зірка
 Ціль: `scarf`
 Варіанти: `scarf` · `scar` · `scale` · `star`
+- scar — *У `scarf` фінальний звук — `f`; у `scar` фінал — голосний або `r`, залежно від акценту.*
+- scale — *Обидва слова починаються /sk/. Далі в `scale` звучить /eɪ/, а в `scarf` — /ɑː~ɑ/ і фінальний `f`.*
+- star — *`star` починається сполученням `st`, а в записі прозвучав початок `sc`.*
+
 
 **6 · Розрізніть слово — glove або love**
 <!-- interaction_id: en:lesson-03:session-30:i06; family: sound_contrast -->
 Ціль: `glove`
 Варіанти: `glove` · `love`
+- love — *Love — любов. У записі перед love чути g: glove.*
+
 
 **7 · З’єднайте слова зі значеннями — відділ одягу**
 <!-- interaction_id: en:lesson-03:session-30:i07; family: speed_match -->
@@ -95,11 +104,15 @@
 <!-- interaction_id: en:lesson-03:session-30:i08; family: context_gap_grammar -->
 Ціль: `This ___ here.`
 Варіанти: `is` · `are`
+- are — *Are — для кількох предметів. Тут один предмет: This is here.*
+
 
 **9 · Розрізніть слово — This або That**
 <!-- interaction_id: en:lesson-03:session-30:i09; family: sound_contrast -->
 Ціль: `This`
 Варіанти: `This` · `That`
+- That — *That використовують для предмета далі. Тут предмет поруч: This.*
+
 
 **10 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-30:i10; family: scripted_repeat_compare -->
@@ -117,11 +130,19 @@
 <!-- interaction_id: en:lesson-03:session-30:i13; family: context_gap_grammar -->
 Ціль: `___ glove, please.`
 Варіанти: `This` · `That` · `It` · `Is`
+- That — *`that` указує на річ вдалині. Рукавичка перед вами, тому потрібне `This`.*
+- It — *`it glove` не утворює прохання. Перед назвою вибраної речі ставимо `This`.*
+- Is — *`Is glove` — неправильний початок запитання. Тут потрібне коротке прохання `This glove, please`.*
+
 
 **14 · Послухайте й виберіть точне значення прохання**
 <!-- interaction_id: en:lesson-03:session-30:i14; family: listen_choose -->
 Ціль: `That sweater, please.`
 Варіанти: `Той светр, будь ласка` · `Цей светр, будь ласка` · `Той шарф, будь ласка` · `Цей шарф, будь ласка`
+- Цей светр, будь ласка — *У записі прозвучало `That`: вибирають дальній светр, а не ближній.*
+- Той шарф, будь ласка — *Відстань збігається, але в записі назвали `sweater`, а не `scarf`.*
+- Цей шарф, будь ласка — *Тут відрізняються обидва ключові слова: прозвучали `That sweater`, а не `This scarf`.*
+
 
 **15 · Складіть прохання — рукавичка лежить на дальній полиці**
 <!-- interaction_id: en:lesson-03:session-30:i15; family: phrase_builder -->
@@ -131,6 +152,10 @@
 <!-- interaction_id: en:lesson-03:session-30:i16; family: context_gap_grammar -->
 Ціль: `___ scarf, please.`
 Варіанти: `That` · `This` · `It` · `Am`
+- This — *`this` вибирає річ поруч. Шарф в іншому кінці зали, тому потрібне `That`.*
+- It — *`it scarf` не утворює прохання. Перед назвою далекої речі ставимо `That`.*
+- Am — *`am` уживаємо з `I`, коли говоримо про себе. Тут вибираємо далекий шарф словом `That`.*
+
 
 **17 · Послухайте та складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-30:i17:s01; family: listen_build_dictation -->

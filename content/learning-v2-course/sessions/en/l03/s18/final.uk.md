@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i02; family: listen_choose -->
 Ціль: `bus`
 Варіанти: `bus` · `fuss` · `buzz`
+- fuss — *`fuss` — «метушня». Спочатку чути «ф», а в `bus` — «б». Решта слова звучить однаково; розрізняйте початок.*
+- buzz — *`buzz` — «гудіння». Наприкінці чути дзвінке «з», а в `bus` — глухе «с». Дослухайте слово до кінця.*
+
 
 **3 · Картка слова — dish**
 <!-- interaction_id: en:lesson-03:session-18:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i04; family: listen_choose -->
 Ціль: `dish`
 Варіанти: `dish` · `fish` · `wish`
+- fish — *`fish` — «риба». На початку чути «ф», а в `dish` — «д». Далі слова звучать однаково.*
+- wish — *`wish` — «бажання». На початку губи округлюються, а в `dish` першим звучить «д». Кінець слів збігається.*
+
 
 **5 · Картка слова — watch**
 <!-- interaction_id: en:lesson-03:session-18:i05; family: listen_choose -->
@@ -78,6 +84,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i06; family: listen_choose -->
 Ціль: `watch`
 Варіанти: `watch` · `wash` · `witch`
+- wash — *`wash` — «мити». Наприкінці чути «ш», а у `watch` — «ч». Початок схожий, тому слухайте кінець.*
+- witch — *`witch` — «відьма». У британській вимові в середині `watch` губи округлюються, а в `witch` — ні. Початок і кінець збігаються; розрізняйте середину.*
+
 
 **7 · Картка слова — box**
 <!-- interaction_id: en:lesson-03:session-18:i07; family: listen_choose -->
@@ -87,6 +96,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i08; family: listen_choose -->
 Ціль: `box`
 Варіанти: `box` · `fox` · `pox`
+- fox — *`fox` — «лисиця». Спочатку чути «ф», а в `box` — «б». Решта слова збігається, тому слухайте початок.*
+- pox — *`pox` — «віспа». На початку чути «п», а в `box` — «б». Кінець у слів однаковий.*
+
 
 **9 · Зберіть фразу — до зупинки під’їхали два автобуси; друг питає, що це за транспорт. Відповідайте: «Це автобуси»**
 <!-- interaction_id: en:lesson-03:session-18:i09; family: phrase_builder -->
@@ -102,6 +114,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i11; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `tickets` · `ticket` · `is`
+- ticket — *У конверті кілька квитків. У цій фразі потрібна назва з `s`: `tickets`.*
+- is — *Після готового початку `They are` треба назвати предмети: `tickets`. `is` квитками їх не називає.*
+
 
 **12 · Послухайте й зберіть — друг говорить про предмети з маленької коробки**
 <!-- interaction_id: en:lesson-03:session-18:i12; family: listen_build_dictation -->
@@ -112,6 +127,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i13; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `boxes` · `box` · `boxs`
+- box — *Коробок три. Для кількох потрібне `boxes`, а не назва однієї коробки.*
+- boxs — *До `box` додаємо дві літери, `es`. Виходить `boxes`; однієї доданої `s` тут замало.*
+
 
 **14 · З’єднайте назви з українськими значеннями — що видно під час розпаковування**
 <!-- interaction_id: en:lesson-03:session-18:i14; family: speed_match -->
@@ -122,6 +140,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i15; family: listen_choose -->
 Ціль: `They are dishes.`
 Варіанти: `They are dishes.` · `Are they dishes?` · `They are boxes.`
+- Are they dishes? — *Тут питання з початком `Are they`. У записі спочатку звучить `They are`: друг називає предмети.*
+- They are boxes. — *Цей варіант називає коробки: `boxes`. У записі звучить `dishes` — блюда для подавання їжі.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-18:i16; family: scripted_repeat_compare -->

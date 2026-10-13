@@ -273,17 +273,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг спраши",
-              "feedbackByLocale": {
-                "ru": "В коротком названии после `a` сразу идёт предмет: `a basket`. Форма `is` между ними не нужна.",
-                "uk": "У короткій назві після `a` одразу йде предмет: `a basket`. `is` між ними не потрібне."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -441,17 +431,7 @@
           "authoredDistractorTokens": [
             "basket"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i08:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — друг говорит о п",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `tag`, а не `basket`: `It is a tag`.",
-                "uk": "У записі прозвучало `tag`, а не `basket`: `It is a tag`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -606,7 +586,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг заглядывает в выбр",
+          "testedDimension": "Вставьте слово — друг заглядывает в выбранную корзину; внутри ничего нет, скажите «Она пустая» (`empty` — «пустая»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-06:i11:r2",
@@ -662,17 +642,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — в дальнем проходе вы з",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a trolley?`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a trolley?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -721,7 +691,7 @@
               "text": "a not"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — друг принял короб",
+          "testedDimension": "Вставьте часть фразы — друг принял коробку для хранения за корзину; возразите: «Это не корзина»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-06:i13:r2",
@@ -810,17 +780,7 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — продавец спрашивает, чт",
-              "feedbackByLocale": {
-                "ru": "Нужно назвать корзину. С `not` получилось бы «Это не корзина», а вы держите именно её.",
-                "uk": "Треба назвати кошик. З `not` вийшло б «Це не кошик», а ви тримаєте саме його."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -890,17 +850,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — у кассы друг принял чек",
-              "feedbackByLocale": {
-                "ru": "После `It` нужна форма `is`. Дальше идут отрицание и название: `It is not a tag`.",
-                "uk": "Після `It` потрібне `is`. Далі йдуть заперечення й назва: `It is not a tag`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1174,17 +1124,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг запитує, щ",
-              "feedbackByLocale": {
-                "ru": "В коротком названии после `a` сразу идёт предмет: `a basket`. Форма `is` между ними не нужна.",
-                "uk": "У короткій назві після `a` одразу йде предмет: `a basket`. `is` між ними не потрібне."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1342,17 +1282,7 @@
           "authoredDistractorTokens": [
             "basket"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i08:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — друг говорить пр",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `tag`, а не `basket`: `It is a tag`.",
-                "uk": "У записі прозвучало `tag`, а не `basket`: `It is a tag`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1507,7 +1437,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг заглядає в обраний ",
+          "testedDimension": "Вставте слово — друг заглядає в обраний кошик; усередині нічого немає, скажіть «Він порожній» (`empty` — «порожній»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-06:i11:r2",
@@ -1563,17 +1493,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — у дальньому проході",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a trolley?`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a trolley?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1622,7 +1542,7 @@
               "text": "a not"
             }
           ],
-          "testedDimension": "Вставте частину фрази — друг прийняв кор",
+          "testedDimension": "Вставте частину фрази — друг прийняв коробку для зберігання за кошик; заперечте: «Це не кошик»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-06:i13:r2",
@@ -1711,17 +1631,7 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — продавець запитує, що в",
-              "feedbackByLocale": {
-                "ru": "Нужно назвать корзину. С `not` получилось бы «Это не корзина», а вы держите именно её.",
-                "uk": "Треба назвати кошик. З `not` вийшло б «Це не кошик», а ви тримаєте саме його."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1791,17 +1701,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-06:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — біля каси друг прийняв ",
-              "feedbackByLocale": {
-                "ru": "После `It` нужна форма `is`. Дальше идут отрицание и название: `It is not a tag`.",
-                "uk": "Після `It` потрібне `is`. Далі йдуть заперечення й назва: `It is not a tag`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

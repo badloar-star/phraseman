@@ -353,6 +353,7 @@
     "testEnvironment": "node",
     "testMatch": [
       "<rootDir>/tests/**/*.test.ts",
+      "<rootDir>/tests/**/*.test.tsx",
       "<rootDir>/tests/coin_reward_flight_lifecycle.test.tsx",
       "<rootDir>/tests/energy_mistake_hud.test.tsx",
       "<rootDir>/tests/energy_stop_sheet.test.tsx",
@@ -412,7 +413,6 @@
       "<rootDir>/tests/kit_touchable.test.tsx",
       "<rootDir>/tests/learning_v2_horizons_native.test.tsx",
       "<rootDir>/tests/learning_v2_intro_reader_a.test.tsx",
-      "<rootDir>/tests/learning_v2_mode_feedback_lane.test.tsx",
       "<rootDir>/tests/learning_v2_new_word_encounter_overlay.test.tsx",
       "<rootDir>/tests/learning_v2_practice_viewport.test.tsx",
       "<rootDir>/tests/lesson_session_attempts_integration.test.tsx",

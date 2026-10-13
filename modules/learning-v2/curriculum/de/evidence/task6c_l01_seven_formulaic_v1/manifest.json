@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-seven-formulaic-durable-evidence.v1",
+  "status": "HOLD",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "task5": { "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json", "byteSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29" },
+  "sources": {
+    "redemittel": { "path": "raw/goethe_redemittel.pdf", "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085", "bytes": 3685205 },
+    "wortliste": { "path": "raw/goethe_wortliste.pdf", "sha256": "45fb648bc0ac02338f7898cae065953e320ab72ed0c14e13e0deffe6f1c5d64e", "bytes": 712341 }
+  },
+  "extractionMap": { "path": "extraction_map.json", "sha256": "4cb9d040275870fe6857b222c9bad26fab46646094994a7704bb9d9f0c93c3a7" },
+  "immutableScope": {
+    "task5BlueprintSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29",
+    "englishCourseManifestSha256": "bfcc82ba0300eba9f706bdd82e7b2a6a9d2b5a9ea18859bff2d451b39d7fe976",
+    "b3aFinalAcceptanceManifestSha256": "fc3f891df1dfed6469463672545b6ddeb7eb6223274bb2074677efcc7bdca9ab",
+    "morphSemanticFactsModuleSha256": "63d3a10b0943e2afef0918f005a1d2784ba1077b6f6e48df094bd27b6b88f9d4",
+    "directSourceCaptureModuleSha256": "bbb58e3b4a35a237f6ce926559f5ace7ef40b8716aca11765804f139d48ca5bf",
+    "sourceAnchorAmendmentModuleSha256": "b7a59b55c51cf633b768164d025f3224432c72d862a54fae04c2281115912333",
+    "sixNounManifestSha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55",
+    "sixNounClosureSha256": "6bc849c3369468cfb59be92bfcbd249473f65a29c8e9170385ddcfbcfe619c44",
+    "canonicalRegistrySha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29"
+  },
+  "rows": [
+    { "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1", "checkpointPacketId": "de_l01_c01_s08", "semanticIdentity": "hallo|neutral informal greeting on meeting", "lemma": "Hallo", "source": "redemittel", "locator": { "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN" }, "occurrence": { "text": "Guten Tag! / Hallo!", "utf8Bytes": 19, "sha256": "e545fb373a9a5e0e5fa664af788d68528275b6b527241f01f684b2f4e4f31949" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1", "checkpointPacketId": "de_l01_c02_s16", "semanticIdentity": "tschuss|informal leave taking", "lemma": "Tschüss", "source": "wortliste", "locator": { "pdfPage": 24, "heading": "alphabetical Wortliste > T" }, "occurrence": { "text": "tschüss Junge Leute sagen meistens „tschüss!“ und nicht „auf Wiedersehen“.", "utf8Bytes": 84, "sha256": "980729a04851d9b93e9cf85da9a883d1c7563058ae32cbf7e06dc390e43bb36a" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1", "checkpointPacketId": "de_l01_c03_s24", "semanticIdentity": "ich heiße|fixed first person expression for giving one s name", "lemma": "Ich heiße", "source": "redemittel", "locator": { "pdfPage": 2, "heading": "INFORMATIONEN ZUR PERSON" }, "occurrence": { "text": "Ich heiße Max.", "utf8Bytes": 15, "sha256": "592ef886694ab102977ef8635be991adcfdb61a0ef6aec6caf83ea9939c4f0f6" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1", "checkpointPacketId": "de_l01_c04_s32", "semanticIdentity": "guten tag|neutral formal greeting", "lemma": "Guten Tag", "source": "redemittel", "locator": { "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN" }, "occurrence": { "text": "Guten Tag! / Hallo!", "utf8Bytes": 19, "sha256": "e545fb373a9a5e0e5fa664af788d68528275b6b527241f01f684b2f4e4f31949" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1", "checkpointPacketId": "de_l01_c05_s40", "semanticIdentity": "das ist|fixed chunk for identifying a person", "lemma": "Das ist", "source": "redemittel", "locator": { "pdfPage": 60, "heading": "FOTOS BESCHREIBEN > Wer?" }, "occurrence": { "text": "Das ist / Das sind …", "utf8Bytes": 22, "sha256": "99b2dda487a7696b614bd7c12eea9d54af1d0fca017140f8f5391e77a4ad7699" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1", "checkpointPacketId": "de_l01_c06_s48", "semanticIdentity": "auf wiedersehen|neutral formal leave taking", "lemma": "Auf Wiedersehen", "source": "redemittel", "locator": { "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN" }, "occurrence": { "text": "Auf Wiedersehen! / Tschüs!", "utf8Bytes": 27, "sha256": "fefa8907e7a90ccaa18b44c0aa3f5ce7829ccaed980c69e8f427902c3e692442" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" },
+    { "sourcePlanId": "de_lex_plan_l01_c07_guten_abend_v1", "checkpointPacketId": "de_l01_c07_s56", "semanticIdentity": "guten abend|neutral greeting used on meeting in the evening", "lemma": "Guten Abend", "source": "redemittel", "locator": { "pdfPage": 3, "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN" }, "occurrence": { "text": "Guten Abend! / Hallo!", "utf8Bytes": 21, "sha256": "d3fa8d82fb8e0eaebf8c6eae82dd484f66ab78c28f283ae45f18a921103d7391" }, "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY", "admissionStatus": "PROPOSED_NOT_CANONICAL" }
+  ]
+}

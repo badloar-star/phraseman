@@ -61,6 +61,8 @@
 **2 · Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна**
 <!-- interaction_id: en:lesson-02:session-12:i02; family: phrase_builder -->
 Ціль: `Is she hungry?`
+Плитки: `Is` `she` `hungry` `he`
+*Плитка `he` зайва: у сцені Міра, тому потрібне `she`: `Is she hungry?`*
 
 **3 · Розрізніть звуки — де початок питання про жінку?**
 <!-- interaction_id: en:lesson-02:session-12:i03; family: sound_contrast -->
@@ -78,6 +80,8 @@ Is ___ cold? → **he** · she · it
 **5 · Послухайте та складіть — «вона голодна?»**
 <!-- interaction_id: en:lesson-02:session-12:i05; family: listen_build_dictation -->
 Ціль: `Is she hungry?`
+🔊 *Is she hungry?* Плитки: `Is` `she` `hungry` `he`
+*Плитка `he` зайва: запитання про жінку, тому потрібне `she`: `Is she hungry?`*
 
 **6 · Картка слова — lost**
 <!-- interaction_id: en:lesson-02:session-12:i06; family: listen_choose -->
@@ -87,6 +91,9 @@ Is ___ cold? → **he** · she · it
 <!-- interaction_id: en:lesson-02:session-12:i07; family: listen_choose -->
 Ціль: `He is lost.`
 Варіанти: `He is lost.` · `Is he lost?` · `Is she lost?`
+- Is he lost? — *У записі першим іде `he`, а не `is`. Отже, це повідомлення, а не питання.*
+- Is she lost? — *Це питання, та ще й про жінку. А в записі — повідомлення про чоловіка.*
+
 
 **8 · З’єднайте пари**
 <!-- interaction_id: en:lesson-02:session-12:i08; family: speed_match -->
@@ -97,6 +104,9 @@ Is ___ cold? → **he** · she · it
 <!-- interaction_id: en:lesson-02:session-12:i09; family: context_gap_grammar -->
 Ціль: `Is she ___ ?`
 Варіанти: `lost` · `pretty` · `hungry`
+- pretty — *«Гарна» — це про зовнішність. А людина з картою шукає дорогу: про це кажуть `lost`.*
+- hungry — *`hungry` — «голодний». Вивіску з картою звіряють не через голод.*
+
 
 **10 · Картка слова — curious**
 <!-- interaction_id: en:lesson-02:session-12:i10; family: listen_choose -->
@@ -105,11 +115,18 @@ Is ___ cold? → **he** · she · it
 **11 · Послухайте і виберіть — «він допитливий?»**
 <!-- interaction_id: en:lesson-02:session-12:i11; family: listen_choose -->
 Ціль: `Is he curious?`
+Плитки: `Is` `he` `curious` `she`
+*Плитка `she` зайва: Том — чоловік, тому потрібне `he`: `Is he curious?`*
 Варіанти: `Is he curious?` · `Is she curious?` · `He is curious.`
+- Is she curious? — *«Ш» у записі не чути — отже, це `is he`, про чоловіка.*
+- He is curious. — *Повідомлення. Питання починається з `is`.*
+
 
 **12 · Складіть фразу — Том за стійкою весь час озирається на двері**
 <!-- interaction_id: en:lesson-02:session-12:i12; family: phrase_builder -->
 Ціль: `Is he curious?`
+Плитки: `Is` `he` `curious` `she`
+*Плитка `she` зайва: Том — чоловік, тому потрібне `he`: `Is he curious?`*
 
 **13 · Картка слова — upset**
 <!-- interaction_id: en:lesson-02:session-12:i13; family: listen_choose -->
@@ -118,11 +135,16 @@ Is ___ cold? → **he** · she · it
 **14 · Послухайте і складіть — «вона засмучена?»**
 <!-- interaction_id: en:lesson-02:session-12:i14; family: listen_build_dictation -->
 Ціль: `Is she upset?`
+🔊 *Is she upset?* Плитки: `Is` `she` `upset` `he`
+*Плитка `he` зайва: запитання про жінку, тому потрібне `she`: `Is she upset?`*
 
 **15 · Вставте слово — супутник питає «Is she upset?», і ви згодні**
 <!-- interaction_id: en:lesson-02:session-12:i15; family: context_gap_grammar -->
 Ціль: `___ , she is.`
 Варіанти: `Yes` · `No` · `Is`
+- No — *`No` — це незгода. А ви згодні.*
+- Is — *З `is` виходить знову питання, а вас просять відповісти.*
+
 
 **16 · Складіть коротку відповідь — «Is he hungry?» Він щойно з'їв два бургери**
 <!-- interaction_id: en:lesson-02:session-12:i16; family: phrase_builder -->
@@ -135,7 +157,12 @@ Is ___ cold? → **he** · she · it
 **18 · Послухайте і виберіть — «вона гарна?»**
 <!-- interaction_id: en:lesson-02:session-12:i18; family: listen_choose -->
 Ціль: `Is she pretty?`
+Плитки: `Is` `she` `pretty` `not`
+*Плитка `not` зайва: це запитання про зовнішність без заперечення: `Is she pretty?`*
 Варіанти: `Is she pretty?` · `Is he pretty?` · `She is pretty.`
+- Is he pretty? — *Це `is he`, про чоловіка. А питають про жінку: `is she`.*
+- She is pretty. — *Повідомлення, а не питання. У питанні `is` іде першим.*
+
 
 **19 · З’єднайте пари**
 <!-- interaction_id: en:lesson-02:session-12:i19; family: speed_match -->
@@ -145,6 +172,8 @@ Is ___ cold? → **he** · she · it
 **20 · Складіть фразу — супутник показує фото сестри; запитайте, чи вона гарна**
 <!-- interaction_id: en:lesson-02:session-12:i20; family: phrase_builder -->
 Ціль: `Is she pretty?`
+Плитки: `Is` `she` `pretty` `not`
+*Плитка `not` зайва: це запитання про зовнішність без заперечення: `Is she pretty?`*
 
 **21 · Промовте одну фразу. запитайте й дайте відповідь**
 <!-- interaction_id: en:lesson-02:session-12:i21:s01; family: scripted_repeat_compare -->

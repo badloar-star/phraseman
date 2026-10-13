@@ -1,0 +1,4 @@
+id	time	result	detail	file
+practice-001	2026-10-13T02:23:58.973Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/practice-001.png
+practice-002	2026-10-13T02:24:00.448Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\practice-002.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=156117 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/practice-002.png
+practice-003	2026-10-13T02:24:01.929Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\practice-003.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=149215 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/practice-003.png

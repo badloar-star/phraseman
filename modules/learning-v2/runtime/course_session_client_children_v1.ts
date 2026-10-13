@@ -14,8 +14,11 @@ import {
 } from "../policies/decision_registry";
 import type { LearningV2CourseSessionInteractionProfileV1 } from "./course_session_release_package_v1";
 import {
+  validateLearningV2ModeTextAnalysisV1,
   validateLearningV2ModeNativePayloadV1,
   type LearningV2ModeNativePayloadV1,
+  type LearningV2ModeChoiceDiagnosticV1,
+  type LearningV2ModeTextAnalysisV1,
 } from "../contracts/mode_native_payload_v1";
 import {
   LEARNING_V2_COURSE_SESSION_MAX_PRACTICE_INTERACTIONS_V1,
@@ -167,10 +170,13 @@ export interface LearningV2CourseSessionAuxiliaryEntryV1 {
   readonly secondErrorExplanationRef: string;
   readonly secondErrorExplanationByLocale: LocalizedText;
   /**
-   * Optional for backward-compatible v1 reads; new authored packages provide
-   * exact feedback for every visible wrong response id.
+   * Optional because non-choice interactions have no response map. Intro and
+   * choice interactions provide reviewed feedback for every visible response
+   * id, including the correct response; consumers must not synthesize copy.
    */
   readonly responseFeedbackById?: Readonly<Record<string, LocalizedText>>;
+  readonly responseAnalysisById?: Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>>>;
+  readonly responseDiagnosticsById?: Readonly<Record<string, LearningV2ModeChoiceDiagnosticV1>>;
   /** Present only on the first learner contact with a newly introduced word. */
   readonly newWordEncounter?: LearningV2CourseSessionNewWordEncounterV1;
 }
@@ -786,6 +792,12 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
         ...(Object.prototype.hasOwnProperty.call(entry, "responseFeedbackById")
           ? ["responseFeedbackById"]
           : []),
+        ...(Object.prototype.hasOwnProperty.call(entry, "responseAnalysisById")
+          ? ["responseAnalysisById"]
+          : []),
+        ...(Object.prototype.hasOwnProperty.call(entry, "responseDiagnosticsById")
+          ? ["responseDiagnosticsById"]
+          : []),
         ...(Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")
           ? ["newWordEncounter"]
           : []),
@@ -813,6 +825,57 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
             ]),
           ),
         );
+      }
+      let responseAnalysisById:
+        | Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>>>
+        | undefined;
+      if ("responseAnalysisById" in entry) {
+        if (!record(entry.responseAnalysisById)) fail();
+        const analysisEntries = Object.entries(entry.responseAnalysisById);
+        if (analysisEntries.length > 8) fail();
+        const parsedResponseAnalysisById = Object.freeze(Object.fromEntries(analysisEntries.map(([responseId, localizedAnalysis]) => {
+          if (!record(localizedAnalysis)) fail();
+          exactKeys(localizedAnalysis, LEARNING_V2_INTERFACE_LOCALES);
+          const parsedByLocale = Object.freeze(Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+            locale,
+            validateLearningV2ModeTextAnalysisV1(localizedAnalysis[locale]),
+          ]))) as Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>;
+          return [id(responseId), parsedByLocale] as const;
+        }))) as Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>>>;
+        responseAnalysisById = parsedResponseAnalysisById;
+        if (responseFeedbackById && (
+          Object.keys(parsedResponseAnalysisById).length !== Object.keys(responseFeedbackById).length ||
+          Object.keys(parsedResponseAnalysisById).some((responseId) => !(responseId in responseFeedbackById))
+        )) fail();
+      }
+      let responseDiagnosticsById:
+        | Readonly<Record<string, LearningV2ModeChoiceDiagnosticV1>>
+        | undefined;
+      if ("responseDiagnosticsById" in entry) {
+        if (!record(entry.responseDiagnosticsById)) fail();
+        const diagnosticEntries = Object.entries(entry.responseDiagnosticsById);
+        if (diagnosticEntries.length > 8) fail();
+        responseDiagnosticsById = Object.freeze(Object.fromEntries(diagnosticEntries.map(([responseId, rawDiagnostic]) => {
+          if (!record(rawDiagnostic)) fail();
+          exactKeys(rawDiagnostic, [
+            "errorType",
+            "whyTemptingByLocale",
+            "whyWrongHereByLocale",
+            "minimalContrastByLocale",
+            "acceptabilityBoundaryByLocale",
+          ]);
+          return [id(responseId), Object.freeze({
+            errorType: text(rawDiagnostic.errorType, 160),
+            whyTemptingByLocale: localized(rawDiagnostic.whyTemptingByLocale, 2_000),
+            whyWrongHereByLocale: localized(rawDiagnostic.whyWrongHereByLocale, 2_000),
+            minimalContrastByLocale: localized(rawDiagnostic.minimalContrastByLocale, 2_000),
+            acceptabilityBoundaryByLocale: localized(rawDiagnostic.acceptabilityBoundaryByLocale, 2_000),
+          })] as const;
+        }))) as Readonly<Record<string, LearningV2ModeChoiceDiagnosticV1>>;
+        if (
+          !responseFeedbackById ||
+          Object.keys(responseDiagnosticsById).some((responseId) => !(responseId in responseFeedbackById))
+        ) fail();
       }
       ids.add(interactionId);
       exactKeys(entry.report, ["available", "reportContextRef", "screen"]);
@@ -932,6 +995,8 @@ export function parseLearningV2CourseSessionAuxiliaryChildV1(
           2_000,
         ),
         ...(responseFeedbackById ? { responseFeedbackById } : {}),
+        ...(responseAnalysisById ? { responseAnalysisById } : {}),
+        ...(responseDiagnosticsById ? { responseDiagnosticsById } : {}),
         ...(newWordEncounter ? { newWordEncounter } : {}),
       });
     }),

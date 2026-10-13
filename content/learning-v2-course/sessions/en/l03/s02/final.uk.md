@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i02; family: listen_choose -->
 Ціль: `sofa`
 Варіанти: `sofa` · `safer` · `suffer`
+- safer — *У першому складі `safer` чути «ей», а в `sofa` — «оу». У записі — `sofa`.*
+- suffer — *У першому складі `suffer` голосний ближчий до «а», а в `sofa` чути «оу». Тут звучить `sofa`.*
+
 
 **3 · Картка слова — bed**
 <!-- interaction_id: en:lesson-03:session-02:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i04; family: listen_choose -->
 Ціль: `bed`
 Варіанти: `bed` · `red` · `bad`
+- red — *У `red` початковий `r` звучить плавно, без удару кінчиком язика; `bed` починається зі змикання губ для `b`. У записі — `bed`.*
+- bad — *У `bad` голосний вимовляють із більш відкритим ротом, ніж у `bed`. Тут звучить `bed`.*
+
 
 **5 · Складіть фразу — сестра запитує, що було під чохлом; скажіть «Це диван»**
 <!-- interaction_id: en:lesson-03:session-02:i05; family: phrase_builder -->
@@ -82,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i07; family: listen_choose -->
 Ціль: `desk`
 Варіанти: `desk` · `disk` · `dusk`
+- disk — *У середині `disk` голосний ближчий до українського «и», а в `desk` — до «е». У записі — `desk`.*
+- dusk — *У середині `dusk` голосний ближчий до «а», а в `desk` — до «е». Тут звучить `desk`.*
+
 
 **8 · Складіть запитання — з-під чохла видно край меблів; запитайте, чи це письмовий стіл**
 <!-- interaction_id: en:lesson-03:session-02:i08; family: phrase_builder -->
@@ -106,6 +115,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i12; family: context_gap_grammar -->
 Ціль: `It ___ bed.`
 Варіанти: `is a` · `is` · `a`
+- is — *Вийде `It is bed`: перед назвою ліжка бракує `a`.*
+- a — *Вийде `It a bed`: після `It` бракує `is`. Тут потрібні обидва слова: `is a`.*
+
 
 **13 · Складіть фразу — сестра запитує, що ви поставите біля вікна; назвіть письмовий стіл**
 <!-- interaction_id: en:lesson-03:session-02:i13; family: phrase_builder -->
@@ -116,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-02:i14; family: context_gap_grammar -->
 Ціль: `It ___ heavy.`
 Варіанти: `is` · `are` · `am`
+- are — *Про один предмет тут кажемо `It is heavy`. `are` з `It` не підходить.*
+- am — *`am` потрібне з `I`, коли говоримо про себе. Тут ідеться про стіл: `It is heavy`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-02:i15; family: scripted_repeat_compare -->

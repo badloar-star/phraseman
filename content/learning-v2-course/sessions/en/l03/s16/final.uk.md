@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-03:session-16:i01; family: context_gap_grammar -->
 Ціль: `It is ___ invoice.`
 Варіанти: `an` · `a` · `is`
+- a — *Назва `invoice` починається з голосного звуку. Тут потрібне `an`.*
+- is — *Після `It` уже є `is`. Перед назвою рахунка додайте `an`, а не друге `is`.*
+
 
 **2 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-16:i02; family: scripted_repeat_compare -->
@@ -70,16 +73,25 @@
 <!-- interaction_id: en:lesson-03:session-16:i04; family: context_gap_grammar -->
 Ціль: `___ hour.`
 Варіанти: `An` · `A` · `Is`
+- A — *У `hour` перша літера не вимовляється, тому слово починається з голосного звука. Потрібне `An`.*
+- Is — *Час називаємо коротко: `An hour`. `Is hour` не є короткою відповіддю про час очікування.*
+
 
 **5 · Послухайте й оберіть — що друг запитав про документ**
 <!-- interaction_id: en:lesson-03:session-16:i05; family: listen_choose -->
 Ціль: `Is it an invoice?`
 Варіанти: `Is it an invoice?` · `It is an invoice.` · `It is not an invoice.`
+- It is an invoice. — *Це твердження з порядком `It is`. У записі звучить запитання `Is it`.*
+- It is not an invoice. — *У цьому варіанті є `not`. У записі друг лише запитує про рахунок.*
+
 
 **6 · Вставте слово — касир уточнює товар у горщику; назвіть рослину повною фразою (`plant` — «рослина»)**
 <!-- interaction_id: en:lesson-03:session-16:i06; family: context_gap_grammar -->
 Ціль: `It is ___ plant.`
 Варіанти: `a` · `an` · `am`
+- an — *Перший звук `plant` — приголосний «п». Перед назвою рослини тут потрібне `a`.*
+- am — *Початок `It is` уже готовий. Перед назвою однієї рослини потрібне `a`, а не `am`.*
+
 
 **7 · Складіть запитання — касир дістав документ із теки; уточніть, чи це рахунок**
 <!-- interaction_id: en:lesson-03:session-16:i07; family: phrase_builder -->
@@ -100,11 +112,17 @@
 <!-- interaction_id: en:lesson-03:session-16:i10; family: context_gap_grammar -->
 Ціль: `Is it ___ invoice?`
 Варіанти: `an` · `a` · `is`
+- a — *На початку `invoice` чути голосний звук. Перед назвою обираємо `an`.*
+- is — *Запитання вже починається з `Is it`. Перед `invoice` потрібне `an`, а не ще одне `is`.*
+
 
 **11 · Послухайте й оберіть — що касир сказав про документ**
 <!-- interaction_id: en:lesson-03:session-16:i11; family: listen_choose -->
 Ціль: `It is not an invoice.`
 Варіанти: `It is not an invoice.` · `It is an invoice.` · `Is it an invoice?`
+- It is an invoice. — *Тут немає `not`, документ називають рахунком. У записі звучить заперечення.*
+- Is it an invoice? — *Це запитання з порядком `Is it`. У записі порядок `It is not`.*
+
 
 **12 · Складіть фразу — касир просить назвати покупку в горщику; дайте відповідь повною фразою**
 <!-- interaction_id: en:lesson-03:session-16:i12; family: phrase_builder -->
@@ -115,6 +133,9 @@
 <!-- interaction_id: en:lesson-03:session-16:i13; family: listen_choose -->
 Ціль: `It is an invoice.`
 Варіанти: `It is an invoice.` · `It is not an invoice.` · `Is it an invoice?`
+- It is not an invoice. — *У записі немає `not`: касир підтверджує, що це рахунок.*
+- Is it an invoice? — *Це запитання з порядком `Is it`. У записі твердження: `It is`.*
+
 
 **14 · Послухайте й складіть — касир виправляє один рядок у системі**
 <!-- interaction_id: en:lesson-03:session-16:i14; family: listen_build_dictation -->

@@ -253,16 +253,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-40:i08:p1", "target": "barcode", "meaningByLocale": { "ru": "штрихкод", "uk": "штрихкод" } },
-            { "pairId": "en:lesson-03:session-40:i08:p2", "target": "seal", "meaningByLocale": { "ru": "защитная пломба", "uk": "захисна пломба" } },
-            { "pairId": "en:lesson-03:session-40:i08:p3", "target": "coupon", "meaningByLocale": { "ru": "купон", "uk": "купон" } },
-            { "pairId": "en:lesson-03:session-40:i08:p4", "target": "package", "meaningByLocale": { "ru": "упаковка", "uk": "упаковка" } }
+            {
+              "pairId": "en:lesson-03:session-40:i08:p1",
+              "target": "barcode",
+              "meaningByLocale": {
+                "ru": "штрихкод",
+                "uk": "штрихкод"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p2",
+              "target": "seal",
+              "meaningByLocale": {
+                "ru": "защитная пломба",
+                "uk": "захисна пломба"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p3",
+              "target": "coupon",
+              "meaningByLocale": {
+                "ru": "купон",
+                "uk": "купон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p4",
+              "target": "package",
+              "meaningByLocale": {
+                "ru": "упаковка",
+                "uk": "упаковка"
+              }
+            }
           ],
-          "leftColumn": ["barcode", "seal", "coupon", "package"],
-          "rightColumn": ["штрихкод", "защитная пломба", "купон", "упаковка"],
+          "leftColumn": [
+            "barcode",
+            "seal",
+            "coupon",
+            "package"
+          ],
+          "rightColumn": [
+            "штрихкод",
+            "защитная пломба",
+            "купон",
+            "упаковка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -293,7 +339,8 @@
             "a",
             "seal."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -344,9 +391,19 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are coupons.",
-          "localizedMeaning": { "ru": "Соберите фразу — несколько купонов у дальней стороны", "uk": "Складіть фразу — кілька купонів з іншого боку" },
-          "orderedTokens": ["Those", "are", "coupons."],
-          "authoredDistractorTokens": ["This", "is"],
+          "localizedMeaning": {
+            "ru": "Соберите фразу — несколько купонов у дальней стороны",
+            "uk": "Складіть фразу — кілька купонів з іншого боку"
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "coupons."
+          ],
+          "authoredDistractorTokens": [
+            "This",
+            "is"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -404,7 +461,7 @@
               "text": "This"
             }
           ],
-          "testedDimension": "Вставьте указатель — несколько штрихкодо",
+          "testedDimension": "Вставьте указатель — несколько штрихкодов лежат у дальней стороны",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-40:i09:r2",
@@ -1290,16 +1347,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-40:i08:p1", "target": "barcode", "meaningByLocale": { "ru": "штрихкод", "uk": "штрихкод" } },
-            { "pairId": "en:lesson-03:session-40:i08:p2", "target": "seal", "meaningByLocale": { "ru": "защитная пломба", "uk": "захисна пломба" } },
-            { "pairId": "en:lesson-03:session-40:i08:p3", "target": "coupon", "meaningByLocale": { "ru": "купон", "uk": "купон" } },
-            { "pairId": "en:lesson-03:session-40:i08:p4", "target": "package", "meaningByLocale": { "ru": "упаковка", "uk": "упаковка" } }
+            {
+              "pairId": "en:lesson-03:session-40:i08:p1",
+              "target": "barcode",
+              "meaningByLocale": {
+                "ru": "штрихкод",
+                "uk": "штрихкод"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p2",
+              "target": "seal",
+              "meaningByLocale": {
+                "ru": "защитная пломба",
+                "uk": "захисна пломба"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p3",
+              "target": "coupon",
+              "meaningByLocale": {
+                "ru": "купон",
+                "uk": "купон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-40:i08:p4",
+              "target": "package",
+              "meaningByLocale": {
+                "ru": "упаковка",
+                "uk": "упаковка"
+              }
+            }
           ],
-          "leftColumn": ["barcode", "seal", "coupon", "package"],
-          "rightColumn": ["штрихкод", "захисна пломба", "купон", "упаковка"],
+          "leftColumn": [
+            "barcode",
+            "seal",
+            "coupon",
+            "package"
+          ],
+          "rightColumn": [
+            "штрихкод",
+            "захисна пломба",
+            "купон",
+            "упаковка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1330,7 +1433,8 @@
             "a",
             "seal."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1381,9 +1485,19 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are coupons.",
-          "localizedMeaning": { "ru": "Соберите фразу — несколько купонов у дальней стороны", "uk": "Складіть фразу — кілька купонів з іншого боку" },
-          "orderedTokens": ["Those", "are", "coupons."],
-          "authoredDistractorTokens": ["This", "is"],
+          "localizedMeaning": {
+            "ru": "Соберите фразу — несколько купонов у дальней стороны",
+            "uk": "Складіть фразу — кілька купонів з іншого боку"
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "coupons."
+          ],
+          "authoredDistractorTokens": [
+            "This",
+            "is"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null

@@ -81,6 +81,7 @@ He is ___ . → **kind** · quiet · ready
 **4 · Соберите фразу — про вашего брата, он всегда собран**
 <!-- interaction_id: en:lesson-01:session-55:i04; family: phrase_builder -->
 Плитки: `He` `is` `ready.` `are` → **He is ready.**
+*Плитка `are` лишняя: `he` — один человек, поэтому нужна форма `is`: `He is ready.`*
 
 **5 · Выберите форму — про жильцов сверху**
 <!-- interaction_id: en:lesson-01:session-55:i05; family: context_gap_grammar -->
@@ -95,6 +96,7 @@ tired — устал · quiet — тихий · kind — добрый · ready �
 **7 · Соберите фразу — «мы заняты»**
 <!-- interaction_id: en:lesson-01:session-55:i07; family: phrase_builder -->
 `busy` — «занят». Плитки: `are` `busy` `we` `is` → **We are busy.**
+*Плитка `is` лишняя: `we` — это несколько человек, поэтому нужна форма `are`: `We are busy.`*
 
 **8 · Вставьте слово — сосед уточняет, занята ли она**
 <!-- interaction_id: en:lesson-01:session-55:i08; family: context_gap_grammar -->
@@ -117,6 +119,7 @@ It is ___ . → **warm** · tired · ready
 **11 · Послушайте и соберите — «ты в безопасности»**
 <!-- interaction_id: en:lesson-01:session-55:i11; family: listen_build_dictation -->
 `safe` — «в безопасности». 🔊 *You are safe.* Плитки: `are` `safe` `you` `am` → **You are safe.**
+*Плитка `am` лишняя: `am` употребляют только с `I`; после `you` нужна форма `are`: `You are safe.`*
 
 **12 · Выберите форму — в квартире тихо**
 <!-- interaction_id: en:lesson-01:session-55:i12; family: context_gap_grammar -->
@@ -135,6 +138,7 @@ busy — занят · safe — в безопасности · warm — тёпл
 **15 · Соберите фразу — они ещё собираются, выходить рано**
 <!-- interaction_id: en:lesson-01:session-55:i15; family: phrase_builder -->
 Плитки: `they` `ready` `not` `are` `is` → **They are not ready.**
+*Плитка `is` лишняя: `they` — это несколько человек, поэтому нужна форма `are`: `They are not ready.`*
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-55:i16:s01; family: scripted_repeat_compare -->

@@ -58,6 +58,9 @@
 <!-- interaction_id: en:lesson-03:session-47:i05; family: listen_choose -->
 Ціль: `hammer`
 Варіанти: `hammer` · `hamper` · `hanger`
+- hamper — *`hamper` — кошик, не інструмент.*
+- hanger — *`hanger` — вішалка, не інструмент.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-47:i02; family: scripted_repeat_compare -->
@@ -85,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-47:i10; family: context_gap_grammar -->
 Ціль: `___ box is here.`
 Варіанти: `the` · `a` · `an`
+- a — *`a` вводить нову коробку, а ця коробка вже перед вами.*
+- an — *`an` не ставлять перед початковим звуком /b/ у `box`.*
+
 
 **10 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-47:i11; family: speed_match -->
@@ -95,6 +101,10 @@
 <!-- interaction_id: en:lesson-03:session-47:i08; family: context_gap_grammar -->
 Ціль: `___ screw is here.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- A — *Гвинт уже назвали.*
+- An — *Перед `screw` потрібен не `an`.*
+- без артикля — *Для вже зрозумілого гвинта потрібен `the`.*
+
 
 **12 · Складіть фразу — показуєте молоток**
 <!-- interaction_id: en:lesson-03:session-47:i12; family: phrase_builder -->
@@ -104,6 +114,10 @@
 <!-- interaction_id: en:lesson-03:session-47:i13; family: listen_choose -->
 Ціль: `Here is a screw.`
 Варіанти: `Ось гвинт` · `Ось цвях` · `Де гвинт?` · `Гвинта тут немає`
+- Ось цвях — *Звучить `screw`, а не `nail`.*
+- Де гвинт? — *Це твердження, а не запитання.*
+- Гвинта тут немає — *Фраза показує предмет, а не заперечує його наявність.*
+
 
 **14 · Складіть фразу — новий цвях**
 <!-- interaction_id: en:lesson-03:session-47:i14; family: phrase_builder -->
@@ -113,16 +127,28 @@
 <!-- interaction_id: en:lesson-03:session-47:i15; family: context_gap_grammar -->
 Ціль: `___ nail is here.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- A — *Цвях уже назвали.*
+- An — *Перед `nail` потрібен не `an`.*
+- без артикля — *Для вже зрозумілого цвяха потрібен `the`.*
+
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-03:session-47:i16; family: listen_choose -->
 Ціль: `The hammer is here.`
 Варіанти: `Цей молоток тут.` · `Тут є молоток.` · `Цей цвях тут.` · `Де молоток?`
+- Тут є молоток. — *У записі є `the`.*
+- Цей цвях тут. — *Звучить `hammer`, а не `nail`.*
+- Де молоток? — *Це твердження, а не запитання.*
+
 
 **17 · Вставте артикль — продавець уперше кладе новий молоток на прилавок**
 <!-- interaction_id: en:lesson-03:session-47:i17; family: context_gap_grammar -->
 Ціль: `___ hammer is on the counter.`
 Варіанти: `A` · `The` · `An` · `без артикля`
+- The — *`the` підходить для вже відомого молотка, але цей молоток продавець показує вперше. Тому потрібне `a`. Обирайте `the` лише після першої згадки.*
+- An — *`an` теж вводить один предмет, але `hammer` починається зі звука /h/, тому потрібне `a`. Спершу слухайте перший звук слова.*
+- без артикля — *Без артикля не називають один злічуваний предмет. Тут один новий молоток, тому `a hammer`.*
+
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

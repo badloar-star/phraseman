@@ -570,7 +570,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «в семье всё хорошо»",
+              "feedbackByLocale": {
+                "ru": "`family` — одна семья как целое, поэтому здесь нужно `is`",
+                "uk": "`family` — одна сім'я як ціле, тому тут потрібне `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -619,7 +629,7 @@
               "text": "People"
             }
           ],
-          "testedDimension": "Вставьте слово — в офисе в шесть вечера ",
+          "testedDimension": "Вставьте слово — в офисе в шесть вечера пусто",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-49:i11:r2",
@@ -745,7 +755,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «все заняты»",
+              "feedbackByLocale": {
+                "ru": "`everyone` требует `is`, даже когда речь о всех",
+                "uk": "`everyone` потребує `is`, навіть коли йдеться про всіх"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -775,7 +795,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рабочий день кончился, и сил не осталось",
+              "feedbackByLocale": {
+                "ru": "после `I` нужна форма `am`",
+                "uk": "після `I` потрібна форма `am`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -969,7 +999,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i17:s02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете всю дружелюбную команду",
+              "feedbackByLocale": {
+                "ru": "после `everyone` нужна форма `is`",
+                "uk": "після `everyone` потрібна форма `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1606,7 +1646,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «в семье всё хорошо»",
+              "feedbackByLocale": {
+                "ru": "`family` — одна семья как целое, поэтому здесь нужно `is`",
+                "uk": "`family` — одна сім'я як ціле, тому тут потрібне `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1655,7 +1705,7 @@
               "text": "People"
             }
           ],
-          "testedDimension": "Вставте слово — в офісі о шостій вечора ",
+          "testedDimension": "Вставте слово — в офісі о шостій вечора порожньо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-49:i11:r2",
@@ -1781,7 +1831,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «все заняты»",
+              "feedbackByLocale": {
+                "ru": "`everyone` требует `is`, даже когда речь о всех",
+                "uk": "`everyone` потребує `is`, навіть коли йдеться про всіх"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1811,7 +1871,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рабочий день кончился, и сил не осталось",
+              "feedbackByLocale": {
+                "ru": "после `I` нужна форма `am`",
+                "uk": "після `I` потрібна форма `am`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2005,7 +2075,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-49:i17:s02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете всю дружелюбную команду",
+              "feedbackByLocale": {
+                "ru": "после `everyone` нужна форма `is`",
+                "uk": "після `everyone` потрібна форма `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

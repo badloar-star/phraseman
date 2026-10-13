@@ -117,6 +117,15 @@
                 "ru": "«Сумка». Разница в последнем звуке: `bad` кончается на «д».",
                 "uk": "«Сумка». Різниця в останньому звуці: `bad` закінчується на «д»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Выбрано слово `bad`: оно звучит в аудио и значит «плохой».",
+                "uk": "Обрано слово `bad`: воно звучить в аудіо й означає «поганий»."
+              }
             }
           ],
           "isWordCard": false,
@@ -149,7 +158,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «мы готовы»",
+              "feedbackByLocale": {
+                "ru": "она уже спрятана внутри `we're`",
+                "uk": "це слово вже сховане всередині `we're`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -265,6 +284,15 @@
                 "ru": "«Катушка». Один долгий «и». В `real` два звука: «ри-эл».",
                 "uk": "«Котушка». Один довгий «і». У `real` два звуки: «рі-ел»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i05:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Выбрано слово `real`: в аудио слышно `real`, «настоящий».",
+                "uk": "Обрано слово `real`: в аудіо чути `real`, «справжній»."
+              }
             }
           ],
           "isWordCard": false,
@@ -360,7 +388,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — приятель клянётся, что ",
+          "testedDimension": "Вставьте слово — приятель клянётся, что это не выдумка",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i07:r2",
@@ -378,6 +406,15 @@
               "feedbackByLocale": {
                 "ru": "«Готов», можно начинать. Про правдивость истории — `true`.",
                 "uk": "«Готовий», можна починати. Про правдивість історії — `true`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — приятель клянётся, что это не выдумка",
+              "feedbackByLocale": {
+                "ru": "История не выдумана, значит она `true` — «правда».",
+                "uk": "Історія не вигадана, отже вона `true` — «правда»."
               }
             }
           ]
@@ -406,7 +443,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — несколько коллег за соседним столом всех рассмешили",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `They`: нужно `They are funny.`",
+                "uk": "`is` не підходить до `They`: потрібно `They are funny`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -439,7 +486,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «они не опаздывают»",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `They`: в аудио `They aren't late.`",
+                "uk": "`isn't` не підходить до `They`: в аудіо `They aren't late`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -488,7 +545,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — приятель боится, что ис",
+          "testedDimension": "Вставьте слово — приятель боится, что история выдумана. Успокойте: она настоящая",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i10:r2",
@@ -506,6 +563,15 @@
               "feedbackByLocale": {
                 "ru": "`am` идёт только с `I`. Про вещь — `is`.",
                 "uk": "`am` іде тільки з `I`. Про річ — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — приятель боится, что история выдумана. Успокойте: она настоящая",
+              "feedbackByLocale": {
+                "ru": "С `it` говорят `is`: `It is real.`",
+                "uk": "З `it` кажуть `is`: `It is real`."
               }
             }
           ]
@@ -648,7 +714,7 @@
               "text": "real"
             }
           ],
-          "testedDimension": "Вставьте слово — приятель называет ваш о",
+          "testedDimension": "Вставьте слово — приятель называет ваш ответ ошибочным, а он верный",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i14:r2",
@@ -666,6 +732,15 @@
               "feedbackByLocale": {
                 "ru": "«Настоящий» — про вещи и истории, а не про правоту в споре.",
                 "uk": "«Справжній» — про речі й історії, а не про правоту в суперечці."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — приятель называет ваш ответ ошибочным, а он верный",
+              "feedbackByLocale": {
+                "ru": "Верный ответ: `You aren't wrong.` — «ты не ошибаешься».",
+                "uk": "Правильна відповідь: `You aren't wrong` — «ти не помиляєшся»."
               }
             }
           ]
@@ -740,6 +815,15 @@
               "feedbackByLocale": {
                 "ru": "«Старый». Кончается на «д», а `ok` — на «й».",
                 "uk": "«Старий». Закінчується на «д», а `ok` — на «й»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i15:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Выбрано `ok`: в аудио два звука — `o-k`.",
+                "uk": "Обрано `ok`: в аудіо два звуки — `o-k`."
               }
             }
           ],
@@ -1034,6 +1118,15 @@
                 "ru": "«Сумка». Разница в последнем звуке: `bad` кончается на «д».",
                 "uk": "«Сумка». Різниця в останньому звуці: `bad` закінчується на «д»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i02:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Выбрано слово `bad`: оно звучит в аудио и значит «плохой».",
+                "uk": "Обрано слово `bad`: воно звучить в аудіо й означає «поганий»."
+              }
             }
           ],
           "isWordCard": false,
@@ -1066,7 +1159,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «мы готовы»",
+              "feedbackByLocale": {
+                "ru": "она уже спрятана внутри `we're`",
+                "uk": "це слово вже сховане всередині `we're`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1182,6 +1285,15 @@
                 "ru": "«Катушка». Один долгий «и». В `real` два звука: «ри-эл».",
                 "uk": "«Котушка». Один довгий «і». У `real` два звуки: «рі-ел»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i05:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Выбрано слово `real`: в аудио слышно `real`, «настоящий».",
+                "uk": "Обрано слово `real`: в аудіо чути `real`, «справжній»."
+              }
             }
           ],
           "isWordCard": false,
@@ -1277,7 +1389,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — приятель клянеться, що ц",
+          "testedDimension": "Вставте слово — приятель клянеться, що це не вигадка",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i07:r2",
@@ -1295,6 +1407,15 @@
               "feedbackByLocale": {
                 "ru": "«Готов», можно начинать. Про правдивость истории — `true`.",
                 "uk": "«Готовий», можна починати. Про правдивість історії — `true`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — приятель клянеться, що це не вигадка",
+              "feedbackByLocale": {
+                "ru": "История не выдумана, значит она `true` — «правда».",
+                "uk": "Історія не вигадана, отже вона `true` — «правда»."
               }
             }
           ]
@@ -1323,7 +1444,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — несколько коллег за соседним столом всех рассмешили",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `They`: нужно `They are funny.`",
+                "uk": "`is` не підходить до `They`: потрібно `They are funny`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1356,7 +1487,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-43:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «они не опаздывают»",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `They`: в аудио `They aren't late.`",
+                "uk": "`isn't` не підходить до `They`: в аудіо `They aren't late`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1405,7 +1546,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — приятель боїться, що іст",
+          "testedDimension": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i10:r2",
@@ -1423,6 +1564,15 @@
               "feedbackByLocale": {
                 "ru": "`am` идёт только с `I`. Про вещь — `is`.",
                 "uk": "`am` іде тільки з `I`. Про річ — `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня",
+              "feedbackByLocale": {
+                "ru": "С `it` говорят `is`: `It is real.`",
+                "uk": "З `it` кажуть `is`: `It is real`."
               }
             }
           ]
@@ -1565,7 +1715,7 @@
               "text": "real"
             }
           ],
-          "testedDimension": "Вставте слово — приятель називає вашу ві",
+          "testedDimension": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-43:i14:r2",
@@ -1583,6 +1733,15 @@
               "feedbackByLocale": {
                 "ru": "«Настоящий» — про вещи и истории, а не про правоту в споре.",
                 "uk": "«Справжній» — про речі й історії, а не про правоту в суперечці."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — приятель називає вашу відповідь хибною, а вона правильна",
+              "feedbackByLocale": {
+                "ru": "Верный ответ: `You aren't wrong.` — «ты не ошибаешься».",
+                "uk": "Правильна відповідь: `You aren't wrong` — «ти не помиляєшся»."
               }
             }
           ]
@@ -1657,6 +1816,15 @@
               "feedbackByLocale": {
                 "ru": "«Старый». Кончается на «д», а `ok` — на «й».",
                 "uk": "«Старий». Закінчується на «д», а `ok` — на «й»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-43:i15:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Выбрано `ok`: в аудио два звука — `o-k`.",
+                "uk": "Обрано `ok`: в аудіо два звуки — `o-k`."
               }
             }
           ],

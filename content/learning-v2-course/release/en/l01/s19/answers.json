@@ -32,7 +32,7 @@
   {
     "interactionId": "en:lesson-01:session-19:i07",
     "correctText": "slow",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-19:i07:r1"
   },
   {
     "interactionId": "en:lesson-01:session-19:i08",
@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-19:i16",
-    "correctText": "serious",
-    "correctResponseId": "en:lesson-01:session-19:i16:r1"
+    "correctText": "He is serious.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-19:i17",
@@ -95,18 +95,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-19:i20:s01",
+    "interactionId": "en:lesson-01:session-19:i20",
     "correctText": "He is not angry.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i20:s02",
-    "correctText": "She is not rude.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-19:i20:s03",
-    "correctText": "He is not slow.",
     "correctResponseId": null
   }
 ]

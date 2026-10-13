@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i02; family: listen_choose -->
 Ціль: `couple`
 Варіанти: `couple` · `cuddle` · `cutter`
+- cuddle — *Це «обіймати». Прослухайте ще раз середину: у `cuddle` там інший приголосний, а в записі звучить `couple`.*
+- cutter — *Це «різак». Прослухайте ще раз приголосний усередині: `cutter` звучить там інакше, а в записі звучить `couple`.*
+
 
 **3 · Картка слова — crowd**
 <!-- interaction_id: en:lesson-02:session-39:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i04; family: listen_choose -->
 Ціль: `crowd`
 Варіанти: `crowd` · `cloud` · `proud`
+- cloud — *Це «хмара». Прослухайте ще раз другий звук на початку: у `cloud` він інший, а в записі звучить `crowd`.*
+- proud — *Це «гордий». Прослухайте ще раз перший звук: `proud` починається інакше, а в записі звучить `crowd`.*
+
 
 **5 · Складіть фразу — ви хочете подякувати тому, хто влаштував вечірку; дізнайтеся, хто господар**
 <!-- interaction_id: en:lesson-02:session-39:i05; family: phrase_builder -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-02:session-39:i06; family: context_gap_grammar -->
 Ціль: `He is the ___ .`
 Варіанти: `host` · `guest` · `intern`
+- guest — *Вийде «Він гість». Ця людина сама приймає гостей, тому потрібне `host`.*
+- intern — *Це «стажист». Ви називаєте його роль на вечірці, а не на роботі: `host`.*
+
 
 **7 · Послухайте й виберіть — що друг сказав про натовп біля будинку**
 <!-- interaction_id: en:lesson-02:session-39:i07; family: listen_choose -->
 Ціль: `The crowd is outside.`
 Варіанти: `The crowd is outside.` · `The crowd is here.` · `The couple is outside.`
+- The crowd is here. — *Тут останнє слово `here` означає «тут». На записі звучить `outside` — «надворі».*
+- The couple is outside. — *Це фраза про пару. На записі звучить `crowd` — натовп.*
+
 
 **8 · Складіть фразу — друг шукає знайому пару; вони поруч із вами, повідомте про це**
 <!-- interaction_id: en:lesson-02:session-39:i08; family: phrase_builder -->
@@ -92,6 +104,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i09; family: context_gap_grammar -->
 Ціль: `They are ___ .`
 Варіанти: `strangers` · `friends` · `neighbours`
+- friends — *Це «друзі». Ви бачите цих людей уперше, тому називаєте їх `strangers`.*
+- neighbours — *Це «сусіди». Ви не знаєте, хто ці люди й де вони живуть; тут потрібне `strangers`.*
+
 
 **10 · З’єднайте пари — люди на вечірці**
 <!-- interaction_id: en:lesson-02:session-39:i10; family: speed_match -->
@@ -106,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i12; family: context_gap_grammar -->
 Ціль: `They are ___ .`
 Варіанти: `guests` · `twins` · `managers`
+- twins — *Це «близнюки». Ви повідомляєте, що цих людей запросили в гості, а не що вони народилися разом.*
+- managers — *Це «керівники». Їхня робота тут ні до чого: господар запросив їх як гостей — `guests`.*
+
 
 **13 · Послухайте й складіть — друг говорить про людей біля дверей**
 <!-- interaction_id: en:lesson-02:session-39:i13; family: listen_build_dictation -->

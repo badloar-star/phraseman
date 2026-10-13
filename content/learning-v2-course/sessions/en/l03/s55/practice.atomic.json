@@ -5,61 +5,1939 @@
   "preservationLedgerSha256": "0000000000000000000000000000000000000000000000000000000000000000",
   "interactionsByLocale": {
     "ru": [
-      {"interactionId":"en:lesson-03:session-55:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите слово","responseOptions":[{"responseId":"en:lesson-03:session-55:i01:r1","text":"shape"},{"responseId":"en:lesson-03:session-55:i01:r2","text":"ship"},{"responseId":"en:lesson-03:session-55:i01:r3","text":"shade"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i01:audio"],"accessibilityLabel":"Послушайте и выберите слово","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i01:audio","transcript":"shape"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i01:r1","targetText":"shape","meaningByLocale":{"ru":"форма","uk":"форма"}},{"responseId":"en:lesson-03:session-55:i01:r2","targetText":"ship","meaningByLocale":{"ru":"корабль","uk":"корабель"}},{"responseId":"en:lesson-03:session-55:i01:r3","targetText":"shade","meaningByLocale":{"ru":"тень","uk":"тінь"}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i01:r2","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».","uk":"Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма»."}},{"responseId":"en:lesson-03:session-55:i01:r3","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».","uk":"Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма»."}}],"isWordCard":true,"wordCard":{"word":"shape","definitionByLocale":{"ru":"«форма». Контур или вид предмета.","uk":"«форма». Контур або вид предмета."}}},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i02","ordinal":5,"purpose":"supported_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i02:audio"],"accessibilityLabel":"Произнесите слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i02:audio","transcript":"material"},"slowReferenceAudio":null,"targetPhrase":"material","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — pattern","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i03:audio"],"accessibilityLabel":"Карточка слова — pattern","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i03:audio","transcript":"pattern"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i03:r1","targetText":"pattern","meaningByLocale":{"ru":"«узор». Повторяющийся рисунок на поверхности.","uk":"«візерунок». Повторюваний малюнок на поверхні."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"pattern","definitionByLocale":{"ru":"«узор». Повторяющийся рисунок на поверхности.","uk":"«візерунок». Повторюваний малюнок на поверхні."}}},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i04","ordinal":7,"purpose":"supported_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i04:audio"],"accessibilityLabel":"Произнесите слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i04:audio","transcript":"shape"},"slowReferenceAudio":null,"targetPhrase":"shape","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i05","ordinal":8,"purpose":"supported_practice","family":"sound_contrast","inputMode":"single_choice","prompt":"Различите слово — material или matter","responseOptions":[{"responseId":"en:lesson-03:session-55:i05:r1","text":"material"},{"responseId":"en:lesson-03:session-55:i05:r2","text":"matter"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i05:audioA","en:lesson-03:session-55:i05:audioB"],"accessibilityLabel":"Различите слово — material или matter","modePayload":{"family":"sound_contrast","contrastA":"material","contrastB":"matter","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-55:i05:audioA","transcript":"material"},"audioB":{"audioTargetId":"en:lesson-03:session-55:i05:audioB","transcript":"matter"},"testedPhoneticContrast":"Material состоит из четырёх слогов, а matter — из двух.","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i05:r2","correct":false,"testedDimension":"Различите material и matter","feedbackByLocale":{"ru":"`Matter` — это «вопрос, дело» и в нём два слога. В записи `material` — «материал».","uk":"`Matter` — це «питання, справа» і в ньому два склади. У записі `material` — «матеріал»."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i06","ordinal":9,"purpose":"supported_practice","family":"speed_match","inputMode":"pair_grid","prompt":"Соедините слова и значения для подписи у дальней стены","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соедините слова и значения для подписи у дальней стены","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-55:i06:p1","target":"pattern","meaningByLocale":{"ru":"узор","uk":"візерунок"}},{"pairId":"en:lesson-03:session-55:i06:p2","target":"striped","meaningByLocale":{"ru":"полосатый","uk":"смугастий"}},{"pairId":"en:lesson-03:session-55:i06:p3","target":"pale","meaningByLocale":{"ru":"бледный","uk":"блідий"}},{"pairId":"en:lesson-03:session-55:i06:p4","target":"soft","meaningByLocale":{"ru":"мягкий","uk":"м’який"}}],"leftColumn":["pattern","striped","pale","soft"],"rightColumn":["узор","полосатый","бледный","мягкий"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i07","ordinal":10,"purpose":"guided_practice","family":"sound_contrast","inputMode":"single_choice","prompt":"Различите слово — shape или ship","responseOptions":[{"responseId":"en:lesson-03:session-55:i07:r1","text":"shape"},{"responseId":"en:lesson-03:session-55:i07:r2","text":"ship"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i07:audioA","en:lesson-03:session-55:i07:audioB"],"accessibilityLabel":"Различите слово — shape или ship","modePayload":{"family":"sound_contrast","contrastA":"shape","contrastB":"ship","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-55:i07:audioA","transcript":"shape"},"audioB":{"audioTargetId":"en:lesson-03:session-55:i07:audioB","transcript":"ship"},"testedPhoneticContrast":"В shape гласный тянется дольше, чем в ship.","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i07:r2","correct":false,"testedDimension":"Различите shape и ship","feedbackByLocale":{"ru":"`Ship` — это корабль. В записи `shape` — «форма»: гласный в нём тянется дольше.","uk":"`Ship` — це корабель. У записі `shape` — «форма»: голосний у ньому тягнеться довше."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите слово","responseOptions":[{"responseId":"en:lesson-03:session-55:i08:r1","text":"material"},{"responseId":"en:lesson-03:session-55:i08:r2","text":"matter"},{"responseId":"en:lesson-03:session-55:i08:r3","text":"mature"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i08:audio"],"accessibilityLabel":"Послушайте и выберите слово","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i08:audio","transcript":"material"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i08:r1","targetText":"material","meaningByLocale":{"ru":"материал","uk":"матеріал"}},{"responseId":"en:lesson-03:session-55:i08:r2","targetText":"matter","meaningByLocale":{"ru":"вопрос","uk":"питання"}},{"responseId":"en:lesson-03:session-55:i08:r3","targetText":"mature","meaningByLocale":{"ru":"зрелый","uk":"зрілий"}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i08:r2","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"`Matter` короче; в записи звучит `material` — «материал».","uk":"`Matter` коротше; у записі звучить `material` — «матеріал»."}},{"responseId":"en:lesson-03:session-55:i08:r3","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"`Mature` похоже началом, но в записи `material` — «материал».","uk":"`Mature` схоже початком, але у записі `material` — «матеріал»."}}],"isWordCard":false},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i09","ordinal":12,"purpose":"guided_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i09:audio"],"accessibilityLabel":"Произнесите слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i09:audio","transcript":"pattern"},"slowReferenceAudio":null,"targetPhrase":"pattern","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i10","ordinal":13,"purpose":"guided_practice","family":"speed_match","inputMode":"pair_grid","prompt":"Соедините указатели с их точным смыслом","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соедините указатели с их точным смыслом","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-55:i10:p1","target":"this","meaningByLocale":{"ru":"этот один рядом","uk":"цей один поруч"}},{"pairId":"en:lesson-03:session-55:i10:p2","target":"that","meaningByLocale":{"ru":"тот один далеко","uk":"той один далеко"}},{"pairId":"en:lesson-03:session-55:i10:p3","target":"these","meaningByLocale":{"ru":"эти несколько рядом","uk":"ці кілька поруч"}},{"pairId":"en:lesson-03:session-55:i10:p4","target":"those","meaningByLocale":{"ru":"те несколько далеко","uk":"ті кілька далеко"}}],"leftColumn":["this","that","these","those"],"rightColumn":["этот один рядом","тот один далеко","эти несколько рядом","те несколько далеко"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i11","ordinal":14,"purpose":"guided_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите фразу о форме зеркала","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i11:audio"],"accessibilityLabel":"Послушайте и соберите фразу о форме зеркала","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i11:audio","transcript":"The shape is round."},"slowReferenceAudio":null,"hiddenTargetPhrase":"The shape is round.","orderedTokens":["The","shape","is","round"],"distractorTokens":["These"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i12","ordinal":15,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте свойство образца рядом","responseOptions":[{"responseId":"en:lesson-03:session-55:i12:r1","text":"soft"},{"responseId":"en:lesson-03:session-55:i12:r2","text":"striped"},{"responseId":"en:lesson-03:session-55:i12:r3","text":"round"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте свойство образца рядом","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте свойство образца рядом","uk":"Вставте властивість зразка поруч"},"gappedTargetPhrase":"This material is ___.","gapOptions":[{"responseId":"en:lesson-03:session-55:i12:r1","text":"soft"},{"responseId":"en:lesson-03:session-55:i12:r2","text":"striped"},{"responseId":"en:lesson-03:session-55:i12:r3","text":"round"}],"testedDimension":"свойство материала","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i12:r2","correct":false,"testedDimension":"свойство материала","feedbackByLocale":{"ru":"`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.","uk":"`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`."}},{"responseId":"en:lesson-03:session-55:i12:r3","correct":false,"testedDimension":"свойство материала","feedbackByLocale":{"ru":"`Round` описывает форму, а здесь нужна мягкость материала: `soft`.","uk":"`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i13","ordinal":16,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите подпись у дальней стены","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите подпись у дальней стены","modePayload":{"family":"phrase_builder","targetPhrase":"That pattern is striped.","localizedMeaning":{"ru":"Соберите подпись у дальней стены","uk":"Складіть підпис біля дальньої стіни"},"orderedTokens":["That","pattern","is","striped"],"authoredDistractorTokens":["the","Those"],"slotFeedback":[]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i14","ordinal":17,"purpose":"retrieval_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите смысл подписи в листе","responseOptions":[{"responseId":"en:lesson-03:session-55:i14:r1","text":"The shape is square."},{"responseId":"en:lesson-03:session-55:i14:r2","text":"The shape is round."},{"responseId":"en:lesson-03:session-55:i14:r3","text":"These shapes are square."}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i14:audio"],"accessibilityLabel":"Послушайте и выберите смысл подписи в листе","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i14:audio","transcript":"The shape is square."},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i14:r1","targetText":"The shape is square.","meaningByLocale":{"ru":"Форма квадратная.","uk":"Форма квадратна."}},{"responseId":"en:lesson-03:session-55:i14:r2","targetText":"The shape is round.","meaningByLocale":{"ru":"Форма круглая.","uk":"Форма кругла."}},{"responseId":"en:lesson-03:session-55:i14:r3","targetText":"These shapes are square.","meaningByLocale":{"ru":"Эти формы квадратные.","uk":"Ці форми квадратні."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i14:r2","correct":false,"testedDimension":"значение","feedbackByLocale":{"ru":"В записи `square` — «квадратная», а не `round` — «круглая».","uk":"У записі `square` — «квадратна», а не `round` — «кругла»."}},{"responseId":"en:lesson-03:session-55:i14:r3","correct":false,"testedDimension":"число","feedbackByLocale":{"ru":"В записи одна форма: `The shape is`, а не несколько форм.","uk":"У записі одна форма: `The shape is`, а не кілька форм."}}],"isWordCard":false},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i15","ordinal":18,"purpose":"independent_check","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите подпись о нескольких узорах рядом","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i15:audio"],"accessibilityLabel":"Послушайте и соберите подпись о нескольких узорах рядом","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i15:audio","transcript":"These patterns are pale."},"slowReferenceAudio":null,"hiddenTargetPhrase":"These patterns are pale.","orderedTokens":["These","patterns","are","pale"],"distractorTokens":["Those","the"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i16","ordinal":19,"purpose":"independent_check","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте начало для нескольких дальних образцов","responseOptions":[{"responseId":"en:lesson-03:session-55:i16:r1","text":"Those"},{"responseId":"en:lesson-03:session-55:i16:r2","text":"That"},{"responseId":"en:lesson-03:session-55:i16:r3","text":"The"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте начало для нескольких дальних образцов","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте начало для нескольких дальних образцов","uk":"Вставте початок для кількох дальніх зразків"},"gappedTargetPhrase":"___ materials are soft.","gapOptions":[{"responseId":"en:lesson-03:session-55:i16:r1","text":"Those"},{"responseId":"en:lesson-03:session-55:i16:r2","text":"That"},{"responseId":"en:lesson-03:session-55:i16:r3","text":"The"}],"testedDimension":"число и расстояние","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i16:r2","correct":false,"testedDimension":"число и расстояние","feedbackByLocale":{"ru":"`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.","uk":"`That` — для одного далекого предмета; зразків кілька, тому `Those`."}},{"responseId":"en:lesson-03:session-55:i16:r3","correct":false,"testedDimension":"число и расстояние","feedbackByLocale":{"ru":"`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.","uk":"`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i17","ordinal":20,"purpose":"independent_final","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"соберите независимую подпись у дальней стены","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"соберите независимую подпись у дальней стены","modePayload":{"family":"phrase_builder","targetPhrase":"Those patterns are striped.","localizedMeaning":{"ru":"соберите независимую подпись у дальней стены","uk":"складіть незалежний підпис біля дальньої стіни"},"orderedTokens":["Those","patterns","are","striped"],"authoredDistractorTokens":["That","the"],"slotFeedback":[]},"scriptedAlternate":null}
+      {
+        "interactionId": "en:lesson-03:session-55:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i01:r1",
+            "text": "shape"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i01:r2",
+            "text": "ship"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i01:r3",
+            "text": "shade"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i01:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i01:audio",
+            "transcript": "shape"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i01:r1",
+              "targetText": "shape",
+              "meaningByLocale": {
+                "ru": "форма",
+                "uk": "форма"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r2",
+              "targetText": "ship",
+              "meaningByLocale": {
+                "ru": "корабль",
+                "uk": "корабель"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r3",
+              "targetText": "shade",
+              "meaningByLocale": {
+                "ru": "тень",
+                "uk": "тінь"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i01:r2",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».",
+                "uk": "Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r3",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».",
+                "uk": "Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма»."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shape",
+            "definitionByLocale": {
+              "ru": "«форма». Контур или вид предмета.",
+              "uk": "«форма». Контур або вид предмета."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i02:audio",
+            "transcript": "material"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "material",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Карточка слова — pattern",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i03:audio"
+        ],
+        "accessibilityLabel": "Карточка слова — pattern",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i03:audio",
+            "transcript": "pattern"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i03:r1",
+              "targetText": "pattern",
+              "meaningByLocale": {
+                "ru": "«узор». Повторяющийся рисунок на поверхности.",
+                "uk": "«візерунок». Повторюваний малюнок на поверхні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pattern",
+            "definitionByLocale": {
+              "ru": "«узор». Повторяющийся рисунок на поверхности.",
+              "uk": "«візерунок». Повторюваний малюнок на поверхні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i04:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i04:audio",
+            "transcript": "shape"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shape",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Различите слово — material или matter",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i05:r1",
+            "text": "material"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i05:r2",
+            "text": "matter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i05:audioA",
+          "en:lesson-03:session-55:i05:audioB"
+        ],
+        "accessibilityLabel": "Различите слово — material или matter",
+        "modePayload": {
+          "family": "sound_contrast",
+          "contrastA": "material",
+          "contrastB": "matter",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-55:i05:audioA",
+            "transcript": "material"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-55:i05:audioB",
+            "transcript": "matter"
+          },
+          "testedPhoneticContrast": "Material состоит из четырёх слогов, а matter — из двух.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Различите material и matter",
+              "feedbackByLocale": {
+                "ru": "`Matter` — это «вопрос, дело» и в нём два слога. В записи `material` — «материал».",
+                "uk": "`Matter` — це «питання, справа» і в ньому два склади. У записі `material` — «матеріал»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините слова и значения для подписи у дальней стены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова и значения для подписи у дальней стены",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-55:i06:p1",
+              "target": "pattern",
+              "meaningByLocale": {
+                "ru": "узор",
+                "uk": "візерунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p2",
+              "target": "striped",
+              "meaningByLocale": {
+                "ru": "полосатый",
+                "uk": "смугастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p3",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pattern",
+            "striped",
+            "pale",
+            "soft"
+          ],
+          "rightColumn": [
+            "узор",
+            "полосатый",
+            "бледный",
+            "мягкий"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i07",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Различите слово — shape или ship",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i07:r1",
+            "text": "shape"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i07:r2",
+            "text": "ship"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i07:audioA",
+          "en:lesson-03:session-55:i07:audioB"
+        ],
+        "accessibilityLabel": "Различите слово — shape или ship",
+        "modePayload": {
+          "family": "sound_contrast",
+          "contrastA": "shape",
+          "contrastB": "ship",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-55:i07:audioA",
+            "transcript": "shape"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-55:i07:audioB",
+            "transcript": "ship"
+          },
+          "testedPhoneticContrast": "В shape гласный тянется дольше, чем в ship.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i07:r2",
+              "correct": false,
+              "testedDimension": "Различите shape и ship",
+              "feedbackByLocale": {
+                "ru": "`Ship` — это корабль. В записи `shape` — «форма»: гласный в нём тянется дольше.",
+                "uk": "`Ship` — це корабель. У записі `shape` — «форма»: голосний у ньому тягнеться довше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i08",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i08:r1",
+            "text": "material"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i08:r2",
+            "text": "matter"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i08:r3",
+            "text": "mature"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i08:audio",
+            "transcript": "material"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i08:r1",
+              "targetText": "material",
+              "meaningByLocale": {
+                "ru": "материал",
+                "uk": "матеріал"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r2",
+              "targetText": "matter",
+              "meaningByLocale": {
+                "ru": "вопрос",
+                "uk": "питання"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r3",
+              "targetText": "mature",
+              "meaningByLocale": {
+                "ru": "зрелый",
+                "uk": "зрілий"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "`Matter` короче; в записи звучит `material` — «материал».",
+                "uk": "`Matter` коротше; у записі звучить `material` — «матеріал»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "`Mature` похоже началом, но в записи `material` — «материал».",
+                "uk": "`Mature` схоже початком, але у записі `material` — «матеріал»."
+              }
+            }
+          ],
+          "isWordCard": false
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i09",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Произнесите слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Произнесите слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i09:audio",
+            "transcript": "pattern"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pattern",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i10",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините указатели с их точным смыслом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините указатели с их точным смыслом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-55:i10:p1",
+              "target": "this",
+              "meaningByLocale": {
+                "ru": "этот один рядом",
+                "uk": "цей один поруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p2",
+              "target": "that",
+              "meaningByLocale": {
+                "ru": "тот один далеко",
+                "uk": "той один далеко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p3",
+              "target": "these",
+              "meaningByLocale": {
+                "ru": "эти несколько рядом",
+                "uk": "ці кілька поруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p4",
+              "target": "those",
+              "meaningByLocale": {
+                "ru": "те несколько далеко",
+                "uk": "ті кілька далеко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "this",
+            "that",
+            "these",
+            "those"
+          ],
+          "rightColumn": [
+            "этот один рядом",
+            "тот один далеко",
+            "эти несколько рядом",
+            "те несколько далеко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i11",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите фразу о форме зеркала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите фразу о форме зеркала",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i11:audio",
+            "transcript": "The shape is round."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shape is round.",
+          "orderedTokens": [
+            "The",
+            "shape",
+            "is",
+            "round"
+          ],
+          "distractorTokens": [
+            "These"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i12",
+        "ordinal": 15,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте свойство образца рядом",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i12:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i12:r2",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i12:r3",
+            "text": "round"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте свойство образца рядом",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте свойство образца рядом",
+            "uk": "Вставте властивість зразка поруч"
+          },
+          "gappedTargetPhrase": "This material is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-55:i12:r1",
+              "text": "soft"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r2",
+              "text": "striped"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r3",
+              "text": "round"
+            }
+          ],
+          "testedDimension": "свойство материала",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "свойство материала",
+              "feedbackByLocale": {
+                "ru": "`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.",
+                "uk": "`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "свойство материала",
+              "feedbackByLocale": {
+                "ru": "`Round` описывает форму, а здесь нужна мягкость материала: `soft`.",
+                "uk": "`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i13",
+        "ordinal": 16,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите подпись у дальней стены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите подпись у дальней стены",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That pattern is striped.",
+          "localizedMeaning": {
+            "ru": "Соберите подпись у дальней стены",
+            "uk": "Складіть підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "That",
+            "pattern",
+            "is",
+            "striped"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "Those"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i14",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте и выберите смысл подписи в листе",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i14:r1",
+            "text": "The shape is square."
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i14:r2",
+            "text": "The shape is round."
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i14:r3",
+            "text": "These shapes are square."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Послушайте и выберите смысл подписи в листе",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i14:audio",
+            "transcript": "The shape is square."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i14:r1",
+              "targetText": "The shape is square.",
+              "meaningByLocale": {
+                "ru": "Форма квадратная.",
+                "uk": "Форма квадратна."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r2",
+              "targetText": "The shape is round.",
+              "meaningByLocale": {
+                "ru": "Форма круглая.",
+                "uk": "Форма кругла."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r3",
+              "targetText": "These shapes are square.",
+              "meaningByLocale": {
+                "ru": "Эти формы квадратные.",
+                "uk": "Ці форми квадратні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "значение",
+              "feedbackByLocale": {
+                "ru": "В записи `square` — «квадратная», а не `round` — «круглая».",
+                "uk": "У записі `square` — «квадратна», а не `round` — «кругла»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "число",
+              "feedbackByLocale": {
+                "ru": "В записи одна форма: `The shape is`, а не несколько форм.",
+                "uk": "У записі одна форма: `The shape is`, а не кілька форм."
+              }
+            }
+          ],
+          "isWordCard": false
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i15",
+        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послушайте и соберите подпись о нескольких узорах рядом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послушайте и соберите подпись о нескольких узорах рядом",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i15:audio",
+            "transcript": "These patterns are pale."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These patterns are pale.",
+          "orderedTokens": [
+            "These",
+            "patterns",
+            "are",
+            "pale"
+          ],
+          "distractorTokens": [
+            "Those",
+            "the"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i16",
+        "ordinal": 19,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставьте начало для нескольких дальних образцов",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i16:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i16:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i16:r3",
+            "text": "The"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте начало для нескольких дальних образцов",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте начало для нескольких дальних образцов",
+            "uk": "Вставте початок для кількох дальніх зразків"
+          },
+          "gappedTargetPhrase": "___ materials are soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-55:i16:r1",
+              "text": "Those"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r2",
+              "text": "That"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r3",
+              "text": "The"
+            }
+          ],
+          "testedDimension": "число и расстояние",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i16:r2",
+              "correct": false,
+              "testedDimension": "число и расстояние",
+              "feedbackByLocale": {
+                "ru": "`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.",
+                "uk": "`That` — для одного далекого предмета; зразків кілька, тому `Those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r3",
+              "correct": false,
+              "testedDimension": "число и расстояние",
+              "feedbackByLocale": {
+                "ru": "`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.",
+                "uk": "`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i17",
+        "ordinal": 20,
+        "purpose": "independent_final",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите независимую подпись у дальней стены",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соберите независимую подпись у дальней стены",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those patterns are striped.",
+          "localizedMeaning": {
+            "ru": "соберите независимую подпись у дальней стены",
+            "uk": "складіть незалежний підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "Those",
+            "patterns",
+            "are",
+            "striped"
+          ],
+          "authoredDistractorTokens": [
+            "That",
+            "the"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      }
     ],
     "uk": [
-      {"interactionId":"en:lesson-03:session-55:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте та виберіть слово","responseOptions":[{"responseId":"en:lesson-03:session-55:i01:r1","text":"shape"},{"responseId":"en:lesson-03:session-55:i01:r2","text":"ship"},{"responseId":"en:lesson-03:session-55:i01:r3","text":"shade"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i01:audio"],"accessibilityLabel":"Послухайте та виберіть слово","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i01:audio","transcript":"shape"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i01:r1","targetText":"shape","meaningByLocale":{"ru":"форма","uk":"форма"}},{"responseId":"en:lesson-03:session-55:i01:r2","targetText":"ship","meaningByLocale":{"ru":"корабль","uk":"корабель"}},{"responseId":"en:lesson-03:session-55:i01:r3","targetText":"shade","meaningByLocale":{"ru":"тень","uk":"тінь"}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i01:r2","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».","uk":"Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма»."}},{"responseId":"en:lesson-03:session-55:i01:r3","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».","uk":"Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма»."}}],"isWordCard":true,"wordCard":{"word":"shape","definitionByLocale":{"ru":"«форма». Контур или вид предмета.","uk":"«форма». Контур або вид предмета."}}},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i02","ordinal":5,"purpose":"supported_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i02:audio"],"accessibilityLabel":"Промовте слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i02:audio","transcript":"material"},"slowReferenceAudio":null,"targetPhrase":"material","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — pattern","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i03:audio"],"accessibilityLabel":"Картка слова — pattern","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i03:audio","transcript":"pattern"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i03:r1","targetText":"pattern","meaningByLocale":{"ru":"«узор». Повторяющийся рисунок на поверхности.","uk":"«візерунок». Повторюваний малюнок на поверхні."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"pattern","definitionByLocale":{"ru":"«узор». Повторяющийся рисунок на поверхности.","uk":"«візерунок». Повторюваний малюнок на поверхні."}}},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i04","ordinal":7,"purpose":"supported_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i04:audio"],"accessibilityLabel":"Промовте слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i04:audio","transcript":"shape"},"slowReferenceAudio":null,"targetPhrase":"shape","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i05","ordinal":8,"purpose":"supported_practice","family":"sound_contrast","inputMode":"single_choice","prompt":"Розрізніть слово — material або matter","responseOptions":[{"responseId":"en:lesson-03:session-55:i05:r1","text":"material"},{"responseId":"en:lesson-03:session-55:i05:r2","text":"matter"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i05:audioA","en:lesson-03:session-55:i05:audioB"],"accessibilityLabel":"Розрізніть слово — material або matter","modePayload":{"family":"sound_contrast","contrastA":"material","contrastB":"matter","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-55:i05:audioA","transcript":"material"},"audioB":{"audioTargetId":"en:lesson-03:session-55:i05:audioB","transcript":"matter"},"testedPhoneticContrast":"Material має чотири склади, а matter — два.","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i05:r2","correct":false,"testedDimension":"Розрізніть material і matter","feedbackByLocale":{"ru":"`Matter` — это «вопрос, дело» и в нём два слога. В записи `material` — «материал».","uk":"`Matter` — це «питання, справа» і в ньому два склади. У записі `material` — «матеріал»."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i06","ordinal":9,"purpose":"supported_practice","family":"speed_match","inputMode":"pair_grid","prompt":"З’єднайте слова та значення для підпису біля дальньої стіни","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"З’єднайте слова та значення для підпису біля дальньої стіни","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-55:i06:p1","target":"pattern","meaningByLocale":{"ru":"узор","uk":"візерунок"}},{"pairId":"en:lesson-03:session-55:i06:p2","target":"striped","meaningByLocale":{"ru":"полосатый","uk":"смугастий"}},{"pairId":"en:lesson-03:session-55:i06:p3","target":"pale","meaningByLocale":{"ru":"бледный","uk":"блідий"}},{"pairId":"en:lesson-03:session-55:i06:p4","target":"soft","meaningByLocale":{"ru":"мягкий","uk":"м’який"}}],"leftColumn":["pattern","striped","pale","soft"],"rightColumn":["візерунок","смугастий","блідий","м’який"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i07","ordinal":10,"purpose":"guided_practice","family":"sound_contrast","inputMode":"single_choice","prompt":"Розрізніть слово — shape або ship","responseOptions":[{"responseId":"en:lesson-03:session-55:i07:r1","text":"shape"},{"responseId":"en:lesson-03:session-55:i07:r2","text":"ship"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i07:audioA","en:lesson-03:session-55:i07:audioB"],"accessibilityLabel":"Розрізніть слово — shape або ship","modePayload":{"family":"sound_contrast","contrastA":"shape","contrastB":"ship","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-55:i07:audioA","transcript":"shape"},"audioB":{"audioTargetId":"en:lesson-03:session-55:i07:audioB","transcript":"ship"},"testedPhoneticContrast":"У shape голосний тягнеться довше, ніж у ship.","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i07:r2","correct":false,"testedDimension":"Розрізніть shape і ship","feedbackByLocale":{"ru":"`Ship` — это корабль. В записи `shape` — «форма»: гласный в нём тянется дольше.","uk":"`Ship` — це корабель. У записі `shape` — «форма»: голосний у ньому тягнеться довше."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте та виберіть слово","responseOptions":[{"responseId":"en:lesson-03:session-55:i08:r1","text":"material"},{"responseId":"en:lesson-03:session-55:i08:r2","text":"matter"},{"responseId":"en:lesson-03:session-55:i08:r3","text":"mature"}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i08:audio"],"accessibilityLabel":"Послухайте та виберіть слово","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i08:audio","transcript":"material"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i08:r1","targetText":"material","meaningByLocale":{"ru":"материал","uk":"матеріал"}},{"responseId":"en:lesson-03:session-55:i08:r2","targetText":"matter","meaningByLocale":{"ru":"вопрос","uk":"питання"}},{"responseId":"en:lesson-03:session-55:i08:r3","targetText":"mature","meaningByLocale":{"ru":"зрелый","uk":"зрілий"}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i08:r2","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"`Matter` короче; в записи звучит `material` — «материал».","uk":"`Matter` коротше; у записі звучить `material` — «матеріал»."}},{"responseId":"en:lesson-03:session-55:i08:r3","correct":false,"testedDimension":"звук","feedbackByLocale":{"ru":"`Mature` похоже началом, но в записи `material` — «материал».","uk":"`Mature` схоже початком, але у записі `material` — «матеріал»."}}],"isWordCard":false},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i09","ordinal":12,"purpose":"guided_practice","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте слово","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i09:audio"],"accessibilityLabel":"Промовте слово","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i09:audio","transcript":"pattern"},"slowReferenceAudio":null,"targetPhrase":"pattern","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i10","ordinal":13,"purpose":"guided_practice","family":"speed_match","inputMode":"pair_grid","prompt":"З’єднайте вказівники з їхнім точним змістом","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"З’єднайте вказівники з їхнім точним змістом","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-55:i10:p1","target":"this","meaningByLocale":{"ru":"этот один рядом","uk":"цей один поруч"}},{"pairId":"en:lesson-03:session-55:i10:p2","target":"that","meaningByLocale":{"ru":"тот один далеко","uk":"той один далеко"}},{"pairId":"en:lesson-03:session-55:i10:p3","target":"these","meaningByLocale":{"ru":"эти несколько рядом","uk":"ці кілька поруч"}},{"pairId":"en:lesson-03:session-55:i10:p4","target":"those","meaningByLocale":{"ru":"те несколько далеко","uk":"ті кілька далеко"}}],"leftColumn":["this","that","these","those"],"rightColumn":["цей один поруч","той один далеко","ці кілька поруч","ті кілька далеко"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i11","ordinal":14,"purpose":"guided_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте та складіть фразу про форму дзеркала","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i11:audio"],"accessibilityLabel":"Послухайте та складіть фразу про форму дзеркала","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i11:audio","transcript":"The shape is round."},"slowReferenceAudio":null,"hiddenTargetPhrase":"The shape is round.","orderedTokens":["The","shape","is","round"],"distractorTokens":["These"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i12","ordinal":15,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте властивість зразка поруч","responseOptions":[{"responseId":"en:lesson-03:session-55:i12:r1","text":"soft"},{"responseId":"en:lesson-03:session-55:i12:r2","text":"striped"},{"responseId":"en:lesson-03:session-55:i12:r3","text":"round"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте властивість зразка поруч","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте свойство образца рядом","uk":"Вставте властивість зразка поруч"},"gappedTargetPhrase":"This material is ___.","gapOptions":[{"responseId":"en:lesson-03:session-55:i12:r1","text":"soft"},{"responseId":"en:lesson-03:session-55:i12:r2","text":"striped"},{"responseId":"en:lesson-03:session-55:i12:r3","text":"round"}],"testedDimension":"свойство материала","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i12:r2","correct":false,"testedDimension":"свойство материала","feedbackByLocale":{"ru":"`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.","uk":"`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`."}},{"responseId":"en:lesson-03:session-55:i12:r3","correct":false,"testedDimension":"свойство материала","feedbackByLocale":{"ru":"`Round` описывает форму, а здесь нужна мягкость материала: `soft`.","uk":"`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i13","ordinal":16,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть підпис біля дальньої стіни","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть підпис біля дальньої стіни","modePayload":{"family":"phrase_builder","targetPhrase":"That pattern is striped.","localizedMeaning":{"ru":"Соберите подпись у дальней стены","uk":"Складіть підпис біля дальньої стіни"},"orderedTokens":["That","pattern","is","striped"],"authoredDistractorTokens":["the","Those"],"slotFeedback":[]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i14","ordinal":17,"purpose":"retrieval_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте та виберіть зміст підпису в листі","responseOptions":[{"responseId":"en:lesson-03:session-55:i14:r1","text":"The shape is square."},{"responseId":"en:lesson-03:session-55:i14:r2","text":"The shape is round."},{"responseId":"en:lesson-03:session-55:i14:r3","text":"These shapes are square."}],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i14:audio"],"accessibilityLabel":"Послухайте та виберіть зміст підпису в листі","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i14:audio","transcript":"The shape is square."},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-55:i14:r1","targetText":"The shape is square.","meaningByLocale":{"ru":"Форма квадратная.","uk":"Форма квадратна."}},{"responseId":"en:lesson-03:session-55:i14:r2","targetText":"The shape is round.","meaningByLocale":{"ru":"Форма круглая.","uk":"Форма кругла."}},{"responseId":"en:lesson-03:session-55:i14:r3","targetText":"These shapes are square.","meaningByLocale":{"ru":"Эти формы квадратные.","uk":"Ці форми квадратні."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i14:r2","correct":false,"testedDimension":"значение","feedbackByLocale":{"ru":"В записи `square` — «квадратная», а не `round` — «круглая».","uk":"У записі `square` — «квадратна», а не `round` — «кругла»."}},{"responseId":"en:lesson-03:session-55:i14:r3","correct":false,"testedDimension":"число","feedbackByLocale":{"ru":"В записи одна форма: `The shape is`, а не несколько форм.","uk":"У записі одна форма: `The shape is`, а не кілька форм."}}],"isWordCard":false},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i15","ordinal":18,"purpose":"independent_check","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте та складіть підпис про кілька візерунків поруч","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-03:session-55:i15:audio"],"accessibilityLabel":"Послухайте та складіть підпис про кілька візерунків поруч","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-55:i15:audio","transcript":"These patterns are pale."},"slowReferenceAudio":null,"hiddenTargetPhrase":"These patterns are pale.","orderedTokens":["These","patterns","are","pale"],"distractorTokens":["Those","the"]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i16","ordinal":19,"purpose":"independent_check","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте початок для кількох дальніх зразків","responseOptions":[{"responseId":"en:lesson-03:session-55:i16:r1","text":"Those"},{"responseId":"en:lesson-03:session-55:i16:r2","text":"That"},{"responseId":"en:lesson-03:session-55:i16:r3","text":"The"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте початок для кількох дальніх зразків","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте начало для нескольких дальних образцов","uk":"Вставте початок для кількох дальніх зразків"},"gappedTargetPhrase":"___ materials are soft.","gapOptions":[{"responseId":"en:lesson-03:session-55:i16:r1","text":"Those"},{"responseId":"en:lesson-03:session-55:i16:r2","text":"That"},{"responseId":"en:lesson-03:session-55:i16:r3","text":"The"}],"testedDimension":"число и расстояние","choiceFeedback":[{"responseId":"en:lesson-03:session-55:i16:r2","correct":false,"testedDimension":"число и расстояние","feedbackByLocale":{"ru":"`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.","uk":"`That` — для одного далекого предмета; зразків кілька, тому `Those`."}},{"responseId":"en:lesson-03:session-55:i16:r3","correct":false,"testedDimension":"число и расстояние","feedbackByLocale":{"ru":"`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.","uk":"`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко."}}]},"scriptedAlternate":null},
-      {"interactionId":"en:lesson-03:session-55:i17","ordinal":20,"purpose":"independent_final","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"складіть незалежний підпис біля дальньої стіни","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"складіть незалежний підпис біля дальньої стіни","modePayload":{"family":"phrase_builder","targetPhrase":"Those patterns are striped.","localizedMeaning":{"ru":"соберите независимую подпись у дальней стены","uk":"складіть незалежний підпис біля дальньої стіни"},"orderedTokens":["Those","patterns","are","striped"],"authoredDistractorTokens":["That","the"],"slotFeedback":[]},"scriptedAlternate":null}
+      {
+        "interactionId": "en:lesson-03:session-55:i01",
+        "ordinal": 4,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i01:r1",
+            "text": "shape"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i01:r2",
+            "text": "ship"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i01:r3",
+            "text": "shade"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i01:audio"
+        ],
+        "accessibilityLabel": "Послухайте та виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i01:audio",
+            "transcript": "shape"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i01:r1",
+              "targetText": "shape",
+              "meaningByLocale": {
+                "ru": "форма",
+                "uk": "форма"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r2",
+              "targetText": "ship",
+              "meaningByLocale": {
+                "ru": "корабль",
+                "uk": "корабель"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r3",
+              "targetText": "shade",
+              "meaningByLocale": {
+                "ru": "тень",
+                "uk": "тінь"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i01:r2",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».",
+                "uk": "Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i01:r3",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».",
+                "uk": "Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма»."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "shape",
+            "definitionByLocale": {
+              "ru": "«форма». Контур или вид предмета.",
+              "uk": "«форма». Контур або вид предмета."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i02",
+        "ordinal": 5,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i02:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i02:audio",
+            "transcript": "material"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "material",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i03",
+        "ordinal": 6,
+        "purpose": "supported_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Картка слова — pattern",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i03:audio"
+        ],
+        "accessibilityLabel": "Картка слова — pattern",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i03:audio",
+            "transcript": "pattern"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i03:r1",
+              "targetText": "pattern",
+              "meaningByLocale": {
+                "ru": "«узор». Повторяющийся рисунок на поверхности.",
+                "uk": "«візерунок». Повторюваний малюнок на поверхні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pattern",
+            "definitionByLocale": {
+              "ru": "«узор». Повторяющийся рисунок на поверхности.",
+              "uk": "«візерунок». Повторюваний малюнок на поверхні."
+            }
+          }
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i04",
+        "ordinal": 7,
+        "purpose": "supported_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i04:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i04:audio",
+            "transcript": "shape"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "shape",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i05",
+        "ordinal": 8,
+        "purpose": "supported_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Розрізніть слово — material або matter",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i05:r1",
+            "text": "material"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i05:r2",
+            "text": "matter"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i05:audioA",
+          "en:lesson-03:session-55:i05:audioB"
+        ],
+        "accessibilityLabel": "Розрізніть слово — material або matter",
+        "modePayload": {
+          "family": "sound_contrast",
+          "contrastA": "material",
+          "contrastB": "matter",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-55:i05:audioA",
+            "transcript": "material"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-55:i05:audioB",
+            "transcript": "matter"
+          },
+          "testedPhoneticContrast": "Material має чотири склади, а matter — два.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i05:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть material і matter",
+              "feedbackByLocale": {
+                "ru": "`Matter` — это «вопрос, дело» и в нём два слога. В записи `material` — «материал».",
+                "uk": "`Matter` — це «питання, справа» і в ньому два склади. У записі `material` — «матеріал»."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i06",
+        "ordinal": 9,
+        "purpose": "supported_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте слова та значення для підпису біля дальньої стіни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте слова та значення для підпису біля дальньої стіни",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-55:i06:p1",
+              "target": "pattern",
+              "meaningByLocale": {
+                "ru": "узор",
+                "uk": "візерунок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p2",
+              "target": "striped",
+              "meaningByLocale": {
+                "ru": "полосатый",
+                "uk": "смугастий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p3",
+              "target": "pale",
+              "meaningByLocale": {
+                "ru": "бледный",
+                "uk": "блідий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i06:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pattern",
+            "striped",
+            "pale",
+            "soft"
+          ],
+          "rightColumn": [
+            "візерунок",
+            "смугастий",
+            "блідий",
+            "м’який"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i07",
+        "ordinal": 10,
+        "purpose": "guided_practice",
+        "family": "sound_contrast",
+        "inputMode": "single_choice",
+        "prompt": "Розрізніть слово — shape або ship",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i07:r1",
+            "text": "shape"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i07:r2",
+            "text": "ship"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i07:audioA",
+          "en:lesson-03:session-55:i07:audioB"
+        ],
+        "accessibilityLabel": "Розрізніть слово — shape або ship",
+        "modePayload": {
+          "family": "sound_contrast",
+          "contrastA": "shape",
+          "contrastB": "ship",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-55:i07:audioA",
+            "transcript": "shape"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-55:i07:audioB",
+            "transcript": "ship"
+          },
+          "testedPhoneticContrast": "У shape голосний тягнеться довше, ніж у ship.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i07:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть shape і ship",
+              "feedbackByLocale": {
+                "ru": "`Ship` — это корабль. В записи `shape` — «форма»: гласный в нём тянется дольше.",
+                "uk": "`Ship` — це корабель. У записі `shape` — «форма»: голосний у ньому тягнеться довше."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i08",
+        "ordinal": 11,
+        "purpose": "guided_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть слово",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i08:r1",
+            "text": "material"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i08:r2",
+            "text": "matter"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i08:r3",
+            "text": "mature"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i08:audio"
+        ],
+        "accessibilityLabel": "Послухайте та виберіть слово",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i08:audio",
+            "transcript": "material"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i08:r1",
+              "targetText": "material",
+              "meaningByLocale": {
+                "ru": "материал",
+                "uk": "матеріал"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r2",
+              "targetText": "matter",
+              "meaningByLocale": {
+                "ru": "вопрос",
+                "uk": "питання"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r3",
+              "targetText": "mature",
+              "meaningByLocale": {
+                "ru": "зрелый",
+                "uk": "зрілий"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "`Matter` короче; в записи звучит `material` — «материал».",
+                "uk": "`Matter` коротше; у записі звучить `material` — «матеріал»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "звук",
+              "feedbackByLocale": {
+                "ru": "`Mature` похоже началом, но в записи `material` — «материал».",
+                "uk": "`Mature` схоже початком, але у записі `material` — «матеріал»."
+              }
+            }
+          ],
+          "isWordCard": false
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i09",
+        "ordinal": 12,
+        "purpose": "guided_practice",
+        "family": "scripted_repeat_compare",
+        "inputMode": "tap_record_compare",
+        "prompt": "Промовте слово",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i09:audio"
+        ],
+        "accessibilityLabel": "Промовте слово",
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i09:audio",
+            "transcript": "pattern"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "pattern",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i10",
+        "ordinal": 13,
+        "purpose": "guided_practice",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З’єднайте вказівники з їхнім точним змістом",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "З’єднайте вказівники з їхнім точним змістом",
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-55:i10:p1",
+              "target": "this",
+              "meaningByLocale": {
+                "ru": "этот один рядом",
+                "uk": "цей один поруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p2",
+              "target": "that",
+              "meaningByLocale": {
+                "ru": "тот один далеко",
+                "uk": "той один далеко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p3",
+              "target": "these",
+              "meaningByLocale": {
+                "ru": "эти несколько рядом",
+                "uk": "ці кілька поруч"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-55:i10:p4",
+              "target": "those",
+              "meaningByLocale": {
+                "ru": "те несколько далеко",
+                "uk": "ті кілька далеко"
+              }
+            }
+          ],
+          "leftColumn": [
+            "this",
+            "that",
+            "these",
+            "those"
+          ],
+          "rightColumn": [
+            "цей один поруч",
+            "той один далеко",
+            "ці кілька поруч",
+            "ті кілька далеко"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i11",
+        "ordinal": 14,
+        "purpose": "guided_practice",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте та складіть фразу про форму дзеркала",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i11:audio"
+        ],
+        "accessibilityLabel": "Послухайте та складіть фразу про форму дзеркала",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i11:audio",
+            "transcript": "The shape is round."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "The shape is round.",
+          "orderedTokens": [
+            "The",
+            "shape",
+            "is",
+            "round"
+          ],
+          "distractorTokens": [
+            "These"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i12",
+        "ordinal": 15,
+        "purpose": "retrieval_practice",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте властивість зразка поруч",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i12:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i12:r2",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i12:r3",
+            "text": "round"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте властивість зразка поруч",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте свойство образца рядом",
+            "uk": "Вставте властивість зразка поруч"
+          },
+          "gappedTargetPhrase": "This material is ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-55:i12:r1",
+              "text": "soft"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r2",
+              "text": "striped"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r3",
+              "text": "round"
+            }
+          ],
+          "testedDimension": "свойство материала",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i12:r2",
+              "correct": false,
+              "testedDimension": "свойство материала",
+              "feedbackByLocale": {
+                "ru": "`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.",
+                "uk": "`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i12:r3",
+              "correct": false,
+              "testedDimension": "свойство материала",
+              "feedbackByLocale": {
+                "ru": "`Round` описывает форму, а здесь нужна мягкость материала: `soft`.",
+                "uk": "`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i13",
+        "ordinal": 16,
+        "purpose": "retrieval_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть підпис біля дальньої стіни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть підпис біля дальньої стіни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "That pattern is striped.",
+          "localizedMeaning": {
+            "ru": "Соберите подпись у дальней стены",
+            "uk": "Складіть підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "That",
+            "pattern",
+            "is",
+            "striped"
+          ],
+          "authoredDistractorTokens": [
+            "the",
+            "Those"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i14",
+        "ordinal": 17,
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте та виберіть зміст підпису в листі",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i14:r1",
+            "text": "The shape is square."
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i14:r2",
+            "text": "The shape is round."
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i14:r3",
+            "text": "These shapes are square."
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i14:audio"
+        ],
+        "accessibilityLabel": "Послухайте та виберіть зміст підпису в листі",
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i14:audio",
+            "transcript": "The shape is square."
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-55:i14:r1",
+              "targetText": "The shape is square.",
+              "meaningByLocale": {
+                "ru": "Форма квадратная.",
+                "uk": "Форма квадратна."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r2",
+              "targetText": "The shape is round.",
+              "meaningByLocale": {
+                "ru": "Форма круглая.",
+                "uk": "Форма кругла."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r3",
+              "targetText": "These shapes are square.",
+              "meaningByLocale": {
+                "ru": "Эти формы квадратные.",
+                "uk": "Ці форми квадратні."
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i14:r2",
+              "correct": false,
+              "testedDimension": "значение",
+              "feedbackByLocale": {
+                "ru": "В записи `square` — «квадратная», а не `round` — «круглая».",
+                "uk": "У записі `square` — «квадратна», а не `round` — «кругла»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i14:r3",
+              "correct": false,
+              "testedDimension": "число",
+              "feedbackByLocale": {
+                "ru": "В записи одна форма: `The shape is`, а не несколько форм.",
+                "uk": "У записі одна форма: `The shape is`, а не кілька форм."
+              }
+            }
+          ],
+          "isWordCard": false
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i15",
+        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Послухайте та складіть підпис про кілька візерунків поруч",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-55:i15:audio"
+        ],
+        "accessibilityLabel": "Послухайте та складіть підпис про кілька візерунків поруч",
+        "modePayload": {
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-55:i15:audio",
+            "transcript": "These patterns are pale."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "These patterns are pale.",
+          "orderedTokens": [
+            "These",
+            "patterns",
+            "are",
+            "pale"
+          ],
+          "distractorTokens": [
+            "Those",
+            "the"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i16",
+        "ordinal": 19,
+        "purpose": "independent_check",
+        "family": "context_gap_grammar",
+        "inputMode": "single_choice",
+        "prompt": "Вставте початок для кількох дальніх зразків",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-55:i16:r1",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i16:r2",
+            "text": "That"
+          },
+          {
+            "responseId": "en:lesson-03:session-55:i16:r3",
+            "text": "The"
+          }
+        ],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте початок для кількох дальніх зразків",
+        "modePayload": {
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте начало для нескольких дальних образцов",
+            "uk": "Вставте початок для кількох дальніх зразків"
+          },
+          "gappedTargetPhrase": "___ materials are soft.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-55:i16:r1",
+              "text": "Those"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r2",
+              "text": "That"
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r3",
+              "text": "The"
+            }
+          ],
+          "testedDimension": "число и расстояние",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-55:i16:r2",
+              "correct": false,
+              "testedDimension": "число и расстояние",
+              "feedbackByLocale": {
+                "ru": "`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.",
+                "uk": "`That` — для одного далекого предмета; зразків кілька, тому `Those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-55:i16:r3",
+              "correct": false,
+              "testedDimension": "число и расстояние",
+              "feedbackByLocale": {
+                "ru": "`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.",
+                "uk": "`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко."
+              }
+            }
+          ]
+        },
+        "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-03:session-55:i17",
+        "ordinal": 20,
+        "purpose": "independent_final",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть незалежний підпис біля дальньої стіни",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "accessibilityLabel": "Складіть незалежний підпис біля дальньої стіни",
+        "modePayload": {
+          "family": "phrase_builder",
+          "targetPhrase": "Those patterns are striped.",
+          "localizedMeaning": {
+            "ru": "соберите независимую подпись у дальней стены",
+            "uk": "складіть незалежний підпис біля дальньої стіни"
+          },
+          "orderedTokens": [
+            "Those",
+            "patterns",
+            "are",
+            "striped"
+          ],
+          "authoredDistractorTokens": [
+            "That",
+            "the"
+          ],
+          "slotFeedback": []
+        },
+        "scriptedAlternate": null
+      }
     ]
   },
   "answers": [
-    {"interactionId":"en:lesson-03:session-55:i01","correctText":"shape","correctResponseId":"en:lesson-03:session-55:i01:r1"},
-    {"interactionId":"en:lesson-03:session-55:i02","correctText":"material","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i03","correctText":"pattern","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i04","correctText":"shape","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i05","correctText":"material","correctResponseId":"en:lesson-03:session-55:i05:r1"},
-    {"interactionId":"en:lesson-03:session-55:i06","correctText":"en:lesson-03:session-55:i06:p1=pattern\nen:lesson-03:session-55:i06:p2=striped\nen:lesson-03:session-55:i06:p3=pale\nen:lesson-03:session-55:i06:p4=soft","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i07","correctText":"shape","correctResponseId":"en:lesson-03:session-55:i07:r1"},
-    {"interactionId":"en:lesson-03:session-55:i08","correctText":"material","correctResponseId":"en:lesson-03:session-55:i08:r1"},
-    {"interactionId":"en:lesson-03:session-55:i09","correctText":"pattern","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i10","correctText":"en:lesson-03:session-55:i10:p1=this\nen:lesson-03:session-55:i10:p2=that\nen:lesson-03:session-55:i10:p3=these\nen:lesson-03:session-55:i10:p4=those","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i11","correctText":"The shape is round.","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i12","correctText":"soft","correctResponseId":"en:lesson-03:session-55:i12:r1"},
-    {"interactionId":"en:lesson-03:session-55:i13","correctText":"That pattern is striped.","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i14","correctText":"The shape is square.","correctResponseId":"en:lesson-03:session-55:i14:r1"},
-    {"interactionId":"en:lesson-03:session-55:i15","correctText":"These patterns are pale.","correctResponseId":null},
-    {"interactionId":"en:lesson-03:session-55:i16","correctText":"Those","correctResponseId":"en:lesson-03:session-55:i16:r1"},
-    {"interactionId":"en:lesson-03:session-55:i17","correctText":"Those patterns are striped.","correctResponseId":null}
+    {
+      "interactionId": "en:lesson-03:session-55:i01",
+      "correctText": "shape",
+      "correctResponseId": "en:lesson-03:session-55:i01:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i02",
+      "correctText": "material",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i03",
+      "correctText": "pattern",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i04",
+      "correctText": "shape",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i05",
+      "correctText": "material",
+      "correctResponseId": "en:lesson-03:session-55:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i06",
+      "correctText": "en:lesson-03:session-55:i06:p1=pattern\nen:lesson-03:session-55:i06:p2=striped\nen:lesson-03:session-55:i06:p3=pale\nen:lesson-03:session-55:i06:p4=soft",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i07",
+      "correctText": "shape",
+      "correctResponseId": "en:lesson-03:session-55:i07:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i08",
+      "correctText": "material",
+      "correctResponseId": "en:lesson-03:session-55:i08:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i09",
+      "correctText": "pattern",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i10",
+      "correctText": "en:lesson-03:session-55:i10:p1=this\nen:lesson-03:session-55:i10:p2=that\nen:lesson-03:session-55:i10:p3=these\nen:lesson-03:session-55:i10:p4=those",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i11",
+      "correctText": "The shape is round.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i12",
+      "correctText": "soft",
+      "correctResponseId": "en:lesson-03:session-55:i12:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i13",
+      "correctText": "That pattern is striped.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i14",
+      "correctText": "The shape is square.",
+      "correctResponseId": "en:lesson-03:session-55:i14:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i15",
+      "correctText": "These patterns are pale.",
+      "correctResponseId": null
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i16",
+      "correctText": "Those",
+      "correctResponseId": "en:lesson-03:session-55:i16:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-55:i17",
+      "correctText": "Those patterns are striped.",
+      "correctResponseId": null
+    }
   ]
 }

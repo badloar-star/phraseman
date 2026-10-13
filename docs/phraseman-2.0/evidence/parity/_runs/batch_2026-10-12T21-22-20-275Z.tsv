@@ -1,0 +1,4 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+community-007	2026-10-12T21:22:51.406Z	ok	16259	marker+шагов_2+склейка+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/community-007.png	0
+community-020	2026-10-12T21:23:18.447Z	ok	14071	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-020.png	0
+overlays-041	2026-10-12T21:23:46.375Z	ok	14122	marker+шагов_1+пусто_2059мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/overlays-041.png	2059

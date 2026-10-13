@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-008	2026-10-13T00:25:42.241Z	stitch_failed	12211	marker+пусто_1410мс+склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-008.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=203673 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-25-20-647Z/spire-008.bare.png	1410

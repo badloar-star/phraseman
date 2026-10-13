@@ -1,0 +1,17 @@
+{
+  "homeSelection": true,
+  "lightAndDarkCards": true,
+  "candidatePaths": true,
+  "streakHeaderChecks": 2,
+  "missingThemeChecks": 4,
+  "wrappedHiddenCssCheck": true,
+  "pairedRevisionChecks": 134,
+  "rankBridgeChecks": 2,
+  "specialBridgeChecks": 3,
+  "liveAiToggleChecks": 3,
+  "themeEndpointChecks": 138,
+  "towerGeometryChecks": 60,
+  "floorsPerTower": 15,
+  "comparisonFrames": 60,
+  "browserVisualVerification": "not performed"
+}

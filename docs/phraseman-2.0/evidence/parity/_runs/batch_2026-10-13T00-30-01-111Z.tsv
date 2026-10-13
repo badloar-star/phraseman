@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-022	2026-10-13T00:30:35.683Z	error	12516	step_target_not_found:#spire-beta-pill+ждали_metro_30мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-30-01-111Z/spire-gap-022.error.png	0

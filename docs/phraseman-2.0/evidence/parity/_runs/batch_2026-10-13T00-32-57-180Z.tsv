@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-008	2026-10-13T00:33:35.883Z	stitch_failed	28048	marker+пусто_1635мс+склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-008.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=153946 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_28мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-32-57-180Z/spire-gap-008.bare.png	1635

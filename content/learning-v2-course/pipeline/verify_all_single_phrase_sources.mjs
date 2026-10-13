@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
 
 import {
   answerContractIssues,
@@ -25,6 +26,9 @@ import { isSinglePhraseMigrationLesson } from "./single_phrase_scope.mjs";
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..");
 const PROJECT = path.resolve(ROOT, "..", "..");
+const { projectLearnerVisiblePromptV1 } = createRequire(import.meta.url)(
+  path.resolve(PROJECT, "modules/learning-v2/content/learner_visible_text_v1.js"),
+);
 const BUILD_ALL = process.argv.includes("--build-all");
 const sha = (value) => crypto.createHash("sha256").update(typeof value === "string" ? value : JSON.stringify(value)).digest("hex");
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
@@ -150,7 +154,17 @@ for (const entry of sidecars) {
   for (const [locale, items] of [["ru", ru], ["uk", uk]]) {
     const markdownFile = path.join(path.dirname(entry.file), `final.${locale}.md`);
     const rows = markdownPracticeRows(fs.readFileSync(markdownFile, "utf8"));
-    const mismatch = items.findIndex((item, index) => rows[index]?.ordinal !== index + 1 || rows[index]?.interactionId !== item.interactionId || rows[index]?.prompt !== item.prompt);
+    const mismatch = items.findIndex((item, index) => {
+      const answer = answers.find((entry) => entry.interactionId === item.interactionId)?.correctText ??
+        item.modePayload?.wordCard?.word ?? item.modePayload?.targetPhrase ?? "";
+      const prompt = projectLearnerVisiblePromptV1({
+        title: rows[index]?.prompt ?? "",
+        family: item.family,
+        correctText: answer,
+        isWordCard: Boolean(item.modePayload?.wordCard),
+      });
+      return rows[index]?.ordinal !== index + 1 || rows[index]?.interactionId !== item.interactionId || prompt !== item.prompt;
+    });
     if (mismatch >= 0 || rows.length !== items.length) {
       throw new Error(`single_phrase_all_source_hold:${source.courseSessionId}:${locale}:markdown_atomic_parity:${mismatch}`);
     }

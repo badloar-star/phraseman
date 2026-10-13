@@ -275,17 +275,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите название — друг спрашивает `Wha",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужно `is`: полная фраза — `It is a chair`. `am` используется с `I`.",
-                "uk": "Після `It` тут потрібне `is`: повна фраза — `It is a chair`. `am` уживається з `I`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -440,17 +430,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i08:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — из следующей упаковки п",
-              "feedbackByLocale": {
-                "ru": "После `It` уже стоит нужное `is`. `am` используется с `I`, а не с `It`.",
-                "uk": "Після `It` уже стоїть потрібне `is`. `am` уживають з `I`, а не з `It`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -637,7 +617,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — из коробки видна ",
+          "testedDimension": "Вставьте часть фразы — из коробки видна спинка стула; скажите «Это стул»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-01:i12:r2",
@@ -693,17 +673,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — виден провод, но сам п",
-              "feedbackByLocale": {
-                "ru": "С `it` вопрос начинается с `Is`: `Is it a lamp?`. Начало `Are it` не подходит.",
-                "uk": "З `it` запитання починається з `Is`: `Is it a lamp?`. Початок `Are it` не підходить."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -752,7 +722,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Дополните фразу — друг закрепил последню",
+          "testedDimension": "Дополните фразу — друг закрепил последнюю ножку стола; скажите, что стол готов (`ready` — «готов»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-01:i14:r2",
@@ -875,17 +845,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг решил, что в после",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`. Перед `lamp` остаётся `a`: `It is not a lamp`.",
-                "uk": "Після `It` потрібне `is`. Перед `lamp` залишається `a`: `It is not a lamp`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1161,17 +1121,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть назву — друг запитує `What is i",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужно `is`: полная фраза — `It is a chair`. `am` используется с `I`.",
-                "uk": "Після `It` тут потрібне `is`: повна фраза — `It is a chair`. `am` уживається з `I`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1326,17 +1276,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i08:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — з наступної упаковки ви",
-              "feedbackByLocale": {
-                "ru": "После `It` уже стоит нужное `is`. `am` используется с `I`, а не с `It`.",
-                "uk": "Після `It` уже стоїть потрібне `is`. `am` уживають з `I`, а не з `It`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1523,7 +1463,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставте частину фрази — з коробки видно ",
+          "testedDimension": "Вставте частину фрази — з коробки видно спинку стільця; скажіть «Це стілець»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-01:i12:r2",
@@ -1579,17 +1519,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — видно дріт, але сам",
-              "feedbackByLocale": {
-                "ru": "С `it` вопрос начинается с `Is`: `Is it a lamp?`. Начало `Are it` не подходит.",
-                "uk": "З `it` запитання починається з `Is`: `Is it a lamp?`. Початок `Are it` не підходить."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1638,7 +1568,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Доповніть фразу — друг прикрутив останню",
+          "testedDimension": "Доповніть фразу — друг прикрутив останню ніжку столу; скажіть, що стіл готовий (`ready` — «готовий»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-01:i14:r2",
@@ -1761,17 +1691,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-01:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг вирішив, що в оста",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`. Перед `lamp` остаётся `a`: `It is not a lamp`.",
-                "uk": "Після `It` потрібне `is`. Перед `lamp` залишається `a`: `It is not a lamp`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

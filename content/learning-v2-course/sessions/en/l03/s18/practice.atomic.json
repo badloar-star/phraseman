@@ -512,17 +512,7 @@
           "authoredDistractorTokens": [
             "bus"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i09:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — к остановке подъехали д",
-              "feedbackByLocale": {
-                "ru": "У остановки два автобуса. Нужна форма `buses`, с добавленным `es`.",
-                "uk": "На зупинці два автобуси. Потрібна форма `buses`, із доданим `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -560,17 +550,7 @@
           "authoredDistractorTokens": [
             "dish"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i10:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите вопрос — друг держ",
-              "feedbackByLocale": {
-                "ru": "Вопрос о двух предметах посуды. Название для нескольких — `dishes`.",
-                "uk": "Це питання про два предмети посуду. Назва для кількох — `dishes`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -619,7 +599,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте название — в конверте из малень",
+          "testedDimension": "Вставьте название — в конверте из маленькой коробки лежат билеты на концерт; скажите другу «Это билеты» (`ticket` — «билет», `tickets` — «билеты`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-18:i11:r2",
@@ -678,17 +658,7 @@
           "authoredDistractorTokens": [
             "watch"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i12:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — друг говорит о п",
-              "feedbackByLocale": {
-                "ru": "В записи название нескольких часов — `watches`. После `not` оно сохраняет `es`.",
-                "uk": "У записі назва кількох годинників — `watches`. Після `not` вона зберігає `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -737,7 +707,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставьте название — друг указывает на тр",
+          "testedDimension": "Вставьте название — друг указывает на три пустые коробки у двери; скажите «Это коробки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-18:i13:r2",
@@ -974,17 +944,7 @@
           "authoredDistractorTokens": [
             "box"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг спрашивает, что вы",
-              "feedbackByLocale": {
-                "ru": "Вы называете сразу три коробки. Для нескольких пишем `boxes`, с добавленным `es`.",
-                "uk": "Ви називаєте одразу три коробки. Для кількох пишемо `boxes`, із доданим `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1497,17 +1457,7 @@
           "authoredDistractorTokens": [
             "bus"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i09:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — до зупинки під’їхали два",
-              "feedbackByLocale": {
-                "ru": "У остановки два автобуса. Нужна форма `buses`, с добавленным `es`.",
-                "uk": "На зупинці два автобуси. Потрібна форма `buses`, із доданим `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1545,17 +1495,7 @@
           "authoredDistractorTokens": [
             "dish"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i10:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть питання — друг трим",
-              "feedbackByLocale": {
-                "ru": "Вопрос о двух предметах посуды. Название для нескольких — `dishes`.",
-                "uk": "Це питання про два предмети посуду. Назва для кількох — `dishes`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1604,7 +1544,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте назву — у конверті з маленької к",
+          "testedDimension": "Вставте назву — у конверті з маленької коробки лежать квитки на концерт; скажіть другові «Це квитки» (`ticket` — «квиток», `tickets` — «квитки`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-18:i11:r2",
@@ -1663,17 +1603,7 @@
           "authoredDistractorTokens": [
             "watch"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i12:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — друг говорить про",
-              "feedbackByLocale": {
-                "ru": "В записи название нескольких часов — `watches`. После `not` оно сохраняет `es`.",
-                "uk": "У записі назва кількох годинників — `watches`. Після `not` вона зберігає `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1722,7 +1652,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставте назву — друг показує на три поро",
+          "testedDimension": "Вставте назву — друг показує на три порожні коробки біля дверей; скажіть «Це коробки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-18:i13:r2",
@@ -1959,17 +1889,7 @@
           "authoredDistractorTokens": [
             "box"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-18:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг питає, що ви поста",
-              "feedbackByLocale": {
-                "ru": "Вы называете сразу три коробки. Для нескольких пишем `boxes`, с добавленным `es`.",
-                "uk": "Ви називаєте одразу три коробки. Для кількох пишемо `boxes`, із доданим `es`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

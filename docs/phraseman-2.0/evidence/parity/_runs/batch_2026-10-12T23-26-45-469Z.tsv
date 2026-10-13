@@ -1,0 +1,4 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-015	2026-10-12T23:28:10.871Z	ok	14191	marker+шагов_10+склейка+ждали_metro_23мс	docs/phraseman-2.0/evidence/parity/dialogs-015.png	0
+dialogs-019	2026-10-12T23:29:37.860Z	ok	16445	marker+шагов_10+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-019.png	0
+dialogs-020	2026-10-12T23:31:05.178Z	ok	13944	marker+шагов_10+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-020.png	0

@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "learning-v2-german-task6-canonical-registry.v1",
+  "authorityContext": {
+    "schemaVersion": "learning-v2-german-task6-registry-authority.v1",
+    "lexicalMappings": [
+      {
+        "sourcePlanId": "de_lex_plan_l01_c01_nachbarin_v1",
+        "canonicalId": "de_lex_l01_c01_nachbarin_v1",
+        "plannedWordFirstPacketId": "de_l01_c01_s07",
+        "plannedFirstScoredUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c02_aufzug_v1",
+        "canonicalId": "de_lex_l01_c02_aufzug_v1",
+        "plannedWordFirstPacketId": "de_l01_c02_s15",
+        "plannedFirstScoredUsePacketId": "de_l01_c02_s16"
+      }
+    ],
+    "phraseFrameMappings": [
+      {
+        "sourceChapterId": "de_l01_c01",
+        "canonicalId": "de_pf_l01_c01_hallo_nachbarin_v1",
+        "plannedFirstUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourceChapterId": "de_l01_c02",
+        "canonicalId": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "plannedFirstUsePacketId": "de_l01_c02_s16"
+      }
+    ],
+    "pronunciationMappings": [
+      {
+        "sourcePlanId": "de_pron_plan_long_short_vowel_diagnostic_v1",
+        "sourceLessonId": "de_l03",
+        "canonicalId": "de_pron_long_short_vowel_diagnostic_v1"
+      }
+    ],
+    "communicativeOutcomeMappings": [
+      {
+        "sourceOutcomeId": "de_l01_ch01",
+        "canonicalId": "de_out_l01_ch01_v1"
+      },
+      {
+        "sourceOutcomeId": "de_l01_ch02",
+        "canonicalId": "de_out_l01_ch02_v1"
+      }
+    ],
+    "forbiddenSurfaceForms": [],
+    "pronunciationPresentationPolicies": [
+      {
+        "pronunciationTargetId": "de_pron_long_short_vowel_diagnostic_v1",
+        "canonicalRegion": "DE_STANDARD",
+        "productionPolicy": "productive",
+        "learnerLabel": null
+      }
+    ]
+  },
+  "registry": {
+    "lexicalSenses": [
+      {
+        "id": "de_lex_l01_c01_nachbarin_v1",
+        "lemma": "Nachbarin",
+        "senseGloss": "female person living nearby",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Nachbarinnen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C01-NACHBARIN-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l01_c02_aufzug_v1",
+        "lemma": "Aufzug",
+        "senseGloss": "lift in a building",
+        "partOfSpeech": "noun",
+        "nounGender": "der",
+        "nounPlural": "Aufzüge",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C02-AUFZUG-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      }
+    ],
+    "phraseFrames": [
+      {
+        "id": "de_pf_l01_c01_hallo_nachbarin_v1",
+        "frame": "Hallo, Nachbarin!",
+        "grammarConstructIds": [
+          "de_gc_pre_a1_formulaic_chunks_v1"
+        ],
+        "lexicalSenseIds": [
+          "de_lex_l01_c01_nachbarin_v1"
+        ],
+        "communicativeOutcomeIds": [
+          "de_out_l01_ch01_v1"
+        ],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": [
+          "DE-RSCH-CEFR-003"
+        ]
+      },
+      {
+        "id": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "frame": "Tschüss! Der Aufzug.",
+        "grammarConstructIds": [
+          "de_gc_pre_a1_formulaic_chunks_v1"
+        ],
+        "lexicalSenseIds": [
+          "de_lex_l01_c02_aufzug_v1"
+        ],
+        "communicativeOutcomeIds": [
+          "de_out_l01_ch02_v1"
+        ],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": [
+          "DE-RSCH-CEFR-003"
+        ]
+      }
+    ],
+    "pronunciationTargets": [
+      {
+        "id": "de_pron_long_short_vowel_diagnostic_v1",
+        "target": "German vowel duration and length-quality diagnostic",
+        "perceptionEvidenceIds": [
+          "DE-PHON-RU-001",
+          "DE-PHON-RU-004"
+        ],
+        "productionEvidenceIds": [
+          "DE-PHON-RU-001"
+        ],
+        "ruApplicability": {
+          "status": "APPLIES",
+          "correctiveRoute": "varied vowel duration and quality diagnostics",
+          "rationale": "Use varied diagnostic and recycling evidence without claiming native-like production.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-001",
+              "evidenceStatus": "DIRECT_L2_RU"
+            },
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-004",
+              "evidenceStatus": "DIRECT_L2_RU"
+            }
+          ]
+        },
+        "ukApplicability": {
+          "status": "DIAGNOSTIC_ONLY",
+          "correctiveRoute": "diagnose length-quality after an observed response",
+          "rationale": "Contrastive risk is a hypothesis and is never a presumed nationality error.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-UK-002",
+              "evidenceStatus": "CONTRASTIVE_RISK"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-14:i02; family: listen_choose -->
 Ціль: `sold`
 Варіанти: `sold` · `sell` · `old`
+- sell — *Інший голосний: у `sold` чути «оу», у `sell` — «е».*
+- old — *«Старий». В `old` одразу чути голосний «оу», а в `sold` перед ним є початковий звук «с».*
+
 
 **3 · Картка слова — crowded**
 <!-- interaction_id: en:lesson-02:session-14:i03; family: listen_choose -->
@@ -75,6 +78,9 @@
 <!-- interaction_id: en:lesson-02:session-14:i04; family: context_gap_grammar -->
 Ціль: `Is it ___ ?`
 Варіанти: `sold` · `crowded` · `pretty`
+- crowded — *«Людний» — так кажуть про крамницю чи вулицю, а не про коробку.*
+- pretty — *«Гарний» — про вигляд, а покупцеві зараз важливо, чи річ вільна.*
+
 
 **5 · Складіть фразу — «воно дешеве?»**
 <!-- interaction_id: en:lesson-02:session-14:i05; family: phrase_builder -->
@@ -87,11 +93,16 @@
 **7 · Послухайте продавця й складіть його коротке питання**
 <!-- interaction_id: en:lesson-02:session-14:i07; family: listen_build_dictation -->
 Ціль: `Is it sold?`
+🔊 *Is it sold?* Плитки: `Is` `it` `sold` `cheap`
+*Плитка `cheap` зайва: продавець питає, чи це продано, тому потрібне `sold`: `Is it sold?`*
 
 **8 · Вставте слово — ви пройшли в черевиках усю крамницю, нозі ніде не тисне**
 <!-- interaction_id: en:lesson-02:session-14:i08; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `comfortable` · `sold` · `crowded`
+- sold — *«Продано» — це про те, чия річ, а не про те, як у ній нозі.*
+- crowded — *«Людний» — про місце, де повно народу. Черевик таким бути не може.*
+
 
 **9 · Картка слова — pretty**
 <!-- interaction_id: en:lesson-02:session-14:i09; family: listen_choose -->
@@ -106,24 +117,37 @@
 <!-- interaction_id: en:lesson-02:session-14:i11; family: context_gap_grammar -->
 Ціль: `___ it cheap?`
 Варіанти: `Is` · `Are` · `Am`
+- Are — *З `it` потрібне `is`; `are` уживають з `you` і `they`.*
+- Am — *`am` іде з `I`. Пальто — це `it`, отже `is`.*
+
 
 **12 · Складіть відповідь — продавець: «Is it cheap?» Ціна вас потішила. Слово з питання не повторюйте**
 <!-- interaction_id: en:lesson-02:session-14:i12; family: phrase_builder -->
 Ціль: `Yes, it is.`
+Плитки: `Yes,` `it` `is` `cheap`
+*Плитка `cheap` зайва: коротка відповідь не повторює слово з питання: `Yes, it is.`*
 
 **13 · Вставте слово — субота, у крамницю не протовпитися**
 <!-- interaction_id: en:lesson-02:session-14:i13; family: context_gap_grammar -->
 Ціль: `Is it ___ ?`
 Варіанти: `crowded` · `sold` · `comfortable`
+- sold — *«Продано» — про річ, а не про крамницю, повну людей.*
+- comfortable — *«Зручний» — про крісло або взуття. Про натовп так не скажуть.*
+
 
 **14 · Послухайте продавця й складіть його коротке питання**
 <!-- interaction_id: en:lesson-02:session-14:i14; family: listen_build_dictation -->
 Ціль: `Is it pretty?`
+🔊 *Is it pretty?* Плитки: `Is` `it` `pretty` `not`
+*Плитка `not` зайва: це питання про зовнішній вигляд без заперечення: `Is it pretty?`*
 
 **15 · Послухайте й виберіть — ви питаєте продавця, чи дешеве пальто**
 <!-- interaction_id: en:lesson-02:session-14:i15; family: listen_choose -->
 Ціль: `Is it cheap?`
 Варіанти: `Is it cheap?` · `It is cheap.` · `Is it pretty?`
+- It is cheap. — *У запитанні першим звучить `Is`. `It is cheap.` — твердження.*
+- Is it pretty? — *`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий».*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-14:i16; family: scripted_repeat_compare -->

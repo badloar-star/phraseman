@@ -560,7 +560,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставьте слово — по стеклу течёт, во дво",
+          "testedDimension": "Вставьте слово — по стеклу течёт, во дворе лужи",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-26:i10:r2",
@@ -862,7 +862,7 @@
               "text": "rainy"
             }
           ],
-          "testedDimension": "Вставьте слово — батарея греет, в комнат",
+          "testedDimension": "Вставьте слово — батарея греет, в комнате хорошо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-26:i15:r2",
@@ -1415,7 +1415,7 @@
             {
               "responseId": "en:lesson-01:session-26:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — за вікном гне дерева",
+              "testedDimension": "Соберите фразу — за окном гнёт деревья",
               "feedbackByLocale": {
                 "ru": "`not` лишнее: деревья гнёт ветром, поэтому `It is windy.`",
                 "uk": "`not` зайве: дерева гне вітром, тому `It is windy`."
@@ -1629,7 +1629,7 @@
             {
               "responseId": "en:lesson-01:session-26:i09:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «пізно»",
+              "testedDimension": "Послушайте и соберите — «поздно»",
               "feedbackByLocale": {
                 "ru": "`early` лишнее: в записи `It is late.` — «поздно».",
                 "uk": "`early` зайве: у записі `It is late.` — «пізно»."
@@ -1684,7 +1684,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставте слово — по склу тече, у дворі ка",
+          "testedDimension": "Вставте слово — по склу тече, у дворі калюжі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-26:i10:r2",
@@ -1931,7 +1931,7 @@
             {
               "responseId": "en:lesson-01:session-26:i14:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — вікно відчинене, а надворі зимно",
+              "testedDimension": "Соберите фразу — окно открыто, а на улице зябко",
               "feedbackByLocale": {
                 "ru": "`not` лишнее: на улице зябко, поэтому `It is cold.`",
                 "uk": "`not` зайве: надворі зимно, тому `It is cold`."
@@ -1986,7 +1986,7 @@
               "text": "rainy"
             }
           ],
-          "testedDimension": "Вставте слово — батарея гріє, у кімнаті ",
+          "testedDimension": "Вставте слово — батарея гріє, у кімнаті добре",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-26:i15:r2",
@@ -2052,7 +2052,7 @@
             {
               "responseId": "en:lesson-01:session-26:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «тихо»",
+              "testedDimension": "Послушайте и соберите — «тихо»",
               "feedbackByLocale": {
                 "ru": "`windy` лишнее: в записи `It is quiet.` — «тихо».",
                 "uk": "`windy` зайве: у записі `It is quiet.` — «тихо»."
@@ -2092,7 +2092,7 @@
             {
               "responseId": "en:lesson-01:session-26:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — у кімнаті натоплено",
+              "testedDimension": "Соберите фразу — в комнате натоплено",
               "feedbackByLocale": {
                 "ru": "`am` лишнее: с `It` ставят `is` — `It is warm.`",
                 "uk": "`am` зайве: з `It` ставлять `is` — `It is warm`."
@@ -2165,7 +2165,7 @@
             {
               "responseId": "en:lesson-01:session-26:i18:s02:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — у кімнаті темно",
+              "testedDimension": "Соберите фразу — в комнате темно",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is dark.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is dark`."
@@ -2208,7 +2208,7 @@
             {
               "responseId": "en:lesson-01:session-26:i18:s03:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — надворі вітряно",
+              "testedDimension": "Послушайте и соберите — на улице ветрено",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is windy.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is windy`."

@@ -21,7 +21,7 @@
           },
           {
             "responseId": "en:lesson-04:session-12:i01:r3",
-      "text": "platter"
+            "text": "platter"
           }
         ],
         "audioTargetIds": [
@@ -50,10 +50,10 @@
             },
             {
               "responseId": "en:lesson-04:session-12:i01:r3",
-        "targetText": "platter",
+              "targetText": "platter",
               "meaningByLocale": {
-          "ru": "блюдо",
-          "uk": "таця"
+                "ru": "блюдо",
+                "uk": "таця"
               }
             }
           ],
@@ -70,8 +70,8 @@
             {
               "responseId": "en:lesson-04:session-12:i01:r3",
               "feedbackByLocale": {
-          "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
-          "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
+                "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
+                "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
               },
               "correct": false,
               "testedDimension": "auditory_phonetic_contrast"
@@ -274,12 +274,12 @@
             "text": "Yes, there are."
           },
           {
-          "responseId": "en:lesson-04:session-12:i06:r2",
-          "text": "Yes, are there."
+            "responseId": "en:lesson-04:session-12:i06:r2",
+            "text": "Yes, are there."
           },
           {
-          "responseId": "en:lesson-04:session-12:i06:r3",
-          "text": "Yes, there are there."
+            "responseId": "en:lesson-04:session-12:i06:r3",
+            "text": "Yes, there are there."
           }
         ],
         "audioTargetIds": [],
@@ -292,16 +292,16 @@
           "gappedTargetPhrase": "___",
           "gapOptions": [
             {
-          "responseId": "en:lesson-04:session-12:i06:r1",
-          "text": "Yes, there are."
+              "responseId": "en:lesson-04:session-12:i06:r1",
+              "text": "Yes, there are."
             },
             {
-          "responseId": "en:lesson-04:session-12:i06:r2",
-          "text": "Yes, are there."
+              "responseId": "en:lesson-04:session-12:i06:r2",
+              "text": "Yes, are there."
             },
             {
-          "responseId": "en:lesson-04:session-12:i06:r3",
-          "text": "Yes, there are there."
+              "responseId": "en:lesson-04:session-12:i06:r3",
+              "text": "Yes, there are there."
             }
           ],
           "testedDimension": "affirmative_plural_short_reply",
@@ -309,8 +309,8 @@
             {
               "responseId": "en:lesson-04:session-12:i06:r2",
               "feedbackByLocale": {
-            "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
-            "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
+                "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
+                "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
               },
               "correct": false,
               "testedDimension": "short_reply_repetition"
@@ -318,8 +318,8 @@
             {
               "responseId": "en:lesson-04:session-12:i06:r3",
               "feedbackByLocale": {
-            "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
-            "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
+                "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
+                "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
               },
               "correct": false,
               "testedDimension": "short_reply_word_order"
@@ -348,7 +348,8 @@
             "there",
             "two",
             "platforms"
-          ]
+          ],
+          "slotFeedback": []
         }
       },
       {
@@ -366,7 +367,8 @@
             "There",
             "are",
             "platforms"
-          ]
+          ],
+          "slotFeedback": []
         }
       },
       {
@@ -424,16 +426,16 @@
         "prompt": "После объявления выберите вопрос о третьей платформе",
         "responseOptions": [
           {
-          "responseId": "en:lesson-04:session-12:i10:r1",
-          "text": "Are there three platforms?"
+            "responseId": "en:lesson-04:session-12:i10:r1",
+            "text": "Are there three platforms?"
           },
           {
-          "responseId": "en:lesson-04:session-12:i10:r2",
-          "text": "Is there three platforms?"
+            "responseId": "en:lesson-04:session-12:i10:r2",
+            "text": "Is there three platforms?"
           },
           {
-          "responseId": "en:lesson-04:session-12:i10:r3",
-          "text": "There are three platforms."
+            "responseId": "en:lesson-04:session-12:i10:r3",
+            "text": "There are three platforms."
           }
         ],
         "audioTargetIds": [],
@@ -441,16 +443,16 @@
           "gappedTargetPhrase": "___",
           "gapOptions": [
             {
-          "responseId": "en:lesson-04:session-12:i10:r1",
-          "text": "Are there three platforms?"
+              "responseId": "en:lesson-04:session-12:i10:r1",
+              "text": "Are there three platforms?"
             },
             {
-          "responseId": "en:lesson-04:session-12:i10:r2",
-          "text": "Is there three platforms?"
+              "responseId": "en:lesson-04:session-12:i10:r2",
+              "text": "Is there three platforms?"
             },
             {
-          "responseId": "en:lesson-04:session-12:i10:r3",
-          "text": "There are three platforms."
+              "responseId": "en:lesson-04:session-12:i10:r3",
+              "text": "There are three platforms."
             }
           ],
           "choiceFeedback": [
@@ -474,8 +476,8 @@
             }
           ],
           "localizedScene": {
-          "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
-          "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
+            "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
+            "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
           }
         },
         "mediaIds": [],
@@ -515,11 +517,11 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "после объявления на вокзале на схеме отмечены две платформы. На вопрос `Are there two platforms?` выберите короткий ответ.",
+        "prompt": "После объявления на вокзале на схеме отмечены две платформы. На вопрос `Are there two platforms?` выберите короткий ответ.",
         "responseOptions": [
           {
-          "responseId": "en:lesson-04:session-12:i12:r1",
-          "text": "Yes, there are."
+            "responseId": "en:lesson-04:session-12:i12:r1",
+            "text": "Yes, there are."
           },
           {
             "responseId": "en:lesson-04:session-12:i12:r2",
@@ -567,7 +569,8 @@
               "testedDimension": "singular_plural_agreement"
             }
           ]
-        }
+        },
+        "accessibilityLabel": "После объявления на вокзале на схеме отмечены две платформы. На вопрос `Are there two platforms?` выберите короткий ответ."
       }
     ],
     "uk": [
@@ -589,7 +592,7 @@
           },
           {
             "responseId": "en:lesson-04:session-12:i01:r3",
-      "text": "platter"
+            "text": "platter"
           }
         ],
         "audioTargetIds": [
@@ -618,10 +621,10 @@
             },
             {
               "responseId": "en:lesson-04:session-12:i01:r3",
-        "targetText": "platter",
+              "targetText": "platter",
               "meaningByLocale": {
-          "ru": "блюдо",
-          "uk": "таця"
+                "ru": "блюдо",
+                "uk": "таця"
               }
             }
           ],
@@ -638,8 +641,8 @@
             {
               "responseId": "en:lesson-04:session-12:i01:r3",
               "feedbackByLocale": {
-          "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
-          "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
+                "ru": "`Platter` и `platform` начинаются одинаково: /plæt/. Но в конце `platter` нет звуков /f/ и /m/, а в `platform` оба слышны.",
+                "uk": "`Platter` і `platform` починаються однаково: /plæt/. Але наприкінці `platter` немає звуків /f/ і /m/, а в `platform` обидва чути."
               },
               "correct": false,
               "testedDimension": "auditory_phonetic_contrast"
@@ -842,12 +845,12 @@
             "text": "Yes, there are."
           },
           {
-          "responseId": "en:lesson-04:session-12:i06:r2",
-          "text": "Yes, are there."
+            "responseId": "en:lesson-04:session-12:i06:r2",
+            "text": "Yes, are there."
           },
           {
-          "responseId": "en:lesson-04:session-12:i06:r3",
-          "text": "Yes, there are there."
+            "responseId": "en:lesson-04:session-12:i06:r3",
+            "text": "Yes, there are there."
           }
         ],
         "audioTargetIds": [],
@@ -860,16 +863,16 @@
           "gappedTargetPhrase": "___",
           "gapOptions": [
             {
-          "responseId": "en:lesson-04:session-12:i06:r1",
-          "text": "Yes, there are."
+              "responseId": "en:lesson-04:session-12:i06:r1",
+              "text": "Yes, there are."
             },
             {
-          "responseId": "en:lesson-04:session-12:i06:r2",
-          "text": "Yes, are there."
+              "responseId": "en:lesson-04:session-12:i06:r2",
+              "text": "Yes, are there."
             },
             {
-          "responseId": "en:lesson-04:session-12:i06:r3",
-          "text": "Yes, there are there."
+              "responseId": "en:lesson-04:session-12:i06:r3",
+              "text": "Yes, there are there."
             }
           ],
           "testedDimension": "affirmative_plural_short_reply",
@@ -877,8 +880,8 @@
             {
               "responseId": "en:lesson-04:session-12:i06:r2",
               "feedbackByLocale": {
-            "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
-            "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
+                "ru": "Это порядок слов вопроса. В коротком ответе после `Yes` сначала говорят `there`: `Yes, there are.`.",
+                "uk": "Це порядок слів у питанні. У короткій відповіді після `Yes` спочатку кажуть `there`: `Yes, there are.`."
               },
               "correct": false,
               "testedDimension": "short_reply_repetition"
@@ -886,8 +889,8 @@
             {
               "responseId": "en:lesson-04:session-12:i06:r3",
               "feedbackByLocale": {
-            "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
-            "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
+                "ru": "В коротком ответе достаточно одного `there`: `Yes, there are.`.",
+                "uk": "У короткій відповіді достатньо одного `there`: `Yes, there are.`."
               },
               "correct": false,
               "testedDimension": "short_reply_word_order"
@@ -916,7 +919,8 @@
             "there",
             "two",
             "platforms"
-          ]
+          ],
+          "slotFeedback": []
         }
       },
       {
@@ -934,7 +938,8 @@
             "There",
             "are",
             "platforms"
-          ]
+          ],
+          "slotFeedback": []
         }
       },
       {
@@ -992,16 +997,16 @@
         "prompt": "Після оголошення оберіть питання про третю платформу",
         "responseOptions": [
           {
-          "responseId": "en:lesson-04:session-12:i10:r1",
-          "text": "Are there three platforms?"
+            "responseId": "en:lesson-04:session-12:i10:r1",
+            "text": "Are there three platforms?"
           },
           {
-          "responseId": "en:lesson-04:session-12:i10:r2",
-          "text": "Is there three platforms?"
+            "responseId": "en:lesson-04:session-12:i10:r2",
+            "text": "Is there three platforms?"
           },
           {
-          "responseId": "en:lesson-04:session-12:i10:r3",
-          "text": "There are three platforms."
+            "responseId": "en:lesson-04:session-12:i10:r3",
+            "text": "There are three platforms."
           }
         ],
         "audioTargetIds": [],
@@ -1009,41 +1014,41 @@
           "gappedTargetPhrase": "___",
           "gapOptions": [
             {
-          "responseId": "en:lesson-04:session-12:i10:r1",
-          "text": "Are there three platforms?"
+              "responseId": "en:lesson-04:session-12:i10:r1",
+              "text": "Are there three platforms?"
             },
             {
-          "responseId": "en:lesson-04:session-12:i10:r2",
-          "text": "Is there three platforms?"
+              "responseId": "en:lesson-04:session-12:i10:r2",
+              "text": "Is there three platforms?"
             },
             {
-          "responseId": "en:lesson-04:session-12:i10:r3",
-          "text": "There are three platforms."
+              "responseId": "en:lesson-04:session-12:i10:r3",
+              "text": "There are three platforms."
             }
           ],
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-12:i10:r2",
               "feedbackByLocale": {
-            "ru": "С `three platforms` вопрос начинается с `Are there`: `Are there three platforms?`.",
-            "uk": "З `three platforms` питання починається з `Are there`: `Are there three platforms?`."
+                "ru": "С `three platforms` вопрос начинается с `Are there`: `Are there three platforms?`.",
+                "uk": "З `three platforms` питання починається з `Are there`: `Are there three platforms?`."
               },
               "correct": false,
-          "testedDimension": "plural_question_agreement"
+              "testedDimension": "plural_question_agreement"
             },
             {
               "responseId": "en:lesson-04:session-12:i10:r3",
               "feedbackByLocale": {
-            "ru": "Это сообщение. Вопрос начинается с `Are there`: `Are there three platforms?`.",
-            "uk": "Це повідомлення. Питання починається з `Are there`: `Are there three platforms?`."
+                "ru": "Это сообщение. Вопрос начинается с `Are there`: `Are there three platforms?`.",
+                "uk": "Це повідомлення. Питання починається з `Are there`: `Are there three platforms?`."
               },
               "correct": false,
-          "testedDimension": "question_statement"
+              "testedDimension": "question_statement"
             }
           ],
           "localizedScene": {
-          "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
-          "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
+            "ru": "В объявлении назвали платформы 1 и 2. Пассажир уточняет, есть ли третья.",
+            "uk": "В оголошенні назвали платформи 1 і 2. Пасажир уточнює, чи є третя."
           }
         },
         "mediaIds": [],
@@ -1083,7 +1088,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "після оголошення на вокзалі на схемі позначено дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь.",
+        "prompt": "Після оголошення на вокзалі на схемі позначено дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь.",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-12:i12:r1",
@@ -1135,7 +1140,8 @@
               "testedDimension": "singular_plural_agreement"
             }
           ]
-        }
+        },
+        "accessibilityLabel": "Після оголошення на вокзалі на схемі позначено дві платформи. На питання `Are there two platforms?` оберіть коротку відповідь."
       }
     ]
   },

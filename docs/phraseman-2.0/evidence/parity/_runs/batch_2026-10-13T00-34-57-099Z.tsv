@@ -1,0 +1,7 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+system-015	2026-10-13T00:35:25.120Z	error	14697	step_target_not_found:#home-notification-center-button+ждали_metro_25мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/system-015.error.png	0
+results-009	2026-10-13T00:36:33.166Z	error	16596	step_target_not_found:#stats-primary-metric-year+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/results-009.error.png	0
+mistakes-panel-021	2026-10-13T00:37:45.906Z	error	15072	step_target_not_found:#mistakes-hub-start+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/mistakes-panel-021.error.png	0
+cards-section-034	2026-10-13T00:38:17.863Z	blank_too_long	24639	marker+пусто_3736мс+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/cards-section-034.blank_too_long.png	3736
+cards-section-035	2026-10-13T00:38:59.592Z	blank_too_long	29120	marker+пусто_6_повторов+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/cards-section-035.blank_too_long.png	0
+cards-section-036	2026-10-13T00:39:24.628Z	ok	15837	marker+пусто_1318мс+склейка+ждали_metro_14мс	docs/phraseman-2.0/evidence/parity/cards-section-036.png	1318

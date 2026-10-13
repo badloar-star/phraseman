@@ -7,9 +7,107 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 import vm from "node:vm";
-import { introFeedbackContractIssues, parseIntro, slotFeedbackForTask } from "./build_release.mjs";
+import { buildInteraction, introFeedbackContractIssues, parseIntro, slotFeedbackForTask, sourceReleaseSemanticParityIssues } from "./build_release.mjs";
+import { projectSinglePhraseRelease } from "./single_phrase_release.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+
+test("release feedback preserves the complete authored tested dimension", () => {
+  const title = "Выберите единственный вариант, который точно передаёт смысл в этой ситуации";
+  const optionTask = {
+    ordinal: 1,
+    title,
+    family: "listen_choose",
+    options: [
+      { text: "is", correct: true, feedback: "Верно." },
+      { text: "are", correct: false, feedback: "Здесь не несколько предметов." },
+    ],
+  };
+  const perLocale = {
+    ru: { options: optionTask.options },
+    uk: { options: optionTask.options },
+  };
+  const interaction = buildInteraction(optionTask, perLocale, "en/l99/s99", 0, 1);
+  assert.deepEqual(
+    interaction.modePayload.choiceFeedback.map((entry) => entry.testedDimension),
+    [title, title],
+  );
+
+  const gap = buildInteraction({ ...optionTask, family: "context_gap_grammar", body: "I ___ ready." }, perLocale, "en/l99/s99", 0, 1);
+  assert.equal(gap.modePayload.testedDimension, title);
+
+  const contrast = buildInteraction({ ...optionTask, family: "sound_contrast" }, perLocale, "en/l99/s99", 0, 1);
+  assert.equal(contrast.modePayload.testedPhoneticContrast, title);
+
+  const slots = slotFeedbackForTask({
+    ordinal: 2,
+    title,
+    tokens: ["I", "am", "ready", "late"],
+  }, {
+    ru: { body: "*(плитка `late` лишняя: Здесь говорят о готовности.)*" },
+    uk: { body: "*(плитка `late` зайва: Тут говорять про готовність.)*" },
+  }, "en/l99/s99", ["I", "am", "ready"]);
+  assert.equal(slots[0].testedDimension, title);
+});
+
+test("source/release parity rejects changed feedback dimensions and direct gap dimensions", () => {
+  const sessionId = "en:lesson-99:session-99";
+  const title = "Выберите единственный вариант, который точно передаёт смысл в этой ситуации";
+  const makeInteraction = (family) => buildInteraction({
+    ordinal: 1,
+    title,
+    family,
+    body: family === "context_gap_grammar" ? "I ___ ready." : "",
+    audio: "I am ready.",
+    options: [
+      { text: "am", correct: true, feedback: "Верно." },
+      { text: "are", correct: false, feedback: "Здесь говорят о себе." },
+    ],
+  }, {
+    ru: { options: [
+      { text: "am", correct: true, feedback: "Верно." },
+      { text: "are", correct: false, feedback: "Здесь говорят о себе." },
+    ] },
+    uk: { options: [
+      { text: "am", correct: true, feedback: "Правильно." },
+      { text: "are", correct: false, feedback: "Тут говорять про себе." },
+    ] },
+  }, sessionId, 0, 1);
+  const parityIssues = (sourceInteraction, mutateRelease) => {
+    const sourceProjection = projectSinglePhraseRelease({
+      interactions: [sourceInteraction],
+      answers: [{ interactionId: sourceInteraction.interactionId, correctResponseId: `${sourceInteraction.interactionId}:r1`, correctText: "am" }],
+      locale: "ru",
+    });
+    const releaseInteraction = structuredClone(sourceProjection.interactions[0]);
+    mutateRelease(releaseInteraction);
+    return sourceReleaseSemanticParityIssues({
+      sessionIdentity: "en/l99/s99",
+      sessionId,
+      atomicSource: {
+        schemaVersion: "learning_v2_atomic_practice_source_v1",
+        courseSessionId: sessionId,
+        interactionsByLocale: { ru: [sourceInteraction] },
+        answers: [{ interactionId: sourceInteraction.interactionId, correctResponseId: `${sourceInteraction.interactionId}:r1`, correctText: "am" }],
+      },
+      sourceIntroByLocale: {},
+      releaseIntro: { courseSessionId: sessionId, pages: [] },
+      releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: [releaseInteraction] } },
+      releaseAnswers: sourceProjection.answers,
+      locales: ["ru"],
+    });
+  };
+
+  const choiceIssues = parityIssues(makeInteraction("listen_choose"), (release) => {
+    release.modePayload.choiceFeedback[1].testedDimension = title.slice(0, 40);
+  });
+  assert.ok(choiceIssues.some((issue) => issue.includes("modePayload.choiceFeedback")), choiceIssues.join("\n"));
+
+  const gapIssues = parityIssues(makeInteraction("context_gap_grammar"), (release) => {
+    release.modePayload.testedDimension = title.slice(0, 40);
+  });
+  assert.ok(gapIssues.some((issue) => issue.includes("modePayload.testedDimension")), gapIssues.join("\n"));
+});
 
 test("builder tile explanations are bound to their physical distractor IDs from both localized texts", () => {
   const task = {
@@ -51,7 +149,7 @@ test("intro parser keeps a multiline localized explanation out of the English an
     "",
     "**Выберите фразу.**",
     "",
-    "- ✅ **I am not tired.**",
+    "- ✅ **I am not tired.** — *Этот порядок слов передаёт отрицание правильно.*",
     `- ❌ I am tired not. — *${feedback.first}`,
     `  ${feedback.second}*`,
   ].join("\r\n"))[0];
@@ -75,15 +173,6 @@ function makeReady(dir, root) {
   assert.equal(seeded.status, 0, seeded.stderr + seeded.stdout);
   const snapshot = JSON.parse(fs.readFileSync(path.join(seedRoot, ...session.split("/"), "source.snapshot.json"), "utf8"));
   snapshot.schemaVersion = "learning_v2_atomic_practice_source_v1";
-  for (const locale of ["ru", "uk"]) {
-    const markdown = fs.readFileSync(path.join(dir, `final.${locale}.md`), "utf8");
-    const headings = [...markdown.matchAll(/^\*\*(\d+)\s*·\s*(.+?)\*\*$/gmu)].map((match) => match[2]);
-    for (const [index, interaction] of (snapshot.interactionsByLocale?.[locale] || []).entries()) {
-      if (!headings[index]) continue;
-      interaction.prompt = headings[index];
-      interaction.accessibilityLabel = headings[index];
-    }
-  }
   fs.writeFileSync(path.join(dir, "practice.atomic.json"), `${JSON.stringify(snapshot, null, 2)}\n`);
   const ru = crypto.createHash("sha256").update(source).digest("hex");
   const uk = crypto.createHash("sha256").update(fs.readFileSync(path.join(dir, "final.uk.md"))).digest("hex");
@@ -123,7 +212,12 @@ test("release feedback keeps the selected option ID in every locale and answer p
   const root = fs.mkdtempSync(path.join(tempParent, "learning-v2-feedback-"));
   try {
     fs.mkdirSync(path.join(root, "pipeline"));
-    for (const name of ["build_release.mjs", "single_phrase_release.mjs", "session_header.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "prejudge_choreography.mjs", "write_mockup_file.mjs", "sync_mockup_readiness.mjs", "sync_mockup_source_release_findings.mjs", "sync_mockup_source_quality_findings.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+    fs.mkdirSync(path.join(root, "modules/learning-v2/content"), { recursive: true });
+    fs.copyFileSync(
+      path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js"),
+      path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js"),
+    );
+    for (const name of ["build_release.mjs", "practice_explanations_v1.mjs", "single_phrase_release.mjs", "session_header.mjs", "session_readiness.mjs", "owner_quality.mjs", "progression_quality_gate.mjs", "audit_actor_clarity.mjs", "prejudge_choreography.mjs", "write_mockup_file.mjs", "sync_mockup_readiness.mjs", "sync_mockup_source_release_findings.mjs", "sync_mockup_source_quality_findings.mjs"]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
     fs.copyFileSync(path.join(here, "build_mockup.mjs"), path.join(root, "pipeline/build_mockup.mjs"));
     fs.copyFileSync(path.join(here, "write_mockup_file.mjs"), path.join(root, "pipeline/write_mockup_file.mjs"));
     const sessionDir = path.join(root, "sessions/en/l02/s33");
@@ -136,7 +230,7 @@ test("release feedback keeps the selected option ID in every locale and answer p
       const labels = labelsByLocale[locale];
       const introLabels = ["is", "are", "am"];
       const audioByCorrect = ["This is ready.", "They are ready.", "I am ready."];
-      const intro = [1, 2, 3].map((n) => `## Интро ${n}\n\n### Вопрос\n\nТекст.\n\n**Выберите.**\n\n- ✅ **${introLabels[0]}**\n- ❌ ${introLabels[1]} — *${locale}-${introLabels[1]}*\n- ❌ ${introLabels[2]} — *${locale}-${introLabels[2]}*\n\n---`).join("\n\n");
+      const intro = [1, 2, 3].map((n) => `## Интро ${n}\n\n### Вопрос\n\nТекст.\n\n**Выберите.**\n\n- ✅ **${introLabels[0]}** — *${locale}-${introLabels[0]}*\n- ❌ ${introLabels[1]} — *${locale}-${introLabels[1]}*\n- ❌ ${introLabels[2]} — *${locale}-${introLabels[2]}*\n\n---`).join("\n\n");
       const instruction = locale === "uk" ? "Послухайте й виберіть" : "Послушайте и выберите";
       const tasks = [0, 1, 2].map((correct, index) => `**${index + 1} · ${instruction} — ${labels[correct]}**\n<!-- interaction_id: en:lesson-02:session-33:i${String(index + 1).padStart(2, "0")}; family: listen_choose -->\n\n🔊 *${audioByCorrect[correct]}*\n\n` + labels.map((label, i) => i === correct
         ? `- ✅ **${label}** — *${locale}-${label}*`
@@ -176,12 +270,16 @@ test("release feedback keeps the selected option ID in every locale and answer p
       }
       const entry = auxiliary.entries.find((candidate) => candidate.interactionId === page.question.interactionId);
       assert.ok(entry, "intro feedback must travel in the auxiliary channel");
-      const wrongIds = page.question.choicesByLocale.ru.slice(1).map((choice) => choice.responseId);
-      assert.deepEqual(Object.keys(entry.responseFeedbackById), wrongIds);
-      for (const [index, responseId] of wrongIds.entries()) {
+      // Feedback is response-specific learner guidance, not an answer key:
+      // every sealed visible response ID must project its authored explanation.
+      const optionIds = page.question.choicesByLocale.ru
+        .map((choice) => choice.responseId);
+      assert.deepEqual(Object.keys(entry.responseFeedbackById), optionIds);
+      for (const responseId of optionIds) {
+        const index = page.question.choicesByLocale.ru.findIndex((choice) => choice.responseId === responseId);
         assert.deepEqual(entry.responseFeedbackById[responseId], {
-          ru: `ru-${page.question.choicesByLocale.ru[index + 1].text}`,
-          uk: `uk-${page.question.choicesByLocale.uk[index + 1].text}`,
+          ru: `ru-${page.question.choicesByLocale.ru[index].text}`,
+          uk: `uk-${page.question.choicesByLocale.uk[index].text}`,
         });
       }
     }
@@ -206,10 +304,10 @@ test("release feedback keeps the selected option ID in every locale and answer p
       }
     }
     assert.deepEqual(learner.interactions.map((interaction) => interaction.prompt), [
-      "Послушайте и выберите — is", "Послушайте и выберите — are", "Послушайте и выберите — am", "Соедините пары (Speed Match, 4 пары)",
+      "Послушайте и выберите", "Послушайте и выберите", "Послушайте и выберите", "Соедините пары",
     ]);
     assert.deepEqual(learnerUk.interactions.map((interaction) => interaction.prompt), [
-      "Послухайте й виберіть — is", "Послухайте й виберіть — are", "Послухайте й виберіть — am", "З’єднайте пари (Speed Match, 4 пари)",
+      "Послухайте й виберіть", "Послухайте й виберіть", "Послухайте й виберіть", "З’єднайте пари",
     ]);
     for (const [index, baseInteraction] of learner.interactions.entries()) {
       const localizedInteraction = learnerUk.interactions[index];
@@ -233,8 +331,13 @@ test("release feedback keeps the selected option ID in every locale and answer p
     const validUk = fs.readFileSync(ukFile, "utf8");
     const rejectedIntroCases = [
       {
+        name: "missing-correct-feedback",
+        reason: /intro_feedback_contract_hold:.+:page=1:reason=feedback_missing:locale=uk:index=0/u,
+        mutate: (source) => source.replace("- ✅ **is** — *uk-is*", "- ✅ **is**"),
+      },
+      {
         name: "missing-feedback",
-        reason: /intro_feedback_contract_hold:.+:page=1:reason=wrong_feedback_missing:locale=uk:index=1/u,
+        reason: /intro_feedback_contract_hold:.+:page=1:reason=feedback_missing:locale=uk:index=1/u,
         mutate: (source) => source.replace("- ❌ are — *uk-are*", "- ❌ are"),
       },
       {
@@ -275,7 +378,8 @@ test("release feedback keeps the selected option ID in every locale and answer p
     assert.equal(fs.existsSync(path.join(missingLocaleRoot, "en/l02/s33")), false);
     fs.writeFileSync(ukFile, validUk);
 
-    // Older frozen releases retain the locale fallback; new scoped releases require RU+UK.
+    // Private review artifacts may still exercise the missing-locale fallback;
+    // every canonical release requires RU+UK and current readiness.
     const fallbackDir = path.join(root, "sessions/en/l02/s32");
     fs.mkdirSync(fallbackDir, { recursive: true });
     for (const locale of ["ru", "uk"]) {
@@ -284,8 +388,19 @@ test("release feedback keeps the selected option ID in every locale and answer p
     }
     makeReady(fallbackDir, root);
     fs.unlinkSync(path.join(fallbackDir, "final.uk.md"));
-    const fallbackRun = spawnSync(process.execPath, [path.join(root, "pipeline/build_release.mjs"), "--session", "en/l02/s32", "--locales", "ru"], { encoding: "utf8" });
+    const fallbackReviewRoot = path.join(root, "fallback-review");
+    const fallbackRun = spawnSync(process.execPath, [
+      path.join(root, "pipeline/build_release.mjs"),
+      "--session", "en/l02/s32",
+      "--locales", "ru",
+      "--out", fallbackReviewRoot,
+    ], { encoding: "utf8" });
     assert.equal(fallbackRun.status, 0, fallbackRun.stderr || fallbackRun.stdout);
+    fs.cpSync(
+      path.join(fallbackReviewRoot, "en/l02/s32"),
+      path.join(root, "release/en/l02/s32"),
+      { recursive: true },
+    );
     const preview = spawnSync(process.execPath, [path.join(root, "pipeline/build_mockup.mjs")], { encoding: "utf8" });
     assert.equal(preview.status, 0, preview.stderr || preview.stdout);
     const previewHtml = fs.readFileSync(path.join(root, "mockup/index.html"), "utf8");
@@ -302,7 +417,8 @@ test("release feedback keeps the selected option ID in every locale and answer p
     assert.equal(fallbackSession.learnerByLocale.uk, undefined, "missing locale child must stay missing in the wrapper");
     const appJs = fs.readFileSync(path.join(root, "mockup/app.js"), "utf8");
     assert.match(appJs, /S\.picked = c\.responseId/u, "intro selection must retain the stable response ID after shuffle");
-    assert.match(appJs, /responseFeedbackById\?\.\[S\.picked\]/u, "intro wrong feedback must resolve by stable response ID");
+    assert.match(appJs, /responseFeedbackById\?\.\[S\.picked\]/u, "intro option feedback must resolve by stable response ID");
+    assert.match(appJs, /nextRow\(S\.answered && Boolean\(selectedFeedback\)\)/u, "intro navigation must remain fail-closed until the selected answer has feedback");
     const selector = /^const learnerForSession = .+;$/m.exec(appJs)?.[0];
     assert.ok(selector, "mockup must expose one locale-child selector used by every render");
     const select = (session, locale) => {
@@ -310,19 +426,13 @@ test("release feedback keeps the selected option ID in every locale and answer p
       vm.runInNewContext(`${selector}\nresult = learnerForSession(session, locale);`, context);
       return context.result;
     };
-    assert.equal(select(localizedSession, "uk").interactions[0].prompt, "Послухайте й виберіть — is");
-    assert.equal(select(fallbackSession, "uk").interactions[0].prompt, "Послушайте и выберите — is");
+    assert.equal(select(localizedSession, "uk").interactions[0].prompt, "Послухайте й виберіть");
+    assert.equal(select(fallbackSession, "uk").interactions[0].prompt, "Послушайте и выберите");
     assert.equal(/s\.learner\.interactions/.test(appJs), false, "renderers must not bypass locale-child selection");
 
     const canonicalBeforeRejectedBuild = fs.readFileSync(path.join(out, "learner.json"), "utf8");
     const atomicRu = structuredClone(learner.interactions);
     const divergentUk = structuredClone(learnerUk.interactions);
-    for (let index = 0; index < 3; index += 1) {
-      atomicRu[index].prompt = `Послушайте и выберите — ${labelsByLocale.ru[index]}`;
-      divergentUk[index].prompt = `Послухайте й виберіть — ${labelsByLocale.uk[index]}`;
-    }
-    atomicRu[3].prompt = "Соедините пары (Speed Match, 4 пары)";
-    divergentUk[3].prompt = "З’єднайте пари (Speed Match, 4 пари)";
     divergentUk[0].modePayload.choiceFeedback[0].feedbackByLocale.ru = "расходящийся feedback";
     fs.writeFileSync(path.join(sessionDir, "practice.atomic.json"), JSON.stringify({
       schemaVersion: "learning_v2_atomic_practice_source_v1",

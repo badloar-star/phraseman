@@ -1,0 +1,9 @@
+# S02 fresh blind builder/pair attempt
+
+Run: `/root/s02_blind_builds`. Fresh context, no file/tool/answer-key access. Solver received only the previously taught vocabulary, eight visible RU/UK prompts, sorted combined tile banks or independently sorted pair columns. It did not receive answer IDs, correct flags, ordered target tokens, hidden target phrases, pair mappings, or feedback. Listening items i10/i13 explicitly used a transcript substitute; this is not acoustic evidence.
+
+Inputs came from `outputs/s02-diagnostics-fixed-20261013/en/l01/s02/learner.json` and `learner.uk.json`. Exact allowlisted visible-input comparison against `outputs/s02-review-fixed-20261013` was equal in both locales after the repair. New content bundle: `1e26259bf3b9e062e910a4450b2da38e06496d7cffbcf13450b187cefb6cdda1`; receipt: `2dd34242e4e997551179ccd78a6e7183f4b50396b58954e79f7b78299dd2e4fa`; inventory: `84ad4b4fe585aea845728486c40a3e7fc5120aaad96ebb819deff0a61fd2db79`.
+
+Initial answers and the subsequent clarification are preserved unchanged in the two adjacent `blind_builds*_raw.md` files. The solver initially mistyped Ukrainian `радий` as `радій`; when asked to choose literally from the originally supplied bank, it corrected its transcription without seeing a key. It also clarified that the second-person scene instructions do not create two bank-supported first-person answers. These are observations about the solver, not silently repaired lesson defects.
+
+This attempt supplements, not replaces or rewrites, the earlier learner report that disclosed answer leakage for builders/pairs. It covers i07, i10, i11, i13, i15, i16, i17:s02, i17:s04 only. A final learner reviewer must verify its answers against the frozen candidate and review repaired feedback separately. No release authority is granted.

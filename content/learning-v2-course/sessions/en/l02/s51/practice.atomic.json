@@ -230,7 +230,7 @@
               "text": "sorry"
             }
           ],
-          "testedDimension": "Вставьте слово — прохожий объясняет доро",
+          "testedDimension": "Вставьте слово — прохожий объясняет дорогу; уточните, близко ли станция",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i04:r2",
@@ -404,7 +404,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставьте слово — друг предлагает свернут",
+          "testedDimension": "Вставьте слово — друг предлагает свернуть направо; уточните, уверен ли он в этом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i07:r2",
@@ -556,7 +556,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте выражение — прохожий отвлёкся на карту; привлеките его внимание, чтобы уточнить, уверен ли он в выбранном повороте",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте вираз — перехожий відволікся на карту; приверніть його увагу, щоб уточнити, чи впевнений він у вибраному повороті"
           },
           "gappedTargetPhrase": "___ .",
@@ -784,7 +784,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, близко",
+          "testedDimension": "Вставьте слово — друг спрашивает, близко ли станция; по объяснению прохожего вы знаете, что близко, ответьте коротко «Да»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i13:r2",
@@ -822,8 +822,14 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Excuse me.",
-          "localizedMeaning": {"ru":"Соберите фразу — вы подходите к прохожему, чтобы уточнить дорогу","uk":"Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу"},
-          "orderedTokens": ["Excuse", "me"],
+          "localizedMeaning": {
+            "ru": "Соберите фразу — вы подходите к прохожему, чтобы уточнить дорогу",
+            "uk": "Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу"
+          },
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -856,7 +862,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — перед ещё одним вопросом уточните у прохожего, занят ли он",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте слово — перед іще одним запитанням уточніть у перехожого, чи зайнятий він"
           },
           "gappedTargetPhrase": "Are you ___ ?",
@@ -985,7 +991,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1249,7 +1258,7 @@
               "text": "sorry"
             }
           ],
-          "testedDimension": "Вставте слово — перехожий пояснює дорогу",
+          "testedDimension": "Вставте слово — перехожий пояснює дорогу; уточніть, чи станція близько",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i04:r2",
@@ -1423,7 +1432,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставте слово — друг пропонує повернути ",
+          "testedDimension": "Вставте слово — друг пропонує повернути праворуч; уточніть, чи впевнений він у цьому",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i07:r2",
@@ -1576,7 +1585,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте выражение — прохожий отвлёкся на карту; привлеките его внимание, чтобы уточнить, уверен ли он в выбранном повороте",
-            "uk": "Вставте вираз — перехожий відволікся на карту; приверніть його увагу, щоб уточнити, чи впевнений він у вибраному повороті"
+            "uk": "Вставте одну відповідь в одну фразу"
           },
           "gappedTargetPhrase": "___ .",
           "gapOptions": [
@@ -1803,7 +1812,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, чи близько",
+          "testedDimension": "Вставте слово — друг запитує, чи близько станція; з пояснення перехожого ви знаєте, що близько, дайте коротку відповідь «Так»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-51:i13:r2",
@@ -1841,8 +1850,14 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Excuse me.",
-          "localizedMeaning": {"ru":"Соберите фразу — вы подходите к прохожему, чтобы уточнить дорогу","uk":"Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу"},
-          "orderedTokens": ["Excuse", "me"],
+          "localizedMeaning": {
+            "ru": "Соберите фразу — вы подходите к прохожему, чтобы уточнить дорогу",
+            "uk": "Складіть фразу — ви підходите до перехожого, щоб уточнити дорогу"
+          },
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1876,7 +1891,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — перед ещё одним вопросом уточните у прохожего, занят ли он",
-            "uk": "Вставте слово — перед іще одним запитанням уточніть у перехожого, чи зайнятий він"
+            "uk": "Вставте одну відповідь в одну фразу"
           },
           "gappedTargetPhrase": "Are you ___ ?",
           "gapOptions": [
@@ -2004,7 +2019,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },

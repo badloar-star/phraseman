@@ -88,14 +88,81 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Выберите название — что лежит на стойке",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i05:r1", "text": "keyring" }, { "responseId": "en:lesson-03:session-32:i05:r2", "text": "key" }, { "responseId": "en:lesson-03:session-32:i05:r3", "text": "magnet" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i05:r1",
+            "text": "keyring"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i05:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i05:r3",
+            "text": "magnet"
+          }
+        ],
         "mediaIds": [],
-          "audioTargetIds": [
-            "en:lesson-03:session-32:i05:audio"
-          ],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i05:audio"
+        ],
         "accessibilityLabel": "Выберите название — что лежит на стойке",
         "modePayload": {
-          "family": "listen_choose", "referenceAudio": { "audioTargetId": "en:lesson-03:session-32:i05:audio", "transcript": "keyring" }, "slowReferenceAudio": null, "localizedMeaningChoices": [{ "responseId": "en:lesson-03:session-32:i05:r1", "targetText": "keyring", "meaningByLocale": { "ru": "связка ключей", "uk": "кільце з ключами" } }, { "responseId": "en:lesson-03:session-32:i05:r2", "targetText": "key", "meaningByLocale": { "ru": "ключ", "uk": "ключ" } }, { "responseId": "en:lesson-03:session-32:i05:r3", "targetText": "magnet", "meaningByLocale": { "ru": "магнит", "uk": "магніт" } }], "transcriptRevealPolicy": "after_first_attempt", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i05:r2", "correct": false, "testedDimension": "Связка ключей на стойке: keyring", "feedbackByLocale": { "ru": "Key — один ключ. Здесь связка ключей: keyring.", "uk": "Key — один ключ. Тут кільце з ключами: keyring." } }, { "responseId": "en:lesson-03:session-32:i05:r3", "correct": false, "testedDimension": "Связка ключей на стойке: keyring", "feedbackByLocale": { "ru": "Magnet — магнит. Здесь связка ключей: keyring.", "uk": "Magnet — магніт. Тут кільце з ключами: keyring." } }], "isWordCard": false, "wordCard": null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i05:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:r1",
+              "targetText": "keyring",
+              "meaningByLocale": {
+                "ru": "связка ключей",
+                "uk": "кільце з ключами"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r2",
+              "targetText": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r3",
+              "targetText": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Связка ключей на стойке: keyring",
+              "feedbackByLocale": {
+                "ru": "Key — один ключ. Здесь связка ключей: keyring.",
+                "uk": "Key — один ключ. Тут кільце з ключами: keyring."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Связка ключей на стойке: keyring",
+              "feedbackByLocale": {
+                "ru": "Magnet — магнит. Здесь связка ключей: keyring.",
+                "uk": "Magnet — магніт. Тут кільце з ключами: keyring."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -245,12 +312,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — keyring или key",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i06:r1", "text": "keyring" }, { "responseId": "en:lesson-03:session-32:i06:r2", "text": "key" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i06:r1",
+            "text": "keyring"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r2",
+            "text": "key"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-32:i06:audioA", "en:lesson-03:session-32:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i06:audioA",
+          "en:lesson-03:session-32:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — keyring или key",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "keyring", "contrastB": "key", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-32:i06:audioA", "transcript": "keyring" }, "audioB": { "audioTargetId": "en:lesson-03:session-32:i06:audioB", "transcript": "key" }, "testedPhoneticContrast": "В keyring после key слышится ring.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i06:r2", "correct": false, "testedDimension": "В keyring после key слышится ring.", "feedbackByLocale": { "ru": "Key — один ключ. В keyring после key слышится ring: keyring.", "uk": "Key — один ключ. У keyring після key чути ring: keyring." } }]
+          "family": "sound_contrast",
+          "contrastA": "keyring",
+          "contrastB": "key",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-32:i06:audioA",
+            "transcript": "keyring"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-32:i06:audioB",
+            "transcript": "key"
+          },
+          "testedPhoneticContrast": "В keyring после key слышится ring.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "В keyring после key слышится ring.",
+              "feedbackByLocale": {
+                "ru": "Key — один ключ. В keyring после key слышится ring: keyring.",
+                "uk": "Key — один ключ. У keyring після key чути ring: keyring."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -263,8 +366,8 @@
         "prompt": "Соедините слова со значениями — музейный киоск",
         "responseOptions": [],
         "mediaIds": [],
-          "audioTargetIds": [],
-          "accessibilityLabel": "Соедините слова со значениями — музейный киоск",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Соедините слова со значениями — музейный киоск",
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
@@ -334,12 +437,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Заполните просьбу — выберите открытку на стойке",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i08:r1", "text": "postcard" }, { "responseId": "en:lesson-03:session-32:i08:r2", "text": "magnet" }, { "responseId": "en:lesson-03:session-32:i08:r3", "text": "keyring" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i08:r1",
+            "text": "postcard"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r2",
+            "text": "magnet"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r3",
+            "text": "keyring"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Заполните просьбу — выберите открытку на стойке",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На стойке лежит открытка. Попросите именно её.", "uk": "На стійці лежить листівка. Попросіть саме її." }, "gappedTargetPhrase": "This ___, please.", "gapOptions": [{ "responseId": "en:lesson-03:session-32:i08:r1", "text": "postcard" }, { "responseId": "en:lesson-03:session-32:i08:r2", "text": "magnet" }, { "responseId": "en:lesson-03:session-32:i08:r3", "text": "keyring" }], "testedDimension": "Открытка на стойке: This postcard, please.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i08:r2", "correct": false, "testedDimension": "Открытка на стойке: This postcard, please.", "feedbackByLocale": { "ru": "Magnet — магнит. На стойке нужна открытка: postcard.", "uk": "Magnet — магніт. На стійці потрібна листівка: postcard." } }, { "responseId": "en:lesson-03:session-32:i08:r3", "correct": false, "testedDimension": "Открытка на стойке: This postcard, please.", "feedbackByLocale": { "ru": "Keyring — связка ключей. На стойке нужна открытка: postcard.", "uk": "Keyring — кільце з ключами. На стійці потрібна листівка: postcard." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Заполните просьбу — выберите открытку на стойке",
+            "uk": "На стійці лежить листівка. Попросіть саме її."
+          },
+          "gappedTargetPhrase": "This ___, please.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r1",
+              "text": "postcard"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "text": "magnet"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "text": "keyring"
+            }
+          ],
+          "testedDimension": "Открытка на стойке: This postcard, please.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Открытка на стойке: This postcard, please.",
+              "feedbackByLocale": {
+                "ru": "Magnet — магнит. На стойке нужна открытка: postcard.",
+                "uk": "Magnet — магніт. На стійці потрібна листівка: postcard."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Открытка на стойке: This postcard, please.",
+              "feedbackByLocale": {
+                "ru": "Keyring — связка ключей. На стойке нужна открытка: postcard.",
+                "uk": "Keyring — кільце з ключами. На стійці потрібна листівка: postcard."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -350,12 +506,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите указатель — this или that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-32:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-32:i09:audioA", "en:lesson-03:session-32:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i09:audioA",
+          "en:lesson-03:session-32:i09:audioB"
+        ],
         "accessibilityLabel": "Различите указатель — this или that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-32:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-32:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This указывает на предмет рядом, that — на предмет дальше.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i09:r2", "correct": false, "testedDimension": "This указывает на предмет рядом, that — на предмет дальше.", "feedbackByLocale": { "ru": "That — «тот» для предмета дальше. Здесь нужен указатель для близкого предмета: This.", "uk": "That — «той» для предмета далі. Тут потрібен вказівник для близького предмета: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This указывает на предмет рядом, that — на предмет дальше.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "This указывает на предмет рядом, that — на предмет дальше.",
+              "feedbackByLocale": {
+                "ru": "That — «тот» для предмета дальше. Здесь нужен указатель для близкого предмета: This.",
+                "uk": "That — «той» для предмета далі. Тут потрібен вказівник для близького предмета: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -376,10 +568,10 @@
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-32:i10:audio",
-              "transcript": "This keyring, please."
+            "transcript": "This keyring, please."
           },
           "slowReferenceAudio": null,
-            "targetPhrase": "This keyring, please.",
+          "targetPhrase": "This keyring, please.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -572,7 +764,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте указатель — брелок лежит прямо ",
+          "testedDimension": "Вставьте указатель — брелок лежит прямо перед вами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-32:i13:r2",
@@ -631,7 +823,8 @@
             "postcard,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -789,7 +982,8 @@
             "a",
             "postcard."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -939,14 +1133,81 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Виберіть назву — що лежить на стійці",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i05:r1", "text": "keyring" }, { "responseId": "en:lesson-03:session-32:i05:r2", "text": "key" }, { "responseId": "en:lesson-03:session-32:i05:r3", "text": "magnet" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i05:r1",
+            "text": "keyring"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i05:r2",
+            "text": "key"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i05:r3",
+            "text": "magnet"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-03:session-32:i05:audio"
         ],
         "accessibilityLabel": "Виберіть назву — що лежить на стійці",
         "modePayload": {
-          "family": "listen_choose", "referenceAudio": { "audioTargetId": "en:lesson-03:session-32:i05:audio", "transcript": "keyring" }, "slowReferenceAudio": null, "localizedMeaningChoices": [{ "responseId": "en:lesson-03:session-32:i05:r1", "targetText": "keyring", "meaningByLocale": { "ru": "связка ключей", "uk": "кільце з ключами" } }, { "responseId": "en:lesson-03:session-32:i05:r2", "targetText": "key", "meaningByLocale": { "ru": "ключ", "uk": "ключ" } }, { "responseId": "en:lesson-03:session-32:i05:r3", "targetText": "magnet", "meaningByLocale": { "ru": "магнит", "uk": "магніт" } }], "transcriptRevealPolicy": "after_first_attempt", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i05:r2", "correct": false, "testedDimension": "Кільце з ключами на стійці: keyring", "feedbackByLocale": { "ru": "Key — один ключ. Здесь связка ключей: keyring.", "uk": "Key — один ключ. Тут кільце з ключами: keyring." } }, { "responseId": "en:lesson-03:session-32:i05:r3", "correct": false, "testedDimension": "Кільце з ключами на стійці: keyring", "feedbackByLocale": { "ru": "Magnet — магнит. Здесь связка ключей: keyring.", "uk": "Magnet — магніт. Тут кільце з ключами: keyring." } }], "isWordCard": false, "wordCard": null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-32:i05:audio",
+            "transcript": "keyring"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:r1",
+              "targetText": "keyring",
+              "meaningByLocale": {
+                "ru": "связка ключей",
+                "uk": "кільце з ключами"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r2",
+              "targetText": "key",
+              "meaningByLocale": {
+                "ru": "ключ",
+                "uk": "ключ"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r3",
+              "targetText": "magnet",
+              "meaningByLocale": {
+                "ru": "магнит",
+                "uk": "магніт"
+              }
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i05:r2",
+              "correct": false,
+              "testedDimension": "Кільце з ключами на стійці: keyring",
+              "feedbackByLocale": {
+                "ru": "Key — один ключ. Здесь связка ключей: keyring.",
+                "uk": "Key — один ключ. Тут кільце з ключами: keyring."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i05:r3",
+              "correct": false,
+              "testedDimension": "Кільце з ключами на стійці: keyring",
+              "feedbackByLocale": {
+                "ru": "Magnet — магнит. Здесь связка ключей: keyring.",
+                "uk": "Magnet — магніт. Тут кільце з ключами: keyring."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1096,12 +1357,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — keyring або key",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i06:r1", "text": "keyring" }, { "responseId": "en:lesson-03:session-32:i06:r2", "text": "key" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i06:r1",
+            "text": "keyring"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i06:r2",
+            "text": "key"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-32:i06:audioA", "en:lesson-03:session-32:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i06:audioA",
+          "en:lesson-03:session-32:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — keyring або key",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "keyring", "contrastB": "key", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-32:i06:audioA", "transcript": "keyring" }, "audioB": { "audioTargetId": "en:lesson-03:session-32:i06:audioB", "transcript": "key" }, "testedPhoneticContrast": "У keyring після key чути ring.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i06:r2", "correct": false, "testedDimension": "У keyring після key чути ring.", "feedbackByLocale": { "ru": "Key — один ключ. В keyring после key слышится ring: keyring.", "uk": "Key — один ключ. У keyring після key чути ring: keyring." } }]
+          "family": "sound_contrast",
+          "contrastA": "keyring",
+          "contrastB": "key",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-32:i06:audioA",
+            "transcript": "keyring"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-32:i06:audioB",
+            "transcript": "key"
+          },
+          "testedPhoneticContrast": "У keyring після key чути ring.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i06:r2",
+              "correct": false,
+              "testedDimension": "У keyring після key чути ring.",
+              "feedbackByLocale": {
+                "ru": "Key — один ключ. В keyring после key слышится ring: keyring.",
+                "uk": "Key — один ключ. У keyring після key чути ring: keyring."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1185,12 +1482,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Заповніть прохання — виберіть листівку на стійці",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i08:r1", "text": "postcard" }, { "responseId": "en:lesson-03:session-32:i08:r2", "text": "magnet" }, { "responseId": "en:lesson-03:session-32:i08:r3", "text": "keyring" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i08:r1",
+            "text": "postcard"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r2",
+            "text": "magnet"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i08:r3",
+            "text": "keyring"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Заповніть прохання — виберіть листівку на стійці",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На стойке лежит открытка. Попросите именно её.", "uk": "На стійці лежить листівка. Попросіть саме її." }, "gappedTargetPhrase": "This ___, please.", "gapOptions": [{ "responseId": "en:lesson-03:session-32:i08:r1", "text": "postcard" }, { "responseId": "en:lesson-03:session-32:i08:r2", "text": "magnet" }, { "responseId": "en:lesson-03:session-32:i08:r3", "text": "keyring" }], "testedDimension": "Листівка на стійці: This postcard, please.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i08:r2", "correct": false, "testedDimension": "Листівка на стійці: This postcard, please.", "feedbackByLocale": { "ru": "Magnet — магнит. На стойке нужна открытка: postcard.", "uk": "Magnet — магніт. На стійці потрібна листівка: postcard." } }, { "responseId": "en:lesson-03:session-32:i08:r3", "correct": false, "testedDimension": "Листівка на стійці: This postcard, please.", "feedbackByLocale": { "ru": "Keyring — связка ключей. На стойке нужна открытка: postcard.", "uk": "Keyring — кільце з ключами. На стійці потрібна листівка: postcard." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На стойке лежит открытка. Попросите именно её.",
+            "uk": "Заповніть прохання — виберіть листівку на стійці"
+          },
+          "gappedTargetPhrase": "This ___, please.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r1",
+              "text": "postcard"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "text": "magnet"
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "text": "keyring"
+            }
+          ],
+          "testedDimension": "Листівка на стійці: This postcard, please.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i08:r2",
+              "correct": false,
+              "testedDimension": "Листівка на стійці: This postcard, please.",
+              "feedbackByLocale": {
+                "ru": "Magnet — магнит. На стойке нужна открытка: postcard.",
+                "uk": "Magnet — магніт. На стійці потрібна листівка: postcard."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-32:i08:r3",
+              "correct": false,
+              "testedDimension": "Листівка на стійці: This postcard, please.",
+              "feedbackByLocale": {
+                "ru": "Keyring — связка ключей. На стойке нужна открытка: postcard.",
+                "uk": "Keyring — кільце з ключами. На стійці потрібна листівка: postcard."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1201,12 +1551,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть вказівник — this або that",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-32:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-32:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-32:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-32:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-32:i09:audioA", "en:lesson-03:session-32:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-32:i09:audioA",
+          "en:lesson-03:session-32:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть вказівник — this або that",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-32:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-32:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This вказує на предмет поруч, that — на предмет далі.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-32:i09:r2", "correct": false, "testedDimension": "This вказує на предмет поруч, that — на предмет далі.", "feedbackByLocale": { "ru": "That — «тот» для предмета дальше. Здесь нужен указатель для близкого предмета: This.", "uk": "That — «той» для предмета далі. Тут потрібен вказівник для близького предмета: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-32:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This вказує на предмет поруч, that — на предмет далі.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-32:i09:r2",
+              "correct": false,
+              "testedDimension": "This вказує на предмет поруч, that — на предмет далі.",
+              "feedbackByLocale": {
+                "ru": "That — «тот» для предмета дальше. Здесь нужен указатель для близкого предмета: This.",
+                "uk": "That — «той» для предмета далі. Тут потрібен вказівник для близького предмета: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1227,10 +1613,10 @@
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-03:session-32:i10:audio",
-              "transcript": "This keyring, please."
+            "transcript": "This keyring, please."
           },
           "slowReferenceAudio": null,
-            "targetPhrase": "This keyring, please.",
+          "targetPhrase": "This keyring, please.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1482,7 +1868,8 @@
             "postcard,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1640,7 +2027,8 @@
             "a",
             "postcard."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

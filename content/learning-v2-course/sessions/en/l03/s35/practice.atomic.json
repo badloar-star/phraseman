@@ -90,17 +90,70 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
-        "responseOptions": [{"responseId":"en:lesson-03:session-35:i05:r1","text":"frame"},{"responseId":"en:lesson-03:session-35:i05:r2","text":"photo"},{"responseId":"en:lesson-03:session-35:i05:r3","text":"album"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i05:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i05:r2",
+            "text": "photo"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i05:r3",
+            "text": "album"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-35:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
-          "family":"listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-35:i05:audio","transcript":"frame"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-35:i05:r1","targetText":"frame","meaningByLocale":null},{"responseId":"en:lesson-03:session-35:i05:r2","targetText":"photo","meaningByLocale":null},{"responseId":"en:lesson-03:session-35:i05:r3","targetText":"album","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-35:i05:r2","correct":false,"testedDimension":"На записи звучит frame","feedbackByLocale":{"ru":"`photo` — фотография. В записи звучит `frame` — рамка.","uk":"`photo` — фотографія. У записі звучить `frame` — рамка."}},{"responseId":"en:lesson-03:session-35:i05:r3","correct":false,"testedDimension":"На записи звучит frame","feedbackByLocale":{"ru":"`album` — альбом. В записи звучит `frame` — рамка.","uk":"`album` — альбом. У записі звучить `frame` — рамка."}}]
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i05:audio",
+            "transcript": "frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:r1",
+              "targetText": "frame",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r2",
+              "targetText": "photo",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r3",
+              "targetText": "album",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "На записи звучит frame",
+              "feedbackByLocale": {
+                "ru": "`photo` — фотография. В записи звучит `frame` — рамка.",
+                "uk": "`photo` — фотографія. У записі звучить `frame` — рамка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "На записи звучит frame",
+              "feedbackByLocale": {
+                "ru": "`album` — альбом. В записи звучит `frame` — рамка.",
+                "uk": "`album` — альбом. У записі звучить `frame` — рамка."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -189,12 +242,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — frame или flame",
-        "responseOptions": [{"responseId":"en:lesson-03:session-35:i06:r1","text":"frame"},{"responseId":"en:lesson-03:session-35:i06:r2","text":"flame"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i06:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i06:r2",
+            "text": "flame"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-35:i06:audioA","en:lesson-03:session-35:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i06:audioA",
+          "en:lesson-03:session-35:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — frame или flame",
         "modePayload": {
-          "family":"sound_contrast","contrastA":"frame","contrastB":"flame","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-35:i06:audioA","transcript":"frame"},"audioB":{"audioTargetId":"en:lesson-03:session-35:i06:audioB","transcript":"flame"},"testedPhoneticContrast":"В frame после f слышится r, а не l","choiceFeedback":[{"responseId":"en:lesson-03:session-35:i06:r2","correct":false,"testedDimension":"В frame после f слышится r","feedbackByLocale":{"ru":"`flame` — пламя. В `frame` после `f` слышится `r`: это рамка.","uk":"`flame` — полум'я. У `frame` після `f` чути `r`: це рамка."}}]
+          "family": "sound_contrast",
+          "contrastA": "frame",
+          "contrastB": "flame",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-35:i06:audioA",
+            "transcript": "frame"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-35:i06:audioB",
+            "transcript": "flame"
+          },
+          "testedPhoneticContrast": "В frame после f слышится r, а не l",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "В frame после f слышится r",
+              "feedbackByLocale": {
+                "ru": "`flame` — пламя. В `frame` после `f` слышится `r`: это рамка.",
+                "uk": "`flame` — полум'я. У `frame` після `f` чути `r`: це рамка."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -210,7 +299,64 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соедините слова со значениями — стол оформителя",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-35:i08:p1","target":"photo","meaningByLocale":{"ru":"фотография","uk":"фотографія"}},{"pairId":"en:lesson-03:session-35:i08:p2","target":"album","meaningByLocale":{"ru":"альбом","uk":"альбом"}},{"pairId":"en:lesson-03:session-35:i08:p3","target":"frame","meaningByLocale":{"ru":"рамка","uk":"рамка"}},{"pairId":"en:lesson-03:session-35:i08:p4","target":"screen","meaningByLocale":{"ru":"экран","uk":"екран"}}],"leftColumn":["photo","album","frame","screen"],"rightColumn":["фотография","альбом","рамка","экран"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i08:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фотография",
+                "uk": "фотографія"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p2",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p3",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p4",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "album",
+            "frame",
+            "screen"
+          ],
+          "rightColumn": [
+            "фотография",
+            "альбом",
+            "рамка",
+            "экран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -236,9 +382,16 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "This album, please.",
           "orderedTokens": [
-            "This", "album,", "please"
+            "This",
+            "album,",
+            "please"
           ],
-          "distractorTokens": ["These", "frames", "are"]
+          "distractorTokens": [
+            "These",
+            "frames",
+            "are"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -283,29 +436,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте указатель — несколько рамок лежат перед вами",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-35:i07:r1","text":"These"},
-          {"responseId":"en:lesson-03:session-35:i07:r2","text":"This"},
-          {"responseId":"en:lesson-03:session-35:i07:r3","text":"Those"},
-          {"responseId":"en:lesson-03:session-35:i07:r4","text":"Are"}
+          {
+            "responseId": "en:lesson-03:session-35:i07:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r3",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r4",
+            "text": "Are"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте указатель — несколько рамок лежат перед вами",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте указатель — несколько рамок лежат перед вами", "uk": "Вставте вказівне слово — кілька рамок лежать перед вами"},
+          "localizedScene": {
+            "ru": "Вставьте указатель — несколько рамок лежат перед вами",
+            "uk": "Вставте вказівне слово — кілька рамок лежать перед вами"
+          },
           "gappedTargetPhrase": "___ are frames.",
           "gapOptions": [
-            {"responseId":"en:lesson-03:session-35:i07:r1","text":"These"},
-            {"responseId":"en:lesson-03:session-35:i07:r2","text":"This"},
-            {"responseId":"en:lesson-03:session-35:i07:r3","text":"Those"},
-            {"responseId":"en:lesson-03:session-35:i07:r4","text":"Are"}
+            {
+              "responseId": "en:lesson-03:session-35:i07:r1",
+              "text": "These"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r2",
+              "text": "This"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r3",
+              "text": "Those"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r4",
+              "text": "Are"
+            }
           ],
           "testedDimension": "Близкие несколько предметов требуют These и are",
           "choiceFeedback": [
-            {"responseId":"en:lesson-03:session-35:i07:r2","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`This` — для одной вещи; здесь рамок несколько.","uk":"`This` — для однієї речі; тут рамок кілька."}},
-            {"responseId":"en:lesson-03:session-35:i07:r3","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`Those` — для нескольких предметов вдали; рамки лежат перед вами.","uk":"`Those` — для кількох предметів далеко; рамки лежать перед вами."}},
-            {"responseId":"en:lesson-03:session-35:i07:r4","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`Are are frames` не образует фразу. Нужен указатель `These`.","uk":"`Are are frames` не утворює фразу. Потрібне вказівне слово `These`."}}
+            {
+              "responseId": "en:lesson-03:session-35:i07:r2",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`This` — для одной вещи; здесь рамок несколько.",
+                "uk": "`This` — для однієї речі; тут рамок кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r3",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`Those` — для нескольких предметов вдали; рамки лежат перед вами.",
+                "uk": "`Those` — для кількох предметів далеко; рамки лежать перед вами."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r4",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`Are are frames` не образует фразу. Нужен указатель `These`.",
+                "uk": "`Are are frames` не утворює фразу. Потрібне вказівне слово `These`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -490,7 +694,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте указатель — рядом лежат несколь",
+          "testedDimension": "Вставьте указатель — рядом лежат несколько альбомов",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-35:i13:r2",
@@ -803,7 +1007,8 @@
             "frames,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -894,17 +1099,70 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та оберіть слово",
-        "responseOptions": [{"responseId":"en:lesson-03:session-35:i05:r1","text":"frame"},{"responseId":"en:lesson-03:session-35:i05:r2","text":"photo"},{"responseId":"en:lesson-03:session-35:i05:r3","text":"album"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i05:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i05:r2",
+            "text": "photo"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i05:r3",
+            "text": "album"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-35:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та оберіть слово",
         "modePayload": {
-          "family":"listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-35:i05:audio","transcript":"frame"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-35:i05:r1","targetText":"frame","meaningByLocale":null},{"responseId":"en:lesson-03:session-35:i05:r2","targetText":"photo","meaningByLocale":null},{"responseId":"en:lesson-03:session-35:i05:r3","targetText":"album","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-35:i05:r2","correct":false,"testedDimension":"У записі звучить frame","feedbackByLocale":{"ru":"`photo` — фотография. В записи звучит `frame` — рамка.","uk":"`photo` — фотографія. У записі звучить `frame` — рамка."}},{"responseId":"en:lesson-03:session-35:i05:r3","correct":false,"testedDimension":"У записі звучить frame","feedbackByLocale":{"ru":"`album` — альбом. В записи звучит `frame` — рамка.","uk":"`album` — альбом. У записі звучить `frame` — рамка."}}]
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-35:i05:audio",
+            "transcript": "frame"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:r1",
+              "targetText": "frame",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r2",
+              "targetText": "photo",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r3",
+              "targetText": "album",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i05:r2",
+              "correct": false,
+              "testedDimension": "У записі звучить frame",
+              "feedbackByLocale": {
+                "ru": "`photo` — фотография. В записи звучит `frame` — рамка.",
+                "uk": "`photo` — фотографія. У записі звучить `frame` — рамка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i05:r3",
+              "correct": false,
+              "testedDimension": "У записі звучить frame",
+              "feedbackByLocale": {
+                "ru": "`album` — альбом. В записи звучит `frame` — рамка.",
+                "uk": "`album` — альбом. У записі звучить `frame` — рамка."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -993,12 +1251,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — frame або flame",
-        "responseOptions": [{"responseId":"en:lesson-03:session-35:i06:r1","text":"frame"},{"responseId":"en:lesson-03:session-35:i06:r2","text":"flame"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-35:i06:r1",
+            "text": "frame"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i06:r2",
+            "text": "flame"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-35:i06:audioA","en:lesson-03:session-35:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-35:i06:audioA",
+          "en:lesson-03:session-35:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — frame або flame",
         "modePayload": {
-          "family":"sound_contrast","contrastA":"frame","contrastB":"flame","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-35:i06:audioA","transcript":"frame"},"audioB":{"audioTargetId":"en:lesson-03:session-35:i06:audioB","transcript":"flame"},"testedPhoneticContrast":"У frame після f чути r, а не l","choiceFeedback":[{"responseId":"en:lesson-03:session-35:i06:r2","correct":false,"testedDimension":"У frame після f чути r","feedbackByLocale":{"ru":"`flame` — пламя. В `frame` после `f` слышится `r`: это рамка.","uk":"`flame` — полум'я. У `frame` після `f` чути `r`: це рамка."}}]
+          "family": "sound_contrast",
+          "contrastA": "frame",
+          "contrastB": "flame",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-35:i06:audioA",
+            "transcript": "frame"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-35:i06:audioB",
+            "transcript": "flame"
+          },
+          "testedPhoneticContrast": "У frame після f чути r, а не l",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-35:i06:r2",
+              "correct": false,
+              "testedDimension": "У frame після f чути r",
+              "feedbackByLocale": {
+                "ru": "`flame` — пламя. В `frame` после `f` слышится `r`: это рамка.",
+                "uk": "`flame` — полум'я. У `frame` після `f` чути `r`: це рамка."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1014,7 +1308,64 @@
         "audioTargetIds": [],
         "accessibilityLabel": "З'єднайте слова зі значеннями — стіл оформлювача",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-35:i08:p1","target":"photo","meaningByLocale":{"ru":"фотография","uk":"фотографія"}},{"pairId":"en:lesson-03:session-35:i08:p2","target":"album","meaningByLocale":{"ru":"альбом","uk":"альбом"}},{"pairId":"en:lesson-03:session-35:i08:p3","target":"frame","meaningByLocale":{"ru":"рамка","uk":"рамка"}},{"pairId":"en:lesson-03:session-35:i08:p4","target":"screen","meaningByLocale":{"ru":"экран","uk":"екран"}}],"leftColumn":["photo","album","frame","screen"],"rightColumn":["фотографія","альбом","рамка","екран"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-35:i08:p1",
+              "target": "photo",
+              "meaningByLocale": {
+                "ru": "фотография",
+                "uk": "фотографія"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p2",
+              "target": "album",
+              "meaningByLocale": {
+                "ru": "альбом",
+                "uk": "альбом"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p3",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-35:i08:p4",
+              "target": "screen",
+              "meaningByLocale": {
+                "ru": "экран",
+                "uk": "екран"
+              }
+            }
+          ],
+          "leftColumn": [
+            "photo",
+            "album",
+            "frame",
+            "screen"
+          ],
+          "rightColumn": [
+            "фотографія",
+            "альбом",
+            "рамка",
+            "екран"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1040,9 +1391,16 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "This album, please.",
           "orderedTokens": [
-            "This", "album,", "please"
+            "This",
+            "album,",
+            "please"
           ],
-          "distractorTokens": ["These", "frames", "are"]
+          "distractorTokens": [
+            "These",
+            "frames",
+            "are"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1087,29 +1445,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставте вказівне слово — кілька рамок лежать перед вами",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-35:i07:r1","text":"These"},
-          {"responseId":"en:lesson-03:session-35:i07:r2","text":"This"},
-          {"responseId":"en:lesson-03:session-35:i07:r3","text":"Those"},
-          {"responseId":"en:lesson-03:session-35:i07:r4","text":"Are"}
+          {
+            "responseId": "en:lesson-03:session-35:i07:r1",
+            "text": "These"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r2",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r3",
+            "text": "Those"
+          },
+          {
+            "responseId": "en:lesson-03:session-35:i07:r4",
+            "text": "Are"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте вказівне слово — кілька рамок лежать перед вами",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте указатель — несколько рамок лежат перед вами", "uk": "Вставте вказівне слово — кілька рамок лежать перед вами"},
+          "localizedScene": {
+            "ru": "Вставьте указатель — несколько рамок лежат перед вами",
+            "uk": "Вставте вказівне слово — кілька рамок лежать перед вами"
+          },
           "gappedTargetPhrase": "___ are frames.",
           "gapOptions": [
-            {"responseId":"en:lesson-03:session-35:i07:r1","text":"These"},
-            {"responseId":"en:lesson-03:session-35:i07:r2","text":"This"},
-            {"responseId":"en:lesson-03:session-35:i07:r3","text":"Those"},
-            {"responseId":"en:lesson-03:session-35:i07:r4","text":"Are"}
+            {
+              "responseId": "en:lesson-03:session-35:i07:r1",
+              "text": "These"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r2",
+              "text": "This"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r3",
+              "text": "Those"
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r4",
+              "text": "Are"
+            }
           ],
           "testedDimension": "Близкие несколько предметов требуют These и are",
           "choiceFeedback": [
-            {"responseId":"en:lesson-03:session-35:i07:r2","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`This` — для одной вещи; здесь рамок несколько.","uk":"`This` — для однієї речі; тут рамок кілька."}},
-            {"responseId":"en:lesson-03:session-35:i07:r3","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`Those` — для нескольких предметов вдали; рамки лежат перед вами.","uk":"`Those` — для кількох предметів далеко; рамки лежать перед вами."}},
-            {"responseId":"en:lesson-03:session-35:i07:r4","correct":false,"testedDimension":"Близкие несколько предметов требуют These и are","feedbackByLocale":{"ru":"`Are are frames` не образует фразу. Нужен указатель `These`.","uk":"`Are are frames` не утворює фразу. Потрібне вказівне слово `These`."}}
+            {
+              "responseId": "en:lesson-03:session-35:i07:r2",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`This` — для одной вещи; здесь рамок несколько.",
+                "uk": "`This` — для однієї речі; тут рамок кілька."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r3",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`Those` — для нескольких предметов вдали; рамки лежат перед вами.",
+                "uk": "`Those` — для кількох предметів далеко; рамки лежать перед вами."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-35:i07:r4",
+              "correct": false,
+              "testedDimension": "Близкие несколько предметов требуют These и are",
+              "feedbackByLocale": {
+                "ru": "`Are are frames` не образует фразу. Нужен указатель `These`.",
+                "uk": "`Are are frames` не утворює фразу. Потрібне вказівне слово `These`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1607,7 +2016,8 @@
             "frames,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

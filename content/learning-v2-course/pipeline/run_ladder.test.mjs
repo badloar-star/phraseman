@@ -109,7 +109,7 @@ test('machine facts read pair and distractor evidence from authoritative atomic 
 });
 
 function evaluate(expression) {
-  const program = `import {difficultyLadder,difficultyFacts,HARD_FACT_RE} from ${JSON.stringify(pathToFileURL(path.join(here, 'run.mjs')).href)}; console.log(JSON.stringify(${expression}));`;
+  const program = `import {difficultyLadder,difficultyFacts,machineFacts,HARD_FACT_RE} from ${JSON.stringify(pathToFileURL(path.join(here, 'run.mjs')).href)}; console.log(JSON.stringify(${expression}));`;
   const result = spawnSync(process.execPath, ['--input-type=module', '--eval', program], { encoding: 'utf8' });
   assert.equal(result.status, 0, result.stderr);
   return JSON.parse(result.stdout.trim().split(/\r?\n/).at(-1));
@@ -139,6 +139,32 @@ test('phrase median excludes short answers, gaps and cards, deduplicates targets
   const output = evaluate(`(()=>{const all=difficultyFacts(${JSON.stringify(source)},19); return {all,hard:all.filter(x=>HARD_FACT_RE.test(x))}})()`);
   assert.ok(output.all.some(x=>x.includes('медиана 3.5')));
   assert.ok(!output.hard.some(x=>x.includes('ОРИЕНТИР ПОЛНОЙ ФРАЗЫ')));
+});
+test('Russian and Ukrainian task headers preserve canonical and atomic answer evidence without double-counting builders', () => {
+  const atomic = {
+    schemaVersion: 'learning_v2_atomic_practice_source_v1',
+    interactionsByLocale: {
+      ru: [
+        { interactionId: 'test:builder', family: 'phrase_builder', responseOptions: [] },
+        { interactionId: 'test:choice', family: 'context_gap_grammar', responseOptions: [{ responseId: 'test:choice:right', text: 'ready' }] },
+      ],
+      uk: [
+        { interactionId: 'test:builder', family: 'phrase_builder', responseOptions: [] },
+        { interactionId: 'test:choice', family: 'context_gap_grammar', responseOptions: [{ responseId: 'test:choice:right', text: 'ready' }] },
+      ],
+    },
+    answers: [
+      { interactionId: 'test:builder', correctResponseId: null, correctText: 'arrive home today' },
+      { interactionId: 'test:choice', correctResponseId: 'test:choice:right', correctText: 'ready' },
+    ],
+  };
+  for (const [locale, header, targetLabel] of [['ru', 'Задания', 'Цель'], ['uk', 'Завдання', 'Ціль']]) {
+    const markdown = `**Возвращаются:** arrive, ready\n\n## ${header}\n\n**1 · Соберите фразу**\n${targetLabel}: \`arrive\`\n\n**2 · Выберите слово**\n___\n\n**3 · Соберите фразу**\n${targetLabel}: \`arrive\`\n\n**4 · Соберите фразу**\n${targetLabel}: \`we arrive today\`\n\n## Для сборщика\n\nmodes: 1=phrase_builder, 2=context_gap_grammar, 3=phrase_builder, 4=phrase_builder\n`;
+    const output = evaluate(`(()=>{const facts=machineFacts('/tmp/sessions/en/l04/s01/final.${locale}.md','en/l04/s01',${JSON.stringify(markdown)},${JSON.stringify(atomic)}).split('\\n'); return {arrive:facts.find(x=>x.startsWith('arrive:')),ready:facts.find(x=>x.startsWith('ready:')),ladder:difficultyFacts(${JSON.stringify(markdown)},19)};})()`);
+    assert.match(output.arrive, /правильным ответом 3(?: |$)/);
+    assert.match(output.ready, /правильным ответом 1(?: |$)/);
+    assert.ok(output.ladder.some(x => x.includes('медиана 2')), output.ladder.join('\n'));
+  }
 });
 test('sound contrast is exempt from choice minima; unsupported modes and zero-new cards fail', () => {
   const source = payload(['sound_contrast','word_card','invented_mode']);

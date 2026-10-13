@@ -407,7 +407,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — рядом стоит стул; назов",
+          "testedDimension": "Вставьте слово — рядом стоит стул; назовите его полной фразой (`chair` — «стул»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-09:i07:r2",
@@ -437,7 +437,7 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+        "prompt": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-09:i08:r1",
@@ -446,34 +446,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+        "accessibilityLabel": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is an armchair.",
+          "targetPhrase": "It is an armchair.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
-          "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
+            "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+            "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "an",
-          "armchair"
+            "It",
+            "is",
+            "an",
+            "armchair"
           ],
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i08:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг спраши",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед `armchair` — `an`: `It is an armchair`.",
-            "uk": "Після `It` потрібна форма `is`, а перед `armchair` — `an`: `It is an armchair`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -522,7 +512,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг указывает на лампу",
+          "testedDimension": "Вставьте слово — друг указывает на лампу; назовите её полной фразой (`lamp` — «лампа»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-09:i09:r2",
@@ -654,17 +644,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец говорит",
-              "feedbackByLocale": {
-                "ru": "В записи перед `oven` звучит `an`: название начинается с гласного звука. Плитка `a` здесь лишняя.",
-                "uk": "У записі перед `oven` звучить `an`: назва починається з голосного звука. Плитка `a` тут зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -701,17 +681,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг принял трость за зонт",
-              "feedbackByLocale": {
-                "ru": "Перед `umbrella` нужен `an`: слово начинается с гласного звука.",
-                "uk": "Перед `umbrella` потрібне `an`: слово починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -724,10 +694,27 @@
         "prompt": "Произнесите вопрос — друг заметил ещё один предмет для сидения за витриной; уточните, это ли кресло",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-09:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i13:audio"
+        ],
         "accessibilityLabel": "Произнесите вопрос — друг заметил ещё один предмет для сидения за витриной; уточните, это ли кресло",
         "modePayload": {
-          "family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-09:i13:audio","transcript":"Is it an armchair?"},"slowReferenceAudio":null,"targetPhrase":"Is it an armchair?","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i13:audio",
+            "transcript": "Is it an armchair?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it an armchair?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -840,17 +827,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг указывает на м",
-              "feedbackByLocale": {
-                "ru": "Отрицание не меняет выбор перед `oven`: название начинается с гласного звука, поэтому нужно `an`.",
-                "uk": "Заперечення не змінює вибір перед `oven`: назва починається з голосного звука, тому потрібне `an`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -919,17 +896,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг показывает на раск",
-              "feedbackByLocale": {
-                "ru": "Перед `umbrella` здесь нужно `an`, поскольку первый звук названия гласный. Соберите `It is`, затем `an umbrella`.",
-                "uk": "Перед `umbrella` тут потрібне `an`, бо перший звук назви голосний. Складіть `It is`, а потім `an umbrella`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1337,7 +1304,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — поруч стоїть стілець; на",
+          "testedDimension": "Вставте слово — поруч стоїть стілець; назвіть його повною фразою (`chair` — «стілець»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-09:i07:r2",
@@ -1367,7 +1334,7 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
+        "prompt": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-09:i08:r1",
@@ -1376,34 +1343,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
+        "accessibilityLabel": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is an armchair.",
+          "targetPhrase": "It is an armchair.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
-          "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
+            "ru": "Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»",
+            "uk": "Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "an",
-          "armchair"
+            "It",
+            "is",
+            "an",
+            "armchair"
           ],
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i08:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг запитує, щ",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед `armchair` — `an`: `It is an armchair`.",
-            "uk": "Після `It` потрібна форма `is`, а перед `armchair` — `an`: `It is an armchair`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1452,7 +1409,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг указує на лампу; на",
+          "testedDimension": "Вставте слово — друг указує на лампу; назвіть її повною фразою (`lamp` — «лампа»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-09:i09:r2",
@@ -1584,17 +1541,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець говори",
-              "feedbackByLocale": {
-                "ru": "В записи перед `oven` звучит `an`: название начинается с гласного звука. Плитка `a` здесь лишняя.",
-                "uk": "У записі перед `oven` звучить `an`: назва починається з голосного звука. Плитка `a` тут зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1631,17 +1578,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг прийняв тростину за парасолю",
-              "feedbackByLocale": {
-                "ru": "Перед `umbrella` нужен `an`: слово начинается с гласного звука.",
-                "uk": "Перед `umbrella` потрібне `an`: слово починається з голосного звука."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1654,10 +1591,27 @@
         "prompt": "Промовте запитання — друг помітив за вітриною ще один предмет для сидіння; уточніть, чи це крісло",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-09:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-09:i13:audio"
+        ],
         "accessibilityLabel": "Промовте запитання — друг помітив за вітриною ще один предмет для сидіння; уточніть, чи це крісло",
         "modePayload": {
-          "family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-03:session-09:i13:audio","transcript":"Is it an armchair?"},"slowReferenceAudio":null,"targetPhrase":"Is it an armchair?","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-09:i13:audio",
+            "transcript": "Is it an armchair?"
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "Is it an armchair?",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1770,17 +1724,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг указує на ма",
-              "feedbackByLocale": {
-                "ru": "Отрицание не меняет выбор перед `oven`: название начинается с гласного звука, поэтому нужно `an`.",
-                "uk": "Заперечення не змінює вибір перед `oven`: назва починається з голосного звука, тому потрібне `an`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1849,17 +1793,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-09:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг показує на розкрит",
-              "feedbackByLocale": {
-                "ru": "Перед `umbrella` здесь нужно `an`, поскольку первый звук названия гласный. Соберите `It is`, затем `an umbrella`.",
-                "uk": "Перед `umbrella` тут потрібне `an`, бо перший звук назви голосний. Складіть `It is`, а потім `an umbrella`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

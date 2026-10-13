@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-02:i02; family: listen_choose -->
 Цель: `comfortable`
 Варианты: `comfortable` · `comfort` · `company`
+- comfort — *`comfort` — само по себе слово, «уют». У `comfortable` после него есть хвост.*
+- company — *Это «компания». Начало похоже, дальше всё другое.*
+
 
 **3 · Карточка слова — upset**
 <!-- interaction_id: en:lesson-02:session-02:i03; family: listen_choose -->
@@ -75,6 +78,9 @@
 <!-- interaction_id: en:lesson-02:session-02:i04; family: listen_choose -->
 Цель: `upset`
 Варианты: `upset` · `up` · `set`
+- up — *Только первая половина слова.*
+- set — *Только вторая половина, начало потерялось.*
+
 
 **5 · Соберите фразу — спросите гостя про стул**
 <!-- interaction_id: en:lesson-02:session-02:i05; family: phrase_builder -->
@@ -84,11 +90,15 @@
 <!-- interaction_id: en:lesson-02:session-02:i06; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `cold` · `comfortable` · `upset`
+- comfortable — *«Удобно?» — но человек мёрзнет, а не устраивается на стуле.*
+- upset — *«Расстроен?» — куртка и горячая кружка говорят про холод, а не про настроение.*
+
 
 **7 · Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами**
 <!-- interaction_id: en:lesson-02:session-02:i07; family: phrase_builder -->
 Цель: `Are you upset?`
 Плитки: `Are` · `you` · `upset` · `is`
+*Плитка `is` лишняя: в вопросе к `you` нужна форма `are`: `Are you upset?`*
 
 **8 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-02:i08; family: speed_match -->
@@ -98,15 +108,22 @@
 **9 · Послушайте и соберите — «тебе удобно?»**
 <!-- interaction_id: en:lesson-02:session-02:i09; family: listen_build_dictation -->
 Цель: `Are you comfortable?`
+🔊 *Are you comfortable?* Плитки: `Are` `you` `comfortable` `upset` → **Are you comfortable?**
+*Плитка `upset` лишняя: `upset` — «расстроен», а здесь спрашивают, удобно ли вам: `Are you comfortable?`*
 
 **10 · Вставьте слово — сосед прочитал сообщение и замолчал**
 <!-- interaction_id: en:lesson-02:session-02:i10; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `upset` · `cold` · `comfortable`
+- cold — *«Замёрз?» — в кухне тепло, дело в сообщении.*
+- comfortable — *«Удобно?» — про стул тут никто не думает.*
+
 
 **11 · Различите звуки — какое из двух про «расстроен»?**
 <!-- interaction_id: en:lesson-02:session-02:i11; family: sound_contrast -->
 Варианты: `upset` · `up`
+- up — *`up` — «вверх», и на этом слово кончается. У `upset` дальше есть вторая половина.*
+
 
 **12 · Соберите фразу — вы хотите узнать, всё ли у человека нормально**
 <!-- interaction_id: en:lesson-02:session-02:i12; family: phrase_builder -->
@@ -116,14 +133,21 @@
 <!-- interaction_id: en:lesson-02:session-02:i13; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `comfortable` · `ok` · `cold`
+- ok — *«Нормально?» — слишком общо, а вы спрашиваете именно про стул.*
+- cold — *«Замёрз?» — он не мёрзнет, ему неудобно сидеть.*
+
 
 **14 · Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему**
 <!-- interaction_id: en:lesson-02:session-02:i14; family: phrase_builder -->
 Цель: `Are you cold?`
+Плитки: `Are` `you` `cold` `is` → **Are you cold?**
+*Плитка `is` лишняя: в вопросе к `you` нужна форма `are`: `Are you cold?`*
 
 **15 · Послушайте и соберите — «ты расстроен?»**
 <!-- interaction_id: en:lesson-02:session-02:i15; family: listen_build_dictation -->
 Цель: `Are you upset?`
+🔊 *Are you upset?* Плитки: `Are` `you` `upset` `cold` → **Are you upset?**
+*Плитка `cold` лишняя: `cold` — «холодно», а здесь спрашивают о настроении: `Are you upset?`*
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-02:i16:s01; family: scripted_repeat_compare -->
@@ -136,6 +160,8 @@
 **18 · Послушайте и соберите — «вам холодно?»**
 <!-- interaction_id: en:lesson-02:session-02:i17:s01; family: listen_build_dictation -->
 Цель: `Are you cold?`
+🔊 *Are you cold?* Плитки: `Are` `you` `cold` `is` → **Are you cold?**
+*Плитка `is` лишняя: в вопросе к `you` нужна форма `are`: `Are you cold?`*
 
 **19 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-02:i17:s02; family: scripted_repeat_compare -->
@@ -148,6 +174,8 @@
 **21 · Послушайте и соберите — «с вами всё нормально?»**
 <!-- interaction_id: en:lesson-02:session-02:i17:s04; family: listen_build_dictation -->
 Цель: `Are you ok?`
+🔊 *Are you ok?* Плитки: `Are` `you` `ok` `is` → **Are you ok?**
+*Плитка `is` лишняя: в вопросе к `you` нужна форма `are`: `Are you ok?`*
 
 ## Для сборщика
 

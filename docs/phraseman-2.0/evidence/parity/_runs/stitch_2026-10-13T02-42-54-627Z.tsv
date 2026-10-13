@@ -1,0 +1,2 @@
+id	time	result	detail	file
+energy-modes-007	2026-10-13T02:42:56.780Z	failed	склейка_не_удалась: rror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\energy-modes-007.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=660151 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/energy-modes-007.png

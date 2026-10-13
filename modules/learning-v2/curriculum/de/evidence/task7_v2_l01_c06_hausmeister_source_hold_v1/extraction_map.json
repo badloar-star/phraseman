@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c06-hausmeister-source-extraction-map.v1",
+  "directCapture": {
+    "registryPath": ".tmp/de-task6c-l01-direct-capture/registry.json",
+    "registrySha256": "5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc",
+    "canonicalUrl": "https://www.dwds.de/wb/Hausmeister",
+    "httpStatus": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "rawResponsePath": "raw/de_lex_plan_l01_c06_hausmeister_v1.html",
+    "rawResponseSha256": "ce5d7d3b6648662579068c4702d6fb252f21e165eafa043b569a1b822346a538",
+    "rawResponseBytes": 59173,
+    "metadataPath": "raw/de_lex_plan_l01_c06_hausmeister_v1.http_metadata.txt",
+    "metadataSha256": "365da893f5c85cb11a2928bb365cbc3835fbfafac8ee5c1e6c9c07ef3a787168",
+    "metadataBytes": 520
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c06_hausmeister_v1",
+    "checkpointPacketId": "de_l01_c06_s48",
+    "sourceHeadword": "Hausmeister",
+    "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+    "article": "der",
+    "nominativePlural": "Hausmeister",
+    "sourceAnchor": "d-1-1",
+    "sourceCoreGerman": "Angestellter, der für die Instandhaltung und Reinigung eines (öffentlichen) Gebäudes verantwortlich ist",
+    "exactSpanSha256": "5bff988ed5cd3a83a69c56fa29fb434a525818174736e0fe2b7207b165e0d288",
+    "exactSpanUtf8Bytes": 965
+  },
+  "unsupportedClaims": {
+    "sharedBuildingParticipantScene": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "communicativeUse": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "learnerPhraseAuthority": "OUT_OF_SCOPE",
+    "register": "NOT_CLAIMED_BY_THIS_PACKET"
+  }
+}

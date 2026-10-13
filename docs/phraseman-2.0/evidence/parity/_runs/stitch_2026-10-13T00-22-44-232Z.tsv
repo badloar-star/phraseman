@@ -1,0 +1,2 @@
+id	time	result	detail	file
+cards-section-046	2026-10-13T00:22:45.807Z	failed	склейка_не_удалась: ror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-section-046.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=228030 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-section-046.png

@@ -1,0 +1,11 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-030	2026-10-12T01:31:21.372Z	ok	11863	marker+шагов_8+склейка+ждали_metro_43мс	docs/phraseman-2.0/evidence/parity/dialogs-030.png	0
+dialogs-003	2026-10-12T01:31:49.575Z	ok	10718	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/dialogs-003.png	0
+dialogs-006	2026-10-12T01:32:19.216Z	ok	11897	marker+шагов_1+склейка+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/dialogs-006.png	0
+dialogs-014	2026-10-12T01:33:18.617Z	ok	11790	marker+шагов_8+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-014.png	0
+dialogs-008	2026-10-12T01:33:55.258Z	ok	12005	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-008.png	0
+dialogs-017	2026-10-12T01:34:32.533Z	error	11883	step_target_not_found:#dialogue-v2-session-hint+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T01-30-23-531Z/dialogs-017.error.png	0
+cards-011	2026-10-12T01:34:51.421Z	ok	11963	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/cards-011.png	0
+cards-028	2026-10-12T01:35:09.667Z	ok	11860	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-028.png	0
+spire-gap-009	2026-10-12T01:35:24.841Z	ok	7551	marker+пусто_1298мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/spire-gap-009.png	1298
+profile-001	2026-10-12T01:35:50.246Z	ok	11971	marker+пусто_1667мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/profile-001.png	1667

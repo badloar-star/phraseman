@@ -109,6 +109,8 @@ They are ___ . → **nice** · loud · busy
 **10 · Послухайте і складіть — «вони смішні»**
 <!-- interaction_id: en:lesson-01:session-34:i10; family: listen_build_dictation -->
 🔊 *They are funny.* Плитки: `are` `funny` `They` `nice` → **They are funny.**
+*(плитка `nice` зайва: `nice` зайве: у фразі `They are funny.` воно не потрібне.)*
+
 
 **11 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-34:i11; family: speed_match -->
@@ -117,6 +119,8 @@ busy — зайнятий · nice — милий · loud — гучний · fun
 **12 · Складіть фразу — за сусіднім столом регочуть на всю залу**
 <!-- interaction_id: en:lesson-01:session-34:i12; family: phrase_builder -->
 Плитки: `loud` `They` `is` `are` → **They are loud.**
+*(плитка `is` зайва: `is` зайве: після `They` ставлять `are` — `They are loud.`)*
+
 
 **13 · Вставте слово — сусідній відділ уже встав і вдягнув куртки**
 <!-- interaction_id: en:lesson-01:session-34:i13; family: context_gap_grammar -->
@@ -127,10 +131,14 @@ They are ___ . → **ready** · funny · loud
 **14 · Складіть фразу — сусідній відділ ходить обідати всім складом, не поодинці**
 <!-- interaction_id: en:lesson-01:session-34:i14; family: phrase_builder -->
 Плитки: `together` `They` `are` `is` → **They are together.**
+*(плитка `is` зайва: `is` зайве: правильно `They are together.`)*
+
 
 **15 · Послухайте й складіть — колега питає, де зараз сусідній відділ**
 <!-- interaction_id: en:lesson-01:session-34:i15; family: listen_build_dictation -->
 🔊 *They are here.* Плитки: `here` `are` `They` `is` → **They are here.**
+*(плитка `is` зайва: `is` зайве: правильно `They are here.`)*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-34:i16:s01; family: scripted_repeat_compare -->
@@ -143,6 +151,8 @@ They are ___ . → **ready** · funny · loud
 **18 · Послухайте й складіть — сусідній відділ притримав вам двері й показав, де кухня**
 <!-- interaction_id: en:lesson-01:session-34:i17:s01; family: listen_build_dictation -->
 🔊 *They are nice.* Плитки: `nice` `They` `are` `is` → **They are nice.**
+*(плитка `is` зайва: `is` зайве: правильно `They are nice.`)*
+
 
 **19 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-34:i17:s02; family: scripted_repeat_compare -->

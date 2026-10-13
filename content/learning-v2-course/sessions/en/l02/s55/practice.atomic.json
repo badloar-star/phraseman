@@ -50,7 +50,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставьте слово — вам хочется есть; скажи",
+          "testedDimension": "Вставьте слово — вам хочется есть; скажите другу «Я голоден»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i01:r2",
@@ -329,7 +329,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставьте слово — по дороге друг показыва",
+          "testedDimension": "Вставьте слово — по дороге друг показывает фотографию мужчины, который пригласил вас к себе; скажите «Он хозяин»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i06:r2",
@@ -362,17 +362,27 @@
         "prompt": "Произнесите фразу — вы показываете продавцу выбранный товар и спрашиваете его цену",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-55:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i07:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — вы показываете продавцу выбранный товар и спрашиваете его цену",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-55:i07:audio", "transcript": "What is the price?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i07:audio",
+            "transcript": "What is the price?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "What is the price?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -501,7 +511,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -626,7 +641,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, многол",
+          "testedDimension": "Вставьте слово — друг спрашивает, многолюдно ли в первом магазине; вы видели, что он полон людей, ответьте коротко «Да»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i11:r2",
@@ -727,7 +742,7 @@
               "text": "wrong"
             }
           ],
-          "testedDimension": "Вставьте слово — вы дошли до станции, лю",
+          "testedDimension": "Вставьте слово — вы дошли до станции, людей там мало; скажите о ней «Там не многолюдно»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i13:r2",
@@ -834,7 +849,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -872,17 +890,7 @@
           "authoredDistractorTokens": [
             "Who"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-02:session-55:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — гость вас слушает; вы ",
-              "feedbackByLocale": {
-                "ru": "С `Who` вы спросите, кто хозяин. Его личность вам уже известна; чтобы найти его, нужен вопрос с `Where`.",
-                "uk": "З `Who` ви запитаєте, хто господар. Ви вже знаєте, хто це; щоб знайти його, потрібне запитання з `Where`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -933,7 +941,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставте слово — вам хочеться їсти; скажі",
+          "testedDimension": "Вставте слово — вам хочеться їсти; скажіть другові «Я голодний»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i01:r2",
@@ -1212,7 +1220,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставте слово — дорогою друг показує фот",
+          "testedDimension": "Вставте слово — дорогою друг показує фотографію чоловіка, який запросив вас до себе; скажіть «Він господар»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i06:r2",
@@ -1245,17 +1253,27 @@
         "prompt": "Промовте фразу — ви показуєте продавцеві обраний товар і запитуєте його ціну",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-55:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-55:i07:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — ви показуєте продавцеві обраний товар і запитуєте його ціну",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-55:i07:audio", "transcript": "What is the price?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-55:i07:audio",
+            "transcript": "What is the price?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "What is the price?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1384,7 +1402,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1509,7 +1532,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, чи людно в",
+          "testedDimension": "Вставте слово — друг запитує, чи людно в першому магазині; ви бачили, що там повно людей, коротко дайте відповідь «Так»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i11:r2",
@@ -1610,7 +1633,7 @@
               "text": "wrong"
             }
           ],
-          "testedDimension": "Вставте слово — ви дійшли до станції, лю",
+          "testedDimension": "Вставте слово — ви дійшли до станції, людей там мало; скажіть про неї «Там не людно»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-55:i13:r2",
@@ -1717,7 +1740,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1755,17 +1781,7 @@
           "authoredDistractorTokens": [
             "Who"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-02:session-55:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — гість вас слухає; в",
-              "feedbackByLocale": {
-                "ru": "С `Who` вы спросите, кто хозяин. Его личность вам уже известна; чтобы найти его, нужен вопрос с `Where`.",
-                "uk": "З `Who` ви запитаєте, хто господар. Ви вже знаєте, хто це; щоб знайти його, потрібне запитання з `Where`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

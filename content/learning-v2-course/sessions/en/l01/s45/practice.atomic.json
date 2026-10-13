@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — satisfied",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — satisfied",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -181,7 +181,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — exhausted",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i04:r1",
@@ -200,7 +200,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i04:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — exhausted",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -308,7 +308,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — settled",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i06:r1",
@@ -327,7 +327,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i06:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — settled",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -564,11 +564,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i09:r1",
+              "responseId": "en:lesson-01:session-45:i09:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — скажите подруге, что довольны ужином",
               "feedbackByLocale": {
-                "ru": "Лишнее not превратит «я доволен» в противоположное сообщение.",
-                "uk": "Зайве not перетворить «я задоволений» на протилежне повідомлення."
+                "ru": "`not` лишнее: вы довольны, поэтому `I'm satisfied.`",
+                "uk": "`not` зайве: ви задоволені, тому `I'm satisfied`."
               }
             }
           ]
@@ -680,11 +681,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i11:r1",
+              "responseId": "en:lesson-01:session-45:i11:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — ответьте коллеге после двух смен",
               "feedbackByLocale": {
-                "ru": "Лишнее not превратит «я крайне устал» в противоположное сообщение.",
-                "uk": "Зайве not перетворить «я вкрай втомлений» на протилежне повідомлення."
+                "ru": "`not` лишнее: вы очень устали, поэтому `I'm exhausted.`",
+                "uk": "`not` зайве: ви дуже втомилися, тому `I'm exhausted`."
               }
             }
           ]
@@ -799,11 +801,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i13:r1",
+              "responseId": "en:lesson-01:session-45:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — Лина пишет коллегам о времени встречи",
               "feedbackByLocale": {
-                "ru": "Its без апострофа — форма принадлежности; здесь нужно It's = it is.",
-                "uk": "Its без апострофа — форма належності; тут потрібно It's = it is."
+                "ru": "`Its` без апострофа не подходит: в аудио `It's settled.`",
+                "uk": "`Its` без апострофа не підходить: в аудіо `It's settled`."
               }
             }
           ]
@@ -916,11 +919,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i15:r1",
+              "responseId": "en:lesson-01:session-45:i15:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — вопрос ещё не решён",
               "feedbackByLocale": {
-                "ru": "its без апострофа — форма принадлежности; для отрицания нужно isn't.",
-                "uk": "its без апострофа — форма належності; для заперечення потрібно isn't."
+                "ru": "`its` не подходит: для отрицания нужен `It isn't settled.`",
+                "uk": "`its` не підходить: для заперечення потрібне `It isn't settled`."
               }
             }
           ]
@@ -1152,11 +1156,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i17:s03:r1",
+              "responseId": "en:lesson-01:session-45:i17:s03:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — ответьте другу, который сомневается перед походом",
               "feedbackByLocale": {
-                "ru": "isn't сочетается с it/he/she; с they нужно aren't.",
-                "uk": "isn't уживають з it/he/she; з they потрібно aren't."
+                "ru": "`isn't` не подходит к `They`: нужно `They aren't exhausted.`",
+                "uk": "`isn't` не підходить до `They`: потрібно `They aren't exhausted`."
               }
             }
           ],
@@ -1218,7 +1223,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть — satisfied",
+        "prompt": "Послухайте й оберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i02:r1",
@@ -1237,7 +1242,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть — satisfied",
+        "accessibilityLabel": "Послухайте й оберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1345,7 +1350,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть — exhausted",
+        "prompt": "Послухайте й оберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i04:r1",
@@ -1364,7 +1369,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть — exhausted",
+        "accessibilityLabel": "Послухайте й оберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1472,7 +1477,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть — settled",
+        "prompt": "Послухайте й оберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-45:i06:r1",
@@ -1491,7 +1496,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-45:i06:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть — settled",
+        "accessibilityLabel": "Послухайте й оберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1728,11 +1733,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i09:r1",
+              "responseId": "en:lesson-01:session-45:i09:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — скажите подруге, что довольны ужином",
               "feedbackByLocale": {
-                "ru": "Лишнее not превратит «я доволен» в противоположное сообщение.",
-                "uk": "Зайве not перетворить «я задоволений» на протилежне повідомлення."
+                "ru": "`not` лишнее: вы довольны, поэтому `I'm satisfied.`",
+                "uk": "`not` зайве: ви задоволені, тому `I'm satisfied`."
               }
             }
           ]
@@ -1844,11 +1850,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i11:r1",
+              "responseId": "en:lesson-01:session-45:i11:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — ответьте коллеге после двух смен",
               "feedbackByLocale": {
-                "ru": "Лишнее not превратит «я крайне устал» в противоположное сообщение.",
-                "uk": "Зайве not перетворить «я вкрай втомлений» на протилежне повідомлення."
+                "ru": "`not` лишнее: вы очень устали, поэтому `I'm exhausted.`",
+                "uk": "`not` зайве: ви дуже втомилися, тому `I'm exhausted`."
               }
             }
           ]
@@ -1963,11 +1970,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i13:r1",
+              "responseId": "en:lesson-01:session-45:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — Лина пишет коллегам о времени встречи",
               "feedbackByLocale": {
-                "ru": "Its без апострофа — форма принадлежности; здесь нужно It's = it is.",
-                "uk": "Its без апострофа — форма належності; тут потрібно It's = it is."
+                "ru": "`Its` без апострофа не подходит: в аудио `It's settled.`",
+                "uk": "`Its` без апострофа не підходить: в аудіо `It's settled`."
               }
             }
           ]
@@ -2080,11 +2088,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i15:r1",
+              "responseId": "en:lesson-01:session-45:i15:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — вопрос ещё не решён",
               "feedbackByLocale": {
-                "ru": "its без апострофа — форма принадлежности; для отрицания нужно isn't.",
-                "uk": "its без апострофа — форма належності; для заперечення потрібно isn't."
+                "ru": "`its` не подходит: для отрицания нужен `It isn't settled.`",
+                "uk": "`its` не підходить: для заперечення потрібне `It isn't settled`."
               }
             }
           ]
@@ -2316,11 +2325,12 @@
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-45:i17:s03:r1",
+              "responseId": "en:lesson-01:session-45:i17:s03:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — ответьте другу, который сомневается перед походом",
               "feedbackByLocale": {
-                "ru": "isn't сочетается с it/he/she; с they нужно aren't.",
-                "uk": "isn't уживають з it/he/she; з they потрібно aren't."
+                "ru": "`isn't` не подходит к `They`: нужно `They aren't exhausted.`",
+                "uk": "`isn't` не підходить до `They`: потрібно `They aren't exhausted`."
               }
             }
           ],

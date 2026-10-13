@@ -59,6 +59,9 @@
 <!-- interaction_id: en:lesson-02:session-09:i02; family: listen_choose -->
 Ціль: `handsome`
 Варіанти: `handsome` · `pretty` · `curious`
+- pretty — *Pretty зазвичай описує гарну жінку або приємну на вигляд річ; handsome частіше описує вродливого чоловіка.*
+- curious — *Curious означає «допитливий»; handsome означає «вродливий, привабливий».*
+
 
 **3 · Картка слова — pretty**
 <!-- interaction_id: en:lesson-02:session-09:i03; family: listen_choose -->
@@ -68,6 +71,9 @@
 <!-- interaction_id: en:lesson-02:session-09:i04; family: listen_choose -->
 Ціль: `pretty`
 Варіанти: `pretty` · `handsome` · `cold`
+- handsome — *Handsome частіше описує вродливого чоловіка; pretty — гарну жінку або приємну на вигляд річ.*
+- cold — *Cold означає «змерзлий»; pretty означає «гарна, приваблива».*
+
 
 **5 · З’єднайте слова та значення**
 <!-- interaction_id: en:lesson-02:session-09:i05; family: speed_match -->
@@ -77,6 +83,8 @@
 **6 · Послухайте й складіть запитання про чоловіка**
 <!-- interaction_id: en:lesson-02:session-09:i06; family: listen_build_dictation -->
 Ціль: `Is he handsome?`
+🔊 *Is he handsome?* Плитки: `Is` `he` `handsome` `she`
+*Плитка `she` зайва: запитання про чоловіка, тому потрібне `he`: `Is he handsome?`*
 
 **7 · Картка слова — cheerful**
 <!-- interaction_id: en:lesson-02:session-09:i07; family: listen_choose -->
@@ -92,10 +100,15 @@
 <!-- interaction_id: en:lesson-02:session-09:i09; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `handsome` · `cold` · `curious`
+- cold — *Сцена не говорить, що йому холодно.*
+- curious — *Сцена описує зовнішність, а не допитливість.*
+
 
 **10 · Складіть фразу — Міра за столиком читає меню і безперестанку позирає на сусідній столик**
 <!-- interaction_id: en:lesson-02:session-09:i10; family: phrase_builder -->
 Ціль: `Is she curious?`
+Плитки: `Is` `she` `curious` `he`
+*Плитка `he` зайва: у сцені Міра, тому потрібне `she`: `Is she curious?`*
 
 **11 · Картка слова — upset**
 <!-- interaction_id: en:lesson-02:session-09:i11; family: listen_choose -->
@@ -114,6 +127,7 @@
 Співрозмовниця кутається в шарф біля входу до кав’ярні. Запитайте, чи холодно їй.
 Ціль: `Is she cold?`
 Плитки: `Is` `she` `cold` `he`
+*Плитка `he` зайва: йдеться про жінку в шарфі, тому потрібне `she`: `Is she cold?`*
 
 **14 · Послухайте два слова й оберіть слово, з якого починається запитання**
 <!-- interaction_id: en:lesson-02:session-09:i14; family: sound_contrast -->

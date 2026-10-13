@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-002	2026-10-13T08:43:05.267Z	error	14982	step_target_not_found:#account-email-copy+ждали_metro_36мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T08-42-14-074Z/auth-gap-002.error.png	0

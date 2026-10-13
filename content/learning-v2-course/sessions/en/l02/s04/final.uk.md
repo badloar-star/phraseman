@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-04:i02; family: listen_choose -->
 Ціль: `curious`
 Варіанти: `curious` · `courage` · `curly`
+- courage — *«Сміливість». Інше слово, і звучить воно інакше із середини.*
+- curly — *«Кучерявий». Початок схожий, але `curly` коротше: два склади проти трьох.*
+
 
 **3 · Картка слова — cheerful**
 <!-- interaction_id: en:lesson-02:session-04:i03; family: listen_choose -->
@@ -75,37 +78,55 @@
 <!-- interaction_id: en:lesson-02:session-04:i04; family: listen_choose -->
 Ціль: `cheerful`
 Варіанти: `cheerful` · `careful` · `cheap`
+- careful — *«Обережний». Починається з «кер-», а не з «чі-».*
+- cheap — *«Дешевий». Один склад, і в кінці немає «-фул».*
+
 
 **5 · Розрізніть звуки — яке з двох про настрій?**
 <!-- interaction_id: en:lesson-02:session-04:i05; family: sound_contrast -->
 Варіанти: `cheerful` · `careful`
+- careful — *Це «обережний». `cheerful` починається з «ч», як у слові «чай».*
+
 
 **6 · Складіть фразу — спитайте про настрій**
 <!-- interaction_id: en:lesson-02:session-04:i06; family: phrase_builder -->
 Ціль: `Are you cheerful?`
+Плитки: `Are` · `you` · `cheerful` · `am`
+*Плитка `am` зайва: з `you` потрібна форма `are`; `am` уживається з `I`.*
 
 **7 · Послухайте і складіть — «тобі цікаво?»**
 <!-- interaction_id: en:lesson-02:session-04:i07; family: listen_build_dictation -->
 Ціль: `Are you curious?`
+🔊 *Are you curious?* Плитки: `Are` · `you` · `curious` · `cold`
+*Плитка `cold` зайва: запитання питає про цікавість, тому потрібне `curious`: `Are you curious?`*
 
 **8 · Послухайте і виберіть — що спитав сусід**
 <!-- interaction_id: en:lesson-02:session-04:i08; family: listen_choose -->
 Ціль: `Are you awake?`
 Варіанти: `Are you awake?` · `Are you cold?` · `You are awake.`
+- Are you cold? — *Останнє слово інше. `awake` — «прокинувся», `cold` — «холодно».*
+- You are awake. — *Це повідомлення, а не питання: `are` стоїть другим.*
+
 
 **9 · Вставте слово — сусід другу годину п'є чай і мовчить, а ви весь ранок без жодного ковтка**
 <!-- interaction_id: en:lesson-02:session-04:i09; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `thirsty` · `curious` · `awake`
+- curious — *«Цікаво» — про інтерес, а не про сухе горло.*
+- awake — *«Прокинувся» — ви давно на ногах, питання не про це.*
+
 
 **10 · Послухайте і складіть — «ти веселий?»**
 <!-- interaction_id: en:lesson-02:session-04:i10; family: listen_build_dictation -->
 Ціль: `Are you cheerful?`
 Плитки: `Are` · `you` · `cheerful` · `is`
+*Плитка `is` зайва: з `you` потрібна форма `are`: `Are you cheerful?`*
 
 **11 · Складіть запитання — сусід у футболці стоїть біля відчиненого вікна й обхопив себе руками**
 <!-- interaction_id: en:lesson-02:session-04:i11; family: phrase_builder -->
 Ціль: `Are you cold?`
+Плитки: `Are` · `you` · `cold` · `cheerful`
+*Плитка `cheerful` зайва: у цій сцені питають, чи холодно людині: `Are you cold?`*
 
 **12 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-04:i12; family: speed_match -->
@@ -116,15 +137,23 @@
 <!-- interaction_id: en:lesson-02:session-04:i13; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `cold` · `cheerful` · `thirsty`
+- cheerful — *«Веселий» — але людина не всміхається, вона щулиться.*
+- thirsty — *«Хочу пити». Людина біля вікна щулиться від холоду, про спрагу в сцені нічого немає.*
+
 
 **14 · Складіть запитання — у кімнаті темно й тихо; запитайте, чи він не спить**
 <!-- interaction_id: en:lesson-02:session-04:i14; family: phrase_builder -->
 Ціль: `Are you awake?`
+Плитки: `Are` · `you` · `awake` · `not`
+*Плитка `not` зайва: це звичайне запитання про стан, без заперечення: `Are you awake?`*
 
 **15 · Послухайте і виберіть — про воду чи про інтерес**
 <!-- interaction_id: en:lesson-02:session-04:i15; family: listen_choose -->
 Ціль: `Are you thirsty?`
 Варіанти: `Are you thirsty?` · `Are you curious?` · `Are you cheerful?`
+- Are you curious? — *Інше останнє слово: `curious` — «цікаво».*
+- Are you cheerful? — *`cheerful` — «веселий». Тут прозвучало слово про спрагу.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-04:i16:s01; family: scripted_repeat_compare -->
@@ -137,6 +166,8 @@
 **18 · Послухайте і складіть — «ти не спиш?»**
 <!-- interaction_id: en:lesson-02:session-04:i17:s01; family: listen_build_dictation -->
 Ціль: `Are you awake?`
+🔊 *Are you awake?* Плитки: `Are` · `you` · `awake` · `is`
+*Плитка `is` зайва: з `you` потрібна форма `are`: `Are you awake?`*
 
 **19 · Зверніться до Тома й промовте вголос запитання: чи йому не холодно**
 <!-- interaction_id: en:lesson-02:session-04:i17:s02; family: scripted_repeat_compare -->

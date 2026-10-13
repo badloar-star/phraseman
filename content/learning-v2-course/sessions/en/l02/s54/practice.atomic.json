@@ -346,7 +346,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставьте слово — вы осмотрели небольшую ",
+          "testedDimension": "Вставьте слово — вы осмотрели небольшую квартиру; скажите другу «Квартира маленькая»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-54:i07:r2",
@@ -635,7 +635,12 @@
             "ru": "Лена сверяет объявление с листом Михаила: суммы разные; спросите, верно ли указана цена.",
             "uk": "Лена звіряє оголошення з аркушем Михайла: суми різні; запитайте, чи правильно зазначено ціну."
           },
-          "orderedTokens": ["Is", "the", "price", "right"],
+          "orderedTokens": [
+            "Is",
+            "the",
+            "price",
+            "right"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -718,7 +723,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы обсудили правила с д",
+          "testedDimension": "Вставьте слово — вы обсудили правила с другом и оба их поняли; сообщите, что правила понятны",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-54:i14:r2",
@@ -1215,7 +1220,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставте слово — ви оглянули невелику ква",
+          "testedDimension": "Вставте слово — ви оглянули невелику квартиру; скажіть другові «Квартира маленька»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-54:i07:r2",
@@ -1504,7 +1509,12 @@
             "ru": "Лена сверяет объявление с листом Михаила: суммы разные; спросите, верно ли указана цена.",
             "uk": "Лена звіряє оголошення з аркушем Михайла: суми різні; запитайте, чи правильно зазначено ціну."
           },
-          "orderedTokens": ["Is", "the", "price", "right"],
+          "orderedTokens": [
+            "Is",
+            "the",
+            "price",
+            "right"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1587,7 +1597,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — ви обговорили правила з ",
+          "testedDimension": "Вставте слово — ви обговорили правила з другом і обоє їх зрозуміли; повідомте, що правила зрозумілі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-54:i14:r2",

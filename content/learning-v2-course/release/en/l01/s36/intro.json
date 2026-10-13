@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-36",
   "learningOutcomeByLocale": {
-    "ru": "повторение `We are` / `They are` вслух",
-    "uk": "повторення `We are` / `They are` вголос"
+    "ru": "Скажете, кто вы друг другу: `We are` и `They are` + название группы.",
+    "uk": "Скажете, хто ви одне одному: `We are` і `They are` + назва групи."
   },
   "pages": [
     {
@@ -21,8 +21,8 @@
       "question": {
         "interactionId": "en:lesson-01:session-36:intro1:q",
         "promptByLocale": {
-          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Мия спрашивает, вы с Олегом друзья или как. Вы вместе работаете.",
+          "uk": "Мія питає, ви з Олегом друзі чи як. Ви разом працюєте."
         },
         "choicesByLocale": {
           "ru": [
@@ -55,8 +55,8 @@
           ]
         },
         "accessibilityLabelByLocale": {
-          "ru": "Коллега Мира спрашивает, вы с соседом друзья или как. Вы вместе работаете.",
-          "uk": "Колега Міра питає, ви із сусідом друзі чи як. Ви разом працюєте."
+          "ru": "Мия спрашивает, вы с Олегом друзья или как. Вы вместе работаете.",
+          "uk": "Мія питає, ви з Олегом друзі чи як. Ви разом працюєте."
         }
       }
     },
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e599b062dd58ff0419c1f0dadf6aaf0c41f886022eec8bd34cb90ae58d7f79a"
+  "introFingerprint": "df371ee9166a848a46f1a52ce8ea4611cb587d437eba1751054540a94a23b0cd"
 }

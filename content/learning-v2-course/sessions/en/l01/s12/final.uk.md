@@ -93,6 +93,8 @@ You are ___ . → **brave** · calm · tired
 **6 · Складіть фразу — «я спокійний» (про себе)**
 <!-- interaction_id: en:lesson-01:session-12:i06; family: phrase_builder -->
 Плитки: `calm` `I` `am` `are` → **I am calm.**
+*(плитка `are` зайва: Після I ставлять am, тому are тут зайве.)*
+
 
 **7 · Картка слова — honest**
 <!-- interaction_id: en:lesson-01:session-12:i07; family: listen_choose -->
@@ -123,10 +125,14 @@ calm — спокійний · brave — сміливий · honest — чесн
 **12 · Складіть фразу — Ніна прямо сказала клієнту, що терміни зірвані; скажіть їй, що вона чесна**
 <!-- interaction_id: en:lesson-01:session-12:i12; family: phrase_builder -->
 Плитки: `You` `are` `honest` `is` → **You are honest.**
+*(плитка `is` зайва: Після You ставлять are, а не is.)*
+
 
 **13 · Послухайте і складіть — Микита знайшов рішення; скажіть йому: «ти розумний»**
 <!-- interaction_id: en:lesson-01:session-12:i13; family: listen_build_dictation -->
 🔊 *You are smart.* Плитки: `smart` `are` `You` `am` → **You are smart.**
+*(плитка `am` зайва: Про Микиту кажуть You are smart, а не You am smart.)*
+
 
 **14 · Картка слова — quiet**
 <!-- interaction_id: en:lesson-01:session-12:i14; family: listen_choose -->
@@ -141,10 +147,14 @@ I ___ sure. → **am** · are · is
 **16 · Послухайте й складіть — у бібліотеці Ліна говорить упівголоса; скажіть: «ти тиха»**
 <!-- interaction_id: en:lesson-01:session-12:i16; family: listen_build_dictation -->
 🔊 *You are quiet.* Плитки: `You` `are` `quiet` `is` → **You are quiet.**
+*(плитка `is` зайва: Після You ставлять are, а не is.)*
+
 
 **17 · Складіть фразу — Микита звірив рішення з інструкцією і впевнений, що воно правильне**
 <!-- interaction_id: en:lesson-01:session-12:i17; family: phrase_builder -->
 Плитки: `sure` `You` `are` `am` → **You are sure.**
+*(плитка `am` зайва: Після You ставлять are, тому am зайве.)*
+
 
 **18 · Промовте одну фразу — Микита показує вам розрахунок; ви звірили його й підтверджуєте, що він правий**
 <!-- interaction_id: en:lesson-01:session-12:i18; family: scripted_repeat_compare -->

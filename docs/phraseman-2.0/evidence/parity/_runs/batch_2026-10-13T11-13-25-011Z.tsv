@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+overlays-campaigns-014	2026-10-13T11:14:34.382Z	error	19434	step_target_not_found:#promo-code-submit+ждали_metro_24мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T11-13-25-011Z/overlays-campaigns-014.error.png	0

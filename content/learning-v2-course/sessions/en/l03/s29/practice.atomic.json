@@ -90,12 +90,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Выберите название — на конверте лежит марка",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i05:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i05:r2", "text": "letter" }, { "responseId": "en:lesson-03:session-29:i05:r3", "text": "parcel" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i05:r1",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i05:r2",
+            "text": "letter"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i05:r3",
+            "text": "parcel"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Выберите название — на конверте лежит марка",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На конверте лежит марка. Выберите её название.", "uk": "На конверті лежить марка. Виберіть її назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-29:i05:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i05:r2", "text": "letter" }, { "responseId": "en:lesson-03:session-29:i05:r3", "text": "parcel" }], "testedDimension": "Марка на конверте: stamp", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i05:r2", "correct": false, "testedDimension": "Марка на конверте: stamp", "feedbackByLocale": { "ru": "Letter — письмо. На конверте лежит марка: stamp.", "uk": "Letter — лист. На конверті лежить марка: stamp." } }, { "responseId": "en:lesson-03:session-29:i05:r3", "correct": false, "testedDimension": "Марка на конверте: stamp", "feedbackByLocale": { "ru": "Parcel — посылка. На конверте лежит марка: stamp.", "uk": "Parcel — посилка. На конверті лежить марка: stamp." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите название — на конверте лежит марка",
+            "uk": "На конверті лежить марка. Виберіть її назву."
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-29:i05:r1",
+              "text": "stamp"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r2",
+              "text": "letter"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r3",
+              "text": "parcel"
+            }
+          ],
+          "testedDimension": "Марка на конверте: stamp",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Марка на конверте: stamp",
+              "feedbackByLocale": {
+                "ru": "Letter — письмо. На конверте лежит марка: stamp.",
+                "uk": "Letter — лист. На конверті лежить марка: stamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Марка на конверте: stamp",
+              "feedbackByLocale": {
+                "ru": "Parcel — посылка. На конверте лежит марка: stamp.",
+                "uk": "Parcel — посилка. На конверті лежить марка: stamp."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -184,12 +237,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — stamp или stand",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i06:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i06:r2", "text": "stand" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i06:r1",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i06:r2",
+            "text": "stand"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-29:i06:audioA", "en:lesson-03:session-29:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-29:i06:audioA",
+          "en:lesson-03:session-29:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — stamp или stand",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "stamp", "contrastB": "stand", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-29:i06:audioA", "transcript": "stamp" }, "audioB": { "audioTargetId": "en:lesson-03:session-29:i06:audioB", "transcript": "stand" }, "testedPhoneticContrast": "В stamp слышится p перед последним звуком", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i06:r2", "correct": false, "testedDimension": "В stamp слышится p перед последним звуком", "feedbackByLocale": { "ru": "Stand — стоять. В записи перед последним звуком слышится p: stamp.", "uk": "Stand — стояти. У записі перед останнім звуком чути p: stamp." } }]
+          "family": "sound_contrast",
+          "contrastA": "stamp",
+          "contrastB": "stand",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-29:i06:audioA",
+            "transcript": "stamp"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-29:i06:audioB",
+            "transcript": "stand"
+          },
+          "testedPhoneticContrast": "В stamp слышится p перед последним звуком",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "В stamp слышится p перед последним звуком",
+              "feedbackByLocale": {
+                "ru": "Stand — стоять. В записи перед последним звуком слышится p: stamp.",
+                "uk": "Stand — стояти. У записі перед останнім звуком чути p: stamp."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -200,12 +289,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Выберите форму — эта вещь лежит здесь",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-29:i08:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i08:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Выберите форму — эта вещь лежит здесь",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.", "uk": "Ця річ лежить тут. Виберіть форму для одного предмета." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-29:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-29:i08:r2", "text": "are" }], "testedDimension": "Один предмет: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i08:r2", "correct": false, "testedDimension": "Один предмет: This is here.", "feedbackByLocale": { "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.", "uk": "Are — для кількох предметів. Тут один предмет: This is here." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму — эта вещь лежит здесь",
+            "uk": "Ця річ лежить тут. Виберіть форму для одного предмета."
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-29:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i08:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Один предмет: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.",
+                "uk": "Are — для кількох предметів. Тут один предмет: This is here."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -216,12 +341,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — This или That",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-29:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-29:i09:audioA", "en:lesson-03:session-29:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-29:i09:audioA",
+          "en:lesson-03:session-29:i09:audioB"
+        ],
         "accessibilityLabel": "Различите слово — This или That",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-29:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-29:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This — предмет рядом; That — дальше", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i09:r2", "correct": false, "testedDimension": "This — предмет рядом; That — дальше", "feedbackByLocale": { "ru": "That используют для предмета дальше. Здесь предмет рядом: This.", "uk": "That використовують для предмета далі. Тут предмет поруч: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-29:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-29:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This — предмет рядом; That — дальше",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "This — предмет рядом; That — дальше",
+              "feedbackByLocale": {
+                "ru": "That используют для предмета дальше. Здесь предмет рядом: This.",
+                "uk": "That використовують для предмета далі. Тут предмет поруч: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -484,7 +645,8 @@
             "a",
             "parcel."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -519,7 +681,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — продолжите говорить о названной посылке без нового указания",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте слово — продовжте говорити про названу посилку, не вказуючи на неї знову"
           },
           "gappedTargetPhrase": "___ is heavy.",
@@ -805,7 +967,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — продолжите говорить о названном письме без нового указания",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте слово — продовжте говорити про названий лист, не вказуючи на нього знову"
           },
           "gappedTargetPhrase": "___ is wet.",
@@ -980,7 +1142,8 @@
             "is",
             "wet."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1043,7 +1206,8 @@
             "is",
             "small."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1134,12 +1298,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Виберіть назву — на конверті лежить марка",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i05:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i05:r2", "text": "letter" }, { "responseId": "en:lesson-03:session-29:i05:r3", "text": "parcel" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i05:r1",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i05:r2",
+            "text": "letter"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i05:r3",
+            "text": "parcel"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Виберіть назву — на конверті лежить марка",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На конверте лежит марка. Выберите её название.", "uk": "На конверті лежить марка. Виберіть її назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-29:i05:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i05:r2", "text": "letter" }, { "responseId": "en:lesson-03:session-29:i05:r3", "text": "parcel" }], "testedDimension": "Марка на конверті: stamp", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i05:r2", "correct": false, "testedDimension": "Марка на конверті: stamp", "feedbackByLocale": { "ru": "Letter — письмо. На конверте лежит марка: stamp.", "uk": "Letter — лист. На конверті лежить марка: stamp." } }, { "responseId": "en:lesson-03:session-29:i05:r3", "correct": false, "testedDimension": "Марка на конверті: stamp", "feedbackByLocale": { "ru": "Parcel — посылка. На конверте лежит марка: stamp.", "uk": "Parcel — посилка. На конверті лежить марка: stamp." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На конверте лежит марка. Выберите её название.",
+            "uk": "Виберіть назву — на конверті лежить марка"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-29:i05:r1",
+              "text": "stamp"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r2",
+              "text": "letter"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r3",
+              "text": "parcel"
+            }
+          ],
+          "testedDimension": "Марка на конверті: stamp",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i05:r2",
+              "correct": false,
+              "testedDimension": "Марка на конверті: stamp",
+              "feedbackByLocale": {
+                "ru": "Letter — письмо. На конверте лежит марка: stamp.",
+                "uk": "Letter — лист. На конверті лежить марка: stamp."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i05:r3",
+              "correct": false,
+              "testedDimension": "Марка на конверті: stamp",
+              "feedbackByLocale": {
+                "ru": "Parcel — посылка. На конверте лежит марка: stamp.",
+                "uk": "Parcel — посилка. На конверті лежить марка: stamp."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1228,12 +1445,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — stamp або stand",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i06:r1", "text": "stamp" }, { "responseId": "en:lesson-03:session-29:i06:r2", "text": "stand" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i06:r1",
+            "text": "stamp"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i06:r2",
+            "text": "stand"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-29:i06:audioA", "en:lesson-03:session-29:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-29:i06:audioA",
+          "en:lesson-03:session-29:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — stamp або stand",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "stamp", "contrastB": "stand", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-29:i06:audioA", "transcript": "stamp" }, "audioB": { "audioTargetId": "en:lesson-03:session-29:i06:audioB", "transcript": "stand" }, "testedPhoneticContrast": "У stamp чути p перед останнім звуком", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i06:r2", "correct": false, "testedDimension": "У stamp чути p перед останнім звуком", "feedbackByLocale": { "ru": "Stand — стоять. В записи перед последним звуком слышится p: stamp.", "uk": "Stand — стояти. У записі перед останнім звуком чути p: stamp." } }]
+          "family": "sound_contrast",
+          "contrastA": "stamp",
+          "contrastB": "stand",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-29:i06:audioA",
+            "transcript": "stamp"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-29:i06:audioB",
+            "transcript": "stand"
+          },
+          "testedPhoneticContrast": "У stamp чути p перед останнім звуком",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i06:r2",
+              "correct": false,
+              "testedDimension": "У stamp чути p перед останнім звуком",
+              "feedbackByLocale": {
+                "ru": "Stand — стоять. В записи перед последним звуком слышится p: stamp.",
+                "uk": "Stand — стояти. У записі перед останнім звуком чути p: stamp."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1244,12 +1497,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Виберіть форму — ця річ лежить тут",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-29:i08:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i08:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Виберіть форму — ця річ лежить тут",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.", "uk": "Ця річ лежить тут. Виберіть форму для одного предмета." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-29:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-29:i08:r2", "text": "are" }], "testedDimension": "Один предмет: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i08:r2", "correct": false, "testedDimension": "Один предмет: This is here.", "feedbackByLocale": { "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.", "uk": "Are — для кількох предметів. Тут один предмет: This is here." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.",
+            "uk": "Виберіть форму — ця річ лежить тут"
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-29:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-29:i08:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i08:r2",
+              "correct": false,
+              "testedDimension": "Один предмет: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.",
+                "uk": "Are — для кількох предметів. Тут один предмет: This is here."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1260,12 +1549,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — This або That",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-29:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-29:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-29:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-29:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-29:i09:audioA", "en:lesson-03:session-29:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-29:i09:audioA",
+          "en:lesson-03:session-29:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — This або That",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-29:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-29:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This — предмет поруч; That — далі", "choiceFeedback": [{ "responseId": "en:lesson-03:session-29:i09:r2", "correct": false, "testedDimension": "This — предмет поруч; That — далі", "feedbackByLocale": { "ru": "That используют для предмета дальше. Здесь предмет рядом: This.", "uk": "That використовують для предмета далі. Тут предмет поруч: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-29:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-29:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This — предмет поруч; That — далі",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-29:i09:r2",
+              "correct": false,
+              "testedDimension": "This — предмет поруч; That — далі",
+              "feedbackByLocale": {
+                "ru": "That используют для предмета дальше. Здесь предмет рядом: This.",
+                "uk": "That використовують для предмета далі. Тут предмет поруч: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1528,7 +1853,8 @@
             "a",
             "parcel."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -2024,7 +2350,8 @@
             "is",
             "wet."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -2087,7 +2414,8 @@
             "is",
             "small."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

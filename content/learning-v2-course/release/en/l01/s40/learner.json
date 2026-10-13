@@ -82,7 +82,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы говорите за весь свой стол",
+      "prompt": "Выберите форму после `we` — вы говорите за весь свой стол",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i02:r1",
@@ -99,12 +99,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы говорите за весь свой стол",
+      "accessibilityLabel": "Выберите форму после `we` — вы говорите за весь свой стол",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы говорите за весь свой стол",
-          "uk": "Вставте скріпку — ви говорите за весь свій стіл"
+          "ru": "Выберите форму после `we` — вы говорите за весь свой стол",
+          "uk": "Виберіть форму після `we` — ви говорите за весь свій стіл"
         },
         "gappedTargetPhrase": "We ___ friendly.",
         "gapOptions": [
@@ -121,12 +121,21 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы говорите за весь с",
+        "testedDimension": "Выберите форму после `we` — вы говорите за весь свой стол",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i02:r1",
+            "correct": true,
+            "testedDimension": "Выберите форму после `we` — вы говорите за весь свой стол",
+            "feedbackByLocale": {
+              "ru": "После `we` говорят `We are friendly.`",
+              "uk": "Після `we` кажуть `We are friendly`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-40:i02:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите за весь с",
+            "testedDimension": "Выберите форму после `we` — вы говорите за весь свой стол",
             "feedbackByLocale": {
               "ru": "`is` про одного: `he is`, `she is`. Вас несколько.",
               "uk": "`is` про одного: `he is`, `she is`. А вас кілька."
@@ -135,7 +144,7 @@
           {
             "responseId": "en:lesson-01:session-40:i02:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите за весь с",
+            "testedDimension": "Выберите форму после `we` — вы говорите за весь свой стол",
             "feedbackByLocale": {
               "ru": "`am` только про себя одного. «Мы» — это `are`.",
               "uk": "`am` тільки про себе одного. «Ми» — це `are`."
@@ -148,66 +157,33 @@
     {
       "interactionId": "en:lesson-01:session-40:i03",
       "ordinal": 6,
-      "purpose": "supported_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — из-за стены весь день гремит смех",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-40:i03:r1",
-          "text": "loud"
-        },
-        {
-          "responseId": "en:lesson-01:session-40:i03:r2",
-          "text": "quiet"
-        },
-        {
-          "responseId": "en:lesson-01:session-40:i03:r3",
-          "text": "new"
-        }
-      ],
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — из-за стены весь день гремит смех",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — из-за стены весь день гремит смех",
+      "accessibilityLabel": "Соберите фразу — из-за стены весь день гремит смех",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — из-за стены весь день гремит смех",
-          "uk": "Вставте слово — за стіною цілий день лунає сміх"
-        },
-        "gappedTargetPhrase": "They are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-40:i03:r1",
-            "text": "loud"
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i03:r2",
-            "text": "quiet"
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i03:r3",
-            "text": "new"
-          }
+        "family": "phrase_builder",
+        "targetPhrase": "They are loud.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "loud"
         ],
-        "testedDimension": "Вставьте слово — из-за стены весь день г",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-40:i03:r2",
+            "responseId": "en:lesson-01:session-40:i03:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — из-за стены весь день г",
+            "testedDimension": "Соберите фразу — из-за стены весь день г",
             "feedbackByLocale": {
-              "ru": "«Тихие» — прямо наоборот тому, что вы слышите.",
-              "uk": "«Тихі» — прямо навпаки до того, що ви чуєте."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i03:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — из-за стены весь день г",
-            "feedbackByLocale": {
-              "ru": "«Новые» — это про то, давно ли человек в компании, а не про шум.",
-              "uk": "«Нові» — це про те, чи давно людина в компанії, а не про шум."
+              "ru": "`is` лишнее: с `They` говорят `They are loud.`",
+              "uk": "`is` зайве: з `They` кажуть `They are loud`."
             }
           }
         ]
@@ -283,6 +259,15 @@
               "ru": "На конце «нг», а не «нд». И это «король».",
               "uk": "У кінці «нґ», а не «нд». І це «король»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `kind`: в конце звучит `nd`.",
+              "uk": "Ви чуєте `kind`: у кінці звучить `nd`."
+            }
           }
         ],
         "isWordCard": false,
@@ -316,7 +301,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — за вашим столом все доб",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are kind.`",
+              "uk": "`is` зайве: з `We` кажуть `We are kind`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -324,28 +319,29 @@
       "interactionId": "en:lesson-01:session-40:i06",
       "ordinal": 9,
       "purpose": "supported_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
+      "prompt": "Послушайте и соберите — ваша команда только вышла на эту работу",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
+      "audioTargetIds": [
+        "en:lesson-01:session-40:i06:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — ваша команда только вышла на эту работу",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are new.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — коллега Лина спрашивает, давно ли ваша команда тут работает",
-          "uk": "Складіть фразу — колега Ліна питає, чи давно ваша команда тут працює"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-40:i06:audio",
+          "transcript": "We are new."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are new.",
         "orderedTokens": [
           "We",
           "are",
           "new"
         ],
-        "authoredDistractorTokens": [
-          "old"
-        ],
+        "authoredDistractorTokens": [],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -397,6 +393,15 @@
         ],
         "testedDimension": "Вставьте слово — за вашим столом весь об",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — за вашим столом весь обед смеются",
+            "feedbackByLocale": {
+              "ru": "За столом смеются, значит `We are funny.`",
+              "uk": "За столом сміються, отже `We are funny`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-40:i07:r2",
             "correct": false,
@@ -465,6 +470,15 @@
             "feedbackByLocale": {
               "ru": "Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».",
               "uk": "Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i08:r1",
+            "correct": true,
+            "testedDimension": "Различите звуки — какое из двух про «добрый»?",
+            "feedbackByLocale": {
+              "ru": "`kind` значит «добрый». `kid` — «ребёнок».",
+              "uk": "`kind` означає «добрий». `kid` — «дитина»."
             }
           }
         ]
@@ -540,6 +554,15 @@
               "ru": "«Мэйн» — другая гласная. `mean` — «мин», долгое «и».",
               "uk": "«Мейн» — інша голосна. `mean` — «мін», довге «і»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i09:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `mean` — «злой».",
+              "uk": "Ви чуєте `mean` — «злий»."
+            }
           }
         ],
         "isWordCard": false,
@@ -594,6 +617,15 @@
         ],
         "testedDimension": "Вставьте слово — вы не согласны, что ваш",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы не согласны, что ваш отдел злой",
+            "feedbackByLocale": {
+              "ru": "Вы отрицаете, что отдел злой: `We are not mean.`",
+              "uk": "Ви заперечуєте, що відділ злий: `We are not mean`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-40:i10:r2",
             "correct": false,
@@ -651,7 +683,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы рассказываете про людей из другого отдела",
+      "prompt": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-40:i12:r1",
@@ -668,12 +700,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы рассказываете про людей из другого отдела",
+      "accessibilityLabel": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы рассказываете про людей из другого отдела",
-          "uk": "Вставте скріпку — ви розповідаєте про людей з іншого відділу"
+          "ru": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
+          "uk": "Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу"
         },
         "gappedTargetPhrase": "They ___ funny.",
         "gapOptions": [
@@ -690,12 +722,21 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы рассказываете про ",
+        "testedDimension": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i12:r1",
+            "correct": true,
+            "testedDimension": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
+            "feedbackByLocale": {
+              "ru": "После `they` говорят `They are funny.`",
+              "uk": "Після `they` кажуть `They are funny`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-40:i12:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы рассказываете про ",
+            "testedDimension": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
             "feedbackByLocale": {
               "ru": "Их там целый отдел — одним `is` не обойтись.",
               "uk": "Їх там цілий відділ — одним `is` не обійтися."
@@ -704,7 +745,7 @@
           {
             "responseId": "en:lesson-01:session-40:i12:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы рассказываете про ",
+            "testedDimension": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
             "feedbackByLocale": {
               "ru": "`am` — только про себя.",
               "uk": "`am` — тільки про себе."
@@ -718,65 +759,33 @@
       "interactionId": "en:lesson-01:session-40:i13",
       "ordinal": 16,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-40:i13:r1",
-          "text": "colleagues"
-        },
-        {
-          "responseId": "en:lesson-01:session-40:i13:r2",
-          "text": "friends"
-        },
-        {
-          "responseId": "en:lesson-01:session-40:i13:r3",
-          "text": "guests"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вы работаете с этими людьми в одном отделе",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
+      "accessibilityLabel": "Соберите фразу — вы работаете с этими людьми в одном отделе",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — Лина спрашивает, кто эти люди: вы видите их только в офисе",
-          "uk": "Вставте слово — Ліна питає, хто ці люди: ви бачите їх лише в офісі"
-        },
-        "gappedTargetPhrase": "They are my ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-40:i13:r1",
-            "text": "colleagues"
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i13:r2",
-            "text": "friends"
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i13:r3",
-            "text": "guests"
-          }
+        "family": "phrase_builder",
+        "targetPhrase": "They are my colleagues.",
+        "orderedTokens": [
+          "They",
+          "are",
+          "my",
+          "colleagues"
         ],
-        "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-40:i13:r2",
+            "responseId": "en:lesson-01:session-40:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
+            "testedDimension": "Соберите фразу — вы работаете с этими лю",
             "feedbackByLocale": {
-              "ru": "«Друзья» — а это люди с работы.",
-              "uk": "«Друзі» — а це люди з роботи."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-40:i13:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — Лина спрашивает, кто эти люди",
-            "feedbackByLocale": {
-              "ru": "«Гости» — они не в гостях, они тут работают.",
-              "uk": "«Гості» — вони не в гостях, вони тут працюють."
+              "ru": "`is` лишнее: с `They` говорят `They are my colleagues.`",
+              "uk": "`is` зайве: з `They` кажуть `They are my colleagues`."
             }
           }
         ]
@@ -913,7 +922,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы встречаете новичков ",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: вы говорите, что вы приветливые — `We are friendly.`",
+              "uk": "`not` зайве: ви кажете, що ви привітні — `We are friendly`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -923,13 +942,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 4",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -956,13 +975,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 4",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -989,13 +1008,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 4",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1022,13 +1041,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 4 из 4",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-40:i17:s04:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1056,5 +1075,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "33566bcbc79c47d77f77b2d5625376dc8428f92bec4f43b28f9ec1a6f984152f"
+  "learnerFingerprint": "585aa6a96710f70a7b55f8407741b476c9c7bc30bb7bf06501fed24dbddccddb"
 }

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-003	2026-10-13T00:19:56.019Z	error	0	Error: adb_failed args=exec-out screencap -p status=3221225794 error= stderr=		0

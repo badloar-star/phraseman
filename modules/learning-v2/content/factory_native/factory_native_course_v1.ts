@@ -20,9 +20,16 @@ import {
   materializeLearningV2CourseSessionEvaluatorCapsuleChildV1,
   type LearningV2CourseSessionEvaluatorCapsuleInputV1,
 } from "../../runtime/course_session_evaluator_capsule_child_v1";
-import type { LearningV2ModeNativePayloadV1 } from "../../contracts/mode_native_payload_v1";
+import type {
+  LearningV2ModeNativePayloadV1,
+  LearningV2ModeChoiceDiagnosticV1,
+  LearningV2ModePhraseExplanationV1,
+  LearningV2ModeSpeedPairAnalysisV1,
+  LearningV2ModeTextAnalysisV1,
+} from "../../contracts/mode_native_payload_v1";
 import { hashCanonicalBody, sha256Utf8 } from "../../policies/decision_registry";
 import { getTranscription } from "../../../../app/transcription";
+import { projectLearnerVisiblePromptV1 } from "../learner_visible_text_v1";
 
 
 // зачем (координатор, 2026-10-01, решение по §43): транскрипцию на карточках
@@ -70,6 +77,62 @@ function localized(value: unknown): LearningV2CourseSessionLocalizedTextV1 {
   ) as LearningV2CourseSessionLocalizedTextV1;
 }
 
+function factoryNativeTextAnalysisV1(rawValue: unknown): LearningV2ModeTextAnalysisV1 {
+  const raw = record(rawValue);
+  return Object.freeze({
+    text: String(raw.text),
+    meaningByLocale: localized(raw.meaningByLocale),
+    explanationByLocale: localized(raw.explanationByLocale),
+    units: Object.freeze((Array.isArray(raw.units) ? raw.units : []).map((value) => {
+      const unit = record(value);
+      return Object.freeze({
+        text: String(unit.text),
+        start: Number(unit.start),
+        end: Number(unit.end),
+        lemma: String(unit.lemma),
+        partOfSpeech: String(unit.partOfSpeech),
+        partOfSpeechLabelByLocale: localized(unit.partOfSpeechLabelByLocale),
+        meaningByLocale: localized(unit.meaningByLocale),
+        functionByLocale: localized(unit.functionByLocale),
+        sourceRefs: Object.freeze((Array.isArray(unit.sourceRefs) ? unit.sourceRefs : []).map(String)),
+      });
+    })),
+  });
+}
+
+function factoryNativeSpeedPairAnalysisV1(rawValue: unknown): LearningV2ModeSpeedPairAnalysisV1 {
+  const raw = record(rawValue);
+  return Object.freeze({
+    lemma: String(raw.lemma),
+    partOfSpeech: String(raw.partOfSpeech),
+    partOfSpeechLabelByLocale: localized(raw.partOfSpeechLabelByLocale),
+    meaningByLocale: localized(raw.meaningByLocale),
+    functionByLocale: localized(raw.functionByLocale),
+    matchExplanationByLocale: localized(raw.matchExplanationByLocale),
+    sourceRefs: Object.freeze((Array.isArray(raw.sourceRefs) ? raw.sourceRefs : []).map(String)),
+    ...(raw.phrase === undefined ? {} : { phrase: factoryNativeTextAnalysisV1(raw.phrase) }),
+  });
+}
+
+export function factoryNativeExplanationV1(rawValue: unknown): Readonly<{
+  completionFeedbackByLocale?: LearningV2CourseSessionLocalizedTextV1;
+  phrase?: LearningV2ModePhraseExplanationV1["phrase"];
+  analysisV1?: LearningV2ModeSpeedPairAnalysisV1;
+}> | null {
+  if (rawValue === null || rawValue === undefined) return null;
+  const raw = record(rawValue);
+  if (raw.analysisV1 !== undefined) return Object.freeze({
+    analysisV1: factoryNativeSpeedPairAnalysisV1(raw.analysisV1),
+  });
+  if (raw.phrase === undefined) return Object.freeze({
+    completionFeedbackByLocale: localized(raw.completionFeedbackByLocale),
+  });
+  return Object.freeze({
+    ...(raw.completionFeedbackByLocale === undefined ? {} : { completionFeedbackByLocale: localized(raw.completionFeedbackByLocale) }),
+    phrase: factoryNativeTextAnalysisV1(raw.phrase),
+  });
+}
+
 function remapText(value: string, oldPrefix: string, courseSessionId: string): string {
   return value.split(oldPrefix).join(courseSessionId);
 }
@@ -78,6 +141,124 @@ function remapId(value: unknown, oldPrefix: string, courseSessionId: string): st
   const id = remapText(String(value ?? ""), oldPrefix, courseSessionId);
   if (!id) throw new Error("learning_v2_factory_native_id_missing");
   return id;
+}
+
+export function factoryNativeIntroResponseFeedbackByIdV1(input: Readonly<{
+  rawAuxiliary: unknown;
+  sourceInteractionId: string;
+  sourceResponseIds: readonly string[];
+  sourceCorrectResponseId: string;
+  oldPrefix: string;
+  courseSessionId: string;
+}>): Readonly<Record<string, LearningV2CourseSessionLocalizedTextV1>> {
+  const auxiliary = record(input.rawAuxiliary);
+  if (!Array.isArray(auxiliary.entries))
+    throw new Error("learning_v2_factory_native_auxiliary_missing");
+  const entry = auxiliary.entries
+    .map(record)
+    .find((candidate) => candidate.interactionId === input.sourceInteractionId);
+  if (!entry || !entry.responseFeedbackById)
+    throw new Error("learning_v2_factory_native_intro_feedback_missing");
+  const sourceFeedback = record(entry.responseFeedbackById);
+  const expected = new Set(input.sourceResponseIds);
+  const expectedLegacyWrongOnly = new Set(input.sourceResponseIds.filter((responseId) => responseId !== input.sourceCorrectResponseId));
+  const actual = Object.keys(sourceFeedback);
+  const isExactSet = (candidate: ReadonlySet<string>): boolean =>
+    actual.length === candidate.size && actual.every((responseId) => candidate.has(responseId));
+  if (
+    expected.size !== input.sourceResponseIds.length ||
+    (!isExactSet(expected) && !isExactSet(expectedLegacyWrongOnly))
+  ) throw new Error("learning_v2_factory_native_intro_feedback_incomplete");
+  return Object.freeze(Object.fromEntries(actual.map((responseId) => [
+    remapId(responseId, input.oldPrefix, input.courseSessionId),
+    localized(sourceFeedback[responseId]),
+  ])));
+}
+
+export function factoryNativeIntroResponseAnalysisByIdV1(input: Readonly<{
+  rawAuxiliary: unknown;
+  sourceInteractionId: string;
+  sourceResponseIds: readonly string[];
+  oldPrefix: string;
+  courseSessionId: string;
+}>): Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>>> {
+  const auxiliary = record(input.rawAuxiliary);
+  if (!Array.isArray(auxiliary.entries)) throw new Error("learning_v2_factory_native_auxiliary_missing");
+  const entry = auxiliary.entries.map(record).find((candidate) => candidate.interactionId === input.sourceInteractionId);
+  if (!entry || !entry.responseAnalysisById) throw new Error("learning_v2_factory_native_intro_analysis_missing");
+  const sourceAnalysis = record(entry.responseAnalysisById);
+  if (Object.keys(sourceAnalysis).length !== input.sourceResponseIds.length ||
+    input.sourceResponseIds.some((responseId) => !(responseId in sourceAnalysis)))
+    throw new Error("learning_v2_factory_native_intro_analysis_incomplete");
+  return Object.freeze(Object.fromEntries(input.sourceResponseIds.map((responseId) => {
+    const byAuthoredLocale = record(sourceAnalysis[responseId]);
+    const projectedByLocale = Object.freeze(Object.fromEntries(
+      LEARNING_V2_INTERFACE_LOCALES.map((locale) => {
+        const authoredLocale = FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[locale];
+        return [locale, factoryNativeTextAnalysisV1(byAuthoredLocale[authoredLocale])];
+      }),
+    )) as Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>;
+    return [remapId(responseId, input.oldPrefix, input.courseSessionId), projectedByLocale] as const;
+  }))) as Readonly<Record<string, Readonly<Record<LearningV2InterfaceLocale, LearningV2ModeTextAnalysisV1>>>>;
+}
+
+export function factoryNativeIntroResponseDiagnosticsByIdV1(input: Readonly<{
+  rawAuxiliary: unknown;
+  sourceInteractionId: string;
+  sourceResponseIds: readonly string[];
+  sourceCorrectResponseId: string;
+  oldPrefix: string;
+  courseSessionId: string;
+}>): Readonly<Record<string, LearningV2ModeChoiceDiagnosticV1>> {
+  const auxiliary = record(input.rawAuxiliary);
+  if (!Array.isArray(auxiliary.entries)) throw new Error("learning_v2_factory_native_auxiliary_missing");
+  const entry = auxiliary.entries.map(record).find((candidate) => candidate.interactionId === input.sourceInteractionId);
+  if (!entry || !entry.responseDiagnosticsById) throw new Error("learning_v2_factory_native_intro_diagnostics_missing");
+  const sourceDiagnostics = record(entry.responseDiagnosticsById);
+  const wrongResponseIds = input.sourceResponseIds.filter((responseId) => responseId !== input.sourceCorrectResponseId);
+  if (Object.keys(sourceDiagnostics).length !== wrongResponseIds.length ||
+    wrongResponseIds.some((responseId) => !(responseId in sourceDiagnostics)))
+    throw new Error("learning_v2_factory_native_intro_diagnostics_incomplete");
+  return Object.freeze(Object.fromEntries(wrongResponseIds.map((responseId) => {
+    const diagnostic = record(sourceDiagnostics[responseId]);
+    const localizedDiagnostic = (key: string) => {
+      const byAuthoredLocale = record(diagnostic[key]);
+      return localized(Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+        locale,
+        byAuthoredLocale[FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[locale]],
+      ])));
+    };
+    return [remapId(responseId, input.oldPrefix, input.courseSessionId), Object.freeze({
+      errorType: String(diagnostic.errorType ?? ""),
+      whyTemptingByLocale: localizedDiagnostic("whyTemptingByLocale"),
+      whyWrongHereByLocale: localizedDiagnostic("whyWrongHereByLocale"),
+      minimalContrastByLocale: localizedDiagnostic("minimalContrastByLocale"),
+      acceptabilityBoundaryByLocale: localizedDiagnostic("acceptabilityBoundaryByLocale"),
+    })] as const;
+  }))) as Readonly<Record<string, LearningV2ModeChoiceDiagnosticV1>>;
+}
+
+function factoryNativeIntroFallbackFeedbackByIdV1(input: Readonly<{
+  feedbackByLocale: Readonly<Record<LearningV2InterfaceLocale, readonly string[]>>;
+  sourceResponseIds: readonly string[];
+  sourceCorrectResponseId: string;
+  oldPrefix: string;
+  courseSessionId: string;
+}>): Readonly<Record<string, LearningV2CourseSessionLocalizedTextV1>> {
+  const wrongResponseIds = input.sourceResponseIds.filter((responseId) => responseId !== input.sourceCorrectResponseId);
+  if (!wrongResponseIds.length || wrongResponseIds.length !== input.sourceResponseIds.length - 1)
+    throw new Error("learning_v2_factory_native_intro_feedback_incomplete");
+  if (LEARNING_V2_INTERFACE_LOCALES.some((locale) =>
+    input.feedbackByLocale[locale].length !== wrongResponseIds.length ||
+    input.feedbackByLocale[locale].some((feedback) => !feedback.trim())))
+    throw new Error("learning_v2_factory_native_intro_feedback_incomplete");
+  return Object.freeze(Object.fromEntries(wrongResponseIds.map((responseId, wrongIndex) => [
+    remapId(responseId, input.oldPrefix, input.courseSessionId),
+    localized(Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+      locale,
+      input.feedbackByLocale[locale][wrongIndex],
+    ]))),
+  ])));
 }
 
 function stablePermutation(values: readonly string[], seed: string): readonly string[] {
@@ -145,27 +326,72 @@ function localizedRuns(value: unknown) {
   );
 }
 
-function modeFeedback(
+export function factoryNativeChoiceFeedbackV1(
   raw: Plain,
   responseOptions: readonly { responseId: string; text: string }[],
   correctResponseId: string | null,
   oldPrefix: string,
   courseSessionId: string,
 ) {
-  const wrongIds = responseOptions
-    .map((option) => option.responseId)
-    .filter((responseId) => responseId !== correctResponseId);
-  const source = Array.isArray(raw.choiceFeedback)
-    ? raw.choiceFeedback
-    : [];
-  return Object.freeze(source.map((candidate: unknown, index: number) => {
-    const feedback = record(candidate);
-    const responseId = wrongIds[index] ?? remapId(feedback.responseId, oldPrefix, courseSessionId);
+  const source = (Array.isArray(raw.choiceFeedback) ? raw.choiceFeedback : []).map(record);
+  return Object.freeze(source.map((feedback) => {
+    const responseId = remapId(feedback.responseId, oldPrefix, courseSessionId);
     return Object.freeze({
       responseId,
+      correct: responseId === correctResponseId,
+      testedDimension: String(feedback.testedDimension ?? "reviewed_factory_feedback"),
+      feedbackByLocale: localized(feedback.feedbackByLocale),
+      ...(feedback.analysisV1 === undefined ? {} : { analysisV1: factoryNativeTextAnalysisV1(feedback.analysisV1) }),
+      ...(feedback.errorType === undefined ? {} : {
+        errorType: String(feedback.errorType),
+        whyTemptingByLocale: localized(feedback.whyTemptingByLocale),
+        whyWrongHereByLocale: localized(feedback.whyWrongHereByLocale),
+        minimalContrastByLocale: localized(feedback.minimalContrastByLocale),
+        acceptabilityBoundaryByLocale: localized(feedback.acceptabilityBoundaryByLocale),
+      }),
+    });
+  }));
+}
+
+export function factoryNativeOrderedTokenSlotFeedbackV1(
+  raw: Plain,
+  responseOptions: readonly { responseId: string; text: string }[],
+) {
+  const orderedTokenCount = Array.isArray(raw.orderedTokens) ? raw.orderedTokens.length : 0;
+  const distractorTokenCount = Array.isArray(raw.authoredDistractorTokens)
+    ? raw.authoredDistractorTokens.length
+    : Array.isArray(raw.distractorTokens)
+      ? raw.distractorTokens.length
+      : 0;
+  const source = (Array.isArray(raw.slotFeedback) ? raw.slotFeedback : []).map(record);
+  // Older admitted generated bundles predate authored slot feedback. They
+  // remain readable; once the field is present it must cover every distractor.
+  if (source.length === 0) return Object.freeze([]);
+  if (source.length !== distractorTokenCount)
+    throw new Error("learning_v2_factory_native_slot_feedback_incomplete");
+  const seen = new Set<number>();
+  return Object.freeze(source.map((feedback, feedbackIndex) => {
+    const match = /:tile:d([1-9]\d*)$/u.exec(String(feedback.responseId ?? ""));
+    // Current source IDs name the physical distractor (`:tile:dN`). Older
+    // admitted bundles used `:rN`; their retained order is the only binding.
+    const distractorOrdinal = match ? Number(match[1]) : feedbackIndex + 1;
+    const response = responseOptions[orderedTokenCount + distractorOrdinal - 1];
+    if (!response || distractorOrdinal > distractorTokenCount || seen.has(distractorOrdinal))
+      throw new Error("learning_v2_factory_native_slot_feedback_binding_invalid");
+    seen.add(distractorOrdinal);
+    return Object.freeze({
+      responseId: response.responseId,
       correct: false as const,
       testedDimension: String(feedback.testedDimension ?? "reviewed_factory_feedback"),
       feedbackByLocale: localized(feedback.feedbackByLocale),
+      ...(feedback.analysisV1 === undefined ? {} : { analysisV1: factoryNativeTextAnalysisV1(feedback.analysisV1) }),
+      ...(feedback.errorType === undefined ? {} : {
+        errorType: String(feedback.errorType),
+        whyTemptingByLocale: localized(feedback.whyTemptingByLocale),
+        whyWrongHereByLocale: localized(feedback.whyWrongHereByLocale),
+        minimalContrastByLocale: localized(feedback.minimalContrastByLocale),
+        acceptabilityBoundaryByLocale: localized(feedback.acceptabilityBoundaryByLocale),
+      }),
     });
   }));
 }
@@ -176,31 +402,52 @@ function nativeModePayload(
   correctResponseId: string | null,
   oldPrefix: string,
   courseSessionId: string,
+  fallbackLocalizedScene: LearningV2CourseSessionLocalizedTextV1,
+  interactionFamily: string,
+  fallbackSourceAudioTargetId: string,
 ): LearningV2ModeNativePayloadV1 {
   const raw = record(rawValue);
-  const family = String(raw.family);
+  // Early release bundles stored the family on the interaction but omitted
+  // the duplicate mode field. The interaction contract remains authoritative.
+  const family = String(raw.family ?? interactionFamily);
   const feedback = ["listen_choose", "sound_contrast", "context_gap_grammar"].includes(family)
-    ? modeFeedback(raw, responseOptions, correctResponseId, oldPrefix, courseSessionId)
+    ? factoryNativeChoiceFeedbackV1(raw, responseOptions, correctResponseId, oldPrefix, courseSessionId)
+    : Object.freeze([]);
+  const slotFeedback = ["phrase_builder", "listen_build_dictation"].includes(family)
+    ? factoryNativeOrderedTokenSlotFeedbackV1(raw, responseOptions)
     : Object.freeze([]);
   const audioTargetId = (value: unknown) => hashCanonicalBody({
     schemaVersion: "learning-v2-factory-native-audio-target.v1",
     courseSessionId,
     sourceAudioTargetId: remapId(value, oldPrefix, courseSessionId),
   });
-  const audioRef = (value: unknown) => value === null
+  // Legacy reviewed bundles use both null and an absent field for an optional
+  // slow reference. Both mean that no slow recording exists; neither is an
+  // invalid audio object.
+  const audioRef = (value: unknown) => value === null || value === undefined
     ? null
     : Object.freeze({
-        audioTargetId: audioTargetId(record(value).audioTargetId),
+        audioTargetId: audioTargetId(record(value).audioTargetId ?? fallbackSourceAudioTargetId),
         transcript: String(record(value).transcript ?? ""),
       });
-  if (family === "phrase_builder") return Object.freeze({
+  if (family === "phrase_builder") {
+    const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
+    const completionFeedbackByLocale = explanationV1?.completionFeedbackByLocale
+      ?? (raw.completionFeedbackByLocale === undefined ? undefined : localized(raw.completionFeedbackByLocale));
+    return Object.freeze({
     family,
     targetPhrase: String(raw.targetPhrase),
-    localizedMeaning: localized(raw.localizedMeaning),
-    orderedTokens: Object.freeze((raw.orderedTokens as unknown[]).map(String)),
-    authoredDistractorTokens: Object.freeze((raw.authoredDistractorTokens as unknown[]).map(String)),
-    slotFeedback: feedback,
-  });
+    // Source packets may name this reviewed learner explanation `localizedScene`.
+    // It is not optional: use it verbatim rather than dropping a real context
+    // and crashing the entire session because a legacy release used that key.
+    localizedMeaning: localized(raw.localizedMeaning ?? raw.localizedScene ?? fallbackLocalizedScene),
+    orderedTokens: Object.freeze((Array.isArray(raw.orderedTokens) ? raw.orderedTokens : []).map(String)),
+    authoredDistractorTokens: Object.freeze((Array.isArray(raw.authoredDistractorTokens) ? raw.authoredDistractorTokens : []).map(String)),
+    slotFeedback,
+    ...(completionFeedbackByLocale ? { completionFeedbackByLocale } : {}),
+    ...(explanationV1?.phrase ? { explanationV1: explanationV1 as LearningV2ModePhraseExplanationV1 } : {}),
+    });
+  }
   if (family === "listen_choose") return Object.freeze({
     family,
     referenceAudio: audioRef(raw.referenceAudio),
@@ -210,7 +457,9 @@ function nativeModePayload(
       return Object.freeze({
         responseId: remapId(choice.responseId, oldPrefix, courseSessionId),
         targetText: String(choice.targetText),
-        meaningByLocale: choice.meaningByLocale === null ? null : localized(choice.meaningByLocale),
+        meaningByLocale: choice.meaningByLocale === null || choice.meaningByLocale === undefined
+          ? null
+          : localized(choice.meaningByLocale),
       });
     })),
     transcriptRevealPolicy: "after_first_attempt" as const,
@@ -224,7 +473,11 @@ function nativeModePayload(
     testedPhoneticContrast: String(raw.testedPhoneticContrast),
     choiceFeedback: feedback,
   });
-  if (family === "listen_build_dictation") return Object.freeze({
+  if (family === "listen_build_dictation") {
+    const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
+    const completionFeedbackByLocale = explanationV1?.completionFeedbackByLocale
+      ?? (raw.completionFeedbackByLocale === undefined ? undefined : localized(raw.completionFeedbackByLocale));
+    return Object.freeze({
     family,
     referenceAudio: audioRef(raw.referenceAudio),
     slowReferenceAudio: audioRef(raw.slowReferenceAudio),
@@ -235,11 +488,19 @@ function nativeModePayload(
       : Array.isArray(raw.distractorTokens)
         ? raw.distractorTokens
         : []).map(String)),
-    slotFeedback: feedback,
-  });
+    slotFeedback,
+    ...(completionFeedbackByLocale ? { completionFeedbackByLocale } : {}),
+    ...(explanationV1?.phrase ? { explanationV1: explanationV1 as LearningV2ModePhraseExplanationV1 } : {}),
+    });
+  }
   if (family === "context_gap_grammar") return Object.freeze({
     family,
-    localizedScene: localized(raw.localizedScene),
+    // Older admitted bundles sometimes omitted the display scene altogether.
+    // Recover only from the reviewed per-locale practice title, never from a
+    // guessed situation; that same title passes through the shared projection.
+    localizedScene: raw.localizedScene === undefined || raw.localizedScene === null
+      ? fallbackLocalizedScene
+      : localized(raw.localizedScene),
     gappedTargetPhrase: String(raw.gappedTargetPhrase),
     gapOptions: Object.freeze(responseOptions),
     testedDimension: String(raw.testedDimension),
@@ -252,6 +513,9 @@ function nativeModePayload(
         pairId: remapId(pair.pairId, oldPrefix, courseSessionId),
         target: String(pair.target),
         meaningByLocale: localized(pair.meaningByLocale),
+        ...(pair.analysisV1 === undefined ? {} : {
+          analysisV1: factoryNativeSpeedPairAnalysisV1(pair.analysisV1),
+        }),
       });
     }));
     const pairIds = Object.freeze(pairGrid.map((pair) => pair.pairId));
@@ -264,15 +528,19 @@ function nativeModePayload(
       finishStats: Object.freeze(["speed", "accuracy", "personal_best"] as const),
     });
   }
-  if (family === "scripted_repeat_compare") return Object.freeze({
-    family,
-    referenceAudio: audioRef(raw.referenceAudio), slowReferenceAudio: audioRef(raw.slowReferenceAudio),
-    targetPhrase: String(raw.targetPhrase),
-    recordControlPolicy: "hold_press_release_with_accessible_toggle" as const,
-    modelPlayback: "reference_and_slow" as const,
-    learnerPlayback: "available_after_capture" as const,
-    honestOutcomeStates: Object.freeze(["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"] as const),
-  });
+  if (family === "scripted_repeat_compare") {
+    const explanationV1 = factoryNativeExplanationV1(raw.explanationV1);
+    return Object.freeze({
+      family,
+      referenceAudio: audioRef(raw.referenceAudio), slowReferenceAudio: audioRef(raw.slowReferenceAudio),
+      targetPhrase: String(raw.targetPhrase),
+      recordControlPolicy: "hold_press_release_with_accessible_toggle" as const,
+      modelPlayback: "reference_and_slow" as const,
+      learnerPlayback: "available_after_capture" as const,
+      honestOutcomeStates: Object.freeze(["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"] as const),
+      ...(explanationV1?.phrase ? { explanationV1: Object.freeze({ phrase: explanationV1.phrase }) } : {}),
+    });
+  }
   throw new Error(`learning_v2_factory_native_family_unsupported:${family}`);
 }
 
@@ -318,17 +586,7 @@ function lexicalSense(
 }
 
 function learnerPrompt(title: string, family: string, correctText: string): string {
-  let prompt = title;
-  const normalizedCorrect = correctText.toLowerCase().replace(/[.?!]$/u, "");
-  const tail = /\s+—\s+(.+)$/u.exec(prompt);
-  if (tail && normalizedCorrect &&
-    tail[1]!.toLowerCase().replace(/[.?!]$/u, "") === normalizedCorrect) {
-    prompt = prompt.slice(0, tail.index).trim();
-  }
-  if (family === "speed_match") {
-    prompt = prompt.replace(/\s*\(Speed Match,\s*[4-7]\s+(?:пар|пары|пари)\)\s*$/iu, "").trim();
-  }
-  return prompt;
+  return projectLearnerVisiblePromptV1({ title, family, correctText });
 }
 
 function localizedSceneMeaning(value: LearningV2CourseSessionLocalizedTextV1) {
@@ -413,6 +671,7 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
   const courseSessionId = learningV2CourseSessionIdV1(row.lessonOrdinal, row.sessionOrdinal);
   const rawIntro = record(row.loadIntro());
   const rawPages = rawIntro.pages as unknown[];
+  const rawAuxiliary = row.loadAuxiliary?.() ?? null;
   const oldPrefix = String(record(rawPages[0]).pageId).replace(/:intro1$/u, "");
   const introPages = rawPages.map((value, pageIndex) => {
     const page = record(value);
@@ -465,7 +724,17 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
     const answer = record(value);
     return [String(answer.interactionId), answer] as const;
   }));
-  const titleByOrdinal = new Map(row.practiceTitlesByAuthoredLocale[authoredLocale].map((entry) => [entry.ordinal, entry.title]));
+  const titleByOrdinalByLocale: ReadonlyMap<
+    LearningV2InterfaceLocale,
+    ReadonlyMap<number, string>
+  > = new Map(LEARNING_V2_INTERFACE_LOCALES.map((locale): readonly [
+    LearningV2InterfaceLocale,
+    ReadonlyMap<number, string>,
+  ] => [
+    locale,
+    new Map(row.practiceTitlesByAuthoredLocale[FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[locale]]
+      .map((entry): readonly [number, string] => [entry.ordinal, entry.title])),
+  ]));
   const interactions: LearningV2CourseSessionPracticeInteractionV1[] = [];
   const practiceSemantics = new Map<string, LearningV2FactoryNativePracticeSemanticV1>();
   const cardQueues = new Map<string, LearningV2FactoryNativeNewWordEncounterV1[]>();
@@ -518,10 +787,32 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
         text,
       })));
     }
-    const modePayload = nativeModePayload(raw.modePayload, responseOptions, correctResponseId, oldPrefix, courseSessionId);
     const interactionId = remapId(oldInteractionId, oldPrefix, courseSessionId);
-    const title = titleByOrdinal.get(Number(String(oldInteractionId).match(/:i(\d+)$/u)?.[1])) ?? String(raw.prompt);
+    const ordinal = Number(String(oldInteractionId).match(/:i(\d+)$/u)?.[1]);
+    const title = titleByOrdinalByLocale.get(authoredLocale)?.get(ordinal) ?? String(raw.prompt);
     const prompt = learnerPrompt(title, String(raw.family), String(answer.correctText ?? ""));
+    const fallbackLocalizedScene = localized(Object.fromEntries(
+      LEARNING_V2_INTERFACE_LOCALES.map((locale) => [locale, learnerPrompt(
+        titleByOrdinalByLocale.get(locale)?.get(ordinal) ?? String(raw.prompt),
+        String(raw.family),
+        String(answer.correctText ?? ""),
+      )]),
+    ));
+    const modePayload = nativeModePayload(
+      raw.modePayload,
+      responseOptions,
+      correctResponseId,
+      oldPrefix,
+      courseSessionId,
+      fallbackLocalizedScene,
+      String(raw.family),
+      String((Array.isArray(raw.audioTargetIds) ? raw.audioTargetIds[0] : undefined) ?? `${oldInteractionId}:audio`),
+    );
+    const sourceAudioTargetIds = Array.isArray(raw.audioTargetIds)
+      ? raw.audioTargetIds
+      : rawMode.referenceAudio && typeof rawMode.referenceAudio === "object"
+        ? [record(rawMode.referenceAudio).audioTargetId ?? `${oldInteractionId}:audio`]
+        : [];
     interactions.push(Object.freeze({
       interactionId,
       ordinal: interactions.length + 4,
@@ -530,8 +821,8 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       inputMode: raw.inputMode,
       prompt,
       responseOptions,
-      mediaIds: Object.freeze((raw.mediaIds as unknown[]).map((id) => remapId(id, oldPrefix, courseSessionId))),
-      audioTargetIds: Object.freeze((raw.audioTargetIds as unknown[]).map((id) => hashCanonicalBody({
+      mediaIds: Object.freeze((Array.isArray(raw.mediaIds) ? raw.mediaIds : []).map((id) => remapId(id, oldPrefix, courseSessionId))),
+      audioTargetIds: Object.freeze(sourceAudioTargetIds.map((id) => hashCanonicalBody({
         schemaVersion: "learning-v2-factory-native-audio-target.v1",
         courseSessionId,
         sourceAudioTargetId: remapId(id, oldPrefix, courseSessionId),
@@ -564,22 +855,64 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       acceptedResponses: [accepted],
     });
     const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", targetText: accepted, meaningByLocale: localizedQuotedMeaning(page.question.promptByLocale) });
-    const introFeedback = localized({
-      ru: row.introWrongFeedbackByAuthoredLocale.ru[pageIndex]?.[0],
-      uk: row.introWrongFeedbackByAuthoredLocale.uk[pageIndex]?.[0],
-    });
-    const wrongChoiceIndexes = page.question.choicesByLocale.ru
-      .map((_, index) => index)
-      .filter((index) => index !== correctIndex);
-    const responseFeedbackById = Object.freeze(Object.fromEntries(
-      wrongChoiceIndexes.map((choiceIndex, feedbackIndex) => [
-        `${page.question.interactionId.replace(/:q$/u, "")}:r${choiceIndex + 1}`,
-        localized({
-          ru: row.introWrongFeedbackByAuthoredLocale.ru[pageIndex]?.[feedbackIndex],
-          uk: row.introWrongFeedbackByAuthoredLocale.uk[pageIndex]?.[feedbackIndex],
-        }),
-      ]),
-    ));
+    const rawPage = record(rawPages[pageIndex]);
+    const rawQuestion = record(rawPage.question);
+    const rawChoices = record(rawQuestion.choicesByLocale)[authoredLocale];
+    if (!Array.isArray(rawChoices))
+      throw new Error("learning_v2_factory_native_intro_choices_missing");
+    const sourceResponseIds = rawChoices.map((choice) => String(record(choice).responseId));
+    const sourceCorrectResponseId = sourceResponseIds[correctIndex];
+    if (!sourceCorrectResponseId)
+      throw new Error("learning_v2_factory_native_intro_answer_missing");
+    const responseFeedbackById = rawAuxiliary
+      ? factoryNativeIntroResponseFeedbackByIdV1({
+          rawAuxiliary,
+          sourceInteractionId: String(rawQuestion.interactionId),
+          sourceResponseIds,
+          sourceCorrectResponseId,
+          oldPrefix,
+          courseSessionId,
+        })
+      : factoryNativeIntroFallbackFeedbackByIdV1({
+          feedbackByLocale: Object.freeze(Object.fromEntries(LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+            locale,
+            row.introWrongFeedbackByAuthoredLocale[FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1[locale]][pageIndex] ?? [],
+          ]))) as Readonly<Record<LearningV2InterfaceLocale, readonly string[]>>,
+          sourceResponseIds,
+          sourceCorrectResponseId,
+          oldPrefix,
+          courseSessionId,
+        });
+    const rawAuxiliaryEntries = rawAuxiliary && Array.isArray(record(rawAuxiliary).entries)
+      ? record(rawAuxiliary).entries as readonly unknown[]
+      : [];
+    const rawAuxiliaryEntry = rawAuxiliaryEntries.map(record)
+      .find((candidate) => candidate.interactionId === String(rawQuestion.interactionId));
+    const responseAnalysisById = rawAuxiliaryEntry?.responseAnalysisById
+      ? factoryNativeIntroResponseAnalysisByIdV1({
+          rawAuxiliary,
+          sourceInteractionId: String(rawQuestion.interactionId),
+          sourceResponseIds,
+          oldPrefix,
+          courseSessionId,
+        })
+      : undefined;
+    const responseDiagnosticsById = rawAuxiliaryEntry?.responseDiagnosticsById
+      ? factoryNativeIntroResponseDiagnosticsByIdV1({
+          rawAuxiliary,
+          sourceInteractionId: String(rawQuestion.interactionId),
+          sourceResponseIds,
+          sourceCorrectResponseId,
+          oldPrefix,
+          courseSessionId,
+        })
+      : undefined;
+    const firstWrongResponseId = sourceResponseIds.find((_, index) => index !== correctIndex);
+    if (!firstWrongResponseId)
+      throw new Error("learning_v2_factory_native_intro_wrong_response_missing");
+    const introFeedback = responseFeedbackById[remapId(firstWrongResponseId, oldPrefix, courseSessionId)];
+    if (!introFeedback)
+      throw new Error("learning_v2_factory_native_intro_feedback_incomplete");
     auxiliaryEntries.push(Object.freeze({
       interactionId: page.question.interactionId,
       report: Object.freeze({ available: true, reportContextRef: `${page.question.interactionId}:report`, screen: "learning_v2_session" }),
@@ -587,6 +920,8 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
       secondErrorExplanationRef: `${page.question.interactionId}:feedback`,
       secondErrorExplanationByLocale: introFeedback,
       responseFeedbackById,
+      ...(responseAnalysisById ? { responseAnalysisById } : {}),
+      ...(responseDiagnosticsById ? { responseDiagnosticsById } : {}),
     }));
   });
   learnerChild.interactions.forEach((interaction) => {
@@ -629,7 +964,9 @@ export function materializeFactoryNativeLearningV2SessionV1(input: Readonly<{
     const save = materializeLearningV2CourseSessionSavablePhraseV1({ targetLanguage: "en", ...saveProjection });
     const feedback = interaction.modePayload && "choiceFeedback" in interaction.modePayload
       ? interaction.modePayload.choiceFeedback
-      : [];
+      : interaction.modePayload && "slotFeedback" in interaction.modePayload
+        ? interaction.modePayload.slotFeedback
+        : [];
     const responseFeedbackById = feedback.length ? Object.freeze(Object.fromEntries(feedback.map((entry) => [entry.responseId, entry.feedbackByLocale]))) : undefined;
     auxiliaryEntries.push(Object.freeze({
       interactionId: interaction.interactionId,

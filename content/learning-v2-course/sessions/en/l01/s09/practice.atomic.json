@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — welcome",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i02:r1",
@@ -182,7 +182,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — kind",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i04:r1",
@@ -416,7 +416,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — right",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i08:r1",
@@ -708,8 +708,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
               "feedbackByLocale": {
-                "ru": "`am` ставят только после `I`, а здесь подлежащее `You`.",
-                "uk": "`am` ставлять лише після `I`, а тут підмет `You`."
+                "ru": "`am` ставят только после `I`, а здесь подлежащее `You`",
+                "uk": "`am` ставлять лише після `I`, а тут підмет `You`"
               }
             },
             {
@@ -717,8 +717,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
               "feedbackByLocale": {
-                "ru": "Вы подтверждаете, что Мира права, поэтому отрицание не нужно.",
-                "uk": "Ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне."
+                "ru": "вы подтверждаете, что Мира права, поэтому отрицание не нужно",
+                "uk": "ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне"
               }
             }
           ]
@@ -864,8 +864,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира спрашивает, во сколько собрание. Вы не знаете",
               "feedbackByLocale": {
-                "ru": "После `I` используют `am`, поэтому `are` в этой фразе не подходит.",
-                "uk": "Після `I` використовують `am`, тому `are` у цій фразі не підходить."
+                "ru": "после `I` используют `am`, поэтому `are` в этой фразе не подходит",
+                "uk": "після `I` використовують `am`, тому `are` у цій фразі не підходить"
               }
             }
           ]
@@ -917,7 +917,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставьте слово — вы толкнули её локтем, ",
+          "testedDimension": "Вставьте слово — вы толкнули её локтем, кофе плеснулся на стол",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-09:i17:r2",
@@ -1133,7 +1133,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — welcome",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i02:r1",
@@ -1261,7 +1261,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — kind",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i04:r1",
@@ -1495,7 +1495,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — right",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-09:i08:r1",
@@ -1785,19 +1785,19 @@
             {
               "responseId": "en:lesson-01:session-09:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра звірила список покупок і правильно назвала кількість молока",
+              "testedDimension": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
               "feedbackByLocale": {
-                "ru": "`am` ставят только после `I`, а здесь подлежащее `You`.",
-                "uk": "`am` ставлять лише після `I`, а тут підмет `You`."
+                "ru": "`am` ставят только после `I`, а здесь подлежащее `You`",
+                "uk": "`am` ставлять лише після `I`, а тут підмет `You`"
               }
             },
             {
               "responseId": "en:lesson-01:session-09:i13:tile:d2",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра звірила список покупок і правильно назвала кількість молока",
+              "testedDimension": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
               "feedbackByLocale": {
-                "ru": "Вы подтверждаете, что Мира права, поэтому отрицание не нужно.",
-                "uk": "Ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне."
+                "ru": "вы подтверждаете, что Мира права, поэтому отрицание не нужно",
+                "uk": "ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне"
               }
             }
           ]
@@ -1941,10 +1941,10 @@
             {
               "responseId": "en:lesson-01:session-09:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра питає, о котрій збори. Ви не знаєте",
+              "testedDimension": "Соберите фразу — Мира спрашивает, во сколько собрание. Вы не знаете",
               "feedbackByLocale": {
-                "ru": "После `I` используют `am`, поэтому `are` в этой фразе не подходит.",
-                "uk": "Після `I` використовують `am`, тому `are` у цій фразі не підходить."
+                "ru": "после `I` используют `am`, поэтому `are` в этой фразе не подходит",
+                "uk": "після `I` використовують `am`, тому `are` у цій фразі не підходить"
               }
             }
           ]
@@ -1996,7 +1996,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставте слово — ви штовхнули її ліктем, ",
+          "testedDimension": "Вставте слово — ви штовхнули її ліктем, кава хлюпнула на стіл",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-09:i17:r2",

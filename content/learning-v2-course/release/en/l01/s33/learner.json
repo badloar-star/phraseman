@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послушайте и выберите",
+      "prompt": "Послушайте и выберите — вы с Олегом идёте на обед вместе",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-33:i02:r1",
@@ -99,9 +99,18 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
+            "feedbackByLocale": {
+              "ru": "`together` — «вместе»: вы с Олегом идёте не поодиночке.",
+              "uk": "`together` — «разом»: ви з Олегом ідете не окремо."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i02:r2",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — together",
+            "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
             "feedbackByLocale": {
               "ru": "Другое слово, «завтра». Начало похоже, а дальше расходятся: слушайте конец.",
               "uk": "Інше слово, «завтра». Початок схожий, а далі розходяться: слухайте кінець."
@@ -110,7 +119,7 @@
           {
             "responseId": "en:lesson-01:session-33:i02:r3",
             "correct": false,
-            "testedDimension": "Послушайте и выберите — together",
+            "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
             "feedbackByLocale": {
               "ru": "На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.",
               "uk": "На слух початок той самий. Слухайте, що йде далі: у `together` є закінчення `-er`."
@@ -169,6 +178,15 @@
         ],
         "testedDimension": "Вставьте слово — команда собралась у две",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i03:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — команда собралась у две",
+            "feedbackByLocale": {
+              "ru": "Команда — это несколько людей, поэтому `We are`.",
+              "uk": "Команда — це кілька людей, тому `We are`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-33:i03:r2",
             "correct": false,
@@ -267,6 +285,15 @@
         "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
+            "feedbackByLocale": {
+              "ru": "Вышли всей компанией: `together` — «вместе».",
+              "uk": "Вийшли всією компанією: `together` — «разом»"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
@@ -317,7 +344,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мы вместе»",
+            "feedbackByLocale": {
+              "ru": "с `We` ставят `are` — `We are together.`",
+              "uk": "з `We` ставлять `are` — `We are together`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -369,6 +406,15 @@
         "testedDimension": "Вставьте слово — коллега смотрит на часы",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега смотрит на часы",
+            "feedbackByLocale": {
+              "ru": "Перерыв начался раньше, значит вы `late` — «опоздали».",
+              "uk": "Перерва почалася раніше, отже ви `late` — «запізнилися»"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега смотрит на часы",
@@ -396,7 +442,7 @@
       "purpose": "guided_practice",
       "family": "speed_match",
       "inputMode": "pair_grid",
-      "prompt": "Соедините пары",
+      "prompt": "Соедините пары — сопоставьте фразы с их смыслом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
@@ -539,12 +585,21 @@
         "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
+            "feedbackByLocale": {
+              "ru": "Вас четверо за одним столом: `We` — «мы».",
+              "uk": "Вас четверо за одним столом: `We` — «ми»"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i10:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
             "feedbackByLocale": {
-              "ru": "`I` — это про одного, и скрепка была бы `am`. А вас в кафе четверо.",
-              "uk": "`I` — це про одного, і скріпка була б `am`. А вас у кав'ярні четверо."
+              "ru": "`I` — это один человек, поэтому с ним было бы `am`. А вас в кафе четверо.",
+              "uk": "`I` — це одна людина, тому з ним було б `am`. А вас у кав'ярні четверо."
             }
           },
           {
@@ -552,8 +607,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
             "feedbackByLocale": {
-              "ru": "Это про одного мужчину, и скрепка была бы `is`.",
-              "uk": "Це про одного чоловіка, і скріпка була б `is`."
+              "ru": "Это один мужчина, поэтому здесь было бы `is`.",
+              "uk": "Це один чоловік, тому тут було б `is`."
             }
           }
         ]
@@ -594,13 +649,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 2",
+      "prompt": "Произнесите одну фразу — у входа в кафе Ира спрашивает, голодны ли вы все",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-33:i12:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 2",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -627,13 +682,13 @@
       "purpose": "retrieval_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 2",
+      "prompt": "Произнесите одну фразу — Ира видит, что вы уже в куртках у выхода",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-33:i12:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 2",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -658,29 +713,42 @@
       "interactionId": "en:lesson-01:session-33:i13",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы все ещё сидите за столом, никто никуда не спешит",
+      "prompt": "Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы все ещё сидите за столом, никто никуда не спешит",
+      "audioTargetIds": [
+        "en:lesson-01:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — вы все ещё сидите за столом, никто никуда не спешит",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are hungry.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — вы все ещё сидите за столом, никто никуда не спешит",
-          "uk": "Складіть фразу — ви ще сидите за столом, ніхто нікуди не поспішає"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:i13:audio",
+          "transcript": "We are hungry."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are hungry.",
         "orderedTokens": [
           "We",
           "are",
           "hungry"
         ],
         "authoredDistractorTokens": [
-          "late"
+          "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы всё ещё сидит",
+            "feedbackByLocale": {
+              "ru": "с `We` нужна форма `are`.",
+              "uk": "з `We` потрібна форма `are`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -690,7 +758,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега зовёт есть, все хотят",
+      "prompt": "Вставьте слово — Ира зовёт всю команду обедать",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-33:i14:r1",
@@ -711,7 +779,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — коллега зовёт есть, все хотят",
+          "ru": "Вставьте слово — Ира зовёт всю команду обедать",
           "uk": "Вставте слово — колега кличе їсти, хочуть усі"
         },
         "gappedTargetPhrase": "We are ___ .",
@@ -732,9 +800,18 @@
         "testedDimension": "Вставьте слово — коллега зовёт есть, все",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-33:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
+            "feedbackByLocale": {
+              "ru": "Команда идёт обедать, потому что `hungry` — «голодные».",
+              "uk": "Команда йде обідати, бо `hungry` — «голодні»"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-33:i14:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега зовёт есть, все",
+            "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
             "feedbackByLocale": {
               "ru": "Про компанию тут и так понятно. Вопрос был про еду.",
               "uk": "Про гурт тут і так зрозуміло. Питання було про їжу."
@@ -743,7 +820,7 @@
           {
             "responseId": "en:lesson-01:session-33:i14:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — коллега зовёт есть, все",
+            "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
             "feedbackByLocale": {
               "ru": "Никто не опаздывает, все просто голодные.",
               "uk": "Ніхто не запізнюється, усі просто голодні."
@@ -757,53 +834,23 @@
       "interactionId": "en:lesson-01:session-33:i15",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — официант ушёл, а вы всё ещё не выбрали; вы опаздываете обратно",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — официант ушёл, а вы всё ещё не выбрали; вы опаздываете обратно",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are late.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — официант ушёл, а вы всё ещё не выбрали; вы опаздываете обратно",
-          "uk": "Складіть фразу — офіціант пішов, а ви й досі не вибрали; ви запізнюєтеся назад"
-        },
-        "orderedTokens": [
-          "We",
-          "are",
-          "late"
-        ],
-        "authoredDistractorTokens": [
-          "am"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-33:i16:s01",
-      "ordinal": 20,
-      "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 3",
+      "prompt": "Произнесите одну фразу — официант уже принёс счёт, а вы опаздываете на встречу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-33:i16:s01:audio"
+        "en:lesson-01:session-33:i15:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
+      "accessibilityLabel": "Произнесите одну фразу — официант уже принёс счёт, а вы опаздываете на встречу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-33:i16:s01:audio",
-          "transcript": "We are hungry."
+          "audioTargetId": "en:lesson-01:session-33:i15:audio",
+          "transcript": "We are late."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are hungry.",
+        "targetPhrase": "We are late.",
         "recordControlPolicy": "hold_press_release_with_accessible_toggle",
         "modelPlayback": "reference_and_slow",
         "learnerPlayback": "available_after_capture",
@@ -817,18 +864,103 @@
       "scriptedAlternate": null
     },
     {
+      "interactionId": "en:lesson-01:session-33:i16:s01",
+      "ordinal": 20,
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу — вся команда хочет есть",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-33:i16:s01:r1",
+          "text": "We are hungry."
+        },
+        {
+          "responseId": "en:lesson-01:session-33:i16:s01:r2",
+          "text": "We are late."
+        },
+        {
+          "responseId": "en:lesson-01:session-33:i16:s01:r3",
+          "text": "We are ready."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-33:i16:s01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу — вы все хотите есть",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-33:i16:s01:audio",
+          "transcript": "We are hungry."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r1",
+            "targetText": "We are hungry.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r2",
+            "targetText": "We are late.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r3",
+            "targetText": "We are ready.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите фразу — вся команд",
+            "feedbackByLocale": {
+              "ru": "Вся команда хочет есть: `We are hungry.`",
+              "uk": "Уся команда хоче їсти: `We are hungry`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу — вся команд",
+            "feedbackByLocale": {
+              "ru": "Здесь речь не об опоздании: все хотят есть.",
+              "uk": "Тут не про запізнення: усі хочуть їсти."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-33:i16:s01:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу — вся команд",
+            "feedbackByLocale": {
+              "ru": "Готовность — другое значение. Здесь все голодны.",
+              "uk": "Готовність — інше значення. Тут усі голодні."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
       "interactionId": "en:lesson-01:session-33:i16:s02",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "prompt": "Произнесите одну фразу — вы стоите у выхода всей командой",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-33:i16:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -852,32 +984,42 @@
     {
       "interactionId": "en:lesson-01:session-33:i16:s03",
       "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — вся команда уже в куртках и ждёт у двери",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-33:i16:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "accessibilityLabel": "Послушайте и соберите — все уже надели куртки и ждут у двери",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-33:i16:s03:audio",
           "transcript": "We are ready."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "We are ready.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "hiddenTargetPhrase": "We are ready.",
+        "orderedTokens": [
+          "We",
+          "are",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-33:i16:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вся команда уже ",
+            "feedbackByLocale": {
+              "ru": "`We are ready.`",
+              "uk": "`We are ready`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -889,5 +1031,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34d6e9e70c43aa8c68320b02733db8ac7aef29f8888e6dd3876f1a5f222200e0"
+  "learnerFingerprint": "17ff4cf4ea848ff5e1910b307c1de4b0428264af38cae8913062d64f61fab2b3"
 }

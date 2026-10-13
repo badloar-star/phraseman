@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i01; family: listen_choose -->
 Цель: `Am I polite?`
 Варианты: `Am I polite?` · `Are you polite?` · `Am I rude?`
+- Are you polite? — *Это вопрос к собеседнику. В записи начало `Am I`: друг спрашивает о себе.*
+- Am I rude? — *Это вопрос о грубости. На записи последнее слово `polite` — «вежливый».*
+
 
 **2 · Вставьте слово — попросите друга оценить вашу вежливость: «Я вежливый?»**
 <!-- interaction_id: en:lesson-02:session-47:i02; family: context_gap_grammar -->
 Цель: `Am I ___ ?`
 Варианты: `polite` · `rude` · `ready`
+- rude — *Это «грубый». Вы спрашиваете именно о вежливости, поэтому нужно `polite`.*
+- ready — *Это «готов». Здесь вопрос о вашей манере общения, а не о готовности.*
+
 
 **3 · Соберите фразу — вам важно мнение друга о том, насколько вы вежливы; спросите его**
 <!-- interaction_id: en:lesson-02:session-47:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i04; family: listen_choose -->
 Цель: `Are we rude?`
 Варианты: `Are we rude?` · `Am I rude?` · `Are we ready?`
+- Am I rude? — *Это вопрос только о себе. В записи начало `Are we` — «мы».*
+- Are we ready? — *Это «Мы готовы?» На записи последнее слово `rude` — вопрос о грубости.*
+
 
 **5 · Вставьте слово — посетитель за соседним столом оскорбляет официанта; скажите другу: «Он грубый»**
 <!-- interaction_id: en:lesson-02:session-47:i05; family: context_gap_grammar -->
 Цель: `He is ___ .`
 Варианты: `rude` · `polite` · `hungry`
+- polite — *Это «вежливый». Оскорбительное обращение здесь описывает слово `rude`.*
+- hungry — *Это «голодный». Вы оцениваете обращение с официантом, а не причину недовольства.*
+
 
 **6 · Соберите фразу — друг спрашивает, довольны ли вы своей манерой разговора; вы сомневаетесь**
 <!-- interaction_id: en:lesson-02:session-47:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i07; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `ready` · `sure` · `late`
+- sure — *Это «уверен». Сейчас вы сообщаете, что готовы сделать заказ: `ready`.*
+- late — *Это «опоздал» или «опаздываю». Вы говорите о готовности, поэтому нужно `I am ready`.*
+
 
 **8 · Послушайте и выберите — что официант сказал вашему другу**
 <!-- interaction_id: en:lesson-02:session-47:i08; family: listen_choose -->
 Цель: `You are polite.`
 Варианты: `You are polite.` · `You are not polite.` · `Are you polite?`
+- You are not polite. — *Слово `not` меняет оценку на отрицательную. На записи его нет.*
+- Are you polite? — *Это вопрос. На записи сначала `You are`: официант даёт оценку.*
+
 
 **9 · Соедините пары — слова для разговора за обедом**
 <!-- interaction_id: en:lesson-02:session-47:i09; family: speed_match -->
@@ -103,11 +121,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i11; family: context_gap_grammar -->
 Цель: `___ I polite?`
 Варианты: `Am` · `Is` · `Are`
+- Is — *Вопрос о себе здесь начинается с `Am I`.*
+- Are — *Сочетание `Are I` не подходит для этого вопроса. Скажите `Am I polite?`*
+
 
 **12 · Послушайте и выберите — какая реплика друга прозвучала за столом**
 <!-- interaction_id: en:lesson-02:session-47:i12; family: listen_choose -->
 Цель: `Am I ready?`
 Варианты: `Am I ready?` · `I am ready.` · `Are we ready?`
+- I am ready. — *Это сообщение. На записи сначала `Am I`: друг задаёт вопрос.*
+- Are we ready? — *Это вопрос о вас обоих. В записи друг говорит `I` и спрашивает о себе.*
+
 
 **13 · Послушайте и соберите — друг обращается к официанту**
 <!-- interaction_id: en:lesson-02:session-47:i13; family: listen_build_dictation -->

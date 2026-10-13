@@ -115,6 +115,15 @@
               "ru": "А тут в середине «м». Про человека — слово с шипящим.",
               "uk": "А тут у середині «м». Про людину — слово з шиплячим."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `patient` три части `pa-tient`; в середине слышно шипящее `sh`, не чистое `t` и не `payment`.",
+              "uk": "У записі `patient` три частини `pa-tient`; посередині чути шипляче `sh`, а не чисте `t` і не `payment`."
+            }
           }
         ],
         "isWordCard": false,
@@ -231,8 +240,17 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — grumpy",
             "feedbackByLocale": {
-              "ru": "Та же ловушка: «ай» вместо «а». Нужное слово начинается как «грам».",
-              "uk": "Та сама пастка: «ай» замість «а». Потрібне слово починається як «ґрам»."
+              "ru": "После `gr` здесь слышится «ай», а в `grumpy` — другой гласный звук.",
+              "uk": "Після `gr` тут чути «ай», а в `grumpy` — інший голосний звук."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `grumpy` после `gr` слышно короткое «а», а не «ай» в `grimy` и не другой конец `gripy`.",
+              "uk": "У записі `grumpy` після `gr` чути коротке «а», а не «ай» у `grimy` і не інший кінець `gripy`."
             }
           }
         ],
@@ -247,17 +265,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
+      "prompt": "Соберите фразу — Лина прямо говорит, что Денис терпеливый",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
+      "accessibilityLabel": "Соберите фразу — Лина прямо говорит, что Денис терпеливый",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is patient.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — коллега кивает на парня у входа: он терпеливый",
-          "uk": "Складіть фразу — колега киває на хлопця біля входу: він терплячий"
+          "ru": "Соберите фразу — Лина прямо говорит, что Денис терпеливый",
+          "uk": "Складіть фразу — Ліна прямо каже, що Денис терплячий"
         },
         "orderedTokens": [
           "He",
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Лина прямо говорит, что",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `He` ставят `is` — `He is patient.`",
+              "uk": "`am` зайве: з `He` ставлять `is` — `He is patient`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -277,7 +305,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
+      "prompt": "Вставьте слово — Лина прямо говорит: «Олег ворчливый»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i06:r1",
@@ -294,12 +322,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
+      "accessibilityLabel": "Вставьте слово — Лина прямо говорит: «Олег ворчливый»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — этот мужчина бурчит на всё подряд каждый день",
-          "uk": "Вставте слово — цей чоловік бурчить на все підряд щодня"
+          "ru": "Вставьте слово — Лина прямо говорит: «Олег ворчливый»",
+          "uk": "Вставте слово — Ліна прямо каже: «Олег буркотливий»"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -318,6 +346,15 @@
         ],
         "testedDimension": "Вставьте слово — этот мужчина бурчит на ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина прямо говорит: «Олег ворчливый»",
+            "feedbackByLocale": {
+              "ru": "Лина прямо называет Олега ворчливым: это `grumpy`, не `quiet` и не `kind`.",
+              "uk": "Ліна прямо називає Олега буркотливим: це `grumpy`, а не `quiet` чи `kind`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-23:i06:r2",
             "correct": false,
@@ -452,6 +489,15 @@
               "ru": "В `prod` один короткий звук «о». В `proud` звук едет от «а» к «у».",
               "uk": "У `prod` один короткий звук «о». У `proud` звук їде від «а» до «у»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i08:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `proud` слышно «ау»: это не `pride` с «ай» и не короткое `prod`.",
+              "uk": "У записі `proud` чути «ау»: це не `pride` з «ай» і не коротке `prod`."
+            }
           }
         ],
         "isWordCard": false,
@@ -571,6 +617,15 @@
               "ru": "У `gentleman` есть третий слог, «мен» на конце. `gentle` кончается на «тл».",
               "uk": "У `gentleman` є третій склад, «мен» у кінці. `gentle` закінчується на «тл»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-23:i10:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи два слога `gen-tle`: после «джен» слышно `t`, не продолжение `general` или `gentleman`.",
+              "uk": "У записі два склади `gen-tle`: після «джен» чути `t`, а не продовження `general` чи `gentleman`."
+            }
           }
         ],
         "isWordCard": false,
@@ -657,7 +712,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
+      "prompt": "Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i12:r1",
@@ -674,12 +729,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
+      "accessibilityLabel": "Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — коллега Лина рассказывает, что женщина очень мягкая с детьми",
-          "uk": "Вставте слово — колега Міра розповідає, що жінка дуже лагідна з дітьми"
+          "ru": "Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»",
+          "uk": "Вставте слово — Ліна прямо каже: «Анна лагідна з дітьми»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -698,6 +753,15 @@
         ],
         "testedDimension": "Вставьте слово — про женщину говорят, чт",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина прямо говорит: «Анна мягкая с детьми»",
+            "feedbackByLocale": {
+              "ru": "Анна мягко ведёт себя с детьми, поэтому `gentle`; это не гордость и не ворчание.",
+              "uk": "Анна лагідно поводиться з дітьми, тому `gentle`; це не гордість і не бурчання."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-23:i12:r2",
             "correct": false,
@@ -750,7 +814,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «она не гордая»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `She` ставят `is` — `She is not proud.`",
+              "uk": "`are` зайве: з `She` ставлять `is` — `She is not proud`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -760,17 +834,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
+      "prompt": "Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
+      "accessibilityLabel": "Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is calm.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — все вокруг кричат, а парень у двери стоит спокойно",
-          "uk": "Складіть фразу — усі навколо кричать, а хлопець біля дверей стоїть спокійно"
+          "ru": "Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно",
+          "uk": "Складіть фразу — усі навколо кричать, а Денис біля дверей стоїть спокійно"
         },
         "orderedTokens": [
           "He",
@@ -780,7 +854,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — все вокруг кричат, а Де",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.",
+              "uk": "`not` зайве: Денис спокійний, тому `He is calm`, без заперечення."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -790,7 +874,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
+      "prompt": "Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i15:r1",
@@ -807,12 +891,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
+      "accessibilityLabel": "Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — из дверей выходит женщина, которой полдня носили вопросы, и она ни разу не повысила голос",
-          "uk": "Вставте слово — із дверей виходить жінка, якій півдня носили питання, і вона жодного разу не підвищила голос"
+          "ru": "Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»",
+          "uk": "Вставте слово — Ліна прямо каже: «Анна добра, Анна всім допомагає»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -831,6 +915,15 @@
         ],
         "testedDimension": "Вставьте слово — из дверей выходит женщи",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»",
+            "feedbackByLocale": {
+              "ru": "Анна всем помогает — это `kind`; `angry` и `proud` не называют такую помощь.",
+              "uk": "Анна всім допомагає — це `kind`; `angry` і `proud` не називають таку допомогу."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-23:i15:r2",
             "correct": false,
@@ -857,65 +950,36 @@
       "interactionId": "en:lesson-01:session-23:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — мужчина вышел, хлопнул дверью так, что стёкла звякнули",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-23:i16:r1",
-          "text": "angry"
-        },
-        {
-          "responseId": "en:lesson-01:session-23:i16:r2",
-          "text": "quiet"
-        },
-        {
-          "responseId": "en:lesson-01:session-23:i16:r3",
-          "text": "grumpy"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Лина видит, как Олег хлопает дверью: он злится",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — мужчина вышел, хлопнул дверью так, что стёкла звякнули",
+      "accessibilityLabel": "Соберите фразу — Лина видит, как Олег хлопает дверью: он злится",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мужчина вышел, хлопнул дверью так, что стёкла звякнули",
-          "uk": "Вставте слово — чоловік вийшов, грюкнув дверима так, що шибки дзенькнули"
+        "family": "phrase_builder",
+        "targetPhrase": "He is angry.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Лина видит, как Олег хлопает дверью: он злится",
+          "uk": "Складіть фразу — Ліна бачить, як Олег грюкає дверима: він злиться"
         },
-        "gappedTargetPhrase": "He is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-23:i16:r1",
-            "text": "angry"
-          },
-          {
-            "responseId": "en:lesson-01:session-23:i16:r2",
-            "text": "quiet"
-          },
-          {
-            "responseId": "en:lesson-01:session-23:i16:r3",
-            "text": "grumpy"
-          }
+        "orderedTokens": [
+          "He",
+          "is",
+          "angry"
         ],
-        "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-23:i16:r2",
+            "responseId": "en:lesson-01:session-23:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
+            "testedDimension": "Соберите фразу — Лина видит, как Олег хл",
             "feedbackByLocale": {
-              "ru": "«Тихий» — он молчит, но дверью тихие не хлопают. Это злость.",
-              "uk": "«Тихий» — він мовчить, але дверима тихі не грюкають. Це злість."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-23:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — мужчина вышел, хлопнул ",
-            "feedbackByLocale": {
-              "ru": "«Ворчливый» — это бурчание себе под нос, помельче. А тут человек вспылил.",
-              "uk": "«Буркотливий» — це бурчання собі під ніс, дрібніше. А тут людина спалахнула."
+              "ru": "`are` лишнее: с `He` ставят `is` — `He is angry.`",
+              "uk": "`are` зайве: з `He` ставлять `is` — `He is angry`."
             }
           }
         ]
@@ -928,7 +992,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
+      "prompt": "Вставьте слово — Лина прямо говорит: «Анна тихая»",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-23:i17:r1",
@@ -945,12 +1009,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
+      "accessibilityLabel": "Вставьте слово — Лина прямо говорит: «Анна тихая»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — из офиса выходит женщина, которая за весь вечер не сказала ни слова",
-          "uk": "Вставте слово — з офісу виходить жінка, яка за весь вечір не сказала жодного слова"
+          "ru": "Вставьте слово — Лина прямо говорит: «Анна тихая»",
+          "uk": "Вставте слово — Ліна прямо каже: «Анна тиха»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -969,6 +1033,15 @@
         ],
         "testedDimension": "Вставьте слово — из офиса выходит женщин",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-23:i17:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина прямо говорит: «Анна тихая»",
+            "feedbackByLocale": {
+              "ru": "Лина прямо говорит, что Анна тихая: это `quiet`, а не злость и не ворчание.",
+              "uk": "Ліна прямо каже, що Анна тиха: це `quiet`, а не злість чи бурчання."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-23:i17:r2",
             "correct": false,
@@ -997,13 +1070,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-23:i18:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1030,13 +1103,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-23:i18:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1063,13 +1136,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-23:i18:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1097,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3351245c1835973598b1db278f00bbf0b88290e39317a7b3fc4ae897656c410c"
+  "learnerFingerprint": "5c51cf3029abdec454a41b9bfc469885ff266905873eae3d46f8d7ad2442bbd8"
 }

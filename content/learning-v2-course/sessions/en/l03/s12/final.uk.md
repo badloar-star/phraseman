@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-12:i02; family: listen_choose -->
 Ціль: `vase`
 Варіанти: `vase` · `voice` · `vice`
+- voice — *`voice` — «голос», у середині чути «ой». У британському `vase` — довге «а», в американському — «ей»; «ой» немає в жодному. Слухайте голосний.*
+- vice — *`vice` — «вада», у середині чути «ай». У британському `vase` — довге «а», в американському — «ей»; «ай» немає в жодному. Схожого початку на «в» замало.*
+
 
 **3 · Картка слова — clock**
 <!-- interaction_id: en:lesson-03:session-12:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-12:i04; family: listen_choose -->
 Ціль: `clock`
 Варіанти: `clock` · `clack` · `block`
+- clack — *`clack` — «стук». У `clack` звучить /klæk/, а в `clock` — /klɒk~klɑːk/: головна різниця в голосному, а кінець /k/ спільний.*
+- block — *`block` — «блок». На початку «бл», а в `clock` — «кл». Різницю чути ще до голосного звуку.*
+
 
 **5 · Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»**
 <!-- interaction_id: en:lesson-03:session-12:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-12:i07; family: listen_choose -->
 Ціль: `radio`
 Варіанти: `radio` · `radial` · `radiant`
+- radial — *`radial` — «радіальний». Початок схожий, але наприкінці чути «л». У `radio` слово закінчується голосним звуком.*
+- radiant — *`radiant` — «сяйний». Наприкінці чути «нт», а в `radio` — голосний звук. Дослухайте слово до кінця.*
+
 
 **8 · Послухайте й складіть — продавець говорить про час очікування**
 <!-- interaction_id: en:lesson-03:session-12:i08; family: listen_build_dictation -->
@@ -107,6 +116,9 @@
 <!-- interaction_id: en:lesson-03:session-12:i12; family: context_gap_grammar -->
 Ціль: `___ hour.`
 Варіанти: `An` · `A` · `Is`
+- A — *У `hour` перша літера не вимовляється: слово починається з голосного звуку. Перед ним потрібне `An`.*
+- Is — *Тут називаємо лише час. Перед `hour` потрібне `An`, а `Is` не замінює маленьке слово перед назвою.*
+
 
 **13 · Складіть питання — друг помітив невеликий прилад з антеною; запитайте продавця «Це радіоприймач?»**
 <!-- interaction_id: en:lesson-03:session-12:i13; family: phrase_builder -->
@@ -117,6 +129,9 @@
 <!-- interaction_id: en:lesson-03:session-12:i14; family: listen_choose -->
 Ціль: `Is it an hour?`
 Варіанти: `Is it an hour?` · `It is an hour.` · `Is it a uniform?`
+- It is an hour. — *У записі спершу звучить `Is`, а тоді `it`. Цей варіант починається у зворотному порядку й повідомляє час замість питання.*
+- Is it a uniform? — *У цьому варіанті після `a` звучить `uniform`. У записі чути назву часу з `an`: `an hour`.*
+
 
 **15 · Послухайте й складіть — продавець уточнює назву предмета**
 <!-- interaction_id: en:lesson-03:session-12:i15; family: listen_build_dictation -->

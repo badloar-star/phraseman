@@ -99,11 +99,15 @@ It's ___ . → **true** · bad · ready
 **8 · Складіть фразу — кілька колег за сусіднім столом усіх розсмішили**
 <!-- interaction_id: en:lesson-01:session-43:i08; family: phrase_builder -->
 Плитки: `They` `are` `funny` `is` → **They are funny.**
+*(плитка `is` зайва: `is` не підходить до `They`: потрібно `They are funny`.)*
+
 
 **9 · Послухайте і складіть — «вони не запізнюються»**
 <!-- interaction_id: en:lesson-01:session-43:i09; family: listen_build_dictation -->
 🔊 *They aren't late.* Плитки: `aren't` `They` `late` `isn't` → **They aren't late.**
 *(`late` — «запізнився»)*
+*(плитка `isn't` зайва: `isn't` не підходить до `They`: в аудіо `They aren't late`.)*
+
 
 **10 · Вставте слово — приятель боїться, що історія вигадана. Заспокойте: вона справжня**
 <!-- interaction_id: en:lesson-01:session-43:i10; family: context_gap_grammar -->

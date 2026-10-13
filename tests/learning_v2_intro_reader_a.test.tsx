@@ -187,6 +187,27 @@ describe("Learning V2 intro Reader A", () => {
         sessionOrdinal={1}
         taskIds={["task-1", "task-2", "task-3"]}
         evaluateChoice={evaluateChoice}
+        resolveChoiceAnalysis={(_interactionId, choiceIndex) => choiceIndex === 1 ? ({
+          analysis: {
+            text: "Am here",
+            meaningByLocale: { ru: "Здесь без подлежащего.", uk: "Тут без підмета." },
+            explanationByLocale: { ru: "В полной фразе перед am нужно I.", uk: "У повній фразі перед am потрібне I." },
+            units: [{
+              text: "Am", start: 0, end: 2, lemma: "be", partOfSpeech: "linking_verb",
+              partOfSpeechLabelByLocale: { ru: "глагол-связка", uk: "дієслово-зв'язка" },
+              meaningByLocale: { ru: "форма be", uk: "форма be" },
+              functionByLocale: { ru: "Требует подлежащее I.", uk: "Потребує підмет I." },
+              sourceRefs: ["test#am"],
+            }],
+          },
+          diagnostics: {
+            errorType: "missing_subject",
+            whyTemptingByLocale: { ru: "Слышится как короткий ответ.", uk: "Звучить як коротка відповідь." },
+            whyWrongHereByLocale: { ru: "В полной фразе нет I.", uk: "У повній фразі немає I." },
+            minimalContrastByLocale: { ru: "Am here → I am here.", uk: "Am here → I am here." },
+            acceptabilityBoundaryByLocale: { ru: "Вопрос Am I here? — другая конструкция.", uk: "Питання Am I here? — інша конструкція." },
+          },
+        }) : null}
         onComplete={jest.fn()}
         onBack={jest.fn()}
       />,
@@ -219,6 +240,9 @@ describe("Learning V2 intro Reader A", () => {
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-0"));
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-1"));
     expect(view.getByText("После I нужна связка am.")).toBeTruthy();
+    expect(view.getByText("Am here")).toBeTruthy();
+    expect(view.getByText("Am · глагол-связка · форма be")).toBeTruthy();
+    expect(view.getByText("Am here → I am here.")).toBeTruthy();
     await fireEvent.press(view.getByTestId("learning-v2-intro-answer-2"));
     expect(view.getByTestId("learning-v2-intro-next").props.accessibilityState.disabled).toBe(false);
     expect(JSON.stringify(view.toJSON()).toLowerCase()).not.toContain("сесси");

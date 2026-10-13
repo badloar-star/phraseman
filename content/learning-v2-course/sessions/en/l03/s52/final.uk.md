@@ -62,6 +62,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i05; family: listen_choose -->
 Ціль: `wooden`
 Варіанти: `wooden` · `square`
+- square — *У записі звучить `wooden` — «дерев’яний», а не `square` — «квадратний».*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-52:i02; family: scripted_repeat_compare -->
@@ -76,6 +78,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i06; family: sound_contrast -->
 Ціль: `wooden`
 Варіанти: `wooden` · `woollen`
+- woollen — *`woollen` — «вовняний». У записі звучить `wooden` — «дерев’яний».*
+
 
 **7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-52:i08; family: speed_match -->
@@ -86,6 +90,8 @@
 <!-- interaction_id: en:lesson-03:session-52:i09; family: sound_contrast -->
 Ціль: `square`
 Варіанти: `square` · `scare`
+- scare — *`round` означає «круглий», а дзеркало в сцені квадратне.*
+
 
 **9 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-52:i10; family: scripted_repeat_compare -->
@@ -104,16 +110,28 @@
 <!-- interaction_id: en:lesson-03:session-52:i12; family: context_gap_grammar -->
 Ціль: `___ square mirror, please.`
 Варіанти: `That` · `This` · `It` · `Is`
+- This — *`This` вибирає предмет поруч, а дзеркало стоїть далі.*
+- It — *`It square mirror` не утворює короткого прохання. Перед предметом потрібне `That`.*
+- Is — *`Is square mirror` не підходить для прохання. Тут скажіть `That square mirror, please`.*
+
 
 **13 · Послухайте й виберіть точне значення прохання**
 <!-- interaction_id: en:lesson-03:session-52:i13; family: listen_choose -->
 Ціль: `That square mirror, please.`
 Варіанти: `То квадратне дзеркало, будь ласка.` · `Це квадратне дзеркало, будь ласка.` · `То кругле дзеркало, будь ласка.` · `Той квадратний стіл, будь ласка.`
+- Це квадратне дзеркало, будь ласка. — *У записі `That`, а цей варіант передає `This`.*
+- То кругле дзеркало, будь ласка. — *У записі чути `square`, а не `round`.*
+- Той квадратний стіл, будь ласка. — *У записі назвали `mirror`, а не `table`.*
+
 
 **14 · Вставте форму — круглий стілець стоїть далі біля стіни**
 <!-- interaction_id: en:lesson-03:session-52:i14; family: context_gap_grammar -->
 Ціль: `That ___ chair is here.`
 Варіанти: `round` · `square` · `wooden` · `this`
+- square — *У сцені стілець круглий, тому потрібна форма `round`, а не `square`.*
+- wooden — *`Wooden` називає матеріал, а тут вибирають круглу форму.*
+- this — *Після `That` перед `chair` потрібна форма предмета: `round`.*
+
 
 **15 · Послухайте та складіть фразу**
 <!-- interaction_id: en:lesson-03:session-52:i15; family: listen_build_dictation -->
@@ -123,6 +141,10 @@
 <!-- interaction_id: en:lesson-03:session-52:i16; family: listen_choose -->
 Ціль: `This wooden mirror is here.`
 Варіанти: `Це дерев'яне дзеркало тут.` · `То дерев'яне дзеркало тут.` · `Це квадратне дзеркало тут.` · `Цей дерев'яний стілець тут.`
+- То дерев'яне дзеркало тут. — *У записі `This`, а цей варіант передає `That`.*
+- Це квадратне дзеркало тут. — *У записі чути `wooden`, а не `square`.*
+- Цей дерев'яний стілець тут. — *У записі назвали `mirror`, а не `chair`.*
+
 
 **17 · майстер чекає рішення біля дальньої стіни**
 <!-- interaction_id: en:lesson-03:session-52:i17; family: phrase_builder -->

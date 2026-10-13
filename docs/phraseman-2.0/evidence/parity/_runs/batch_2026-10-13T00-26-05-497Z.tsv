@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-014	2026-10-13T00:26:24.714Z	blank_too_long	12122	marker+пусто_3850мс+ждали_metro_29мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-26-05-497Z/spire-gap-014.blank_too_long.png	3850

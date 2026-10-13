@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
 Ціль: `armchair`
 Варіанти: `armchair` · `archer` · `armband`
+- archer — *В `armchair` безпосередньо перед звуком «ч» чути «м». В `archer` цього звука немає. Прислухайтеся до середини слова.*
+- armband — *Початок у слів спільний. Далі в `armband` чути «б», а в `armchair` — «ч». Слухайте звук одразу після «м».*
+
 
 **3 · Картка слова — oven**
 <!-- interaction_id: en:lesson-03:session-09:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i04; family: listen_choose -->
 Ціль: `oven`
 Варіанти: `oven` · `even` · `coven`
+- even — *В `even` перший голосний довгий, а рот майже закритий. В `oven` він короткий і відкритіший: відрізняються і звук, і тривалість.*
+- coven — *У `coven` спочатку чути «к», а вже потім голосний. Потрібне слово починається відразу з голосного: `oven`.*
+
 
 **5 · Картка слова — umbrella**
 <!-- interaction_id: en:lesson-03:session-09:i05; family: listen_choose -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-03:session-09:i06; family: listen_choose -->
 Ціль: `umbrella`
 Варіанти: `umbrella` · `umbra` · `embrace`
+- umbra — *В `umbra` два склади, наголос падає на перший. В `umbrella` три склади, сильніше звучить середній. Не зупиняйтеся на схожому початку.*
+- embrace — *В `embrace` два склади, наголос падає на останній. В `umbrella` три склади: після наголошеного середнього чути ще один.*
+
 
 **7 · Вставте слово — поруч стоїть стілець; назвіть його повною фразою (`chair` — «стілець»)**
 <!-- interaction_id: en:lesson-03:session-09:i07; family: context_gap_grammar -->
 Ціль: `It is ___ chair.`
 Варіанти: `a` · `an` · `is`
+- an — *`chair` починається зі звука «ч», він приголосний. Для цієї назви потрібне `a chair`.*
+- is — *`is` уже стоїть після `It`. Перед назвою одного стільця тут потрібне `a`.*
+
 
 **8 · Складіть повну фразу — друг показує на крісло; скажіть «Це крісло»**
 <!-- interaction_id: en:lesson-03:session-09:i08; family: phrase_builder -->
@@ -93,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i09; family: context_gap_grammar -->
 Ціль: `It ___ a lamp.`
 Варіанти: `is` · `an` · `am`
+- an — *Перед `lamp` уже є `a`. Зараз бракує слова після `It`: повний початок — `It is`.*
+- am — *`am` підходить до `I`. Тут говоримо про предмет, тому початок — `It is`.*
+
 
 **10 · З’єднайте назви з українськими значеннями — товари в магазині**
 <!-- interaction_id: en:lesson-03:session-09:i10; family: speed_match -->
@@ -117,6 +132,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i14; family: listen_choose -->
 Ціль: `Is it an oven?`
 Варіанти: `Is it an oven?` · `It is an oven.` · `Is it an umbrella?`
+- It is an oven. — *Цей варіант починається з `It is`. У записі порядок інший: спочатку `Is`, потім `it` — це запитання.*
+- Is it an umbrella? — *Початок запитання збігається. Але наприкінці запису звучить двоскладове `oven`, а не трискладове `umbrella`.*
+
 
 **15 · Складіть заперечення — друг указує на маленький холодильник; виправте його: «Це не духовка»**
 <!-- interaction_id: en:lesson-03:session-09:i15; family: phrase_builder -->

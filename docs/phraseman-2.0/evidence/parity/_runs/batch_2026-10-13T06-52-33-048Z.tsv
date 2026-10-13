@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywalls-015	2026-10-13T06:52:50.601Z	ok	8000	слепое_ожидание+пусто_1772мс+голый_кадр+ждали_metro_38мс	docs/phraseman-2.0/evidence/parity/paywalls-015.png	1772

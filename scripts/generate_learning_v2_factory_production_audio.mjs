@@ -107,7 +107,7 @@ if (fs.existsSync(manifestPath)) {
     if (!fs.existsSync(absolute)) continue;
     const original = fs.readFileSync(absolute);
     if (original.length !== entry.byteSize || sha256(original) !== entry.contentHash) continue;
-    const bytes = normalizeMp3Size(absolute);
+    const bytes = apply ? normalizeMp3Size(absolute) : original;
     known.set(coordinateKey(entry.transcript, entry.voiceId), {
       ...entry,
       byteSize: bytes.length,

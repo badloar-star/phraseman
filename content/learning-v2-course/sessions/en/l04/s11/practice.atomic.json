@@ -468,7 +468,7 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите вопрос о трамваях рядом с клиникой",
+        "prompt": "Соберите вопрос о трамваях рядом с клиникой",
         "responseOptions": [],
         "audioTargetIds": [],
         "modePayload": {
@@ -484,7 +484,8 @@
           "authoredDistractorTokens": [
             "There"
           ]
-        }
+        },
+        "accessibilityLabel": "Соберите вопрос о трамваях рядом с клиникой"
       }
     ],
     "uk": [
@@ -953,7 +954,7 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть питання про трамваї біля клініки",
+        "prompt": "Складіть питання про трамваї біля клініки",
         "responseOptions": [],
         "audioTargetIds": [],
         "modePayload": {
@@ -969,7 +970,8 @@
           "authoredDistractorTokens": [
             "There"
           ]
-        }
+        },
+        "accessibilityLabel": "Складіть питання про трамваї біля клініки"
       }
     ]
   },

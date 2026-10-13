@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-43:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-43:intro2:r2": {
-          "ru": "Скрепка пропала целиком. Между `they` и словом нужно `are` — или `they're`.",
-          "uk": "Скріпка зникла цілком. Між `they` і словом потрібне `are` — або `they're`."
+          "ru": "После `they` нужно `are`: полная форма `They are funny`, короткая — `They're funny`.",
+          "uk": "Після `they` потрібне `are`: повна форма `They are funny`, коротка — `They're funny`."
         },
         "en:lesson-01:session-43:intro2:r3": {
           "ru": "`are` уже внутри `they're`. Хватит одного.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "094dd3fc3d14402859dba0337f4d8e01ba561f3dc70ed889ca9404c8b46bddc7"
+  "auxiliaryFingerprint": "fd7592f54566cc25d6be3a41af06910f195b3c988142e733c62c8bbc0259200d"
 }

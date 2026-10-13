@@ -84,6 +84,8 @@
 <!-- interaction_id: en:lesson-01:session-23:i05; family: phrase_builder -->
 Плитки: `patient` `is` `He` `am` → **He is patient.**
 *`am` лишнее: с `He` ставят `is` — `He is patient.`*
+*(плитка `am` лишняя: `am` лишнее: с `He` ставят `is` — `He is patient.`)*
+
 
 **6 · Вставьте слово — Лина прямо говорит: «Олег ворчливый»**
 <!-- interaction_id: en:lesson-01:session-23:i06; family: context_gap_grammar -->
@@ -129,12 +131,16 @@ She is ___ . → **gentle** · proud · grumpy
 <!-- interaction_id: en:lesson-01:session-23:i13; family: listen_build_dictation -->
 🔊 *She is not proud.* Плитки: `not` `She` `proud` `is` `are` → **She is not proud.**
 *`are` лишнее: с `She` ставят `is` — `She is not proud.`*
+*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is` — `She is not proud.`)*
+
 
 **14 · Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно**
 <!-- interaction_id: en:lesson-01:session-23:i14; family: phrase_builder -->
 Лина спрашивает, почему Денис не кричит вместе со всеми. Вы отвечаете: он спокойный.
 Плитки: `He` `calm` `is` `not` → **He is calm.**
 *`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.*
+*(плитка `not` лишняя: `not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.)*
+
 
 **15 · Вставьте слово — Лина прямо говорит: «Анна добрая, Анна всем помогает»**
 <!-- interaction_id: en:lesson-01:session-23:i15; family: context_gap_grammar -->
@@ -147,6 +153,8 @@ She is ___ . → **kind** · angry · proud
 <!-- interaction_id: en:lesson-01:session-23:i16; family: phrase_builder -->
 Плитки: `angry` `He` `is` `are` → **He is angry.**
 *`are` лишнее: с `He` ставят `is` — `He is angry.`*
+*(плитка `are` лишняя: `are` лишнее: с `He` ставят `is` — `He is angry.`)*
+
 
 **17 · Вставьте слово — Лина прямо говорит: «Анна тихая»**
 <!-- interaction_id: en:lesson-01:session-23:i17; family: context_gap_grammar -->

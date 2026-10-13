@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-036	2026-10-12T22:11:36.071Z	stitch_failed	15305	marker+шагов_5+склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-036.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=1357640 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_73мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T22-10-33-202Z/dialogs-036.bare.png	0

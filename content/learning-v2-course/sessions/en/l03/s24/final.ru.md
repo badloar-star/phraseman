@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-03:session-24:i01; family: context_gap_grammar -->
 Цель: `It is ___.`
 Варианты: `an envelope` · `envelope` · `envelopes`
+- envelope — *В этой фразе перед названием одного конверта нужно `an`: `an envelope`.*
+- envelopes — *`envelopes` — «конверты», их несколько. Здесь один: `an envelope`.*
+
 
 **2 · Послушайте и выберите — что спросил курьер**
 <!-- interaction_id: en:lesson-03:session-24:i02; family: listen_choose -->
 Цель: `Are they envelopes?`
 Варианты: `Are they envelopes?` · `They are envelopes.` · `They are not envelopes.`
+- They are envelopes. — *Это утверждение: сначала `They are`. В записи сначала звучит вопрос `Are they`.*
+- They are not envelopes. — *В этом варианте есть `not`. В записи курьер только спрашивает: `Are they envelopes?`*
+
 
 **3 · Соберите фразу — курьер передаёт один конверт с билетами; скажите «Это конверт»**
 <!-- interaction_id: en:lesson-03:session-24:i03; family: phrase_builder -->
@@ -71,16 +77,25 @@
 <!-- interaction_id: en:lesson-03:session-24:i04; family: context_gap_grammar -->
 Цель: `Are ___ envelopes?`
 Варианты: `they` · `it` · `are`
+- it — *Вопрос о двух предметах строим с `Are they`, а не `Are it`.*
+- are — *После первого `Are` нужно `they`, затем `envelopes`.*
+
 
 **5 · Послушайте и выберите — что произнёс курьер**
 <!-- interaction_id: en:lesson-03:session-24:i05; family: listen_choose -->
 Цель: `It is a glass.`
 Варианты: `It is a glass.` · `They are glasses.` · `It is not a glass.`
+- They are glasses. — *Этот вариант называет несколько стаканов: `They are glasses`. В записи звучит фраза про один — `It is a glass`.*
+- It is not a glass. — *Это отрицание: «Это не стакан». Здесь после `is` стоит `not a`; в записи после `is` звучит `a glass`, название стакана.*
+
 
 **6 · Вставьте название — курьер проверяет набор для подачи закусок; назовите два блюда, которые вы распаковали, «Это блюда»**
 <!-- interaction_id: en:lesson-03:session-24:i06; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `dishes` · `dish` · `a dish`
+- dish — *Нужно назвать два блюда. Их название — `dishes`, с окончанием `es`.*
+- a dish — *`a dish` называет одно блюдо. Здесь их два: `They are dishes`.*
+
 
 **7 · Соберите вопрос — на коробке с набором посуды стёрта подпись; курьер снимает крышку, а вы уточняете «Это стаканы?»**
 <!-- interaction_id: en:lesson-03:session-24:i07; family: phrase_builder -->
@@ -91,6 +106,9 @@
 <!-- interaction_id: en:lesson-03:session-24:i08; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `stories` · `storys` · `a stories`
+- storys — *Для нескольких историй конечную `y` в `story` меняем на `ies`. Получается `stories`.*
+- a stories — *В этой фразе перед названием нескольких историй слово `a` не нужно: `They are stories`.*
+
 
 **9 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-24:i09; family: scripted_repeat_compare -->
@@ -100,11 +118,17 @@
 <!-- interaction_id: en:lesson-03:session-24:i10; family: listen_choose -->
 Цель: `They are not envelopes.`
 Варианты: `They are not envelopes.` · `They are envelopes.` · `Are they envelopes?`
+- They are envelopes. — *Этот вариант утверждает, что это конверты. В записи после `are` звучит `not`.*
+- Are they envelopes? — *Это вопрос: начало `Are they`. В записи порядок `They are`, а затем `not`.*
+
 
 **11 · Вставьте название — курьер спрашивает о предмете в отдельном отделении коробки; там один стакан, скажите «Это стакан»**
 <!-- interaction_id: en:lesson-03:session-24:i11; family: context_gap_grammar -->
 Цель: `It is a ___.`
 Варианты: `glass` · `glasses` · `a glass`
+- glasses — *Здесь называем один стакан: `a glass`. Слово `glasses` называет несколько.*
+- a glass — *Слово `a` уже стоит перед пропуском. Если выбрать `a glass`, оно повторится; в пропуске нужно только `glass`.*
+
 
 **12 · Послушайте и соберите — что произнёс курьер**
 <!-- interaction_id: en:lesson-03:session-24:i12; family: listen_build_dictation -->
@@ -129,6 +153,9 @@
 <!-- interaction_id: en:lesson-03:session-24:i16; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `glasses` · `glass` · `a glasses`
+- glass — *Называем несколько стаканов. Нужно `glasses`; форма `glass` здесь называет один.*
+- a glasses — *В этой фразе перед названием нескольких стаканов `a` лишнее. Нужно `They are glasses`.*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-24:i17:s01; family: scripted_repeat_compare -->

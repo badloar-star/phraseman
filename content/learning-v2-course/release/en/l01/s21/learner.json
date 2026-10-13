@@ -115,6 +115,15 @@
               "ru": "`sort` начинается с «с», а `short` — с «ш». Разница только в первом звуке.",
               "uk": "`sort` починається з «с», а `short` — з «ш». Різниця тільки в першому звуці."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-21:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `short`: после `sh` слышно округлённое «о», не как в `shirt` и `sort`.",
+              "uk": "У записі `short`: після `sh` чути округлене «о», не як у `shirt` і `sort`."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Язык между зубами в обоих словах, но в `thin` звук глухой, а в `then` включается голос.",
               "uk": "Язик між зубами в обох словах, але в `thin` звук глухий, а в `then` вмикається голос."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-21:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `thin`: язык между зубами, это не `tin` и не `then`.",
+              "uk": "У записі `thin`: язик між зубами, це не `tin` і не `then`."
+            }
           }
         ],
         "isWordCard": false,
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «он невысокий»",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `He` ставят `is` — `He is short.`",
+              "uk": "`am` зайве: з `He` ставлять `is` — `He is short`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -318,6 +346,15 @@
         ],
         "testedDimension": "Вставьте слово — про девушку у машины",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — про девушку у машины",
+            "feedbackByLocale": {
+              "ru": "После `She` нужна форма `is`: `She is thin.`",
+              "uk": "Після `She` потрібна форма `is`: `She is thin`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-21:i06:r2",
             "correct": false,
@@ -495,6 +532,15 @@
               "ru": "Конец у слов одинаковый, слушайте начало: `tongue` — с «т», `young` — с «й».",
               "uk": "Кінець у слів однаковий, слухайте початок: `tongue` — з «т», `young` — з «й»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-21:i09:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи один слог `young`, не двухсложное `yellow` и не `tongue`.",
+              "uk": "У записі один склад `young`, не двоскладове `yellow` і не `tongue`."
+            }
           }
         ],
         "isWordCard": false,
@@ -549,6 +595,15 @@
         ],
         "testedDimension": "Вставьте слово — вы говорите о себе",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы говорите о себе",
+            "feedbackByLocale": {
+              "ru": "С `I` ставят `am`: `I am young.`",
+              "uk": "З `I` ставлять `am`: `I am young`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-21:i10:r2",
             "correct": false,
@@ -763,6 +818,15 @@
         "testedDimension": "Вставьте слово — коллега говорит, что но",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-21:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега говорит, что новенький весь день молчит",
+            "feedbackByLocale": {
+              "ru": "Новенький весь день молчит, поэтому он `quiet`, не `loud` и не `young`.",
+              "uk": "Новачок увесь день мовчить, тому він `quiet`, а не `loud` чи `young`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-21:i14:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега говорит, что но",
@@ -813,7 +877,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «она молодая»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `She` ставят `is` — `She is young.`",
+              "uk": "`are` зайве: з `She` ставлять `is` — `She is young`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -843,7 +917,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — про себя, вы устали",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `I` ставят `am` — `I am tired.`",
+              "uk": "`is` зайве: з `I` ставлять `am` — `I am tired`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -895,6 +979,15 @@
         "testedDimension": "Вставьте слово — коллега впервые в этой ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-21:i17:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега впервые в этой команде, вы обращаетесь к ней",
+            "feedbackByLocale": {
+              "ru": "К человеку, с которым вы говорите, обращаются `You are new.`",
+              "uk": "До людини, з якою ви говорите, звертаються `You are new`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-21:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — коллега впервые в этой ",
@@ -922,13 +1015,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — вы устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i18:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — вы устали",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -953,32 +1046,27 @@
       "interactionId": "en:lesson-01:session-21:i18:s02",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега впервые в команде",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-21:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега впервые в команде",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-21:i18:s02:audio",
-          "transcript": "You are new."
-        },
-        "slowReferenceAudio": null,
+        "family": "phrase_builder",
         "targetPhrase": "You are new.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега впервые в команде",
+          "uk": "Складіть фразу — колега вперше в команді"
+        },
+        "orderedTokens": [
+          "You",
+          "are",
+          "new"
+        ],
+        "authoredDistractorTokens": [],
+        "slotFeedback": []
       },
       "scriptedAlternate": null
     },
@@ -986,31 +1074,41 @@
       "interactionId": "en:lesson-01:session-21:i18:s03",
       "ordinal": 23,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — «он тихий»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-21:i18:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Послушайте и соберите — «он тихий»",
       "modePayload": {
-        "family": "scripted_repeat_compare",
+        "family": "listen_build_dictation",
         "referenceAudio": {
           "audioTargetId": "en:lesson-01:session-21:i18:s03:audio",
           "transcript": "He is quiet."
         },
         "slowReferenceAudio": null,
-        "targetPhrase": "He is quiet.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "hiddenTargetPhrase": "He is quiet.",
+        "orderedTokens": [
+          "He",
+          "is",
+          "quiet"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-21:i18:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он тихий»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: с `He` ставят `is` — `He is quiet.`",
+              "uk": "`are` зайве: з `He` ставлять `is` — `He is quiet`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -1022,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4cfd2f40a2737a0a17af28bc0022a4690516d4d08d603fb4d34a0a42d3c06942"
+  "learnerFingerprint": "cdcdec679685f285f0c9ed9a6a2195a0e6816c728d911921db3cd97cc2a54e98"
 }

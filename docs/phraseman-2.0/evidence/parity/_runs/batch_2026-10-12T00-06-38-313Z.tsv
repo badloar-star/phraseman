@@ -1,0 +1,11 @@
+id	time	result	ms	detail	file
+cards-002	2026-10-12T00:07:21.442Z	timeout	40963	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-06-38-313Z/cards-002.timeout.png
+cards-006	2026-10-12T00:08:06.331Z	ok	36544	marker+шагов_1	docs/phraseman-2.0/evidence/parity/cards-006.png
+cards-007	2026-10-12T00:08:57.507Z	ok	32647	marker+шагов_2	docs/phraseman-2.0/evidence/parity/cards-007.png
+cards-008	2026-10-12T00:09:40.568Z	timeout	40894	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-06-38-313Z/cards-008.timeout.png
+cards-009	2026-10-12T00:10:22.800Z	timeout	40151	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-06-38-313Z/cards-009.timeout.png
+cards-010	2026-10-12T00:10:47.651Z	ok	22695	marker	docs/phraseman-2.0/evidence/parity/cards-010.png
+cards-012	2026-10-12T00:11:33.744Z	ok	35878	marker+шагов_2	docs/phraseman-2.0/evidence/parity/cards-012.png
+cards-013	2026-10-12T00:12:16.232Z	timeout	40362	нет маркера	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T00-06-38-313Z/cards-013.timeout.png
+cards-014	2026-10-12T00:12:48.660Z	ok	30266	marker	docs/phraseman-2.0/evidence/parity/cards-014.png
+cards-015	2026-10-12T00:13:33.067Z	ok	30329	marker+шагов_3	docs/phraseman-2.0/evidence/parity/cards-015.png

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c03-ich-heisse-source-extraction-map.v1",
+  "rawSources": {
+    "dwds": {
+      "requestedUrl": "https://www.dwds.de/wb/hei%C3%9Fen",
+      "canonicalUrl": "https://www.dwds.de/wb/hei%C3%9Fen",
+      "path": "raw/dwds_heissen.html",
+      "sha256": "ceb735ca72b691d06fd46f9521636bb650102ed14a19465ee71142f1a295fbf1",
+      "bytes": 113626,
+      "metadataPath": "raw/dwds_heissen.http_metadata.txt",
+      "metadataSha256": "df80b91b0e3944898a224e84b6ffe7cfd484a6c04e0e5c41407b4ad970c8ca9a",
+      "metadataBytes": 284,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    },
+    "goetheA1Pdf": {
+      "requestedUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "path": "raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "bytes": 3685205,
+      "metadataPath": "raw/goethe_a1_redemittel.http_metadata.txt",
+      "metadataSha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47",
+      "metadataBytes": 400,
+      "transport": "DIRECT_PUBLIC_HTTPS",
+      "extractionStatus": "RAW_CAPTURED_TEXT_LOCATOR_NOT_REEXTRACTED_IN_THIS_PACKET"
+    }
+  },
+  "extractions": {
+    "dwdsIdentity": {
+      "title": "heißen – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "heißen",
+      "sourcePartOfSpeech": "Verb",
+      "grammarLocator": "Form / Grammatik",
+      "grammarSpanSha256": "9883543a35d7acb24b6a95079714f838942772047d936ec587c83f7adbe693ee",
+      "grammarSpanUtf8Bytes": 804,
+      "thirdPersonPresent": "heißt",
+      "perfectAuxiliary": "hat"
+    },
+    "dwdsNameMeaning": {
+      "sourceAnchor": "d-1-1",
+      "exactDefinitionGerman": "genannt werden, den Namen haben",
+      "spanSha256": "6fce9578d0445b2b3ce71baf95a415c7b0da3e95d6d369aa43a62108cb547033",
+      "spanUtf8Bytes": 2999
+    }
+  },
+  "unsupportedClaims": {
+    "exactFirstPersonInflection": "UNSUPPORTED_BY_CAPTURED_DWDS_ENTRY",
+    "officialPedagogicalOccurrence": "RAW_PDF_CAPTURED_TEXT_LOCATOR_NOT_REEXTRACTED_IN_THIS_PACKET",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "phraseAuthority": "OUT_OF_SCOPE"
+  }
+}

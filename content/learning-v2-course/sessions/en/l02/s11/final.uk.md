@@ -62,6 +62,8 @@
 <!-- interaction_id: en:lesson-02:session-11:i02; family: phrase_builder -->
 Міра кутається в шарф і тримає руки в кишенях. Супутник питає: «Їй холодно?» Складіть повну відповідь «так».
 Ціль: `Yes, she is cold.`
+Плитки: `Yes,` `she` `is` `cold` `he`
+*Плитка `he` зайва: Міра — жінка, тому потрібне `she`: `Yes, she is cold.`*
 Варіанти: ``he``
 - he — *Тут ідеться про жінку, тому потрібне `she`, а не `he`.*
 
@@ -87,6 +89,8 @@
 **6 · Послухайте відповідь працівника: він допоміг відвідувачеві. Складіть повну фразу**
 <!-- interaction_id: en:lesson-02:session-11:i06; family: listen_build_dictation -->
 Ціль: `Yes, he is helpful.`
+🔊 *Yes, he is helpful.* Плитки: `Yes,` `he` `is` `helpful` `she`
+*Плитка `she` зайва: запис і сцена говорять про працівника-чоловіка, тому потрібне `he`.*
 Варіанти: `she`
 - she — *У записі відповідь про чоловіка: `he`, а не `she`.*
 
@@ -111,6 +115,8 @@
 **10 · Складіть відповідь: «Вона голодна?» — «Ні, вона щойно пообідала»**
 <!-- interaction_id: en:lesson-02:session-11:i10; family: phrase_builder -->
 Ціль: `No, she is not hungry.`
+Плитки: `No,` `she` `is` `not` `hungry` `he`
+*Плитка `he` зайва: йдеться про жінку, тому потрібне `she`: `No, she is not hungry.`*
 Варіанти: `he`
 - he — *Ідеться про жінку, тому потрібне `she`, а не `he`.*
 
@@ -132,17 +138,23 @@
 **13 · Складіть коротке «так» — працівник допоміг гостю; запитання: `Is he helpful?`**
 <!-- interaction_id: en:lesson-02:session-11:i13; family: phrase_builder -->
 Ціль: `Yes, he is.`
+Плитки: `Yes,` `he` `is` `helpful`
+*Плитка `helpful` зайва: коротка відповідь уже завершена: `Yes, he is.`*
 
 **14 · Послухайте й складіть відповідь — гостя ще не готова піти**
 <!-- interaction_id: en:lesson-02:session-11:i14; family: listen_build_dictation -->
 Гостя все ще чекає ключ біля стійки. Супутник питає: `Is she ready?` Складіть коротку відповідь «ні».
 Ціль: `No, she is not.`
 Плитки: `No,` `she` `is` `not` `he`
+*Плитка `he` зайва: запитання й відповідь стосуються гості, тому потрібне `she`: `No, she is not.`*
 
 **15 · Послухайте й виберіть — працівник дивиться не на те замовлення; він відповідає на запитання `Is he confused?`**
 <!-- interaction_id: en:lesson-02:session-11:i15; family: listen_choose -->
 Ціль: `Yes, he is confused.`
 Варіанти: `Yes, he is confused.` · `No, he is not confused.` · `Yes, she is confused.`
+- No, he is not confused. — *У записі є `Yes`, отже це не заперечення.*
+- Yes, she is confused. — *Йдеться про працівника, тому в записі `he`, а не `she`.*
+
 
 **16 · Промовте коротке «так» — Міра допомагає гостю**
 <!-- interaction_id: en:lesson-02:session-11:i16:s01; family: scripted_repeat_compare -->

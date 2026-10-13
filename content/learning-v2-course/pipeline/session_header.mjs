@@ -16,7 +16,7 @@ export function parseSessionHeader(markdown) {
       sceneLines.push(line);
     }
   }
-  const operation = new RegExp(`\\*\\*(?:Операц[иі]я|Новая операция|Нова операція|Как сказать|Як сказати):\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)|\\*\\*(?:Сегодня|Сьогодні)\\.\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)`, "u").exec(source);
+  const operation = new RegExp(`\\*\\*(?:Операц[иі]я|Новая операция|Нова операція|Как сказать|Як сказати|Что вы освоите|Що ви опануєте|Что вы повторите|Що ви повторите):\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)|\\*\\*(?:Сегодня|Сьогодні)\\.\\*\\*${HORIZONTAL_SPACE}([^\\r\\n]*)`, "u").exec(source);
   const declaration = NEW_WORDS_LABEL.exec(source);
   const newWordsRaw = normalizeLine(declaration?.[1]);
 

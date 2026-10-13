@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-einladung-admission-candidate.v1",
+  "status": "HOLD",
+  "admissionStatus": "PARTIAL_CANDIDATE",
+  "candidateAcceptance": "HOLD",
+  "reviewStatus": "PENDING_INDEPENDENT_REVIEW",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "task5": { "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json", "byteSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29", "canonicalBodySha256": "e70ef798e06dfa752e9faace47282300a4fd43f8acaf158b2f608a8225f8cf90" },
+  "evidence": {
+    "captureManifestSha256": "ab664655305ecefeb8ab079180d7645e75d025f12f75367a84786b8175604e6a",
+    "factsSha256": "eb4606c57044380f0e04e4825537f2f12f50db95eff05e9e8ad5bdc0ea55f5cf",
+    "rawBodySha256": "aa7f7fc45057fc8793521e507390a9e163c21886247004b6b53596a047176b28",
+    "headersSha256": "3bae735b6ba39b3d2ec7802a7d901b3b79f9577e7b20a505660bb5f44e11cddb",
+    "senseSpanSha256": "741286358d630d39801bd60f96dec3023dbde806be829f410efa6fb2b4b4b06a",
+    "morphologySpanSha256": "54f967bd5749ecb2ea7f157d8c3547de18f44ea125ff0f946ab588695474dff5"
+  },
+  "provenance": {
+    "authorities": {
+      "researchAuthority": { "path": "modules/learning-v2/curriculum/de/research_authority_de_v1.ts", "expectedByteSha256": "0cf28be0b30fe66735cbdd609de10bcda88193290c129006e7a6e393749873fb", "actualByteSha256": "0cf28be0b30fe66735cbdd609de10bcda88193290c129006e7a6e393749873fb" },
+      "canonicalRegistry": { "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json", "expectedByteSha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29", "actualByteSha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29" },
+      "task6Kernel": { "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts", "expectedByteSha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d", "actualByteSha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d" },
+      "lexicalEvidenceContract": { "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts", "expectedByteSha256": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c", "actualByteSha256": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c" }
+    },
+    "predecessorAnchors": {
+      "directCaptureRegistry": { "registrySha256": "5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc", "role": "RECONCILIATION_ANCHOR_NOT_RUNTIME_DEPENDENCY", "runtimeDependency": false },
+      "sourceAnchorAmendmentRegistry": { "registrySha256": "2e4e5d7d64594ed75a7ec7fff9afd835c58b17cd795e8ca4f5ec660ff1684a3c", "role": "RECONCILIATION_ANCHOR_NOT_RUNTIME_DEPENDENCY", "runtimeDependency": false },
+      "morphSemanticFactsRegistry": { "registrySha256": "31029f1e7bc35cdcf1e3e5d11c1000b528fa03900dd0d228aa8c13345c37f99a", "role": "RECONCILIATION_ANCHOR_NOT_RUNTIME_DEPENDENCY", "runtimeDependency": false }
+    }
+  },
+  "row": {
+    "sourcePlanId": "de_lex_plan_l01_c07_einladung_v1",
+    "candidateCanonicalSenseId": "de_lex_l01_c07_einladung_v1",
+    "admissionRole": "CANDIDATE_NOT_CANONICAL",
+    "semanticAlignment": "SOURCE_D1_1_BROADER_TASK5_EVENT_NARROWING",
+    "lemma": "Einladung",
+    "sourceSenseGloss": "corresponding to the meaning of ²einladen",
+    "candidateSenseGloss": "invitation to an event",
+    "sourceAnchor": "d-1-1",
+    "sourceExampleGerman": "eine Einladung zum Abendessen",
+    "task5SemanticIdentity": "einladung|invitation to an event",
+    "task5SituationContext": "recognise an invitation as the fixed context for an evening community-event arrival; no free article or haben production is planned",
+    "noun": { "article": "die", "plural": "Einladungen", "sourceGenderLabel": "Femininum" },
+    "verb": { "lemma": null, "conjugation": null, "productive": null },
+    "register": "UNADJUDICATED"
+  },
+  "regionalPolicy": { "authorityOnly": "DE_REG_BASELINE_001_NON_PACKET", "freeArticleProduction": false, "habenProduction": false, "regionClaim": "UNADJUDICATED", "productiveClaim": "UNADJUDICATED" }
+}

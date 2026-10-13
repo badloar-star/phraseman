@@ -82,7 +82,7 @@
   {
     "interactionId": "en:lesson-01:session-33:i16:s01",
     "correctText": "We are hungry.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-33:i16:s01:r1"
   },
   {
     "interactionId": "en:lesson-01:session-33:i16:s02",

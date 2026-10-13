@@ -276,17 +276,7 @@
           "authoredDistractorTokens": [
             "door"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i05:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — хозяин коротко н",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `key`, а не `door`. Короткое название — `A key`.",
-                "uk": "У записі прозвучало `key`, а не `door`. Коротка назва — `A key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -415,23 +405,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+        "prompt": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+        "accessibilityLabel": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is not a window.",
+          "targetPhrase": "It is not a window.",
           "localizedMeaning": {
-          "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
-          "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
+            "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+            "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
           },
           "orderedTokens": [
             "It",
             "is",
-          "not",
-          "a",
+            "not",
+            "a",
             "window"
           ],
           "authoredDistractorTokens": [],
@@ -507,17 +497,7 @@
           "authoredDistractorTokens": [
             "window"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i10:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — хозяин обращаетс",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `door`, а не `window`: `Is it a door?`.",
-                "uk": "У записі прозвучало `door`, а не `window`: `Is it a door?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -627,17 +607,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — хозяин принял металличе",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Отрицание и название идут дальше: `It is not a key`.",
-                "uk": "Після `It` тут потрібне `is`. Заперечення й назва стоять далі: `It is not a key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -706,17 +676,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — хозяин показывает на б",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a mirror?`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a mirror?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -818,17 +778,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — перед уходом хозяин спр",
-              "feedbackByLocale": {
-                "ru": "Форма `am` относится к `I`. Здесь называем предмет через `It is`: `It is a key`.",
-                "uk": "`am` уживають з `I`. Тут називаємо предмет через `It is`: `It is a key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1105,17 +1055,7 @@
           "authoredDistractorTokens": [
             "door"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i05:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — господар коротко",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `key`, а не `door`. Короткое название — `A key`.",
-                "uk": "У записі прозвучало `key`, а не `door`. Коротка назва — `A key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1244,23 +1184,23 @@
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
+        "prompt": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
+        "accessibilityLabel": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is not a window.",
+          "targetPhrase": "It is not a window.",
           "localizedMeaning": {
-          "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
-          "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
+            "ru": "Соберите отрицание — хозяин принял другую вещь за окно; скажите «Это не окно»",
+            "uk": "Складіть заперечення — господар прийняв іншу річ за вікно; скажіть «Це не вікно»"
           },
           "orderedTokens": [
             "It",
             "is",
-          "not",
-          "a",
+            "not",
+            "a",
             "window"
           ],
           "authoredDistractorTokens": [],
@@ -1336,17 +1276,7 @@
           "authoredDistractorTokens": [
             "window"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i10:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — господар звертає",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `door`, а не `window`: `Is it a door?`.",
-                "uk": "У записі прозвучало `door`, а не `window`: `Is it a door?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1456,17 +1386,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — господар прийняв метале",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Отрицание и название идут дальше: `It is not a key`.",
-                "uk": "Після `It` тут потрібне `is`. Заперечення й назва стоять далі: `It is not a key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1535,17 +1455,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i14:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — господар показує на",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a mirror?`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a mirror?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1647,17 +1557,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-04:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — перед виходом господар ",
-              "feedbackByLocale": {
-                "ru": "Форма `am` относится к `I`. Здесь называем предмет через `It is`: `It is a key`.",
-                "uk": "`am` уживають з `I`. Тут називаємо предмет через `It is`: `It is a key`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

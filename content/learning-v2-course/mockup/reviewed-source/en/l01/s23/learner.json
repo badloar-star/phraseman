@@ -289,7 +289,7 @@
           {
             "responseId": "en:lesson-01:session-23:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лина прямо говорит, что Денис терпеливый",
+            "testedDimension": "Соберите фразу — Лина прямо говорит, что",
             "feedbackByLocale": {
               "ru": "`am` лишнее: с `He` ставят `is` — `He is patient.`",
               "uk": "`am` зайве: з `He` ставлять `is` — `He is patient`."
@@ -858,7 +858,7 @@
           {
             "responseId": "en:lesson-01:session-23:i14:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — все вокруг кричат, а Денис у двери стоит спокойно",
+            "testedDimension": "Соберите фразу — все вокруг кричат, а Де",
             "feedbackByLocale": {
               "ru": "`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.",
               "uk": "`not` зайве: Денис спокійний, тому `He is calm`, без заперечення."
@@ -976,7 +976,7 @@
           {
             "responseId": "en:lesson-01:session-23:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — Лина видит, как Олег хлопает дверью: он злится",
+            "testedDimension": "Соберите фразу — Лина видит, как Олег хл",
             "feedbackByLocale": {
               "ru": "`are` лишнее: с `He` ставят `is` — `He is angry.`",
               "uk": "`are` зайве: з `He` ставлять `is` — `He is angry`."
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b4d5a1a1229b2fb3369d119cd35884f06a35270f2bc1d44b95f4b77cd2de3b5a"
+  "learnerFingerprint": "5c51cf3029abdec454a41b9bfc469885ff266905873eae3d46f8d7ad2442bbd8"
 }

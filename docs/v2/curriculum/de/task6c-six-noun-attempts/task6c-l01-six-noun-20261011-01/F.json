@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-six-noun-attempt-final.v1",
+  "attemptId": "task6c-l01-six-noun-20261011-01",
+  "snapshotSha256": "5039abe501fee3a511fc02bee75cfa9a1aef91293155fb546b50e81aa6b68bec",
+  "preReceiptSha256": "6913d232a1a9d1edba832c68efc59d51fdba2cfa836a323e2bba58bc1709315a",
+  "bindings": {
+    "preManifestSha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55",
+    "nativeReviewSha256": "58f5ce80d09ab91fbca3770bb7d91f365857045c6bb14d70070181a652183134",
+    "adversarialReviewSha256": "d7659bf4db1ffe0f2ec32afb6fdb3e89070881e2eaebc164f2d0dd91b7046105",
+    "closureReceiptSha256": "6bc849c3369468cfb59be92bfcbd249473f65a29c8e9170385ddcfbcfe619c44"
+  },
+  "status": {
+    "attemptAcceptance": "PARTIAL_TASK6C_CURRENT_STATE_ACCEPTED",
+    "status": "HOLD",
+    "canonicalAdmission": "FORBIDDEN",
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "phraseClaim": false,
+    "task6Completion": "NOT_ESTABLISHED",
+    "release": "HOLD"
+  },
+  "limitations": [
+    "ATTEMPT_DOES_NOT_MUTATE_CANONICAL_REGISTRY_OR_RELEASE",
+    "This is a partial Task6C current-state acceptance attempt only.",
+    "Task 6 completion, Task 7 materialization, learner authoring, and release remain unestablished."
+  ]
+}

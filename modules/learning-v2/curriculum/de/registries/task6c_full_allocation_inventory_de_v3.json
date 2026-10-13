@@ -1,0 +1,199 @@
+{
+  "schemaVersion": "learning-v2-german-task7-allocation-inventory.v3",
+  "status": "HALLO_CANONICAL_ADMITTED_PARTIAL",
+  "authority": {
+    "classification": "PARTIAL_INVENTORY_ONLY",
+    "fullAllocationAuthority": false,
+    "preauthoringAuthority": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED",
+    "consumerCutover": "NONE",
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false
+  },
+  "sourceBindings": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v3",
+      "byteSha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "halloLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_hallo_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "10c1b3de298b46d7e3f0e6e6388349e551ebe4647c2941b55731ab86f8ddc38f"
+    },
+    "lexicalRegistryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v3.json",
+      "byteSha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v3.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v3",
+      "byteSha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v2",
+      "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+      "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3"
+    },
+    "task6V2PhaseA": [
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_registry_contract_de_v2.ts",
+        "sha256": "fc168070539f4639674949343166e8f44c7642a49f9bdc15e822c2b60834d955"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v2.ts",
+        "sha256": "1ff9c1669f799d6c88ec0a63b3466797c92677fe9ea5eff03afd9484c600a86c"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/evidence/task6_v2_verb_valency_adjudications_de_v1.json",
+        "sha256": "67132b351dab1ef2960d93bc98421625f75f1b832e1bb301263796a17275edd2"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v2.ts",
+        "sha256": "9402237e9f74883d60d327e09fe695c874878da5fbbdc3fdf4c4b6a5d7856bbe"
+      },
+      {
+        "path": "tests/learning_v2_de_task6_v2_migration_gate.ts",
+        "sha256": "87c150ebd7bb971983a4fff3b651175d9776ad79e7b5bd666987a2ee7bc158f3"
+      },
+      {
+        "path": "tests/learning_v2_de_wohnen_valency_adjudication_gate.ts",
+        "sha256": "fe87810c9b14799fc047d4a51ef6eaef92b3c40817a1fec463c9c78a14041984"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6C_L02_SOURCE_ADMISSION_REVIEW_RECEIPT_2026-10-12.md",
+        "sha256": "e4a577acd94a6d6b21c8fa4d5b2351d655897c768a2cc612d27efe2f0bfe2a99"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6_V2_MIGRATION_AUTHORITY_2026-10-12.md",
+        "sha256": "c20778aa5703fad7f50f2e57c012a22da3ab2cca57fdbfa883e93f31d873cebf"
+      }
+    ],
+    "task6V2PhaseB": {
+      "lexicalRegistry": {
+        "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v2.json",
+        "sha256": "31934e35b5278c7a7e901d08e02da5398f3503825782acbb604d06de094726a5",
+        "canonicalBodySha256": "7efff6e871d7de8235e3530248fc8f4c57a915d53458b82a629c89b9fd064a74"
+      },
+      "canonicalBundle": {
+        "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+        "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f",
+        "canonicalBodySha256": "08d18d36fe225e06ca992e7c862036604cb4d78e07eaa6ed7ce7b80db670c880"
+      },
+      "gate": {
+        "path": "tests/learning_v2_de_task6_canonical_registry_v2_gate.ts",
+        "sha256": "b0fd5ed0f11273a18d70c2d60e3171bc4e22c8bcbafcb92a6924be45a54d104b"
+      },
+      "receipt": {
+        "path": "docs/v2/curriculum/de/TASK6_V2_CANONICAL_REGISTRY_RECONCILIATION_RECEIPT_2026-10-12.md",
+        "sha256": "2b162e1ac798372327636bf29663c6a5378e629a63b51c0331379c31a291474e"
+      },
+      "reviewSummaries": [
+        {
+          "role": "native",
+          "task": "/root/l02_task6_v2_phase_b/phase_b_native_review",
+          "verdict": "PASS",
+          "p0": 0,
+          "p1": 0,
+          "p2": 0,
+          "runId": null,
+          "threadId": null,
+          "attestationStrength": "ORCHESTRATION_ATTESTED_SUMMARY_NOT_SELF_AUTHENTICATING"
+        },
+        {
+          "role": "spec",
+          "task": "/root/l02_task6_v2_phase_b/phase_b_spec_review",
+          "verdict": "PASS",
+          "p0": 0,
+          "p1": 0,
+          "p2": 0,
+          "runId": null,
+          "threadId": null,
+          "attestationStrength": "ORCHESTRATION_ATTESTED_SUMMARY_NOT_SELF_AUTHENTICATING"
+        },
+        {
+          "role": "adversarial",
+          "task": "/root/l02_task6_v2_phase_b/phase_b_adversarial_review",
+          "verdict": "PASS",
+          "p0": 0,
+          "p1": 0,
+          "p2": 0,
+          "runId": null,
+          "threadId": null,
+          "attestationStrength": "ORCHESTRATION_ATTESTED_SUMMARY_NOT_SELF_AUTHENTICATING"
+        }
+      ]
+    }
+  },
+  "counts": {
+    "task5PlanIds": 288,
+    "resolvedPlanIds": 7,
+    "unresolvedPlanIds": 281,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "inventoryDigests": {
+    "task5PlanIdsCanonicalSha256": "b9d1f10fd35ce789a90055a6632af29550b0cfef349cd6b229a764336b0a271b",
+    "resolvedPlanIdsCanonicalSha256": "f7f7cbf2f2ee678fb9c544107df3d3db454914800fb539bfb5b790a02f19ce43",
+    "unresolvedPlanIdsCanonicalSha256": "fde7f6fdde553863cac4ee1aab09e66d6f9d82d0082c8ae18a240e390e9e5554",
+    "packetIdsCanonicalSha256": "32a2320cf26729d24efc5884e0fe3c6e993e9eeeac693886a49fd566771a6d3f"
+  },
+  "resolutions": [
+    {
+      "sourcePlanId": "de_lex_plan_l01_c01_hallo_v2",
+      "checkpointPacketId": "de_l01_c01_s08",
+      "canonicalSenseId": "de_lex_l01_c01_hallo_v2",
+      "firstIntroductionPacketId": "de_l01_c01_s01"
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l01_c01_nachbarin_v1",
+      "checkpointPacketId": "de_l01_c01_s08",
+      "canonicalSenseId": "de_lex_l01_c01_nachbarin_v1",
+      "firstIntroductionPacketId": "de_l01_c01_s07"
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l01_c02_aufzug_v1",
+      "checkpointPacketId": "de_l01_c02_s16",
+      "canonicalSenseId": "de_lex_l01_c02_aufzug_v1",
+      "firstIntroductionPacketId": "de_l01_c02_s15"
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+      "checkpointPacketId": "de_l02_c01_s08",
+      "canonicalSenseId": "de_lex_l02_c01_wohnen_v1",
+      "firstIntroductionPacketId": null
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+      "checkpointPacketId": "de_l02_c01_s08",
+      "canonicalSenseId": "de_lex_l02_c01_kueche_v1",
+      "firstIntroductionPacketId": null
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+      "checkpointPacketId": "de_l02_c02_s16",
+      "canonicalSenseId": "de_lex_l02_c02_tasse_v1",
+      "firstIntroductionPacketId": null
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+      "checkpointPacketId": "de_l02_c02_s16",
+      "canonicalSenseId": "de_lex_l02_c02_teller_v1",
+      "firstIntroductionPacketId": null
+    }
+  ],
+  "sequence": {
+    "nextEligibleSessionId": "de_l01_s01",
+    "eligibilityKind": "NEXT_ORDERED_SESSION_AFTER_REMAINING_281_ALLOCATIONS_AND_SEPARATE_TASK7_UNLOCK",
+    "currentlyMaterializable": false,
+    "prerequisiteLessonIds": [],
+    "l02": {
+      "sessionId": "de_l02_s01",
+      "eligibleFirst": false,
+      "blockedByLessonId": "de_l01",
+      "reason": "L01_PREREQUISITE_NOT_MATERIALIZED"
+    }
+  },
+  "materializedPacketPaths": []
+}

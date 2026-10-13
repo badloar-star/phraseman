@@ -67,47 +67,73 @@
 <!-- interaction_id: en:lesson-02:session-08:i02; family: context_gap_grammar -->
 Ціль: `___ you awake?`
 Варіанти: `Are` · `You` · `Am`
+- You — *З цього починається повідомлення, а не питання: `You are awake`. У питанні першим стоїть `are`.*
+- Am — *`am` — форма для `I`. Ви питаєте сусіда, а до `you` іде `are`.*
+
 
 **3 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-02:session-08:i03; family: listen_choose -->
 Ціль: `awake`
 Варіанти: `awake` · `away` · `alone`
+- away — *`away` — «геть». Початок спільний, а далі розходяться: в `awake` чути «к», в `away` — «у».*
+- alone — *`alone` — «сам». Теж починається з того самого звука, але далі «л», а не «у».*
+
 
 **4 · Складіть фразу — спитати сусіда, чи він не голодний**
 <!-- interaction_id: en:lesson-02:session-08:i04; family: phrase_builder -->
 Ціль: `Are you hungry?`
+Плитки: `Are` · `you` · `hungry` · `am`
+*Плитка `am` зайва: з `you` потрібна форма `are`; `am` уживається з `I`.*
 
 **5 · Вставте слово — сусід утретє тягнеться до глечика з водою**
 <!-- interaction_id: en:lesson-02:session-08:i05; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `thirsty` · `lost` · `awake`
+- lost — *«Заблукав». За кухонним столом заблукати важко.*
+- awake — *«Прокинувся». Він явно не спить — він п'є.*
+
 
 **6 · Послухайте і складіть — «так, я голодний» коротко**
 <!-- interaction_id: en:lesson-02:session-08:i06; family: listen_build_dictation -->
 Ціль: `Yes, I am.`
+🔊 *Yes, I am.* Плитки: `Yes,` · `I` · `am` · `not`
+*Плитка `not` зайва: це стверджувальна коротка відповідь: `Yes, I am.`*
 
 **7 · Вставте слово — ви відмовляєтеся від добавки**
 <!-- interaction_id: en:lesson-02:session-08:i07; family: context_gap_grammar -->
 Ціль: `No, I am ___ .`
 Варіанти: `not` · `no` · `am`
+- no — *`no` стоїть на початку відповіді, а всередині фрази працює `not`.*
+- am — *`am` уже сказане один раз. Заперечення робить `not`.*
+
 
 **8 · Складіть фразу — вікно було відчинене всю ніч, спитайте сусіда, чи він не змерз**
 <!-- interaction_id: en:lesson-02:session-08:i08; family: phrase_builder -->
 Ціль: `Are you cold?`
+Плитки: `Are` · `you` · `cold` · `not`
+*Плитка `not` зайва: запитання питає про холод, без заперечення: `Are you cold?`*
 
 **9 · Розрізніть звуки — яке з двох про «змерз»?**
 <!-- interaction_id: en:lesson-02:session-08:i09; family: sound_contrast -->
 Варіанти: `cold` · `gold`
+- gold — *Це «золото». Перший звук інший: `cold` починається як «к», `gold` — як «ґ».*
+
 
 **10 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-02:session-08:i10; family: listen_choose -->
 Ціль: `thirsty`
 Варіанти: `thirsty` · `thirty` · `dirty`
+- thirty — *«Тридцять». У `thirsty` перед кінцем чути «с», у `thirty` його немає.*
+- dirty — *«Брудний». Перший звук інший: `thirsty` починається із шепелявого «th», `dirty` — з «д».*
+
 
 **11 · Вставте слово — сусід підійшов до хостелу з іншого боку й не розуміє, куди потрапив**
 <!-- interaction_id: en:lesson-02:session-08:i11; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `lost` · `hungry` · `cold`
+- hungry — *«Голодний». Він не про їжу — він не зрозумів, де він.*
+- cold — *«Змерз». Про розгубленість це не каже.*
+
 
 **12 · Послухайте і складіть — «ні, я не голодний»**
 <!-- interaction_id: en:lesson-02:session-08:i12; family: listen_build_dictation -->
@@ -117,6 +143,9 @@
 <!-- interaction_id: en:lesson-02:session-08:i13; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `cold` · `awake` · `hungry`
+- awake — *«Прокинувся». Він і не спав, він мерзне.*
+- hungry — *«Голодний». Куртка і сховані руки — це про холод, а не про їжу.*
+
 
 **14 · Складіть фразу — сусід спитав «Are you lost?», а ви заблукали**
 <!-- interaction_id: en:lesson-02:session-08:i14; family: phrase_builder -->

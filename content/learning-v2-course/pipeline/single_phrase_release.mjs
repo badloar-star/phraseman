@@ -85,7 +85,7 @@ const STRUCTURAL_OR_EXPLANATORY_PAYLOAD_FIELDS = new Set([
   "localizedMeaning", "slotFeedback", "testedPhoneticContrast",
   "recordControlPolicy", "modelPlayback", "learnerPlayback", "honestOutcomeStates",
   "transcriptRevealPolicy", "isWordCard", "pairingKey", "timerPolicy", "finishStats",
-  "ipaA", "ipaB", "audioTargetId", "audioTargetIds", "wordCard",
+  "ipaA", "ipaB", "audioTargetId", "audioTargetIds", "wordCard", "explanationV1",
 ]);
 
 function learnerHeardAudioCandidates(payload) {
@@ -267,6 +267,9 @@ function knownNestedSchemaIssues(interaction, source) {
   const requireBoolean = (value, field) => {
     if (value != null && typeof value !== "boolean") invalid(field);
   };
+  const requireInteger = (value, field) => {
+    if (value != null && !Number.isInteger(value)) invalid(field);
+  };
   const requireStringArray = (value, field) => {
     if (value == null) return;
     if (!Array.isArray(value)) { invalid(field); return; }
@@ -278,10 +281,55 @@ function knownNestedSchemaIssues(interaction, source) {
   const responseKeys = new Set(["responseId", "text"]);
   const wordCardKeys = new Set(["word", "definitionByLocale"]);
   const meaningKeys = new Set(["responseId", "targetText", "meaningByLocale"]);
-  const pairKeys = new Set(["pairId", "target", "meaningByLocale"]);
+  const pairKeys = new Set(["pairId", "target", "meaningByLocale", "analysisV1"]);
   const gapKeys = new Set(["responseId", "text"]);
-  const feedbackKeys = new Set(["responseId", "correct", "testedDimension", "feedbackByLocale"]);
+  const feedbackKeys = new Set([
+    "responseId", "correct", "testedDimension", "feedbackByLocale", "analysisV1", "errorType",
+    "whyTemptingByLocale", "whyWrongHereByLocale", "minimalContrastByLocale", "acceptabilityBoundaryByLocale",
+  ]);
   const timerKeys = new Set(["enabledByDefault", "learnerCanDisable", "pausesOnInterruption"]);
+  const textAnalysisKeys = new Set(["text", "meaningByLocale", "explanationByLocale", "units"]);
+  const textUnitKeys = new Set([
+    "text", "start", "end", "lemma", "partOfSpeech", "partOfSpeechLabelByLocale",
+    "meaningByLocale", "functionByLocale", "sourceRefs",
+  ]);
+  const speedAnalysisKeys = new Set([
+    "lemma", "partOfSpeech", "partOfSpeechLabelByLocale", "meaningByLocale", "functionByLocale",
+    "matchExplanationByLocale", "sourceRefs", "phrase",
+  ]);
+  const textAnalysisIssues = (value, rootPath) => {
+    const nestedIssues = closedObjectIssues({ value, rootPath, allowedKeys: textAnalysisKeys, interaction, source });
+    if (!isPlainJsonObject(value)) return nestedIssues;
+    requireString(value.text, `${rootPath}.text`);
+    for (const field of ["meaningByLocale", "explanationByLocale"]) nestedIssues.push(...localeMapIssues({
+      value: value[field], rootPath: `${rootPath}.${field}`, interaction, source,
+    }));
+    nestedIssues.push(...closedArrayObjectIssues({
+      value: value.units, rootPath: `${rootPath}.units`, allowedKeys: textUnitKeys, interaction, source,
+    }));
+    for (const [index, unit] of (value.units ?? []).entries()) if (isPlainJsonObject(unit)) {
+      const unitPath = `${rootPath}.units[${index}]`;
+      for (const field of ["text", "lemma", "partOfSpeech"]) requireString(unit[field], `${unitPath}.${field}`);
+      requireInteger(unit.start, `${unitPath}.start`);
+      requireInteger(unit.end, `${unitPath}.end`);
+      requireStringArray(unit.sourceRefs, `${unitPath}.sourceRefs`);
+      for (const field of ["partOfSpeechLabelByLocale", "meaningByLocale", "functionByLocale"]) nestedIssues.push(...localeMapIssues({
+        value: unit[field], rootPath: `${unitPath}.${field}`, interaction, source,
+      }));
+    }
+    return nestedIssues;
+  };
+  const speedAnalysisIssues = (value, rootPath) => {
+    const nestedIssues = closedObjectIssues({ value, rootPath, allowedKeys: speedAnalysisKeys, interaction, source });
+    if (!isPlainJsonObject(value)) return nestedIssues;
+    for (const field of ["lemma", "partOfSpeech"]) requireString(value[field], `${rootPath}.${field}`);
+    requireStringArray(value.sourceRefs, `${rootPath}.sourceRefs`);
+    for (const field of ["partOfSpeechLabelByLocale", "meaningByLocale", "functionByLocale", "matchExplanationByLocale"]) nestedIssues.push(...localeMapIssues({
+      value: value[field], rootPath: `${rootPath}.${field}`, interaction, source,
+    }));
+    if (value.phrase != null) nestedIssues.push(...textAnalysisIssues(value.phrase, `${rootPath}.phrase`));
+    return nestedIssues;
+  };
 
   issues.push(...closedArrayObjectIssues({
     value: interaction?.responseOptions,
@@ -336,6 +384,7 @@ function knownNestedSchemaIssues(interaction, source) {
       interaction,
       source,
     }));
+    if (item.analysisV1 != null) issues.push(...speedAnalysisIssues(item.analysisV1, `modePayload.pairGrid[${index}].analysisV1`));
   }
   issues.push(...closedArrayObjectIssues({ value: payload.gapOptions, rootPath: "modePayload.gapOptions", allowedKeys: gapKeys, interaction, source }));
   for (const [index, item] of (payload.gapOptions ?? []).entries()) if (isPlainJsonObject(item)) {
@@ -354,11 +403,33 @@ function knownNestedSchemaIssues(interaction, source) {
         interaction,
         source,
       }));
+      if (item.analysisV1 != null) issues.push(...textAnalysisIssues(item.analysisV1, `modePayload.${field}[${index}].analysisV1`));
+      requireString(item.errorType, `modePayload.${field}[${index}].errorType`);
+      for (const reasonField of ["whyTemptingByLocale", "whyWrongHereByLocale", "minimalContrastByLocale", "acceptabilityBoundaryByLocale"]) {
+        issues.push(...localeMapIssues({
+          value: item[reasonField], rootPath: `modePayload.${field}[${index}].${reasonField}`, interaction, source,
+        }));
+      }
+    }
+  }
+  if (payload.explanationV1 != null) {
+    const explanationKeys = new Set(["completionFeedbackByLocale", "phrase"]);
+    issues.push(...closedObjectIssues({
+      value: payload.explanationV1, rootPath: "modePayload.explanationV1", allowedKeys: explanationKeys, interaction, source,
+    }));
+    if (isPlainJsonObject(payload.explanationV1)) {
+      issues.push(...localeMapIssues({
+        value: payload.explanationV1.completionFeedbackByLocale,
+        rootPath: "modePayload.explanationV1.completionFeedbackByLocale",
+        interaction,
+        source,
+      }));
+      if (payload.explanationV1.phrase != null) issues.push(...textAnalysisIssues(payload.explanationV1.phrase, "modePayload.explanationV1.phrase"));
     }
   }
   issues.push(...closedObjectIssues({ value: payload.timerPolicy, rootPath: "modePayload.timerPolicy", allowedKeys: timerKeys, interaction, source }));
   if (isPlainJsonObject(payload.timerPolicy)) for (const key of timerKeys) requireBoolean(payload.timerPolicy[key], `modePayload.timerPolicy.${key}`);
-  for (const field of ["localizedScene", "localizedMeaning"]) issues.push(...localeMapIssues({
+  for (const field of ["localizedScene", "localizedMeaning", "completionFeedbackByLocale"]) issues.push(...localeMapIssues({
     value: payload[field],
     rootPath: `modePayload.${field}`,
     interaction,
@@ -378,8 +449,8 @@ function unknownLearnerFacingPayloadIssues(interaction, source) {
   const payload = interaction?.modePayload ?? {};
   const knownByFamily = {
     scripted_repeat_compare: new Set(["targetPhrase", ...LEARNER_HEARD_AUDIO_FIELDS]),
-    phrase_builder: new Set(["targetPhrase", "orderedTokens", "authoredDistractorTokens", "distractorTokens", "tiles", ...LEARNER_HEARD_AUDIO_FIELDS]),
-    listen_build_dictation: new Set(["hiddenTargetPhrase", "orderedTokens", "authoredDistractorTokens", "distractorTokens", "tiles", ...LEARNER_HEARD_AUDIO_FIELDS]),
+    phrase_builder: new Set(["targetPhrase", "orderedTokens", "authoredDistractorTokens", "distractorTokens", "tiles", "completionFeedbackByLocale", ...LEARNER_HEARD_AUDIO_FIELDS]),
+    listen_build_dictation: new Set(["hiddenTargetPhrase", "orderedTokens", "authoredDistractorTokens", "distractorTokens", "tiles", "completionFeedbackByLocale", ...LEARNER_HEARD_AUDIO_FIELDS]),
     context_gap_grammar: new Set(["gappedTargetPhrase", "gapOptions", ...LEARNER_HEARD_AUDIO_FIELDS]),
     listen_choose: new Set(["localizedMeaningChoices", "wordCard", ...LEARNER_HEARD_AUDIO_FIELDS]),
     speed_match: new Set(["pairGrid", "leftColumn", "rightColumn"]),
@@ -1112,14 +1183,19 @@ export function answerContractIssues(interactions, answers, source = "", { allow
       issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "answer_missing" });
       continue;
     }
-    if (!normalizeSpace(answer.correctText)) {
+    const wordCardText = interaction.family === "listen_choose" && interaction.modePayload?.isWordCard
+      ? normalizeSpace(interaction.modePayload?.wordCard?.word)
+      : "";
+    const speedMatchText = interaction.family === "speed_match" ? normalizeSpace(speedMatchCorrectText(interaction)) : "";
+    const effectiveCorrectText = normalizeSpace(answer.correctText) || wordCardText || speedMatchText;
+    if (!effectiveCorrectText) {
       issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "empty_correct_text" });
       continue;
     }
     try {
-      const expected = expectedCorrectText(interaction, answer);
-      if (!allowLocalizedChoiceText && normalizeSpace(answer.correctText) !== normalizeSpace(expected)) {
-        issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "correct_text_contract_mismatch", expected, actual: answer.correctText });
+      const expected = expectedCorrectText(interaction, { ...answer, correctText: effectiveCorrectText });
+      if (!allowLocalizedChoiceText && effectiveCorrectText !== normalizeSpace(expected)) {
+        issues.push({ source, interactionId: interaction.interactionId, family: interaction.family, reason: "correct_text_contract_mismatch", expected, actual: effectiveCorrectText });
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
@@ -1536,15 +1612,9 @@ export function feedbackLocaleParityIssues(interactionsByLocale, { answers = [] 
       }
       for (const responseId of responseIds) {
         const feedback = feedbackById.get(responseId);
-        if (responseId === correctResponseId) {
-          if (!feedback) {
-            issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_missing" });
-          } else if (feedback.correct !== true) {
-            issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_wrong_contract" });
-          }
-        } else if (!feedback) {
+        if (!feedback) {
           issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_missing" });
-        } else if (feedback.correct !== false) {
+        } else if (feedback.correct !== (responseId === correctResponseId)) {
           issues.push({ interactionId: interaction.interactionId, responseId, projectionLocale, reason: "choice_feedback_wrong_contract" });
         }
       }

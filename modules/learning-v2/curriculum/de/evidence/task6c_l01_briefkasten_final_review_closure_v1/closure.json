@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-briefkasten-final-review-closure.v1",
+  "language": "de",
+  "closureKind": "APPEND_ONLY_EXACT_HASH_REVIEW_SUPERSESSION",
+  "status": "CLOSED_FOR_EXACT_HASH_SET",
+  "scope": {
+    "admission": "EXACT_BRIEFKASTEN_LEXICAL_DEPENDENCY_ONLY",
+    "lexicalDependencyAdmissionClosed": true,
+    "resolvedPlanIds": 10,
+    "unresolvedPlanIds": 278,
+    "packetIds": 1792,
+    "materializedPackets": 0,
+    "globalTask6CompletionEstablished": false
+  },
+  "reviewedArtifacts": {
+    "admissionModule": {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_briefkasten_positive_admission_de_v1.ts",
+      "sha256": "95fba62921f1fd4da7fccd218fc6c4b6b1f257521118d32e80e4306220d7e7df"
+    },
+    "admissionGate": {
+      "path": "tests/learning_v2_de_task6c_l01_briefkasten_positive_admission_gate.ts",
+      "sha256": "7cbcc62198f8db375a1ee95f26aa82e610b783da0bd3bfe20e1830bdf43f71b5"
+    },
+    "primaryReceipt": {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_BRIEFKASTEN_POSITIVE_ADMISSION_RECEIPT_2026-10-13.md",
+      "sha256": "817ed02b204baa7979179b06900e3dcfc46321b8c8c7348778de30b10ecf2ebc"
+    },
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_positive_admission_v1/lexical_evidence.json",
+      "sha256": "bf298f3e6441b615772ff43efb6ec05252aa07fa772a2d15bb2f330ee523ef12"
+    },
+    "admissionManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_positive_admission_v1/manifest.json",
+      "sha256": "766022b62d091c6c023d310477969d9e09d7eacd62e6b89af2448fbfe878d8f1"
+    },
+    "lexicalRegistryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v6.json",
+      "sha256": "3d45077cba6f20e826ce3fa04732a91fec15d571ac9a0cb54923c8ec84c66e55"
+    },
+    "task6RegistryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    "allocationInventoryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    }
+  },
+  "finalReviews": {
+    "spec": {
+      "taskIdentity": "/root/de_briefkasten_spec_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    },
+    "adversarial": {
+      "taskIdentity": "/root/de_briefkasten_adversarial_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    }
+  },
+  "supersession": {
+    "primaryReceiptStatusAtReviewedHash": "PENDING",
+    "primaryReceiptBytesModified": false,
+    "reviewStatusSupersededForExactHashSetOnly": true,
+    "semanticArtifactsModified": false
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  },
+  "typeScriptEvidence": {
+    "command": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --pretty false",
+    "exitCode": 2,
+    "diagnostics": 16,
+    "targetDiagnostics": 0,
+    "logPath": "C:\\Temp\\phraseman_briefkasten_v6_tsc_20261013.log"
+  },
+  "englishSurface": {
+    "roots": [
+      "modules/learning-v2/curriculum/en",
+      "content/learning-v2-course/curriculum/en",
+      "content/learning-v2-course/release/en",
+      "modules/learning-v2/content/factory_native/generated_release/en"
+    ],
+    "fileCount": 1570,
+    "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+  },
+  "defaultConsumer": {
+    "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+    "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+    "requiredRegistry": "lexical_senses_de_v1.json",
+    "forbiddenRegistry": "lexical_senses_de_v6.json",
+    "v6Selected": false
+  }
+}

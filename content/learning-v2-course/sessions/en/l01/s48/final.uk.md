@@ -72,8 +72,8 @@
 
 **2 · Вставте слово — ви втомилися після тижня**
 <!-- interaction_id: en:lesson-01:session-48:i02; family: context_gap_grammar -->
-`I'm ___ .` → **tired** · happy · home
-- happy — *«Радий» — теж правда, але друг спитав про сили.*
+`I'm ___ .` → **tired** · are · home
+- are — *Після `I'm` не можна поставити `are`: форма `am` уже є в `I'm`.*
 - home — *«Удома» — а ви ще в пабі.*
 
 **3 · Послухайте і виберіть — `gone`**
@@ -85,6 +85,9 @@
 **4 · Складіть фразу — «вона пішла»**
 <!-- interaction_id: en:lesson-01:session-48:i04; family: phrase_builder -->
 Плитки: `gone` `She's` `is` `home` → **She's gone.**
+*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's gone`.)*
+*(плитка `home` зайва: `home` зайве: треба сказати, що вона пішла — `She's gone`.)*
+
 
 **5 · Виберіть форму після `He` — про друга, якого немає за столом**
 <!-- interaction_id: en:lesson-01:session-48:i05; family: context_gap_grammar -->
@@ -107,10 +110,15 @@
 **8 · Складіть фразу — у пабі п’ятниця, а за сусіднім столом тихо**
 <!-- interaction_id: en:lesson-01:session-48:i08; family: phrase_builder -->
 Плитки: `loud` `They` `aren't` `They're` → **They aren't loud.**
+*(плитка `They're` зайва: `They're` не підходить: потрібна заперечна форма `They aren't loud`.)*
+
 
 **9 · Послухайте і складіть — «я втомився»**
 <!-- interaction_id: en:lesson-01:session-48:i09; family: listen_build_dictation -->
 🔊 *I'm tired.* Плитки: `tired` `I'm` `I` `happy` → **I'm tired.**
+*(плитка `I` зайва: `I` зайве: воно вже заховане в `I'm tired`.)*
+*(плитка `happy` зайва: `happy` зайве: в аудіо `I'm tired`.)*
+
 
 **10 · Вставте слово — друг питає, як вам вечір**
 <!-- interaction_id: en:lesson-01:session-48:i10; family: context_gap_grammar -->
@@ -131,6 +139,8 @@ tired — втомлений · gone — пішов · loud — гучний · 
 **13 · Складіть фразу — друг питає, куди ви тепер; додому ви ще не повернулися**
 <!-- interaction_id: en:lesson-01:session-48:i13; family: phrase_builder -->
 Плитки: `home` `We` `aren't` `isn't` → **We aren't home.**
+*(плитка `isn't` зайва: `isn't` не підходить до `We`: потрібно `We aren't home`.)*
+
 
 **14 · Вставте слово — друг цілий вечір сміявся**
 <!-- interaction_id: en:lesson-01:session-48:i14; family: context_gap_grammar -->
@@ -153,6 +163,8 @@ tired — втомлений · gone — пішов · loud — гучний · 
 **17 · Складіть фразу — ви пояснюєте, чому хочете піти раніше**
 <!-- interaction_id: en:lesson-01:session-48:i16:s01; family: phrase_builder -->
 Плитки: `I'm` `tired` `are` → **I'm tired.**
+*(плитка `are` зайва: `are` зайве: воно вже заховане в `I'm tired`.)*
+
 
 **18 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-48:i16:s02; family: scripted_repeat_compare -->

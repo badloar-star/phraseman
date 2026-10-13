@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i02; family: listen_choose -->
 Цель: `bus`
 Варианты: `bus` · `fuss` · `buzz`
+- fuss — *`fuss` — «суета». Первым слышно «ф», а у `bus` — «б». Остальная часть звучит одинаково; различайте начало.*
+- buzz — *`buzz` — «гудение». На конце звучит звонкое «з», а в `bus` — глухое «с». Дослушайте слово до конца.*
+
 
 **3 · Карточка слова — dish**
 <!-- interaction_id: en:lesson-03:session-18:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i04; family: listen_choose -->
 Цель: `dish`
 Варианты: `dish` · `fish` · `wish`
+- fish — *`fish` — «рыба». В начале слышно «ф», а у `dish` — «д». Дальше слова звучат одинаково.*
+- wish — *`wish` — «желание». В начале губы округляются, а в `dish` первым звучит «д». Конец слов совпадает.*
+
 
 **5 · Карточка слова — watch**
 <!-- interaction_id: en:lesson-03:session-18:i05; family: listen_choose -->
@@ -78,6 +84,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i06; family: listen_choose -->
 Цель: `watch`
 Варианты: `watch` · `wash` · `witch`
+- wash — *`wash` — «мыть». Конец звучит как «ш», а у `watch` — как «ч». Начало похоже, поэтому слушайте конец.*
+- witch — *`witch` — «ведьма». В британском `watch` губы округлены на гласном, а в `witch` нет. Начало и конец совпадают; различайте середину.*
+
 
 **7 · Карточка слова — box**
 <!-- interaction_id: en:lesson-03:session-18:i07; family: listen_choose -->
@@ -87,6 +96,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i08; family: listen_choose -->
 Цель: `box`
 Варианты: `box` · `fox` · `pox`
+- fox — *`fox` — «лиса». Первым слышно «ф», а в `box` — «б». Остальная часть совпадает, поэтому слушайте начало.*
+- pox — *`pox` — «оспа». В начале слышно «п», а в `box` — «б». Конец у слов одинаковый.*
+
 
 **9 · Соберите фразу — к остановке подъехали два автобуса; друг спрашивает, что там за транспорт. Ответьте: «Это автобусы»**
 <!-- interaction_id: en:lesson-03:session-18:i09; family: phrase_builder -->
@@ -102,6 +114,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i11; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `tickets` · `ticket` · `is`
+- ticket — *В конверте несколько билетов. В этой фразе нужно название с `s`: `tickets`.*
+- is — *После готового начала `They are` нужно назвать предметы: `tickets`. `is` билетами их не называет.*
+
 
 **12 · Послушайте и соберите — друг говорит о предметах из маленькой коробки**
 <!-- interaction_id: en:lesson-03:session-18:i12; family: listen_build_dictation -->
@@ -112,6 +127,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i13; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `boxes` · `box` · `boxs`
+- box — *Коробок три. Для нескольких нужно `boxes`, а не название одной коробки.*
+- boxs — *К `box` добавляем две буквы, `es`. Получается `boxes`; одной добавленной `s` здесь мало.*
+
 
 **14 · Соедините названия с русскими значениями — что видно при распаковке**
 <!-- interaction_id: en:lesson-03:session-18:i14; family: speed_match -->
@@ -122,6 +140,9 @@
 <!-- interaction_id: en:lesson-03:session-18:i15; family: listen_choose -->
 Цель: `They are dishes.`
 Варианты: `They are dishes.` · `Are they dishes?` · `They are boxes.`
+- Are they dishes? — *Здесь вопрос с началом `Are they`. В записи сначала звучит `They are`: друг называет предметы.*
+- They are boxes. — *Этот вариант называет коробки: `boxes`. В записи звучит `dishes` — блюда для подачи еды.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-18:i16; family: scripted_repeat_compare -->

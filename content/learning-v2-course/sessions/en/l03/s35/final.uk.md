@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-03:session-35:i05; family: listen_choose -->
 Ціль: `frame`
 Варіанти: `frame` · `photo` · `album`
+- photo — *`photo` — фотографія. У записі звучить `frame` — рамка.*
+- album — *`album` — альбом. У записі звучить `frame` — рамка.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-35:i02; family: scripted_repeat_compare -->
@@ -79,6 +82,8 @@
 <!-- interaction_id: en:lesson-03:session-35:i06; family: sound_contrast -->
 Ціль: `frame`
 Варіанти: `frame` · `flame`
+- flame — *`flame` — полум'я. У `frame` після `f` чути `r`: це рамка.*
+
 
 **7 · З'єднайте слова зі значеннями — стіл оформлювача**
 <!-- interaction_id: en:lesson-03:session-35:i08; family: speed_match -->
@@ -97,6 +102,10 @@
 <!-- interaction_id: en:lesson-03:session-35:i07; family: context_gap_grammar -->
 Варіанти: `These` · `This` · `Those` · `Are`
 Ціль: `___ are frames.`
+- This — *`This` — для однієї речі; тут рамок кілька.*
+- Those — *`Those` — для кількох предметів далеко; рамки лежать перед вами.*
+- Are — *`Are are frames` не утворює фразу. Потрібне вказівне слово `These`.*
+
 
 **11 · Складіть твердження — поруч лежить одна фотографія**
 <!-- interaction_id: en:lesson-03:session-35:i11; family: phrase_builder -->
@@ -106,11 +115,19 @@
 <!-- interaction_id: en:lesson-03:session-35:i12; family: listen_choose -->
 Ціль: `These are photos.`
 Варіанти: `Ось ці фотографії.` · `Це фотографія.` · `Це альбоми.` · `Ці фотографії, будь ласка.`
+- Це фотографія. — *Так називають один знімок. У записі `these are` і форма `photos` указують на кілька фотографій.*
+- Це альбоми. — *Число збігається, але в записі назвали `photos` — фотографії, а не альбоми.*
+- Ці фотографії, будь ласка. — *Це прохання вибрати знімки. У записі кілька фотографій просто називають.*
+
 
 **13 · Вставте вказівне слово — поруч лежать кілька альбомів**
 <!-- interaction_id: en:lesson-03:session-35:i13; family: context_gap_grammar -->
 Ціль: `___ are albums.`
 Варіанти: `These` · `This` · `Those` · `Is`
+- This — *`this` стосується одного предмета й потребує `is`. Тут альбомів кілька.*
+- Those — *`those` вказує на кілька предметів удалині. Альбоми лежать поруч, тому потрібно `these`.*
+- Is — *`Is are albums` не утворює фразу. На початку потрібне вказівне слово `These`.*
+
 
 **14 · Складіть твердження — кілька рамок лежать перед вами**
 <!-- interaction_id: en:lesson-03:session-35:i14; family: phrase_builder -->

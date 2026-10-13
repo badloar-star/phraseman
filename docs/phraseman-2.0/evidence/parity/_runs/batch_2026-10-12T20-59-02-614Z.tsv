@@ -1,0 +1,16 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-002	2026-10-12T20:59:36.393Z	ok	16583	marker+шагов_3+склейка+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/cards-002.png	0
+cards-section-032	2026-10-12T21:00:07.405Z	ok	14445	marker+шагов_3+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-section-032.png	0
+cards-section-033	2026-10-12T21:00:29.968Z	ok	15461	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-section-033.png	0
+mistakes-panel-002	2026-10-12T21:00:48.576Z	ok	10897	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/mistakes-panel-002.png	0
+profile-003	2026-10-12T21:01:15.968Z	ok	14061	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-003.png	0
+profile-004	2026-10-12T21:01:38.061Z	ok	15632	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-004.png	0
+profile-005	2026-10-12T21:02:12.128Z	ok	14187	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-005.png	0
+profile-006	2026-10-12T21:02:33.195Z	ok	13354	marker+пусто_1300мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/profile-006.png	1300
+profile-007	2026-10-12T21:02:52.952Z	ok	13124	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-007.png	0
+profile-008	2026-10-12T21:03:12.429Z	ok	13168	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-008.png	0
+profile-011	2026-10-12T21:03:39.640Z	ok	14104	marker+шагов_1+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/profile-011.png	0
+profile-012	2026-10-12T21:04:11.257Z	ok	13316	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-012.png	0
+profile-013	2026-10-12T21:04:31.643Z	ok	14251	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-013.png	0
+profile-014	2026-10-12T21:04:58.565Z	ok	14136	marker+шагов_1+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-014.png	0
+dialogs-001	2026-10-12T21:05:28.763Z	ok	15563	marker+пусто_1339мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-001.png	1339

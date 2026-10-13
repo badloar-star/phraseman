@@ -1,0 +1,6 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-005	2026-10-12T23:15:12.468Z	ok	19786	marker+пусто_1784мс+склейка+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/dialogs-005.png	1784
+home-002	2026-10-12T23:15:42.489Z	ok	17037	marker+шагов_1+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/home-002.png	0
+dialogs-004	2026-10-12T23:16:09.733Z	ok	17624	marker+пусто_1987мс+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/dialogs-004.png	1987
+dialogs-006	2026-10-12T23:17:38.078Z	error	55066	step_target_not_found:#dialogue-v2-world-toggle-*+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T23-14-38-326Z/dialogs-006.error.png	0
+dialogs-009	2026-10-12T23:18:34.481Z	ok	14496	marker+шагов_4+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-009.png	0

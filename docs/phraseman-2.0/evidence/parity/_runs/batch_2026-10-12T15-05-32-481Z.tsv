@@ -1,0 +1,17 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-001	2026-10-12T15:05:59.800Z	ok	14649	marker+шагов_1+склейка+ждали_metro_78мс	docs/phraseman-2.0/evidence/parity/onboarding-001.png	0
+onboarding-009	2026-10-12T15:06:20.051Z	stitch_failed	12310	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-009.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=94837+ждали_metro_8мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/onboarding-009.bare.png	0
+onboarding-011	2026-10-12T15:06:41.231Z	ok	11037	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-011.png	0
+onboarding-012	2026-10-12T15:07:06.021Z	ok	12313	marker+пусто_1318мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/onboarding-012.png	1318
+onboarding-013	2026-10-12T15:07:24.508Z	ok	9895	marker+пусто_1330мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-013.png	1330
+onboarding-014	2026-10-12T15:07:48.709Z	ok	9848	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-014.png	0
+onboarding-015	2026-10-12T15:08:06.298Z	stitch_failed	8897	marker+шагов_1+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-015.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=139633+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/onboarding-015.bare.png	0
+onboarding-018	2026-10-12T15:08:25.965Z	stitch_failed	9576	marker+шагов_1+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-018.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=521286+ждали_metro_8мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/onboarding-018.bare.png	0
+onboarding-022	2026-10-12T15:10:02.874Z	timeout	90210	нет маркера+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/onboarding-022.timeout.png	0
+onboarding-paywall-002	2026-10-12T15:11:42.281Z	timeout	90765	нет маркера+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/onboarding-paywall-002.timeout.png	0
+spire-gap-001	2026-10-12T15:13:23.080Z	timeout	90623	нет маркера+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/spire-gap-001.timeout.png	0
+spire-gap-002	2026-10-12T15:15:01.996Z	timeout	90539	нет маркера+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/spire-gap-002.timeout.png	0
+spire-gap-004	2026-10-12T15:15:57.895Z	ok	39561	marker+пусто_1332мс+склейка+ждали_metro_6059мс	docs/phraseman-2.0/evidence/parity/spire-gap-004.png	1332
+spire-gap-005	2026-10-12T15:16:19.014Z	ok	13580	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/spire-gap-005.png	0
+community-001	2026-10-12T15:17:18.849Z	error	14102	step_target_not_found:#community-sections-spire+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/community-001.error.png	0
+community-020	2026-10-12T15:17:48.860Z	blank_too_long	13110	marker+шагов_1+пусто_8106мс+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-05-32-481Z/community-020.blank_too_long.png	8106

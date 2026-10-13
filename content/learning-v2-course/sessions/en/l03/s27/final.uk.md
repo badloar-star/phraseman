@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-27:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `switch` · `button` · `remote`
+- button — *Button — кнопка. Тут потрібен вимикач: switch.*
+- remote — *Remote — пульт. Тут потрібен вимикач: switch.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-27:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значення варіантів: `button` — кнопка · `butter` — масло · `bottle` — пляшка · `bottom` — дно
 Ціль: `button`
 Варіанти: `button` · `butter` · `bottle` · `bottom`
+- butter — *Наприкінці `button` чути `n`; наприкінці `butter` звука `n` немає.*
+- bottle — *Наприкінці `bottle` чути `l`, а в `button` — `n`.*
+- bottom — *Останній приголосний у `bottom` — `m`, а в `button` — `n`.*
+
 
 **6 · Розрізніть слово — switch чи stitch**
 <!-- interaction_id: en:lesson-03:session-27:i06; family: sound_contrast -->
 Ціль: `switch`
 *switch · stitch* → **switch**
+- stitch — *У stitch після s чути t. У записі після s чути w: switch.*
+
 
 **7 · З'єднайте слова зі значеннями — елементи пристрою**
 <!-- interaction_id: en:lesson-03:session-27:i07; family: speed_match -->
@@ -95,11 +104,15 @@
 <!-- interaction_id: en:lesson-03:session-27:i08; family: sound_contrast -->
 Ціль: `This`
 *This · That* → **This**
+- That — *That вказує на предмет далі. Тут предмет поруч: this.*
+
 
 **9 · Вставте форму — один предмет лежить поруч**
 <!-- interaction_id: en:lesson-03:session-27:i09; family: context_gap_grammar -->
 Ціль: `This ___ here.`
 Варіанти: `is` · `are`
+- are — *Are використовують з кількома предметами. Тут предмет один, тому is.*
+
 
 **10 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-27:i10; family: scripted_repeat_compare -->
@@ -117,11 +130,19 @@
 <!-- interaction_id: en:lesson-03:session-27:i13; family: context_gap_grammar -->
 Ціль: `Is ___ a switch?`
 Варіанти: `that` · `this` · `is` · `a`
+- this — *`this` указує на предмет поруч. Вимикач біля дальньої стіни, тому потрібне `that`.*
+- is — *Запитання вже починається з `Is`. Після нього потрібне вказівне слово для далекого предмета — `that`.*
+- a — *`a` уже стоїть перед `switch`. Між `Is` і `a switch` потрібне слово `that`.*
+
 
 **14 · Послухайте й виберіть значення точного запитання**
 <!-- interaction_id: en:lesson-03:session-27:i14; family: listen_choose -->
 Ціль: `Is that a switch?`
 Варіанти: `Це вимикач?` · `Це стібок?` · `Це відьма?` · `Це годинник?`
+- Це стібок? — *У записі після `s` чути `w`: прозвучало `switch`. Для «стібок» прозвучало б `stitch`, зі звуком `t` після `s`.*
+- Це відьма? — *У записі перед `witch` чути початкове `s`: прозвучало `switch` — «вимикач».*
+- Це годинник? — *У `watch` інший голосний і немає початкового `s`; у записі прозвучало `switch`.*
+
 
 **15 · Складіть запитання — лампа стоїть біля дальньої стіни**
 <!-- interaction_id: en:lesson-03:session-27:i15; family: phrase_builder -->
@@ -131,6 +152,10 @@
 <!-- interaction_id: en:lesson-03:session-27:i16; family: context_gap_grammar -->
 Ціль: `___ this a button?`
 Варіанти: `Is` · `This` · `Are` · `A`
+- This — *`This` повторить уже наявне `this`, а запитання залишиться без `Is`. На початку потрібне `Is`.*
+- Are — *У цій формулі після `this` потрібна зв'язка `is`; запитання починається з `Is this`.*
+- A — *`a` уже стоїть перед `button`. На початку запитання потрібне `Is`.*
+
 
 **17 · Послухайте та складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-27:i17:s01; family: listen_build_dictation -->

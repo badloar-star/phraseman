@@ -47,6 +47,8 @@ import { SPEED_MATCH_MOTION_V1 as MOTION } from "./mode_motion_tokens_v1";
 import {
   createLearningV2SpeedMatchRoundStateV1,
   learningV2SpeedMatchCanPickV1,
+  resolveLearningV2SpeedMatchMismatchExplanationV1,
+  type LearningV2SpeedMatchMismatchExplanationV1,
 } from "./speed_match_runtime_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
@@ -199,6 +201,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
   const [wrongPairIds, setWrongPairIds] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
+  const [mismatchExplanation, setMismatchExplanation] = useState<LearningV2SpeedMatchMismatchExplanationV1 | null>(null);
   const mismatchResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(
@@ -212,22 +215,30 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
     if (mismatchResetRef.current) clearTimeout(mismatchResetRef.current);
     mismatchResetRef.current = null;
     setWrongPairIds(new Set());
+    setMismatchExplanation(null);
   }, []);
 
   const showMismatch = useCallback(
-    (pairIds: readonly string[]) => {
+    (leftPairId: string, rightPairId: string) => {
       if (mismatchResetRef.current) clearTimeout(mismatchResetRef.current);
-      setWrongPairIds(new Set(pairIds));
+      setWrongPairIds(new Set([leftPairId, rightPairId]));
+      setMismatchExplanation(resolveLearningV2SpeedMatchMismatchExplanationV1({
+        interfaceLocale,
+        leftPairId,
+        rightPairId,
+        payload,
+      }));
       playArenaSound("pairMiss");
       void hapticError();
       mismatchResetRef.current = setTimeout(() => {
         mismatchResetRef.current = null;
         setWrongPairIds(new Set());
+        setMismatchExplanation(null);
         setPickedLeft(null);
         setPickedRight(null);
       }, MOTION.mismatchTintMs);
     },
-    [playArenaSound],
+    [interfaceLocale, payload, playArenaSound],
   );
 
   const [round, setRound] = useState(() => createLearningV2SpeedMatchRoundStateV1());
@@ -276,7 +287,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
         onModeNativeComplete("all_pairs_matched");
       }
     } else {
-      showMismatch([pairId, pickedRight]);
+      showMismatch(pairId, pickedRight);
     }
   };
   const chooseRight = (pairId: string) => {
@@ -295,7 +306,7 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
         onModeNativeComplete("all_pairs_matched");
       }
     } else {
-      showMismatch([pickedLeft, pairId]);
+      showMismatch(pickedLeft, pairId);
     }
   };
 
@@ -359,6 +370,12 @@ export function SpeedMatchModeV1(props: LearningV2ModeCommonPropsV1) {
           })}
         </View>
       </SpeedMatchGridV1>
+
+      {mismatchExplanation ? (
+        <View accessibilityLiveRegion="polite" style={sx.explainWrap}>
+          <Lv2Explain>{`${mismatchExplanation.selectedTarget} + «${mismatchExplanation.selectedMeaning}»: ${mismatchExplanation.selectedTargetExplanation} ${mismatchExplanation.meaningOwnerExplanation}`}</Lv2Explain>
+        </View>
+      ) : null}
 
       {round.phase === "finish_timeout" && !resolved && (
         // зачем (learning-v2.html, sm «Время вышло»): карточка `.expl` в колонку — значок часов

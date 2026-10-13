@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c02-tschuess-admission-adjudication-hold.v1",
+  "status": "HOLD",
+  "decision": "CANONICAL_ADMISSION_WITHHELD_MISSING_REQUIRED_AUTHORITIES",
+  "scope": {
+    "targetLanguage": "de",
+    "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+    "checkpointPacketId": "de_l01_c02_s16",
+    "chapterId": "de_l01_c02",
+    "sessionId": "de_l01_s02"
+  },
+  "inputBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "sha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23"
+    },
+    "sourceHoldValidator": {
+      "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c02_tschuess_source_hold_de_v1.ts",
+      "sha256": "f0b2804c6bd099fd388ceb6aa7bfe2a71c89e238c84622e0632a7a4a996c7993"
+    },
+    "sourceManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/manifest.json",
+      "sha256": "d7aa6eed248a5d24c57eafcfdbf4560d433e985fc0a054a86c9836f38fadd612"
+    },
+    "sourceExtractionMap": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/extraction_map.json",
+      "sha256": "072ae39ffa27ca489d4152bac243dd2ee50de90765d3089dd8f87b7d48d6d0fe"
+    },
+    "allocationInventory": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    }
+  },
+  "sourceFindings": {
+    "lemma": "Tschüss",
+    "partOfSpeech": "Interjektion",
+    "register": "UMGANGSSPRACHLICH_SUPPORTED",
+    "meaning": "LEBE_WOHL_AUF_WIEDERSEHEN_SUPPORTED",
+    "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCES",
+    "officialPedagogicalOccurrence": "NOT_EXTRACTED_NO_TEXT_LOCATOR_IN_THIS_PACKET"
+  },
+  "fieldSupportMatrix": [
+    {
+      "field": "lemmaOrExpression",
+      "value": "Tschüss",
+      "support": "DIRECT_DWDS_HEADWORD",
+      "admissionUse": "SOURCE_FACT_ONLY"
+    },
+    {
+      "field": "partOfSpeech",
+      "value": "Interjektion",
+      "support": "DIRECT_DWDS_GRAMMAR",
+      "admissionUse": "SOURCE_FACT_ONLY"
+    },
+    {
+      "field": "senseGloss",
+      "value": "informal leave-taking",
+      "support": "DIRECT_DWDS_REGISTER_AND_DEFINITION",
+      "admissionUse": "SOURCE_FACT_ONLY"
+    },
+    {
+      "field": "neutralRegister",
+      "value": null,
+      "support": "UNSUPPORTED",
+      "admissionUse": "FORBIDDEN"
+    },
+    {
+      "field": "officialPedagogicalOccurrence",
+      "value": null,
+      "support": "NOT_EXTRACTED",
+      "admissionUse": "FORBIDDEN"
+    }
+  ],
+  "requiredAuthorities": {
+    "sourceCharacterization": "SATISFIED_SOURCE_HOLD_ONLY",
+    "task6CanonicalAllocation": "MISSING",
+    "inventoryResolutionTransaction": "MISSING",
+    "task7WholeCourseAuthority": "MISSING"
+  },
+  "authority": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "inventory": {
+    "resolvedPlanIds": 6,
+    "unresolvedPlanIds": 282,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "resolutionRoute": "VERSIONED_TASK6_ALLOCATION_AND_INVENTORY_TRANSACTION_AFTER_REQUIRED_AUTHORITIES"
+}

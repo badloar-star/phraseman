@@ -115,6 +115,15 @@
               "ru": "Это «ухо». Слишком коротко: `early` — два слога, «ЁР-ли».",
               "uk": "Це «вухо». Надто коротко: `early` — два склади, «ЙОР-лі»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — early",
+            "feedbackByLocale": {
+              "ru": "Верно: `early` — «рано». В слове слышны два слога: «ёр-ли».",
+              "uk": "Правильно: `early` — «рано». У слові чути два склади: «йор-лі»."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Это «первый», там слышно «ё». В `fast` рот открыт шире.",
               "uk": "Це «перший», там чути «йо». У `fast` рот відкритий ширше."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — fast",
+            "feedbackByLocale": {
+              "ru": "Верно: `fast` — «быстро». В конце слышно твёрдое «-ст».",
+              "uk": "Правильно: `fast` — «швидко». Наприкінці чути тверде «-ст»."
+            }
           }
         ],
         "isWordCard": false,
@@ -247,17 +265,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она уже за столиком",
+      "prompt": "Соберите фразу — Мира уже за столиком",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она уже за столиком",
+      "accessibilityLabel": "Соберите фразу — Мира уже за столиком",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are early.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она уже за столиком",
-          "uk": "Складіть фразу — вона вже за столиком"
+          "ru": "Соберите фразу — Мира уже за столиком",
+          "uk": "Складіть фразу — Міра вже за столиком"
         },
         "orderedTokens": [
           "You",
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира уже за столиком",
+            "feedbackByLocale": {
+              "ru": "после `You` используют `are`, а `am` бывает только после `I`",
+              "uk": "після `You` використовують `are`, а `am` буває лише після `I`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -277,7 +305,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — она доела свой сэндвич за минуту",
+      "prompt": "Вставьте слово — Мира доела свой сэндвич за минуту",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i06:r1",
@@ -294,12 +322,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — она доела свой сэндвич за минуту",
+      "accessibilityLabel": "Вставьте слово — Мира доела свой сэндвич за минуту",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — она доела свой сэндвич за минуту",
-          "uk": "Вставте слово — вона доїла свій сендвіч за хвилину"
+          "ru": "Вставьте слово — Мира доела свой сэндвич за минуту",
+          "uk": "Вставте слово — Міра доїла свій сендвіч за хвилину"
         },
         "gappedTargetPhrase": "You are ___ .",
         "gapOptions": [
@@ -318,6 +346,15 @@
         ],
         "testedDimension": "Вставьте слово — она доела свой сэндвич ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира доела свой сэндвич за минуту",
+            "feedbackByLocale": {
+              "ru": "Верно: вы говорите о том, как быстро Мира съела сэндвич: `You are fast`.",
+              "uk": "Правильно: ви говорите про те, як швидко Міра з'їла сендвіч: `You are fast`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-10:i06:r2",
             "correct": false,
@@ -452,6 +489,15 @@
               "ru": "Начало то же, а дальше слышно «-ин». Это «королева», и за кофе она вам не встретится.",
               "uk": "Початок той самий, а далі чути «-ін». Це «королева», і за кавою вона вам не трапиться."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i08:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — quiet",
+            "feedbackByLocale": {
+              "ru": "Верно: `quiet` звучит в два слога — «квайет» — и значит «тихий».",
+              "uk": "Правильно: `quiet` звучить у два склади — «кваєт» — і означає «тихий»."
+            }
           }
         ],
         "isWordCard": false,
@@ -465,7 +511,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы говорите про неё",
+      "prompt": "Вставьте слово — Мира молчит, а вы говорите о ней",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i09:r1",
@@ -482,12 +528,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы говорите про неё",
+      "accessibilityLabel": "Вставьте слово — Мира молчит, а вы говорите о ней",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы говорите про неё",
-          "uk": "Вставте скріпку — ви говорите про неї"
+          "ru": "Вставьте слово — Мира молчит, а вы говорите о ней",
+          "uk": "Вставте слово — Міра мовчить, а ви говорите про неї"
         },
         "gappedTargetPhrase": "You ___ quiet.",
         "gapOptions": [
@@ -504,21 +550,30 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы говорите про неё",
+        "testedDimension": "Вставьте слово — вы говорите о ней",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира молчит, а вы говорите о ней",
+            "feedbackByLocale": {
+              "ru": "Верно: после `You` всегда ставят `are`: `You are quiet`.",
+              "uk": "Правильно: після `You` завжди ставлять `are`: `You are quiet`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-10:i09:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите про неё",
+            "testedDimension": "Вставьте слово — вы говорите о ней",
             "feedbackByLocale": {
-              "ru": "`am` привязано к `I` намертво. Для `you` своя скрепка.",
-              "uk": "`am` прив'язане до `I` намертво. Для `you` своя скріпка."
+              "ru": "`Am` используется с `I`. Для `you` нужно `are`.",
+              "uk": "`Am` використовується з `I`. Для `you` потрібне `are`."
             }
           },
           {
             "responseId": "en:lesson-01:session-10:i09:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы говорите про неё",
+            "testedDimension": "Вставьте слово — вы говорите о ней",
             "feedbackByLocale": {
               "ru": "Не для `you`. `You are` — два слова, которые ходят парой.",
               "uk": "Не для `you`. `You are` — два слова, які ходять парою."
@@ -557,7 +612,17 @@
         "authoredDistractorTokens": [
           "early"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «ты быстрая»",
+            "feedbackByLocale": {
+              "ru": "запись просит назвать скорость — `fast`, а не время прихода",
+              "uk": "запис просить назвати швидкість — `fast`, а не час приходу"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -637,68 +702,32 @@
     {
       "interactionId": "en:lesson-01:session-10:i12",
       "ordinal": 15,
-      "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — она смотрит на часы и хватает сумку",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-10:i12:r1",
-          "text": "late"
-        },
-        {
-          "responseId": "en:lesson-01:session-10:i12:r2",
-          "text": "early"
-        },
-        {
-          "responseId": "en:lesson-01:session-10:i12:r3",
-          "text": "quiet"
-        }
-      ],
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Мира смотрит на часы и хватает сумку; скажите ей, что она опаздывает",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — она смотрит на часы и хватает сумку",
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Мира смотрит на часы и хватает сумку; скажите ей, что она опаздывает",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — она смотрит на часы и хватает сумку",
-          "uk": "Вставте слово — вона дивиться на годинник і хапає сумку"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i12:audio",
+          "transcript": "You are late."
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-10:i12:r1",
-            "text": "late"
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i12:r2",
-            "text": "early"
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i12:r3",
-            "text": "quiet"
-          }
-        ],
-        "testedDimension": "Вставьте слово — она смотрит на часы и х",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-10:i12:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — она смотрит на часы и х",
-            "feedbackByLocale": {
-              "ru": "Полчаса назад — да. Сейчас часы говорят обратное.",
-              "uk": "Пів години тому — так. Зараз годинник каже протилежне."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i12:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — она смотрит на часы и х",
-            "feedbackByLocale": {
-              "ru": "Она молчала минуту назад, а теперь вскочила. Дело в часах.",
-              "uk": "Вона мовчала хвилину тому, а тепер зірвалася з місця. Річ у годиннику."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are late.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -709,17 +738,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
+      "prompt": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
+      "accessibilityLabel": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are quiet.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
-          "uk": "Складіть фразу — вона мовчить над порожнім горнятком; скажіть їй про це"
+          "ru": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
+          "uk": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це"
         },
         "orderedTokens": [
           "You",
@@ -729,7 +758,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира молчит над пустой ",
+            "feedbackByLocale": {
+              "ru": "с `You` используют `are`, а не `is`",
+              "uk": "з `You` використовують `are`, а не `is`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -739,7 +778,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — она извиняется, что убегает",
+      "prompt": "Вставьте слово — Мира извиняется, что убегает",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-10:i14:r1",
@@ -756,12 +795,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — она извиняется, что убегает",
+      "accessibilityLabel": "Вставьте слово — Мира извиняется, что убегает",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — она извиняется, что убегает",
-          "uk": "Вставте слово — вона вибачається, що тікає"
+          "ru": "Вставьте слово — Мира извиняется, что убегает",
+          "uk": "Вставте слово — Міра вибачається, що тікає"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -780,6 +819,15 @@
         ],
         "testedDimension": "Вставьте слово — она извиняется, что убе",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира извиняется, что убегает",
+            "feedbackByLocale": {
+              "ru": "Верно: если Мира просит прощения, она говорит `I am sorry`.",
+              "uk": "Правильно: якщо Міра просить пробачення, вона каже `I am sorry`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-10:i14:r2",
             "correct": false,
@@ -808,17 +856,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — она уже надела куртку и стоит у двери",
+      "prompt": "Соберите фразу — Мира уже надела куртку и стоит у двери",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — она уже надела куртку и стоит у двери",
+      "accessibilityLabel": "Соберите фразу — Мира уже надела куртку и стоит у двери",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она уже надела куртку и стоит у двери",
-          "uk": "Складіть фразу — вона вже вдягла куртку і стоїть біля дверей"
+          "ru": "Соберите фразу — Мира уже надела куртку и стоит у двери",
+          "uk": "Складіть фразу — Міра вже вдягла куртку і стоїть біля дверей"
         },
         "orderedTokens": [
           "You",
@@ -828,75 +876,49 @@
         "authoredDistractorTokens": [
           "busy"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира уже надела куртку ",
+            "feedbackByLocale": {
+              "ru": "у двери Мира готова идти — `ready`, а не «занята»",
+              "uk": "біля дверей Міра готова йти — `ready`, а не «зайнята»"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-10:i16",
       "ordinal": 19,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — почему она убегает: дел на весь день",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-10:i16:r1",
-          "text": "busy"
-        },
-        {
-          "responseId": "en:lesson-01:session-10:i16:r2",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-10:i16:r3",
-          "text": "quiet"
-        }
-      ],
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Олег спрашивает, почему вы не можете уйти; скажите, что вы заняты",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — почему она убегает: дел на весь день",
+      "audioTargetIds": [
+        "en:lesson-01:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Олег спрашивает, почему вы не можете уйти; скажите, что вы заняты",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — почему она убегает: дел на весь день",
-          "uk": "Вставте слово — чому вона тікає: справ на цілий день"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-10:i16:audio",
+          "transcript": "I am busy."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-10:i16:r1",
-            "text": "busy"
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i16:r2",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i16:r3",
-            "text": "quiet"
-          }
-        ],
-        "testedDimension": "Вставьте слово — почему она убегает: дел",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-10:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — почему она убегает: дел",
-            "feedbackByLocale": {
-              "ru": "Она не устала, у неё просто дела.",
-              "uk": "Вона не втомилася, у неї просто справи."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-10:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — почему она убегает: дел",
-            "feedbackByLocale": {
-              "ru": "Молчание тут не при чём: она объясняет, почему уходит.",
-              "uk": "Мовчання тут ні до чого: вона пояснює, чому йде."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am busy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -975,22 +997,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-10:i18:s01",
+      "interactionId": "en:lesson-01:session-10:i18",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Мира пришла до открытия офиса; скажите ей, что она пришла рано",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-10:i18:s01:audio"
+        "en:lesson-01:session-10:i18:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Мира пришла до открытия офиса; скажите ей, что она пришла рано",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:i18:s01:audio",
+          "audioTargetId": "en:lesson-01:session-10:i18:audio",
           "transcript": "You are early."
         },
         "slowReferenceAudio": null,
@@ -1008,85 +1030,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-10:i18:s02",
+      "interactionId": "en:lesson-01:session-10:i19",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-10:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:i18:s02:audio",
-          "transcript": "I am late."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am late.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-10:i19:s01",
-      "ordinal": 23,
-      "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "prompt": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "You are quiet.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
-          "uk": "Складіть фразу — вона мовчить над порожнім горнятком; скажіть їй про це"
-        },
-        "orderedTokens": [
-          "You",
-          "are",
-          "quiet."
-        ],
-        "authoredDistractorTokens": [
-          "not"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-10:i19:s02",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 2",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "accessibilityLabel": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am tired.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — она молчит над пустой чашкой; скажите ей об этом",
-          "uk": "Складіть фразу — вона мовчить над порожнім горнятком; скажіть їй про це"
+          "ru": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
+          "uk": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися"
         },
         "orderedTokens": [
           "I",
@@ -1094,62 +1053,49 @@
           "tired"
         ],
         "authoredDistractorTokens": [
+          "is",
           "not"
         ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-10:i20:s01",
-      "ordinal": 25,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-10:i20:s01:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:i20:s01:audio",
-          "transcript": "You are early."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are early.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-10:i19:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после долгой дороги вы ",
+            "feedbackByLocale": {
+              "ru": "после `I` используют `am`, а не `is`",
+              "uk": "після `I` використовують `am`, а не `is`"
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-10:i19:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — после долгой дороги вы ",
+            "feedbackByLocale": {
+              "ru": "вы говорите, что устали, поэтому отрицание не нужно",
+              "uk": "ви кажете, що втомилися, тому заперечення не потрібне"
+            }
+          }
         ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-10:i20:s02",
-      "ordinal": 26,
+      "interactionId": "en:lesson-01:session-10:i20",
+      "ordinal": 23,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Мира быстро отвечает на вопросы; скажите ей, что она быстрая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-10:i20:s02:audio"
+        "en:lesson-01:session-10:i20:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Мира быстро отвечает на вопросы; скажите ей, что она быстрая",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:i20:s02:audio",
+          "audioTargetId": "en:lesson-01:session-10:i20:audio",
           "transcript": "You are fast."
         },
         "slowReferenceAudio": null,
@@ -1165,46 +1111,13 @@
         ]
       },
       "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-10:i20:s03",
-      "ordinal": 27,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-10:i20:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-10:i20:s03:audio",
-          "transcript": "You are quiet."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are quiet.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 24,
+  "practiceInteractionCount": 20,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9168a65675ac9b471dbcbed689d286e455bb373131a569489d03c5907dcc7c79"
+  "learnerFingerprint": "edfc6b465f244d8a6cfb4a231a17fb57fca204bd5725acb20e9f3c7e4c788728"
 }

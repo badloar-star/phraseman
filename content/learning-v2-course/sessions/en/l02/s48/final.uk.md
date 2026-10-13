@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-48:i01; family: listen_choose -->
 Ціль: `Am I late?`
 Варіанти: `Am I late?` · `Are we late?` · `Am I early?`
+- Are we late? — *Це запитання про кількох людей. Запис починається з `Am I`: людина запитує лише про себе.*
+- Am I early? — *Це «Я прийшов рано?» Останнє слово в записі — `late`, «із запізненням».*
+
 
 **2 · Вставте слово — ви з другом бачите, що залу ще готують; запитайте організатора, чи рано ви прийшли**
 <!-- interaction_id: en:lesson-02:session-48:i02; family: context_gap_grammar -->
 Ціль: `Are we ___ ?`
 Варіанти: `early` · `ready` · `late`
+- ready — *Це запитання про готовність. Зараз ви уточнюєте час вашого приходу: `early`.*
+- late — *Це запитання про запізнення. Ви хочете дізнатися, чи прийшли раніше запланованого часу.*
+
 
 **3 · Складіть фразу — організатор перевірив ваші нотатки; запитайте, чи ви самі готові до виступу**
 <!-- interaction_id: en:lesson-02:session-48:i03; family: phrase_builder -->
@@ -74,6 +80,9 @@
 <!-- interaction_id: en:lesson-02:session-48:i05; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `wrong` · `clear` · `polite`
+- clear — *Це запитання про зрозумілість або розбірливість. Зараз ви перевіряєте, чи не помилилися щодо часу: `wrong`.*
+- polite — *Це «ввічливий». Ви уточнюєте правильність своїх відомостей, а не манеру спілкування.*
+
 
 **6 · Послухайте й складіть — ви з другом перевіряєте порядок реплік перед репетицією**
 <!-- interaction_id: en:lesson-02:session-48:i06; family: listen_build_dictation -->
@@ -88,6 +97,9 @@
 <!-- interaction_id: en:lesson-02:session-48:i08; family: listen_choose -->
 Ціль: `Am I audible?`
 Варіанти: `Am I audible?` · `Am I clear?` · `Are you audible?`
+- Am I clear? — *Це запитання про розбірливість. Останнє слово в записі — `audible`: перевіряють чутність.*
+- Are you audible? — *Це запитання до співрозмовника. У записі людина починає з `Am I` й перевіряє власний голос.*
+
 
 **9 · Складіть фразу — організатор підтвердив, що голос чути; тепер перевірте, чи розбірливо звучать ваші слова через мікрофон**
 <!-- interaction_id: en:lesson-02:session-48:i09; family: phrase_builder -->
@@ -102,6 +114,9 @@
 <!-- interaction_id: en:lesson-02:session-48:i11; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `polite` · `rude` · `sure`
+- rude — *Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`.*
+- sure — *Це запитання про впевненість. Тут ви просите оцінити вашу манеру спілкування.*
+
 
 **12 · Послухайте й складіть — друг говорить про організатора**
 <!-- interaction_id: en:lesson-02:session-48:i12; family: listen_build_dictation -->
@@ -111,6 +126,9 @@
 <!-- interaction_id: en:lesson-02:session-48:i13; family: listen_choose -->
 Ціль: `You are clear.`
 Варіанти: `You are clear.` · `Are you clear?` · `You are not clear.`
+- Are you clear? — *Це запитання. Запис починається з `You are`: співрозмовник дає оцінку.*
+- You are not clear. — *Заперечення `not` змінює зміст. У записі його немає: мовлення організатора розбірливе.*
+
 
 **14 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-48:i14; family: scripted_repeat_compare -->

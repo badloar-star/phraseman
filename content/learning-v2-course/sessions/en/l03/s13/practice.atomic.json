@@ -288,7 +288,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг предлагает вместо ",
+          "testedDimension": "Вставьте слово — друг предлагает вместо украшения вазу с соседней полки; назовите её полной фразой (`vase` — «ваза»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i05:r2",
@@ -461,17 +461,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i08:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — продавец сп",
-              "feedbackByLocale": {
-                "ru": "Перед гласным звуком в начале `earring` нужно `An`. Короткий ответ сохраняет это маленькое слово.",
-                "uk": "Перед голосним звуком на початку `earring` потрібне `An`. Коротка відповідь зберігає це маленьке слово."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -520,7 +510,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг заметил радиоприём",
+          "testedDimension": "Вставьте слово — друг заметил радиоприёмник на соседнем прилавке; назовите его полной фразой (`radio` — «радиоприёмник»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i09:r2",
@@ -652,17 +642,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец говорит",
-              "feedbackByLocale": {
-                "ru": "В записи перед `earring` звучит `an`. Первый звук названия гласный, поэтому плитка `a` лишняя.",
-                "uk": "У записі перед `earring` звучить `an`. Перший звук назви голосний, тому плитка `a` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -711,7 +691,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг примерил ожерелье;",
+          "testedDimension": "Вставьте слово — друг примерил ожерелье; назовите это украшение полной фразой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i12:r2",
@@ -767,17 +747,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг держит другое укр",
-              "feedbackByLocale": {
-                "ru": "После `Is it` идёт название с `a`: первым в `bracelet` звучит согласный «б».",
-                "uk": "Після `Is it` іде назва з `a`: першим у `bracelet` чути приголосний «б»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -890,17 +860,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг принял пояс за",
-              "feedbackByLocale": {
-                "ru": "После `It is not` нужно `a necklace`. Отрицание не меняет первый звук названия, он остаётся согласным.",
-                "uk": "Після `It is not` потрібне `a necklace`. Заперечення не змінює перший звук назви: він лишається приголосним."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -969,17 +929,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — продавец положил выбран",
-              "feedbackByLocale": {
-                "ru": "Начните с `It is`, затем назовите предмет: перед согласным звуком в `bracelet` нужно `a`.",
-                "uk": "Почніть з `It is`, а тоді назвіть предмет: перед приголосним звуком у `bracelet` потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1268,7 +1218,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг пропонує замість пр",
+          "testedDimension": "Вставте слово — друг пропонує замість прикраси вазу з сусідньої полиці; назвіть її повною фразою (`vase` — «ваза»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i05:r2",
@@ -1441,17 +1391,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i08:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — продавець питає",
-              "feedbackByLocale": {
-                "ru": "Перед гласным звуком в начале `earring` нужно `An`. Короткий ответ сохраняет это маленькое слово.",
-                "uk": "Перед голосним звуком на початку `earring` потрібне `An`. Коротка відповідь зберігає це маленьке слово."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1500,7 +1440,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг помітив радіоприйма",
+          "testedDimension": "Вставте слово — друг помітив радіоприймач на сусідньому прилавку; назвіть його повною фразою (`radio` — «радіоприймач»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i09:r2",
@@ -1632,17 +1572,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець говори",
-              "feedbackByLocale": {
-                "ru": "В записи перед `earring` звучит `an`. Первый звук названия гласный, поэтому плитка `a` лишняя.",
-                "uk": "У записі перед `earring` звучить `an`. Перший звук назви голосний, тому плитка `a` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1691,7 +1621,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг приміряв намисто; н",
+          "testedDimension": "Вставте слово — друг приміряв намисто; назвіть цю прикрасу повною фразою",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-13:i12:r2",
@@ -1747,17 +1677,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — друг тримає іншу прик",
-              "feedbackByLocale": {
-                "ru": "После `Is it` идёт название с `a`: первым в `bracelet` звучит согласный «б».",
-                "uk": "Після `Is it` іде назва з `a`: першим у `bracelet` чути приголосний «б»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1870,17 +1790,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг прийняв пояс",
-              "feedbackByLocale": {
-                "ru": "После `It is not` нужно `a necklace`. Отрицание не меняет первый звук названия, он остаётся согласным.",
-                "uk": "Після `It is not` потрібне `a necklace`. Заперечення не змінює перший звук назви: він лишається приголосним."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1949,17 +1859,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-13:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — продавець поклав обрани",
-              "feedbackByLocale": {
-                "ru": "Начните с `It is`, затем назовите предмет: перед согласным звуком в `bracelet` нужно `a`.",
-                "uk": "Почніть з `It is`, а тоді назвіть предмет: перед приголосним звуком у `bracelet` потрібне `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-26:i02; family: listen_choose -->
 Ціль: `weather`
 Варіанти: `weather` · `water` · `walk`
+- water — *Це «вода». До погоди стосунку не має.*
+- walk — *Це «іти пішки». Слово про ноги, а не про небо.*
+
 
 **3 · Картка слова — time**
 <!-- interaction_id: en:lesson-02:session-26:i03; family: listen_choose -->
@@ -75,6 +78,9 @@
 <!-- interaction_id: en:lesson-02:session-26:i04; family: listen_choose -->
 Ціль: `time`
 Варіанти: `time` · `team` · `toy`
+- team — *Це «команда». Голосна звучить як «і», а в `time` — «ай».*
+- toy — *Це «іграшка». Початок той самий, а далі «ой» замість «ай».*
+
 
 **5 · Складіть фразу — запитайте про погоду**
 <!-- interaction_id: en:lesson-02:session-26:i05; family: phrase_builder -->
@@ -84,6 +90,9 @@
 <!-- interaction_id: en:lesson-02:session-26:i06; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `time` · `weather` · `street`
+- weather — *Це «погода». Ви питаєте не про вулицю, а про годинник.*
+- street — *Це «вулиця». Про неї ви й так знаєте, де стоїте.*
+
 
 **7 · Послухайте і складіть — «котра година»**
 <!-- interaction_id: en:lesson-02:session-26:i07; family: listen_build_dictation -->
@@ -97,10 +106,15 @@
 <!-- interaction_id: en:lesson-02:session-26:i09; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `cold` · `near` · `time`
+- near — *Це «близько». Про відстань, а не про мороз.*
+- time — *Це «час». На питання про погоду воно не відповідає.*
+
 
 **10 · Розрізніть звуки — яке з двох про «холодно»?**
 <!-- interaction_id: en:lesson-02:session-26:i10; family: sound_contrast -->
 Варіанти: `cold` · `gold`
+- gold — *Це «золото». Різниця в найпершому звуці: `cold` починається з «к», `gold` — з «ґ».*
+
 
 **11 · Картка слова — near**
 <!-- interaction_id: en:lesson-02:session-26:i11; family: listen_choose -->
@@ -110,6 +124,9 @@
 <!-- interaction_id: en:lesson-02:session-26:i12; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `near` · `cold` · `time`
+- cold — *Це «холодно». Про погоду, а не про відстань.*
+- time — *Це «час». Відповіді про дорогу воно не дає.*
+
 
 **13 · Картка слова — station**
 <!-- interaction_id: en:lesson-02:session-26:i13; family: listen_choose -->
@@ -119,6 +136,9 @@
 <!-- interaction_id: en:lesson-02:session-26:i14; family: listen_choose -->
 Ціль: `station`
 Варіанти: `station` · `stay` · `sun`
+- stay — *Це «лишитися». Коротше: у `station` два склади, у `stay` один.*
+- sun — *Це «сонце». Голосна інша: у `sun` чути «а», у `station` — «ей».*
+
 
 **15 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-26:i15; family: speed_match -->
@@ -129,10 +149,15 @@
 <!-- interaction_id: en:lesson-02:session-26:i16; family: context_gap_grammar -->
 Ціль: `It is near the ___ .`
 Варіанти: `station` · `weather` · `time`
+- weather — *Це «погода». Місцем вона бути не може.*
+- time — *Це «час». Іти можна до вокзалу, а не до часу.*
+
 
 **17 · Складіть фразу — скажіть, що надворі мороз**
 <!-- interaction_id: en:lesson-02:session-26:i17; family: phrase_builder -->
 Ціль: `It is cold.`
+Плитки: `It` `is` `cold` `what`
+*Плитка `what` зайва: `what` означає «що» і потрібна в запитанні; тут ви повідомляєте `It is cold.`*
 
 **18 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-26:i18:s01; family: scripted_repeat_compare -->

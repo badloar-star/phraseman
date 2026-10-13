@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-40:i01; family: listen_choose -->
 Цель: `Who is he?`
 Варианты: `Who is he?` · `Where is he?` · `Who is she?`
+- Where is he? — *Это «Где он?». В записи первое слово `Who` — друг спрашивает, кто такой Антон.*
+- Who is she? — *Это вопрос о женщине. В записи последнее слово `he` — «он».*
+
 
 **2 · Вставьте слово — Антон встречает всех у себя дома; скажите, что он хозяин вечера**
 <!-- interaction_id: en:lesson-02:session-40:i02; family: context_gap_grammar -->
 Цель: `He is the ___ .`
 Варианты: `host` · `guest` · `intern`
+- guest — *Это «гость». Антон сам принимает гостей у себя, поэтому здесь нужен `host`.*
+- intern — *Это «стажёр». Вы называете его роль на вечеринке, а не на работе.*
+
 
 **3 · Соберите фразу — друг не понял, кто пригласил всех; укажите на Антона и скажите, что он хозяин**
 <!-- interaction_id: en:lesson-02:session-40:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-40:i04; family: listen_choose -->
 Цель: `She is the manager.`
 Варианты: `She is the manager.` · `She is the intern.` · `Is she the manager?`
+- She is the intern. — *Это «Она стажёр». На записи последнее слово `manager`: она руководитель.*
+- Is she the manager? — *Это вопрос. На записи сначала `She is`: хозяин сообщает, кто она.*
+
 
 **5 · Соберите фразу — Мира подошла поздороваться с вашим другом; он тихо просит вас спросить у Антона, кто она**
 <!-- interaction_id: en:lesson-02:session-40:i05; family: phrase_builder -->
@@ -79,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-40:i06; family: context_gap_grammar -->
 Цель: `She is the ___ .`
 Варианты: `manager` · `host` · `guest`
+- host — *Это «хозяйка вечера». Вы объясняете, кем Мира работает: `manager`.*
+- guest — *Это «гостья». Она пришла в гости, но сейчас вы называете её должность — `manager`.*
+
 
 **7 · Послушайте и выберите — какой вопрос хозяин задал другу**
 <!-- interaction_id: en:lesson-02:session-40:i07; family: listen_choose -->
 Цель: `Where is the intern?`
 Варианты: `Where is the intern?` · `Who is the intern?` · `Where is the manager?`
+- Who is the intern? — *Это «Кто стажёр?». В записи вопрос начинается с `Where`: хозяин спрашивает, где он.*
+- Where is the manager? — *Это вопрос о руководителе. В записи последнее слово `intern` — «стажёр».*
+
 
 **8 · Соберите фразу — стажёр подошёл к вам; сообщите хозяину, что стажёр здесь**
 <!-- interaction_id: en:lesson-02:session-40:i08; family: phrase_builder -->
@@ -93,6 +108,9 @@
 <!-- interaction_id: en:lesson-02:session-40:i09; family: context_gap_grammar -->
 Цель: `Who ___ these people?`
 Варианты: `are` · `is` · `am`
+- is — *Вы спрашиваете о нескольких людях: `Who are these people?` Здесь нужно `are`.*
+- am — *В этом вопросе речь о нескольких людях — `these people`. Нужное начало — `Who are`.*
+
 
 **10 · Соедините пары — слова для знакомства с этой компанией**
 <!-- interaction_id: en:lesson-02:session-40:i10; family: speed_match -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-40:i12; family: context_gap_grammar -->
 Цель: `___ is the manager?`
 Варианты: `Where` · `Who` · `Whose`
+- Who — *Получится «Кто руководитель?». Вы знаете, кто она, и теперь ищете её: `Where`.*
+- Whose — *Это слово для вопроса «чей?». Сейчас нужно узнать место, поэтому начните с `Where`.*
+
 
 **13 · Послушайте и соберите — друг спрашивает о близнецах**
 <!-- interaction_id: en:lesson-02:session-40:i13; family: listen_build_dictation -->

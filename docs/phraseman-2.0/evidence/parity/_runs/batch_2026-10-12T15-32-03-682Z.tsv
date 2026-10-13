@@ -1,0 +1,7 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-009	2026-10-12T15:33:40.030Z	timeout	90920	нет маркера+ждали_metro_50мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/onboarding-009.timeout.png	0
+onboarding-paywall-002	2026-10-12T15:35:15.071Z	timeout	90271	нет маркера+ждали_metro_10мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/onboarding-paywall-002.timeout.png	0
+spire-gap-001	2026-10-12T15:36:51.042Z	timeout	90414	нет маркера+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/spire-gap-001.timeout.png	0
+spire-gap-002	2026-10-12T15:38:26.459Z	timeout	90080	нет маркера+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/spire-gap-002.timeout.png	0
+spire-gap-004	2026-10-12T15:40:02.652Z	timeout	90166	нет маркера+ждали_metro_7мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/spire-gap-004.timeout.png	0
+spire-gap-005	2026-10-12T15:41:38.044Z	timeout	90533	нет маркера+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-32-03-682Z/spire-gap-005.timeout.png	0

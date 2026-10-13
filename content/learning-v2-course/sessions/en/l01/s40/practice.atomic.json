@@ -142,6 +142,15 @@
                 "ru": "`am` только про себя одного. «Мы» — это `are`.",
                 "uk": "`am` тільки про себе одного. «Ми» — це `are`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i02:r1",
+              "correct": true,
+              "testedDimension": "Выберите форму после `we` — вы говорите за весь свой стол",
+              "feedbackByLocale": {
+                "ru": "После `we` говорят `We are friendly.`",
+                "uk": "Після `we` кажуть `We are friendly`."
+              }
             }
           ]
         },
@@ -169,7 +178,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — из-за стены весь день гремит смех",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `They` говорят `They are loud.`",
+                "uk": "`is` зайве: з `They` кажуть `They are loud`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -242,6 +261,15 @@
                 "ru": "На конце «нг», а не «нд». И это «король».",
                 "uk": "У кінці «нґ», а не «нд». І це «король»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i04:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Вы слышите `kind`: в конце звучит `nd`.",
+                "uk": "Ви чуєте `kind`: у кінці звучить `nd`."
+              }
             }
           ],
           "isWordCard": false,
@@ -275,7 +303,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — за вашим столом все добрые",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `We` говорят `We are kind.`",
+                "uk": "`is` зайве: з `We` кажуть `We are kind`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -355,7 +393,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — за вашим столом весь об",
+          "testedDimension": "Вставьте слово — за вашим столом весь обед смеются",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i07:r2",
@@ -373,6 +411,15 @@
               "feedbackByLocale": {
                 "ru": "«Опаздываем» — это про часы, а не про то, какие вы.",
                 "uk": "«Спізнюємося» — це про годинник, а не про те, які ви."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — за вашим столом весь обед смеются",
+              "feedbackByLocale": {
+                "ru": "За столом смеются, значит `We are funny.`",
+                "uk": "За столом сміються, отже `We are funny`."
               }
             }
           ]
@@ -416,7 +463,7 @@
             "audioTargetId": "en:lesson-01:session-40:i08:audioB",
             "transcript": "kid"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «доб",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «добрый»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i08:r2",
@@ -425,6 +472,15 @@
               "feedbackByLocale": {
                 "ru": "Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».",
                 "uk": "Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i08:r1",
+              "correct": true,
+              "testedDimension": "Различите звуки — какое из двух про «добрый»?",
+              "feedbackByLocale": {
+                "ru": "`kind` значит «добрый». `kid` — «ребёнок».",
+                "uk": "`kind` означає «добрий». `kid` — «дитина»."
               }
             }
           ]
@@ -500,6 +556,15 @@
                 "ru": "«Мэйн» — другая гласная. `mean` — «мин», долгое «и».",
                 "uk": "«Мейн» — інша голосна. `mean` — «мін», довге «і»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i09:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Вы слышите `mean` — «злой».",
+                "uk": "Ви чуєте `mean` — «злий»."
+              }
             }
           ],
           "isWordCard": false,
@@ -552,7 +617,7 @@
               "text": "friendly"
             }
           ],
-          "testedDimension": "Вставьте слово — вы не согласны, что ваш",
+          "testedDimension": "Вставьте слово — вы не согласны, что ваш отдел злой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i10:r2",
@@ -570,6 +635,15 @@
               "feedbackByLocale": {
                 "ru": "Тоже наоборот: вы как раз дружелюбные.",
                 "uk": "Теж навпаки: ви якраз привітні."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы не согласны, что ваш отдел злой",
+              "feedbackByLocale": {
+                "ru": "Вы отрицаете, что отдел злой: `We are not mean.`",
+                "uk": "Ви заперечуєте, що відділ злий: `We are not mean`."
               }
             }
           ]
@@ -669,6 +743,15 @@
                 "ru": "`am` — только про себя.",
                 "uk": "`am` — тільки про себе."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i12:r1",
+              "correct": true,
+              "testedDimension": "Выберите форму после `they` — вы рассказываете про людей из другого отдела",
+              "feedbackByLocale": {
+                "ru": "После `they` говорят `They are funny.`",
+                "uk": "Після `they` кажуть `They are funny`."
+              }
             }
           ]
         },
@@ -697,7 +780,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы работаете с этими людьми в одном отделе",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `They` говорят `They are my colleagues.`",
+                "uk": "`is` зайве: з `They` кажуть `They are my colleagues`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -831,7 +924,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
+              "feedbackByLocale": {
+                "ru": "`not` лишнее: вы говорите, что вы приветливые — `We are friendly.`",
+                "uk": "`not` зайве: ви кажете, що ви привітні — `We are friendly`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1106,6 +1209,15 @@
                 "ru": "`am` только про себя одного. «Мы» — это `are`.",
                 "uk": "`am` тільки про себе одного. «Ми» — це `are`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i02:r1",
+              "correct": true,
+              "testedDimension": "Виберіть форму після `we` — ви говорите за весь свій стіл",
+              "feedbackByLocale": {
+                "ru": "После `we` говорят `We are friendly.`",
+                "uk": "Після `we` кажуть `We are friendly`."
+              }
             }
           ]
         },
@@ -1133,7 +1245,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — из-за стены весь день гремит смех",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `They` говорят `They are loud.`",
+                "uk": "`is` зайве: з `They` кажуть `They are loud`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1206,6 +1328,15 @@
                 "ru": "На конце «нг», а не «нд». И это «король».",
                 "uk": "У кінці «нґ», а не «нд». І це «король»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i04:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Вы слышите `kind`: в конце звучит `nd`.",
+                "uk": "Ви чуєте `kind`: у кінці звучить `nd`."
+              }
             }
           ],
           "isWordCard": false,
@@ -1239,7 +1370,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — за вашим столом все добрые",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `We` говорят `We are kind.`",
+                "uk": "`is` зайве: з `We` кажуть `We are kind`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1319,7 +1460,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — за вашим столом цілий об",
+          "testedDimension": "Вставте слово — за вашим столом цілий обід сміються",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i07:r2",
@@ -1337,6 +1478,15 @@
               "feedbackByLocale": {
                 "ru": "«Опаздываем» — это про часы, а не про то, какие вы.",
                 "uk": "«Спізнюємося» — це про годинник, а не про те, які ви."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — за вашим столом цілий обід сміються",
+              "feedbackByLocale": {
+                "ru": "За столом смеются, значит `We are funny.`",
+                "uk": "За столом сміються, отже `We are funny`."
               }
             }
           ]
@@ -1380,7 +1530,7 @@
             "audioTargetId": "en:lesson-01:session-40:i08:audioB",
             "transcript": "kid"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «добри",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «добрий»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i08:r2",
@@ -1389,6 +1539,15 @@
               "feedbackByLocale": {
                 "ru": "Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».",
                 "uk": "Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i08:r1",
+              "correct": true,
+              "testedDimension": "Розрізніть звуки — яке з двох про «добрий»?",
+              "feedbackByLocale": {
+                "ru": "`kind` значит «добрый». `kid` — «ребёнок».",
+                "uk": "`kind` означає «добрий». `kid` — «дитина»."
               }
             }
           ]
@@ -1464,6 +1623,15 @@
                 "ru": "«Мэйн» — другая гласная. `mean` — «мин», долгое «и».",
                 "uk": "«Мейн» — інша голосна. `mean` — «мін», довге «і»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i09:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Вы слышите `mean` — «злой».",
+                "uk": "Ви чуєте `mean` — «злий»."
+              }
             }
           ],
           "isWordCard": false,
@@ -1516,7 +1684,7 @@
               "text": "friendly"
             }
           ],
-          "testedDimension": "Вставте слово — ви не згодні, що ваш від",
+          "testedDimension": "Вставте слово — ви не згодні, що ваш відділ злий",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-40:i10:r2",
@@ -1534,6 +1702,15 @@
               "feedbackByLocale": {
                 "ru": "Тоже наоборот: вы как раз дружелюбные.",
                 "uk": "Теж навпаки: ви якраз привітні."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви не згодні, що ваш відділ злий",
+              "feedbackByLocale": {
+                "ru": "Вы отрицаете, что отдел злой: `We are not mean.`",
+                "uk": "Ви заперечуєте, що відділ злий: `We are not mean`."
               }
             }
           ]
@@ -1633,6 +1810,15 @@
                 "ru": "`am` — только про себя.",
                 "uk": "`am` — тільки про себе."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-40:i12:r1",
+              "correct": true,
+              "testedDimension": "Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу",
+              "feedbackByLocale": {
+                "ru": "После `they` говорят `They are funny.`",
+                "uk": "Після `they` кажуть `They are funny`."
+              }
             }
           ]
         },
@@ -1661,7 +1847,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы работаете с этими людьми в одном отделе",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: с `They` говорят `They are my colleagues.`",
+                "uk": "`is` зайве: з `They` кажуть `They are my colleagues`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1795,7 +1991,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-40:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы",
+              "feedbackByLocale": {
+                "ru": "`not` лишнее: вы говорите, что вы приветливые — `We are friendly.`",
+                "uk": "`not` зайве: ви кажете, що ви привітні — `We are friendly`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

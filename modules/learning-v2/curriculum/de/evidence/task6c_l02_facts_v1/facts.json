@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l02-facts.v1",
+  "status": "HOLD_FACTS_ONLY",
+  "canonicalAdmission": "FORBIDDEN",
+  "semanticAdmission": "NOT_EVALUATED",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "capture": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l02_direct_capture_v1/manifest.json",
+    "sha256": "f6aea4f863f4ea06b54a99b4fb8913493d4352c0292c6382c641c88a1fbddbe9"
+  },
+  "facts": [
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1",
+        "senseSpanSha256": "cfe8f854857d65223619ea5c223c076592ff6424dbeb7a93f0b3526d0bebafb0",
+        "senseSpanUtf8Bytes": 9050,
+        "definitionGerman": "seinen ständigen Aufenthalt an einem bestimmten Ort, seine Wohnung in einem bestimmten Haus haben"
+      },
+      "sourceFormFacts": {
+        "morphologySpanSha256": "71208e25cfa546245f0970b02ad201564630f5fff576acfc38d851daa520be72",
+        "morphologySpanUtf8Bytes": 792,
+        "lemma": "wohnen",
+        "partOfSpeech": "Verb",
+        "attestedPresent3sg": "wohnt",
+        "attestedPreterite3sg": "wohnte",
+        "attestedPerfect3sg": "hat gewohnt",
+        "separability": "NOT_ADJUDICATED",
+        "verbPackage": "NOT_ADJUDICATED"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1",
+        "senseSpanSha256": "1394d2752dd905044eeb49b03b75062e2bd42e7c9beca7f3ddf106ab6c29f97b",
+        "senseSpanUtf8Bytes": 4397,
+        "definitionGerman": "Raum, in dem die Speisen zubereitet und gekocht werden"
+      },
+      "morphology": {
+        "morphologySpanSha256": "da8cfb368db1428770a22217e70127760325dd3c278f98a1b901b52d954879ed",
+        "morphologySpanUtf8Bytes": 358,
+        "lemma": "Küche",
+        "article": "die",
+        "plural": "Küchen",
+        "sourceGenderLabel": "Femininum"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1",
+        "senseSpanSha256": "15c9ae0e32b41c0594e402146f55d59977b01110ffbce5fe49389efa85ef1849",
+        "senseSpanUtf8Bytes": 7879,
+        "definitionGerman": "Trinkgefäß (mit Henkel), besonders für heiße Getränke"
+      },
+      "morphology": {
+        "morphologySpanSha256": "8ae608d82a86b4a06da26eb41d19fc0f72dcb0f76ef367d699ed097b355037bc",
+        "morphologySpanUtf8Bytes": 350,
+        "lemma": "Tasse",
+        "article": "die",
+        "plural": "Tassen",
+        "sourceGenderLabel": "Femininum"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1",
+        "senseSpanSha256": "b7792d5c8dde13ea5d7796c223da7619e219d4f53b12bc0231fe357dbca443e6",
+        "senseSpanUtf8Bytes": 4390,
+        "definitionGerman": "rundes Essgeschirr mit erhöhtem Rand, meist aus Porzellan oder Steingut"
+      },
+      "morphology": {
+        "morphologySpanSha256": "9d4c48146b1462b661d790dcb0b8fc042fb6b51ab498155eeed0073714007a0b",
+        "morphologySpanUtf8Bytes": 355,
+        "lemma": "Teller",
+        "article": "der",
+        "plural": "Teller",
+        "sourceGenderLabel": "Maskulinum"
+      }
+    }
+  ],
+  "factReceipt": {
+    "scope": "RAW_SOURCE_FACTS_ONLY",
+    "verdict": "HOLD_FACTS_ONLY",
+    "noSemanticAdmission": true,
+    "noTranslationClaim": true,
+    "noRegionalOrProductiveClaim": true,
+    "noRegisterClaim": true,
+    "noCanonicalPromotion": true
+  }
+}

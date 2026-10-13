@@ -61,21 +61,33 @@
 <!-- interaction_id: en:lesson-02:session-41:i02; family: listen_choose -->
 Ціль: `punctual`
 Варіанти: `punctual` · `factual` · `actual`
+- factual — *Це «заснований на фактах». На початку `factual` чути звук «ф», а в `punctual` — «п».*
+- actual — *Це «справжній». Слово `actual` починається з голосного, а в записі першим чути звук «п»: `punctual`.*
+
 
 **3 · Вставте слово — друг запитує, чи часто ви затримуєтеся; скажіть, що ви пунктуальні й зазвичай приходите в домовлений час**
 <!-- interaction_id: en:lesson-02:session-41:i03; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `punctual` · `early` · `late`
+- early — *Це «рано». Ви описуєте звичку приходити в домовлений час, тому потрібне `punctual`.*
+- late — *Це «пізно» або «із запізненням». Тут ви говорите про свою пунктуальність: `I am punctual`.*
+
 
 **4 · Послухайте й виберіть — яке запитання прозвучало біля дверей**
 <!-- interaction_id: en:lesson-02:session-41:i04; family: listen_choose -->
 Ціль: `Am I early?`
 Варіанти: `Am I early?` · `Am I late?` · `Are you early?`
+- Am I late? — *Це «Я запізнився?» Останнє слово в записі — `early`, «рано».*
+- Are you early? — *Це запитання до співрозмовника. Запис починається з `Am I`: людина запитує про себе.*
+
 
 **5 · Вставте слово — ви назвали другові час сніданку, але сумніваєтеся; запитайте: «Я помиляюся?»**
 <!-- interaction_id: en:lesson-02:session-41:i05; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `wrong` · `sure` · `tired`
+- sure — *Вийде запитання про те, чи ви впевнені. Зараз ви хочете перевірити, чи не помилилися: `Am I wrong?`*
+- tired — *Це «втомлений». Ви перевіряєте своє припущення про час, тому тут потрібне `wrong`.*
+
 
 **6 · Складіть фразу — друг телефонує дізнатися, чи ви дійшли; повідомте, що ви тут**
 <!-- interaction_id: en:lesson-02:session-41:i06; family: phrase_builder -->
@@ -85,6 +97,9 @@
 <!-- interaction_id: en:lesson-02:session-41:i07; family: context_gap_grammar -->
 Ціль: `___ I late?`
 Варіанти: `Am` · `Are` · `Is`
+- Are — *З `I` це запитання починається з `Am`: `Am I late?`*
+- Is — *Тут ви запитуєте про себе. Сполучення `Is I` замініть на `Am I`.*
+
 
 **8 · Складіть фразу — у сусідів ще накривають на стіл; уточніть у друга, чи прийшли ви раніше запланованого часу**
 <!-- interaction_id: en:lesson-02:session-41:i08; family: phrase_builder -->
@@ -99,11 +114,17 @@
 <!-- interaction_id: en:lesson-02:session-41:i10; family: context_gap_grammar -->
 Ціль: `Am I welcome ___ ?`
 Варіанти: `here` · `outside` · `upstairs`
+- outside — *Вийде запитання про те, чи раді вам надворі. Для «тут» потрібне `here`.*
+- upstairs — *Це «нагорі». Ви запитуєте про місце, де стоїте: «тут» — `here`.*
+
 
 **11 · Послухайте й виберіть — що сусід сказав вашому другові біля дверей**
 <!-- interaction_id: en:lesson-02:session-41:i11; family: listen_choose -->
 Ціль: `You are welcome here.`
 Варіанти: `You are welcome here.` · `You are welcome.` · `Am I welcome here?`
+- You are welcome. — *У цьому варіанті немає `here`. У записі сусід каже повністю: `You are welcome here` — «Тобі тут раді».*
+- Am I welcome here? — *Це запитання про себе. Запис починається з `You are`: сусід звертається до вашого друга.*
+
 
 **12 · Складіть фразу — друг теж хвилюється, що запізнився, але ви знаєте, що він прийшов вчасно; заспокойте його**
 <!-- interaction_id: en:lesson-02:session-41:i12; family: phrase_builder -->
@@ -117,6 +138,9 @@
 <!-- interaction_id: en:lesson-02:session-41:i14; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `punctual` · `welcome` · `wrong`
+- welcome — *Це запитання про те, чи вам раді. Зараз ви запитуєте про звичку приходити вчасно: `punctual`.*
+- wrong — *Вийде «Я помиляюся?» Ви просите оцінити свою пунктуальність, тому потрібне `punctual`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-41:i15; family: scripted_repeat_compare -->

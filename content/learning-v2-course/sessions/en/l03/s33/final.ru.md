@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-03:session-33:i05; family: listen_choose -->
 Цель: `shirt`
 Варианты: `shirt` · `shoe` · `sock`
+- shoe — *`shoe` — туфля. В записи звучит `shirt` — рубашка.*
+- sock — *`sock` — носок. В записи звучит `shirt` — рубашка.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-33:i02; family: scripted_repeat_compare -->
@@ -79,6 +82,8 @@
 <!-- interaction_id: en:lesson-03:session-33:i06; family: sound_contrast -->
 Цель: `shirt`
 Варианты: `shirt` · `shoe`
+- shoe — *`shoe` — туфля. В записи звучит `shirt` — рубашка.*
+
 
 **7 · Соберите короткую просьбу — вы выбираете несколько туфель со стола**
 <!-- interaction_id: en:lesson-03:session-33:i08; family: phrase_builder -->
@@ -105,11 +110,19 @@
 <!-- interaction_id: en:lesson-03:session-33:i12; family: listen_choose -->
 Цель: `These are hats.`
 Варианты: `Это шляпы` · `Это шляпа` · `Это туфли` · `Эти шляпы, пожалуйста`
+- Это шляпа — *Так называют один предмет. В записи `these are` и форма `hats` показывают несколько шляп.*
+- Это туфли — *Число совпадает, но в записи назвали `hats` — шляпы, а не туфли.*
+- Эти шляпы, пожалуйста — *Это просьба выбрать шляпы. В записи их просто называют: `These are hats`.*
+
 
 **13 · Вставьте указатель — перед вами несколько рубашек**
 <!-- interaction_id: en:lesson-03:session-33:i13; family: context_gap_grammar -->
 Цель: `___ are shirts.`
 Варианты: `These` · `This` · `That` · `Is`
+- This — *`this` показывает на один предмет и сочетается с `is`. Для нескольких рубашек нужно `these`.*
+- That — *`that` показывает на один предмет. Здесь названо несколько рубашек: `These are shirts`.*
+- Is — *`Is are shirts` не образует фразу. В начале нужен указатель `These`.*
+
 
 **14 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-33:i14; family: scripted_repeat_compare -->

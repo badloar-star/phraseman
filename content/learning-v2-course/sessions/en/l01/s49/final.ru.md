@@ -108,6 +108,7 @@ People ___ loud. → **are** · is · am
 Мама спрашивает, как дела у вашей семьи. Соберите ответ.
 
 Плитки: `is` `family` `My` `fine` `are` → **My family is fine.**
+*(плитка `are` лишняя: `family` — одна семья как целое, поэтому здесь нужно `is`)*
 *(`my` — «мой»; одна плитка лишняя)*
 
 **11 · Вставьте слово — в офисе в шесть вечера пусто**
@@ -127,6 +128,7 @@ everyone — все · nobody — никто · people — люди · family �
 Мама спрашивает о коллегах. Послушайте и соберите ответ: все заняты.
 
 🔊 *Everyone is busy.* Плитки: `is` `busy` `everyone` `are` → **Everyone is busy.**
+*(плитка `are` лишняя: `everyone` требует `is`, даже когда речь о всех)*
 *(`busy` — «занят»)*
 
 **14 · Соберите фразу — рабочий день кончился, и сил не осталось**
@@ -134,6 +136,7 @@ everyone — все · nobody — никто · people — люди · family �
 Мама спрашивает, как вы после рабочего дня. Соберите ответ.
 
 Плитки: `tired` `I` `is` `am` → **I am tired.**
+*(плитка `is` лишняя: после `I` нужна форма `am`)*
 
 **15 · Вставьте слово — про себя после недели**
 <!-- interaction_id: en:lesson-01:session-49:i15; family: context_gap_grammar -->
@@ -162,6 +165,7 @@ I ___ fine. → **am** · is · are
 **19 · Соберите фразу — вы описываете всю дружелюбную команду**
 <!-- interaction_id: en:lesson-01:session-49:i17:s02; family: phrase_builder -->
 Плитки: `Everyone` `is` `kind` `are` → **Everyone is kind.**
+*(плитка `are` лишняя: после `everyone` нужна форма `is`)*
 
 **20 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-49:i17:s03; family: scripted_repeat_compare -->

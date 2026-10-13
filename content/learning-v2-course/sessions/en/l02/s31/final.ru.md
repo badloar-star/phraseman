@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-02:session-31:i02; family: listen_choose -->
 Цель: `menu`
 Варианты: `menu` · `many` · `money`
+- many — *«Много». Прозвучало `menu` — это про список блюд, а не про количество.*
+- money — *«Деньги». Ударный гласный другой: у `menu` слышно «э», у `money` — «а».*
+
 
 **3 · Карточка слова — bill**
 <!-- interaction_id: en:lesson-02:session-31:i03; family: listen_choose -->
@@ -74,11 +77,17 @@
 <!-- interaction_id: en:lesson-02:session-31:i04; family: listen_choose -->
 Цель: `bill`
 Варианты: `bill` · `ball` · `bell`
+- ball — *«Мяч». Гласная другая: в `ball` слышно «о», в `bill` — «и».*
+- bell — *«Колокол». Гласная в середине другая: «э» против «и».*
+
 
 **5 · Вставьте слово — вы только сели за стол и хотите выбрать еду**
 <!-- interaction_id: en:lesson-02:session-31:i05; family: context_gap_grammar -->
 Цель: `The ___ , please.`
 Варианты: `menu` · `bill` · `corner`
+- bill — *Счёт просят, когда поели. Вы только сели.*
+- corner — *`corner` — «угол». Угол вам не принесут.*
+
 
 **6 · Соберите фразу — «что это?», официант положил перед вами книжечку**
 <!-- interaction_id: en:lesson-02:session-31:i06; family: phrase_builder -->
@@ -88,10 +97,15 @@
 <!-- interaction_id: en:lesson-02:session-31:i07; family: context_gap_grammar -->
 Цель: `What is the ___ ?`
 Варианты: `price` · `name` · `bill`
+- name — *`name` — «название». Вы спрашиваете не как блюдо зовут, а сколько оно стоит.*
+- bill — *Счёт — это вся сумма за ужин. Цена одного блюда — `price`.*
+
 
 **8 · Различите звуки — какое из двух про счёт?**
 <!-- interaction_id: en:lesson-02:session-31:i08; family: sound_contrast -->
 Варианты: `bill` · `ball`
+- ball — *Это «мяч». В `ball` слышно «о», в `bill` — «и».*
+
 
 **9 · Соберите фразу — блюдо в меню без названия, спросите как оно называется**
 <!-- interaction_id: en:lesson-02:session-31:i09; family: phrase_builder -->
@@ -106,6 +120,9 @@
 <!-- interaction_id: en:lesson-02:session-31:i11; family: context_gap_grammar -->
 Цель: `Where are the ___ ?`
 Варианты: `toilets` · `prices` · `rules`
+- prices — *`prices` — цены. Они в меню, а не в конце зала.*
+- rules — *`rules` — правила. Их не ищут глазами по залу.*
+
 
 **12 · Произнесите фразу — официант показал на угол зала**
 <!-- interaction_id: en:lesson-02:session-31:i12; family: scripted_repeat_compare -->
@@ -119,6 +136,9 @@
 <!-- interaction_id: en:lesson-02:session-31:i14; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `near` · `bill` · `menu`
+- bill — *`bill` — счёт, а не расстояние.*
+- menu — *Меню лежит на столе, но вопрос был не про него.*
+
 
 **15 · Послушайте и соберите — «где туалеты?»**
 <!-- interaction_id: en:lesson-02:session-31:i15; family: listen_build_dictation -->
@@ -127,6 +147,8 @@
 **16 · Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену**
 <!-- interaction_id: en:lesson-02:session-31:i16; family: phrase_builder -->
 Цель: `What is the price?`
+Плитки: `What` `is` `the` `price` `name`
+*Плитка `name` лишняя: вы спрашиваете цену — `price`, а не название вещи.*
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-31:i17:s01; family: scripted_repeat_compare -->

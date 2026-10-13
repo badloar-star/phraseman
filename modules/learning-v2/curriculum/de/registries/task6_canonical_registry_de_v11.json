@@ -1,0 +1,746 @@
+{
+  "schemaVersion": "learning-v2-german-task6-canonical-registry.v11",
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  },
+  "sourceBindings": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v3",
+      "byteSha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "halloLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_hallo_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "10c1b3de298b46d7e3f0e6e6388349e551ebe4647c2941b55731ab86f8ddc38f"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v3.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v3",
+      "byteSha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "inventoryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v3.json",
+      "schemaVersion": "learning-v2-german-task7-allocation-inventory.v3",
+      "byteSha256": "702a491699774d2f0cc90c19755bc8747a0b1663ddd2e94f272b68d40ddc1d88"
+    },
+    "lexicalRegistryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v3.json",
+      "byteSha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "tschussLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_tschuess_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "b8d90064c6c7994369c8d14d935878f976af0ca45b506e77122f454c16dfe72d"
+    },
+    "lexicalRegistryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v4.json",
+      "byteSha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v2",
+      "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+      "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3"
+    },
+    "captureManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/learning-v2-de-task6c-l02-identity-capture-v4-live-20261012T085552906Z/manifest.json",
+      "byteSha256": "e79b6c6016638ecc943ef633b814761ed5c95595a4e61171fb057da84273a535"
+    },
+    "candidateManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l02_source_admission_candidate_v1/manifest.json",
+      "byteSha256": "d3430ade94b3901bca987f91d9a8ead5ec2efee530470835585e4447d6c3746c"
+    },
+    "phaseAArtifacts": [
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_registry_contract_de_v2.ts",
+        "sha256": "fc168070539f4639674949343166e8f44c7642a49f9bdc15e822c2b60834d955"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v2.ts",
+        "sha256": "1ff9c1669f799d6c88ec0a63b3466797c92677fe9ea5eff03afd9484c600a86c"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/evidence/task6_v2_verb_valency_adjudications_de_v1.json",
+        "sha256": "67132b351dab1ef2960d93bc98421625f75f1b832e1bb301263796a17275edd2"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v2.ts",
+        "sha256": "9402237e9f74883d60d327e09fe695c874878da5fbbdc3fdf4c4b6a5d7856bbe"
+      },
+      {
+        "path": "tests/learning_v2_de_task6_v2_migration_gate.ts",
+        "sha256": "87c150ebd7bb971983a4fff3b651175d9776ad79e7b5bd666987a2ee7bc158f3"
+      },
+      {
+        "path": "tests/learning_v2_de_wohnen_valency_adjudication_gate.ts",
+        "sha256": "fe87810c9b14799fc047d4a51ef6eaef92b3c40817a1fec463c9c78a14041984"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6C_L02_SOURCE_ADMISSION_REVIEW_RECEIPT_2026-10-12.md",
+        "sha256": "e4a577acd94a6d6b21c8fa4d5b2351d655897c768a2cc612d27efe2f0bfe2a99"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6_V2_MIGRATION_AUTHORITY_2026-10-12.md",
+        "sha256": "c20778aa5703fad7f50f2e57c012a22da3ab2cca57fdbfa883e93f31d873cebf"
+      }
+    ],
+    "v1Preservation": {
+      "lexicalRegistry": {
+        "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json",
+        "byteSha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29",
+        "canonicalBodySha256": "57efb49887ccbfc2e05190a32f79b37d19e5831542fcc39d3c6d904c3332e9b2"
+      },
+      "canonicalBundle": {
+        "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+        "byteSha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31",
+        "canonicalBodySha256": "012b337c945cea54af55602d7300ddef6c2164a624d13f0ca2b5235886a62e37",
+        "authorityContextCanonicalSha256": "8a72e2bf6f608158f91707a2edc9a89f4ff86447e82cc3dbd655fdeaed9e96ca",
+        "phraseFramesCanonicalSha256": "7805da5365c290c1d532d31c6d11e24a39d76cea61a6b025e0da74bee55eac29",
+        "pronunciationTargetsCanonicalSha256": "6de9d7ab535b577785228621eb4cad3ff25db45a856bb7243de0f553aa90b2dd"
+      },
+      "lexicalEvidenceModule": {
+        "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts",
+        "sha256": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c"
+      },
+      "task6ContractModule": {
+        "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts",
+        "sha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d"
+      },
+      "canonicalGate": {
+        "path": "tests/learning_v2_de_task6_canonical_registry_gate.ts",
+        "sha256": "355316efccd41433c0e21239bebb69139d4fed3d96708071582de440a2959938"
+      }
+    },
+    "defaultConsumer": {
+      "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+      "byteSha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+      "requiredRegistry": "lexical_senses_de_v1.json",
+      "forbiddenRegistry": "lexical_senses_de_v2.json"
+    },
+    "task6V4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v4.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v4",
+      "byteSha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "inventoryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v4.json",
+      "schemaVersion": "learning-v2-german-task7-allocation-inventory.v4",
+      "byteSha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    },
+    "ichHeisseLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "aaade49d6ba482326b5f0638e617c99744ce3f9242e789928afd7650ea7ccfe3"
+    },
+    "lexicalRegistryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v5.json",
+      "byteSha256": "4ed741cc0e457eff0c3500f98e6c8d62a33a951110d428ff1333075eca99a2c7"
+    },
+    "task6V5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v5.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v5",
+      "byteSha256": "9bbf41335e13dff8f97be3bbd05f21284c99e62c31d5fcb63f7b5f0ab324af91"
+    },
+    "inventoryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v5.json",
+      "schemaVersion": "learning-v2-german-task7-allocation-inventory.v5",
+      "byteSha256": "e1c01fa8ef727c23d128d07bbe5cf67f7c04c6539610817ba39b6e0b555fb3b4"
+    },
+    "v5Closure": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_final_review_closure_v1/closure.json",
+      "byteSha256": "c592bf535b160a846b5e2ddade1491d1aa5c4866d8083d007ab1abfe60641c4b"
+    },
+    "briefkastenSourceHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_source_hold_v1/manifest.json",
+      "byteSha256": "1e8b97c051384f05d02675bc05de4d3c2c6bc27101bc4e07c951b4671de35d69"
+    },
+    "briefkastenCanonicalHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_canonical_admission_hold_v1/manifest.json",
+      "byteSha256": "d2e8906a0fbcb135bad438fdfc1b52ca836e5b5e382838492a415d506d235d38"
+    },
+    "briefkastenLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "bf298f3e6441b615772ff43efb6ec05252aa07fa772a2d15bb2f330ee523ef12"
+    },
+    "lexicalRegistryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v6.json",
+      "byteSha256": "3d45077cba6f20e826ce3fa04732a91fec15d571ac9a0cb54923c8ec84c66e55"
+    },
+    "task6V6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v6",
+      "byteSha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    "inventoryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "schemaVersion": "learning-v2-german-task7-allocation-inventory.v6",
+      "byteSha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    },
+    "v6Closure": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_final_review_closure_v1/closure.json",
+      "byteSha256": "7d12e8f92cc4f190a53cbd2a04463fbd04dde42d39063b704059400e8af0577c"
+    },
+    "gutenTagLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/lexical_evidence.json",
+      "byteSha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    "gutenTagSourceManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/manifest.json",
+      "byteSha256": "23c83a69e545957a8a5314894d27707a2a63991c68dbaeebd50d8592dcb8a0be"
+    },
+    "gutenTagExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/extraction_map.json",
+      "byteSha256": "ce73ac77e2b97229ef9ea94f47ba2b3318bead5886dfe26f4e523911af9f1e57"
+    },
+    "gutenTagRawDwds": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/raw/dwds_guten_tag.html",
+      "byteSha256": "542050aad29117960da3264eaa73dbb41ffe252b7330d1809a4dc6e47c97ebf2"
+    },
+    "gutenTagMetadata": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/raw/dwds_guten_tag.http_metadata.json",
+      "byteSha256": "b6ecc0a42a37f89f327d30b344ec32b18d7fa79b4995d386fe28699c41fa150b"
+    },
+    "lexicalRegistryV11": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v11.json",
+      "schemaVersion": "learning-v2-german-lexical-senses.v11",
+      "byteSha256": "77f0f1df558c9d0ee3c9b8e14f046c63e2261e3e5531e70a4a36dd4f79ad7be4"
+    }
+  },
+  "materialization": {
+    "legacyV1LexicalSenseIds": [
+      "de_lex_l01_c01_nachbarin_v1",
+      "de_lex_l01_c02_aufzug_v1"
+    ],
+    "legacyV1Policy": "PRESERVE_UNCHANGED_DO_NOT_IMPORT_AS_V3_EVIDENCE",
+    "l01HalloLexicalMapping": {
+      "sourcePlanId": "de_lex_plan_l01_c01_hallo_v2",
+      "canonicalLexicalSenseId": "de_lex_l01_c01_hallo_v2",
+      "evidenceId": "DE-LEX-ITEM-L01-C01-HALLO-SENSE-REGISTER-001",
+      "materializationRole": "TASK6_V3_CANONICAL_POSITIVE_ADMISSION"
+    },
+    "l02LexicalMappings": [
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c01_wohnen_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C01-WOHNEN-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c01_kueche_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C01-KUECHE-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c02_tasse_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C02-TASSE-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c02_teller_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C02-TELLER-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      }
+    ],
+    "l01TschuessLexicalMapping": {
+      "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+      "canonicalLexicalSenseId": "de_lex_l01_c02_tschuess_v1",
+      "evidenceId": "DE-LEX-ITEM-L01-C02-TSCHUESS-SENSE-REGISTER-001",
+      "materializationRole": "TASK6_V4_CANONICAL_POSITIVE_ADMISSION_EXACT_SENSE_ONLY",
+      "phraseAuthority": false
+    },
+    "l01IchHeisseLexicalMapping": {
+      "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+      "canonicalLexicalSenseId": "de_lex_l01_c03_ich_heisse_v1",
+      "evidenceId": "DE-LEX-ITEM-L01-C03-ICH-HEISSE-SENSE-FORM-001",
+      "materializationRole": "TASK6_V5_CANONICAL_POSITIVE_ADMISSION_EXACT_FIXED_EXPRESSION_ONLY",
+      "phraseAuthority": false
+    },
+    "l01BriefkastenLexicalMapping": {
+      "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+      "canonicalLexicalSenseId": "de_lex_l01_c03_briefkasten_v1",
+      "evidenceId": "DE-LEX-ITEM-L01-C03-BRIEFKASTEN-SENSE-FORM-001",
+      "materializationRole": "TASK6_V6_CANONICAL_POSITIVE_ADMISSION_EXACT_RESIDENTIAL_MAILBOX_NOUN_ONLY",
+      "phraseAuthority": false
+    },
+    "l01GutenTagLexicalMapping": {
+      "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+      "canonicalLexicalSenseId": "de_lex_l01_c04_guten_tag_v1",
+      "evidenceIds": ["DE-LEX-ITEM-L01-C04-GUTEN-TAG-D11-GREETING-001"],
+      "allocation": {
+        "plannedUsePacketIds": ["de_l01_c04_s32"],
+        "checkpointPacketId": "de_l01_c04_s32",
+        "firstIntroductionPacketId": null,
+        "firstScoredUsePacketId": null
+      },
+      "phraseAuthority": false
+    }
+  },
+  "authorityContext": {
+    "schemaVersion": "learning-v2-german-task6-registry-authority.v11",
+    "lexicalMappings": [
+      {
+        "sourcePlanId": "de_lex_plan_l01_c01_hallo_v2",
+        "canonicalId": "de_lex_l01_c01_hallo_v2",
+        "plannedWordFirstPacketId": "de_l01_c01_s01",
+        "plannedFirstScoredUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c01_nachbarin_v1",
+        "canonicalId": "de_lex_l01_c01_nachbarin_v1",
+        "plannedWordFirstPacketId": "de_l01_c01_s07",
+        "plannedFirstScoredUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+        "canonicalId": "de_lex_l01_c02_tschuess_v1",
+        "plannedUsePacketIds": ["de_l01_c02_s16"],
+        "checkpointPacketId": "de_l01_c02_s16",
+        "firstIntroductionPacketId": null
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c02_aufzug_v1",
+        "canonicalId": "de_lex_l01_c02_aufzug_v1",
+        "plannedWordFirstPacketId": "de_l01_c02_s15",
+        "plannedFirstScoredUsePacketId": "de_l01_c02_s16"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+        "canonicalId": "de_lex_l02_c01_wohnen_v1",
+        "plannedUsePacketIds": ["de_l02_c01_s08"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+        "canonicalId": "de_lex_l02_c01_kueche_v1",
+        "plannedUsePacketIds": ["de_l02_c01_s08"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+        "canonicalId": "de_lex_l02_c02_tasse_v1",
+        "plannedUsePacketIds": ["de_l02_c02_s16"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+        "canonicalId": "de_lex_l02_c02_teller_v1",
+        "plannedUsePacketIds": ["de_l02_c02_s16"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+        "canonicalId": "de_lex_l01_c03_ich_heisse_v1",
+        "plannedUsePacketIds": ["de_l01_c03_s24"],
+        "checkpointPacketId": "de_l01_c03_s24",
+        "firstIntroductionPacketId": null
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+        "canonicalId": "de_lex_l01_c03_briefkasten_v1",
+        "plannedUsePacketIds": ["de_l01_c03_s24"],
+        "checkpointPacketId": "de_l01_c03_s24",
+        "firstIntroductionPacketId": null
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+        "canonicalId": "de_lex_l01_c04_guten_tag_v1",
+        "evidenceIds": ["DE-LEX-ITEM-L01-C04-GUTEN-TAG-D11-GREETING-001"],
+        "plannedUsePacketIds": ["de_l01_c04_s32"],
+        "checkpointPacketId": "de_l01_c04_s32",
+        "firstIntroductionPacketId": null,
+        "firstScoredUsePacketId": null,
+        "phraseAuthority": false
+      }
+    ],
+    "phraseFrameMappings": [
+      {
+        "sourceChapterId": "de_l01_c01",
+        "canonicalId": "de_pf_l01_c01_hallo_v2",
+        "plannedFirstUsePacketId": "de_l01_c01_s01",
+        "plannedFirstScoredUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourceChapterId": "de_l01_c02",
+        "canonicalId": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "plannedFirstUsePacketId": "de_l01_c02_s16"
+      }
+    ],
+    "pronunciationMappings": [
+      {
+        "sourcePlanId": "de_pron_plan_long_short_vowel_diagnostic_v1",
+        "sourceLessonId": "de_l03",
+        "canonicalId": "de_pron_long_short_vowel_diagnostic_v1"
+      }
+    ],
+    "communicativeOutcomeMappings": [
+      {
+        "sourceOutcomeId": "de_l01_ch01_greeting_v2",
+        "canonicalId": "de_out_l01_ch01_greeting_v2",
+        "interactionKind": "GREETING_RECOGNITION"
+      },
+      {
+        "sourceOutcomeId": "de_l01_ch01_participant_v2",
+        "canonicalId": "de_out_l01_ch01_participant_v2",
+        "interactionKind": "PARTICIPANT_IDENTIFICATION"
+      },
+      {
+        "sourceOutcomeId": "de_l01_ch02",
+        "canonicalId": "de_out_l01_ch02_v1"
+      }
+    ],
+    "forbiddenSurfaceForms": [],
+    "pronunciationPresentationPolicies": [
+      {
+        "pronunciationTargetId": "de_pron_long_short_vowel_diagnostic_v1",
+        "canonicalRegion": "DE_STANDARD",
+        "productionPolicy": "productive",
+        "learnerLabel": null
+      }
+    ]
+  },
+  "registry": {
+    "lexicalSenses": [
+      {
+        "id": "de_lex_l01_c01_hallo_v2",
+        "lemma": "Hallo",
+        "senseGloss": "colloquial greeting on meeting",
+        "partOfSpeech": "fixed_expression",
+        "sourcePartOfSpeech": "Interjektion",
+        "partOfSpeechInterpretation": "SOURCE_GROUNDED_INTERJECTION_TO_FIXED_EXPRESSION",
+        "register": "colloquial",
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": ["DE-LEX-ITEM-L01-C01-HALLO-SENSE-REGISTER-001"]
+      },
+      {
+        "id": "de_lex_l01_c01_nachbarin_v1",
+        "lemma": "Nachbarin",
+        "senseGloss": "female person living nearby",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Nachbarinnen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C01-NACHBARIN-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l01_c02_tschuess_v1",
+        "lemma": "Tschüss",
+        "senseGloss": "colloquial informal leave-taking",
+        "partOfSpeech": "fixed_expression",
+        "sourcePartOfSpeech": "Interjektion",
+        "partOfSpeechInterpretation": "SOURCE_GROUNDED_INTERJECTION_TO_FIXED_EXPRESSION",
+        "sourceRegisterMarkers": ["landschaftlich", "umgangssprachlich"],
+        "register": "colloquial",
+        "unqualifiedStandardGermanClaim": false,
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+        "region": "source-marked-landschaftlich",
+        "evidenceIds": ["DE-LEX-ITEM-L01-C02-TSCHUESS-SENSE-REGISTER-001"]
+      },
+      {
+        "id": "de_lex_l01_c02_aufzug_v1",
+        "lemma": "Aufzug",
+        "senseGloss": "lift in a building",
+        "partOfSpeech": "noun",
+        "nounGender": "der",
+        "nounPlural": "Aufzüge",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C02-AUFZUG-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c01_wohnen_v1",
+        "lemma": "wohnen",
+        "senseGloss": "live or reside at a home",
+        "partOfSpeech": "verb",
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": ["subject", "residence-location complement"],
+        "verbFrame": "intransitive residence frame",
+        "verbSeparability": "INSEPARABLE",
+        "verbAuxiliary": "haben",
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C01-WOHNEN-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c01_kueche_v1",
+        "lemma": "Küche",
+        "senseGloss": "room for preparing food",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Küchen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C01-KUECHE-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c02_tasse_v1",
+        "lemma": "Tasse",
+        "senseGloss": "handled cup for a hot drink",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Tassen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C02-TASSE-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c02_teller_v1",
+        "lemma": "Teller",
+        "senseGloss": "flat dish used for serving food",
+        "partOfSpeech": "noun",
+        "nounGender": "der",
+        "nounPlural": "Teller",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C02-TELLER-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l01_c03_ich_heisse_v1",
+        "lemma": "Ich heiße",
+        "senseGloss": "fixed first-person expression for giving one's name",
+        "partOfSpeech": "fixed_expression",
+        "sourceLemma": "heißen",
+        "sourcePartOfSpeech": "Verb",
+        "sourceSense": "genannt werden, den Namen haben",
+        "partOfSpeechInterpretation": "SOURCE_GROUNDED_FIRST_PERSON_VERB_CHUNK_TO_FIXED_EXPRESSION",
+        "sourceRegisterMarkers": null,
+        "register": null,
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+        "region": null,
+        "evidenceIds": ["DE-LEX-ITEM-L01-C03-ICH-HEISSE-SENSE-FORM-001"]
+      },
+      {
+        "id": "de_lex_l01_c03_briefkasten_v1",
+        "lemma": "Briefkasten",
+        "senseGloss": "mailbox at a residence",
+        "partOfSpeech": "noun",
+        "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+        "sourceSenseAnchor": "d-1-2",
+        "rejectedSourceSenseAnchor": "d-1-1",
+        "partOfSpeechInterpretation": "SOURCE_GROUNDED_MASCULINE_SUBSTANTIV_TO_NOUN",
+        "sourceRegisterMarkers": null,
+        "register": null,
+        "nounGender": "der",
+        "nounPlural": "Briefkästen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+        "region": null,
+        "evidenceIds": ["DE-LEX-ITEM-L01-C03-BRIEFKASTEN-SENSE-FORM-001"]
+      },
+      {
+        "id": "de_lex_l01_c04_guten_tag_v1",
+        "lemma": "Guten Tag",
+        "senseGloss": "polite formula used as a greeting",
+        "partOfSpeech": "fixed_expression",
+        "sourceHeadword": "guten Tag",
+        "sourcePartOfSpeech": "Mehrwortausdruck",
+        "sourceSenseAnchor": "d-1-1",
+        "sourceSense": "höfliche Formel zur Begrüßung",
+        "excludedSourceSenseSegments": [
+          "gelegentlich auch zum Abschied",
+          "d-1-2"
+        ],
+        "pragmaticFunction": "interaction_opening",
+        "partOfSpeechInterpretation": "SOURCE_GROUNDED_MULTIWORD_EXPRESSION_TO_FIXED_EXPRESSION",
+        "sourcePolitenessMarker": "höfliche",
+        "sourceRegisterMarkers": null,
+        "register": null,
+        "timeOfDayScope": ["am Vormittag", "am Mittag", "am Nachmittag"],
+        "neutralRegisterClaim": false,
+        "formalRegisterClaim": false,
+        "unqualifiedFormalAddressClaim": false,
+        "phraseAuthority": false,
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+        "region": null,
+        "evidenceIds": ["DE-LEX-ITEM-L01-C04-GUTEN-TAG-D11-GREETING-001"]
+      }
+    ],
+    "phraseFrames": [
+      {
+        "id": "de_pf_l01_c01_hallo_v2",
+        "frame": "Hallo!",
+        "grammarConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+        "lexicalSenseIds": ["de_lex_l01_c01_hallo_v2"],
+        "communicativeOutcomeIds": ["de_out_l01_ch01_greeting_v2"],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": ["DE-LEX-ITEM-L01-C01-HALLO-SENSE-REGISTER-001"]
+      },
+      {
+        "id": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "frame": "Tschüss! Der Aufzug.",
+        "grammarConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+        "lexicalSenseIds": ["de_lex_l01_c02_aufzug_v1"],
+        "communicativeOutcomeIds": ["de_out_l01_ch02_v1"],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": ["DE-RSCH-CEFR-003"]
+      }
+    ],
+    "pronunciationTargets": [
+      {
+        "id": "de_pron_long_short_vowel_diagnostic_v1",
+        "target": "German vowel duration and length-quality diagnostic",
+        "perceptionEvidenceIds": ["DE-PHON-RU-001", "DE-PHON-RU-004"],
+        "productionEvidenceIds": ["DE-PHON-RU-001"],
+        "ruApplicability": {
+          "status": "APPLIES",
+          "correctiveRoute": "varied vowel duration and quality diagnostics",
+          "rationale": "Use varied diagnostic and recycling evidence without claiming native-like production.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-001",
+              "evidenceStatus": "DIRECT_L2_RU"
+            },
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-004",
+              "evidenceStatus": "DIRECT_L2_RU"
+            }
+          ]
+        },
+        "ukApplicability": {
+          "status": "DIAGNOSTIC_ONLY",
+          "correctiveRoute": "diagnose length-quality after an observed response",
+          "rationale": "Contrastive risk is a hypothesis and is never a presumed nationality error.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-UK-002",
+              "evidenceStatus": "CONTRASTIVE_RISK"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "rejectedAudits": [
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v10.json",
+      "byteSha256": "77f0f1df558c9d0ee3c9b8e14f046c63e2261e3e5531e70a4a36dd4f79ad7be4",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v10.json",
+      "byteSha256": "93e7a4f2413f879945c5f740d5f98cc0b18c5a60c03bb80eac32697ec1ac6ecd",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v10.json",
+      "byteSha256": "dff3fb050d58906eadbb92b0e75fc955e6d7ce848a9164c17f8b574a102679eb",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v10_evidence_only_reconciliation_de_v1.ts",
+      "byteSha256": "5d7aff945ffa5f32c9d2f33bf85a6deed99079ce43d867ca4c3e4d5d92af6a11",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "tests/learning_v2_de_task6c_l01_guten_tag_v10_evidence_only_reconciliation_gate.ts",
+      "byteSha256": "3a18b3290c276ee27b0958cb96a26ca4ed91ccd82a43cb39aa1499bcad8e2bdf",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v10_typescript_evidence.mjs",
+      "byteSha256": "e58d1e92bda41e443ad4ee9db92b4b7a31bcad9d52922e18457c6078b2113a95",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/manifest.json",
+      "byteSha256": "062d709fbb877d75ee327e02dea6abb02fc8b86996cd345ad2f9a9d78eec1c01",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/typescript_evidence.json",
+      "byteSha256": "166ccf86e389d5cd640c812e97e991829166e7119377b893c47c66a0f3769c95",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/focused_tsc.log",
+      "byteSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/repository_tsc_8192.log",
+      "byteSha256": "c1ddaee2bf4d1853e53f288e60b306962074490ac735a28a58adac32f0c734f7",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_GUTEN_TAG_V10_EVIDENCE_ONLY_RECONCILIATION_RECEIPT_2026-10-13.md",
+      "byteSha256": "a0d89d62aa541cc74223c321e6ac66698e853bf182b5f01d8335ef9607b5fa57",
+      "status": "REJECTED_NOT_AUTHORITY"
+    }
+  ]
+}

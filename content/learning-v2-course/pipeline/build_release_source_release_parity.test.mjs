@@ -6,7 +6,31 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { factoryManifestCorrectChoiceIndexes, sourceReleaseSemanticParityIssues } from "./build_release.mjs";
+import {
+  atomicMarkdownParityIssues,
+  factoryManifestCorrectChoiceIndexes,
+  sourceReleaseScopeIssues,
+  sourceReleaseSemanticParityIssues,
+} from "./build_release.mjs";
+import { applyPracticeExplanationsV1 } from "./practice_explanations_v1.mjs";
+
+test("legacy title-only word cards compare their taught word, not the shortened generic title", () => {
+  const sessionId = "en:lesson-02:session-01";
+  const task = { ordinal: 1, title: "Карточка слова — awake", interactionId: `${sessionId}:i01`, family: "listen_choose", target: "awake", options: [] };
+  const interaction = {
+    interactionId: task.interactionId,
+    family: "listen_choose",
+    prompt: "Карточка слова — awake",
+    responseOptions: [],
+    modePayload: { isWordCard: true, referenceAudio: { transcript: "awake" }, wordCard: { word: "awake" } },
+  };
+  assert.deepEqual(atomicMarkdownParityIssues({
+    sessionIdentity: "en/l02/s01",
+    sessionId,
+    atomicSource: { schemaVersion: "learning_v2_atomic_practice_source_v1", courseSessionId: sessionId, interactionsByLocale: { ru: [interaction] }, answers: [] },
+    tasksByLocale: { ru: [task] },
+  }), []);
+});
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
@@ -151,6 +175,120 @@ test("source/release parity reports every independent semantic mismatch", () => 
     assert.ok(issues.some((issue) => issue.includes(expected)), `missing ${expected}\n${issues.join("\n")}`);
   }
   assert.ok(issues.length >= 11, issues.join("\n"));
+});
+
+test("source/release parity uses the validated explanation sidecar for speed-pair analysis and still rejects drift", () => {
+  const sessionId = "en:lesson-01:session-01";
+  const interaction = {
+    interactionId: `${sessionId}:i01`, family: "speed_match", inputMode: "pair_grid", prompt: "Соедините пары", responseOptions: [],
+    modePayload: { pairGrid: [{ pairId: `${sessionId}:i01:p1`, target: "ready", meaningByLocale: { ru: "готов" } }] },
+  };
+  const atomicSource = {
+    schemaVersion: "learning_v2_atomic_practice_source_v1", courseSessionId: sessionId,
+    interactionsByLocale: { ru: [interaction] }, answers: [{ interactionId: interaction.interactionId, correctText: `${sessionId}:i01:p1=ready`, correctResponseId: null }],
+  };
+  const analysis = {
+    lemma: "ready", partOfSpeech: "adjective", partOfSpeechLabelByLocale: { ru: "прилагательное", uk: "прикметник" },
+    meaningByLocale: { ru: "готов", uk: "готовий" }, functionByLocale: { ru: "Описывает состояние.", uk: "Описує стан." },
+    matchExplanationByLocale: { ru: "Подходит по смыслу.", uk: "Підходить за змістом." }, sourceRefs: ["final.ru.md#practice-i01"],
+  };
+  const sidecar = { interactions: { [interaction.interactionId]: { pairs: [{ pairId: `${sessionId}:i01:p1`, target: "ready", analysisV1: analysis }] } } };
+  const projected = applyPracticeExplanationsV1({ atomicSource, sidecar });
+  const release = { courseSessionId: sessionId, interactions: projected.interactionsByLocale.ru };
+  const base = {
+    sessionIdentity: "en/l01/s01", sessionId, atomicSource, practiceExplanationsSidecar: sidecar, practiceExplanationsValidated: true,
+    sourceIntroByLocale: {}, releaseIntro: { courseSessionId: sessionId, pages: [] },
+    releaseLearnersByLocale: { ru: release }, releaseAnswers: atomicSource.answers, locales: ["ru"],
+  };
+  assert.deepEqual(sourceReleaseSemanticParityIssues(base), []);
+  release.interactions[0].modePayload.pairGrid[0].analysisV1.matchExplanationByLocale.ru = "Другая причина.";
+  assert.ok(sourceReleaseSemanticParityIssues(base).some((issue) => issue.includes("modePayload.pairGrid")));
+  assert.ok(sourceReleaseSemanticParityIssues({ ...base, practiceExplanationsValidated: false })
+    .some((issue) => issue.includes("practice_explanations_unvalidated")));
+});
+
+test("source/release parity preserves intro response token analyses in auxiliary output", () => {
+  const sessionId = "en:lesson-01:session-01";
+  const atomicSource = {
+    schemaVersion: "learning_v2_atomic_practice_source_v1", courseSessionId: sessionId,
+    interactionsByLocale: { ru: [] }, answers: [],
+  };
+  const analysis = {
+    text: "I am here.", meaningByLocale: { ru: "Я здесь.", uk: "Я тут." },
+    explanationByLocale: { ru: "Разбор.", uk: "Розбір." }, units: [],
+  };
+  const responseId = `${sessionId}:intro1:r1`;
+  const diagnostics = {
+    errorType: "missing_linking_verb",
+    whyTemptingByLocale: { ru: "Похоже на короткую фразу.", uk: "Схоже на коротку фразу." },
+    whyWrongHereByLocale: { ru: "Нужен am.", uk: "Потрібне am." },
+    minimalContrastByLocale: { ru: "I here. → I am here.", uk: "I here. → I am here." },
+    acceptabilityBoundaryByLocale: { ru: "Только заметка.", uk: "Лише нотатка." },
+  };
+  const sidecar = { introResponses: [{ responseId, correct: false, analysisByLocale: { ru: analysis, uk: analysis }, ...diagnostics }], interactions: {} };
+  const releaseAuxiliary = structuredClone({
+    courseSessionId: sessionId,
+    entries: [1, 2, 3].map((ordinal) => ({
+      interactionId: `${sessionId}:intro${ordinal}:q`,
+      responseAnalysisById: ordinal === 1 ? { [responseId]: { ru: analysis, uk: analysis } } : {},
+      responseDiagnosticsById: ordinal === 1 ? { [responseId]: diagnostics } : {},
+    })),
+  });
+  const base = {
+    sessionIdentity: "en/l01/s01", sessionId, atomicSource,
+    practiceExplanationsSidecar: sidecar, practiceExplanationsValidated: true,
+    sourceIntroByLocale: {}, releaseIntro: { courseSessionId: sessionId, pages: [] }, releaseAuxiliary,
+    releaseLearnersByLocale: { ru: { courseSessionId: sessionId, interactions: [] } }, releaseAnswers: [], locales: ["ru"],
+  };
+  assert.deepEqual(sourceReleaseSemanticParityIssues(base), []);
+  releaseAuxiliary.entries[0].responseAnalysisById[responseId].ru.explanationByLocale.ru = "Подмена.";
+  assert.ok(sourceReleaseSemanticParityIssues(base).some((issue) => issue.includes("responseAnalysisById")));
+  releaseAuxiliary.entries[0].responseAnalysisById[responseId].ru.explanationByLocale.ru = "Разбор.";
+  releaseAuxiliary.entries[0].responseDiagnosticsById[responseId].minimalContrastByLocale.ru = "Подмена.";
+  assert.ok(sourceReleaseSemanticParityIssues(base).some((issue) => issue.includes("responseDiagnosticsById")));
+});
+
+test("official scoped parity projects the validated sidecar before comparing speed-pair analysis", () => {
+  const courseRoot = path.resolve(HERE, "..");
+  const privateCandidate = fs.mkdtempSync(path.join(os.tmpdir(), "learning-v2-sidecar-scope-"));
+  const build = spawnSync(process.execPath, [
+    path.join(HERE, "build_release.mjs"),
+    "--session", "en/l01/s01",
+    "--locales", "ru,uk",
+    "--out", privateCandidate,
+    "--candidate-preview",
+  ], { encoding: "utf8" });
+  assert.equal(build.status, 0, `${build.stdout}\n${build.stderr}`);
+  const releaseDir = path.join(privateCandidate, "en/l01/s01");
+
+  const baseline = sourceReleaseScopeIssues({
+    root: courseRoot,
+    scope: "en/l01/s01",
+    locales: ["ru", "uk"],
+    releaseRoot: privateCandidate,
+  });
+  assert.equal(
+    baseline.some((issue) => issue.includes("modePayload.pairGrid")),
+    false,
+    baseline.join("\n"),
+  );
+
+  const learnerPath = path.join(releaseDir, "learner.json");
+  const learner = JSON.parse(fs.readFileSync(learnerPath, "utf8"));
+  const interaction = learner.interactions.find((item) => item.interactionId === "en:lesson-01:session-01:i08");
+  interaction.modePayload.pairGrid[0].analysisV1.matchExplanationByLocale.ru = "Подменённое объяснение.";
+  fs.writeFileSync(learnerPath, JSON.stringify(learner));
+
+  const mutated = sourceReleaseScopeIssues({
+    root: courseRoot,
+    scope: "en/l01/s01",
+    locales: ["ru", "uk"],
+    releaseRoot: privateCandidate,
+  });
+  assert.ok(
+    mutated.some((issue) => issue.includes("modePayload.pairGrid")),
+    mutated.join("\n"),
+  );
 });
 
 test("intro parity blocks changed visible copy and canonical IDs even when choice text is unchanged", () => {
@@ -331,6 +469,7 @@ test("source/release check command prints all mismatches and exits non-zero", ()
   fs.mkdirSync(pipeline, { recursive: true });
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "owner_quality.mjs",
     "progression_quality_gate.mjs",
     "session_readiness.mjs",
@@ -338,6 +477,10 @@ test("source/release check command prints all mismatches and exits non-zero", ()
     "single_phrase_release.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(HERE, name), path.join(pipeline, name));
+  const visibleTextModule = path.resolve(HERE, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
+  const fixtureVisibleTextModule = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
+  fs.mkdirSync(path.dirname(fixtureVisibleTextModule), { recursive: true });
+  fs.copyFileSync(visibleTextModule, fixtureVisibleTextModule);
 
   const fixture = sourceFixture();
   const release = divergentRelease(fixture);

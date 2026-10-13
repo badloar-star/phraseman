@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-19:i02; family: listen_choose -->
 Ціль: `story`
 Варіанти: `story` · `store` · `stormy`
+- store — *`store` — «магазин». У ньому один склад, а в `story` — два: після першої голосної частини чути продовження. Дослухайте слово.*
+- stormy — *`stormy` — «штормовий». Перед останньою голосною губи змикаються на «м». У `story` там чути англійський звук `r`, і губи не змикаються. Дослухайте середину слова.*
+
 
 **3 · Картка слова — country**
 <!-- interaction_id: en:lesson-03:session-19:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-19:i04; family: listen_choose -->
 Ціль: `country`
 Варіанти: `country` · `county` · `entry`
+- county — *`county` — «графство». У першому складі голосний переходить в інший звук, а в `country` він звучить рівно. Слухайте перший склад.*
+- entry — *`entry` — «вхід». Воно починається з голосного, а `country` — зі звука «к». Кінець схожий, тож шукайте різницю на початку.*
+
 
 **5 · Зберіть фразу — сестра питає, що це за тексти у збірці; це короткі історії, скажіть «Це історії»**
 <!-- interaction_id: en:lesson-03:session-19:i05; family: phrase_builder -->
@@ -83,11 +89,17 @@
 <!-- interaction_id: en:lesson-03:session-19:i07; family: listen_choose -->
 Ціль: `battery`
 Варіанти: `battery` · `flattery` · `buttery`
+- flattery — *`flattery` — «лестощі». На початку чути поєднання «фл», а в `battery` — «б». Решта слова звучить схоже.*
+- buttery — *`buttery` — «маслянистий». У `battery` рот на першій голосній відкривається ширше, ніж у `buttery`. Порівняйте початок.*
+
 
 **8 · Вставте назву — сестра читає на коробці пазла «Франція, Німеччина»; скажіть про ці місця «Це країни»**
 <!-- interaction_id: en:lesson-03:session-19:i08; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `countries` · `countrys` · `country`
+- countrys — *Перед `y` стоїть приголосна літера. Для кількох країн потрібно міняти `y` на `ies`, а не дописувати `s`.*
+- country — *Так називається одна країна. Тут названо дві, тому обираємо `countries`.*
+
 
 **9 · Зберіть питання — сестра тримає паковання з кількома маленькими циліндрами; запитайте «Це батарейки?»**
 <!-- interaction_id: en:lesson-03:session-19:i09; family: phrase_builder -->
@@ -98,6 +110,9 @@
 <!-- interaction_id: en:lesson-03:session-19:i10; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `boxes` · `box` · `boxs`
+- box — *Коробок дві. У цій фразі потрібна форма для кількох: `boxes`.*
+- boxs — *Для кількох коробок до `box` дописуємо `es`: `boxes`. Однієї доданої `s` замало.*
+
 
 **11 · Послухайте й зберіть — сестра говорить про тексти на пакованні**
 <!-- interaction_id: en:lesson-03:session-19:i11; family: listen_build_dictation -->
@@ -113,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-19:i13; family: listen_choose -->
 Ціль: `Are they countries?`
 Варіанти: `Are they countries?` · `They are countries.` · `Are they stories?`
+- They are countries. — *Тут спочатку `They are`: це повідомлення. У записі питання починається з `Are they`.*
+- Are they stories? — *Це питання про історії: `stories`. У записі наприкінці звучить `countries` — «країни».*
+
 
 **14 · Зберіть питання — сестра складає два паковання, а ви не бачите їх через стіл; уточніть «Це коробки?»**
 <!-- interaction_id: en:lesson-03:session-19:i14; family: phrase_builder -->
@@ -123,6 +141,9 @@
 <!-- interaction_id: en:lesson-03:session-19:i15; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `batteries` · `batterys` · `battery`
+- batterys — *До кінцевої `y` після приголосної не просто додаємо `s`: міняємо `y` на `ies`. Виходить `batteries`.*
+- battery — *Батарейок чотири. Для кількох потрібне `batteries`, а не назва однієї батарейки.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-19:i16; family: scripted_repeat_compare -->

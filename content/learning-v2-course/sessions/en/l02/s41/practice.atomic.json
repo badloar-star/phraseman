@@ -169,7 +169,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, часто ",
+          "testedDimension": "Вставьте слово — друг спрашивает, часто ли вы задерживаетесь; скажите, что вы пунктуальны и обычно приходите к назначенному времени",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i03:r2",
@@ -314,7 +314,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — вы назвали другу время ",
+          "testedDimension": "Вставьте слово — вы назвали другу время завтрака, но сомневаетесь; спросите: «Я ошибаюсь?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i05:r2",
@@ -411,7 +411,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — хозяин открыл дверь; сп",
+          "testedDimension": "Вставьте слово — хозяин открыл дверь; спросите его: «Я опоздал?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i07:r2",
@@ -581,7 +581,7 @@
               "text": "upstairs"
             }
           ],
-          "testedDimension": "Вставьте слово — спросите друга: «Мне зд",
+          "testedDimension": "Вставьте слово — спросите друга: «Мне здесь рады?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i10:r2",
@@ -787,7 +787,7 @@
               "text": "wrong"
             }
           ],
-          "testedDimension": "Вставьте слово — вы с другом часто встре",
+          "testedDimension": "Вставьте слово — вы с другом часто встречаетесь; спросите его, считает ли он вас пунктуальным человеком",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i14:r2",
@@ -1074,7 +1074,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує, чи часто в",
+          "testedDimension": "Вставте слово — друг запитує, чи часто ви затримуєтеся; скажіть, що ви пунктуальні й зазвичай приходите в домовлений час",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i03:r2",
@@ -1219,7 +1219,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — ви назвали другові час с",
+          "testedDimension": "Вставте слово — ви назвали другові час сніданку, але сумніваєтеся; запитайте: «Я помиляюся?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i05:r2",
@@ -1316,7 +1316,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — господар відчинив двері;",
+          "testedDimension": "Вставте слово — господар відчинив двері; запитайте його: «Я запізнився?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i07:r2",
@@ -1486,7 +1486,7 @@
               "text": "upstairs"
             }
           ],
-          "testedDimension": "Вставте слово — запитайте друга: «Мені т",
+          "testedDimension": "Вставте слово — запитайте друга: «Мені тут раді?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i10:r2",
@@ -1692,7 +1692,7 @@
               "text": "wrong"
             }
           ],
-          "testedDimension": "Вставте слово — ви з другом часто зустрі",
+          "testedDimension": "Вставте слово — ви з другом часто зустрічаєтеся; запитайте, чи вважає він вас пунктуальною людиною",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-41:i14:r2",

@@ -1,0 +1,61 @@
+name: German Learning V2 L02 capture attestation contract
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  fail-closed-contract:
+    runs-on: ubuntu-24.04
+    environment: learning-v2-de-l02-capture-attestation
+    timeout-minutes: 5
+    steps:
+      - name: Deny inadmissible dispatches
+        shell: bash
+        run: |
+          set -euo pipefail
+          deny() {
+            printf '%s\n' 'CAPTURE_WORKFLOW_ADMISSION_DENIED' >&2
+            exit 1
+          }
+          test "${RUNNER_ENVIRONMENT-}" = "github-hosted" || deny
+          test "${GITHUB_REPOSITORY-}" = "badloar-star/phraseman" || deny
+          test "${GITHUB_EVENT_NAME-}" = "workflow_dispatch" || deny
+          test "${GITHUB_REF-}" = "refs/heads/master" || deny
+          test "${GITHUB_REF_PROTECTED-}" = "true" || deny
+          test "${GITHUB_WORKFLOW_REF-}" = "badloar-star/phraseman/.github/workflows/learning-v2-de-l02-capture-attestation.yml@refs/heads/master" || deny
+          [[ "${GITHUB_SHA-}" =~ ^[0-9a-f]{40}$ ]] || deny
+          test "${GITHUB_WORKFLOW_SHA-}" = "$GITHUB_SHA" || deny
+
+      - name: Check out the exact dispatch commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+          clean: true
+          fetch-depth: 1
+
+      - name: Verify the exact checked-out commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          deny() {
+            printf '%s\n' 'CAPTURE_WORKFLOW_ADMISSION_DENIED' >&2
+            exit 1
+          }
+          checkout_head="$(git rev-parse HEAD)" || deny
+          test "$checkout_head" = "$GITHUB_SHA" || deny
+
+      - name: Set up the future producer runtime
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
+        with:
+          node-version: "22"
+
+      - name: Fail closed until capture producer and external governance exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf '%s\n' 'CAPTURE_PRODUCER_AND_EXTERNAL_GOVERNANCE_NOT_READY' >&2
+          exit 1

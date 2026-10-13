@@ -142,6 +142,8 @@ It is ___ . → **warm** · cold · dark
 <!-- interaction_id: en:lesson-01:session-25:i15; family: listen_build_dictation -->
 🔊 *It is nice.* Плитки: `nice` `It` `is` `am` → **It is nice.**
 Зайва плитка `am`: з `It` ставлять `is` — `It is nice`.
+*(плитка `am` зайва: `am` зайве: з `It` ставлять `is` — `It is nice`.)*
+
 
 **16 · З'єднайте пари — слова, які вже звучали**
 <!-- interaction_id: en:lesson-01:session-25:i16; family: speed_match -->
@@ -159,6 +161,8 @@ new — новий · warm — теплий · quiet — тихий · nice — 
 <!-- interaction_id: en:lesson-01:session-25:i17:s03; family: listen_build_dictation -->
 🔊 *It is quiet.* Плитки: `quiet` `It` `is` `are` → **It is quiet.**
 Зайва плитка `are`: з `It` ставлять `is` — `It is quiet`.
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is quiet`.)*
+
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-25:i17:s04; family: scripted_repeat_compare -->

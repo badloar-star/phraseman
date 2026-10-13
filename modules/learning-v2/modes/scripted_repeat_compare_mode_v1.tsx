@@ -38,6 +38,7 @@ import { useScaledTextStyles } from "../../../hooks/useLineScale";
 import { useRuntimeActive } from "../../../hooks/use_runtime_active";
 import type { LearningV2LocalHoldToTalkStatusV1 } from "../../../hooks/use_learning_v2_local_hold_to_talk_v1";
 import type { LearningV2ModeCommonPropsV1 } from "./mode_contract_v1";
+import { LearningV2ModeFeedbackLaneV1 } from "./mode_feedback_v1";
 import { learningV2ModeRepeatCompareCopyV1 } from "./mode_copy_v1";
 
 const EASE = Easing.bezier(0.23, 1, 0.32, 1);
@@ -65,6 +66,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
     onPlayFullPhraseAudio,
     voiceStatus,
     instruction,
+    learnerFeedback,
     modePayload,
     phase,
     referenceAudioState,
@@ -214,6 +216,7 @@ export function ScriptedRepeatCompareModeV1(props: ScriptedRepeatCompareModeProp
       )}
 
       {explanation ? <Lv2Explain style={sx.feedbackLane}>{explanation}</Lv2Explain> : null}
+      <LearningV2ModeFeedbackLaneV1 feedback={learnerFeedback} interfaceLocale={interfaceLocale} />
       {resolved && (
         // зачем (learning-v2.html, `.verdict.ok`): «Отлично сказано!» — значок-галочка и текст
         // зелёным по центру, без плашки-заливки.

@@ -32,7 +32,12 @@
   {
     "interactionId": "en:lesson-01:session-01:i07",
     "correctText": "happy",
-    "correctResponseId": "en:lesson-01:session-01:i07:r1"
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "en:lesson-01:session-01:i07:a01",
+    "correctText": "happy",
+    "correctResponseId": "en:lesson-01:session-01:i07:a01:r1"
   },
   {
     "interactionId": "en:lesson-01:session-01:i08",
@@ -51,8 +56,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-01:i11",
-    "correctText": "am",
-    "correctResponseId": "en:lesson-01:session-01:i11:r1"
+    "correctText": "I am ready.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-01:i12",
@@ -86,8 +91,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-01:i17:s02",
-    "correctText": "I am ready.",
-    "correctResponseId": null
+    "correctText": "ready",
+    "correctResponseId": "en:lesson-01:session-01:i17:s02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-01:i17:s03",

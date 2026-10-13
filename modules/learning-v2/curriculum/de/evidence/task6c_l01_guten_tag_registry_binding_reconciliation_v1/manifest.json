@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-guten-tag-registry-binding-reconciliation.v1",
+  "language": "de",
+  "taskId": "TASK6C_L01_GUTEN_TAG_REGISTRY_BINDING_RECONCILIATION",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "decision": "SEMANTIC_CANONICAL_REPAIR_NEW_V8",
+  "holdAdjudication": {
+    "rejectedArtifact": "TASK6_V7_GUTEN_TAG_POSITIVE_ADMISSION",
+    "verdict": "HOLD_P1_CONNECTED_CONTRACT_GAPS",
+    "findings": [
+      "TASK6_V7_MISSING_GUTEN_TAG_LEXICAL_BINDINGS",
+      "TASK6_V7_MISSING_GUTEN_TAG_MATERIALIZATION_MAPPING",
+      "INVENTORY_V7_STALE_BRIEFKASTEN_STATUS",
+      "INVENTORY_V7_MISSING_GUTEN_TAG_CONNECTED_BINDINGS"
+    ],
+    "disposition": "V7_FROZEN_REJECTED_NOT_AUTHORITY",
+    "semanticRepairRequired": true,
+    "proofOnlyClosurePermitted": false
+  },
+  "frozenV7": {
+    "admissionModule": {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_positive_admission_de_v1.ts",
+      "sha256": "5a8498096f3e501d0e5c98ae775aa5ee333db3ffbeebe55b7401ed197650c9d8"
+    },
+    "admissionGate": {
+      "path": "tests/learning_v2_de_task6c_l01_guten_tag_positive_admission_gate.ts",
+      "sha256": "5f1facd6506ed3e198cf72ed35f4f9cf2fbe860e1b04c01afec46c653d6cb038"
+    },
+    "admissionReceipt": {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_GUTEN_TAG_POSITIVE_ADMISSION_RECEIPT_2026-10-13.md",
+      "sha256": "7a018a3bad0755a0b918def7a240e5f9955743b27d709eff662ecc0d5677d855"
+    },
+    "task6V7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v7.json",
+      "sha256": "29e2c6b7e379acd2fa69431e28d25eb6c1e97466555bc7751eafe05693b33195"
+    },
+    "inventoryV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v7.json",
+      "sha256": "d409e6cc0a909fdcf486c69308f8d2de84b2a6db688d7a90d31f933e14c0f69b"
+    },
+    "lexicalRegistryV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v7.json",
+      "sha256": "a52b925ee5e6d3adbd1de87749e7722424f6fc9c1fb5a50e3f306d2ad2fce5b1"
+    },
+    "gutenTagLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/lexical_evidence.json",
+      "sha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    "admissionManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/manifest.json",
+      "sha256": "23c83a69e545957a8a5314894d27707a2a63991c68dbaeebd50d8592dcb8a0be"
+    }
+  },
+  "sourceBindings": {
+    "task6V6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    "inventoryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    },
+    "v6Closure": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_final_review_closure_v1/closure.json",
+      "sha256": "7d12e8f92cc4f190a53cbd2a04463fbd04dde42d39063b704059400e8af0577c"
+    },
+    "gutenTagLexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/lexical_evidence.json",
+      "sha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    "lexicalRegistryV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v7.json",
+      "sha256": "a52b925ee5e6d3adbd1de87749e7722424f6fc9c1fb5a50e3f306d2ad2fce5b1"
+    }
+  },
+  "generatedArtifacts": {
+    "task6V8": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v8.json",
+      "sha256": "f80c085f75f3c09bb84072ea56d4809ed11110248b6f5958365b6d0197019ff7"
+    },
+    "inventoryV8": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v8.json",
+      "sha256": "b051f67de024c149f734167b25f18b88849d6c79502ea59a2d33bdee3b5af536"
+    }
+  },
+  "redGreen": {
+    "red": {
+      "command": "node --import tsx tests/learning_v2_de_task6c_l01_guten_tag_registry_binding_reconciliation_gate.ts",
+      "exitCode": 1,
+      "reason": "guten_tag_v8_missing:modules/learning-v2/curriculum/de/task6c_l01_guten_tag_registry_binding_reconciliation_de_v1.ts"
+    },
+    "green": {
+      "command": "node --import tsx tests/learning_v2_de_task6c_l01_guten_tag_registry_binding_reconciliation_gate.ts",
+      "exitCode": 0,
+      "result": "PASS_EXIT_0_WRITER_VERIFICATION_ONLY"
+    }
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  },
+  "englishSurface": {
+    "roots": [
+      "modules/learning-v2/curriculum/en",
+      "content/learning-v2-course/curriculum/en",
+      "content/learning-v2-course/release/en",
+      "modules/learning-v2/content/factory_native/generated_release/en"
+    ],
+    "fileCount": 1570,
+    "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+  }
+}

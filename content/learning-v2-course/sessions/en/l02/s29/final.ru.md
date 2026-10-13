@@ -62,11 +62,17 @@
 <!-- interaction_id: en:lesson-02:session-29:i01; family: listen_choose -->
 Цель: `which`
 Варианты: `which` · `cheap` · `price`
+- cheap — *Это «дёшево». Слово другое: `which` про выбор, `cheap` про цену.*
+- price — *«Цена». Прозвучало `which` — это про выбор, а не про деньги.*
+
 
 **2 · Вставьте слово — на бирке нет цифры, спрашиваете про стоимость**
 <!-- interaction_id: en:lesson-02:session-29:i02; family: context_gap_grammar -->
 Цель: `___ is the price?`
 Варианты: `what` · `which` · `one`
+- which — *`which` просит показать одну вещь из нескольких. А вы ждёте в ответ цифру.*
+- one — *`one` встаёт вместо вещи, а тут вещь названа прямо — `price`. Начало вопроса другое.*
+
 
 **3 · Карточка слова — one**
 <!-- interaction_id: en:lesson-02:session-29:i03; family: listen_choose -->
@@ -76,6 +82,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i04; family: context_gap_grammar -->
 Цель: `Which ___ ?`
 Варианты: `one` · `what` · `price`
+- what — *`what` уже не нужно: вопрос начат с `Which`. После него идёт то, что выбирают.*
+- price — *«Цена» — это вещь. А тут вы про сумку, которую уже назвали.*
+
 
 **5 · Соберите фразу — продавец назвал две улицы, где есть его лавки**
 <!-- interaction_id: en:lesson-02:session-29:i05; family: phrase_builder -->
@@ -85,11 +94,17 @@
 <!-- interaction_id: en:lesson-02:session-29:i06; family: listen_choose -->
 Цель: `cheap`
 Варианты: `cheap` · `street` · `name`
+- street — *«Улица». Прозвучало `cheap` — это про цену, а не про место.*
+- name — *«Название». Прозвучало `cheap` — это оценка цены, а не как вещь зовут.*
+
 
 **7 · Вставьте слово — на прилавке две сумки, вы спрашиваете про красивую**
 <!-- interaction_id: en:lesson-02:session-29:i07; family: context_gap_grammar -->
 Цель: `___ one is elegant?`
 Варианты: `which` · `what` · `name`
+- what — *Сумки лежат перед вами, выбор из двух. Значит `which`.*
+- name — *`name` — «название». Вопрос не с него начинают.*
+
 
 **8 · Соберите фразу — «сколько это стоит?»**
 <!-- interaction_id: en:lesson-02:session-29:i08; family: phrase_builder -->
@@ -98,6 +113,8 @@
 **9 · Послушайте и соберите — «которая из них?»**
 <!-- interaction_id: en:lesson-02:session-29:i09; family: listen_build_dictation -->
 Цель: `Which one?`
+🔊 *Which one?* Плитки: `Which` `one` `is`
+*Плитка `is` лишняя: это короткий вопрос выбора; после `Which one?` больше ничего не нужно.*
 
 **10 · Карточка слова — elegant**
 <!-- interaction_id: en:lesson-02:session-29:i10; family: listen_choose -->
@@ -107,6 +124,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i11; family: context_gap_grammar -->
 Цель: `___ is the name?`
 Варианты: `What` · `Which` · `One`
+- Which — *`which` просит выбрать из нескольких. А вы ждёте, что вам назовут слово.*
+- One — *`one` заменяет вещь, а вопрос с него не начинают.*
+
 
 **12 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-29:i12; family: speed_match -->
@@ -117,10 +137,15 @@
 <!-- interaction_id: en:lesson-02:session-29:i13; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `cheap` · `elegant` · `street`
+- elegant — *«Изящный» — про вид вещи, а не про цену. Три евро — это `cheap`.*
+- street — *«Улица». Про стоимость так не скажешь.*
+
 
 **14 · Соберите сообщение — продавец показывает простую, но изящную сумку**
 <!-- interaction_id: en:lesson-02:session-29:i14; family: phrase_builder -->
 Цель: `It is elegant.`
+Плитки: `It` `is` `elegant` `cheap`
+*Плитка `cheap` лишняя: сумка может быть недорогой, но в этом сообщении вы описываете её как изящную — `elegant`.*
 
 **15 · Произнесите фразу — «которая из них дешёвая?»**
 <!-- interaction_id: en:lesson-02:session-29:i15; family: scripted_repeat_compare -->
@@ -130,6 +155,9 @@
 <!-- interaction_id: en:lesson-02:session-29:i16; family: context_gap_grammar -->
 Цель: `Which one is ___ ?`
 Варианты: `elegant` · `cheap` · `price`
+- cheap — *`cheap` — «дешёвая». Вопрос просит назвать изящную сумку.*
+- price — *`price` — «цена». Здесь описывают вид сумки, не её стоимость.*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-29:i17:s01; family: scripted_repeat_compare -->

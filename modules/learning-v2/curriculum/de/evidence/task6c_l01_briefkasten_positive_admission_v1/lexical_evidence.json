@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "learning-v2-german-lexical-item-evidence.v5",
+  "admissionScope": "EXACT_BRIEFKASTEN_RESIDENTIAL_MAILBOX_NOUN_ONLY",
+  "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+  "canonicalSenseId": "de_lex_l01_c03_briefkasten_v1",
+  "evidenceId": "DE-LEX-ITEM-L01-C03-BRIEFKASTEN-SENSE-FORM-001",
+  "lemma": "Briefkasten",
+  "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+  "sourceSenseAnchor": "d-1-2",
+  "rejectedSourceSenseAnchor": "d-1-1",
+  "senseGloss": "mailbox at a residence",
+  "curriculumPartOfSpeech": "noun",
+  "partOfSpeechInterpretation": "SOURCE_GROUNDED_MASCULINE_SUBSTANTIV_TO_NOUN",
+  "nounPackage": {
+    "article": "der",
+    "singular": "Briefkasten",
+    "nominativePlural": "Briefkästen",
+    "broaderMorphologyAuthority": false
+  },
+  "utilityRole": "scene_grounding",
+  "communicativeUse": "ground an introduction at a mailbox area",
+  "sourceRegisterMarkers": null,
+  "register": null,
+  "region": null,
+  "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+  "phraseAuthority": false,
+  "examplesAuthority": false,
+  "packetAllocation": {
+    "plannedUsePacketIds": ["de_l01_c03_s24"],
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null,
+    "firstScoredUsePacketId": null
+  },
+  "sourceSupport": {
+    "rawSha256": "d6e63ca2942fb05841e2a89cd30a3c335228dc4d6ba296e4d010e9515bd18342",
+    "metadataSha256": "b9314f5e8b3f0b8c884b617ef967b531f06d80fdd8b83c07f89cb172706dfb50",
+    "extractionMapSha256": "f97ccbd4f4e95f0361f7fb607cae2f60c2cb4bdac18b89ec9fe34d3568e3cc89",
+    "sourceHoldManifestSha256": "1e8b97c051384f05d02675bc05de4d3c2c6bc27101bc4e07c951b4671de35d69",
+    "canonicalHoldManifestSha256": "d2e8906a0fbcb135bad438fdfc1b52ca836e5b5e382838492a415d506d235d38"
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "phraseAuthority": false,
+    "defaultConsumerChanged": false,
+    "consumerCutover": "NONE",
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED",
+    "materializedPackets": 0
+  }
+}

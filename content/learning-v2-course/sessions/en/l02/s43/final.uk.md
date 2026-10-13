@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-43:i01; family: listen_choose -->
 Ціль: `Are we lost?`
 Варіанти: `Are we lost?` · `Am I lost?` · `Are you lost?`
+- Am I lost? — *Це запитання лише про себе. У записі звучить `Are we`: друг запитує про вас обох.*
+- Are you lost? — *Це запитання до співрозмовника. У записі після `Are` стоїть `we` — «ми».*
+
 
 **2 · Вставте слово — ви з другом не впізнаєте вулицю; запитайте, чи не заблукали ви обоє**
 <!-- interaction_id: en:lesson-02:session-43:i02; family: context_gap_grammar -->
 Ціль: `Are ___ lost?`
 Варіанти: `we` · `I` · `he`
+- I — *Це «я». Тут запитання про вас обох, тому потрібне `we`.*
+- he — *Це «він». Ви запитуєте і про себе, і про друга: `Are we lost?`*
+
 
 **3 · Складіть фразу — після повороту ви перестали розуміти, де перебуваєте; запитайте друга, чи не заблукали ви**
 <!-- interaction_id: en:lesson-02:session-43:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-43:i04; family: context_gap_grammar -->
 Ціль: `We are ___ .`
 Варіанти: `sure` · `lost` · `tired`
+- lost — *Вийде «Ми заблукали». Зараз ви кажете, що впевнені в прочитаній назві: `sure`.*
+- tired — *Це «втомилися». Ви повідомляєте про впевненість, а не про втому.*
+
 
 **5 · Послухайте й виберіть — що друг запитав, показуючи на карту**
 <!-- interaction_id: en:lesson-02:session-43:i05; family: listen_choose -->
 Ціль: `Are we here?`
 Варіанти: `Are we here?` · `Are you here?` · `We are here.`
+- Are you here? — *Тут запитання про співрозмовника. У записі друг каже `we` — «ми».*
+- We are here. — *Це повідомлення. У записі спочатку звучить `Are we`: друг ставить запитання.*
+
 
 **6 · Складіть фразу — друг запитує, чи правильно ви вибрали поворот; ви сумніваєтеся й визнаєте це**
 <!-- interaction_id: en:lesson-02:session-43:i06; family: phrase_builder -->
@@ -84,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-43:i07; family: context_gap_grammar -->
 Ціль: `___ we near?`
 Варіанти: `Are` · `Am` · `Is`
+- Am — *Запитання про вас обох починається з `Are we`. Тут потрібне `Are`.*
+- Is — *Сполучення `Is we` не підходить для цього запитання. Скажіть `Are we near?`*
+
 
 **8 · Складіть фразу — перехожий зупинився допомогти; запитайте його, де станція**
 <!-- interaction_id: en:lesson-02:session-43:i08; family: phrase_builder -->
@@ -98,16 +113,25 @@
 <!-- interaction_id: en:lesson-02:session-43:i10; family: context_gap_grammar -->
 Ціль: `We are ___ .`
 Варіанти: `here` · `ready` · `welcome`
+- ready — *Це «готові». Зараз ви показуєте своє місце на карті: `here`.*
+- welcome — *З `welcome` вийде «Нам раді». Для «Ми тут» потрібне `We are here`.*
+
 
 **11 · Послухайте й виберіть — що друг сказав біля станції**
 <!-- interaction_id: en:lesson-02:session-43:i11; family: listen_choose -->
 Ціль: `We are not lost.`
 Варіанти: `We are not lost.` · `We are lost.` · `They are not lost.`
+- We are lost. — *Без `not` виходить «Ми заблукали». У записі друг це заперечує: `We are not lost`.*
+- They are not lost. — *Це «Вони не заблукали». Перше слово в записі — `We`, «ми».*
+
 
 **12 · Вставте слово — ви вибрали за картою дорогу від станції до музею; перед поворотом запитайте: «Ми впевнені?»**
 <!-- interaction_id: en:lesson-02:session-43:i12; family: context_gap_grammar -->
 Ціль: `Are we ___ ?`
 Варіанти: `sure` · `near` · `lost`
+- near — *Це запитання про відстань. Зараз ви перевіряєте впевненість у вибраній дорозі: `sure`.*
+- lost — *Вийде «Ми заблукали?» Ви ще стоїте біля знайомої станції й перевіряєте рішення про поворот.*
+
 
 **13 · Послухайте й складіть — друг показує перехожому на карті, де ви обоє перебуваєте**
 <!-- interaction_id: en:lesson-02:session-43:i13; family: listen_build_dictation -->
@@ -117,6 +141,9 @@
 <!-- interaction_id: en:lesson-02:session-43:i14; family: context_gap_grammar -->
 Ціль: `Are ___ here?`
 Варіанти: `we` · `you` · `they`
+- you — *Так ви запитаєте, де перебуває перехожий. Ви уточнюєте місце для себе й друга: `we`.*
+- they — *Це «вони». Щоб запитати про себе разом із другом, виберіть `we` — «ми».*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-43:i15; family: scripted_repeat_compare -->

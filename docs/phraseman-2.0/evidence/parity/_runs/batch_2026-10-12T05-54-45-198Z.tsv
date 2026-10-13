@@ -1,0 +1,41 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-005	2026-10-12T05:55:18.921Z	stitch_failed	17252	marker+шагов_1+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-005.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=282465+ждали_metro_55мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/cards-005.bare.png	0
+cards-010	2026-10-12T05:55:38.526Z	ok	12918	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-010.png	0
+cards-021	2026-10-12T05:56:00.484Z	stitch_failed	15473	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-021.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=186910+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/cards-021.bare.png	0
+cards-062	2026-10-12T05:56:58.032Z	error	11918	step_target_not_found:#fc-editor-tr+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/cards-062.error.png	0
+cards-070	2026-10-12T05:57:44.545Z	error	13170	step_target_not_found:#ugc-pack-save+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/cards-070.error.png	0
+cards-v2-030	2026-10-12T05:58:04.436Z	stitch_failed	12904	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-030.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=241488+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/cards-v2-030.bare.png	0
+cards-v2-033	2026-10-12T05:58:22.365Z	ok	12057	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-v2-033.png	0
+dialogs-006	2026-10-12T05:58:53.121Z	stitch_failed	10841	marker+шагов_1+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-006.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=311737+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/dialogs-006.bare.png	0
+dialogs-029	2026-10-12T06:00:02.157Z	ok	10767	marker+шагов_8+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-029.png	0
+dialogs-036	2026-10-12T06:00:57.245Z	stitch_failed	11902	marker+шагов_5+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-036.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=712613+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/dialogs-036.bare.png	0
+energy-modes-017	2026-10-12T06:01:37.559Z	ok	11887	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-017.png	0
+overlays-campaigns-014	2026-10-12T06:02:08.795Z	ok	12068	marker+шагов_3+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/overlays-campaigns-014.png	0
+paywall-gap-004	2026-10-12T06:02:26.931Z	ok	12103	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/paywall-gap-004.png	0
+paywall-gap-005	2026-10-12T06:02:54.098Z	ok	11938	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/paywall-gap-005.png	0
+paywall-gap-011	2026-10-12T06:03:12.258Z	ok	11962	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/paywall-gap-011.png	0
+paywall-gap-012	2026-10-12T06:03:32.167Z	ok	11855	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/paywall-gap-012.png	0
+paywall-gap-013	2026-10-12T06:03:52.509Z	ok	13001	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/paywall-gap-013.png	0
+paywalls-011	2026-10-12T06:04:18.708Z	ok	10738	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/paywalls-011.png	0
+paywalls-018	2026-10-12T06:04:38.101Z	stitch_failed	12960	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\paywalls-018.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=251576+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/paywalls-018.bare.png	0
+paywalls-022	2026-10-12T06:05:18.557Z	ok	14340	marker+шагов_1+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/paywalls-022.png	0
+paywalls-024	2026-10-12T06:06:11.983Z	ok	13260	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/paywalls-024.png	0
+profile-001	2026-10-12T06:06:34.639Z	ok	11922	marker+пусто_1462мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/profile-001.png	1462
+profile-006	2026-10-12T06:06:51.134Z	ok	10702	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-006.png	0
+profile-014	2026-10-12T06:07:13.670Z	ok	10731	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-014.png	0
+profile-017	2026-10-12T06:07:44.475Z	ok	9633	marker+шагов_1+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-017.png	0
+profile-022	2026-10-12T06:08:35.132Z	ok	11991	marker+шагов_3+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-022.png	0
+profile-024	2026-10-12T06:09:08.337Z	ok	10743	marker+шагов_1+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-024.png	0
+profile-026	2026-10-12T06:09:22.797Z	stitch_failed	8664	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\profile-026.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=49554+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T05-54-45-198Z/profile-026.bare.png	0
+settings-gap-002	2026-10-12T06:09:39.749Z	ok	9666	marker+пусто_1336мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/settings-gap-002.png	1336
+settings-gap-003	2026-10-12T06:10:08.073Z	ok	10622	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/settings-gap-003.png	0
+settings-gap-005	2026-10-12T06:10:47.411Z	ok	10643	marker+шагов_1+склейка+ждали_metro_1мс	docs/phraseman-2.0/evidence/parity/settings-gap-005.png	0
+settings-gap-011	2026-10-12T06:11:11.265Z	ok	10889	marker+шагов_2+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/settings-gap-011.png	0
+settings-gap-028	2026-10-12T06:11:34.183Z	ok	10700	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/settings-gap-028.png	0
+settings-gap-030	2026-10-12T06:11:52.055Z	ok	10701	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/settings-gap-030.png	0
+spire-009	2026-10-12T06:12:05.645Z	ok	7517	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/spire-009.png	0
+spire-gap-017	2026-10-12T06:12:21.821Z	ok	8586	marker+пусто_1319мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/spire-gap-017.png	1319
+cards-section-015	2026-10-12T06:12:54.640Z	ok	11739	marker+шагов_2+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/cards-section-015.png	0
+cards-section-019	2026-10-12T06:13:11.343Z	ok	10761	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-section-019.png	0
+cards-v2-012	2026-10-12T06:13:28.091Z	ok	10661	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-v2-012.png	0
+cards-v2-029	2026-10-12T06:13:44.562Z	ok	10757	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-v2-029.png	0

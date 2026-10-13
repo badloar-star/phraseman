@@ -105,6 +105,8 @@ She ___ nice. → **is** · am · are
 **9 · Послухайте і складіть — Анна першою покликала вас на обід; скажіть, що вона дружня**
 <!-- interaction_id: en:lesson-01:session-17:i09; family: listen_build_dictation -->
 🔊 *She is friendly.* Плитки: `friendly` `She` `is` `He` → **She is friendly.**
+*(плитка `He` зайва: `He` не підходить до Анни. Потрібна фраза `She is friendly`.)*
+
 
 **10 · Вставте слово — Ліна каже: «Макс — приємна людина». Передайте її характеристику англійською**
 <!-- interaction_id: en:lesson-01:session-17:i10; family: context_gap_grammar -->

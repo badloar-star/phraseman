@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-02:session-27:i02; family: listen_choose -->
 Цель: `prices`
 Варианты: `prices` · `places` · `pieces`
+- places — *«места», не «цены». Слушайте после «п»: тут `r`, а не `l`.*
+- pieces — *«Кусочки», не «цены». Гласная в середине другая: у `prices` — «ай», у `pieces` — «и».*
+
 
 **3 · Карточка слова — rules**
 <!-- interaction_id: en:lesson-02:session-27:i03; family: listen_choose -->
@@ -79,6 +82,9 @@
 <!-- interaction_id: en:lesson-02:session-27:i04; family: listen_choose -->
 Цель: `rules`
 Варианты: `rules` · `tools` · `schools`
+- tools — *«инструменты», не «правила». Начало другое: `t`, а не `r`.*
+- schools — *«школы», не «правила». Начало длиннее: «ск».*
+
 
 **5 · Соберите фразу — перед вами горка непонятных вещей**
 <!-- interaction_id: en:lesson-02:session-27:i05; family: phrase_builder -->
@@ -88,15 +94,23 @@
 <!-- interaction_id: en:lesson-02:session-27:i06; family: context_gap_grammar -->
 Цель: `What ___ these?`
 Варианты: `are` · `is` · `am`
+- is — *`is` — про одну вещь. `these` значит «несколько», к нему идёт `are`.*
+- am — *`am` — форма для `I`. Про несколько вещей нужна `are`.*
+
 
 **7 · Послушайте — Анна смотрит на несколько ценников в меню. Выберите, о чём она спрашивает**
 <!-- interaction_id: en:lesson-02:session-27:i07; family: listen_choose -->
 Цель: `What are these prices?`
 Варианты: `цены` · `правила` · `названия`
+- правила — *`Prices` — это цены. О правилах спрашивают с `rules`.*
+- названия — *`Prices` — цены, а не названия блюд.*
+
 
 **8 · Различите звуки — какое из двух про «правила»?**
 <!-- interaction_id: en:lesson-02:session-27:i08; family: sound_contrast -->
 Варианты: `rules` · `tools`
+- tools — *Это «инструменты». Про список на доске говорят `rules`.*
+
 
 **9 · Соберите фразу — на доске у входа список, и вы просите объяснить**
 <!-- interaction_id: en:lesson-02:session-27:i09; family: phrase_builder -->
@@ -106,15 +120,23 @@
 <!-- interaction_id: en:lesson-02:session-27:i10; family: context_gap_grammar -->
 Цель: `What ___ this?`
 Варианты: `is` · `are` · `these`
+- are — *`are` — когда вещей несколько. Тут она одна: `this` — `is`.*
+- these — *Это «эти», указание на несколько. Здесь пропуск на месте связки, а не указания.*
+
 
 **11 · Послушайте и соберите — реакция покупателя на ценники**
 <!-- interaction_id: en:lesson-02:session-27:i11; family: listen_build_dictation -->
 Цель: `What are these prices?`
+🔊 *What are these prices?* Плитки: `What` `are` `these` `prices` `is`
+*Плитка `is` лишняя: цен несколько — `prices`, поэтому в вопросе нужна форма `are`.*
 
 **12 · Вставьте слово — вы обошли ряд и удивились, до чего тут недорого**
 <!-- interaction_id: en:lesson-02:session-27:i12; family: context_gap_grammar -->
 Цель: `The shops are ___ .`
 Варианты: `cheap` · `these` · `rules`
+- these — *Это «эти», указание на вещи. А тут нужно слово про то, какие магазины.*
+- rules — *«Правила». Про низкие цены говорят `cheap`.*
+
 
 **13 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-27:i13; family: speed_match -->
@@ -124,21 +146,32 @@
 **14 · Соберите фразу — вас удивили две высокие цены: «Что это за цены?»**
 <!-- interaction_id: en:lesson-02:session-27:i14; family: phrase_builder -->
 Цель: `What are these prices?`
+Плитки: `What` `are` `these` `prices` `is`
+*Плитка `is` лишняя: цен несколько — `prices`, поэтому нужна форма `are`.*
 
 **15 · Вставьте слово — вы говорите спутнику, что тут целая улица недорогих лавок**
 <!-- interaction_id: en:lesson-02:session-27:i15; family: context_gap_grammar -->
 Цель: `These ___ are cheap.`
 Варианты: `shops` · `rules` · `streets`
+- rules — *Это «правила». Речь о том, где продают, — `shops`.*
+- streets — *Это «улицы». Продают в магазинах: `shops`.*
+
 
 **16 · Послушайте — Лина показывает продавцу несколько предметов на прилавке. Выберите, о чём она спрашивает**
 <!-- interaction_id: en:lesson-02:session-27:i16:s01; family: listen_choose -->
 Цель: `What are these?`
 Варианты: `что это за предметы` · `сколько они стоят` · `где находится магазин`
+- сколько они стоят — *О цене спрашивают `What are these prices?`.*
+- где находится магазин — *Здесь спрашивают о предметах перед Линой, не о местоположении магазина.*
+
 
 **17 · Вставьте слово — у кассы на двух товарах стоят непонятные ценники, и вы спрашиваете о ценах**
 <!-- interaction_id: en:lesson-02:session-27:i16:s02; family: context_gap_grammar -->
 Цель: `What are these ___ ?`
 Варианты: `prices` · `rules` · `shops`
+- rules — *`Rules` — правила. На товарах вы видите ценники, то есть `prices`.*
+- shops — *`Shops` — магазины. Речь о цифрах на товарах, то есть о `prices`.*
+
 
 **18 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-27:i17:s01; family: scripted_repeat_compare -->

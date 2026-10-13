@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c01-hallo-task5-task6-correction-candidate.v1",
+  "status": "HOLD",
+  "decision": "TASK5_TASK6_CORRECTION_CANDIDATE_READY_FOR_FRESH_REVIEW",
+  "inputBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "sha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23"
+    },
+    "task6V2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+      "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f"
+    },
+    "priorHoldAdjudication": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_phrase_authority_hold_v1/adjudication.json",
+      "sha256": "45778ef06b4eddceaa3ede01e83e95225731b9786cbd39868650add6980259a5"
+    },
+    "sourceExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/extraction_map.json",
+      "sha256": "3b0ab0c32c3dd8bb42b2c22f0f43bc514272f23c60c97003334418f5afaaabad"
+    },
+    "englishSurface": {
+      "roots": [
+        "modules/learning-v2/curriculum/en",
+        "content/learning-v2-course/curriculum/en",
+        "content/learning-v2-course/release/en",
+        "modules/learning-v2/content/factory_native/generated_release/en"
+      ],
+      "fileCount": 1570,
+      "sha256": "8f73cffb0d735b436aad2b7679dd242df0fb609962e43b27229bea2e30934db9"
+    },
+    "protectedGermanV1Surface": {
+      "root": "modules/learning-v2/curriculum/de",
+      "excludedPaths": [
+        "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_allocation_de_v1.ts",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/extraction_map.json",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/manifest.json",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_hallo_interjection.html",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_hallo_interjection.http_metadata.txt",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_Hallo_noun.html",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_Hallo_noun.http_metadata.txt",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/goethe_a1_redemittel.http_metadata.txt",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/goethe_a1_redemittel.pdf",
+        "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_phrase_authority_hold_de_v1.ts",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_phrase_authority_hold_v1/adjudication.json",
+        "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_de_v1.ts",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_v1/candidate.json",
+        "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_de_v1.ts",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/manifest.json",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task5_v3_candidate.json",
+        "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task6_v3_candidate.json"
+      ],
+      "fileCount": 74,
+      "sha256": "34d91df20aa6e52bbdf3106198effe3f42d381e55c477266b4877cdef312e2e6"
+    }
+  },
+  "task5Patch": {
+    "chapterId": "de_l01_c01",
+    "replacement": {
+      "id": "de_lex_plan_l01_c01_hallo_v2",
+      "semanticIdentity": "hallo|colloquial greeting on meeting",
+      "utilityProofFacetValue": "recognise-a-colloquial-greeting",
+      "senseGloss": "colloquial greeting on meeting"
+    },
+    "chapterPatch": {
+      "checkpointNewSituationGoal": "recognise-a-colloquial-greeting",
+      "checkpointNewSituationContextSignature": "colloquial-greeting-building-entrance"
+    }
+  },
+  "task6Patch": {
+    "sourceChapterId": "de_l01_c01",
+    "replacement": {
+      "id": "de_pf_l01_c01_hallo_v2",
+      "frame": "Hallo!",
+      "grammarConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+      "lexicalSenseIds": [],
+      "communicativeOutcomeIds": ["de_out_l01_ch01_v1"],
+      "forbiddenSurfaceFormIds": [],
+      "evidenceIds": ["DE-RSCH-CEFR-003"]
+    }
+  },
+  "sourceBoundary": {
+    "sourceSupport": "GOETHE_EXACT_ALTERNATIVE_SURFACE_OCCURRENCE_ONLY",
+    "goetheMatchMode": "EXACT_TRIMMED_SLASH_ALTERNATIVE",
+    "goetheExactAlternative": "Hallo!",
+    "cefrEvidenceRole": "GENERAL_CEFR_SCOPE_NOT_EXACT_ATTESTATION"
+  },
+  "projectedCanonicalSha256": {
+    "chapter": "b59fafa8d475a0922ab0a7c636d0898c1ff4a70506d145c7075c5c39543293fa",
+    "plan": "707379a2e2e7c6f51e90d14fcf82f8d5542553a0b5ddc7626fb35c4cce179ff0",
+    "phrase": "6b1bb17c8951f36793fc1fa36c6cd76723ee3b322632cf31850f422b520a0ff1",
+    "mapping": "713f2575bd59a0c7352dbd64b021fe1c42846e4d5b5de329026debd9f4da0735"
+  },
+  "candidateFingerprint": {
+    "scope": "CLOSED_CANDIDATE_CORE_NOT_OWNER_BLUEPRINT_FINGERPRINT",
+    "algorithm": "SHA256_CANONICAL_JSON_V1",
+    "sha256": "9f5330ca5c44593d80c8299ee78101032fe2376a804ad82fb7567857d1ecddab"
+  },
+  "reviews": {
+    "ownerApproval": "PENDING",
+    "nativeReview": "REQUIRED"
+  },
+  "authority": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "inventory": {
+    "resolvedPlanIds": 6,
+    "unresolvedPlanIds": 282,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  }
+}

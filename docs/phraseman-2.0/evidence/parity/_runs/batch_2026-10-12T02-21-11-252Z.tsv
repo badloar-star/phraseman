@@ -1,0 +1,11 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-077	2026-10-12T02:21:28.914Z	ok	12085	marker+голый_кадр+ждали_metro_42мс	docs/phraseman-2.0/evidence/parity/cards-077.png	0
+cards-gap-009	2026-10-12T02:21:44.472Z	ok	10919	marker+пусто_1334мс+голый_кадр+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/cards-gap-009.png	1334
+cards-gap-003	2026-10-12T02:22:09.258Z	ok	18371	marker+голый_кадр+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/cards-gap-003.png	0
+cards-gap-005	2026-10-12T02:22:35.517Z	blank_too_long	13051	marker+пусто_6_повторов+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T02-21-11-252Z/cards-gap-005.blank_too_long.png	0
+cards-gap-022	2026-10-12T02:23:01.844Z	timeout	20848	нет маркера+ждали_metro_15мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T02-21-11-252Z/cards-gap-022.timeout.png	0
+cards-gap-035	2026-10-12T02:23:35.202Z	error	18637	step_target_not_found:#flashcards-pack-card-dev_demo_community_1+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T02-21-11-252Z/cards-gap-035.error.png	0
+cards-section-046	2026-10-12T02:23:58.084Z	error	10944	step_target_not_found:Зажми и говори+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T02-21-11-252Z/cards-section-046.error.png	0
+cards-gap-024	2026-10-12T02:24:25.411Z	error	12862	step_target_not_found:#fc-saved-actions+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T02-21-11-252Z/cards-gap-024.error.png	0
+cards-042	2026-10-12T02:24:47.821Z	ok	10915	marker+шагов_1+голый_кадр+ждали_metro_1мс	docs/phraseman-2.0/evidence/parity/cards-042.png	0
+cards-049	2026-10-12T02:25:03.098Z	ok	11860	marker+голый_кадр+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-049.png	0

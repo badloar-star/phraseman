@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — handsome",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — handsome",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -173,7 +173,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — pretty",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i04:r1",
@@ -192,7 +192,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i04:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — pretty",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -340,12 +340,22 @@
           "orderedTokens": [
             "Is",
             "he",
-            "handsome?"
+            "handsome"
           ],
           "authoredDistractorTokens": [
             "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос о мужчине",
+              "feedbackByLocale": {
+                "ru": "вопрос задан о мужчине, поэтому нужен `he`: `Is he handsome?`",
+                "uk": "запитання про чоловіка, тому потрібне `he`: `Is he handsome?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -470,7 +480,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Том в аккуратном костюме кажется привлекательным.",
+            "ru": "Вставьте слово — Том в аккуратном костюме кажется привлекательным",
             "uk": "Том в охайному костюмі здається привабливим."
           },
           "gappedTargetPhrase": "Is he ___ ?",
@@ -538,7 +548,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Мира за столиком читает меню и без конца поглядывает на соседний столик",
+              "feedbackByLocale": {
+                "ru": "в сцене Мира, поэтому нужен `she`: `Is she curious?`",
+                "uk": "у сцені Міра, тому потрібне `she`: `Is she curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -691,7 +711,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос: «Ей холодно?»",
+              "feedbackByLocale": {
+                "ru": "речь о женщине в шарфе, поэтому нужен `she`: `Is she cold?`",
+                "uk": "йдеться про жінку в шарфі, тому потрібне `she`: `Is she cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1059,7 +1089,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть — handsome",
+        "prompt": "Послухайте й оберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i02:r1",
@@ -1078,7 +1108,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть — handsome",
+        "accessibilityLabel": "Послухайте й оберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1178,7 +1208,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте й оберіть — pretty",
+        "prompt": "Послухайте й оберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-09:i04:r1",
@@ -1197,7 +1227,7 @@
         "audioTargetIds": [
           "en:lesson-02:session-09:i04:audio"
         ],
-        "accessibilityLabel": "Послухайте й оберіть — pretty",
+        "accessibilityLabel": "Послухайте й оберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1345,12 +1375,22 @@
           "orderedTokens": [
             "Is",
             "he",
-            "handsome?"
+            "handsome"
           ],
           "authoredDistractorTokens": [
             "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос о мужчине",
+              "feedbackByLocale": {
+                "ru": "вопрос задан о мужчине, поэтому нужен `he`: `Is he handsome?`",
+                "uk": "запитання про чоловіка, тому потрібне `he`: `Is he handsome?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1476,7 +1516,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Том в аккуратном костюме кажется привлекательным.",
-            "uk": "Том в охайному костюмі здається привабливим."
+            "uk": "Вставте слово — Том в охайному костюмі здається привабливим"
           },
           "gappedTargetPhrase": "Is he ___ ?",
           "gapOptions": [
@@ -1543,7 +1583,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Мира за столиком читает меню и без конца поглядывает на соседний столик",
+              "feedbackByLocale": {
+                "ru": "в сцене Мира, поэтому нужен `she`: `Is she curious?`",
+                "uk": "у сцені Міра, тому потрібне `she`: `Is she curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1696,7 +1746,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-09:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите вопрос: «Ей холодно?»",
+              "feedbackByLocale": {
+                "ru": "речь о женщине в шарфе, поэтому нужен `she`: `Is she cold?`",
+                "uk": "йдеться про жінку в шарфі, тому потрібне `she`: `Is she cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

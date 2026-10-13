@@ -66,7 +66,7 @@
   },
   {
     "interactionId": "en:lesson-01:session-45:i14",
-    "correctText": "I'm not satisfied.",
+    "correctText": "not",
     "correctResponseId": "en:lesson-01:session-45:i14:r1"
   },
   {
@@ -87,7 +87,7 @@
   {
     "interactionId": "en:lesson-01:session-45:i17:s02",
     "correctText": "It isn't settled.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-45:i17:s02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-45:i17:s03",

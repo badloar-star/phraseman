@@ -331,7 +331,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "В анкете гостя указано, что он состоит в браке. Вставьте слово.",
+            "ru": "Вставьте слово — в анкете гостя указано, что он состоит в браке",
             "uk": "В анкеті гостя вказано, що він перебуває у шлюбі. Вставте слово."
           },
           "gappedTargetPhrase": "He is ___ .",
@@ -1364,7 +1364,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "В анкете гостя указано, что он состоит в браке. Вставьте слово.",
-            "uk": "В анкеті гостя вказано, що він перебуває у шлюбі. Вставте слово."
+            "uk": "Вставте слово — в анкеті гостя вказано, що він перебуває у шлюбі"
           },
           "gappedTargetPhrase": "He is ___ .",
           "gapOptions": [
@@ -1444,7 +1444,7 @@
             {
               "responseId": "en:lesson-01:session-20:i07:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «вона незаміжня»",
+              "testedDimension": "Соберите фразу — «она не замужем»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: после `She` здесь нужно `is` — `She is single.`",
                 "uk": "`are` зайве: після `She` тут потрібне `is` — `She is single`."
@@ -1743,7 +1743,7 @@
             {
               "responseId": "en:lesson-01:session-20:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «він багатий»",
+              "testedDimension": "Послушайте и соберите — «он богат»",
               "feedbackByLocale": {
                 "ru": "`famous` лишнее: в записи и фразе сказано `He is rich.`",
                 "uk": "`famous` зайве: у записі й фразі сказано `He is rich`."
@@ -2017,7 +2017,7 @@
             {
               "responseId": "en:lesson-01:session-20:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «вона добра»",
+              "testedDimension": "Послушайте и соберите — «она добрая»",
               "feedbackByLocale": {
                 "ru": "`young` лишнее: в записи и фразе сказано `She is kind.`",
                 "uk": "`young` зайве: у записі й фразі сказано `She is kind`."
@@ -2057,7 +2057,7 @@
             {
               "responseId": "en:lesson-01:session-20:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Антон цілий вечір усіх смішить",
+              "testedDimension": "Соберите фразу — Антон весь вечер всех смешит",
               "feedbackByLocale": {
                 "ru": "`young` лишнее: Антон смешит всех, поэтому `He is funny.`",
                 "uk": "`young` зайве: Антон смішить усіх, тому `He is funny`."

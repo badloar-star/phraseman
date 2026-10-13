@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-03:i02; family: listen_choose -->
 Ціль: `stool`
 Варіанти: `stool` · `school` · `spool`
+- school — *Після першого «с» у `school` чути «к», а в `stool` — «т». У записі — `stool`.*
+- spool — *Після першого «с» у `spool` чути «п», а в `stool` — «т». Тут звучить `stool`.*
+
 
 **3 · Картка слова — mirror**
 <!-- interaction_id: en:lesson-03:session-03:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-03:i04; family: listen_choose -->
 Ціль: `mirror`
 Варіанти: `mirror` · `minor` · `merry`
+- minor — *У першому складі `minor` чути «ай», а в `mirror` голосний ближчий до українського «и». У записі — `mirror`.*
+- merry — *Перший голосний у `merry` ближчий до «е», а в `mirror` — до українського «и». Тут звучить `mirror`.*
+
 
 **5 · Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»**
 <!-- interaction_id: en:lesson-03:session-03:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-03:i07; family: listen_choose -->
 Ціль: `rug`
 Варіанти: `rug` · `bug` · `mug`
+- bug — *`bug` починається зі змикання губ для `b`, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. У записі — `rug`.*
+- mug — *`mug` починається з носового `m` при зімкнутих губах, а в `rug` початковий `r` звучить плавно, без удару кінчиком язика. Тут звучить `rug`.*
+
 
 **8 · Складіть фразу — брат показує на предмет, який ви хочете повісити біля дверей; скажіть «Це дзеркало»**
 <!-- interaction_id: en:lesson-03:session-03:i08; family: phrase_builder -->
@@ -96,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-03:i10; family: context_gap_grammar -->
 Ціль: `It ___ rug.`
 Варіанти: `is a` · `is` · `a`
+- is — *Вийде `It is rug`: у назві одного предмета перед `rug` бракує `a`.*
+- a — *Вийде `It a rug`: назва на місці, але після `It` потрібне `is`.*
+
 
 **11 · Послухайте й складіть — брат звертається до вас із сусідньої кімнати**
 <!-- interaction_id: en:lesson-03:session-03:i11; family: listen_build_dictation -->
@@ -111,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-03:i13; family: context_gap_grammar -->
 Ціль: `It is ___ mirror.`
 Варіанти: `not a` · `no a` · `a not`
+- no a — *У цій фразі заперечення робимо через `not` після `is`: `It is not a mirror`.*
+- a not — *Між `a` і `mirror` тут не ставимо `not`. Потрібний порядок: `not a mirror`.*
+
 
 **14 · Складіть фразу — брат шукає дзеркало; ви стоїте поруч із дзеркалом і відповідаєте «Воно тут» (`here` — «тут»)**
 <!-- interaction_id: en:lesson-03:session-03:i14; family: phrase_builder -->

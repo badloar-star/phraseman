@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c04-buero-source-extraction-map.v1",
+  "directCapture": {
+    "registryPath": ".tmp/de-task6c-l01-direct-capture/registry.json",
+    "registrySha256": "5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc",
+    "canonicalUrl": "https://www.dwds.de/wb/B%C3%BCro",
+    "httpStatus": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "rawResponseSha256": "8a33bb90ed67602206a65824a5e3e19c69c9b85384cc1426b62f3628675e5787",
+    "rawResponseBytes": 142698
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c04_buero_v1",
+    "checkpointPacketId": "de_l01_c04_s32",
+    "sourceHeadword": "Büro",
+    "sourcePartOfSpeech": "Substantiv (Neutrum)",
+    "article": "das",
+    "nominativePlural": "Büros",
+    "sourceAnchor": "d-1-1",
+    "sourceCoreGerman": "Raum eines Gebäudes oder Bereich, in dem am Schreibtisch oder Computer schriftliche oder verwaltende Arbeiten erledigt werden",
+    "exactSpanSha256": "347d9d22d6af7a1cc1d2694ab688aebe11886eb7b4f2d41fdf17862ea990ea23",
+    "exactSpanUtf8Bytes": 4753
+  },
+  "unsupportedClaims": {
+    "caretakerSpecificOffice": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "learnerPhraseAuthority": "OUT_OF_SCOPE",
+    "register": "NOT_CLAIMED_BY_THIS_PACKET"
+  }
+}

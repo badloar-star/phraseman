@@ -115,6 +115,15 @@
               "ru": "Внутри нет «р». `gate` — «ворота».",
               "uk": "Усередині немає «р». `gate` — «ворота»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `great`: оно звучит в аудио и значит «отличный».",
+              "uk": "Обрано слово `great`: воно звучить в аудіо й означає «чудовий»."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Начало похоже, дальше всё расходится: в `awful` нет «к».",
               "uk": "Початок схожий, далі все розходиться: в `awful` немає «к»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `awful`: оно звучит в аудио и значит «ужасный».",
+              "uk": "Обрано слово `awful`: воно звучить в аудіо й означає «жахливий"
+            }
           }
         ],
         "isWordCard": false,
@@ -266,7 +284,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «он отличный»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: в `He's great.` слово `is` уже спрятано в `He's`.",
+              "uk": "`is` зайве: у `He's great` слово `is` уже заховане в `He's`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -382,6 +410,15 @@
               "ru": "Другая гласная и другое слово — «пистолет».",
               "uk": "Інший голосний і інше слово — «пістолет»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `gone`: в аудио слышно `gone`, «ушёл».",
+              "uk": "Обрано слово `gone`: в аудіо чути `gone`, «пішов"
+            }
           }
         ],
         "isWordCard": false,
@@ -437,6 +474,15 @@
         "testedDimension": "Вставте слово — начальник у барі всім сп",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — начальник у барі всім сподобався",
+            "feedbackByLocale": {
+              "ru": "Начальник всем понравился, поэтому он `great` — «отличный».",
+              "uk": "Начальник усім сподобався, тому він `great` — «чудовий"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i08:r2",
             "correct": false,
             "testedDimension": "Вставте слово — начальник у барі всім сп",
@@ -462,65 +508,38 @@
       "interactionId": "en:lesson-01:session-42:i09",
       "ordinal": 12,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте значок — «вона тиха»",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-42:i09:r1",
-          "text": "'s"
-        },
-        {
-          "responseId": "en:lesson-01:session-42:i09:r2",
-          "text": "s"
-        },
-        {
-          "responseId": "en:lesson-01:session-42:i09:r3",
-          "text": "is's"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте значок — «вона тиха»",
+      "audioTargetIds": [
+        "en:lesson-01:session-42:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте значок — «она тихая»",
-          "uk": "Вставте значок — «вона тиха»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-42:i09:audio",
+          "transcript": "She's quiet."
         },
-        "gappedTargetPhrase": "She___ quiet.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-42:i09:r1",
-            "text": "'s"
-          },
-          {
-            "responseId": "en:lesson-01:session-42:i09:r2",
-            "text": "s"
-          },
-          {
-            "responseId": "en:lesson-01:session-42:i09:r3",
-            "text": "is's"
-          }
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "She's quiet.",
+        "orderedTokens": [
+          "She's",
+          "quiet"
         ],
-        "testedDimension": "Вставте значок — «вона тиха»",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "She"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-42:i09:r2",
+            "responseId": "en:lesson-01:session-42:i09:tile:d1",
             "correct": false,
-            "testedDimension": "Вставте значок — «вона тиха»",
+            "testedDimension": "Послушайте и соберите — Лина читает сооб",
             "feedbackByLocale": {
-              "ru": "Без значка это просто буква, приклеенная к слову.",
-              "uk": "Без значка це просто літера, приліплена до слова."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-42:i09:r3",
-            "correct": false,
-            "testedDimension": "Вставте значок — «вона тиха»",
-            "feedbackByLocale": {
-              "ru": "Или `she is`, или `she's`. Вместе — нет.",
-              "uk": "Або `she is`, або `she's`. Разом — ні."
+              "ru": "Нужно `She's quiet.`: `She` без `is` не образует фразу.",
+              "uk": "Потрібно `She's quiet`: `She` без `is` не утворює фразу."
             }
           }
         ]
@@ -629,7 +648,26 @@
           "great",
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`great` лишнее: в аудио `It's awful.`",
+              "uk": "`great` зайве: в аудіо `It's awful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `It's awful.`",
+              "uk": "`is` зайве: воно вже заховане в `It's awful`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -681,6 +719,15 @@
         "testedDimension": "Вставте слово — ви обернулися, а стілець",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви обернулися, а стілець друга порожній",
+            "feedbackByLocale": {
+              "ru": "Стул пустой, значит друг `gone` — «ушёл».",
+              "uk": "Стілець порожній, отже друг `gone` — «пішов"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i12:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви обернулися, а стілець",
@@ -728,7 +775,26 @@
           "is",
           "quiet"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеё",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's funny.`",
+              "uk": "`is` зайве: воно вже заховане в `She's funny`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеё",
+            "feedbackByLocale": {
+              "ru": "`quiet` лишнее: после шутки говорят `She's funny.`",
+              "uk": "`quiet` зайве: після жарту кажуть `She's funny`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -761,7 +827,26 @@
           "gone",
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`gone` лишнее: в аудио `He's here.`",
+              "uk": "`gone` зайве: в аудіо `He's here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `He's here.`",
+              "uk": "`is` зайве: воно вже заховане в `He's here`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -813,6 +898,15 @@
         "testedDimension": "Вставте слово — надворі злива, ви забігл",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — надворі злива, ви забігли в паб",
+            "feedbackByLocale": {
+              "ru": "На улице ливень, поэтому погода `awful` — «ужасная».",
+              "uk": "Надворі злива, тому погода `awful` — «жахлива"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i15:r2",
             "correct": false,
             "testedDimension": "Вставте слово — надворі злива, ви забігл",
@@ -859,7 +953,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — её всё нет, а начало бы",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's late.`",
+              "uk": "`is` зайве: воно вже заховане в `She's late`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -869,13 +973,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-42:i17:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -902,13 +1006,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-42:i17:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -935,13 +1039,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-42:i17:s03:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -969,5 +1073,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c87ebd8a4a83ced59f6150dcdf13dcdf496b6da486c8c7b4c82744d31b5795c2"
+  "learnerFingerprint": "e38469991e408dbf67a0ece449f5a789684bfa19749468cf1ed35ca60d896d6d"
 }

@@ -100,6 +100,8 @@ I'm ___ . → **satisfied** · exhausted · ready
 **9 · Соберите фразу — скажите подруге, что довольны ужином**
 <!-- interaction_id: en:lesson-01:session-45:i09; family: phrase_builder -->
 Вы закончили готовить ужин, и подруга спрашивает, устраивает ли вас результат. Плитки: `I'm` `satisfied.` `not` → **I'm satisfied.**
+*(плитка `not` лишняя: `not` лишнее: вы довольны, поэтому `I'm satisfied.`)*
+
 
 **10 · Вставьте слово — после двух смен сил почти нет**
 <!-- interaction_id: en:lesson-01:session-45:i10; family: context_gap_grammar -->
@@ -112,6 +114,8 @@ I'm ___ . → **exhausted** · satisfied · ready
 **11 · Соберите фразу — ответьте коллеге после двух смен**
 <!-- interaction_id: en:lesson-01:session-45:i11; family: phrase_builder -->
 Коллега предлагает встретиться после вашей второй смены. Скажите, что сил почти не осталось. Плитки: `I'm` `exhausted.` `not` → **I'm exhausted.**
+*(плитка `not` лишняя: `not` лишнее: вы очень устали, поэтому `I'm exhausted.`)*
+
 
 **12 · Вставьте форму — все договорились**
 <!-- interaction_id: en:lesson-01:session-45:i12; family: context_gap_grammar -->
@@ -124,6 +128,8 @@ ___ settled. → **It's** · Its · It
 **13 · Послушайте и соберите — Лина пишет коллегам о времени встречи**
 <!-- interaction_id: en:lesson-01:session-45:i13; family: listen_build_dictation -->
 Лина пишет коллегам: время встречи согласовано. 🔊 *It's settled.* Плитки: `It's` `settled.` `Its` → **It's settled.**
+*(плитка `Its` лишняя: `Its` без апострофа не подходит: в аудио `It's settled.`)*
+
 
 **14 · Вставьте слово — ответьте коллеге после перерыва**
 <!-- interaction_id: en:lesson-01:session-45:i14; family: context_gap_grammar -->
@@ -136,6 +142,8 @@ I'm ___ exhausted. → **not** · isn't · aren't
 **15 · Соберите фразу — вопрос ещё не решён**
 <!-- interaction_id: en:lesson-01:session-45:i15; family: phrase_builder -->
 В рабочем чате коллеги ещё не выбрали время встречи. Плитки: `It` `isn't` `settled.` `its` → **It isn't settled.**
+*(плитка `its` лишняя: `its` не подходит: для отрицания нужен `It isn't settled.`)*
+
 
 **16 · Послушайте и соберите — Лина предупреждает координатора**
 <!-- interaction_id: en:lesson-01:session-45:i16; family: listen_build_dictation -->
@@ -158,6 +166,8 @@ ___ → **I'm not satisfied.** · I not satisfied. · I'm isn't satisfied.
 **19 · Соберите фразу — ответьте другу, который сомневается перед походом**
 <!-- interaction_id: en:lesson-01:session-45:i17:s03; family: phrase_builder -->
 Друг волнуется, не слишком ли Мира и Илья устали для похода после выходных. Скажите, что они не изнурены. Плитки: `They` `aren't` `exhausted.` `isn't` → **They aren't exhausted.**
+*(плитка `isn't` лишняя: `isn't` не подходит к `They`: нужно `They aren't exhausted.`)*
+
 
 ---
 

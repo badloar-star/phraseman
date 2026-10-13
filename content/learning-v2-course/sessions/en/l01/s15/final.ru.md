@@ -126,6 +126,8 @@ You ___ lucky. → **are** · am · is
 **13 · Послушайте и соберите — Вика молчит после трудного звонка; скажите ей: «ты не грустная»**
 <!-- interaction_id: en:lesson-01:session-15:i13; family: listen_build_dictation -->
 🔊 *You are not sad.* Плитки: `sad` `not` `You` `are` `am` → **You are not sad.**
+*(плитка `am` лишняя: `am` здесь лишнее: к Вике обращаются `You are not sad.`)*
+
 
 **14 · Карточка слова — calm**
 <!-- interaction_id: en:lesson-01:session-15:i14; family: listen_choose -->
@@ -144,10 +146,14 @@ You ___ lucky. → **are** · am · is
 **17 · Соберите фразу — Вика честно призналась, что не успела ответить; скажите ей: «ты честная»**
 <!-- interaction_id: en:lesson-01:session-15:i17:s01; family: phrase_builder -->
 Плитки: `You` `are` `honest` `is` → **You are honest.**
+*(плитка `is` лишняя: `is` здесь лишнее: после `you` ставят `are`, поэтому `You are honest.`)*
+
 
 **18 · Послушайте и соберите — Вика думает, что вы расстроены; скажите, что вы не грустите**
 <!-- interaction_id: en:lesson-01:session-15:i17:s02; family: listen_build_dictation -->
 🔊 *I am not sad.* Плитки: `sad` `not` `I` `am` `is` → **I am not sad.**
+*(плитка `is` лишняя: `is` здесь лишнее: о себе говорят `I am not sad.`)*
+
 
 **19 · Карточка слова — kind**
 <!-- interaction_id: en:lesson-01:session-15:i18; family: listen_choose -->
@@ -160,6 +166,8 @@ You ___ lucky. → **are** · am · is
 **21 · Послушайте и соберите — Вика зовёт гулять, но вы весь день носили коробки; скажите, что вы устали**
 <!-- interaction_id: en:lesson-01:session-15:i19:s02; family: listen_build_dictation -->
 🔊 *I am tired.* Плитки: `tired` `I` `am` `is` → **I am tired.**
+*(плитка `is` лишняя: `is` здесь лишнее: о себе говорят `I am tired.`)*
+
 
 **22 · Скажите вслух — Вика придержала дверь для человека с коробками и сказала «спасибо»; скажите Вике: «ты вежливая»**
 <!-- interaction_id: en:lesson-01:session-15:i20; family: scripted_repeat_compare -->

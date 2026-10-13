@@ -94,6 +94,8 @@ It is ___ . → **wet** · dry · cold
 **7 · Складіть фразу — «сухо»**
 <!-- interaction_id: en:lesson-01:session-31:i07; family: phrase_builder -->
 Плитки: `dry` `is` `It` `am` → **It is dry.**
+*(плитка `am` зайва: `are` зайве: після `It` ставлять `is` — `It is dry`.)*
+
 
 **8 · Картка слова — hot**
 <!-- interaction_id: en:lesson-01:session-31:i08; family: listen_choose -->
@@ -148,10 +150,14 @@ It is ___ . → **windy** · warm · wet
 **18 · Послухайте і складіть — «дощово»**
 <!-- interaction_id: en:lesson-01:session-31:i18; family: listen_build_dictation -->
 🔊 *It is rainy.* Плитки: `rainy` `It` `is` `windy` → **It is rainy.**
+*(плитка `windy` зайва: `open` зайве: у записі сказано `It is rainy` — «дощово».)*
+
 
 **19 · Складіть фразу — надворі рве парасолю з рук**
 <!-- interaction_id: en:lesson-01:session-31:i19; family: phrase_builder -->
 Плитки: `windy` `It` `are` `is` → **It is windy.**
+*(плитка `are` зайва: `are` зайве: про вулицю кажуть `It is windy`.)*
+
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-31:i20:s01; family: scripted_repeat_compare -->

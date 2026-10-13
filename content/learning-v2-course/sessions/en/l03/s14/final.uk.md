@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i02; family: listen_choose -->
 Ціль: `sandwich`
 Варіанти: `sandwich` · `bandage` · `language`
+- bandage — *`bandage` — «пов’язка». Спочатку чути «б». У `sandwich` першим звучить «с»; ритм слів подібний.*
+- language — *`language` — «мова». Слово починається з «л», а `sandwich` — з «с». Слухайте початок, а не лише подібну другу частину.*
+
 
 **3 · Картка слова — salad**
 <!-- interaction_id: en:lesson-03:session-14:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i04; family: listen_choose -->
 Ціль: `salad`
 Варіанти: `salad` · `valid` · `sallow`
+- valid — *`valid` — «чинний». Починається з «в», а `salad` — з «с». Подібний ритм не робить слова однаковими.*
+- sallow — *`sallow` — «хворобливо-блідий». Початок схожий, але наприкінці голосний ковзає від одного звучання до іншого. У `salad` слово закінчується приголосним «д».*
+
 
 **5 · Складіть коротку назву — офіціант уточнює, що ви обрали; дайте відповідь двома англійськими словами, що означають «сендвіч»**
 <!-- interaction_id: en:lesson-03:session-14:i05; family: phrase_builder -->
@@ -83,11 +89,17 @@
 <!-- interaction_id: en:lesson-03:session-14:i07; family: listen_choose -->
 Ціль: `egg`
 Варіанти: `egg` · `edge` · `leg`
+- edge — *`edge` — «край». Наприкінці чути поєднання «дж», а в `egg` — проривний звук, близький до українського «ґ». Початок схожий, тому дослухайте слово.*
+- leg — *`leg` — «нога». Спершу чути «л», а потім голосний. У `egg` початок одразу голосний, а кінцівка в обох словах подібна.*
+
 
 **8 · Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)**
 <!-- interaction_id: en:lesson-03:session-14:i08; family: context_gap_grammar -->
 Ціль: `It is ___ clock.`
 Варіанти: `a` · `an` · `is`
+- an — *На початку `clock` чути приголосний «к». Перед цією назвою обираємо `a`.*
+- is — *Після `It` уже стоїть `is`. Перед назвою годинника тут потрібне `a`, а не друге `is`.*
+
 
 **9 · Послухайте й складіть — офіціант говорить про їжу**
 <!-- interaction_id: en:lesson-03:session-14:i09; family: listen_build_dictation -->
@@ -98,6 +110,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i10; family: context_gap_grammar -->
 Ціль: `___ hour.`
 Варіанти: `An` · `A` · `Is`
+- A — *Перша літера `h` у `hour` не звучить: слово починається з голосного. Перед ним потрібне `An`.*
+- Is — *Потрібна коротка назва проміжку часу: `An hour`. Одне `Is` перед `hour` такої назви не утворює.*
+
 
 **11 · З’єднайте назви з українськими значеннями — що ви побачили в кафе**
 <!-- interaction_id: en:lesson-03:session-14:i11; family: speed_match -->
@@ -113,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-14:i13; family: listen_choose -->
 Ціль: `It is not a sandwich.`
 Варіанти: `It is not a sandwich.` · `It is a sandwich.` · `It is not an egg.`
+- It is a sandwich. — *У цьому варіанті назву підтверджують. У записі після `is` чути `not` — назву заперечують.*
+- It is not an egg. — *Тут названо яйце: `an egg`. У записі після заперечення звучить `a sandwich`.*
+
 
 **14 · Послухайте й складіть — друг говорить про час до зустрічі**
 <!-- interaction_id: en:lesson-03:session-14:i14; family: listen_build_dictation -->

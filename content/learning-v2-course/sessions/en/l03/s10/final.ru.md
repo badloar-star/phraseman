@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-10:i02; family: listen_choose -->
 Цель: `kettle`
 Варианты: `kettle` · `cattle` · `settle`
+- cattle — *`cattle` — «крупный рогатый скот». Оба слова начинаются с «к», но `cattle` звучит как **cat-l**, а `kettle` — как **ket-l**. В записи звучит `kettle`.*
+- settle — *`settle` — «уладить». В начале слышно «с», а в `kettle` — «к». Дальше слова звучат похоже, поэтому слушайте начало.*
+
 
 **3 · Карточка слова — toaster**
 <!-- interaction_id: en:lesson-03:session-10:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-10:i04; family: listen_choose -->
 Цель: `toaster`
 Варианты: `toaster` · `poster` · `coaster`
+- poster — *`poster` — «плакат». В начале у него «п», а у `toaster` — «т». Остальная часть звучит похоже.*
+- coaster — *`coaster` — «подставка под стакан». Сначала слышно «к», а в записи слово начинается с «т»: `toaster`.*
+
 
 **5 · Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»**
 <!-- interaction_id: en:lesson-03:session-10:i05; family: phrase_builder -->
@@ -83,11 +89,17 @@
 <!-- interaction_id: en:lesson-03:session-10:i07; family: listen_choose -->
 Цель: `vacuum`
 Варианты: `vacuum` · `vacuous` · `volume`
+- vacuous — *`vacuous` — «бессодержательный». Начало похоже, но в конце у него «с», а у `vacuum` — «м». Дослушайте слово.*
+- volume — *`volume` — «громкость». В середине у него слышно «л», а у `vacuum` — «к». Общее начало на «в» ещё не даёт ответа.*
+
 
 **8 · Вставьте слово — друг показывает на духовку в соседнем ряду; назовите её полной фразой (`oven` — «духовка»)**
 <!-- interaction_id: en:lesson-03:session-10:i08; family: context_gap_grammar -->
 Цель: `It is ___ oven.`
 Варианты: `an` · `a` · `is`
+- a — *В `oven` первый звук гласный, поэтому перед этим названием выбираем `an`.*
+- is — *`is` уже стоит после `It`. Сейчас не хватает маленького слова перед `oven`: здесь это `an`.*
+
 
 **9 · Произнесите фразу — друг показывает на пылесос; назовите его полной фразой**
 <!-- interaction_id: en:lesson-03:session-10:i09; family: scripted_repeat_compare -->
@@ -107,6 +119,9 @@
 <!-- interaction_id: en:lesson-03:session-10:i12; family: context_gap_grammar -->
 Цель: `It is ___ armchair.`
 Варианты: `an` · `a` · `am`
+- a — *Первый звук в `armchair` гласный. Перед этим названием нужно `an`, хотя кресло, как и чайник, одно.*
+- am — *`am` не ставим перед названием кресла. После `It is` здесь идёт `an armchair`.*
+
 
 **13 · Соберите вопрос — друг заметил другой прибор с носиком; уточните «Это чайник?»**
 <!-- interaction_id: en:lesson-03:session-10:i13; family: phrase_builder -->
@@ -117,6 +132,9 @@
 <!-- interaction_id: en:lesson-03:session-10:i14; family: listen_choose -->
 Цель: `It is not a vacuum.`
 Варианты: `It is not a vacuum.` · `It is a vacuum.` · `It is not a toaster.`
+- It is a vacuum. — *В этом варианте после `is` сразу идёт `a`. В записи между ними слышно `not`: продавец отрицает название.*
+- It is not a toaster. — *Начало совпадает, но в конце записи звучит `vacuum`, с «в» в начале. У `toaster` первым был бы звук «т».*
+
 
 **15 · Соберите отрицание — друг принял маленькую духовку за тостер; поправьте его: «Это не тостер»**
 <!-- interaction_id: en:lesson-03:session-10:i15; family: phrase_builder -->

@@ -115,6 +115,15 @@
               "ru": "Только начало слова. Это «ухо».",
               "uk": "Тільки початок слова. Це «вухо»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `early`: в конце есть `-ly`.",
+              "uk": "Ви чуєте `early`: у кінці є `-ly`."
+            }
           }
         ],
         "isWordCard": false,
@@ -212,6 +221,15 @@
         ],
         "testedDimension": "Вставьте слово — вы пришли, а в комнате ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i04:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы пришли, а в комнате пусто",
+            "feedbackByLocale": {
+              "ru": "Комната ещё пуста, значит вы пришли рано: `We are early.`",
+              "uk": "Кімната ще порожня, отже ви прийшли рано: `We are early.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-39:i04:r2",
             "correct": false,
@@ -346,6 +364,15 @@
               "ru": "Тоже похоже, но это «поездка».",
               "uk": "Теж схоже, але це «поїздка»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i06:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `right` — «правы».",
+              "uk": "Ви чуєте `right` — «маєте рацію»."
+            }
           }
         ],
         "isWordCard": false,
@@ -452,7 +479,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «они ошиблись»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `They` говорят `They are wrong.`",
+              "uk": "`is` зайве: з `They` кажуть `They are wrong.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -548,7 +585,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы извиняетесь вдвоём",
+      "prompt": "Выберите форму после `we` — вы извиняетесь вдвоём",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-39:i11:r1",
@@ -565,12 +602,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы извиняетесь вдвоём",
+      "accessibilityLabel": "Выберите форму после `we` — вы извиняетесь вдвоём",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы извиняетесь вдвоём",
-          "uk": "Вставте скріпку — ви вибачаєтеся вдвох"
+          "ru": "Выберите форму после `we` — вы извиняетесь вдвоём",
+          "uk": "Виберіть форму після `we` — ви вибачаєтеся вдвох"
         },
         "gappedTargetPhrase": "We ___ sorry.",
         "gapOptions": [
@@ -587,12 +624,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы извиняетесь вдвоём",
+        "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i11:r1",
+            "correct": true,
+            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
+            "feedbackByLocale": {
+              "ru": "С `we` говорят `We are sorry.`",
+              "uk": "З `we` кажуть `We are sorry.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-39:i11:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы извиняетесь вдвоём",
+            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
             "feedbackByLocale": {
               "ru": "`am` только про себя одного. Вас двое.",
               "uk": "`am` тільки про себе одного. Вас двоє."
@@ -601,7 +647,7 @@
           {
             "responseId": "en:lesson-01:session-39:i11:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы извиняетесь вдвоём",
+            "testedDimension": "Выберите форму после `we` — вы извиняетесь вдвоём",
             "feedbackByLocale": {
               "ru": "`is` про одного со стороны. Про «мы» — `are`.",
               "uk": "`is` про одного збоку. Про «ми» — `are`."
@@ -640,7 +686,17 @@
         "authoredDistractorTokens": [
           "late"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мы пришли рано»",
+            "feedbackByLocale": {
+              "ru": "`late` здесь лишнее: в аудио `We are early.` — «мы пришли рано».",
+              "uk": "`late` тут зайве: в аудіо `We are early.` — «ми прийшли рано»."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -691,6 +747,15 @@
         ],
         "testedDimension": "Вставьте слово — про двоих из соседнего ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — про двоих из соседнего отдела: вне работы не общаются",
+            "feedbackByLocale": {
+              "ru": "Они работают вместе: `They are colleagues.`",
+              "uk": "Вони працюють разом: `They are colleagues.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-39:i13:r2",
             "correct": false,
@@ -790,6 +855,15 @@
         "testedDimension": "Вставьте слово — эти двое всё время вмес",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-39:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — эти двое всё время вместе вне работы",
+            "feedbackByLocale": {
+              "ru": "Они проводят время вместе вне работы: `They are friends.`",
+              "uk": "Вони проводять час разом поза роботою: `They are friends.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-39:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — эти двое всё время вмес",
@@ -838,7 +912,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы вдвоём успели к нача",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are not late.`",
+              "uk": "`is` зайве: з `We` кажуть `We are not late.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -848,13 +932,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i17:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -881,13 +965,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i17:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -914,13 +998,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 3",
+      "prompt": "Произнесите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-39:i17:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 3",
+      "accessibilityLabel": "Произнесите одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -948,5 +1032,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "38b3da50ad7ac5461d7bc23337da9277b4e29cada8f1f71f5c1bc33b9bcfaead"
+  "learnerFingerprint": "64dbce8984e7f10a589a53b213674affa443dd71307ff5b83f3b7433b65636b8"
 }

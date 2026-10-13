@@ -62,6 +62,9 @@
 <!-- interaction_id: en:lesson-03:session-54:i07; family: listen_choose -->
 Ціль: `striped`
 Варіанти: `striped` · `bright` · `pale`
+- bright — *У записі чути `striped` — «смугастий», а не `bright` — «яскравий».*
+- pale — *`Pale` — «блідий». У записі названо візерунок зі смуг.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-54:i02; family: scripted_repeat_compare -->
@@ -76,6 +79,8 @@
 <!-- interaction_id: en:lesson-03:session-54:i08; family: sound_contrast -->
 Ціль: `striped`
 Варіанти: `striped` · `stripped`
+- stripped — *У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова.*
+
 
 **7 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-54:i05; family: speed_match -->
@@ -86,6 +91,8 @@
 <!-- interaction_id: en:lesson-03:session-54:i06; family: sound_contrast -->
 Ціль: `pale`
 Варіанти: `pale` · `peel`
+- peel — *`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий».*
+
 
 **9 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-54:i10; family: scripted_repeat_compare -->
@@ -104,6 +111,10 @@
 <!-- interaction_id: en:lesson-03:session-54:i12; family: context_gap_grammar -->
 Ціль: `___ pale rug is here.`
 Варіанти: `That` · `A` · `The` · `Those`
+- A — *Тут ви вказуєте на дальній килимок, тому початок — `That`.*
+- The — *Для цього підпису потрібен указівник відстані `That`, а не `The`.*
+- Those — *`Those` стосується кількох предметів; килимок один.*
+
 
 **13 · Послухайте й складіть почуту фразу**
 <!-- interaction_id: en:lesson-03:session-54:i13; family: listen_build_dictation -->
@@ -113,6 +124,10 @@
 <!-- interaction_id: en:lesson-03:session-54:i14; family: context_gap_grammar -->
 Ціль: `Those ___ cushions are here.`
 Варіанти: `striped` · `bright` · `pale` · `the`
+- bright — *У цьому підписі подушки зі смугами, тому потрібно `striped`.*
+- pale — *`Pale` означає «блідий», а тут описують смуги.*
+- the — *Після `Those` потрібен опис `striped`; `the` поруч з указівником не ставлять.*
+
 
 **15 · Складіть підпис — друг пересунув блідий килимок ближче до вас**
 <!-- interaction_id: en:lesson-03:session-54:i15; family: phrase_builder -->

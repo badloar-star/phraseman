@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-005	2026-10-13T14:43:57.438Z	timeout	90700	нет маркера+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T14-42-21-711Z/profile-005.timeout.png	0

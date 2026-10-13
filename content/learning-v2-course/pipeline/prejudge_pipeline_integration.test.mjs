@@ -45,7 +45,8 @@ function fixture() {
       }
       chunks[chunkIndex] = chunk;
     }
-    fs.writeFileSync(file, chunks.join(""));
+    const modes = interactions.map((interaction, index) => `${index + 1}=${interaction.family}`).join(", ");
+    fs.writeFileSync(file, `${chunks.join("").trimEnd()}\n\nmodes: ${modes}\n`);
   }
   return dir;
 }

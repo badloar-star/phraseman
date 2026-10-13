@@ -1,0 +1,12 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-001	2026-10-12T21:59:38.971Z	ok	13130	marker+пусто_1509мс+склейка+ждали_metro_54мс	docs/phraseman-2.0/evidence/parity/dialogs-001.png	1509
+dialogs-002	2026-10-12T22:00:01.760Z	ok	14284	marker+пусто_1512мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-002.png	1512
+dialogs-003	2026-10-12T22:00:39.382Z	ok	16907	marker+шагов_1+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-003.png	0
+dialogs-004	2026-10-12T22:01:10.071Z	ok	15366	marker+пусто_1616мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-004.png	1616
+dialogs-005	2026-10-12T22:01:35.411Z	ok	15302	marker+пусто_2003мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-005.png	2003
+dialogs-006	2026-10-12T22:02:11.825Z	ok	15375	marker+шагов_1+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/dialogs-006.png	0
+dialogs-007	2026-10-12T22:03:01.276Z	ok	16048	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-007.png	0
+dialogs-008	2026-10-12T22:03:50.774Z	ok	16290	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-008.png	0
+mistakes-panel-002	2026-10-12T22:04:11.728Z	ok	11120	marker+шагов_1+пусто_1395мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/mistakes-panel-002.png	1395
+profile-007	2026-10-12T22:04:36.426Z	ok	14332	marker+пусто_2152мс+склейка+ждали_metro_110мс	docs/phraseman-2.0/evidence/parity/profile-007.png	2152
+profile-008	2026-10-12T22:04:59.662Z	ok	14585	marker+пусто_1424мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/profile-008.png	1424

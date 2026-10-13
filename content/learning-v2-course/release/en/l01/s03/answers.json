@@ -17,7 +17,7 @@
   {
     "interactionId": "en:lesson-01:session-03:i04",
     "correctText": "sure",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-03:i04:r1"
   },
   {
     "interactionId": "en:lesson-01:session-03:i05",
@@ -46,8 +46,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-03:i10",
-    "correctText": "alone",
-    "correctResponseId": "en:lesson-01:session-03:i10:r1"
+    "correctText": "I am not alone.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-03:i11",
@@ -67,7 +67,7 @@
   {
     "interactionId": "en:lesson-01:session-03:i14",
     "correctText": "I am not busy.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-03:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-03:i15:s01",
@@ -92,7 +92,7 @@
   {
     "interactionId": "en:lesson-01:session-03:i17:s02",
     "correctText": "I am not hungry.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-03:i17:s02:r1"
   },
   {
     "interactionId": "en:lesson-01:session-03:i17:s03",

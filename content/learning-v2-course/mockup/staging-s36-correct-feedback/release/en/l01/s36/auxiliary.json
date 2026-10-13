@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-36",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-36:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-36:intro1:r1": {
+          "ru": "Верно: We are colleagues — «мы коллеги»: с we ставят are, а colleagues называет вашу рабочую связь с Олегом.",
+          "uk": "Правильно: We are colleagues — «ми колеги»: з we ставлять are, а colleagues називає ваш робочий зв'язок з Олегом."
+        },
+        "en:lesson-01:session-36:intro1:r2": {
+          "ru": "Английская фраза не стоит без глагола. Русский пропускает «есть», английский — нет: `we are` + кто вы.",
+          "uk": "Англійська фраза не стоїть без дієслова. Українська пропускає «є», англійська — ні: `we are` + хто ви."
+        },
+        "en:lesson-01:session-36:intro1:r3": {
+          "ru": "`is` — про одного. Вас двое, значит `are`.",
+          "uk": "`is` — про одного. Вас двоє, отже `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-36:intro2:r1": {
+          "ru": "Верно: They are friends — «они друзья»: с they ставят are, а friends во множественном числе называет отношения этих двух людей.",
+          "uk": "Правильно: They are friends — «вони друзі»: з they ставлять are, а friends у множині називає стосунки цих двох людей."
+        },
+        "en:lesson-01:session-36:intro2:r2": {
+          "ru": "Два слова рядом — ещё не фраза. Чтобы сказать, кто они, нужна связка: `they are` + кто.",
+          "uk": "Два слова поруч — це ще не фраза. Щоб сказати, хто вони, потрібна зв'язка: `they are` + хто."
+        },
+        "en:lesson-01:session-36:intro2:r3": {
+          "ru": "Один друг на двоих не бывает. Их двое — `friends`, с `-s`.",
+          "uk": "Один друг на двох не буває. Їх двоє — `friends`, із `-s`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-36:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-36:intro3:r1": {
+          "ru": "Верно: They are guests — «они гости»: люди зашли ненадолго, поэтому guests точно передаёт ситуацию; с they ставят are.",
+          "uk": "Правильно: They are guests — «вони гості»: люди зайшли ненадовго, тому guests точно передає ситуацію; з they ставлять are."
+        },
+        "en:lesson-01:session-36:intro3:r2": {
+          "ru": "Соседи — те, кто рядом постоянно. Эти уйдут через час, значит `guests`.",
+          "uk": "Сусіди — ті, хто поруч постійно. Ці підуть за годину, отже `guests`."
+        },
+        "en:lesson-01:session-36:intro3:r3": {
+          "ru": "Связка пропала. Про `they` — `they are` + кто они.",
+          "uk": "Зв'язка зникла. Про `they` — `they are` + хто вони."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d9989a29b82f99df26f0241345b72a7042bf19142292289eb8609ebb9befb4f1"
+}

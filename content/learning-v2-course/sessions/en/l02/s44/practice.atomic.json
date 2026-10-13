@@ -126,7 +126,7 @@
               "text": "you"
             }
           ],
-          "testedDimension": "Вставьте слово — друг проверяет ваши вещ",
+          "testedDimension": "Вставьте слово — друг проверяет ваши вещи; спросите его, готовы ли вы сами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i02:r2",
@@ -302,7 +302,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставьте слово — вы проверили время в би",
+          "testedDimension": "Вставьте слово — вы проверили время в билете; подтвердите другу: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i05:r2",
@@ -475,7 +475,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — вы собрались у двери и ",
+          "testedDimension": "Вставьте слово — вы собрались у двери и сверяете часы с намеченным временем выхода; спросите друга: «Мы рано?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i08:r2",
@@ -682,7 +682,7 @@
               "text": "she"
             }
           ],
-          "testedDimension": "Вставьте слово — вы оба у двери и смотри",
+          "testedDimension": "Вставьте слово — вы оба у двери и смотрите на часы; спросите друга, опережаете ли вы намеченное время выхода",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i12:r2",
@@ -1029,7 +1029,7 @@
               "text": "you"
             }
           ],
-          "testedDimension": "Вставте слово — друг перевіряє ваші речі",
+          "testedDimension": "Вставте слово — друг перевіряє ваші речі; запитайте його, чи ви самі готові",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i02:r2",
@@ -1205,7 +1205,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставте слово — ви перевірили час у квит",
+          "testedDimension": "Вставте слово — ви перевірили час у квитку; підтвердьте другові: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i05:r2",
@@ -1378,7 +1378,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — ви зібралися біля дверей",
+          "testedDimension": "Вставте слово — ви зібралися біля дверей і звіряєте годинник із запланованим часом виходу; запитайте друга: «Ми виходимо раніше?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i08:r2",
@@ -1585,7 +1585,7 @@
               "text": "she"
             }
           ],
-          "testedDimension": "Вставте слово — ви обоє біля дверей і ди",
+          "testedDimension": "Вставте слово — ви обоє біля дверей і дивитеся на годинник; запитайте друга, чи випереджаєте ви запланований час виходу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-44:i12:r2",

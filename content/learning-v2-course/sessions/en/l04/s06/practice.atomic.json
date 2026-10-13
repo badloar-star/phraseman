@@ -290,7 +290,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+                "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
               }
             }
           ]
@@ -505,11 +505,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите сообщение для указателя",
+        "prompt": "Соберите сообщение для указателя",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите сообщение для указателя",
+        "accessibilityLabel": "Соберите сообщение для указателя",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a clinic in this building.",
@@ -816,7 +816,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь нужна форма `is`.",
-              "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
+                "uk": "`Am` уживають лише з `I`; тут потрібна форма `is`."
               }
             }
           ]
@@ -1031,11 +1031,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть повідомлення для вказівника",
+        "prompt": "Складіть повідомлення для вказівника",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть повідомлення для вказівника",
+        "accessibilityLabel": "Складіть повідомлення для вказівника",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a clinic in this building.",

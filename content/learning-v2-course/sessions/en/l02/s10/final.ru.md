@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-10:i02; family: listen_choose -->
 Цель: `crowded`
 Варианты: `crowded` · `cloudy` · `called`
+- cloudy — *В `crowded` после «к» слышно «р», в `cloudy` — «л».*
+- called — *«Позвонил». Это про действие, а `crowded` — про место.*
+
 
 **3 · Карточка слова — noisy**
 <!-- interaction_id: en:lesson-02:session-10:i03; family: listen_choose -->
@@ -75,25 +78,39 @@
 <!-- interaction_id: en:lesson-02:session-10:i04; family: listen_choose -->
 Цель: `noisy`
 Варианты: `noisy` · `nose` · `nice`
+- nose — *«Нос». Начало общее, но дальше расходятся: в `noisy` слышно «ой», в `nose` — «оу».*
+- nice — *«Приятный». Заканчивается на «с», а `noisy` — на «зи».*
+
 
 **5 · Вставьте слово — в зале не пройти между столиками**
 <!-- interaction_id: en:lesson-02:session-10:i05; family: context_gap_grammar -->
 Цель: `Is it ___ ?`
 Варианты: `crowded` · `cold` · `comfortable`
+- cold — *«Холодно» — про температуру. Речь о количестве людей.*
+- comfortable — *«Удобно» — про стул. Вы спрашиваете, сколько тут народу.*
+
 
 **6 · Соберите фразу — «шумно ли тут?»**
 <!-- interaction_id: en:lesson-02:session-10:i06; family: phrase_builder -->
 Цель: `Is it noisy?`
+Плитки: `Is` · `it` · `noisy` · `are`
+*Плитка `are` лишняя: с `it` нужна форма `is`: `Is it noisy?`*
 
 **7 · Вставьте слово — вы сели, спина утонула в мягком кресле**
 <!-- interaction_id: en:lesson-02:session-10:i07; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `comfortable` · `noisy` · `crowded`
+- noisy — *«Шумно» — про уши, а вы про кресло.*
+- crowded — *«Людно» — про зал, а вы про своё место.*
+
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-02:session-10:i08; family: listen_choose -->
 Цель: `cold`
 Варианты: `cold` · `gold` · `nice`
+- gold — *«Золото». Различаются только первым звуком: «к» против «г».*
+- nice — *«Приятный». Начинается с «н», а `cold` — с «к».*
+
 
 **9 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-10:i09; family: speed_match -->
@@ -104,28 +121,43 @@
 <!-- interaction_id: en:lesson-02:session-10:i10; family: context_gap_grammar -->
 Цель: `___ it noisy?`
 Варианты: `Is` · `Are` · `Am`
+- Are — *С `it` нужно `is`; `are` используют с `you` и `they`.*
+- Am — *`am` идёт с `I`, про себя. Про место — `is it`.*
+
 
 **11 · Послушайте и соберите — «людно ли тут?»**
 <!-- interaction_id: en:lesson-02:session-10:i11; family: listen_build_dictation -->
 Цель: `Is it crowded?`
+🔊 *Is it crowded?* Плитки: `Is` · `it` · `crowded` · `noisy`
+*Плитка `noisy` лишняя: здесь спрашивают, много ли людей, поэтому нужно `crowded`: `Is it crowded?`*
 
 **12 · Различите звуки — какое из двух про «людно»?**
 <!-- interaction_id: en:lesson-02:session-10:i12; family: sound_contrast -->
 Варианты: `crowded` · `cloudy`
+- cloudy — *Это «облачно». После «к» в `cloudy` слышно «л», в `crowded` — «р».*
+
 
 **13 · Вставьте слово — вы вошли с улицы без куртки и сразу поёжились**
 <!-- interaction_id: en:lesson-02:session-10:i13; family: context_gap_grammar -->
 Цель: `Is it ___ ?`
 Варианты: `cold` · `noisy` · `crowded`
+- noisy — *«Шумно» — про громкость, а вы поёжились от температуры.*
+- crowded — *«Людно» — про количество людей, а не про холод.*
+
 
 **14 · Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему**
 <!-- interaction_id: en:lesson-02:session-10:i14; family: phrase_builder -->
 Цель: `Is it comfortable?`
+Плитки: `Is` · `it` · `comfortable` · `am`
+*Плитка `am` лишняя: с `it` нужна форма `is`; `am` употребляется с `I`.*
 
 **15 · Вставьте слово — спутник спрашивает, как вам тут, и всё вас устраивает**
 <!-- interaction_id: en:lesson-02:session-10:i15; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `ok` · `crowded` · `noisy`
+- crowded — *«Людно» — это описание зала, а не ваша оценка.*
+- noisy — *«Шумно» — жалоба, а вы говорите, что всё нормально.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-10:i16:s01; family: scripted_repeat_compare -->

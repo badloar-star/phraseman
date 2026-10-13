@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-30:i05; family: context_gap_grammar -->
 Цель: `___`
 Варианты: `glove` · `scarf` · `sweater`
+- scarf — *Scarf — шарф. Здесь нужна перчатка: glove.*
+- sweater — *Sweater — свитер. Здесь нужна перчатка: glove.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-30:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значения вариантов: `scarf` — шарф · `scar` — шрам · `scale` — шкала · `star` — звезда
 Цель: `scarf`
 Варианты: `scarf` · `scar` · `scale` · `star`
+- scar — *У `scarf` финальный звук — `f`; у `scar` финал — гласный или `r`, в зависимости от акцента.*
+- scale — *Оба слова начинаются /sk/. Дальше в `scale` звучит /eɪ/, а в `scarf` — /ɑː~ɑ/ и финальный `f`.*
+- star — *`star` начинается сочетанием `st`, а в записи прозвучало начало `sc`.*
+
 
 **6 · Различите слово — glove или love**
 <!-- interaction_id: en:lesson-03:session-30:i06; family: sound_contrast -->
 Цель: `glove`
 Варианты: `glove` · `love`
+- love — *Love — любовь. В записи перед love слышится g: glove.*
+
 
 **7 · Соедините слова со значениями — отдел одежды**
 <!-- interaction_id: en:lesson-03:session-30:i07; family: speed_match -->
@@ -95,11 +104,15 @@
 <!-- interaction_id: en:lesson-03:session-30:i08; family: context_gap_grammar -->
 Цель: `This ___ here.`
 Варианты: `is` · `are`
+- are — *Are — для нескольких предметов. Здесь один предмет: This is here.*
+
 
 **9 · Различите слово — This или That**
 <!-- interaction_id: en:lesson-03:session-30:i09; family: sound_contrast -->
 Цель: `This`
 Варианты: `This` · `That`
+- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+
 
 **10 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-30:i10; family: scripted_repeat_compare -->
@@ -117,11 +130,19 @@
 <!-- interaction_id: en:lesson-03:session-30:i13; family: context_gap_grammar -->
 Цель: `___ glove, please.`
 Варианты: `This` · `That` · `It` · `Is`
+- That — *`that` указывает на вещь вдали. Перчатка перед вами, поэтому нужен `This`.*
+- It — *`it glove` не образует просьбу. Перед названием выбранной вещи ставим `This`.*
+- Is — *`Is glove` — сломанное начало вопроса. Здесь нужна короткая просьба `This glove, please`.*
+
 
 **14 · Послушайте и выберите точное значение просьбы**
 <!-- interaction_id: en:lesson-03:session-30:i14; family: listen_choose -->
 Цель: `That sweater, please.`
 Варианты: `Тот свитер, пожалуйста` · `Этот свитер, пожалуйста` · `Тот шарф, пожалуйста` · `Этот шарф, пожалуйста`
+- Этот свитер, пожалуйста — *В записи прозвучало `That`: выбирают дальний свитер, а не ближний.*
+- Тот шарф, пожалуйста — *Расстояние совпало, но в записи назвали `sweater`, а не `scarf`.*
+- Этот шарф, пожалуйста — *Здесь отличаются оба ключевых слова: прозвучали `That sweater`, а не `This scarf`.*
+
 
 **15 · Соберите просьбу — перчатка лежит на дальней полке**
 <!-- interaction_id: en:lesson-03:session-30:i15; family: phrase_builder -->
@@ -131,6 +152,10 @@
 <!-- interaction_id: en:lesson-03:session-30:i16; family: context_gap_grammar -->
 Цель: `___ scarf, please.`
 Варианты: `That` · `This` · `It` · `Am`
+- This — *`this` выбирает вещь рядом. Шарф находится в другом конце зала, поэтому нужен `That`.*
+- It — *`it scarf` не образует просьбу. Перед названием дальней вещи ставим `That`.*
+- Am — *`am` используется с `I`, когда говорим о себе. Здесь выбираем дальний шарф словом `That`.*
+
 
 **17 · Послушайте и соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-30:i17:s01; family: listen_build_dictation -->

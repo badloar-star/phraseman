@@ -1,0 +1,14 @@
+id	time	result	detail	file
+cards-081	2026-10-13T03:41:37.808Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-081.png
+cards-gap-011	2026-10-13T03:41:39.424Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-gap-011.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=381471 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-gap-011.png
+cards-section-046	2026-10-13T03:41:41.271Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-046.png
+cards-v2-037	2026-10-13T03:41:42.884Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-v2-037.png
+cards-v2-044	2026-10-13T03:41:44.327Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-044.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=153126 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-044.png
+cards-v2-046	2026-10-13T03:41:45.929Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-046.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=202820 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-046.png
+dialogs-010	2026-10-13T03:41:47.736Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/dialogs-010.png
+dialogs-gap-016	2026-10-13T03:41:49.359Z	failed	склейка_не_удалась: error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-gap-016.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=244308 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/dialogs-gap-016.png
+energy-modes-007	2026-10-13T03:41:50.665Z	stitched	склейка_1800x1328	docs/phraseman-2.0/evidence/parity/energy-modes-007.png
+energy-modes-010	2026-10-13T03:41:51.944Z	stitched	склейка_1800x1328	docs/phraseman-2.0/evidence/parity/energy-modes-010.png
+energy-modes-017	2026-10-13T03:41:53.207Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/energy-modes-017.png
+spire-gap-016	2026-10-13T03:41:54.494Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/spire-gap-016.png
+spire-gap-019	2026-10-13T03:41:55.950Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/spire-gap-019.png

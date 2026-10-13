@@ -273,17 +273,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — официант ут",
-              "feedbackByLocale": {
-                "ru": "Название `sandwich` начинается с согласного «с». В коротком ответе перед ним нужно `A`.",
-                "uk": "Назва `sandwich` починається з приголосного «с». У короткій відповіді перед нею потрібне `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -451,7 +441,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг показывает на часы",
+          "testedDimension": "Вставьте слово — друг показывает на часы на стене и спрашивает, что это; назовите предмет (`clock` — «часы», настенные или настольные)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-14:i08:r2",
@@ -510,17 +500,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i09:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — официант говорит",
-              "feedbackByLocale": {
-                "ru": "В записи перед `egg` звучит `an`. Название начинается с гласного звука, поэтому плитка `a` лишняя.",
-                "uk": "У записі перед `egg` звучить `an`. Назва починається з голосного звуку, тому плитка `a` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -569,7 +549,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — до встречи ровно шестьд",
+          "testedDimension": "Вставьте слово — до встречи ровно шестьдесят минут; назовите этот промежуток двумя словами (`hour` — «час»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-14:i10:r2",
@@ -698,17 +678,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг принёс порцию блю",
-              "feedbackByLocale": {
-                "ru": "После `Is it` нужно `a salad`. Название порции начинается с согласного «с».",
-                "uk": "Після `Is it` потрібне `a salad`. Назва порції починається з приголосного «с»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -821,17 +791,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i14:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — друг говорит о в",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `An hour`. У `hour` гласное начало, поэтому перед ним выбираем `An`.",
-                "uk": "У записі звучить `An hour`. У `hour` голосний початок, тому перед ним обираємо `An`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -868,17 +828,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг принял булочку",
-              "feedbackByLocale": {
-                "ru": "После `It is not` ставим `a sandwich`. Отрицание сохраняет `a` перед согласным началом названия.",
-                "uk": "Після `It is not` ставимо `a sandwich`. Заперечення зберігає `a` перед приголосним початком назви."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -947,17 +897,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг смотрит на вашу по",
-              "feedbackByLocale": {
-                "ru": "После `It is` нужно `a salad`: называем одну порцию, а первый звук названия — согласный «с».",
-                "uk": "Після `It is` потрібне `a salad`: називаємо одну порцію, а перший звук назви приголосний «с»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1231,17 +1171,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — офіціант уточню",
-              "feedbackByLocale": {
-                "ru": "Название `sandwich` начинается с согласного «с». В коротком ответе перед ним нужно `A`.",
-                "uk": "Назва `sandwich` починається з приголосного «с». У короткій відповіді перед нею потрібне `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1409,7 +1339,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг показує на годинник",
+          "testedDimension": "Вставте слово — друг показує на годинник на стіні й питає, що це; назвіть предмет (`clock` — «годинник», настінний або настільний)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-14:i08:r2",
@@ -1468,17 +1398,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i09:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — офіціант говорит",
-              "feedbackByLocale": {
-                "ru": "В записи перед `egg` звучит `an`. Название начинается с гласного звука, поэтому плитка `a` лишняя.",
-                "uk": "У записі перед `egg` звучить `an`. Назва починається з голосного звуку, тому плитка `a` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1527,7 +1447,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — до зустрічі рівно шістде",
+          "testedDimension": "Вставте слово — до зустрічі рівно шістдесят хвилин; назвіть цей проміжок двома словами (`hour` — «година»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-14:i10:r2",
@@ -1656,17 +1576,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — друг приніс порцію ст",
-              "feedbackByLocale": {
-                "ru": "После `Is it` нужно `a salad`. Название порции начинается с согласного «с».",
-                "uk": "Після `Is it` потрібне `a salad`. Назва порції починається з приголосного «с»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1779,17 +1689,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i14:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — друг говорить пр",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `An hour`. У `hour` гласное начало, поэтому перед ним выбираем `An`.",
-                "uk": "У записі звучить `An hour`. У `hour` голосний початок, тому перед ним обираємо `An`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1826,17 +1726,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг прийняв було",
-              "feedbackByLocale": {
-                "ru": "После `It is not` ставим `a sandwich`. Отрицание сохраняет `a` перед согласным началом названия.",
-                "uk": "Після `It is not` ставимо `a sandwich`. Заперечення зберігає `a` перед приголосним початком назви."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1905,17 +1795,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-14:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг дивиться на вашу п",
-              "feedbackByLocale": {
-                "ru": "После `It is` нужно `a salad`: называем одну порцию, а первый звук названия — согласный «с».",
-                "uk": "Після `It is` потрібне `a salad`: називаємо одну порцію, а перший звук назви приголосний «с»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

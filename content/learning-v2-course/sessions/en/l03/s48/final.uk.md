@@ -58,6 +58,9 @@
 <!-- interaction_id: en:lesson-03:session-48:i05; family: listen_choose -->
 Ціль: `total`
 Варіанти: `total` · `title` · `turtle`
+- title — *У записі два склади: `TO-tal`, а не односкладове `title`.*
+- turtle — *У записі немає звуку /r/: звучить `total`, а не `turtle`.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-48:i02; family: scripted_repeat_compare -->
@@ -85,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-48:i11; family: context_gap_grammar -->
 Ціль: `The order ___ here.`
 Варіанти: `is` · `are` · `am`
+- are — *`Order` — одне замовлення, тому потрібна форма `is`.*
+- am — *`am` буває лише з `I`, а не з `order`.*
+
 
 **10 · З’єднайте пари — звіряємо коробку й чек**
 <!-- interaction_id: en:lesson-03:session-48:i07; family: speed_match -->
@@ -95,6 +101,10 @@
 <!-- interaction_id: en:lesson-03:session-48:i09; family: context_gap_grammar -->
 Ціль: `___ item is wrong.`
 Варіанти: `An` · `The` · `A` · `без артикля`
+- The — *Позицію ще не називали.*
+- A — *Перед `item` потрібен `an`.*
+- без артикля — *Одну позицію тут треба назвати з артиклем.*
+
 
 **12 · Складіть фразу — замовлення вже принесли додому**
 <!-- interaction_id: en:lesson-03:session-48:i12; family: phrase_builder -->
@@ -104,6 +114,10 @@
 <!-- interaction_id: en:lesson-03:session-48:i13; family: listen_choose -->
 Ціль: `The total is wrong.`
 Варіанти: `Підсумкова сума неправильна.` · `Підсумкова сума тут.` · `Позиція неправильна.` · `Де підсумкова сума?`
+- Підсумкова сума тут. — *У записі звучить `wrong`, а не `here`.*
+- Позиція неправильна. — *Звучить `total`, а не `item`.*
+- Де підсумкова сума? — *Це твердження, а не запитання.*
+
 
 **14 · Складіть фразу — знайомі позиції лежать у коробці**
 <!-- interaction_id: en:lesson-03:session-48:i14; family: phrase_builder -->
@@ -113,16 +127,28 @@
 <!-- interaction_id: en:lesson-03:session-48:i15; family: context_gap_grammar -->
 Ціль: `The total ___ wrong.`
 Варіанти: `is` · `are` · `am` · `без артикля`
+- are — *`total` — одна сума, тому потрібен `is`.*
+- am — *`am` буває з I, а тут total.*
+- без артикля — *Після `The total` потрібна зв’язка `is`.*
+
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-03:session-48:i16; family: listen_choose -->
 Ціль: `The item is wrong.`
 Варіанти: `Ця позиція неправильна.` · `Ця позиція тут.` · `Підсумкова сума неправильна.` · `Де позиція?`
+- Ця позиція тут. — *У записі звучить `wrong`, а не `here`.*
+- Підсумкова сума неправильна. — *Звучить `item`, а не `total`.*
+- Де позиція? — *Це твердження, а не запитання.*
+
 
 **17 · Вставте артикль — ви вперше перевіряєте одне неправильне замовлення з кількох роздруківок**
 <!-- interaction_id: en:lesson-03:session-48:i17; family: context_gap_grammar -->
 Ціль: `___ order is wrong.`
 Варіанти: `An` · `The` · `A` · `без артикля`
+- The — *`the` підходить для вже зрозумілого замовлення. Тут замовлення називають уперше, тому потрібен неозначений артикль. Обирайте `the` після першої згадки.*
+- A — *`a` теж називає один новий предмет, але `order` починається з голосного звука. Тому потрібно `an order`. Спершу слухайте перший звук наступного слова.*
+- без артикля — *Без артикля не можна назвати один злічуваний предмет. Тут одне нове замовлення: `an order`.*
+
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

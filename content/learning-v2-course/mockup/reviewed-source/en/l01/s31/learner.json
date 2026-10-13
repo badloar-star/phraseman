@@ -115,6 +115,15 @@
               "ru": "Начало то же. Дальше гласный другой: в `what` слышно «о», в `wet` — «э».",
               "uk": "Початок той самий. Далі голосний інший: у `what` чути «о», у `wet` — «е»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`wet` — «мокро». В слове короткий звук «э» и конечное `t`; это не `went` и не `what`.",
+              "uk": "`wet` — «мокро». У слові короткий звук «е» й кінцеве `t`; це не `went` і не `what`."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Начало то же, `dr`. Дальше в `dry` слышно «ай», а в `draw` — долгое «о».",
               "uk": "Початок той самий, `dr`. Далі у `dry` чути «ай», а в `draw` — довге «о»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`dry` — «сухо». После `d` слышно «рай», поэтому это не `try` и не `draw`.",
+              "uk": "`dry` — «сухо». Після `d` чути «рай», тому це не `try` і не `draw`."
+            }
           }
         ],
         "isWordCard": false,
@@ -332,6 +350,15 @@
         "testedDimension": "Вставьте слово — дождь идёт третий час",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-31:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — дождь идёт третий час",
+            "feedbackByLocale": {
+              "ru": "Третий час идёт дождь, поэтому `wet` — «мокро». Полная фраза: `It is wet.`",
+              "uk": "Третю годину йде дощ, тому `wet` — «мокро». Повна фраза: `It is wet`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-31:i06:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — дождь идёт третий час",
@@ -379,7 +406,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «сухо»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: после `It` ставят `is` — `It is dry.`",
+              "uk": "`are` зайве: після `It` ставлять `is` — `It is dry`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -538,6 +575,15 @@
               "ru": "Обрублен хвост. В `warm` на конце слышно «м».",
               "uk": "Обрубаний хвіст. У `warm` на кінці чути «м»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-31:i10:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`warm` — «тепло». Это не `worm` («червяк») и не короткое `war`.",
+              "uk": "`warm` — «тепло». Це не `worm` («черв'як») і не коротке `war`."
+            }
           }
         ],
         "isWordCard": false,
@@ -592,6 +638,15 @@
         ],
         "testedDimension": "Вставьте слово — солнце печёт, вы ищете ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i11:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — солнце печёт, вы ищете тень",
+            "feedbackByLocale": {
+              "ru": "Солнце печёт и нужна тень: `hot` — «жарко». Полная фраза: `It is hot.`",
+              "uk": "Сонце пече й потрібна тінь: `hot` — «спекотно». Повна фраза: `It is hot`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-31:i11:r2",
             "correct": false,
@@ -735,6 +790,15 @@
         "testedDimension": "Вставьте слово — с утра шарф и вторая ко",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-31:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — с утра шарф и вторая кофта",
+            "feedbackByLocale": {
+              "ru": "Шарф и вторая кофта означают `cold` — «холодно». Полная фраза: `It is cold.`",
+              "uk": "Шарф і друга кофта означають `cold` — «холодно». Повна фраза: `It is cold`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-31:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — с утра шарф и вторая ко",
@@ -846,6 +910,15 @@
         ],
         "testedDimension": "Вставьте слово — льёт с утра и не собира",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — льёт с утра и не собирается кончаться",
+            "feedbackByLocale": {
+              "ru": "Льёт с утра: `rainy` — «дождливо». Полная фраза: `It is rainy.`",
+              "uk": "Ллє зранку: `rainy` — «дощово». Повна фраза: `It is rainy`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-31:i15:r2",
             "correct": false,
@@ -959,6 +1032,15 @@
         "testedDimension": "Вставьте слово — шапку сдувает, идти при",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-31:i17:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — шапку сдувает, идти приходится боком",
+            "feedbackByLocale": {
+              "ru": "Шапку сдувает: `windy` — «ветрено». Полная фраза: `It is windy.`",
+              "uk": "Шапку здуває: `windy` — «вітряно». Повна фраза: `It is windy`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-31:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — шапку сдувает, идти при",
@@ -1009,7 +1091,17 @@
         "authoredDistractorTokens": [
           "windy"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i18:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «дождливо»",
+            "feedbackByLocale": {
+              "ru": "`open` лишнее: в записи сказано `It is rainy.` — «дождливо».",
+              "uk": "`open` зайве: у записі сказано `It is rainy` — «дощово»."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1039,7 +1131,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-31:i19:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — на улице рвёт зонт из рук",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: про улицу говорят `It is windy.`",
+              "uk": "`are` зайве: про вулицю кажуть `It is windy`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1116,5 +1218,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d4ea78c632f7f10305e642cae6c32ac23f808140b3f7feb577b2d4700f22e31d"
+  "learnerFingerprint": "08814e2d92fba219e8ea9683d1483b71fe0e539125da5322805a12d50ff831bd"
 }

@@ -53,6 +53,7 @@ exports.parseAnonMergeNonce = parseAnonMergeNonce;
 exports.stampAnonOwnershipForAuth = stampAnonOwnershipForAuth;
 exports.requireAnonymousOwnershipStampProvider = requireAnonymousOwnershipStampProvider;
 const admin = __importStar(require("firebase-admin"));
+const banned_identity_hash_1 = require("./banned_identity_hash");
 const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
@@ -1838,7 +1839,17 @@ exports.authEnsureStableLink = (0, https_1.onCall)({
     // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
     const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
     logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
-    return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce, authTimeMsFromToken(request.auth.token));
+    const linked = await ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce, authTimeMsFromToken(request.auth.token));
+    // зачем (PM-252, координатор 04.10): забаненный удалил аккаунт и вошёл тем же Google/Apple — бан возвращается.
+    // Только для входа с почтой: одно чтение документа по id; сбой проверки вход не ломает (лог [BAN-HASH]).
+    if (signInProvider === 'google.com' || signInProvider === 'apple.com') {
+        await (0, banned_identity_hash_1.restoreBanFromIdentityHash)(db, {
+            stableUid: linked.stableUid,
+            email: request.auth.token?.email,
+            provider: signInProvider,
+        });
+    }
+    return linked;
 });
 // ── Recovery hint: каким аккаунтом входить (маскированный email) ─────────────
 // После переустановки юзер видит recovery-модалку, но не помнит, КАКОЙ Google/

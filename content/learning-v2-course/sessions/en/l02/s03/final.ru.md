@@ -59,6 +59,9 @@
 <!-- interaction_id: en:lesson-02:session-03:i02; family: listen_choose -->
 Цель: `worried`
 Варианты: `worried` · `prepared` · `ready`
+- prepared — *В записи звучит `worried`.*
+- ready — *В записи звучит `worried`.*
+
 
 **3 · Карточка слова — prepared**
 <!-- interaction_id: en:lesson-02:session-03:i03; family: listen_choose -->
@@ -68,6 +71,9 @@
 <!-- interaction_id: en:lesson-02:session-03:i04; family: listen_choose -->
 Цель: `prepared`
 Варианты: `prepared` · `worried` · `ready`
+- worried — *В записи звучит `prepared`.*
+- ready — *В записи звучит `prepared`.*
+
 
 **5 · Соедините слова и значения**
 <!-- interaction_id: en:lesson-02:session-03:i05; family: speed_match -->
@@ -77,28 +83,42 @@
 **6 · Соберите короткое «нет» — на вопрос `Are you worried?` вы спокойны**
 <!-- interaction_id: en:lesson-02:session-03:i06; family: phrase_builder -->
 Цель: `No, I am not.`
+Плитки: `No,` `I` `am` `not` `worried` → **No, I am not.**
+*Плитка `worried` лишняя: это слово описывает тревогу; здесь нужен короткий ответ «нет»: `No, I am not.`*
 
 **7 · Послушайте и соберите вопрос**
 <!-- interaction_id: en:lesson-02:session-03:i07; family: listen_build_dictation -->
 Цель: `Are you prepared?`
+🔊 *Are you prepared?* Плитки: `Are` `you` `prepared?` `worried?` → **Are you prepared?**
+*Плитка `worried?` лишняя: здесь спрашивают, готовы ли вы, поэтому нужно `prepared?`: `Are you prepared?`*
 
 **8 · Вставьте слово — билет и вещи уже собраны**
 <!-- interaction_id: en:lesson-02:session-03:i08; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `prepared` · `worried` · `cold`
+- worried — *Здесь всё готово, поэтому подходит `prepared`.*
+- cold — *В сцене не говорится о холоде.*
+
 
 **9 · Послушайте и соберите полный ответ на `Are you prepared?` — «нет, я не подготовлен»**
 <!-- interaction_id: en:lesson-02:session-03:i09; family: listen_build_dictation -->
 Цель: `No, I am not prepared.`
+🔊 *No, I am not prepared.* Плитки: `No,` `I` `am` `not` `prepared` `are` → **No, I am not prepared.**
+*Плитка `are` лишняя: после `I` нужна форма `am`: `No, I am not prepared.`*
 
 **10 · Соберите короткое «да» — рюкзак закрыт, билет в кармане; вопрос: `Are you prepared?`**
 <!-- interaction_id: en:lesson-02:session-03:i10; family: phrase_builder -->
 Цель: `Yes, I am.`
+Плитки: `Yes,` `I` `am` `prepared` → **Yes, I am.**
+*Плитка `prepared` лишняя: короткий ответ уже содержит нужную форму `am`: `Yes, I am.`*
 
 **11 · Вставьте слово — автобус опаздывает, а телефон разряжен**
 <!-- interaction_id: en:lesson-02:session-03:i11; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `worried` · `prepared` · `hungry`
+- prepared — *Вещи могут быть собраны, но сейчас вы волнуетесь.*
+- hungry — *В сцене причина для тревоги, не для голода.*
+
 
 **12 · Соберите полную фразу — всё для дороги готово**
 <!-- interaction_id: en:lesson-02:session-03:i12; family: phrase_builder -->
@@ -108,6 +128,9 @@
 <!-- interaction_id: en:lesson-02:session-03:i13; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `lost` · `worried` · `awake`
+- worried — *«Worried» подошло бы при сообщении о тревоге; здесь вы сообщаете, что заблудились.*
+- awake — *«Awake» подошло бы в разговоре о сне; здесь вы сообщаете, что заблудились.*
+
 
 **14 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-03:i14; family: speed_match -->

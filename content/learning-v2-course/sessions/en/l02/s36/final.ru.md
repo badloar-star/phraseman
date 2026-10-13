@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i01; family: listen_choose -->
 Цель: `Who is he?`
 Варианты: `Who is he?` · `Where is he?` · `Who is she?`
+- Where is he? — *Это вопрос о месте. На записи в начале `Who`: друг спрашивает, кто этот мужчина.*
+- Who is she? — *В этом варианте вопрос о женщине. На записи последнее слово — `he`, «он».*
+
 
 **2 · Соберите фразу — спросите о женщине рядом с другом: «Кто она?»**
 <!-- interaction_id: en:lesson-02:session-36:i02; family: phrase_builder -->
@@ -65,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i03; family: listen_choose -->
 Цель: `host`
 Варианты: `host` · `post` · `roast`
+- post — *`Post` — «почта». Послушайте первый звук: в записи `host`.*
+- roast — *`Roast` — «жаркое». Послушайте первый звук: в записи `host`.*
+
 
 **4 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-36:i04; family: scripted_repeat_compare -->
@@ -74,11 +80,17 @@
 <!-- interaction_id: en:lesson-02:session-36:i05; family: context_gap_grammar -->
 Цель: `Is it ___ here?`
 Варианты: `noisy` · `sure` · `guest`
+- sure — *Это «уверен». Для вопроса о шуме нужно `noisy`.*
+- guest — *Это «гость», человек. Здесь нужно описание обстановки — `noisy`.*
+
 
 **6 · Послушайте и выберите — что друг спросил о мужчине у колонки**
 <!-- interaction_id: en:lesson-02:session-36:i06; family: listen_choose -->
 Цель: `Is he the host?`
 Варианты: `Is he the host?` · `Who is the host?` · `Where is the host?`
+- Who is the host? — *Это «Кто хозяин?». На записи друг уточняет про одного мужчину: «Он хозяин?»*
+- Where is the host? — *Это «Где хозяин?». На записи нет `Where`: вопрос начинается с `Is he`.*
+
 
 **7 · Соберите фразу — друг ищет одного гостя; тот подошёл к вам, скажите: «Гость здесь»**
 <!-- interaction_id: en:lesson-02:session-36:i07; family: phrase_builder -->
@@ -88,6 +100,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i08; family: listen_choose -->
 Цель: `Who is the guest?`
 Варианты: `Who is the guest?` · `Where is the guest?` · `Who is the host?`
+- Where is the guest? — *Так спрашивают, где гость. На записи начало `Who is`: сосед хочет узнать, кто этот гость.*
+- Who is the host? — *Здесь вопрос о хозяине. Сосед произнёс в конце `guest` — «гость».*
+
 
 **9 · Послушайте и соберите — друг говорит о хозяине**
 <!-- interaction_id: en:lesson-02:session-36:i09; family: listen_build_dictation -->
@@ -97,6 +112,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i10; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `here` · `noisy`
+- here — *Это «здесь». Вы хотите подтвердить уверенность в ответе: `I am sure`.*
+- noisy — *Это «шумный». Здесь речь о том, что вы точно знаете ответ, — `sure`.*
+
 
 **11 · Соберите фразу — друг спрашивает, знакомы ли двое гостей; вы не знаете и признаётесь: «Я не уверен»**
 <!-- interaction_id: en:lesson-02:session-36:i11; family: phrase_builder -->
@@ -106,6 +124,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i12; family: listen_choose -->
 Цель: `Is she here?`
 Варианты: `Is she here?` · `Is he here?` · `Who is she?`
+- Is he here? — *В этом варианте вопрос о мужчине. На записи звучит `she`: друг спрашивает о женщине.*
+- Who is she? — *Это «Кто она?». Друг спросил, здесь ли она: в конце прозвучало `here`.*
+
 
 **13 · Послушайте и соберите — гость говорит о колонке**
 <!-- interaction_id: en:lesson-02:session-36:i13; family: listen_build_dictation -->
@@ -127,6 +148,9 @@
 <!-- interaction_id: en:lesson-02:session-36:i17; family: listen_choose -->
 Цель: `Who is the host?`
 Варианты: `Who is the host?` · `Where is the host?` · `Who is the guest?`
+- Where is the host? — *`Where` спрашивает о месте: «Где хозяин?». Здесь нужно узнать человека, поэтому `Who is the host?`.*
+- Who is the guest? — *`What` спрашивает «что?». Перед вами люди, и вы хотите узнать, кто из них хозяин: `Who is the host?`.*
+
 
 ## Для сборщика
 

@@ -46,31 +46,18 @@
   ];
   const league = (i) => LEAGUES[Math.max(0, Math.min(11, i))];
 
-  // Мини-башня лиги: силуэт башни Пика (15 этажей, зубцы, конус), камень лиги, окна светятся до этажа lit.
-  // o.w — ширина, o.floors (15), o.lit — сколько этажей светится, o.reveal — анимация «раскрытия» снизу вверх
-  let uid = 0;
+  // Башня лиги — НАСТОЯЩИЙ генератор из spire-leagues.html / SpireTowerSvg (engagement-moments-towers.js, этап 4).
+  // o.w — ширина; o.lit — мой этаж (окна ниже — пройдены); o.crop 'top'|'mid'|'mini'|'full'; o.reveal — раскрытие снизу вверх.
+  // Окна зажжённого этажа — цветом темы (решение владельца 13.10): подменяем fill="<L.lit>" на var(--acc).
   const tower = (li, o = {}) => {
-    const L = league(li); const w = o.w || 150; const floors = o.floors || 15; const fh = 18; const bw = 72; const h = floors * fh + 70;
-    const id = `tw${++uid}`; const lit = o.lit ?? floors;
-    const rows = [];
-    for (let f = 0; f < floors; f++) {
-      const y = h - 22 - (f + 1) * fh; const on = f < lit;
-      rows.push(`<rect x="${(w - bw) / 2 + 14}" y="${y + 5}" width="8" height="9" rx="2" fill="${on ? L.lit : 'rgba(0,0,0,.35)'}" opacity="${on ? 1 : .8}" ${o.reveal ? `style="animation:emFade 300ms both;animation-delay:${o.revealDelay ? o.revealDelay + f * 55 : 200 + f * 55}ms"` : ''}/>`);
-      rows.push(`<rect x="${(w - bw) / 2 + bw - 22}" y="${y + 5}" width="8" height="9" rx="2" fill="${on ? L.lit : 'rgba(0,0,0,.35)'}" opacity="${on ? 1 : .8}" ${o.reveal ? `style="animation:emFade 300ms both;animation-delay:${o.revealDelay ? o.revealDelay + f * 55 : 200 + f * 55}ms"` : ''}/>`);
-      rows.push(`<line x1="${(w - bw) / 2}" x2="${(w + bw) / 2}" y1="${y + fh}" y2="${y + fh}" stroke="rgba(0,0,0,.28)" stroke-width="1"/>`);
-    }
-    const x0 = (w - bw) / 2; const top = h - 22 - floors * fh;
-    return `<svg class="tw" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="${o.reveal ? `clip-path:inset(100% 0 0 0);animation:emTowerReveal ${o.revealMs || 1400}ms var(--em-ease) both ${o.revealDelay || 0}ms` : ''}">
-      <defs><linearGradient id="${id}s" x1="0" x2="1"><stop offset="0" stop-color="${L.stone}" stop-opacity=".75"/><stop offset=".45" stop-color="${L.stone}"/><stop offset=".47" stop-color="${L.edge}" stop-opacity=".55"/><stop offset=".52" stop-color="${L.stone}"/><stop offset="1" stop-color="${L.stone}" stop-opacity=".55"/></linearGradient>
-      <radialGradient id="${id}g"><stop offset="0" stop-color="${L.edge}" stop-opacity=".55"/><stop offset="1" stop-color="${L.edge}" stop-opacity="0"/></radialGradient></defs>
-      <ellipse cx="${w / 2}" cy="${h - 16}" rx="${bw * .9}" ry="14" fill="url(#${id}g)"/>
-      <rect x="${x0}" y="${top}" width="${bw}" height="${floors * fh}" fill="url(#${id}s)"/>
-      ${rows.join('')}
-      <g fill="${L.stone}" stroke="${L.edge}" stroke-opacity=".4" stroke-width="1">${[0, 1, 2, 3].map((k) => `<rect x="${x0 - 6 + k * (bw + 12) / 4}" y="${top - 12}" width="${(bw + 12) / 4 - 4}" height="14" rx="2"/>`).join('')}</g>
-      <path d="M${w / 2 - bw / 2 - 8} ${top - 12} L${w / 2} ${top - 52} L${w / 2 + bw / 2 + 8} ${top - 12} Z" fill="${L.stone}" stroke="${L.edge}" stroke-opacity=".5"/>
-      <circle cx="${w / 2}" cy="${top - 56}" r="5" fill="${L.edge}"><animate attributeName="opacity" values="1;.4;1" dur="2.4s" repeatCount="indefinite"/></circle>
-      <rect x="${x0}" y="${top}" width="${bw}" height="${floors * fh}" fill="none" stroke="${L.edge}" stroke-opacity=".35"/>
-    </svg>`;
+    const T = window.EMT; const w = o.w || 150; const Lx = T ? T.LEAGUES[Math.max(0, Math.min(11, li))] : null;
+    if (!Lx) return `<div class="twr" style="width:${w}px;height:${Math.round(w * 1.1)}px;border-radius:12px;background:var(--ti)"></div>`;
+    const mini = o.crop === 'mini' || w <= 70 || (o.floors && o.floors <= 6);
+    const crop = o.crop || (mini ? 'mini' : 'top');
+    const lit = o.lit ?? 15; const my = Math.max(1, Math.min(15, lit || 1));
+    let svg = T.towerSvg(Lx, { myFloor: my, noMarker: true, clean: true, crop, summit: lit >= 15 });
+    svg = svg.split(`fill="${Lx.lit}"`).join('fill="var(--acc)"');
+    return `<div class="twr" style="width:${w}px;${o.reveal ? `clip-path:inset(100% 0 0 0);animation:emTowerReveal ${o.revealMs || 1400}ms var(--em-ease) both ${o.revealDelay || 0}ms` : ''}">${svg}</div>`;
   };
   // keyframe раскрытия башни — добавляем один раз
   const st = document.createElement('style'); st.textContent = '@keyframes emTowerReveal{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}'; document.head.appendChild(st);

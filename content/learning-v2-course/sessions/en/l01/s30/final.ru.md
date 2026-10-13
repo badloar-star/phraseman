@@ -88,6 +88,8 @@ It is ___ . → **busy** · quiet · small
 **6 · Соберите фразу — «тут тихо»**
 <!-- interaction_id: en:lesson-01:session-30:i06; family: phrase_builder -->
 Плитки: `quiet` `is` `It` `are` → **It is quiet.**
+*(плитка `are` лишняя: `are` лишнее: после `It` ставят `is` — `It is quiet.`)*
+
 
 **7 · Карточка слова — loud**
 <!-- interaction_id: en:lesson-01:session-30:i07; family: listen_choose -->
@@ -122,6 +124,8 @@ It is ___ . → **quiet** · loud · warm
 **13 · Соберите фразу — за столиком никого, он свободен**
 <!-- interaction_id: en:lesson-01:session-30:i13; family: phrase_builder -->
 Плитки: `free` `It` `is` `are` → **It is free.**
+*(плитка `are` лишняя: `are` лишнее: про один столик говорят `It is free.`)*
+
 
 **14 · Вставьте слово — кафе работает, дверь открыта и горит вывеска**
 <!-- interaction_id: en:lesson-01:session-30:i14; family: context_gap_grammar -->
@@ -132,10 +136,14 @@ It is ___ . → **open** · closed · free
 **15 · Соберите фразу — в кафе всего четыре стола, и они стоят вплотную**
 <!-- interaction_id: en:lesson-01:session-30:i15; family: phrase_builder -->
 Плитки: `small` `It` `is` `are` → **It is small.**
+*(плитка `are` лишняя: `are` лишнее: про одно кафе говорят `It is small.`)*
+
 
 **16 · Послушайте и соберите — «уже закрыто»**
 <!-- interaction_id: en:lesson-01:session-30:i16; family: listen_build_dictation -->
 🔊 *It is closed.* Плитки: `closed` `is` `It` `open` → **It is closed.**
+*(плитка `open` лишняя: `open` лишнее: в записи сказано `It is closed.` — «уже закрыто».)*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-30:i17:s01; family: scripted_repeat_compare -->

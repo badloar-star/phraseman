@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
 Цель: `chair`
 Варианты: `chair` · `share` · `cheer`
+- share — *Начало `share` похоже на «ш», а начало `chair` — на «ч». В записи `chair`.*
+- cheer — *В `cheer` середина ближе к «и», в `chair` — к «э». В записи звучит `chair`.*
+
 
 **3 · Карточка слова — table**
 <!-- interaction_id: en:lesson-03:session-01:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i04; family: listen_choose -->
 Цель: `table`
 Варианты: `table` · `fable` · `label`
+- fable — *В `fable` первым слышно «ф», а в `table` — «т». В записи `table`.*
+- label — *В `label` первым слышно «л», а в `table` — «т». В записи `table`.*
+
 
 **5 · Соберите фразу — друг спрашивает `What is it?`; вы достали стул и отвечаете полной фразой**
 <!-- interaction_id: en:lesson-03:session-01:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i07; family: listen_choose -->
 Цель: `lamp`
 Варианты: `lamp` · `camp` · `damp`
+- camp — *В `camp` первый звук — «к», в `lamp` — «л». В записи `lamp`.*
+- damp — *В `damp` первый звук — «д», в `lamp` — «л». В записи `lamp`.*
+
 
 **8 · Соберите фразу — из следующей упаковки показался стол**
 <!-- interaction_id: en:lesson-03:session-01:i08; family: phrase_builder -->
@@ -106,6 +115,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i12; family: context_gap_grammar -->
 Цель: `It ___ chair.`
 Варианты: `is a` · `is` · `a`
+- is — *С одним `is` получится `It is chair`: перед названием предмета не хватает `a`.*
+- a — *С одним `a` получится `It a chair`: после `It` пропало `is`. Здесь нужны оба слова: `is a`.*
+
 
 **13 · Соберите вопрос — виден провод, но сам предмет ещё в коробке; спросите, лампа ли это**
 <!-- interaction_id: en:lesson-03:session-01:i13; family: phrase_builder -->
@@ -116,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i14; family: context_gap_grammar -->
 Цель: `It ___ ready.`
 Варианты: `is` · `is a` · `a`
+- is a — *`ready` описывает состояние. Перед этим словом отдельно `a` не нужно: `It is ready`.*
+- a — *В `It a ready` пропало `is` и появилось лишнее `a`. О состоянии говорят `It is ready`.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-01:i15; family: scripted_repeat_compare -->

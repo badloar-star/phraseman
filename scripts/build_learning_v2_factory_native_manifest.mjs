@@ -80,7 +80,7 @@ function learningOutcome(markdown, sourceLabel) {
   // Learner-facing source must not expose the authoring term «операция».
   // Accept the plain-language labels emitted by current session headers while
   // retaining historical source compatibility during the course migration.
-  const match = /\*\*(?:(?:(?:Новая|Нова)\s+)?операц[иі]я|Как\s+сказать|Як\s+сказати|Что\s+вы\s+освоите|Що\s+ви\s+опануєте|Сегодня|Сьогодні)[.:]?\*\*\s*(.+)/iu.exec(markdown);
+  const match = /\*\*(?:(?:(?:Новая|Нова)\s+)?операц[иі]я|Как\s+сказать|Як\s+сказати|Что\s+вы\s+освоите|Що\s+ви\s+опануєте|Что\s+вы\s+повторите|Що\s+ви\s+повторите|Сегодня|Сьогодні)[.:]?\*\*\s*(.+)/iu.exec(markdown);
   if (!match?.[1]?.trim()) throw new Error(`${sourceLabel}: learning operation missing`);
   return match[1].trim();
 }
@@ -102,10 +102,41 @@ function practiceTitles(markdown, sourceLabel, atomicSource, locale) {
   if (rows.length !== interactions.length) {
     throw new Error(`${sourceLabel}: Markdown/atomic practice count differs ${rows.length}/${interactions.length}`);
   }
+  // Runtime ordinals include the three intro pages in current projections.
+  // A small set of already-released legacy atomic sources still number only
+  // practice interactions, so accept either established offset but require it
+  // to stay consistent for the entire session.
+  const atomicOrdinalOffset = interactions[0]?.ordinal - rows[0]?.ordinal;
+  if (![0, 3].includes(atomicOrdinalOffset)) {
+    throw new Error(`${sourceLabel}: Markdown/atomic practice differs at 1`);
+  }
+  const answerByInteractionId = new Map(
+    (atomicSource?.answers ?? []).map((answer) => [answer.interactionId, answer]),
+  );
+  const normalizedAnswer = (value) => String(value ?? "")
+    .trim()
+    .replace(/^[«“"]|[»”"]$/gu, "")
+    .replace(/[.?!]$/u, "")
+    .toLocaleLowerCase("en");
+  const promptMatches = (row, interaction) => {
+    if (row.title === interaction.prompt) return true;
+    const tail = /\s+—\s+(.+)$/u.exec(row.title);
+    if (!tail) return false;
+    const answer = answerByInteractionId.get(interaction.interactionId);
+    // Word cards intentionally have an empty answer record: their word lives
+    // in the learner-facing card payload. Treat an empty string like missing
+    // data so it cannot mask that authoritative word during parity checking.
+    const correctText = answer?.correctText ||
+      interaction?.modePayload?.wordCard?.word ||
+      interaction?.modePayload?.targetPhrase || "";
+    return normalizedAnswer(tail[1]) === normalizedAnswer(correctText) &&
+      row.title.slice(0, tail.index).trim() === interaction.prompt;
+  };
   for (const [index, interaction] of interactions.entries()) {
     const row = rows[index];
     const derivedInteractionId = row.interactionId || interaction.interactionId?.replace(/:i\d+(?::[^:]+)?$/u, `:i${String(row.ordinal).padStart(2, "0")}`);
-    if (row.ordinal !== index + 1 || row.title !== interaction.prompt || derivedInteractionId !== interaction.interactionId) {
+    if (row.ordinal !== index + 1 || interaction.ordinal !== row.ordinal + atomicOrdinalOffset ||
+      !promptMatches(row, interaction) || derivedInteractionId !== interaction.interactionId) {
       throw new Error(`${sourceLabel}: Markdown/atomic practice differs at ${index + 1}`);
     }
   }
@@ -142,11 +173,12 @@ function rows() {
         learnerRu: path.join(releaseDir, "learner.json"),
         learnerUk: path.join(releaseDir, "learner.uk.json"),
         answers: path.join(releaseDir, "answers.json"),
+        auxiliary: path.join(releaseDir, "auxiliary.json"),
         sourceRu: path.join(sourceDir, "final.ru.md"),
         sourceUk: path.join(sourceDir, "final.uk.md"),
         atomicSource: path.join(sourceDir, "practice.atomic.json"),
       };
-      for (const [kind, file] of Object.entries(files).filter(([kind]) => kind !== "learnerUk")) {
+      for (const [kind, file] of Object.entries(files).filter(([kind]) => !["learnerUk", "auxiliary"].includes(kind))) {
         if (!fs.existsSync(file)) throw new Error(`${relative}: ${kind} missing`);
       }
       const sourceRu = read(files.sourceRu);
@@ -185,7 +217,13 @@ function rows() {
           }
         }
       });
-      const releaseBytes = [files.intro, files.learnerRu, files.answers, ...(fs.existsSync(files.learnerUk) ? [files.learnerUk] : [])]
+      const releaseBytes = [
+        files.intro,
+        files.learnerRu,
+        files.answers,
+        ...(fs.existsSync(files.learnerUk) ? [files.learnerUk] : []),
+        ...(fs.existsSync(files.auxiliary) ? [files.auxiliary] : []),
+      ]
         .map(read)
         .join("\u0000");
       result.push({
@@ -215,6 +253,7 @@ function rows() {
           uk: practiceTitles(sourceUk, `${lesson.name}/${session.name}/uk`, atomicSource, "uk"),
         },
         hasLocalizedLearnerRelease: fs.existsSync(files.learnerUk),
+        hasAuxiliaryRelease: fs.existsSync(files.auxiliary),
         sourceFingerprint: sha(`${sourceRu}\u0000${sourceUk}\u0000${releaseBytes}`),
       });
     });
@@ -249,6 +288,9 @@ function render(manifestRows) {
       `    loadIntro: () => require(${JSON.stringify(`${moduleBase}/intro.json`)}) as unknown,\n` +
       `    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? ${row.hasLocalizedLearnerRelease ? `require(${JSON.stringify(`${moduleBase}/learner.uk.json`)})` : `require(${JSON.stringify(`${moduleBase}/learner.json`)})`} as unknown : require(${JSON.stringify(`${moduleBase}/learner.json`)}) as unknown,\n` +
       `    loadAnswers: () => require(${JSON.stringify(`${moduleBase}/answers.json`)}) as unknown,\n` +
+      (row.hasAuxiliaryRelease
+        ? `    loadAuxiliary: () => require(${JSON.stringify(`${moduleBase}/auxiliary.json`)}) as unknown,\n`
+        : "") +
       `  }),`;
   });
   return `/* This file is generated by scripts/build_learning_v2_factory_native_manifest.mjs. */\n` +
@@ -261,7 +303,7 @@ function render(manifestRows) {
     `  readonly learningOutcomeByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `  readonly lessonTitleByAuthoredLocale: Readonly<Record<"ru" | "uk", string>>;\n` +
     `  readonly practiceTitlesByAuthoredLocale: Readonly<Record<"ru" | "uk", readonly Readonly<{ ordinal: number; title: string }>[]>>;\n` +
-    `  readonly loadIntro: () => unknown; readonly loadLearner: (locale: "ru" | "uk") => unknown; readonly loadAnswers: () => unknown;\n` +
+    `  readonly loadIntro: () => unknown; readonly loadLearner: (locale: "ru" | "uk") => unknown; readonly loadAnswers: () => unknown; readonly loadAuxiliary?: () => unknown;\n` +
     `}\n` +
     `export const FACTORY_NATIVE_MANIFEST_V1: readonly LearningV2FactoryNativeManifestRowV1[] = Object.freeze([\n${entries.join("\n")}\n]);\n`;
 }
@@ -290,7 +332,7 @@ const generatedFiles = manifestRows.flatMap((row) => {
   const lesson = `l${String(row.lessonOrdinal).padStart(2, "0")}`;
   const session = `s${String(row.sessionOrdinal).padStart(2, "0")}`;
   const releaseDir = path.join(RELEASE_ROOT, lesson, session);
-  return ["intro.json", "learner.json", "learner.uk.json", "answers.json"]
+  return ["intro.json", "learner.json", "learner.uk.json", "answers.json", "auxiliary.json"]
     .filter((name) => fs.existsSync(path.join(releaseDir, name)))
     .map((name) => ({
       source: path.join(releaseDir, name),

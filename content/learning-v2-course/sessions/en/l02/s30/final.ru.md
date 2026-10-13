@@ -68,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-30:i02; family: listen_choose -->
 Цель: `What is the noise?`
 Варианты: `про звук` · `про название` · `про улицу`
+- про название — *Прозвучало `noise` — это шум. Название — это `name`.*
+- про улицу — *Прозвучало `noise`. Улица — это `street`.*
+
 
 **3 · Карточка слова — queue**
 <!-- interaction_id: en:lesson-02:session-30:i03; family: listen_choose -->
@@ -77,11 +80,17 @@
 <!-- interaction_id: en:lesson-02:session-30:i04; family: listen_choose -->
 Цель: `queue`
 Варианты: `queue` · `street` · `noise`
+- street — *«Улица». Прозвучало `queue` — это про людей у двери, а не про место.*
+- noise — *«Шум». Это про звук, а не про людей у двери.*
+
 
 **5 · Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это**
 <!-- interaction_id: en:lesson-02:session-30:i05; family: context_gap_grammar -->
 Цель: `What is the ___ ?`
 Варианты: `noise` · `queue` · `street`
+- queue — *«Очередь». За стеной никто не стоит в очереди, там гудит.*
+- street — *«Улица». Вы спрашиваете не где вы, а что за звук.*
+
 
 **6 · Соберите фразу — вы спрашиваете, что это гудит**
 <!-- interaction_id: en:lesson-02:session-30:i06; family: phrase_builder -->
@@ -91,6 +100,9 @@
 <!-- interaction_id: en:lesson-02:session-30:i07; family: context_gap_grammar -->
 Цель: `What is the ___ ?`
 Варианты: `queue` · `noise` · `name`
+- noise — *`noise` — это шум. А перед вами люди друг за другом — `queue`.*
+- name — *«Имя, название». Люди у двери — это `queue`.*
+
 
 **8 · Карточка слова — crowded**
 <!-- interaction_id: en:lesson-02:session-30:i08; family: listen_choose -->
@@ -100,10 +112,15 @@
 <!-- interaction_id: en:lesson-02:session-30:i09; family: context_gap_grammar -->
 Цель: `What ___ the noise?`
 Варианты: `is` · `the` · `noise`
+- the — *`the` в этом вопросе уже стоит — дальше, перед словом `noise`. Тут нужно другое.*
+- noise — *`noise` стоит в конце вопроса. Второй раз оно не нужно.*
+
 
 **10 · Послушайте и соберите — «что это за шум?»**
 <!-- interaction_id: en:lesson-02:session-30:i10; family: listen_build_dictation -->
 Цель: `What is the noise?`
+🔊 *What is the noise?* Плитки: `What` `is` `the` `noise` `street`
+*Плитка `street` лишняя: в записи спрашивают о шуме — `noise`, а не об улице — `street`.*
 
 **11 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-30:i11; family: speed_match -->
@@ -114,6 +131,9 @@
 <!-- interaction_id: en:lesson-02:session-30:i12; family: context_gap_grammar -->
 Цель: `What is the ___ ?`
 Варианты: `street` · `crowded` · `noise`
+- crowded — *`crowded` — «людно», это описание. А вам нужно название места.*
+- noise — *Про звук вы не спрашивали: вам нужно название улицы.*
+
 
 **13 · Соберите фразу — вы спрашиваете название**
 <!-- interaction_id: en:lesson-02:session-30:i13; family: phrase_builder -->
@@ -123,6 +143,9 @@
 <!-- interaction_id: en:lesson-02:session-30:i14; family: context_gap_grammar -->
 Цель: `The street is ___ .`
 Варианты: `noisy` · `noise` · `queue`
+- noise — *`noise` — это сам шум, вещь. А улица, на которой шумно, — `noisy`.*
+- queue — *`queue` — очередь, люди друг за другом. Про шумное место — `noisy`.*
+
 
 **15 · Произнесите фразу — тихая улица, но людей столько, что не пройти**
 <!-- interaction_id: en:lesson-02:session-30:i15; family: scripted_repeat_compare -->
@@ -131,6 +154,8 @@
 **16 · Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица**
 <!-- interaction_id: en:lesson-02:session-30:i16; family: phrase_builder -->
 Цель: `What is the street?`
+Плитки: `What` `is` `the` `street` `noise`
+*Плитка `noise` лишняя: вы спрашиваете об улице — `street`, а не о шуме.*
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-30:i17:s01; family: scripted_repeat_compare -->

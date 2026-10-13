@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-ich-heisse-final-review-closure.v1",
+  "language": "de",
+  "closureKind": "APPEND_ONLY_EXACT_HASH_REVIEW_SUPERSESSION",
+  "status": "CLOSED_FOR_EXACT_HASH_SET",
+  "scope": {
+    "admission": "EXACT_ICH_HEISSE_LEXICAL_DEPENDENCY_ONLY",
+    "lexicalDependencyAdmissionClosed": true,
+    "resolvedPlanIds": 9,
+    "unresolvedPlanIds": 279,
+    "packetIds": 1792,
+    "materializedPackets": 0,
+    "globalTask6CompletionEstablished": false
+  },
+  "reviewedArtifacts": {
+    "admissionModule": {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_ich_heisse_positive_admission_de_v1.ts",
+      "sha256": "6a0cd8ee5124251b78a92f6eee8267098573be5bb0b1ea013ac4597b06d3e31a"
+    },
+    "admissionGate": {
+      "path": "tests/learning_v2_de_task6c_l01_ich_heisse_positive_admission_gate.ts",
+      "sha256": "3f17dae66824d5f2b44466fd592729abcf53ddbf1a1271f7810bc9a33124ef13"
+    },
+    "primaryReceipt": {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_ICH_HEISSE_POSITIVE_ADMISSION_RECEIPT_2026-10-13.md",
+      "sha256": "926348a833d968d0245467761337a030535e44a90ed732bfa1a5fc0b9df5ad11"
+    },
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_positive_admission_v1/lexical_evidence.json",
+      "sha256": "aaade49d6ba482326b5f0638e617c99744ce3f9242e789928afd7650ea7ccfe3"
+    },
+    "admissionManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_positive_admission_v1/manifest.json",
+      "sha256": "94900d9d0cd595d394e0964a79d354495e9f41a194eaf4a408d20b377c584b4e"
+    },
+    "lexicalRegistryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v5.json",
+      "sha256": "4ed741cc0e457eff0c3500f98e6c8d62a33a951110d428ff1333075eca99a2c7"
+    },
+    "task6RegistryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v5.json",
+      "sha256": "9bbf41335e13dff8f97be3bbd05f21284c99e62c31d5fcb63f7b5f0ab324af91"
+    },
+    "allocationInventoryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v5.json",
+      "sha256": "e1c01fa8ef727c23d128d07bbe5cf67f7c04c6539610817ba39b6e0b555fb3b4"
+    }
+  },
+  "finalReviews": {
+    "spec": {
+      "taskIdentity": "/root/de_ich_heisse_postrepair_spec_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    },
+    "adversarial": {
+      "taskIdentity": "/root/de_ich_heisse_adversarial_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    }
+  },
+  "supersession": {
+    "primaryReceiptStatusAtReviewedHash": "PENDING",
+    "primaryReceiptBytesModified": false,
+    "reviewStatusSupersededForExactHashSetOnly": true,
+    "semanticArtifactsModified": false
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  },
+  "typeScriptEvidence": {
+    "command": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --pretty false",
+    "exitCode": 2,
+    "diagnostics": 17,
+    "targetDiagnostics": 0,
+    "logPath": "C:\\Temp\\phraseman_ich_heisse_v5_tsc_p2_final_20261013.log"
+  },
+  "englishSurface": {
+    "roots": [
+      "modules/learning-v2/curriculum/en",
+      "content/learning-v2-course/curriculum/en",
+      "content/learning-v2-course/release/en",
+      "modules/learning-v2/content/factory_native/generated_release/en"
+    ],
+    "fileCount": 1570,
+    "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+  },
+  "defaultConsumer": {
+    "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+    "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+    "requiredRegistry": "lexical_senses_de_v1.json",
+    "forbiddenRegistry": "lexical_senses_de_v5.json",
+    "v5Selected": false
+  }
+}

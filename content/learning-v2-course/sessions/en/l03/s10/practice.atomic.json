@@ -249,7 +249,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+        "prompt": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-10:i05:r1",
@@ -258,34 +258,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+        "accessibilityLabel": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a kettle.",
+          "targetPhrase": "It is a kettle.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
-          "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
+            "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+            "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "kettle"
+            "It",
+            "is",
+            "a",
+            "kettle"
           ],
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — продавец сп",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним чайником — `a`: `It is a kettle`.",
-            "uk": "Після `It` потрібна форма `is`, а перед одним чайником — `a`: `It is a kettle`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -453,7 +443,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг показывает на духо",
+          "testedDimension": "Вставьте слово — друг показывает на духовку в соседнем ряду; назовите её полной фразой (`oven` — «духовка»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-10:i08:r2",
@@ -618,17 +608,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец говорит",
-              "feedbackByLocale": {
-                "ru": "Перед `toaster` в записи звучит `a`: название начинается с согласного «т». Плитка `an` лишняя.",
-                "uk": "Перед `toaster` у записі звучить `a`: назва починається з приголосного «т». Плитка `an` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -677,7 +657,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — у отдела стоит кресло д",
+          "testedDimension": "Вставьте слово — у отдела стоит кресло для покупателей; назовите его полной фразой (`armchair` — «кресло»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-10:i12:r2",
@@ -733,17 +713,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг заметил другой пр",
-              "feedbackByLocale": {
-                "ru": "Начните вопрос с `Is it`. Перед `kettle` оставьте `a`: первый звук названия согласный.",
-                "uk": "Почніть питання з `Is it`. Перед `kettle` лишіть `a`: перший звук назви приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -856,17 +826,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i15:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг принял маленьк",
-              "feedbackByLocale": {
-                "ru": "После `It is not` нужно `a toaster`: название начинается с согласного звука. Отрицание не требует замены `a` на `an`.",
-                "uk": "Після `It is not` потрібне `a toaster`: назва починається з приголосного звуку. Заперечення не змінює `a` на `an`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -935,17 +895,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — продавец достал пылесос",
-              "feedbackByLocale": {
-                "ru": "Соберите начало `It is`, затем название `a vacuum`: оно начинается с согласного звука.",
-                "uk": "Складіть початок `It is`, а потім назву `a vacuum`: вона починається з приголосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1195,7 +1145,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
+        "prompt": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-10:i05:r1",
@@ -1204,34 +1154,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
+        "accessibilityLabel": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a kettle.",
+          "targetPhrase": "It is a kettle.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
-          "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
+            "ru": "Соберите полную фразу — продавец показывает выбранный чайник; скажите «Это чайник»",
+            "uk": "Складіть повну фразу — продавець показує вибраний чайник; скажіть «Це чайник»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "kettle"
+            "It",
+            "is",
+            "a",
+            "kettle"
           ],
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — продавець питає",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним чайником — `a`: `It is a kettle`.",
-            "uk": "Після `It` потрібна форма `is`, а перед одним чайником — `a`: `It is a kettle`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1399,7 +1339,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг показує на духовку ",
+          "testedDimension": "Вставте слово — друг показує на духовку в сусідньому ряду; назвіть її повною фразою (`oven` — «духовка»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-10:i08:r2",
@@ -1564,17 +1504,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець говори",
-              "feedbackByLocale": {
-                "ru": "Перед `toaster` в записи звучит `a`: название начинается с согласного «т». Плитка `an` лишняя.",
-                "uk": "Перед `toaster` у записі звучить `a`: назва починається з приголосного «т». Плитка `an` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1623,7 +1553,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — біля відділу стоїть кріс",
+          "testedDimension": "Вставте слово — біля відділу стоїть крісло для покупців; назвіть його повною фразою (`armchair` — «крісло»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-10:i12:r2",
@@ -1679,17 +1609,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — друг помітив інший пр",
-              "feedbackByLocale": {
-                "ru": "Начните вопрос с `Is it`. Перед `kettle` оставьте `a`: первый звук названия согласный.",
-                "uk": "Почніть питання з `Is it`. Перед `kettle` лишіть `a`: перший звук назви приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1802,17 +1722,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i15:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг прийняв мале",
-              "feedbackByLocale": {
-                "ru": "После `It is not` нужно `a toaster`: название начинается с согласного звука. Отрицание не требует замены `a` на `an`.",
-                "uk": "Після `It is not` потрібне `a toaster`: назва починається з приголосного звуку. Заперечення не змінює `a` на `an`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1881,17 +1791,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-10:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — продавець дістав пилосо",
-              "feedbackByLocale": {
-                "ru": "Соберите начало `It is`, затем название `a vacuum`: оно начинается с согласного звука.",
-                "uk": "Складіть початок `It is`, а потім назву `a vacuum`: вона починається з приголосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

@@ -100,6 +100,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i09; family: context_gap_grammar -->
 Ціль: `___ are barcodes.`
 Варіанти: `Those` · `These` · `That` · `This`
+- These — *`These are barcodes` підходить для штрихкодів поруч. Ця група далі, тому потрібне `Those`.*
+- That — *`That` стосується одного предмета й потребує `is`. Тут штрихкодів кілька.*
+- This — *`This` стосується одного предмета поруч. Тут називають віддалену групу.*
+
 
 **12 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-40:i12:s01; family: phrase_builder -->
@@ -113,6 +117,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i13; family: listen_choose -->
 Ціль: `Those are coupons.`
 Варіанти: `Он ті купони.` · `Це купон.` · `Це штрихкоди.` · `Це захисні пломби.`
+- Це купон. — *У записі чути `those are` і `coupons`: називають кілька купонів.*
+- Це штрихкоди. — *Названо `coupons` — купони, а не `barcodes` — штрихкоди.*
+- Це захисні пломби. — *Названо `coupons`, а захисні пломби — `seals`.*
+
 
 **15 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-40:i14:s01; family: phrase_builder -->
@@ -162,6 +170,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i17:s04; family: listen_choose -->
 Ціль: `These are coupons.`
 Варіанти: `These are coupons.` · `barcode` · `seal` · `coupon`
+- barcode — *У записі звучить `These are coupons.`, а не `barcode`.*
+- seal — *У записі звучить `These are coupons.`, а не `seal`.*
+- coupon — *У записі звучить `These are coupons.`, а не `coupon`.*
+
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

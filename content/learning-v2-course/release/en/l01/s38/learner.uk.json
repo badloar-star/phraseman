@@ -115,6 +115,15 @@
               "ru": "Похоже, но гласная другая. `last` — «последний».",
               "uk": "Схоже, але голосна інша. `last` — «останній»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `lost`: после `lo` слышно `st`.",
+              "uk": "Ви чуєте `lost`: після `lo` чути `st`."
+            }
           }
         ],
         "isWordCard": false,
@@ -191,7 +200,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «мы заблудились»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are lost.`",
+              "uk": "`is` зайве: з `We` кажуть `We are lost.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -329,6 +348,15 @@
         "testedDimension": "Вставте слово — навколо спокійно, ніхто ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-38:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — навколо спокійно, ніхто нікуди не біжить",
+            "feedbackByLocale": {
+              "ru": "Вокруг спокойно, значит `We are safe.` — «мы в безопасности».",
+              "uk": "Навколо спокійно, тому `We are safe.` — «ми в безпеці»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-38:i07:r2",
             "correct": false,
             "testedDimension": "Вставте слово — навколо спокійно, ніхто ",
@@ -397,6 +425,15 @@
               "ru": "Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.",
               "uk": "Це «рятувати». Тут кінець слова дзвінкий — а потрібен глухий."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r1",
+            "correct": true,
+            "testedDimension": "Розрізніть звуки — ви дісталися додому без пригод. Яке слово підходить?",
+            "feedbackByLocale": {
+              "ru": "Подходит `safe` — «в безопасности». `save` значит «спасать».",
+              "uk": "Підходить `safe` — «у безпеці». `save` означає «рятувати»."
+            }
           }
         ]
       },
@@ -431,7 +468,17 @@
         "authoredDistractorTokens": [
           "safe"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они дома»",
+            "feedbackByLocale": {
+              "ru": "`safe` здесь лишнее: в фразе `They are home.` говорят, что они дома.",
+              "uk": "`safe` тут зайве: у фразі `They are home.` сказано, що вони вдома."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -482,6 +529,15 @@
         ],
         "testedDimension": "Вставте слово — усі розвернулися і йдуть",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — усі розвернулися і йдуть тією ж дорогою",
+            "feedbackByLocale": {
+              "ru": "Идут той же дорогой обратно: `We are back.`",
+              "uk": "Ідуть тією ж дорогою назад: `We are back.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-38:i10:r2",
             "correct": false,
@@ -668,6 +724,15 @@
         "testedDimension": "Вставте слово — ідете всім гуртом, не ро",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-38:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ідете всім гуртом, не розбрідаючись",
+            "feedbackByLocale": {
+              "ru": "Идут одной группой: `We are together.`",
+              "uk": "Ідуть однією групою: `We are together.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-38:i13:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ідете всім гуртом, не ро",
@@ -758,7 +823,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — до дома ещё ехать и еха",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are far.`",
+              "uk": "`is` зайве: з `We` кажуть `We are far.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -791,7 +866,17 @@
         "authoredDistractorTokens": [
           "home"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они в безопасно",
+            "feedbackByLocale": {
+              "ru": "`home` здесь лишнее: в фразе `They are safe.` говорят, что они в безопасности.",
+              "uk": "`home` тут зайве: у фразі `They are safe.` сказано, що вони в безпеці."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -801,13 +886,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i17:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -834,13 +919,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 4",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i17:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -867,13 +952,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 4",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i17:s03:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -900,13 +985,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 4",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-38:i17:s04:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -934,5 +1019,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34c32bc951e7787e88d0ef534ab3df21932a164c56a6caeda437474c485ef1dd"
+  "learnerFingerprint": "d1f2548460541af3b494ca82e96752b4a5be46cb97d2d079bcaf172e5c9e0e79"
 }

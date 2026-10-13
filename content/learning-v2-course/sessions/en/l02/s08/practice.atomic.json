@@ -123,7 +123,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед спит лицом в стол",
+          "testedDimension": "Вставьте слово — сосед спит лицом в стол, вы будите",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i02:r2",
@@ -249,7 +249,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросить соседа, не голоден ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -298,7 +308,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед третий раз тянетс",
+          "testedDimension": "Вставьте слово — сосед третий раз тянется к графину с водой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i05:r2",
@@ -351,7 +361,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «да, я голоден» коротко",
+              "feedbackByLocale": {
+                "ru": "это утвердительный короткий ответ: `Yes, I am.`",
+                "uk": "це стверджувальна коротка відповідь: `Yes, I am.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -400,7 +420,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы отказываетесь от доб",
+          "testedDimension": "Вставьте слово — вы отказываетесь от добавки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i07:r2",
@@ -450,7 +470,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — окно открыто всю ночь, спросите соседа, не замёрз ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о холоде, без отрицания: `Are you cold?`",
+                "uk": "запитання питає про холод, без заперечення: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -491,7 +521,7 @@
             "audioTargetId": "en:lesson-02:session-08:i09:audioB",
             "transcript": "gold"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «зам",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «замёрз»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i09:r2",
@@ -627,7 +657,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед вернулся к хостел",
+          "testedDimension": "Вставьте слово — сосед вернулся к хостелу с другой стороны и не понимает, куда попал",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i11:r2",
@@ -728,7 +758,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
+          "testedDimension": "Вставьте слово — сосед сидит в куртке и прячет руки в рукава",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i13:r2",
@@ -1172,7 +1202,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставте слово — сусід спить обличчям у с",
+          "testedDimension": "Вставте слово — сусід спить обличчям у стіл, ви його будите",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i02:r2",
@@ -1298,7 +1328,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросить соседа, не голоден ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1347,7 +1387,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставте слово — сусід утретє тягнеться д",
+          "testedDimension": "Вставте слово — сусід утретє тягнеться до глечика з водою",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i05:r2",
@@ -1400,7 +1440,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «да, я голоден» коротко",
+              "feedbackByLocale": {
+                "ru": "это утвердительный короткий ответ: `Yes, I am.`",
+                "uk": "це стверджувальна коротка відповідь: `Yes, I am.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1449,7 +1499,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — ви відмовляєтеся від доб",
+          "testedDimension": "Вставте слово — ви відмовляєтеся від добавки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i07:r2",
@@ -1499,7 +1549,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-08:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — окно открыто всю ночь, спросите соседа, не замёрз ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о холоде, без отрицания: `Are you cold?`",
+                "uk": "запитання питає про холод, без заперечення: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1540,7 +1600,7 @@
             "audioTargetId": "en:lesson-02:session-08:i09:audioB",
             "transcript": "gold"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «змерз",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «змерз»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i09:r2",
@@ -1676,7 +1736,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставте слово — сусід підійшов до хостел",
+          "testedDimension": "Вставте слово — сусід підійшов до хостелу з іншого боку й не розуміє, куди потрапив",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i11:r2",
@@ -1777,7 +1837,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставте слово — сусід сидить у куртці й ",
+          "testedDimension": "Вставте слово — сусід сидить у куртці й ховає руки в рукави",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-08:i13:r2",

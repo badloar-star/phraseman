@@ -1,0 +1,14 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+settings-gap-023	2026-10-12T19:13:07.924Z	error	13542	step_target_not_found:#support-report-submit+ждали_metro_53мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-12-07-046Z/settings-gap-023.error.png	0
+profile-015	2026-10-12T19:14:07.730Z	error	11864	step_target_not_found:#support-report-submit+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-12-07-046Z/profile-015.error.png	0
+overlays-campaigns-006	2026-10-12T19:15:04.999Z	error	11988	step_target_not_found:#promo-code-submit+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-12-07-046Z/overlays-campaigns-006.error.png	0
+cards-section-046	2026-10-12T19:15:35.272Z	ok	15360	marker+шагов_5+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/cards-section-046.png	0
+cards-v2-037	2026-10-12T19:16:02.489Z	ok	13599	marker+шагов_5+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-v2-037.png	0
+cards-gap-021	2026-10-12T19:17:24.131Z	error	13259	step_target_not_found:#fc-expanded-to-pack+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-12-07-046Z/cards-gap-021.error.png	0
+settings-gap-012	2026-10-12T19:17:51.296Z	ok	15685	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/settings-gap-012.png	0
+energy-modes-001	2026-10-12T19:18:15.693Z	ok	13559	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-001.png	0
+energy-modes-002	2026-10-12T19:18:44.460Z	ok	12071	marker+шагов_3+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/energy-modes-002.png	0
+energy-modes-003	2026-10-12T19:19:08.430Z	ok	13173	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/energy-modes-003.png	0
+energy-modes-004	2026-10-12T19:19:42.063Z	ok	13389	marker+шагов_3+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/energy-modes-004.png	0
+energy-modes-016	2026-10-12T19:20:17.129Z	ok	12016	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-016.png	0
+cards-v2-016	2026-10-12T19:20:44.170Z	ok	12057	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-v2-016.png	0

@@ -1,0 +1,6 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-009	2026-10-12T01:18:29.364Z	ok	17091	marker+пусто_1652мс+склейка+ждали_metro_40мс	docs/phraseman-2.0/evidence/parity/cards-009.png	1652
+cards-010	2026-10-12T01:18:55.714Z	ok	16303	marker+склейка+ждали_metro_21мс	docs/phraseman-2.0/evidence/parity/cards-010.png	0
+cards-034	2026-10-12T01:19:26.273Z	ok	16473	marker+шагов_1+склейка+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/cards-034.png	0
+cards-036	2026-10-12T01:20:03.259Z	ok	10868	marker+шагов_5+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-036.png	0
+cards-006	2026-10-12T01:20:30.688Z	error	10873	step_target_not_found:#fc-saved-row-word-*+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T01-17-48-448Z/cards-006.error.png	0

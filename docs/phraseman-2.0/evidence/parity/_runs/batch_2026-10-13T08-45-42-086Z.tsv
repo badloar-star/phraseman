@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-012	2026-10-13T08:46:05.127Z	ok	14377	marker+пусто_1561мс+голый_кадр+ждали_metro_35мс	docs/phraseman-2.0/evidence/parity/auth-gap-012.png	1561

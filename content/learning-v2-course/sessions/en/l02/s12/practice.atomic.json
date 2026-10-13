@@ -95,10 +95,29 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is she hungry?",
-          "localizedMeaning": { "ru": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она", "uk": "Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна" },
-          "orderedTokens": ["Is", "she", "hungry"],
-          "authoredDistractorTokens": ["he"],
-          "slotFeedback": []
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она",
+            "uk": "Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна"
+          },
+          "orderedTokens": [
+            "Is",
+            "she",
+            "hungry"
+          ],
+          "authoredDistractorTokens": [
+            "he"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она",
+              "feedbackByLocale": {
+                "ru": "в сцене Мира, поэтому нужен `she`: `Is she hungry?`",
+                "uk": "у сцені Міра, тому потрібне `she`: `Is she hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -252,7 +271,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она голодна?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she hungry?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -660,9 +689,19 @@
             "curious"
           ],
           "authoredDistractorTokens": [
-            "he"
+            "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Том за стойкой всё время оглядывается на дверь",
+              "feedbackByLocale": {
+                "ru": "Том — мужчина, поэтому нужен `he`: `Is he curious?`",
+                "uk": "Том — чоловік, тому потрібне `he`: `Is he curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -736,9 +775,19 @@
             "upset"
           ],
           "authoredDistractorTokens": [
-            "she"
+            "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она расстроена?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she upset?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1058,7 +1107,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i20:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она",
+              "feedbackByLocale": {
+                "ru": "это вопрос о внешности без отрицания: `Is she pretty?`",
+                "uk": "це запитання про зовнішність без заперечення: `Is she pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1220,10 +1279,29 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is she hungry?",
-          "localizedMeaning": { "ru": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она", "uk": "Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна" },
-          "orderedTokens": ["Is", "she", "hungry"],
-          "authoredDistractorTokens": ["he"],
-          "slotFeedback": []
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она",
+            "uk": "Складіть запитання — Міра пропустила обід; спитайте, чи вона голодна"
+          },
+          "orderedTokens": [
+            "Is",
+            "she",
+            "hungry"
+          ],
+          "authoredDistractorTokens": [
+            "he"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Мира пропустила обед; спросите, голодна ли она",
+              "feedbackByLocale": {
+                "ru": "в сцене Мира, поэтому нужен `she`: `Is she hungry?`",
+                "uk": "у сцені Міра, тому потрібне `she`: `Is she hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1377,7 +1455,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она голодна?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she hungry?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1785,9 +1873,19 @@
             "curious"
           ],
           "authoredDistractorTokens": [
-            "he"
+            "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Том за стойкой всё время оглядывается на дверь",
+              "feedbackByLocale": {
+                "ru": "Том — мужчина, поэтому нужен `he`: `Is he curious?`",
+                "uk": "Том — чоловік, тому потрібне `he`: `Is he curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1861,9 +1959,19 @@
             "upset"
           ],
           "authoredDistractorTokens": [
-            "she"
+            "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она расстроена?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she upset?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2183,7 +2291,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-12:i20:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спутник показывает фото сестры; спросите, красивая ли она",
+              "feedbackByLocale": {
+                "ru": "это вопрос о внешности без отрицания: `Is she pretty?`",
+                "uk": "це запитання про зовнішність без заперечення: `Is she pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

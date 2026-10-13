@@ -563,8 +563,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — вы посмотрели на счёт",
               "feedbackByLocale": {
-                "ru": "`he` лишнее: счёт — вещь, поэтому `It is expensive.`",
-                "uk": "`he` зайве: рахунок — річ, тому `It is expensive`."
+                "ru": "`he` — про мужчину, а счёт — вещь",
+                "uk": "`he` — про чоловіка, а рахунок — річ"
               }
             }
           ]
@@ -689,7 +689,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставьте слово — квартира вам досталась ",
+          "testedDimension": "Вставьте слово — квартира вам досталась только что снятая, всё в ней с иголочки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-25:i12:r2",
@@ -795,7 +795,7 @@
               "text": "dark"
             }
           ],
-          "testedDimension": "Вставьте слово — вы включили обогревател",
+          "testedDimension": "Вставьте слово — вы включили обогреватель, через час в комнате хорошо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-25:i14:r2",
@@ -1460,7 +1460,7 @@
               "text": "expensive"
             }
           ],
-          "testedDimension": "Вставте слово — кімната три на чотири ме",
+          "testedDimension": "Вставте слово — кімната три на чотири метри",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-25:i07:r2",
@@ -1644,10 +1644,10 @@
             {
               "responseId": "en:lesson-01:session-25:i10:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — ви подивилися на рахунок",
+              "testedDimension": "Соберите фразу — вы посмотрели на счёт",
               "feedbackByLocale": {
-                "ru": "`he` лишнее: счёт — вещь, поэтому `It is expensive.`",
-                "uk": "`he` зайве: рахунок — річ, тому `It is expensive`."
+                "ru": "`he` — про мужчину, а счёт — вещь",
+                "uk": "`he` — про чоловіка, а рахунок — річ"
               }
             }
           ]
@@ -1772,7 +1772,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставте слово — квартиру ви щойно зняли,",
+          "testedDimension": "Вставте слово — квартиру ви щойно зняли, все в ній як з голочки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-25:i12:r2",
@@ -1878,7 +1878,7 @@
               "text": "dark"
             }
           ],
-          "testedDimension": "Вставте слово — ви ввімкнули обігрівач, ",
+          "testedDimension": "Вставте слово — ви ввімкнули обігрівач, за годину в кімнаті добре",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-25:i14:r2",
@@ -1944,7 +1944,7 @@
             {
               "responseId": "en:lesson-01:session-25:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «це гарно»",
+              "testedDimension": "Послушайте и соберите — «это красиво»",
               "feedbackByLocale": {
                 "ru": "`am` лишнее: с `It` ставят `is` — `It is nice.`",
                 "uk": "`am` зайве: з `It` ставлять `is` — `It is nice`."
@@ -2126,7 +2126,7 @@
             {
               "responseId": "en:lesson-01:session-25:i17:s03:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — надворі тихо",
+              "testedDimension": "Послушайте и соберите — во дворе тихо",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is quiet.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is quiet`."

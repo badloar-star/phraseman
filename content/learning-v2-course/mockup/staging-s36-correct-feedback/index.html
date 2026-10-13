@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="ru" data-learning-v2-mockup="v1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#eef2e9">
+<title>Learning V2 · Пройти урок</title>
+<style>
+:root{
+  color-scheme:light;
+  --bg:#eef2e9; --surface:#fbfdf7; --surface-2:#e7ede4; --sunken:#dde5da;
+  --text:#12231d; --muted:#5d6b65; --accent:#17715a; --target:#0b8264;
+  --danger:#c0413f; --gold:#b77813;
+  --shadow-sm:0 2px 8px rgba(20,44,34,.06);
+  --shadow:0 12px 36px rgba(20,44,34,.10);
+  --shadow-lg:0 24px 70px rgba(20,44,34,.16);
+  --r-sm:12px; --r:18px; --r-lg:26px;
+  --ease:cubic-bezier(.23,1,.32,1);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --z-sticky:20; --z-overlay:40;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{min-height:100vh;background:radial-gradient(circle at 50% -25%,#fff 0,#eef2e9 46%,#dde7dc 100%);color:var(--text);-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+button:disabled{cursor:default}
+
+.topbar{position:sticky;top:0;z-index:var(--z-sticky);display:flex;align-items:center;gap:14px;
+  height:60px;padding:0 max(18px,calc((100vw - 900px)/2));
+  background:rgba(251,253,247,.82);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(18,35,29,.07)}
+.brand{font-weight:800;letter-spacing:-.02em;font-size:15px}
+.brand span{display:block;font-size:10px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);margin-top:1px}
+.build-stamp{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.02em;white-space:nowrap}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.pill{background:var(--surface-2);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+select.pill{-webkit-appearance:none;appearance:none;padding-right:30px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235d6b65' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;color:var(--text)}
+
+.shell{width:min(100%,900px);margin:0 auto;padding:26px 20px 90px}
+
+/* ---- дом ---- */
+.hero{padding:18px 4px 26px}
+.hero h1{margin:0 0 8px;font-size:clamp(26px,4.6vw,38px);letter-spacing:-.035em;line-height:1.08;text-wrap:balance}
+.hero p{margin:0;color:var(--muted);font-size:15px;max-width:62ch;line-height:1.5}
+.lesson-title{margin:26px 4px 12px;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(268px,1fr))}
+.card{position:relative;text-align:left;padding:18px 18px 16px;border-radius:var(--r);
+  background:var(--surface);box-shadow:var(--shadow-sm);
+  transition:transform .32s var(--ease),box-shadow .32s var(--ease)}
+.card.needs-repair{background:#fff4c9;box-shadow:inset 0 0 0 2px #d99a11,var(--shadow-sm)}
+.card.candidate-review-disabled{background:#e4f5eb;box-shadow:inset 0 0 0 2px #16835f,var(--shadow-sm)}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card:active{transform:translateY(-1px) scale(.995)}
+.card h3{margin:0 0 6px;font-size:16px;letter-spacing:-.02em;line-height:1.25}
+.card .scene{margin:0;font-size:13px;color:var(--muted);line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{margin-top:12px;display:flex;gap:8px;align-items:center}
+.chip{font-size:11px;font-weight:700;letter-spacing:.02em;padding:4px 9px;border-radius:999px;
+  background:var(--surface-2);color:var(--muted)}
+.chip.k{background:rgba(11,130,100,.11);color:var(--target)}
+.chip.fixed{background:#bce8d1;color:#075b40}
+.chip.pending{background:#ffe9a6;color:#775200}
+.fix-summary{margin:10px 0 0;font-size:12px;line-height:1.42;color:#775200;font-weight:700}
+
+/* ---- прохождение ---- */
+.progress{display:flex;gap:4px;margin:0 0 22px}
+.progress i{height:4px;flex:1;border-radius:2px;background:var(--sunken);transition:background .3s var(--ease)}
+.progress i.done{background:var(--target)}
+.progress i.now{background:var(--accent)}
+
+.panel{background:var(--surface);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow);
+  animation:rise .42s var(--ease) both}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kind{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.panel h2{margin:0 0 14px;font-size:clamp(20px,3.4vw,26px);letter-spacing:-.03em;line-height:1.18;text-wrap:balance}
+.body{font-size:16px;line-height:1.62;color:var(--text);max-width:64ch;text-wrap:pretty}
+/* целевой язык внутри объяснения — цветом, а не кавычками (владелец 03.09) */
+.tl{color:var(--target);font-weight:600;white-space:nowrap}
+.body p{margin:0 0 13px}
+.body p:last-child{margin-bottom:0}
+.question{margin:24px 0 14px;font-size:16px;font-weight:650;line-height:1.4}
+.task-prompt{margin:0 0 18px;font-size:17px;font-weight:650;letter-spacing:-.01em;line-height:1.35}
+.scene-line{margin:0 0 16px;font-size:14px;color:var(--muted);line-height:1.5}
+
+.opts{display:grid;gap:9px}
+.opt{position:relative;text-align:left;padding:15px 17px;border-radius:var(--r);
+  background:var(--surface-2);font-size:16px;font-weight:550;
+  transition:transform .2s var(--ease),background .2s var(--ease),box-shadow .2s var(--ease)}
+.opt:not(:disabled):hover{background:var(--sunken);transform:translateX(2px)}
+.opt:not(:disabled):active{transform:scale(.985)}
+.opt.right{background:rgba(11,130,100,.14);color:var(--target);font-weight:700}
+.opt.wrong{background:rgba(192,65,63,.11);color:var(--danger)}
+.opt.dim{opacity:.5}
+
+/* разбор ответа — НЕ похож на кнопку варианта: без фона-плашки, с чертой слева
+   по тону и иконкой (владелец 03.09 принял «Верно.» за четвёртый вариант) */
+.fb{margin-top:14px;padding:4px 0 0 14px;font-size:14.5px;line-height:1.5;color:var(--muted);
+  box-shadow:inset 3px 0 0 var(--sunken);animation:rise .3s var(--ease) both}
+.fb::before{content:"→ ";font-weight:700}
+.fb.ok{color:var(--target);box-shadow:inset 3px 0 0 var(--target)}
+.fb.ok::before{content:"✓ "}
+.fb.no{color:#8f3230;box-shadow:inset 3px 0 0 var(--danger)}
+.fb.no::before{content:"✗ "}
+
+/* плитки */
+.slot{min-height:56px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  padding:12px;border-radius:var(--r);background:var(--sunken);margin-bottom:14px}
+.slot:empty::after{content:attr(data-hint);color:var(--muted);font-size:14px}
+.tiles{display:flex;flex-wrap:wrap;gap:8px}
+.tile{padding:11px 15px;border-radius:14px;background:var(--surface-2);font-size:16px;font-weight:600;
+  box-shadow:var(--shadow-sm);transition:transform .2s var(--ease),opacity .2s var(--ease)}
+.tile:not(:disabled):hover{transform:translateY(-2px)}
+.tile:not(:disabled):active{transform:scale(.95)}
+.tile.used{opacity:.28;pointer-events:none}
+.slot .tile{background:var(--surface);box-shadow:none}
+
+/* пары */
+.pairs{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.pair{padding:14px;border-radius:var(--r);background:var(--surface-2);font-size:15px;font-weight:600;text-align:center;
+  transition:transform .2s var(--ease),background .2s var(--ease)}
+.pair.sel{background:rgba(23,113,90,.16);color:var(--accent)}
+.pair.gone{opacity:.25;pointer-events:none}
+.pair:not(:disabled):active{transform:scale(.96)}
+
+/* аудио и голос */
+.play{display:inline-flex;align-items:center;gap:9px;padding:13px 20px;border-radius:999px;
+  background:var(--accent);color:#fff;font-weight:650;font-size:15px;box-shadow:var(--shadow-sm);
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease)}
+.play:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.play:active{transform:scale(.96)}
+.target-phrase{font-size:clamp(22px,4vw,30px);font-weight:700;letter-spacing:-.02em;margin:18px 0;color:var(--target)}
+.card-word{font-size:clamp(26px,5vw,36px);font-weight:800;letter-spacing:-.03em;color:var(--target);margin:6px 0 10px}
+.card-def{font-size:16px;line-height:1.55;color:var(--text);max-width:52ch}
+
+.actions{display:flex;gap:10px;margin-top:22px;align-items:center}
+.btn{padding:14px 24px;border-radius:999px;font-weight:700;font-size:15px;
+  transition:transform .22s var(--ease),box-shadow .22s var(--ease),opacity .2s}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:var(--shadow-sm)}
+.btn.primary:not(:disabled):hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn.primary:not(:disabled):active{transform:scale(.97)}
+.btn.primary:disabled{opacity:.4}
+.btn.ghost{background:var(--surface-2);color:var(--muted)}
+.btn.ghost:hover{background:var(--sunken)}
+.spacer{margin-left:auto}
+
+/* финал */
+.done-wrap{text-align:center;padding:40px 20px}
+.done-mark{font-size:56px;line-height:1;margin-bottom:16px;animation:pop .6s var(--ease) both}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}60%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+.done-wrap h2{margin:0 0 10px;font-size:28px;letter-spacing:-.03em}
+.done-wrap p{margin:0 0 24px;color:var(--muted);font-size:16px}
+.stats{display:flex;gap:26px;justify-content:center;margin-bottom:28px}
+.stat b{display:block;font-size:26px;letter-spacing:-.02em}
+.stat span{font-size:12px;color:var(--muted);font-weight:600}
+
+@media (max-width:560px){
+  .shell{padding:18px 14px 80px}
+  .panel{padding:20px 18px;border-radius:var(--r)}
+  .pairs{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">Learning V2<span>Пройти урок</span></div>
+  <div class="topbar-right">
+    <span class="build-stamp" id="buildStamp"></span>
+    <select class="pill" id="locale" aria-label="Язык объяснений"></select>
+    <button class="pill" id="home" hidden>К списку</button>
+  </div>
+</div>
+<div class="shell" id="app">
+  <noscript><div class="panel"><h2>Не выполняется JavaScript</h2><p class="body">Макет интерактивный: включите JavaScript или откройте файл в обычном браузере (Chrome, Edge).</p></div></noscript>
+  <div class="panel" id="boot"><h2>Загрузка…</h2><p class="body" id="boot-msg">Если этот текст остался — скрипт не выполнился. Откройте файл двойным кликом в Chrome или Edge.</p></div>
+</div>
+
+<script id="data" type="application/json">[{"key":"en/l01/s36","lang":"en","lesson":"l01","session":"s36","title":"Урок 1 · Занятие 36 — «Кто все эти люди»","scene":"На обеде Ира знакомит вас с Олегом, Мией и соседями по офису. Она объясняет, кто с кем работает, дружит или живёт рядом.","viewSource":"candidate","lessonTitle":"Present be: утверждение + not","intro":{"schemaVersion":"learning_v2_course_session_intro_child_v1","courseSessionId":"en:lesson-01:session-36","learningOutcomeByLocale":{"ru":"Скажете, кто вы друг другу: `We are` и `They are` + название группы.","uk":"Скажете, хто ви одне одному: `We are` і `They are` + назва групи."},"pages":[{"pageOrdinal":1,"pageId":"en:lesson-01:session-36:intro1","kind":"concept","titleByLocale":{"ru":"`colleagues` — «коллеги»","uk":"`colleagues` — «колеги»"},"bodyByLocale":{"ru":"`colleagues` — «коллеги». Люди, с которыми вы работаете, а не дружите. Про себя и своих говорят `we are colleagues`.\n\nСлово длинное, но пугает только на письме. В конце пишем `-gues`, а слышно «гз»: «ко́лигз». Буква `u` там не звучит совсем. И `-s` на конце обязательна: коллега один не бывает.","uk":"`colleagues` — «колеги». Люди, з якими ви працюєте, а не дружите. Про себе і своїх кажуть `we are colleagues`.\n\nСлово довге, але лякає тільки на письмі. У кінці пишемо `-gues`, а чути «ґз»: «ко́ліґз». Літера `u` там не звучить зовсім. І `-s` у кінці обов'язкова: колега один не буває."},"question":{"interactionId":"en:lesson-01:session-36:intro1:q","promptByLocale":{"ru":"Мия спрашивает, вы с Олегом друзья или как. Вы вместе работаете.","uk":"Мія питає, ви з Олегом друзі чи як. Ви разом працюєте."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-36:intro1:r1","text":"We are colleagues."},{"responseId":"en:lesson-01:session-36:intro1:r2","text":"We colleagues."},{"responseId":"en:lesson-01:session-36:intro1:r3","text":"We is colleagues."}],"uk":[{"responseId":"en:lesson-01:session-36:intro1:r1","text":"We are colleagues."},{"responseId":"en:lesson-01:session-36:intro1:r2","text":"We colleagues."},{"responseId":"en:lesson-01:session-36:intro1:r3","text":"We is colleagues."}]},"accessibilityLabelByLocale":{"ru":"Мия спрашивает, вы с Олегом друзья или как. Вы вместе работаете.","uk":"Мія питає, ви з Олегом друзі чи як. Ви разом працюєте."}}},{"pageOrdinal":2,"pageId":"en:lesson-01:session-36:intro2","kind":"formula","titleByLocale":{"ru":"`friends` — «друзья»","uk":"`friends` — «друзі»"},"bodyByLocale":{"ru":"`friends` — «друзья». Не «знакомые» и не «приятели по работе», а те, кому вы звоните просто так.\n\nПишется `friends`, читается «френдз». В середине порядок букв `ie`, не `ei` — здесь ошибаются чаще всего. И `friends` — это уже несколько человек, `-s` на конце.","uk":"`friends` — «друзі». Не «знайомі» й не «приятелі з роботи», а ті, кому ви телефонуєте просто так.\n\nПишеться `friends`, читається «френдз». У середині порядок літер `ie`, не `ei` — тут помиляються найчастіше. І `friends` — це вже кілька людей, `-s` у кінці."},"question":{"interactionId":"en:lesson-01:session-36:intro2:q","promptByLocale":{"ru":"Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.","uk":"Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-36:intro2:r1","text":"They are friends."},{"responseId":"en:lesson-01:session-36:intro2:r2","text":"They friends."},{"responseId":"en:lesson-01:session-36:intro2:r3","text":"They are friend."}],"uk":[{"responseId":"en:lesson-01:session-36:intro2:r1","text":"They are friends."},{"responseId":"en:lesson-01:session-36:intro2:r2","text":"They friends."},{"responseId":"en:lesson-01:session-36:intro2:r3","text":"They are friend."}]},"accessibilityLabelByLocale":{"ru":"Показывают на двоих за дальним столом: эти всё время вместе. Скажите, кто они друг другу.","uk":"Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному."}}},{"pageOrdinal":3,"pageId":"en:lesson-01:session-36:intro3","kind":"trap","titleByLocale":{"ru":"`neighbours` и `guests`","uk":"`neighbours` і `guests`"},"bodyByLocale":{"ru":"`neighbours` — «соседи»: те, кто живёт или сидит рядом. `guests` — «гости»: пришли ненадолго и уйдут.\n\nНазовёте гостей соседями — и человек решит, что они тут постоянно. В `neighbours` середина не звучит так, как пишется: `gh` немое, слышно «нэ́йборз». В `guests` наоборот — все согласные на месте: «гэстс».","uk":"`neighbours` — «сусіди»: ті, хто живе або сидить поруч. `guests` — «гості»: прийшли ненадовго й підуть.\n\nНазвете гостей сусідами — і людина вирішить, що вони тут постійно. У `neighbours` середина звучить не так, як пишеться: `gh` німе, чути «не́йборз». У `guests` навпаки — усі приголосні на місці: «ґестс»."},"question":{"interactionId":"en:lesson-01:session-36:intro3:q","promptByLocale":{"ru":"Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.","uk":"Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."},"choicesByLocale":{"ru":[{"responseId":"en:lesson-01:session-36:intro3:r1","text":"They are guests."},{"responseId":"en:lesson-01:session-36:intro3:r2","text":"They are neighbours."},{"responseId":"en:lesson-01:session-36:intro3:r3","text":"They guests."}],"uk":[{"responseId":"en:lesson-01:session-36:intro3:r1","text":"They are guests."},{"responseId":"en:lesson-01:session-36:intro3:r2","text":"They are neighbours."},{"responseId":"en:lesson-01:session-36:intro3:r3","text":"They guests."}]},"accessibilityLabelByLocale":{"ru":"Вы киваете на людей у окна: они не отсюда, зашли на час. Скажите, кто это.","uk":"Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це."}}}],"pageCount":3,"embeddedQuestionCount":3,"practiceStartOrdinal":4,"questionPolicy":"one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate","answerDataPolicy":"none_server_evaluator_child_only","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"introFingerprint":"df371ee9166a848a46f1a52ce8ea4611cb587d437eba1751054540a94a23b0cd"},"learner":{"schemaVersion":"learning_v2_course_session_learner_child_v1","courseSessionId":"en:lesson-01:session-36","targetLanguage":"en","interactions":[{"interactionId":"en:lesson-01:session-36:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — colleagues","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i01:audio"],"accessibilityLabel":"Карточка слова — colleagues","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i01:audio","transcript":"colleagues"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i01:r1","targetText":"colleagues","meaningByLocale":{"ru":"«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.","uk":"«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"colleagues","definitionByLocale":{"ru":"«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.","uk":"«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i02","ordinal":5,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-36:i02:r1","text":"colleagues"},{"responseId":"en:lesson-01:session-36:i02:r2","text":"college"},{"responseId":"en:lesson-01:session-36:i02:r3","text":"call"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i02:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i02:audio","transcript":"colleagues"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i02:r1","targetText":"colleagues","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i02:r2","targetText":"college","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i02:r3","targetText":"call","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i02:r1","correct":true,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"`colleagues` — «коллеги»: вы работаете в одной компании.","uk":"`colleagues` — «колеги»: ви працюєте в одній компанії."}},{"responseId":"en:lesson-01:session-36:i02:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Похоже началом, но это «колледж», и на конце нет звука «з».","uk":"Схоже початком, але це «коледж», і в кінці немає звука «з»."}},{"responseId":"en:lesson-01:session-36:i02:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Только первый кусок. `colleagues` длиннее: «ко-лигз».","uk":"Це тільки початок слова. `colleagues` довше: «ко-ліґз»."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — friends","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i03:audio"],"accessibilityLabel":"Карточка слова — friends","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i03:audio","transcript":"friends"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i03:r1","targetText":"friends","meaningByLocale":{"ru":"«друзья». Те, с кем вы видитесь не потому, что надо.","uk":"«друзі». Ті, з ким ви бачитеся не тому, що треба."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"friends","definitionByLocale":{"ru":"«друзья». Те, с кем вы видитесь не потому, что надо.","uk":"«друзі». Ті, з ким ви бачитеся не тому, що треба."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i04","ordinal":7,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-36:i04:r1","text":"friends"},{"responseId":"en:lesson-01:session-36:i04:r2","text":"trends"},{"responseId":"en:lesson-01:session-36:i04:r3","text":"friend"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i04:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i04:audio","transcript":"friends"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i04:r1","targetText":"friends","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i04:r2","targetText":"trends","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i04:r3","targetText":"friend","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i04:r1","correct":true,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"`friends` — «друзья»: они общаются как близкие люди.","uk":"`friends` — «друзі»: вони спілкуються як близькі люди."}},{"responseId":"en:lesson-01:session-36:i04:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Начало другое: тут «тр-», а в `friends` — «фр-».","uk":"Початок інший: тут «тр-», а у `friends` — «фр-»."}},{"responseId":"en:lesson-01:session-36:i04:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"Один. Вы слышали `friends`, с «з» на конце — их несколько.","uk":"Один. Ви чули `friends`, із «з» у кінці — їх кілька."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i05","ordinal":8,"purpose":"supported_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — «мы коллеги»","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — «мы коллеги»","modePayload":{"family":"phrase_builder","targetPhrase":"We are colleagues.","localizedMeaning":{"ru":"Соберите фразу — «мы коллеги»","uk":"Складіть фразу — «ми колеги»"},"orderedTokens":["We","are","colleagues"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i05:tile:d1","correct":false,"testedDimension":"Соберите фразу — «мы коллеги»","feedbackByLocale":{"ru":"`is` лишнее: с `We` ставят `are` — `We are colleagues.`","uk":"`is` зайве: з `We` ставлять `are` — `We are colleagues`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i06","ordinal":9,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — neighbours","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i06:audio"],"accessibilityLabel":"Карточка слова — neighbours","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i06:audio","transcript":"neighbours"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i06:r1","targetText":"neighbours","meaningByLocale":{"ru":"«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.","uk":"«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"neighbours","definitionByLocale":{"ru":"«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.","uk":"«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i07","ordinal":10,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Карточка слова — guests","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i07:audio"],"accessibilityLabel":"Карточка слова — guests","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i07:audio","transcript":"guests"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i07:r1","targetText":"guests","meaningByLocale":{"ru":"«гости». Пришли ненадолго: поели, поговорили, ушли.","uk":"«гості». Прийшли ненадовго: поїли, поговорили, пішли."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"guests","definitionByLocale":{"ru":"«гости». Пришли ненадолго: поели, поговорили, ушли.","uk":"«гості». Прийшли ненадовго: поїли, поговорили, пішли."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послушайте и выберите","responseOptions":[{"responseId":"en:lesson-01:session-36:i08:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i08:r2","text":"guess"},{"responseId":"en:lesson-01:session-36:i08:r3","text":"gets"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i08:audio"],"accessibilityLabel":"Послушайте и выберите","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i08:audio","transcript":"guests"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i08:r1","targetText":"guests","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i08:r2","targetText":"guess","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i08:r3","targetText":"gets","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i08:r1","correct":true,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"`guests` — «гости»: они пришли ненадолго.","uk":"`guests` — «гості»: вони прийшли ненадовго."}},{"responseId":"en:lesson-01:session-36:i08:r2","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"«Догадка», и на конце только «с». В `guests` слышно «стс».","uk":"«Здогад», і в кінці тільки «с». У `guests` чути «стс»."}},{"responseId":"en:lesson-01:session-36:i08:r3","correct":false,"testedDimension":"Послушайте и выберите","feedbackByLocale":{"ru":"«Гетс», без «с» в середине. В `guests` перед «т» есть «с»: «гэстс».","uk":"«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс»."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i09","ordinal":12,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — эти люди пришли на час и уйдут","responseOptions":[{"responseId":"en:lesson-01:session-36:i09:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i09:r2","text":"neighbours"},{"responseId":"en:lesson-01:session-36:i09:r3","text":"colleagues"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — эти люди пришли на час и уйдут","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — эти люди пришли на час и уйдут","uk":"Вставте слово — ці люди прийшли на годину й підуть"},"gappedTargetPhrase":"They are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i09:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i09:r2","text":"neighbours"},{"responseId":"en:lesson-01:session-36:i09:r3","text":"colleagues"}],"testedDimension":"Вставьте слово — эти люди пришли на час и уйдут","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i09:r1","correct":true,"testedDimension":"Вставьте слово — эти люди пришли на час и уйдут","feedbackByLocale":{"ru":"Они пришли на час: `guests` — «гости».","uk":"Вони прийшли на годину: `guests` — «гості»."}},{"responseId":"en:lesson-01:session-36:i09:r2","correct":false,"testedDimension":"Вставьте слово — эти люди пришли на час и уйдут","feedbackByLocale":{"ru":"Соседи никуда не уходят, в том и смысл.","uk":"Сусіди нікуди не йдуть, у тому й суть."}},{"responseId":"en:lesson-01:session-36:i09:r3","correct":false,"testedDimension":"Вставьте слово — эти люди пришли на час и уйдут","feedbackByLocale":{"ru":"Коллеги — с вашей работы. Эти вообще не отсюда.","uk":"Колеги — з вашої роботи. Ці взагалі не звідси."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i10","ordinal":13,"purpose":"guided_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — вы живёте в соседних квартирах","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — вы живёте в соседних квартирах","modePayload":{"family":"phrase_builder","targetPhrase":"We are neighbours.","localizedMeaning":{"ru":"Соберите фразу — вы живёте в соседних квартирах","uk":"Складіть фразу — ви живете в сусідніх квартирах"},"orderedTokens":["We","are","neighbours"],"authoredDistractorTokens":["am"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i10:tile:d1","correct":false,"testedDimension":"Соберите фразу — вы живёте в соседних квартирах","feedbackByLocale":{"ru":"`am` лишнее: с `We` ставят `are` — `We are neighbours.`","uk":"`am` зайве: з `We` ставлять `are` — `We are neighbours`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i11","ordinal":14,"purpose":"guided_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите — «они друзья»","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i11:audio"],"accessibilityLabel":"Послушайте и соберите — «они друзья»","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i11:audio","transcript":"They are friends."},"slowReferenceAudio":null,"hiddenTargetPhrase":"They are friends.","orderedTokens":["They","are","friends"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i11:tile:d1","correct":false,"testedDimension":"Послушайте и соберите — «они друзья»","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are friends.`","uk":"`is` зайве: правильно `They are friends`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i12","ordinal":15,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","responseOptions":[{"responseId":"en:lesson-01:session-36:i12:r1","text":"together"},{"responseId":"en:lesson-01:session-36:i12:r2","text":"alone"},{"responseId":"en:lesson-01:session-36:i12:r3","text":"quiet"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","uk":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом"},"gappedTargetPhrase":"We are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i12:r1","text":"together"},{"responseId":"en:lesson-01:session-36:i12:r2","text":"alone"},{"responseId":"en:lesson-01:session-36:i12:r3","text":"quiet"}],"testedDimension":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i12:r1","correct":true,"testedDimension":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","feedbackByLocale":{"ru":"Вся команда за одним столом: `together` — «вместе».","uk":"Уся команда за одним столом: `together` — «разом»."}},{"responseId":"en:lesson-01:session-36:i12:r2","correct":false,"testedDimension":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","feedbackByLocale":{"ru":"«Один». Вас за столом восемь человек.","uk":"«Один». Вас за столом восьмеро."}},{"responseId":"en:lesson-01:session-36:i12:r3","correct":false,"testedDimension":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","feedbackByLocale":{"ru":"«Тихие». Может, и так, но спросили не про шум, а про то, что вы вместе.","uk":"«Тихі». Може, й так, але спитали не про шум, а про те, що ви разом."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i13","ordinal":16,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — за соседним столом никто не разговаривает","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — за соседним столом никто не разговаривает","modePayload":{"family":"phrase_builder","targetPhrase":"They are quiet.","orderedTokens":["They","are","quiet"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i13:tile:d1","correct":false,"testedDimension":"Соберите фразу — за соседним столом никто не разговаривает","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are quiet.`","uk":"`is` зайве: правильно `They are quiet`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i14","ordinal":17,"purpose":"retrieval_practice","family":"speed_match","inputMode":"pair_grid","prompt":"Соедините пары","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соедините пары","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-36:i14:p1","target":"colleagues","meaningByLocale":{"ru":"коллеги","uk":"колеги"}},{"pairId":"en:lesson-01:session-36:i14:p2","target":"friends","meaningByLocale":{"ru":"друзья","uk":"друзі"}},{"pairId":"en:lesson-01:session-36:i14:p3","target":"neighbours","meaningByLocale":{"ru":"соседи","uk":"сусіди"}},{"pairId":"en:lesson-01:session-36:i14:p4","target":"guests","meaningByLocale":{"ru":"гости","uk":"гості"}}],"leftColumn":["colleagues","friends","neighbours","guests"],"rightColumn":["коллеги","друзья","соседи","гости"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i15","ordinal":18,"purpose":"independent_check","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","responseOptions":[{"responseId":"en:lesson-01:session-36:i15:r1","text":"funny"},{"responseId":"en:lesson-01:session-36:i15:r2","text":"kind"},{"responseId":"en:lesson-01:session-36:i15:r3","text":"loud"},{"responseId":"en:lesson-01:session-36:i15:r4","text":"lost"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","uk":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх"},"gappedTargetPhrase":"They are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i15:r1","text":"funny"},{"responseId":"en:lesson-01:session-36:i15:r2","text":"kind"},{"responseId":"en:lesson-01:session-36:i15:r3","text":"loud"},{"responseId":"en:lesson-01:session-36:i15:r4","text":"lost"}],"testedDimension":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i15:r1","correct":true,"testedDimension":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","feedbackByLocale":{"ru":"Он всех смешил: `funny` — «смешной».","uk":"Він усіх смішив: `funny` — «смішний»."}},{"responseId":"en:lesson-01:session-36:i15:r2","correct":false,"testedDimension":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","feedbackByLocale":{"ru":"«Добрые». Про доброту речи не было, речь про смех.","uk":"«Добрі». Про доброту не йшлося, йшлося про сміх."}},{"responseId":"en:lesson-01:session-36:i15:r3","correct":false,"testedDimension":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","feedbackByLocale":{"ru":"«Громкие». Смешить и шуметь — не одно и то же.","uk":"«Гучні». Смішити й шуміти — не те саме."}},{"responseId":"en:lesson-01:session-36:i15:r4","correct":false,"testedDimension":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","feedbackByLocale":{"ru":"«Потерялись». Они за столом, всё в порядке.","uk":"«Загубилися». Вони за столом, усе гаразд."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i16:s01","ordinal":19,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i16:s01:audio"],"accessibilityLabel":"Произнесите одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i16:s01:audio","transcript":"We are colleagues."},"slowReferenceAudio":null,"targetPhrase":"We are colleagues.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i16:s02","ordinal":20,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i16:s02:audio"],"accessibilityLabel":"Произнесите одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i16:s02:audio","transcript":"They are guests."},"slowReferenceAudio":null,"targetPhrase":"They are guests.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s01","purpose":"retrieval_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послушайте и соберите — вы работаете в одной компании","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s01:audio"],"accessibilityLabel":"Послушайте и соберите — вы работаете в одной компании","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s01:audio","transcript":"We are colleagues."},"slowReferenceAudio":null,"hiddenTargetPhrase":"We are colleagues.","orderedTokens":["We","are","colleagues"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i17:s01:tile:d1","correct":false,"testedDimension":"Послушайте и соберите — вы работаете в одной компании","feedbackByLocale":{"ru":"`is` лишнее: правильно `We are colleagues.`","uk":"`is` зайве: правильно `We are colleagues`."}}]},"scriptedAlternate":null,"ordinal":21},{"interactionId":"en:lesson-01:session-36:i17:s02","ordinal":22,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s02:audio"],"accessibilityLabel":"Произнесите одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s02:audio","transcript":"We are together."},"slowReferenceAudio":null,"targetPhrase":"We are together.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s03","ordinal":23,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Произнесите одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s03:audio"],"accessibilityLabel":"Произнесите одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s03:audio","transcript":"They are friends."},"slowReferenceAudio":null,"targetPhrase":"They are friends.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s04","purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите фразу — эти люди пришли ненадолго","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Соберите фразу — эти люди пришли ненадолго","modePayload":{"family":"phrase_builder","targetPhrase":"They are guests.","orderedTokens":["They","are","guests"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i17:s04:tile:d1","correct":false,"testedDimension":"Соберите фразу — эти люди пришли ненадолго","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are guests.`","uk":"`is` зайве: правильно `They are guests`."}}]},"scriptedAlternate":null,"ordinal":24}],"practiceInteractionCount":21,"firstPracticeOrdinal":4,"evaluatorPayload":"absent_by_exact_schema","acceptedAnswerPayload":"absent_by_exact_schema","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"learnerFingerprint":"01a3e63c5693fab9a7e8a8270a1f6826c09e13497ca45c92c22899f2f25a1e1b"},"learnerByLocale":{"uk":{"schemaVersion":"learning_v2_course_session_learner_child_v1","courseSessionId":"en:lesson-01:session-36","targetLanguage":"en","interactions":[{"interactionId":"en:lesson-01:session-36:i01","ordinal":4,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — colleagues","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i01:audio"],"accessibilityLabel":"Картка слова — colleagues","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i01:audio","transcript":"colleagues"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i01:r1","targetText":"colleagues","meaningByLocale":{"ru":"«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.","uk":"«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"colleagues","definitionByLocale":{"ru":"«коллеги». Люди с вашей работы. Не друзья, но каждый день рядом.","uk":"«колеги». Люди з вашої роботи. Не друзі, але щодня поруч."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i02","ordinal":5,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте й виберіть","responseOptions":[{"responseId":"en:lesson-01:session-36:i02:r1","text":"colleagues"},{"responseId":"en:lesson-01:session-36:i02:r2","text":"college"},{"responseId":"en:lesson-01:session-36:i02:r3","text":"call"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i02:audio"],"accessibilityLabel":"Послухайте й виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i02:audio","transcript":"colleagues"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i02:r1","targetText":"colleagues","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i02:r2","targetText":"college","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i02:r3","targetText":"call","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i02:r1","correct":true,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"`colleagues` — «коллеги»: вы работаете в одной компании.","uk":"`colleagues` — «колеги»: ви працюєте в одній компанії."}},{"responseId":"en:lesson-01:session-36:i02:r2","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"Похоже началом, но это «колледж», и на конце нет звука «з».","uk":"Схоже початком, але це «коледж», і в кінці немає звука «з»."}},{"responseId":"en:lesson-01:session-36:i02:r3","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"Только первый кусок. `colleagues` длиннее: «ко-лигз».","uk":"Це тільки початок слова. `colleagues` довше: «ко-ліґз»."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i03","ordinal":6,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — friends","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i03:audio"],"accessibilityLabel":"Картка слова — friends","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i03:audio","transcript":"friends"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i03:r1","targetText":"friends","meaningByLocale":{"ru":"«друзья». Те, с кем вы видитесь не потому, что надо.","uk":"«друзі». Ті, з ким ви бачитеся не тому, що треба."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"friends","definitionByLocale":{"ru":"«друзья». Те, с кем вы видитесь не потому, что надо.","uk":"«друзі». Ті, з ким ви бачитеся не тому, що треба."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i04","ordinal":7,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте й виберіть","responseOptions":[{"responseId":"en:lesson-01:session-36:i04:r1","text":"friends"},{"responseId":"en:lesson-01:session-36:i04:r2","text":"trends"},{"responseId":"en:lesson-01:session-36:i04:r3","text":"friend"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i04:audio"],"accessibilityLabel":"Послухайте й виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i04:audio","transcript":"friends"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i04:r1","targetText":"friends","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i04:r2","targetText":"trends","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i04:r3","targetText":"friend","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i04:r1","correct":true,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"`friends` — «друзья»: они общаются как близкие люди.","uk":"`friends` — «друзі»: вони спілкуються як близькі люди."}},{"responseId":"en:lesson-01:session-36:i04:r2","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"Начало другое: тут «тр-», а в `friends` — «фр-».","uk":"Початок інший: тут «тр-», а у `friends` — «фр-»."}},{"responseId":"en:lesson-01:session-36:i04:r3","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"Один. Вы слышали `friends`, с «з» на конце — их несколько.","uk":"Один. Ви чули `friends`, із «з» у кінці — їх кілька."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i05","ordinal":8,"purpose":"supported_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — «ми колеги»","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — «ми колеги»","modePayload":{"family":"phrase_builder","targetPhrase":"We are colleagues.","localizedMeaning":{"ru":"Соберите фразу — «мы коллеги»","uk":"Складіть фразу — «ми колеги»"},"orderedTokens":["We","are","colleagues"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i05:tile:d1","correct":false,"testedDimension":"Складіть фразу — «ми колеги»","feedbackByLocale":{"ru":"`is` лишнее: с `We` ставят `are` — `We are colleagues.`","uk":"`is` зайве: з `We` ставлять `are` — `We are colleagues`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i06","ordinal":9,"purpose":"supported_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — neighbours","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i06:audio"],"accessibilityLabel":"Картка слова — neighbours","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i06:audio","transcript":"neighbours"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i06:r1","targetText":"neighbours","meaningByLocale":{"ru":"«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.","uk":"«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"neighbours","definitionByLocale":{"ru":"«соседи». Те, кто живёт рядом. Или просто сидит за соседним столом.","uk":"«сусіди». Ті, хто живе поруч. Або просто сидить за сусіднім столом."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i07","ordinal":10,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Картка слова — guests","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i07:audio"],"accessibilityLabel":"Картка слова — guests","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i07:audio","transcript":"guests"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i07:r1","targetText":"guests","meaningByLocale":{"ru":"«гости». Пришли ненадолго: поели, поговорили, ушли.","uk":"«гості». Прийшли ненадовго: поїли, поговорили, пішли."}}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,"wordCard":{"word":"guests","definitionByLocale":{"ru":"«гости». Пришли ненадолго: поели, поговорили, ушли.","uk":"«гості». Прийшли ненадовго: поїли, поговорили, пішли."}}},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i08","ordinal":11,"purpose":"guided_practice","family":"listen_choose","inputMode":"single_choice","prompt":"Послухайте й виберіть","responseOptions":[{"responseId":"en:lesson-01:session-36:i08:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i08:r2","text":"guess"},{"responseId":"en:lesson-01:session-36:i08:r3","text":"gets"}],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i08:audio"],"accessibilityLabel":"Послухайте й виберіть","modePayload":{"family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i08:audio","transcript":"guests"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-01:session-36:i08:r1","targetText":"guests","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i08:r2","targetText":"guess","meaningByLocale":null},{"responseId":"en:lesson-01:session-36:i08:r3","targetText":"gets","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i08:r1","correct":true,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"`guests` — «гости»: они пришли ненадолго.","uk":"`guests` — «гості»: вони прийшли ненадовго."}},{"responseId":"en:lesson-01:session-36:i08:r2","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"«Догадка», и на конце только «с». В `guests` слышно «стс».","uk":"«Здогад», і в кінці тільки «с». У `guests` чути «стс»."}},{"responseId":"en:lesson-01:session-36:i08:r3","correct":false,"testedDimension":"Послухайте й виберіть","feedbackByLocale":{"ru":"«Гетс», без «с» в середине. В `guests` перед «т» есть «с»: «гэстс».","uk":"«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс»."}}],"isWordCard":false,"wordCard":null},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i09","ordinal":12,"purpose":"guided_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — ці люди прийшли на годину й підуть","responseOptions":[{"responseId":"en:lesson-01:session-36:i09:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i09:r2","text":"neighbours"},{"responseId":"en:lesson-01:session-36:i09:r3","text":"colleagues"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — ці люди прийшли на годину й підуть","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — эти люди пришли на час и уйдут","uk":"Вставте слово — ці люди прийшли на годину й підуть"},"gappedTargetPhrase":"They are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i09:r1","text":"guests"},{"responseId":"en:lesson-01:session-36:i09:r2","text":"neighbours"},{"responseId":"en:lesson-01:session-36:i09:r3","text":"colleagues"}],"testedDimension":"Вставте слово — ці люди прийшли на годину й підуть","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i09:r1","correct":true,"testedDimension":"Вставте слово — ці люди прийшли на годину й підуть","feedbackByLocale":{"ru":"Они пришли на час: `guests` — «гости».","uk":"Вони прийшли на годину: `guests` — «гості»."}},{"responseId":"en:lesson-01:session-36:i09:r2","correct":false,"testedDimension":"Вставте слово — ці люди прийшли на годину й підуть","feedbackByLocale":{"ru":"Соседи никуда не уходят, в том и смысл.","uk":"Сусіди нікуди не йдуть, у тому й суть."}},{"responseId":"en:lesson-01:session-36:i09:r3","correct":false,"testedDimension":"Вставте слово — ці люди прийшли на годину й підуть","feedbackByLocale":{"ru":"Коллеги — с вашей работы. Эти вообще не отсюда.","uk":"Колеги — з вашої роботи. Ці взагалі не звідси."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i10","ordinal":13,"purpose":"guided_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — ви живете в сусідніх квартирах","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — ви живете в сусідніх квартирах","modePayload":{"family":"phrase_builder","targetPhrase":"We are neighbours.","localizedMeaning":{"ru":"Соберите фразу — вы живёте в соседних квартирах","uk":"Складіть фразу — ви живете в сусідніх квартирах"},"orderedTokens":["We","are","neighbours"],"authoredDistractorTokens":["am"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i10:tile:d1","correct":false,"testedDimension":"Складіть фразу — ви живете в сусідніх квартирах","feedbackByLocale":{"ru":"`am` лишнее: с `We` ставят `are` — `We are neighbours.`","uk":"`am` зайве: з `We` ставлять `are` — `We are neighbours`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i11","ordinal":14,"purpose":"guided_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте й складіть — «вони друзі»","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i11:audio"],"accessibilityLabel":"Послухайте й складіть — «вони друзі»","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i11:audio","transcript":"They are friends."},"slowReferenceAudio":null,"hiddenTargetPhrase":"They are friends.","orderedTokens":["They","are","friends"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i11:tile:d1","correct":false,"testedDimension":"Послухайте й складіть — «вони друзі»","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are friends.`","uk":"`is` зайве: правильно `They are friends`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i12","ordinal":15,"purpose":"retrieval_practice","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","responseOptions":[{"responseId":"en:lesson-01:session-36:i12:r1","text":"together"},{"responseId":"en:lesson-01:session-36:i12:r2","text":"alone"},{"responseId":"en:lesson-01:session-36:i12:r3","text":"quiet"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега Мира спрашивает, почему вся команда обедает за одним столом","uk":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом"},"gappedTargetPhrase":"We are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i12:r1","text":"together"},{"responseId":"en:lesson-01:session-36:i12:r2","text":"alone"},{"responseId":"en:lesson-01:session-36:i12:r3","text":"quiet"}],"testedDimension":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i12:r1","correct":true,"testedDimension":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","feedbackByLocale":{"ru":"Вся команда за одним столом: `together` — «вместе».","uk":"Уся команда за одним столом: `together` — «разом»."}},{"responseId":"en:lesson-01:session-36:i12:r2","correct":false,"testedDimension":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","feedbackByLocale":{"ru":"«Один». Вас за столом восемь человек.","uk":"«Один». Вас за столом восьмеро."}},{"responseId":"en:lesson-01:session-36:i12:r3","correct":false,"testedDimension":"Вставте слово — колега Міра питає, чому вся команда обідає за одним столом","feedbackByLocale":{"ru":"«Тихие». Может, и так, но спросили не про шум, а про то, что вы вместе.","uk":"«Тихі». Може, й так, але спитали не про шум, а про те, що ви разом."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i13","ordinal":16,"purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — за сусіднім столом ніхто не розмовляє","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — за сусіднім столом ніхто не розмовляє","modePayload":{"family":"phrase_builder","targetPhrase":"They are quiet.","orderedTokens":["They","are","quiet"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i13:tile:d1","correct":false,"testedDimension":"Складіть фразу — за сусіднім столом ніхто не розмовляє","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are quiet.`","uk":"`is` зайве: правильно `They are quiet`."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i14","ordinal":17,"purpose":"retrieval_practice","family":"speed_match","inputMode":"pair_grid","prompt":"З'єднайте пари","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"З'єднайте пари","modePayload":{"family":"speed_match","pairGrid":[{"pairId":"en:lesson-01:session-36:i14:p1","target":"colleagues","meaningByLocale":{"ru":"коллеги","uk":"колеги"}},{"pairId":"en:lesson-01:session-36:i14:p2","target":"friends","meaningByLocale":{"ru":"друзья","uk":"друзі"}},{"pairId":"en:lesson-01:session-36:i14:p3","target":"neighbours","meaningByLocale":{"ru":"соседи","uk":"сусіди"}},{"pairId":"en:lesson-01:session-36:i14:p4","target":"guests","meaningByLocale":{"ru":"гости","uk":"гості"}}],"leftColumn":["colleagues","friends","neighbours","guests"],"rightColumn":["коллеги","друзья","соседи","гости"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i15","ordinal":18,"purpose":"independent_check","family":"context_gap_grammar","inputMode":"single_choice","prompt":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","responseOptions":[{"responseId":"en:lesson-01:session-36:i15:r1","text":"funny"},{"responseId":"en:lesson-01:session-36:i15:r2","text":"kind"},{"responseId":"en:lesson-01:session-36:i15:r3","text":"loud"},{"responseId":"en:lesson-01:session-36:i15:r4","text":"lost"}],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","modePayload":{"family":"context_gap_grammar","localizedScene":{"ru":"Вставьте слово — коллега весь обед всех смешил, за столом не смолкал смех","uk":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх"},"gappedTargetPhrase":"They are ___ .","gapOptions":[{"responseId":"en:lesson-01:session-36:i15:r1","text":"funny"},{"responseId":"en:lesson-01:session-36:i15:r2","text":"kind"},{"responseId":"en:lesson-01:session-36:i15:r3","text":"loud"},{"responseId":"en:lesson-01:session-36:i15:r4","text":"lost"}],"testedDimension":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","choiceFeedback":[{"responseId":"en:lesson-01:session-36:i15:r1","correct":true,"testedDimension":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","feedbackByLocale":{"ru":"Он всех смешил: `funny` — «смешной».","uk":"Він усіх смішив: `funny` — «смішний»."}},{"responseId":"en:lesson-01:session-36:i15:r2","correct":false,"testedDimension":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","feedbackByLocale":{"ru":"«Добрые». Про доброту речи не было, речь про смех.","uk":"«Добрі». Про доброту не йшлося, йшлося про сміх."}},{"responseId":"en:lesson-01:session-36:i15:r3","correct":false,"testedDimension":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","feedbackByLocale":{"ru":"«Громкие». Смешить и шуметь — не одно и то же.","uk":"«Гучні». Смішити й шуміти — не те саме."}},{"responseId":"en:lesson-01:session-36:i15:r4","correct":false,"testedDimension":"Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх","feedbackByLocale":{"ru":"«Потерялись». Они за столом, всё в порядке.","uk":"«Загубилися». Вони за столом, усе гаразд."}}]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i16:s01","ordinal":19,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i16:s01:audio"],"accessibilityLabel":"Промовте одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i16:s01:audio","transcript":"We are colleagues."},"slowReferenceAudio":null,"targetPhrase":"We are colleagues.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i16:s02","ordinal":20,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i16:s02:audio"],"accessibilityLabel":"Промовте одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i16:s02:audio","transcript":"They are guests."},"slowReferenceAudio":null,"targetPhrase":"They are guests.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s01","purpose":"retrieval_practice","family":"listen_build_dictation","inputMode":"ordered_tokens","prompt":"Послухайте й складіть — ви працюєте в одній компанії","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s01:audio"],"accessibilityLabel":"Послухайте й складіть — ви працюєте в одній компанії","modePayload":{"family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s01:audio","transcript":"We are colleagues."},"slowReferenceAudio":null,"hiddenTargetPhrase":"We are colleagues.","orderedTokens":["We","are","colleagues"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i17:s01:tile:d1","correct":false,"testedDimension":"Послухайте й складіть — ви працюєте в одній компанії","feedbackByLocale":{"ru":"`is` лишнее: правильно `We are colleagues.`","uk":"`is` зайве: правильно `We are colleagues`."}}]},"scriptedAlternate":null,"ordinal":21},{"interactionId":"en:lesson-01:session-36:i17:s02","ordinal":22,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s02:audio"],"accessibilityLabel":"Промовте одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s02:audio","transcript":"We are together."},"slowReferenceAudio":null,"targetPhrase":"We are together.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s03","ordinal":23,"purpose":"independent_check","family":"scripted_repeat_compare","inputMode":"tap_record_compare","prompt":"Промовте одну фразу","responseOptions":[],"mediaIds":[],"audioTargetIds":["en:lesson-01:session-36:i17:s03:audio"],"accessibilityLabel":"Промовте одну фразу","modePayload":{"family":"scripted_repeat_compare","referenceAudio":{"audioTargetId":"en:lesson-01:session-36:i17:s03:audio","transcript":"They are friends."},"slowReferenceAudio":null,"targetPhrase":"They are friends.","recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture","honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},"scriptedAlternate":null},{"interactionId":"en:lesson-01:session-36:i17:s04","purpose":"retrieval_practice","family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть фразу — ці люди прийшли ненадовго","responseOptions":[],"mediaIds":[],"audioTargetIds":[],"accessibilityLabel":"Складіть фразу — ці люди прийшли ненадовго","modePayload":{"family":"phrase_builder","targetPhrase":"They are guests.","orderedTokens":["They","are","guests"],"authoredDistractorTokens":["is"],"slotFeedback":[{"responseId":"en:lesson-01:session-36:i17:s04:tile:d1","correct":false,"testedDimension":"Складіть фразу — ці люди прийшли ненадовго","feedbackByLocale":{"ru":"`is` лишнее: правильно `They are guests.`","uk":"`is` зайве: правильно `They are guests`."}}]},"scriptedAlternate":null,"ordinal":24}],"practiceInteractionCount":21,"firstPracticeOrdinal":4,"evaluatorPayload":"absent_by_exact_schema","acceptedAnswerPayload":"absent_by_exact_schema","runtimeAuthority":"none_active_release_join_required","releaseAuthority":false,"learnerFingerprint":"86669de8562c5c3890634f0441768dfc1ed2d5a19d6469a8d9e81b5c426aeccf"}},"answers":[{"interactionId":"en:lesson-01:session-36:i01","correctText":"colleagues","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i02","correctText":"colleagues","correctResponseId":"en:lesson-01:session-36:i02:r1"},{"interactionId":"en:lesson-01:session-36:i03","correctText":"friends","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i04","correctText":"friends","correctResponseId":"en:lesson-01:session-36:i04:r1"},{"interactionId":"en:lesson-01:session-36:i05","correctText":"We are colleagues.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i06","correctText":"neighbours","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i07","correctText":"guests","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i08","correctText":"guests","correctResponseId":"en:lesson-01:session-36:i08:r1"},{"interactionId":"en:lesson-01:session-36:i09","correctText":"guests","correctResponseId":"en:lesson-01:session-36:i09:r1"},{"interactionId":"en:lesson-01:session-36:i10","correctText":"We are neighbours.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i11","correctText":"They are friends.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i12","correctText":"together","correctResponseId":"en:lesson-01:session-36:i12:r1"},{"interactionId":"en:lesson-01:session-36:i13","correctText":"They are quiet.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i14","correctText":"en:lesson-01:session-36:i14:p1=colleagues\nen:lesson-01:session-36:i14:p2=friends\nen:lesson-01:session-36:i14:p3=neighbours\nen:lesson-01:session-36:i14:p4=guests","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i15","correctText":"funny","correctResponseId":"en:lesson-01:session-36:i15:r1"},{"interactionId":"en:lesson-01:session-36:i16:s01","correctText":"We are colleagues.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i16:s02","correctText":"They are guests.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i17:s01","correctText":"We are colleagues.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i17:s02","correctText":"We are together.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i17:s03","correctText":"They are friends.","correctResponseId":null},{"interactionId":"en:lesson-01:session-36:i17:s04","correctText":"They are guests.","correctResponseId":null}],"auxiliary":{"schemaVersion":"learning_v2_release_auxiliary_projection_v1","courseSessionId":"en:lesson-01:session-36","entries":[{"interactionId":"en:lesson-01:session-36:intro1:q","responseFeedbackById":{"en:lesson-01:session-36:intro1:r1":{"ru":"Верно: We are colleagues — «мы коллеги»: с we ставят are, а colleagues называет вашу рабочую связь с Олегом.","uk":"Правильно: We are colleagues — «ми колеги»: з we ставлять are, а colleagues називає ваш робочий зв'язок з Олегом."},"en:lesson-01:session-36:intro1:r2":{"ru":"Английская фраза не стоит без глагола. Русский пропускает «есть», английский — нет: `we are` + кто вы.","uk":"Англійська фраза не стоїть без дієслова. Українська пропускає «є», англійська — ні: `we are` + хто ви."},"en:lesson-01:session-36:intro1:r3":{"ru":"`is` — про одного. Вас двое, значит `are`.","uk":"`is` — про одного. Вас двоє, отже `are`."}}},{"interactionId":"en:lesson-01:session-36:intro2:q","responseFeedbackById":{"en:lesson-01:session-36:intro2:r1":{"ru":"Верно: They are friends — «они друзья»: с they ставят are, а friends во множественном числе называет отношения этих двух людей.","uk":"Правильно: They are friends — «вони друзі»: з they ставлять are, а friends у множині називає стосунки цих двох людей."},"en:lesson-01:session-36:intro2:r2":{"ru":"Два слова рядом — ещё не фраза. Чтобы сказать, кто они, нужна связка: `they are` + кто.","uk":"Два слова поруч — це ще не фраза. Щоб сказати, хто вони, потрібна зв'язка: `they are` + хто."},"en:lesson-01:session-36:intro2:r3":{"ru":"Один друг на двоих не бывает. Их двое — `friends`, с `-s`.","uk":"Один друг на двох не буває. Їх двоє — `friends`, із `-s`."}}},{"interactionId":"en:lesson-01:session-36:intro3:q","responseFeedbackById":{"en:lesson-01:session-36:intro3:r1":{"ru":"Верно: They are guests — «они гости»: люди зашли ненадолго, поэтому guests точно передаёт ситуацию; с they ставят are.","uk":"Правильно: They are guests — «вони гості»: люди зайшли ненадовго, тому guests точно передає ситуацію; з they ставлять are."},"en:lesson-01:session-36:intro3:r2":{"ru":"Соседи — те, кто рядом постоянно. Эти уйдут через час, значит `guests`.","uk":"Сусіди — ті, хто поруч постійно. Ці підуть за годину, отже `guests`."},"en:lesson-01:session-36:intro3:r3":{"ru":"Связка пропала. Про `they` — `they are` + кто они.","uk":"Зв'язка зникла. Про `they` — `they are` + хто вони."}}}],"auxiliaryFingerprint":"d9989a29b82f99df26f0241345b72a7042bf19142292289eb8609ebb9befb4f1"}}]</script>
+<script id="source-quality-findings" type="application/json">{}</script>
+<script id="source-release-findings" type="application/json">{"en/l01/s36":["В задании i02 (ru) не совпадает modePayload.choiceFeedback. Всего расхождений в этой карточке: 28.","Исправлю все 28 расхождений этой карточки, затем заново сверю текст, тип задания, ответ, варианты, аудио и объяснение в обеих версиях."]}</script>
+<script id="reviewed-cards" type="application/json">{}</script>
+<script id="preview-state" type="application/json">{"candidate":true}</script>
+<script>
+// зачем: макет открывали и видели пустой экран без единой ошибки в консоли.
+// Любой сбой запуска обязан быть виден НА СТРАНИЦЕ, а не только в консоли.
+window.addEventListener("error", (e) => {
+  const box = document.getElementById("boot-msg");
+  if (box) box.textContent = "Ошибка: " + (e.message || e.error?.message || "неизвестная") + " · " + (e.filename || "") + ":" + (e.lineno || "?");
+  console.error("[mockup] ошибка запуска:", e.message, e.error);
+});
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
+const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
+const REVIEWED_CARDS = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
+const PREVIEW_STATE = JSON.parse(document.getElementById("preview-state")?.textContent || "{}");
+const REVIEWED_SOURCE_MARKER = "";
+const REVIEWED_CARD_CLASS = "candidate-review-disabled";
+const REVIEWED_LABEL = "";
+const HOME_DESCRIPTION = "Откройте занятие и проверьте его глазами ученика. Это черновой просмотр: канонический выпуск не изменён.";
+const LOCALES = ["ru","uk"];
+const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
+const BUILT_AT = "12.10, 11:36";
+// зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
+document.getElementById("buildStamp").textContent = DATA.length + " занятий · " + BUILT_AT;
+
+const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairFeedback: null, pairsDone: [], right: 0, wrong: 0 };
+const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
+
+const app = document.getElementById("app");
+const sel = document.getElementById("locale");
+const homeBtn = document.getElementById("home");
+LOCALES.forEach(l => { const o = document.createElement("option"); o.value = l; o.textContent = LOC_NAME[l] || l; sel.append(o); });
+sel.value = S.locale;
+sel.onchange = () => { S.locale = sel.value; localStorage.setItem("mockup.locale", S.locale); render(); };
+homeBtn.onclick = () => { S.session = null; render(); };
+
+const h = (tag, attrs, kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (k === "class") e.className = v;
+    else if (k === "text") e.textContent = v;
+    else if (k === "html") e.innerHTML = v;
+    else if (k.startsWith("on")) e[k.toLowerCase()] = v;
+    else if (v !== null && v !== false) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of [].concat(kids || [])) if (kid) e.append(kid);
+  return e;
+};
+const loc = (byLocale) => !byLocale ? "" : (byLocale[S.locale] ?? byLocale.ru ?? Object.values(byLocale)[0] ?? "");
+// Служебное слово «сессия» не должно попадать в интерфейс ученика даже если
+// оно осталось в заголовке исходного файла. Номер занятия сохраняется.
+const displayTitle = (value) => String(value ?? "").replace(/(^|[^p{L}])сессия(?=$|[^p{L}])/giu, "$1Занятие");
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+// зачем: целевой язык размечен в тексте обратными кавычками — красим его
+// акцентом, чтобы английское сразу отличалось от объяснения на своём языке
+const MARK = String.fromCharCode(1); // служебный символ-заглушка, в текстах не встречается
+const tl = (s) => {
+  let out = esc(s);
+  // 1) явная разметка автора
+  const BT = String.fromCharCode(96); // обратная кавычка: в шаблоне генератора её нельзя писать буквально
+  // зачем: размеченные куски прячем в плейсхолдеры, чтобы второй проход
+  // (латиница без разметки) не покрасил их повторно и не дал вложенные теги
+  const kept = [];
+  out = out.replace(new RegExp(BT + "([^" + BT + "]+)" + BT, "g"), (m, inner) => {
+    kept.push(inner);
+    return MARK + (kept.length - 1) + MARK;
+  });
+  // 2) латиница без разметки внутри кириллического текста (разборы ошибок
+  //    пишут «Am выпало», «Not не заменяет») — красим, если рядом кириллица
+  //    и фрагмент ещё не покрашен
+  if (/[А-Яа-яЁё]/.test(out)) {
+    const Q = String.fromCharCode(34), AP = String.fromCharCode(39);
+    // дефис только последним символом класса — иначе «—–-"» читается как диапазон
+    const BOUND = "\\s(«„>—–" + Q + AP + "-";
+    const AFTER = "\\s.,!?:;)»<—–" + Q + AP + "-";
+    const W = "[A-Za-z][A-Za-z" + AP + "]*";
+    const LAT = new RegExp("(^|[" + BOUND + "])(" + W + "(?:\\s+" + W + "){0,4})(?=[" + AFTER + "]|$)", "g");
+    out = out.replace(LAT, (m, pre, word) => /^(span|class|tl|amp|lt|gt)$/i.test(word) ? m : pre + '<span class="tl">' + word + '</span>');
+  }
+  return out.replace(new RegExp(MARK + "(\\d+)" + MARK, "g"), (m, i) => '<span class="tl">' + kept[+i] + '</span>');
+};
+const speak = (text) => {
+  try {
+    if (!window.speechSynthesis) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = "en-US"; u.rate = .85;
+    speechSynthesis.speak(u);
+  } catch (e) { console.warn("[mockup] речь недоступна:", e.message); }
+};
+const shuffle = (arr, seed) => {
+  let s = 0; for (const c of String(seed)) s = (s * 31 + c.charCodeAt(0)) >>> 0;
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) { s = (s * 1664525 + 1013904223) >>> 0; const j = s % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+};
+const shuffleChoices = (arr, seed) => {
+  const a = shuffle(arr, seed);
+  // Автор хранит правильный вариант первым для ревью. Даже редкая identity-
+  // перестановка не должна превращать это в подсказку ученику.
+  if (a.length > 1 && a[0] === arr[0]) a.push(a.shift());
+  return a;
+};
+const sanitizeLearnerPrompt = (value) => String(value || "")
+  .trim()
+  .replace(/s*(?:[,;]|—|-)s*(?:среди|серед)s+(?:плиток|слів)(?=s|$)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:(?:одна|две|дві)s+)?(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:с|із|зі)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:есть|є)s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|слов|вопрос|питан)[^.!?]*$/iu, "")
+  .replace(/s*([^)]*(?:лишн|чуж|зайв)[^)]*(?:плитк|скрепк|скріпк|слов|форм)[^)]*)s*$/iu, "")
+  .replace(/s*(?:[,;]|—|-)s*(?:among the tiles|with (?:an?|one|two) extra tiles?|there (?:is|are) extra tiles?)[^.!?]*$/iu, "")
+  .replace(/^(?:проверьтеs+себя|проверьs+себя|перевіртеs+себе|перевірs+себе|checks+yourself|comprueba|compruébalo|verifique|confira|sprawdźs+się)s*[:—-]?s*/iu, "")
+  .replace(/(^|[s(])(соберите|собери|складіть|склади)s+безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)(?=s|$)/giu, "$1$2 фразу")
+  .replace(/s+(?:безs+(?:подсказк[иу]|підказк[иу]|опоры|опори)|самостоятельно|самостійно|withouts+(?:as+)?hints?|ons+yours+own|sins+(?:pistas?|ayuda)|sems+(?:dicas?|ajuda)|bezs+podpowiedzi|samodzielnie)(?=s*(?:[—,:;-]|$))/giu, "")
+  .replace(/^[а-яіїє]/u, (letter) => letter.toLocaleUpperCase())
+  .replace(/[,:;]s*$/u, "")
+  .trim();
+const avoidAlignedPairs = (left, right) => {
+  if (left.length < 2 || left.length !== right.length) return right;
+  const candidate = right.slice();
+  for (let shift = 0; shift < candidate.length; shift++) {
+    if (candidate.every((item, row) => item.id !== left[row].id)) return candidate;
+    candidate.push(candidate.shift());
+  }
+  const rightById = new Map(right.map(item => [item.id, item]));
+  if (rightById.size === right.length && left.every(item => rightById.has(item.id))) {
+    return left.map((_, row) => rightById.get(left[(row + 1) % left.length].id));
+  }
+  return right;
+};
+
+function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairFeedback = null; S.pairsDone = []; }
+
+// ---------- экраны ----------
+function renderHome() {
+  homeBtn.hidden = true;
+  app.replaceChildren(
+    h("div", {class:"hero"}, [
+      h("h1", {text:"Пройдите любой подготовленный урок"}),
+      h("p", {text:HOME_DESCRIPTION}),
+    ]),
+    ...groupByLesson(),
+  );
+}
+function groupByLesson() {
+  const out = [];
+  const byLesson = {};
+  for (const s of DATA) (byLesson[s.lesson] ??= []).push(s);
+  for (const [lesson, list] of Object.entries(byLesson)) {
+    const lessonTitle = list[0].lessonTitle;
+    out.push(h("div", {class:"lesson-title", text:"Урок " + lesson.replace(/^l0?/, "") + (lessonTitle ? " · " + lessonTitle : "")}));
+    out.push(h("div", {class:"cards"}, list.map(s => {
+      const findings = SOURCE_QUALITY[s.key] || [];
+      const releaseFindings = SOURCE_RELEASE[s.key] || [];
+      const isCandidate = Boolean(PREVIEW_STATE.candidate) || s.viewSource === "candidate";
+      const sourceFixed = !isCandidate && Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      // A reviewed projection is useful evidence, but it cannot turn the whole
+      // card green while the version that would be released still differs.
+      const needsRepair = findings.length || releaseFindings.length;
+      const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
+      const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
+      const findingTarget = hasUnnumberedFinding
+        ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
+        : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
+      const summary = isCandidate
+        ? "Канонический выпуск не изменён. Это черновой просмотр текущего исходника; его нельзя считать проверенным или выпущенным."
+        : sourceFixed && releaseFindings.length
+        ? "Выпуск ещё содержит старый текст; здесь открывается проверенная правка. Нажмите «Показать изменения», чтобы увидеть точную замену."
+        : findings.length
+        ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
+        : releaseFindings[0] || "";
+      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : sourceFixed ? " " + REVIEWED_CARD_CLASS : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+        h("h3", {text:displayTitle(s.title)}),
+        h("p", {class:"scene", text:s.scene}),
+        h("div", {class:"meta"}, [
+          h("span", {class:"chip k", text:"Занятие " + s.session.replace(/^s0?/, "")}),
+          h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
+           isCandidate ? h("span", {class:"chip pending", text:"ЧЕРНОВИК · НЕ ПРОВЕРЕНО · НЕ ВЫПУСК"}) : null,
+           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === REVIEWED_SOURCE_MARKER ? REVIEWED_LABEL : "Исходник исправлен"}) : null,
+           releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
+        ]),
+        isCandidate || findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+      ]);
+    })));
+  }
+  return out;
+}
+
+function renderSession() {
+  homeBtn.hidden = false;
+  const s = S.session;
+  const learner = learnerForSession(s);
+  const total = 3 + learner.interactions.length;
+  if (S.step >= total) return renderDone();
+
+  const bar = h("div", {class:"progress"}, Array.from({length:total}, (_, i) =>
+    h("i", {class: i < S.step ? "done" : i === S.step ? "now" : ""})));
+
+  const panel = S.step < 3 ? renderIntro(s.intro.pages[S.step], s.auxiliary) : renderTask(learner.interactions[S.step - 3]);
+  app.replaceChildren(bar, panel);
+}
+
+function renderIntro(page, auxiliary) {
+  const KIND = {concept:"Понятие", formula:"Формула", trap:"Ловушка", tip:"Подсказка", example:"Пример"};
+  // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
+  // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
+  // при перерисовке), верный ответ помним по исходному индексу 0.
+  const raw = loc(page.question.choicesByLocale) || [];
+  const choices = shuffleChoices(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
+  const body = loc(page.bodyByLocale).split(/\n\n+/).filter(Boolean);
+  const panel = h("div", {class:"panel"}, [
+    h("div", {class:"kind", text:KIND[page.kind] || page.kind}),
+    h("h2", {text:loc(page.titleByLocale)}),
+    h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
+    h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
+    h("div", {class:"opts"}, choices.map((c, i) => h("button", {
+      class:"opt" + (S.answered ? (c.correct ? " right" : (S.picked === c.responseId ? " wrong" : " dim")) : ""),
+      disabled: S.answered,
+      onClick: () => { S.answered = true; S.picked = c.responseId; S.ok = c.correct; render(); },
+    }, [document.createTextNode(c.text)]))),
+  ]);
+  if (S.answered) {
+    const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
+    const selectedFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
+    panel.append(h("div", {
+      class:"fb " + (selectedFeedback ? (S.ok ? "ok" : "no") : "no"),
+      text:selectedFeedback || "Проверенный разбор для этого ответа отсутствует.",
+    }));
+  }
+  const selectedFeedback = S.answered
+    ? loc((auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId)?.responseFeedbackById?.[S.picked])
+    : "";
+  panel.append(nextRow(S.answered && Boolean(selectedFeedback)));
+  return panel;
+}
+
+function nextRow(canNext = S.answered, label = "Дальше") {
+  return h("div", {class:"actions"}, [
+    h("button", {class:"btn ghost", disabled:S.step === 0, onClick:() => { if (S.step > 0) { S.step--; resetStep(); render(); } }, text:"Назад"}),
+    h("button", {class:"btn primary spacer", disabled:!canNext, onClick:() => { S.step++; resetStep(); render(); }, text:label}),
+  ]);
+}
+
+function renderTask(it) {
+  const p = it.modePayload || {};
+  const taskNumber = Math.max(1, S.step - 2);
+  const panel = h("div", {class:"panel"}, [
+    h("div", {class:"kind", text:"Задание " + taskNumber + " · " + familyName(it.family, p)}),
+    h("div", {class:"task-prompt", html:tl(sanitizeLearnerPrompt(it.prompt))}),
+  ]);
+  if (p.isWordCard) { renderCard(panel, it, p); return panel; }
+  const R = {
+    listen_choose: renderChoice, context_gap_grammar: renderChoice, sound_contrast: renderChoice,
+    phrase_builder: renderBuilder, listen_build_dictation: renderBuilder,
+    speed_match: renderPairs, scripted_repeat_compare: renderSpeak,
+  }[it.family];
+  if (R) R(panel, it, p);
+  else { WARNBOX(panel, "Неизвестная механика: " + it.family); }
+  return panel;
+}
+function WARNBOX(panel, msg) { panel.append(h("div", {class:"fb no", text:msg})); panel.append(nextRow(true)); }
+const familyName = (f, p) => p?.isWordCard ? "Новое слово" : ({listen_choose:"Послушайте и выберите", context_gap_grammar:"Вставьте слово", sound_contrast:"Различите звуки", phrase_builder:"Соберите фразу", listen_build_dictation:"Послушайте и соберите", speed_match:"Соедините пары", scripted_repeat_compare:"Скажите вслух"})[f] || f;
+
+function renderCard(panel, it, p) {
+  const w = p.wordCard || {};
+  panel.append(h("div", {class:"card-word", text:w.word || ""}));
+  panel.append(h("button", {class:"play", onClick:() => speak(w.word || "")}, [document.createTextNode("▶  Послушать")]));
+  panel.append(h("div", {class:"card-def", style:"margin-top:16px", html:tl(loc(w.definitionByLocale))}));
+  S.answered = true;
+  panel.append(nextRow(true, "Понятно"));
+}
+
+function renderChoice(panel, it, p) {
+  if (it.family === "sound_contrast") {
+    const contrastAudio = [p.audioA?.transcript, p.audioB?.transcript];
+    if (contrastAudio.some(audio => !audio)) return WARNBOX(panel, "У задания на различение звуков нет двух аудиообразцов.");
+    panel.append(h("div", {class:"actions sound-contrast-audio"}, contrastAudio.map((audio, index) => h("button", {
+      class:"play",
+      onClick:() => speak(audio),
+      "aria-label":"Прослушать вариант " + (index ? "B" : "A"),
+    }, [document.createTextNode("▶  Прослушать " + (index ? "B" : "A"))]))));
+  } else {
+    const audio = p.referenceAudio?.transcript;
+    if (audio) panel.append(h("button", {class:"play", onClick:() => speak(audio)}, [document.createTextNode("▶  Прослушать")]));
+  }
+  if (p.gappedTargetPhrase) panel.append(h("div", {class:"target-phrase", text:p.gappedTargetPhrase}));
+  if (p.localizedScene && loc(p.localizedScene)) panel.append(h("div", {class:"scene-line", html:tl(sanitizeLearnerPrompt(loc(p.localizedScene)))}));
+  const opts = shuffleChoices(it.responseOptions, it.interactionId + S.locale);
+  if (!opts.length) return WARNBOX(panel, "У задания нет вариантов ответа — сборщик не нашёл их в тексте.");
+  const correctId = correctIdOf(it);
+  const visibleChoiceText = (option) => {
+    if (it.family !== "listen_choose") return option.text;
+    const authored = (p.localizedMeaningChoices || []).find(choice => choice.responseId === option.responseId);
+    return authored?.meaningByLocale ? (loc(authored.meaningByLocale) || option.text) : option.text;
+  };
+  panel.append(h("div", {class:"opts", style:"margin-top:16px"}, opts.map(o => h("button", {
+    class:"opt" + (S.answered ? (o.responseId === correctId ? " right" : (S.picked === o.responseId ? " wrong" : " dim")) : ""),
+    disabled:S.answered,
+    onClick:() => { S.answered = true; S.picked = o.responseId; S.ok = o.responseId === correctId; S.ok ? S.right++ : S.wrong++; render(); },
+  }, [document.createTextNode(visibleChoiceText(o))]))));
+  if (S.answered) {
+    const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
+    const feedback = loc(fb?.feedbackByLocale);
+    const feedbackIsComplete = Boolean(
+      fb && typeof fb.correct === "boolean" && fb.correct === S.ok && feedback,
+    );
+    panel.append(h("div", {
+      class:"fb " + (feedbackIsComplete && S.ok ? "ok" : "no"),
+      html: feedbackIsComplete
+        ? tl(feedback)
+        : "Для выбранного ответа нет проверенного объяснения. Нельзя перейти дальше, пока задание не исправлено.",
+    }));
+    panel.append(nextRow(feedbackIsComplete));
+    return;
+  }
+  panel.append(nextRow());
+}
+function correctIdOf(it) {
+  const a = S.session.answers.find(x => x.interactionId === it.interactionId);
+  if (a?.correctResponseId) return a.correctResponseId;
+  return it.responseOptions[0]?.responseId;
+}
+
+function renderBuilder(panel, it, p) {
+  const target = p.targetPhrase || p.hiddenTargetPhrase || "";
+  const ordered = p.orderedTokens || [];
+  const explanationPresent = Object.prototype.hasOwnProperty.call(p, "explanationV1");
+  const explanation = p.explanationV1;
+  const localized = (value) => Boolean(loc(value));
+  const completeExplanation = Boolean(
+    explanation && localized(explanation.completionFeedbackByLocale) && explanation.phrase &&
+    typeof explanation.phrase.text === "string" && explanation.phrase.text &&
+    localized(explanation.phrase.meaningByLocale) && localized(explanation.phrase.explanationByLocale) &&
+    Array.isArray(explanation.phrase.units) && explanation.phrase.units.length &&
+    explanation.phrase.units.every((unit) =>
+      typeof unit?.text === "string" && unit.text &&
+      localized(unit.partOfSpeechLabelByLocale) && localized(unit.meaningByLocale) && localized(unit.functionByLocale)),
+  );
+  const failClosed = (message) => {
+    panel.append(h("div", {class:"fb no", text:message}));
+    panel.append(nextRow(false));
+  };
+  if (explanationPresent && !completeExplanation) {
+    failClosed("У задания нет полного авторского объяснения. Нельзя продолжить, пока задание не исправлено.");
+    return;
+  }
+  if (p.referenceAudio?.transcript) panel.append(h("button", {class:"play", onClick:() => speak(p.referenceAudio.transcript)}, [document.createTextNode("▶  Прослушать")]));
+  else if (p.localizedMeaning && loc(p.localizedMeaning)) panel.append(h("div", {class:"scene-line", text:loc(p.localizedMeaning)}));
+  if (!ordered.length) return WARNBOX(panel, "У задания нет плиток — сборщик не нашёл целевую фразу.");
+
+  const slot = h("div", {class:"slot", "data-hint":"Нажимайте плитки, чтобы собрать фразу"},
+    S.assembled.map((tile, i) => h("button", {class:"tile", disabled:S.answered, onClick:() => { S.assembled.splice(i, 1); S.tileFeedback = null; render(); }, text:tile.text})));
+  panel.append(h("div", {style:"margin-top:16px"}, [slot]));
+
+  // Tile identity is independent from its visible text: two physical extra
+  // tiles may display the same word but require different explanations.
+  const feedbackByTileId = new Map((p.slotFeedback || []).map((row) => [row.responseId, loc(row.feedbackByLocale)]));
+  const all = shuffle([
+    ...ordered.map((text, index) => ({ tileId:it.interactionId + ":tile:t" + (index + 1), text, kind:"target" })),
+    ...(p.authoredDistractorTokens || []).map((text, index) => ({ tileId:it.interactionId + ":tile:d" + (index + 1), text, kind:"distractor" })),
+  ], it.interactionId);
+  const used = new Set(S.assembled.map((tile) => tile.tileId));
+  panel.append(h("div", {class:"tiles"}, all.map((tile) => {
+    const isUsed = used.has(tile.tileId);
+    return h("button", {class:"tile" + (isUsed ? " used" : ""), disabled:S.answered || isUsed,
+      onClick:() => { S.assembled.push(tile); S.tileFeedback = tile.kind === "distractor" ? feedbackByTileId.get(tile.tileId) || "Для этой лишней плитки нет объяснения." : null; render(); }, text:tile.text});
+  })));
+  if (S.tileFeedback) panel.append(h("div", {class:"fb no", text:S.tileFeedback}));
+
+  const ready = S.assembled.length === ordered.length;
+  if (S.answered) {
+    if (completeExplanation) {
+      const phrase = explanation.phrase;
+      panel.append(h("div", {class:"explanation"}, [
+        h("div", {class:"fb " + (S.ok ? "ok" : "no"), html:tl(loc(explanation.completionFeedbackByLocale))}),
+        h("div", {class:"target-phrase", text:phrase.text}),
+        h("div", {class:"scene-line", html:tl(loc(phrase.meaningByLocale))}),
+        h("div", {class:"scene-line", html:tl(loc(phrase.explanationByLocale))}),
+        h("div", {class:"explanation-units"}, phrase.units.map((unit) => h("div", {
+          class:"scene-line",
+          html:tl(unit.text + " — " + loc(unit.partOfSpeechLabelByLocale) + ": " + loc(unit.meaningByLocale) + ". " + loc(unit.functionByLocale)),
+        }))),
+      ]));
+    } else {
+      panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Правильно: " + target}));
+    }
+  }
+  panel.append(h("div", {class:"actions"}, [
+    h("button", {class:"btn ghost", disabled:S.step === 0, onClick:() => { if (S.step > 0) { S.step--; resetStep(); render(); } }, text:"Назад"}),
+    S.answered
+      ? h("button", {class:"btn primary spacer", onClick:() => { S.step++; resetStep(); render(); }, text:"Дальше"})
+      : h("button", {class:"btn primary spacer", disabled:!ready, onClick:() => {
+          const got = S.assembled.map((tile) => tile.text).join(" ").replace(/[.?!]$/, "").toLowerCase();
+          const want = ordered.join(" ").replace(/[.?!]$/, "").toLowerCase();
+          S.answered = true; S.ok = got === want; S.ok ? S.right++ : S.wrong++; render();
+        }, text:"Проверить"}),
+  ]));
+}
+
+function renderPairs(panel, it, p) {
+  const grid = p.pairGrid || [];
+  if (!grid.length) return WARNBOX(panel, "Нет пар для соединения.");
+  const analysisPresent = grid.some((row) => Object.prototype.hasOwnProperty.call(row, "analysisV1"));
+  const localized = (value) => Boolean(loc(value));
+  const completeAnalysis = (analysis) => Boolean(
+    analysis && typeof analysis.lemma === "string" && analysis.lemma &&
+    localized(analysis.partOfSpeechLabelByLocale) && localized(analysis.meaningByLocale) &&
+    localized(analysis.functionByLocale) && localized(analysis.matchExplanationByLocale),
+  );
+  if (analysisPresent && !grid.every((row) => completeAnalysis(row.analysisV1))) {
+    panel.append(h("div", {class:"fb no", text:"У задания нет полного авторского разбора пар. Нельзя продолжить, пока задание не исправлено."}));
+    panel.append(nextRow(false));
+    return;
+  }
+  const analysisById = new Map(grid.map((row) => [row.pairId, row.analysisV1]));
+  const left = shuffle(grid.map(g => ({id:g.pairId, text:g.target})), it.interactionId + "L");
+  const right = avoidAlignedPairs(
+    left,
+    shuffle(grid.map(g => ({id:g.pairId, text:loc(g.meaningByLocale)})), it.interactionId + "R"),
+  );
+  const cell = (item, side) => h("button", {
+    class:"pair" + (S.pairsDone.includes(item.id) ? " gone" : (S.pairSel?.id === item.id && S.pairSel.side === side ? " sel" : "")),
+    disabled:S.pairsDone.includes(item.id),
+    onClick:() => {
+      if (!S.pairSel) { S.pairSel = {...item, side}; return render(); }
+      if (S.pairSel.side === side) { S.pairSel = {...item, side}; return render(); }
+      const selected = S.pairSel;
+      const leftItem = side === "L" ? item : selected;
+      const rightItem = side === "R" ? item : selected;
+      const correct = selected.id === item.id;
+      S.pairFeedback = {correct, leftId:leftItem.id, rightId:rightItem.id};
+      if (correct) { S.pairsDone.push(item.id); S.right++; } else { S.wrong++; }
+      S.pairSel = null;
+      if (S.pairsDone.length === grid.length) S.answered = true;
+      render();
+    }, text:item.text});
+  panel.append(h("div", {class:"pairs", style:"margin-top:16px"}, [
+    h("div", {style:"display:grid;gap:9px"}, left.map(i => cell(i, "L"))),
+    h("div", {style:"display:grid;gap:9px"}, right.map(i => cell(i, "R"))),
+  ]));
+  if (S.pairFeedback && analysisPresent) {
+    const pairIds = S.pairFeedback.correct
+      ? [S.pairFeedback.leftId]
+      : [S.pairFeedback.leftId, S.pairFeedback.rightId];
+    panel.append(h("div", {class:"explanation"}, pairIds.map((pairId) => {
+      const analysis = analysisById.get(pairId);
+      return h("div", {class:"scene-line", html:tl(
+        analysis.lemma + " — " + loc(analysis.partOfSpeechLabelByLocale) + ": " +
+        loc(analysis.meaningByLocale) + ". " + loc(analysis.functionByLocale) +
+        (S.pairFeedback.correct ? " " + loc(analysis.matchExplanationByLocale) : ""),
+      )});
+    })));
+  }
+  if (S.answered) panel.append(h("div", {class:"fb ok", text:"Все пары соединены."}));
+  panel.append(nextRow());
+}
+
+function renderSpeak(panel, it, p) {
+  const phrase = p.targetPhrase || p.referenceAudio?.transcript || "";
+  if (!phrase) return WARNBOX(panel, "Нет фразы для произнесения.");
+  panel.append(h("div", {class:"target-phrase", text:phrase}));
+  panel.append(h("button", {class:"play", onClick:() => speak(phrase)}, [document.createTextNode("▶  Послушать образец")]));
+  panel.append(h("div", {class:"scene-line", style:"margin-top:14px", text:"В приложении здесь запись голоса и сравнение с образцом."}));
+  if (!S.answered) { S.answered = true; }
+  panel.append(nextRow(true));
+}
+
+function renderDone() {
+  homeBtn.hidden = false;
+  const s = S.session;
+  const learner = learnerForSession(s);
+  app.replaceChildren(h("div", {class:"panel"}, [
+    h("div", {class:"done-wrap"}, [
+      h("div", {class:"done-mark", text:"✓"}),
+      h("h2", {text:"Урок пройден"}),
+      h("p", {text:s.title}),
+      h("div", {class:"stats"}, [
+        h("div", {class:"stat"}, [h("b", {text:String(S.right)}), h("span", {text:"верно"})]),
+        h("div", {class:"stat"}, [h("b", {text:String(S.wrong)}), h("span", {text:"ошибок"})]),
+        h("div", {class:"stat"}, [h("b", {text:String(learner.interactions.length)}), h("span", {text:"заданий"})]),
+      ]),
+      h("button", {class:"btn primary", onClick:() => { S.session = null; render(); }, text:"К списку уроков"}),
+    ]),
+  ]));
+}
+
+function render() {
+  try {
+    S.session ? renderSession() : renderHome();
+    window.scrollTo({top:0, behavior:"instant"});
+  } catch (e) {
+    console.error("[mockup] сбой отрисовки:", e);
+    app.replaceChildren(h("div", {class:"panel"}, [
+      h("h2", {text:"Сбой отрисовки"}),
+      h("div", {class:"body", text:String(e && e.message || e)}),
+      h("div", {class:"actions"}, [h("button", {class:"btn ghost", onClick:() => { S.session = null; render(); }, text:"К списку"})]),
+    ]));
+  }
+}
+render();
+</script>
+</body>
+</html>

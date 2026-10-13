@@ -316,7 +316,7 @@
               "text": "upset"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед в куртке греет ру",
+          "testedDimension": "Вставьте слово — сосед в куртке греет руки о кружку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i06:r2",
@@ -358,9 +358,25 @@
             "ru": "Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами",
             "uk": "Складіть запитання — сусід прочитав повідомлення і хоче зрозуміти, що з вами"
           },
-          "orderedTokens": ["Are", "you", "upset"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "upset"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you upset?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -466,7 +482,17 @@
           "authoredDistractorTokens": [
             "upset"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «тебе удобно?»",
+              "feedbackByLocale": {
+                "ru": "`upset` — «расстроен», а здесь спрашивают, удобно ли вам: `Are you comfortable?`",
+                "uk": "`upset` — «засмучений», а тут питають, чи вам зручно: `Are you comfortable?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -515,7 +541,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед прочитал сообщени",
+          "testedDimension": "Вставьте слово — сосед прочитал сообщение и замолчал",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i10:r2",
@@ -576,7 +602,7 @@
             "audioTargetId": "en:lesson-02:session-02:i11:audioB",
             "transcript": "up"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «рас",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «расстроен»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i11:r2",
@@ -664,7 +690,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставьте слово — гость ёрзает на шатком ",
+          "testedDimension": "Вставьте слово — гость ёрзает на шатком стуле",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i13:r2",
@@ -714,7 +740,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you cold?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -747,7 +783,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты расстроен?»",
+              "feedbackByLocale": {
+                "ru": "`cold` — «холодно», а здесь спрашивают о настроении: `Are you upset?`",
+                "uk": "`cold` — «холодно», а тут питають про настрій: `Are you upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -838,9 +884,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you cold?",
-          "orderedTokens": ["Are", "you", "cold"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "cold"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «вам холодно?»",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you cold?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you cold?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -940,9 +1002,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you ok?",
-          "orderedTokens": ["Are", "you", "ok"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "ok"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i17:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «с вами всё нормально?»",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you ok?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you ok?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1268,7 +1346,7 @@
               "text": "upset"
             }
           ],
-          "testedDimension": "Вставте слово — сусід у куртці гріє руки",
+          "testedDimension": "Вставте слово — сусід у куртці гріє руки об горнятко",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i06:r2",
@@ -1310,9 +1388,25 @@
             "ru": "Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами",
             "uk": "Складіть запитання — сусід прочитав повідомлення і хоче зрозуміти, що з вами"
           },
-          "orderedTokens": ["Are", "you", "upset"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "upset"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед прочитал сообщение и хочет понять, что с вами",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you upset?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1418,7 +1512,17 @@
           "authoredDistractorTokens": [
             "upset"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «тебе удобно?»",
+              "feedbackByLocale": {
+                "ru": "`upset` — «расстроен», а здесь спрашивают, удобно ли вам: `Are you comfortable?`",
+                "uk": "`upset` — «засмучений», а тут питають, чи вам зручно: `Are you comfortable?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1467,7 +1571,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставте слово — сусід прочитав повідомле",
+          "testedDimension": "Вставте слово — сусід прочитав повідомлення і замовк",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i10:r2",
@@ -1528,7 +1632,7 @@
             "audioTargetId": "en:lesson-02:session-02:i11:audioB",
             "transcript": "up"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «засму",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «засмучений»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i11:r2",
@@ -1616,7 +1720,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставте слово — гість совається на хитко",
+          "testedDimension": "Вставте слово — гість совається на хиткому стільці",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-02:i13:r2",
@@ -1666,7 +1770,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — гость сидит в одной рубашке у открытого окна; спросите, не холодно ли ему",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you cold?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1699,7 +1813,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты расстроен?»",
+              "feedbackByLocale": {
+                "ru": "`cold` — «холодно», а здесь спрашивают о настроении: `Are you upset?`",
+                "uk": "`cold` — «холодно», а тут питають про настрій: `Are you upset?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1790,9 +1914,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you cold?",
-          "orderedTokens": ["Are", "you", "cold"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "cold"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «вам холодно?»",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you cold?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you cold?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1892,9 +2032,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you ok?",
-          "orderedTokens": ["Are", "you", "ok"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "ok"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-02:i17:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «с вами всё нормально?»",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you ok?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you ok?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",

@@ -81,8 +81,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-44:i16:s01",
-    "correctText": "It's cold.",
-    "correctResponseId": null
+    "correctText": "'s",
+    "correctResponseId": "en:lesson-01:session-44:i16:s01:r1"
   },
   {
     "interactionId": "en:lesson-01:session-44:i16:s02",

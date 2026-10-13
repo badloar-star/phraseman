@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
 Ціль: `strangers`
 Варіанти: `strangers` · `rangers` · `dangers`
+- rangers — *`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`.*
+- dangers — *`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`.*
+
 
 **3 · Картка слова — twins**
 <!-- interaction_id: en:lesson-02:session-34:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i04; family: listen_choose -->
 Ціль: `twins`
 Варіанти: `twins` · `tins` · `wins`
+- tins — *`Tins` — «бляшанки». Послухайте початок слова: у записі `twins`.*
+- wins — *`Wins` — «перемагає». Послухайте початок слова: у записі `twins`.*
+
 
 **5 · Складіть фразу — друг запитує про двох людей біля паркану; скажіть: «Вони незнайомці»**
 <!-- interaction_id: en:lesson-02:session-34:i05; family: phrase_builder -->
@@ -78,16 +84,25 @@
 <!-- interaction_id: en:lesson-02:session-34:i06; family: context_gap_grammar -->
 Ціль: `Who are ___ people?`
 Варіанти: `these` · `this` · `they`
+- this — *Для «ці люди» потрібно `these people`. Слово `this` стосується когось або чогось одного.*
+- they — *Це «вони». Перед `people` тут потрібне слово «ці» — `these`.*
+
 
 **7 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-02:session-34:i07; family: listen_choose -->
 Ціль: `people`
 Варіанти: `people` · `pupil` · `purple`
+- pupil — *`Pupil` — «учень». Послухайте перший склад: у записі `people`.*
+- purple — *`Purple` — «фіолетовий». Послухайте перший склад: у записі `people`.*
+
 
 **8 · Вставте слово — двоє гостей виявилися близнюками; назвіть їхню спорідненість**
 <!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
 Ціль: `They are ___ .`
 Варіанти: `twins` · `strangers` · `sure`
+- strangers — *Це «незнайомці». Тут потрібно назвати спорідненість — `twins`, «близнюки».*
+- sure — *Вийде «Вони впевнені». Це не відповідь про те, ким ці двоє доводяться одне одному.*
+
 
 **9 · Складіть фразу — вас із другом прийняли за близнюків; скажіть: «Ми не близнюки»**
 <!-- interaction_id: en:lesson-02:session-34:i09; family: phrase_builder -->
@@ -97,6 +112,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i10; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `sure` · `twins` · `people`
+- twins — *Це «близнюки». Щоб сказати, що ви впевнені у відповіді, потрібне `sure`.*
+- people — *Це «люди». У цій фразі потрібне слово про вашу впевненість — `sure`.*
+
 
 **11 · З’єднайте пари**
 <!-- interaction_id: en:lesson-02:session-34:i11; family: speed_match -->
@@ -111,6 +129,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i13; family: context_gap_grammar -->
 Ціль: `Who are these ___ ?`
 Варіанти: `people` · `name` · `host`
+- name — *Це «ім’я». У питанні про цих людей потрібне `people`.*
+- host — *Це один господар. Ви запитуєте про кількох людей — `these people`.*
+
 
 **14 · Складіть фразу — друг запитує, чи знайомі близнюки з господарем; ви не знаєте й чесно кажете, що не впевнені**
 <!-- interaction_id: en:lesson-02:session-34:i14; family: phrase_builder -->

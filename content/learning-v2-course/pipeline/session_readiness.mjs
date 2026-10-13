@@ -346,6 +346,7 @@ export function sessionReadiness(dir, locales = ["uk"], {
   releaseRoot = path.join(COURSE_ROOT, "release"),
   legacyLedgerPath = LEGACY_BINDING_LEDGER_PATH,
   sessionId: explicitSessionId = null,
+  statusRequired = true,
 } = {}) {
   const issues = [];
   const master = path.join(dir, "final.ru.md");
@@ -370,7 +371,7 @@ export function sessionReadiness(dir, locales = ["uk"], {
   ];
   const bindingRecordNames = [
     ...requiredJudgesForSession(sessionId).map((role) => `final.${role}.json`),
-    "status.json",
+    ...(statusRequired ? ["status.json"] : []),
     ...(locales.length ? ["locales.judge.json"] : []),
   ];
   const bindingRecords = bindingRecordNames.flatMap((name) => {
@@ -494,7 +495,7 @@ export function sessionReadiness(dir, locales = ["uk"], {
     for (const locale of locales) if (exactHashes.locales[locale]) exactLocaleBinding(tasteReceipt, "judge_taste", locale, exactHashes.locales[locale]);
     if (exactHashes.atomic) exactBinding(tasteReceipt, "judge_taste", "practiceAtomicSha256", exactHashes.atomic);
   }
-  const status = json("status.json");
+  const status = statusRequired ? json("status.json") : null;
   if (status && (status.converged !== true || status.needsHumanReview !== false)) issues.push("status.json не подтверждает принятие");
   if (status && (status.needsHumanReview || status.converged === false || status.blockedBy || status.blocked?.length || status.brokenTasks?.length || status.buildProblems?.length)) issues.push("status.json содержит незакрытые проблемы");
   if (status) {

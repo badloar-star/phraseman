@@ -275,17 +275,7 @@
           "authoredDistractorTokens": [
             "towels"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — курьер записывает содер",
-              "feedbackByLocale": {
-                "ru": "В пакете одно полотенце. В этой фразе после `a` нужно `towel`.",
-                "uk": "У пакеті один рушник. У цій фразі після `a` потрібне `towel`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -334,7 +324,7 @@
               "text": "a curtains"
             }
           ],
-          "testedDimension": "Вставьте название — курьер сверяет строк",
+          "testedDimension": "Вставьте название — курьер сверяет строку накладной; назовите две шторы «Это шторы»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i06:r2",
@@ -508,17 +498,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i09:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — курьер уточняет, что вы",
-              "feedbackByLocale": {
-                "ru": "Вы называете несколько подушек. В этой фразе перед `pillows` слово `a` не нужно.",
-                "uk": "Ви називаєте кілька подушок. У цій фразі перед `pillows` слово `a` не потрібне."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -567,7 +547,7 @@
               "text": "a glasses"
             }
           ],
-          "testedDimension": "Вставьте название — курьер спрашивает о ",
+          "testedDimension": "Вставьте название — курьер спрашивает о единственном предмете в маленькой коробке; это стакан для воды (`glass` — «стакан», `glasses` — «стаканы»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i10:r2",
@@ -613,11 +593,16 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-21:i11:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i11:audio"
+        ],
         "accessibilityLabel": "Курьер достаёт из отдельной упаковки одну штору и называет товар для накладной. Послушайте и выберите услышанное название.",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-03:session-21:i11:audio","transcript":"a curtain"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i11:audio",
+            "transcript": "a curtain"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
@@ -695,17 +680,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i12:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — что сказал курье",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `They are not towels`. Название нескольких полотенец здесь стоит без `a`.",
-                "uk": "У записі звучить `They are not towels`. Назва кількох рушників тут стоїть без `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -754,7 +729,7 @@
               "text": "a pillow"
             }
           ],
-          "testedDimension": "Вставьте название — курьер сверяет списо",
+          "testedDimension": "Вставьте название — курьер сверяет список и спрашивает, что лежит в пакете; назовите две подушки «Это подушки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i13:r2",
@@ -896,7 +871,7 @@
               "text": "a glass"
             }
           ],
-          "testedDimension": "Вставьте название — курьер уточняет, что",
+          "testedDimension": "Вставьте название — курьер уточняет, что лежит в коробке с посудой; назовите несколько стаканов для воды «Это стаканы»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i15:r2",
@@ -985,17 +960,7 @@
           "authoredDistractorTokens": [
             "pillows"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — курьер дописывает после",
-              "feedbackByLocale": {
-                "ru": "В коробке одна подушка. Называем её `a pillow`, без окончания `s`.",
-                "uk": "У коробці одна подушка. Називаємо її `a pillow`, без закінчення `s`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1271,17 +1236,7 @@
           "authoredDistractorTokens": [
             "towels"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i05:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — кур’єр записує вміст мал",
-              "feedbackByLocale": {
-                "ru": "В пакете одно полотенце. В этой фразе после `a` нужно `towel`.",
-                "uk": "У пакеті один рушник. У цій фразі після `a` потрібне `towel`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1330,7 +1285,7 @@
               "text": "a curtains"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр звіряє рядок накл",
+          "testedDimension": "Вставте назву — кур’єр звіряє рядок накладної; назвіть дві штори «Це штори»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i06:r2",
@@ -1504,17 +1459,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i09:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — кур’єр уточнює, що ви ді",
-              "feedbackByLocale": {
-                "ru": "Вы называете несколько подушек. В этой фразе перед `pillows` слово `a` не нужно.",
-                "uk": "Ви називаєте кілька подушок. У цій фразі перед `pillows` слово `a` не потрібне."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1563,7 +1508,7 @@
               "text": "a glasses"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр питає про єдиний ",
+          "testedDimension": "Вставте назву — кур’єр питає про єдиний предмет у маленькій коробці; це склянка для води (`glass` — «склянка», `glasses` — «склянки`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i10:r2",
@@ -1609,11 +1554,16 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-21:i11:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-21:i11:audio"
+        ],
         "accessibilityLabel": "Кур’єр дістає з окремого паковання одну штору й називає товар для накладної. Послухайте та виберіть почуту назву.",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-03:session-21:i11:audio","transcript":"a curtain"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-21:i11:audio",
+            "transcript": "a curtain"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
             {
@@ -1691,17 +1641,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i12:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — що сказав кур’єр",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `They are not towels`. Название нескольких полотенец здесь стоит без `a`.",
-                "uk": "У записі звучить `They are not towels`. Назва кількох рушників тут стоїть без `a`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1750,7 +1690,7 @@
               "text": "a pillow"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр звіряє список і п",
+          "testedDimension": "Вставте назву — кур’єр звіряє список і питає, що лежить у пакеті; назвіть дві подушки «Це подушки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i13:r2",
@@ -1892,7 +1832,7 @@
               "text": "a glass"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр уточнює, що лежит",
+          "testedDimension": "Вставте назву — кур’єр уточнює, що лежить у коробці з посудом; назвіть кілька склянок для води «Це склянки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-21:i15:r2",
@@ -1981,17 +1921,7 @@
           "authoredDistractorTokens": [
             "pillows"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-21:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — кур’єр дописує останній",
-              "feedbackByLocale": {
-                "ru": "В коробке одна подушка. Называем её `a pillow`, без окончания `s`.",
-                "uk": "У коробці одна подушка. Називаємо її `a pillow`, без закінчення `s`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

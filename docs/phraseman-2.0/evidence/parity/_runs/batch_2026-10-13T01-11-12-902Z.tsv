@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-003	2026-10-13T01:12:02.589Z	error	9731	step_target_not_found:#auth-google-button+ждали_metro_29мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T01-11-12-902Z/onboarding-003.error.png	0

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-14:intro1:r2": {
-          "ru": "Скрепка выпала. По-русски она не нужна, по-английски без `are` фраза разваливается.",
-          "uk": "Скріпка випала. Українською вона не потрібна, англійською без `are` фраза розсипається."
+          "ru": "После `you` нужно `are`: You are safe.",
+          "uk": "Після `you` потрібне `are`: You are safe."
         },
         "en:lesson-01:session-14:intro1:r3": {
           "ru": "`am` бывает только рядом с `I`. Про собеседника — всегда `are`.",
@@ -36,11 +36,11 @@
           "uk": "`not` перевертає фразу на «ти не готовий» — а він застібнувся і кивнув."
         },
         "en:lesson-01:session-14:intro3:r3": {
-          "ru": "Скрепка `are` потерялась. Без неё фраза не стоит.",
-          "uk": "Скріпка `are` загубилася. Без неї фраза не стоїть."
+          "ru": "После `you` нужно `are`: You are ready.",
+          "uk": "Після `you` потрібне `are`: You are ready."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "9d2c95ac2055ae3f8d7e718adc79eca0ff3240dc5c9f779584c77efd3b96fbad"
+  "auxiliaryFingerprint": "b99d684d6ccf9ab8dd6e605b83edeeae63ba533740f420918b4041c59e2c0ead"
 }

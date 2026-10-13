@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-46:i02; family: listen_choose -->
 Ціль: `audible`
 Варіанти: `audible` · `edible` · `laudable`
+- edible — *Це «їстівний». Перший голосний схожий на початок українського слова «етика». В `audible` початковий голосний інший — переслухайте початок.*
+- laudable — *Це «похвальний». Слово починається зі звука «л», а `audible` — із голосного.*
+
 
 **3 · Картка слова — clear**
 <!-- interaction_id: en:lesson-02:session-46:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-46:i04; family: listen_choose -->
 Ціль: `clear`
 Варіанти: `clear` · `near` · `fear`
+- near — *Це «близько». Слово починається зі звука «н», а `clear` — зі звука «к».*
+- fear — *Це «страх». На початку `fear` чути звук «ф», а слово в записі починається зі звука «к»: `clear`.*
+
 
 **5 · Складіть фразу — ведучий просить перевірити мікрофон у телефоні; запитайте, чи вас чути**
 <!-- interaction_id: en:lesson-02:session-46:i05; family: phrase_builder -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-02:session-46:i06; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `clear` · `audible` · `ready`
+- audible — *Голос уже чути. Зараз ви перевіряєте, чи легко розібрати слова: `clear`.*
+- ready — *Це «готовий». Зараз запитання про розбірливість вашого мовлення, тому потрібне `clear`.*
+
 
 **7 · Послухайте й виберіть — яке запитання ведучий поставив під час перевірки звуку**
 <!-- interaction_id: en:lesson-02:session-46:i07; family: listen_choose -->
 Ціль: `Am I clear?`
 Варіанти: `Am I clear?` · `Am I audible?` · `Are you clear?`
+- Am I audible? — *Це запитання про чутність. Останнє слово в записі — `clear`: ведучий перевіряє розбірливість свого мовлення.*
+- Are you clear? — *Це запитання до вас. Запис починається з `Am I`: ведучий запитує про себе.*
+
 
 **8 · Складіть фразу — ведучий запитує, чи впевнені ви, що все перевірили; ви ще сумніваєтеся**
 <!-- interaction_id: en:lesson-02:session-46:i08; family: phrase_builder -->
@@ -92,6 +104,9 @@
 <!-- interaction_id: en:lesson-02:session-46:i09; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `ready` · `sure` · `late`
+- sure — *Це «впевнений». Ви повідомляєте про готовність до інтерв’ю: `ready`.*
+- late — *Це «запізнився» або «запізнююся». Зараз ідеться про підготовлені нотатки: `I am ready`.*
+
 
 **10 · З’єднайте пари — слова перед інтерв’ю**
 <!-- interaction_id: en:lesson-02:session-46:i10; family: speed_match -->
@@ -106,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-46:i12; family: context_gap_grammar -->
 Ціль: `___ I audible?`
 Варіанти: `Am` · `Are` · `Is`
+- Are — *Запитання про себе з `I` починається з `Am`: `Am I audible?`*
+- Is — *Сполучення `Is I` не підходить для цього запитання. Потрібні перші два слова `Am I`.*
+
 
 **13 · Послухайте й складіть — ведучий оцінює вашу спільну готовність до початку інтерв’ю**
 <!-- interaction_id: en:lesson-02:session-46:i13; family: listen_build_dictation -->
@@ -115,6 +133,9 @@
 <!-- interaction_id: en:lesson-02:session-46:i14; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `ready` · `audible` · `early`
+- audible — *Це запитання про чутність його голосу. Зараз ви уточнюєте готовність ведучого: `ready`.*
+- early — *Це «рано». Ви запитуєте, чи готовий співрозмовник, тому потрібне `Are you ready?`*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-46:i15; family: scripted_repeat_compare -->

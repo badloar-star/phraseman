@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i02; family: listen_choose -->
 Цель: `earring`
 Варианты: `earring` · `hearing` · `steering`
+- hearing — *`hearing` — «слух». Перед гласным слышен лёгкий выдох. В `earring` начало сразу гласное, без этого выдоха.*
+- steering — *`steering` — «управление рулём». Перед похожей гласной частью слышно «ст». В `earring` слово начинается с гласного.*
+
 
 **3 · Карточка слова — necklace**
 <!-- interaction_id: en:lesson-03:session-13:i03; family: listen_choose -->
@@ -69,11 +72,17 @@
 <!-- interaction_id: en:lesson-03:session-13:i04; family: listen_choose -->
 Цель: `necklace`
 Варианты: `necklace` · `reckless` · `legless`
+- reckless — *`reckless` — «безрассудный». Слушайте первый звук: для `necklace` нужен носовой «н», а не английский звук буквы `r`.*
+- legless — *`legless` — «безногий». В начале слышно «л», а у `necklace` — «н». Дальше тоже различие: «г» против «к».*
+
 
 **5 · Вставьте слово — друг предлагает вместо украшения вазу с соседней полки; назовите её полной фразой (`vase` — «ваза»)**
 <!-- interaction_id: en:lesson-03:session-13:i05; family: context_gap_grammar -->
 Цель: `It is ___ vase.`
 Варианты: `a` · `an` · `is`
+- an — *Первый звук названия `vase` — согласный «в». Здесь нужно `a`.*
+- is — *После `It` уже стоит `is`. Перед названием вазы нужно маленькое `a`, а не второе `is`.*
+
 
 **6 · Карточка слова — bracelet**
 <!-- interaction_id: en:lesson-03:session-13:i06; family: listen_choose -->
@@ -83,6 +92,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i07; family: listen_choose -->
 Цель: `bracelet`
 Варианты: `bracelet` · `bracing` · `graceless`
+- bracing — *`bracing` — «бодрящий». Начало похоже. У `bracelet` на конце «т», а у `bracing` — носовой звук. Дослушайте слово.*
+- graceless — *`graceless` — «неуклюжий». Первым звучит «г», а в `bracelet` — «б». Середина похожа, но начало различается.*
+
 
 **8 · Соберите короткое название — продавец спрашивает, что вам показать; ответьте двумя словами «серьга»**
 <!-- interaction_id: en:lesson-03:session-13:i08; family: phrase_builder -->
@@ -93,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i09; family: context_gap_grammar -->
 Цель: `It is ___ radio.`
 Варианты: `a` · `an` · `am`
+- an — *`radio` начинается с согласного звука. Перед этим названием выбираем `a`.*
+- am — *`am` сочетается с `I`. После готового начала `It is` здесь нужно название `a radio`.*
+
 
 **10 · Соедините названия с русскими значениями — варианты подарка**
 <!-- interaction_id: en:lesson-03:session-13:i10; family: speed_match -->
@@ -108,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i12; family: context_gap_grammar -->
 Цель: `It is ___ necklace.`
 Варианты: `a` · `an` · `is`
+- an — *В начале `necklace` слышно согласный «н». Для этого названия нужен вариант `a`.*
+- is — *`is` уже есть после `It`. Перед названием ожерелья остаётся поставить `a`.*
+
 
 **13 · Соберите вопрос — друг держит другое украшение для руки; уточните «Это браслет?»**
 <!-- interaction_id: en:lesson-03:session-13:i13; family: phrase_builder -->
@@ -118,6 +136,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i14; family: listen_choose -->
 Цель: `It is not an earring.`
 Варианты: `It is not an earring.` · `It is an earring.` · `It is not a necklace.`
+- It is an earring. — *В этом варианте после `is` сразу идёт `an`. В записи между ними слышно `not`: название отрицают.*
+- It is not a necklace. — *Здесь после `a` названо `necklace`. В записи звучит другое название с `an`: `an earring`.*
+
 
 **15 · Соберите отрицание — друг принял пояс за ожерелье; поправьте его: «Это не ожерелье»**
 <!-- interaction_id: en:lesson-03:session-13:i15; family: phrase_builder -->

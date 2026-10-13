@@ -83,6 +83,8 @@ You are ___ . → **kind** · tired · wrong
 **4 · Складіть фразу — Артем сам зізнався, що помилився; скажіть йому: «ти чесний»**
 <!-- interaction_id: en:lesson-01:session-16:i04; family: phrase_builder -->
 Плитки: `honest` `are` `You` `is` → **You are honest.**
+*(плитка `is` зайва: `is` тут зайве: з `you` вживають `are`: `You are honest`.)*
+
 
 **5 · Вставте слово — Артем спокійно чекає відповіді; скажіть йому: «ти спокійний»**
 <!-- interaction_id: en:lesson-01:session-16:i05; family: context_gap_grammar -->
@@ -107,6 +109,8 @@ You are not ___ . → **wrong** · brave · lucky
 **9 · Складіть фразу — Артем винить себе, але помилка не його; скажіть йому: «ти не помиляєшся»**
 <!-- interaction_id: en:lesson-01:session-16:i09; family: phrase_builder -->
 Плитки: `wrong` `are` `not` `You` `am` → **You are not wrong.**
+*(плитка `am` зайва: `am` тут зайве: `am` вживають з `I`, а після `you` потрібне `are`: `You are not wrong`.)*
+
 
 **10 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-01:session-16:i10; family: listen_choose -->
@@ -123,10 +127,14 @@ You are not ___ . → **wrong** · brave · lucky
 **12 · Складіть фразу — Артем боявся, але все-таки сказав правду; скажіть Артемові: «ти сміливий»**
 <!-- interaction_id: en:lesson-01:session-16:i12; family: phrase_builder -->
 Плитки: `You` `are` `brave` `is` → **You are brave.**
+*(плитка `is` зайва: `is` тут зайве: з `you` вживають `are`: `You are brave`.)*
+
 
 **13 · Послухайте і складіть — Артем знайшов єдиний вільний квиток; скажіть йому: «тобі пощастило»**
 <!-- interaction_id: en:lesson-01:session-16:i13; family: listen_build_dictation -->
 🔊 *You are lucky.* Плитки: `lucky` `You` `are` `not` → **You are lucky.**
+*(плитка `not` зайва: `not` тут зайве: квиток дістався Артемові, тому потрібна стверджувальна фраза `You are lucky`.)*
+
 
 **14 · Розрізніть звуки — Артем позіхає весь вечір; яке слово його описує?**
 <!-- interaction_id: en:lesson-01:session-16:i14; family: sound_contrast -->
@@ -141,6 +149,8 @@ brave — сміливий · lucky — щасливчик · wrong — непр
 **16 · Послухайте й складіть — Артем усміхається й каже, що просто замислився; скажіть йому: «ти не сумний»**
 <!-- interaction_id: en:lesson-01:session-16:i16; family: listen_build_dictation -->
 🔊 *You are not sad.* Плитки: `You` `are` `not` `sad` `is` → **You are not sad.**
+*(плитка `is` зайва: `is` тут зайве: після `you` уже стоїть `are`: `You are not sad`.)*
+
 
 **17 · Скажіть уголос — Артем помітив, що у вас важка сумка, і сам доніс її до автобуса; скажіть Артемові: «ти добрий»**
 <!-- interaction_id: en:lesson-01:session-16:i17; family: scripted_repeat_compare -->

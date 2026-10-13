@@ -90,19 +90,81 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i07:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i07:r2","text":"bright"},{"responseId":"en:lesson-03:session-54:i07:r3","text":"pale"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i07:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i07:r2",
+            "text": "bright"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i07:r3",
+            "text": "pale"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i07:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-03:session-54:i07:audio","transcript":"striped"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i07:audio",
+            "transcript": "striped"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-03:session-54:i07:r1","targetText":"striped","meaningByLocale":{"ru":"«полосатый». Так можно описать подушки с полосами.","uk":"«смугастий». Так можна описати подушки зі смугами."}},{"responseId":"en:lesson-03:session-54:i07:r2","targetText":"bright","meaningByLocale":null},{"responseId":"en:lesson-03:session-54:i07:r3","targetText":"pale","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i07:r2","correct":false,"testedDimension":"Послушайте и выберите — striped","feedbackByLocale":{"ru":"В записи слышно `striped` — «полосатый», а не `bright` — «яркий».","uk":"У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."}},{"responseId":"en:lesson-03:session-54:i07:r3","correct":false,"testedDimension":"Послушайте и выберите — striped","feedbackByLocale":{"ru":"`Pale` — «бледный». В записи назван узор из полос.","uk":"`Pale` — «блідий». У записі названо візерунок зі смуг."}}],
-          "isWordCard":true,
-          "wordCard":{"word":"striped","definitionByLocale":{"ru":"«полосатый». Вещь с полосами.","uk":"«смугастий». Річ зі смугами."}}
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i07:r1",
+              "targetText": "striped",
+              "meaningByLocale": {
+                "ru": "«полосатый». Так можно описать подушки с полосами.",
+                "uk": "«смугастий». Так можна описати подушки зі смугами."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r2",
+              "targetText": "bright",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r3",
+              "targetText": "pale",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i07:r2",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите — striped",
+              "feedbackByLocale": {
+                "ru": "В записи слышно `striped` — «полосатый», а не `bright` — «яркий».",
+                "uk": "У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r3",
+              "correct": false,
+              "testedDimension": "Послушайте и выберите — striped",
+              "feedbackByLocale": {
+                "ru": "`Pale` — «бледный». В записи назван узор из полос.",
+                "uk": "`Pale` — «блідий». У записі названо візерунок зі смуг."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "striped",
+            "definitionByLocale": {
+              "ru": "«полосатый». Вещь с полосами.",
+              "uk": "«смугастий». Річ зі смугами."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -191,16 +253,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — striped или stripped",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i08:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i08:r2","text":"stripped"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i08:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i08:r2",
+            "text": "stripped"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i08:audioA","en:lesson-03:session-54:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i08:audioA",
+          "en:lesson-03:session-54:i08:audioB"
+        ],
         "accessibilityLabel": "Различите слово — striped или stripped",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"striped", "contrastB":"stripped", "ipaA":"", "ipaB":"",
-          "audioA":{"audioTargetId":"en:lesson-03:session-54:i08:audioA","transcript":"striped"},
-          "audioB":{"audioTargetId":"en:lesson-03:session-54:i08:audioB","transcript":"stripped"},
-          "testedPhoneticContrast":"В striped слышится гласный звук перед концом слова.",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i08:r2","correct":false,"testedDimension":"Различите striped и stripped","feedbackByLocale":{"ru":"В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.","uk":"У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."}}]
+          "family": "sound_contrast",
+          "contrastA": "striped",
+          "contrastB": "stripped",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-54:i08:audioA",
+            "transcript": "striped"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-54:i08:audioB",
+            "transcript": "stripped"
+          },
+          "testedPhoneticContrast": "В striped слышится гласный звук перед концом слова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Различите striped и stripped",
+              "feedbackByLocale": {
+                "ru": "В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.",
+                "uk": "У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -216,9 +310,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соедините слова со значениями",
         "modePayload": {
-          "family":"speed_match",
-          "pairGrid":[{"pairId":"en:lesson-03:session-54:i05:p1","target":"bright","meaningByLocale":{"ru":"яркий","uk":"яскравий"}},{"pairId":"en:lesson-03:session-54:i05:p2","target":"lamp","meaningByLocale":{"ru":"лампа","uk":"лампа"}},{"pairId":"en:lesson-03:session-54:i05:p3","target":"rug","meaningByLocale":{"ru":"коврик","uk":"килимок"}},{"pairId":"en:lesson-03:session-54:i05:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
-          "leftColumn":["bright","lamp","rug","cushions"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-54:i05:p1",
+              "target": "bright",
+              "meaningByLocale": {
+                "ru": "яркий",
+                "uk": "яскравий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p3",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p4",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bright",
+            "lamp",
+            "rug",
+            "cushions"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -229,16 +361,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — pale или peel",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i06:r1","text":"pale"},{"responseId":"en:lesson-03:session-54:i06:r2","text":"peel"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i06:r1",
+            "text": "pale"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i06:r2",
+            "text": "peel"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i06:audioA","en:lesson-03:session-54:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i06:audioA",
+          "en:lesson-03:session-54:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — pale или peel",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"pale", "contrastB":"peel", "ipaA":"", "ipaB":"",
-          "audioA":{"audioTargetId":"en:lesson-03:session-54:i06:audioA","transcript":"pale"},
-          "audioB":{"audioTargetId":"en:lesson-03:session-54:i06:audioB","transcript":"peel"},
-          "testedPhoneticContrast":"В pale слышится звук /eɪ/, а в peel — долгий /iː/.",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i06:r2","correct":false,"testedDimension":"Различите pale и peel","feedbackByLocale":{"ru":"`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».","uk":"`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."}}]
+          "family": "sound_contrast",
+          "contrastA": "pale",
+          "contrastB": "peel",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-54:i06:audioA",
+            "transcript": "pale"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-54:i06:audioB",
+            "transcript": "peel"
+          },
+          "testedPhoneticContrast": "В pale слышится звук /eɪ/, а в peel — долгий /iː/.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Различите pale и peel",
+              "feedbackByLocale": {
+                "ru": "`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».",
+                "uk": "`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -464,7 +628,7 @@
               "text": "Those"
             }
           ],
-          "testedDimension": "Вставьте начало — бледный коврик лежит д",
+          "testedDimension": "Вставьте начало — бледный коврик лежит дальше",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-54:i12:r2",
@@ -586,7 +750,7 @@
               "text": "the"
             }
           ],
-          "testedDimension": "Вставьте описание — на дальнем диване не",
+          "testedDimension": "Вставьте описание — на дальнем диване несколько подушек с полосами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-54:i14:r2",
@@ -691,11 +855,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "исправьте последнюю подпись у дальней стены",
+        "prompt": "Исправьте последнюю подпись у дальней стены",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "исправьте последнюю подпись у дальней стены",
+        "accessibilityLabel": "Исправьте последнюю подпись у дальней стены",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those bright lamps are here.",
@@ -805,19 +969,81 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i07:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i07:r2","text":"bright"},{"responseId":"en:lesson-03:session-54:i07:r3","text":"pale"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i07:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i07:r2",
+            "text": "bright"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i07:r3",
+            "text": "pale"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i07:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-03:session-54:i07:audio","transcript":"striped"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-54:i07:audio",
+            "transcript": "striped"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-03:session-54:i07:r1","targetText":"striped","meaningByLocale":{"ru":"«полосатый». Так можно описать подушки с полосами.","uk":"«смугастий». Так можна описати подушки зі смугами."}},{"responseId":"en:lesson-03:session-54:i07:r2","targetText":"bright","meaningByLocale":null},{"responseId":"en:lesson-03:session-54:i07:r3","targetText":"pale","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i07:r2","correct":false,"testedDimension":"Послухайте й виберіть — striped","feedbackByLocale":{"ru":"В записи слышно `striped` — «полосатый», а не `bright` — «яркий».","uk":"У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."}},{"responseId":"en:lesson-03:session-54:i07:r3","correct":false,"testedDimension":"Послухайте й виберіть — striped","feedbackByLocale":{"ru":"`Pale` — «бледный». В записи назван узор из полос.","uk":"`Pale` — «блідий». У записі названо візерунок зі смуг."}}],
-          "isWordCard":true,
-          "wordCard":{"word":"striped","definitionByLocale":{"ru":"«полосатый». Вещь с полосами.","uk":"«смугастий». Річ зі смугами."}}
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-54:i07:r1",
+              "targetText": "striped",
+              "meaningByLocale": {
+                "ru": "«полосатый». Так можно описать подушки с полосами.",
+                "uk": "«смугастий». Так можна описати подушки зі смугами."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r2",
+              "targetText": "bright",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r3",
+              "targetText": "pale",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i07:r2",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть — striped",
+              "feedbackByLocale": {
+                "ru": "В записи слышно `striped` — «полосатый», а не `bright` — «яркий».",
+                "uk": "У записі чути `striped` — «смугастий», а не `bright` — «яскравий»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-54:i07:r3",
+              "correct": false,
+              "testedDimension": "Послухайте й виберіть — striped",
+              "feedbackByLocale": {
+                "ru": "`Pale` — «бледный». В записи назван узор из полос.",
+                "uk": "`Pale` — «блідий». У записі названо візерунок зі смуг."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "striped",
+            "definitionByLocale": {
+              "ru": "«полосатый». Вещь с полосами.",
+              "uk": "«смугастий». Річ зі смугами."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -906,16 +1132,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — striped чи stripped",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i08:r1","text":"striped"},{"responseId":"en:lesson-03:session-54:i08:r2","text":"stripped"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i08:r1",
+            "text": "striped"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i08:r2",
+            "text": "stripped"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i08:audioA","en:lesson-03:session-54:i08:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i08:audioA",
+          "en:lesson-03:session-54:i08:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — striped чи stripped",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"striped", "contrastB":"stripped", "ipaA":"", "ipaB":"",
-          "audioA":{"audioTargetId":"en:lesson-03:session-54:i08:audioA","transcript":"striped"},
-          "audioB":{"audioTargetId":"en:lesson-03:session-54:i08:audioB","transcript":"stripped"},
-          "testedPhoneticContrast":"У striped чути голосний звук перед кінцем слова.",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i08:r2","correct":false,"testedDimension":"Розрізніть striped та stripped","feedbackByLocale":{"ru":"В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.","uk":"У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."}}]
+          "family": "sound_contrast",
+          "contrastA": "striped",
+          "contrastB": "stripped",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-54:i08:audioA",
+            "transcript": "striped"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-54:i08:audioB",
+            "transcript": "stripped"
+          },
+          "testedPhoneticContrast": "У striped чути голосний звук перед кінцем слова.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i08:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть striped та stripped",
+              "feedbackByLocale": {
+                "ru": "В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.",
+                "uk": "У записі `striped`: це «смугастий». У `stripped` немає голосного перед кінцем слова."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -931,9 +1189,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "З’єднайте слова зі значеннями",
         "modePayload": {
-          "family":"speed_match",
-          "pairGrid":[{"pairId":"en:lesson-03:session-54:i05:p1","target":"bright","meaningByLocale":{"ru":"яркий","uk":"яскравий"}},{"pairId":"en:lesson-03:session-54:i05:p2","target":"lamp","meaningByLocale":{"ru":"лампа","uk":"лампа"}},{"pairId":"en:lesson-03:session-54:i05:p3","target":"rug","meaningByLocale":{"ru":"коврик","uk":"килимок"}},{"pairId":"en:lesson-03:session-54:i05:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
-          "leftColumn":["bright","lamp","rug","cushions"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-54:i05:p1",
+              "target": "bright",
+              "meaningByLocale": {
+                "ru": "яркий",
+                "uk": "яскравий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p2",
+              "target": "lamp",
+              "meaningByLocale": {
+                "ru": "лампа",
+                "uk": "лампа"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p3",
+              "target": "rug",
+              "meaningByLocale": {
+                "ru": "коврик",
+                "uk": "килимок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-54:i05:p4",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "bright",
+            "lamp",
+            "rug",
+            "cushions"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -944,16 +1240,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — pale чи peel",
-        "responseOptions": [{"responseId":"en:lesson-03:session-54:i06:r1","text":"pale"},{"responseId":"en:lesson-03:session-54:i06:r2","text":"peel"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-54:i06:r1",
+            "text": "pale"
+          },
+          {
+            "responseId": "en:lesson-03:session-54:i06:r2",
+            "text": "peel"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-54:i06:audioA","en:lesson-03:session-54:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-54:i06:audioA",
+          "en:lesson-03:session-54:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — pale чи peel",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"pale", "contrastB":"peel", "ipaA":"", "ipaB":"",
-          "audioA":{"audioTargetId":"en:lesson-03:session-54:i06:audioA","transcript":"pale"},
-          "audioB":{"audioTargetId":"en:lesson-03:session-54:i06:audioB","transcript":"peel"},
-          "testedPhoneticContrast":"У pale чути /eɪ/, а в peel — довгий /iː/.",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-54:i06:r2","correct":false,"testedDimension":"Розрізніть pale та peel","feedbackByLocale":{"ru":"`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».","uk":"`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."}}]
+          "family": "sound_contrast",
+          "contrastA": "pale",
+          "contrastB": "peel",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-54:i06:audioA",
+            "transcript": "pale"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-54:i06:audioB",
+            "transcript": "peel"
+          },
+          "testedPhoneticContrast": "У pale чути /eɪ/, а в peel — довгий /iː/.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-54:i06:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть pale та peel",
+              "feedbackByLocale": {
+                "ru": "`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».",
+                "uk": "`Peel` — «чистити шкірку». У записі звучить `pale` — «блідий»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1406,11 +1734,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "виправте останній підпис біля дальньої стіни",
+        "prompt": "Виправте останній підпис біля дальньої стіни",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "виправте останній підпис біля дальньої стіни",
+        "accessibilityLabel": "Виправте останній підпис біля дальньої стіни",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those bright lamps are here.",

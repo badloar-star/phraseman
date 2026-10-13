@@ -115,6 +115,15 @@
               "ru": "Только начало слова. Это «ухо».",
               "uk": "Тільки початок слова. Це «вухо»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `early`: в конце есть `-ly`.",
+              "uk": "Ви чуєте `early`: у кінці є `-ly`."
+            }
           }
         ],
         "isWordCard": false,
@@ -212,6 +221,15 @@
         ],
         "testedDimension": "Вставте слово — ви прийшли, а в кімнаті ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i04:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви прийшли, а в кімнаті порожньо",
+            "feedbackByLocale": {
+              "ru": "Комната ещё пуста, значит вы пришли рано: `We are early.`",
+              "uk": "Кімната ще порожня, отже ви прийшли рано: `We are early.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-39:i04:r2",
             "correct": false,
@@ -346,6 +364,15 @@
               "ru": "Тоже похоже, но это «поездка».",
               "uk": "Теж схоже, але це «поїздка»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-39:i06:r1",
+            "correct": true,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `right` — «правы».",
+              "uk": "Ви чуєте `right` — «маєте рацію»."
+            }
           }
         ],
         "isWordCard": false,
@@ -452,7 +479,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — «вони помилилися»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `They` говорят `They are wrong.`",
+              "uk": "`is` зайве: з `They` кажуть `They are wrong.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -590,6 +627,15 @@
         "testedDimension": "Виберіть форму після `we` — ви вибачаєтеся вдвох",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-39:i11:r1",
+            "correct": true,
+            "testedDimension": "Виберіть форму після `we` — ви вибачаєтеся вдвох",
+            "feedbackByLocale": {
+              "ru": "С `we` говорят `We are sorry.`",
+              "uk": "З `we` кажуть `We are sorry.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-39:i11:r2",
             "correct": false,
             "testedDimension": "Виберіть форму після `we` — ви вибачаєтеся вдвох",
@@ -640,7 +686,17 @@
         "authoredDistractorTokens": [
           "late"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть — «ми прийшли рано»",
+            "feedbackByLocale": {
+              "ru": "`late` здесь лишнее: в аудио `We are early.` — «мы пришли рано».",
+              "uk": "`late` тут зайве: в аудіо `We are early.` — «ми прийшли рано»."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -691,6 +747,15 @@
         ],
         "testedDimension": "Вставте слово — про двох із сусіднього в",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — про двох із сусіднього відділу: поза роботою не спілкуються",
+            "feedbackByLocale": {
+              "ru": "Они работают вместе: `They are colleagues.`",
+              "uk": "Вони працюють разом: `They are colleagues.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-39:i13:r2",
             "correct": false,
@@ -790,6 +855,15 @@
         "testedDimension": "Вставте слово — ці двоє весь час разом п",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-39:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ці двоє весь час разом поза роботою",
+            "feedbackByLocale": {
+              "ru": "Они проводят время вместе вне работы: `They are friends.`",
+              "uk": "Вони проводять час разом поза роботою: `They are friends.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-39:i15:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ці двоє весь час разом п",
@@ -838,7 +912,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-39:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви вдвох устигли до початку",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are not late.`",
+              "uk": "`is` зайве: з `We` кажуть `We are not late.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -948,5 +1032,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "43d31e7eb39f73eea26e38cdd9457e1711b6ead8f154d5b8cc6bb436075f57b5"
+  "learnerFingerprint": "5be93f7b92f16fbc0c0dea8260d043f0ef03561c53e45db3433f49923fd6eda9"
 }

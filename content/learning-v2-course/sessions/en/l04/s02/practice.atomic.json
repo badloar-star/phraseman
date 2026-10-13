@@ -21,7 +21,7 @@
           },
           {
             "responseId": "en:lesson-04:session-02:i01:r3",
-      "text": "garment"
+            "text": "garment"
           }
         ],
         "mediaIds": [],
@@ -55,10 +55,10 @@
             },
             {
               "responseId": "en:lesson-04:session-02:i01:r3",
-        "targetText": "garment",
+              "targetText": "garment",
               "meaningByLocale": {
-          "ru": "предмет одежды",
-          "uk": "предмет одягу"
+                "ru": "предмет одежды",
+                "uk": "предмет одягу"
               }
             }
           ],
@@ -78,8 +78,8 @@
               "correct": false,
               "testedDimension": "услышанное слово",
               "feedbackByLocale": {
-          "ru": "В garment после /gɑː/ слышно /mənt/; в записи garden — /dən/.",
-          "uk": "У garment після /gɑː/ чути /mənt/; у записі garden — /dən/."
+                "ru": "В garment после /gɑː/ слышно /mənt/; в записи garden — /dən/.",
+                "uk": "У garment після /gɑː/ чути /mənt/; у записі garden — /dən/."
               }
             }
           ],
@@ -907,11 +907,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите точное сообщение о месте сада",
+        "prompt": "Соберите точное сообщение о месте сада",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите точное сообщение о месте сада",
+        "accessibilityLabel": "Соберите точное сообщение о месте сада",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a quiet garden near the building.",
@@ -956,7 +956,7 @@
           },
           {
             "responseId": "en:lesson-04:session-02:i01:r3",
-      "text": "garment"
+            "text": "garment"
           }
         ],
         "mediaIds": [],
@@ -990,10 +990,10 @@
             },
             {
               "responseId": "en:lesson-04:session-02:i01:r3",
-        "targetText": "garment",
+              "targetText": "garment",
               "meaningByLocale": {
-          "ru": "предмет одежды",
-          "uk": "предмет одягу"
+                "ru": "предмет одежды",
+                "uk": "предмет одягу"
               }
             }
           ],
@@ -1013,8 +1013,8 @@
               "correct": false,
               "testedDimension": "услышанное слово",
               "feedbackByLocale": {
-          "ru": "В garment после /gɑː/ слышно /mənt/; в записи garden — /dən/.",
-          "uk": "У garment після /gɑː/ чути /mənt/; у записі garden — /dən/."
+                "ru": "В garment после /gɑː/ слышно /mənt/; в записи garden — /dən/.",
+                "uk": "У garment після /gɑː/ чути /mənt/; у записі garden — /dən/."
               }
             }
           ],
@@ -1842,11 +1842,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть точне повідомлення про місце саду",
+        "prompt": "Складіть точне повідомлення про місце саду",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть точне повідомлення про місце саду",
+        "accessibilityLabel": "Складіть точне повідомлення про місце саду",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a quiet garden near the building.",

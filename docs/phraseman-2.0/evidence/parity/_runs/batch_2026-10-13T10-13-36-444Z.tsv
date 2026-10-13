@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-079	2026-10-13T10:14:30.177Z	error	13728	step_target_not_found:#fc-speak-pick-decks-empty+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-13-36-444Z/cards-079.error.png	0

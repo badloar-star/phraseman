@@ -1,0 +1,453 @@
+{
+  "schemaVersion": "learning-v2-german-task6c-full-registry-l01.v1",
+  "status": "PLANNED_NOT_CANONICAL_HOLD",
+  "task7Unlock": false,
+  "authority": {
+    "canonicalRegistry": "NOT_CANONICAL",
+    "packetMaterialization": "HOLD",
+    "learnerFacing": "HOLD",
+    "release": "HOLD"
+  },
+  "bindings": {
+    "task5": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+      "sha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29"
+    },
+    "englishSurface": {
+      "path": "modules/learning-v2/curriculum/en/course_blueprint_en_v2.ts",
+      "sha256": "f38d782c57b9c1b0f7dea010e61d0a70b107d221e0a1b6b2f0c4ae1dd4cd037e"
+    },
+    "task6Kernel": {
+      "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts",
+      "sha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d"
+    },
+    "task6Registry": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+      "sha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31"
+    }
+  },
+  "allocation": {
+    "packetIds": [
+      "de_l01_c01_s01",
+      "de_l01_c01_s02",
+      "de_l01_c01_s03",
+      "de_l01_c01_s04",
+      "de_l01_c01_s05",
+      "de_l01_c01_s06",
+      "de_l01_c01_s07",
+      "de_l01_c01_s08",
+      "de_l01_c02_s09",
+      "de_l01_c02_s10",
+      "de_l01_c02_s11",
+      "de_l01_c02_s12",
+      "de_l01_c02_s13",
+      "de_l01_c02_s14",
+      "de_l01_c02_s15",
+      "de_l01_c02_s16",
+      "de_l01_c03_s17",
+      "de_l01_c03_s18",
+      "de_l01_c03_s19",
+      "de_l01_c03_s20",
+      "de_l01_c03_s21",
+      "de_l01_c03_s22",
+      "de_l01_c03_s23",
+      "de_l01_c03_s24",
+      "de_l01_c04_s25",
+      "de_l01_c04_s26",
+      "de_l01_c04_s27",
+      "de_l01_c04_s28",
+      "de_l01_c04_s29",
+      "de_l01_c04_s30",
+      "de_l01_c04_s31",
+      "de_l01_c04_s32",
+      "de_l01_c05_s33",
+      "de_l01_c05_s34",
+      "de_l01_c05_s35",
+      "de_l01_c05_s36",
+      "de_l01_c05_s37",
+      "de_l01_c05_s38",
+      "de_l01_c05_s39",
+      "de_l01_c05_s40",
+      "de_l01_c06_s41",
+      "de_l01_c06_s42",
+      "de_l01_c06_s43",
+      "de_l01_c06_s44",
+      "de_l01_c06_s45",
+      "de_l01_c06_s46",
+      "de_l01_c06_s47",
+      "de_l01_c06_s48",
+      "de_l01_c07_s49",
+      "de_l01_c07_s50",
+      "de_l01_c07_s51",
+      "de_l01_c07_s52",
+      "de_l01_c07_s53",
+      "de_l01_c07_s54",
+      "de_l01_c07_s55",
+      "de_l01_c07_s56"
+    ],
+    "minimumPlannedSenses": 70,
+    "task5CheckpointSenses": [
+      {
+        "plannedSenseId": "de_plan_l01_c01_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1",
+        "firstIntroductionPacketId": "de_l01_c01_s01"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c01_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c01_nachbarin_v1",
+        "firstIntroductionPacketId": "de_l01_c01_s07"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c02_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+        "firstIntroductionPacketId": "de_l01_c02_s09"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c02_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c02_aufzug_v1",
+        "firstIntroductionPacketId": "de_l01_c02_s15"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c03_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+        "firstIntroductionPacketId": "de_l01_c03_s17"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c03_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+        "firstIntroductionPacketId": "de_l01_c03_s18"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c04_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+        "firstIntroductionPacketId": "de_l01_c04_s25"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c04_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c04_buero_v1",
+        "firstIntroductionPacketId": "de_l01_c04_s26"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c05_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1",
+        "firstIntroductionPacketId": "de_l01_c05_s33"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c05_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c05_garten_v1",
+        "firstIntroductionPacketId": "de_l01_c05_s34"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c06_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1",
+        "firstIntroductionPacketId": "de_l01_c06_s41"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c06_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c06_hausmeister_v1",
+        "firstIntroductionPacketId": "de_l01_c06_s42"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c07_checkpoint_01_v1",
+        "sourcePlanId": "de_lex_plan_l01_c07_guten_abend_v1",
+        "firstIntroductionPacketId": "de_l01_c07_s49"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_c07_checkpoint_02_v1",
+        "sourcePlanId": "de_lex_plan_l01_c07_einladung_v1",
+        "firstIntroductionPacketId": "de_l01_c07_s50"
+      }
+    ],
+    "additiveCheckpointFirstIntroductions": [
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s08_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s08",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s16_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s16",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s24_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s24",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s32_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s32",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s40_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s40",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s48_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s48",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_additive_checkpoint_s56_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s56",
+        "role": "ADDITIVE_CHECKPOINT_PLACEHOLDER"
+      }
+    ],
+    "nonCheckpointFirstIntroductions": [
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s01"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s02"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s03"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s04"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s05"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s06"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc01_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c01_s07"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s09"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s10"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s11"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s12"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s13"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s14"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc02_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c02_s15"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s17"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s18"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s19"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s20"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s21"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s22"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc03_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c03_s23"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s25"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s26"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s27"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s28"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s29"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s30"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc04_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c04_s31"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s33"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s34"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s35"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s36"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s37"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s38"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc05_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c05_s39"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s41"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s42"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s43"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s44"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s45"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s46"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc06_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c06_s47"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_01_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s49"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_02_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s50"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_03_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s51"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_04_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s52"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_05_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s53"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_06_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s54"
+      },
+      {
+        "plannedSenseId": "de_plan_l01_nonc07_07_v1",
+        "sourcePlanId": null,
+        "firstIntroductionPacketId": "de_l01_c07_s55"
+      }
+    ]
+  }
+}

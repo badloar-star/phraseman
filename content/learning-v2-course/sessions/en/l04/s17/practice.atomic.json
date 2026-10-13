@@ -343,7 +343,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "У двери стоят несколько контейнеров. Вставьте слово количества.",
+            "ru": "Вставьте слово количества",
             "uk": "Біля дверей стоїть кілька контейнерів. Вставте слово кількості."
           },
           "gappedTargetPhrase": "There are ___ containers by the door.",
@@ -587,7 +587,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "выберите слово количества",
+        "prompt": "Выберите слово количества",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-17:i11:r1",
@@ -604,11 +604,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "выберите слово количества",
+        "accessibilityLabel": "Выберите слово количества",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Возле корзины лежит несколько ягод. Вставьте слово количества.",
+            "ru": "Выберите слово количества",
             "uk": "Біля кошика лежить кілька ягід. Вставте слово кількості."
           },
           "gappedTargetPhrase": "There are ___ berries near the basket.",
@@ -656,11 +656,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "сообщите о контейнерах возле стола",
+        "prompt": "Сообщите о контейнерах возле стола",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "сообщите о контейнерах возле стола",
+        "accessibilityLabel": "Сообщите о контейнерах возле стола",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There are some containers near the table.",
@@ -1026,7 +1026,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "У двери стоят несколько контейнеров. Вставьте слово количества.",
-            "uk": "Біля дверей стоїть кілька контейнерів. Вставте слово кількості."
+            "uk": "Вставте слово кількості"
           },
           "gappedTargetPhrase": "There are ___ containers by the door.",
           "gapOptions": [
@@ -1269,7 +1269,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "оберіть слово кількості",
+        "prompt": "Оберіть слово кількості",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-17:i11:r1",
@@ -1286,12 +1286,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "оберіть слово кількості",
+        "accessibilityLabel": "Оберіть слово кількості",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Возле корзины лежит несколько ягод. Вставьте слово количества.",
-            "uk": "Біля кошика лежить кілька ягід. Вставте слово кількості."
+            "uk": "Оберіть слово кількості"
           },
           "gappedTargetPhrase": "There are ___ berries near the basket.",
           "gapOptions": [
@@ -1338,11 +1338,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "повідомте про контейнери біля столу",
+        "prompt": "Повідомте про контейнери біля столу",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "повідомте про контейнери біля столу",
+        "accessibilityLabel": "Повідомте про контейнери біля столу",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There are some containers near the table.",

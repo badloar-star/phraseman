@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-03:session-36:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `bicycle` · `flower` · `tree`
+- ✅ bicycle — *Предмет із педалями — це `bicycle`, «велосипед».*
+- flower — *`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`.*
+- tree — *`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`.*
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-36:i02; family: scripted_repeat_compare -->
@@ -99,20 +102,37 @@
 **11 · Послухайте й складіть — за склом одна квітка**
 <!-- interaction_id: en:lesson-03:session-36:i11; family: listen_build_dictation -->
 Ціль: `That is a flower.`
+Плитки: `That` `is` `a` `flower` `Those` `are` `flowers`
+*(плитка `Those` зайва: у записі одна квітка, тому початок `That is`.)*
+*(плитка `are` зайва: з однією квіткою потрібна форма `is`.)*
+*(плитка `flowers` зайва: у записі один `flower`, а не кілька квітів.)*
 
 **12 · Послухайте й виберіть точне значення фрази**
 <!-- interaction_id: en:lesson-03:session-36:i12; family: listen_choose -->
 Ціль: `That is a bicycle.`
 Варіанти: `То велосипед.` · `То велосипеди.` · `То дерево.` · `То квіти.`
+- ✅ То велосипед. — *`That is` і `a bicycle` указують на один велосипед.*
+- То велосипеди. — *`That is` і `a bicycle` указують на один велосипед.*
+- То дерево. — *Число збігається, але в записі названо `bicycle`, а не `tree`.*
+- То квіти. — *У записі один предмет і слово `bicycle`; квітів було б кілька.*
 
 **13 · Вставте форму — за склом кілька велосипедів**
 <!-- interaction_id: en:lesson-03:session-36:i13; family: context_gap_grammar -->
 Ціль: `Those ___ bicycles.`
 Варіанти: `are` · `is` · `am` · `be`
+- ✅ are — *Після `Those` і кількох велосипедів потрібна форма `are`.*
+- is — *`is` стосується одного предмета. Після `those` потрібна форма `are`.*
+- am — *`am` працює з `I`, а тут ідеться про кілька велосипедів.*
+- be — *У цій фразі потрібна готова форма `are`, а не словникова форма `be`.*
 
 **14 · Складіть опис — за склом кілька велосипедів**
 <!-- interaction_id: en:lesson-03:session-36:i14; family: phrase_builder -->
 Ціль: `Those are bicycles.`
+Плитки: `Those` `are` `bicycles` `That` `is` `a` `bicycle`
+*(плитка `That` зайва: тут кілька велосипедів, тому потрібно `Those`.)*
+*(плитка `is` зайва: з кількома велосипедами потрібна форма `are`.)*
+*(плитка `a` зайва: перед кількома велосипедами артикль `a` не ставлять.)*
+*(плитка `bicycle` зайва: тут кілька `bicycles`.)*
 
 **15 · Промовте опис одного дерева за склом**
 <!-- interaction_id: en:lesson-03:session-36:i15; family: scripted_repeat_compare -->
@@ -121,6 +141,8 @@
 **16 · Послухайте та складіть одну фразу — кілька квітів**
 <!-- interaction_id: en:lesson-03:session-36:i16:s01; family: listen_build_dictation -->
 Ціль: `Those are flowers.`
+Плитки: `Those` `are` `flowers` `photo`
+*(плитка `photo` зайва: у записі кілька квітів, а не фотографія.)*
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-36:i16:s02; family: scripted_repeat_compare -->

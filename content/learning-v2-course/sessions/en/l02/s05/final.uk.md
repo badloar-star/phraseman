@@ -71,6 +71,9 @@
 <!-- interaction_id: en:lesson-02:session-05:i03; family: context_gap_grammar -->
 Ціль: `___ you thirsty?`
 Варіанти: `Are` · `You` · `Is`
+- You — *Тоді вийде повідомлення, а не запитання. У запитанні першим стоїть `are`.*
+- Is — *Чужа пара. З `you` іде `are`, і в запитанні воно виходить наперед.*
+
 
 **4 · Складіть фразу — скажіть сусідові: «ти голодний»**
 <!-- interaction_id: en:lesson-02:session-05:i04; family: phrase_builder -->
@@ -80,6 +83,9 @@
 <!-- interaction_id: en:lesson-02:session-05:i05; family: listen_choose -->
 Ціль: `Are you awake?`
 Варіанти: `Are you awake?` · `You are awake.` · `Are awake you?`
+- You are awake. — *Слова ті самі, але першим прозвучало `are` — отже це запитання.*
+- Are awake you? — *`you` йшло одразу за `are`, а не в кінці.*
+
 
 **6 · Складіть фразу — скажіть сусідові: «ти змерз»**
 <!-- interaction_id: en:lesson-02:session-05:i06; family: phrase_builder -->
@@ -94,6 +100,9 @@
 <!-- interaction_id: en:lesson-02:session-05:i08; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `awake` · `lost` · `thirsty`
+- lost — *«Заблукав» — про дорогу. Людина в ліжку нікуди не йшла.*
+- thirsty — *Це про воду. А ви з'ясовуєте, спить він чи ні.*
+
 
 **9 · Складіть фразу — Том тягнеться до бутерброда Міри. Спитайте Тома, чи він голодний**
 <!-- interaction_id: en:lesson-02:session-05:i09; family: phrase_builder -->
@@ -103,11 +112,17 @@
 <!-- interaction_id: en:lesson-02:session-05:i10; family: listen_choose -->
 Ціль: `You are lost.`
 Варіанти: `You are lost.` · `Are you lost?` · `You lost.`
+- Are you lost? — *У запитанні `are` стояло б першим: `Are you lost?`. У записі спочатку звучить `You`.*
+- You lost. — *У записі є `are`: `You are lost.` Без нього фраза неповна.*
+
 
 **11 · Вставте слово — сусід сидить у куртці й тримає горнятко двома руками. Спитайте про холод**
 <!-- interaction_id: en:lesson-02:session-05:i11; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `cold` · `ready` · `hungry`
+- ready — *«Готовий» — про збори. А куртка в приміщенні й горнятко у двох руках — про інше.*
+- hungry — *Горнятко гріють не з голоду.*
+
 
 **12 · Складіть фразу — людина залпом випила склянку й дивиться на глечик. Скажіть їй, що вона хоче пити**
 <!-- interaction_id: en:lesson-02:session-05:i12; family: phrase_builder -->
@@ -116,6 +131,8 @@
 **13 · Розрізніть звуки — яке з двох про «готовий»?**
 <!-- interaction_id: en:lesson-02:session-05:i13; family: sound_contrast -->
 Варіанти: `ready` · `already`
+- already — *Це «вже», і в ньому на склад більше: спереду додається «ол».*
+
 
 **14 · Складіть фразу — усі вже у дворі, а ви біля дверей. Спитайте, чи прокинувся останній**
 <!-- interaction_id: en:lesson-02:session-05:i14; family: phrase_builder -->
@@ -125,6 +142,9 @@
 <!-- interaction_id: en:lesson-02:session-05:i15; family: context_gap_grammar -->
 Ціль: `___ you ready?`
 Варіанти: `Are` · `You` · `Am`
+- You — *Так вийде повідомлення «ти готовий». А ви чекаєте відповіді.*
+- Am — *`am` — про себе. Питаєте ви про співрозмовника: `Are you`.*
+
 
 **16 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-05:i16; family: speed_match -->

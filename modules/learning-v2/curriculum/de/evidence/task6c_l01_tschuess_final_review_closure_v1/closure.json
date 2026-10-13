@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-tschuess-final-review-closure.v1",
+  "language": "de",
+  "closureKind": "APPEND_ONLY_EXACT_HASH_REVIEW_SUPERSESSION",
+  "status": "CLOSED_FOR_EXACT_HASH_SET",
+  "scope": {
+    "admission": "EXACT_TSCHUESS_LEXICAL_DEPENDENCY_ONLY",
+    "lexicalDependencyAdmissionClosed": true,
+    "resolvedPlanIds": 8,
+    "unresolvedPlanIds": 280,
+    "packetIds": 1792,
+    "materializedPackets": 0,
+    "globalTask6CompletionEstablished": false
+  },
+  "reviewedArtifacts": {
+    "admissionModule": {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_tschuess_positive_admission_de_v1.ts",
+      "sha256": "9d1247704a5318cf93c63772f3f9bbe251d806b801285993d309aeac796d1d16"
+    },
+    "admissionGate": {
+      "path": "tests/learning_v2_de_task6c_l01_tschuess_positive_admission_gate.ts",
+      "sha256": "1ee1533fb26896dcf4ca4256480db98cd569501f07610f2085953933cdfff4f2"
+    },
+    "primaryReceipt": {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_TSCHUESS_POSITIVE_ADMISSION_RECEIPT_2026-10-13.md",
+      "sha256": "169687aa4287b3be1d055f0e4d2aefbe9fa09bbe9c1eba6d428a9dd6c511b806"
+    },
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_tschuess_positive_admission_v1/lexical_evidence.json",
+      "sha256": "b8d90064c6c7994369c8d14d935878f976af0ca45b506e77122f454c16dfe72d"
+    },
+    "admissionManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_tschuess_positive_admission_v1/manifest.json",
+      "sha256": "98ea894cb092c5502deeb79fa4e91516d6f612e90722b8313250b546c579974d"
+    },
+    "lexicalRegistryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v4.json",
+      "sha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task6RegistryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v4.json",
+      "sha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "allocationInventoryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v4.json",
+      "sha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    }
+  },
+  "finalReviews": {
+    "spec": {
+      "taskIdentity": "/root/de_tschuess_final_spec_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    },
+    "adversarial": {
+      "taskIdentity": "/root/de_tschuess_final_adversarial_review",
+      "verdict": "PASS",
+      "findings": { "P0": 0, "P1": 0, "P2": 0 },
+      "scope": "EXACT_REVIEWED_HASH_SET_LEXICAL_DEPENDENCY_ADMISSION_ONLY",
+      "provenance": "COORDINATOR_ORCHESTRATION_ONLY",
+      "rawOutputSidecar": "unavailable",
+      "outputSha256": "unavailable"
+    }
+  },
+  "supersession": {
+    "primaryReceiptStatusAtReviewedHash": "PENDING",
+    "primaryReceiptBytesModified": false,
+    "reviewStatusSupersededForExactHashSetOnly": true,
+    "semanticArtifactsModified": false
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false
+  },
+  "typeScriptEvidence": {
+    "command": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit --pretty false",
+    "exitCode": 2,
+    "diagnostics": 14,
+    "targetDiagnostics": 0
+  },
+  "englishSurface": {
+    "fileCount": 1570,
+    "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+  }
+}

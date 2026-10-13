@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c04-guten-tag-source-extraction-map.v1",
+  "rawSources": {
+    "goetheA1Redemittel": {
+      "requestedUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "canonicalUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "path": "raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "bytes": 3685205,
+      "metadataPath": "raw/goethe_a1_redemittel.http_metadata.txt",
+      "metadataSha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47",
+      "metadataBytes": 400,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+    "checkpointPacketId": "de_l01_c04_s32",
+    "pdfPage": 3,
+    "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN",
+    "exactOccurrence": "Guten Tag! / Hallo!",
+    "exactOccurrenceUtf8Bytes": 19,
+    "exactOccurrenceSha256": "e545fb373a9a5e0e5fa664af788d68528275b6b527241f01f684b2f4e4f31949",
+    "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY"
+  },
+  "unsupportedClaims": {
+    "registerClassification": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "usageNaturalness": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "exactLearnerPhrase": "NOT_CLAIMED"
+  }
+}

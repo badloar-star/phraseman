@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-03:session-24:i01; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `an envelope` · `envelope` · `envelopes`
+- envelope — *У цій фразі перед назвою одного конверта потрібне `an`: `an envelope`.*
+- envelopes — *`envelopes` — «конверти», їх кілька. Тут один: `an envelope`.*
+
 
 **2 · Послухайте й оберіть — що запитав кур’єр**
 <!-- interaction_id: en:lesson-03:session-24:i02; family: listen_choose -->
 Ціль: `Are they envelopes?`
 Варіанти: `Are they envelopes?` · `They are envelopes.` · `They are not envelopes.`
+- They are envelopes. — *Це твердження: спочатку `They are`. У записі спочатку звучить запитання `Are they`.*
+- They are not envelopes. — *У цьому варіанті є `not`. У записі кур’єр лише питає: `Are they envelopes?`*
+
 
 **3 · Складіть фразу — кур’єр передає один конверт із квитками; скажіть «Це конверт»**
 <!-- interaction_id: en:lesson-03:session-24:i03; family: phrase_builder -->
@@ -71,16 +77,25 @@
 <!-- interaction_id: en:lesson-03:session-24:i04; family: context_gap_grammar -->
 Ціль: `Are ___ envelopes?`
 Варіанти: `they` · `it` · `are`
+- it — *Запитання про два предмети будуємо з `Are they`, а не `Are it`.*
+- are — *Після першого `Are` потрібне `they`, а потім `envelopes`.*
+
 
 **5 · Послухайте й оберіть — що вимовив кур’єр**
 <!-- interaction_id: en:lesson-03:session-24:i05; family: listen_choose -->
 Ціль: `It is a glass.`
 Варіанти: `It is a glass.` · `They are glasses.` · `It is not a glass.`
+- They are glasses. — *Цей варіант називає кілька склянок: `They are glasses`. У записі звучить фраза про одну: `It is a glass`.*
+- It is not a glass. — *Це заперечення: «Це не склянка». Тут після `is` стоїть `not a`; у записі після `is` звучить `a glass`, назва склянки.*
+
 
 **6 · Вставте назву — кур’єр перевіряє набір для подавання закусок; назвіть два блюда, які ви розпакували, «Це блюда»**
 <!-- interaction_id: en:lesson-03:session-24:i06; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `dishes` · `dish` · `a dish`
+- dish — *Треба назвати два блюда. Їхня назва — `dishes`, із закінченням `es`.*
+- a dish — *`a dish` називає одне блюдо. Тут їх два: `They are dishes`.*
+
 
 **7 · Зберіть питання — на коробці з набором посуду стерся напис; кур’єр знімає кришку, а ви уточнюєте «Це склянки?»**
 <!-- interaction_id: en:lesson-03:session-24:i07; family: phrase_builder -->
@@ -91,6 +106,9 @@
 <!-- interaction_id: en:lesson-03:session-24:i08; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `stories` · `storys` · `a stories`
+- storys — *Для кількох історій кінцеву `y` у `story` змінюємо на `ies`. Виходить `stories`.*
+- a stories — *У цій фразі перед назвою кількох історій `a` не потрібне: `They are stories`.*
+
 
 **9 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-24:i09; family: scripted_repeat_compare -->
@@ -100,11 +118,17 @@
 <!-- interaction_id: en:lesson-03:session-24:i10; family: listen_choose -->
 Ціль: `They are not envelopes.`
 Варіанти: `They are not envelopes.` · `They are envelopes.` · `Are they envelopes?`
+- They are envelopes. — *Цей варіант стверджує, що це конверти. У записі після `are` звучить `not`.*
+- Are they envelopes? — *Це запитання з початком `Are they`. У записі порядок `They are`, а потім `not`.*
+
 
 **11 · Вставте назву — кур’єр питає про предмет в окремому відділенні коробки; там одна склянка, скажіть «Це склянка»**
 <!-- interaction_id: en:lesson-03:session-24:i11; family: context_gap_grammar -->
 Ціль: `It is a ___.`
 Варіанти: `glass` · `glasses` · `a glass`
+- glasses — *Тут називаємо одну склянку: `a glass`. Слово `glasses` називає кілька.*
+- a glass — *Слово `a` уже стоїть перед пропуском. Якщо обрати `a glass`, воно повториться; у пропуску потрібне тільки `glass`.*
+
 
 **12 · Послухайте й зберіть — що вимовив кур’єр**
 <!-- interaction_id: en:lesson-03:session-24:i12; family: listen_build_dictation -->
@@ -129,6 +153,9 @@
 <!-- interaction_id: en:lesson-03:session-24:i16; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `glasses` · `glass` · `a glasses`
+- glass — *Називаємо кілька склянок. Потрібно `glasses`; форма `glass` тут називає одну.*
+- a glasses — *У цій фразі перед назвою кількох склянок `a` зайве. Потрібно `They are glasses`.*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-24:i17:s01; family: scripted_repeat_compare -->

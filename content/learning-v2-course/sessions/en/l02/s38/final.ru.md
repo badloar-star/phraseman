@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-38:i02; family: listen_choose -->
 Цель: `manager`
 Варианты: `manager` · `messenger` · `passenger`
+- messenger — *Это «посыльный». Переслушайте первый слог: у `messenger` он другой, а в записи звучит `manager`.*
+- passenger — *Это «пассажир». Переслушайте самый первый звук: `passenger` начинается иначе, а в записи звучит `manager`.*
+
 
 **3 · Карточка слова — intern**
 <!-- interaction_id: en:lesson-02:session-38:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-38:i04; family: listen_choose -->
 Цель: `intern`
 Варианты: `intern` · `winter` · `return`
+- winter — *Это «зима». Переслушайте самый первый звук: у `winter` перед гласным слышится согласный, а слово в записи начинается сразу с гласного — `intern`.*
+- return — *Это «возвращаться». Переслушайте первый слог: у `return` он другой, а в записи звучит `intern`.*
+
 
 **5 · Соберите фразу — перед вами вся команда; узнайте, кто её руководитель**
 <!-- interaction_id: en:lesson-02:session-38:i05; family: phrase_builder -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-02:session-38:i06; family: context_gap_grammar -->
 Цель: `He is ___ .`
 Варианты: `new` · `sure` · `here`
+- sure — *Получится «Он уверен». Нужно сказать, что он недавно пришёл работать: `He is new`.*
+- here — *Это «здесь». Вы сообщаете, что он новенький, поэтому нужно `new`.*
+
 
 **7 · Послушайте и выберите — что коллега спросил о стажёре**
 <!-- interaction_id: en:lesson-02:session-38:i07; family: listen_choose -->
 Цель: `Who is the intern?`
 Варианты: `Who is the intern?` · `Where is the intern?` · `Who is the manager?`
+- Where is the intern? — *Это «Где стажёр?». На записи вопрос начинается с `Who`: коллега хочет узнать, кто стажёр.*
+- Who is the manager? — *Это вопрос о руководителе. На записи последнее слово — `intern`, «стажёр».*
+
 
 **8 · Соберите фразу — коллега спрашивает, кто руководит командой; укажите на Олега и скажите: «Он руководитель»**
 <!-- interaction_id: en:lesson-02:session-38:i08; family: phrase_builder -->
@@ -92,6 +104,9 @@
 <!-- interaction_id: en:lesson-02:session-38:i09; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `new` · `here`
+- new — *Получится «Я новенький». Нужно подтвердить, что вы точно знаете ответ: `I am sure`.*
+- here — *Это «здесь». Для уверенности в ответе нужно слово `sure`.*
+
 
 **10 · Соедините пары — слова из знакомства с командой**
 <!-- interaction_id: en:lesson-02:session-38:i10; family: speed_match -->
@@ -106,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-38:i12; family: context_gap_grammar -->
 Цель: `___ is she?`
 Варианты: `Who` · `Whose` · `Where`
+- Whose — *Это слово для вопроса «чей?». Вы узнаёте, кто Лена, поэтому нужно `Who`.*
+- Where — *Получится «Где она?». Лену вы видите; сейчас хотите узнать, кто она.*
+
 
 **13 · Послушайте и соберите — коллега ищет Лену, с которой вас только что познакомили**
 <!-- interaction_id: en:lesson-02:session-38:i13; family: listen_build_dictation -->

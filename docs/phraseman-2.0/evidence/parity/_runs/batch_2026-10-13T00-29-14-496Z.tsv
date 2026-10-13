@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-021	2026-10-13T00:30:00.208Z	error	17649	step_target_not_found:#spire-task-report-0+ждали_metro_36мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-29-14-496Z/spire-gap-021.error.png	0

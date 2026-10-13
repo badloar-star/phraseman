@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-24",
   "learningOutcomeByLocale": {
-    "ru": "повторение `he is` / `she is` и `is not`",
-    "uk": "повторення `he is` / `she is` та `is not`"
+    "ru": "`he is`, `she is` и `is not`, когда говорите о другом человеке.",
+    "uk": "`he is`, `she is` та `is not`, коли говорите про іншу людину."
   },
   "pages": [
     {
@@ -11,8 +11,8 @@
       "pageId": "en:lesson-01:session-24:intro1",
       "kind": "concept",
       "titleByLocale": {
-        "ru": "`is` — скрепка для третьего человека",
-        "uk": "`is` — скріпка для третьої людини"
+        "ru": "`is` с he и she",
+        "uk": "`is` з he та she"
       },
       "bodyByLocale": {
         "ru": "`he` — «он», `she` — «она». Между таким словом и словом о человеке всегда стоит `is`: `he is funny`, `she is quiet`.\n\nПо-русски «он смешной» обходится без связки, и рука тянется написать `he funny`. Без `is` это два слова, которые друг о друге не знают.",
@@ -69,8 +69,8 @@
         "uk": "`not` стає після `is`"
       },
       "bodyByLocale": {
-        "ru": "Чтобы сказать «не», ставим `not` сразу после `is`: `she is not tired`, `he is not late`.\n\nПорядок ровно такой и никакой другой. Соблазн поставить `not` перед скрепкой — `she not tired` — большой, потому что по-русски «не» стоит перед словом. Здесь оно стоит после.",
-        "uk": "Щоб сказати «не», ставимо `not` одразу після `is`: `she is not tired`, `he is not late`.\n\nПорядок саме такий і ніякий інший. Спокуса поставити `not` перед скріпкою — `she not tired` — велика, бо українською «не» стоїть перед словом. Тут воно стоїть після."
+        "ru": "Чтобы сказать «не», ставим `not` сразу после `is`: `she is not tired`, `he is not late`.\n\nПорядок всегда такой: сначала `is`, затем `not`. Поэтому говорят `She is not tired`, а не `She not tired`.",
+        "uk": "Щоб сказати «не», ставимо `not` одразу після `is`: `she is not tired`, `he is not late`.\n\nПорядок завжди такий: спочатку `is`, потім `not`. Тому кажуть `She is not tired`, а не `She not tired`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Одна фраза — одна людина"
       },
       "bodyByLocale": {
-        "ru": "`he` и `she` не смешиваются: про мужчину — `he`, про женщину — `she`.\n\nА вот скрепке всё равно, кто перед ней: `is` и `is`. В этом смысле английский вежливее русского — он не заставляет менять окончание у каждого слова.\n\nМеняете первое слово, остальное не трогаете: `He is kind` — `She is kind`.",
-        "uk": "`he` і `she` не змішуються: про чоловіка — `he`, про жінку — `she`. Скріпка при цьому та сама, `is`, їй байдуже.\n\nПростіше, ніж здається: міняєте перше слово, решту не чіпаєте. `He is kind` — `She is kind`."
+        "ru": "`he` и `she` не смешиваются: про мужчину — `he`, про женщину — `she`.\n\nС `he` и `she` форма остаётся одинаковой: `is`.\n\nМеняете первое слово, остальное не трогаете: `He is kind` — `She is kind`.",
+        "uk": "`he` і `she` не змішуються: про чоловіка — `he`, про жінку — `she`. З обома словами форма лишається однаковою: `is`.\n\nПростіше, ніж здається: міняєте перше слово, решту не чіпаєте. `He is kind` — `She is kind`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "361d07033edbfc4f875c09f3d093276c96e2caf50fe487ccdd0f21ba8f69a763"
+  "introFingerprint": "90c5958c7667189cde6efc44f8e7220957b5df7399bc9eea14b852be56a35977"
 }

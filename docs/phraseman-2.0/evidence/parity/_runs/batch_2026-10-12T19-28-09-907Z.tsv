@@ -1,0 +1,13 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-030	2026-10-12T19:28:34.289Z	ok	7746	marker+шагов_2+склейка+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/profile-030.png	0
+cards-043	2026-10-12T19:28:51.483Z	ok	10874	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-043.png	0
+cards-081	2026-10-12T19:29:27.690Z	ok	11867	marker+шагов_4+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-081.png	0
+energy-modes-007	2026-10-12T19:30:01.257Z	ok	10910	marker+шагов_3+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/energy-modes-007.png	0
+energy-modes-008	2026-10-12T19:31:05.658Z	error	11925	step_target_not_found:#energy-needed-wait+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-28-09-907Z/energy-modes-008.error.png	0
+energy-modes-009	2026-10-12T19:31:39.158Z	ok	11134	marker+шагов_3+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/energy-modes-009.png	0
+energy-modes-010	2026-10-12T19:32:11.365Z	ok	10913	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-010.png	0
+energy-modes-017	2026-10-12T19:32:43.584Z	ok	11088	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-017.png	0
+settings-gap-023	2026-10-12T19:33:43.552Z	error	12458	step_target_not_found:#support-report-submit+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-28-09-907Z/settings-gap-023.error.png	0
+profile-015	2026-10-12T19:34:36.134Z	error	10837	step_target_not_found:#support-report-submit+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-28-09-907Z/profile-015.error.png	0
+overlays-campaigns-006	2026-10-12T19:35:31.405Z	error	10783	step_target_not_found:#promo-code-submit+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-28-09-907Z/overlays-campaigns-006.error.png	0
+cards-gap-021	2026-10-12T19:36:46.760Z	error	12005	step_target_not_found:#fc-expanded-to-pack+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T19-28-09-907Z/cards-gap-021.error.png	0

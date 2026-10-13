@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Проба стилей картинок</title>
+<style>
+:root{--bg:#0e0f12;--fg:#eceae6;--mut:#9a978f}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif;padding:16px}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:18px;margin:28px 0 8px}
+p{color:var(--mut);margin:0 0 12px;max-width:70ch}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.bar button{background:#22242a;color:var(--fg);border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
+.bar button.on{background:#eceae6;color:#111}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.tile{border-radius:22px;padding:14px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.art{position:relative;width:110px;height:110px}
+.art img,.art .tint{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.tint{-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center}
+.lbl{font-size:12px;opacity:.75}
+.miss{color:#c77;font-size:12px}
+</style></head><body>
+<h1>Проба 5 стилей картинок</h1>
+<p>Каждый стиль показан на 12 оттенках темы, в тёмном и светлом режиме. Цветная часть картинки перекрашивается в цвет темы так же, как в приложении. Выберите стиль, который хорош на ВСЕХ цветах.</p>
+<div class="bar" id="items"></div>
+<div id="out"></div>
+<script>
+const STYLES=[['S0_current','Сейчас (кожа и крафт)'],['S1_glass','S1 Матовое стекло'],['S2_clay','S2 Моно-глина + деталь'],['S3_pearl','S3 Перламутр'],['S4_toy','S4 Игрушка 3D'],['S5_line','S5 Светящийся контур']];
+const ITEMS=['spire_tile','lessons','dialogs'];
+const HUES=[0,30,55,90,140,170,200,225,260,290,320,345];
+// зачем: темы 2.0 — любой оттенок OKLCH; плитка и акцент приближены к liquidGlass (тёмная: L≈0.24 фон, акцент L≈0.72; светлая: фон L≈0.95, акцент L≈0.55)
+const tileBg=(h,dark)=>dark?`oklch(0.25 0.035 ${h})`:`oklch(0.95 0.02 ${h})`;
+const acc=(h,dark)=>dark?`oklch(0.74 0.16 ${h})`:`oklch(0.56 0.17 ${h})`;
+let item='spire_tile';
+function src(style,mode,name,accent){
+  if(style==='S0_current'){const n=name==='spire_tile'?'intro_arena':name;return `examples_GOOD/${mode}__${n}${accent?'.accent':''}.png`}
+  return `trials/${style}/${mode}/${name}${accent?'.accent':''}.webp`;
+}
+function render(){
+  document.querySelectorAll('#items button').forEach(b=>b.classList.toggle('on',b.dataset.i===item));
+  const out=document.getElementById('out');out.innerHTML='';
+  for(const [code,title] of STYLES){
+    const h2=document.createElement('h2');h2.textContent=title;out.appendChild(h2);
+    for(const mode of ['dark','light']){
+      const g=document.createElement('div');g.className='grid';
+      for(const h of HUES){
+        const dark=mode==='dark';
+        const t=document.createElement('div');t.className='tile';t.style.background=tileBg(h,dark);
+        const a=document.createElement('div');a.className='art';
+        const base=new Image();base.src=src(code,mode,item,false);base.onerror=()=>{a.innerHTML='<span class="miss">нет файла</span>'};
+        a.appendChild(base);
+        const tint=document.createElement('div');tint.className='tint';const m=`url("${src(code,mode,item,true)}")`;
+        tint.style.webkitMaskImage=m;tint.style.maskImage=m;tint.style.background=acc(h,dark);
+        const probe=new Image();probe.onload=()=>a.appendChild(tint);probe.onerror=()=>{};probe.src=src(code,mode,item,true);
+        t.appendChild(a);
+        const l=document.createElement('div');l.className='lbl';l.style.color=dark?'#ddd':'#333';l.textContent=`${mode} · ${h}°`;t.appendChild(l);
+        g.appendChild(t);
+      }
+      out.appendChild(g);
+    }
+  }
+}
+const bar=document.getElementById('items');
+for(const i of ITEMS){const b=document.createElement('button');b.textContent=i;b.dataset.i=i;b.onclick=()=>{item=i;render()};bar.appendChild(b)}
+render();
+</script></body></html>

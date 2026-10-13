@@ -1,0 +1,15 @@
+id	time	result	detail	file
+cards-026	2026-10-13T09:50:37.692Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-026.png
+cards-section-053	2026-10-13T09:50:40.318Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:47:12.941Z code_changed_at=2026-10-13T10:42:01+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/cards-section-053.png
+cards-section-054	2026-10-13T09:50:42.111Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:47:34.706Z code_changed_at=2026-10-13T10:42:01+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/cards-section-054.png
+cards-section-055	2026-10-13T09:50:43.765Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:47:55.868Z code_changed_at=2026-10-13T10:42:01+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/cards-section-055.png
+cards-v2-041	2026-10-13T09:50:46.185Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:50:33.577Z code_changed_at=2026-10-13T10:42:01+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/cards-v2-041.png
+community-021	2026-10-13T09:50:47.591Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:30:22.486Z code_changed_at=2026-10-13T10:42:01+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/community-021.png
+dialogs-041	2026-10-13T09:50:47.591Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/dialogs-041.png
+learn-012	2026-10-13T09:50:47.592Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/learn-012.png
+learn-013	2026-10-13T09:50:47.592Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/learn-013.png
+learn-014	2026-10-13T09:50:47.593Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/learn-014.png
+learn-032	2026-10-13T09:50:47.593Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/learn-032.png
+onboarding-paywall-002	2026-10-13T09:50:47.594Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-paywall-002.png
+profile-008	2026-10-13T09:50:47.594Z	skipped	уже_не_голый_1800x1327	docs/phraseman-2.0/evidence/parity/profile-008.png
+profile-017	2026-10-13T09:50:47.595Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/profile-017.png

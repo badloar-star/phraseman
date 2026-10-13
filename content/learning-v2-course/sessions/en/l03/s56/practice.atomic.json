@@ -127,12 +127,63 @@
         "accessibilityLabel": "Соедините слова и значения для прихожей",
         "modePayload": {
           "family": "speed_match",
-          "pairGrid": [{"pairId":"en:lesson-03:session-56:i03:p1","target":"hook","meaningByLocale":{"ru":"крючок для куртки","uk":"гачок для куртки"}},{"pairId":"en:lesson-03:session-56:i03:p2","target":"coat","meaningByLocale":{"ru":"пальто","uk":"пальто"}},{"pairId":"en:lesson-03:session-56:i03:p3","target":"door","meaningByLocale":{"ru":"дверь","uk":"двері"}},{"pairId":"en:lesson-03:session-56:i03:p4","target":"bag","meaningByLocale":{"ru":"сумка","uk":"сумка"}}],
-          "leftColumn": ["hook","coat","door","bag"],
-          "rightColumn": ["крючок для куртки","пальто","дверь","сумка"],
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-56:i03:p1",
+              "target": "hook",
+              "meaningByLocale": {
+                "ru": "крючок для куртки",
+                "uk": "гачок для куртки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p2",
+              "target": "coat",
+              "meaningByLocale": {
+                "ru": "пальто",
+                "uk": "пальто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hook",
+            "coat",
+            "door",
+            "bag"
+          ],
+          "rightColumn": [
+            "крючок для куртки",
+            "пальто",
+            "дверь",
+            "сумка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": {"enabledByDefault": true,"learnerCanDisable": true,"pausesOnInterruption": true},
-          "finishStats": ["speed","accuracy","personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -183,16 +234,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            {"pairId":"en:lesson-03:session-56:i05:p1","target":"tray","meaningByLocale":{"ru":"поднос для чашек","uk":"таця для чашок"}},
-            {"pairId":"en:lesson-03:session-56:i05:p2","target":"wooden","meaningByLocale":{"ru":"деревянный","uk":"дерев’яний"}},
-            {"pairId":"en:lesson-03:session-56:i05:p3","target":"metal","meaningByLocale":{"ru":"металлический","uk":"металевий"}},
-            {"pairId":"en:lesson-03:session-56:i05:p4","target":"soft","meaningByLocale":{"ru":"мягкий","uk":"м’який"}}
+            {
+              "pairId": "en:lesson-03:session-56:i05:p1",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос для чашек",
+                "uk": "таця для чашок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p2",
+              "target": "wooden",
+              "meaningByLocale": {
+                "ru": "деревянный",
+                "uk": "дерев’яний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p3",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
           ],
-          "leftColumn": ["tray","wooden","metal","soft"],
-          "rightColumn": ["поднос для чашек","деревянный","металлический","мягкий"],
+          "leftColumn": [
+            "tray",
+            "wooden",
+            "metal",
+            "soft"
+          ],
+          "rightColumn": [
+            "поднос для чашек",
+            "деревянный",
+            "металлический",
+            "мягкий"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": {"enabledByDefault": true,"learnerCanDisable": true,"pausesOnInterruption": true},
-          "finishStats": ["speed","accuracy","personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -253,8 +350,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите слово для вешалки",
               "feedbackByLocale": {
-            "ru": "В записи звучит `hook` — «крючок». `Book` рифмуется с ним, но это другое слово.",
-            "uk": "У записі звучить `hook` — «гачок». `Book` римується з ним, але це інше слово."
+                "ru": "В записи звучит `hook` — «крючок». `Book` рифмуется с ним, но это другое слово.",
+                "uk": "У записі звучить `hook` — «гачок». `Book` римується з ним, але це інше слово."
               }
             },
             {
@@ -262,8 +359,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите слово для вешалки",
               "feedbackByLocale": {
-            "ru": "В записи слышно `hook` — «крючок». У `look` похожий конец, но это другое слово.",
-            "uk": "У записі чути `hook` — «гачок». У `look` схожий кінець, але це інше слово."
+                "ru": "В записи слышно `hook` — «крючок». У `look` похожий конец, но это другое слово.",
+                "uk": "У записі чути `hook` — «гачок». У `look` схожий кінець, але це інше слово."
               }
             }
           ],
@@ -280,11 +377,20 @@
         "inputMode": "single_choice",
         "prompt": "Различите слово — mat или map",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-56:i07:r1","text":"mat"},
-          {"responseId":"en:lesson-03:session-56:i07:r2","text":"map"}
+          {
+            "responseId": "en:lesson-03:session-56:i07:r1",
+            "text": "mat"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i07:r2",
+            "text": "map"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-56:i07:audioA","en:lesson-03:session-56:i07:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-56:i07:audioA",
+          "en:lesson-03:session-56:i07:audioB"
+        ],
         "accessibilityLabel": "Различите слово — mat или map",
         "modePayload": {
           "family": "sound_contrast",
@@ -292,10 +398,26 @@
           "contrastB": "map",
           "ipaA": "",
           "ipaB": "",
-          "audioA": {"audioTargetId":"en:lesson-03:session-56:i07:audioA","transcript":"mat"},
-          "audioB": {"audioTargetId":"en:lesson-03:session-56:i07:audioB","transcript":"map"},
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-56:i07:audioA",
+            "transcript": "mat"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-56:i07:audioB",
+            "transcript": "map"
+          },
           "testedPhoneticContrast": "В mat последний звук /t/, а в map — /p/.",
-          "choiceFeedback": [{"responseId":"en:lesson-03:session-56:i07:r2","correct":false,"testedDimension":"Различите mat и map","feedbackByLocale":{"ru":"`Map` — карта. В записи `mat` — коврик у двери; последний звук /t/, не /p/.","uk":"`Map` — карта. У записі `mat` — килимок біля дверей; останній звук /t/, не /p/."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-56:i07:r2",
+              "correct": false,
+              "testedDimension": "Различите mat и map",
+              "feedbackByLocale": {
+                "ru": "`Map` — карта. В записи `mat` — коврик у двери; последний звук /t/, не /p/.",
+                "uk": "`Map` — карта. У записі `mat` — килимок біля дверей; останній звук /t/, не /p/."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -471,8 +593,8 @@
               "correct": false,
               "testedDimension": "Послушайте и выберите слово для подноса",
               "feedbackByLocale": {
-            "ru": "В `tray` гласный звучит как `/eɪ/`, а в `try` — как `/aɪ/`. В записи — `tray`, поднос.",
-            "uk": "У `tray` голосний звучить як `/eɪ/`, а в `try` — як `/aɪ/`. У записі — `tray`, таця."
+                "ru": "В `tray` гласный звучит как `/eɪ/`, а в `try` — как `/aɪ/`. В записи — `tray`, поднос.",
+                "uk": "У `tray` голосний звучить як `/eɪ/`, а в `try` — як `/aɪ/`. У записі — `tray`, таця."
               }
             }
           ],
@@ -809,7 +931,7 @@
               "text": "That"
             }
           ],
-          "testedDimension": "Вставьте указатель для дальних чёрных кр",
+          "testedDimension": "Вставьте указатель для дальних чёрных крючков",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-56:i17:r2",
@@ -873,11 +995,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите подпись о крючках в конце прихожей",
+        "prompt": "Соберите подпись о крючках в конце прихожей",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите подпись о крючках в конце прихожей",
+        "accessibilityLabel": "Соберите подпись о крючках в конце прихожей",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are the hooks.",
@@ -1022,12 +1144,63 @@
         "accessibilityLabel": "З’єднайте слова і значення для передпокою",
         "modePayload": {
           "family": "speed_match",
-          "pairGrid": [{"pairId":"en:lesson-03:session-56:i03:p1","target":"hook","meaningByLocale":{"ru":"крючок для куртки","uk":"гачок для куртки"}},{"pairId":"en:lesson-03:session-56:i03:p2","target":"coat","meaningByLocale":{"ru":"пальто","uk":"пальто"}},{"pairId":"en:lesson-03:session-56:i03:p3","target":"door","meaningByLocale":{"ru":"дверь","uk":"двері"}},{"pairId":"en:lesson-03:session-56:i03:p4","target":"bag","meaningByLocale":{"ru":"сумка","uk":"сумка"}}],
-          "leftColumn": ["hook","coat","door","bag"],
-          "rightColumn": ["гачок для куртки","пальто","двері","сумка"],
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-56:i03:p1",
+              "target": "hook",
+              "meaningByLocale": {
+                "ru": "крючок для куртки",
+                "uk": "гачок для куртки"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p2",
+              "target": "coat",
+              "meaningByLocale": {
+                "ru": "пальто",
+                "uk": "пальто"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p3",
+              "target": "door",
+              "meaningByLocale": {
+                "ru": "дверь",
+                "uk": "двері"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i03:p4",
+              "target": "bag",
+              "meaningByLocale": {
+                "ru": "сумка",
+                "uk": "сумка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "hook",
+            "coat",
+            "door",
+            "bag"
+          ],
+          "rightColumn": [
+            "гачок для куртки",
+            "пальто",
+            "двері",
+            "сумка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": {"enabledByDefault": true,"learnerCanDisable": true,"pausesOnInterruption": true},
-          "finishStats": ["speed","accuracy","personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1077,12 +1250,63 @@
         "accessibilityLabel": "З’єднайте слова і значення для підписів у квартирі",
         "modePayload": {
           "family": "speed_match",
-          "pairGrid": [{"pairId":"en:lesson-03:session-56:i05:p1","target":"tray","meaningByLocale":{"ru":"поднос для чашек","uk":"таця для чашок"}},{"pairId":"en:lesson-03:session-56:i05:p2","target":"wooden","meaningByLocale":{"ru":"деревянный","uk":"дерев’яний"}},{"pairId":"en:lesson-03:session-56:i05:p3","target":"metal","meaningByLocale":{"ru":"металлический","uk":"металевий"}},{"pairId":"en:lesson-03:session-56:i05:p4","target":"soft","meaningByLocale":{"ru":"мягкий","uk":"м’який"}}],
-          "leftColumn": ["tray","wooden","metal","soft"],
-          "rightColumn": ["таця для чашок","дерев’яний","металевий","м’який"],
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-56:i05:p1",
+              "target": "tray",
+              "meaningByLocale": {
+                "ru": "поднос для чашек",
+                "uk": "таця для чашок"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p2",
+              "target": "wooden",
+              "meaningByLocale": {
+                "ru": "деревянный",
+                "uk": "дерев’яний"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p3",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-56:i05:p4",
+              "target": "soft",
+              "meaningByLocale": {
+                "ru": "мягкий",
+                "uk": "м’який"
+              }
+            }
+          ],
+          "leftColumn": [
+            "tray",
+            "wooden",
+            "metal",
+            "soft"
+          ],
+          "rightColumn": [
+            "таця для чашок",
+            "дерев’яний",
+            "металевий",
+            "м’який"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": {"enabledByDefault": true,"learnerCanDisable": true,"pausesOnInterruption": true},
-          "finishStats": ["speed","accuracy","personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1169,17 +1393,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — mat або map",
-        "responseOptions": [{"responseId":"en:lesson-03:session-56:i07:r1","text":"mat"},{"responseId":"en:lesson-03:session-56:i07:r2","text":"map"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-56:i07:r1",
+            "text": "mat"
+          },
+          {
+            "responseId": "en:lesson-03:session-56:i07:r2",
+            "text": "map"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-56:i07:audioA","en:lesson-03:session-56:i07:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-56:i07:audioA",
+          "en:lesson-03:session-56:i07:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — mat або map",
         "modePayload": {
           "family": "sound_contrast",
-          "contrastA": "mat", "contrastB": "map", "ipaA": "", "ipaB": "",
-          "audioA": {"audioTargetId":"en:lesson-03:session-56:i07:audioA","transcript":"mat"},
-          "audioB": {"audioTargetId":"en:lesson-03:session-56:i07:audioB","transcript":"map"},
+          "contrastA": "mat",
+          "contrastB": "map",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-56:i07:audioA",
+            "transcript": "mat"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-56:i07:audioB",
+            "transcript": "map"
+          },
           "testedPhoneticContrast": "В mat останній звук /t/, а в map — /p/.",
-          "choiceFeedback": [{"responseId":"en:lesson-03:session-56:i07:r2","correct":false,"testedDimension":"Розрізніть mat і map","feedbackByLocale":{"ru":"`Map` — карта. В записи `mat` — коврик у двери; последний звук /t/, не /p/.","uk":"`Map` — карта. У записі `mat` — килимок біля дверей; останній звук /t/, не /p/."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-56:i07:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть mat і map",
+              "feedbackByLocale": {
+                "ru": "`Map` — карта. В записи `mat` — коврик у двери; последний звук /t/, не /p/.",
+                "uk": "`Map` — карта. У записі `mat` — килимок біля дверей; останній звук /t/, не /p/."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1693,7 +1948,7 @@
               "text": "That"
             }
           ],
-          "testedDimension": "Вставте вказівник для дальніх чорних гач",
+          "testedDimension": "Вставте вказівник для дальніх чорних гачків",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-56:i17:r2",
@@ -1757,11 +2012,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть підпис про гачки в кінці передпокою",
+        "prompt": "Складіть підпис про гачки в кінці передпокою",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть підпис про гачки в кінці передпокою",
+        "accessibilityLabel": "Складіть підпис про гачки в кінці передпокою",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are the hooks.",
@@ -1882,4 +2137,3 @@
     }
   ]
 }
-

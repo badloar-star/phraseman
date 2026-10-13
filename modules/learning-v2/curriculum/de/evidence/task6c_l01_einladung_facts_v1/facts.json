@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-einladung-facts.v1",
+  "status": "HOLD_FACTS_ONLY",
+  "canonicalAdmission": "FORBIDDEN",
+  "semanticAdmission": "NOT_EVALUATED",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "capture": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_einladung_direct_capture_v1/manifest.json",
+    "sha256": "ab664655305ecefeb8ab079180d7645e75d025f12f75367a84786b8175604e6a"
+  },
+  "task5": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+    "byteSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29",
+    "sourcePlanId": "de_lex_plan_l01_c07_einladung_v1",
+    "checkpointPacketId": "de_l01_c07_s56",
+    "semanticIdentity": "einladung|invitation to an event",
+    "senseGloss": "invitation to an event",
+    "communicativeUse": "recognise an invitation as the fixed context for an evening community-event arrival; no free article or haben production is planned"
+  },
+  "sourceSense": {
+    "sourceAnchor": "d-1-1",
+    "senseSpanSha256": "741286358d630d39801bd60f96dec3023dbde806be829f410efa6fb2b4b4b06a",
+    "senseSpanUtf8Bytes": 3154,
+    "sourceCoreKind": "DWDS_REFERENCE_CORE_BROADER_THAN_TASK5_EVENT_CONTEXT",
+    "sourceCoreGerman": "entsprechend der Bedeutung von ²einladen",
+    "sourceReferenceGerman": "jmdn. als Gast zu sich bitten; jmdn. zu etw. auffordern und für ihn bezahlen",
+    "task5NarrowContext": "invitation to an event"
+  },
+  "morphology": {
+    "morphologySpanSha256": "54f967bd5749ecb2ea7f157d8c3547de18f44ea125ff0f946ab588695474dff5",
+    "morphologySpanUtf8Bytes": 4976,
+    "lemma": "Einladung",
+    "article": "die",
+    "plural": "Einladungen",
+    "sourceGenderLabel": "Femininum"
+  },
+  "factReceipt": {
+    "scope": "RAW_SOURCE_AND_TASK5_FACTS_ONLY",
+    "verdict": "HOLD_FACTS_ONLY",
+    "noSemanticAdmission": true,
+    "noRegionalOrProductiveClaim": true,
+    "noRegisterClaim": true,
+    "noCanonicalPromotion": true
+  }
+}

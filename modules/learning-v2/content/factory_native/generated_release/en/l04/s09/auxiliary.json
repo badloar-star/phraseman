@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-09",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-09:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-09:intro1:r2": {
+          "ru": "`Clinic` — клиника. Здесь нужен врач для зубов: `dentist`.",
+          "uk": "`Clinic` — клініка. Тут потрібен лікар для зубів: `dentist`."
+        },
+        "en:lesson-04:session-09:intro1:r3": {
+          "ru": "`Pharmacy` — аптека. Здесь нужен стоматолог: `dentist`.",
+          "uk": "`Pharmacy` — аптека. Тут потрібен стоматолог: `dentist`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-09:intro2:r2": {
+          "ru": "В вопросе `is` идёт перед `there`: `Is there a dentist?`.",
+          "uk": "У питанні `is` стоїть перед `there`: `Is there a dentist?`."
+        },
+        "en:lesson-04:session-09:intro2:r3": {
+          "ru": "Перед одним стоматологом нужно `a`: `a dentist`.",
+          "uk": "Перед одним стоматологом потрібен `a`: `a dentist`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-09:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-09:intro3:r2": {
+          "ru": "Это порядок слов сообщения. Вопрос начинается с `Is there`.",
+          "uk": "Це порядок слів повідомлення. Запитання починається з `Is there`."
+        },
+        "en:lesson-04:session-09:intro3:r3": {
+          "ru": "Перед одним стоматологом нужен артикль: `a dentist`.",
+          "uk": "Перед одним стоматологом потрібен артикль: `a dentist`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1d2116db2fc817ba3061fab3309cc4f21a5ab4ff9eaa689b0ebe45e478ab6ceb"
+}

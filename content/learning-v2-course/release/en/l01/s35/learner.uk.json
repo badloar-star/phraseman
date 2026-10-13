@@ -115,6 +115,15 @@
               "ru": "«Ботинок». Начало похоже, но `shoe` на этом и заканчивается, а в `sure` есть «р».",
               "uk": "«Туфля». Початок схожий, але `shoe` на цьому й закінчується, а в `sure` є «р»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`sure` — «уверены»: вы не знаете, открыто ли кафе, поэтому `not sure`.",
+              "uk": "`sure` — «впевнені»: ви не знаєте, чи відкрита кав'ярня, тому `not sure`."
+            }
           }
         ],
         "isWordCard": false,
@@ -233,6 +242,15 @@
             "feedbackByLocale": {
               "ru": "«Кольцо». Гласная другая: в `ring` слышно «и», в `wrong` — «о».",
               "uk": "«Каблучка». Голосна інша: у `ring` чути «і», у `wrong` — «о»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`wrong` — «неправы, ошибаемся»: так говорят о неверном выводе.",
+              "uk": "`wrong` — «неправі, помиляємося»: так кажуть про хибний висновок."
             }
           }
         ],
@@ -382,6 +400,15 @@
               "ru": "«Жарить». Начало то же, а гласная в конце другая.",
               "uk": "«Смажити». Початок той самий, а голосна в кінці інша."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i07:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`free` — «свободны»: дел нет, можно остаться или уйти.",
+              "uk": "`free` — «вільні»: справ немає, можна залишитися або піти."
+            }
           }
         ],
         "isWordCard": false,
@@ -480,6 +507,15 @@
         "testedDimension": "Вставте слово — ви не впевнені, чи відчи",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-35:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви не впевнені, чи відчинено кафе",
+            "feedbackByLocale": {
+              "ru": "Вы не знаете ответа: `We are not sure.`",
+              "uk": "Ви не знаєте відповіді: `We are not sure.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-35:i09:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви не впевнені, чи відчи",
@@ -531,7 +567,17 @@
         "authoredDistractorTokens": [
           "no"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мы не одни»",
+            "feedbackByLocale": {
+              "ru": "`no` лишнее: отрицание здесь — `not`: `We are not alone.`",
+              "uk": "`no` зайве: заперечення тут — `not`: `We are not alone.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -541,7 +587,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте скріпку — ви всією командою не голодні",
+      "prompt": "Оберіть форму — Іра й Олег уже пообідали і не голодні",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-35:i11:r1",
@@ -558,12 +604,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте скріпку — ви всією командою не голодні",
+      "accessibilityLabel": "Оберіть форму — ви всією командою не голодні",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы всей командой не голодны",
-          "uk": "Вставте скріпку — ви всією командою не голодні"
+          "ru": "Выберите форму — вы всей командой не голодны",
+          "uk": "Оберіть форму — Іра й Олег уже пообідали і не голодні"
         },
         "gappedTargetPhrase": "We ___ not hungry.",
         "gapOptions": [
@@ -580,12 +626,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставте скріпку — ви всією командою не г",
+        "testedDimension": "Оберіть `are` після `we`",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i11:r1",
+            "correct": true,
+            "testedDimension": "Оберіть форму — Іра й Олег уже пообідали і не голодні",
+            "feedbackByLocale": {
+              "ru": "С `We` ставят `are`: `We are not hungry.`",
+              "uk": "З `We` ставлять `are`: `We are not hungry.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-35:i11:r2",
             "correct": false,
-            "testedDimension": "Вставте скріпку — ви всією командою не г",
+            "testedDimension": "З `we` не підходить `is`",
             "feedbackByLocale": {
               "ru": "`am` только для `I`, про одного себя. Про «мы» — `are`.",
               "uk": "`am` тільки для `I`, про одного себе. Про «ми» — `are`."
@@ -594,7 +649,7 @@
           {
             "responseId": "en:lesson-01:session-35:i11:r3",
             "correct": false,
-            "testedDimension": "Вставте скріпку — ви всією командою не г",
+            "testedDimension": "`not` не замінює `are`",
             "feedbackByLocale": {
               "ru": "`is` — про одного: он, она, оно. Вас несколько, значит `are`.",
               "uk": "`is` — про одного: він, вона, воно. Вас кілька, отже `are`."
@@ -725,6 +780,15 @@
         "testedDimension": "Вставте слово — питають, чи можемо ми за",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-35:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — керівник питає, чи можемо ми затриматися: після обіду нарада",
+            "feedbackByLocale": {
+              "ru": "После обеда у вас нет времени: `not free` — «не свободны».",
+              "uk": "Після обіду у вас немає часу: `not free` — «не вільні»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-35:i13:r2",
             "correct": false,
             "testedDimension": "Вставте слово — питають, чи можемо ми за",
@@ -769,37 +833,64 @@
           "are",
           "ready"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Утверждение или отрицание? Все уже с кур",
+            "feedbackByLocale": {
+              "ru": "по сцене вы готовы",
+              "uk": "за сценою ви готові"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
       "interactionId": "en:lesson-01:session-35:i15",
       "ordinal": 18,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «ми не зайняті»",
+      "prompt": "Послухайте й складіть — ви закінчили всі справи й можете піти",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «ми не зайняті»",
+      "audioTargetIds": [
+        "en:lesson-01:session-35:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте й складіть — ви закінчили всі справи й можете піти",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "We are not busy.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «мы не заняты»",
-          "uk": "Складіть фразу — «ми не зайняті»"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-35:i15:audio",
+          "transcript": "We are not busy."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "We are not busy.",
         "orderedTokens": [
           "We",
           "are",
           "not",
           "busy"
         ],
-        "authoredDistractorTokens": [],
-        "slotFeedback": []
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы закончили все",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: после `We` ставят `are` — `We are not busy.`",
+              "uk": "`is` зайве: після `We` ставлять `are` — `We are not busy.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -838,13 +929,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 5",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 5",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -871,13 +962,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 5",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 5",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -904,13 +995,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 5",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:s03:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 5",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -937,13 +1028,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 5",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:s04:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 5",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -970,13 +1061,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 5 із 5",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-35:i17:s05:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 5 із 5",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1004,5 +1095,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "af088c0df2cd4b3bb59f2e33a54c880705553a263ebfaf35a16c53849cad47fe"
+  "learnerFingerprint": "d952aea54571ffa542c226c956a4e0ee5b1f92188e1b19f1b297137281d6004a"
 }

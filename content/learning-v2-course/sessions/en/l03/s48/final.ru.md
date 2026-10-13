@@ -58,6 +58,9 @@
 <!-- interaction_id: en:lesson-03:session-48:i05; family: listen_choose -->
 Цель: `total`
 Варианты: `total` · `title` · `turtle`
+- title — *В записи два слога: `TO-tal`, а не односложное `title`.*
+- turtle — *В записи нет звука /r/: звучит `total`, не `turtle`.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-48:i02; family: scripted_repeat_compare -->
@@ -85,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-48:i11; family: context_gap_grammar -->
 Цель: `The order ___ here.`
 Варианты: `is` · `are` · `am`
+- are — *`Order` — один заказ, поэтому нужна форма `is`.*
+- am — *`am` бывает только с `I`, не с `order`.*
+
 
 **10 · Соедините пары — сверяем коробку и чек**
 <!-- interaction_id: en:lesson-03:session-48:i07; family: speed_match -->
@@ -95,6 +101,10 @@
 <!-- interaction_id: en:lesson-03:session-48:i09; family: context_gap_grammar -->
 Цель: `___ item is wrong.`
 Варианты: `An` · `The` · `A` · `без артикля`
+- The — *Позицию ещё не называли.*
+- A — *Перед `item` нужен `an`.*
+- без артикля — *Одну позицию здесь нужно назвать с артиклем.*
+
 
 **12 · Соберите фразу — заказ уже принесли домой**
 <!-- interaction_id: en:lesson-03:session-48:i12; family: phrase_builder -->
@@ -104,6 +114,10 @@
 <!-- interaction_id: en:lesson-03:session-48:i13; family: listen_choose -->
 Цель: `The total is wrong.`
 Варианты: `Итоговая сумма неверная` · `Итоговая сумма здесь` · `Позиция неверная` · `Где итоговая сумма?`
+- Итоговая сумма здесь — *В записи звучит `wrong`, а не `here`.*
+- Позиция неверная — *Звучит `total`, не `item`.*
+- Где итоговая сумма? — *Это утверждение, не вопрос.*
+
 
 **14 · Соберите фразу — знакомые позиции лежат в коробке**
 <!-- interaction_id: en:lesson-03:session-48:i14; family: phrase_builder -->
@@ -113,16 +127,28 @@
 <!-- interaction_id: en:lesson-03:session-48:i15; family: context_gap_grammar -->
 Цель: `The total ___ wrong.`
 Варианты: `is` · `are` · `am` · `без артикля`
+- are — *`total` — одна сумма, поэтому нужен `is`.*
+- am — *`am` бывает с I, а здесь total.*
+- без артикля — *После `The total` нужна связка `is`.*
+
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-03:session-48:i16; family: listen_choose -->
 Цель: `The item is wrong.`
 Варианты: `Эта позиция неверная` · `Эта позиция здесь` · `Итоговая сумма неверная` · `Где позиция?`
+- Эта позиция здесь — *В записи звучит `wrong`, а не `here`.*
+- Итоговая сумма неверная — *Звучит `item`, не `total`.*
+- Где позиция? — *Это утверждение, не вопрос.*
+
 
 **17 · Вставьте артикль — вы впервые проверяете один неверный заказ из нескольких распечаток**
 <!-- interaction_id: en:lesson-03:session-48:i17; family: context_gap_grammar -->
 Цель: `___ order is wrong.`
 Варианты: `An` · `The` · `A` · `без артикля`
+- The — *`the` подходит для уже понятного заказа. Здесь заказ называют впервые, поэтому нужен неопределённый артикль. Выбирайте `the` после первого упоминания.*
+- A — *`a` тоже называет один новый предмет, но `order` начинается с гласного звука. Поэтому нужно `an order`. Сначала слушайте первый звук следующего слова.*
+- без артикля — *Без артикля нельзя назвать один исчисляемый предмет. Здесь один новый заказ: `an order`.*
+
 
 ## Для сборщика
 new_words: item — позиция заказа — Одна вещь из списка.

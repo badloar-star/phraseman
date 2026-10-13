@@ -87,6 +87,8 @@
 <!-- interaction_id: en:lesson-01:session-21:i05; family: phrase_builder -->
 Плитки: `is` `short` `He` `am` → **He is short.**
 *`am` зайве: з `He` ставлять `is` — `He is short`.*
+*(плитка `am` зайва: `am` зайве: з `He` ставлять `is` — `He is short`.)*
+
 
 **6 · Вставте слово — про дівчину біля машини**
 <!-- interaction_id: en:lesson-01:session-21:i06; family: context_gap_grammar -->
@@ -140,11 +142,15 @@ He is ___ . → **quiet** · loud · young
 <!-- interaction_id: en:lesson-01:session-21:i15; family: listen_build_dictation -->
 🔊 *She is young.* Плитки: `young` `She` `is` `are` → **She is young.**
 *`are` зайве: з `She` ставлять `is` — `She is young`.*
+*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is young`.)*
+
 
 **16 · Складіть фразу — про себе, ви втомилися**
 <!-- interaction_id: en:lesson-01:session-21:i16; family: phrase_builder -->
 Плитки: `am` `tired` `I` `is` → **I am tired.**
 *`is` зайве: з `I` ставлять `am` — `I am tired`.*
+*(плитка `is` зайва: `is` зайве: з `I` ставлять `am` — `I am tired`.)*
+
 
 **17 · Вставте слово — колега вперше в цій команді, ви звертаєтеся до неї**
 <!-- interaction_id: en:lesson-01:session-21:i17; family: context_gap_grammar -->
@@ -165,6 +171,8 @@ You ___ new. → **are** · is · am
 <!-- interaction_id: en:lesson-01:session-21:i18:s03; family: listen_build_dictation -->
 🔊 *He is quiet.* Плитки: `quiet` `He` `is` `are` → **He is quiet.**
 *`are` зайве: з `He` ставлять `is` — `He is quiet`.*
+*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is quiet`.)*
+
 
 ---
 

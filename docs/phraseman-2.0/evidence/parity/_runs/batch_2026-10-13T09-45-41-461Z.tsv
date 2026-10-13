@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-section-050	2026-10-13T09:46:49.958Z	error	14489	step_target_not_found:#fc-recall-check+ждали_metro_26мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T09-45-41-461Z/cards-section-050.error.png	0

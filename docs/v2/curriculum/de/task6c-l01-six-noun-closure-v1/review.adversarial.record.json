@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-independent-review-record.v1",
+  "recordKind": "ORCHESTRATION_ATTESTED_TRANSCRIPT_SUMMARY",
+  "source": "root message transcript",
+  "reviewTaskIdentity": "/root/six_noun_adversarial_review",
+  "reviewerRole": "ADVERSARIAL_REVIEW",
+  "reviewedManifest": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/manifest.json",
+    "sha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55"
+  },
+  "verdict": "PASS",
+  "scope": [
+    "Bounded candidate-as-HOLD adversarial review reported no P0-P2.",
+    "Reported hostile gate exit zero and eight deep-rehashed injection rejections for temporary path, learner RU, unknown, approval, and status inputs.",
+    "Reported nine authority-upgrade rejection checks covering PASS, canonical, approval, promotion, and Task 7 paths.",
+    "Reported durable hashes matched and no runtime .tmp loading occurred.",
+    "Reported candidate remained HOLD/PARTIAL with zero rows, Task 7 false, learner false, and phrase false."
+  ],
+  "limitations": [
+    "THIS_RECORD_DOES_NOT_SELF_PROVE_INDEPENDENCE",
+    "This is an orchestration-attested transcript summary, not the reviewer transcript.",
+    "Broader repository, Task 7, release, and unrelated dirty English state were out of scope."
+  ],
+  "status": "HOLD_ONLY"
+}

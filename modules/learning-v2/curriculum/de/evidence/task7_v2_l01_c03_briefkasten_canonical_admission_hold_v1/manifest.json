@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c03-briefkasten-canonical-admission-hold.v1",
+  "status": "HOLD",
+  "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+  "sourceEvidence": {
+    "rawSha256": "d6e63ca2942fb05841e2a89cd30a3c335228dc4d6ba296e4d010e9515bd18342",
+    "extractionMapSha256": "f97ccbd4f4e95f0361f7fb607cae2f60c2cb4bdac18b89ec9fe34d3568e3cc89"
+  },
+  "fieldAuthority": {
+    "lemma": { "status": "SOURCE_SUPPORTED", "value": "Briefkasten" },
+    "partOfSpeech": {
+      "status": "SOURCE_SUPPORTED",
+      "value": "Substantiv (Maskulinum)"
+    },
+    "article": { "status": "SOURCE_SUPPORTED", "value": "der" },
+    "singular": { "status": "SOURCE_SUPPORTED", "value": "Briefkasten" },
+    "nominativePlural": {
+      "status": "SOURCE_SUPPORTED",
+      "value": "Briefkästen"
+    },
+    "senseAnchor": { "status": "SOURCE_SUPPORTED", "value": "d-1-2" },
+    "broaderMorphology": "NOT_CLAIMED",
+    "register": "NOT_CLAIMED"
+  },
+  "authority": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "nextUnresolvedSourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1"
+}

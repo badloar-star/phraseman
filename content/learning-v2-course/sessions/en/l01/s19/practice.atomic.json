@@ -1100,8 +1100,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Лина решила, что Олег злится. На самом деле Олег просто занят",
               "feedbackByLocale": {
-                "ru": "`not` лишнее: Олег занят, поэтому `He is busy.`",
-                "uk": "`not` зайве: Олег зайнятий, тому `He is busy`."
+                "ru": "он и правда занят",
+                "uk": "він і справді зайнятий"
               }
             }
           ]
@@ -2118,7 +2118,7 @@
             {
               "responseId": "en:lesson-01:session-19:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — Ліна каже: «Анна не груба»",
+              "testedDimension": "Послушайте и соберите — Лина говорит: «Анна не грубая»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `She` ставят `is`: `She is not rude.`",
                 "uk": "`are` зайве: з `She` ставлять `is`: `She is not rude`."
@@ -2236,10 +2236,10 @@
             {
               "responseId": "en:lesson-01:session-19:i19:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Ліна вирішила, що Олег злиться. Насправді Олег просто зайнятий",
+              "testedDimension": "Соберите фразу — Лина решила, что Олег злится. На самом деле Олег просто занят",
               "feedbackByLocale": {
-                "ru": "`not` лишнее: Олег занят, поэтому `He is busy.`",
-                "uk": "`not` зайве: Олег зайнятий, тому `He is busy`."
+                "ru": "он и правда занят",
+                "uk": "він і справді зайнятий"
               }
             }
           ]

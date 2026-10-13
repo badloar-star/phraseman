@@ -1,0 +1,8 @@
+id	time	result	detail	file
+cards-035	2026-10-12T01:41:26.893Z	stitched	склейка_1800x1290	docs/phraseman-2.0/evidence/parity/cards-035.png
+cards-036	2026-10-12T01:41:28.597Z	failed	склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-036.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=372233 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-036.png
+cards-037	2026-10-12T01:41:30.019Z	failed	склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-037.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=136260 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-037.png
+cards-045	2026-10-12T01:41:31.480Z	stitched	склейка_1800x1290	docs/phraseman-2.0/evidence/parity/cards-045.png
+cards-008	2026-10-12T01:41:32.994Z	stitched	склейка_1800x1290	docs/phraseman-2.0/evidence/parity/cards-008.png
+cards-012	2026-10-12T01:41:34.602Z	stitched	склейка_1800x1290	docs/phraseman-2.0/evidence/parity/cards-012.png
+cards-046	2026-10-12T01:41:36.183Z	failed	склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-046.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=155845 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-046.png

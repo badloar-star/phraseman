@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-einladung-direct-capture.v1",
+  "captureKind": "RAW_AUTHORITATIVE_RESPONSE_BYTES",
+  "status": "HOLD",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "task5": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+    "byteSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29",
+    "sourcePlanId": "de_lex_plan_l01_c07_einladung_v1",
+    "checkpointPacketId": "de_l01_c07_s56",
+    "semanticIdentity": "einladung|invitation to an event",
+    "lemma": "Einladung",
+    "nounPackage": { "article": "die", "singular": "Einladung", "plural": "Einladungen" }
+  },
+  "directResponse": {
+    "canonicalUrl": "https://www.dwds.de/wb/Einladung",
+    "finalUrl": "https://www.dwds.de/wb/Einladung",
+    "httpStatus": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "title": "Einladung – Schreibung, Definition, Bedeutung, Synonyme, Beispiele | DWDS",
+    "headword": "Einladung",
+    "headers": { "path": "http_headers.txt", "sha256": "3bae735b6ba39b3d2ec7802a7d901b3b79f9577e7b20a505660bb5f44e11cddb", "bytes": 265 },
+    "rawBody": { "path": "raw/de_lex_plan_l01_c07_einladung_v1.html", "sha256": "aa7f7fc45057fc8793521e507390a9e163c21886247004b6b53596a047176b28", "bytes": 59278 },
+    "exactSenseSpan": { "sourceAnchor": "d-1-1", "sha256": "741286358d630d39801bd60f96dec3023dbde806be829f410efa6fb2b4b4b06a", "utf8Bytes": 3154 }
+  },
+  "admission": {
+    "semanticAdmission": "NOT_EVALUATED",
+    "holdReason": "DIRECT_RAW_CAPTURE_ONLY_INDEPENDENT_SEMANTIC_REVIEW_REQUIRED"
+  }
+}

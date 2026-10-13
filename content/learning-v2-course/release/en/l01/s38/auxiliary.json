@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-38:intro2:r2": {
-          "ru": "Скрепка выпала. По-русски её нет, по-английски `are` обязательно.",
-          "uk": "Скріпка випала. Українською її немає, англійською `are` обов'язкове."
+          "ru": "После `we` нужно `are`: We are safe.",
+          "uk": "Після `we` потрібне `are`: We are safe."
         },
         "en:lesson-01:session-38:intro2:r3": {
           "ru": "`save` — «спасать», действие. Нужно `safe`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c4b978ac6fb94eefc1e8a2b565ac952384d4c8dde783ddc9b13c95996052461d"
+  "auxiliaryFingerprint": "86facd65229e242d0d7690c8d9b486f802696486c5b5a2b184406fd1d8ec7bc1"
 }

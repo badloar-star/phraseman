@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-03:intro1:r2": {
-          "ru": "Am выпало. Not не заменяет скрепку, он встаёт после неё: I am not.",
-          "uk": "Am випало. Not не замінює скріпку, він стає після неї: I am not."
+          "ru": "После I нужно am: I am not tired.",
+          "uk": "Після I потрібне am: I am not tired."
         },
         "en:lesson-01:session-03:intro1:r3": {
           "ru": "Not убежал в конец. По-английски он стоит сразу после am, ещё до слова о вас.",
@@ -36,11 +36,11 @@
           "uk": "Not знову втік у кінець. Його місце — одразу після am, перед sure."
         },
         "en:lesson-01:session-03:intro3:r3": {
-          "ru": "Скрепку забыли. Без am не бывает и not: сначала I am, потом уже not.",
-          "uk": "Скріпку забули. Без am не буває і not: спершу I am, потім уже not."
+          "ru": "После I нужно am: I am not sure.",
+          "uk": "Після I потрібне am: I am not sure."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "a955894eb4867c69af49729b940d7d1f22d2ae598740a4198688cf514070cda1"
+  "auxiliaryFingerprint": "bcd560ae65fe47d87f12342e22395fdee7626e0a9a64f3fbac0959c7e495e68a"
 }

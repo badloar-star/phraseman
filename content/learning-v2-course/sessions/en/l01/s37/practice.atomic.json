@@ -69,6 +69,15 @@
                 "ru": "`are` — для `you`, `we`, `they`. С `I` не встаёт никогда.",
                 "uk": "`are` — для `you`, `we`, `they`. З `I` не стає ніколи."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i01:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — про себя после дороги",
+              "feedbackByLocale": {
+                "ru": "Про себя говорят `I am tired.`",
+                "uk": "Про себе кажуть `I am tired.`"
+              }
             }
           ]
         },
@@ -96,7 +105,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — все за столом довольны",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: `We are happy.`",
+                "uk": "`is` зайве: `We are happy.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -168,6 +187,15 @@
               "feedbackByLocale": {
                 "ru": "«Хижина». В `hot` губы округлены, в `hut` рот расслаблен и губы не округляются.",
                 "uk": "«Хижка». У `hot` губи округлені, у `hut` рот розслаблений і губи не округлюються."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r1",
+              "correct": true,
+              "testedDimension": "Послушайте — в комнате душно. Какое слово вы услышали?",
+              "feedbackByLocale": {
+                "ru": "В комнате душно: `hot` — «жарко».",
+                "uk": "У кімнаті душно: `hot` — «спекотно"
               }
             }
           ],
@@ -267,6 +295,15 @@
               "feedbackByLocale": {
                 "ru": "`am` бывает только с `I`.",
                 "uk": "`am` буває тільки з `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — про суп в тарелке",
+              "feedbackByLocale": {
+                "ru": "Суп один, поэтому `The soup is hot.`",
+                "uk": "Суп один, тому `The soup is hot.`"
               }
             }
           ]
@@ -375,7 +412,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — после дороги ваши коллеги устали",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: `They are tired.`",
+                "uk": "`is` зайве: `They are tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -424,7 +471,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — коллега напротив весь о",
+          "testedDimension": "Вставьте слово — коллега напротив весь обед молчит и трёт глаза",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-37:i08:r2",
@@ -442,6 +489,15 @@
               "feedbackByLocale": {
                 "ru": "`am` — только про себя.",
                 "uk": "`am` — тільки про себе."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — коллега напротив весь обед молчит и трёт глаза",
+              "feedbackByLocale": {
+                "ru": "Один коллега устал: `He is tired.`",
+                "uk": "Один колега стомився: `He is tired.`"
               }
             }
           ]
@@ -522,7 +578,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы обращаетесь к соседу",
+          "testedDimension": "Вставьте слово — вы обращаетесь к соседу по столу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-37:i10:r2",
@@ -540,6 +596,15 @@
               "feedbackByLocale": {
                 "ru": "`am` не выходит за пределы `I`.",
                 "uk": "`am` не виходить за межі `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы обращаетесь к соседу по столу",
+              "feedbackByLocale": {
+                "ru": "К собеседнику обращаются: `You are cold.`",
+                "uk": "До співрозмовника звертаються: `You are cold.`"
               }
             }
           ]
@@ -591,7 +656,16 @@
               "testedDimension": "Различите звуки — суп горячий. Какое слово подходит?",
               "feedbackByLocale": {
                 "ru": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны.",
-          "uk": "Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік."
+                "uk": "Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i11:r1",
+              "correct": true,
+              "testedDimension": "Различите звуки — суп горячий. Какое слово подходит?",
+              "feedbackByLocale": {
+                "ru": "Суп горячий: `hot` — «горячий».",
+                "uk": "Суп гарячий: `hot` — «гарячий"
               }
             }
           ]
@@ -624,7 +698,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — на улице мороз, вы вдвоём с коллегой",
+              "feedbackByLocale": {
+                "ru": "вас двое",
+                "uk": "вас двоє"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -692,6 +776,15 @@
                 "ru": "Улица не бывает довольной. Про жару — `hot`.",
                 "uk": "Вулиця не буває задоволеною. Про спеку — `hot`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — за окном пекло",
+              "feedbackByLocale": {
+                "ru": "За окном пекло: `hot` — «жарко».",
+                "uk": "За вікном спека: `hot` — «спекотно"
+              }
             }
           ]
         },
@@ -723,7 +816,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — обед закончился, все довольны, и вы тоже",
+              "feedbackByLocale": {
+                "ru": "речь о себе одном",
+                "uk": "мова про себе одного"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -991,6 +1094,15 @@
                 "ru": "`are` — для `you`, `we`, `they`. С `I` не встаёт никогда.",
                 "uk": "`are` — для `you`, `we`, `they`. З `I` не стає ніколи."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i01:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — про себе після дороги",
+              "feedbackByLocale": {
+                "ru": "Про себя говорят `I am tired.`",
+                "uk": "Про себе кажуть `I am tired.`"
+              }
             }
           ]
         },
@@ -1018,7 +1130,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i02:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — все за столом довольны",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: `We are happy.`",
+                "uk": "`is` зайве: `We are happy.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1090,6 +1212,15 @@
               "feedbackByLocale": {
                 "ru": "«Хижина». В `hot` губы округлены, в `hut` рот расслаблен и губы не округляются.",
                 "uk": "«Хижка». У `hot` губи округлені, у `hut` рот розслаблений і губи не округлюються."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i03:r1",
+              "correct": true,
+              "testedDimension": "Послухайте — у кімнаті душно. Яке слово ви почули?",
+              "feedbackByLocale": {
+                "ru": "В комнате душно: `hot` — «жарко».",
+                "uk": "У кімнаті душно: `hot` — «спекотно"
               }
             }
           ],
@@ -1189,6 +1320,15 @@
               "feedbackByLocale": {
                 "ru": "`am` бывает только с `I`.",
                 "uk": "`am` буває тільки з `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — про суп у тарілці",
+              "feedbackByLocale": {
+                "ru": "Суп один, поэтому `The soup is hot.`",
+                "uk": "Суп один, тому `The soup is hot.`"
               }
             }
           ]
@@ -1297,7 +1437,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — после дороги ваши коллеги устали",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: `They are tired.`",
+                "uk": "`is` зайве: `They are tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1346,7 +1496,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — колега навпроти весь обі",
+          "testedDimension": "Вставте слово — колега навпроти весь обід мовчить і тре очі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-37:i08:r2",
@@ -1364,6 +1514,15 @@
               "feedbackByLocale": {
                 "ru": "`am` — только про себя.",
                 "uk": "`am` — тільки про себе."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i08:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — колега навпроти весь обід мовчить і тре очі",
+              "feedbackByLocale": {
+                "ru": "Один коллега устал: `He is tired.`",
+                "uk": "Один колега стомився: `He is tired.`"
               }
             }
           ]
@@ -1444,7 +1603,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — ви звертаєтеся до сусіда",
+          "testedDimension": "Вставте слово — ви звертаєтеся до сусіда за столом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-37:i10:r2",
@@ -1462,6 +1621,15 @@
               "feedbackByLocale": {
                 "ru": "`am` не выходит за пределы `I`.",
                 "uk": "`am` не виходить за межі `I`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви звертаєтеся до сусіда за столом",
+              "feedbackByLocale": {
+                "ru": "К собеседнику обращаются: `You are cold.`",
+                "uk": "До співрозмовника звертаються: `You are cold.`"
               }
             }
           ]
@@ -1515,6 +1683,15 @@
                 "ru": "Это «шляпа». В `hot` губы округлены, в `hat` растянуты в стороны.",
                 "uk": "Це «капелюх». У `hot` губи округлені, у `hat` розтягнуті вбік."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i11:r1",
+              "correct": true,
+              "testedDimension": "Розрізніть звуки — суп гарячий. Яке слово підходить?",
+              "feedbackByLocale": {
+                "ru": "Суп горячий: `hot` — «горячий».",
+                "uk": "Суп гарячий: `hot` — «гарячий"
+              }
             }
           ]
         },
@@ -1546,7 +1723,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — на улице мороз, вы вдвоём с коллегой",
+              "feedbackByLocale": {
+                "ru": "вас двое",
+                "uk": "вас двоє"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1614,6 +1801,15 @@
                 "ru": "Улица не бывает довольной. Про жару — `hot`.",
                 "uk": "Вулиця не буває задоволеною. Про спеку — `hot`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-37:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — за вікном пекло",
+              "feedbackByLocale": {
+                "ru": "За окном пекло: `hot` — «жарко».",
+                "uk": "За вікном спека: `hot` — «спекотно"
+              }
             }
           ]
         },
@@ -1645,7 +1841,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-37:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — обед закончился, все довольны, и вы тоже",
+              "feedbackByLocale": {
+                "ru": "речь о себе одном",
+                "uk": "мова про себе одного"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

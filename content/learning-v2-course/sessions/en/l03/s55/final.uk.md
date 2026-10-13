@@ -53,6 +53,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i01; family: listen_choose -->
 Ціль: `shape`
 Варіанти: `shape` · `ship` · `shade`
+- ship — *Ви обрали `ship`: воно співзвучне, але в записі чути `shape` — «форма».*
+- shade — *Ви обрали `shade`: початок схожий, але в записі чути `shape` — «форма».*
+
 
 **2 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-55:i02; family: scripted_repeat_compare -->
@@ -70,6 +73,8 @@
 <!-- interaction_id: en:lesson-03:session-55:i05; family: sound_contrast -->
 Ціль: `material`
 Варіанти: `material` · `matter`
+- matter — *`Matter` — це «питання, справа» і в ньому два склади. У записі `material` — «матеріал».*
+
 
 **6 · З’єднайте слова та значення для підпису біля дальньої стіни**
 <!-- interaction_id: en:lesson-03:session-55:i06; family: speed_match -->
@@ -80,12 +85,17 @@
 <!-- interaction_id: en:lesson-03:session-55:i07; family: sound_contrast -->
 Ціль: `shape`
 Варіанти: `shape` · `ship`
+- ship — *`Ship` — це корабель. У записі `shape` — «форма»: голосний у ньому тягнеться довше.*
+
 
 **8 · Послухайте та виберіть слово**
 <!-- interaction_id: en:lesson-03:session-55:i08; family: listen_choose -->
 Значення варіантів: `material` — матеріал · `matter` — питання · `mature` — зрілий
 Ціль: `material`
 Варіанти: `material` · `matter` · `mature`
+- matter — *`Matter` коротше; у записі звучить `material` — «матеріал».*
+- mature — *`Mature` схоже початком, але у записі `material` — «матеріал».*
+
 
 **9 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-55:i09; family: scripted_repeat_compare -->
@@ -104,6 +114,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i12; family: context_gap_grammar -->
 Ціль: `This material is ___.`
 Варіанти: `soft` · `striped` · `round`
+- striped — *`Striped` описує візерунок, а в руках у вас м’який матеріал: `soft`.*
+- round — *`Round` описує форму, а тут потрібна м’якість матеріалу: `soft`.*
+
 
 **13 · Складіть підпис біля дальньої стіни**
 <!-- interaction_id: en:lesson-03:session-55:i13; family: phrase_builder -->
@@ -114,6 +127,9 @@
 Значення варіантів: `The shape is square.` — Форма квадратна. · `The shape is round.` — Форма кругла. · `These shapes are square.` — Ці форми квадратні.
 Ціль: `The shape is square.`
 Варіанти: `The shape is square.` · `The shape is round.` · `These shapes are square.`
+- The shape is round. — *У записі `square` — «квадратна», а не `round` — «кругла».*
+- These shapes are square. — *У записі одна форма: `The shape is`, а не кілька форм.*
+
 
 **15 · Послухайте та складіть підпис про кілька візерунків поруч**
 <!-- interaction_id: en:lesson-03:session-55:i15; family: listen_build_dictation -->
@@ -123,6 +139,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i16; family: context_gap_grammar -->
 Ціль: `___ materials are soft.`
 Варіанти: `Those` · `That` · `The`
+- That — *`That` — для одного далекого предмета; зразків кілька, тому `Those`.*
+- The — *`The` не вказує на далекі зразки; тут потрібне `Those` для кількох предметів далеко.*
+
 
 **17 · складіть незалежний підпис біля дальньої стіни**
 <!-- interaction_id: en:lesson-03:session-55:i17; family: phrase_builder -->

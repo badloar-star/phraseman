@@ -13,6 +13,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createRequire } from "node:module";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
@@ -22,8 +23,20 @@ import { CANONICAL_BINDING_SCHEMA_VERSION, progressionJudgeRequired, sessionRead
 import { newWordDeclarationIssues, parseSessionHeader } from "./session_header.mjs";
 import { assertSinglePhraseIntro, assertSinglePhraseSource, feedbackLocaleParityIssues, introPracticeTargetRepeatIssues, practiceTargetRepeatIssues, projectSinglePhraseRelease, scopedFamilyChoreographyIssues } from "./single_phrase_release.mjs";
 import { writeMockupFile } from "./write_mockup_file.mjs";
+import { applyPracticeExplanationsV1, projectIntroResponseAnalysesV1, projectIntroResponseDiagnosticsV1, validatePracticeExplanationsV1 } from "./practice_explanations_v1.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
+function sharedVisibleTextModule(fromDirectory) {
+  let current = fromDirectory;
+  for (;;) {
+    const candidate = path.join(current, "modules/learning-v2/content/learner_visible_text_v1.js");
+    if (fs.existsSync(candidate)) return candidate;
+    const parent = path.dirname(current);
+    if (parent === current) throw new Error("learning_v2_shared_visible_text_module_missing");
+    current = parent;
+  }
+}
+const { projectLearnerVisiblePromptV1 } = createRequire(import.meta.url)(sharedVisibleTextModule(HERE));
 const ROOT = path.resolve(HERE, "..");
 const LOG = (...a) => console.log("[BUILD]", ...a);
 const WARN = (...a) => console.warn("[BUILD][WARN]", ...a);
@@ -37,6 +50,9 @@ const OUT_ARG = opt("out", "release");
 const OUT = path.resolve(ROOT, OUT_ARG);
 const MIGRATE_COMPOSITE_SOURCE = args.includes("--migration-composite-source");
 const CHECK_SOURCE_RELEASE = args.includes("--check-source-release");
+// A candidate projection is only a local preview. It must never mutate
+// editable source status, even when it notices a stale status marker.
+const CANDIDATE_PREVIEW = args.includes("--candidate-preview");
 
 function actorClarityGate(scope) {
   const audit = spawnSync(process.execPath, [path.join(HERE, "audit_actor_clarity.mjs"), "--scope", scope], {
@@ -55,6 +71,28 @@ function actorClarityGate(scope) {
 const read = (p) => fs.readFileSync(p, "utf8");
 const exists = (p) => fs.existsSync(p);
 const sha = (v) => crypto.createHash("sha256").update(typeof v === "string" ? v : JSON.stringify(v)).digest("hex");
+
+function resolvedDestinationPath(target) {
+  let existingAncestor = path.resolve(target);
+  const unresolvedTail = [];
+  while (!exists(existingAncestor)) {
+    const parent = path.dirname(existingAncestor);
+    if (parent === existingAncestor) throw new Error(`cannot resolve output destination: ${target}`);
+    unresolvedTail.unshift(path.basename(existingAncestor));
+    existingAncestor = parent;
+  }
+  const realAncestor = fs.realpathSync.native
+    ? fs.realpathSync.native(existingAncestor)
+    : fs.realpathSync(existingAncestor);
+  return path.resolve(realAncestor, ...unresolvedTail);
+}
+
+function sameFilesystemDestination(left, right) {
+  const resolvedLeft = resolvedDestinationPath(left);
+  const resolvedRight = resolvedDestinationPath(right);
+  if (process.platform === "win32") return resolvedLeft.toLowerCase() === resolvedRight.toLowerCase();
+  return resolvedLeft === resolvedRight;
+}
 
 // ---------- разбор Markdown ----------
 
@@ -158,17 +196,11 @@ export function introFeedbackContractIssues(perLocale) {
       issues.push(`page=${page}:reason=option_order:index=${orderMismatch}:ru=${JSON.stringify(ruOptions[orderMismatch]?.text)}:uk=${JSON.stringify(ukOptions[orderMismatch]?.text)}`);
       continue;
     }
-    const correctIndex = correctIndexes.ru[0];
     for (const locale of requiredLocales) {
       const options = perLocale[locale].intro[pageIndex]?.options ?? [];
-      const wrong = options.filter((_, index) => index !== correctIndex);
-      if (wrong.length !== options.length - 1) {
-        issues.push(`page=${page}:reason=wrong_feedback_count:locale=${locale}:expected=${options.length - 1}:actual=${wrong.length}`);
-        continue;
-      }
       for (const [index, option] of options.entries()) {
-        if (index !== correctIndex && !String(option.feedback ?? "").trim()) {
-          issues.push(`page=${page}:reason=wrong_feedback_missing:locale=${locale}:index=${index}`);
+        if (!String(option.feedback ?? "").trim()) {
+          issues.push(`page=${page}:reason=feedback_missing:locale=${locale}:index=${index}`);
         }
       }
     }
@@ -262,6 +294,13 @@ function familyFromBody(body) {
   return null;
 }
 
+function immediateTaskAnnotation(body) {
+  const match = /^\s*<!--\s*([\s\S]*?)\s*-->/u.exec(body);
+  if (!match) return new Map();
+  return new Map([...match[1].matchAll(/([a-z_]+)\s*:\s*([^;]+?)(?=\s*;|\s*$)/gu)]
+    .map(([, key, value]) => [key, value.trim()]));
+}
+
 /** Задания практики: номер, тип из «## Для сборщика», содержимое. */
 export function parsePractice(md) {
   const modesLine = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(md)?.[1] ?? "";
@@ -280,13 +319,19 @@ export function parsePractice(md) {
     // зачем: эталоны 1–3 написаны руками до появления раздела «Для сборщика».
     // Механику выводим из названия задания — оно у нас всегда называет действие.
     const bodyForFamily = chunk.slice(head[0].length);
-    const family = modes.get(ordinal) ?? familyFromTitle(head[2]) ?? familyFromBody(bodyForFamily);
+    const annotation = immediateTaskAnnotation(bodyForFamily);
+    const family = annotation.get("family") ?? modes.get(ordinal) ?? familyFromTitle(head[2]) ?? familyFromBody(bodyForFamily);
     if (!family) { WARN(`задание ${ordinal}: механика не определена ни строкой modes, ни названием «${head[2].trim()}»`); continue; }
     const bodyText = chunk.slice(head[0].length);
     // An ID annotation belongs to the task only when it is immediately under
     // that task heading. A later annotation is the next task's metadata and
     // must never be attached backwards.
-    const interactionId = /^\s*<!--\s*interaction_id:\s*([^;]+);/u.exec(bodyText)?.[1]?.trim() ?? "";
+    const interactionId = annotation.get("interaction_id") ?? "";
+    const declaredPurpose = annotation.get("purpose");
+    if (declaredPurpose) {
+      const allowedPurposes = new Set(["supported_practice", "guided_practice", "retrieval_practice", "independent_check"]);
+      if (!allowedPurposes.has(declaredPurpose)) throw new Error(`Unsupported authored purpose: ${declaredPurpose}`);
+    }
     const title = head[2].trim();
     const parts = parseTaskParts(bodyText);
     let options = parseOptions(bodyText);
@@ -294,7 +339,7 @@ export function parsePractice(md) {
       const contrast = /—\s*([^/—]+?)\s*\/\s*([^/—]+)\s*$/u.exec(title);
       if (contrast) options = [contrast[1], contrast[2]].map((text) => ({ text: text.trim(), correct: false, feedback: "" }));
     }
-    tasks.push({ ordinal, title, family, interactionId, body: bodyText, options, ...parts });
+    tasks.push({ ordinal, title, family, interactionId, purpose: declaredPurpose, body: bodyText, options, ...parts });
   }
   return tasks;
 }
@@ -338,6 +383,8 @@ function parseTaskParts(body) {
   if (tiles) parts.tokens = [...tiles[1].matchAll(/`([^`]+)`/g)].map((m) => m[1]);
   const audio = /🔊\s*\*([^*]+)\*/.exec(body);
   if (audio) parts.audio = audio[1].trim();
+  const completionFeedback = /^\*((?:Верно|Правильно):\s*[^*]+)\*\s*$/mu.exec(body);
+  if (completionFeedback) parts.completionFeedback = completionFeedback[1].trim();
   // голос: жирная фраза после 🎙 может стоять на следующей строке и содержать
   // несколько предложений подряд (финал сцены) — берём весь жирный блок
   // окно 600: описание финала сцены бывает 250+ знаков до жирной фразы
@@ -381,34 +428,30 @@ const normalizeRuntimePurpose = (interaction) => interaction?.purpose === "indep
   ? { ...interaction, purpose: "independent_check" }
   : interaction;
 
-function sanitizeLearnerPrompt(value) {
-  return String(value ?? "")
-    .trim()
-    .replace(/\s*(?:[,;]|—|-)\s*(?:среди|серед)\s+(?:плиток|слів)(?=\s|$)[^.!?]*$/iu, "")
-    .replace(/\s*(?:[,;]|—|-)\s*(?:(?:одна|две|дві)\s+)?(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
-    .replace(/\s*(?:[,;]|—|-)\s*(?:с|із|зі)\s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|скрепк|скріпк|слов|форм)[^.!?]*$/iu, "")
-    .replace(/\s*(?:[,;]|—|-)\s*(?:есть|є)\s+[^.!?]*(?:лишн|чуж|зайв)[^.!?]*(?:плитк|слов|вопрос|питан)[^.!?]*$/iu, "")
-    .replace(/\s*\([^)]*(?:лишн|чуж|зайв)[^)]*(?:плитк|скрепк|скріпк|слов|форм)[^)]*\)\s*$/iu, "")
-    .replace(/\s*(?:[,;]|—|-)\s*(?:among the tiles|with (?:an?|one|two) extra tiles?|there (?:is|are) extra tiles?)\b[^.!?]*$/iu, "")
-    .replace(/^(?:проверьте\s+себя|проверь\s+себя|перевірте\s+себе|перевір\s+себе|check\s+yourself|comprueba|compruébalo|verifique|confira|sprawdź\s+się)\s*[:—-]?\s*/iu, "")
-    .replace(/(^|[\s(])(соберите|собери|складіть|склади)\s+без\s+(?:подсказк[иу]|підказк[иу]|опоры|опори)(?=\s|$)/giu, "$1$2 фразу")
-    .replace(/\s+(?:без\s+(?:подсказк[иу]|підказк[иу]|опоры|опори)|самостоятельно|самостійно|without\s+(?:a\s+)?hints?|on\s+your\s+own|sin\s+(?:pistas?|ayuda)|sem\s+(?:dicas?|ajuda)|bez\s+podpowiedzi|samodzielnie)(?=\s*(?:[—,:;-]|$))/giu, "")
-    .replace(/^[а-яіїє]/u, (letter) => letter.toLocaleUpperCase())
-    .replace(/[,:;]\s*$/u, "")
-    .trim();
+function learnerPromptForValues({ title, family, correctText, isWordCard }) {
+  return projectLearnerVisiblePromptV1({ title, family, correctText, isWordCard });
 }
 
 function learnerPromptForTask(task) {
-  const correctText = (task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "").toLowerCase().replace(/[.?!]$/, "");
-  let prompt = task.title;
-  const tail = /\s+—\s+(.+)$/.exec(prompt);
-  if (tail && correctText && tail[1].toLowerCase().replace(/[.?!]$/, "") === correctText && task.family !== "word_card") {
-    prompt = prompt.slice(0, tail.index).trim();
-  }
-  if (task.family === "speed_match") {
-    prompt = prompt.replace(/\s*\(Speed Match,\s*[4-7]\s+(?:пар|пары|пари)\)\s*$/i, "").trim();
-  }
-  return sanitizeLearnerPrompt(prompt);
+  return learnerPromptForValues({
+    title: task.title,
+    family: task.family,
+    correctText: task.options.find((o) => o.correct)?.text ?? task.target ?? task.card?.word ?? "",
+    isWordCard: Boolean(task.card),
+  });
+}
+
+function localizedLearnerPromptForTask(task, perLocale) {
+  const correctOptionIndex = task.options.findIndex((option) => option.correct);
+  return localized(Object.fromEntries(LOCALES.map((locale) => {
+    const localeTask = perLocale[locale] ?? {};
+    return [locale, learnerPromptForValues({
+      title: localeTask.title ?? task.title,
+      family: task.family,
+      correctText: localeTask.options?.[correctOptionIndex]?.text ?? task.options[correctOptionIndex]?.text ?? task.target ?? task.card?.word ?? "",
+      isWordCard: Boolean(task.card),
+    })];
+  })));
 }
 
 function orderedTokensForTask(task) {
@@ -455,11 +498,11 @@ export function slotFeedbackForTask(task, perLocale, sessionId, ordered) {
       .map((match) => ({ token: match[1], feedback: match[2].trim() }));
     return [locale, rows];
   }));
-  const id = `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
+  const id = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
   return distractors.map((token, index) => ({
     responseId: `${id}:tile:d${index + 1}`,
     correct: false,
-    testedDimension: task.title.slice(0, 40),
+    testedDimension: task.title,
     feedbackByLocale: localized(Object.fromEntries(LOCALES.map((locale) => {
       const annotation = annotationQueues[locale].shift();
       return [locale, annotation && normalize(annotation.token) === normalize(token) ? annotation.feedback : ""];
@@ -496,7 +539,7 @@ function declaredTilesCoverOrdered(declaredTokens, orderedTokens) {
   });
 }
 
-function buildInteraction(task, perLocale, sessionId, index, total) {
+export function buildInteraction(task, perLocale, sessionId, index, total) {
   // Авторский ID обязателен для исторически расщеплённых реплик: порядковый
   // номер задания меняется при восстановлении, но ID ответа и аудио — нет.
   const id = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
@@ -505,12 +548,17 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
   // «вариантом» — самим словом; макет и приложение узнают её по cardByLocale.
   const family = task.family === "word_card" ? "listen_choose" : task.family;
   const loc = (field) => localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.[field] ?? ""])));
+  // One projection owns every learner-visible copy of an authored task title.
+  // This prevents a fallback scene from disclosing an answer that prompt and
+  // accessibilityLabel have correctly removed.
+  const learnerPrompt = learnerPromptForTask(task);
+  const localizedLearnerPrompt = localizedLearnerPromptForTask(task, perLocale);
 
   // IDs use positions in the full option list, including the correct answer.
   const feedback = task.options.map((o, i) => ({
     responseId: `${id}:r${i + 1}`,
     correct: Boolean(o.correct),
-    testedDimension: task.title.slice(0, 40),
+    testedDimension: task.title,
     feedbackByLocale: localized(Object.fromEntries(LOCALES.map((l) => {
       const alt = perLocale[l]?.options?.[i];
       return [l, alt?.feedback ?? o.feedback];
@@ -528,6 +576,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       orderedTokens: ordered,
       authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
       slotFeedback: slotFeedbackForTask(task, perLocale, sessionId, ordered),
+      completionFeedbackByLocale: loc("completionFeedback"),
     };
   } else if (family === "listen_choose") {
     const cardByLocale = task.card
@@ -566,14 +615,15 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
       orderedTokens: ordered,
       authoredDistractorTokens: authoredDistractorsForTask(task, ordered),
       slotFeedback: slotFeedbackForTask(task, perLocale, sessionId, ordered),
+      completionFeedbackByLocale: loc("completionFeedback"),
     };
   } else if (family === "context_gap_grammar") {
     modePayload = {
-      family, localizedScene: loc(task.visibleGuidance ? "visibleGuidance" : task.condition ? "condition" : "title"),
+      family, localizedScene: task.visibleGuidance ? loc("visibleGuidance") : task.condition ? loc("condition") : localizedLearnerPrompt,
       // зачем: строка пропуска в Markdown несёт и варианты («I ___ wrong. →
       // **am** · not · is») — в payload должна попасть только сама фраза
       gappedTargetPhrase: (/^[^\r\n]*___[^\r\n]*/m.exec(task.body)?.[0] ?? "").split("→")[0].replace(/[*`]/g, "").trim(),
-      gapOptions: responseOptions, testedDimension: task.title.slice(0, 40), choiceFeedback: feedback,
+      gapOptions: responseOptions, testedDimension: task.title, choiceFeedback: feedback,
     };
   } else if (family === "sound_contrast") {
     // зачем: у sound_contrast два слова стоят в строке «*right · wrong* → **wrong**»,
@@ -583,7 +633,7 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
     modePayload = { family, contrastA: a, contrastB: b, ipaA: "", ipaB: "",
       audioA: a ? { audioTargetId: `${id}:audioA`, transcript: a } : null,
       audioB: b ? { audioTargetId: `${id}:audioB`, transcript: b } : null,
-      testedPhoneticContrast: task.title.slice(0, 40), choiceFeedback: feedback };
+      testedPhoneticContrast: task.title, choiceFeedback: feedback };
   } else if (family === "speed_match") {
     const pairs = (task.pairs ?? []).map((p, i) => ({ pairId: `${id}:p${i + 1}`, target: p.target, meaningByLocale: localized(Object.fromEntries(LOCALES.map((l) => [l, perLocale[l]?.pairs?.[i]?.meaning ?? p.meaning]))) }));
     modePayload = {
@@ -611,10 +661,8 @@ function buildInteraction(task, perLocale, sessionId, index, total) {
   // зачем (владелец, 03.09: «почему задания уже сами дают ответ?»): автор
   // пишет заголовок «Послушайте и выберите — welcome», а welcome и есть
   // правильный ответ. В заголовке для ученика хвост « — <ответ>» срезаем.
-  const learnerPrompt = learnerPromptForTask(task);
-
   return {
-    interactionId: id, ordinal: task.ordinal + 3, purpose: PURPOSE_BY_INDEX(index, total),
+    interactionId: id, ordinal: task.ordinal + 3, purpose: task.purpose ?? (family === "scripted_repeat_compare" ? "guided_practice" : PURPOSE_BY_INDEX(index, total)),
     family, inputMode: INPUT_MODE[task.family] ?? "single_choice",
     prompt: learnerPrompt, responseOptions,
     mediaIds: [],
@@ -639,6 +687,7 @@ export function firstMarkdownAtomicLearnerMismatch(task, interaction, locale, an
     .replace(/\s+/gu, " ")
     .trim();
   const choiceFamilies = new Set(["listen_choose", "context_gap_grammar", "sound_contrast"]);
+  if (task.purpose && task.purpose !== interaction?.purpose) return "purpose";
   const requiresChoiceBinding = choiceFamilies.has(task.family) && !task.card && !payload.isWordCard;
   const markdownOptions = (task.options ?? []).map((item, index) => choiceFamilies.has(task.family)
     ? { responseId: `${interaction?.interactionId}:r${index + 1}`, text: visibleText(item.text) }
@@ -704,6 +753,24 @@ export function firstMarkdownAtomicLearnerMismatch(task, interaction, locale, an
       if (JSON.stringify(expectedMeaningChoices) !== JSON.stringify(atomicMeaningChoices)) {
         return "modePayload.localizedMeaningChoices";
       }
+    } else if (task.card) {
+      const expectedMeaningChoice = [{
+        responseId: `${interaction.interactionId}:r1`,
+        targetText: visibleText(task.card?.word),
+        meaning: visibleFeedbackText(task.card?.definition),
+      }];
+      const atomicMeaningChoices = (payload.localizedMeaningChoices ?? []).map((choice) => ({
+        responseId: choice.responseId,
+        targetText: visibleText(choice.targetText),
+        meaning: visibleFeedbackText(choice.meaningByLocale?.[locale]),
+      }));
+      if (JSON.stringify(expectedMeaningChoice) !== JSON.stringify(atomicMeaningChoices)) {
+        return "modePayload.localizedMeaningChoices";
+      }
+      if (visibleText(payload.wordCard?.word) !== visibleText(task.card?.word)) return "modePayload.wordCard.word";
+      if (visibleFeedbackText(payload.wordCard?.definitionByLocale?.[locale]) !== visibleFeedbackText(task.card?.definition)) {
+        return "modePayload.wordCard.definitionByLocale";
+      }
     }
   }
   if (task.family === "scripted_repeat_compare") {
@@ -725,6 +792,7 @@ export function firstMarkdownAtomicLearnerMismatch(task, interaction, locale, an
       text: visibleText(option.text),
     }));
     if (JSON.stringify(expectedGapOptions) !== JSON.stringify(actualGapOptions)) return "modePayload.gapOptions";
+    if (task.title && visibleText(payload.testedDimension) !== visibleText(task.title)) return "modePayload.testedDimension";
   }
   if (task.family === "sound_contrast") {
     const [contrastA = "", contrastB = ""] = (task.options ?? []).map((option) => visibleText(option.text));
@@ -746,21 +814,63 @@ export function firstMarkdownAtomicLearnerMismatch(task, interaction, locale, an
   // Only gap tasks project an explicit learner-facing scene. For a pair grid,
   // its pair line is content, not a scene; treating it as one creates a false
   // parity failure and hides a correctly verified card.
-  const expectedScene = task.family === "context_gap_grammar" ? (task.visibleGuidance ?? task.condition) : null;
+  const expectedScene = task.family === "context_gap_grammar"
+    ? (task.visibleGuidance ?? task.condition ?? learnerPromptForTask(task))
+    : null;
   if (expectedScene && visibleText(expectedScene) !== visibleText(payload.localizedScene?.[locale])) {
     return "modePayload.localizedScene";
   }
   if (new Set(["listen_choose", "context_gap_grammar", "sound_contrast"]).has(task.family) && !task.card) {
     const expectedFeedback = (task.options ?? []).flatMap((option, index) => !visibleFeedbackText(option.feedback) ? [] : [{
       responseId: `${interaction.interactionId}:r${index + 1}`,
+      correct: Boolean(option.correct),
+      testedDimension: visibleText(task.title),
       text: visibleFeedbackText(option.feedback),
     }]);
     const actualFeedback = Array.isArray(payload.choiceFeedback) ? payload.choiceFeedback.map((entry) => ({
       responseId: entry?.responseId,
+      correct: Boolean(entry?.correct),
+      testedDimension: visibleText(entry?.testedDimension),
       text: visibleFeedbackText(entry?.feedbackByLocale?.[locale]),
     })) : [];
-    const actualByResponseId = new Map(actualFeedback.map((entry) => [entry.responseId, entry.text]));
-    if (expectedFeedback.some((entry) => actualByResponseId.get(entry.responseId) !== entry.text)) return "modePayload.choiceFeedback";
+    if (JSON.stringify(expectedFeedback) !== JSON.stringify(actualFeedback)) return "modePayload.choiceFeedback";
+  }
+  if (new Set(["phrase_builder", "listen_build_dictation"]).has(task.family)) {
+    const ordered = orderedTokensForTask(task);
+    const distractors = authoredDistractorsForTask(task, ordered);
+    const normalizeToken = (value) => String(value ?? "").trim().replace(/\s+/gu, " ").toLocaleLowerCase("en");
+    const annotations = [...String(task.body ?? "").matchAll(/\*?\(?\s*плитка\s+`([^`]+)`\s+(?:лишняя|зайва)\s*:\s*([^*\r\n)]+)\s*\)?\*?/giu)]
+      .map((match) => ({ token: match[1], feedback: match[2].trim() }));
+    // Older atomic packets sometimes repeated the tile surface at the start
+    // of its own explanation (`busy — …`). It adds no learner meaning and is
+    // equivalent to the source annotation that already names the tile.
+    const normalizeSlotFeedback = (text, token) => visibleFeedbackText(text)
+      .replace(new RegExp(`^${String(token).replace(/[.*+?^${}()|[\]\\]/gu, "\\$&")}\\s*[—-]\\s*`, "u"), "")
+      .replace(/[.]+$/u, "")
+      .replace(/^./u, (letter) => letter.toLocaleLowerCase())
+      .trim();
+    const expectedSlotFeedback = distractors.flatMap((token, index) => {
+      const annotation = annotations.shift();
+      const text = annotation && normalizeToken(annotation.token) === normalizeToken(token)
+        ? normalizeSlotFeedback(annotation.feedback, token)
+        : "";
+      return text ? [{
+        responseId: `${interaction.interactionId}:tile:d${index + 1}`,
+        correct: false,
+        testedDimension: visibleText(task.title),
+        text,
+      }] : [];
+    });
+    const actualSlotFeedback = Array.isArray(payload.slotFeedback) ? payload.slotFeedback.flatMap((entry, index) => {
+      const text = normalizeSlotFeedback(entry?.feedbackByLocale?.[locale], distractors[index] ?? "");
+      return text ? [{
+        responseId: entry?.responseId,
+        correct: Boolean(entry?.correct),
+        testedDimension: visibleText(entry?.testedDimension),
+        text,
+      }] : [];
+    }) : [];
+    if (JSON.stringify(expectedSlotFeedback) !== JSON.stringify(actualSlotFeedback)) return "modePayload.slotFeedback";
   }
   const markdownWord = task.card?.word ?? (payload.wordCard ? task.target : "");
   if (visibleText(markdownWord) !== visibleText(payload.wordCard?.word)) return "modePayload.wordCard.word";
@@ -784,7 +894,16 @@ export function atomicMarkdownParityIssues({ sessionIdentity, sessionId, atomicS
       ? 0
       : tasks.findIndex((task, index) => {
         const expectedInteractionId = task.interactionId || `${sessionId}:i${String(task.ordinal).padStart(2, "0")}`;
-        return task.ordinal !== index + 1 || task.title !== interactions[index]?.prompt ||
+        // The interaction builder deliberately removes an answer-bearing title
+        // tail before it is shown to the learner. Compare the same projection
+        // here, then retain strict equality for every other divergence.
+        const expectedLearnerPrompt = learnerPromptForValues({
+          title: task.title,
+          family: task.family,
+          correctText: task.options.find((option) => option.correct)?.text ?? task.target ?? task.card?.word ?? interactions[index]?.modePayload?.wordCard?.word ?? "",
+          isWordCard: Boolean(task.card) || Boolean(interactions[index]?.modePayload?.isWordCard),
+        });
+        return task.ordinal !== index + 1 || expectedLearnerPrompt !== interactions[index]?.prompt ||
           expectedInteractionId !== interactions[index]?.interactionId || runtimeFamily(task.family) !== interactions[index]?.family;
       });
     if (mismatch >= 0) {
@@ -812,25 +931,31 @@ const RELEASE_SEMANTIC_PATHS_BY_FAMILY = Object.freeze({
     "modePayload.slowReferenceAudio.transcript",
     "modePayload.localizedMeaningChoices",
     "modePayload.wordCard.word",
+    "modePayload.choiceFeedback",
   ],
   phrase_builder: [
     "modePayload.targetPhrase",
     "modePayload.orderedTokens",
     "modePayload.authoredDistractorTokens",
+    "modePayload.slotFeedback",
   ],
   scripted_repeat_compare: [
     "modePayload.targetPhrase",
     "modePayload.referenceAudio.transcript",
   ],
   context_gap_grammar: [
+    "modePayload.localizedScene",
     "modePayload.gappedTargetPhrase",
     "modePayload.gapOptions",
+    "modePayload.testedDimension",
+    "modePayload.choiceFeedback",
   ],
   listen_build_dictation: [
     "modePayload.hiddenTargetPhrase",
     "modePayload.referenceAudio.transcript",
     "modePayload.orderedTokens",
     "modePayload.authoredDistractorTokens",
+    "modePayload.slotFeedback",
   ],
   speed_match: ["modePayload.pairGrid"],
   sound_contrast: [
@@ -838,6 +963,8 @@ const RELEASE_SEMANTIC_PATHS_BY_FAMILY = Object.freeze({
     "modePayload.contrastB",
     "modePayload.audioA.transcript",
     "modePayload.audioB.transcript",
+    "modePayload.testedPhoneticContrast",
+    "modePayload.choiceFeedback",
   ],
 });
 
@@ -871,9 +998,13 @@ export function sourceReleaseSemanticParityIssues({
   sessionIdentity,
   sessionId,
   atomicSource,
+  practiceExplanationsSidecar = null,
+  practiceExplanationsIssues = [],
+  practiceExplanationsValidated = false,
   sourceIntroByLocale,
   sourceLearningOutcomeByLocale = {},
   releaseIntro,
+  releaseAuxiliary,
   releaseLearnersByLocale,
   releaseAnswers,
   releaseIntroCorrectChoiceIndexes = null,
@@ -885,6 +1016,22 @@ export function sourceReleaseSemanticParityIssues({
     issues.push(issue("atomic_source_contract"));
     return issues;
   }
+  // `analysisV1` is authored in the separately validated explanations
+  // sidecar, then deterministically materialized into the learner payload.
+  // Compare that materialized source to the candidate: ignoring it would let
+  // an altered learner explanation pass; comparing raw atomic JSON would
+  // falsely reject the compiler's required projection.
+  if (practiceExplanationsSidecar && !practiceExplanationsValidated) {
+    issues.push(issue("practice_explanations_unvalidated"));
+    return issues;
+  }
+  if (practiceExplanationsIssues.length) {
+    issues.push(...practiceExplanationsIssues.map((detail) => issue(`practice_explanations_invalid:${detail}`)));
+    return issues;
+  }
+  const semanticAtomicSource = practiceExplanationsSidecar
+    ? applyPracticeExplanationsV1({ atomicSource, sidecar: practiceExplanationsSidecar })
+    : atomicSource;
   if (releaseIntro?.courseSessionId !== sessionId) {
     issues.push(issue(`courseSessionId:source=${JSON.stringify(sessionId)}:release=${JSON.stringify(releaseIntro?.courseSessionId)}`));
   }
@@ -965,8 +1112,33 @@ export function sourceReleaseSemanticParityIssues({
     }
   }
 
+  if (Array.isArray(practiceExplanationsSidecar?.introResponses)) {
+    const expectedAnalyses = projectIntroResponseAnalysesV1(practiceExplanationsSidecar);
+    const expectedDiagnostics = projectIntroResponseDiagnosticsV1(practiceExplanationsSidecar);
+    const auxiliaryEntries = Array.isArray(releaseAuxiliary?.entries) ? releaseAuxiliary.entries : [];
+    if (releaseAuxiliary?.courseSessionId !== sessionId) {
+      issues.push(issue(`auxiliary:courseSessionId:source=${JSON.stringify(sessionId)}:release=${JSON.stringify(releaseAuxiliary?.courseSessionId)}`));
+    }
+    const auxiliaryByInteractionId = new Map(auxiliaryEntries.map((entry) => [entry?.interactionId, entry]));
+    for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+      const interactionId = `${sessionId}:intro${pageIndex + 1}:q`;
+      const expectedById = Object.fromEntries(Object.entries(expectedAnalyses)
+        .filter(([responseId]) => responseId.startsWith(`${sessionId}:intro${pageIndex + 1}:`)));
+      const actualById = auxiliaryByInteractionId.get(interactionId)?.responseAnalysisById;
+      if (!exactJsonEqual(expectedById, actualById)) {
+        issues.push(issue(`auxiliary:${interactionId}:responseAnalysisById:source=${JSON.stringify(expectedById)}:release=${JSON.stringify(actualById)}`));
+      }
+      const expectedDiagnosticsById = Object.fromEntries(Object.entries(expectedDiagnostics)
+        .filter(([responseId]) => responseId.startsWith(`${sessionId}:intro${pageIndex + 1}:`)));
+      const actualDiagnosticsById = auxiliaryByInteractionId.get(interactionId)?.responseDiagnosticsById;
+      if (!exactJsonEqual(expectedDiagnosticsById, actualDiagnosticsById)) {
+        issues.push(issue(`auxiliary:${interactionId}:responseDiagnosticsById:source=${JSON.stringify(expectedDiagnosticsById)}:release=${JSON.stringify(actualDiagnosticsById)}`));
+      }
+    }
+  }
+
   for (const locale of locales) {
-    const sourceInteractions = atomicSource.interactionsByLocale?.[locale];
+    const sourceInteractions = semanticAtomicSource.interactionsByLocale?.[locale];
     if (!Array.isArray(sourceInteractions)) {
       issues.push(issue(`practice:${locale}:source_interactions_missing`));
       continue;
@@ -1033,11 +1205,11 @@ export function sourceReleaseSemanticParityIssues({
 
   let sourceAnswers = [];
   try {
-    const firstLocale = locales.find((locale) => Array.isArray(atomicSource.interactionsByLocale?.[locale]));
+    const firstLocale = locales.find((locale) => Array.isArray(semanticAtomicSource.interactionsByLocale?.[locale]));
     sourceAnswers = firstLocale
       ? projectSinglePhraseRelease({
-        interactions: atomicSource.interactionsByLocale[firstLocale],
-        answers: atomicSource.answers ?? [],
+        interactions: semanticAtomicSource.interactionsByLocale[firstLocale],
+        answers: semanticAtomicSource.answers ?? [],
         locale: firstLocale,
       }).answers
       : [];
@@ -1129,17 +1301,35 @@ export function factoryManifestCorrectChoiceIndexes({ root = ROOT, sessionIdenti
   }
 }
 
-function sourceReleaseSessionIssues(root, sessionIdentity, locales) {
+function sourceReleaseSessionIssues(root, sessionIdentity, locales, releaseRoot = path.join(root, "release")) {
   const match = /^([a-z]{2})\/l(\d{2})\/s(\d{2})$/u.exec(sessionIdentity);
   if (!match) return [`source_release_parity:${sessionIdentity}:invalid_session_identity`];
   const [, language, lesson, session] = match;
   const sessionId = `${language}:lesson-${lesson}:session-${session}`;
   const sourceDir = path.join(root, "sessions", sessionIdentity);
-  const releaseDir = path.join(root, "release", language, `l${lesson}`, `s${session}`);
+  const releaseDir = path.join(releaseRoot, language, `l${lesson}`, `s${session}`);
   const issues = [];
   const atomicSource = readJsonForParity(path.join(sourceDir, "practice.atomic.json"), sessionIdentity, issues);
+  let practiceExplanationsSidecar = null;
+  let practiceExplanationsIssues = [];
+  const explanationsPath = path.join(sourceDir, "practice.explanations.v1.json");
+  if (atomicSource && exists(explanationsPath)) {
+    try {
+      practiceExplanationsSidecar = JSON.parse(read(explanationsPath));
+      practiceExplanationsIssues = validatePracticeExplanationsV1({
+        sidecar: practiceExplanationsSidecar,
+        atomicSource,
+        sessionDir: sourceDir,
+      });
+    } catch (error) {
+      practiceExplanationsIssues = [`unreadable:${error instanceof Error ? error.message : String(error)}`];
+    }
+  }
   const releaseIntro = readJsonForParity(path.join(releaseDir, "intro.json"), sessionIdentity, issues);
   const releaseAnswers = readJsonForParity(path.join(releaseDir, "answers.json"), sessionIdentity, issues);
+  const releaseAuxiliary = Array.isArray(practiceExplanationsSidecar?.introResponses)
+    ? readJsonForParity(path.join(releaseDir, "auxiliary.json"), sessionIdentity, issues)
+    : null;
   const manifestAuthority = factoryManifestCorrectChoiceIndexes({ root, sessionIdentity });
   issues.push(...manifestAuthority.issues);
   const sourceIntroByLocale = {};
@@ -1169,6 +1359,9 @@ function sourceReleaseSessionIssues(root, sessionIdentity, locales) {
       sessionIdentity,
       sessionId,
       atomicSource,
+      practiceExplanationsSidecar,
+      practiceExplanationsIssues,
+      practiceExplanationsValidated: practiceExplanationsSidecar !== null && practiceExplanationsIssues.length === 0,
       tasksByLocale,
     }));
   }
@@ -1177,9 +1370,13 @@ function sourceReleaseSessionIssues(root, sessionIdentity, locales) {
       sessionIdentity,
       sessionId,
       atomicSource,
+      practiceExplanationsSidecar,
+      practiceExplanationsIssues,
+      practiceExplanationsValidated: practiceExplanationsSidecar !== null && practiceExplanationsIssues.length === 0,
       sourceIntroByLocale,
       sourceLearningOutcomeByLocale,
       releaseIntro,
+      releaseAuxiliary,
       releaseLearnersByLocale,
       releaseAnswers,
       releaseIntroCorrectChoiceIndexes: manifestAuthority.indexes,
@@ -1205,12 +1402,12 @@ function discoverSourceReleaseSessions(root) {
   return result.sort();
 }
 
-export function sourceReleaseScopeIssues({ root = ROOT, scope, locales = ["ru", "uk"] }) {
+export function sourceReleaseScopeIssues({ root = ROOT, scope, locales = ["ru", "uk"], releaseRoot = path.join(root, "release") }) {
   const sessions = scope === "all"
     ? discoverSourceReleaseSessions(root)
     : String(scope ?? "").split(",").map((value) => value.trim()).filter(Boolean);
   if (!sessions.length) return ["source_release_parity:scope_empty"];
-  return sessions.flatMap((sessionIdentity) => sourceReleaseSessionIssues(root, sessionIdentity, locales));
+  return sessions.flatMap((sessionIdentity) => sourceReleaseSessionIssues(root, sessionIdentity, locales, releaseRoot));
 }
 
 // ---------- main ----------
@@ -1268,19 +1465,27 @@ async function main() {
 
   // A private --out is a review artifact. Writing the canonical release is a
   // publication step and must fail before touching existing files when the
-  // current owner-scoped session has incomplete or stale independent review.
-  const writesDefaultRelease = path.relative(DEFAULT_OUT, OUT) === "";
+  // current session has incomplete or stale independent review.
+  // Resolve filesystem identity, not only spelling: a junction/symlink alias
+  // of release is still the canonical publication destination. Walking to the
+  // nearest existing ancestor also closes aliases whose final tail is new.
+  const writesDefaultRelease = sameFilesystemDestination(DEFAULT_OUT, OUT);
+  if (CANDIDATE_PREVIEW && writesDefaultRelease) {
+    WARN("candidate_preview_requires_private_output");
+    process.exit(2);
+  }
   if (MIGRATE_COMPOSITE_SOURCE && writesDefaultRelease) {
     WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: migration-composite-source разрешён только с приватным --out");
     process.exit(1);
   }
-  if (writesDefaultRelease && scopedOwnerQualityRequired(SESSION)) {
+  if (writesDefaultRelease) {
     if (!LOCALES.includes("ru") || !LOCALES.includes("uk")) {
       WARN("ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: основной макет требует обе локали ru,uk");
       process.exit(1);
     }
     const requestedLocales = LOCALES.filter((locale) => locale !== "ru");
-    if (progressionJudgeRequired(SESSION)) {
+    const ownerQualityRequired = scopedOwnerQualityRequired(SESSION);
+    if (ownerQualityRequired && progressionJudgeRequired(SESSION)) {
       const progression = progressionIssues(path.dirname(dir), Number(session));
       if (progression.length) {
         WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА progression gate: ${progression.join("; ")}`);
@@ -1292,7 +1497,7 @@ async function main() {
       WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${readiness.issues.join("; ")}`);
       process.exit(1);
     }
-    if (Number(lesson) > 2) {
+    if (ownerQualityRequired && Number(lesson) > 2) {
       const facts = LOCALES.flatMap(locale => recheckHardFacts(dir, `final.${locale}.md`).map(fact => `${locale}: ${fact}`));
       if (facts.length) {
         WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: ${facts.join("; ")}`);
@@ -1386,6 +1591,27 @@ async function main() {
       process.exit(1);
     }
   }
+  const explanationSidecarPath = path.join(dir, "practice.explanations.v1.json");
+  const explanationContractRequired = SESSION === "en/l01/s01" || exists(explanationSidecarPath);
+  let releaseAtomicSource = atomicSource;
+  let explanationSidecar = null;
+  if (explanationContractRequired) {
+    if (!atomicSource || !exists(explanationSidecarPath)) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: practice_explanations_v1_missing:${SESSION}`);
+      process.exit(1);
+    }
+    explanationSidecar = JSON.parse(read(explanationSidecarPath));
+    const explanationIssues = validatePracticeExplanationsV1({
+      sidecar: explanationSidecar,
+      atomicSource,
+      sessionDir: dir,
+    });
+    if (explanationIssues.length) {
+      WARN(`ПУБЛИКАЦИЯ ОСТАНОВЛЕНА: practice_explanations_v1_hold:${explanationIssues[0]}`);
+      process.exit(1);
+    }
+    releaseAtomicSource = applyPracticeExplanationsV1({ atomicSource, sidecar: explanationSidecar });
+  }
   // сверка структуры локалей с мастером
   for (const [loc, v] of Object.entries(perLocale)) {
     if (loc === "ru") continue;
@@ -1427,7 +1653,6 @@ async function main() {
     entries: master.intro.map((page, pageIndex) => {
       const interactionId = `${sessionId}:intro${pageIndex + 1}:q`;
       const responseFeedbackById = Object.fromEntries(page.options.flatMap((option, optionIndex) => {
-        if (option.correct) return [];
         const feedbackByLocale = Object.fromEntries(LOCALES.map((locale) => [
           locale,
           perLocale[locale]?.intro[pageIndex]?.options?.[optionIndex]?.feedback ?? option.feedback ?? "",
@@ -1436,7 +1661,18 @@ async function main() {
           ? [[`${sessionId}:intro${pageIndex + 1}:r${optionIndex + 1}`, feedbackByLocale]]
           : [];
       }));
-      return { interactionId, responseFeedbackById };
+      const allIntroAnalyses = explanationSidecar ? projectIntroResponseAnalysesV1(explanationSidecar) : {};
+      const responseAnalysisById = Object.fromEntries(Object.entries(allIntroAnalyses)
+        .filter(([responseId]) => responseId.startsWith(`${sessionId}:intro${pageIndex + 1}:`)));
+      const allIntroDiagnostics = explanationSidecar ? projectIntroResponseDiagnosticsV1(explanationSidecar) : {};
+      const responseDiagnosticsById = Object.fromEntries(Object.entries(allIntroDiagnostics)
+        .filter(([responseId]) => responseId.startsWith(`${sessionId}:intro${pageIndex + 1}:`)));
+      return {
+        interactionId,
+        responseFeedbackById,
+        ...(Object.keys(responseAnalysisById).length ? { responseAnalysisById } : {}),
+        ...(Object.keys(responseDiagnosticsById).length ? { responseDiagnosticsById } : {}),
+      };
     }),
     auxiliaryFingerprint: "",
   } : null;
@@ -1449,8 +1685,8 @@ async function main() {
     process.exit(1);
   }
 
-  const sourceInteractions = atomicSource
-    ? structuredClone(atomicSource.interactionsByLocale?.ru ?? [])
+  const sourceInteractions = releaseAtomicSource
+    ? structuredClone(releaseAtomicSource.interactionsByLocale?.ru ?? [])
     : master.tasks.map((t, i) =>
       buildInteraction(t, Object.fromEntries(LOCALES.map((l) => [l, byOrdinal(l, t.ordinal)])), sessionId, i, master.tasks.length));
 
@@ -1532,8 +1768,8 @@ async function main() {
   const localizedLearnerFiles = {};
   for (const loc of Object.keys(perLocale)) {
     if (loc === "ru") continue;
-    const localeSourceInteractions = atomicSource
-      ? structuredClone(atomicSource.interactionsByLocale?.[loc] ?? [])
+    const localeSourceInteractions = releaseAtomicSource
+      ? structuredClone(releaseAtomicSource.interactionsByLocale?.[loc] ?? [])
       : sourceInteractions.map((interaction, index) => {
         const localeTask = byOrdinal(loc, master.tasks[index].ordinal) ?? master.tasks[index];
         // Собираем локальный interaction целиком: переводятся не только prompt,
@@ -1692,6 +1928,7 @@ async function main() {
   }
   // зачем: сессия 26 попала в курс заблокированной и без вердиктов —
   // сборщик собирал что дают, не спрашивая, проверял ли её кто-нибудь
+  if (!CANDIDATE_PREVIEW) {
   try {
     const stPath = path.join(dir, "status.json");
     if (fs.existsSync(stPath)) {
@@ -1739,6 +1976,7 @@ async function main() {
       else if (st.ru === 0) WARN(`сессия собрана с нулём очков — судьи её не приняли`);
     } else WARN(`нет status.json — неизвестно, судилась ли сессия вообще`);
   } catch (e) { WARN(`не смог прочитать статус сессии: ${e.message}`); }
+  } else LOG("черновой просмотр: status.json не изменяется");
   if (problems.length) { WARN(`проблем сборки: ${problems.length}`); for (const p of problems) WARN(`  ${p}`); }
   else LOG("проблем сборки нет");
   LOG(`готово: ${interactions.length} заданий, ${LOCALES.join("+")}`);

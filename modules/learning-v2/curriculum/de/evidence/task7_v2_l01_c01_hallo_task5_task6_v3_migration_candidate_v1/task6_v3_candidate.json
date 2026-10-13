@@ -1,0 +1,379 @@
+{
+  "schemaVersion": "learning-v2-german-task6-canonical-registry.v3",
+  "authority": {
+    "status": "TASK6_V2_CANONICAL_PARTIAL",
+    "upstreamCandidateCanonicalAdmission": "FORBIDDEN",
+    "phaseBMaterialization": "ADMITTED_FOR_TASK6_V2_REGISTRY_ONLY",
+    "rowsMaterialized": 6,
+    "newRowsMaterialized": 4,
+    "legacyRowsPreserved": 2,
+    "rowsPromoted": 0,
+    "task7Status": "TASK7_HOLD",
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "phraseClaims": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false
+  },
+  "sourceBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v2",
+      "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+      "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3"
+    },
+    "captureManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/learning-v2-de-task6c-l02-identity-capture-v4-live-20261012T085552906Z/manifest.json",
+      "byteSha256": "e79b6c6016638ecc943ef633b814761ed5c95595a4e61171fb057da84273a535"
+    },
+    "candidateManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l02_source_admission_candidate_v1/manifest.json",
+      "byteSha256": "d3430ade94b3901bca987f91d9a8ead5ec2efee530470835585e4447d6c3746c"
+    },
+    "phaseAArtifacts": [
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_registry_contract_de_v2.ts",
+        "sha256": "fc168070539f4639674949343166e8f44c7642a49f9bdc15e822c2b60834d955"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v2.ts",
+        "sha256": "1ff9c1669f799d6c88ec0a63b3466797c92677fe9ea5eff03afd9484c600a86c"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/evidence/task6_v2_verb_valency_adjudications_de_v1.json",
+        "sha256": "67132b351dab1ef2960d93bc98421625f75f1b832e1bb301263796a17275edd2"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v2.ts",
+        "sha256": "9402237e9f74883d60d327e09fe695c874878da5fbbdc3fdf4c4b6a5d7856bbe"
+      },
+      {
+        "path": "tests/learning_v2_de_task6_v2_migration_gate.ts",
+        "sha256": "87c150ebd7bb971983a4fff3b651175d9776ad79e7b5bd666987a2ee7bc158f3"
+      },
+      {
+        "path": "tests/learning_v2_de_wohnen_valency_adjudication_gate.ts",
+        "sha256": "fe87810c9b14799fc047d4a51ef6eaef92b3c40817a1fec463c9c78a14041984"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6C_L02_SOURCE_ADMISSION_REVIEW_RECEIPT_2026-10-12.md",
+        "sha256": "e4a577acd94a6d6b21c8fa4d5b2351d655897c768a2cc612d27efe2f0bfe2a99"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK6_V2_MIGRATION_AUTHORITY_2026-10-12.md",
+        "sha256": "c20778aa5703fad7f50f2e57c012a22da3ab2cca57fdbfa883e93f31d873cebf"
+      }
+    ],
+    "v1Preservation": {
+      "lexicalRegistry": {
+        "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json",
+        "byteSha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29",
+        "canonicalBodySha256": "57efb49887ccbfc2e05190a32f79b37d19e5831542fcc39d3c6d904c3332e9b2"
+      },
+      "canonicalBundle": {
+        "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+        "byteSha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31",
+        "canonicalBodySha256": "012b337c945cea54af55602d7300ddef6c2164a624d13f0ca2b5235886a62e37",
+        "authorityContextCanonicalSha256": "8a72e2bf6f608158f91707a2edc9a89f4ff86447e82cc3dbd655fdeaed9e96ca",
+        "phraseFramesCanonicalSha256": "7805da5365c290c1d532d31c6d11e24a39d76cea61a6b025e0da74bee55eac29",
+        "pronunciationTargetsCanonicalSha256": "6de9d7ab535b577785228621eb4cad3ff25db45a856bb7243de0f553aa90b2dd"
+      },
+      "lexicalEvidenceModule": {
+        "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts",
+        "sha256": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c"
+      },
+      "task6ContractModule": {
+        "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts",
+        "sha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d"
+      },
+      "canonicalGate": {
+        "path": "tests/learning_v2_de_task6_canonical_registry_gate.ts",
+        "sha256": "355316efccd41433c0e21239bebb69139d4fed3d96708071582de440a2959938"
+      }
+    },
+    "defaultConsumer": {
+      "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+      "byteSha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+      "requiredRegistry": "lexical_senses_de_v1.json",
+      "forbiddenRegistry": "lexical_senses_de_v2.json"
+    }
+  },
+  "materialization": {
+    "legacyV1LexicalSenseIds": [
+      "de_lex_l01_c01_nachbarin_v1",
+      "de_lex_l01_c02_aufzug_v1"
+    ],
+    "legacyV1Policy": "PRESERVE_UNCHANGED_DO_NOT_IMPORT_AS_V2_EVIDENCE",
+    "l02LexicalMappings": [
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c01_wohnen_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C01-WOHNEN-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c01_kueche_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C01-KUECHE-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c02_tasse_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C02-TASSE-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+        "canonicalLexicalSenseId": "de_lex_l02_c02_teller_v1",
+        "evidenceId": "DE-LEX-ITEM-L02-C02-TELLER-SENSE-FORM-001",
+        "materializationRole": "TASK6_V2_REGISTRY_ONLY_NOT_PROMOTED"
+      }
+    ]
+  },
+  "authorityContext": {
+    "schemaVersion": "learning-v2-german-task6-registry-authority.v2",
+    "lexicalMappings": [
+      {
+        "sourcePlanId": "de_lex_plan_l01_c01_nachbarin_v1",
+        "canonicalId": "de_lex_l01_c01_nachbarin_v1",
+        "plannedWordFirstPacketId": "de_l01_c01_s07",
+        "plannedFirstScoredUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l01_c02_aufzug_v1",
+        "canonicalId": "de_lex_l01_c02_aufzug_v1",
+        "plannedWordFirstPacketId": "de_l01_c02_s15",
+        "plannedFirstScoredUsePacketId": "de_l01_c02_s16"
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+        "canonicalId": "de_lex_l02_c01_wohnen_v1",
+        "plannedUsePacketIds": ["de_l02_c01_s08"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+        "canonicalId": "de_lex_l02_c01_kueche_v1",
+        "plannedUsePacketIds": ["de_l02_c01_s08"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+        "canonicalId": "de_lex_l02_c02_tasse_v1",
+        "plannedUsePacketIds": ["de_l02_c02_s16"]
+      },
+      {
+        "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+        "canonicalId": "de_lex_l02_c02_teller_v1",
+        "plannedUsePacketIds": ["de_l02_c02_s16"]
+      }
+    ],
+    "phraseFrameMappings": [
+      {
+        "sourceChapterId": "de_l01_c01",
+        "canonicalId": "de_pf_l01_c01_hallo_v2",
+        "plannedFirstUsePacketId": "de_l01_c01_s08"
+      },
+      {
+        "sourceChapterId": "de_l01_c02",
+        "canonicalId": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "plannedFirstUsePacketId": "de_l01_c02_s16"
+      }
+    ],
+    "pronunciationMappings": [
+      {
+        "sourcePlanId": "de_pron_plan_long_short_vowel_diagnostic_v1",
+        "sourceLessonId": "de_l03",
+        "canonicalId": "de_pron_long_short_vowel_diagnostic_v1"
+      }
+    ],
+    "communicativeOutcomeMappings": [
+      {
+        "sourceOutcomeId": "de_l01_ch01",
+        "canonicalId": "de_out_l01_ch01_v1"
+      },
+      {
+        "sourceOutcomeId": "de_l01_ch02",
+        "canonicalId": "de_out_l01_ch02_v1"
+      }
+    ],
+    "forbiddenSurfaceForms": [],
+    "pronunciationPresentationPolicies": [
+      {
+        "pronunciationTargetId": "de_pron_long_short_vowel_diagnostic_v1",
+        "canonicalRegion": "DE_STANDARD",
+        "productionPolicy": "productive",
+        "learnerLabel": null
+      }
+    ]
+  },
+  "registry": {
+    "lexicalSenses": [
+      {
+        "id": "de_lex_l01_c01_nachbarin_v1",
+        "lemma": "Nachbarin",
+        "senseGloss": "female person living nearby",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Nachbarinnen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C01-NACHBARIN-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l01_c02_aufzug_v1",
+        "lemma": "Aufzug",
+        "senseGloss": "lift in a building",
+        "partOfSpeech": "noun",
+        "nounGender": "der",
+        "nounPlural": "Aufzüge",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L01-C02-AUFZUG-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c01_wohnen_v1",
+        "lemma": "wohnen",
+        "senseGloss": "live or reside at a home",
+        "partOfSpeech": "verb",
+        "nounGender": null,
+        "nounPlural": null,
+        "verbValency": ["subject", "residence-location complement"],
+        "verbFrame": "intransitive residence frame",
+        "verbSeparability": "INSEPARABLE",
+        "verbAuxiliary": "haben",
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C01-WOHNEN-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c01_kueche_v1",
+        "lemma": "Küche",
+        "senseGloss": "room for preparing food",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Küchen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C01-KUECHE-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c02_tasse_v1",
+        "lemma": "Tasse",
+        "senseGloss": "handled cup for a hot drink",
+        "partOfSpeech": "noun",
+        "nounGender": "die",
+        "nounPlural": "Tassen",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C02-TASSE-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      },
+      {
+        "id": "de_lex_l02_c02_teller_v1",
+        "lemma": "Teller",
+        "senseGloss": "flat dish used for serving food",
+        "partOfSpeech": "noun",
+        "nounGender": "der",
+        "nounPlural": "Teller",
+        "verbValency": null,
+        "verbFrame": null,
+        "verbSeparability": null,
+        "verbAuxiliary": null,
+        "productionPolicy": "productive",
+        "region": null,
+        "evidenceIds": [
+          "DE-LEX-ITEM-L02-C02-TELLER-SENSE-FORM-001",
+          "DE-REG-BASELINE-001"
+        ]
+      }
+    ],
+    "phraseFrames": [
+      {
+        "id": "de_pf_l01_c01_hallo_v2",
+        "frame": "Hallo!",
+        "grammarConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+        "lexicalSenseIds": [],
+        "communicativeOutcomeIds": ["de_out_l01_ch01_v1"],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": ["DE-RSCH-CEFR-003"]
+      },
+      {
+        "id": "de_pf_l01_c02_tschuess_aufzug_v1",
+        "frame": "Tschüss! Der Aufzug.",
+        "grammarConstructIds": ["de_gc_pre_a1_formulaic_chunks_v1"],
+        "lexicalSenseIds": ["de_lex_l01_c02_aufzug_v1"],
+        "communicativeOutcomeIds": ["de_out_l01_ch02_v1"],
+        "forbiddenSurfaceFormIds": [],
+        "evidenceIds": ["DE-RSCH-CEFR-003"]
+      }
+    ],
+    "pronunciationTargets": [
+      {
+        "id": "de_pron_long_short_vowel_diagnostic_v1",
+        "target": "German vowel duration and length-quality diagnostic",
+        "perceptionEvidenceIds": ["DE-PHON-RU-001", "DE-PHON-RU-004"],
+        "productionEvidenceIds": ["DE-PHON-RU-001"],
+        "ruApplicability": {
+          "status": "APPLIES",
+          "correctiveRoute": "varied vowel duration and quality diagnostics",
+          "rationale": "Use varied diagnostic and recycling evidence without claiming native-like production.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-001",
+              "evidenceStatus": "DIRECT_L2_RU"
+            },
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-RU-004",
+              "evidenceStatus": "DIRECT_L2_RU"
+            }
+          ]
+        },
+        "ukApplicability": {
+          "status": "DIAGNOSTIC_ONLY",
+          "correctiveRoute": "diagnose length-quality after an observed response",
+          "rationale": "Contrastive risk is a hypothesis and is never a presumed nationality error.",
+          "evidenceBindings": [
+            {
+              "kind": "CANONICAL_BINDING",
+              "evidenceId": "DE-PHON-UK-002",
+              "evidenceStatus": "CONTRASTIVE_RISK"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

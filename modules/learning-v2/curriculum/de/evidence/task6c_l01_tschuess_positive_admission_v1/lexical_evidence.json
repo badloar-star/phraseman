@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "learning-v2-german-lexical-item-evidence.v3",
+  "evidenceId": "DE-LEX-ITEM-L01-C02-TSCHUESS-SENSE-REGISTER-001",
+  "admissionScope": "EXACT_TSCHUESS_SENSE_ONLY",
+  "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+  "canonicalSenseId": "de_lex_l01_c02_tschuess_v1",
+  "lemmaOrExpression": "Tschüss",
+  "sourcePartOfSpeech": "Interjektion",
+  "curriculumPartOfSpeech": "fixed_expression",
+  "partOfSpeechInterpretation": "SOURCE_GROUNDED_INTERJECTION_TO_FIXED_EXPRESSION",
+  "senseGloss": "colloquial informal leave-taking",
+  "interactionRole": "interaction_closing",
+  "communicativeUse": "close a familiar departure",
+  "register": "colloquial",
+  "sourceRegisterMarkers": ["landschaftlich", "umgangssprachlich"],
+  "neutralRegisterClaim": false,
+  "unqualifiedStandardGermanClaim": false,
+  "sourceSupport": {
+    "dwds": {
+      "canonicalUrl": "https://www.dwds.de/wb/Tsch%C3%BCss",
+      "sourceAnchor": "d-1-1",
+      "headword": "Tschüss",
+      "sourcePartOfSpeech": "Interjektion",
+      "registerMarkersGerman": ["landschaftlich", "umgangssprachlich"],
+      "exactDefinitionsGerman": ["lebe wohl!", "auf Wiedersehen!"],
+      "rawPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/raw/dwds_tschuess.html",
+      "rawSha256": "78c9f5c885d69b0719a5910e207c5f73113ef4ea7cbf45c57a794ef55df15650",
+      "extractionMapPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/extraction_map.json",
+      "extractionMapSha256": "072ae39ffa27ca489d4152bac243dd2ee50de90765d3089dd8f87b7d48d6d0fe"
+    },
+    "goetheA1Wortliste": {
+      "rawPath": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/raw/goethe_wortliste.pdf",
+      "rawSha256": "45fb648bc0ac02338f7898cae065953e320ab72ed0c14e13e0deffe6f1c5d64e",
+      "formulaicManifestPath": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+      "formulaicManifestSha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98",
+      "pdfPage": 24,
+      "heading": "alphabetical Wortliste > T",
+      "exactOccurrence": "tschüss Junge Leute sagen meistens „tschüss!“ und nicht „auf Wiedersehen“.",
+      "occurrenceSha256": "980729a04851d9b93e9cf85da9a883d1c7563058ae32cbf7e06dc390e43bb36a",
+      "historicalManifestAdmissionStatus": "PROPOSED_NOT_CANONICAL"
+    },
+    "priorHold": {
+      "sourceManifestPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/manifest.json",
+      "sourceManifestSha256": "d7aa6eed248a5d24c57eafcfdbf4560d433e985fc0a054a86c9836f38fadd612",
+      "adjudicationPath": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_admission_adjudication_hold_v1/adjudication.json",
+      "adjudicationSha256": "f430908b804b5ffe325154b569a3630f4f10a6fb621b661ffdff22340de15051",
+      "historicalDecisionPreserved": "CANONICAL_ADMISSION_WITHHELD_MISSING_REQUIRED_AUTHORITIES"
+    }
+  },
+  "packetAllocation": {
+    "plannedUsePacketIds": ["de_l01_c02_s16"],
+    "checkpointPacketId": "de_l01_c02_s16",
+    "firstIntroductionPacketId": null
+  },
+  "canonicalAdmission": "ADMITTED_EXACT_TSCHUESS_SENSE_ONLY",
+  "phraseAuthority": false,
+  "task7Unlock": false,
+  "preauthoringAuthority": false,
+  "learnerFacingAuthority": false,
+  "releaseAuthorized": false,
+  "consumerCutover": "NONE"
+}

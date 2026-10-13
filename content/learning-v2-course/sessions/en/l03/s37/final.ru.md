@@ -96,6 +96,10 @@
 <!-- interaction_id: en:lesson-03:session-37:i09; family: context_gap_grammar -->
 Цель: `___ are buildings.`
 Варианты: `These` · `Those` · `This` · `That`
+- Those — *`Those are buildings` называет несколько зданий дальше. Эти корпуса рядом, поэтому нужно `These`.*
+- This — *`This` относится к одному предмету и требует `is`. Здесь зданий несколько.*
+- That — *`That` относится к одному дальнему предмету и требует `is`. Здесь несколько зданий рядом.*
+
 
 **10 · Соберите описание — один вход рядом со схемой**
 <!-- interaction_id: en:lesson-03:session-37:i12; family: phrase_builder -->
@@ -105,6 +109,10 @@
 <!-- interaction_id: en:lesson-03:session-37:i13; family: listen_choose -->
 Цель: `These are exits.`
 Варианты: `Это выходы` · `Это выход` · `Это входы` · `Это здания`
+- Это выход — *В записи слышно `these are` и `exits`: говорят о нескольких выходах.*
+- Это входы — *Число совпадает, но названо `exits` — выходы, а не `entrances`.*
+- Это здания — *Названо `exits`, а здания по-английски — `buildings`.*
+
 
 **12 · Вставьте слово — у дальней стены один выход**
 <!-- interaction_id: en:lesson-03:session-37:i11; family: context_gap_grammar -->

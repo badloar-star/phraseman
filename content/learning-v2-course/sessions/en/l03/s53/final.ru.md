@@ -62,6 +62,8 @@
 <!-- interaction_id: en:lesson-03:session-53:i05; family: listen_choose -->
 Цель: `soft`
 Варианты: `soft` · `plastic`
+- plastic — *В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-53:i02; family: scripted_repeat_compare -->
@@ -76,6 +78,8 @@
 <!-- interaction_id: en:lesson-03:session-53:i06; family: sound_contrast -->
 Цель: `soft`
 Варианты: `soft` · `sort`
+- sort — *`sort` — «сортировать». В записи звучит `soft` — «мягкий».*
+
 
 **7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-53:i08; family: speed_match -->
@@ -86,6 +90,8 @@
 <!-- interaction_id: en:lesson-03:session-53:i09; family: sound_contrast -->
 Цель: `plastic`
 Варианты: `plastic` · `elastic`
+- elastic — *Здесь в начале звучит `plastic`, без начального гласного из `elastic`.*
+
 
 **9 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-53:i10; family: scripted_repeat_compare -->
@@ -104,16 +110,28 @@
 <!-- interaction_id: en:lesson-03:session-53:i12; family: context_gap_grammar -->
 Цель: `___ plastic tables, please.`
 Варианты: `Those` · `These` · `That` · `It`
+- These — *`These` выбирает несколько вещей рядом, а столы стоят дальше.*
+- That — *`That` указывает на один предмет дальше. Здесь несколько столов, поэтому нужно `Those`.*
+- It — *`It plastic tables` не образует просьбу. Перед несколькими дальними вещами нужно `Those`.*
+
 
 **13 · Послушайте и выберите точное значение вопроса**
 <!-- interaction_id: en:lesson-03:session-53:i13; family: listen_choose -->
 Цель: `Are those plastic tables here?`
 Варианты: `Те пластиковые столы здесь?` · `Эти пластиковые столы здесь?` · `Те металлические столы здесь?` · `Те пластиковые столы готовы?`
+- Эти пластиковые столы здесь? — *В записи `those`, а этот вариант передаёт `these`.*
+- Те металлические столы здесь? — *В записи звучит `plastic`, а не `metal`.*
+- Те пластиковые столы готовы? — *В записи спрашивают `here`, а не о готовности.*
+
 
 **14 · Вставьте описание — подушки лежат у стойки рядом**
 <!-- interaction_id: en:lesson-03:session-53:i14; family: context_gap_grammar -->
 Цель: `These ___ cushions, please.`
 Варианты: `soft` · `metal` · `plastic` · `cushions`
+- metal — *Металлическими были стулья, а подушки здесь `soft`.*
+- plastic — *Пластиковыми были столы, а для подушек нужно `soft`.*
+- cushions — *`Cushions` уже стоит после пропуска; сюда ставят описание `soft`.*
+
 
 **15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-53:i15; family: listen_build_dictation -->
@@ -123,6 +141,10 @@
 <!-- interaction_id: en:lesson-03:session-53:i16; family: listen_choose -->
 Цель: `These soft cushions, please.`
 Варианты: `Эти мягкие подушки, пожалуйста.` · `Те мягкие подушки, пожалуйста.` · `Эти пластиковые подушки, пожалуйста.` · `Эти мягкие столы, пожалуйста.`
+- Те мягкие подушки, пожалуйста. — *В записи `These`, а этот вариант передаёт `Those`.*
+- Эти пластиковые подушки, пожалуйста. — *В записи звучит `soft`, а не `plastic`.*
+- Эти мягкие столы, пожалуйста. — *В записи назвали `cushions`, а не `tables`.*
+
 
 **17 · сотрудник ждёт, что забрать с дальнего стеллажа**
 <!-- interaction_id: en:lesson-03:session-53:i17; family: phrase_builder -->

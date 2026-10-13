@@ -71,19 +71,19 @@ readonly LearningV2EnglishSessionLexicalAssignmentV2[] = Object.freeze([
       sense("here", "здесь", "adverb"),
       sense("ready", "готов"),
       sense("fine", "в порядке"),
+      sense("happy", "счастлив"),
     ],
     [],
-    ["I am here.", "I am ready.", "I am fine."],
+    ["I am here.", "I am ready.", "I am fine.", "I am happy."],
   ),
   assignment(
     2,
     I_AM_OPERATION_ID,
     [
-      sense("happy", "счастлив"),
       sense("sad", "грустен"),
       sense("tired", "устал"),
     ],
-    ["en.here.adverb.01", "en.ready.adjective.01", "en.fine.adjective.01"],
+    ["en.here.adverb.01", "en.ready.adjective.01", "en.fine.adjective.01", "en.happy.adjective.01"],
     ["I am happy.", "I am sad.", "I am tired."],
   ),
   assignment(

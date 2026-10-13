@@ -105,18 +105,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-15:i20:s01",
+    "interactionId": "en:lesson-01:session-15:i20",
     "correctText": "You are polite.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-15:i20:s02",
-    "correctText": "You are calm.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-15:i20:s03",
-    "correctText": "You are lucky.",
     "correctResponseId": null
   }
 ]

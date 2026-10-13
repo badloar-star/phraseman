@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-02:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro1:r1": {
+          "ru": "Верно: I am tired — «я устал»: am связывает I с состоянием tired, как требуется в ответе на How are you?",
+          "uk": "Правильно: I am tired — «я втомився»: am поєднує I зі станом tired, як і потрібно у відповіді на How are you?"
+        },
+        "en:lesson-01:session-02:intro1:r2": {
+          "ru": "После I нужно am: I am tired.",
+          "uk": "Після I потрібне am: I am tired."
+        },
+        "en:lesson-01:session-02:intro1:r3": {
+          "ru": "Нужно tired — «устал». Tire без -d означает «шина».",
+          "uk": "Потрібне tired — «втомлений». Tire без -d означає «шина»."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro2:r1": {
+          "ru": "Верно: I am late — «я опоздал»: late точно объясняет, что вы пришли позже назначенного времени, а после I нужен am.",
+          "uk": "Правильно: I am late — «я запізнився»: late точно пояснює, що ви прийшли пізніше за домовлений час, а після I потрібне am."
+        },
+        "en:lesson-01:session-02:intro2:r2": {
+          "ru": "Here означает «здесь». Вы уже здесь, но важно объяснить, что вы опоздали.",
+          "uk": "Here означає «тут». Ви вже тут, але важливо пояснити, що ви запізнилися."
+        },
+        "en:lesson-01:session-02:intro2:r3": {
+          "ru": "После I нужно am: I am late.",
+          "uk": "Після I потрібне am: I am late."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-02:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-02:intro3:r1": {
+          "ru": "Верно: I am sorry — «мне жаль, извините»: полная фраза прямо извиняется за опоздание, и после I стоит am.",
+          "uk": "Правильно: I am sorry — «мені шкода, вибачте»: повна фраза прямо перепрошує за запізнення, і після I стоїть am."
+        },
+        "en:lesson-01:session-02:intro3:r2": {
+          "ru": "После I нужно am: I am sorry.",
+          "uk": "Після I потрібне am: I am sorry."
+        },
+        "en:lesson-01:session-02:intro3:r3": {
+          "ru": "Am уже есть после I; второго am не нужно.",
+          "uk": "Am уже є після I; другого am не потрібно."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6e7f32fcf46eeb6ca7e006a36224f42842c715f7135afd13b8019a875021c7a4"
+}

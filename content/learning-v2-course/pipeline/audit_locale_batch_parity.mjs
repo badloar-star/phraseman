@@ -14,18 +14,25 @@ for (const lesson of fs.readdirSync(path.join(ROOT, "sessions/en")).filter((x) =
     const batchPath = path.join(dir, "locales_batch.md");
     const localePath = path.join(dir, "final.uk.md");
     if (!fs.existsSync(batchPath) || !fs.existsSync(localePath)) continue;
-    const batch = headings(fs.readFileSync(batchPath, "utf8"));
-    const locale = headings(fs.readFileSync(localePath, "utf8"));
+    const batchText = fs.readFileSync(batchPath, "utf8");
+    const localeText = fs.readFileSync(localePath, "utf8");
+    const batch = headings(batchText);
+    const locale = headings(localeText);
     if (!batch.length || !locale.length || batch.length !== locale.length || batch.at(-1) !== locale.at(-1)) {
-      issues.push({ scope: key, batch: batch.length ? `${batch.length}/${batch.at(-1)}` : "none", locale: locale.length ? `${locale.length}/${locale.at(-1)}` : "none" });
+      issues.push({ scope: key, kind: "structure", batch: batch.length ? `${batch.length}/${batch.at(-1)}` : "none", locale: locale.length ? `${locale.length}/${locale.at(-1)}` : "none" });
+      continue;
+    }
+    const canonical = `===LOCALE: uk===\n${localeText.trim()}\n`;
+    if (batchText !== canonical) {
+      issues.push({ scope: key, kind: "content", batch: `${batch.length}/${batch.at(-1)}`, locale: `${locale.length}/${locale.at(-1)}` });
     }
   }
 }
 
 if (issues.length) {
   console.log(`[LOCALE-BATCH-PARITY][HOLD] ${issues.length} устаревших или структурно расходящихся вспомогательных файлов`);
-  for (const issue of issues) console.log(`${issue.scope}: batch=${issue.batch}, final.uk=${issue.locale}`);
+for (const issue of issues) console.log(`${issue.scope}: kind=${issue.kind}; batch=${issue.batch}, final.uk=${issue.locale}`);
   process.exitCode = 1;
 } else {
-  console.log("[LOCALE-BATCH-PARITY][PASS] вспомогательные файлы совпадают с украинскими источниками по структуре заданий");
+  console.log("[LOCALE-BATCH-PARITY][PASS] вспомогательные файлы точно совпадают с украинскими источниками по структуре и содержанию");
 }

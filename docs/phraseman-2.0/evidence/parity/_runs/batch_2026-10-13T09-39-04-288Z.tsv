@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-section-049	2026-10-13T09:40:14.887Z	error	15140	step_target_not_found:#flashcards-truefalse-answer-target+ждали_metro_56мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T09-39-04-288Z/cards-section-049.error.png	0

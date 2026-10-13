@@ -90,19 +90,41 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите овощ — у упаковочного стола",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-39:i05:r1", "text": "onion" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-39:i05:r1",
+            "text": "onion"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-39:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-39:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите овощ — у упаковочного стола",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-39:i05:audio", "transcript": "onion" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-39:i05:audio",
+            "transcript": "onion"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{ "responseId": "en:lesson-03:session-39:i05:r1", "targetText": "onion", "meaningByLocale": null }],
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-39:i05:r1",
+              "targetText": "onion",
+              "meaningByLocale": null
+            }
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
-          "wordCard": { "word": "onion", "definitionByLocale": { "ru": "«луковица».", "uk": "«цибулина»." } }
+          "wordCard": {
+            "word": "onion",
+            "definitionByLocale": {
+              "ru": "«луковица».",
+              "uk": "«цибулина»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -208,7 +230,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -226,16 +253,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-39:i08:p1", "target": "grape", "meaningByLocale": { "ru": "виноградина", "uk": "виноградина" } },
-            { "pairId": "en:lesson-03:session-39:i08:p2", "target": "lemon", "meaningByLocale": { "ru": "лимон", "uk": "лимон" } },
-            { "pairId": "en:lesson-03:session-39:i08:p3", "target": "onion", "meaningByLocale": { "ru": "луковица", "uk": "цибулина" } },
-            { "pairId": "en:lesson-03:session-39:i08:p4", "target": "apple", "meaningByLocale": { "ru": "яблоко", "uk": "яблуко" } }
+            {
+              "pairId": "en:lesson-03:session-39:i08:p1",
+              "target": "grape",
+              "meaningByLocale": {
+                "ru": "виноградина",
+                "uk": "виноградина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p2",
+              "target": "lemon",
+              "meaningByLocale": {
+                "ru": "лимон",
+                "uk": "лимон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p3",
+              "target": "onion",
+              "meaningByLocale": {
+                "ru": "луковица",
+                "uk": "цибулина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p4",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            }
           ],
-          "leftColumn": ["grape", "lemon", "onion", "apple"],
-          "rightColumn": ["виноградина", "лимон", "луковица", "яблоко"],
+          "leftColumn": [
+            "grape",
+            "lemon",
+            "onion",
+            "apple"
+          ],
+          "rightColumn": [
+            "виноградина",
+            "лимон",
+            "луковица",
+            "яблоко"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -261,9 +334,17 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Those onions, please.",
           "orderedTokens": [
-            "Those", "onions,", "please"
+            "Those",
+            "onions,",
+            "please"
           ],
-          "distractorTokens": ["These", "are", "an", "onion"]
+          "distractorTokens": [
+            "These",
+            "are",
+            "an",
+            "onion"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -314,9 +395,21 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "These are onions.",
-          "localizedMeaning": { "ru": "Соберите описание — лук лежит рядом", "uk": "Складіть опис — цибуля лежить поруч" },
-          "orderedTokens": ["These", "are", "onions"],
-          "authoredDistractorTokens": ["Those", "is", "an", "onion"],
+          "localizedMeaning": {
+            "ru": "Соберите описание — лук лежит рядом",
+            "uk": "Складіть опис — цибуля лежить поруч"
+          },
+          "orderedTokens": [
+            "These",
+            "are",
+            "onions"
+          ],
+          "authoredDistractorTokens": [
+            "Those",
+            "is",
+            "an",
+            "onion"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -374,7 +467,7 @@
               "text": "This"
             }
           ],
-          "testedDimension": "Вставьте указатель — виноград теперь леж",
+          "testedDimension": "Вставьте указатель — виноград теперь лежит у дальней стойки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-39:i09:r2",
@@ -657,7 +750,8 @@
             "are",
             "onions."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -938,19 +1032,41 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть овоч — біля пакувального столу",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-39:i05:r1", "text": "onion" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-39:i05:r1",
+            "text": "onion"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-39:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-39:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть овоч — біля пакувального столу",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-39:i05:audio", "transcript": "onion" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-39:i05:audio",
+            "transcript": "onion"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{ "responseId": "en:lesson-03:session-39:i05:r1", "targetText": "onion", "meaningByLocale": null }],
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-39:i05:r1",
+              "targetText": "onion",
+              "meaningByLocale": null
+            }
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
-          "wordCard": { "word": "onion", "definitionByLocale": { "ru": "«луковица».", "uk": "«цибулина»." } }
+          "wordCard": {
+            "word": "onion",
+            "definitionByLocale": {
+              "ru": "«луковица».",
+              "uk": "«цибулина»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1056,7 +1172,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1074,16 +1195,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-39:i08:p1", "target": "grape", "meaningByLocale": { "ru": "виноградина", "uk": "виноградина" } },
-            { "pairId": "en:lesson-03:session-39:i08:p2", "target": "lemon", "meaningByLocale": { "ru": "лимон", "uk": "лимон" } },
-            { "pairId": "en:lesson-03:session-39:i08:p3", "target": "onion", "meaningByLocale": { "ru": "луковица", "uk": "цибулина" } },
-            { "pairId": "en:lesson-03:session-39:i08:p4", "target": "apple", "meaningByLocale": { "ru": "яблоко", "uk": "яблуко" } }
+            {
+              "pairId": "en:lesson-03:session-39:i08:p1",
+              "target": "grape",
+              "meaningByLocale": {
+                "ru": "виноградина",
+                "uk": "виноградина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p2",
+              "target": "lemon",
+              "meaningByLocale": {
+                "ru": "лимон",
+                "uk": "лимон"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p3",
+              "target": "onion",
+              "meaningByLocale": {
+                "ru": "луковица",
+                "uk": "цибулина"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-39:i08:p4",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            }
           ],
-          "leftColumn": ["grape", "lemon", "onion", "apple"],
-          "rightColumn": ["виноградина", "лимон", "цибулина", "яблуко"],
+          "leftColumn": [
+            "grape",
+            "lemon",
+            "onion",
+            "apple"
+          ],
+          "rightColumn": [
+            "виноградина",
+            "лимон",
+            "цибулина",
+            "яблуко"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1109,9 +1276,17 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Those onions, please.",
           "orderedTokens": [
-            "Those", "onions,", "please"
+            "Those",
+            "onions,",
+            "please"
           ],
-          "distractorTokens": ["These", "are", "an", "onion"]
+          "distractorTokens": [
+            "These",
+            "are",
+            "an",
+            "onion"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1162,9 +1337,21 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "These are onions.",
-          "localizedMeaning": { "ru": "Соберите описание — лук лежит рядом", "uk": "Складіть опис — цибуля лежить поруч" },
-          "orderedTokens": ["These", "are", "onions"],
-          "authoredDistractorTokens": ["Those", "is", "an", "onion"],
+          "localizedMeaning": {
+            "ru": "Соберите описание — лук лежит рядом",
+            "uk": "Складіть опис — цибуля лежить поруч"
+          },
+          "orderedTokens": [
+            "These",
+            "are",
+            "onions"
+          ],
+          "authoredDistractorTokens": [
+            "Those",
+            "is",
+            "an",
+            "onion"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -1505,7 +1692,8 @@
             "are",
             "onions."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+coins-004	2026-10-13T00:43:33.358Z	error	13550	step_target_not_found:#coin-rank-pending-spinner+ждали_metro_24мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-42-39-837Z/coins-004.error.png	0

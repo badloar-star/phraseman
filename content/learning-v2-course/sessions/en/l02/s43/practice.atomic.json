@@ -126,7 +126,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставьте слово — вы с другом не узнаёте ",
+          "testedDimension": "Вставьте слово — вы с другом не узнаёте улицу; спросите, не заблудились ли вы оба",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i02:r2",
@@ -223,7 +223,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — вы оба сверили название",
+          "testedDimension": "Вставьте слово — вы оба сверили название улицы на доме и на карте; скажите другу: «Мы уверены»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i04:r2",
@@ -397,7 +397,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг уже сказал прохоже",
+          "testedDimension": "Вставьте слово — друг уже сказал прохожему, что вы ищете станцию метро; спросите, близко ли вы к ней",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i07:r2",
@@ -568,7 +568,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставьте слово — вы нашли вход в метро; ",
+          "testedDimension": "Вставьте слово — вы нашли вход в метро; покажите другу это место на карте и скажите: «Мы здесь»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i10:r2",
@@ -713,7 +713,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставьте слово — вы выбрали по карте дор",
+          "testedDimension": "Вставьте слово — вы выбрали по карте дорогу от станции к музею; перед поворотом спросите: «Мы уверены?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i12:r2",
@@ -813,7 +813,7 @@
               "text": "they"
             }
           ],
-          "testedDimension": "Вставьте слово — вы показываете прохожем",
+          "testedDimension": "Вставьте слово — вы показываете прохожему точку на карте и спрашиваете, здесь ли вы с другом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i14:r2",
@@ -1056,7 +1056,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставте слово — ви з другом не впізнаєте",
+          "testedDimension": "Вставте слово — ви з другом не впізнаєте вулицю; запитайте, чи не заблукали ви обоє",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i02:r2",
@@ -1153,7 +1153,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — ви обоє звірили назву ву",
+          "testedDimension": "Вставте слово — ви обоє звірили назву вулиці на будинку з назвою на карті; скажіть другові: «Ми впевнені»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i04:r2",
@@ -1327,7 +1327,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — друг уже сказав перехожо",
+          "testedDimension": "Вставте слово — друг уже сказав перехожому, що ви шукаєте станцію метро; запитайте перехожого, чи близько ви до неї",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i07:r2",
@@ -1498,7 +1498,7 @@
               "text": "welcome"
             }
           ],
-          "testedDimension": "Вставте слово — ви знайшли вхід до метро",
+          "testedDimension": "Вставте слово — ви знайшли вхід до метро; покажіть другові це місце на карті й скажіть: «Ми тут»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i10:r2",
@@ -1643,7 +1643,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставте слово — ви вибрали за картою дор",
+          "testedDimension": "Вставте слово — ви вибрали за картою дорогу від станції до музею; перед поворотом запитайте: «Ми впевнені?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i12:r2",
@@ -1743,7 +1743,7 @@
               "text": "they"
             }
           ],
-          "testedDimension": "Вставте слово — ви показуєте перехожому ",
+          "testedDimension": "Вставте слово — ви показуєте перехожому точку на карті й запитуєте, чи ви з другом тут",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-43:i14:r2",

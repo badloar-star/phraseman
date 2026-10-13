@@ -423,17 +423,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i08:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — из-под чехла виден кра",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a desk?`. Начало `Are it` не подходит.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a desk?`. Початок `Are it` не підходить."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -506,17 +496,7 @@
           "authoredDistractorTokens": [
             "sofa"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i10:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — сестра говорит о",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `bed`, а не `sofa`: `It is not a bed`.",
-                "uk": "У записі прозвучало `bed`, а не `sofa`: `It is not a bed`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -638,7 +618,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — сестра освободила",
+          "testedDimension": "Вставьте часть фразы — сестра освободила кровать от упаковки; назовите её: «Это кровать»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-02:i12:r2",
@@ -694,17 +674,7 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — сестра спрашивает, что ",
-              "feedbackByLocale": {
-                "ru": "Нужно назвать предмет. С `not` получилось бы «Это не письменный стол», а вы как раз показываете на него.",
-                "uk": "Треба назвати предмет. З `not` вийшло б «Це не письмовий стіл», а ви саме на нього показуєте."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -753,7 +723,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы с сестрой пробуете п",
+          "testedDimension": "Вставьте слово — вы с сестрой пробуете поднять письменный стол; скажите «Он тяжёлый» (`heavy` — «тяжёлый»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-02:i14:r2",
@@ -875,17 +845,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — сестра показывает на к",
-              "feedbackByLocale": {
-                "ru": "Для вопроса об одном предмете здесь нужно `Is it`: `Is it a sofa?`.",
-                "uk": "Для запитання про один предмет тут потрібне `Is it`: `Is it a sofa?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1309,17 +1269,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i08:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — з-під чохла видно к",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`: `Is it a desk?`. Начало `Are it` не подходит.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`: `Is it a desk?`. Початок `Are it` не підходить."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1392,17 +1342,7 @@
           "authoredDistractorTokens": [
             "sofa"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i10:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — сестра говорить ",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `bed`, а не `sofa`: `It is not a bed`.",
-                "uk": "У записі прозвучало `bed`, а не `sofa`: `It is not a bed`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1524,7 +1464,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставте частину фрази — сестра звільнила",
+          "testedDimension": "Вставте частину фрази — сестра звільнила ліжко від упаковки; назвіть його: «Це ліжко»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-02:i12:r2",
@@ -1580,17 +1520,7 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — сестра запитує, що ви п",
-              "feedbackByLocale": {
-                "ru": "Нужно назвать предмет. С `not` получилось бы «Это не письменный стол», а вы как раз показываете на него.",
-                "uk": "Треба назвати предмет. З `not` вийшло б «Це не письмовий стіл», а ви саме на нього показуєте."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1639,7 +1569,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — ви із сестрою пробуєте п",
+          "testedDimension": "Вставте слово — ви із сестрою пробуєте підняти письмовий стіл; скажіть «Він важкий» (`heavy` — «важкий»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-02:i14:r2",
@@ -1761,17 +1691,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-02:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — сестра показує на в",
-              "feedbackByLocale": {
-                "ru": "Для вопроса об одном предмете здесь нужно `Is it`: `Is it a sofa?`.",
-                "uk": "Для запитання про один предмет тут потрібне `Is it`: `Is it a sofa?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

@@ -670,7 +670,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставьте слово — замок заедает, ключ про",
+          "testedDimension": "Вставьте слово — замок заедает, ключ проворачивается с трудом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-27:i12:r2",
@@ -846,7 +846,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — агент называет комнату тесной, а вам в ней просторно",
+            "ru": "Вставьте слово — риелтор называет комнату тесной, а вам в ней просторно",
             "uk": "Вставте слово — агент називає кімнату тісною, а вам у ній просторо"
           },
           "gappedTargetPhrase": "It ___ not small.",
@@ -1937,7 +1937,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставте слово — замок заїдає, ключ прове",
+          "testedDimension": "Вставте слово — замок заїдає, ключ провертається важко",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-27:i12:r2",
@@ -2114,7 +2114,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — агент называет комнату тесной, а вам в ней просторно",
-            "uk": "Вставте слово — агент називає кімнату тісною, а вам у ній просторо"
+            "uk": "Вставте слово — рієлтор називає кімнату тісною, а вам у ній просторо"
           },
           "gappedTargetPhrase": "It ___ not small.",
           "gapOptions": [
@@ -2198,7 +2198,7 @@
             {
               "responseId": "en:lesson-01:session-27:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «це не далеко»",
+              "testedDimension": "Послушайте и соберите — «это не далеко»",
               "feedbackByLocale": {
                 "ru": "`no` лишнее: внутри фразы после `is` нужно `not` — `It is not far.`",
                 "uk": "`no` зайве: усередині фрази після `is` потрібне `not` — `It is not far`."
@@ -2450,7 +2450,7 @@
             {
               "responseId": "en:lesson-01:session-27:i21:s02:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «це не далеко»",
+              "testedDimension": "Соберите фразу — «это не далеко»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is not far.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is not far`."
@@ -2494,7 +2494,7 @@
             {
               "responseId": "en:lesson-01:session-27:i21:s03:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «це не просто»",
+              "testedDimension": "Послушайте и соберите — «это не просто»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `It` ставят `is` — `It is not easy.`",
                 "uk": "`are` зайве: з `It` ставлять `is` — `It is not easy`."

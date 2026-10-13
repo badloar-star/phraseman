@@ -317,7 +317,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед упомянул одного г",
+          "testedDimension": "Вставьте слово — сосед упомянул одного гостя; спросите, кто этот гость",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i06:r2",
@@ -350,7 +350,9 @@
         "prompt": "Произнесите фразу — вы хотите поблагодарить хозяина, но не знаете, кто он",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i07:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — вы хотите поблагодарить хозяина, но не знаете, кто он",
         "modePayload": {
           "family": "scripted_repeat_compare",
@@ -363,7 +365,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -488,7 +495,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставьте слово — скажите, что хозяин бли",
+          "testedDimension": "Вставьте слово — скажите, что хозяин близко",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i09:r2",
@@ -699,17 +706,27 @@
         "prompt": "Произнесите фразу — сосед упомянул гостя; спросите, где он",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i13:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — сосед упомянул гостя; спросите, где он",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-33:i13:audio", "transcript": "Where is the guest?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-33:i13:audio",
+            "transcript": "Where is the guest?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Where is the guest?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -758,7 +775,7 @@
               "text": "guests"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед говорит, что гост",
+          "testedDimension": "Вставьте слово — сосед говорит, что гость стоит рядом с углом комнаты",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i14:r2",
@@ -886,17 +903,27 @@
         "prompt": "Произнесите фразу — Алекс машет вам; узнайте у соседа Ильи, кто он",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i18:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i18:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — Алекс машет вам; узнайте у соседа Ильи, кто он",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-33:i18:audio", "transcript": "Who is he?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-33:i18:audio",
+            "transcript": "Who is he?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Who is he?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1214,7 +1241,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставте слово — сусід згадав одного гост",
+          "testedDimension": "Вставте слово — сусід згадав одного гостя; запитайте, хто цей гість",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i06:r2",
@@ -1247,17 +1274,27 @@
         "prompt": "Промовте фразу — ви хочете подякувати господареві, але не знаєте, хто він",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i07:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — ви хочете подякувати господареві, але не знаєте, хто він",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-33:i07:audio", "transcript": "Who is the host?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-33:i07:audio",
+            "transcript": "Who is the host?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Who is the host?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1382,7 +1419,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставте слово — скажіть, що господар пор",
+          "testedDimension": "Вставте слово — скажіть, що господар поруч",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i09:r2",
@@ -1593,17 +1630,27 @@
         "prompt": "Промовте фразу — сусід згадав гостя; запитайте, де він",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i13:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — сусід згадав гостя; запитайте, де він",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-33:i13:audio", "transcript": "Where is the guest?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-33:i13:audio",
+            "transcript": "Where is the guest?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Where is the guest?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1652,7 +1699,7 @@
               "text": "guests"
             }
           ],
-          "testedDimension": "Вставте слово — сусід каже, що гість сто",
+          "testedDimension": "Вставте слово — сусід каже, що гість стоїть біля кута кімнати",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-33:i14:r2",
@@ -1780,17 +1827,27 @@
         "prompt": "Промовте фразу — Алекс махає вам; дізнайтеся в сусіда Іллі, хто він",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-33:i18:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-33:i18:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — Алекс махає вам; дізнайтеся в сусіда Іллі, хто він",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-33:i18:audio", "transcript": "Who is he?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-33:i18:audio",
+            "transcript": "Who is he?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Who is he?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1829,8 +1886,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-33:i07",
-    "correctText": "Who is the host?",
-    "correctResponseId": null
+      "correctText": "Who is the host?",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-02:session-33:i08",

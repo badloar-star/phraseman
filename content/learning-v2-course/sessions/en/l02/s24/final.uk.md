@@ -62,11 +62,17 @@
 <!-- interaction_id: en:lesson-02:session-24:i01; family: listen_choose -->
 Ціль: `station`
 Варіанти: `station` · `stand` · `stay`
+- stand — *Це «стояти». Коротше: у `station` два склади, у `stand` один.*
+- stay — *Це «залишитися». Теж один склад проти двох у `station`.*
+
 
 **2 · Вставте слово — ви шукаєте будівлю з потягами**
 <!-- interaction_id: en:lesson-02:session-24:i02; family: context_gap_grammar -->
 Ціль: `Where is the ___ ?`
 Варіанти: `station` · `corner` · `bridge`
+- corner — *«Ріг вулиці». Про потяги там не знають.*
+- bridge — *«Міст». Через річку він вас проведе, але потяги стоять не на ньому.*
+
 
 **3 · Складіть фразу — «де міст?»**
 <!-- interaction_id: en:lesson-02:session-24:i03; family: phrase_builder -->
@@ -75,11 +81,16 @@
 **4 · Розрізніть звуки — яке з двох про ріг вулиці?**
 <!-- interaction_id: en:lesson-02:session-24:i04; family: sound_contrast -->
 Варіанти: `corner` · `corridor`
+- corridor — *Це «коридор», три склади. У `corner` їх два.*
+
 
 **5 · Вставте слово — перехожий показує на кінець вулиці, де вона повертає**
 <!-- interaction_id: en:lesson-02:session-24:i05; family: context_gap_grammar -->
 Ціль: `It is at the ___ .`
 Варіанти: `corner` · `station` · `bridge`
+- station — *Вулиця не повертає вокзалом. Місце, де сходяться дві вулиці, — `corner`.*
+- bridge — *Міст іде через річку, а тут просто поворот вулиці.*
+
 
 **6 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-24:i06; family: speed_match -->
@@ -90,33 +101,51 @@
 <!-- interaction_id: en:lesson-02:session-24:i07; family: listen_choose -->
 Ціль: `near`
 Варіанти: `near` · `name` · `nine`
+- name — *Голосна інша: у `name` вона звучить як «ей».*
+- nine — *У `nine` голосна звучить як «ай». У `near` — тягнеться до «і».*
+
 
 **8 · Вставте слово — вокзал прямо перед вами, іти хвилину**
 <!-- interaction_id: en:lesson-02:session-24:i08; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `near` · `behind` · `lost`
+- behind — *«Позаду» — а вокзал у вас перед очима, не за спиною.*
+- lost — *Це про людину, а не про будівлю. Вокзал нікуди не губився.*
+
 
 **9 · Послухайте й складіть — «він позаду мосту»**
 <!-- interaction_id: en:lesson-02:session-24:i09; family: listen_build_dictation -->
 Ціль: `It is behind the bridge.`
+🔊 *It is behind the bridge.* Плитки: `It` `is` `behind` `the` `bridge` `near`
+*Плитка `near` зайва: у записі місце знаходиться `behind the bridge` — «позаду мосту», а не «поруч».*
 
 **10 · Вставте `is` — виберіть слово для запитання про місце**
 <!-- interaction_id: en:lesson-02:session-24:i10; family: context_gap_grammar -->
 Ціль: `Where ___ the corner?`
 Варіанти: `is` · `are` · `am`
+- are — *Про одне місце — `is`. `are` іде з іншими словами.*
+- am — *Це лише про себе: `I am`. Про ріг вулиці так не запитують.*
+
 
 **11 · Розрізніть звуки — яке з двох про втому?**
 <!-- interaction_id: en:lesson-02:session-24:i11; family: sound_contrast -->
 Варіанти: `tired` · `third`
+- third — *Починається з міжзубного звука: язик між зубами. У `tired` перший звук — звичайне «т».*
+
 
 **12 · Вставте слово — супутник просить води, втретє за десять хвилин**
 <!-- interaction_id: en:lesson-02:session-24:i12; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `thirsty` · `tired` · `lost`
+- tired — *«Втомився». Від утоми води не просять.*
+- lost — *«Заблукав». Він поруч із вами й нікуди не подівся, йому просто хочеться пити.*
+
 
 **13 · Складіть запитання — супутник утретє просить води і сідає на кожну лавку; запитайте, чи він втомився**
 <!-- interaction_id: en:lesson-02:session-24:i13; family: phrase_builder -->
 Ціль: `Are you tired?`
+Плитки: `Are` `you` `tired` `is`
+*Плитка `is` зайва: запитання до співрозмовника з `you` починається з `Are you`, а не з `is`.*
 
 **14 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-24:i14; family: speed_match -->
@@ -126,6 +155,8 @@
 **15 · Складіть фразу — сцена вимагає відповіді, а не запитання**
 <!-- interaction_id: en:lesson-02:session-24:i15; family: phrase_builder -->
 Ціль: `It is near.`
+Плитки: `It` `is` `near` `are`
+*Плитка `are` зайва: ви говорите про одне місце, тому відповідь починається з `It is`.*
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-24:i16:s01; family: scripted_repeat_compare -->

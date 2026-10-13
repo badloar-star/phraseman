@@ -1,0 +1,7 @@
+canonical-url: https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf
+final-url: https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf
+http-status: 200
+content-type: application/pdf
+etag: "0x8DCD349F391FF1F"
+last-modified: Thu, 12 Sep 2024 16:42:55 GMT
+transport: DIRECT_PUBLIC_HTTPS

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "learning-v2-german-lexical-item-evidence.v4",
+  "admissionScope": "EXACT_ICH_HEISSE_FIXED_EXPRESSION_ONLY",
+  "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+  "canonicalSenseId": "de_lex_l01_c03_ich_heisse_v1",
+  "evidenceId": "DE-LEX-ITEM-L01-C03-ICH-HEISSE-SENSE-FORM-001",
+  "admittedExpression": "Ich heiße",
+  "sourceLemma": "heißen",
+  "sourcePartOfSpeech": "Verb",
+  "sourceSense": "genannt werden, den Namen haben",
+  "curriculumPartOfSpeech": "fixed_expression",
+  "partOfSpeechInterpretation": "SOURCE_GROUNDED_FIRST_PERSON_VERB_CHUNK_TO_FIXED_EXPRESSION",
+  "senseGloss": "fixed first-person expression for giving one's name",
+  "interactionRole": "participant_reference",
+  "communicativeUse": "say a name after a greeting",
+  "sourceRegisterMarkers": null,
+  "register": null,
+  "productiveConjugationAuthority": false,
+  "generalNameFrameAuthority": false,
+  "phraseAuthority": false,
+  "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+  "packetAllocation": {
+    "plannedUsePacketIds": ["de_l01_c03_s24"],
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null
+  },
+  "goetheOccurrence": {
+    "text": "Ich heiße Max.",
+    "evidenceFunction": "EXACT_OCCURRENCE_ONLY",
+    "generalFrameAuthority": false,
+    "literalPhraseFrameAuthority": false
+  },
+  "sourceSupport": {
+    "dwds": {
+      "rawSha256": "ceb735ca72b691d06fd46f9521636bb650102ed14a19465ee71142f1a295fbf1",
+      "extractionMapSha256": "8cb5f30fd298ddd1d5e058b0ff9a9984e0c79895e4a0fb9e339f4bc5e65b5b9c",
+      "sourceHoldManifestSha256": "b87974af6a1340eb34e9e69faf86a2df1081e75fc4cfa1677093447b5b4ffe23"
+    },
+    "goetheA1Redemittel": {
+      "rawSha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "formulaicExtractionMapSha256": "4cb9d040275870fe6857b222c9bad26fab46646094994a7704bb9d9f0c93c3a7",
+      "formulaicManifestSha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+    }
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "phraseAuthority": false,
+    "defaultConsumerChanged": false,
+    "consumerCutover": "NONE",
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED",
+    "materializedPackets": 0
+  }
+}

@@ -91,6 +91,7 @@ function TextModeStage({
         reducedMotion={false}
         resolved={host.resolved}
         explanation={host.phase === 'needs_work' ? item.explanation : null}
+        learnerFeedback={null}
         referenceAudioState="idle"
         onPick={host.onPick}
         onAppendToken={host.onAppendToken}
@@ -147,6 +148,7 @@ function VoiceModeStage({ onAdvance }: { readonly onAdvance: () => void }) {
         reducedMotion={false}
         resolved={false}
         explanation={null}
+        learnerFeedback={null}
         referenceAudioState="idle"
         onPick={() => {}}
         onAppendToken={() => {}}

@@ -1,0 +1,10 @@
+requested-url: https://www.dwds.de/wb/Hausmeister
+final-url: https://www.dwds.de/wb/Hausmeister
+http-status: 200
+content-type: text/html; charset=UTF-8
+transport: RETAINED_DIRECT_PUBLIC_HTTPS_CAPTURE
+registry-path: .tmp/de-task6c-l01-direct-capture/registry.json
+registry-sha256: 5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc
+raw-response-path: raw/de_lex_plan_l01_c06_hausmeister_v1.html
+raw-response-sha256: ce5d7d3b6648662579068c4702d6fb252f21e165eafa043b569a1b822346a538
+raw-response-bytes: 59173

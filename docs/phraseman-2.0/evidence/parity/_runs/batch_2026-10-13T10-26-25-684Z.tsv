@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-057	2026-10-13T10:27:33.893Z	error	12499	step_target_not_found:Пожаловаться+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-26-25-684Z/cards-057.error.png	0

@@ -1,6 +1,7 @@
 # Англійська · Урок 1 · Заняття 54 — «Розмова телефоном»
 
 **Ситуація.** Під час телефонної співбесіди рекрутер просить коротко розповісти про себе.
+**Що ви опануєте:** Сказати, що ви хвилюєтеся, упевнені в собі або вільно говорите англійською.
 **Нові слова:** confident, nervous, fluent
 **Повертаються:** honest, calm, ready
 
@@ -63,6 +64,7 @@
 **2 · Послухайте та оберіть**
 <!-- interaction_id: en:lesson-01:session-54:i02; family: listen_choose -->
 🔊 *nervous* → **nervous** · nurse · number
+- nervous — *Правильно: `nervous` — «хвилююся».*
 - nurse — *«Медсестра» — професія, а не стан людини.*
 - number — *«Число». Починається інакше: `number` — як «на-», а `nervous` — як «ньо-».*
 
@@ -73,12 +75,14 @@
 **4 · Послухайте та оберіть**
 <!-- interaction_id: en:lesson-01:session-54:i04; family: listen_choose -->
 🔊 *confident* → **confident** · comfort · content
+- confident — *Правильно: `confident` — «упевнений у собі».*
 - comfort — *«Зручність» — про крісло й обстановку, а не про людину.*
 - content — *«Задоволений» — близька тема, але це про вдоволеність, а не про впевненість у своїх силах.*
 
 **5 · Вставте слово — Анна питає, чи впораєтеся ви: ви робили це сто разів**
 <!-- interaction_id: en:lesson-01:session-54:i05; family: context_gap_grammar -->
 I am ___ . → **confident** · fluent · honest
+- confident — *Правильно: `confident` — «упевнений у собі»; тут ви кажете, що впораєтеся з роботою.*
 - fluent — *«Вільно говорю» — про мовлення, а спитали про ваші сили.*
 - honest — *«Чесний» — про правдивість, а не про впевненість у справі.*
 
@@ -89,36 +93,47 @@ I am ___ . → **confident** · fluent · honest
 **7 · Послухайте та оберіть**
 <!-- interaction_id: en:lesson-01:session-54:i07; family: listen_choose -->
 🔊 *fluent* → **fluent** · flat · floor
+- fluent — *Правильно: `fluent` — «говорю вільно».*
 - flat — *«Квартира» — про житло, а не про мовлення.*
 - floor — *«Підлога». Обривається одразу, а у `fluent` після першої частини є ще одна.*
 
 **8 · Складіть фразу — «я хвилююся»**
 <!-- interaction_id: en:lesson-01:session-54:i08; family: phrase_builder -->
 Плитки: `nervous` `I` `am` `is` → **I am nervous.**
+*Правильно: `I am nervous.` — після `I` потрібна форма `am`.*
+*Плитка `is` зайва: з `I` кажуть `am`, не `is`.*
 
 **9 · Вставте слово — Анна питає про вашу англійську**
 <!-- interaction_id: en:lesson-01:session-54:i09; family: context_gap_grammar -->
 I am ___ . → **fluent** · nervous · honest
+- fluent — *Правильно: `fluent` — «говорю вільно»: це відповідь про те, як ви говорите англійською.*
 - nervous — *«Хвилююся» — про стан, а питання було про мовлення.*
 - honest — *«Чесний» — про вдачу. Про мовлення кажуть `fluent`.*
 
 **10 · Складіть фразу — «я впевнений у собі»**
 <!-- interaction_id: en:lesson-01:session-54:i10; family: phrase_builder -->
 Плитки: `I` `am` `confident.` `are` `is` → **I am confident.**
+*Правильно: `I am confident.` — після `I` потрібна форма `am`.*
+*Плитка `are` зайва: з `I` кажуть `am`, не `are`.*
+*Плитка `is` зайва: з `I` кажуть `am`, не `is`.*
 
 **11 · Послухайте та складіть — «я говорю вільно»**
 <!-- interaction_id: en:lesson-01:session-54:i11; family: listen_build_dictation -->
 🔊 *I am fluent.* Плитки: `fluent` `I` `am` `nervous` → **I am fluent.**
+*Правильно: `I am fluent.` — `fluent` описує вільне мовлення.*
+*Плитка `nervous` зайва: вона означає «хвилююся», а тут ідеться про мову.*
 
 **12 · Вставте слово — вас спитали, чи завжди ви кажете правду**
 <!-- interaction_id: en:lesson-01:session-54:i12; family: context_gap_grammar -->
 I am ___ . → **honest** · calm · fluent
+- honest — *Правильно: `honest` — «чесний»: вас спитали, чи завжди ви кажете правду.*
 - calm — *`calm` — «спокійний». Про нерви, а не про правду.*
 - fluent — *«Говорю вільно» — про те, як звучить мовлення, а не про чесність.*
 
 **13 · Складіть фразу — вас спитали, чи не панікуєте ви у важкий день**
 <!-- interaction_id: en:lesson-01:session-54:i13; family: phrase_builder -->
 Плитки: `calm` `I` `am` `not` → **I am calm.**
+*Правильно: `I am calm.` — після `I` потрібна форма `am`, а `calm` означає «спокійний».*
 *(Плитка `not` зайва: ви відповідаєте, що спокійні, а не навпаки.)*
 
 **14 · Промовте одну фразу**
@@ -136,6 +151,8 @@ I am ___ . → **honest** · calm · fluent
 **16 · Складіть фразу — рекрутер питає, чи можна починати**
 <!-- interaction_id: en:lesson-01:session-54:i15; family: phrase_builder -->
 Плитки: `ready` `I` `am` `are` → **I am ready.**
+*Правильно: `I am ready.` — з `I` потрібна форма `am`; `ready` означає «готовий».*
+*Плитка `are` зайва: з `I` кажуть `am`.*
 
 **17 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-54:i16; family: speed_match -->

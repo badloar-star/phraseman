@@ -92,6 +92,8 @@ It's ___ . → **new** · kind · tired
 **6 · Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится**
 <!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->
 Плитки: `kind` `He's` `not` `is` → **He's kind.**
+*(плитка `not` лишняя: она меняет смысл на «он не добрый», а здесь вы его хвалите)*
+*(плитка `is` лишняя: в `He's` уже есть `he is`, второе `is` не нужно)*
 
 **7 · Карточка слова — flat**
 <!-- interaction_id: en:lesson-01:session-50:i07; family: listen_choose -->
@@ -126,10 +128,12 @@ It's ___ . → **expensive** · small · new
 **13 · Послушайте и соберите — «она не маленькая», про город**
 <!-- interaction_id: en:lesson-01:session-50:i13; family: listen_build_dictation -->
 🔊 *It isn't small.* Плитки: `isn't` `It` `small` `is` → **It isn't small.**
+*(плитка `is` лишняя: в `isn't` уже есть `is not`, второе `is` не нужно)*
 
 **14 · Соберите фразу — «начальник не добрый»**
 <!-- interaction_id: en:lesson-01:session-50:i14; family: phrase_builder -->
 Плитки: `He` `isn't` `kind` `is` → **He isn't kind.**
+*(плитка `is` лишняя: в `isn't` уже есть `is not`, второе `is` не нужно)*
 
 **15 · Вставьте слово — мама спрашивает, как вы после недели**
 <!-- interaction_id: en:lesson-01:session-50:i15; family: context_gap_grammar -->
@@ -158,6 +162,8 @@ I'm ___ . → **tired** · expensive · small
 **19 · Соберите фразу — вы показываете другу новую вещь**
 <!-- interaction_id: en:lesson-01:session-50:i17:s01; family: phrase_builder -->
 Плитки: `It's` `new.` `small.` `are` → **It's new.**
+*(плитка `small.` лишняя: `small` означает «маленькая», а вы говорите, что вещь новая)*
+*(плитка `are` лишняя: `It's` уже означает `it is`; `are` нужно для нескольких)*
 
 **20 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-50:i17:s02; family: scripted_repeat_compare -->
@@ -168,6 +174,8 @@ I'm ___ . → **tired** · expensive · small
 **21 · Соберите фразу — вы описываете маленькую вещь на столе**
 <!-- interaction_id: en:lesson-01:session-50:i17:s03; family: phrase_builder -->
 Плитки: `It's` `small.` `new.` `are` → **It's small.**
+*(плитка `new.` лишняя: `new` означает «новая», а вы описываете размер вещи)*
+*(плитка `are` лишняя: `It's` уже означает `it is`; `are` нужно для нескольких)*
 
 **22 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-50:i17:s04; family: scripted_repeat_compare -->

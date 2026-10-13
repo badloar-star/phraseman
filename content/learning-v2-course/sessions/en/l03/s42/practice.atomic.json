@@ -89,29 +89,86 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите звонок у этой двери",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i05:r1", "text": "bell" },
-          { "responseId": "en:lesson-03:session-42:i05:r2", "text": "bill" },
-          { "responseId": "en:lesson-03:session-42:i05:r3", "text": "ball" }
+          {
+            "responseId": "en:lesson-03:session-42:i05:r1",
+            "text": "bell"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i05:r2",
+            "text": "bill"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i05:r3",
+            "text": "ball"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-42:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите звонок у этой двери",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-42:i05:audio", "transcript": "bell" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i05:audio",
+            "transcript": "bell"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-42:i05:r1", "targetText": "bell", "meaningByLocale": { "ru": "звонок", "uk": "дзвінок" } },
-            { "responseId": "en:lesson-03:session-42:i05:r2", "targetText": "bill", "meaningByLocale": { "ru": "счёт", "uk": "рахунок" } },
-            { "responseId": "en:lesson-03:session-42:i05:r3", "targetText": "ball", "meaningByLocale": { "ru": "мяч", "uk": "м’яч" } }
+            {
+              "responseId": "en:lesson-03:session-42:i05:r1",
+              "targetText": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r2",
+              "targetText": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r3",
+              "targetText": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i05:r2", "correct": false, "testedDimension": "meaning", "feedbackByLocale": { "ru": "`bill` — это счёт, не звонок.", "uk": "`bill` — це рахунок, не дзвінок." } },
-            { "responseId": "en:lesson-03:session-42:i05:r3", "correct": false, "testedDimension": "meaning", "feedbackByLocale": { "ru": "`ball` — это мяч, не звонок.", "uk": "`ball` — це м’яч, не дзвінок." } }
+            {
+              "responseId": "en:lesson-03:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "meaning",
+              "feedbackByLocale": {
+                "ru": "`bill` — это счёт, не звонок.",
+                "uk": "`bill` — це рахунок, не дзвінок."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "meaning",
+              "feedbackByLocale": {
+                "ru": "`ball` — это мяч, не звонок.",
+                "uk": "`ball` — це м’яч, не дзвінок."
+              }
+            }
           ],
           "isWordCard": true,
-          "wordCard": { "word": "bell", "definitionByLocale": { "ru": "«звонок». Кнопка у двери, которая подаёт звук.", "uk": "«дзвінок». Кнопка біля дверей, яка подає звук." } }
+          "wordCard": {
+            "word": "bell",
+            "definitionByLocale": {
+              "ru": "«звонок». Кнопка у двери, которая подаёт звук.",
+              "uk": "«дзвінок». Кнопка біля дверей, яка подає звук."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -269,13 +326,21 @@
         "accessibilityLabel": "Произнесите слово — кнопка звонка рядом с дверью",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-42:i06:audio", "transcript": "bell" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i06:audio",
+            "transcript": "bell"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "bell",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -371,9 +436,15 @@
             "uk": "Складіть одну фразу — ручка цих дверей заїла"
           },
           "orderedTokens": [
-            "The", "handle", "is", "stuck."
+            "The",
+            "handle",
+            "is",
+            "stuck."
           ],
-          "authoredDistractorTokens": ["A", "are"],
+          "authoredDistractorTokens": [
+            "A",
+            "are"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -386,29 +457,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте маленькое слово — замок этой двери сломан",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i09:r1", "text": "the" },
-          { "responseId": "en:lesson-03:session-42:i09:r2", "text": "a" },
-          { "responseId": "en:lesson-03:session-42:i09:r3", "text": "an" },
-          { "responseId": "en:lesson-03:session-42:i09:r4", "text": "без артикля" }
+          {
+            "responseId": "en:lesson-03:session-42:i09:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r4",
+            "text": "без артикля"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте маленькое слово — замок этой двери сломан",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте маленькое слово — замок этой двери сломан", "uk": "Вставте маленьке слово — замок цих дверей зламаний" },
+          "localizedScene": {
+            "ru": "Вставьте маленькое слово — замок этой двери сломан",
+            "uk": "Вставте маленьке слово — замок цих дверей зламаний"
+          },
           "gappedTargetPhrase": "___ lock is broken.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-42:i09:r1", "text": "the" },
-            { "responseId": "en:lesson-03:session-42:i09:r2", "text": "a" },
-            { "responseId": "en:lesson-03:session-42:i09:r3", "text": "an" },
-            { "responseId": "en:lesson-03:session-42:i09:r4", "text": "без артикля" }
+            {
+              "responseId": "en:lesson-03:session-42:i09:r1",
+              "text": "the"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r4",
+              "text": "без артикля"
+            }
           ],
           "testedDimension": "definite_article_visible_door_lock",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i09:r2", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Это конкретный замок этой двери, поэтому нужен `the`.", "uk": "Це конкретний замок цих дверей, тому потрібне `the`." } },
-            { "responseId": "en:lesson-03:session-42:i09:r3", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Здесь нужен не `an`, а `the`: замок уже понятен из ситуации.", "uk": "Тут потрібне не `an`, а `the`: замок уже зрозумілий із ситуації." } },
-            { "responseId": "en:lesson-03:session-42:i09:r4", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Перед конкретным исчисляемым предметом здесь нужен `the`.", "uk": "Перед конкретним злічуваним предметом тут потрібне `the`." } }
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Это конкретный замок этой двери, поэтому нужен `the`.",
+                "uk": "Це конкретний замок цих дверей, тому потрібне `the`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен не `an`, а `the`: замок уже понятен из ситуации.",
+                "uk": "Тут потрібне не `an`, а `the`: замок уже зрозумілий із ситуації."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r4",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Перед конкретным исчисляемым предметом здесь нужен `the`.",
+                "uk": "Перед конкретним злічуваним предметом тут потрібне `the`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -499,7 +621,7 @@
               "text": "без артикля"
             }
           ],
-          "testedDimension": "Вставьте маленькое слово — ручка этой дв",
+          "testedDimension": "Вставьте маленькое слово — ручка этой двери заела",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-42:i11:r2",
@@ -747,7 +869,7 @@
               "text": "без артикля"
             }
           ],
-          "testedDimension": "Вставьте маленькое слово — звонок у этой",
+          "testedDimension": "Вставьте маленькое слово — звонок у этой двери молчит",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-42:i15:r2",
@@ -820,29 +942,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте маленькое слово — сотрудник смотрит на ручку этой двери: она сломана",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i17:r1", "text": "the" },
-          { "responseId": "en:lesson-03:session-42:i17:r2", "text": "a" },
-          { "responseId": "en:lesson-03:session-42:i17:r3", "text": "an" },
-          { "responseId": "en:lesson-03:session-42:i17:r4", "text": "без артикля" }
+          {
+            "responseId": "en:lesson-03:session-42:i17:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r4",
+            "text": "без артикля"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте маленькое слово — сотрудник смотрит на ручку этой двери: она сломана",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Сотрудник смотрит на ручку этой двери: она сломана.", "uk": "Працівник дивиться на ручку цих дверей: вона зламана." },
+          "localizedScene": {
+            "ru": "Вставьте маленькое слово — сотрудник смотрит на ручку этой двери: она сломана",
+            "uk": "Працівник дивиться на ручку цих дверей: вона зламана."
+          },
           "gappedTargetPhrase": "___ handle is broken.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-42:i17:r1", "text": "the" },
-            { "responseId": "en:lesson-03:session-42:i17:r2", "text": "a" },
-            { "responseId": "en:lesson-03:session-42:i17:r3", "text": "an" },
-            { "responseId": "en:lesson-03:session-42:i17:r4", "text": "без артикля" }
+            {
+              "responseId": "en:lesson-03:session-42:i17:r1",
+              "text": "the"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r3",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r4",
+              "text": "без артикля"
+            }
           ],
           "testedDimension": "конкретная ручка этой двери",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i17:r2", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "`a handle` может казаться подходящим, потому что ручка одна. Но здесь оба смотрят на ручку этой конкретной двери, поэтому нужна известная группа `the handle`. В новой сцене выбирайте `the`, когда предмет уже понятен обоим из ситуации.", "uk": "`a handle` може здаватися доречним, бо ручка одна. Але тут обидва дивляться на ручку цих конкретних дверей, тому потрібна відома група `the handle`. У новій сцені обирайте `the`, коли предмет уже зрозумілий обом із ситуації." } },
-            { "responseId": "en:lesson-03:session-42:i17:r3", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "`an` ставят перед гласным звуком, поэтому он может вспоминаться как другой вариант артикля. Но `handle` начинается со звука /h/, и здесь речь о конкретной ручке, поэтому нужно `the`. В новой фразе сначала проверьте звук следующего слова, затем — известен ли предмет собеседникам.", "uk": "`an` ставлять перед голосним звуком, тому він може пригадуватися як інший артикль. Але `handle` починається зі звуку /h/, і тут ідеться про конкретну ручку, тому потрібно `the`. У новій фразі спершу перевірте звук наступного слова, а потім — чи відомий предмет співрозмовникам." } },
-            { "responseId": "en:lesson-03:session-42:i17:r4", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "Форма без артикля похожа на общее название предмета. Но ученик и сотрудник смотрят на одну понятную ручку двери, поэтому нужно `the handle`. В новой сцене ставьте `the`, когда можно указать на один уже известный предмет.", "uk": "Форма без артикля схожа на загальну назву предмета. Але учень і працівник дивляться на одну зрозумілу ручку дверей, тому потрібно `the handle`. У новій сцені ставте `the`, коли можна вказати на один уже відомий предмет." } }
+            {
+              "responseId": "en:lesson-03:session-42:i17:r2",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "`a handle` может казаться подходящим, потому что ручка одна. Но здесь оба смотрят на ручку этой конкретной двери, поэтому нужна известная группа `the handle`. В новой сцене выбирайте `the`, когда предмет уже понятен обоим из ситуации.",
+                "uk": "`a handle` може здаватися доречним, бо ручка одна. Але тут обидва дивляться на ручку цих конкретних дверей, тому потрібна відома група `the handle`. У новій сцені обирайте `the`, коли предмет уже зрозумілий обом із ситуації."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r3",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "`an` ставят перед гласным звуком, поэтому он может вспоминаться как другой вариант артикля. Но `handle` начинается со звука /h/, и здесь речь о конкретной ручке, поэтому нужно `the`. В новой фразе сначала проверьте звук следующего слова, затем — известен ли предмет собеседникам.",
+                "uk": "`an` ставлять перед голосним звуком, тому він може пригадуватися як інший артикль. Але `handle` починається зі звуку /h/, і тут ідеться про конкретну ручку, тому потрібно `the`. У новій фразі спершу перевірте звук наступного слова, а потім — чи відомий предмет співрозмовникам."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r4",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "Форма без артикля похожа на общее название предмета. Но ученик и сотрудник смотрят на одну понятную ручку двери, поэтому нужно `the handle`. В новой сцене ставьте `the`, когда можно указать на один уже известный предмет.",
+                "uk": "Форма без артикля схожа на загальну назву предмета. Але учень і працівник дивляться на одну зрозумілу ручку дверей, тому потрібно `the handle`. У новій сцені ставте `the`, коли можна вказати на один уже відомий предмет."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -933,29 +1106,86 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть дзвінок біля цих дверей",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i05:r1", "text": "bell" },
-          { "responseId": "en:lesson-03:session-42:i05:r2", "text": "bill" },
-          { "responseId": "en:lesson-03:session-42:i05:r3", "text": "ball" }
+          {
+            "responseId": "en:lesson-03:session-42:i05:r1",
+            "text": "bell"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i05:r2",
+            "text": "bill"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i05:r3",
+            "text": "ball"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-42:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-42:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть дзвінок біля цих дверей",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-42:i05:audio", "transcript": "bell" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i05:audio",
+            "transcript": "bell"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-42:i05:r1", "targetText": "bell", "meaningByLocale": { "ru": "звонок", "uk": "дзвінок" } },
-            { "responseId": "en:lesson-03:session-42:i05:r2", "targetText": "bill", "meaningByLocale": { "ru": "счёт", "uk": "рахунок" } },
-            { "responseId": "en:lesson-03:session-42:i05:r3", "targetText": "ball", "meaningByLocale": { "ru": "мяч", "uk": "м’яч" } }
+            {
+              "responseId": "en:lesson-03:session-42:i05:r1",
+              "targetText": "bell",
+              "meaningByLocale": {
+                "ru": "звонок",
+                "uk": "дзвінок"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r2",
+              "targetText": "bill",
+              "meaningByLocale": {
+                "ru": "счёт",
+                "uk": "рахунок"
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r3",
+              "targetText": "ball",
+              "meaningByLocale": {
+                "ru": "мяч",
+                "uk": "м’яч"
+              }
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i05:r2", "correct": false, "testedDimension": "meaning", "feedbackByLocale": { "ru": "`bill` — это счёт, не звонок.", "uk": "`bill` — це рахунок, не дзвінок." } },
-            { "responseId": "en:lesson-03:session-42:i05:r3", "correct": false, "testedDimension": "meaning", "feedbackByLocale": { "ru": "`ball` — это мяч, не звонок.", "uk": "`ball` — це м’яч, не дзвінок." } }
+            {
+              "responseId": "en:lesson-03:session-42:i05:r2",
+              "correct": false,
+              "testedDimension": "meaning",
+              "feedbackByLocale": {
+                "ru": "`bill` — это счёт, не звонок.",
+                "uk": "`bill` — це рахунок, не дзвінок."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i05:r3",
+              "correct": false,
+              "testedDimension": "meaning",
+              "feedbackByLocale": {
+                "ru": "`ball` — это мяч, не звонок.",
+                "uk": "`ball` — це м’яч, не дзвінок."
+              }
+            }
           ],
           "isWordCard": true,
-          "wordCard": { "word": "bell", "definitionByLocale": { "ru": "«звонок». Кнопка у двери, которая подаёт звук.", "uk": "«дзвінок». Кнопка біля дверей, яка подає звук." } }
+          "wordCard": {
+            "word": "bell",
+            "definitionByLocale": {
+              "ru": "«звонок». Кнопка у двери, которая подаёт звук.",
+              "uk": "«дзвінок». Кнопка біля дверей, яка подає звук."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1113,13 +1343,21 @@
         "accessibilityLabel": "Промовте слово — кнопка дзвінка біля дверей",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-42:i06:audio", "transcript": "bell" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-42:i06:audio",
+            "transcript": "bell"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "bell",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1215,9 +1453,15 @@
             "uk": "Складіть одну фразу — ручка цих дверей заїла"
           },
           "orderedTokens": [
-            "The", "handle", "is", "stuck."
+            "The",
+            "handle",
+            "is",
+            "stuck."
           ],
-          "authoredDistractorTokens": ["A", "are"],
+          "authoredDistractorTokens": [
+            "A",
+            "are"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -1230,29 +1474,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставте маленьке слово — замок цих дверей зламаний",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i09:r1", "text": "the" },
-          { "responseId": "en:lesson-03:session-42:i09:r2", "text": "a" },
-          { "responseId": "en:lesson-03:session-42:i09:r3", "text": "an" },
-          { "responseId": "en:lesson-03:session-42:i09:r4", "text": "без артикля" }
+          {
+            "responseId": "en:lesson-03:session-42:i09:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i09:r4",
+            "text": "без артикля"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте маленьке слово — замок цих дверей зламаний",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте маленькое слово — замок этой двери сломан", "uk": "Вставте маленьке слово — замок цих дверей зламаний" },
+          "localizedScene": {
+            "ru": "Вставьте маленькое слово — замок этой двери сломан",
+            "uk": "Вставте маленьке слово — замок цих дверей зламаний"
+          },
           "gappedTargetPhrase": "___ lock is broken.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-42:i09:r1", "text": "the" },
-            { "responseId": "en:lesson-03:session-42:i09:r2", "text": "a" },
-            { "responseId": "en:lesson-03:session-42:i09:r3", "text": "an" },
-            { "responseId": "en:lesson-03:session-42:i09:r4", "text": "без артикля" }
+            {
+              "responseId": "en:lesson-03:session-42:i09:r1",
+              "text": "the"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r4",
+              "text": "без артикля"
+            }
           ],
           "testedDimension": "definite_article_visible_door_lock",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i09:r2", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Это конкретный замок этой двери, поэтому нужен `the`.", "uk": "Це конкретний замок цих дверей, тому потрібне `the`." } },
-            { "responseId": "en:lesson-03:session-42:i09:r3", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Здесь нужен не `an`, а `the`: замок уже понятен из ситуации.", "uk": "Тут потрібне не `an`, а `the`: замок уже зрозумілий із ситуації." } },
-            { "responseId": "en:lesson-03:session-42:i09:r4", "correct": false, "testedDimension": "definite_article_visible_door_lock", "feedbackByLocale": { "ru": "Перед конкретным исчисляемым предметом здесь нужен `the`.", "uk": "Перед конкретним злічуваним предметом тут потрібне `the`." } }
+            {
+              "responseId": "en:lesson-03:session-42:i09:r2",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Это конкретный замок этой двери, поэтому нужен `the`.",
+                "uk": "Це конкретний замок цих дверей, тому потрібне `the`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r3",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Здесь нужен не `an`, а `the`: замок уже понятен из ситуации.",
+                "uk": "Тут потрібне не `an`, а `the`: замок уже зрозумілий із ситуації."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i09:r4",
+              "correct": false,
+              "testedDimension": "definite_article_visible_door_lock",
+              "feedbackByLocale": {
+                "ru": "Перед конкретным исчисляемым предметом здесь нужен `the`.",
+                "uk": "Перед конкретним злічуваним предметом тут потрібне `the`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1664,29 +1959,80 @@
         "inputMode": "single_choice",
         "prompt": "Вставте маленьке слово — працівник дивиться на ручку цих дверей: вона зламана",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-42:i17:r1", "text": "the" },
-          { "responseId": "en:lesson-03:session-42:i17:r2", "text": "a" },
-          { "responseId": "en:lesson-03:session-42:i17:r3", "text": "an" },
-          { "responseId": "en:lesson-03:session-42:i17:r4", "text": "без артикля" }
+          {
+            "responseId": "en:lesson-03:session-42:i17:r1",
+            "text": "the"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r2",
+            "text": "a"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r3",
+            "text": "an"
+          },
+          {
+            "responseId": "en:lesson-03:session-42:i17:r4",
+            "text": "без артикля"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте маленьке слово — працівник дивиться на ручку цих дверей: вона зламана",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Сотрудник смотрит на ручку этой двери: она сломана.", "uk": "Працівник дивиться на ручку цих дверей: вона зламана." },
+          "localizedScene": {
+            "ru": "Сотрудник смотрит на ручку этой двери: она сломана.",
+            "uk": "Вставте маленьке слово — працівник дивиться на ручку цих дверей: вона зламана"
+          },
           "gappedTargetPhrase": "___ handle is broken.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-42:i17:r1", "text": "the" },
-            { "responseId": "en:lesson-03:session-42:i17:r2", "text": "a" },
-            { "responseId": "en:lesson-03:session-42:i17:r3", "text": "an" },
-            { "responseId": "en:lesson-03:session-42:i17:r4", "text": "без артикля" }
+            {
+              "responseId": "en:lesson-03:session-42:i17:r1",
+              "text": "the"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r2",
+              "text": "a"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r3",
+              "text": "an"
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r4",
+              "text": "без артикля"
+            }
           ],
           "testedDimension": "конкретная ручка этой двери",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-42:i17:r2", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "`a handle` может казаться подходящим, потому что ручка одна. Но здесь оба смотрят на ручку этой конкретной двери, поэтому нужна известная группа `the handle`. В новой сцене выбирайте `the`, когда предмет уже понятен обоим из ситуации.", "uk": "`a handle` може здаватися доречним, бо ручка одна. Але тут обидва дивляться на ручку цих конкретних дверей, тому потрібна відома група `the handle`. У новій сцені обирайте `the`, коли предмет уже зрозумілий обом із ситуації." } },
-            { "responseId": "en:lesson-03:session-42:i17:r3", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "`an` ставят перед гласным звуком, поэтому он может вспоминаться как другой вариант артикля. Но `handle` начинается со звука /h/, и здесь речь о конкретной ручке, поэтому нужно `the`. В новой фразе сначала проверьте звук следующего слова, затем — известен ли предмет собеседникам.", "uk": "`an` ставлять перед голосним звуком, тому він може пригадуватися як інший артикль. Але `handle` починається зі звуку /h/, і тут ідеться про конкретну ручку, тому потрібно `the`. У новій фразі спершу перевірте звук наступного слова, а потім — чи відомий предмет співрозмовникам." } },
-            { "responseId": "en:lesson-03:session-42:i17:r4", "correct": false, "testedDimension": "конкретная ручка этой двери", "feedbackByLocale": { "ru": "Форма без артикля похожа на общее название предмета. Но ученик и сотрудник смотрят на одну понятную ручку двери, поэтому нужно `the handle`. В новой сцене ставьте `the`, когда можно указать на один уже известный предмет.", "uk": "Форма без артикля схожа на загальну назву предмета. Але учень і працівник дивляться на одну зрозумілу ручку дверей, тому потрібно `the handle`. У новій сцені ставте `the`, коли можна вказати на один уже відомий предмет." } }
+            {
+              "responseId": "en:lesson-03:session-42:i17:r2",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "`a handle` может казаться подходящим, потому что ручка одна. Но здесь оба смотрят на ручку этой конкретной двери, поэтому нужна известная группа `the handle`. В новой сцене выбирайте `the`, когда предмет уже понятен обоим из ситуации.",
+                "uk": "`a handle` може здаватися доречним, бо ручка одна. Але тут обидва дивляться на ручку цих конкретних дверей, тому потрібна відома група `the handle`. У новій сцені обирайте `the`, коли предмет уже зрозумілий обом із ситуації."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r3",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "`an` ставят перед гласным звуком, поэтому он может вспоминаться как другой вариант артикля. Но `handle` начинается со звука /h/, и здесь речь о конкретной ручке, поэтому нужно `the`. В новой фразе сначала проверьте звук следующего слова, затем — известен ли предмет собеседникам.",
+                "uk": "`an` ставлять перед голосним звуком, тому він може пригадуватися як інший артикль. Але `handle` починається зі звуку /h/, і тут ідеться про конкретну ручку, тому потрібно `the`. У новій фразі спершу перевірте звук наступного слова, а потім — чи відомий предмет співрозмовникам."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-42:i17:r4",
+              "correct": false,
+              "testedDimension": "конкретная ручка этой двери",
+              "feedbackByLocale": {
+                "ru": "Форма без артикля похожа на общее название предмета. Но ученик и сотрудник смотрят на одну понятную ручку двери, поэтому нужно `the handle`. В новой сцене ставьте `the`, когда можно указать на один уже известный предмет.",
+                "uk": "Форма без артикля схожа на загальну назву предмета. Але учень і працівник дивляться на одну зрозумілу ручку дверей, тому потрібно `the handle`. У новій сцені ставте `the`, коли можна вказати на один уже відомий предмет."
+              }
+            }
           ]
         },
         "scriptedAlternate": null

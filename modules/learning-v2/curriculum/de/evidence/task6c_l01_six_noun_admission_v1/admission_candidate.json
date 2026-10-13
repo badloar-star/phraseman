@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-six-noun-admission-candidate.v1",
+  "status": "HOLD",
+  "admissionStatus": "PARTIAL_CANDIDATE",
+  "candidateAcceptance": "HOLD",
+  "reviewStatus": "PENDING_INDEPENDENT_REVIEW",
+  "task7Unlock": false,
+  "rowsPromoted": 0,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "evidenceBundle": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/manifest.json",
+    "sha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55"
+  },
+  "predecessorAnchors": {
+    "directCaptureRegistrySha256": "5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc",
+    "sourceAnchorAmendmentRegistrySha256": "2e4e5d7d64594ed75a7ec7fff9afd835c58b17cd795e8ca4f5ec660ff1684a3c",
+    "morphSemanticFactsRegistrySha256": "31029f1e7bc35cdcf1e3e5d11c1000b528fa03900dd0d228aa8c13345c37f99a"
+  },
+  "integration": {
+    "existingCanonicalRegistry": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json",
+    "existingCanonicalRegistrySha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29",
+    "existingCanonicalIds": ["de_lex_l01_c01_nachbarin_v1", "de_lex_l01_c02_aufzug_v1"],
+    "newCandidateIds": ["de_lex_l01_c03_briefkasten_v1", "de_lex_l01_c04_buero_v1", "de_lex_l01_c05_garten_v1", "de_lex_l01_c06_hausmeister_v1"],
+    "existingTask6KernelContract": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts",
+    "existingLexicalEvidenceContract": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts"
+  }
+}

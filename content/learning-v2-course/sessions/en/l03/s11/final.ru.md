@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i02; family: listen_choose -->
 Цель: `hour`
 Варианты: `hour` · `power` · `tower`
+- power — *`power` — «мощность». Сначала слышно «п», а затем гласный. В `hour` слово начинается сразу с гласного, без «п».*
+- tower — *`tower` — «башня». У него перед похожей гласной частью слышно «т». Запись начинается с гласного: `hour`.*
+
 
 **3 · Карточка слова — uniform**
 <!-- interaction_id: en:lesson-03:session-11:i03; family: listen_choose -->
@@ -69,11 +72,17 @@
 <!-- interaction_id: en:lesson-03:session-11:i04; family: listen_choose -->
 Цель: `uniform`
 Варианты: `uniform` · `unicorn` · `universe`
+- unicorn — *`unicorn` — «единорог». В последней части слышно «к», а у `uniform` на этом месте «ф». Слушайте дальше похожего начала.*
+- universe — *`universe` — «вселенная». В последней части слышно «в», а в `uniform` — «ф». Похожие первые звуки ещё не определяют ответ.*
+
 
 **5 · Вставьте слово — сотрудник написал, что сборка займёт час; дополните короткое название срока**
 <!-- interaction_id: en:lesson-03:session-11:i05; family: context_gap_grammar -->
 Цель: `___ hour.`
 Варианты: `An` · `A` · `Is`
+- A — *Начальная `h` в `hour` не произносится. Слово начинается с гласного звука, поэтому выбираем `An`.*
+- Is — *Здесь нужно назвать срок двумя словами. Перед `hour` ставим `An`; `Is` не заменяет это маленькое слово.*
+
 
 **6 · Соберите короткое название — друг указывает на рабочую одежду мастера; ответьте двумя словами «форма»**
 <!-- interaction_id: en:lesson-03:session-11:i06; family: phrase_builder -->
@@ -84,6 +93,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i07; family: context_gap_grammar -->
 Цель: `It is ___ kettle.`
 Варианты: `a` · `an` · `am`
+- an — *В `kettle` сначала слышен согласный «к». Для этого названия нужно `a`.*
+- am — *`am` сочетается с `I`. После готового начала `It is` здесь нужно название `a kettle`.*
+
 
 **8 · Послушайте и соберите — сотрудник отвечает о времени**
 <!-- interaction_id: en:lesson-03:session-11:i08; family: listen_build_dictation -->
@@ -94,6 +106,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i09; family: context_gap_grammar -->
 Цель: `It is ___ vacuum.`
 Варианты: `a` · `an` · `is`
+- an — *Первый звук в `vacuum` — согласный «в». Перед этим названием ставим `a`.*
+- is — *`is` уже есть в начале. Перед `vacuum` сейчас нужно `a`, а не второе `is`.*
+
 
 **10 · Соедините названия с русскими значениями — у стойки сервиса**
 <!-- interaction_id: en:lesson-03:session-11:i10; family: speed_match -->
@@ -104,6 +119,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i11; family: listen_choose -->
 Цель: `It is not a uniform.`
 Варианты: `It is not a uniform.` · `It is a uniform.` · `Is it a uniform?`
+- It is a uniform. — *В этом варианте после `is` сразу стоит `a`. В записи между ними слышно `not` — название отрицают.*
+- Is it a uniform? — *Этот вопрос начинается с `Is it`. В записи сначала `It is`, а затем слышно `not`.*
+
 
 **12 · Соберите вопрос — сотрудник назвал время ожидания; переспросите «Это час?»**
 <!-- interaction_id: en:lesson-03:session-11:i12; family: phrase_builder -->
@@ -114,6 +132,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i13; family: listen_choose -->
 Цель: `Is it a uniform?`
 Варианты: `Is it a uniform?` · `It is a uniform.` · `Is it an uniform?`
+- It is a uniform. — *В записи первым звучит `Is`, поэтому это вопрос, а не ответ `It is a uniform.`.*
+- Is it an uniform? — *В `uniform` первый звук согласный «й», поэтому в записи слышно `a uniform`, а не `an uniform`.*
+
 
 **14 · Произнесите фразу — друг принял обычный спортивный костюм покупателя за рабочую форму; поправьте его: «Это не форма»**
 <!-- interaction_id: en:lesson-03:session-11:i14; family: scripted_repeat_compare -->
@@ -123,6 +144,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i15; family: listen_choose -->
 Цель: `It is an hour.`
 Варианты: `It is an hour.` · `Is it an hour?` · `It is not an hour.`
+- Is it an hour? — *В вопросе первым звучало бы `Is`. Здесь запись начинается с `It`, затем идёт `is`.*
+- It is not an hour. — *В этом варианте есть `not`. В записи после `is` сразу звучит `an hour`, без отрицания.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-11:i16; family: scripted_repeat_compare -->

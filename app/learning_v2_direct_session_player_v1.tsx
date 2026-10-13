@@ -208,6 +208,10 @@ import type {
   LearningV2ModePhaseV1,
   LearningV2ReferenceAudioStateV1,
 } from "../modules/learning-v2/modes/mode_contract_v1";
+import {
+  resolveLearningV2ModeFeedbackV1,
+  type LearningV2ModeLearnerFeedbackV1,
+} from "../modules/learning-v2/modes/mode_feedback_v1";
 import ScriptedRepeatCompareModeV1 from "../modules/learning-v2/modes/scripted_repeat_compare_mode_v1";
 import { resolveLearningV2CourseSessionDeviceSpeechTextV1 } from "../modules/learning-v2/runtime/course_session_device_speech_text_v1";
 import { stableShuffleLearningV2OptionsV1 } from "../modules/learning-v2/runtime/stable_option_shuffle_v1";
@@ -596,6 +600,8 @@ export default function LearningV2DirectSessionPlayerV1() {
   const [wrongCount, setWrongCount] = useState(0);
   const [hintUsed, setHintUsed] = useState(false);
   const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
+  const [learnerFeedback, setLearnerFeedback] =
+    useState<LearningV2ModeLearnerFeedbackV1 | null>(null);
   const [lastWrongResponseId, setLastWrongResponseId] = useState<string | null>(
     null,
   );
@@ -1540,6 +1546,7 @@ export default function LearningV2DirectSessionPlayerV1() {
     setAttempts(1);
     setWrongCount(0);
     setLastWrongResponseId(null);
+    setLearnerFeedback(null);
     setHintUsed(false);
     setSelectedChoiceId(null);
     setOrderedIds([]);
@@ -1719,6 +1726,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         attemptAnswerSequenceRef.current++,
       ].join(":");
       if (resultCode === "provisional_correct") {
+        setLearnerFeedback(resolveLearningV2ModeFeedbackV1({
+          interfaceLocale: lang,
+          modePayload: practice.modePayload,
+          outcome: "correct",
+          selectedResponseId: response.kind === "choice_token" ? response.value : selectedChoiceId,
+          orderedResponseIds: orderedIds,
+        }));
         sessionAttempts.registerVerdict({
           answerAttemptId,
           verdict: "correct",
@@ -1771,6 +1785,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         return;
       }
       if (resultCode === "technical_invalid") {
+        setLearnerFeedback(null);
         sessionAttempts.registerVerdict({
           answerAttemptId,
           verdict: "technical_error",
@@ -1785,6 +1800,13 @@ export default function LearningV2DirectSessionPlayerV1() {
         answerAttemptId,
         verdict: "pedagogical_wrong",
       });
+      setLearnerFeedback(resolveLearningV2ModeFeedbackV1({
+        interfaceLocale: lang,
+        modePayload: practice.modePayload,
+        outcome: "wrong",
+        selectedResponseId: response.kind === "choice_token" ? response.value : selectedChoiceId,
+        orderedResponseIds: orderedIds,
+      }));
       const factorySemantic = material?.factoryPracticeSemantics?.[
         practice.interactionId
       ];
@@ -2739,6 +2761,16 @@ export default function LearningV2DirectSessionPlayerV1() {
                 responseId ?? `${interactionId.replace(/:q$/u, "")}:r${choiceIndex + 1}`
               ]?.[lang] ?? auxiliaryEntry.secondErrorExplanationByLocale[lang];
             }}
+            resolveChoiceAnalysis={(interactionId, choiceIndex, responseId) => {
+              const auxiliaryEntry = getLearningV2CourseSessionAuxiliaryEntryV1(run, interactionId);
+              const resolvedResponseId = responseId ?? `${interactionId.replace(/:q$/u, "")}:r${choiceIndex + 1}`;
+              const analysis = auxiliaryEntry.responseAnalysisById?.[resolvedResponseId]?.[lang];
+              if (!analysis) return null;
+              return {
+                analysis,
+                diagnostics: auxiliaryEntry.responseDiagnosticsById?.[resolvedResponseId] ?? null,
+              };
+            }}
             onComplete={(introCompletions) => {
               introCompletions.forEach((entry) =>
                 completionsRef.current.set(entry.taskId, {
@@ -2895,6 +2927,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 reducedMotion={reducedMotion}
                 resolved={result === "correct"}
                 explanation={wrongExplanation}
+                learnerFeedback={learnerFeedback}
                 referenceAudioState={referenceAudioState}
                 onPick={(responseId) => {
                   voiceCancelRef.current();
@@ -2973,6 +3006,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                 reducedMotion={reducedMotion}
                 resolved={result === "correct"}
                 explanation={wrongExplanation}
+                learnerFeedback={learnerFeedback}
                 referenceAudioState={referenceAudioState}
                 voiceStatus={modeVoiceStatus}
                 transcript={transcript}

@@ -1,0 +1,11 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-015	2026-10-12T16:19:10.668Z	ok	9923	marker+пусто_1452мс+склейка+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/spire-gap-015.png	1452
+spire-gap-018	2026-10-12T16:19:29.298Z	ok	9969	marker+пусто_1437мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/spire-gap-018.png	1437
+spire-007	2026-10-12T16:19:45.247Z	ok	9333	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/spire-007.png	0
+spire-011	2026-10-12T16:20:02.562Z	ok	8655	marker+пусто_1361мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/spire-011.png	1361
+cards-007	2026-10-12T16:20:36.464Z	ok	11749	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-007.png	0
+community-007	2026-10-12T16:21:13.295Z	ok	13091	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-007.png	0
+mistakes-panel-002	2026-10-12T16:21:31.366Z	ok	9767	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/mistakes-panel-002.png	0
+community-006	2026-10-12T16:22:05.814Z	ok	14243	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/community-006.png	0
+cards-section-044	2026-10-12T16:22:49.722Z	error	16574	step_target_not_found:#fc-blitz-opt-target+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T16-18-50-468Z/cards-section-044.error.png	0
+cards-section-045	2026-10-12T16:23:31.352Z	error	14253	step_target_not_found:#fc-blitz-opt-target+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T16-18-50-468Z/cards-section-045.error.png	0

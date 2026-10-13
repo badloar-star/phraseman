@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+system-010	2026-10-13T09:15:01.903Z	timeout	90251	нет маркера+ждали_metro_34мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T09-13-26-140Z/system-010.timeout.png	0

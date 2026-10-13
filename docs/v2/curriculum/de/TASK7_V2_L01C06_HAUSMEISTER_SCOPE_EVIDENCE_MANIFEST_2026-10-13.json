@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c06-hausmeister-scope-evidence.v1",
+  "status": "HOLD",
+  "scope": "EVIDENCE_AND_RECEIPT_ONLY",
+  "allowlist": [
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/extraction_map.json",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/manifest.json",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/raw/de_lex_plan_l01_c06_hausmeister_v1.html",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/raw/de_lex_plan_l01_c06_hausmeister_v1.http_metadata.txt",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c06_hausmeister_source_hold_de_v1.ts",
+    "tests/learning_v2_de_task7_v2_l01_c06_hausmeister_source_hold_gate.ts",
+    "scripts/guard_learning_v2_de_task7_v2_l01_c06_hausmeister_scope.mjs",
+    "tests/learning_v2_de_task7_v2_l01_c06_hausmeister_scope_evidence_gate.ts"
+  ],
+  "hashes": {
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/extraction_map.json": "de6cf30b0ee672964555d2a0a89bedd35c03e8a81a5c90d3dedbdf9daae9da49",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/manifest.json": "5d74697456a20325d4306ffe2a427b013aabde114e3e9faef3ac27e7a2e5581f",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/raw/de_lex_plan_l01_c06_hausmeister_v1.html": "ce5d7d3b6648662579068c4702d6fb252f21e165eafa043b569a1b822346a538",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/raw/de_lex_plan_l01_c06_hausmeister_v1.http_metadata.txt": "365da893f5c85cb11a2928bb365cbc3835fbfafac8ee5c1e6c9c07ef3a787168",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c06_hausmeister_source_hold_de_v1.ts": "205a4dcdd5f1466abe8bef5a5657c7e078f3ebd4e7f172453985a26cfccff00d",
+    "tests/learning_v2_de_task7_v2_l01_c06_hausmeister_source_hold_gate.ts": "fa0d0a33e98526d34209566b833753a6acd918b10d0898a0cf0d682165ac20bd",
+    "scripts/guard_learning_v2_de_task7_v2_l01_c06_hausmeister_scope.mjs": "2655fe9af20621d3a78b772280f507e2356f71f50046901ed95e31020bbe66d6",
+    "tests/learning_v2_de_task7_v2_l01_c06_hausmeister_scope_evidence_gate.ts": "b3d04ebcbbc0277ae2086833d68f6539d46afefb7e932c3b75418276fcf073cf"
+  },
+  "protectedRoots": ["docs/v2/curriculum/de/", "modules/learning-v2/curriculum/de/", "scripts/", "tests/"],
+  "gitDiffCheckExemptPaths": ["modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c06_hausmeister_source_hold_v1/raw/de_lex_plan_l01_c06_hausmeister_v1.html"],
+  "statusSnapshot": {
+    "capturedOn": "2026-10-13",
+    "scopedStatus": "??",
+    "scopedPathCount": 8,
+    "unrelatedPathCount": 4097,
+    "unrelatedStatusSha256": "f315b839a61aede475726c61557621a6d4c43d09330504d7e425976e57e308ce",
+    "unrelatedStatusCounts": { " M": 883, " D": 1, "D ": 2, "??": 3211 },
+    "separation": "The unrelated digest covers every porcelain-v1 -uall record outside this exact allowlist at capture time; it is evidence of pre-existing concurrent work and is not validated as a current clean-tree claim."
+  },
+  "boundary": { "canonicalAdmission": false, "inventoryResolutionApplied": false, "task7Unlock": false, "preauthoringAuthority": false, "learnerFacing": false, "releaseAuthorized": false, "consumerCutover": "NONE" }
+}

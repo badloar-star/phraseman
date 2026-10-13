@@ -91,26 +91,68 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-33:i05:r1", "text": "shirt" },
-          { "responseId": "en:lesson-03:session-33:i05:r2", "text": "shoe" },
-          { "responseId": "en:lesson-03:session-33:i05:r3", "text": "sock" }
+          {
+            "responseId": "en:lesson-03:session-33:i05:r1",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i05:r2",
+            "text": "shoe"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i05:r3",
+            "text": "sock"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-33:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-33:i05:audio", "transcript": "shirt" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-33:i05:audio",
+            "transcript": "shirt"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-33:i05:r1", "targetText": "shirt", "meaningByLocale": null },
-            { "responseId": "en:lesson-03:session-33:i05:r2", "targetText": "shoe", "meaningByLocale": null },
-            { "responseId": "en:lesson-03:session-33:i05:r3", "targetText": "sock", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-03:session-33:i05:r1",
+              "targetText": "shirt",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r2",
+              "targetText": "shoe",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r3",
+              "targetText": "sock",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-33:i05:r2", "correct": false, "testedDimension": "На записи звучит shirt", "feedbackByLocale": {"ru":"`shoe` — туфля. В записи звучит `shirt` — рубашка.", "uk":"`shoe` — туфля. У записі звучить `shirt` — сорочка."} },
-            { "responseId": "en:lesson-03:session-33:i05:r3", "correct": false, "testedDimension": "На записи звучит shirt", "feedbackByLocale": {"ru":"`sock` — носок. В записи звучит `shirt` — рубашка.", "uk":"`sock` — шкарпетка. У записі звучить `shirt` — сорочка."} }
+            {
+              "responseId": "en:lesson-03:session-33:i05:r2",
+              "correct": false,
+              "testedDimension": "На записи звучит shirt",
+              "feedbackByLocale": {
+                "ru": "`shoe` — туфля. В записи звучит `shirt` — рубашка.",
+                "uk": "`shoe` — туфля. У записі звучить `shirt` — сорочка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r3",
+              "correct": false,
+              "testedDimension": "На записи звучит shirt",
+              "feedbackByLocale": {
+                "ru": "`sock` — носок. В записи звучит `shirt` — рубашка.",
+                "uk": "`sock` — шкарпетка. У записі звучить `shirt` — сорочка."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -201,20 +243,46 @@
         "inputMode": "single_choice",
         "prompt": "Различите слово — shirt или shoe",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-33:i06:r1", "text": "shirt" },
-          { "responseId": "en:lesson-03:session-33:i06:r2", "text": "shoe" }
+          {
+            "responseId": "en:lesson-03:session-33:i06:r1",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r2",
+            "text": "shoe"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-33:i06:audioA", "en:lesson-03:session-33:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i06:audioA",
+          "en:lesson-03:session-33:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — shirt или shoe",
         "modePayload": {
           "family": "sound_contrast",
-          "contrastA": "shirt", "contrastB": "shoe", "ipaA": "", "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-33:i06:audioA", "transcript": "shirt" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-33:i06:audioB", "transcript": "shoe" },
+          "contrastA": "shirt",
+          "contrastB": "shoe",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-33:i06:audioA",
+            "transcript": "shirt"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-33:i06:audioB",
+            "transcript": "shoe"
+          },
           "testedPhoneticContrast": "shirt и shoe начинаются похоже, но в shirt после sh слышится r",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-33:i06:r2", "correct": false, "testedDimension": "В shirt после sh слышится r", "feedbackByLocale": {"ru":"`shoe` — туфля. В записи звучит `shirt` — рубашка.", "uk":"`shoe` — туфля. У записі звучить `shirt` — сорочка."} }
+            {
+              "responseId": "en:lesson-03:session-33:i06:r2",
+              "correct": false,
+              "testedDimension": "В shirt после sh слышится r",
+              "feedbackByLocale": {
+                "ru": "`shoe` — туфля. В записи звучит `shirt` — рубашка.",
+                "uk": "`shoe` — туфля. У записі звучить `shirt` — сорочка."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -242,7 +310,11 @@
             "shoes,",
             "please"
           ],
-          "authoredDistractorTokens": ["This", "is", "shoe"],
+          "authoredDistractorTokens": [
+            "This",
+            "is",
+            "shoe"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -273,7 +345,12 @@
             "socks,",
             "please"
           ],
-          "distractorTokens": ["This", "is", "sock"]
+          "distractorTokens": [
+            "This",
+            "is",
+            "sock"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -359,17 +436,27 @@
         "prompt": "Произнесите короткую просьбу",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-33:i10:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i10:audio"
+        ],
         "accessibilityLabel": "Произнесите короткую просьбу",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId":"en:lesson-03:session-33:i10:audio","transcript":"This hat, please."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-33:i10:audio",
+            "transcript": "This hat, please."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "This hat, please.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -552,7 +639,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте указатель — перед вами нескольк",
+          "testedDimension": "Вставьте указатель — перед вами несколько рубашек",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-33:i13:r2",
@@ -805,7 +892,8 @@
             "shirts,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -897,26 +985,68 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-33:i05:r1", "text": "shirt" },
-          { "responseId": "en:lesson-03:session-33:i05:r2", "text": "shoe" },
-          { "responseId": "en:lesson-03:session-33:i05:r3", "text": "sock" }
+          {
+            "responseId": "en:lesson-03:session-33:i05:r1",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i05:r2",
+            "text": "shoe"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i05:r3",
+            "text": "sock"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-33:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-33:i05:audio", "transcript": "shirt" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-33:i05:audio",
+            "transcript": "shirt"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-33:i05:r1", "targetText": "shirt", "meaningByLocale": null },
-            { "responseId": "en:lesson-03:session-33:i05:r2", "targetText": "shoe", "meaningByLocale": null },
-            { "responseId": "en:lesson-03:session-33:i05:r3", "targetText": "sock", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-03:session-33:i05:r1",
+              "targetText": "shirt",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r2",
+              "targetText": "shoe",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r3",
+              "targetText": "sock",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-33:i05:r2", "correct": false, "testedDimension": "На записи звучит shirt", "feedbackByLocale": {"ru":"`shoe` — туфля. В записи звучит `shirt` — рубашка.", "uk":"`shoe` — туфля. У записі звучить `shirt` — сорочка."} },
-            { "responseId": "en:lesson-03:session-33:i05:r3", "correct": false, "testedDimension": "На записи звучит shirt", "feedbackByLocale": {"ru":"`sock` — носок. В записи звучит `shirt` — рубашка.", "uk":"`sock` — шкарпетка. У записі звучить `shirt` — сорочка."} }
+            {
+              "responseId": "en:lesson-03:session-33:i05:r2",
+              "correct": false,
+              "testedDimension": "На записи звучит shirt",
+              "feedbackByLocale": {
+                "ru": "`shoe` — туфля. В записи звучит `shirt` — рубашка.",
+                "uk": "`shoe` — туфля. У записі звучить `shirt` — сорочка."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-33:i05:r3",
+              "correct": false,
+              "testedDimension": "На записи звучит shirt",
+              "feedbackByLocale": {
+                "ru": "`sock` — носок. В записи звучит `shirt` — рубашка.",
+                "uk": "`sock` — шкарпетка. У записі звучить `shirt` — сорочка."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1007,20 +1137,46 @@
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — shirt або shoe",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-33:i06:r1", "text": "shirt" },
-          { "responseId": "en:lesson-03:session-33:i06:r2", "text": "shoe" }
+          {
+            "responseId": "en:lesson-03:session-33:i06:r1",
+            "text": "shirt"
+          },
+          {
+            "responseId": "en:lesson-03:session-33:i06:r2",
+            "text": "shoe"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-33:i06:audioA", "en:lesson-03:session-33:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i06:audioA",
+          "en:lesson-03:session-33:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — shirt або shoe",
         "modePayload": {
           "family": "sound_contrast",
-          "contrastA": "shirt", "contrastB": "shoe", "ipaA": "", "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-33:i06:audioA", "transcript": "shirt" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-33:i06:audioB", "transcript": "shoe" },
+          "contrastA": "shirt",
+          "contrastB": "shoe",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-33:i06:audioA",
+            "transcript": "shirt"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-33:i06:audioB",
+            "transcript": "shoe"
+          },
           "testedPhoneticContrast": "shirt і shoe починаються схоже, але в shirt після sh чути r",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-33:i06:r2", "correct": false, "testedDimension": "В shirt після sh чути r", "feedbackByLocale": {"ru":"`shoe` — туфля. В записи звучит `shirt` — рубашка.", "uk":"`shoe` — туфля. У записі звучить `shirt` — сорочка."} }
+            {
+              "responseId": "en:lesson-03:session-33:i06:r2",
+              "correct": false,
+              "testedDimension": "В shirt після sh чути r",
+              "feedbackByLocale": {
+                "ru": "`shoe` — туфля. В записи звучит `shirt` — рубашка.",
+                "uk": "`shoe` — туфля. У записі звучить `shirt` — сорочка."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1048,7 +1204,11 @@
             "shoes,",
             "please"
           ],
-          "authoredDistractorTokens": ["This", "is", "shoe"],
+          "authoredDistractorTokens": [
+            "This",
+            "is",
+            "shoe"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -1079,7 +1239,12 @@
             "socks,",
             "please"
           ],
-          "distractorTokens": ["This", "is", "sock"]
+          "distractorTokens": [
+            "This",
+            "is",
+            "sock"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1163,9 +1328,30 @@
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
         "prompt": "Промовте коротке прохання",
-        "responseOptions": [], "mediaIds": [], "audioTargetIds": ["en:lesson-03:session-33:i10:audio"],
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-03:session-33:i10:audio"
+        ],
         "accessibilityLabel": "Промовте коротке прохання",
-        "modePayload": {"family":"scripted_repeat_compare", "referenceAudio":{"audioTargetId":"en:lesson-03:session-33:i10:audio","transcript":"This hat, please."}, "slowReferenceAudio":null, "targetPhrase":"This hat, please.", "recordControlPolicy":"hold_press_release_with_accessible_toggle", "modelPlayback":"reference_and_slow", "learnerPlayback":"available_after_capture", "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]},
+        "modePayload": {
+          "family": "scripted_repeat_compare",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-33:i10:audio",
+            "transcript": "This hat, please."
+          },
+          "slowReferenceAudio": null,
+          "targetPhrase": "This hat, please.",
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
+        },
         "scriptedAlternate": null
       },
       {
@@ -1600,7 +1786,8 @@
             "shirts,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

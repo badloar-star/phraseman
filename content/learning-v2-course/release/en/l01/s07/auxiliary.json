@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-07:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-07:intro1:r2": {
-          "ru": "Скрепка `am` уехала без вас. Про себя — всегда `I am`.",
-          "uk": "Скріпка `am` поїхала без вас. Про себе — завжди `I am`."
+          "ru": "После I нужно `am`: о себе говорим `I am`.",
+          "uk": "Після I потрібне `am`: про себе кажемо `I am`."
         },
         "en:lesson-01:session-07:intro1:r3": {
           "ru": "Так говорят в мультиках про пещерных людей. О себе начинают с `I`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4364b6935aedbed75ba11834acbc828432cda03574a03594c64cae30ed9616c6"
+  "auxiliaryFingerprint": "dccceef1eef5351bf1bd9c0c37188026dc83fcadc65684ad99fd1fc83ab5f953"
 }

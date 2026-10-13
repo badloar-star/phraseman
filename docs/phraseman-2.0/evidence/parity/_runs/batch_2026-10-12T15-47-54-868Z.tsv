@@ -1,0 +1,9 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-009	2026-10-12T15:48:20.891Z	ok	18034	marker+склейка+ждали_metro_81мс	docs/phraseman-2.0/evidence/parity/onboarding-009.png	0
+onboarding-paywall-002	2026-10-12T15:48:40.051Z	ok	9624	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/onboarding-paywall-002.png	0
+spire-gap-001	2026-10-12T15:48:57.050Z	stitch_failed	10009	marker+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-001.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=123295+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-47-54-868Z/spire-gap-001.bare.png	0
+spire-gap-002	2026-10-12T15:49:16.012Z	ok	9989	marker+пусто_1428мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/spire-gap-002.png	1428
+spire-gap-004	2026-10-12T15:49:34.991Z	ok	11057	marker+пусто_1394мс+склейка+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/spire-gap-004.png	1394
+spire-gap-005	2026-10-12T15:49:50.808Z	ok	9620	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/spire-gap-005.png	0
+community-001	2026-10-12T15:50:32.712Z	ok	12820	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-001.png	0
+community-020	2026-10-12T15:51:05.986Z	ok	14346	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/community-020.png	0

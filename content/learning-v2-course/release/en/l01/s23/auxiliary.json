@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-23:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-23:intro1:r2": {
-          "ru": "Скрепка `is` пропала. По-русски её нет, по-английски без неё фразы не существует.",
-          "uk": "Скріпка `is` зникла. Українською її немає, англійською без неї фрази не існує."
+          "ru": "В английской фразе нужна форма `is`: `He is patient`.",
+          "uk": "В англійській фразі потрібна форма `is`: `He is patient`."
         },
         "en:lesson-01:session-23:intro1:r3": {
           "ru": "`are` — не для одного человека. Про него — только `is`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "93b40b598fa78b419e8d2da2111436cae26d69db7902cf993a9622a84a52befe"
+  "auxiliaryFingerprint": "0cc4fa090ba21143dc62b2488af4c723f3dc5c07f01bc2451b67108a3371fd1e"
 }

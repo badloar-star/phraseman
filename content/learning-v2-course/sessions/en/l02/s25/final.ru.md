@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-02:session-25:i02; family: listen_choose -->
 Цель: `price`
 Варианты: `price` · `press` · `prize`
+- press — *Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».*
+- prize — *Это «приз». Конец другой: `price` заканчивается глухо, `prize` — звонко.*
+
 
 **3 · Карточка слова — name**
 <!-- interaction_id: en:lesson-02:session-25:i03; family: listen_choose -->
@@ -74,6 +77,9 @@
 <!-- interaction_id: en:lesson-02:session-25:i04; family: listen_choose -->
 Цель: `name`
 Варианты: `name` · `near` · `nine`
+- near — *«Рядом», про расстояние. Спрашивая название, вы говорите `name`.*
+- nine — *Это «девять». Счёт, а не название.*
+
 
 **5 · Соберите фразу — вы показали на строчку в меню**
 <!-- interaction_id: en:lesson-02:session-25:i05; family: phrase_builder -->
@@ -83,15 +89,23 @@
 <!-- interaction_id: en:lesson-02:session-25:i06; family: listen_choose -->
 Цель: `What is the price?`
 Варианты: `цена` · `название` · `улица`
+- название — *Здесь звучит `price` — «цена». `Name` спрашивает название.*
+- улица — *`Street` — «улица». Вопрос относится к цифре рядом с блюдом.*
+
 
 **7 · Вставьте слово — вопрос про то, что стоит на столе**
 <!-- interaction_id: en:lesson-02:session-25:i07; family: context_gap_grammar -->
 Цель: `What ___ this?`
 Варианты: `is` · `are` · `this`
+- are — *`Are` говорят о нескольких вещах. Здесь одна вещь, поэтому нужно `is`.*
+- this — *`This` уже стоит в конце вопроса. На пропуске нужен глагол `is`.*
+
 
 **8 · Различите звуки — какое из двух про цену?**
 <!-- interaction_id: en:lesson-02:session-25:i08; family: sound_contrast -->
 Варианты: `price` · `press`
+- press — *Это «нажать». Гласная другая: в `price` слышно «ай», в `press` — «э».*
+
 
 **9 · Карточка слова — cheap**
 <!-- interaction_id: en:lesson-02:session-25:i09; family: listen_choose -->
@@ -100,11 +114,16 @@
 **10 · Послушайте и соберите — «какая цена?»**
 <!-- interaction_id: en:lesson-02:session-25:i10; family: listen_build_dictation -->
 Цель: `What is the price?`
+🔊 *What is the price?* Плитки: `What` `is` `the` `price` `are`
+*Плитка `are` лишняя: `price` — одна цена, поэтому в вопросе нужна форма `is`.*
 
 **11 · Вставьте слово — вы заблудились и хотите узнать, где стоите**
 <!-- interaction_id: en:lesson-02:session-25:i11; family: context_gap_grammar -->
 Цель: `What is the ___ ?`
 Варианты: `street` · `price` · `this`
+- price — *У улицы цены нет. Вы спрашиваете, как она называется.*
+- this — *`this` — «это», оно не встаёт после `the`.*
+
 
 **12 · Соберите фразу — спросите название блюда**
 <!-- interaction_id: en:lesson-02:session-25:i12; family: phrase_builder -->
@@ -119,6 +138,9 @@
 <!-- interaction_id: en:lesson-02:session-25:i14; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `cheap` · `price` · `what`
+- price — *`price` — сама цена, а не оценка «дёшево».*
+- what — *`what` начинает вопрос, а вы говорите утверждение.*
+
 
 **15 · Скажите вслух — официант приносит незнакомое блюдо, и вы уточняете, что это**
 <!-- interaction_id: en:lesson-02:session-25:i15; family: scripted_repeat_compare -->
@@ -128,6 +150,9 @@
 <!-- interaction_id: en:lesson-02:session-25:i16:s01; family: listen_choose -->
 Цель: `What is this?`
 Варианты: `что это` · `сколько это стоит` · `как это называется`
+- сколько это стоит — *Про цену спрашивают `What is the price?`.*
+- как это называется — *Про название спрашивают `What is the name?`.*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-25:i16:s02; family: scripted_repeat_compare -->

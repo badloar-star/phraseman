@@ -249,7 +249,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
+        "prompt": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-12:i05:r1",
@@ -258,34 +258,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
+        "accessibilityLabel": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a vase.",
+          "targetPhrase": "It is a vase.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
-          "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
+            "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
+            "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "vase"
+            "It",
+            "is",
+            "a",
+            "vase"
           ],
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг спраши",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одной вазой — `a`: `It is a vase`.",
-            "uk": "Після `It` потрібна форма `is`, а перед однією вазою — `a`: `It is a vase`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -441,17 +431,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i08:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец говорит",
-              "feedbackByLocale": {
-                "ru": "В записи перед `hour` звучит `An`, с «н». Само название часа начинается с гласного звука.",
-                "uk": "У записі перед `hour` звучить `An`, із «н». Сама назва години починається з голосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -596,17 +576,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец описыва",
-              "feedbackByLocale": {
-                "ru": "Перед `clock` в записи звучит `a`. Первый звук названия согласный, поэтому «н» здесь не добавляем.",
-                "uk": "Перед `clock` у записі звучить `a`. Перший звук назви приголосний, тому «н» тут не додаємо."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -655,7 +625,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — продавец назвал срок ож",
+          "testedDimension": "Вставьте слово — продавец назвал срок ожидания в 60 минут; дополните короткий ответ (`hour` — «час»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-12:i12:r2",
@@ -711,17 +681,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг заметил небольшой",
-              "feedbackByLocale": {
-                "ru": "Начало вопроса — `Is it`. Дальше название с `a`, потому что первый звук в `radio` согласный.",
-                "uk": "Початок питання — `Is it`. Далі назва з `a`, бо перший звук у `radio` приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -837,17 +797,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i15:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — продавец уточняе",
-              "feedbackByLocale": {
-                "ru": "В записи после `not` идёт `a vase`. Название начинается с согласного звука, поэтому плитка `an` лишняя.",
-                "uk": "У записі після `not` іде `a vase`. Назва починається з приголосного звуку, тому плитка `an` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -871,7 +821,7 @@
             "transcript": "Is it a clock?"
           },
           "slowReferenceAudio": null,
-        "targetPhrase": "Is it a clock?",
+          "targetPhrase": "Is it a clock?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -916,17 +866,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — продавец показывает рад",
-              "feedbackByLocale": {
-                "ru": "Перед названием `radio` нужен вариант без «н»: `a`. Сначала соберите `It is`, затем назовите прибор.",
-                "uk": "Перед назвою `radio` потрібен варіант без «н»: `a`. Спершу складіть `It is`, а тоді назвіть прилад."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1176,7 +1116,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
+        "prompt": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-12:i05:r1",
@@ -1185,34 +1125,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
+        "accessibilityLabel": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a vase.",
+          "targetPhrase": "It is a vase.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
-          "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
+            "ru": "Соберите полную фразу — друг показывает на вазу за стеклом; скажите «Это ваза»",
+            "uk": "Складіть повну фразу — друг показує на вазу за склом; скажіть «Це ваза»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "vase"
+            "It",
+            "is",
+            "a",
+            "vase"
           ],
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг питає, що ",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одной вазой — `a`: `It is a vase`.",
-            "uk": "Після `It` потрібна форма `is`, а перед однією вазою — `a`: `It is a vase`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1368,17 +1298,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i08:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець говори",
-              "feedbackByLocale": {
-                "ru": "В записи перед `hour` звучит `An`, с «н». Само название часа начинается с гласного звука.",
-                "uk": "У записі перед `hour` звучить `An`, із «н». Сама назва години починається з голосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1523,17 +1443,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець описує",
-              "feedbackByLocale": {
-                "ru": "Перед `clock` в записи звучит `a`. Первый звук названия согласный, поэтому «н» здесь не добавляем.",
-                "uk": "Перед `clock` у записі звучить `a`. Перший звук назви приголосний, тому «н» тут не додаємо."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1582,7 +1492,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — продавець сказав, що чек",
+          "testedDimension": "Вставте слово — продавець сказав, що чекати 60 хвилин; доповніть коротку відповідь (`hour` — «година»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-12:i12:r2",
@@ -1638,17 +1548,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — друг помітив невелики",
-              "feedbackByLocale": {
-                "ru": "Начало вопроса — `Is it`. Дальше название с `a`, потому что первый звук в `radio` согласный.",
-                "uk": "Початок питання — `Is it`. Далі назва з `a`, бо перший звук у `radio` приголосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1764,17 +1664,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i15:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — продавець уточню",
-              "feedbackByLocale": {
-                "ru": "В записи после `not` идёт `a vase`. Название начинается с согласного звука, поэтому плитка `an` лишняя.",
-                "uk": "У записі після `not` іде `a vase`. Назва починається з приголосного звуку, тому плитка `an` зайва."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1798,7 +1688,7 @@
             "transcript": "Is it a clock?"
           },
           "slowReferenceAudio": null,
-        "targetPhrase": "Is it a clock?",
+          "targetPhrase": "Is it a clock?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1843,17 +1733,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-12:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — продавець показує радіо",
-              "feedbackByLocale": {
-                "ru": "Перед названием `radio` нужен вариант без «н»: `a`. Сначала соберите `It is`, затем назовите прибор.",
-                "uk": "Перед назвою `radio` потрібен варіант без «н»: `a`. Спершу складіть `It is`, а тоді назвіть прилад."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

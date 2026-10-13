@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i02; family: listen_choose -->
 Цель: `glass`
 Варианты: `glass` · `class` · `grass`
+- class — *`class` — «класс». В начале слышно «к», а в `glass` — звонкое «г». Дальше слова звучат одинаково.*
+- grass — *`grass` — «трава». После первого звука идёт английский `r`; в `glass` на этом месте «л», кончик языка касается бугорков за верхними зубами.*
+
 
 **3 · Карточка слова — brush**
 <!-- interaction_id: en:lesson-03:session-20:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i04; family: listen_choose -->
 Цель: `brush`
 Варианты: `brush` · `blush` · `crush`
+- blush — *`blush` — «краснеть». После «б» звучит «л», язык касается бугорков за верхними зубами. В `brush` там английский `r`, язык их не касается.*
+- crush — *`crush` — «раздавить». Первым слышно «к», а в `brush` — «б». После этого слова звучат одинаково.*
+
 
 **5 · Произнесите слово — кладовщик показывает два стакана и просит назвать их по-английски**
 <!-- interaction_id: en:lesson-03:session-20:i05; family: scripted_repeat_compare -->
@@ -87,6 +93,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i08; family: listen_choose -->
 Цель: `bench`
 Варианты: `bench` · `bunch` · `drench`
+- bunch — *`bunch` — «пучок». Гласный звучит как в `brush`; у `bench` он другой, язык ближе к передней части рта. Сравните середину.*
+- drench — *`drench` — «промочить насквозь». Начало — «д» и английский `r`; у `bench` первым звучит «б». Остальная часть совпадает.*
+
 
 **9 · Произнесите слово — курьер показывает две щётки и просит назвать их по-английски**
 <!-- interaction_id: en:lesson-03:session-20:i09; family: scripted_repeat_compare -->
@@ -96,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i10; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `boxes` · `box` · `boxs`
+- box — *У двери две коробки. В этой фразе нужно название нескольких: `boxes`.*
+- boxs — *К `box` для нескольких добавляем `es`: `boxes`. Такое название звучит в два слога.*
+
 
 **11 · Соберите вопрос — в закрытой коробке должны быть две щётки; сверьте заказ с курьером: «Это щётки?»**
 <!-- interaction_id: en:lesson-03:session-20:i11; family: phrase_builder -->
@@ -111,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i13; family: listen_choose -->
 Цель: `benches`
 Варианты: `benches` · `bench` · `bunch`
+- bench — *`bench` — «скамейка», один слог. В записи `benches` — «скамейки», два слога. Дослушайте короткое окончание.*
+- bunch — *`bunch` — «пучок», один слог с гласным как в `brush`. В `benches` первый гласный как в `bench`, затем звучит второй слог.*
+
 
 **14 · Соедините названия с русскими значениями — слова из доставки**
 <!-- interaction_id: en:lesson-03:session-20:i14; family: speed_match -->
@@ -121,6 +136,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i15; family: listen_choose -->
 Цель: `box`
 Варианты: `box` · `boxes` · `fox`
+- boxes — *`boxes` — «коробки», два слога. В записи `box` — «коробка»: один слог с конечным сочетанием «кс».*
+- fox — *`fox` — «лиса». В начале слышно «ф», а у `box` — «б». Дальше звучание совпадает.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-20:i16; family: scripted_repeat_compare -->

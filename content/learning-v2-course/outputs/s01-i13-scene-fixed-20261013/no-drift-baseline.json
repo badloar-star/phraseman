@@ -1,0 +1,919 @@
+{
+  "schemaVersion": "learning_v2_s01_no_drift_boundary_v1",
+  "claimsGitClean": false,
+  "scope": {
+    "canonicalS01": true,
+    "allS02": true,
+    "referencedAudio": true
+  },
+  "fileCount": 151,
+  "boundarySha256": "7496f8e67695695322215fadb41bf4c54a294d818d9e391a5898fe7118865a28",
+  "files": [
+    {
+      "category": "noDriftBoundary",
+      "path": "app/learning_v2_bootstrap_audio_assets_v1.generated.ts",
+      "bytes": 43726,
+      "sha256": "0b4e8422437f5ab425c19dc616fdfb155dbe2bec711d44c7dbbf37bda5aeb03e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/082afd6cddd3b34be2882923870f246a786ed106fad23670a0c03423bff3fb33.mp3",
+      "bytes": 21888,
+      "sha256": "082afd6cddd3b34be2882923870f246a786ed106fad23670a0c03423bff3fb33"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/0b97657c3721fa999647c96257c58859cfabdfa4e8bfcccee16c09086f518b8d.mp3",
+      "bytes": 17664,
+      "sha256": "0b97657c3721fa999647c96257c58859cfabdfa4e8bfcccee16c09086f518b8d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/0ef51a3db38bcb3587d04fb9c43effba060dbf8590050ad6567665ea7a5e35fa.mp3",
+      "bytes": 24576,
+      "sha256": "0ef51a3db38bcb3587d04fb9c43effba060dbf8590050ad6567665ea7a5e35fa"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/0fc165378af0ab4fd02c27da797c9805721bdb063b3ba0607735e0ce93812f54.mp3",
+      "bytes": 29184,
+      "sha256": "0fc165378af0ab4fd02c27da797c9805721bdb063b3ba0607735e0ce93812f54"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/2361e82a7f3e3ee1e242d5115f683b7c16edaa90c43013e91fe5d9a41c2abc2a.mp3",
+      "bytes": 29952,
+      "sha256": "2361e82a7f3e3ee1e242d5115f683b7c16edaa90c43013e91fe5d9a41c2abc2a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/3f47635b2cdaec31b51cba28620d9f9184389770ba204645d9ad586477853709.mp3",
+      "bytes": 24576,
+      "sha256": "3f47635b2cdaec31b51cba28620d9f9184389770ba204645d9ad586477853709"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/42e4e43324f2a50e9a21314b1e87f6273b186dcc6256973cc3a45b34c3a181de.mp3",
+      "bytes": 23040,
+      "sha256": "42e4e43324f2a50e9a21314b1e87f6273b186dcc6256973cc3a45b34c3a181de"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f.mp3",
+      "bytes": 21888,
+      "sha256": "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/4ea5c7d8fec702b8a0a6fb91ab9b4301fa584d05038f156e279c171b718118d6.mp3",
+      "bytes": 21888,
+      "sha256": "4ea5c7d8fec702b8a0a6fb91ab9b4301fa584d05038f156e279c171b718118d6"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/5150e2141cafc193e8d96e4b0dec358d9d2302b2b05bbe3affa1e8fc58f3dc6e.mp3",
+      "bytes": 31488,
+      "sha256": "5150e2141cafc193e8d96e4b0dec358d9d2302b2b05bbe3affa1e8fc58f3dc6e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/5591d7c1361d4225eca9c343e693013ef382236434da3f73676b7167e702b5fe.mp3",
+      "bytes": 33792,
+      "sha256": "5591d7c1361d4225eca9c343e693013ef382236434da3f73676b7167e702b5fe"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/59ac8c8ec42fd0fb3a75771bc13cb33ceef5f5978e03718c11938f1986ec7d0d.mp3",
+      "bytes": 35712,
+      "sha256": "59ac8c8ec42fd0fb3a75771bc13cb33ceef5f5978e03718c11938f1986ec7d0d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/5d1d8b964314379e8eae4ccd5fae07a032e1ae03cbeddf064dd9fd49a05b8b7d.mp3",
+      "bytes": 20352,
+      "sha256": "5d1d8b964314379e8eae4ccd5fae07a032e1ae03cbeddf064dd9fd49a05b8b7d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/5ffc5208fe63b4222960d5b09c198b25f69a3c9a590c2fe09d1d84cffe91b1b2.mp3",
+      "bytes": 20352,
+      "sha256": "5ffc5208fe63b4222960d5b09c198b25f69a3c9a590c2fe09d1d84cffe91b1b2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/6f66ceca8cbca0db6da965faf09a9031ae5f4038c7e10d031270600b741aee9a.mp3",
+      "bytes": 30720,
+      "sha256": "6f66ceca8cbca0db6da965faf09a9031ae5f4038c7e10d031270600b741aee9a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/758f2d086d9a7db4841b6b6d4c4ffd5f013d6b1a3abdd8c8a132444c42cf76ca.mp3",
+      "bytes": 42624,
+      "sha256": "758f2d086d9a7db4841b6b6d4c4ffd5f013d6b1a3abdd8c8a132444c42cf76ca"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/76e78367c07e0aa003cfd66fd0f6ed50836d8a4eb63515e3727d7e0c147976d8.mp3",
+      "bytes": 38016,
+      "sha256": "76e78367c07e0aa003cfd66fd0f6ed50836d8a4eb63515e3727d7e0c147976d8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/7b0dbbec2031620bd300b539800c64c13fbdc3d2faeae55a5fd7ef4d0983de37.mp3",
+      "bytes": 17280,
+      "sha256": "7b0dbbec2031620bd300b539800c64c13fbdc3d2faeae55a5fd7ef4d0983de37"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/7dbf84948cda3f878bc520ba0b1d08e1759a73447b61a8bee6fa9b8fe07320bc.mp3",
+      "bytes": 26880,
+      "sha256": "7dbf84948cda3f878bc520ba0b1d08e1759a73447b61a8bee6fa9b8fe07320bc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/8311d349fe8f6139ce8fad56b69edf6cfe86529a387c0528cbf7b2cd57b63b9c.mp3",
+      "bytes": 17280,
+      "sha256": "8311d349fe8f6139ce8fad56b69edf6cfe86529a387c0528cbf7b2cd57b63b9c"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/8c0c9db4be34fd894230ddbce298e3f8fbf94b5f694cd3453d8704ade4aa3e8e.mp3",
+      "bytes": 31488,
+      "sha256": "8c0c9db4be34fd894230ddbce298e3f8fbf94b5f694cd3453d8704ade4aa3e8e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/8c0d41f2168f8951aec37dfaf7d4f62b91c9edf8a396a6e68534f7eb6a4b48e2.mp3",
+      "bytes": 18048,
+      "sha256": "8c0d41f2168f8951aec37dfaf7d4f62b91c9edf8a396a6e68534f7eb6a4b48e2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/94e449de2d64a29fdf0318808b091ff7c4ef633f23ed10b03f76c6916a735f43.mp3",
+      "bytes": 26880,
+      "sha256": "94e449de2d64a29fdf0318808b091ff7c4ef633f23ed10b03f76c6916a735f43"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/94ee93e202f2bb84f6042956c064a8a5f93ecc2baa0cd80bcf79b200e19bb479.mp3",
+      "bytes": 33792,
+      "sha256": "94ee93e202f2bb84f6042956c064a8a5f93ecc2baa0cd80bcf79b200e19bb479"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/9db52232c2a0cae0b98a978684cf0077d54a86f8b5172ba6d060f2ccfe830b4b.mp3",
+      "bytes": 18048,
+      "sha256": "9db52232c2a0cae0b98a978684cf0077d54a86f8b5172ba6d060f2ccfe830b4b"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc.mp3",
+      "bytes": 21888,
+      "sha256": "a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/a40e6d20bed6aa69ec96979b0db8c317578b6261f0ef134e3162b0cb00ee3bcc.mp3",
+      "bytes": 24576,
+      "sha256": "a40e6d20bed6aa69ec96979b0db8c317578b6261f0ef134e3162b0cb00ee3bcc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/a4e2f491bc77f8210a00dbe87ec31fbc1484a94674c9488b69916a5616600336.mp3",
+      "bytes": 19584,
+      "sha256": "a4e2f491bc77f8210a00dbe87ec31fbc1484a94674c9488b69916a5616600336"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/a9e766ba925cf1e1ced52bbb6ee3d27b65ea0b7cf09dd961b12ccee3a82401eb.mp3",
+      "bytes": 22656,
+      "sha256": "a9e766ba925cf1e1ced52bbb6ee3d27b65ea0b7cf09dd961b12ccee3a82401eb"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/aa90c41484f00c63b538a5b9c2ac498ec64d31ce4e641c8b39703cebb4aa9742.mp3",
+      "bytes": 12288,
+      "sha256": "aa90c41484f00c63b538a5b9c2ac498ec64d31ce4e641c8b39703cebb4aa9742"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/abff5b98c00e1f7091e0c18ff93888cc9a81da7392377628fbdfc48fef999ed2.mp3",
+      "bytes": 21120,
+      "sha256": "abff5b98c00e1f7091e0c18ff93888cc9a81da7392377628fbdfc48fef999ed2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/ae693cc956551c3e8fb09ae15f2f2adcfcc2751992618ad1cbf110d89ec8f164.mp3",
+      "bytes": 32640,
+      "sha256": "ae693cc956551c3e8fb09ae15f2f2adcfcc2751992618ad1cbf110d89ec8f164"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/ae72b90d70a0ad633421b0128744323823a80fcebabab14c5f8ba6bdfa94f183.mp3",
+      "bytes": 29952,
+      "sha256": "ae72b90d70a0ad633421b0128744323823a80fcebabab14c5f8ba6bdfa94f183"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7.mp3",
+      "bytes": 22656,
+      "sha256": "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/b43e023de0566ae747c2ec5b9c8964f110965307146ff40c7701fa7f37118975.mp3",
+      "bytes": 30720,
+      "sha256": "b43e023de0566ae747c2ec5b9c8964f110965307146ff40c7701fa7f37118975"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/b9173fdd1bdac37660bbaecc4b18e43bcdf69306217b1221f06d1ea2938c8164.mp3",
+      "bytes": 28416,
+      "sha256": "b9173fdd1bdac37660bbaecc4b18e43bcdf69306217b1221f06d1ea2938c8164"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/ba2f5e8fd70fd8410a4230f930895dc08fccad8f907621216106adf3b742492d.mp3",
+      "bytes": 18048,
+      "sha256": "ba2f5e8fd70fd8410a4230f930895dc08fccad8f907621216106adf3b742492d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce.mp3",
+      "bytes": 30720,
+      "sha256": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/c624450481cadb7aba858f4af8c4fe2a41ba059d940deaf109aeaf8d1c22ed86.mp3",
+      "bytes": 28416,
+      "sha256": "c624450481cadb7aba858f4af8c4fe2a41ba059d940deaf109aeaf8d1c22ed86"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/c6fa4629808895fbfcf91db0880826b5cf531694515da065d2194c8f22899f07.mp3",
+      "bytes": 20352,
+      "sha256": "c6fa4629808895fbfcf91db0880826b5cf531694515da065d2194c8f22899f07"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/cfbb22a7b51715a5facb4a8c9299ea9960be3a7b4b3a9f71086972882ac52251.mp3",
+      "bytes": 42624,
+      "sha256": "cfbb22a7b51715a5facb4a8c9299ea9960be3a7b4b3a9f71086972882ac52251"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/d3e1c977969580a836497b8c50b2ad60d9d64af48bdeed6cf371387cc4bdc73f.mp3",
+      "bytes": 24192,
+      "sha256": "d3e1c977969580a836497b8c50b2ad60d9d64af48bdeed6cf371387cc4bdc73f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/d696f8e895f4a2a3919c7c16731cb037f9970866c7b3035be0bdd1e31d6bc779.mp3",
+      "bytes": 33792,
+      "sha256": "d696f8e895f4a2a3919c7c16731cb037f9970866c7b3035be0bdd1e31d6bc779"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/d7087b0ae44e857f171d106905789b522ac0e902d7246f854fc344960d42c5d0.mp3",
+      "bytes": 19968,
+      "sha256": "d7087b0ae44e857f171d106905789b522ac0e902d7246f854fc344960d42c5d0"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/e4549fec73b666c7379f7e78a2af209f2a80acf2ae1b3e231aeab2d80d8b0ed8.mp3",
+      "bytes": 38784,
+      "sha256": "e4549fec73b666c7379f7e78a2af209f2a80acf2ae1b3e231aeab2d80d8b0ed8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/eebf91c8d42215704eb4e79a01c27c6871a60b2a503a1cc2c39834290bf71230.mp3",
+      "bytes": 19968,
+      "sha256": "eebf91c8d42215704eb4e79a01c27c6871a60b2a503a1cc2c39834290bf71230"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/fa3f2d4d1ea5e89af14a2b5dbb914378993bc97ee9930211b1de75a8b2473eaa.mp3",
+      "bytes": 31488,
+      "sha256": "fa3f2d4d1ea5e89af14a2b5dbb914378993bc97ee9930211b1de75a8b2473eaa"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2-bootstrap-v1/fffc749eb2b42f34637d62dd47e19c426e1a7802260ebc1bad9debe1a32823fe.mp3",
+      "bytes": 17280,
+      "sha256": "fffc749eb2b42f34637d62dd47e19c426e1a7802260ebc1bad9debe1a32823fe"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/089001a35679a33ef3db0ca3-ash.mp3",
+      "bytes": 18048,
+      "sha256": "ba2f5e8fd70fd8410a4230f930895dc08fccad8f907621216106adf3b742492d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/089001a35679a33ef3db0ca3-coral.mp3",
+      "bytes": 24192,
+      "sha256": "d3e1c977969580a836497b8c50b2ad60d9d64af48bdeed6cf371387cc4bdc73f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/089001a35679a33ef3db0ca3-nova.mp3",
+      "bytes": 21888,
+      "sha256": "082afd6cddd3b34be2882923870f246a786ed106fad23670a0c03423bff3fb33"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/089001a35679a33ef3db0ca3-onyx.mp3",
+      "bytes": 18048,
+      "sha256": "8c0d41f2168f8951aec37dfaf7d4f62b91c9edf8a396a6e68534f7eb6a4b48e2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/19975037a15109b373cdb142-ash.mp3",
+      "bytes": 24576,
+      "sha256": "9e00570570c0e22181c6a0cfa87f99341fe91d666d804e338f170b68960e3471"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/19975037a15109b373cdb142-coral.mp3",
+      "bytes": 35712,
+      "sha256": "44678db667f37411c6c574922ff97094e5dec44996cf3b504cb3160eb430a21a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/19975037a15109b373cdb142-nova.mp3",
+      "bytes": 32640,
+      "sha256": "b3f5e1ccd6e0e07732d306d6421bc4682aa625fd8deb8249a60eb116f1f11c3e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/19975037a15109b373cdb142-onyx.mp3",
+      "bytes": 26880,
+      "sha256": "49b0a2d6db9278a7a77e6bc472c91c990804a4e6b8b29f6974079e216ee36897"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/484aab2f2cd0f77b3c30f915-ash.mp3",
+      "bytes": 29952,
+      "sha256": "2361e82a7f3e3ee1e242d5115f683b7c16edaa90c43013e91fe5d9a41c2abc2a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/484aab2f2cd0f77b3c30f915-coral.mp3",
+      "bytes": 20352,
+      "sha256": "5d1d8b964314379e8eae4ccd5fae07a032e1ae03cbeddf064dd9fd49a05b8b7d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/484aab2f2cd0f77b3c30f915-nova.mp3",
+      "bytes": 17280,
+      "sha256": "7b0dbbec2031620bd300b539800c64c13fbdc3d2faeae55a5fd7ef4d0983de37"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/484aab2f2cd0f77b3c30f915-onyx.mp3",
+      "bytes": 21888,
+      "sha256": "4ea5c7d8fec702b8a0a6fb91ab9b4301fa584d05038f156e279c171b718118d6"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/489f719cadf919094ddb38e7-ash.mp3",
+      "bytes": 29952,
+      "sha256": "ae72b90d70a0ad633421b0128744323823a80fcebabab14c5f8ba6bdfa94f183"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/489f719cadf919094ddb38e7-coral.mp3",
+      "bytes": 42624,
+      "sha256": "cfbb22a7b51715a5facb4a8c9299ea9960be3a7b4b3a9f71086972882ac52251"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/489f719cadf919094ddb38e7-nova.mp3",
+      "bytes": 35712,
+      "sha256": "59ac8c8ec42fd0fb3a75771bc13cb33ceef5f5978e03718c11938f1986ec7d0d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/489f719cadf919094ddb38e7-onyx.mp3",
+      "bytes": 26880,
+      "sha256": "7dbf84948cda3f878bc520ba0b1d08e1759a73447b61a8bee6fa9b8fe07320bc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/670c00717eea22df5ffa6aef-ash.mp3",
+      "bytes": 44160,
+      "sha256": "ef3c4171afcd3a4fcf1b1ef7d64d6cfd56bb5ec80c03fc20f724b04a7fa5d25f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/670c00717eea22df5ffa6aef-coral.mp3",
+      "bytes": 44160,
+      "sha256": "118850be7d55f2d4d80980d81f94f28e2e417e00a73d87603440c5fa2ced9f07"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/670c00717eea22df5ffa6aef-nova.mp3",
+      "bytes": 24576,
+      "sha256": "afc8b432bab911580724dfb1369ff4d1233babbaff8b4ad45ef3e45cedc63ba7"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/670c00717eea22df5ffa6aef-onyx.mp3",
+      "bytes": 26880,
+      "sha256": "db6d5a4f0afbbfea5e48a3b6dae0020aee2d79af2368c854304df467dcedeb48"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/794c44b307291a4fdbc4b7e9-ash.mp3",
+      "bytes": 42624,
+      "sha256": "f96b57d7131554aa389da85d6c93b8938be0d81300b34dfc086beec9f67494ae"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/794c44b307291a4fdbc4b7e9-coral.mp3",
+      "bytes": 32256,
+      "sha256": "21830d830c5b0aec62ccbc3179d125cc3b235c9e670bd35b8e7ed4af321f3dba"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/794c44b307291a4fdbc4b7e9-nova.mp3",
+      "bytes": 20352,
+      "sha256": "374685942f3c21b8104fa9dd536f0a0ca94146525e935b020467b4032acce715"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/794c44b307291a4fdbc4b7e9-onyx.mp3",
+      "bytes": 39552,
+      "sha256": "323bb85b9b8057984b5d4d76977ee34349892bbc5494b8137284a068ad74b7d8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-ash.mp3",
+      "bytes": 33792,
+      "sha256": "94ee93e202f2bb84f6042956c064a8a5f93ecc2baa0cd80bcf79b200e19bb479"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-coral.mp3",
+      "bytes": 31488,
+      "sha256": "8c0c9db4be34fd894230ddbce298e3f8fbf94b5f694cd3453d8704ade4aa3e8e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-nova.mp3",
+      "bytes": 18048,
+      "sha256": "9db52232c2a0cae0b98a978684cf0077d54a86f8b5172ba6d060f2ccfe830b4b"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c405760daf9bc32b76f4a57e-onyx.mp3",
+      "bytes": 22656,
+      "sha256": "a9e766ba925cf1e1ced52bbb6ee3d27b65ea0b7cf09dd961b12ccee3a82401eb"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c9bc072f4fa8189466c2a8f2-ash.mp3",
+      "bytes": 26880,
+      "sha256": "94e449de2d64a29fdf0318808b091ff7c4ef633f23ed10b03f76c6916a735f43"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c9bc072f4fa8189466c2a8f2-coral.mp3",
+      "bytes": 19584,
+      "sha256": "a4e2f491bc77f8210a00dbe87ec31fbc1484a94674c9488b69916a5616600336"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c9bc072f4fa8189466c2a8f2-nova.mp3",
+      "bytes": 20352,
+      "sha256": "5ffc5208fe63b4222960d5b09c198b25f69a3c9a590c2fe09d1d84cffe91b1b2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/c9bc072f4fa8189466c2a8f2-onyx.mp3",
+      "bytes": 17280,
+      "sha256": "8311d349fe8f6139ce8fad56b69edf6cfe86529a387c0528cbf7b2cd57b63b9c"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-ash.mp3",
+      "bytes": 21888,
+      "sha256": "a30e22cb7c00fd48c2b74ae6f310b1005c494192d07bcded2d3ceaf140e7d5bc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-coral.mp3",
+      "bytes": 28416,
+      "sha256": "b9173fdd1bdac37660bbaecc4b18e43bcdf69306217b1221f06d1ea2938c8164"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-nova.mp3",
+      "bytes": 30720,
+      "sha256": "b43e023de0566ae747c2ec5b9c8964f110965307146ff40c7701fa7f37118975"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/cafd51bb7859d65d640cf62f-onyx.mp3",
+      "bytes": 21120,
+      "sha256": "abff5b98c00e1f7091e0c18ff93888cc9a81da7392377628fbdfc48fef999ed2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d14a58bae804a2b80b5b76a0-ash.mp3",
+      "bytes": 24576,
+      "sha256": "0ef51a3db38bcb3587d04fb9c43effba060dbf8590050ad6567665ea7a5e35fa"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d14a58bae804a2b80b5b76a0-coral.mp3",
+      "bytes": 23040,
+      "sha256": "42e4e43324f2a50e9a21314b1e87f6273b186dcc6256973cc3a45b34c3a181de"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d14a58bae804a2b80b5b76a0-nova.mp3",
+      "bytes": 31488,
+      "sha256": "5150e2141cafc193e8d96e4b0dec358d9d2302b2b05bbe3affa1e8fc58f3dc6e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d14a58bae804a2b80b5b76a0-onyx.mp3",
+      "bytes": 17280,
+      "sha256": "fffc749eb2b42f34637d62dd47e19c426e1a7802260ebc1bad9debe1a32823fe"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d61959106ddd3a5837f5e3d4-ash.mp3",
+      "bytes": 32640,
+      "sha256": "ae693cc956551c3e8fb09ae15f2f2adcfcc2751992618ad1cbf110d89ec8f164"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d61959106ddd3a5837f5e3d4-coral.mp3",
+      "bytes": 29184,
+      "sha256": "0fc165378af0ab4fd02c27da797c9805721bdb063b3ba0607735e0ce93812f54"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d61959106ddd3a5837f5e3d4-nova.mp3",
+      "bytes": 24576,
+      "sha256": "a40e6d20bed6aa69ec96979b0db8c317578b6261f0ef134e3162b0cb00ee3bcc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/d61959106ddd3a5837f5e3d4-onyx.mp3",
+      "bytes": 24576,
+      "sha256": "3f47635b2cdaec31b51cba28620d9f9184389770ba204645d9ad586477853709"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/e4383618e44faf25843ea47a-ash.mp3",
+      "bytes": 38784,
+      "sha256": "e4549fec73b666c7379f7e78a2af209f2a80acf2ae1b3e231aeab2d80d8b0ed8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/e4383618e44faf25843ea47a-coral.mp3",
+      "bytes": 30720,
+      "sha256": "6f66ceca8cbca0db6da965faf09a9031ae5f4038c7e10d031270600b741aee9a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/e4383618e44faf25843ea47a-nova.mp3",
+      "bytes": 33792,
+      "sha256": "5591d7c1361d4225eca9c343e693013ef382236434da3f73676b7167e702b5fe"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/e4383618e44faf25843ea47a-onyx.mp3",
+      "bytes": 20352,
+      "sha256": "c6fa4629808895fbfcf91db0880826b5cf531694515da065d2194c8f22899f07"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-ash.mp3",
+      "bytes": 31488,
+      "sha256": "fa3f2d4d1ea5e89af14a2b5dbb914378993bc97ee9930211b1de75a8b2473eaa"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-coral.mp3",
+      "bytes": 33792,
+      "sha256": "d696f8e895f4a2a3919c7c16731cb037f9970866c7b3035be0bdd1e31d6bc779"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-nova.mp3",
+      "bytes": 38016,
+      "sha256": "76e78367c07e0aa003cfd66fd0f6ed50836d8a4eb63515e3727d7e0c147976d8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/f405fc9a481225d967d3cad0-onyx.mp3",
+      "bytes": 28416,
+      "sha256": "c624450481cadb7aba858f4af8c4fe2a41ba059d940deaf109aeaf8d1c22ed86"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/factory-production-v1/manifest.json",
+      "bytes": 1177689,
+      "sha256": "a9c9ae13d9f4714db10117ac58b350ce9b7cc1a589a2742abed006cb3e59dcdc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/here-ash.mp3",
+      "bytes": 42624,
+      "sha256": "758f2d086d9a7db4841b6b6d4c4ffd5f013d6b1a3abdd8c8a132444c42cf76ca"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/here-coral.mp3",
+      "bytes": 19968,
+      "sha256": "d7087b0ae44e857f171d106905789b522ac0e902d7246f854fc344960d42c5d0"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/here-nova.mp3",
+      "bytes": 22656,
+      "sha256": "b14fc6fc4012cc40fe11944f0d5bb0dd0523d45f02a8ceed6b0a8c3f11c0c7c7"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/here-onyx.mp3",
+      "bytes": 21888,
+      "sha256": "466763eb8efaae21630ce58e33301e771417bd0ac7ff21702afc6321efa8942f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/ready-ash.mp3",
+      "bytes": 30720,
+      "sha256": "bbc1b53e8c8439861c836005caf56a167c0b685ff7cd7a814b82c1391ff284ce"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/ready-coral.mp3",
+      "bytes": 17664,
+      "sha256": "0b97657c3721fa999647c96257c58859cfabdfa4e8bfcccee16c09086f518b8d"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/ready-nova.mp3",
+      "bytes": 12288,
+      "sha256": "aa90c41484f00c63b538a5b9c2ac498ec64d31ce4e641c8b39703cebb4aa9742"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "assets/audio/learning-v2/session1-production-v1/ready-onyx.mp3",
+      "bytes": 19968,
+      "sha256": "eebf91c8d42215704eb4e79a01c27c6871a60b2a503a1cc2c39834290bf71230"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/app.js",
+      "bytes": 31386,
+      "sha256": "8ee4ff5a7c2c48e3cfd455c39082956712d861f1bbd61655f4d03366a38f44b2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/data.js",
+      "bytes": 12383915,
+      "sha256": "c9d72516e1a248a53786ff7cbd4eb9d791195b99d3a8bcd14b5af7cebf8aae26"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/external.html",
+      "bytes": 131983,
+      "sha256": "b92b7cea1de8218013e3b31aaf9a20b18ce6b06f03c71a3ebfbc100862cb96a2"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/index.html",
+      "bytes": 12547313,
+      "sha256": "c3fccdccd642a81b67d2cb0f1ee913a23504e8a0cbeacc4cdc04664ef24f3e7e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s01/answers.json",
+      "bytes": 2780,
+      "sha256": "8494f68934a367626f42b13d1ec7422391b9b7534f506847bd079df3a55ebb57"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s01/auxiliary.json",
+      "bytes": 1944,
+      "sha256": "ce6ef88112bbb4becc531da591a1f61ffc68f4d32aefa93afa8389ef5d9f6ddb"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s01/intro.json",
+      "bytes": 8799,
+      "sha256": "fc86037e593c6684550d294455cebc84dc2ba6d8925695111f55cc4d18d2a427"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s01/learner.json",
+      "bytes": 43789,
+      "sha256": "9133698f24f3aef799e621f1f7fcf5d66357bb4487b6596a70280c931980658a"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s01/learner.uk.json",
+      "bytes": 43657,
+      "sha256": "605626a8e838a7edded416d6695a1e98e00a946a03b8db26614bd460319889bc"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s02/answers.json",
+      "bytes": 3043,
+      "sha256": "285ea49442baee22ac8fa9340ff1ad19451be99d27bc93e3c27770277466bad8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s02/auxiliary.json",
+      "bytes": 1956,
+      "sha256": "176b1f92b51b90f313d89fac9c54ad4b2296706b65492ad958ad3dff52b707e1"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s02/intro.json",
+      "bytes": 8414,
+      "sha256": "c11cbae87b2b8a879d93ab8fcd5cb6a67c3e06c69fac91dc8031497d880b28fe"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s02/learner.json",
+      "bytes": 45261,
+      "sha256": "0ba77fc3ddd2d58f7860df312fbd759512fe48970d1e5f1c806bf868e4714553"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/mockup/reviewed-source/en/l01/s02/learner.uk.json",
+      "bytes": 45113,
+      "sha256": "f613e84110356fb820769478ce4b2be9511cc247d3030d01b7815fb12a34fcc4"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s01/answers.json",
+      "bytes": 2780,
+      "sha256": "8494f68934a367626f42b13d1ec7422391b9b7534f506847bd079df3a55ebb57"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s01/auxiliary.json",
+      "bytes": 1944,
+      "sha256": "ce6ef88112bbb4becc531da591a1f61ffc68f4d32aefa93afa8389ef5d9f6ddb"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s01/intro.json",
+      "bytes": 8913,
+      "sha256": "0dc265991eceb74e3a420309e3112c9f9b3963f1016e4ec7c446a9e4d3660667"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s01/learner.json",
+      "bytes": 44323,
+      "sha256": "ca361e7299d5b3fd9aa7dd5fad91c3ddd4aafef3736daf82e36a1bc0a50a797c"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s01/learner.uk.json",
+      "bytes": 44265,
+      "sha256": "342a8779a1e7201214ad86228de58d0cba1be57eefe5b94e1a55bd036d5bad3e"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s02/answers.json",
+      "bytes": 3043,
+      "sha256": "285ea49442baee22ac8fa9340ff1ad19451be99d27bc93e3c27770277466bad8"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s02/auxiliary.json",
+      "bytes": 1956,
+      "sha256": "176b1f92b51b90f313d89fac9c54ad4b2296706b65492ad958ad3dff52b707e1"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s02/intro.json",
+      "bytes": 8532,
+      "sha256": "aa3214889275e5c974cc3696365c031e528105ab70c7e588ae00d379ce49df32"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s02/learner.json",
+      "bytes": 45843,
+      "sha256": "e2792d9599eafe9c3c150acf393a4bba508f79ea1f9b18837ede33da1e51f811"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/release/en/l01/s02/learner.uk.json",
+      "bytes": 45695,
+      "sha256": "5f0dfd65d7f7301c905a28f450ef88704c0e229423b99869d2de9c0a75d41303"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/final.judge_taste.json",
+      "bytes": 161,
+      "sha256": "fc1f7fe22b41835c197146d3f3432060efe3317ab9173e80de1f48e7151d75a0"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/final.judge_taste.run1.json",
+      "bytes": 161,
+      "sha256": "fc1f7fe22b41835c197146d3f3432060efe3317ab9173e80de1f48e7151d75a0"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/final.ru.md",
+      "bytes": 12053,
+      "sha256": "8b6c1231768e3e2405983107721cbfeae98f1e33be847f9bea4c21de8262de49"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/final.uk.md",
+      "bytes": 12289,
+      "sha256": "eda1ae4627c2766ce5cb1b684775e4942d286e1ee5cf08db354f88c34f4f26ff"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/locales.judge.json",
+      "bytes": 1483,
+      "sha256": "8d4eb39f4d0c8c548e741c4fd49f056c03789cb65dd58923df58700a841fe1ab"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/locales_batch.md",
+      "bytes": 10219,
+      "sha256": "8d018a339410efbb13958a19a33fcaaddc4bd2af247abd636352d9655462edf3"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "content/learning-v2-course/sessions/en/l01/s02/practice.atomic.json",
+      "bytes": 100243,
+      "sha256": "5acb881a718410e358ab3c8df59a24d2db0a82b1d23c88ce323b849ac6bfbec1"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/answers.json",
+      "bytes": 2646,
+      "sha256": "11bee6427322455d0e789dd2811bb3ae4c75700534362fcd978c541b8664868f"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/auxiliary.json",
+      "bytes": 2900,
+      "sha256": "3be6a3a2e5b7de730fad9061672be1dd17c3ff37c4b2e22989e1c60369ab6cbb"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/intro.json",
+      "bytes": 8778,
+      "sha256": "53356b0034b2a2b0c588a7311ab2b4c1e886cae49250a553e049a6d629288bca"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/learner.json",
+      "bytes": 37450,
+      "sha256": "c8d3d7db35a3bc769f6abdd3e6b04a7d3b4fd2aa4e7f0c9b0b4706722b528fb1"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s01/learner.uk.json",
+      "bytes": 37378,
+      "sha256": "d71d7b57220e800976182dde6ab518ced29c4b729a0c048be17dd5d258eba985"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s02/answers.json",
+      "bytes": 2998,
+      "sha256": "7e4c7b0d04cb374cf2bced9c1b90673767bfe561555aab65d6f8526d8cbc69ca"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s02/auxiliary.json",
+      "bytes": 2527,
+      "sha256": "ce1c86c3903f4865affa214e9fc6ea50d2c55bcacd2f7a9eeeec1c005b14bada"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s02/intro.json",
+      "bytes": 9384,
+      "sha256": "0e6d020ddc183e00ea80f3e448952c7d518ac1889bb55502b30d8b735f2a5704"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s02/learner.json",
+      "bytes": 37019,
+      "sha256": "d41a03750eea8b01aa0600cdcbdf883bc8fa7af530fc5e06e63b8ad7cf477460"
+    },
+    {
+      "category": "noDriftBoundary",
+      "path": "modules/learning-v2/content/factory_native/generated_release/en/l01/s02/learner.uk.json",
+      "bytes": 36958,
+      "sha256": "f3ff0df5c74d436cbee0c878f4cc8afcbc281ede86ede26ccc87572e03cd8ce6"
+    }
+  ]
+}

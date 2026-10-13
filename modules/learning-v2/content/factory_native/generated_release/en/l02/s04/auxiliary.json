@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-02:session-04",
+  "entries": [
+    {
+      "interactionId": "en:lesson-02:session-04:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-04:intro1:r2": {
+          "ru": "Слова стоят как в сообщении. В вопросе `are` выходит вперёд.",
+          "uk": "Слова стоять як у повідомленні. У питанні `are` виходить наперед."
+        },
+        "en:lesson-02:session-04:intro1:r3": {
+          "ru": "`you` оторвано от `are`. Эти двое идут парой: сначала `are you`, потом само слово.",
+          "uk": "`you` відірване від `are`. Ці двоє ходять парою: спершу `are you`, потім саме слово."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-04:intro2:r2": {
+          "ru": "`thirsty` — «хочу пить». Про банку он спрашивает не поэтому.",
+          "uk": "`thirsty` — «хочу пити». Про банку він питає не тому."
+        },
+        "en:lesson-02:session-04:intro2:r3": {
+          "ru": "Так бросают на бегу, но это обрубок. Полный вопрос начинается с `are`.",
+          "uk": "Так кидають на бігу, але це обрубок. Повне питання починається з `are`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-02:session-04:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-02:session-04:intro3:r2": {
+          "ru": "`cold` — «холодно». Вы пляшете от настроения, а не от холода.",
+          "uk": "`cold` — «холодно». Ви пританцьовуєте від настрою, а не від холоду."
+        },
+        "en:lesson-02:session-04:intro3:r3": {
+          "ru": "`you` снова уехало в конец. Держите `are you` вместе.",
+          "uk": "`you` знову поїхало в кінець. Тримайте `are you` разом."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dcbe7eba95cabf54d857f8788014aaa6e3292735ec29a7a596f2c0f70db505d8"
+}

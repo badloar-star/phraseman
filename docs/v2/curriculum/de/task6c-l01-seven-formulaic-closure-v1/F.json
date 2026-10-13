@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-receipt-closure.v1",
+  "stage": "F",
+  "preManifest": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+    "sha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+  },
+  "reviews": {
+    "native": {
+      "path": "docs/v2/curriculum/de/task6c-l01-seven-formulaic-closure-v1/review.native.record.json",
+      "sha256": "b44713c957530bffffea97e76f50d2fc95d2fe49d1c7d4ca5cb34914caa0f694"
+    },
+    "adversarial": {
+      "path": "docs/v2/curriculum/de/task6c-l01-seven-formulaic-closure-v1/review.adversarial.record.json",
+      "sha256": "64a19bd3a8e918ecc79b1462117223f8a73602daff6f8023cb29c98b2d96be08"
+    }
+  },
+  "status": {
+    "candidateAcceptance": "ACCEPTED_UNDER_TASK6C_CURRENT_STATE",
+    "status": "HOLD",
+    "canonicalAdmission": "FORBIDDEN",
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "phraseClaim": false,
+    "learnerAuthoring": "HOLD",
+    "mockup": "HOLD",
+    "audio": "HOLD",
+    "runtime": "HOLD",
+    "release": "HOLD"
+  },
+  "limitations": [
+    "F_DOES_NOT_PROMOTE_OR_UNLOCK",
+    "The F receipt accepts only the bounded formulaic current-state candidate under Task 6C.",
+    "The receipt does not establish Task 6 completion, canonical admission, Task 7, or release authority."
+  ]
+}

@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-45:i01; family: listen_choose -->
 Цель: `Am I late?`
 Варианты: `Am I late?` · `Am I early?` · `Are we late?`
+- Am I early? — *Это вопрос «Я рано?» На записи последнее слово `late` — «опоздал».*
+- Are we late? — *Здесь вопрос о нескольких людях. В записи начало `Am I`: человек спрашивает о себе.*
+
 
 **2 · Вставьте слово — в студии ещё расставляют стулья; уточните, не рано ли вы пришли**
 <!-- interaction_id: en:lesson-02:session-45:i02; family: context_gap_grammar -->
 Цель: `Am I ___ ?`
 Варианты: `early` · `late` · `welcome`
+- late — *Это вопрос об опоздании. Вы хотите узнать, не пришли ли раньше нужного времени: `early`.*
+- welcome — *Это вопрос о том, рады ли вам. Сейчас вы проверяете время прихода.*
+
 
 **3 · Соберите фразу — преподаватель готовит столы; спросите его, не рано ли вы пришли**
 <!-- interaction_id: en:lesson-02:session-45:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-45:i04; family: listen_choose -->
 Цель: `I am late.`
 Варианты: `I am late.` · `I am not late.` · `I am early.`
+- I am not late. — *В этом варианте есть отрицание `not`. На записи посетитель говорит без него: `I am late`.*
+- I am early. — *Это «Я рано». В записи последнее слово `late`: посетитель говорит об опоздании.*
+
 
 **5 · Соберите фразу — вы не знаете, на то ли время пришли; спросите преподавателя, опоздали ли вы**
 <!-- interaction_id: en:lesson-02:session-45:i05; family: phrase_builder -->
@@ -79,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-45:i06; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `here` · `tired`
+- here — *Это «здесь». Друг спрашивает, уверены ли вы в записи, поэтому нужно `sure`.*
+- tired — *Это «устал». Вы подтверждаете точность своих сведений: `I am sure`.*
+
 
 **7 · Послушайте и выберите — какой вопрос посетитель задал преподавателю**
 <!-- interaction_id: en:lesson-02:session-45:i07; family: listen_choose -->
 Цель: `Am I wrong?`
 Варианты: `Am I wrong?` · `Are you wrong?` · `Am I ready?`
+- Are you wrong? — *Это вопрос к преподавателю о нём самом. В записи посетитель начинает с `Am I` и спрашивает о себе.*
+- Am I ready? — *Это «Я готов?» В записи последнее слово `wrong`: посетитель спрашивает, не ошибается ли.*
+
 
 **8 · Соберите фразу — преподаватель спрашивает, какое время было указано в вашей записи; вы не уверены**
 <!-- interaction_id: en:lesson-02:session-45:i08; family: phrase_builder -->
@@ -98,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-45:i10; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `here` · `ready` · `early`
+- ready — *Это «готов». Сейчас вы сообщаете другу, где находитесь: `here`.*
+- early — *Это «рано». Для сообщения «Я здесь» нужно `I am here`.*
+
 
 **11 · Соберите фразу — друг вернулся и раскладывает свои вещи; спросите, готов ли он**
 <!-- interaction_id: en:lesson-02:session-45:i11; family: phrase_builder -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-45:i12; family: context_gap_grammar -->
 Цель: `___ I late?`
 Варианты: `Am` · `Is` · `Are`
+- Is — *Для этого вопроса о себе нужно начало `Am I`.*
+- Are — *Здесь стоит `I`, поэтому сочетание для вопроса — `Am I`, а не `Are I`.*
+
 
 **13 · Послушайте и соберите — реплика друга звучит в разговоре с преподавателем**
 <!-- interaction_id: en:lesson-02:session-45:i13; family: listen_build_dictation -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-45:i14; family: context_gap_grammar -->
 Цель: `Am I ___ ?`
 Варианты: `wrong` · `here` · `late`
+- here — *Это «здесь». Сейчас вы проверяете правильность названного номера: `wrong`.*
+- late — *Это вопрос об опоздании. Вы уточняете, не ошиблись ли в номере комнаты.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-45:i15; family: scripted_repeat_compare -->

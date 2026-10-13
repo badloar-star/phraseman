@@ -99,6 +99,14 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-04:i02:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи early. Это не earn и не really.",
+              "uk": "Правильно: у записі early. Це не earn і не really."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-04:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — early",
@@ -217,6 +225,14 @@
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i04:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи right. Это не white и не ride.",
+              "uk": "Правильно: у записі right. Це не white і не ride."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-04:i04:r2",
             "correct": false,
@@ -337,6 +353,14 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-04:i06:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи wrong. Это не long и не ring.",
+              "uk": "Правильно: у записі wrong. Це не long і не ring."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-04:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — wrong",
@@ -443,6 +467,14 @@
         "testedPhoneticContrast": "Различите звуки — какое из двух про «нев",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-04:i08:r2",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: второе слово — wrong, то есть «неверно».",
+              "uk": "Правильно: друге слово — wrong, тобто «неправильно»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-04:i08:r1",
             "correct": false,
             "testedDimension": "Различите звуки — какое из двух про «нев",
@@ -507,6 +539,14 @@
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i09:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи free. Это не three и не fry.",
+              "uk": "Правильно: у записі free. Це не three і не fry."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-04:i09:r2",
             "correct": false,
@@ -667,7 +707,17 @@
         "authoredDistractorTokens": [
           "right"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы отстаиваете с",
+            "feedbackByLocale": {
+              "ru": "«прав», но здесь вы говорите «я не ошибаюсь»",
+              "uk": "«правий», але тут ви кажете «я не помиляюся»"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -677,7 +727,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — сосед по кругу признаёт промах",
+      "prompt": "Вставьте слово — Антон признаёт ошибку",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i13:r1",
@@ -694,12 +744,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — сосед по кругу признаёт промах",
+      "accessibilityLabel": "Вставьте слово — Антон признаёт ошибку",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — сосед по кругу признаёт промах",
-          "uk": "Вставте слово — сусід по колу визнає помилку"
+          "ru": "🗣 Антон сказал: **«I wrong.»** В этой фразе после I не хватает am. Поставьте его на место.",
+          "uk": "🗣 Антон сказав: **«I wrong.»** У цій фразі після I бракує am. Поставте його на місце."
         },
         "gappedTargetPhrase": "I ___ wrong.",
         "gapOptions": [
@@ -719,12 +769,21 @@
         "testedDimension": "Вставьте слово — сосед по кругу признаёт",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-04:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — сосед по кругу признаёт",
+            "feedbackByLocale": {
+              "ru": "Верно: после I нужна форма am: I am wrong.",
+              "uk": "Правильно: після I потрібна форма am: I am wrong."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-04:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — сосед по кругу признаёт",
             "feedbackByLocale": {
-              "ru": "Тогда он сказал бы обратное — что он не ошибся. А он промах признаёт; и скрепка am всё равно нужна, not её не заменяет.",
-              "uk": "Тоді б він сказав протилежне — що не помилився. А він помилку визнає; і скріпка am однаково потрібна, not її не замінює."
+              "ru": "Тогда он сказал бы обратное — что не ошибся. Здесь он признаёт ошибку; после `I` нужно `am`, а затем `not`.",
+              "uk": "Тоді він сказав би протилежне — що не помилився. Тут він визнає помилку; після `I` потрібне `am`, а потім `not`."
             }
           },
           {
@@ -744,65 +803,36 @@
       "interactionId": "en:lesson-01:session-04:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — все задачи закончены, и вы можете взять новую",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-04:i14:r1",
-          "text": "free"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i14:r2",
-          "text": "busy"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i14:r3",
-          "text": "happy"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — все задачи закончены, и вы можете взять новую",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — все задачи закончены, и вы можете взять новую",
+      "accessibilityLabel": "Соберите фразу — все задачи закончены, и вы можете взять новую",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am free.",
+        "localizedMeaning": {
           "ru": "Все задачи закончены, и вы можете взять новую.",
           "uk": "Усі завдання завершені, і ви можете взяти нове."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-04:i14:r1",
-            "text": "free"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i14:r2",
-            "text": "busy"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i14:r3",
-            "text": "happy"
-          }
+        "orderedTokens": [
+          "I",
+          "am",
+          "free"
         ],
-        "testedDimension": "Вставьте слово — все задачи закончены, и вы можете взять новую",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "not"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i14:r2",
+            "responseId": "en:lesson-01:session-04:i14:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — все задачи закончены, и вы можете взять новую",
+            "testedDimension": "Соберите фразу — все задачи закончены, и",
             "feedbackByLocale": {
-              "ru": "Busy — «занят». Здесь работа уже закончена, поэтому подходит free — «свободен».",
-              "uk": "Busy — «зайнятий». Тут роботу вже завершено, тому підходить free — «вільний»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i14:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — все задачи закончены, и вы можете взять новую",
-            "feedbackByLocale": {
-              "ru": "Happy говорит о настроении. Здесь спрашивают, можете ли вы взять новую задачу, поэтому нужен free.",
-              "uk": "Happy говорить про настрій. Тут питають, чи можете ви взяти нове завдання, тому потрібне free."
+              "ru": "все задачи закончены, значит I am free",
+              "uk": "усі завдання завершені, отже I am free"
             }
           }
         ]
@@ -871,6 +901,14 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-04:i15:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи I am not sure. — «я не уверен».",
+              "uk": "Правильно: у записі I am not sure. — «я не впевнений»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-04:i15:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — что вы сейчас ус",
@@ -929,7 +967,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в зале ещё пусто, вы пр",
+            "feedbackByLocale": {
+              "ru": "с I нужна форма am",
+              "uk": "з I потрібна форма am"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1012,11 +1060,11 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — начальник спрашивает, как вы; у вас всё хорошо",
+      "prompt": "Соберите фразу — Мира спрашивает, как вы, и у вас всё хорошо",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — начальник спрашивает, как вы; у вас всё хорошо",
+      "accessibilityLabel": "Соберите фразу — Мира спрашивает, как вы, и у вас всё хорошо",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am fine.",
@@ -1027,12 +1075,22 @@
         "orderedTokens": [
           "I",
           "am",
-          "fine."
+          "fine"
         ],
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i18:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира спрашивает, как вы",
+            "feedbackByLocale": {
+              "ru": "здесь I am fine — «у меня всё хорошо»",
+              "uk": "тут I am fine — «у мене все добре»"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1040,67 +1098,31 @@
       "interactionId": "en:lesson-01:session-04:i19",
       "ordinal": 22,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы получили хорошие новости и рады",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-04:i19:r1",
-          "text": "happy"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i19:r2",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i19:r3",
-          "text": "alone"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Произнесите фразу — вы получили хорошие новости и рады",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы получили хорошие новости и рады",
+      "audioTargetIds": [
+        "en:lesson-01:session-04:i19:audio"
+      ],
+      "accessibilityLabel": "Произнесите фразу — вы получили хорошие новости и рады",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вы получили хорошие новости и рады.",
-          "uk": "Ви отримали добрі новини й раді."
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-04:i19:audio",
+          "transcript": "I am happy."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-04:i19:r1",
-            "text": "happy"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i19:r2",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i19:r3",
-            "text": "alone"
-          }
-        ],
-        "testedDimension": "Вставьте слово — вы получили хорошие новости и рады",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-04:i19:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы получили хорошие новости и рады",
-            "feedbackByLocale": {
-              "ru": "Tired — «устал». В условии вы рады хорошим новостям, поэтому подходит happy.",
-              "uk": "Tired — «втомлений». В умові ви раді добрим новинам, тому підходить happy."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i19:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы получили хорошие новости и рады",
-            "feedbackByLocale": {
-              "ru": "Alone — «один». Здесь речь о радости, поэтому нужен ответ happy.",
-              "uk": "Alone — «сам». Тут ідеться про радість, тому потрібна відповідь happy."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am happy.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -1126,319 +1148,95 @@
         "orderedTokens": [
           "I",
           "am",
-          "right."
+          "right"
         ],
         "authoredDistractorTokens": [
           "wrong"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-04:i20:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вы перепроверили расчёт",
+            "feedbackByLocale": {
+              "ru": "расчёт верный, поэтому I am right",
+              "uk": "розрахунок вірний, тому I am right"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-04:i21:s01",
+      "interactionId": "en:lesson-01:session-04:i21",
       "ordinal": 24,
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы пришли за двадцать минут до начала",
+      "prompt": "Вставьте слово — начальник спрашивает, готовы ли вы к новой задаче",
       "responseOptions": [
         {
-          "responseId": "en:lesson-01:session-04:i21:s01:r1",
-          "text": "early"
+          "responseId": "en:lesson-01:session-04:i21:r1",
+          "text": "not busy"
         },
         {
-          "responseId": "en:lesson-01:session-04:i21:s01:r2",
-          "text": "fine"
+          "responseId": "en:lesson-01:session-04:i21:r2",
+          "text": "busy"
         },
         {
-          "responseId": "en:lesson-01:session-04:i21:s01:r3",
-          "text": "late"
+          "responseId": "en:lesson-01:session-04:i21:r3",
+          "text": "not free"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы пришли за двадцать минут до начала",
+      "accessibilityLabel": "Вставьте слово — начальник спрашивает, готовы ли вы к новой задаче",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы пришли за двадцать минут до начала.",
-          "uk": "Ви прийшли за двадцять хвилин до початку."
+          "ru": "Вставьте слово — начальник спрашивает, готовы ли вы к новой задаче",
+          "uk": "Керівник питає, чи можете ви взяти нове завдання. Усі попередні завдання вже завершені."
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
           {
-            "responseId": "en:lesson-01:session-04:i21:s01:r1",
-            "text": "early"
+            "responseId": "en:lesson-01:session-04:i21:r1",
+            "text": "not busy"
           },
           {
-            "responseId": "en:lesson-01:session-04:i21:s01:r2",
-            "text": "fine"
+            "responseId": "en:lesson-01:session-04:i21:r2",
+            "text": "busy"
           },
           {
-            "responseId": "en:lesson-01:session-04:i21:s01:r3",
-            "text": "late"
+            "responseId": "en:lesson-01:session-04:i21:r3",
+            "text": "not free"
           }
         ],
-        "testedDimension": "Вставьте слово — вы пришли за двадцать минут до начала",
+        "testedDimension": "свободен для новой задачи",
         "choiceFeedback": [
           {
-            "responseId": "en:lesson-01:session-04:i21:s01:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — вы пришли за двадцать минут до начала",
+            "responseId": "en:lesson-01:session-04:i21:r1",
+            "correct": true,
+            "testedDimension": "свободен для новой задачи",
             "feedbackByLocale": {
-              "ru": "Fine — «в порядке». В условии важно время прихода: до начала — это early.",
-              "uk": "Fine — «усе гаразд». В умові важливий час приходу: до початку — це early."
+              "ru": "Верно: not busy — «не занят», поэтому можно взять новую задачу.",
+              "uk": "Правильно: not busy — «не зайнятий», тому можна взяти нове завдання."
             }
           },
           {
-            "responseId": "en:lesson-01:session-04:i21:s01:r3",
+            "responseId": "en:lesson-01:session-04:i21:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы пришли за двадцать минут до начала",
             "feedbackByLocale": {
-              "ru": "Late — «поздно». Вы пришли до начала, поэтому подходит early — «рано».",
-              "uk": "Late — «пізно». Ви прийшли до початку, тому підходить early — «рано»."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i21:s02",
-      "ordinal": 25,
-      "purpose": "independent_check",
-      "family": "speed_match",
-      "inputMode": "pair_grid",
-      "prompt": "Соедините пары — знакомые состояния",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соедините пары — знакомые состояния",
-      "modePayload": {
-        "family": "speed_match",
-        "pairGrid": [
-          {
-            "pairId": "en:lesson-01:session-04:i21:s02:p1",
-            "target": "late",
-            "meaningByLocale": {
-              "ru": "поздно",
-              "uk": "пізно"
+              "ru": "`busy` значит «занят», но все прежние задачи уже закончены. Здесь нужно сказать `not busy` — вы свободны для новой задачи.",
+              "uk": "`busy` означає «зайнятий», але всі попередні завдання вже завершені. Тут потрібно сказати `not busy` — ви вільні для нового завдання."
             }
           },
           {
-            "pairId": "en:lesson-01:session-04:i21:s02:p2",
-            "target": "ready",
-            "meaningByLocale": {
-              "ru": "готов",
-              "uk": "готовий"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-04:i21:s02:p3",
-            "target": "fine",
-            "meaningByLocale": {
-              "ru": "в порядке",
-              "uk": "усе гаразд"
-            }
-          },
-          {
-            "pairId": "en:lesson-01:session-04:i21:s02:p4",
-            "target": "happy",
-            "meaningByLocale": {
-              "ru": "рад",
-              "uk": "радий"
-            }
-          }
-        ],
-        "leftColumn": [
-          "late",
-          "ready",
-          "fine",
-          "happy"
-        ],
-        "rightColumn": [
-          "поздно",
-          "готов",
-          "в порядке",
-          "рад"
-        ],
-        "pairingKey": "pair_id",
-        "timerPolicy": {
-          "enabledByDefault": true,
-          "learnerCanDisable": true,
-          "pausesOnInterruption": true
-        },
-        "finishStats": [
-          "speed",
-          "accuracy",
-          "personal_best"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i21:s03",
-      "ordinal": 26,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — ваша цифра не совпала с итогом",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-04:i21:s03:r1",
-          "text": "wrong"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i21:s03:r2",
-          "text": "right"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i21:s03:r3",
-          "text": "ready"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — ваша цифра не совпала с итогом",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Ваша цифра не совпала с итогом.",
-          "uk": "Ваша цифра не збіглася з підсумком."
-        },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-04:i21:s03:r1",
-            "text": "wrong"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s03:r2",
-            "text": "right"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s03:r3",
-            "text": "ready"
-          }
-        ],
-        "testedDimension": "Вставьте слово — ваша цифра не совпала с итогом",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-04:i21:s03:r2",
+            "responseId": "en:lesson-01:session-04:i21:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — ваша цифра не совпала с итогом",
             "feedbackByLocale": {
-              "ru": "Right — «прав». Ваша цифра не совпала с итогом, поэтому вы говорите wrong — «не прав».",
-              "uk": "Right — «маю рацію». Ваша цифра не збіглася з підсумком, тому ви кажете wrong — «помиляюся»."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s03:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — ваша цифра не совпала с итогом",
-            "feedbackByLocale": {
-              "ru": "Ready — «готов». Здесь речь об ошибке в цифре, поэтому подходит wrong.",
-              "uk": "Ready — «готовий». Тут ідеться про помилку в цифрі, тому підходить wrong."
-            }
-          }
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i21:s04",
-      "ordinal": 27,
-      "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — все ваши задачи закончены",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — все ваши задачи закончены",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am free.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — все ваши задачи закончены",
-          "uk": "Складіть фразу — усі ваші завдання завершені"
-        },
-        "orderedTokens": [
-          "I",
-          "am",
-          "free."
-        ],
-        "authoredDistractorTokens": [
-          "busy"
-        ],
-        "slotFeedback": []
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-04:i21:s05",
-      "ordinal": 28,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — начальник спрашивает, заняты ли вы; работа закончена",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-04:i21:s05:r1",
-          "text": "not"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i21:s05:r2",
-          "text": "free"
-        },
-        {
-          "responseId": "en:lesson-01:session-04:i21:s05:r3",
-          "text": "no"
-        }
-      ],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — начальник спрашивает, заняты ли вы; работа закончена",
-      "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Начальник спрашивает, заняты ли вы; работа закончена.",
-          "uk": "Керівник питає, чи ви зайняті; роботу завершено."
-        },
-        "gappedTargetPhrase": "I am ___ busy.",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-04:i21:s05:r1",
-            "text": "not"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s05:r2",
-            "text": "free"
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s05:r3",
-            "text": "no"
-          }
-        ],
-        "testedDimension": "Вставьте слово — начальник спрашивает, заняты ли вы; работа закончена",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-04:i21:s05:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — начальник спрашивает, заняты ли вы; работа закончена",
-            "feedbackByLocale": {
-              "ru": "Free нельзя ставить перед busy: получится два разных описания подряд. Чтобы сказать «не занят», после am нужно not.",
-              "uk": "Free не можна ставити перед busy: вийдуть два різні описи підряд. Щоб сказати «не зайнятий», після am потрібне not."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-04:i21:s05:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — начальник спрашивает, заняты ли вы; работа закончена",
-            "feedbackByLocale": {
-              "ru": "В этой английской фразе отрицание после am — not. No сюда не подходит.",
-              "uk": "У цій англійській фразі заперечення після am — not. No сюди не підходить."
+              "ru": "`not free` значит «не свободен» и противоречит условию. Задачи закончены, поэтому подходит `not busy`.",
+              "uk": "`not free` означає «не вільний» і суперечить умові. Завдання завершені, тому підходить `not busy`."
             }
           }
         ]
@@ -1446,11 +1244,11 @@
       "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 25,
+  "practiceInteractionCount": 21,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "94138a13be8a6690f05239ce66f202fe4c4f5cffd5c1982fe5c73336c8797de8"
+  "learnerFingerprint": "6e9f8f4c96e095c4fa0b88f5671a3e2f13d0f36ff743456de1f28d69cb195ca0"
 }

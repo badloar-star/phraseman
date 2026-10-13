@@ -274,17 +274,7 @@
           "authoredDistractorTokens": [
             "ticket"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — коллега спрашивает про ",
-              "feedbackByLocale": {
-                "ru": "Пачка содержит несколько билетов. Нужно название с добавленной `s`: `tickets`.",
-                "uk": "У пачці кілька квитків. Потрібна назва з доданою `s`: `tickets`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -452,7 +442,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте название — курьер указывает на ",
+          "testedDimension": "Вставьте название — курьер указывает на несколько растений в горшках; скажите «Это растения» (`plant` — «растение», `plants` — «растения», с добавленным `s`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-17:i08:r2",
@@ -507,17 +497,7 @@
           "authoredDistractorTokens": [
             "coin"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i09:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — коллега сортирует моне",
-              "feedbackByLocale": {
-                "ru": "Вопрос о нескольких предметах. После `Are they` нужно `coins` с буквой `s`.",
-                "uk": "Це питання про кілька предметів. Після `Are they` потрібно `coins` з літерою `s`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -566,7 +546,7 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставьте название — курьер достал из кор",
+          "testedDimension": "Вставьте название — курьер достал из коробки несколько подушек для сидений; скажите «Это подушки» (`cushion` — «подушка», `cushions` — «подушки», с добавленным `s`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-17:i10:r2",
@@ -625,17 +605,7 @@
           "authoredDistractorTokens": [
             "card"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — коллега говорит ",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `cards`: речь о нескольких предметах. Название сохраняет `s` и после `not`.",
-                "uk": "У записі звучить `cards`: йдеться про кілька предметів. Назва зберігає `s` і після `not`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -819,17 +789,7 @@
           "authoredDistractorTokens": [
             "cushion"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — в оставшейся коробке н",
-              "feedbackByLocale": {
-                "ru": "Вопрос относится ко всем свёрткам. Для нескольких подушек нужно `cushions`.",
-                "uk": "Питання стосується всіх згортків. Для кількох подушок потрібно `cushions`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -893,29 +853,20 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "They are coins.",
-          "localizedMeaning":{"ru":"Соберите фразу — коллега показывает монеты для сдачи в кассе","uk":"Складіть фразу — колега показує монети для решти в касі"},
-          "orderedTokens":["They","are","coins"],
-          "authoredDistractorTokens":["coin","is"],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i16:r2",
-              "correct": false,
-              "testedDimension": "Вставьте название — коллега показывает м",
-              "feedbackByLocale": {
-                "ru": "Называем несколько монет. К `coin` добавляем `s`: `coins`.",
-                "uk": "Називаємо кілька монет. До `coin` додаємо `s`: `coins`."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-17:i16:r3",
-              "correct": false,
-              "testedDimension": "Вставьте название — коллега показывает м",
-              "feedbackByLocale": {
-                "ru": "После готового начала `They are` нужно название денег — `coins`. `is` монеты не называет.",
-                "uk": "Після готового початку `They are` потрібна назва грошей — `coins`. `is` монети не називає."
-              }
-            }
-          ]
+          "localizedMeaning": {
+            "ru": "Соберите фразу — коллега показывает монеты для сдачи в кассе",
+            "uk": "Складіть фразу — колега показує монети для решти в касі"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "coins"
+          ],
+          "authoredDistractorTokens": [
+            "coin",
+            "is"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -928,17 +879,27 @@
         "prompt": "Скажите вслух — курьер просит проверить последнюю пачку карточек доступа",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-17:i17:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-17:i17:audio"
+        ],
         "accessibilityLabel": "Скажите вслух — курьер просит проверить последнюю пачку карточек доступа",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-17:i17:audio","transcript":"They are cards."},
-          "slowReferenceAudio":null,
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-17:i17:audio",
+            "transcript": "They are cards."
+          },
+          "slowReferenceAudio": null,
           "targetPhrase": "They are cards.",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle",
-          "modelPlayback":"reference_and_slow",
-          "learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1213,17 +1174,7 @@
           "authoredDistractorTokens": [
             "ticket"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i05:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — колега питає про пачку з",
-              "feedbackByLocale": {
-                "ru": "Пачка содержит несколько билетов. Нужно название с добавленной `s`: `tickets`.",
-                "uk": "У пачці кілька квитків. Потрібна назва з доданою `s`: `tickets`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1391,7 +1342,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр показує на кілька",
+          "testedDimension": "Вставте назву — кур’єр показує на кілька рослин у горщиках; скажіть «Це рослини» (`plant` — «рослина», `plants` — «рослини», із доданою `s`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-17:i08:r2",
@@ -1446,17 +1397,7 @@
           "authoredDistractorTokens": [
             "coin"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i09:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — колега сортує монети й",
-              "feedbackByLocale": {
-                "ru": "Вопрос о нескольких предметах. После `Are they` нужно `coins` с буквой `s`.",
-                "uk": "Це питання про кілька предметів. Після `Are they` потрібно `coins` з літерою `s`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1505,7 +1446,7 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр дістав із коробки",
+          "testedDimension": "Вставте назву — кур’єр дістав із коробки кілька подушок для сидіння; скажіть «Це подушки» (`cushion` — «подушка», `cushions` — «подушки», із доданою `s`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-17:i10:r2",
@@ -1564,17 +1505,7 @@
           "authoredDistractorTokens": [
             "card"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — колега говорить п",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `cards`: речь о нескольких предметах. Название сохраняет `s` и после `not`.",
-                "uk": "У записі звучить `cards`: йдеться про кілька предметів. Назва зберігає `s` і після `not`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1758,17 +1689,7 @@
           "authoredDistractorTokens": [
             "cushion"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i14:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — у коробці, що лишилася",
-              "feedbackByLocale": {
-                "ru": "Вопрос относится ко всем свёрткам. Для нескольких подушек нужно `cushions`.",
-                "uk": "Питання стосується всіх згортків. Для кількох подушок потрібно `cushions`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1832,29 +1753,20 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "They are coins.",
-          "localizedMeaning":{"ru":"Соберите фразу — коллега показывает монеты для сдачи в кассе","uk":"Складіть фразу — колега показує монети для решти в касі"},
-          "orderedTokens":["They","are","coins"],
-          "authoredDistractorTokens":["coin","is"],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-17:i16:r2",
-              "correct": false,
-              "testedDimension": "Вставте назву — колега показує монети, в",
-              "feedbackByLocale": {
-                "ru": "Называем несколько монет. К `coin` добавляем `s`: `coins`.",
-                "uk": "Називаємо кілька монет. До `coin` додаємо `s`: `coins`."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-17:i16:r3",
-              "correct": false,
-              "testedDimension": "Вставте назву — колега показує монети, в",
-              "feedbackByLocale": {
-                "ru": "После готового начала `They are` нужно название денег — `coins`. `is` монеты не называет.",
-                "uk": "Після готового початку `They are` потрібна назва грошей — `coins`. `is` монети не називає."
-              }
-            }
-          ]
+          "localizedMeaning": {
+            "ru": "Соберите фразу — коллега показывает монеты для сдачи в кассе",
+            "uk": "Складіть фразу — колега показує монети для решти в касі"
+          },
+          "orderedTokens": [
+            "They",
+            "are",
+            "coins"
+          ],
+          "authoredDistractorTokens": [
+            "coin",
+            "is"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1867,17 +1779,27 @@
         "prompt": "Скажіть уголос — кур’єр просить перевірити останню пачку карток доступу",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-17:i17:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-17:i17:audio"
+        ],
         "accessibilityLabel": "Скажіть уголос — кур’єр просить перевірити останню пачку карток доступу",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-17:i17:audio","transcript":"They are cards."},
-          "slowReferenceAudio":null,
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-17:i17:audio",
+            "transcript": "They are cards."
+          },
+          "slowReferenceAudio": null,
           "targetPhrase": "They are cards.",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle",
-          "modelPlayback":"reference_and_slow",
-          "learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }

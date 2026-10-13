@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
 Ціль: `basket`
 Варіанти: `basket` · `casket` · `biscuit`
+- casket — *Перший звук у `casket` — «к», а в `basket` — «б». У записі — `basket`.*
+- biscuit — *Під час першого голосного в `basket` рот відкривається ширше, ніж у `biscuit`. Тут звучить `basket`.*
+
 
 **3 · Картка слова — trolley**
 <!-- interaction_id: en:lesson-03:session-06:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i04; family: listen_choose -->
 Ціль: `trolley`
 Варіанти: `trolley` · `brolly` · `folly`
+- brolly — *На початку `brolly` губи змикаються для `b`. У `trolley` язик ненадовго перекриває повітря для `t`; далі чути англійський `r`. У записі — `trolley`.*
+- folly — *`folly` починається з `f`: повітря проходить між нижньою губою та верхніми зубами. У `trolley` язик спершу ненадовго перекриває повітря для `t`, далі чути англійський `r`. Тут — `trolley`.*
+
 
 **5 · Складіть коротку назву — друг запитує, що ви обрали для зберігання дрібниць; назвіть кошик двома словами**
 <!-- interaction_id: en:lesson-03:session-06:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i07; family: listen_choose -->
 Ціль: `tag`
 Варіанти: `tag` · `bag` · `rag`
+- bag — *У `bag` спершу чути «б», а в `tag` — «т». У записі — `tag`.*
+- rag — *`rag` починається з плавного англійського `r`, без удару кінчиком язика. `tag` — з короткого `t`, для якого язик ненадовго перекриває повітря. Тут — `tag`.*
+
 
 **8 · Послухайте й складіть — друг говорить про предмет у вас у руці**
 <!-- interaction_id: en:lesson-03:session-06:i08; family: listen_build_dictation -->
@@ -102,6 +111,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i11; family: context_gap_grammar -->
 Ціль: `It ___ empty.`
 Варіанти: `is` · `are` · `am`
+- are — *Про цей кошик кажемо `It is empty`. `are` з `It` тут не підходить.*
+- am — *`am` уживають з `I`. Тут ідеться про кошик, тому потрібно `It is empty`.*
+
 
 **12 · Складіть запитання — у дальньому проході ви помітили предмет на колесах; уточніть у друга, чи це візок**
 <!-- interaction_id: en:lesson-03:session-06:i12; family: phrase_builder -->
@@ -112,6 +124,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i13; family: context_gap_grammar -->
 Ціль: `It is ___ basket.`
 Варіанти: `not a` · `no a` · `a not`
+- no a — *У цій фразі заперечення передає `not` після `is`: `It is not a basket`.*
+- a not — *Тут `not` стоїть перед назвою `a basket`, а не всередині неї: `It is not a basket`.*
+
 
 **14 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-06:i14; family: scripted_repeat_compare -->

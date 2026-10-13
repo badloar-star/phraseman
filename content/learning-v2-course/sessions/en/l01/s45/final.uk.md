@@ -100,6 +100,8 @@ I'm ___ . → **satisfied** · exhausted · ready
 **9 · Складіть фразу — скажіть подрузі, що задоволені вечерею**
 <!-- interaction_id: en:lesson-01:session-45:i09; family: phrase_builder -->
 Ви закінчили готувати вечерю, і подруга питає, чи влаштовує вас результат. Плитки: `I'm` `satisfied.` `not` → **I'm satisfied.**
+*(плитка `not` зайва: `not` зайве: ви задоволені, тому `I'm satisfied`.)*
+
 
 **10 · Вставте слово — після двох змін сил майже немає**
 <!-- interaction_id: en:lesson-01:session-45:i10; family: context_gap_grammar -->
@@ -112,6 +114,8 @@ I'm ___ . → **exhausted** · satisfied · ready
 **11 · Складіть фразу — дайте відповідь колезі після двох змін**
 <!-- interaction_id: en:lesson-01:session-45:i11; family: phrase_builder -->
 Колега пропонує зустрітися після вашої другої зміни. Скажіть, що сил майже не лишилося. Плитки: `I'm` `exhausted.` `not` → **I'm exhausted.**
+*(плитка `not` зайва: `not` зайве: ви дуже втомилися, тому `I'm exhausted`.)*
+
 
 **12 · Вставте форму — усі домовилися**
 <!-- interaction_id: en:lesson-01:session-45:i12; family: context_gap_grammar -->
@@ -124,6 +128,8 @@ ___ settled. → **It's** · Its · It
 **13 · Послухайте й складіть — Ліна пише колегам про час зустрічі**
 <!-- interaction_id: en:lesson-01:session-45:i13; family: listen_build_dictation -->
 Ліна пише колегам: час зустрічі погоджено. 🔊 *It's settled.* Плитки: `It's` `settled.` `Its` → **It's settled.**
+*(плитка `Its` зайва: `Its` без апострофа не підходить: в аудіо `It's settled`.)*
+
 
 **14 · Вставте слово — дайте відповідь колезі після перерви**
 <!-- interaction_id: en:lesson-01:session-45:i14; family: context_gap_grammar -->
@@ -136,6 +142,8 @@ I'm ___ exhausted. → **not** · isn't · aren't
 **15 · Складіть фразу — питання ще не вирішено**
 <!-- interaction_id: en:lesson-01:session-45:i15; family: phrase_builder -->
 У робочому чаті колеги ще не вибрали час зустрічі. Плитки: `It` `isn't` `settled.` `its` → **It isn't settled.**
+*(плитка `its` зайва: `its` не підходить: для заперечення потрібне `It isn't settled`.)*
+
 
 **16 · Послухайте і складіть — Ліна попереджає координатора**
 <!-- interaction_id: en:lesson-01:session-45:i16; family: listen_build_dictation -->
@@ -158,6 +166,8 @@ ___ → **I'm not satisfied.** · I not satisfied. · I'm isn't satisfied.
 **19 · Складіть фразу — дайте відповідь другові, який сумнівається перед походом**
 <!-- interaction_id: en:lesson-01:session-45:i17:s03; family: phrase_builder -->
 Друг хвилюється, чи не надто Міра та Ілля втомилися для походу після вихідних. Скажіть, що вони не виснажені. Плитки: `They` `aren't` `exhausted.` `isn't` → **They aren't exhausted.**
+*(плитка `isn't` зайва: `isn't` не підходить до `They`: потрібно `They aren't exhausted`.)*
+
 
 ---
 

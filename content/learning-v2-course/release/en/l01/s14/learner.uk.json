@@ -115,6 +115,15 @@
               "ru": "`sad` — «грустный», гласная короткая: «сэд». У `safe` она длинная — «сэйф».",
               "uk": "`sad` — «сумний». Голосна коротка й широка, ближче до «а». У `safe` вона довга — «сейф»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-14:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`safe` — «в безопасности». Слышно `f` в конце: это `safe`.",
+              "uk": "`safe` — «у безпеці». Наприкінці чути `f`: це `safe`."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "`war` — «война». Оборван конец: у `warm` на конце «м».",
               "uk": "`war` — «війна». Обірваний кінець: у `warm` наприкінці «м»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-14:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`warm` — «тепло». Слышно конечное `m`: это `warm`.",
+              "uk": "`warm` — «тепло». Наприкінці чути `m`: це `warm`."
+            }
           }
         ],
         "isWordCard": false,
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — турист перестал оглядыв",
+            "feedbackByLocale": {
+              "ru": "С `you` нельзя `am`: правильная фраза — `You are safe.`",
+              "uk": "З `you` не можна `am`: правильна фраза — `You are safe`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -318,6 +346,15 @@
         ],
         "testedDimension": "Вставте слово — турист крутить головою н",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — турист крутить головою на перехресті й не розуміє, куди йти",
+            "feedbackByLocale": {
+              "ru": "Турист не понимает, куда идти: подходит `You are lost.`",
+              "uk": "Турист не розуміє, куди йти: підходить `You are lost.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-14:i06:r2",
             "correct": false,
@@ -452,6 +489,15 @@
               "ru": "Тут нет «р». `dry` — «драй», звуки идут слитно.",
               "uk": "Тут немає «р». `dry` — «драй», звуки йдуть злито."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-14:i08:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`dry` — «сухой». Слышно начало `dr`: это `dry`.",
+              "uk": "`dry` — «сухий». Чути початок `dr`: це `dry`."
+            }
           }
         ],
         "isWordCard": false,
@@ -506,9 +552,9 @@
       "interactionId": "en:lesson-01:session-14:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+      "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — ви віддали туристові парасольку, і він більше не мокне",
+      "prompt": "Розрізніть звуки — яке слово означає «сухий»?",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-14:i10:r1",
@@ -516,55 +562,47 @@
         },
         {
           "responseId": "en:lesson-01:session-14:i10:r2",
-          "text": "warm"
-        },
-        {
-          "responseId": "en:lesson-01:session-14:i10:r3",
-          "text": "cold"
+          "text": "drive"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — ви віддали туристові парасольку, і він більше не мокне",
+      "audioTargetIds": [
+        "en:lesson-01:session-14:i10:audioA",
+        "en:lesson-01:session-14:i10:audioB"
+      ],
+      "accessibilityLabel": "Розрізніть звуки — яке слово означає «сухий»?",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы отдали туристу зонт, и он больше не мокнет",
-          "uk": "Вставте слово — ви віддали туристові парасольку, і він більше не мокне"
+        "family": "sound_contrast",
+        "contrastA": "dry",
+        "contrastB": "drive",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-14:i10:audioA",
+          "transcript": "dry"
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-14:i10:r1",
-            "text": "dry"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i10:r2",
-            "text": "warm"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i10:r3",
-            "text": "cold"
-          }
-        ],
-        "testedDimension": "Вставте слово — ви віддали туристові пар",
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-14:i10:audioB",
+          "transcript": "drive"
+        },
+        "testedPhoneticContrast": "Розрізніть звуки — яке слово означає «сухий»?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-14:i10:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — ви віддали туристові пар",
+            "testedDimension": "dry or drive",
             "feedbackByLocale": {
-              "ru": "«Тебе тепло» — зонт этого не умеет. Он оставил человека сухим.",
-              "uk": "«Тобі тепло» — парасолька цього не вміє. Вона залишила людину сухою."
+              "ru": "`drive` — «ехать за рулём». В `dry` после `r` сразу слышен конец слова, без `v`.",
+              "uk": "`drive` — «їхати за кермом». У `dry` після `r` одразу чути кінець слова, без `v`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-14:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — ви віддали туристові пар",
+            "responseId": "en:lesson-01:session-14:i10:r1",
+            "correct": true,
+            "testedDimension": "Розрізніть звуки — яке слово означає «сухий»?",
             "feedbackByLocale": {
-              "ru": "`cold` — «холодно». Может, и правда, но зонт спас его не от холода.",
-              "uk": "`cold` — «холодно». Може, і правда, але парасолька врятувала його не від холоду."
+              "ru": "`dry` значит «сухой»; в этом слове после `r` нет звука `v`.",
+              "uk": "`dry` означає «сухий»; у цьому слові після `r` немає звука `v`."
             }
           }
         ]
@@ -577,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте скріпку — ви кажете туристові, що він у безпеці",
+      "prompt": "Вставте слово — ви кажете Алексу, що він у безпеці",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-14:i11:r1",
@@ -594,12 +632,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте скріпку — ви кажете туристові, що він у безпеці",
+      "accessibilityLabel": "Вставте слово — ви кажете Алексу, що він у безпеці",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы говорите туристу, что он в безопасности",
-          "uk": "Вставте скріпку — ви кажете туристові, що він у безпеці"
+          "ru": "Вставьте слово — вы говорите туристу, что он в безопасности",
+          "uk": "Вставте слово — ви кажете Алексу, що він у безпеці"
         },
         "gappedTargetPhrase": "You ___ safe.",
         "gapOptions": [
@@ -616,12 +654,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставте скріпку — ви кажете туристові, щ",
+        "testedDimension": "Оберіть потрібне слово після `you`.",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i11:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви кажете Алексу, що він у безпеці",
+            "feedbackByLocale": {
+              "ru": "После `you` нужно `are`: `You are safe.`",
+              "uk": "Після `you` потрібне `are`: `You are safe`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-14:i11:r2",
             "correct": false,
-            "testedDimension": "Вставте скріпку — ви кажете туристові, щ",
+            "testedDimension": "Оберіть потрібне слово після `you`.",
             "feedbackByLocale": {
               "ru": "`am` живёт только рядом с `I`. Про собеседника — `are`.",
               "uk": "`am` живе тільки поруч з `I`. Про співрозмовника — `are`."
@@ -630,10 +677,10 @@
           {
             "responseId": "en:lesson-01:session-14:i11:r3",
             "correct": false,
-            "testedDimension": "Вставте скріпку — ви кажете туристові, щ",
+            "testedDimension": "Оберіть потрібне слово після `you`.",
             "feedbackByLocale": {
-              "ru": "Чужая скрепка. С `you` всегда `are`, без исключений.",
-              "uk": "Чужа скріпка. З `you` завжди `are`, без винятків."
+              "ru": "После `you` нужно `are`.",
+              "uk": "Після `you` потрібне `are`."
             }
           }
         ]
@@ -669,7 +716,17 @@
         "authoredDistractorTokens": [
           "dry"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «тебе тепло»",
+            "feedbackByLocale": {
+              "ru": "`dry` значит «сухой», но запись говорит `You are warm.`",
+              "uk": "`dry` означає «сухий», але в записі звучить `You are warm`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -679,17 +736,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — турист кивнув і взяв сумку, `not` тут зайвий",
+      "prompt": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — турист кивнув і взяв сумку, `not` тут зайвий",
+      "accessibilityLabel": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are ready.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — турист кивнул и взял сумку; скажите, что он готов",
-          "uk": "Складіть фразу — турист кивнув і взяв сумку, `not` тут зайвий"
+          "ru": "Соберите фразу — Алекс кивнул и взял сумку; скажите ему: «ты готов идти»",
+          "uk": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»"
         },
         "orderedTokens": [
           "You",
@@ -699,7 +756,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Алекс кивнул и взял сум",
+            "feedbackByLocale": {
+              "ru": "`not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`",
+              "uk": "`not` змінить зміст на «ти не готовий». Потрібна фраза `You are ready`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -779,10 +846,10 @@
     {
       "interactionId": "en:lesson-01:session-14:i15",
       "ordinal": 18,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
+      "purpose": "guided_practice",
+      "family": "sound_contrast",
       "inputMode": "single_choice",
-      "prompt": "Вставте слово — турист трясеться, губи сині",
+      "prompt": "Розрізніть звуки — яке слово описує туриста з синіми губами?",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-14:i15:r1",
@@ -790,55 +857,47 @@
         },
         {
           "responseId": "en:lesson-01:session-14:i15:r2",
-          "text": "warm"
-        },
-        {
-          "responseId": "en:lesson-01:session-14:i15:r3",
-          "text": "scared"
+          "text": "called"
         }
       ],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — турист трясеться, губи сині",
+      "audioTargetIds": [
+        "en:lesson-01:session-14:i15:audioA",
+        "en:lesson-01:session-14:i15:audioB"
+      ],
+      "accessibilityLabel": "Розрізніть звуки — яке слово описує туриста з синіми губами?",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — турист трясётся, губы синие",
-          "uk": "Вставте слово — турист трясеться, губи сині"
+        "family": "sound_contrast",
+        "contrastA": "cold",
+        "contrastB": "called",
+        "ipaA": "",
+        "ipaB": "",
+        "audioA": {
+          "audioTargetId": "en:lesson-01:session-14:i15:audioA",
+          "transcript": "cold"
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-14:i15:r1",
-            "text": "cold"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i15:r2",
-            "text": "warm"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i15:r3",
-            "text": "scared"
-          }
-        ],
-        "testedDimension": "Вставте слово — турист трясеться, губи с",
+        "audioB": {
+          "audioTargetId": "en:lesson-01:session-14:i15:audioB",
+          "transcript": "called"
+        },
+        "testedPhoneticContrast": "Розрізніть звуки — яке слово описує туриста з синіми губами?",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-14:i15:r2",
             "correct": false,
-            "testedDimension": "Вставте слово — турист трясеться, губи с",
+            "testedDimension": "cold or called",
             "feedbackByLocale": {
-              "ru": "Прямо наоборот: он трясётся от холода.",
-              "uk": "Просто навпаки: він трясеться від холоду."
+              "ru": "`called` — «позвал» или «назвал». В `cold` после `l` сразу слышен конец слова.",
+              "uk": "`called` — «покликав» або «назвав». У `cold` після `l` одразу чути кінець слова."
             }
           },
           {
-            "responseId": "en:lesson-01:session-14:i15:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — турист трясеться, губи с",
+            "responseId": "en:lesson-01:session-14:i15:r1",
+            "correct": true,
+            "testedDimension": "Розрізніть звуки — яке слово описує туриста з синіми губами?",
             "feedbackByLocale": {
-              "ru": "`scared` — «испуган». Но зубы у него стучат не от страха, а от холода.",
-              "uk": "`scared` — «наляканий». Але зуби в нього цокотять не від страху, а від холоду."
+              "ru": "`cold` — «холодно»: это слово описывает туриста с синими губами.",
+              "uk": "`cold` — «холодно»: це слово описує туриста із синіми губами."
             }
           }
         ]
@@ -848,66 +907,33 @@
     {
       "interactionId": "en:lesson-01:session-14:i16",
       "ordinal": 19,
-      "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — повз із ревом проноситься машина, турист здригається",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-14:i16:r1",
-          "text": "scared"
-        },
-        {
-          "responseId": "en:lesson-01:session-14:i16:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-01:session-14:i16:r3",
-          "text": "cold"
-        }
-      ],
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — повз із ревом проноситься машина, турист здригається; скажіть, що він наляканий",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — повз із ревом проноситься машина, турист здригається",
+      "accessibilityLabel": "Складіть фразу — повз із ревом проноситься машина, турист здригається; скажіть, що він наляканий",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — мимо с рёвом проносится машина, турист вздрагивает",
-          "uk": "Вставте слово — повз із ревом проноситься машина, турист здригається"
-        },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-14:i16:r1",
-            "text": "scared"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i16:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i16:r3",
-            "text": "cold"
-          }
+        "family": "phrase_builder",
+        "targetPhrase": "You are scared.",
+        "orderedTokens": [
+          "You",
+          "are",
+          "scared"
         ],
-        "testedDimension": "Вставте слово — повз із ревом проноситьс",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-14:i16:r2",
+            "responseId": "en:lesson-01:session-14:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Вставте слово — повз із ревом проноситьс",
+            "testedDimension": "Соберите фразу — мимо с рёвом проносится",
             "feedbackByLocale": {
-              "ru": "Дорогу он как раз нашёл. Вы говорите про то, как он вздрогнул.",
-              "uk": "Дорогу він якраз знайшов. Ви кажете про те, як він здригнувся."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-14:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — повз із ревом проноситьс",
-            "feedbackByLocale": {
-              "ru": "Он и правда замёрз, но вздрогнул он от машины, а не от холода.",
-              "uk": "Він і справді змерз, але здригнувся від машини, а не від холоду."
+              "ru": "После `you` нужно `are`, не `is`: `You are scared.`",
+              "uk": "Після `you` потрібне `are`, не `is`: `You are scared`."
             }
           }
         ]
@@ -943,27 +969,37 @@
         "authoredDistractorTokens": [
           "scared"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-14:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «тебе холодно»",
+            "feedbackByLocale": {
+              "ru": "`scared` значит «испуган», но запись говорит `You are cold.`",
+              "uk": "`scared` означає «наляканий», але в записі звучить `You are cold`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-14:i18:s01",
+      "interactionId": "en:lesson-01:session-14:i18",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 4",
+      "prompt": "Скажіть уголос — ви відвели туриста під дах після зливи; скажіть йому: «ти в безпеці»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-14:i18:s01:audio"
+        "en:lesson-01:session-14:i18:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 4",
+      "accessibilityLabel": "Скажіть уголос — ви відвели туриста під дах після зливи; скажіть йому: «ти в безпеці»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-14:i18:s01:audio",
+          "audioTargetId": "en:lesson-01:session-14:i18:audio",
           "transcript": "You are safe."
         },
         "slowReferenceAudio": null,
@@ -979,112 +1015,13 @@
         ]
       },
       "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-14:i18:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-14:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-14:i18:s02:audio",
-          "transcript": "You are dry."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are dry.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-14:i18:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-14:i18:s03:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-14:i18:s03:audio",
-          "transcript": "You are warm."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are warm.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-14:i18:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 4 із 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-14:i18:s04:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 4 із 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-14:i18:s04:audio",
-          "transcript": "You are ready."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "You are ready.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "545dfa4beb3d0be109ac00c7f5e264df14fb684021800abd47fe9ac0112b88e7"
+  "learnerFingerprint": "6d26ef78139b814dfea17298886c669af78c59f88787813f63a084163ab5db6d"
 }

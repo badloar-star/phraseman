@@ -46,8 +46,8 @@ function firstIssueText(issue) {
   return "Текст карточки и то, что открывается ученику, не совпадают.";
 }
 
-export function sourceReleaseFindings({ root = COURSE_ROOT, sessionKeys }) {
-  const issues = sourceReleaseScopeIssues({ root, scope: "all", locales: ["ru", "uk"] });
+export function sourceReleaseFindings({ root = COURSE_ROOT, sessionKeys, releaseRoot = path.join(root, "release") }) {
+  const issues = sourceReleaseScopeIssues({ root, scope: "all", locales: ["ru", "uk"], releaseRoot });
   const grouped = new Map();
   for (const issue of issues) {
     const key = sessionFromIssue(issue);

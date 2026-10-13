@@ -92,6 +92,8 @@ It's ___ . → **new** · kind · tired
 **6 · Складіть фразу — мама питає про начальника; він до вас добре ставиться**
 <!-- interaction_id: en:lesson-01:session-50:i06; family: phrase_builder -->
 Плитки: `kind` `He's` `not` `is` → **He's kind.**
+*(плитка `not` зайва: вона змінює зміст на «він не добрий», а тут ви його хвалите)*
+*(плитка `is` зайва: у `He's` уже є `he is`, друге `is` не потрібне)*
 
 **7 · Картка слова — flat**
 <!-- interaction_id: en:lesson-01:session-50:i07; family: listen_choose -->
@@ -126,10 +128,12 @@ It's ___ . → **expensive** · small · new
 **13 · Послухайте і зберіть — «воно не мале», про місто**
 <!-- interaction_id: en:lesson-01:session-50:i13; family: listen_build_dictation -->
 🔊 *It isn't small.* Плитки: `isn't` `It` `small` `is` → **It isn't small.**
+*(плитка `is` зайва: у `isn't` уже є `is not`, друге `is` не потрібне)*
 
 **14 · Зберіть фразу — «начальник не добрий»**
 <!-- interaction_id: en:lesson-01:session-50:i14; family: phrase_builder -->
 Плитки: `He` `isn't` `kind` `is` → **He isn't kind.**
+*(плитка `is` зайва: у `isn't` уже є `is not`, друге `is` не потрібне)*
 
 **15 · Вставте слово — мама питає, як ви після тижня**
 <!-- interaction_id: en:lesson-01:session-50:i15; family: context_gap_grammar -->
@@ -158,6 +162,8 @@ I'm ___ . → **tired** · expensive · small
 **19 · Складіть фразу — ви показуєте другові нову річ**
 <!-- interaction_id: en:lesson-01:session-50:i17:s01; family: phrase_builder -->
 Плитки: `It's` `new.` `small.` `are` → **It's new.**
+*(плитка `small.` зайва: `small` означає «маленька», а ви кажете, що річ нова)*
+*(плитка `are` зайва: `It's` уже означає `it is`; `are` потрібне для кількох)*
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-50:i17:s02; family: scripted_repeat_compare -->
@@ -168,6 +174,8 @@ I'm ___ . → **tired** · expensive · small
 **21 · Складіть фразу — ви описуєте маленьку річ на столі**
 <!-- interaction_id: en:lesson-01:session-50:i17:s03; family: phrase_builder -->
 Плитки: `It's` `small.` `new.` `are` → **It's small.**
+*(плитка `new.` зайва: `new` означає «нова», а ви описуєте розмір речі)*
+*(плитка `are` зайва: `It's` уже означає `it is`; `are` потрібне для кількох)*
 
 **22 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-50:i17:s04; family: scripted_repeat_compare -->

@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i02; family: listen_choose -->
 Ціль: `hour`
 Варіанти: `hour` · `power` · `tower`
+- power — *`power` — «потужність». Спочатку чути «п», а потім голосний звук. У `hour` слово починається відразу з голосного, без «п».*
+- tower — *`tower` — «вежа». Перед схожою голосною частиною в ньому чути «т». Запис починається з голосного: `hour`.*
+
 
 **3 · Картка слова — uniform**
 <!-- interaction_id: en:lesson-03:session-11:i03; family: listen_choose -->
@@ -69,11 +72,17 @@
 <!-- interaction_id: en:lesson-03:session-11:i04; family: listen_choose -->
 Ціль: `uniform`
 Варіанти: `uniform` · `unicorn` · `universe`
+- unicorn — *`unicorn` — «єдиноріг». У завершальній частині чути «к», а в `uniform` на цьому місці — «ф». Не зупиняйтеся на схожому початку — дослухайте слово далі.*
+- universe — *`universe` — «всесвіт». У завершальній частині чути «в», а в `uniform` — «ф». Подібні перші звуки ще не дають відповіді.*
+
 
 **5 · Вставте слово — працівник написав, що складання триватиме годину; доповніть коротку відповідь про час**
 <!-- interaction_id: en:lesson-03:session-11:i05; family: context_gap_grammar -->
 Ціль: `___ hour.`
 Варіанти: `An` · `A` · `Is`
+- A — *Початкову `h` у `hour` не вимовляють. Слово починається з голосного звуку, тому обираємо `An`.*
+- Is — *Тут треба назвати час двома словами. Перед `hour` ставимо `An`; `Is` не замінює це маленьке слово.*
+
 
 **6 · Складіть коротку назву — друг вказує на робочий одяг майстра; дайте англійською відповідь із двох слів зі значенням «форма»**
 <!-- interaction_id: en:lesson-03:session-11:i06; family: phrase_builder -->
@@ -84,6 +93,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i07; family: context_gap_grammar -->
 Ціль: `It is ___ kettle.`
 Варіанти: `a` · `an` · `am`
+- an — *У `kettle` спочатку чути приголосний «к». Для цієї назви потрібне `a`.*
+- am — *`am` поєднується з `I`. Після готового початку `It is` тут потрібна назва `a kettle`.*
+
 
 **8 · Послухайте й складіть — працівник відповідає про час**
 <!-- interaction_id: en:lesson-03:session-11:i08; family: listen_build_dictation -->
@@ -94,6 +106,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i09; family: context_gap_grammar -->
 Ціль: `It is ___ vacuum.`
 Варіанти: `a` · `an` · `is`
+- an — *Перший звук у `vacuum` — приголосний «в». Перед цією назвою ставимо `a`.*
+- is — *`is` уже є на початку. Перед `vacuum` зараз потрібне `a`, а не друге `is`.*
+
 
 **10 · З’єднайте назви з українськими значеннями — біля стійки сервісу**
 <!-- interaction_id: en:lesson-03:session-11:i10; family: speed_match -->
@@ -104,6 +119,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i11; family: listen_choose -->
 Ціль: `It is not a uniform.`
 Варіанти: `It is not a uniform.` · `It is a uniform.` · `Is it a uniform?`
+- It is a uniform. — *У цьому варіанті після `is` одразу стоїть `a`. У записі між ними чути `not` — назву заперечують.*
+- Is it a uniform? — *Це питання починається з `Is it`. У записі спершу `It is`, а потім чути `not`.*
+
 
 **12 · Складіть питання — працівник назвав час очікування; перепитайте «Це година?»**
 <!-- interaction_id: en:lesson-03:session-11:i12; family: phrase_builder -->
@@ -114,6 +132,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i13; family: listen_choose -->
 Ціль: `Is it a uniform?`
 Варіанти: `Is it a uniform?` · `It is a uniform.` · `Is it an uniform?`
+- It is a uniform. — *У записі першим звучить `Is`, тому це питання, а не відповідь `It is a uniform`.*
+- Is it an uniform? — *У `uniform` перший звук приголосний «й», тому в записі чути `a uniform`, а не `an uniform`.*
+
 
 **14 · Промовте фразу — друг прийняв звичайний спортивний костюм покупця за робочу форму; виправте його: «Це не форма»**
 <!-- interaction_id: en:lesson-03:session-11:i14; family: scripted_repeat_compare -->
@@ -123,6 +144,9 @@
 <!-- interaction_id: en:lesson-03:session-11:i15; family: listen_choose -->
 Ціль: `It is an hour.`
 Варіанти: `It is an hour.` · `Is it an hour?` · `It is not an hour.`
+- Is it an hour? — *У питанні першим звучало б `Is`. Тут запис починається з `It`, а потім іде `is`.*
+- It is not an hour. — *У цьому варіанті є `not`. У записі після `is` одразу звучить `an hour`, без заперечення.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-11:i16; family: scripted_repeat_compare -->

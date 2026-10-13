@@ -1,0 +1,5 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+home-002	2026-10-12T20:56:37.352Z	ok	15439	marker+шагов_1+склейка+ждали_metro_98мс	docs/phraseman-2.0/evidence/parity/home-002.png	0
+home-004	2026-10-12T20:57:09.611Z	ok	15236	marker+шагов_1+склейка+ждали_metro_7мс	docs/phraseman-2.0/evidence/parity/home-004.png	0
+home-005	2026-10-12T20:57:32.986Z	ok	13583	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/home-005.png	0
+home-006	2026-10-12T20:58:04.854Z	ok	14086	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/home-006.png	0

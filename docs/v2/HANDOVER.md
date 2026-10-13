@@ -22427,3 +22427,52 @@ or Task6 in that slice.
 - 2026-10-05 German Learning V2 L30 closure: Task 4 Stage A commit 8cd2b0e56092d2a97b3f2691de5424694d635c0d and Task 5 commit 66b08395634b794c67ec3555bb7aaf3253587815 are closed by cumulative receipt/manifest commit 6cfb8cf57cfbb4fed7583bd9eccd2a6228915d3d. The closure receipt is SHA-256 79163af4a08a645794df1a7e6b837cfafd10a02d08ed32c1b7484db3c15594e1 and REQUIREMENT_MANIFEST_V1 is 450c975ef10260ba9d1ab4740b9fa6f92b1cc7f71f90078078ee520a4578b978. The preserved empty index-race commit 1ab04fdc6c411b59f40e3e03ca3a3f44f5a8057b contains no closure bytes and must not be amended or reset. L30 is exact at 30/32 lessons, 210/224 chapters and 1680/1792 packet IDs; focused L30 plus 125 isolated hostile mutations, prefix30, Task4/research/graph/schema/owner, recenter 31/31 and one-phrase 72/72 pass, while the unsuffixed Task5 gate remains the required HOLD full_registry_incomplete_or_not_complete:INCREMENTAL_TASK5;30/32 lessons;210/224 chapters. Task 6 lexical reconciliation, RU+UK learner sessions, release, audio, mockup and English-contour changes remain HOLD. The Phraseman Codex OpenAI API firewall remains active; no local project-key API use occurred and the TTS exception was not invoked.
 
 - Exact next German task: begin a fresh instruction reread and content-addressed guardian for de_l31, title “Vermitteln und Missverständnisse reparieren”. First reproduce RED requested_lesson_not_materialized:de_l31 and audit Task 4 authority before any Task 5 content. The bounded introduced construct is de_gc_register_repair_mediation_v1; extend only connector-topology contrast, doch-response contrast and formal Sie/sich; review only relative-clause gender/case, limited functional Genitiv and limited modal Perfekt; de_gc_functional_b1_integration_v1 remains prohibited. Preserve exact L19/L14/L30 recall responsibilities, no universal du/Sie workplace rule and no hidden grammar operation. If Task4 authority is incomplete, repair only Task4 with exact temp transport and two independent reviews; otherwise build exact machine-reconstructable Task5 transport from the start. One sole writer, isolated hostile corpus, fresh exact/native reviews and normal-hook commits remain mandatory. Task6/RU+UK/release/audio/mockup/HANDOVER/English remain HOLD during L31 authoring.
+
+### 2026-10-11 — German Learning V2 current full-registry checkpoint
+
+The preceding L30 entry is retained as historical evidence, not current Task 5
+state. Current `chapter_blueprints_de_v1.json` is `COMPLETE_TASK5`: `32/32`
+lessons, `224/224` chapters and `1792/1792` packet IDs. It does **not** close
+Task 6, Task 7 or any learner-facing gate. Current Task 6 canonical registry
+remains `lexical=2`, `phraseFrames=2`, `pronunciation=1`, `rowsPromoted=0`;
+Task 7 remains `HOLD 0/1792` German packet files.
+
+The retained partial Task 6C L01 attempts remain non-canonical `HOLD` attempts.
+The exact next lane is `full registry / target L01 allocation`, pinned by
+`docs/v2/curriculum/de/TASK6C_FULL_REGISTRY_L01_CHECKPOINT_2026-10-11.md` and
+`docs/v2/curriculum/de/task6c-full-registry-l01-v1/target-allocation.json`.
+That target has exactly 56 L01 packet IDs, 14 preserved Task 5 checkpoint-plan
+identities, 49 non-checkpoint and seven additive checkpoint first-introduction
+slots, and 70 planned-sense placeholders. It is `PLANNED_NOT_CANONICAL_HOLD`, binds Task 5, protected
+English surface, Task 6 kernel/registry bytes, and grants no packet authoring,
+Task 7, learner, mockup, audio, runtime, release, promotion or English-change
+authority. No push, deploy, production mutation or API-key use occurred.
+
+#### Exact next DE authority-conflict packet (no authoring)
+
+- **Why:** Task 5 L31 and L32 are present (commits `7bd38fc3d` and
+  `30472efb`); L31 recall repair is `0fad5983`. The historical L30 only entry
+  is superseded for status, but retained as history. Current Task 5 byte hash
+  is `494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29`.
+- **Read only:** the L01 target/checkpoint, Task 5 blueprint, Task 6 kernel
+  (`4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d`),
+  canonical Task 6 registry
+  (`95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31`),
+  and `tests/learning_v2_de_task6c_l01_full_registry_checkpoint_gate.ts`.
+- **Resolved allocation refinement:** the former `14 + 49 = 63` model did not
+  allocate a placeholder to each checkpoint packet. Seven distinct additive
+  `HOLD` placeholders now cover `s08,s16,s24,s32,s40,s48,s56`, producing 70
+  total planned senses and one-to-five planned first introductions at all 56
+  packets. Protected canonical Nachbarin `s07` and Aufzug `s15` remain
+  unchanged; the rejected `s02`/`s10` mutation remains hostile evidence.
+  The former Task 7 `1,856` arithmetic is historical incomplete RED evidence,
+  not a universal minimum; global total is
+  `DEFERRED_UNTIL_ALL_32_LESSON_ALLOCATIONS`, and Task 7 remains `HOLD 0/1792`.
+- **Current gates:** the L01 checkpoint gate verifies exact Task 5 packet and
+  source-plan sets plus protected chronology; Task 6C authority stays
+  `PENDING/NOT_CANONICAL`; Task 6 registry stays `rowsPromoted=0`; Task 7
+  exact packets gate is expected RED at `0 !== 1792`.
+- **Stop conditions:** no lexical-surface authoring, canonical promotion,
+  packet bytes, learner RU/UK, mockup, audio, runtime, release, English edit,
+  push, deployment or API-key use. Preserve all partial attempts and the
+  explicit `s02`/`s10` conflict mutation as HOLD evidence.

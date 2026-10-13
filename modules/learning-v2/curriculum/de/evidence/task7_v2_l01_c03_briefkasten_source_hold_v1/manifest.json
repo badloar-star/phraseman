@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c03-briefkasten-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ALLOCATION_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3",
+    "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+    "checkpointPacketId": "de_l01_c03_s24",
+    "planCanonicalBodySha256": "9b11ed881e7bc2278fd1a03c746e81eb934c57c545a4fda7f3dbb14238c62cb9"
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "f97ccbd4f4e95f0361f7fb607cae2f60c2cb4bdac18b89ec9fe34d3568e3cc89",
+      "bytes": 1319
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "sourceHeadword": "Briefkasten",
+      "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+      "article": "der",
+      "nominativePlural": "Briefkästen",
+      "residenceMailboxSense": "DWDS_D_1_2_HAUSTUER_POST_SENDUNGEN"
+    },
+    "unsupportedClaims": {
+      "broaderMorphology": "NOT_CLAIMED_BEYOND_CAPTURED_ARTICLE_SINGULAR_NOMINATIVE_PLURAL",
+      "register": "NOT_CLAIMED_BY_THIS_PACKET"
+    }
+  },
+  "allocations": [
+    {
+      "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+      "checkpointPacketId": "de_l01_c03_s24",
+      "sessionId": "de_l01_s03",
+      "chapterId": "de_l01_c03",
+      "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+      "supportedFields": [
+        "lemmaOrExpression",
+        "sourcePartOfSpeech",
+        "article",
+        "singular",
+        "nominativePlural",
+        "residenceMailboxSense"
+      ]
+    }
+  ]
+}

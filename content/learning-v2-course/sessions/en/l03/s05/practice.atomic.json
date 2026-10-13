@@ -423,17 +423,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i08:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — подруга пок",
-              "feedbackByLocale": {
-                "ru": "Полная фраза начинается с `It is`: получится `It is a ceiling`. Одного `is` вместо всей фразы недостаточно.",
-                "uk": "Повна фраза починається з `It is`: вийде `It is a ceiling`. Одного `is` замість усієї фрази недостатньо."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -505,17 +495,7 @@
           "authoredDistractorTokens": [
             "wall"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i10:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — подруга обращает",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `floor`, а не `wall`: `Is it a floor?`.",
-                "uk": "У записі прозвучало `floor`, а не `wall`: `Is it a floor?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -637,7 +617,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — на снимке вымытог",
+          "testedDimension": "Вставьте часть фразы — на снимке вымытого пола нет грязи; скажите «Он чистый» (`clean` — «чистый»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-05:i12:r2",
@@ -694,17 +674,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — подруга приняла фотогра",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Получится `It is not a wall`.",
-                "uk": "Після `It` тут потрібне `is`. Вийде `It is not a wall`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -753,7 +723,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — на фотографии вид",
+          "testedDimension": "Вставьте часть фразы — на фотографии видна поверхность над люстрой; назовите потолок полной фразой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-05:i14:r2",
@@ -875,17 +845,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — на последней фотографи",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этой поверхности здесь начинается с `Is it`: `Is it a ceiling?`.",
-                "uk": "Запитання про цю поверхню тут починається з `Is it`: `Is it a ceiling?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1309,17 +1269,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i08:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — подруга показує",
-              "feedbackByLocale": {
-                "ru": "Полная фраза начинается с `It is`: получится `It is a ceiling`. Одного `is` вместо всей фразы недостаточно.",
-                "uk": "Повна фраза починається з `It is`: вийде `It is a ceiling`. Одного `is` замість усієї фрази недостатньо."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1391,17 +1341,7 @@
           "authoredDistractorTokens": [
             "wall"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i10:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — подруга звертаєт",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `floor`, а не `wall`: `Is it a floor?`.",
-                "uk": "У записі прозвучало `floor`, а не `wall`: `Is it a floor?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1523,7 +1463,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставте частину фрази — на знімку вимито",
+          "testedDimension": "Вставте частину фрази — на знімку вимитої підлоги немає бруду; скажіть «Вона чиста» (`clean` — «чиста»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-05:i12:r2",
@@ -1580,17 +1520,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — подруга прийняла фотогр",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Получится `It is not a wall`.",
-                "uk": "Після `It` тут потрібне `is`. Вийде `It is not a wall`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1639,7 +1569,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставте частину фрази — на фотографії ви",
+          "testedDimension": "Вставте частину фрази — на фотографії видно поверхню над люстрою; назвіть стелю повною фразою",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-05:i14:r2",
@@ -1761,17 +1691,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-05:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — на останній фотогра",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этой поверхности здесь начинается с `Is it`: `Is it a ceiling?`.",
-                "uk": "Запитання про цю поверхню тут починається з `Is it`: `Is it a ceiling?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

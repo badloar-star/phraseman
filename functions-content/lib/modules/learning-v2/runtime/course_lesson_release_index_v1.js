@@ -67,7 +67,7 @@ const PIN_KEYS = Object.freeze([
     "contentType",
 ]);
 const handles = new WeakSet();
-const COURSE_TOPOLOGY_V1 = (0, course_topology_v1_1.buildLearningV2CourseTopologyV1)();
+// зачем (04.10, холодный старт): топология берётся при первом вызове (мемоизирована), не при импорте.
 function fail() {
     throw new Error("learning_v2_course_lesson_release_index_invalid");
 }
@@ -153,7 +153,7 @@ function preflight(value) {
     }
 }
 function learningV2CourseSessionPackageObjectPathV1(input) {
-    const topology = COURSE_TOPOLOGY_V1;
+    const topology = (0, course_topology_v1_1.buildLearningV2CourseTopologyV1)();
     const lesson = topology.lessons[input.lessonOrdinal - 1];
     const session = lesson?.sessions[input.sessionOrdinal - 1];
     if (!lesson || !session)
@@ -225,7 +225,7 @@ function validate(value) {
     if (!plain(value))
         fail();
     exactKeys(value, ROOT_KEYS);
-    const topology = COURSE_TOPOLOGY_V1;
+    const topology = (0, course_topology_v1_1.buildLearningV2CourseTopologyV1)();
     const releaseId = exactId(value.releaseId);
     if (!Number.isSafeInteger(value.lessonOrdinal) ||
         Number(value.lessonOrdinal) < 1 ||
@@ -302,7 +302,7 @@ function validate(value) {
     return index;
 }
 function materializeLearningV2CourseLessonReleaseIndexV1(input) {
-    const topology = COURSE_TOPOLOGY_V1;
+    const topology = (0, course_topology_v1_1.buildLearningV2CourseTopologyV1)();
     const lesson = topology.lessons[input.lessonOrdinal - 1];
     // зачем: индекс требовал РОВНО 56 сессий, поэтому урок нельзя было
     // опубликовать, пока не написана последняя — владелец видел «Сессия

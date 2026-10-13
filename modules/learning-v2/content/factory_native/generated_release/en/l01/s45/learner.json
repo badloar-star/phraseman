@@ -28,8 +28,8 @@
             "responseId": "en:lesson-01:session-45:i01:r1",
             "targetText": "satisfied",
             "meaningByLocale": {
-              "ru": "«довольный результатом». Больше ничего не хочется менять.",
-              "uk": "«задоволений результатом». Більше нічого не хочеться змінювати."
+              "ru": "«доволен, удовлетворён»: Мира закончила готовить и довольна тем, как всё получилось.",
+              "uk": "«задоволений»: Міра закінчила готувати й задоволена тим, як усе вийшло."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "satisfied",
           "definitionByLocale": {
-            "ru": "«довольный результатом». Больше ничего не хочется менять.",
-            "uk": "«задоволений результатом». Більше нічого не хочеться змінювати."
+            "ru": "«доволен, удовлетворён»: Мира закончила готовить и довольна тем, как всё получилось.",
+            "uk": "«задоволений»: Міра закінчила готувати й задоволена тим, як усе вийшло."
           }
         }
       },
@@ -99,6 +99,14 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-45:i02:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи слышно satisfied — «доволен результатом».",
+              "uk": "Правильно: у записі чути satisfied — «задоволений результатом»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-45:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — satisfied",
@@ -147,8 +155,8 @@
             "responseId": "en:lesson-01:session-45:i03:r1",
             "targetText": "exhausted",
             "meaningByLocale": {
-              "ru": "«крайне устал, изнурён». Сил почти не осталось.",
-              "uk": "«украй втомлений, виснажений». Сил майже не лишилося."
+              "ru": "«изнурён, крайне устал»: Илья после двух смен почти не чувствует сил.",
+              "uk": "«виснажений, украй втомлений»: Ілля після двох змін майже не має сил."
             }
           }
         ],
@@ -158,8 +166,8 @@
         "wordCard": {
           "word": "exhausted",
           "definitionByLocale": {
-            "ru": "«крайне устал, изнурён». Сил почти не осталось.",
-            "uk": "«украй втомлений, виснажений». Сил майже не лишилося."
+            "ru": "«изнурён, крайне устал»: Илья после двух смен почти не чувствует сил.",
+            "uk": "«виснажений, украй втомлений»: Ілля після двох змін майже не має сил."
           }
         }
       },
@@ -218,6 +226,14 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-45:i04:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи слышно exhausted — «крайне устал».",
+              "uk": "Правильно: у записі чути exhausted — «украй втомлений»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-45:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — exhausted",
@@ -266,8 +282,8 @@
             "responseId": "en:lesson-01:session-45:i05:r1",
             "targetText": "settled",
             "meaningByLocale": {
-              "ru": "«решено, договорились». Вопрос больше не открыт.",
-              "uk": "«вирішено, домовилися». Питання більше не відкрите."
+              "ru": "«решено, улажено»: Лина и коллеги выбрали время встречи и все согласились.",
+              "uk": "«вирішено, домовилися»: Ліна та колеги обрали час зустрічі й усі погодилися."
             }
           }
         ],
@@ -277,8 +293,8 @@
         "wordCard": {
           "word": "settled",
           "definitionByLocale": {
-            "ru": "«решено, договорились». Вопрос больше не открыт.",
-            "uk": "«вирішено, домовилися». Питання більше не відкрите."
+            "ru": "«решено, улажено»: Лина и коллеги выбрали время встречи и все согласились.",
+            "uk": "«вирішено, домовилися»: Ліна та колеги обрали час зустрічі й усі погодилися."
           }
         }
       },
@@ -336,6 +352,14 @@
         ],
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i06:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи слышно settled — «вопрос решён».",
+              "uk": "Правильно: у записі чути settled — «питання вирішено»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-45:i06:r2",
             "correct": false,
@@ -439,7 +463,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — ужин удался",
+      "prompt": "Вставьте слово — вы довольны результатом ужина",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i08:r1",
@@ -456,12 +480,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — ужин удался",
+      "accessibilityLabel": "Вставьте слово — вы довольны результатом ужина",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ужин удался, и вы довольны.",
-          "uk": "Вечеря вдалася, і ви задоволені."
+          "ru": "Вы закончили готовить ужин. Подруга спрашивает, устраивает ли вас результат.",
+          "uk": "Ви закінчили готувати вечерю. Подруга питає, чи влаштовує вас результат."
         },
         "gappedTargetPhrase": "I'm ___ .",
         "gapOptions": [
@@ -480,6 +504,15 @@
         ],
         "testedDimension": "Вставьте слово — ужин удался",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — ужин удался",
+            "feedbackByLocale": {
+              "ru": "Верно: результат своей работы вас устраивает, поэтому подходит satisfied.",
+              "uk": "Правильно: результат власної роботи вас влаштовує, тому підходить satisfied."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-45:i08:r2",
             "correct": false,
@@ -508,11 +541,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — я доволен",
+      "prompt": "Соберите фразу — скажите подруге, что довольны ужином",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — я доволен",
+      "accessibilityLabel": "Соберите фразу — скажите подруге, что довольны ужином",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I'm satisfied.",
@@ -522,12 +555,22 @@
         },
         "orderedTokens": [
           "I'm",
-          "satisfied."
+          "satisfied"
         ],
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — скажите подруге, что довольны ужином",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: вы довольны, поэтому `I'm satisfied.`",
+              "uk": "`not` зайве: ви задоволені, тому `I'm satisfied`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -558,8 +601,8 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "После двух смен сил почти не осталось.",
-          "uk": "Після двох змін сил майже не лишилося."
+          "ru": "После второй смены Илья отвечает коллеге, который зовёт его на встречу: сил почти не осталось.",
+          "uk": "Після другої зміни Ілля відповідає колезі, який кличе його на зустріч: сил майже не лишилося."
         },
         "gappedTargetPhrase": "I'm ___ .",
         "gapOptions": [
@@ -578,6 +621,15 @@
         ],
         "testedDimension": "Вставьте слово — после двух смен сил почти нет",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — после двух смен сил почти нет",
+            "feedbackByLocale": {
+              "ru": "Верно: после двух смен сил почти нет, поэтому подходит exhausted.",
+              "uk": "Правильно: після двох змін сил майже немає, тому підходить exhausted."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-45:i10:r2",
             "correct": false,
@@ -606,11 +658,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — я крайне устал",
+      "prompt": "Соберите фразу — ответьте коллеге после двух смен",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — я крайне устал",
+      "accessibilityLabel": "Соберите фразу — ответьте коллеге после двух смен",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I'm exhausted.",
@@ -620,12 +672,22 @@
         },
         "orderedTokens": [
           "I'm",
-          "exhausted."
+          "exhausted"
         ],
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте коллеге после двух смен",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: вы очень устали, поэтому `I'm exhausted.`",
+              "uk": "`not` зайве: ви дуже втомилися, тому `I'm exhausted`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -635,7 +697,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте написание — все договорились",
+      "prompt": "Вставьте форму — все договорились",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i12:r1",
@@ -652,12 +714,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте написание — все договорились",
+      "accessibilityLabel": "Вставьте форму — все договорились",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Все согласовали время и место.",
-          "uk": "Усі погодили час і місце."
+          "ru": "Лина пишет коллегам в рабочем чате, чтобы подтвердить: все согласовали время и место встречи.",
+          "uk": "Ліна пише колегам у робочому чаті, щоб підтвердити: усі погодили час і місце зустрічі."
         },
         "gappedTargetPhrase": "___ settled.",
         "gapOptions": [
@@ -676,6 +738,15 @@
         ],
         "testedDimension": "Вставьте написание — все договорились",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте написание — все договорились",
+            "feedbackByLocale": {
+              "ru": "Верно: It's — это сокращение it is; оно завершает фразу It's settled.",
+              "uk": "Правильно: It's — це скорочення it is; воно завершує фразу It's settled."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-45:i12:r2",
             "correct": false,
@@ -704,13 +775,13 @@
       "purpose": "guided_practice",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите — вопрос решён",
+      "prompt": "Послушайте и соберите — Лина пишет коллегам о времени встречи",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-45:i13:audio"
       ],
-      "accessibilityLabel": "Послушайте и соберите — вопрос решён",
+      "accessibilityLabel": "Послушайте и соберите — Лина пишет коллегам о времени встречи",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -721,12 +792,22 @@
         "hiddenTargetPhrase": "It's settled.",
         "orderedTokens": [
           "It's",
-          "settled."
+          "settled"
         ],
         "authoredDistractorTokens": [
           "Its"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина пишет коллегам о времени встречи",
+            "feedbackByLocale": {
+              "ru": "`Its` без апострофа не подходит: в аудио `It's settled.`",
+              "uk": "`Its` без апострофа не підходить: в аудіо `It's settled`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -736,63 +817,72 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите правильное отрицание — результат вас не устраивает",
+      "prompt": "Вставьте слово — ответьте коллеге после перерыва",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-45:i14:r1",
-          "text": "I'm not satisfied."
+          "text": "not"
         },
         {
           "responseId": "en:lesson-01:session-45:i14:r2",
-          "text": "I not satisfied."
+          "text": "isn't"
         },
         {
           "responseId": "en:lesson-01:session-45:i14:r3",
-          "text": "I'm isn't satisfied."
+          "text": "aren't"
         }
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите правильное отрицание — результат вас не устраивает",
+      "accessibilityLabel": "Вставьте слово — ответьте коллеге после перерыва",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Результат вас не устраивает.",
-          "uk": "Результат вас не влаштовує."
+          "ru": "Коллега спрашивает: «Вы всё ещё изнурены?» Ответьте, что нет.",
+          "uk": "Колега питає: «Ви все ще виснажені?» Відповідайте, що ні."
         },
-        "gappedTargetPhrase": "___",
+        "gappedTargetPhrase": "I'm ___ exhausted.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-45:i14:r1",
-            "text": "I'm not satisfied."
+            "text": "not"
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r2",
-            "text": "I not satisfied."
+            "text": "isn't"
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r3",
-            "text": "I'm isn't satisfied."
+            "text": "aren't"
           }
         ],
-        "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
+        "testedDimension": "Вставьте слово — после перерыва вы не изнурены",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — после перерыва вы не изнурены",
+            "feedbackByLocale": {
+              "ru": "Верно: после I'm для отрицания ставят not: I'm not exhausted.",
+              "uk": "Правильно: після I'm для заперечення ставлять not: I'm not exhausted."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-45:i14:r2",
             "correct": false,
-            "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
+            "testedDimension": "Вставьте слово — после перерыва вы не изнурены",
             "feedbackByLocale": {
-              "ru": "После I нужна форма am; отрицание строится `I’m not`.",
-              "uk": "Після I потрібна форма am; заперечення будується `I’m not`."
+              "ru": "I’m уже означает I am. После него для отрицания нужно not, а isn't бывает с he, she или it.",
+              "uk": "I’m уже означає I am. Після нього для заперечення потрібне not, а isn't буває з he, she або it."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i14:r3",
             "correct": false,
-            "testedDimension": "Выберите правильное отрицание — результат вас не устраивает",
+            "testedDimension": "Вставьте слово — после перерыва вы не изнурены",
             "feedbackByLocale": {
-              "ru": "Нельзя соединять `I’m` и `isn’t`: для I нужно `I’m not`.",
-              "uk": "Не можна поєднувати `I’m` та `isn’t`: для I потрібно `I’m not`."
+              "ru": "Aren't употребляют с you, we или they. С I отрицание строится I’m not.",
+              "uk": "Aren't уживають з you, we або they. З I заперечення будується I’m not."
             }
           }
         ]
@@ -814,18 +904,28 @@
         "family": "phrase_builder",
         "targetPhrase": "It isn't settled.",
         "localizedMeaning": {
-          "ru": "Вопрос ещё не решён.",
-          "uk": "Питання ще не вирішено."
+          "ru": "В рабочем чате коллеги ещё не выбрали время встречи.",
+          "uk": "У робочому чаті колеги ще не вибрали час зустрічі."
         },
         "orderedTokens": [
           "It",
           "isn't",
-          "settled."
+          "settled"
         ],
         "authoredDistractorTokens": [
           "its"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вопрос ещё не решён",
+            "feedbackByLocale": {
+              "ru": "`its` не подходит: для отрицания нужен `It isn't settled.`",
+              "uk": "`its` не підходить: для заперечення потрібне `It isn't settled`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -833,29 +933,34 @@
       "interactionId": "en:lesson-01:session-45:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — двое друзей ещё не готовы",
+      "prompt": "Послушайте и соберите — Лина предупреждает координатора",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — двое друзей ещё не готовы",
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — Лина предупреждает координатора",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "They aren't ready.",
-        "localizedMeaning": {
-          "ru": "Двое друзей ещё не готовы.",
-          "uk": "Двоє друзів ще не готові."
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i16:audio",
+          "transcript": "They aren't ready."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "They aren't ready.",
         "orderedTokens": [
           "They",
           "aren't",
-          "ready."
+          "ready"
         ],
-        "authoredDistractorTokens": [
-          "isn't"
-        ],
-        "slotFeedback": []
+        "authoredDistractorTokens": [],
+        "slotFeedback": [],
+        "localizedScene": {
+          "ru": "Мира и Илья ещё собираются перед походом. Лина предупреждает координатора, что они пока не готовы.",
+          "uk": "Міра та Ілля ще збираються перед походом. Ліна попереджає координатора, що вони поки не готові."
+        }
       },
       "scriptedAlternate": null
     },
@@ -886,8 +991,8 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ужин вас разочаровал.",
-          "uk": "Вечеря вас розчарувала."
+          "ru": "Подруга спрашивает, довольны ли вы ужином. Ответьте, что нет: результат вас разочаровал.",
+          "uk": "Подруга питає, чи задоволені ви вечерею. Відповідайте, що ні: результат вас розчарував."
         },
         "gappedTargetPhrase": "___",
         "gapOptions": [
@@ -907,21 +1012,30 @@
         "testedDimension": "Вставьте фразу — ужин вас разочаровал",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-45:i17:s01:r1",
+            "correct": true,
+            "testedDimension": "Вставьте фразу — ужин вас разочаровал",
+            "feedbackByLocale": {
+              "ru": "Верно: с I отрицание строится I'm not satisfied.",
+              "uk": "Правильно: з I заперечення будується I'm not satisfied."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-45:i17:s01:r2",
             "correct": false,
             "testedDimension": "Вставьте фразу — ужин вас разочаровал",
             "feedbackByLocale": {
-              "ru": "После I нужна форма am: правильно `I’m not satisfied.`.",
-              "uk": "Після I потрібна форма am: правильно `I’m not satisfied.`."
+              "ru": "`I not satisfied.` похоже на русское «я не доволен», где нет `am`. По-английски нужно `I am not…` или `I'm not…`.",
+              "uk": "`I not satisfied.` схоже на українське «я не задоволений», де немає `am`. Англійською потрібно `I am not…` або `I'm not…`."
             }
           },
           {
             "responseId": "en:lesson-01:session-45:i17:s01:r3",
             "correct": false,
-            "testedDimension": "Выберите фразу — ужин вас разочаровал",
+            "testedDimension": "Вставьте фразу — ужин вас разочаровал",
             "feedbackByLocale": {
-              "ru": "После `I’m` уже есть am, поэтому `isn’t` здесь лишнее.",
-              "uk": "У `I’m` уже є am, тому `isn’t` тут зайве."
+              "ru": "В `I'm isn't satisfied.` смешаны два сокращения. `I'm` уже означает `I am`; с `I` отрицание — `I'm not satisfied.`.",
+              "uk": "У `I'm isn't satisfied.` змішані два скорочення. `I'm` уже означає `I am`; з `I` заперечення — `I'm not satisfied.`."
             }
           }
         ]
@@ -932,29 +1046,83 @@
       "interactionId": "en:lesson-01:session-45:i17:s02",
       "ordinal": 21,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — время встречи ещё не согласовали",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — время встречи ещё не согласовали",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It isn't settled.",
-        "localizedMeaning": {
-          "ru": "Время встречи ещё не согласовали.",
-          "uk": "Час зустрічі ще не погодили."
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите — время встречи ещё не согласовали",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-45:i17:s02:r1",
+          "text": "It isn't settled."
         },
-        "orderedTokens": [
-          "It",
-          "isn't",
-          "settled."
+        {
+          "responseId": "en:lesson-01:session-45:i17:s02:r2",
+          "text": "It isn't ready."
+        },
+        {
+          "responseId": "en:lesson-01:session-45:i17:s02:r3",
+          "text": "They aren't settled."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-45:i17:s02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите — время встречи ещё не согласовали",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-45:i17:s02:audio",
+          "transcript": "It isn't settled."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r1",
+            "targetText": "It isn't settled.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r2",
+            "targetText": "It isn't ready.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r3",
+            "targetText": "They aren't settled.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "aren't"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: речь о времени встречи, а не о людях. Поэтому используем It: It isn't settled.",
+              "uk": "Правильно: ідеться про час зустрічі, а не про людей. Тому вживаємо It: It isn't settled."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — время встречи ещё не согласовали",
+            "feedbackByLocale": {
+              "ru": "`ready` — «готово». Здесь речь о том, что решение ещё не согласовано.",
+              "uk": "`ready` — «готово». Тут ідеться про те, що рішення ще не погоджене."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-45:i17:s02:r3",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите — время встречи ещё не согласовали",
+            "feedbackByLocale": {
+              "ru": "Здесь речь о времени встречи, а не о людях. Для времени используем It: It isn't settled.",
+              "uk": "Тут ідеться про час зустрічі, а не про людей. Для часу вживаємо It: It isn't settled."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -964,27 +1132,41 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — двое друзей полны сил после отдыха. Скажите, что они не изнурены.",
+      "prompt": "Соберите фразу — ответьте другу, который сомневается перед походом",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — двое друзей полны сил после отдыха. Скажите, что они не изнурены.",
+      "accessibilityLabel": "Соберите фразу — ответьте другу, который сомневается перед походом",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They aren't exhausted.",
         "localizedMeaning": {
-          "ru": "Двое друзей полны сил после отдыха.",
-          "uk": "Двоє друзів сповнені сил після відпочинку."
+          "ru": "не изнурены",
+          "uk": "не виснажені"
         },
         "orderedTokens": [
           "They",
           "aren't",
-          "exhausted."
+          "exhausted"
         ],
         "authoredDistractorTokens": [
           "isn't"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-45:i17:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте другу, который сомневается перед походом",
+            "feedbackByLocale": {
+              "ru": "`isn't` не подходит к `They`: нужно `They aren't exhausted.`",
+              "uk": "`isn't` не підходить до `They`: потрібно `They aren't exhausted`."
+            }
+          }
+        ],
+        "localizedScene": {
+          "ru": "Друг волнуется, не слишком ли Мира и Илья устали для похода после выходных.",
+          "uk": "Друг хвилюється, чи не надто Міра та Ілля втомилися для походу після вихідних."
+        }
       },
       "scriptedAlternate": null
     }
@@ -995,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f9143fcf779d871b4e7b7227d18d31075bff0d8b29e931b905a14c6bafb99f47"
+  "learnerFingerprint": "d7ffe8d1ab8b1c6dcdcbf1b86b43b0a5fa43ba9a927e5bee516d6e91181fa2bc"
 }

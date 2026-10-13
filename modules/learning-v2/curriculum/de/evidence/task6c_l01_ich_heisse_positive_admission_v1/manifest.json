@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-ich-heisse-positive-admission.v1",
+  "status": "PASS",
+  "decision": "EXACT_POSITIVE_CANONICAL_LEXICAL_SENSE_ADMISSION",
+  "scope": {
+    "admissionScope": "EXACT_ICH_HEISSE_FIXED_EXPRESSION_ONLY",
+    "sourcePlanId": "de_lex_plan_l01_c03_ich_heisse_v1",
+    "canonicalSenseId": "de_lex_l01_c03_ich_heisse_v1",
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null
+  },
+  "sourceBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "sha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23"
+    },
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "lexicalV2": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v2.json",
+      "sha256": "31934e35b5278c7a7e901d08e02da5398f3503825782acbb604d06de094726a5"
+    },
+    "task6V2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+      "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f"
+    },
+    "inventoryV2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    },
+    "lexicalV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v3.json",
+      "sha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v3.json",
+      "sha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "inventoryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v3.json",
+      "sha256": "702a491699774d2f0cc90c19755bc8747a0b1663ddd2e94f272b68d40ddc1d88"
+    },
+    "lexicalV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v4.json",
+      "sha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task6V4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v4.json",
+      "sha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "inventoryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v4.json",
+      "sha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    },
+    "sourceHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_ich_heisse_source_hold_v1/manifest.json",
+      "sha256": "b87974af6a1340eb34e9e69faf86a2df1081e75fc4cfa1677093447b5b4ffe23"
+    },
+    "sourceExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_ich_heisse_source_hold_v1/extraction_map.json",
+      "sha256": "8cb5f30fd298ddd1d5e058b0ff9a9984e0c79895e4a0fb9e339f4bc5e65b5b9c"
+    },
+    "dwdsRaw": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_ich_heisse_source_hold_v1/raw/dwds_heissen.html",
+      "sha256": "ceb735ca72b691d06fd46f9521636bb650102ed14a19465ee71142f1a295fbf1"
+    },
+    "formulaicManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+      "sha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+    },
+    "formulaicExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/extraction_map.json",
+      "sha256": "4cb9d040275870fe6857b222c9bad26fab46646094994a7704bb9d9f0c93c3a7"
+    },
+    "goetheRaw": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_ich_heisse_source_hold_v1/raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085"
+    },
+    "defaultConsumer": {
+      "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+      "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+      "v5Selected": false
+    }
+  },
+  "artifactBindings": {
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_positive_admission_v1/lexical_evidence.json",
+      "sha256": "aaade49d6ba482326b5f0638e617c99744ce3f9242e789928afd7650ea7ccfe3"
+    },
+    "lexicalRegistryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v5.json",
+      "sha256": "4ed741cc0e457eff0c3500f98e6c8d62a33a951110d428ff1333075eca99a2c7"
+    },
+    "task6V5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v5.json",
+      "sha256": "9bbf41335e13dff8f97be3bbd05f21284c99e62c31d5fcb63f7b5f0ab324af91"
+    },
+    "inventoryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v5.json",
+      "sha256": "e1c01fa8ef727c23d128d07bbe5cf67f7c04c6539610817ba39b6e0b555fb3b4"
+    }
+  },
+  "interpretation": {
+    "sourceLemma": "heißen",
+    "sourcePartOfSpeech": "Verb",
+    "sourceSense": "genannt werden, den Namen haben",
+    "curriculumPartOfSpeech": "fixed_expression",
+    "rule": "SOURCE_GROUNDED_FIRST_PERSON_VERB_CHUNK_TO_FIXED_EXPRESSION",
+    "admittedExpression": "Ich heiße",
+    "interactionRole": "participant_reference",
+    "communicativeUse": "say a name after a greeting",
+    "sourceRegisterMarkers": null,
+    "register": null,
+    "productiveConjugationAuthority": false
+  },
+  "allocation": {
+    "plannedUsePacketIds": ["de_l01_c03_s24"],
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null,
+    "firstScoredUsePacketId": null,
+    "resolvedPlanIds": 9,
+    "unresolvedPlanIds": 279,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "phraseBoundary": {
+    "phraseAdmission": false,
+    "generalNameFrameAdmitted": false,
+    "literalGoetheOccurrenceFrameAdmitted": false,
+    "goetheOccurrenceEvidenceFunction": "EXACT_OCCURRENCE_ONLY",
+    "phraseFrameModified": false,
+    "lexicalSenseLinkAdded": false,
+    "phraseClaims": "HALLO_EXACT_ONLY"
+  },
+  "predecessorImmutability": {
+    "v2Changed": false,
+    "v3Changed": false,
+    "v4Changed": false,
+    "sourceHoldChanged": false,
+    "formulaicHoldChanged": false,
+    "defaultConsumerChanged": false
+  },
+  "authority": {
+    "canonicalAdmission": true,
+    "admissionScope": "EXACT_ICH_HEISSE_FIXED_EXPRESSION_ONLY",
+    "phraseAuthority": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

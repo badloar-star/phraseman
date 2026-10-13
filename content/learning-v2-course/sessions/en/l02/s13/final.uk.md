@@ -59,11 +59,17 @@
 <!-- interaction_id: en:lesson-02:session-13:i02; family: listen_choose -->
 Ціль: `thirsty`
 Варіанти: `thirsty` · `dirty` · `thirty`
+- dirty — *Це «брудний» — про пляму на скатертині, а не про спрагу.*
+- thirty — *Це «тридцять», число. А тут про людину, якій хочеться пити.*
+
 
 **3 · Вставте слово — запитання чи повідомлення?**
 <!-- interaction_id: en:lesson-02:session-13:i03; family: context_gap_grammar -->
 Ціль: `___ he tired?`
 Варіанти: `Is` · `He` · `Are`
+- He — *Тоді вийде повідомлення `He is tired`, а тут запитують.*
+- Are — *`Are` іде з іншими словами. З `he` — `is`.*
+
 
 **4 · Складіть фразу — запитайте про Міру біля стійки, чи вона голодна**
 <!-- interaction_id: en:lesson-02:session-13:i04; family: phrase_builder -->
@@ -73,6 +79,9 @@
 <!-- interaction_id: en:lesson-02:session-13:i05; family: context_gap_grammar -->
 Ціль: `Yes, ___ is.`
 Варіанти: `he` · `is` · `him`
+- is — *У відповіді спочатку `he`, потім `is`. Наперед `is` виходить у запитанні.*
+- him — *На початку фрази стоїть `he`. `Him` тут не годиться.*
+
 
 **6 · Складіть фразу — повідомте: Денис заблукав**
 <!-- interaction_id: en:lesson-02:session-13:i06; family: phrase_builder -->
@@ -86,6 +95,9 @@
 <!-- interaction_id: en:lesson-02:session-13:i08; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `thirsty` · `lost` · `cheerful`
+- lost — *«Заблукав». Про воду це нічого не каже.*
+- cheerful — *«Веселий». Теж не про спрагу.*
+
 
 **9 · Складіть фразу — запитайте про Дениса, чи він не заблукав**
 <!-- interaction_id: en:lesson-02:session-13:i09; family: phrase_builder -->
@@ -94,6 +106,8 @@
 **10 · Розрізніть звуки — яке з двох про «голодний»?**
 <!-- interaction_id: en:lesson-02:session-13:i10; family: sound_contrast -->
 Варіанти: `hungry` · `angry`
+- angry — *Це «сердитий», про настрій. А про голод — `hungry`.*
+
 
 **11 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-13:i11; family: speed_match -->
@@ -112,6 +126,9 @@
 <!-- interaction_id: en:lesson-02:session-13:i14; family: context_gap_grammar -->
 Ціль: `She is ___ .`
 Варіанти: `cheerful` · `upset` · `lost`
+- upset — *«Засмучений». Той, хто сміється, навряд чи засмучений.*
+- lost — *«Заблукав». Вона нікого не шукає, вона вітається.*
+
 
 **15 · Картка слова — comfortable**
 <!-- interaction_id: en:lesson-02:session-13:i15; family: listen_choose -->
@@ -121,6 +138,9 @@
 <!-- interaction_id: en:lesson-02:session-13:i16; family: listen_choose -->
 Ціль: `comfortable`
 Варіанти: `comfortable` · `cheerful` · `cold`
+- cheerful — *«Веселий». Це про настрій, а не про зручне крісло.*
+- cold — *«Холодно». Коротке слово в один склад, а `comfortable` довге.*
+
 
 **17 · Складіть фразу — повідомте: Міра хоче пити**
 <!-- interaction_id: en:lesson-02:session-13:i17; family: phrase_builder -->

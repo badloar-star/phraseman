@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-guten-tag-positive-lexical-evidence.v1",
+  "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+  "canonicalSenseId": "de_lex_l01_c04_guten_tag_v1",
+  "sourceHeadword": "guten Tag",
+  "sourcePartOfSpeech": "Mehrwortausdruck",
+  "canonicalPartOfSpeech": "fixed_expression",
+  "partOfSpeechInterpretation": "SOURCE_GROUNDED_MULTIWORD_EXPRESSION_TO_FIXED_EXPRESSION",
+  "admittedSourceSenseAnchor": "d-1-1",
+  "admittedMeaning": "höfliche Formel zur Begrüßung",
+  "pragmaticFunction": "interaction_opening",
+  "sourcePolitenessMarker": "höfliche",
+  "sourceRegisterMarkers": null,
+  "register": null,
+  "timeOfDayScope": ["am Vormittag", "am Mittag", "am Nachmittag"],
+  "exclusions": {
+    "occasionalFarewellTailExcluded": true,
+    "rareAngryDismissalD12Excluded": true,
+    "morningExcluded": true,
+    "eveningExcluded": true,
+    "nightExcluded": true,
+    "unrestrictedAllDayExcluded": true
+  },
+  "claimBoundaries": {
+    "neutralRegisterClaim": false,
+    "formalRegisterClaim": false,
+    "unqualifiedFormalAddressClaim": false,
+    "phraseAuthority": false,
+    "phraseFrameClaim": false,
+    "phraseMappingClaim": false,
+    "addresseeCompositionClaim": false,
+    "curriculumNeutralFormalCaretakerSieWordingIsSourceFact": false
+  },
+  "curriculumIntentNotSourceFact": [
+    "neutral formal greeting",
+    "caretaker",
+    "Sie"
+  ],
+  "allocation": {
+    "checkpointPacketId": "de_l01_c04_s32",
+    "plannedUsePacketIds": ["de_l01_c04_s32"],
+    "firstIntroductionPacketId": null,
+    "firstScoredUsePacketId": null
+  },
+  "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

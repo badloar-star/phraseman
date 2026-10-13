@@ -1,0 +1,43 @@
+id	time	result	detail	file
+cards-008	2026-10-13T02:27:51.400Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-008.png
+cards-011	2026-10-13T02:27:51.401Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-011.png
+cards-012	2026-10-13T02:27:51.401Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-012.png
+cards-031	2026-10-13T02:27:51.402Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-031.png
+cards-035	2026-10-13T02:27:51.403Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-035.png
+cards-037	2026-10-13T02:27:51.404Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-037.png
+cards-041	2026-10-13T02:27:53.795Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-041.png
+cards-045	2026-10-13T02:27:53.796Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-045.png
+cards-046	2026-10-13T02:27:55.358Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-046.png
+cards-063	2026-10-13T02:27:57.283Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-063.png
+cards-064	2026-10-13T02:27:58.856Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-064.png
+cards-065	2026-10-13T02:28:00.344Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-065.png
+cards-067	2026-10-13T02:28:00.345Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-067.png
+cards-076	2026-10-13T02:28:02.023Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-076.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=119185 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-076.png
+cards-081	2026-10-13T02:28:03.544Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-081.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=130407 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-081.png
+cards-gap-011	2026-10-13T02:28:04.770Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-gap-011.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=381471 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-gap-011.png
+cards-section-034	2026-10-13T02:28:06.394Z	failed	склейка_не_удалась: ror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-section-034.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=243458 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-section-034.png
+cards-section-035	2026-10-13T02:28:07.891Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-035.png
+cards-section-036	2026-10-13T02:28:09.825Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-036.png
+cards-v2-026	2026-10-13T02:28:11.514Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-v2-026.png
+coins-004	2026-10-13T02:28:12.830Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/coins-004.png
+energy-modes-009	2026-10-13T02:28:14.166Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/energy-modes-009.png
+energy-modes-010	2026-10-13T02:28:15.441Z	failed	склейка_не_удалась: rror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\energy-modes-010.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=407715 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/energy-modes-010.png
+mistakes-panel-021	2026-10-13T02:28:17.685Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/mistakes-panel-021.png
+onboarding-002	2026-10-13T02:28:17.686Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-002.png
+onboarding-006	2026-10-13T02:28:17.687Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-006.png
+onboarding-007	2026-10-13T02:28:17.688Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-007.png
+onboarding-008	2026-10-13T02:28:17.688Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-008.png
+onboarding-010	2026-10-13T02:28:17.690Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-010.png
+onboarding-018	2026-10-13T02:28:17.691Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-018.png
+onboarding-025	2026-10-13T02:28:17.691Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-025.png
+onboarding-026	2026-10-13T02:28:17.692Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-026.png
+onboarding-027	2026-10-13T02:28:17.692Z	skipped	уже_не_голый_1800x1328	docs/phraseman-2.0/evidence/parity/onboarding-027.png
+onboarding-028	2026-10-13T02:28:17.693Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-028.png
+onboarding-029	2026-10-13T02:28:17.693Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-029.png
+onboarding-paywall-001	2026-10-13T02:28:17.694Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-paywall-001.png
+practice-001	2026-10-13T02:28:17.695Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-001.png
+practice-002	2026-10-13T02:28:17.696Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-002.png
+practice-003	2026-10-13T02:28:17.696Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-003.png
+results-009	2026-10-13T02:28:17.697Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/results-009.png
+settings-gap-034	2026-10-13T02:28:19.097Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/settings-gap-034.png
+system-015	2026-10-13T02:28:19.098Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/system-015.png

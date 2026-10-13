@@ -478,7 +478,7 @@
               "text": "here"
             }
           ],
-          "testedDimension": "Вставьте слово — мама спрашивает, где со",
+          "testedDimension": "Вставьте слово — мама спрашивает, где сосед; он поднялся к себе",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-51:i09:r2",
@@ -525,7 +525,26 @@
             "there.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-51:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сосед стоит рядом с вами",
+              "feedbackByLocale": {
+                "ru": "`there` — «там», а сосед стоит рядом с вами, то есть `here`",
+                "uk": "`there` — «там», а сусід стоїть поруч із вами, тобто `here`"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-51:i10:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сосед стоит рядом с вами",
+              "feedbackByLocale": {
+                "ru": "после единственного `he` нужна форма `is`",
+                "uk": "після одного `he` потрібна форма `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -700,7 +719,17 @@
           "authoredDistractorTokens": [
             "in"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-51:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он там»",
+              "feedbackByLocale": {
+                "ru": "перед `there` она не нужна",
+                "uk": "перед `there` вона не потрібна"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -760,7 +789,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "На улице холодно, и вы это чувствуете.",
+            "ru": "Вставьте слово — на улице холодно, и вы это чувствуете",
             "uk": "Надворі холодно, і ви це відчуваєте."
           },
           "gappedTargetPhrase": "I am ___.",
@@ -1482,7 +1511,7 @@
               "text": "here"
             }
           ],
-          "testedDimension": "Вставте слово — мама питає, де сусід; ві",
+          "testedDimension": "Вставте слово — мама питає, де сусід; він піднявся до себе",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-51:i09:r2",
@@ -1529,7 +1558,26 @@
             "there.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-51:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сосед стоит рядом с вами",
+              "feedbackByLocale": {
+                "ru": "`there` — «там», а сосед стоит рядом с вами, то есть `here`",
+                "uk": "`there` — «там», а сусід стоїть поруч із вами, тобто `here`"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-51:i10:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сосед стоит рядом с вами",
+              "feedbackByLocale": {
+                "ru": "после единственного `he` нужна форма `is`",
+                "uk": "після одного `he` потрібна форма `is`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1704,7 +1752,17 @@
           "authoredDistractorTokens": [
             "in"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-51:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он там»",
+              "feedbackByLocale": {
+                "ru": "перед `there` она не нужна",
+                "uk": "перед `there` вона не потрібна"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1765,7 +1823,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "На улице холодно, и вы это чувствуете.",
-            "uk": "Надворі холодно, і ви це відчуваєте."
+            "uk": "Вставте слово — надворі холодно, і ви це відчуваєте"
           },
           "gappedTargetPhrase": "I am ___.",
           "gapOptions": [

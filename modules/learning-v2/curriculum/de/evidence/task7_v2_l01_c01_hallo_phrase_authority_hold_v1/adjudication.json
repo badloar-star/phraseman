@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c01-hallo-phrase-authority-adjudication-hold.v1",
+  "status": "HOLD",
+  "decision": "EXACT_PHRASE_AUTHORITY_NOT_ESTABLISHED",
+  "scope": {
+    "targetLanguage": "de",
+    "sessionId": "de_l01_s01",
+    "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1",
+    "checkpointPacketId": "de_l01_c01_s08",
+    "phraseContextId": "de_pf_l01_c01_hallo_nachbarin_v1",
+    "exactPhrase": "Hallo, Nachbarin!",
+    "contactPacketIds": ["de_l01_c01_s01", "de_l01_c01_s08"]
+  },
+  "inputBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "sha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23"
+    },
+    "task6V2Canonical": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+      "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f"
+    },
+    "sourceManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/manifest.json",
+      "sha256": "674f789c05922ddce29103393228ee26f4c428255baf4fc646b90c95b97bfd33"
+    },
+    "sourceExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/extraction_map.json",
+      "sha256": "3b0ab0c32c3dd8bb42b2c22f0f43bc514272f23c60c97003334418f5afaaabad"
+    },
+    "sourceValidator": {
+      "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_allocation_de_v1.ts",
+      "sha256": "71e96a433e2906ffd86e05aa0ea42a09300c1d83a46ecae680bfa842a637e5aa"
+    },
+    "allocationInventory": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    }
+  },
+  "findings": {
+    "greetingFunction": "SUPPORTED",
+    "dwdsRegisterLabel": "UMGANGSSPRACHLIC_SUPPORTED",
+    "neutralRegister": "UNVERIFIED",
+    "exactPhraseAttestation": "ABSENT_FROM_BOUND_EVIDENCE",
+    "phraseNaturalness": "UNVERIFIED",
+    "nativePhraseJudgement": "REQUIRED"
+  },
+  "sourceBoundaries": {
+    "dwds": "GREETING_FUNCTION_AND_UMGANGSSPRACHLIC_REGISTER_ONLY",
+    "goethe": "HALLO_OCCURRENCE_ONLY_NOT_COMPOSED_PHRASE",
+    "task6PhraseFrame": "GENERAL_CEFR_EVIDENCE_NOT_EXACT_PHRASE_ATTESTATION"
+  },
+  "absenceProof": {
+    "matchMode": "EXACT_UTF8_LITERAL",
+    "inspectedArtifacts": [
+      "raw/dwds_hallo_interjection.html",
+      "raw/dwds_Hallo_noun.html",
+      "raw/goethe_a1_redemittel.pdf",
+      "extraction_map.json"
+    ],
+    "exactMatchCount": 0
+  },
+  "resolutionRoute": "NEW_EXACT_AUTHORITY_OR_VERSIONED_TASK5_TASK6_REPAIR",
+  "authority": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "inventory": {
+    "resolvedPlanIds": 6,
+    "unresolvedPlanIds": 282,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  }
+}

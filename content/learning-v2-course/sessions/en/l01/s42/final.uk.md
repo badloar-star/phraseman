@@ -88,6 +88,8 @@
 **5 · Складіть фразу — «він чудовий»**
 <!-- interaction_id: en:lesson-01:session-42:i05; family: phrase_builder -->
 Плитки: `He's` `great` `is` → **He's great.**
+*(плитка `is` зайва: `is` зайве: у `He's great` слово `is` уже заховане в `He's`.)*
+
 
 **6 · Картка слова — gone**
 <!-- interaction_id: en:lesson-01:session-42:i06; family: listen_choose -->
@@ -108,6 +110,8 @@ He's ___ . → **great** · awful · gone
 **9 · Послухайте і складіть — Ліна читає повідомлення: «Вона тиха»**
 <!-- interaction_id: en:lesson-01:session-42:i09; family: listen_build_dictation -->
 🔊 *She's quiet.* Плитки: `She's` `quiet` `She` → **She's quiet.**
+*(плитка `She` зайва: Потрібно `She's quiet`: `She` без `is` не утворює фразу.)*
+
 
 **10 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
@@ -116,6 +120,9 @@ great — чудово · awful — жахливий · gone — пішов · q
 **11 · Послухайте і складіть — «воно жахливе»**
 <!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
 🔊 *It's awful.* Плитки: `awful` `It's` `great` `is` → **It's awful.**
+*(плитка `great` зайва: `great` зайве: в аудіо `It's awful`.)*
+*(плитка `is` зайва: `is` зайве: воно вже заховане в `It's awful`.)*
+
 
 **12 · Вставте слово — ви обернулися, а стілець друга порожній**
 <!-- interaction_id: en:lesson-01:session-42:i12; family: context_gap_grammar -->
@@ -127,10 +134,16 @@ He's ___ . → **gone** · here · late
 <!-- interaction_id: en:lesson-01:session-42:i13; family: phrase_builder -->
 Плитки: `funny` `She's` `is` `quiet` → **She's funny.**
 *(`funny` — «смішна», `quiet` — «тиха»)*
+*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's funny`.)*
+*(плитка `quiet` зайва: `quiet` зайве: після жарту кажуть `She's funny`.)*
+
 
 **14 · Послухайте і складіть — «він тут»**
 <!-- interaction_id: en:lesson-01:session-42:i14; family: listen_build_dictation -->
 🔊 *He's here.* Плитки: `here` `He's` `gone` `is` → **He's here.**
+*(плитка `gone` зайва: `gone` зайве: в аудіо `He's here`.)*
+*(плитка `is` зайва: `is` зайве: воно вже заховане в `He's here`.)*
+
 
 **15 · Вставте слово — надворі злива, ви забігли в паб**
 <!-- interaction_id: en:lesson-01:session-42:i15; family: context_gap_grammar -->
@@ -140,6 +153,8 @@ It's ___ . → **awful** · quiet · great
 
 **16 · Складіть фразу — її все немає, а початок був о сьомій; скажіть коротко**<!-- interaction_id: en:lesson-01:session-42:i16; family: phrase_builder --> (`late` — «запізнилася»)
 Плитки: `late` `She's` `is` → **She's late.**
+*(плитка `is` зайва: `is` зайве: воно вже заховане в `She's late`.)*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-42:i17:s01; family: scripted_repeat_compare -->

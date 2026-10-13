@@ -84,6 +84,8 @@
 **5 · Соберите фразу — турист перестал оглядываться**
 <!-- interaction_id: en:lesson-01:session-14:i05; family: phrase_builder -->
 Плитки: `safe` `You` `are` `am` → **You are safe.**
+*(плитка `am` лишняя: С `you` нельзя `am`: правильная фраза — `You are safe.`)*
+
 
 **6 · Вставьте слово — турист вертит головой на перекрёстке и не понимает, куда идти**
 <!-- interaction_id: en:lesson-01:session-14:i06; family: context_gap_grammar -->
@@ -120,10 +122,14 @@ You ___ safe. → **are** · am · is
 **12 · Послушайте и соберите — «тебе тепло»**
 <!-- interaction_id: en:lesson-01:session-14:i12; family: listen_build_dictation -->
 🔊 *You are warm.* Плитки: `are` `warm` `You` `dry` → **You are warm.**
+*(плитка `dry` лишняя: `dry` значит «сухой», но запись говорит `You are warm.`)*
+
 
 **13 · Соберите фразу — Алекс кивнул и взял сумку; скажите ему: «ты готов идти»**
 <!-- interaction_id: en:lesson-01:session-14:i13; family: phrase_builder -->
 Плитки: `ready` `You` `are` `not` → **You are ready.**
+*(плитка `not` лишняя: `not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`)*
+
 
 **14 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-14:i14; family: speed_match -->
@@ -138,10 +144,14 @@ safe — в безопасности · warm — тепло · dry — сухо�
 **16 · Соберите фразу — мимо с рёвом проносится машина, турист вздрагивает; скажите, что он испуган**
 <!-- interaction_id: en:lesson-01:session-14:i16; family: phrase_builder -->
 Плитки: `You` `are` `scared` `is` → **You are scared.**
+*(плитка `is` лишняя: После `you` нужно `are`, не `is`: `You are scared.`)*
+
 
 **17 · Послушайте и соберите — «тебе холодно»**
 <!-- interaction_id: en:lesson-01:session-14:i17; family: listen_build_dictation -->
 🔊 *You are cold.* Плитки: `cold` `You` `are` `scared` → **You are cold.**
+*(плитка `scared` лишняя: `scared` значит «испуган», но запись говорит `You are cold.`)*
+
 
 **18 · Скажите вслух — вы отвели туриста под крышу после ливня; скажите ему: «ты в безопасности»**
 <!-- interaction_id: en:lesson-01:session-14:i18; family: scripted_repeat_compare -->

@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — glad",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-07:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — glad",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -206,10 +206,10 @@
             {
               "responseId": "en:lesson-01:session-07:i04:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — в кафе официант предлаг",
+              "testedDimension": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
               "feedbackByLocale": {
-                "ru": "not изменит смысл на противоположный: I am not full — «я не сыт».",
-                "uk": "not змінить зміст на протилежний: I am not full — «я не ситий»."
+                "ru": "она изменила бы смысл на «я не сыт»",
+                "uk": "вона змінила б зміст на «я не ситий»"
               }
             }
           ]
@@ -265,7 +265,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — scared",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i06:r1",
@@ -414,7 +414,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — третий час презентации про принтеры",
+            "ru": "Вставьте слово — третий час повторяют одни и те же слайды о принтерах; вы смотрите на часы",
             "uk": "Вставте слово — третя година презентації про принтери"
           },
           "gappedTargetPhrase": "I am ___ .",
@@ -524,7 +524,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+            "ru": "Вставьте слово — коллега спрашивает, всё ещё ли вам нужны подсказки, как найти кабинет 4B. Вы уже у двери.",
             "uk": "Вставте слово — ви півдня шукали кабінет 4B і нарешті стоїте біля потрібних дверей"
           },
           "gappedTargetPhrase": "I am not ___ .",
@@ -611,8 +611,8 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — «мне не страшно»",
               "feedbackByLocale": {
-                "ru": "bored — «скучно», а в записи звучит scared — «страшно».",
-                "uk": "bored — «нудно», а в записі звучить scared — «страшно»."
+                "ru": "`bored` — «скучно», а в записи звучит `scared` — «страшно»",
+                "uk": "`bored` — «нудно», а в записі звучить `scared` — «страшно»"
               }
             }
           ]
@@ -805,19 +805,19 @@
             {
               "responseId": "en:lesson-01:session-07:i14:tile:d1",
               "correct": false,
-              "testedDimension": "Послушайте и соберите — Саша спрашивает,",
+              "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "С I нельзя is: нужно I am not lost.",
-                "uk": "З I не вживаємо is: потрібно I am not lost."
+                "ru": "с `I` нельзя `is`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `is`; потрібно `I am not lost`"
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i14:tile:d2",
               "correct": false,
-              "testedDimension": "Послушайте и соберите — Саша спрашивает,",
+              "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "С I нельзя are: нужно I am not lost.",
-                "uk": "З I не вживаємо are: потрібно I am not lost."
+                "ru": "с `I` нельзя `are`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `are`; потрібно `I am not lost`"
               }
             }
           ]
@@ -854,10 +854,10 @@
             {
               "responseId": "en:lesson-01:session-07:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Соберите фразу — Саша сомневается: вы то",
+              "testedDimension": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
               "feedbackByLocale": {
-                "ru": "С I используется am, поэтому I is sure неверно.",
-                "uk": "З I вживається am, тому I is sure неправильно."
+                "ru": "с `I` используется `am`, поэтому `I is sure` неверно",
+                "uk": "з `I` вживається `am`, тому `I is sure` неправильно"
               }
             }
           ]
@@ -1054,7 +1054,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — glad",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i02:r1",
@@ -1073,7 +1073,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-07:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть — glad",
+        "accessibilityLabel": "Послухайте і виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1206,10 +1206,10 @@
             {
               "responseId": "en:lesson-01:session-07:i04:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — у кафе офіціант пропону",
+              "testedDimension": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
               "feedbackByLocale": {
-                "ru": "not изменит смысл на противоположный: I am not full — «я не сыт».",
-                "uk": "not змінить зміст на протилежний: I am not full — «я не ситий»."
+                "ru": "она изменила бы смысл на «я не сыт»",
+                "uk": "вона змінила б зміст на «я не ситий»"
               }
             }
           ]
@@ -1265,7 +1265,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — scared",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-07:i06:r1",
@@ -1415,7 +1415,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — третий час презентации про принтеры",
-            "uk": "Вставте слово — третя година презентації про принтери"
+            "uk": "Вставте слово — третю годину повторюють ті самі слайди про принтери; ви дивитеся на годинник"
           },
           "gappedTargetPhrase": "I am ___ .",
           "gapOptions": [
@@ -1525,7 +1525,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
-            "uk": "Вставте слово — ви півдня шукали кабінет 4B і нарешті стоїте біля потрібних дверей"
+            "uk": "Вставте слово — колега питає, чи вам іще потрібні підказки, як знайти кабінет 4B. Ви вже біля дверей."
           },
           "gappedTargetPhrase": "I am not ___ .",
           "gapOptions": [
@@ -1609,10 +1609,10 @@
             {
               "responseId": "en:lesson-01:session-07:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «мені не страшно",
+              "testedDimension": "Послушайте и соберите — «мне не страшно»",
               "feedbackByLocale": {
-                "ru": "bored — «скучно», а в записи звучит scared — «страшно».",
-                "uk": "bored — «нудно», а в записі звучить scared — «страшно»."
+                "ru": "`bored` — «скучно», а в записи звучит `scared` — «страшно»",
+                "uk": "`bored` — «нудно», а в записі звучить `scared` — «страшно»"
               }
             }
           ]
@@ -1805,19 +1805,19 @@
             {
               "responseId": "en:lesson-01:session-07:i14:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте й складіть — Сашко питає, чи ",
+              "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "С I нельзя is: нужно I am not lost.",
-                "uk": "З I не вживаємо is: потрібно I am not lost."
+                "ru": "с `I` нельзя `is`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `is`; потрібно `I am not lost`"
               }
             },
             {
               "responseId": "en:lesson-01:session-07:i14:tile:d2",
               "correct": false,
-              "testedDimension": "Послухайте й складіть — Сашко питає, чи ",
+              "testedDimension": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
               "feedbackByLocale": {
-                "ru": "С I нельзя are: нужно I am not lost.",
-                "uk": "З I не вживаємо are: потрібно I am not lost."
+                "ru": "с `I` нельзя `are`; нужно `I am not lost`",
+                "uk": "з `I` не вживаємо `are`; потрібно `I am not lost`"
               }
             }
           ]
@@ -1854,10 +1854,10 @@
             {
               "responseId": "en:lesson-01:session-07:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Сашко сумнівається: ви ",
+              "testedDimension": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
               "feedbackByLocale": {
-                "ru": "С I используется am, поэтому I is sure неверно.",
-                "uk": "З I вживається am, тому I is sure неправильно."
+                "ru": "с `I` используется `am`, поэтому `I is sure` неверно",
+                "uk": "з `I` вживається `am`, тому `I is sure` неправильно"
               }
             }
           ]

@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-01:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-44:intro3:r2": {
-          "ru": "Пропала скрепка. Чтобы сказать «они не правы», нужно `are` — хотя бы внутри `they're`.",
-          "uk": "Зникла скріпка. Щоб сказати «вони не мають рації», потрібне `are` — бодай усередині `they're`."
+          "ru": "После `they` нужно `are`: полная форма `They are wrong`, короткая — `They're wrong`.",
+          "uk": "Після `they` потрібне `are`: повна форма `They are wrong`, коротка — `They're wrong`."
         },
         "en:lesson-01:session-44:intro3:r3": {
-          "ru": "`are` уже сидит внутри `they're`. Одной скрепки хватит.",
-          "uk": "`are` уже сидить усередині `they're`. Однієї скріпки досить."
+          "ru": "`are` уже внутри `they're`. Второй раз его не ставят.",
+          "uk": "`are` уже всередині `they're`. Удруге його не ставлять."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0c203ccd38c7e038203ea048744d1c84df5c5057d46431b66959bb23a3436444"
+  "auxiliaryFingerprint": "f38592f0d005ebef45041748e6b7ffecd5a0748adc8934e1e584e39542195250"
 }

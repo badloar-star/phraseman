@@ -1,0 +1,110 @@
+[
+  {
+    "id": "de_lex_l01_c01_nachbarin_v1",
+    "lemma": "Nachbarin",
+    "senseGloss": "female person living nearby",
+    "partOfSpeech": "noun",
+    "nounGender": "die",
+    "nounPlural": "Nachbarinnen",
+    "verbValency": null,
+    "verbFrame": null,
+    "verbSeparability": null,
+    "verbAuxiliary": null,
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L01-C01-NACHBARIN-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  },
+  {
+    "id": "de_lex_l01_c02_aufzug_v1",
+    "lemma": "Aufzug",
+    "senseGloss": "lift in a building",
+    "partOfSpeech": "noun",
+    "nounGender": "der",
+    "nounPlural": "Aufzüge",
+    "verbValency": null,
+    "verbFrame": null,
+    "verbSeparability": null,
+    "verbAuxiliary": null,
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L01-C02-AUFZUG-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  },
+  {
+    "id": "de_lex_l02_c01_wohnen_v1",
+    "lemma": "wohnen",
+    "senseGloss": "live or reside at a home",
+    "partOfSpeech": "verb",
+    "nounGender": null,
+    "nounPlural": null,
+    "verbValency": ["subject", "residence-location complement"],
+    "verbFrame": "intransitive residence frame",
+    "verbSeparability": "INSEPARABLE",
+    "verbAuxiliary": "haben",
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L02-C01-WOHNEN-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  },
+  {
+    "id": "de_lex_l02_c01_kueche_v1",
+    "lemma": "Küche",
+    "senseGloss": "room for preparing food",
+    "partOfSpeech": "noun",
+    "nounGender": "die",
+    "nounPlural": "Küchen",
+    "verbValency": null,
+    "verbFrame": null,
+    "verbSeparability": null,
+    "verbAuxiliary": null,
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L02-C01-KUECHE-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  },
+  {
+    "id": "de_lex_l02_c02_tasse_v1",
+    "lemma": "Tasse",
+    "senseGloss": "handled cup for a hot drink",
+    "partOfSpeech": "noun",
+    "nounGender": "die",
+    "nounPlural": "Tassen",
+    "verbValency": null,
+    "verbFrame": null,
+    "verbSeparability": null,
+    "verbAuxiliary": null,
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L02-C02-TASSE-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  },
+  {
+    "id": "de_lex_l02_c02_teller_v1",
+    "lemma": "Teller",
+    "senseGloss": "flat dish used for serving food",
+    "partOfSpeech": "noun",
+    "nounGender": "der",
+    "nounPlural": "Teller",
+    "verbValency": null,
+    "verbFrame": null,
+    "verbSeparability": null,
+    "verbAuxiliary": null,
+    "productionPolicy": "productive",
+    "region": null,
+    "evidenceIds": [
+      "DE-LEX-ITEM-L02-C02-TELLER-SENSE-FORM-001",
+      "DE-REG-BASELINE-001"
+    ]
+  }
+]

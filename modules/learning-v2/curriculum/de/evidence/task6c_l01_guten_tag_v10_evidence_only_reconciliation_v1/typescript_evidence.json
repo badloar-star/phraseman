@@ -1,0 +1,121 @@
+{
+  "schemaVersion": "learning-v2-de-guten-tag-v10-typescript-evidence.v1",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "provenance": "LOCAL_CAPTURE_NOT_IMMUTABLE_EXTERNAL_RUNNER",
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  },
+  "sourceSnapshot": {
+    "rootRelative": ".",
+    "files": [
+      {
+        "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v10.json",
+        "sha256": "77f0f1df558c9d0ee3c9b8e14f046c63e2261e3e5531e70a4a36dd4f79ad7be4"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v10.json",
+        "sha256": "93e7a4f2413f879945c5f740d5f98cc0b18c5a60c03bb80eac32697ec1ac6ecd"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v10.json",
+        "sha256": "dff3fb050d58906eadbb92b0e75fc955e6d7ce848a9164c17f8b574a102679eb"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v10_evidence_only_reconciliation_de_v1.ts",
+        "sha256": "5d7aff945ffa5f32c9d2f33bf85a6deed99079ce43d867ca4c3e4d5d92af6a11"
+      },
+      {
+        "path": "tests/learning_v2_de_task6c_l01_guten_tag_v10_evidence_only_reconciliation_gate.ts",
+        "sha256": "3a18b3290c276ee27b0958cb96a26ca4ed91ccd82a43cb39aa1499bcad8e2bdf"
+      },
+      {
+        "path": "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v10_typescript_evidence.mjs",
+        "sha256": "e58d1e92bda41e443ad4ee9db92b4b7a31bcad9d52922e18457c6078b2113a95"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/manifest.json",
+        "sha256": "062d709fbb877d75ee327e02dea6abb02fc8b86996cd345ad2f9a9d78eec1c01"
+      }
+    ]
+  },
+  "transactionPaths": [
+    "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v10.json",
+    "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v10.json",
+    "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v10.json",
+    "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v10_evidence_only_reconciliation_de_v1.ts",
+    "tests/learning_v2_de_task6c_l01_guten_tag_v10_evidence_only_reconciliation_gate.ts",
+    "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v10_typescript_evidence.mjs",
+    "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/manifest.json",
+    "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/typescript_evidence.json",
+    "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/focused_tsc.log",
+    "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/repository_tsc_8192.log",
+    "docs/v2/curriculum/de/TASK6C_L01_GUTEN_TAG_V10_EVIDENCE_ONLY_RECONCILIATION_RECEIPT_2026-10-13.md"
+  ],
+  "focusedRun": {
+    "executable": "node",
+    "argv": [
+      "node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "--pretty",
+      "false",
+      "--skipLibCheck",
+      "--esModuleInterop",
+      "--module",
+      "commonjs",
+      "--target",
+      "es2022",
+      "--moduleResolution",
+      "node",
+      "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v10_evidence_only_reconciliation_de_v1.ts",
+      "tests/learning_v2_de_task6c_l01_guten_tag_v10_evidence_only_reconciliation_gate.ts"
+    ],
+    "cwdRelative": ".",
+    "env": {},
+    "exitCode": 0,
+    "outcome": "PASS",
+    "log": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/focused_tsc.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "diagnostics": {
+      "total": 0,
+      "transaction": 0,
+      "codes": []
+    }
+  },
+  "repositoryRun": {
+    "executable": "node",
+    "argv": [
+      "node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "--pretty",
+      "false"
+    ],
+    "cwdRelative": ".",
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=8192"
+    },
+    "exitCode": 2,
+    "outcome": "BASELINE_DIAGNOSTICS_OUTSIDE_TRANSACTION",
+    "log": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/repository_tsc_8192.log",
+      "sha256": "c1ddaee2bf4d1853e53f288e60b306962074490ac735a28a58adac32f0c734f7",
+      "bytes": 3118
+    },
+    "diagnostics": {
+      "total": 14,
+      "transaction": 0,
+      "codes": [2339, 2345, 18046]
+    }
+  }
+}

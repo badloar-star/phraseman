@@ -1,0 +1,10 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-029	2026-10-13T00:54:07.581Z	ok	15890	marker+шагов_8+склейка+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/dialogs-029.png	0
+cards-section-008	2026-10-13T00:54:32.009Z	ok	14711	marker+пусто_1393мс+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-section-008.png	1393
+cards-015	2026-10-13T00:54:54.392Z	ok	14771	marker+пусто_1385мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-015.png	1385
+cards-016	2026-10-13T00:55:31.631Z	ok	12377	marker+шагов_2+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-016.png	0
+cards-048	2026-10-13T00:56:09.391Z	ok	16768	marker+шагов_5+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-048.png	0
+cards-024	2026-10-13T00:56:58.132Z	ok	14947	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-024.png	0
+cards-v2-022	2026-10-13T00:57:23.631Z	ok	15780	marker+пусто_1512мс+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-v2-022.png	1512
+cards-gap-003	2026-10-13T00:57:47.650Z	ok	17212	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-gap-003.png	0
+cards-v2-005	2026-10-13T00:58:27.485Z	ok	17255	marker+шагов_3+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/cards-v2-005.png	0

@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-01:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro1:r1": {
+          "ru": "Верно: `I am here` означает «я здесь»: `I` называет говорящего, `am` обязательно в полной фразе, а `here` сообщает о месте.",
+          "uk": "Правильно: `I am here` означає «я тут»: `I` називає мовця, `am` обов'язкове в повній фразі, а `here` повідомляє про місце."
+        },
+        "en:lesson-01:session-01:intro1:r2": {
+          "ru": "В полной форме этого урока не хватает `am`: `I am here`.",
+          "uk": "У повній формі цього уроку бракує `am`: `I am here`."
+        },
+        "en:lesson-01:session-01:intro1:r3": {
+          "ru": "Не хватает `I`: нужно назвать, кто здесь.",
+          "uk": "Бракує `I`: треба назвати, хто тут."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro2:r1": {
+          "ru": "Верно: `I am ready` означает «я готов / готова»: после `I am` стоит `ready`, потому что Антон спрашивает о готовности.",
+          "uk": "Правильно: `I am ready` означає «я готовий / готова»: після `I am` стоїть `ready`, тому що Антон питає про готовність."
+        },
+        "en:lesson-01:session-01:intro2:r2": {
+          "ru": "Порядок такой: `I`, затем `am`, затем слово о себе.",
+          "uk": "Порядок такий: `I`, потім `am`, потім слово про себе."
+        },
+        "en:lesson-01:session-01:intro2:r3": {
+          "ru": "В полной форме этого урока между `I` и `ready` не хватает `am`: I am ready.",
+          "uk": "У повній формі цього уроку між `I` та `ready` бракує `am`: I am ready."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-01:intro3:r1": {
+          "ru": "Верно: `I am happy` означает «я рад / рада»: после хорошей новости нужно `happy`, а между `I` и `happy` обязательно стоит `am`.",
+          "uk": "Правильно: `I am happy` означає «я радий / рада»: після хорошої новини треба `happy`, а між `I` та `happy` обов'язково стоїть `am`."
+        },
+        "en:lesson-01:session-01:intro3:r2": {
+          "ru": "Не хватает `am`: когда вы рады, правильно `I am happy`.",
+          "uk": "Бракує `am`: коли ви раді, правильно `I am happy`."
+        },
+        "en:lesson-01:session-01:intro3:r3": {
+          "ru": "Фраза ещё не закончена: здесь нужно `happy`, то есть `I am happy`.",
+          "uk": "Фраза ще не закінчена: тут потрібно `happy`, тобто `I am happy`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a0345bb084e39b3afffd8d23b6122edf0c06a15a6a823485f21d86e66bbb5817"
+}

@@ -508,6 +508,12 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
             ...(Object.prototype.hasOwnProperty.call(entry, "responseFeedbackById")
                 ? ["responseFeedbackById"]
                 : []),
+            ...(Object.prototype.hasOwnProperty.call(entry, "responseAnalysisById")
+                ? ["responseAnalysisById"]
+                : []),
+            ...(Object.prototype.hasOwnProperty.call(entry, "responseDiagnosticsById")
+                ? ["responseDiagnosticsById"]
+                : []),
             ...(Object.prototype.hasOwnProperty.call(entry, "newWordEncounter")
                 ? ["newWordEncounter"]
                 : []),
@@ -529,6 +535,57 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
                 id(responseId),
                 localized(copy, 2_000),
             ])));
+        }
+        let responseAnalysisById;
+        if ("responseAnalysisById" in entry) {
+            if (!record(entry.responseAnalysisById))
+                fail();
+            const analysisEntries = Object.entries(entry.responseAnalysisById);
+            if (analysisEntries.length > 8)
+                fail();
+            const parsedResponseAnalysisById = Object.freeze(Object.fromEntries(analysisEntries.map(([responseId, localizedAnalysis]) => {
+                if (!record(localizedAnalysis))
+                    fail();
+                exactKeys(localizedAnalysis, generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES);
+                const parsedByLocale = Object.freeze(Object.fromEntries(generator_course_contract_1.LEARNING_V2_INTERFACE_LOCALES.map((locale) => [
+                    locale,
+                    (0, mode_native_payload_v1_1.validateLearningV2ModeTextAnalysisV1)(localizedAnalysis[locale]),
+                ])));
+                return [id(responseId), parsedByLocale];
+            })));
+            responseAnalysisById = parsedResponseAnalysisById;
+            if (responseFeedbackById && (Object.keys(parsedResponseAnalysisById).length !== Object.keys(responseFeedbackById).length ||
+                Object.keys(parsedResponseAnalysisById).some((responseId) => !(responseId in responseFeedbackById))))
+                fail();
+        }
+        let responseDiagnosticsById;
+        if ("responseDiagnosticsById" in entry) {
+            if (!record(entry.responseDiagnosticsById))
+                fail();
+            const diagnosticEntries = Object.entries(entry.responseDiagnosticsById);
+            if (diagnosticEntries.length > 8)
+                fail();
+            responseDiagnosticsById = Object.freeze(Object.fromEntries(diagnosticEntries.map(([responseId, rawDiagnostic]) => {
+                if (!record(rawDiagnostic))
+                    fail();
+                exactKeys(rawDiagnostic, [
+                    "errorType",
+                    "whyTemptingByLocale",
+                    "whyWrongHereByLocale",
+                    "minimalContrastByLocale",
+                    "acceptabilityBoundaryByLocale",
+                ]);
+                return [id(responseId), Object.freeze({
+                        errorType: text(rawDiagnostic.errorType, 160),
+                        whyTemptingByLocale: localized(rawDiagnostic.whyTemptingByLocale, 2_000),
+                        whyWrongHereByLocale: localized(rawDiagnostic.whyWrongHereByLocale, 2_000),
+                        minimalContrastByLocale: localized(rawDiagnostic.minimalContrastByLocale, 2_000),
+                        acceptabilityBoundaryByLocale: localized(rawDiagnostic.acceptabilityBoundaryByLocale, 2_000),
+                    })];
+            })));
+            if (!responseFeedbackById ||
+                Object.keys(responseDiagnosticsById).some((responseId) => !(responseId in responseFeedbackById)))
+                fail();
         }
         ids.add(interactionId);
         exactKeys(entry.report, ["available", "reportContextRef", "screen"]);
@@ -634,6 +691,8 @@ function parseLearningV2CourseSessionAuxiliaryChildV1(raw) {
             secondErrorExplanationRef: id(entry.secondErrorExplanationRef),
             secondErrorExplanationByLocale: localized(entry.secondErrorExplanationByLocale, 2_000),
             ...(responseFeedbackById ? { responseFeedbackById } : {}),
+            ...(responseAnalysisById ? { responseAnalysisById } : {}),
+            ...(responseDiagnosticsById ? { responseDiagnosticsById } : {}),
             ...(newWordEncounter ? { newWordEncounter } : {}),
         });
     }));

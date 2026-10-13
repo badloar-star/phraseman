@@ -269,7 +269,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите Тома у ворот про нервы",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you anxious?`",
+                "uk": "з `you` потрібна форма `are`: `Are you anxious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -360,7 +370,11 @@
             "ru": "Соберите вопрос — сосед допил бутылку до дна и спрашивает, где кран",
             "uk": "Складіть запитання — сусід допив пляшку до дна і питає, де кран"
           },
-          "orderedTokens": ["Are", "you", "thirsty"],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "thirsty"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -395,7 +409,17 @@
           "authoredDistractorTokens": [
             "anxious"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты спокоен?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают, спокоен ли человек, поэтому нужно `relaxed`: `Are you relaxed?`",
+                "uk": "тут питають, чи людина спокійна, тому потрібне `relaxed`: `Are you relaxed?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -645,11 +669,11 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "вам действительно хочется есть",
+        "prompt": "Вам действительно хочется есть",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "вам действительно хочется есть",
+        "accessibilityLabel": "Вам действительно хочется есть",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Yes, I am.",
@@ -665,7 +689,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "вам действительно хочется есть",
+              "feedbackByLocale": {
+                "ru": "это утвердительный короткий ответ: `Yes, I am.`",
+                "uk": "це стверджувальна коротка відповідь: `Yes, I am.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -714,7 +748,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставьте слово — приятель споткнулся на ",
+          "testedDimension": "Вставьте слово — приятель споткнулся на ступеньках и держится за колено",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-07:i14:r2",
@@ -764,7 +798,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите приятеля, не голоден ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1199,7 +1243,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите Тома у ворот про нервы",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you anxious?`",
+                "uk": "з `you` потрібна форма `are`: `Are you anxious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1290,7 +1344,11 @@
             "ru": "Соберите вопрос — сосед допил бутылку до дна и спрашивает, где кран",
             "uk": "Складіть запитання — сусід допив пляшку до дна і питає, де кран"
           },
-          "orderedTokens": ["Are", "you", "thirsty"],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "thirsty"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1325,7 +1383,17 @@
           "authoredDistractorTokens": [
             "anxious"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты спокоен?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают, спокоен ли человек, поэтому нужно `relaxed`: `Are you relaxed?`",
+                "uk": "тут питають, чи людина спокійна, тому потрібне `relaxed`: `Are you relaxed?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1575,11 +1643,11 @@
         "purpose": "retrieval_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "вам справді хочеться їсти",
+        "prompt": "Вам справді хочеться їсти",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "вам справді хочеться їсти",
+        "accessibilityLabel": "Вам справді хочеться їсти",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Yes, I am.",
@@ -1595,7 +1663,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "вам действительно хочется есть",
+              "feedbackByLocale": {
+                "ru": "это утвердительный короткий ответ: `Yes, I am.`",
+                "uk": "це стверджувальна коротка відповідь: `Yes, I am.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1644,7 +1722,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставте слово — приятель спіткнувся на с",
+          "testedDimension": "Вставте слово — приятель спіткнувся на сходах і тримається за коліно",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-07:i14:r2",
@@ -1694,7 +1772,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-07:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите приятеля, не голоден ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

@@ -1,0 +1,8 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-020	2026-10-12T16:25:06.357Z	ok	13504	marker+шагов_1+склейка+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/profile-020.png	0
+profile-021	2026-10-12T16:25:53.598Z	ok	11695	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-021.png	0
+profile-022	2026-10-12T16:26:48.896Z	ok	12860	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-022.png	0
+paywalls-023	2026-10-12T16:27:31.023Z	ok	12971	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/paywalls-023.png	0
+paywalls-024	2026-10-12T16:28:27.878Z	ok	15287	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/paywalls-024.png	0
+cards-section-035	2026-10-12T16:28:47.499Z	ok	13313	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-section-035.png	0
+settings-gap-008	2026-10-12T16:29:34.014Z	ok	11991	marker+шагов_4+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/settings-gap-008.png	0

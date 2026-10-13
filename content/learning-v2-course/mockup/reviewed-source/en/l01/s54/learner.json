@@ -9,13 +9,13 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — nervous",
+      "prompt": "Карточка слова",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i01:audio"
       ],
-      "accessibilityLabel": "Карточка слова — nervous",
+      "accessibilityLabel": "Карточка слова",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -99,6 +99,15 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — nervous",
+            "feedbackByLocale": {
+              "ru": "Верно: `nervous` — «волнуюсь».",
+              "uk": "Правильно: `nervous` — «хвилююся»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — nervous",
@@ -128,13 +137,13 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — confident",
+      "prompt": "Карточка слова",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i03:audio"
       ],
-      "accessibilityLabel": "Карточка слова — confident",
+      "accessibilityLabel": "Карточка слова",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -218,6 +227,15 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — confident",
+            "feedbackByLocale": {
+              "ru": "Верно: `confident` — «уверен в себе».",
+              "uk": "Правильно: `confident` — «упевнений у собі»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i04:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — confident",
@@ -289,6 +307,15 @@
         "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
+            "feedbackByLocale": {
+              "ru": "Верно: `confident` — «уверен в себе»; здесь вы говорите, что справитесь с работой.",
+              "uk": "Правильно: `confident` — «упевнений у собі»; тут ви кажете, що впораєтеся з роботою."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i05:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — Анна спрашивает, справитесь ли вы",
@@ -316,13 +343,13 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Карточка слова — fluent",
+      "prompt": "Карточка слова",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-54:i06:audio"
       ],
-      "accessibilityLabel": "Карточка слова — fluent",
+      "accessibilityLabel": "Карточка слова",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -406,6 +433,15 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i07:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — fluent",
+            "feedbackByLocale": {
+              "ru": "Верно: `fluent` — «говорю свободно».",
+              "uk": "Правильно: `fluent` — «говорю вільно»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i07:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — fluent",
@@ -455,7 +491,21 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «я волнуюсь»",
+            "feedbackByLocale": {
+              "ru": "с `I` говорят `am`, не `is`.",
+              "uk": "з `I` кажуть `am`, не `is`."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: `I am nervous.` — после `I` нужна форма `am`.",
+          "uk": "Правильно: `I am nervous.` — після `I` потрібна форма `am`."
+        }
       },
       "scriptedAlternate": null
     },
@@ -507,6 +557,15 @@
         "testedDimension": "Вставьте слово — Анна спрашивает про английский",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Анна спрашивает про английский",
+            "feedbackByLocale": {
+              "ru": "Верно: `fluent` — «говорю свободно»: это ответ о том, как вы говорите по-английски.",
+              "uk": "Правильно: `fluent` — «говорю вільно»: це відповідь про те, як ви говорите англійською."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — Анна спрашивает про английский",
@@ -555,7 +614,30 @@
           "are",
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «я уверен в себе»",
+            "feedbackByLocale": {
+              "ru": "с `I` говорят `am`, не `are`.",
+              "uk": "з `I` кажуть `am`, не `are`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-54:i10:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «я уверен в себе»",
+            "feedbackByLocale": {
+              "ru": "с `I` говорят `am`, не `is`.",
+              "uk": "з `I` кажуть `am`, не `is`."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: `I am confident.` — после `I` нужна форма `am`.",
+          "uk": "Правильно: `I am confident.` — після `I` потрібна форма `am`."
+        }
       },
       "scriptedAlternate": null
     },
@@ -588,7 +670,21 @@
         "authoredDistractorTokens": [
           "nervous"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «я говорю свободно»",
+            "feedbackByLocale": {
+              "ru": "она значит «волнуюсь», а здесь речь о языке.",
+              "uk": "вона означає «хвилююся», а тут ідеться про мову."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: `I am fluent.` — `fluent` описывает свободную речь.",
+          "uk": "Правильно: `I am fluent.` — `fluent` описує вільне мовлення."
+        }
       },
       "scriptedAlternate": null
     },
@@ -640,6 +736,15 @@
         "testedDimension": "Вставьте слово — вас спросили, всегда ли",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-54:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вас спросили, всегда ли вы говорите правду",
+            "feedbackByLocale": {
+              "ru": "Верно: `honest` — «честен»: вас спросили, говорите ли вы правду.",
+              "uk": "Правильно: `honest` — «чесний»: вас спитали, чи завжди ви кажете правду."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-54:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вас спросили, всегда ли",
@@ -687,7 +792,21 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спокойны ли вы в трудный день",
+            "feedbackByLocale": {
+              "ru": "вы отвечаете, что спокойны, а не наоборот.",
+              "uk": "ви відповідаєте, що спокійні, а не навпаки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: `I am calm.` — после `I` нужна форма `am`, а `calm` значит «спокоен».",
+          "uk": "Правильно: `I am calm.` — після `I` потрібна форма `am`, а `calm` означає «спокійний»."
+        }
       },
       "scriptedAlternate": null
     },
@@ -783,7 +902,21 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-54:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — можно ли начинать",
+            "feedbackByLocale": {
+              "ru": "с `I` говорят `am`.",
+              "uk": "з `I` кажуть `am`."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: `I am ready.` — с `I` нужна форма `am`; `ready` значит «готов».",
+          "uk": "Правильно: `I am ready.` — з `I` потрібна форма `am`; `ready` означає «готовий»."
+        }
       },
       "scriptedAlternate": null
     },
@@ -999,5 +1132,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7665eebdd89618c0582eec2bda461e1504b3c90017a07e14228a73407f4b5253"
+  "learnerFingerprint": "67f87ceaf233452d11efa1bca49017e8ee0e10ec3711b3d0385f109920ac7a41"
 }

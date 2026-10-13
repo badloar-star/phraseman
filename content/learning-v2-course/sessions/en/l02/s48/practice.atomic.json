@@ -126,7 +126,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — вы с другом видите, что",
+          "testedDimension": "Вставьте слово — вы с другом видите, что зал ещё готовят; спросите организатора, не рано ли вы пришли",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i02:r2",
@@ -187,17 +187,27 @@
         "prompt": "Произнесите фразу — друг спрашивает, помните ли вы точное время выхода; вы сомневаетесь",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-48:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-48:i04:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — друг спрашивает, помните ли вы точное время выхода; вы сомневаетесь",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-48:i04:audio", "transcript": "I am not sure."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-48:i04:audio",
+            "transcript": "I am not sure."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "I am not sure.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -208,16 +218,45 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»",
-        "responseOptions": [{"responseId":"en:lesson-02:session-48:i05:r1","text":"wrong"},{"responseId":"en:lesson-02:session-48:i05:r2","text":"clear"},{"responseId":"en:lesson-02:session-48:i05:r3","text":"polite"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-48:i05:r1",
+            "text": "wrong"
+          },
+          {
+            "responseId": "en:lesson-02:session-48:i05:r2",
+            "text": "clear"
+          },
+          {
+            "responseId": "en:lesson-02:session-48:i05:r3",
+            "text": "polite"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru":"Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»","uk":"Вставте слово — ви назвали час виступу, але не впевнені в ньому; запитайте організатора: «Я помиляюся?»"},
-          "gappedTargetPhrase":"Am I ___ ?",
-          "gapOptions":[{"responseId":"en:lesson-02:session-48:i05:r1","text":"wrong"},{"responseId":"en:lesson-02:session-48:i05:r2","text":"clear"},{"responseId":"en:lesson-02:session-48:i05:r3","text":"polite"}],
-          "testedDimension": "Вставьте слово — вы назвали время выступ",
+          "localizedScene": {
+            "ru": "Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»",
+            "uk": "Вставте слово — ви назвали час виступу, але не впевнені в ньому; запитайте організатора: «Я помиляюся?»"
+          },
+          "gappedTargetPhrase": "Am I ___ ?",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-02:session-48:i05:r1",
+              "text": "wrong"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:i05:r2",
+              "text": "clear"
+            },
+            {
+              "responseId": "en:lesson-02:session-48:i05:r3",
+              "text": "polite"
+            }
+          ],
+          "testedDimension": "Вставьте слово — вы назвали время выступления, но не уверены в нём; спросите организатора: «Я ошибаюсь?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i05:r2",
@@ -250,14 +289,23 @@
         "prompt": "Послушайте и соберите — вы с другом проверяете порядок реплик перед репетицией",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-48:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-48:i06:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — вы с другом проверяете порядок реплик перед репетицией",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-48:i06:audio","transcript":"Are we sure?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-48:i06:audio",
+            "transcript": "Are we sure?"
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are we sure?",
-          "orderedTokens": ["Are","we","sure"],
+          "orderedTokens": [
+            "Are",
+            "we",
+            "sure"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -558,7 +606,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — вы хотите узнать мнение",
+          "testedDimension": "Вставьте слово — вы хотите узнать мнение организатора о своей манере общения; спросите, считает ли он вас вежливым",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i11:r2",
@@ -942,7 +990,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — ви з другом бачите, що з",
+          "testedDimension": "Вставте слово — ви з другом бачите, що залу ще готують; запитайте організатора, чи рано ви прийшли",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i02:r2",
@@ -1003,17 +1051,27 @@
         "prompt": "Промовте фразу — друг запитує, чи пам’ятаєте ви точний час виходу; ви сумніваєтеся",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-48:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-48:i04:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — друг запитує, чи пам’ятаєте ви точний час виходу; ви сумніваєтеся",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-48:i04:audio", "transcript": "I am not sure."},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-48:i04:audio",
+            "transcript": "I am not sure."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "I am not sure.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1062,7 +1120,7 @@
               "text": "polite"
             }
           ],
-          "testedDimension": "Вставте слово — ви назвали час виступу, ",
+          "testedDimension": "Вставте слово — ви назвали час виступу, але не впевнені в ньому; запитайте організатора: «Я помиляюся?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i05:r2",
@@ -1095,14 +1153,23 @@
         "prompt": "Послухайте й складіть — ви з другом перевіряєте порядок реплік перед репетицією",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-48:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-48:i06:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть — ви з другом перевіряєте порядок реплік перед репетицією",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-48:i06:audio","transcript":"Are we sure?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-48:i06:audio",
+            "transcript": "Are we sure?"
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are we sure?",
-          "orderedTokens": ["Are","we","sure"],
+          "orderedTokens": [
+            "Are",
+            "we",
+            "sure"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1403,7 +1470,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — ви хочете дізнатися думк",
+          "testedDimension": "Вставте слово — ви хочете дізнатися думку організатора про свою манеру спілкування; запитайте, чи вважає він вас ввічливим",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-48:i11:r2",

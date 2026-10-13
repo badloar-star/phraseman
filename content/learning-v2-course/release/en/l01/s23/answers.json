@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-23:i16",
-    "correctText": "angry",
-    "correctResponseId": "en:lesson-01:session-23:i16:r1"
+    "correctText": "He is angry.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-23:i17",

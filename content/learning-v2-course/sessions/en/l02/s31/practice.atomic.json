@@ -288,7 +288,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставьте слово — вы только сели за стол ",
+          "testedDimension": "Вставьте слово — вы только сели за стол и хотите выбрать еду",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i05:r2",
@@ -385,7 +385,7 @@
               "text": "bill"
             }
           ],
-          "testedDimension": "Вставьте слово — в меню строчка без цифр",
+          "testedDimension": "Вставьте слово — в меню строчка без цифры, спрашиваете про цену",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i07:r2",
@@ -446,7 +446,7 @@
             "audioTargetId": "en:lesson-02:session-31:i08:audioB",
             "transcript": "ball"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про счёт",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про счёт?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i08:r2",
@@ -608,7 +608,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставьте слово — вы ищете, где помыть ру",
+          "testedDimension": "Вставьте слово — вы ищете, где помыть руки, и спрашиваете официанта",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i11:r2",
@@ -641,17 +641,27 @@
         "prompt": "Произнесите фразу — официант показал на угол зала",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-31:i12:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-31:i12:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — официант показал на угол зала",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-31:i12:audio", "transcript": "It is in the corner." },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-31:i12:audio",
+            "transcript": "It is in the corner."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "It is in the corner.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -728,7 +738,7 @@
               "text": "menu"
             }
           ],
-          "testedDimension": "Вставьте слово — до нужного места два ша",
+          "testedDimension": "Вставьте слово — до нужного места два шага от вашего стола",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i14:r2",
@@ -811,7 +821,17 @@
           "authoredDistractorTokens": [
             "name"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-31:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете цену — `price`, а не название вещи.",
+                "uk": "ви питаєте ціну — `price`, а не назву речі."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1199,7 +1219,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставте слово — ви щойно сіли за стіл і ",
+          "testedDimension": "Вставте слово — ви щойно сіли за стіл і хочете вибрати їжу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i05:r2",
@@ -1296,7 +1316,7 @@
               "text": "bill"
             }
           ],
-          "testedDimension": "Вставте слово — у меню рядок без цифри, ",
+          "testedDimension": "Вставте слово — у меню рядок без цифри, питаєте про ціну",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i07:r2",
@@ -1357,7 +1377,7 @@
             "audioTargetId": "en:lesson-02:session-31:i08:audioB",
             "transcript": "ball"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про рахуно",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про рахунок?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i08:r2",
@@ -1519,7 +1539,7 @@
               "text": "rules"
             }
           ],
-          "testedDimension": "Вставте слово — ви шукаєте, де помити ру",
+          "testedDimension": "Вставте слово — ви шукаєте, де помити руки, і питаєте офіціанта",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i11:r2",
@@ -1552,17 +1572,27 @@
         "prompt": "Промовте фразу — офіціант показав на кут зали",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-31:i12:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-31:i12:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — офіціант показав на кут зали",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-31:i12:audio", "transcript": "It is in the corner." },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-31:i12:audio",
+            "transcript": "It is in the corner."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "It is in the corner.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1639,7 +1669,7 @@
               "text": "menu"
             }
           ],
-          "testedDimension": "Вставте слово — до потрібного місця два ",
+          "testedDimension": "Вставте слово — до потрібного місця два кроки від вашого столу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-31:i14:r2",
@@ -1722,7 +1752,17 @@
           "authoredDistractorTokens": [
             "name"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-31:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы держите вещь в руках и не видите ценника; спросите про цену",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете цену — `price`, а не название вещи.",
+                "uk": "ви питаєте ціну — `price`, а не назву речі."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

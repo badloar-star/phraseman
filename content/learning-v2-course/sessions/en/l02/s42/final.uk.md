@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-42:i01; family: listen_choose -->
 Ціль: `Am I early?`
 Варіанти: `Am I early?` · `Am I late?` · `Are you early?`
+- Am I late? — *У цьому запитанні останнє слово `late` — «із запізненням». У записі звучить `early` — «рано».*
+- Are you early? — *Це запитання до співрозмовника. Запис починається з `Am I`: людина запитує про себе.*
+
 
 **2 · Вставте слово — ви не впевнені, чи встигли до початку прогулянки; запитайте: «Я запізнився?»**
 <!-- interaction_id: en:lesson-02:session-42:i02; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `late` · `here` · `ready`
+- here — *Це «тут». Ви уточнюєте, чи не запізнилися, тому потрібне `late`.*
+- ready — *Це «готовий». Зараз запитання про час вашого приходу: `Am I late?`*
+
 
 **3 · Складіть фразу — друг не знає точного часу збору; запитайте організатора, чи ви запізнилися**
 <!-- interaction_id: en:lesson-02:session-42:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-42:i04; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `here` · `early` · `welcome`
+- early — *Вийде «Я прийшов рано». Друг запитує, чи ви дійшли, тому повідомте, що ви тут: `here`.*
+- welcome — *Це слово про те, чи вам раді. Для повідомлення про ваше місце потрібне `here`.*
+
 
 **5 · Послухайте й виберіть — яке запитання учасник зустрічі поставив другові**
 <!-- interaction_id: en:lesson-02:session-42:i05; family: listen_choose -->
 Ціль: `Am I welcome here?`
 Варіанти: `Am I welcome here?` · `Am I early?` · `Are you welcome here?`
+- Am I early? — *Це «Я прийшов раніше запланованого?» У записі людина запитує, чи їй раді: `Am I welcome here?`*
+- Are you welcome here? — *Так запитують про співрозмовника. Запис починається з `Am I`: учасник запитує про себе.*
+
 
 **6 · Складіть фразу — друг шукає інших учасників; ви бачите їх біля місця збору, повідомте: «Вони тут»**
 <!-- interaction_id: en:lesson-02:session-42:i06; family: phrase_builder -->
@@ -84,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i07; family: context_gap_grammar -->
 Ціль: `___ I welcome here?`
 Варіанти: `Am` · `Is` · `Are`
+- Is — *Запитання про себе з `I` тут починається з `Am`: `Am I welcome here?`*
+- Are — *Сполучення `Are I` для цього запитання не підходить. Потрібні перші два слова `Am I`.*
+
 
 **8 · Послухайте й складіть — організатор уточнює у вашого друга час його приходу**
 <!-- interaction_id: en:lesson-02:session-42:i08; family: listen_build_dictation -->
@@ -98,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i10; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `early` · `late` · `welcome`
+- late — *Це запитання про запізнення. Ви уточнюєте, чи прийшли раніше запланованого часу: `Am I early?`*
+- welcome — *Так ви запитаєте, чи вам раді. Зараз треба перевірити час приходу: `early`.*
+
 
 **11 · Складіть фразу — організатор назвав час початку, і ви зрозуміли, що встигли; повідомте другові, що ви не запізнилися**
 <!-- interaction_id: en:lesson-02:session-42:i11; family: phrase_builder -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i12; family: listen_choose -->
 Ціль: `You are welcome here.`
 Варіанти: `You are welcome here.` · `You are welcome.` · `You are not welcome here.`
+- You are welcome. — *У цьому варіанті немає `here`. У записі організатор каже повністю: `You are welcome here` — «Вам тут раді».*
+- You are not welcome here. — *Слово `not` змінює зміст на заперечний. У записі його немає: організатор каже другові, що йому раді.*
+
 
 **13 · Складіть фразу — друг хоче поставити організатору запитання, але не бачить його; запитайте іншого учасника, чи організатор тут**
 <!-- interaction_id: en:lesson-02:session-42:i13; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i14; family: context_gap_grammar -->
 Ціль: `Am ___ early?`
 Варіанти: `I` · `you` · `he`
+- you — *Це «ти» або «ви». У запитанні «Я прийшов раніше запланованого?» потрібне `I`: `Am I early?`*
+- he — *Це «він». Учасник запитує про себе, тому тут потрібне `I`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-42:i15; family: scripted_repeat_compare -->

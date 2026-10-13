@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-tschuess-positive-admission.v1",
+  "status": "PASS",
+  "decision": "EXACT_POSITIVE_CANONICAL_LEXICAL_SENSE_ADMISSION",
+  "scope": {
+    "admissionScope": "EXACT_TSCHUESS_SENSE_ONLY",
+    "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+    "canonicalSenseId": "de_lex_l01_c02_tschuess_v1",
+    "checkpointPacketId": "de_l01_c02_s16",
+    "firstIntroductionPacketId": null
+  },
+  "sourceBindings": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "lexicalRegistryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v3.json",
+      "sha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v3.json",
+      "sha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "inventoryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v3.json",
+      "sha256": "702a491699774d2f0cc90c19755bc8747a0b1663ddd2e94f272b68d40ddc1d88"
+    },
+    "task5V2Immutable": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "sha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23"
+    },
+    "inventoryV2Immutable": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    },
+    "tschussExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/extraction_map.json",
+      "sha256": "072ae39ffa27ca489d4152bac243dd2ee50de90765d3089dd8f87b7d48d6d0fe"
+    },
+    "dwdsRaw": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/raw/dwds_tschuess.html",
+      "sha256": "78c9f5c885d69b0719a5910e207c5f73113ef4ea7cbf45c57a794ef55df15650"
+    },
+    "sourceHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_source_hold_v1/manifest.json",
+      "sha256": "d7aa6eed248a5d24c57eafcfdbf4560d433e985fc0a054a86c9836f38fadd612"
+    },
+    "priorHoldAdjudication": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c02_tschuess_admission_adjudication_hold_v1/adjudication.json",
+      "sha256": "f430908b804b5ffe325154b569a3630f4f10a6fb621b661ffdff22340de15051"
+    },
+    "goetheA1WortlisteRaw": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/raw/goethe_wortliste.pdf",
+      "sha256": "45fb648bc0ac02338f7898cae065953e320ab72ed0c14e13e0deffe6f1c5d64e"
+    },
+    "formulaicManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+      "sha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+    },
+    "defaultConsumer": {
+      "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+      "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+      "v4Selected": false
+    },
+    "englishSurface": {
+      "roots": [
+        "modules/learning-v2/curriculum/en",
+        "content/learning-v2-course/curriculum/en",
+        "content/learning-v2-course/release/en",
+        "modules/learning-v2/content/factory_native/generated_release/en"
+      ],
+      "fileCount": 1570,
+      "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+    }
+  },
+  "artifactBindings": {
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_tschuess_positive_admission_v1/lexical_evidence.json",
+      "sha256": "b8d90064c6c7994369c8d14d935878f976af0ca45b506e77122f454c16dfe72d"
+    },
+    "lexicalRegistryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v4.json",
+      "sha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task6V4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v4.json",
+      "sha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "inventoryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v4.json",
+      "sha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    }
+  },
+  "interpretation": {
+    "sourcePartOfSpeech": "Interjektion",
+    "curriculumPartOfSpeech": "fixed_expression",
+    "rule": "SOURCE_GROUNDED_INTERJECTION_TO_FIXED_EXPRESSION",
+    "sourceRegisterMarkers": ["landschaftlich", "umgangssprachlich"],
+    "pedagogicalSense": "colloquial informal leave-taking",
+    "interactionRole": "interaction_closing",
+    "situation": "familiar departure",
+    "neutralRegisterClaim": false,
+    "unqualifiedStandardGermanClaim": false
+  },
+  "allocation": {
+    "plannedUsePacketIds": ["de_l01_c02_s16"],
+    "checkpointPacketId": "de_l01_c02_s16",
+    "firstIntroductionPacketId": null,
+    "resolvedPlanIds": 8,
+    "unresolvedPlanIds": 280,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "phraseBoundary": {
+    "phraseAdmission": false,
+    "exactTschuessFrameAdmitted": false,
+    "existingCompositePhraseFrameId": "de_pf_l01_c02_tschuess_aufzug_v1",
+    "existingCompositeModified": false,
+    "lexicalSenseLinkAdded": false
+  },
+  "predecessorImmutability": {
+    "v2Changed": false,
+    "v3Changed": false,
+    "priorTschuessHoldChanged": false
+  },
+  "authority": {
+    "canonicalAdmission": true,
+    "admissionScope": "EXACT_TSCHUESS_SENSE_ONLY",
+    "phraseAuthority": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false
+  }
+}

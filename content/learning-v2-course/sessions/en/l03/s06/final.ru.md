@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i02; family: listen_choose -->
 Цель: `basket`
 Варианты: `basket` · `casket` · `biscuit`
+- casket — *Первый звук в `casket` — «к», а в `basket` — «б». В записи `basket`.*
+- biscuit — *При первом гласном в `basket` рот открыт шире, чем в `biscuit`. Здесь звучит `basket`.*
+
 
 **3 · Карточка слова — trolley**
 <!-- interaction_id: en:lesson-03:session-06:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i04; family: listen_choose -->
 Цель: `trolley`
 Варианты: `trolley` · `brolly` · `folly`
+- brolly — *В начале `brolly` губы смыкаются для `b`. В `trolley` язык ненадолго перекрывает воздух для `t`; затем слышен английский `r`. В записи — `trolley`.*
+- folly — *`folly` начинается с `f`: воздух проходит между нижней губой и верхними зубами. В `trolley` язык сначала ненадолго перекрывает воздух для `t`, затем слышен английский `r`. Здесь — `trolley`.*
+
 
 **5 · Соберите короткое название — друг спрашивает, что вы выбрали для хранения мелочей; назовите корзину двумя словами**
 <!-- interaction_id: en:lesson-03:session-06:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i07; family: listen_choose -->
 Цель: `tag`
 Варианты: `tag` · `bag` · `rag`
+- bag — *В `bag` первым слышно «б», а в `tag` — «т». В записи `tag`.*
+- rag — *`rag` начинается с плавного английского `r`, без удара кончиком языка. `tag` — с короткого `t`, для которого язык ненадолго перекрывает воздух. Здесь — `tag`.*
+
 
 **8 · Послушайте и соберите — друг говорит о предмете у вас в руке**
 <!-- interaction_id: en:lesson-03:session-06:i08; family: listen_build_dictation -->
@@ -102,6 +111,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i11; family: context_gap_grammar -->
 Цель: `It ___ empty.`
 Варианты: `is` · `are` · `am`
+- are — *Об этой корзине говорим `It is empty`. Форма `are` с `It` здесь не подходит.*
+- am — *Форма `am` относится к `I`. Здесь речь о корзине, поэтому нужно `It is empty`.*
+
 
 **12 · Соберите вопрос — в дальнем проходе вы заметили предмет на колёсах; уточните у друга, тележка ли это**
 <!-- interaction_id: en:lesson-03:session-06:i12; family: phrase_builder -->
@@ -112,6 +124,9 @@
 <!-- interaction_id: en:lesson-03:session-06:i13; family: context_gap_grammar -->
 Цель: `It is ___ basket.`
 Варианты: `not a` · `no a` · `a not`
+- no a — *В этой фразе отрицание передаёт `not` после `is`: `It is not a basket`.*
+- a not — *Здесь `not` стоит перед названием `a basket`, а не внутри него: `It is not a basket`.*
+
 
 **14 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-06:i14; family: scripted_repeat_compare -->

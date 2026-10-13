@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+community-024	2026-10-13T07:19:27.130Z	error	14144	step_target_not_found:#friend-row-body-dev-demo-friend-1+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T07-18-43-876Z/community-024.error.png	0

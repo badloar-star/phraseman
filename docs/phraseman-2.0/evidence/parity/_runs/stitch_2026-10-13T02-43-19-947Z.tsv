@@ -1,0 +1,2 @@
+id	time	result	detail	file
+dialogs-010	2026-10-13T02:43:21.925Z	failed	склейка_не_удалась: own error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-010.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=501463 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/dialogs-010.png

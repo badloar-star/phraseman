@@ -100,6 +100,10 @@
 <!-- interaction_id: en:lesson-03:session-39:i09; family: context_gap_grammar -->
 Ціль: `___ are grapes.`
 Варіанти: `Those` · `These` · `That` · `This`
+- These — *`These are grapes` підходить для винограду поруч. Ця група далі, тому потрібне `Those`.*
+- That — *`That` стосується одного предмета й потребує `is`. Тут називають групу.*
+- This — *`This` стосується одного предмета поруч. Тут група розташована далі.*
+
 
 **12 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-39:i12:s01; family: phrase_builder -->
@@ -113,6 +117,10 @@
 <!-- interaction_id: en:lesson-03:session-39:i13; family: listen_choose -->
 Ціль: `These onions, please.`
 Варіанти: `Ці цибулини, будь ласка.` · `Ті цибулини, будь ласка.` · `Ці лимони, будь ласка.` · `Це цибулини.`
+- Ті цибулини, будь ласка. — *У записі чути `these`, а не `those`: вибирають близьку групу.*
+- Ці лимони, будь ласка. — *Названо `onions` — цибулини, а не `lemons` — лимони.*
+- Це цибулини. — *У записі немає `are`: це прохання додати товар, а не твердження «Це цибулини».*
+
 
 **15 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-39:i14:s01; family: phrase_builder -->

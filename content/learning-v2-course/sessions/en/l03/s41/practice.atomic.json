@@ -90,17 +90,41 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите сотрудника у стойки",
-        "responseOptions": [{"responseId":"en:lesson-03:session-41:i05:r1","text":"cashier"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i05:r1",
+            "text": "cashier"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-41:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите сотрудника у стойки",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-41:i05:audio","transcript":"cashier"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-41:i05:r1","targetText":"cashier","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,
-          "wordCard":{"word":"cashier","definitionByLocale":{"ru":"«кассир». Сотрудник за стойкой, который принимает оплату.","uk":"«касир». Працівник за стійкою, який приймає оплату."}}
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i05:audio",
+            "transcript": "cashier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i05:r1",
+              "targetText": "cashier",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashier",
+            "definitionByLocale": {
+              "ru": "«кассир». Сотрудник за стойкой, который принимает оплату.",
+              "uk": "«касир». Працівник за стійкою, який приймає оплату."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -203,8 +227,15 @@
           },
           "slowReferenceAudio": null,
           "targetPhrase": "cashier",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -220,8 +251,64 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соедините слова со значениями — у стойки обслуживания",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-41:i08:s01:p1","target":"receipt","meaningByLocale":{"ru":"чек","uk":"чек"}},{"pairId":"en:lesson-03:session-41:i08:s01:p2","target":"counter","meaningByLocale":{"ru":"стойка","uk":"стійка"}},{"pairId":"en:lesson-03:session-41:i08:s01:p3","target":"cashier","meaningByLocale":{"ru":"кассир","uk":"касир"}},{"pairId":"en:lesson-03:session-41:i08:s01:p4","target":"sticker","meaningByLocale":{"ru":"наклейка","uk":"наліпка"}}],
-          "leftColumn":["receipt","counter","cashier","sticker"],"rightColumn":["чек","стойка","кассир","наклейка"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p2",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "стойка",
+                "uk": "стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p3",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p4",
+              "target": "sticker",
+              "meaningByLocale": {
+                "ru": "наклейка",
+                "uk": "наліпка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "counter",
+            "cashier",
+            "sticker"
+          ],
+          "rightColumn": [
+            "чек",
+            "стойка",
+            "кассир",
+            "наклейка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -252,7 +339,8 @@
             "a",
             "counter."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -303,9 +391,20 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "This is a receipt.",
-          "localizedMeaning":{"ru":"Соберите одну фразу — чек перед вами","uk":"Складіть одну фразу — чек перед вами"},
-          "orderedTokens":["This","is","a","receipt."],
-          "authoredDistractorTokens":["That","are"],
+          "localizedMeaning": {
+            "ru": "Соберите одну фразу — чек перед вами",
+            "uk": "Складіть одну фразу — чек перед вами"
+          },
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "receipt."
+          ],
+          "authoredDistractorTokens": [
+            "That",
+            "are"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -341,7 +440,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте артикли — расскажите о том же чеке",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте артиклі — скажіть про той самий чек"
           },
           "gappedTargetPhrase": "This is ___ receipt.",
@@ -653,7 +752,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте артикли — тот же кассир рядом",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте артиклі — той самий касир поруч"
           },
           "gappedTargetPhrase": "She is ___ cashier.",
@@ -897,7 +996,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте артикли — стойка уже названа",
+            "ru": "Вставьте один ответ в одну фразу",
             "uk": "Вставте артиклі — стійку вже названо"
           },
           "gappedTargetPhrase": "That is ___ counter.",
@@ -1044,7 +1143,8 @@
             "is",
             "open."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1170,7 +1270,8 @@
             "is",
             "here."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1323,17 +1424,41 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть працівника за стійкою",
-        "responseOptions": [{"responseId":"en:lesson-03:session-41:i05:r1","text":"cashier"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-41:i05:r1",
+            "text": "cashier"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-41:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-41:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть працівника за стійкою",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-41:i05:audio","transcript":"cashier"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-41:i05:r1","targetText":"cashier","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[],"isWordCard":true,
-          "wordCard":{"word":"cashier","definitionByLocale":{"ru":"«кассир». Сотрудник за стойкой, который принимает оплату.","uk":"«касир». Працівник за стійкою, який приймає оплату."}}
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-41:i05:audio",
+            "transcript": "cashier"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-41:i05:r1",
+              "targetText": "cashier",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "cashier",
+            "definitionByLocale": {
+              "ru": "«кассир». Сотрудник за стойкой, который принимает оплату.",
+              "uk": "«касир». Працівник за стійкою, який приймає оплату."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1436,8 +1561,15 @@
           },
           "slowReferenceAudio": null,
           "targetPhrase": "cashier",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle","modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1453,8 +1585,64 @@
         "audioTargetIds": [],
         "accessibilityLabel": "З'єднайте слова зі значеннями — біля стійки обслуговування",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-41:i08:s01:p1","target":"receipt","meaningByLocale":{"ru":"чек","uk":"чек"}},{"pairId":"en:lesson-03:session-41:i08:s01:p2","target":"counter","meaningByLocale":{"ru":"стойка","uk":"стійка"}},{"pairId":"en:lesson-03:session-41:i08:s01:p3","target":"cashier","meaningByLocale":{"ru":"кассир","uk":"касир"}},{"pairId":"en:lesson-03:session-41:i08:s01:p4","target":"sticker","meaningByLocale":{"ru":"наклейка","uk":"наліпка"}}],
-          "leftColumn":["receipt","counter","cashier","sticker"],"rightColumn":["чек","стійка","касир","наліпка"],"pairingKey":"pair_id","timerPolicy":{"enabledByDefault":true,"learnerCanDisable":true,"pausesOnInterruption":true},"finishStats":["speed","accuracy","personal_best"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p1",
+              "target": "receipt",
+              "meaningByLocale": {
+                "ru": "чек",
+                "uk": "чек"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p2",
+              "target": "counter",
+              "meaningByLocale": {
+                "ru": "стойка",
+                "uk": "стійка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p3",
+              "target": "cashier",
+              "meaningByLocale": {
+                "ru": "кассир",
+                "uk": "касир"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-41:i08:s01:p4",
+              "target": "sticker",
+              "meaningByLocale": {
+                "ru": "наклейка",
+                "uk": "наліпка"
+              }
+            }
+          ],
+          "leftColumn": [
+            "receipt",
+            "counter",
+            "cashier",
+            "sticker"
+          ],
+          "rightColumn": [
+            "чек",
+            "стійка",
+            "касир",
+            "наліпка"
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1485,7 +1673,8 @@
             "a",
             "counter."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1540,8 +1729,16 @@
             "ru": "Соберите одну фразу — чек перед вами",
             "uk": "Складіть одну фразу — чек перед вами"
           },
-          "orderedTokens": ["This", "is", "a", "receipt."],
-          "authoredDistractorTokens": ["That", "are"],
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "receipt."
+          ],
+          "authoredDistractorTokens": [
+            "That",
+            "are"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -2280,7 +2477,8 @@
             "is",
             "open."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -2406,7 +2604,8 @@
             "is",
             "here."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },

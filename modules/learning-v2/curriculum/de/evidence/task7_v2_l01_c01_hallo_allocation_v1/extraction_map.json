@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c01-hallo-source-extraction-map.v1",
+  "rawSources": {
+    "dwdsInterjection": {
+      "path": "raw/dwds_hallo_interjection.html",
+      "sha256": "b9dd475eb8828c1d38b000404cd519b3d66012941b2a13eead5325bda5e39467",
+      "bytes": 73289,
+      "metadataPath": "raw/dwds_hallo_interjection.http_metadata.txt",
+      "metadataSha256": "90df7fe607e472a13d90bd0619092a81c50c61c80de7ad5e52b11fca086c1dbc",
+      "metadataBytes": 194
+    },
+    "dwdsRejectedNoun": {
+      "path": "raw/dwds_Hallo_noun.html",
+      "sha256": "6a94ead9b18d74765083cff8fc6104597816d2edc1729cd2bcf33ce3948b818d",
+      "bytes": 57903,
+      "metadataPath": "raw/dwds_Hallo_noun.http_metadata.txt",
+      "metadataSha256": "4937b58562b833fda978078095861803cd55b6d2e060ece7ab658bab99f2ac7d",
+      "metadataBytes": 194
+    },
+    "goetheA1": {
+      "path": "raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "bytes": 3685205,
+      "metadataPath": "raw/goethe_a1_redemittel.http_metadata.txt",
+      "metadataSha256": "6e87480e6363b4aefc31896ae231f796190ef191c2398aec80ff5613db651d13",
+      "metadataBytes": 369,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "extractions": {
+    "dwdsTargetIdentity": {
+      "canonicalUrl": "https://www.dwds.de/wb/hallo",
+      "title": "hallo – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "hallo",
+      "sourcePartOfSpeech": "Interjektion",
+      "grammarSpanSha256": "747eb7b6c535ba7c597231e51dc8b149505f9bd2daa1db6ba1754e8754b208fa",
+      "grammarSpanUtf8Bytes": 188
+    },
+    "dwdsRejectedIdentity": {
+      "canonicalUrl": "https://www.dwds.de/wb/Hallo",
+      "title": "Hallo – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Hallo",
+      "sourcePartOfSpeech": "Substantiv (Neutrum)",
+      "grammarSpanSha256": "890157fe1aa273a255576681082c312dae3684ed4f7cfd1de7a513a69ad91b26",
+      "grammarSpanUtf8Bytes": 349,
+      "rejectionReason": "NOUN_ENTRY_IS_NOT_THE_TARGET_GREETING_INTERJECTION"
+    },
+    "dwdsGreeting": {
+      "sourceAnchor": "d-1-1-2",
+      "exactDefinitionGerman": "Anrede zur Begrüßung",
+      "spanSha256": "085d816983ebf50aa05254a390414e4e9169b1b49e3cf391ca4bb7808531c5b1",
+      "spanUtf8Bytes": 4170
+    },
+    "goetheOccurrence": {
+      "text": "Guten Tag! / Hallo!",
+      "utf8Bytes": 19,
+      "sha256": "e545fb373a9a5e0e5fa664af788d68528275b6b527241f01f684b2f4e4f31949",
+      "pdfPage": 3,
+      "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN",
+      "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_A1_LEARNING_INVENTORY"
+    }
+  }
+}

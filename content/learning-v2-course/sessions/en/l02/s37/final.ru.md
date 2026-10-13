@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-37:i01; family: listen_choose -->
 Цель: `Whose is it?`
 Варианты: `Whose is it?` · `Who is it?` · `Where is it?`
+- Who is it? — *Это «Кто это?». На записи первое слово — `Whose`: гость спрашивает, чья вещь.*
+- Where is it? — *Это «Где это?». Прозвучал вопрос о принадлежности вещи — `Whose is it?`*
+
 
 **2 · Вставьте слово — Алекс машет Илье; узнайте, кто он**
 <!-- interaction_id: en:lesson-02:session-37:i02; family: context_gap_grammar -->
 Цель: `___ is he?`
 Варианты: `Who` · `Whose` · `Where`
+- Whose — *Вы выясняете, кто мужчина. Начните с `Who`; `Whose` означает «чей».*
+- Where — *Получится «Где он?». Вам нужно узнать человека, который сейчас машет другу.*
+
 
 **3 · Соберите фразу — спросите Илью об Алексe у двери: «Кто он?»**
 <!-- interaction_id: en:lesson-02:session-37:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i04; family: listen_choose -->
 Цель: `strangers`
 Варианты: `strangers` · `rangers` · `dangers`
+- rangers — *`Rangers` — «рейнджеры». Послушайте начало слова: в записи `strangers`.*
+- dangers — *`Dangers` — «опасности». Послушайте начало слова: в записи `strangers`.*
+
 
 **5 · Соберите фразу — хозяин спрашивает, знаете ли вы двоих у двери; скажите: «Они незнакомцы»**
 <!-- interaction_id: en:lesson-02:session-37:i05; family: phrase_builder -->
@@ -79,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-37:i06; family: context_gap_grammar -->
 Цель: `___ is it?`
 Варианты: `Whose` · `Who` · `What`
+- Who — *Получится «Кто это?». Вы ищете владельца шарфа, поэтому нужно `Whose`.*
+- What — *Получится «Что это?». Вы уже видите, что это шарф; теперь выясняете, чей он.*
+
 
 **7 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-02:session-37:i07; family: listen_choose -->
 Цель: `twins`
 Варианты: `twins` · `pins` · `sins`
+- pins — *`Pins` — «булавки». Послушайте начало слова: в записи `twins`.*
+- sins — *`Sins` — «грехи». Послушайте начало слова: в записи `twins`.*
+
 
 **8 · Соберите фразу — гость принял вас с другом за близнецов; исправьте его: «Мы не близнецы»**
 <!-- interaction_id: en:lesson-02:session-37:i08; family: phrase_builder -->
@@ -93,6 +108,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i09; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `twins` · `host`
+- twins — *Это «близнецы». Чтобы подтвердить уверенность, скажите `I am sure`.*
+- host — *Это «хозяин вечера». Здесь вы говорите, что точно знаете ответ: нужно `sure`.*
+
 
 **10 · Соедините пары — вспомните слова из разговора в прихожей**
 <!-- interaction_id: en:lesson-02:session-37:i10; family: speed_match -->
@@ -103,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i11; family: listen_choose -->
 Цель: `Who are these people?`
 Варианты: `Who are these people?` · `Where are these people?` · `Who is the host?`
+- Where are these people? — *Этот вопрос о месте. На записи в начале `Who`: сосед хочет узнать, кто эти люди.*
+- Who is the host? — *Это вопрос об одном хозяине вечера. В конце записи слышно `these people` — «эти люди».*
+
 
 **12 · Соберите фразу — спросите друга о компании, которая ждёт у двери: «Кто эти люди?»**
 <!-- interaction_id: en:lesson-02:session-37:i12; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i14; family: context_gap_grammar -->
 Цель: `Who ___ the host?`
 Варианты: `is` · `are` · `am`
+- are — *С `are` вопрос не складывается: речь об одном хозяине. Правильно: `Who is the host?`*
+- am — *`Am` ставим после `I`. Здесь вопрос начинается с `Who`, поэтому нужен `is`: `Who is the host?`*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-37:i15; family: scripted_repeat_compare -->

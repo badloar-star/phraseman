@@ -1,0 +1,674 @@
+{
+  "method": "4-neighbour alpha >128 components; minimum size 0.05% canvas",
+  "rows": [
+    {
+      "mode": "dark",
+      "rank": 1,
+      "option": 1,
+      "file": "spire_rank_1_option_01r1.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        28388
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 1,
+      "option": 2,
+      "file": "spire_rank_1_option_02.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        39135
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 1,
+      "option": 3,
+      "file": "spire_rank_1_option_03r1.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        31158
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 1,
+      "option": 4,
+      "file": "spire_rank_1_option_04r1.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        35711
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 1,
+      "option": 5,
+      "file": "spire_rank_1_option_05r1.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        26208
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 2,
+      "option": 1,
+      "file": "spire_rank_2_option_01r1.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        14660,
+        14512
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 2,
+      "option": 2,
+      "file": "spire_rank_2_option_02.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        31485,
+        30822
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 2,
+      "option": 3,
+      "file": "spire_rank_2_option_03r1.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        20527,
+        20400
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 2,
+      "option": 4,
+      "file": "spire_rank_2_option_04r1.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        24549,
+        24494
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 2,
+      "option": 5,
+      "file": "spire_rank_2_option_05r1.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        10193,
+        10099
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 3,
+      "option": 1,
+      "file": "spire_rank_3_option_01r1.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        8402,
+        8212,
+        8144
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 3,
+      "option": 2,
+      "file": "spire_rank_3_option_02.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        23575,
+        24214,
+        24106
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 3,
+      "option": 3,
+      "file": "spire_rank_3_option_03r1.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        21745,
+        21417,
+        21253
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 3,
+      "option": 4,
+      "file": "spire_rank_3_option_04r1.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        23830,
+        23606,
+        23577
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 3,
+      "option": 5,
+      "file": "spire_rank_3_option_05r1.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        7803,
+        7785,
+        7856
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 4,
+      "option": 1,
+      "file": "spire_rank_4_option_01r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        8465,
+        8355,
+        8208,
+        8028
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 4,
+      "option": 2,
+      "file": "spire_rank_4_option_02r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        13809,
+        14042,
+        14013,
+        12789
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 4,
+      "option": 3,
+      "file": "spire_rank_4_option_03r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        9957,
+        10095,
+        10002,
+        9674
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 4,
+      "option": 4,
+      "file": "spire_rank_4_option_04r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        16651,
+        16545,
+        16439,
+        16845
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 4,
+      "option": 5,
+      "file": "spire_rank_4_option_05r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        5837,
+        5891,
+        5901,
+        5877
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 5,
+      "option": 1,
+      "file": "spire_rank_5_option_01r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        5876,
+        5875,
+        5832,
+        5803,
+        5812
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 5,
+      "option": 2,
+      "file": "spire_rank_5_option_02r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        8877,
+        8743,
+        8726,
+        8712,
+        8646
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 5,
+      "option": 3,
+      "file": "spire_rank_5_option_03r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        8431,
+        8419,
+        8399,
+        8424,
+        8482
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 5,
+      "option": 4,
+      "file": "spire_rank_5_option_04r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        10489,
+        10498,
+        10467,
+        10327,
+        10276
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 5,
+      "option": 5,
+      "file": "spire_rank_5_option_05r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        3673,
+        3842,
+        3898,
+        3908,
+        3944
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 6,
+      "option": 1,
+      "file": "spire_rank_6_option_01r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        4352,
+        4318,
+        4287,
+        4293,
+        4297,
+        4377
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 6,
+      "option": 2,
+      "file": "spire_rank_6_option_02r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        7395,
+        7368,
+        7338,
+        7375,
+        7313,
+        7217
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 6,
+      "option": 3,
+      "file": "spire_rank_6_option_03r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        7215,
+        7165,
+        7095,
+        7066,
+        7046,
+        6992
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 6,
+      "option": 4,
+      "file": "spire_rank_6_option_04r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        7750,
+        7738,
+        7555,
+        7502,
+        7514,
+        7484
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "dark",
+      "rank": 6,
+      "option": 5,
+      "file": "spire_rank_6_option_05r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        3375,
+        3355,
+        3379,
+        3350,
+        3345,
+        3341
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 1,
+      "option": 1,
+      "file": "spire_rank_1_option_01r3.accent.webp",
+      "largeComponents": 1,
+      "componentPixels": [
+        28516
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 1,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 1,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 1,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 1,
+      "option": 5,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 2,
+      "option": 1,
+      "file": "spire_rank_2_option_01r1.accent.webp",
+      "largeComponents": 2,
+      "componentPixels": [
+        14813,
+        14715
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 2,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 2,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 2,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 2,
+      "option": 5,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 3,
+      "option": 1,
+      "file": "spire_rank_3_option_01r1.accent.webp",
+      "largeComponents": 3,
+      "componentPixels": [
+        8453,
+        8328,
+        8295
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 3,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 3,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 3,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 3,
+      "option": 5,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 4,
+      "option": 1,
+      "file": "spire_rank_4_option_01r1.accent.webp",
+      "largeComponents": 4,
+      "componentPixels": [
+        8610,
+        8507,
+        8372,
+        8205
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 4,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 4,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 4,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 4,
+      "option": 5,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 5,
+      "option": 1,
+      "file": "spire_rank_5_option_01r1.accent.webp",
+      "largeComponents": 5,
+      "componentPixels": [
+        5983,
+        5998,
+        5957,
+        5908,
+        5918
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 5,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 5,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 5,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 5,
+      "option": 5,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 6,
+      "option": 1,
+      "file": "spire_rank_6_option_01r1.accent.webp",
+      "largeComponents": 6,
+      "componentPixels": [
+        4498,
+        4457,
+        4406,
+        4419,
+        4409,
+        4476
+      ],
+      "status": "component_count_passed",
+      "visualChevronVerification": false
+    },
+    {
+      "mode": "light",
+      "rank": 6,
+      "option": 2,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 6,
+      "option": 3,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 6,
+      "option": 4,
+      "status": "missing"
+    },
+    {
+      "mode": "light",
+      "rank": 6,
+      "option": 5,
+      "status": "missing"
+    }
+  ],
+  "passed": 36,
+  "wrong": 0,
+  "missing": 24
+}

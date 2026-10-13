@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-022	2026-10-13T07:43:18.418Z	error	12521	step_target_not_found:#manage-subscription-reason-too_expensive+ждали_metro_24мс	docs/phraseman-2.0/evidence/dark_sheet_r2/_runs/2026-10-13T07-41-56-235Z/profile-022.error.png	0

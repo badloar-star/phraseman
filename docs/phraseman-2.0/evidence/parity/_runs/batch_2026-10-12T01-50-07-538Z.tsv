@@ -1,0 +1,3 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-028	2026-10-12T01:50:29.795Z	ok	14212	marker+склейка+ждали_metro_43мс	docs/phraseman-2.0/evidence/parity/cards-028.png	0
+cards-009	2026-10-12T01:50:48.060Z	ok	12055	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/cards-009.png	0

@@ -46,8 +46,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-41:i10",
-    "correctText": "fine",
-    "correctResponseId": "en:lesson-01:session-41:i10:r1"
+    "correctText": "You're fine.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-41:i11",
@@ -67,7 +67,7 @@
   {
     "interactionId": "en:lesson-01:session-41:i14",
     "correctText": "You're fine.",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-41:i14:r1"
   },
   {
     "interactionId": "en:lesson-01:session-41:i15",

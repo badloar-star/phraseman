@@ -70,6 +70,8 @@ We ___ friendly. → **are** · is · am
 **3 · Соберите фразу — из-за стены весь день гремит смех**
 <!-- interaction_id: en:lesson-01:session-40:i03; family: phrase_builder -->
 Плитки: `They` `are` `loud` `is` → **They are loud.**
+*(плитка `is` лишняя: `is` лишнее: с `They` говорят `They are loud.`)*
+
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-40:i04; family: listen_choose -->
@@ -80,6 +82,8 @@ We ___ friendly. → **are** · is · am
 **5 · Соберите фразу — за вашим столом все добрые**
 <!-- interaction_id: en:lesson-01:session-40:i05; family: phrase_builder -->
 Плитки: `are` `kind` `We` `is` → **We are kind.**
+*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are kind.`)*
+
 
 **6 · Послушайте и соберите — ваша команда только вышла на эту работу**
 <!-- interaction_id: en:lesson-01:session-40:i06; family: listen_build_dictation -->
@@ -122,6 +126,8 @@ They ___ funny. → **are** · is · am
 **13 · Соберите фразу — вы работаете с этими людьми в одном отделе**
 <!-- interaction_id: en:lesson-01:session-40:i13; family: phrase_builder -->
 Плитки: `They` `are` `my` `colleagues` `is` → **They are my colleagues.**
+*(плитка `is` лишняя: `is` лишнее: с `They` говорят `They are my colleagues.`)*
+
 
 **14 · Послушайте и соберите — «мы добрые»**
 <!-- interaction_id: en:lesson-01:session-40:i14; family: listen_build_dictation -->
@@ -134,6 +140,8 @@ funny — смешной · quiet — тихий · colleagues — коллег�
 **16 · Соберите фразу — вы встречаете новичков приветливо; скажите, какие вы**
 <!-- interaction_id: en:lesson-01:session-40:i16; family: phrase_builder -->
 Плитки: `We` `friendly` `are` `not` → **We are friendly.**
+*(плитка `not` лишняя: `not` лишнее: вы говорите, что вы приветливые — `We are friendly.`)*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-40:i17:s01; family: scripted_repeat_compare -->

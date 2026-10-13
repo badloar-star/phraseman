@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-42:i01; family: listen_choose -->
 Цель: `Am I early?`
 Варианты: `Am I early?` · `Am I late?` · `Are you early?`
+- Am I late? — *В этом вопросе последнее слово `late` — «опоздал». На записи звучит `early` — «рано».*
+- Are you early? — *Это вопрос к собеседнику. В записи начало `Am I`: человек спрашивает о себе.*
+
 
 **2 · Вставьте слово — вы не уверены, успели ли к началу прогулки; спросите: «Я опоздал?»**
 <!-- interaction_id: en:lesson-02:session-42:i02; family: context_gap_grammar -->
 Цель: `Am I ___ ?`
 Варианты: `late` · `here` · `ready`
+- here — *Это «здесь». Вы уточняете, не опоздали ли, поэтому нужно `late`.*
+- ready — *Это «готов». Сейчас вопрос о времени вашего прихода: `Am I late?`*
+
 
 **3 · Соберите фразу — друг не знает точного времени сбора; спросите организатора, опоздали ли вы**
 <!-- interaction_id: en:lesson-02:session-42:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-42:i04; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `here` · `early` · `welcome`
+- early — *Получится «Я рано». Друг спрашивает, дошли ли вы, поэтому сообщите, что вы здесь: `here`.*
+- welcome — *Это слово о том, рады ли вам. Для сообщения о вашем местоположении нужно `here`.*
+
 
 **5 · Послушайте и выберите — какой вопрос участник встречи задал другу**
 <!-- interaction_id: en:lesson-02:session-42:i05; family: listen_choose -->
 Цель: `Am I welcome here?`
 Варианты: `Am I welcome here?` · `Am I early?` · `Are you welcome here?`
+- Am I early? — *Это «Я рано?» В записи человек спрашивает, рады ли ему: `Am I welcome here?`*
+- Are you welcome here? — *Так спрашивают о собеседнике. На записи начало `Am I`: участник спрашивает о себе.*
+
 
 **6 · Соберите фразу — друг ищет остальных участников; вы видите их у места сбора, сообщите: «Они здесь»**
 <!-- interaction_id: en:lesson-02:session-42:i06; family: phrase_builder -->
@@ -84,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i07; family: context_gap_grammar -->
 Цель: `___ I welcome here?`
 Варианты: `Am` · `Is` · `Are`
+- Is — *Вопрос о себе с `I` здесь начинается с `Am`: `Am I welcome here?`*
+- Are — *Сочетание `Are I` для этого вопроса не подходит. Нужны первые два слова `Am I`.*
+
 
 **8 · Послушайте и соберите — организатор уточняет у вашего друга время его прихода**
 <!-- interaction_id: en:lesson-02:session-42:i08; family: listen_build_dictation -->
@@ -98,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i10; family: context_gap_grammar -->
 Цель: `Am I ___ ?`
 Варианты: `early` · `late` · `welcome`
+- late — *Это вопрос об опоздании. Вы уточняете, не пришли ли раньше: `Am I early?`*
+- welcome — *Так вы спросите, рады ли вам. Сейчас нужно проверить время прихода: `early`.*
+
 
 **11 · Соберите фразу — организатор назвал время начала, и вы поняли, что успели; сообщите другу, что вы не опоздали**
 <!-- interaction_id: en:lesson-02:session-42:i11; family: phrase_builder -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i12; family: listen_choose -->
 Цель: `You are welcome here.`
 Варианты: `You are welcome here.` · `You are welcome.` · `You are not welcome here.`
+- You are welcome. — *В этом варианте нет `here`. На записи организатор говорит полностью: `You are welcome here` — «Вам здесь рады».*
+- You are not welcome here. — *Слово `not` меняет смысл на отрицательный. В записи его нет: организатор говорит другу, что ему рады.*
+
 
 **13 · Соберите фразу — друг хочет задать организатору вопрос, но не видит его; спросите другого участника, здесь ли организатор**
 <!-- interaction_id: en:lesson-02:session-42:i13; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-42:i14; family: context_gap_grammar -->
 Цель: `Am ___ early?`
 Варианты: `I` · `you` · `he`
+- you — *Это «ты» или «вы». В вопросе «Я рано?» нужно `I`: `Am I early?`*
+- he — *Это «он». Участник спрашивает о себе, поэтому здесь нужно `I`.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-42:i15; family: scripted_repeat_compare -->

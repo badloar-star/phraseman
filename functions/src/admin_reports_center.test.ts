@@ -162,9 +162,12 @@ describe('admin reports center contracts', () => {
     const instructions = reportExportInstructions();
     expect(instructions).toContain('каждый reportId');
     expect(instructions).toContain('не выполнять массовую живую отправку');
-    expect(instructions).toContain('minor: 1 спин, 300 рун, 1 жемчужина');
-    expect(instructions).toContain('serious: 2 спина, 600 рун, 5 жемчужин');
-    expect(instructions).toContain('critical: 3 спина, 1000 рун, 10 жемчужин');
+    // зачем (координатор 13.10, D70/D104): награда за жалобу — монеты v2, как в REPORT_REWARD_TIERS.
+    expect(instructions).toContain('minor: 300 монет');
+    expect(instructions).toContain('serious: 600 монет');
+    expect(instructions).toContain('critical: 1000 монет');
+    expect(instructions).not.toMatch(/спин|рун|жемчуж/i);
+    expect(instructions).not.toMatch(/Spire|Шпил/);
     expect(instructions).toContain('администратор');
     expect(instructions).not.toMatch(/осколк|shard/i);
   });

@@ -317,7 +317,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы ищете улицу из адрес",
+          "testedDimension": "Вставьте слово — вы ищете улицу из адреса",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i06:r2",
@@ -491,7 +491,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставьте слово — прохожему надо объяснит",
+          "testedDimension": "Вставьте слово — прохожему надо объяснить, почему вы к нему пристаёте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i09:r2",
@@ -618,7 +618,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где вокзал?»",
+              "feedbackByLocale": {
+                "ru": "с одной станцией нужна форма `is`: `Where is the station?`",
+                "uk": "з однією станцією потрібна форма `is`: `Where is the station?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -667,7 +677,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставьте слово — на вокзале в час пик не",
+          "testedDimension": "Вставьте слово — на вокзале в час пик не протолкнуться",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i12:r2",
@@ -717,7 +727,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сначала о себе, потом вопрос",
+              "feedbackByLocale": {
+                "ru": "о себе говорят `I am`, а не `I is`: `I am lost.`",
+                "uk": "про себе кажуть `I am`, а не `I is`: `I am lost.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -766,7 +786,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставьте слово — мимо идут машины, и вы ",
+          "testedDimension": "Вставьте слово — мимо идут машины, и вы не слышите ответа",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i14:r2",
@@ -863,19 +883,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте вопрос, который посетитель задаёт у схемы района, и выберите услышанную фразу",
-        "responseOptions": [{"responseId":"en:lesson-02:session-17:i16:r1","text":"Where is the street?"},{"responseId":"en:lesson-02:session-17:i16:r2","text":"Where is the station?"},{"responseId":"en:lesson-02:session-17:i16:r3","text":"The street is crowded."}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i16:r1",
+            "text": "Where is the street?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i16:r2",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i16:r3",
+            "text": "The street is crowded."
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-17:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-17:i16:audio"
+        ],
         "accessibilityLabel": "Послушайте вопрос, который посетитель задаёт у схемы района, и выберите услышанную фразу",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-17:i16:audio","transcript":"Where is the street?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-17:i16:audio",
+            "transcript": "Where is the street?"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-02:session-17:i16:r1","targetText":"Where is the street?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i16:r2","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i16:r3","targetText":"The street is crowded.","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-17:i16:r2","correct":false,"testedDimension":"место в вопросе","feedbackByLocale":{"ru":"В записи звучит `street` — «улица», а не `station` — «станция». ","uk":"У записі звучить `street` — «вулиця», а не `station` — «станція»."}},{"responseId":"en:lesson-02:session-17:i16:r3","correct":false,"testedDimension":"вопрос или сообщение","feedbackByLocale":{"ru":"В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на улице людно.","uk":"У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-17:i16:r1",
+              "targetText": "Where is the street?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r2",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r3",
+              "targetText": "The street is crowded.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i16:r2",
+              "correct": false,
+              "testedDimension": "место в вопросе",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `street` — «улица», а не `station` — «станция». ",
+                "uk": "У записі звучить `street` — «вулиця», а не `station` — «станція»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r3",
+              "correct": false,
+              "testedDimension": "вопрос или сообщение",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на улице людно.",
+                "uk": "У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -888,16 +961,25 @@
         "prompt": "Послушайте и соберите — у станции вы говорите прохожему, что заблудились",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-17:i17:s01:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-17:i17:s01:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — у станции вы говорите прохожему, что заблудились",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio":{"audioTargetId":"en:lesson-02:session-17:i17:s01:audio","transcript":"I am lost."},
-          "slowReferenceAudio":null,
-          "hiddenTargetPhrase":"I am lost.",
-          "orderedTokens":["I","am","lost"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-17:i17:s01:audio",
+            "transcript": "I am lost."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am lost.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "lost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -908,7 +990,20 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте вопрос у билетной кассы и выберите услышанную фразу",
-        "responseOptions": [{"responseId":"en:lesson-02:session-17:i17:s02:r1","text":"Where is the station?"},{"responseId":"en:lesson-02:session-17:i17:s02:r2","text":"Where is the street?"},{"responseId":"en:lesson-02:session-17:i17:s02:r3","text":"The station is crowded."}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r1",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r2",
+            "text": "Where is the street?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r3",
+            "text": "The station is crowded."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-17:i17:s02:audio"
@@ -921,11 +1016,46 @@
             "transcript": "Where is the station?"
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-17:i17:s02:r1","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i17:s02:r2","targetText":"Where is the street?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i17:s02:r3","targetText":"The station is crowded.","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-17:i17:s02:r2","correct":false,"testedDimension":"место в вопросе","feedbackByLocale":{"ru":"В записи звучит `station` — «станция», а не `street` — «улица».","uk":"У записі звучить `station` — «станція», а не `street` — «вулиця»."}},{"responseId":"en:lesson-02:session-17:i17:s02:r3","correct":false,"testedDimension":"вопрос или сообщение","feedbackByLocale":{"ru":"В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на станции людно.","uk":"У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r1",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r2",
+              "targetText": "Where is the street?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r3",
+              "targetText": "The station is crowded.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r2",
+              "correct": false,
+              "testedDimension": "место в вопросе",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `station` — «станция», а не `street` — «улица».",
+                "uk": "У записі звучить `station` — «станція», а не `street` — «вулиця»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r3",
+              "correct": false,
+              "testedDimension": "вопрос или сообщение",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на станции людно.",
+                "uk": "У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1309,7 +1439,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — ви шукаєте вулицю з адре",
+          "testedDimension": "Вставте слово — ви шукаєте вулицю з адреси",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i06:r2",
@@ -1483,7 +1613,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставте слово — перехожому треба пояснит",
+          "testedDimension": "Вставте слово — перехожому треба пояснити, чому ви до нього чіпляєтесь",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i09:r2",
@@ -1610,7 +1740,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где вокзал?»",
+              "feedbackByLocale": {
+                "ru": "с одной станцией нужна форма `is`: `Where is the station?`",
+                "uk": "з однією станцією потрібна форма `is`: `Where is the station?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1659,7 +1799,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставте слово — на вокзалі в час пік не ",
+          "testedDimension": "Вставте слово — на вокзалі в час пік не проштовхнутися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i12:r2",
@@ -1709,7 +1849,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сначала о себе, потом вопрос",
+              "feedbackByLocale": {
+                "ru": "о себе говорят `I am`, а не `I is`: `I am lost.`",
+                "uk": "про себе кажуть `I am`, а не `I is`: `I am lost.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1758,7 +1908,7 @@
               "text": "station"
             }
           ],
-          "testedDimension": "Вставте слово — повз їдуть машини, і ви ",
+          "testedDimension": "Вставте слово — повз їдуть машини, і ви не чуєте відповіді",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-17:i14:r2",
@@ -1855,19 +2005,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте запитання, яке відвідувач ставить біля схеми району, і виберіть почуту фразу",
-        "responseOptions": [{"responseId":"en:lesson-02:session-17:i16:r1","text":"Where is the street?"},{"responseId":"en:lesson-02:session-17:i16:r2","text":"Where is the station?"},{"responseId":"en:lesson-02:session-17:i16:r3","text":"The street is crowded."}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i16:r1",
+            "text": "Where is the street?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i16:r2",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i16:r3",
+            "text": "The street is crowded."
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-17:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-17:i16:audio"
+        ],
         "accessibilityLabel": "Послухайте запитання, яке відвідувач ставить біля схеми району, і виберіть почуту фразу",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-17:i16:audio","transcript":"Where is the street?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-17:i16:audio",
+            "transcript": "Where is the street?"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-02:session-17:i16:r1","targetText":"Where is the street?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i16:r2","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i16:r3","targetText":"The street is crowded.","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-17:i16:r2","correct":false,"testedDimension":"місце в запитанні","feedbackByLocale":{"ru":"В записи звучит `street` — «улица», а не `station` — «станция». ","uk":"У записі звучить `street` — «вулиця», а не `station` — «станція»."}},{"responseId":"en:lesson-02:session-17:i16:r3","correct":false,"testedDimension":"запитання чи повідомлення","feedbackByLocale":{"ru":"В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на улице людно.","uk":"У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-17:i16:r1",
+              "targetText": "Where is the street?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r2",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r3",
+              "targetText": "The street is crowded.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i16:r2",
+              "correct": false,
+              "testedDimension": "місце в запитанні",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `street` — «улица», а не `station` — «станция». ",
+                "uk": "У записі звучить `street` — «вулиця», а не `station` — «станція»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i16:r3",
+              "correct": false,
+              "testedDimension": "запитання чи повідомлення",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на улице людно.",
+                "uk": "У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1880,16 +2083,25 @@
         "prompt": "Послухайте й складіть — біля станції ви кажете перехожому, що заблукали",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-17:i17:s01:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-17:i17:s01:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть — біля станції ви кажете перехожому, що заблукали",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio":{"audioTargetId":"en:lesson-02:session-17:i17:s01:audio","transcript":"I am lost."},
-          "slowReferenceAudio":null,
-          "hiddenTargetPhrase":"I am lost.",
-          "orderedTokens":["I","am","lost"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-17:i17:s01:audio",
+            "transcript": "I am lost."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "I am lost.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "lost"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1900,7 +2112,20 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте запитання біля каси та виберіть почуту фразу",
-        "responseOptions": [{"responseId":"en:lesson-02:session-17:i17:s02:r1","text":"Where is the station?"},{"responseId":"en:lesson-02:session-17:i17:s02:r2","text":"Where is the street?"},{"responseId":"en:lesson-02:session-17:i17:s02:r3","text":"The station is crowded."}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r1",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r2",
+            "text": "Where is the street?"
+          },
+          {
+            "responseId": "en:lesson-02:session-17:i17:s02:r3",
+            "text": "The station is crowded."
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-17:i17:s02:audio"
@@ -1913,11 +2138,46 @@
             "transcript": "Where is the station?"
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-17:i17:s02:r1","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i17:s02:r2","targetText":"Where is the street?","meaningByLocale":null},{"responseId":"en:lesson-02:session-17:i17:s02:r3","targetText":"The station is crowded.","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-17:i17:s02:r2","correct":false,"testedDimension":"місце в запитанні","feedbackByLocale":{"ru":"В записи звучит `station` — «станция», а не `street` — «улица».","uk":"У записі звучить `station` — «станція», а не `street` — «вулиця»."}},{"responseId":"en:lesson-02:session-17:i17:s02:r3","correct":false,"testedDimension":"запитання чи повідомлення","feedbackByLocale":{"ru":"В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на станции людно.","uk":"У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r1",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r2",
+              "targetText": "Where is the street?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r3",
+              "targetText": "The station is crowded.",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r2",
+              "correct": false,
+              "testedDimension": "місце в запитанні",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `station` — «станция», а не `street` — «улица».",
+                "uk": "У записі звучить `station` — «станція», а не `street` — «вулиця»."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-17:i17:s02:r3",
+              "correct": false,
+              "testedDimension": "запитання чи повідомлення",
+              "feedbackByLocale": {
+                "ru": "В записи вопрос: сначала звучит `Where`. Этот вариант — сообщение о том, что на станции людно.",
+                "uk": "У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },

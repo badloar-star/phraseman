@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import test from "node:test";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const session="en:lesson-01:session-31";
+const choices={i02:"wet",i04:"dry",i06:"wet",i10:"warm",i11:"hot",i13:"cold",i15:"rainy",i17:"windy"};
+const tiles={i07:"are",i18:"open",i19:"are"};
+test("L01/S31 explains each checked answer and extra tile",()=>{const data=JSON.parse(fs.readFileSync(path.join(root,"sessions/en/l01/s31/practice.atomic.json"),"utf8"));for(const locale of ["ru","uk"]){const rows=new Map(data.interactionsByLocale[locale].map(x=>[x.interactionId.slice(`${session}:`.length),x]));for(const [id,word] of Object.entries(choices)){const f=rows.get(id).modePayload.choiceFeedback?.find(x=>x.responseId===`${session}:${id}:r1`);assert.equal(f?.correct,true,`${locale}:${id}`);assert.match(f?.feedbackByLocale?.[locale]??"",new RegExp(word));}for(const [id,word] of Object.entries(tiles)){const row=rows.get(id);assert.deepEqual(row.responseOptions,[],`${locale}:${id}`);const f=row.modePayload.slotFeedback?.find(x=>x.responseId===`${session}:${id}:tile:d1`);assert.equal(f?.correct,false,`${locale}:${id}`);assert.match(f?.feedbackByLocale?.[locale]??"",new RegExp(word));}}});

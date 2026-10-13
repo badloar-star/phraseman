@@ -1,0 +1,7 @@
+canonical-url: https://www.dwds.de/wb/hei%C3%9Fen
+requested-url: https://www.dwds.de/wb/hei%C3%9Fen
+http-status: 200
+content-type: text/html; charset=UTF-8
+transport: DIRECT_PUBLIC_HTTPS
+body-sha256: ceb735ca72b691d06fd46f9521636bb650102ed14a19465ee71142f1a295fbf1
+body-bytes: 113626

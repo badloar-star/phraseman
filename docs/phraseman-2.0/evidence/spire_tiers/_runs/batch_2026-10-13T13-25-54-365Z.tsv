@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spiretier-001	2026-10-13T13:27:30.413Z	timeout	90977	нет маркера+ждали_metro_197мс	docs/phraseman-2.0/evidence/spire_tiers/_runs/2026-10-13T13-25-54-365Z/spiretier-001.timeout.png	0

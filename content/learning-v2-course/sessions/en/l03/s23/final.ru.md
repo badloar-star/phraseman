@@ -62,6 +62,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
 Цель: `spoon`
 Варианты: `spoon` · `soon` · `swoon`
+- soon — *`soon` — «скоро». Это когда принесут ложку, а не как её назвать. В `soon` свистящий звук сразу переходит в гласный; в `spoon` между ними губы полностью смыкаются и раскрываются.*
+- swoon — *`swoon` — «падать в обморок». После начального свистящего звука губы округляются и плавно переходят к гласному. В `spoon` на этом месте губы полностью смыкаются и раскрываются.*
+
 
 **3 · Карточка слова — fork**
 <!-- interaction_id: en:lesson-03:session-23:i03; family: listen_choose -->
@@ -71,6 +74,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i04; family: listen_choose -->
 Цель: `fork`
 Варианты: `fork` · `pork` · `cork`
+- pork — *`pork` — «свинина». В начале губы полностью смыкаются и раскрываются. У `fork` воздух в начале идёт непрерывно между нижней губой и верхними зубами.*
+- cork — *`cork` — «пробка», которой закрывают бутылку. Начало произносится смыканием и размыканием задней части языка. В начале `fork` воздух проходит между нижней губой и верхними зубами.*
+
 
 **5 · Соберите фразу — друг спрашивает, что вы оставили возле ящика; там одна ложка, скажите «Это ложка»**
 <!-- interaction_id: en:lesson-03:session-23:i05; family: phrase_builder -->
@@ -81,6 +87,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i06; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `spoons` · `spoon` · `a spoon`
+- spoon — *Вы держите три ложки. Их название — `spoons`, с окончанием `s`.*
+- a spoon — *`a spoon` называет одну ложку. Здесь их три, поэтому нужно `spoons`.*
+
 
 **7 · Карточка слова — cup**
 <!-- interaction_id: en:lesson-03:session-23:i07; family: listen_choose -->
@@ -90,6 +99,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i08; family: listen_choose -->
 Цель: `cup`
 Варианты: `cup` · `cap` · `cop`
+- cap — *`cap` — «кепка». Гласный произносится с языком низко и спереди. В `cup` язык ближе к середине рта, губы не округлены. Начало и конец слов звучат одинаково.*
+- cop — *`cop` — разговорное «полицейский». Гласный произносится с языком ближе к задней части рта. У `cup` гласный центральный, губы не округлены; сравните середину слов.*
+
 
 **9 · Соберите вопрос — друг разворачивает ещё один набор приборов, вы стоите у ящика и уточняете «Это вилки?»**
 <!-- interaction_id: en:lesson-03:session-23:i09; family: phrase_builder -->
@@ -100,6 +112,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i10; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `bowls` · `bowl` · `a bowl`
+- bowl — *На столе две миски. Нужна форма `bowls`, название нескольких.*
+- a bowl — *`a bowl` означает одну миску. Вы называете две: `They are bowls`.*
+
 
 **11 · Послушайте и соберите — что сказал друг**
 <!-- interaction_id: en:lesson-03:session-23:i11; family: listen_build_dictation -->
@@ -110,6 +125,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i12; family: context_gap_grammar -->
 Цель: `It is ___.`
 Варианты: `a cup` · `cup` · `cups`
+- cup — *В этой фразе для называния одной чашки нужно `a cup`. Перед `cup` пропущено `a`.*
+- cups — *`cups` означает несколько чашек. У раковины одна: `a cup`.*
+
 
 **13 · Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.**
 <!-- interaction_id: en:lesson-03:session-23:i13; family: phrase_builder -->
@@ -129,6 +147,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i16; family: context_gap_grammar -->
 Цель: `It is ___.`
 Варианты: `a fork` · `forks` · `fork`
+- forks — *`forks` — несколько вилок. Под бумагой одна: `a fork`.*
+- fork — *Для называния одной вилки в этой фразе нужно `a fork`. Слово `a` пропускать не стоит.*
+
 
 **17 · Соберите фразу — друг освободил верхнюю полку и спрашивает, что вы туда несёте; у вас две чашки**
 <!-- interaction_id: en:lesson-03:session-23:i17; family: phrase_builder -->

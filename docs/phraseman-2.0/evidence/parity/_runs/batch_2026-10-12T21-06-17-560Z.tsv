@@ -1,0 +1,15 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-002	2026-10-12T21:06:38.271Z	ok	13172	marker+склейка+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/dialogs-002.png	0
+dialogs-003	2026-10-12T21:07:12.685Z	ok	14407	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/dialogs-003.png	0
+dialogs-004	2026-10-12T21:07:40.395Z	ok	14180	marker+пусто_1423мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-004.png	1423
+dialogs-005	2026-10-12T21:08:07.055Z	ok	13336	marker+пусто_1289мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/dialogs-005.png	1289
+dialogs-006	2026-10-12T21:08:36.652Z	ok	12325	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-006.png	0
+dialogs-007	2026-10-12T21:09:20.309Z	ok	12974	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-007.png	0
+dialogs-008	2026-10-12T21:10:06.218Z	ok	12910	marker+шагов_2+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-008.png	0
+dialogs-014	2026-10-12T21:11:24.917Z	ok	15630	marker+шагов_8+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/dialogs-014.png	0
+dialogs-017	2026-10-12T21:12:35.665Z	error	14238	step_target_not_found:#dialogue-v2-session-hint+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-06-17-560Z/dialogs-017.error.png	0
+dialogs-018	2026-10-12T21:13:47.681Z	error	14677	step_target_not_found:#dialogue-v2-session-goals+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-06-17-560Z/dialogs-018.error.png	0
+dialogs-030	2026-10-12T21:15:04.263Z	ok	13230	marker+шагов_8+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-030.png	0
+dialogs-031	2026-10-12T21:16:18.065Z	ok	13490	marker+шагов_8+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-031.png	0
+dialogs-036	2026-10-12T21:17:15.891Z	ok	13049	marker+шагов_5+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-036.png	0
+learn-002	2026-10-12T21:17:38.679Z	ok	13001	marker+пусто_1426мс+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/learn-002.png	1426

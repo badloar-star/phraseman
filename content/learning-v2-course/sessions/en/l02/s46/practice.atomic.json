@@ -316,7 +316,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — ведущий сказал, что гол",
+          "testedDimension": "Вставьте слово — ведущий сказал, что голос слышен; уточните, разборчивы ли ваши слова",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i06:r2",
@@ -490,7 +490,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставьте слово — ведущий спрашивает, под",
+          "testedDimension": "Вставьте слово — ведущий спрашивает, подготовили ли вы свои заметки; они перед вами, скажите: «Я готов»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i09:r2",
@@ -660,7 +660,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — вы отодвинули телефон и",
+          "testedDimension": "Вставьте слово — вы отодвинули телефон и хотите проверить, слышен ли по-прежнему ваш голос",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i12:r2",
@@ -761,7 +761,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставьте слово — ведущий проверяет свои ",
+          "testedDimension": "Вставьте слово — ведущий проверяет свои записи; спросите, готов ли он начинать",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i14:r2",
@@ -1194,7 +1194,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — ведучий сказав, що голос",
+          "testedDimension": "Вставте слово — ведучий сказав, що голос чути; уточніть, чи розбірливо звучать ваші слова",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i06:r2",
@@ -1368,7 +1368,7 @@
               "text": "late"
             }
           ],
-          "testedDimension": "Вставте слово — ведучий запитує, чи підг",
+          "testedDimension": "Вставте слово — ведучий запитує, чи підготували ви свої нотатки; вони перед вами, скажіть: «Я готовий»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i09:r2",
@@ -1538,7 +1538,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — ви відсунули телефон і х",
+          "testedDimension": "Вставте слово — ви відсунули телефон і хочете перевірити, чи досі чути ваш голос",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i12:r2",
@@ -1639,7 +1639,7 @@
               "text": "early"
             }
           ],
-          "testedDimension": "Вставте слово — ведучий перевіряє свої з",
+          "testedDimension": "Вставте слово — ведучий перевіряє свої записи; запитайте, чи готовий він починати",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-46:i14:r2",

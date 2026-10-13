@@ -1,0 +1,4 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-017	2026-10-12T21:56:00.119Z	error	15468	step_target_not_found:#dialogue-v2-session-hint+ждали_metro_60мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-54-43-982Z/dialogs-017.error.png	0
+dialogs-018	2026-10-12T21:57:16.261Z	error	15416	step_target_not_found:#dialogue-v2-session-goals+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-54-43-982Z/dialogs-018.error.png	0
+dialogs-036	2026-10-12T21:58:18.485Z	ok	15421	marker+шагов_5+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/dialogs-036.png	0

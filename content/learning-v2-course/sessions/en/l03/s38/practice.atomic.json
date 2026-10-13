@@ -91,22 +91,40 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите фрукт — у дальнего прилавка",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-38:i05:r1", "text": "orange" }
+          {
+            "responseId": "en:lesson-03:session-38:i05:r1",
+            "text": "orange"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-38:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-38:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите фрукт — у дальнего прилавка",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-38:i05:audio", "transcript": "orange" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-38:i05:audio",
+            "transcript": "orange"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-38:i05:r1", "targetText": "orange", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-03:session-38:i05:r1",
+              "targetText": "orange",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
-          "wordCard": { "word": "orange", "definitionByLocale": { "ru": "«апельсин».", "uk": "«апельсин»." } }
+          "wordCard": {
+            "word": "orange",
+            "definitionByLocale": {
+              "ru": "«апельсин».",
+              "uk": "«апельсин»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -212,7 +230,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -230,16 +253,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-38:i08:p1", "target": "apple", "meaningByLocale": { "ru": "яблоко", "uk": "яблуко" } },
-            { "pairId": "en:lesson-03:session-38:i08:p2", "target": "banana", "meaningByLocale": { "ru": "банан", "uk": "банан" } },
-            { "pairId": "en:lesson-03:session-38:i08:p3", "target": "orange", "meaningByLocale": { "ru": "апельсин", "uk": "апельсин" } },
-            { "pairId": "en:lesson-03:session-38:i08:p4", "target": "flower", "meaningByLocale": { "ru": "цветок", "uk": "квітка" } }
+            {
+              "pairId": "en:lesson-03:session-38:i08:p1",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p2",
+              "target": "banana",
+              "meaningByLocale": {
+                "ru": "банан",
+                "uk": "банан"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p3",
+              "target": "orange",
+              "meaningByLocale": {
+                "ru": "апельсин",
+                "uk": "апельсин"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p4",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            }
           ],
-          "leftColumn": ["apple", "banana", "orange", "flower"],
-          "rightColumn": ["яблоко", "банан", "апельсин", "цветок"],
+          "leftColumn": [
+            "apple",
+            "banana",
+            "orange",
+            "flower"
+          ],
+          "rightColumn": [
+            "яблоко",
+            "банан",
+            "апельсин",
+            "цветок"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -269,7 +338,13 @@
             "are",
             "bananas"
           ],
-          "distractorTokens": ["These", "is", "a", "banana"]
+          "distractorTokens": [
+            "These",
+            "is",
+            "a",
+            "banana"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -320,9 +395,21 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are oranges.",
-          "localizedMeaning": { "ru": "Соберите описание — апельсины у дальнего прилавка", "uk": "Складіть опис — апельсини біля далекого прилавка" },
-          "orderedTokens": ["Those", "are", "oranges"],
-          "authoredDistractorTokens": ["These", "is", "a", "orange"],
+          "localizedMeaning": {
+            "ru": "Соберите описание — апельсины у дальнего прилавка",
+            "uk": "Складіть опис — апельсини біля далекого прилавка"
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "oranges"
+          ],
+          "authoredDistractorTokens": [
+            "These",
+            "is",
+            "a",
+            "orange"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -380,7 +467,7 @@
               "text": "This"
             }
           ],
-          "testedDimension": "Вставьте указатель — несколько яблок леж",
+          "testedDimension": "Вставьте указатель — несколько яблок лежат у дальнего прилавка",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-38:i09:r2",
@@ -760,7 +847,8 @@
             "oranges,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -852,22 +940,40 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть фрукт — біля далекого прилавка",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-38:i05:r1", "text": "orange" }
+          {
+            "responseId": "en:lesson-03:session-38:i05:r1",
+            "text": "orange"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-38:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-38:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть фрукт — біля далекого прилавка",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-38:i05:audio", "transcript": "orange" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-38:i05:audio",
+            "transcript": "orange"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-03:session-38:i05:r1", "targetText": "orange", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-03:session-38:i05:r1",
+              "targetText": "orange",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
-          "wordCard": { "word": "orange", "definitionByLocale": { "ru": "«апельсин».", "uk": "«апельсин»." } }
+          "wordCard": {
+            "word": "orange",
+            "definitionByLocale": {
+              "ru": "«апельсин».",
+              "uk": "«апельсин»."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -973,7 +1079,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -991,16 +1102,62 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-38:i08:p1", "target": "apple", "meaningByLocale": { "ru": "яблоко", "uk": "яблуко" } },
-            { "pairId": "en:lesson-03:session-38:i08:p2", "target": "banana", "meaningByLocale": { "ru": "банан", "uk": "банан" } },
-            { "pairId": "en:lesson-03:session-38:i08:p3", "target": "orange", "meaningByLocale": { "ru": "апельсин", "uk": "апельсин" } },
-            { "pairId": "en:lesson-03:session-38:i08:p4", "target": "flower", "meaningByLocale": { "ru": "цветок", "uk": "квітка" } }
+            {
+              "pairId": "en:lesson-03:session-38:i08:p1",
+              "target": "apple",
+              "meaningByLocale": {
+                "ru": "яблоко",
+                "uk": "яблуко"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p2",
+              "target": "banana",
+              "meaningByLocale": {
+                "ru": "банан",
+                "uk": "банан"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p3",
+              "target": "orange",
+              "meaningByLocale": {
+                "ru": "апельсин",
+                "uk": "апельсин"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-38:i08:p4",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            }
           ],
-          "leftColumn": ["apple", "banana", "orange", "flower"],
-          "rightColumn": ["яблуко", "банан", "апельсин", "квітка"],
+          "leftColumn": [
+            "apple",
+            "banana",
+            "orange",
+            "flower"
+          ],
+          "rightColumn": [
+            "яблуко",
+            "банан",
+            "апельсин",
+            "квітка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1030,7 +1187,13 @@
             "are",
             "bananas"
           ],
-          "distractorTokens": ["These", "is", "a", "banana"]
+          "distractorTokens": [
+            "These",
+            "is",
+            "a",
+            "banana"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1081,9 +1244,21 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those are oranges.",
-          "localizedMeaning": { "ru": "Соберите описание — апельсины у дальнего прилавка", "uk": "Складіть опис — апельсини біля далекого прилавка" },
-          "orderedTokens": ["Those", "are", "oranges"],
-          "authoredDistractorTokens": ["These", "is", "a", "orange"],
+          "localizedMeaning": {
+            "ru": "Соберите описание — апельсины у дальнего прилавка",
+            "uk": "Складіть опис — апельсини біля далекого прилавка"
+          },
+          "orderedTokens": [
+            "Those",
+            "are",
+            "oranges"
+          ],
+          "authoredDistractorTokens": [
+            "These",
+            "is",
+            "a",
+            "orange"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -1521,7 +1696,8 @@
             "oranges,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

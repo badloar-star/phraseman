@@ -116,6 +116,8 @@ ___ sure. → **You're** · Your · You
 **10 · Складіть фразу — ви відповідаєте людині, яка дарма вибачилася**
 <!-- interaction_id: en:lesson-01:session-41:i10; family: phrase_builder -->
 Плитки: `You're` `fine` `sorry` → **You're fine.**
+*(плитка `sorry` зайва: `sorry` зайве: людині відповідають `You're fine`.)*
+
 
 **11 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-41:i11; family: speed_match -->
@@ -125,6 +127,8 @@ fine — гаразд · late — спізнився · sure — упевнен�
 <!-- interaction_id: en:lesson-01:session-41:i12; family: listen_build_dictation -->
 🔊 *I'm sure.* Плитки: `sure` `I'm` `am` → **I'm sure.**
 *(плитка `am` зайва)*
+*(плитка `am` зайва: `am` зайве: воно вже заховане в `I'm sure`.)*
+
 
 **13 · Вставте слово — ви все ще за столом, і вам добре**
 <!-- interaction_id: en:lesson-01:session-41:i13; family: context_gap_grammar -->

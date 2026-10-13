@@ -117,6 +117,8 @@ He is ___ . → **quiet** · loud · shy
 **12 · Послушайте и соберите — Лина говорит: «Макс умный»**
 <!-- interaction_id: en:lesson-01:session-18:i12; family: listen_build_dictation -->
 🔊 *He is clever.* Плитки: `is` `clever` `He` `She` → **He is clever.**
+*(плитка `She` лишняя: `She` лишнее: речь о Максе, поэтому нужна фраза `He is clever.`)*
+
 
 **13 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-18:i13; family: speed_match -->
@@ -139,6 +141,8 @@ She is ___ . → **funny** · bossy · shy
 **17 · Соберите фразу — Макс принёс всем кофе, хотя его не просили**
 <!-- interaction_id: en:lesson-01:session-18:i17; family: phrase_builder -->
 Плитки: `kind` `He` `am` `is` → **He is kind.**
+*(плитка `am` лишняя: `am` лишнее: с `He` ставят `is`: `He is kind.`)*
+
 
 **18 · Скажите вслух — Анна раздаёт указания, хотя руководитель её об этом не просил**
 <!-- interaction_id: en:lesson-01:session-18:i18; family: scripted_repeat_compare -->

@@ -85,12 +85,27 @@
         "interactionId": "en:lesson-02:session-20:i02",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Соберите сообщение — по карте объект рядом с вами","responseOptions":[],
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите сообщение — по карте объект рядом с вами",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Соберите сообщение — по карте объект рядом с вами",
         "modePayload": {
-          "family":"phrase_builder","targetPhrase":"It is near.","localizedMeaning":{"ru":"Соберите сообщение — по карте объект рядом с вами","uk":"Складіть повідомлення — на карті об’єкт поруч із вами"},"orderedTokens":["It","is","near"],"authoredDistractorTokens":[],"slotFeedback":[]
+          "family": "phrase_builder",
+          "targetPhrase": "It is near.",
+          "localizedMeaning": {
+            "ru": "Соберите сообщение — по карте объект рядом с вами",
+            "uk": "Складіть повідомлення — на карті об’єкт поруч із вами"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "near"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -131,7 +146,7 @@
             "audioTargetId": "en:lesson-02:session-20:i03:audioB",
             "transcript": "nine"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «ряд",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «рядом»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i03:r2",
@@ -444,7 +459,17 @@
           "authoredDistractorTokens": [
             "street"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где вокзал?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают о вокзале — `station`, а не об улице — `street`.",
+                "uk": "у записі питають про вокзал — `station`, а не про вулицю — `street`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -493,7 +518,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — прохожий показывает: ид",
+          "testedDimension": "Вставьте слово — прохожий показывает: идти пару минут",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i09:r2",
@@ -547,7 +572,17 @@
           "authoredDistractorTokens": [
             "station"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где улица?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают об улице — `street`, а не о вокзале — `station`.",
+                "uk": "у записі питають про вулицю — `street`, а не про вокзал — `station`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -596,7 +631,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставьте слово — вы ищете улицу, а не во",
+          "testedDimension": "Вставьте слово — вы ищете улицу, а не вокзал",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i11:r2",
@@ -741,7 +776,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставьте слово — у выхода толпа, идёте б",
+          "testedDimension": "Вставьте слово — у выхода толпа, идёте боком",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i13:r2",
@@ -793,7 +828,17 @@
           "authoredDistractorTokens": [
             "where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — прохожий показывает за вокзал: вход находится там",
+              "feedbackByLocale": {
+                "ru": "это вопросительное слово, а здесь вы сообщаете, где находится вход: `It is behind the station.`",
+                "uk": "це питальне слово, а тут ви повідомляєте, де вхід: `It is behind the station.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -826,7 +871,17 @@
           "authoredDistractorTokens": [
             "behind"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — ответ прохожего",
+              "feedbackByLocale": {
+                "ru": "в записи сказано `near` — «рядом», а не `behind` — «позади».",
+                "uk": "у записі сказано `near` — «поруч», а не `behind` — «позаду»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -857,7 +912,17 @@
           "authoredDistractorTokens": [
             "It"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вам назвали адрес, но не сказали дорогу; спросите про улицу",
+              "feedbackByLocale": {
+                "ru": "вопрос о месте начинается с `Where is`, а `It is` начинает ответ.",
+                "uk": "запитання про місце починається з `Where is`, а `It is` починає відповідь."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1042,12 +1107,27 @@
         "interactionId": "en:lesson-02:session-20:i02",
         "ordinal": 5,
         "purpose": "supported_practice",
-        "family":"phrase_builder","inputMode":"ordered_tokens","prompt":"Складіть повідомлення — на карті об’єкт поруч із вами","responseOptions":[],
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть повідомлення — на карті об’єкт поруч із вами",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Складіть повідомлення — на карті об’єкт поруч із вами",
         "modePayload": {
-          "family":"phrase_builder","targetPhrase":"It is near.","localizedMeaning":{"ru":"Соберите сообщение — по карте объект рядом с вами","uk":"Складіть повідомлення — на карті об’єкт поруч із вами"},"orderedTokens":["It","is","near"],"authoredDistractorTokens":[],"slotFeedback":[]
+          "family": "phrase_builder",
+          "targetPhrase": "It is near.",
+          "localizedMeaning": {
+            "ru": "Соберите сообщение — по карте объект рядом с вами",
+            "uk": "Складіть повідомлення — на карті об’єкт поруч із вами"
+          },
+          "orderedTokens": [
+            "It",
+            "is",
+            "near"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1088,7 +1168,7 @@
             "audioTargetId": "en:lesson-02:session-20:i03:audioB",
             "transcript": "nine"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «поряд",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «поряд»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i03:r2",
@@ -1401,7 +1481,17 @@
           "authoredDistractorTokens": [
             "street"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где вокзал?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают о вокзале — `station`, а не об улице — `street`.",
+                "uk": "у записі питають про вокзал — `station`, а не про вулицю — `street`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1450,7 +1540,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — перехожий показує: іти п",
+          "testedDimension": "Вставте слово — перехожий показує: іти пару хвилин",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i09:r2",
@@ -1504,7 +1594,17 @@
           "authoredDistractorTokens": [
             "station"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где улица?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают об улице — `street`, а не о вокзале — `station`.",
+                "uk": "у записі питають про вулицю — `street`, а не про вокзал — `station`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1553,7 +1653,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставте слово — ви шукаєте вулицю, а не ",
+          "testedDimension": "Вставте слово — ви шукаєте вулицю, а не вокзал",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i11:r2",
@@ -1698,7 +1798,7 @@
               "text": "behind"
             }
           ],
-          "testedDimension": "Вставте слово — біля виходу натовп, ідет",
+          "testedDimension": "Вставте слово — біля виходу натовп, ідете боком",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-20:i13:r2",
@@ -1750,7 +1850,17 @@
           "authoredDistractorTokens": [
             "where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — прохожий показывает за вокзал: вход находится там",
+              "feedbackByLocale": {
+                "ru": "это вопросительное слово, а здесь вы сообщаете, где находится вход: `It is behind the station.`",
+                "uk": "це питальне слово, а тут ви повідомляєте, де вхід: `It is behind the station.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1783,7 +1893,17 @@
           "authoredDistractorTokens": [
             "behind"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — ответ прохожего",
+              "feedbackByLocale": {
+                "ru": "в записи сказано `near` — «рядом», а не `behind` — «позади».",
+                "uk": "у записі сказано `near` — «поруч», а не `behind` — «позаду»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1814,7 +1934,17 @@
           "authoredDistractorTokens": [
             "It"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-20:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вам назвали адрес, но не сказали дорогу; спросите про улицу",
+              "feedbackByLocale": {
+                "ru": "вопрос о месте начинается с `Where is`, а `It is` начинает ответ.",
+                "uk": "запитання про місце починається з `Where is`, а `It is` починає відповідь."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

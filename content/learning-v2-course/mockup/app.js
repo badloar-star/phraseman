@@ -9,13 +9,18 @@ const DATA = window.__DATA__;
 const SOURCE_QUALITY = JSON.parse(document.getElementById("source-quality-findings")?.textContent || "{}");
 const SOURCE_RELEASE = JSON.parse(document.getElementById("source-release-findings")?.textContent || "{}");
 const REVIEWED_CARDS = JSON.parse(document.getElementById("reviewed-cards")?.textContent || "{}");
+const PREVIEW_STATE = JSON.parse(document.getElementById("preview-state")?.textContent || "{}");
+const REVIEWED_SOURCE_MARKER = "reviewed_source";
+const REVIEWED_CARD_CLASS = "source-fixed";
+const REVIEWED_LABEL = "Показана проверенная правка";
+const HOME_DESCRIPTION = "Открывайте занятия и проверяйте их глазами ученика. Зелёная карточка открывает уже проверенный исправленный текст; если выпуск отстаёт, это прямо отмечено на карточке.";
 const LOCALES = ["ru","uk"];
 const LOC_NAME = {ru:"Русский",uk:"Українська",es:"Español","pt-BR":"Português",vi:"Tiếng Việt",id:"Bahasa",tr:"Türkçe",pl:"Polski"};
-const BUILT_AT = "11.10, 07:33";
+const BUILT_AT = "12.10, 14:58";
 // зачем: показать свежесть макета с одного взгляда — владелец час смотрел на старую сборку
 document.getElementById("buildStamp").textContent = DATA.length + " занятий · " + BUILT_AT;
 
-const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairsDone: [], right: 0, wrong: 0 };
+const S = { locale: localStorage.getItem("mockup.locale") || "ru", session: null, step: 0, answered: false, ok: null, picked: null, assembled: [], tileFeedback: null, pairSel: null, pairFeedback: null, pairsDone: [], right: 0, wrong: 0 };
 const learnerForSession = (s, locale = S.locale) => s.learnerByLocale?.[locale] ?? s.learner;
 
 const app = document.getElementById("app");
@@ -121,7 +126,7 @@ const avoidAlignedPairs = (left, right) => {
   return right;
 };
 
-function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairsDone = []; }
+function resetStep() { S.answered = false; S.ok = null; S.picked = null; S.assembled = []; S.tileFeedback = null; S.pairSel = null; S.pairFeedback = null; S.pairsDone = []; }
 
 // ---------- экраны ----------
 function renderHome() {
@@ -129,7 +134,7 @@ function renderHome() {
   app.replaceChildren(
     h("div", {class:"hero"}, [
       h("h1", {text:"Пройдите любой подготовленный урок"}),
-      h("p", {text:"Открывайте занятия и проверяйте их глазами ученика. Зелёная карточка открывает уже проверенный исправленный текст; если выпуск отстаёт, это прямо отмечено на карточке."}),
+      h("p", {text:HOME_DESCRIPTION}),
     ]),
     ...groupByLesson(),
   );
@@ -144,27 +149,34 @@ function groupByLesson() {
     out.push(h("div", {class:"cards"}, list.map(s => {
       const findings = SOURCE_QUALITY[s.key] || [];
       const releaseFindings = SOURCE_RELEASE[s.key] || [];
-      const sourceFixed = Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      const isCandidate = Boolean(PREVIEW_STATE.candidate) || s.viewSource === "candidate";
+      const sourceFixed = !isCandidate && Boolean(REVIEWED_CARDS[s.key]) && !findings.length;
+      // A reviewed projection is useful evidence, but it cannot turn the whole
+      // card green while the version that would be released still differs.
+      const needsRepair = findings.length || releaseFindings.length;
       const numbers = findings.map(item => item.taskNumber).filter(Number.isInteger);
       const hasUnnumberedFinding = findings.some(item => !Number.isInteger(item.taskNumber));
       const findingTarget = hasUnnumberedFinding
         ? (numbers.length ? "вводный текст и задания " + numbers.join(", ") : "вводный текст")
         : "задания " + (numbers.length ? numbers.join(", ") : "без номера");
-      const summary = sourceFixed && releaseFindings.length
+      const summary = isCandidate
+        ? "Канонический выпуск не изменён. Это черновой просмотр текущего исходника; его нельзя считать проверенным или выпущенным."
+        : sourceFixed && releaseFindings.length
         ? "Выпуск ещё содержит старый текст; здесь открывается проверенная правка. Нажмите «Показать изменения», чтобы увидеть точную замену."
         : findings.length
         ? "Нужно исправить " + findingTarget + ": " + [...new Set(findings.map(item => item.reason))].join("; ")
         : releaseFindings[0] || "";
-      return h("button", {class:"card" + (sourceFixed ? " source-fixed" : findings.length || releaseFindings.length ? " needs-repair" : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
+      return h("button", {class:"card" + (isCandidate ? " needs-repair candidate" : needsRepair ? " needs-repair" : sourceFixed ? " " + REVIEWED_CARD_CLASS : ""), onClick:() => { S.session = s; S.step = 0; S.right = 0; S.wrong = 0; resetStep(); render(); }}, [
         h("h3", {text:displayTitle(s.title)}),
         h("p", {class:"scene", text:s.scene}),
         h("div", {class:"meta"}, [
           h("span", {class:"chip k", text:"Занятие " + s.session.replace(/^s0?/, "")}),
           h("span", {class:"chip", text:learnerForSession(s).interactions.length + " заданий"}),
-           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === "reviewed_source" ? "Показана проверенная правка" : "Исходник исправлен"}) : null,
+           isCandidate ? h("span", {class:"chip pending", text:"ЧЕРНОВИК · НЕ ПРОВЕРЕНО · НЕ ВЫПУСК"}) : null,
+           sourceFixed ? h("span", {class:"chip fixed", text:s.viewSource === REVIEWED_SOURCE_MARKER ? REVIEWED_LABEL : "Исходник исправлен"}) : null,
            releaseFindings.length ? h("span", {class:"chip pending", text:"Выпуск надо синхронизировать"}) : null,
         ]),
-        findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
+        isCandidate || findings.length || releaseFindings.length ? h("p", {class:"fix-summary", text:summary}) : null,
       ]);
     })));
   }
@@ -186,7 +198,6 @@ function renderSession() {
 }
 
 function renderIntro(page, auxiliary) {
-  const KIND = {concept:"Понятие", formula:"Формула", trap:"Ловушка", tip:"Подсказка", example:"Пример"};
   // зачем (владелец, 03.09): правильный ответ шёл первым на каждой странице —
   // можно было угадывать, не читая. Тасуем устойчиво (порядок один и тот же
   // при перерисовке), верный ответ помним по исходному индексу 0.
@@ -194,7 +205,6 @@ function renderIntro(page, auxiliary) {
   const choices = shuffleChoices(raw.map((c, i) => ({...c, correct: i === 0})), page.pageId + S.locale);
   const body = loc(page.bodyByLocale).split(/\n\n+/).filter(Boolean);
   const panel = h("div", {class:"panel"}, [
-    h("div", {class:"kind", text:KIND[page.kind] || page.kind}),
     h("h2", {text:loc(page.titleByLocale)}),
     h("div", {class:"body"}, body.map(p => h("p", {html:tl(p)}))),
     h("div", {class:"question", html:tl(loc(page.question.promptByLocale))}),
@@ -206,10 +216,16 @@ function renderIntro(page, auxiliary) {
   ]);
   if (S.answered) {
     const auxiliaryEntry = (auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId);
-    const wrongFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
-    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : (wrongFeedback || "Верный ответ: " + (choices.find(c => c.correct)?.text ?? ""))}));
+    const selectedFeedback = loc(auxiliaryEntry?.responseFeedbackById?.[S.picked]);
+    panel.append(h("div", {
+      class:"fb " + (selectedFeedback ? (S.ok ? "ok" : "no") : "no"),
+      text:selectedFeedback || "Проверенный разбор для этого ответа отсутствует.",
+    }));
   }
-  panel.append(nextRow());
+  const selectedFeedback = S.answered
+    ? loc((auxiliary?.entries || []).find((entry) => entry.interactionId === page.question.interactionId)?.responseFeedbackById?.[S.picked])
+    : "";
+  panel.append(nextRow(S.answered && Boolean(selectedFeedback)));
   return panel;
 }
 
@@ -279,7 +295,18 @@ function renderChoice(panel, it, p) {
   }, [document.createTextNode(visibleChoiceText(o))]))));
   if (S.answered) {
     const fb = (p.choiceFeedback || []).find(f => f.responseId === S.picked);
-    panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), html: S.ok ? "Верно." : tl(loc(fb?.feedbackByLocale) || "Неверно.")}));
+    const feedback = loc(fb?.feedbackByLocale);
+    const feedbackIsComplete = Boolean(
+      fb && typeof fb.correct === "boolean" && fb.correct === S.ok && feedback,
+    );
+    panel.append(h("div", {
+      class:"fb " + (feedbackIsComplete && S.ok ? "ok" : "no"),
+      html: feedbackIsComplete
+        ? tl(feedback)
+        : "Для выбранного ответа нет проверенного объяснения. Нельзя перейти дальше, пока задание не исправлено.",
+    }));
+    panel.append(nextRow(feedbackIsComplete));
+    return;
   }
   panel.append(nextRow());
 }
@@ -292,6 +319,26 @@ function correctIdOf(it) {
 function renderBuilder(panel, it, p) {
   const target = p.targetPhrase || p.hiddenTargetPhrase || "";
   const ordered = p.orderedTokens || [];
+  const explanationPresent = Object.prototype.hasOwnProperty.call(p, "explanationV1");
+  const explanation = p.explanationV1;
+  const localized = (value) => Boolean(loc(value));
+  const completeExplanation = Boolean(
+    explanation && localized(explanation.completionFeedbackByLocale) && explanation.phrase &&
+    typeof explanation.phrase.text === "string" && explanation.phrase.text &&
+    localized(explanation.phrase.meaningByLocale) && localized(explanation.phrase.explanationByLocale) &&
+    Array.isArray(explanation.phrase.units) && explanation.phrase.units.length &&
+    explanation.phrase.units.every((unit) =>
+      typeof unit?.text === "string" && unit.text &&
+      localized(unit.partOfSpeechLabelByLocale) && localized(unit.meaningByLocale) && localized(unit.functionByLocale)),
+  );
+  const failClosed = (message) => {
+    panel.append(h("div", {class:"fb no", text:message}));
+    panel.append(nextRow(false));
+  };
+  if (explanationPresent && !completeExplanation) {
+    failClosed("У задания нет полного авторского объяснения. Нельзя продолжить, пока задание не исправлено.");
+    return;
+  }
   if (p.referenceAudio?.transcript) panel.append(h("button", {class:"play", onClick:() => speak(p.referenceAudio.transcript)}, [document.createTextNode("▶  Прослушать")]));
   else if (p.localizedMeaning && loc(p.localizedMeaning)) panel.append(h("div", {class:"scene-line", text:loc(p.localizedMeaning)}));
   if (!ordered.length) return WARNBOX(panel, "У задания нет плиток — сборщик не нашёл целевую фразу.");
@@ -316,7 +363,23 @@ function renderBuilder(panel, it, p) {
   if (S.tileFeedback) panel.append(h("div", {class:"fb no", text:S.tileFeedback}));
 
   const ready = S.assembled.length === ordered.length;
-  if (S.answered) panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Правильно: " + target}));
+  if (S.answered) {
+    if (completeExplanation) {
+      const phrase = explanation.phrase;
+      panel.append(h("div", {class:"explanation"}, [
+        h("div", {class:"fb " + (S.ok ? "ok" : "no"), html:tl(loc(explanation.completionFeedbackByLocale))}),
+        h("div", {class:"target-phrase", text:phrase.text}),
+        h("div", {class:"scene-line", html:tl(loc(phrase.meaningByLocale))}),
+        h("div", {class:"scene-line", html:tl(loc(phrase.explanationByLocale))}),
+        h("div", {class:"explanation-units"}, phrase.units.map((unit) => h("div", {
+          class:"scene-line",
+          html:tl(unit.text + " — " + loc(unit.partOfSpeechLabelByLocale) + ": " + loc(unit.meaningByLocale) + ". " + loc(unit.functionByLocale)),
+        }))),
+      ]));
+    } else {
+      panel.append(h("div", {class:"fb " + (S.ok ? "ok" : "no"), text: S.ok ? "Верно." : "Правильно: " + target}));
+    }
+  }
   panel.append(h("div", {class:"actions"}, [
     h("button", {class:"btn ghost", disabled:S.step === 0, onClick:() => { if (S.step > 0) { S.step--; resetStep(); render(); } }, text:"Назад"}),
     S.answered
@@ -332,6 +395,19 @@ function renderBuilder(panel, it, p) {
 function renderPairs(panel, it, p) {
   const grid = p.pairGrid || [];
   if (!grid.length) return WARNBOX(panel, "Нет пар для соединения.");
+  const analysisPresent = grid.some((row) => Object.prototype.hasOwnProperty.call(row, "analysisV1"));
+  const localized = (value) => Boolean(loc(value));
+  const completeAnalysis = (analysis) => Boolean(
+    analysis && typeof analysis.lemma === "string" && analysis.lemma &&
+    localized(analysis.partOfSpeechLabelByLocale) && localized(analysis.meaningByLocale) &&
+    localized(analysis.functionByLocale) && localized(analysis.matchExplanationByLocale),
+  );
+  if (analysisPresent && !grid.every((row) => completeAnalysis(row.analysisV1))) {
+    panel.append(h("div", {class:"fb no", text:"У задания нет полного авторского разбора пар. Нельзя продолжить, пока задание не исправлено."}));
+    panel.append(nextRow(false));
+    return;
+  }
+  const analysisById = new Map(grid.map((row) => [row.pairId, row.analysisV1]));
   const left = shuffle(grid.map(g => ({id:g.pairId, text:g.target})), it.interactionId + "L");
   const right = avoidAlignedPairs(
     left,
@@ -343,7 +419,12 @@ function renderPairs(panel, it, p) {
     onClick:() => {
       if (!S.pairSel) { S.pairSel = {...item, side}; return render(); }
       if (S.pairSel.side === side) { S.pairSel = {...item, side}; return render(); }
-      if (S.pairSel.id === item.id) { S.pairsDone.push(item.id); S.right++; } else { S.wrong++; }
+      const selected = S.pairSel;
+      const leftItem = side === "L" ? item : selected;
+      const rightItem = side === "R" ? item : selected;
+      const correct = selected.id === item.id;
+      S.pairFeedback = {correct, leftId:leftItem.id, rightId:rightItem.id};
+      if (correct) { S.pairsDone.push(item.id); S.right++; } else { S.wrong++; }
       S.pairSel = null;
       if (S.pairsDone.length === grid.length) S.answered = true;
       render();
@@ -352,6 +433,19 @@ function renderPairs(panel, it, p) {
     h("div", {style:"display:grid;gap:9px"}, left.map(i => cell(i, "L"))),
     h("div", {style:"display:grid;gap:9px"}, right.map(i => cell(i, "R"))),
   ]));
+  if (S.pairFeedback && analysisPresent) {
+    const pairIds = S.pairFeedback.correct
+      ? [S.pairFeedback.leftId]
+      : [S.pairFeedback.leftId, S.pairFeedback.rightId];
+    panel.append(h("div", {class:"explanation"}, pairIds.map((pairId) => {
+      const analysis = analysisById.get(pairId);
+      return h("div", {class:"scene-line", html:tl(
+        analysis.lemma + " — " + loc(analysis.partOfSpeechLabelByLocale) + ": " +
+        loc(analysis.meaningByLocale) + ". " + loc(analysis.functionByLocale) +
+        (S.pairFeedback.correct ? " " + loc(analysis.matchExplanationByLocale) : ""),
+      )});
+    })));
+  }
   if (S.answered) panel.append(h("div", {class:"fb ok", text:"Все пары соединены."}));
   panel.append(nextRow());
 }

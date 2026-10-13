@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-016	2026-10-13T00:29:15.214Z	blank_too_long	22253	marker+пусто_6_повторов+ждали_metro_26мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-28-36-817Z/spire-016.blank_too_long.png	0

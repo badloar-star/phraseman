@@ -298,6 +298,21 @@ const PHRASE_BUILD_FROM_SESSION = 31;
 const PHRASE_SAME_SKELETON_MAX = 2;
 export const HARD_FACT_RE = /НЕ УПОМЯНУТ|СЛОВА БЕЗ ОТРАБОТКИ|МЕНЬШЕ ДВУХ|ни разу правильным ответом|ОТСЫЛКА К ПРОШЛОМУ|ДЛИНА|ИНТРО НЕ ОБЪЯСНЯЕТ ОТВЕТ|МАЛО СБОРКИ ФРАЗЫ|ОДНООБРАЗНЫЕ СБОРКИ|ПОВТОР СБОРКИ ДОСЛОВНО|ФИНАЛ ПОДСКАЗАН|IS С МНОЖЕСТВЕННЫМ|КОРОТКИЙ ОТВЕТ БЕЗ ОШИБКИ КОНСТРУКЦИИ|ПАРЫ НИЖЕ СТУПЕНИ|ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ|ПОВТОР СЛОВ МЕЖДУ ДОСКАМИ|ДУБЛИ В ДОСКЕ|МАЛО ЗАДАНИЙ|НЕРАЗРЕШЁННАЯ МЕХАНИКА|КАРТОЧКА БЕЗ НОВОГО СЛОВА|ATOMIC ANSWER НЕ ПРИВЯЗАН/;
 
+const PRACTICE_SECTION_HEADER_RE = /^##\s+(?:Практика|Задания|Завдання)(?:[^\r\n]*)$/m;
+const BUILDER_SECTION_HEADER_RE = /^##\s+Для сборщика(?:[^\r\n]*)$/m;
+
+function practiceSections(text) {
+  const source = String(text ?? "");
+  const header = PRACTICE_SECTION_HEADER_RE.exec(source);
+  if (!header) return { intro: source, practice: "" };
+  const afterHeader = source.slice(header.index + header[0].length);
+  const builderHeader = BUILDER_SECTION_HEADER_RE.exec(afterHeader);
+  return {
+    intro: source.slice(0, header.index),
+    practice: builderHeader ? afterHeader.slice(0, builderHeader.index) : afterHeader,
+  };
+}
+
 function finalBuilderPromptedByPreviousVoice(text, file, sessionIdentity = null) {
   const scope = /^en\/l(\d{2})\/s(\d{2})$/i.exec(String(sessionIdentity || ""))
     ?? String(file).match(/[\\\/]sessions[\\\/]en[\\\/]l(\d+)[\\\/]s(\d+)[\\\/]/i);
@@ -306,7 +321,7 @@ function finalBuilderPromptedByPreviousVoice(text, file, sessionIdentity = null)
   const session = Number(scope[2]);
   if (lesson < 2 || (lesson === 2 && session < 37)) return null;
 
-  const practice = (text.split(/^## Практика[^\n]*$/m)[1] ?? "").split(/^## Для сборщика/m)[0];
+  const { practice } = practiceSections(text);
   const tasks = practice.split(/^\*\*(?=\d+ · )/m).slice(1).map((chunk) => ({
     number: Number(/^(\d+) · /.exec(chunk)?.[1]),
     chunk,
@@ -351,7 +366,7 @@ export function machineFacts(file, sessionIdentity = null, sourceText = null, at
   // зачем: владелец — «давай рассматривать каждую сессию как отдельную, юзер
   // может начать с A2 и не читал предыдущего». Отсылки к прошлому опыту
   // ловим машинно: это дешевле судьи и не пропускается.
-  const introPart = text.split(/^## Практика/m)[0] ?? "";
+  const { intro: introPart, practice } = practiceSections(text);
   const BACKREFS = [
     // «вы уже говорите не о себе» описывает ЭТУ страницу, а не прошлый опыт:
     // ловим только связку с английской фразой или словом курса
@@ -364,7 +379,6 @@ export function machineFacts(file, sessionIdentity = null, sourceText = null, at
     [/[Тт]а же (?:скрепка|формула|коллега)/g, "«та же …»"],
   ];
   const ret = /^\*\*(?:Возвращаются|Повертаються):\*\*[^\S\r\n]*([^\r\n]*)$/m.exec(text)?.[1] ?? "";
-  const practice = text.split(/^## Практика/m)[1] ?? "";
   const canonicalTargets = practice.split("\n")
     .map((line) => /^(?:Цель|Ціль):[^\S\r\n]*`([^`\r\n]+)`[^\S\r\n]*$/u.exec(line)?.[1])
     .filter(Boolean);
@@ -922,7 +936,7 @@ export function difficultyLadder(lesson) {
 export function difficultyFacts(text, lesson, atomicPractice = null) {
   const d = difficultyLadder(lesson);
   if (d.frozen) return [];
-  const practice = (text.split(/^## Практика[^\n]*$/m)[1] ?? "").split(/^## Для сборщика/m)[0];
+  const { practice } = practiceSections(text);
   const modesBlock = /^modes:\s*([\s\S]*?)(?:\n\s*\n|$)/m.exec(text)?.[1] ?? "";
   const modes = new Map([...modesBlock.matchAll(/(\d+)\s*=\s*([a-z_]+)/g)].map(m => [Number(m[1]), m[2]]));
   const allowed = new Set(["word_card", "listen_choose", "context_gap_grammar", "phrase_builder", "speed_match", "sound_contrast", "scripted_repeat_compare", "listen_build_dictation"]);
@@ -985,7 +999,8 @@ export function difficultyFacts(text, lesson, atomicPractice = null) {
       if (wrong < d.distractors) facts.push(`ДИСТРАКТОРЫ НИЖЕ СТУПЕНИ: задание ${ordinal}, ${wrong}, минимум ${d.distractors}`);
     }
     if (["phrase_builder", "listen_build_dictation"].includes(family)) {
-      const target = [...body.matchAll(/→\s*\*\*([^*\r\n]+)\*\*/g)].at(-1)?.[1];
+      const target = [...body.matchAll(/→\s*\*\*([^*\r\n]+)\*\*/g)].at(-1)?.[1]
+        ?? /^(?:Цель|Ціль):\s*`([^`\r\n]+)`\s*$/mu.exec(body)?.[1];
       if (target && !isWellFormedBeShortAnswer(target)) phraseTargets.add(normalize(target));
     }
   }
@@ -1751,12 +1766,47 @@ ${issues}`,
 }
 
 // ---------- main ----------
-function main() {
+async function main() {
   if (!cmd || !SESSION) {
-    console.log("usage: node run.mjs <preflight|draft|judge|edit|localize|full> --session en/l01/s04 [--file x.ru.md] --backend <явно-настроенный-адаптер>");
+    console.log("usage: node run.mjs <preflight|draft|judge|edit|localize|full|review-export|review-import|review-existing-locales|finalize-status> --session en/l01/s04 [--file x.ru.md] --backend <явно-настроенный-адаптер>");
     process.exit(2);
   }
   const S = parseSession(SESSION);
+  if (cmd === "review-export") {
+    const { exportReviewPacket } = await import("./review_renewal.mjs");
+    const out = opt("out", null);
+    if (!out) throw new Error("REVIEW HOLD: review-export requires --out <path>");
+    const packet = exportReviewPacket({
+      sessionId: SESSION,
+      sessionDir: S.dir,
+      locales: LOCALES,
+      outPath: path.resolve(out),
+    });
+    LOG(`review packet exported: ${path.resolve(out)}; roles=${packet.requiredRoles.join(",")}`);
+    return;
+  }
+  if (cmd === "review-import") {
+    const { importReviewBundle } = await import("./review_renewal.mjs");
+    const input = opt("in", null);
+    if (!input) throw new Error("REVIEW HOLD: review-import requires --in <path>");
+    const receipts = importReviewBundle({ sessionId: SESSION, sessionDir: S.dir, locales: LOCALES, inPath: path.resolve(input) });
+    LOG(`review receipts imported: ${receipts.map((receipt) => `${receipt.role}=${receipt.verdict}`).join(", ")}`);
+    return;
+  }
+  if (cmd === "review-existing-locales") {
+    const { importExistingLocaleReview } = await import("./review_renewal.mjs");
+    const input = opt("in", null);
+    if (!input) throw new Error("REVIEW HOLD: review-existing-locales requires --in <path>");
+    const receipt = importExistingLocaleReview({ sessionId: SESSION, sessionDir: S.dir, locales: LOCALES, inPath: path.resolve(input) });
+    LOG(`existing locale review imported: ${LOCALES.map((locale) => `${locale}=${receipt.locales[locale].verdict}`).join(", ")}`);
+    return;
+  }
+  if (cmd === "finalize-status") {
+    const { finalizeReviewedStatus } = await import("./review_renewal.mjs");
+    const status = finalizeReviewedStatus({ sessionId: SESSION, sessionDir: S.dir, locales: LOCALES });
+    LOG(`status finalized: converged=${status.converged}; sourceSha256=${status.sourceSha256}`);
+    return;
+  }
   const plan = loadPlan(S.lang, S.lesson);
   const row = plan.rows.get(S.session);
   if (!row) {
@@ -1972,4 +2022,9 @@ function main() {
   process.exit(2);
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}

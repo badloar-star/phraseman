@@ -143,6 +143,8 @@ He ___ kind. → **is** · am · are
 **17 · Послухайте і складіть — Ліна каже: «Анна не груба»**
 <!-- interaction_id: en:lesson-01:session-19:i17; family: listen_build_dictation -->
 🔊 *She is not rude.* Плитки: `rude` `She` `not` `is` `are` → **She is not rude.**
+*(плитка `are` зайва: `are` зайве: з `She` ставлять `is`: `She is not rude`.)*
+
 
 **18 · Вставте слово — Анна біля кавомашини мовчить цілий день, але Анна не сердиться**
 <!-- interaction_id: en:lesson-01:session-19:i18; family: context_gap_grammar -->

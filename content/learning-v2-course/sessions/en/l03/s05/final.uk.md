@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-05:i02; family: listen_choose -->
 Ціль: `wall`
 Варіанти: `wall` · `tall` · `ball`
+- tall — *На початку `tall` чути «т». На початку `wall` губи округлюються для англійського звука `w`. У записі — `wall`.*
+- ball — *Для першого «б» у `ball` губи змикаються. На початку `wall` вони округлені, але не змикаються. Тут звучить `wall`.*
+
 
 **3 · Картка слова — floor**
 <!-- interaction_id: en:lesson-03:session-05:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-05:i04; family: listen_choose -->
 Ціль: `floor`
 Варіанти: `floor` · `claw` · `slaw`
+- claw — *На початку `claw` чути сполучення «к» і «л», а у `floor` — «ф» і «л». У записі — `floor`.*
+- slaw — *На початку `slaw` чути «с» і «л», а у `floor` — «ф» і «л». Тут звучить `floor`.*
+
 
 **5 · Складіть фразу — подруга запитує, що знято великим планом; скажіть «Це стіна»**
 <!-- interaction_id: en:lesson-03:session-05:i05; family: phrase_builder -->
@@ -82,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-05:i07; family: listen_choose -->
 Ціль: `ceiling`
 Варіанти: `ceiling` · `feeling` · `kneeling`
+- feeling — *Перший звук у `feeling` — «ф», а в `ceiling` — «с». У записі — `ceiling`.*
+- kneeling — *На початку `kneeling` чути «н», а в `ceiling` — «с». Тут звучить `ceiling`.*
+
 
 **8 · Складіть фразу — подруга показує знімок стелі; скажіть повною фразою «Це стеля»**
 <!-- interaction_id: en:lesson-03:session-05:i08; family: phrase_builder -->
@@ -106,6 +115,9 @@
 <!-- interaction_id: en:lesson-03:session-05:i12; family: context_gap_grammar -->
 Ціль: `It ___ clean.`
 Варіанти: `is` · `is a` · `a`
+- is a — *Ви описуєте стан словом `clean`. Перед ним у цій фразі `a` не потрібне: `It is clean`.*
+- a — *У `It a clean` зникло `is` і з’явилося зайве `a`. Потрібна фраза — `It is clean`.*
+
 
 **13 · Складіть фразу — подруга прийняла фотографію підлоги за стіну; заперечте: «Це не стіна»**
 <!-- interaction_id: en:lesson-03:session-05:i13; family: phrase_builder -->
@@ -116,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-05:i14; family: context_gap_grammar -->
 Ціль: `It ___ ceiling.`
 Варіанти: `is a` · `is` · `a`
+- is — *Початок вийде правильним, але перед `ceiling` бракуватиме `a`: `It is a ceiling`.*
+- a — *Назва `a ceiling` вийде, але для повної фрази після `It` потрібне `is`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-05:i15; family: scripted_repeat_compare -->

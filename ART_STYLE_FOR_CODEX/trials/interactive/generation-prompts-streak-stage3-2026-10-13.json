@@ -1,0 +1,27 @@
+{
+  "tool": "built-in image_gen",
+  "stage": 3,
+  "tierDays": 20,
+  "prompts": [
+    {
+      "asset": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_01.source.png",
+      "prompt": "Use case: precise-object-edit. Reference is design family 1 first-tier streak flame. Make DARK stage 3 of ten, representing 20 days. Preserve graphite matte clay style, same design identity, pose and near-frontal camera. Keep the compact droplet body and primary flame tip. Add 2 broad rounded secondary flame tongues along shoulders, smooth integrated silhouette, not thin spikes. Main body 16 percent broader than reference. Keep one cyan #00ffff inset on SAME detail as reference, about 2–5 percent of full canvas, neutral bevel. Rest graphite #303036, clean broad shapes, soft top-left lighting, mature premium UI icon, reads at24px. Real transparent alpha background, no floor, no cast shadow, no checkerboard, no opaque fragments or specks. Square1024; full icon centered inside frame with padding, no crop. No text, numbers, crown, tower, decoration, particles, glow, glass or metal."
+    },
+    {
+      "asset": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_02.source.png",
+      "prompt": "Use case: precise-object-edit. Reference is design family 2 first-tier streak flame. Make DARK stage 3 of ten, representing 20 days. Preserve graphite matte clay style, same design identity, pose and near-frontal camera. Preserve the continuous open ribbon-loop teardrop and its clean hollow. Ribbon 20 percent thicker and tip 12 percent taller than reference. Smooth heavier lower curve, no extra disconnected shapes. Keep one cyan #00ffff inset on SAME detail as reference, about 2–5 percent of full canvas, neutral bevel. Rest graphite #303036, clean broad shapes, soft top-left lighting, mature premium UI icon, reads at24px. Real transparent alpha background, no floor, no cast shadow, no checkerboard, no opaque fragments or specks. Square1024; full icon centered inside frame with padding, no crop. No text, numbers, crown, tower, decoration, particles, glow, glass or metal."
+    },
+    {
+      "asset": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_03.source.png",
+      "prompt": "Use case: precise-object-edit. Reference is design family 3 first-tier streak flame. Make DARK stage 3 of ten, representing 20 days. Preserve graphite matte clay style, same design identity, pose and near-frontal camera. Preserve the leaning S-shaped body and curled hooked tip. Make curled tip 16 percent longer, base 20 percent broader, and side flame shoulder more pronounced. Keep at most three large lobes. Keep one cyan #00ffff inset on SAME detail as reference, about 2–5 percent of full canvas, neutral bevel. Rest graphite #303036, clean broad shapes, soft top-left lighting, mature premium UI icon, reads at24px. Real transparent alpha background, no floor, no cast shadow, no checkerboard, no opaque fragments or specks. Square1024; full icon centered inside frame with padding, no crop. No text, numbers, crown, tower, decoration, particles, glow, glass or metal."
+    },
+    {
+      "asset": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_04.source.png",
+      "prompt": "Use case: precise-object-edit. Reference is design family 4 first-tier streak flame. Make DARK stage 3 of ten, representing 20 days. Preserve graphite matte clay style, same design identity, pose and near-frontal camera. Preserve exact rounded square badge framing. Evolve only embossed flame: 4 broad integrated tongues, central tongue taller, deeper raised relief. Retain the single cyan pill beneath, no additional symbols. Keep one cyan #00ffff inset on SAME detail as reference, about 2–5 percent of full canvas, neutral bevel. Rest graphite #303036, clean broad shapes, soft top-left lighting, mature premium UI icon, reads at24px. Real transparent alpha background, no floor, no cast shadow, no checkerboard, no opaque fragments or specks. Square1024; full icon centered inside frame with padding, no crop. No text, numbers, crown, tower, decoration, particles, glow, glass or metal."
+    },
+    {
+      "asset": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_05.source.png",
+      "prompt": "Use case: precise-object-edit. Reference is design family 5 first-tier streak flame. Make DARK stage 3 of ten, representing 20 days. Preserve graphite matte clay style, same design identity, pose and near-frontal camera. Keep exactly three integrated petals and central ember. Central petal 20 percent taller, side petals 24 percent broader and extend farther upward. Stronger upright flame silhouette. Keep one cyan #00ffff inset on SAME detail as reference, about 2–5 percent of full canvas, neutral bevel. Rest graphite #303036, clean broad shapes, soft top-left lighting, mature premium UI icon, reads at24px. Real transparent alpha background, no floor, no cast shadow, no checkerboard, no opaque fragments or specks. Square1024; full icon centered inside frame with padding, no crop. No text, numbers, crown, tower, decoration, particles, glow, glass or metal."
+    }
+  ]
+}

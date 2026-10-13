@@ -316,7 +316,7 @@
               "text": "they"
             }
           ],
-          "testedDimension": "Вставьте слово — спросите друга: «Кто эт",
+          "testedDimension": "Вставьте слово — спросите друга: «Кто эти люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i06:r2",
@@ -461,7 +461,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставьте слово — двое гостей оказались б",
+          "testedDimension": "Вставьте слово — двое гостей оказались близнецами; назовите их родство",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i08:r2",
@@ -559,7 +559,7 @@
               "text": "people"
             }
           ],
-          "testedDimension": "Вставьте слово — друг переспрашивает, то",
+          "testedDimension": "Вставьте слово — друг переспрашивает, точно ли гости близнецы; скажите: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i10:r2",
@@ -735,7 +735,7 @@
               "text": "host"
             }
           ],
-          "testedDimension": "Вставьте слово — вы показываете на компа",
+          "testedDimension": "Вставьте слово — вы показываете на компанию у забора: «Кто эти люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i13:r2",
@@ -1196,7 +1196,7 @@
               "text": "they"
             }
           ],
-          "testedDimension": "Вставте слово — запитайте друга: «Хто ці",
+          "testedDimension": "Вставте слово — запитайте друга: «Хто ці люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i06:r2",
@@ -1341,7 +1341,7 @@
               "text": "sure"
             }
           ],
-          "testedDimension": "Вставте слово — двоє гостей виявилися бл",
+          "testedDimension": "Вставте слово — двоє гостей виявилися близнюками; назвіть їхню спорідненість",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i08:r2",
@@ -1439,7 +1439,7 @@
               "text": "people"
             }
           ],
-          "testedDimension": "Вставте слово — друг перепитує, чи точно",
+          "testedDimension": "Вставте слово — друг перепитує, чи точно гості близнюки; скажіть: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i10:r2",
@@ -1615,7 +1615,7 @@
               "text": "host"
             }
           ],
-          "testedDimension": "Вставте слово — ви показуєте на компанію",
+          "testedDimension": "Вставте слово — ви показуєте на компанію біля паркану: «Хто ці люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-34:i13:r2",

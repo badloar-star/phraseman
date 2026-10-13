@@ -259,7 +259,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь речь о банке.",
-              "uk": "`Am` уживають лише з `I`; тут ідеться про банк."
+                "uk": "`Am` уживають лише з `I`; тут ідеться про банк."
               }
             }
           ]
@@ -488,11 +488,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите сообщение о пекарне в районе",
+        "prompt": "Соберите сообщение о пекарне в районе",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите сообщение о пекарне в районе",
+        "accessibilityLabel": "Соберите сообщение о пекарне в районе",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a bakery in the neighbourhood.",
@@ -768,7 +768,7 @@
               "testedDimension": "singular there is agreement",
               "feedbackByLocale": {
                 "ru": "`Am` употребляется с `I`; здесь речь о банке.",
-              "uk": "`Am` уживають лише з `I`; тут ідеться про банк."
+                "uk": "`Am` уживають лише з `I`; тут ідеться про банк."
               }
             }
           ]
@@ -997,11 +997,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть повідомлення про пекарню в районі",
+        "prompt": "Складіть повідомлення про пекарню в районі",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть повідомлення про пекарню в районі",
+        "accessibilityLabel": "Складіть повідомлення про пекарню в районі",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is a bakery in the neighbourhood.",

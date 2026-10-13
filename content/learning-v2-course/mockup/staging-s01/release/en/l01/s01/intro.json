@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "как сказать о себе в четырёх фразах: `I am here`, `I am ready`, `I am fine`, `I am happy`",
+    "uk": "як сказати про себе в чотирьох фразах: `I am here`, `I am ready`, `I am fine`, `I am happy`"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "en:lesson-01:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Первая фраза о себе: I am here",
+        "uk": "Перша фраза про себе: I am here"
+      },
+      "bodyByLocale": {
+        "ru": "`I` — «я». `here` — «здесь, тут»: в месте, где вы сейчас находитесь. Полная\nфраза: `I am here`. По-русски слово «есть» обычно не произносят, но в\nанглийском `am` обязательно.\n\n`I am here` — «я здесь». Скажите вслух: это первая английская фраза этого\nкурса.",
+        "uk": "`I` — це «я». `here` — «тут»: у місці, де ви зараз перебуваєте. Повна фраза:\n`I am here`. Українською слово «є» зазвичай не вимовляють, але в англійській\n`am` обов'язкове.\n\n`I am here` — «я тут». Скажіть уголос: це перша англійська фраза цього\nкурсу."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Мира ищет вас у входа. Вы уже в офисе; она окликает вас. Скажите «я здесь».",
+          "uk": "Міра шукає вас біля входу. Ви вже в офісі, і вона кличе вас. Скажіть «я тут»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r3",
+              "text": "Am here."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r1",
+              "text": "I am here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r2",
+              "text": "I here."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro1:r3",
+              "text": "Am here."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мира ищет вас у входа. Вы уже в офисе; она окликает вас. Скажите «я здесь».",
+          "uk": "Міра шукає вас біля входу. Ви вже в офісі, і вона кличе вас. Скажіть «я тут»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "en:lesson-01:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Четыре фразы о себе",
+        "uk": "Чотири фрази про себе"
+      },
+      "bodyByLocale": {
+        "ru": "`ready` — «готов / готова», `fine` — «всё хорошо, в порядке». `I am ready` — «я готов / готова».\n`I am fine` — «у меня всё хорошо». В этих четырёх фразах `I am` остаётся,\nа последнее слово меняется.\n\nВ четырёх фразах этого урока после `I am` выбирайте слово по смыслу:\n`here`, `ready`, `fine` или `happy`.",
+        "uk": "`ready` — «готовий / готова», `fine` — «усе добре, гаразд». `I am ready` — «я готовий / готова».\n`I am fine` — «у мене все добре». У цих чотирьох фразах `I am` лишається,\nа останнє слово змінюється.\n\nУ чотирьох фразах цього уроку після `I am` обирайте слово за змістом:\n`here`, `ready`, `fine` або `happy`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Руководитель Антон спрашивает: «Ready?» Ответьте: «Я готов / готова».",
+          "uk": "Керівник Антон питає: «Ready?» Відповідайте: «Я готовий / готова»."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r2",
+              "text": "I ready am."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r3",
+              "text": "I ready."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r1",
+              "text": "I am ready."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r2",
+              "text": "I ready am."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro2:r3",
+              "text": "I ready."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Руководитель Антон спрашивает: «Ready?» Ответьте: «Я готов / готова».",
+          "uk": "Керівник Антон питає: «Ready?» Відповідайте: «Я готовий / готова»."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "en:lesson-01:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не пропускайте am",
+        "uk": "Не пропускайте am"
+      },
+      "bodyByLocale": {
+        "ru": "`happy` — «рад / рада». Ошибка, которая здесь встречается: `I happy`. По-русски «я\nрад / рада» говорят без отдельного слова «есть».\n\nВ этих четырёх фразах между `I` и `here`, `ready`, `fine` или `happy` ставьте\n`am`: `I am happy`.",
+        "uk": "`happy` — «радий / рада». Помилка, яка тут трапляється: `I happy`. Українською «я радий / рада» кажуть без окремого слова «є».\n\nУ цих чотирьох фразах між `I` та `here`, `ready`, `fine` або `happy` ставте\n`am`: `I am happy`."
+      },
+      "question": {
+        "interactionId": "en:lesson-01:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Мира сообщает хорошую новость. Вы рады — скажите это.",
+          "uk": "Міра повідомляє хорошу новину. Ви раді — скажіть це."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r1",
+              "text": "I am happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r2",
+              "text": "I happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r3",
+              "text": "I am."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r1",
+              "text": "I am happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r2",
+              "text": "I happy."
+            },
+            {
+              "responseId": "en:lesson-01:session-01:intro3:r3",
+              "text": "I am."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Мира сообщает хорошую новость. Вы рады — скажите это.",
+          "uk": "Міра повідомляє хорошу новину. Ви раді — скажіть це."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "31db77f4967ce8dc340d90d9c10427754ffe2b87dc4fd638fbdc8ad8e72b8ab2"
+}

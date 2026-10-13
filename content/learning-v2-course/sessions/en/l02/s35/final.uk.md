@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-35:i01; family: listen_choose -->
 Ціль: `Whose is it?`
 Варіанти: `Whose is it?` · `Where is it?` · `What is it?`
+- Where is it? — *Це питання про місце. На записі — `Whose is it?`, «Чиє це?»*
+- What is it? — *Це «Що це?». Сусід запитав, кому належить річ.*
+
 
 **2 · Вставте слово — покажіть куртку гостям і запитайте, кому вона належить**
 <!-- interaction_id: en:lesson-02:session-35:i02; family: context_gap_grammar -->
 Ціль: `___ is it?`
 Варіанти: `Whose` · `Where` · `What`
+- Where — *Вийде «Де це?». Вам потрібно дізнатися, хто власник куртки.*
+- What — *Вийде «Що це?». Щоб запитати «Чиє це?», почніть із `Whose`.*
+
 
 **3 · Складіть фразу — запитайте сусіда: «Чиє це?»**
 <!-- interaction_id: en:lesson-02:session-35:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-35:i04; family: listen_choose -->
 Ціль: `wet`
 Варіанти: `wet` · `wait` · `white`
+- wait — *`Wait` — «чекати». Послухайте середину слова: у записі `wet`.*
+- white — *`White` — «білий». Послухайте середину слова: у записі `wet`.*
+
 
 **5 · Складіть фразу — куртка намокла під дощем; скажіть про неї: «Вона мокра»**
 <!-- interaction_id: en:lesson-02:session-35:i05; family: phrase_builder -->
@@ -79,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-35:i06; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `sure` · `wet` · `here`
+- wet — *Це «мокрий». Потрібно сказати, що ви впевнені у своїй відповіді.*
+- here — *Це «тут». Для «Я впевнений» потрібно `I am sure`.*
+
 
 **7 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-02:session-35:i07; family: listen_choose -->
 Ціль: `host`
 Варіанти: `host` · `ghost` · `most`
+- ghost — *`Ghost` — «привид». Послухайте перший звук: у записі `host`.*
+- most — *`Most` — «найбільше». Послухайте перший звук: у записі `host`.*
+
 
 **8 · Складіть фразу — господар дому допоможе знайти власника куртки; запитайте, де господар**
 <!-- interaction_id: en:lesson-02:session-35:i08; family: phrase_builder -->
@@ -93,6 +108,9 @@
 <!-- interaction_id: en:lesson-02:session-35:i09; family: context_gap_grammar -->
 Ціль: `___ the host sure?`
 Варіанти: `is` · `are` · `am`
+- are — *`Are the host sure?` не узгоджується з однією людиною: `the host` — один господар, тому тут потрібно `is`.*
+- am — *`Am` уживається лише з `I`: `Am I…?`. Тут підмет — `the host`, тому потрібно `is`.*
+
 
 **10 · З’єднайте пари**
 <!-- interaction_id: en:lesson-02:session-35:i10; family: speed_match -->
@@ -103,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-35:i11; family: context_gap_grammar -->
 Ціль: `He is ___ .`
 Варіанти: `here` · `sure` · `wet`
+- sure — *Вийде «Він упевнений». Потрібно повідомити, де він перебуває.*
+- wet — *Це «мокрий». Для «Він тут» потрібно `He is here`.*
+
 
 **12 · Складіть фразу — господар запитує, хто приніс куртку; ви сумніваєтеся й кажете: «Я не впевнений»**
 <!-- interaction_id: en:lesson-02:session-35:i12; family: phrase_builder -->
@@ -112,6 +133,9 @@
 <!-- interaction_id: en:lesson-02:session-35:i13; family: listen_choose -->
 Ціль: `Is it wet?`
 Варіанти: `Is it wet?` · `Is it dry?` · `Is it cold?`
+- Is it dry? — *Це «Вона суха?». На записі гість запитує, чи мокра куртка: `Is it wet?`*
+- Is it cold? — *Це «Вона холодна?». Прозвучало слово `wet` — «мокра».*
+
 
 **14 · Послухайте й складіть — друг говорить про господаря**
 <!-- interaction_id: en:lesson-02:session-35:i14; family: listen_build_dictation -->
@@ -121,6 +145,9 @@
 <!-- interaction_id: en:lesson-02:session-35:i15; family: listen_choose -->
 Ціль: `whose`
 Варіанти: `whose` · `who` · `where`
+- who — *`who` питає про людину; про власника речі питають `whose`.*
+- where — *`where` питає про місце; про власника речі питають `whose`.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-35:i16; family: scripted_repeat_compare -->

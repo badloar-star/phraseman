@@ -68,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-18:i02; family: listen_choose -->
 Цель: `shops`
 Варианты: `shops` · `tops` · `chops`
+- tops — *Начинается с «т», а `shops` — с «ш», как в русском «шорты».*
+- chops — *Начинается с «ч». В `shops` первый звук — «ш».*
+
 
 **3 · Карточка слова — toilets**
 <!-- interaction_id: en:lesson-02:session-18:i03; family: listen_choose -->
@@ -77,11 +80,17 @@
 <!-- interaction_id: en:lesson-02:session-18:i04; family: listen_choose -->
 Цель: `toilets`
 Варианты: `toilets` · `tickets` · `tablets`
+- tickets — *«Билеты». Гласная в начале другая: у `toilets` она тянется, у `tickets` короткая.*
+- tablets — *«Таблетки». Гласная в начале другая: у `toilets` она тянется, у `tablets` открытая.*
+
 
 **5 · Вставьте слово — вы спрашиваете про магазины**
 <!-- interaction_id: en:lesson-02:session-18:i05; family: context_gap_grammar -->
 Цель: `Where ___ the shops?`
 Варианты: `are` · `is` · `am`
+- is — *`is` работает с одним предметом. Магазинов несколько.*
+- am — *Это слово только про себя: `I am`. В вопросе о месте ему делать нечего.*
+
 
 **6 · Соберите вопрос — у туристической карты вы ищете единственный вокзал города**
 <!-- interaction_id: en:lesson-02:session-18:i06; family: phrase_builder -->
@@ -91,6 +100,9 @@
 <!-- interaction_id: en:lesson-02:session-18:i07; family: listen_choose -->
 Цель: `Where are the toilets?`
 Варианты: `Where are the toilets?` · `Where is the station?` · `Where are the shops?`
+- Where is the station? — *В записи звучит `toilets`, а не `station`.*
+- Where are the shops? — *В записи звучит `toilets`, а не `shops`.*
+
 
 **8 · Карточка слова — crowded**
 <!-- interaction_id: en:lesson-02:session-18:i08; family: listen_choose -->
@@ -100,10 +112,15 @@
 <!-- interaction_id: en:lesson-02:session-18:i09; family: context_gap_grammar -->
 Цель: `The shops are ___ .`
 Варианты: `crowded` · `lost` · `cold`
+- lost — *«Заблудился» — это про человека, который не знает дороги, а не про магазины.*
+- cold — *«Холодно» — про погоду или про вещь. Речь о толпе, а не о температуре.*
+
 
 **10 · Послушайте и соберите — «где магазины?»**
 <!-- interaction_id: en:lesson-02:session-18:i10; family: listen_build_dictation -->
 Цель: `Where are the shops?`
+🔊 *Where are the shops?* Плитки: `Where` `are` `the` `shops` `is`
+*Плитка `is` лишняя: магазинов несколько, поэтому нужна форма `are`: `Where are the shops?`*
 
 **11 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-18:i11; family: speed_match -->
@@ -113,11 +130,16 @@
 **12 · Различите слова — какое из двух про «улицу»?**
 <!-- interaction_id: en:lesson-02:session-18:i12; family: sound_contrast -->
 Варианты: `street` · `treat`
+- treat — *«Угощение». Первый звук другой: `street` начинается со «с», `treat` — с «т».*
+
 
 **13 · Вставьте слово — вы третий раз выходите к одному и тому же входу**
 <!-- interaction_id: en:lesson-02:session-18:i13; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `lost` · `crowded` · `cold`
+- crowded — *«Людно» — про место, где много народу, а не про человека.*
+- cold — *«Холодно» — про температуру. Вы не мёрзнете, вы не понимаете, куда идти.*
+
 
 **14 · Послушайте и соберите — у карты вы спрашиваете про единственный вокзал**
 <!-- interaction_id: en:lesson-02:session-18:i14; family: listen_build_dictation -->
@@ -127,6 +149,9 @@
 <!-- interaction_id: en:lesson-02:session-18:i15; family: context_gap_grammar -->
 Цель: `Where are the ___ ?`
 Варианты: `shops` · `station` · `street`
+- station — *«Вокзал» — он не в торговом центре, и он один: тогда было бы `Where is`.*
+- street — *«Улица» — она снаружи, а вы ищете внутри. И улица одна.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-18:i16; family: scripted_repeat_compare -->

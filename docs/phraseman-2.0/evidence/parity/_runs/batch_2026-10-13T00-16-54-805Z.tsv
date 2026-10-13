@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-014	2026-10-13T00:17:18.590Z	ok	12473	marker+пусто_1456мс+склейка+ждали_metro_25мс	docs/phraseman-2.0/evidence/parity/spire-014.png	1456

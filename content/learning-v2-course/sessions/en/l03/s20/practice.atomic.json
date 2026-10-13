@@ -267,7 +267,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -302,17 +307,7 @@
           "authoredDistractorTokens": [
             "glass"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i06:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — курьер спрашивает, что ",
-              "feedbackByLocale": {
-                "ru": "Вы вынули несколько стаканов. Нужна форма `glasses`, с коротким дополнительным слогом.",
-                "uk": "Ви дістали кілька склянок. Потрібна форма `glasses`, із коротким додатковим складом."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -459,7 +454,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -508,7 +508,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставьте название — курьер спрашивает, ч",
+          "testedDimension": "Вставьте название — курьер спрашивает, что осталось у двери; назовите две пустые коробки (`box` — «коробка», `boxes` — «коробки»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-20:i10:r2",
@@ -563,17 +563,7 @@
           "authoredDistractorTokens": [
             "brush"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i11:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — в закрытой коробке дол",
-              "feedbackByLocale": {
-                "ru": "Спрашиваем о нескольких предметах. Название щёток — `brushes`, два слога.",
-                "uk": "Питаємо про кілька предметів. Назва щіток — `brushes`, два склади."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -612,17 +602,7 @@
           "authoredDistractorTokens": [
             "bench"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i12:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — что сказал курье",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `benches`, в два слога. Отрицание `not` не убирает окончание из названия нескольких скамеек.",
-                "uk": "У записі звучить `benches`, у два склади. Заперечення `not` не забирає закінчення з назви кількох лавок."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -915,17 +895,7 @@
           "authoredDistractorTokens": [
             "bench"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — курьер спрашивает, каку",
-              "feedbackByLocale": {
-                "ru": "Вы называете две скамейки. Нужна форма `benches`, в два слога.",
-                "uk": "Ви називаєте дві лавки. Потрібна форма `benches`, у два склади."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1193,7 +1163,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1228,17 +1203,7 @@
           "authoredDistractorTokens": [
             "glass"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i06:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — кур’єр питає, що було в ",
-              "feedbackByLocale": {
-                "ru": "Вы вынули несколько стаканов. Нужна форма `glasses`, с коротким дополнительным слогом.",
-                "uk": "Ви дістали кілька склянок. Потрібна форма `glasses`, із коротким додатковим складом."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1385,7 +1350,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1434,7 +1404,7 @@
               "text": "boxs"
             }
           ],
-          "testedDimension": "Вставте назву — кур’єр питає, що лишилос",
+          "testedDimension": "Вставте назву — кур’єр питає, що лишилося біля дверей; назвіть дві порожні коробки (`box` — «коробка», `boxes` — «коробки`)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-20:i10:r2",
@@ -1489,17 +1459,7 @@
           "authoredDistractorTokens": [
             "brush"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i11:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — у закритій коробці маю",
-              "feedbackByLocale": {
-                "ru": "Спрашиваем о нескольких предметах. Название щёток — `brushes`, два слога.",
-                "uk": "Питаємо про кілька предметів. Назва щіток — `brushes`, два склади."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1538,17 +1498,7 @@
           "authoredDistractorTokens": [
             "bench"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i12:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — що сказав кур’єр",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `benches`, в два слога. Отрицание `not` не убирает окончание из названия нескольких скамеек.",
-                "uk": "У записі звучить `benches`, у два склади. Заперечення `not` не забирає закінчення з назви кількох лавок."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1841,17 +1791,7 @@
           "authoredDistractorTokens": [
             "bench"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-20:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — кур’єр питає, які меблі",
-              "feedbackByLocale": {
-                "ru": "Вы называете две скамейки. Нужна форма `benches`, в два слога.",
-                "uk": "Ви називаєте дві лавки. Потрібна форма `benches`, у два склади."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

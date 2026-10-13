@@ -83,6 +83,8 @@ You are ___ . → **kind** · tired · wrong
 **4 · Соберите фразу — Артём сам признался, что ошибся; скажите ему: «ты честный»**
 <!-- interaction_id: en:lesson-01:session-16:i04; family: phrase_builder -->
 Плитки: `honest` `are` `You` `is` → **You are honest.**
+*(плитка `is` лишняя: `is` здесь лишнее: с `you` употребляют `are`: `You are honest.`)*
+
 
 **5 · Вставьте слово — Артём спокойно ждёт ответа; скажите ему: «ты спокойный»**
 <!-- interaction_id: en:lesson-01:session-16:i05; family: context_gap_grammar -->
@@ -107,6 +109,8 @@ You are not ___ . → **wrong** · brave · lucky
 **9 · Соберите фразу — Артём винит себя, но ошибка не его; скажите ему: «ты не ошибаешься»**
 <!-- interaction_id: en:lesson-01:session-16:i09; family: phrase_builder -->
 Плитки: `wrong` `are` `not` `You` `am` → **You are not wrong.**
+*(плитка `am` лишняя: `am` здесь лишнее: `am` употребляют с `I`, а после `you` нужно `are`: `You are not wrong.`)*
+
 
 **10 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-01:session-16:i10; family: listen_choose -->
@@ -123,10 +127,14 @@ You are not ___ . → **wrong** · brave · lucky
 **12 · Соберите фразу — Артём боялся, но всё-таки сказал правду; скажите Артёму: «ты смелый»**
 <!-- interaction_id: en:lesson-01:session-16:i12; family: phrase_builder -->
 Плитки: `You` `are` `brave` `is` → **You are brave.**
+*(плитка `is` лишняя: `is` здесь лишнее: с `you` употребляют `are`: `You are brave.`)*
+
 
 **13 · Послушайте и соберите — Артём нашёл единственный свободный билет; скажите ему: «тебе повезло»**
 <!-- interaction_id: en:lesson-01:session-16:i13; family: listen_build_dictation -->
 🔊 *You are lucky.* Плитки: `lucky` `You` `are` `not` → **You are lucky.**
+*(плитка `not` лишняя: `not` здесь лишнее: билет достался Артёму, поэтому нужна положительная фраза `You are lucky.`)*
+
 
 **14 · Различите звуки — Артём зевает весь вечер; какое слово его описывает?**
 <!-- interaction_id: en:lesson-01:session-16:i14; family: sound_contrast -->
@@ -141,6 +149,8 @@ brave — смелый · lucky — везучий · wrong — неправ · 
 **16 · Послушайте и соберите — Артём улыбается и говорит, что просто задумался; скажите ему: «ты не грустный»**
 <!-- interaction_id: en:lesson-01:session-16:i16; family: listen_build_dictation -->
 🔊 *You are not sad.* Плитки: `You` `are` `not` `sad` `is` → **You are not sad.**
+*(плитка `is` лишняя: `is` здесь лишнее: после `you` уже стоит `are`: `You are not sad.`)*
+
 
 **17 · Скажите вслух — Артём заметил, что у вас тяжёлая сумка, и сам донёс её до автобуса; скажите Артёму: «ты добрый»**
 <!-- interaction_id: en:lesson-01:session-16:i17; family: scripted_repeat_compare -->

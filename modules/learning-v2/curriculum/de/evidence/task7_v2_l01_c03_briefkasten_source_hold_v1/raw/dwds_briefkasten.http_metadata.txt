@@ -1,0 +1,7 @@
+canonical-url: https://www.dwds.de/wb/Briefkasten
+requested-url: https://www.dwds.de/wb/Briefkasten
+http-status: 200
+content-type: text/html; charset=UTF-8
+transport: DIRECT_PUBLIC_HTTPS
+body-sha256: d6e63ca2942fb05841e2a89cd30a3c335228dc4d6ba296e4d010e9515bd18342
+body-bytes: 61841

@@ -12,14 +12,21 @@ const assignments = LEARNING_V2_ENGLISH_SESSION_LEXICAL_ASSIGNMENTS_V2;
 const findings: string[] = [];
 
 const expectedCourseStartLexicon = new Map<string, readonly string[]>([
-  ["lesson-01:session:01", ["here", "ready", "fine"]],
-  ["lesson-01:session:02", ["happy", "sad", "tired"]],
+  ["lesson-01:session:01", ["here", "ready", "fine", "happy"]],
+  ["lesson-01:session:02", ["sad", "tired"]],
   ["lesson-01:session:03", ["busy", "free", "late"]],
   ["lesson-01:session:04", ["hungry", "thirsty", "sick"]],
   ["lesson-01:session:05", ["cold", "hot", "warm"]],
   ["lesson-01:session:06", ["calm", "nervous", "excited"]],
   ["lesson-01:session:07", ["angry", "scared"]],
 ]);
+
+const courseStartSession2 = assignments.find(
+  (assignment) => assignment.sessionId === "lesson-01:session:02",
+);
+if (!courseStartSession2?.retrievalSenseIds.includes("en.happy.adjective.01")) {
+  findings.push("course_start_session_02_must_retrieve_happy_from_session_01");
+}
 
 const expectedHeSheItLexicon = new Map<string, readonly string[]>([
   ["lesson-01:session:09", ["tall", "short", "young"]],

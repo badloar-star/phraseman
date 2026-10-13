@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-03:session-34:i05; family: listen_choose -->
 Цель: `duvet`
 Варианты: `duvet` · `blanket` · `sheet`
+- blanket — *`blanket` — плед. В записи звучит `duvet` — пуховое одеяло.*
+- sheet — *`sheet` — простыня. В записи звучит `duvet` — пуховое одеяло.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-34:i02; family: scripted_repeat_compare -->
@@ -79,6 +82,8 @@
 <!-- interaction_id: en:lesson-03:session-34:i06; family: sound_contrast -->
 Цель: `duvet`
 Варианты: `duvet` · `duty`
+- duty — *`duty` — обязанность. В записи после du слышится `vet`: `duvet`.*
+
 
 **7 · Соберите короткую просьбу — подушка лежит рядом**
 <!-- interaction_id: en:lesson-03:session-34:i08; family: phrase_builder -->
@@ -105,11 +110,19 @@
 <!-- interaction_id: en:lesson-03:session-34:i12; family: listen_choose -->
 Цель: `Those are shoes.`
 Варианты: `Это туфли` · `Это туфля` · `Это носки` · `Те туфли, пожалуйста`
+- Это туфля — *Так называют один предмет. В записи `those are` и форма `shoes` показывают несколько туфель.*
+- Это носки — *Число совпадает, но в записи назвали `shoes` — туфли, а не носки.*
+- Те туфли, пожалуйста — *Это просьба выбрать туфли. В записи их просто называют: `Those are shoes`.*
+
 
 **13 · Вставьте указатель — несколько подушек лежат на дальней полке**
 <!-- interaction_id: en:lesson-03:session-34:i13; family: context_gap_grammar -->
 Цель: `___ are pillows.`
 Варианты: `Those` · `That` · `These` · `Are`
+- That — *`that` показывает на один предмет и сочетается с `is`. Для нескольких подушек нужно `those`.*
+- These — *`these` показывает на несколько предметов рядом. Здесь подушки находятся вдали, поэтому нужно `those`.*
+- Are — *`Are are pillows` не образует фразу. В начале нужен указатель `Those`.*
+
 
 **14 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-34:i14; family: scripted_repeat_compare -->

@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
 Цель: `drawer`
 Варианты: `drawer` · `drier` · `dream`
+- drier — *В `drier` гласный после начала меняется в ходе звучания; в `drawer` он звучит ровнее, с округлёнными губами. В записи — `drawer`.*
+- dream — *В `dream` гласный произносят с растянутыми губами, в `drawer` — с округлёнными. Здесь звучит `drawer`.*
+
 
 **3 · Карточка слова — cupboard**
 <!-- interaction_id: en:lesson-03:session-07:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i04; family: listen_choose -->
 Цель: `cupboard`
 Варианты: `cupboard` · `covered` · `coward`
+- covered — *В середине `covered` для `v` нижняя губа касается верхних зубов. В `cupboard` для `b` смыкаются обе губы. В записи — `cupboard`.*
+- coward — *В `coward` первый гласный заметно скользит и заканчивается округлением губ. В `cupboard` он короткий, а затем губы смыкаются для `b`. Здесь — `cupboard`.*
+
 
 **5 · Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»**
 <!-- interaction_id: en:lesson-03:session-07:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i07; family: listen_choose -->
 Цель: `wardrobe`
 Варианты: `wardrobe` · `warble` · `warlock`
+- warble — *После общей первой части в `warble` сразу слышится `b`, а в `wardrobe` — сочетание `d` + `r`. В записи — `wardrobe`.*
+- warlock — *После общей первой части в `warlock` слышится `l`, а в `wardrobe` — сочетание `d` + `r`. Здесь — `wardrobe`.*
+
 
 **8 · Послушайте и соберите — друг говорит о мебели рядом с коробкой**
 <!-- interaction_id: en:lesson-03:session-07:i08; family: listen_build_dictation -->
@@ -107,6 +116,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i12; family: context_gap_grammar -->
 Цель: `It ___ closed.`
 Варианты: `is` · `are` · `am`
+- are — *Для этой фразы нужно `It is closed`. `are` с `It` не сочетается.*
+- am — *`am` подходит к `I`. О шкафе здесь говорим `It is closed`.*
+
 
 **13 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-07:i13; family: scripted_repeat_compare -->
@@ -121,6 +133,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i15; family: context_gap_grammar -->
 Цель: `___ is open.`
 Варианты: `It` · `Is` · `Am`
+- Is — *`is` уже стоит перед `open`. Сначала назовите предмет через `It`.*
+- Am — *Для фразы о ящике нужно `It is open`; начинать её с `Am` здесь нельзя.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-07:i16; family: scripted_repeat_compare -->

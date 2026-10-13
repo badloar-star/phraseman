@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i01; family: listen_choose -->
 Ціль: `Is he busy?`
 Варіанти: `Is he busy?` · `He is busy.` · `Is she busy?`
+- He is busy. — *Це повідомлення. У записі спочатку `Is he`: друг ставить запитання.*
+- Is she busy? — *Це запитання про жінку. У записі після `Is` звучить `he` — ідеться про чоловіка; `busy` означає «зайнятий».*
+
 
 **2 · Вставте слово — працівниця підтвердила, що обраною машиною ніхто не користується; повідомте другові, що вона вільна**
 <!-- interaction_id: en:lesson-02:session-53:i02; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `free` · `busy` · `sure`
+- busy — *Слово `busy` описує зайняту людину. Тут треба повідомити, що машина вільна: `free`.*
+- sure — *Це «впевнений». Ви повідомляєте про вільну машину: `It is free`.*
+
 
 **3 · Складіть фразу — запитайте працівницю, скільки коштує сушіння**
 <!-- interaction_id: en:lesson-02:session-53:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i04; family: listen_choose -->
 Ціль: `Are they wet?`
 Варіанти: `Are they wet?` · `They are wet.` · `Are you wet?`
+- They are wet. — *Це повідомлення. У записі спочатку `Are they`: звучить запитання.*
+- Are you wet? — *Це запитання з `you`. У записі звучить `they` — «вони», а `wet` означає «мокрі».*
+
 
 **5 · Вставте слово — після сушіння ви перевірили рушники: вони сухі; повідомте про це другові**
 <!-- interaction_id: en:lesson-02:session-53:i05; family: context_gap_grammar -->
 Ціль: `They ___ dry.`
 Варіанти: `are` · `is` · `am`
+- is — *У повідомленні з `they` потрібна форма `are`: `They are dry`.*
+- am — *Форма `am` поєднується з `I`. Тут ідеться про рушники: `They are dry`.*
+
 
 **6 · Складіть фразу — друг запитує, чи впевнені ви щодо загальної вартості прання й сушіння; ви сумніваєтеся, скажіть про це**
 <!-- interaction_id: en:lesson-02:session-53:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i07; family: context_gap_grammar -->
 Ціль: `___ is she?`
 Варіанти: `Who` · `Where` · `How`
+- Where — *Це запитання про місце. Ви хочете дізнатися, хто ця жінка: `Who is she?`.*
+- How — *Це запитання про стан або самопочуття: «Як вона?» Тут треба дізнатися, хто ця жінка: `Who is she?`.*
+
 
 **8 · Послухайте й виберіть — яка репліка друга прозвучала у відповідь**
 <!-- interaction_id: en:lesson-02:session-53:i08; family: listen_choose -->
 Ціль: `She is the manager.`
 Варіанти: `She is the manager.` · `Is she the manager?` · `He is the manager.`
+- Is she the manager? — *Це запитання. У записі друг повідомляє: `She is the manager` — «Вона керівниця».*
+- He is the manager. — *Це повідомлення про чоловіка. Перше слово в записі — `She`, «вона».*
+
 
 **9 · З’єднайте пари — слова для перевірки машини, речей і ціни**
 <!-- interaction_id: en:lesson-02:session-53:i09; family: speed_match -->
@@ -99,11 +117,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i10; family: context_gap_grammar -->
 Ціль: `Where ___ the toilets?`
 Варіанти: `are` · `is` · `am`
+- is — *У цьому запитанні з `the toilets` потрібна форма `are`: `Where are the toilets?`.*
+- am — *Форма `am` поєднується з `I`. Тут запитання про туалети, тому потрібне `are`.*
+
 
 **11 · Послухайте й виберіть — яка репліка друга прозвучала, коли ви обговорювали пояснення керівниці**
 <!-- interaction_id: en:lesson-02:session-53:i11; family: listen_choose -->
 Ціль: `Is she sure?`
 Варіанти: `Is she sure?` · `She is sure.` · `Are you sure?`
+- She is sure. — *Це повідомлення. У записі спочатку `Is she`: друг ставить запитання.*
+- Are you sure? — *Це запитання до вас. У записі друг запитує про жінку: `Is she sure?`.*
+
 
 **12 · Послухайте й складіть — друг порівняв суму на екрані із цінником і говорить про ціну**
 <!-- interaction_id: en:lesson-02:session-53:i12; family: listen_build_dictation -->
@@ -113,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-53:i13; family: context_gap_grammar -->
 Ціль: `No, it ___ not.`
 Варіанти: `is` · `are` · `am`
+- are — *Після `it` у цій відповіді потрібне `is`: `No, it is not`.*
+- am — *Форма `am` поєднується з `I`. Ви відповідаєте про ціну, тому зберігаємо `it is not`.*
+
 
 **14 · Складіть фразу — керівниця відійшла від стійки; друг шукає її поруч із вами, повідомте «Її тут немає»**
 <!-- interaction_id: en:lesson-02:session-53:i14; family: phrase_builder -->

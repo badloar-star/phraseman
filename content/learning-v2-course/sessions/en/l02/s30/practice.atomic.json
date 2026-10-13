@@ -288,7 +288,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставьте слово — из подвала тянется ровн",
+          "testedDimension": "Вставьте слово — из подвала тянется ровный гул, и вы не понимаете что это",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i05:r2",
@@ -386,7 +386,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставьте слово — у входа люди стоят друг",
+          "testedDimension": "Вставьте слово — у входа люди стоят друг за другом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i07:r2",
@@ -498,7 +498,7 @@
               "text": "noise"
             }
           ],
-          "testedDimension": "Вставьте слово — вопрос собран, но в нём",
+          "testedDimension": "Вставьте слово — вопрос собран, но в нём дыра",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i09:r2",
@@ -552,7 +552,17 @@
           "authoredDistractorTokens": [
             "street"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «что это за шум?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают о шуме — `noise`, а не об улице — `street`.",
+                "uk": "у записі питають про шум — `noise`, а не про вулицю — `street`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -674,7 +684,7 @@
               "text": "noise"
             }
           ],
-          "testedDimension": "Вставьте слово — вы заблудились, спросит",
+          "testedDimension": "Вставьте слово — вы заблудились, спросите у прохожего название улицы",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i12:r2",
@@ -772,7 +782,7 @@
               "text": "queue"
             }
           ],
-          "testedDimension": "Вставьте слово — под окнами долбит отбой",
+          "testedDimension": "Вставьте слово — под окнами долбит отбойный молоток",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i14:r2",
@@ -805,17 +815,27 @@
         "prompt": "Произнесите фразу — тихая улица, но людей столько, что не пройти",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-30:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i15:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — тихая улица, но людей столько, что не пройти",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-30:i15:audio", "transcript": "The street is crowded." },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i15:audio",
+            "transcript": "The street is crowded."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "The street is crowded.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -846,7 +866,17 @@
           "authoredDistractorTokens": [
             "noise"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете об улице — `street`, а не о шуме.",
+                "uk": "ви питаєте про вулицю — `street`, а не про шум."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1234,7 +1264,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставте слово — з підвалу тягнеться рівн",
+          "testedDimension": "Вставте слово — з підвалу тягнеться рівний гул, і ви не розумієте, що це",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i05:r2",
@@ -1332,7 +1362,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставте слово — біля входу люди стоять о",
+          "testedDimension": "Вставте слово — біля входу люди стоять один за одним",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i07:r2",
@@ -1444,7 +1474,7 @@
               "text": "noise"
             }
           ],
-          "testedDimension": "Вставте слово — запитання складене, але ",
+          "testedDimension": "Вставте слово — запитання складене, але в ньому діра",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i09:r2",
@@ -1498,7 +1528,17 @@
           "authoredDistractorTokens": [
             "street"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «что это за шум?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают о шуме — `noise`, а не об улице — `street`.",
+                "uk": "у записі питають про шум — `noise`, а не про вулицю — `street`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1620,7 +1660,7 @@
               "text": "noise"
             }
           ],
-          "testedDimension": "Вставте слово — ви заблукали, запитайте ",
+          "testedDimension": "Вставте слово — ви заблукали, запитайте в перехожого назву вулиці",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i12:r2",
@@ -1718,7 +1758,7 @@
               "text": "queue"
             }
           ],
-          "testedDimension": "Вставте слово — під вікнами гатить відбі",
+          "testedDimension": "Вставте слово — під вікнами гатить відбійний молоток",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-30:i14:r2",
@@ -1751,17 +1791,27 @@
         "prompt": "Промовте фразу — тиха вулиця, але людей стільки, що не пройти",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-30:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-30:i15:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — тиха вулиця, але людей стільки, що не пройти",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-02:session-30:i15:audio", "transcript": "The street is crowded." },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-30:i15:audio",
+            "transcript": "The street is crowded."
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "The street is crowded.",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1792,7 +1842,17 @@
           "authoredDistractorTokens": [
             "noise"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-30:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы вышли не там, где думали; спросите, что это за улица",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете об улице — `street`, а не о шуме.",
+                "uk": "ви питаєте про вулицю — `street`, а не про шум."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

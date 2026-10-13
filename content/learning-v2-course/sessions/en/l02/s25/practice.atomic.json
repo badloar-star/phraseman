@@ -279,26 +279,68 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — о чём вы спрашиваете в меню",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i06:r1", "text": "цена"},
-          {"responseId": "en:lesson-02:session-25:i06:r2", "text": "название"},
-          {"responseId": "en:lesson-02:session-25:i06:r3", "text": "улица"}
+          {
+            "responseId": "en:lesson-02:session-25:i06:r1",
+            "text": "цена"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r2",
+            "text": "название"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r3",
+            "text": "улица"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-25:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-25:i06:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите — о чём вы спрашиваете в меню",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-25:i06:audio", "transcript": "What is the price?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-25:i06:audio",
+            "transcript": "What is the price?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-25:i06:r1", "targetText": "цена", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i06:r2", "targetText": "название", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i06:r3", "targetText": "улица", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-25:i06:r1",
+              "targetText": "цена",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r2",
+              "targetText": "название",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r3",
+              "targetText": "улица",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i06:r2", "correct": false, "testedDimension": "menu price question", "feedbackByLocale": {"ru": "Здесь звучит `price` — «цена». `Name` спрашивает название.", "uk": "Тут звучить `price` — «ціна». `Name` питає назву."}},
-            {"responseId": "en:lesson-02:session-25:i06:r3", "correct": false, "testedDimension": "menu price question", "feedbackByLocale": {"ru": "`Street` — «улица». Вопрос относится к цифре рядом с блюдом.", "uk": "`Street` — «вулиця». Запитання стосується цифри біля страви."}}
+            {
+              "responseId": "en:lesson-02:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "menu price question",
+              "feedbackByLocale": {
+                "ru": "Здесь звучит `price` — «цена». `Name` спрашивает название.",
+                "uk": "Тут звучить `price` — «ціна». `Name` питає назву."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "menu price question",
+              "feedbackByLocale": {
+                "ru": "`Street` — «улица». Вопрос относится к цифре рядом с блюдом.",
+                "uk": "`Street` — «вулиця». Запитання стосується цифри біля страви."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -313,26 +355,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — вопрос про то, что стоит на столе",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i07:r1", "text": "is"},
-          {"responseId": "en:lesson-02:session-25:i07:r2", "text": "are"},
-          {"responseId": "en:lesson-02:session-25:i07:r3", "text": "this"}
+          {
+            "responseId": "en:lesson-02:session-25:i07:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r3",
+            "text": "this"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — вопрос про то, что стоит на столе",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте слово — вопрос про то, что стоит на столе", "uk": "Вставте слово — питання про те, що стоїть на столі"},
+          "localizedScene": {
+            "ru": "Вставьте слово — вопрос про то, что стоит на столе",
+            "uk": "Вставте слово — питання про те, що стоїть на столі"
+          },
           "gappedTargetPhrase": "What ___ this?",
           "gapOptions": [
-            {"responseId": "en:lesson-02:session-25:i07:r1", "text": "is"},
-            {"responseId": "en:lesson-02:session-25:i07:r2", "text": "are"},
-            {"responseId": "en:lesson-02:session-25:i07:r3", "text": "this"}
+            {
+              "responseId": "en:lesson-02:session-25:i07:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r3",
+              "text": "this"
+            }
           ],
           "testedDimension": "one thing on the table",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i07:r2", "correct": false, "testedDimension": "one thing on the table", "feedbackByLocale": {"ru": "`Are` говорят о нескольких вещах. Здесь одна вещь, поэтому нужно `is`.", "uk": "`Are` кажуть про кілька речей. Тут одна річ, тому потрібно `is`."}},
-            {"responseId": "en:lesson-02:session-25:i07:r3", "correct": false, "testedDimension": "one thing on the table", "feedbackByLocale": {"ru": "`This` уже стоит в конце вопроса. На пропуске нужен глагол `is`.", "uk": "`This` уже стоїть наприкінці запитання. У пропуску потрібне дієслово `is`."}}
+            {
+              "responseId": "en:lesson-02:session-25:i07:r2",
+              "correct": false,
+              "testedDimension": "one thing on the table",
+              "feedbackByLocale": {
+                "ru": "`Are` говорят о нескольких вещах. Здесь одна вещь, поэтому нужно `is`.",
+                "uk": "`Are` кажуть про кілька речей. Тут одна річ, тому потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r3",
+              "correct": false,
+              "testedDimension": "one thing on the table",
+              "feedbackByLocale": {
+                "ru": "`This` уже стоит в конце вопроса. На пропуске нужен глагол `is`.",
+                "uk": "`This` уже стоїть наприкінці запитання. У пропуску потрібне дієслово `is`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -374,7 +453,7 @@
             "audioTargetId": "en:lesson-02:session-25:i08:audioB",
             "transcript": "press"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про цену",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про цену?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-25:i08:r2",
@@ -462,7 +541,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-25:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «какая цена?»",
+              "feedbackByLocale": {
+                "ru": "`price` — одна цена, поэтому в вопросе нужна форма `is`.",
+                "uk": "`price` — одна ціна, тому в запитанні потрібна форма `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -511,7 +600,7 @@
               "text": "this"
             }
           ],
-          "testedDimension": "Вставьте слово — вы заблудились и хотите",
+          "testedDimension": "Вставьте слово — вы заблудились и хотите узнать, где стоите",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-25:i11:r2",
@@ -682,7 +771,7 @@
               "text": "what"
             }
           ],
-          "testedDimension": "Вставьте слово — цена оказалась маленько",
+          "testedDimension": "Вставьте слово — цена оказалась маленькой, вы довольны",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-25:i14:r2",
@@ -715,17 +804,27 @@
         "prompt": "Скажите вслух — официант приносит незнакомое блюдо, и вы уточняете, что это",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-25:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-25:i15:audio"
+        ],
         "accessibilityLabel": "Скажите вслух — официант приносит незнакомое блюдо, и вы уточняете, что это",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "What is this?",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-25:i15:audio", "transcript": "What is this?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-25:i15:audio",
+            "transcript": "What is this?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -737,9 +836,18 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте — Лина показывает официанту незнакомый предмет. Выберите смысл услышанного вопроса",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i16:s01:r1", "text": "что это"},
-          {"responseId": "en:lesson-02:session-25:i16:s01:r2", "text": "сколько это стоит"},
-          {"responseId": "en:lesson-02:session-25:i16:s01:r3", "text": "как это называется"}
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r1",
+            "text": "что это"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r2",
+            "text": "сколько это стоит"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r3",
+            "text": "как это называется"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -754,14 +862,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-25:i16:s01:r1", "targetText": "что это", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r2", "targetText": "сколько это стоит", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r3", "targetText": "как это называется", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r1",
+              "targetText": "что это",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r2",
+              "targetText": "сколько это стоит",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r3",
+              "targetText": "как это называется",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i16:s01:r2", "correct": false, "testedDimension": "meaning of What is this?", "feedbackByLocale": {"ru": "Про цену спрашивают `What is the price?`.", "uk": "Про ціну питають `What is the price?`."}},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r3", "correct": false, "testedDimension": "meaning of What is this?", "feedbackByLocale": {"ru": "Про название спрашивают `What is the name?`.", "uk": "Про назву питають `What is the name?`."}}
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r2",
+              "correct": false,
+              "testedDimension": "meaning of What is this?",
+              "feedbackByLocale": {
+                "ru": "Про цену спрашивают `What is the price?`.",
+                "uk": "Про ціну питають `What is the price?`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r3",
+              "correct": false,
+              "testedDimension": "meaning of What is this?",
+              "feedbackByLocale": {
+                "ru": "Про название спрашивают `What is the name?`.",
+                "uk": "Про назву питають `What is the name?`."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -848,7 +984,12 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "What is the price?",
-          "orderedTokens": ["What", "is", "the", "price"],
+          "orderedTokens": [
+            "What",
+            "is",
+            "the",
+            "price"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1163,26 +1304,68 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте і виберіть — про що ви питаєте в меню",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i06:r1", "text": "ціна"},
-          {"responseId": "en:lesson-02:session-25:i06:r2", "text": "назва"},
-          {"responseId": "en:lesson-02:session-25:i06:r3", "text": "вулиця"}
+          {
+            "responseId": "en:lesson-02:session-25:i06:r1",
+            "text": "ціна"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r2",
+            "text": "назва"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i06:r3",
+            "text": "вулиця"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-25:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-25:i06:audio"
+        ],
         "accessibilityLabel": "Послухайте і виберіть — про що ви питаєте в меню",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-25:i06:audio", "transcript": "What is the price?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-25:i06:audio",
+            "transcript": "What is the price?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-25:i06:r1", "targetText": "ціна", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i06:r2", "targetText": "назва", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i06:r3", "targetText": "вулиця", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-25:i06:r1",
+              "targetText": "ціна",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r2",
+              "targetText": "назва",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r3",
+              "targetText": "вулиця",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i06:r2", "correct": false, "testedDimension": "menu price question", "feedbackByLocale": {"ru": "Здесь звучит `price` — «цена». `Name` спрашивает название.", "uk": "Тут звучить `price` — «ціна». `Name` питає назву."}},
-            {"responseId": "en:lesson-02:session-25:i06:r3", "correct": false, "testedDimension": "menu price question", "feedbackByLocale": {"ru": "`Street` — «улица». Вопрос относится к цифре рядом с блюдом.", "uk": "`Street` — «вулиця». Запитання стосується цифри біля страви."}}
+            {
+              "responseId": "en:lesson-02:session-25:i06:r2",
+              "correct": false,
+              "testedDimension": "menu price question",
+              "feedbackByLocale": {
+                "ru": "Здесь звучит `price` — «цена». `Name` спрашивает название.",
+                "uk": "Тут звучить `price` — «ціна». `Name` питає назву."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i06:r3",
+              "correct": false,
+              "testedDimension": "menu price question",
+              "feedbackByLocale": {
+                "ru": "`Street` — «улица». Вопрос относится к цифре рядом с блюдом.",
+                "uk": "`Street` — «вулиця». Запитання стосується цифри біля страви."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1197,26 +1380,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — питання про те, що стоїть на столі",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i07:r1", "text": "is"},
-          {"responseId": "en:lesson-02:session-25:i07:r2", "text": "are"},
-          {"responseId": "en:lesson-02:session-25:i07:r3", "text": "this"}
+          {
+            "responseId": "en:lesson-02:session-25:i07:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r2",
+            "text": "are"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i07:r3",
+            "text": "this"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — питання про те, що стоїть на столі",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Вставьте слово — вопрос про то, что стоит на столе", "uk": "Вставте слово — питання про те, що стоїть на столі"},
+          "localizedScene": {
+            "ru": "Вставьте слово — вопрос про то, что стоит на столе",
+            "uk": "Вставте слово — питання про те, що стоїть на столі"
+          },
           "gappedTargetPhrase": "What ___ this?",
           "gapOptions": [
-            {"responseId": "en:lesson-02:session-25:i07:r1", "text": "is"},
-            {"responseId": "en:lesson-02:session-25:i07:r2", "text": "are"},
-            {"responseId": "en:lesson-02:session-25:i07:r3", "text": "this"}
+            {
+              "responseId": "en:lesson-02:session-25:i07:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r2",
+              "text": "are"
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r3",
+              "text": "this"
+            }
           ],
           "testedDimension": "one thing on the table",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i07:r2", "correct": false, "testedDimension": "one thing on the table", "feedbackByLocale": {"ru": "`Are` говорят о нескольких вещах. Здесь одна вещь, поэтому нужно `is`.", "uk": "`Are` кажуть про кілька речей. Тут одна річ, тому потрібно `is`."}},
-            {"responseId": "en:lesson-02:session-25:i07:r3", "correct": false, "testedDimension": "one thing on the table", "feedbackByLocale": {"ru": "`This` уже стоит в конце вопроса. На пропуске нужен глагол `is`.", "uk": "`This` уже стоїть наприкінці запитання. У пропуску потрібне дієслово `is`."}}
+            {
+              "responseId": "en:lesson-02:session-25:i07:r2",
+              "correct": false,
+              "testedDimension": "one thing on the table",
+              "feedbackByLocale": {
+                "ru": "`Are` говорят о нескольких вещах. Здесь одна вещь, поэтому нужно `is`.",
+                "uk": "`Are` кажуть про кілька речей. Тут одна річ, тому потрібно `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i07:r3",
+              "correct": false,
+              "testedDimension": "one thing on the table",
+              "feedbackByLocale": {
+                "ru": "`This` уже стоит в конце вопроса. На пропуске нужен глагол `is`.",
+                "uk": "`This` уже стоїть наприкінці запитання. У пропуску потрібне дієслово `is`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1346,7 +1566,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-25:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «какая цена?»",
+              "feedbackByLocale": {
+                "ru": "`price` — одна цена, поэтому в вопросе нужна форма `is`.",
+                "uk": "`price` — одна ціна, тому в запитанні потрібна форма `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1395,7 +1625,7 @@
               "text": "this"
             }
           ],
-          "testedDimension": "Вставте слово — ви заблукали і хочете ді",
+          "testedDimension": "Вставте слово — ви заблукали і хочете дізнатися, де стоїте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-25:i11:r2",
@@ -1566,7 +1796,7 @@
               "text": "what"
             }
           ],
-          "testedDimension": "Вставте слово — ціна виявилася маленькою",
+          "testedDimension": "Вставте слово — ціна виявилася маленькою, ви задоволені",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-25:i14:r2",
@@ -1599,17 +1829,27 @@
         "prompt": "Скажіть уголос — офіціант приносить незнайому страву, і ви уточнюєте, що це",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-25:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-25:i15:audio"
+        ],
         "accessibilityLabel": "Скажіть уголос — офіціант приносить незнайому страву, і ви уточнюєте, що це",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "What is this?",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-25:i15:audio", "transcript": "What is this?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-25:i15:audio",
+            "transcript": "What is this?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1621,9 +1861,18 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте — Ліна показує офіціантові незнайомий предмет. Виберіть зміст почутого запитання",
         "responseOptions": [
-          {"responseId": "en:lesson-02:session-25:i16:s01:r1", "text": "що це"},
-          {"responseId": "en:lesson-02:session-25:i16:s01:r2", "text": "скільки це коштує"},
-          {"responseId": "en:lesson-02:session-25:i16:s01:r3", "text": "як це називається"}
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r1",
+            "text": "що це"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r2",
+            "text": "скільки це коштує"
+          },
+          {
+            "responseId": "en:lesson-02:session-25:i16:s01:r3",
+            "text": "як це називається"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -1638,14 +1887,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-02:session-25:i16:s01:r1", "targetText": "що це", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r2", "targetText": "скільки це коштує", "meaningByLocale": null},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r3", "targetText": "як це називається", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r1",
+              "targetText": "що це",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r2",
+              "targetText": "скільки це коштує",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r3",
+              "targetText": "як це називається",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId": "en:lesson-02:session-25:i16:s01:r2", "correct": false, "testedDimension": "meaning of What is this?", "feedbackByLocale": {"ru": "Про цену спрашивают `What is the price?`.", "uk": "Про ціну питають `What is the price?`."}},
-            {"responseId": "en:lesson-02:session-25:i16:s01:r3", "correct": false, "testedDimension": "meaning of What is this?", "feedbackByLocale": {"ru": "Про название спрашивают `What is the name?`.", "uk": "Про назву питають `What is the name?`."}}
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r2",
+              "correct": false,
+              "testedDimension": "meaning of What is this?",
+              "feedbackByLocale": {
+                "ru": "Про цену спрашивают `What is the price?`.",
+                "uk": "Про ціну питають `What is the price?`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-25:i16:s01:r3",
+              "correct": false,
+              "testedDimension": "meaning of What is this?",
+              "feedbackByLocale": {
+                "ru": "Про название спрашивают `What is the name?`.",
+                "uk": "Про назву питають `What is the name?`."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1732,7 +2009,12 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "What is the price?",
-          "orderedTokens": ["What", "is", "the", "price"],
+          "orderedTokens": [
+            "What",
+            "is",
+            "the",
+            "price"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1801,8 +2083,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i06",
-    "correctText": "цена",
-    "correctResponseId": "en:lesson-02:session-25:i06:r1"
+      "correctText": "цена",
+      "correctResponseId": "en:lesson-02:session-25:i06:r1"
     },
     {
       "interactionId": "en:lesson-02:session-25:i07",
@@ -1846,13 +2128,13 @@
     },
     {
       "interactionId": "en:lesson-02:session-25:i15",
-    "correctText": "What is this?",
+      "correctText": "What is this?",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-02:session-25:i16:s01",
-    "correctText": "что это",
-    "correctResponseId": "en:lesson-02:session-25:i16:s01:r1"
+      "correctText": "что это",
+      "correctResponseId": "en:lesson-02:session-25:i16:s01:r1"
     },
     {
       "interactionId": "en:lesson-02:session-25:i16:s02",

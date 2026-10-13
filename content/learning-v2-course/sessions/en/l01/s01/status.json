@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "learning_v2_s01_review_status_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "sourceSha256": "fc5259a5b2f8d2bdcf7fa746a12e760b2ef311ef5e6def900c5b9f55f54b701d",
+  "exactRuSha256": "fc5259a5b2f8d2bdcf7fa746a12e760b2ef311ef5e6def900c5b9f55f54b701d",
+  "exactUkSha256": "40b6cdd25a9e224efc13aecc2639c0ae26547d5a111817a7152cc1835fec1206",
+  "localeHashes": {
+    "ru": "fc5259a5b2f8d2bdcf7fa746a12e760b2ef311ef5e6def900c5b9f55f54b701d",
+    "uk": "40b6cdd25a9e224efc13aecc2639c0ae26547d5a111817a7152cc1835fec1206"
+  },
+  "practiceAtomicSha256": "cc201519fb806fdfc0b531709728a6cd7624d042939be4839fafd58827324514",
+  "candidateBundleSha256": "a55a97a1ce3cd7f9274f050f66d2335e4a8b258316100ddf6616d4a941da27ca",
+  "candidateReceiptInventorySha256": "278bcdb7da8d8fdb91abf175bd76c97940be6c085c24d9dbe74644ce80fb6755",
+  "receiptChain": {
+    "mutableIndex": true,
+    "head": {
+      "path": "outputs/s01-i13-scene-fixed-20261013/review-content-bundle-receipt.v3.json",
+      "sha256": "f1b516c321d9438f8b6892ca54f1d77e75bcf111c0603edcf1c6a386cac1dceb",
+      "candidateBundleSha256": "a55a97a1ce3cd7f9274f050f66d2335e4a8b258316100ddf6616d4a941da27ca"
+    }
+  },
+  "protectedNoDriftBoundary": {
+    "fileCount": 151,
+    "sha256": "7496f8e67695695322215fadb41bf4c54a294d818d9e391a5898fe7118865a28"
+  },
+  "converged": false,
+  "needsHumanReview": true,
+  "missingIndependentRoles": [],
+  "blockedBy": [
+    "audio_evidence",
+    "canonical_sync"
+  ],
+  "reviewEvidenceManifest": "review-evidence-manifest.json",
+  "lastCompletedReview": {
+    "role": "locale",
+    "reviewerRunId": "/root/s01_delta_locale",
+    "rawArtifactPath": "judgements/2026-10-13_l01_s01_final_i13_locale_raw.md",
+    "rawArtifactSha256": "7174a3aa8fe3af220c0bbe213a165a5d8cd3ffd5f282f1de50b25f3b070d3380",
+    "reviewedCandidateSha256": "a55a97a1ce3cd7f9274f050f66d2335e4a8b258316100ddf6616d4a941da27ca",
+    "reviewedCandidateReceiptInventorySha256": "278bcdb7da8d8fdb91abf175bd76c97940be6c085c24d9dbe74644ce80fb6755",
+    "verdict": "PASS"
+  },
+  "releaseAuthority": false,
+  "updatedAt": "2026-10-13T16:28:42.1434362+01:00"
+}

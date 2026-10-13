@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — hungry",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i02:r1",
@@ -73,7 +73,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i02:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — hungry",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -103,6 +103,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r1",
               "correct": true,
+              "testedDimension": "Послушайте и выберите — hungry",
               "feedbackByLocale": {
                 "ru": "Верно: в записи hungry. Это не angry и не hurry.",
                 "uk": "Правильно: у записі hungry. Це не angry і не hurry."
@@ -157,8 +158,8 @@
               "responseId": "en:lesson-01:session-03:i03:r1",
               "targetText": "cold",
               "meaningByLocale": {
-                "ru": "«холодно, замёрз». Кондиционер в офисе включён слишком сильно.",
-                "uk": "«холодно, змерз». Кондиціонер в офісі увімкнено надто сильно."
+                "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+                "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
               }
             }
           ],
@@ -168,8 +169,8 @@
           "wordCard": {
             "word": "cold",
             "definitionByLocale": {
-              "ru": "«холодно, замёрз». Кондиционер в офисе включён слишком сильно.",
-              "uk": "«холодно, змерз». Кондиціонер в офісі увімкнено надто сильно."
+              "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+              "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
             }
           }
         },
@@ -221,6 +222,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r1",
               "correct": true,
+              "testedDimension": "Различите звук — sure и shore",
               "feedbackByLocale": {
                 "ru": "Верно: в записи sure, а не shore или sugar.",
                 "uk": "Правильно: у записі sure, а не shore чи sugar."
@@ -229,7 +231,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — sure",
+              "testedDimension": "Различите звук — sure и shore",
               "feedbackByLocale": {
                 "ru": "`shore` — «берег». В аудио нет долгого «о»: слышно короткое sure.",
                 "uk": "`shore` — «берег». В аудіо немає довгого «о»: чути коротке sure."
@@ -238,7 +240,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — sure",
+              "testedDimension": "Различите звук — sure и shore",
               "feedbackByLocale": {
                 "ru": "`sugar` — «сахар», два слога. В аудио одно короткое слово sure.",
                 "uk": "`sugar` — «цукор», два склади. В аудіо одне коротке слово sure."
@@ -254,7 +256,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — sure",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i05:r1",
@@ -273,7 +275,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i05:audio"
         ],
-        "accessibilityLabel": "Послушайте и выберите — sure",
+        "accessibilityLabel": "Послушайте и выберите",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -303,6 +305,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r1",
               "correct": true,
+              "testedDimension": "Послушайте и выберите — sure",
               "feedbackByLocale": {
                 "ru": "Верно: в записи sure. Это слово нужно выбрать.",
                 "uk": "Правильно: у записі sure. Саме це слово треба вибрати."
@@ -586,9 +589,10 @@
             {
               "responseId": "en:lesson-01:session-03:i10:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — вы всё ещё в офисе и не один",
               "feedbackByLocale": {
-                "ru": "sure — «уверен», но здесь вы сообщаете: «я не один».",
-                "uk": "sure — «впевнений», але тут ви повідомляєте: «я не сам»."
+                "ru": "«уверен», но здесь вы сообщаете: «я не один»",
+                "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
               }
             }
           ]
@@ -629,9 +633,10 @@
             {
               "responseId": "en:lesson-01:session-03:i11:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте и соберите — «я не уверен»",
               "feedbackByLocale": {
-                "ru": "no — отдельный ответ, а внутри фразы нужно not.",
-                "uk": "no — окрема відповідь, а всередині фрази потрібне not."
+                "ru": "это отдельный ответ, а внутри фразы нужно not",
+                "uk": "це окрема відповідь, а всередині фрази потрібне not"
               }
             }
           ]
@@ -665,7 +670,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы не устали",
+            "ru": "Вставьте слово — Мира спросила, устали ли вы",
             "uk": "Вставте слово — ви не втомилися"
           },
           "gappedTargetPhrase": "I ___ not tired.",
@@ -683,12 +688,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставьте слово — вы не устали",
+          "testedDimension": "Вставьте слово — Мира спросила, устали ли вы",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-03:i12:r1",
               "correct": true,
-              "testedDimension": "Вставьте слово — вы не устали",
+              "testedDimension": "Вставьте слово — Мира спросила, устали ли вы",
               "feedbackByLocale": {
                 "ru": "Верно: с I используется am: I am not tired.",
                 "uk": "Правильно: з I використовується am: I am not tired."
@@ -697,7 +702,7 @@
             {
               "responseId": "en:lesson-01:session-03:i12:r2",
               "correct": false,
-              "testedDimension": "Вставьте слово — вы не устали",
+              "testedDimension": "Вставьте слово — Мира спросила, устали ли вы",
               "feedbackByLocale": {
                 "ru": "С `I` нужно `am`, затем `not`: `I am not tired`.",
                 "uk": "З `I` потрібне `am`, потім `not`: `I am not tired`."
@@ -706,7 +711,7 @@
             {
               "responseId": "en:lesson-01:session-03:i12:r3",
               "correct": false,
-              "testedDimension": "Вставьте слово — вы не устали",
+              "testedDimension": "Вставьте слово — Мира спросила, устали ли вы",
               "feedbackByLocale": {
                 "ru": "Не для I. I am not — три слова, первые два не меняются.",
                 "uk": "Не для I. I am not — три слова, перші два не змінюються."
@@ -746,9 +751,10 @@
             {
               "responseId": "en:lesson-01:session-03:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Утверждение или отрицание? Вы опоздали — признайте это",
               "feedbackByLocale": {
-                "ru": "not лишнее: здесь вы признаёте, что опоздали.",
-                "uk": "not зайве: тут ви визнаєте, що запізнилися."
+                "ru": "сцена требует правды, а не отрицания",
+                "uk": "сцена вимагає правди, а не заперечення"
               }
             }
           ]
@@ -810,6 +816,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r1",
               "correct": true,
+              "testedDimension": "Послушайте и выберите точную фразу — вы больше не заняты",
               "feedbackByLocale": {
                 "ru": "Верно: в записи I am not busy. — «я не занят».",
                 "uk": "Правильно: у записі I am not busy. — «я не зайнятий»."
@@ -902,9 +909,10 @@
             {
               "responseId": "en:lesson-01:session-03:i15:s02:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — «у меня всё хорошо»",
               "feedbackByLocale": {
-                "ru": "not меняет смысл на отрицание, а здесь: «у меня всё хорошо».",
-                "uk": "not змінює зміст на заперечення, а тут: «у мене все добре»."
+                "ru": "здесь «у меня всё хорошо», без отрицания",
+                "uk": "тут «у мене все добре», без заперечення"
               }
             }
           ]
@@ -1072,6 +1080,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r1",
               "correct": true,
+              "testedDimension": "Послушайте и выберите точную фразу — вы не голодны",
               "feedbackByLocale": {
                 "ru": "Верно: в записи I am not hungry. — «я не голоден».",
                 "uk": "Правильно: у записі I am not hungry. — «я не голодний»."
@@ -1164,9 +1173,10 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s04:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — «я готов»",
               "feedbackByLocale": {
-                "ru": "not лишнее: здесь вы говорите I am ready. — «я готов».",
-                "uk": "not зайве: тут ви кажете I am ready. — «я готовий»."
+                "ru": "здесь вы говорите «я готов»",
+                "uk": "тут ви кажете «я готовий»"
               }
             }
           ]
@@ -1224,7 +1234,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — hungry",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i02:r1",
@@ -1243,7 +1253,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i02:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть — hungry",
+        "accessibilityLabel": "Послухайте і виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1273,6 +1283,7 @@
             {
               "responseId": "en:lesson-01:session-03:i02:r1",
               "correct": true,
+              "testedDimension": "Послухайте і виберіть — hungry",
               "feedbackByLocale": {
                 "ru": "Верно: в записи hungry. Это не angry и не hurry.",
                 "uk": "Правильно: у записі hungry. Це не angry і не hurry."
@@ -1327,8 +1338,8 @@
               "responseId": "en:lesson-01:session-03:i03:r1",
               "targetText": "cold",
               "meaningByLocale": {
-                "ru": "«холодно, замёрз». Кондиционер в офисе включён слишком сильно.",
-                "uk": "«холодно, змерз». Кондиціонер в офісі увімкнено надто сильно."
+                "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+                "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
               }
             }
           ],
@@ -1338,8 +1349,8 @@
           "wordCard": {
             "word": "cold",
             "definitionByLocale": {
-              "ru": "«холодно, замёрз». Кондиционер в офисе включён слишком сильно.",
-              "uk": "«холодно, змерз». Кондиціонер в офісі увімкнено надто сильно."
+              "ru": "«холодно, замёрз». Мира включила кондиционер слишком сильно.",
+              "uk": "«холодно, змерз». Міра ввімкнула кондиціонер надто сильно."
             }
           }
         },
@@ -1391,6 +1402,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r1",
               "correct": true,
+              "testedDimension": "Розрізніть звук — sure і shore",
               "feedbackByLocale": {
                 "ru": "Верно: в записи sure, а не shore или sugar.",
                 "uk": "Правильно: у записі sure, а не shore чи sugar."
@@ -1399,7 +1411,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — sure",
+              "testedDimension": "Розрізніть звук — sure і shore",
               "feedbackByLocale": {
                 "ru": "`shore` — «берег». В аудио нет долгого «о»: слышно короткое sure.",
                 "uk": "`shore` — «берег». В аудіо немає довгого «о»: чути коротке sure."
@@ -1408,7 +1420,7 @@
             {
               "responseId": "en:lesson-01:session-03:i04:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — sure",
+              "testedDimension": "Розрізніть звук — sure і shore",
               "feedbackByLocale": {
                 "ru": "`sugar` — «сахар», два слога. В аудио одно короткое слово sure.",
                 "uk": "`sugar` — «цукор», два склади. В аудіо одне коротке слово sure."
@@ -1424,7 +1436,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — sure",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-03:i05:r1",
@@ -1443,7 +1455,7 @@
         "audioTargetIds": [
           "en:lesson-01:session-03:i05:audio"
         ],
-        "accessibilityLabel": "Послухайте і виберіть — sure",
+        "accessibilityLabel": "Послухайте і виберіть",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1473,6 +1485,7 @@
             {
               "responseId": "en:lesson-01:session-03:i05:r1",
               "correct": true,
+              "testedDimension": "Послухайте і виберіть — sure",
               "feedbackByLocale": {
                 "ru": "Верно: в записи sure. Это слово нужно выбрать.",
                 "uk": "Правильно: у записі sure. Саме це слово треба вибрати."
@@ -1756,9 +1769,10 @@
             {
               "responseId": "en:lesson-01:session-03:i10:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — ви ще в офісі й не самі",
               "feedbackByLocale": {
-                "ru": "sure — «уверен», но здесь вы сообщаете: «я не один».",
-                "uk": "sure — «впевнений», але тут ви повідомляєте: «я не сам»."
+                "ru": "«уверен», но здесь вы сообщаете: «я не один»",
+                "uk": "«впевнений», але тут ви повідомляєте: «я не сам»"
               }
             }
           ]
@@ -1799,9 +1813,10 @@
             {
               "responseId": "en:lesson-01:session-03:i11:tile:d1",
               "correct": false,
+              "testedDimension": "Послухайте і складіть — «я не впевнений»",
               "feedbackByLocale": {
-                "ru": "no — отдельный ответ, а внутри фразы нужно not.",
-                "uk": "no — окрема відповідь, а всередині фрази потрібне not."
+                "ru": "это отдельный ответ, а внутри фразы нужно not",
+                "uk": "це окрема відповідь, а всередині фрази потрібне not"
               }
             }
           ]
@@ -1836,7 +1851,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — вы не устали",
-            "uk": "Вставте слово — ви не втомилися"
+            "uk": "Вставте слово — Міра спитала, чи ви втомилися"
           },
           "gappedTargetPhrase": "I ___ not tired.",
           "gapOptions": [
@@ -1853,12 +1868,12 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставте слово — ви не втомилися",
+          "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-03:i12:r1",
               "correct": true,
-              "testedDimension": "Вставте слово — ви не втомилися",
+              "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
               "feedbackByLocale": {
                 "ru": "Верно: с I используется am: I am not tired.",
                 "uk": "Правильно: з I використовується am: I am not tired."
@@ -1867,7 +1882,7 @@
             {
               "responseId": "en:lesson-01:session-03:i12:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — ви не втомилися",
+              "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
               "feedbackByLocale": {
                 "ru": "С `I` нужно `am`, затем `not`: `I am not tired`.",
                 "uk": "З `I` потрібне `am`, потім `not`: `I am not tired`."
@@ -1876,7 +1891,7 @@
             {
               "responseId": "en:lesson-01:session-03:i12:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — ви не втомилися",
+              "testedDimension": "Вставте слово — Міра спитала, чи ви втомилися",
               "feedbackByLocale": {
                 "ru": "Не для I. I am not — три слова, первые два не меняются.",
                 "uk": "Не для I. I am not — три слова, перші два не змінюються."
@@ -1916,9 +1931,10 @@
             {
               "responseId": "en:lesson-01:session-03:i13:tile:d1",
               "correct": false,
+              "testedDimension": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
               "feedbackByLocale": {
-                "ru": "not лишнее: здесь вы признаёте, что опоздали.",
-                "uk": "not зайве: тут ви визнаєте, що запізнилися."
+                "ru": "сцена требует правды, а не отрицания",
+                "uk": "сцена вимагає правди, а не заперечення"
               }
             }
           ]
@@ -1980,6 +1996,7 @@
             {
               "responseId": "en:lesson-01:session-03:i14:r1",
               "correct": true,
+              "testedDimension": "Послухайте і виберіть точну фразу — ви більше не зайняті",
               "feedbackByLocale": {
                 "ru": "Верно: в записи I am not busy. — «я не занят».",
                 "uk": "Правильно: у записі I am not busy. — «я не зайнятий»."
@@ -2072,9 +2089,10 @@
             {
               "responseId": "en:lesson-01:session-03:i15:s02:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — «у мене все добре»",
               "feedbackByLocale": {
-                "ru": "not меняет смысл на отрицание, а здесь: «у меня всё хорошо».",
-                "uk": "not змінює зміст на заперечення, а тут: «у мене все добре»."
+                "ru": "здесь «у меня всё хорошо», без отрицания",
+                "uk": "тут «у мене все добре», без заперечення"
               }
             }
           ]
@@ -2242,6 +2260,7 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s02:r1",
               "correct": true,
+              "testedDimension": "Послухайте і виберіть точну фразу — ви не голодні",
               "feedbackByLocale": {
                 "ru": "Верно: в записи I am not hungry. — «я не голоден».",
                 "uk": "Правильно: у записі I am not hungry. — «я не голодний»."
@@ -2334,9 +2353,10 @@
             {
               "responseId": "en:lesson-01:session-03:i17:s04:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — «я готовий»",
               "feedbackByLocale": {
-                "ru": "not лишнее: здесь вы говорите I am ready. — «я готов».",
-                "uk": "not зайве: тут ви кажете I am ready. — «я готовий»."
+                "ru": "здесь вы говорите «я готов»",
+                "uk": "тут ви кажете «я готовий»"
               }
             }
           ]

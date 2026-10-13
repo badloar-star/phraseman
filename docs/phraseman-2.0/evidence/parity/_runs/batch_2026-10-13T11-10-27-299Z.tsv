@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+settings-gap-007	2026-10-13T11:11:47.902Z	error	15007	step_target_not_found:#glass-alert-action-1+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T11-10-27-299Z/settings-gap-007.error.png	0

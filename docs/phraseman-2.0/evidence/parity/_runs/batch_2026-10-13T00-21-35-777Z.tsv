@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-005	2026-10-13T00:22:58.681Z	error	70271	step_target_not_found:#spire-task-report-0+ждали_metro_28мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-21-35-777Z/spire-gap-005.error.png	0

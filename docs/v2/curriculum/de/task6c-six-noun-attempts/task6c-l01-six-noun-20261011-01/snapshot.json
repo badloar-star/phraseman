@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-six-noun-attempt-snapshot.v1",
+  "attemptId": "task6c-l01-six-noun-20261011-01",
+  "scope": "PARTIAL_TASK6C_CURRENT_STATE_ONLY",
+  "preManifest": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/manifest.json",
+    "sha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55"
+  },
+  "reviewRecords": {
+    "native": {
+      "path": "docs/v2/curriculum/de/task6c-l01-six-noun-closure-v1/review.native.record.json",
+      "sha256": "58f5ce80d09ab91fbca3770bb7d91f365857045c6bb14d70070181a652183134"
+    },
+    "adversarial": {
+      "path": "docs/v2/curriculum/de/task6c-l01-six-noun-closure-v1/review.adversarial.record.json",
+      "sha256": "d7659bf4db1ffe0f2ec32afb6fdb3e89070881e2eaebc164f2d0dd91b7046105"
+    }
+  },
+  "closureReceipt": {
+    "path": "docs/v2/curriculum/de/task6c-l01-six-noun-closure-v1/F.json",
+    "sha256": "6bc849c3369468cfb59be92bfcbd249473f65a29c8e9170385ddcfbcfe619c44"
+  },
+  "limits": {
+    "canonicalAdmission": "FORBIDDEN",
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "learnerFacing": false,
+    "phraseClaim": false,
+    "release": "HOLD"
+  },
+  "deterministicVerifier": {
+    "command": "node --import tsx tests/learning_v2_de_task6c_l01_six_noun_receipt_closure_gate.ts",
+    "expectedExit": 0,
+    "truth": "STRUCTURAL_RECEIPT_CLOSURE_ONLY"
+  }
+}

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+energy-modes-005	2026-10-13T10:15:52.653Z	error	11334	step_target_not_found:#energy-stop-plus+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-14-56-205Z/energy-modes-005.error.png	0

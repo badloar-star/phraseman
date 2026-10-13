@@ -1,0 +1,22 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-043	2026-10-12T18:19:46.796Z	stitch_failed	13134	marker+склейка_не_удалась: nto view action[22m [2m - waiting 100ms[22m [2m 55 × waiting for element to be stable[22m [2m - element is not visible[22m [2m - retrying scroll into view action[22m [2m - waiting 500ms[22m+ждали_metro_25мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/cards-043.bare.png	0
+cards-081	2026-10-12T18:20:56.378Z	stitch_failed	12005	marker+шагов_4+склейка_не_удалась: nto view action[22m [2m - waiting 100ms[22m [2m 55 × waiting for element to be stable[22m [2m - element is not visible[22m [2m - retrying scroll into view action[22m [2m - waiting 500ms[22m+ждали_metro_6мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/cards-081.bare.png	0
+cards-gap-021	2026-10-12T18:22:14.318Z	error	13148	step_target_not_found:#fc-expanded-to-pack+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/cards-gap-021.error.png	0
+cards-section-046	2026-10-12T18:23:02.647Z	error	11792	step_target_not_found:#fc-speak-mic+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/cards-section-046.error.png	0
+cards-v2-037	2026-10-12T18:23:49.619Z	error	11693	step_target_not_found:#fc-speak-mic+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/cards-v2-037.error.png	0
+profile-015	2026-10-12T18:24:51.018Z	error	12053	step_target_not_found:#support-report-submit+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/profile-015.error.png	0
+profile-019	2026-10-12T18:25:33.803Z	ok	11987	marker+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/profile-019.png	0
+profile-023	2026-10-12T18:26:27.579Z	ok	12531	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/profile-023.png	0
+profile-025	2026-10-12T18:26:46.093Z	stitch_failed	12946	marker+склейка_не_удалась: d=profile-025: номер строки матрицы может не совпадать с телефоном макета (подпись «—»). Проверьте глазами или задайте --phone=N [PARITY-SHOT] FAILED reason=phone_out_of_range:25 of 24 in profile.html+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/profile-025.bare.png	0
+settings-gap-006	2026-10-12T18:27:32.320Z	ok	12013	marker+шагов_1+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/settings-gap-006.png	0
+settings-gap-007	2026-10-12T18:28:12.568Z	ok	13027	marker+шагов_4+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/settings-gap-007.png	0
+settings-gap-020	2026-10-12T18:28:50.877Z	ok	10834	marker+шагов_4+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/settings-gap-020.png	0
+settings-gap-021	2026-10-12T18:29:23.908Z	ok	11943	marker+шагов_4+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/settings-gap-021.png	0
+settings-gap-023	2026-10-12T18:30:14.243Z	error	11704	step_target_not_found:#support-report-submit+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-18-56-534Z/settings-gap-023.error.png	0
+settings-gap-034	2026-10-12T18:31:45.360Z	ok	10985	marker+шагов_5+склейка+ждали_metro_1мс	docs/phraseman-2.0/evidence/parity/settings-gap-034.png	0
+energy-modes-002	2026-10-12T18:32:14.634Z	ok	13438	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-002.png	0
+energy-modes-003	2026-10-12T18:32:45.905Z	ok	13277	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/energy-modes-003.png	0
+energy-modes-004	2026-10-12T18:33:12.507Z	ok	10655	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/energy-modes-004.png	0
+energy-modes-005	2026-10-12T18:33:42.143Z	ok	11920	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/energy-modes-005.png	0
+energy-modes-006	2026-10-12T18:34:10.565Z	ok	12353	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/energy-modes-006.png	0
+energy-modes-007	2026-10-12T18:34:40.185Z	ok	11853	marker+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/energy-modes-007.png	0

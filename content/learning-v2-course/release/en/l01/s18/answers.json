@@ -31,12 +31,12 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i07",
-    "correctText": "shy",
-    "correctResponseId": "en:lesson-01:session-18:i07:r1"
+    "correctText": "He is shy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i08",
-    "correctText": "is",
+    "correctText": "loud",
     "correctResponseId": "en:lesson-01:session-18:i08:r1"
   },
   {
@@ -96,8 +96,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-18:i20",
-    "correctText": "smart",
-    "correctResponseId": "en:lesson-01:session-18:i20:r1"
+    "correctText": "He is smart.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-18:i21",
@@ -105,18 +105,8 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-18:i22:s01",
+    "interactionId": "en:lesson-01:session-18:i22",
     "correctText": "She is loud.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i22:s02",
-    "correctText": "He is quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-18:i22:s03",
-    "correctText": "She is kind.",
     "correctResponseId": null
   }
 ]

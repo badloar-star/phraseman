@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i02; family: listen_choose -->
 Цель: `strangers`
 Варианты: `strangers` · `rangers` · `dangers`
+- rangers — *`Rangers` — «рейнджеры». Послушайте начало слова: в записи `strangers`.*
+- dangers — *`Dangers` — «опасности». Послушайте начало слова: в записи `strangers`.*
+
 
 **3 · Карточка слова — twins**
 <!-- interaction_id: en:lesson-02:session-34:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i04; family: listen_choose -->
 Цель: `twins`
 Варианты: `twins` · `tins` · `wins`
+- tins — *`Tins` — «жестяные банки». Послушайте начало слова: в записи `twins`.*
+- wins — *`Wins` — «побеждает». Послушайте начало слова: в записи `twins`.*
+
 
 **5 · Соберите фразу — друг спрашивает о двоих у забора; скажите: «Они незнакомцы»**
 <!-- interaction_id: en:lesson-02:session-34:i05; family: phrase_builder -->
@@ -78,16 +84,25 @@
 <!-- interaction_id: en:lesson-02:session-34:i06; family: context_gap_grammar -->
 Цель: `Who are ___ people?`
 Варианты: `these` · `this` · `they`
+- this — *Для «эти люди» нужно `these people`. Слово `this` относится к одному.*
+- they — *Это «они». Перед `people` здесь нужно слово «эти» — `these`.*
+
 
 **7 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-02:session-34:i07; family: listen_choose -->
 Цель: `people`
 Варианты: `people` · `pupil` · `purple`
+- pupil — *`Pupil` — «ученик». Послушайте первый слог: в записи `people`.*
+- purple — *`Purple` — «фиолетовый». Послушайте первый слог: в записи `people`.*
+
 
 **8 · Вставьте слово — двое гостей оказались близнецами; назовите их родство**
 <!-- interaction_id: en:lesson-02:session-34:i08; family: context_gap_grammar -->
 Цель: `They are ___ .`
 Варианты: `twins` · `strangers` · `sure`
+- strangers — *Это «незнакомцы». Здесь нужно назвать родство — `twins`, «близнецы».*
+- sure — *Получится «Они уверены». Это не ответ о том, кем двое приходятся друг другу.*
+
 
 **9 · Соберите фразу — вас с другом приняли за близнецов; скажите: «Мы не близнецы»**
 <!-- interaction_id: en:lesson-02:session-34:i09; family: phrase_builder -->
@@ -97,6 +112,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i10; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `twins` · `people`
+- twins — *Это «близнецы». Чтобы сказать, что вы уверены в ответе, нужно `sure`.*
+- people — *Это «люди». В этой фразе нужно слово о вашей уверенности — `sure`.*
+
 
 **11 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-34:i11; family: speed_match -->
@@ -111,6 +129,9 @@
 <!-- interaction_id: en:lesson-02:session-34:i13; family: context_gap_grammar -->
 Цель: `Who are these ___ ?`
 Варианты: `people` · `name` · `host`
+- name — *Это «имя». В вопросе про этих людей нужно `people`.*
+- host — *Это один хозяин. Вы спрашиваете о нескольких людях — `these people`.*
+
 
 **14 · Соберите фразу — друг спрашивает, знакомы ли близнецы с хозяином; вы не знаете и признаётесь: «Я не уверен»**
 <!-- interaction_id: en:lesson-02:session-34:i14; family: phrase_builder -->

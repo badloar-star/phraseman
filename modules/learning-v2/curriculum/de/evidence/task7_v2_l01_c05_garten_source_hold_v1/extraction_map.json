@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c05-garten-source-extraction-map.v1",
+  "directCapture": {
+    "registryPath": ".tmp/de-task6c-l01-direct-capture/registry.json",
+    "registrySha256": "5dc2a6e3c497f19d5e291daf04d4af1f944ae42b502d24d0f92a7d7adaf208cc",
+    "canonicalUrl": "https://www.dwds.de/wb/Garten",
+    "httpStatus": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "rawResponsePath": "raw/de_lex_plan_l01_c05_garten_v1.html",
+    "rawResponseSha256": "3b614b8fadfd2db11983a3472f60c541ed2854c3d8b589ab20ecc537db434b6d",
+    "rawResponseBytes": 144950
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c05_garten_v1",
+    "checkpointPacketId": "de_l01_c05_s40",
+    "sourceHeadword": "Garten",
+    "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+    "nominativePlural": "Gärten",
+    "sourceAnchor": "d-1-1",
+    "sourceCoreGerman": "kultiviertes, meist abgegrenztes Areal, Gelände",
+    "exactSpanSha256": "b048d418f531cd71ff0fb0ccb5a9c494a8d58f62768790773e6303f989ed64fd",
+    "exactSpanUtf8Bytes": 3958
+  },
+  "unsupportedClaims": {
+    "residenceAdjacentGarden": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "communalWelcomeScene": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "learnerPhraseAuthority": "OUT_OF_SCOPE",
+    "register": "NOT_CLAIMED_BY_THIS_PACKET"
+  }
+}

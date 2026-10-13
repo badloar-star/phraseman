@@ -61,11 +61,17 @@
 <!-- interaction_id: en:lesson-02:session-16:i01; family: listen_choose -->
 Ціль: `thirsty`
 Варіанти: `thirsty` · `thirty` · `dirty`
+- thirty — *Це «тридцять». У `thirsty` перед кінцем чути «с», у `thirty` його немає.*
+- dirty — *Це «брудний». Слово починається з «д», а `thirsty` — з іншого звука, язиком між зубами.*
+
 
 **2 · Вставте слово — Макс біля стійки просить другу склянку води**
 <!-- interaction_id: en:lesson-02:session-16:i02; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `thirsty` · `lost` · `awake`
+- lost — *«Заблукав». Він стоїть біля стійки й замовляє — дороги не шукає.*
+- awake — *«Прокинувся, не спить». Це й так видно, а вода — про спрагу.*
+
 
 **3 · Складіть запитання — вільних столиків немає, люди стоять попід стіною**
 <!-- interaction_id: en:lesson-02:session-16:i03; family: phrase_builder -->
@@ -75,10 +81,15 @@
 <!-- interaction_id: en:lesson-02:session-16:i04; family: listen_choose -->
 Ціль: `Is it noisy?`
 Варіанти: `Is it noisy?` · `It is noisy.` · `Is it crowded?`
+- It is noisy. — *У запитанні першим звучить `Is`. `It is noisy.` — твердження.*
+- Is it crowded? — *`crowded` — «людно». У записі після `it` звучить `noisy`: «гучно».*
+
 
 **5 · Розрізніть звуки — яке з двох про «людно»?**
 <!-- interaction_id: en:lesson-02:session-16:i05; family: sound_contrast -->
 Варіанти: `crowded` · `cloudy`
+- cloudy — *Це «хмарно». Обидва слова починаються з «к», але далі в `crowded` іде «р», а в `cloudy` — «л».*
+
 
 **6 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-16:i06; family: speed_match -->
@@ -89,29 +100,45 @@
 <!-- interaction_id: en:lesson-02:session-16:i07; family: listen_choose -->
 Ціль: `handsome`
 Варіанти: `handsome` · `handle` · `hands`
+- handle — *Це «ручка» — у дверей або в чашки. Другий шматок слова інший.*
+- hands — *Це «руки». У `handsome` після «хенд» іде ще склад.*
+
 
 **8 · Вставте слово — Олег за дальнім столиком; усі на нього озираються**
 <!-- interaction_id: en:lesson-02:session-16:i08; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `handsome` · `thirsty` · `noisy`
+- thirsty — *«Хоче пити». Озираються не на спрагу.*
+- noisy — *«Гамірний». Він сидить мовчки, гамору від нього немає.*
+
 
 **9 · Послухайте й складіть — «вона допитлива?»**
 <!-- interaction_id: en:lesson-02:session-16:i09; family: listen_build_dictation -->
 Ціль: `Is she curious?`
+🔊 *Is she curious?* Плитки: `Is` `she` `curious` `he`
+*Плитка `he` зайва: запитання про жінку, тому потрібне `she`: `Is she curious?`*
 
 **10 · Вставте слово — Олег сидить у м'якому кріслі біля вікна й не хоче йти**
 <!-- interaction_id: en:lesson-02:session-16:i10; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `comfortable` · `lost` · `dizzy`
+- lost — *«Заблукав». Він у кріслі, а не на вулиці.*
+- dizzy — *«Голова паморочиться». Тоді б він якраз хотів піти.*
+
 
 **11 · Складіть фразу — відповідайте «так, вона допитлива» коротко**
 <!-- interaction_id: en:lesson-02:session-16:i11; family: phrase_builder -->
 Ціль: `Yes, she is.`
+Плитки: `Yes,` `she` `is` `curious`
+*Плитка `curious` зайва: коротка відповідь уже завершена: `Yes, she is.`*
 
 **12 · Вставте слово — Міра встала й схопилася за стіл, її хитнуло**
 <!-- interaction_id: en:lesson-02:session-16:i12; family: context_gap_grammar -->
 Ціль: `Is she ___ ?`
 Варіанти: `dizzy` · `cheerful` · `awake`
+- cheerful — *«Весела». Хапатися за стіл від веселощів не стануть.*
+- awake — *«Не спить». Вона щойно встала — це й так ясно.*
+
 
 **13 · Складіть запитання — Антон біля входу не може знайти потрібну адресу й просить допомоги; запитайте, чи він заблукав**
 <!-- interaction_id: en:lesson-02:session-16:i13; family: phrase_builder -->
@@ -120,6 +147,8 @@
 **14 · Послухайте й складіть — «тут гамірно?»**
 <!-- interaction_id: en:lesson-02:session-16:i14; family: listen_build_dictation -->
 Ціль: `Is it noisy?`
+🔊 *Is it noisy?* Плитки: `Is` `it` `noisy` `crowded`
+*Плитка `crowded` зайва: тут питають про шум, тому потрібне `noisy`: `Is it noisy?`*
 
 **15 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-16:i15; family: speed_match -->

@@ -1832,7 +1832,7 @@
             {
               "responseId": "en:lesson-01:session-18:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і зберіть — Ліна каже: «Макс розумний»",
+              "testedDimension": "Послушайте и соберите — Лина говорит: «Макс умный»",
               "feedbackByLocale": {
                 "ru": "`She` лишнее: речь о Максе, поэтому нужна фраза `He is clever.`",
                 "uk": "`She` зайве: йдеться про Макса, тому потрібна фраза `He is clever`."
@@ -2109,7 +2109,7 @@
             {
               "responseId": "en:lesson-01:session-18:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Зберіть фразу — Макс приніс усім каву, хоча його не просили",
+              "testedDimension": "Соберите фразу — Макс принёс всем кофе, хотя его не просили",
               "feedbackByLocale": {
                 "ru": "`am` лишнее: с `He` ставят `is`: `He is kind.`",
                 "uk": "`am` зайве: з `He` ставлять `is`: `He is kind`."

@@ -151,7 +151,11 @@
             "ru": "Соберите фразу — сообщите соседу: «тебе голодно»",
             "uk": "Складіть фразу — скажіть сусідові: «ти голодний»"
           },
-          "orderedTokens": ["You", "are", "hungry"],
+          "orderedTokens": [
+            "You",
+            "are",
+            "hungry"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -251,7 +255,11 @@
             "ru": "Соберите фразу — сообщите соседу: «тебе холодно»",
             "uk": "Складіть фразу — скажіть сусідові: «ти змерз»"
           },
-          "orderedTokens": ["You", "are", "cold"],
+          "orderedTokens": [
+            "You",
+            "are",
+            "cold"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -375,7 +383,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед лежит с закрытыми",
+          "testedDimension": "Вставьте слово — сосед лежит с закрытыми глазами, но что-то бормочет. Вы проверяете, проснулся ли он",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i08:r2",
@@ -435,9 +443,18 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — друг посмотрел на карту и говорит, что вы заблудились",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-05:i10:r1", "text": "You are lost." },
-          { "responseId": "en:lesson-02:session-05:i10:r2", "text": "Are you lost?" },
-          { "responseId": "en:lesson-02:session-05:i10:r3", "text": "You lost." }
+          {
+            "responseId": "en:lesson-02:session-05:i10:r1",
+            "text": "You are lost."
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i10:r2",
+            "text": "Are you lost?"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i10:r3",
+            "text": "You lost."
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -452,14 +469,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-02:session-05:i10:r1", "targetText": "You are lost.", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-05:i10:r2", "targetText": "Are you lost?", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-05:i10:r3", "targetText": "You lost.", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-02:session-05:i10:r1",
+              "targetText": "You are lost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r2",
+              "targetText": "Are you lost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r3",
+              "targetText": "You lost.",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-05:i10:r2", "correct": false, "testedDimension": "утверждение, а не вопрос", "feedbackByLocale": { "ru": "В вопросе `are` стояло бы первым: `Are you lost?`. В записи сначала звучит `You`.", "uk": "У запитанні `are` стояло б першим: `Are you lost?`. У записі спочатку звучить `You`." } },
-            { "responseId": "en:lesson-02:session-05:i10:r3", "correct": false, "testedDimension": "полная фраза", "feedbackByLocale": { "ru": "В записи есть `are`: `You are lost.` Без него фраза неполная.", "uk": "У записі є `are`: `You are lost.` Без нього фраза неповна." } }
+            {
+              "responseId": "en:lesson-02:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "утверждение, а не вопрос",
+              "feedbackByLocale": {
+                "ru": "В вопросе `are` стояло бы первым: `Are you lost?`. В записи сначала звучит `You`.",
+                "uk": "У запитанні `are` стояло б першим: `Are you lost?`. У записі спочатку звучить `You`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "полная фраза",
+              "feedbackByLocale": {
+                "ru": "В записи есть `are`: `You are lost.` Без него фраза неполная.",
+                "uk": "У записі є `are`: `You are lost.` Без нього фраза неповна."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -511,7 +556,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед сидит в куртке и ",
+          "testedDimension": "Вставьте слово — сосед сидит в куртке и держит кружку двумя руками. Спросите про холод",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i11:r2",
@@ -600,7 +645,7 @@
             "audioTargetId": "en:lesson-02:session-05:i13:audioB",
             "transcript": "already"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «гот",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «готов»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i13:r2",
@@ -688,7 +733,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы стоите с ключами и ж",
+          "testedDimension": "Вставьте слово — вы стоите с ключами и ждёте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i15:r2",
@@ -1032,7 +1077,11 @@
             "ru": "Соберите фразу — сообщите соседу: «тебе голодно»",
             "uk": "Складіть фразу — скажіть сусідові: «ти голодний»"
           },
-          "orderedTokens": ["You", "are", "hungry"],
+          "orderedTokens": [
+            "You",
+            "are",
+            "hungry"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1132,7 +1181,11 @@
             "ru": "Соберите фразу — сообщите соседу: «тебе холодно»",
             "uk": "Складіть фразу — скажіть сусідові: «ти змерз»"
           },
-          "orderedTokens": ["You", "are", "cold"],
+          "orderedTokens": [
+            "You",
+            "are",
+            "cold"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1256,7 +1309,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставте слово — сусід лежить із заплющен",
+          "testedDimension": "Вставте слово — сусід лежить із заплющеними очима, але щось бурмоче. Ви перевіряєте, чи прокинувся він",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i08:r2",
@@ -1316,9 +1369,18 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть — друг подивився на мапу й каже, що ви заблукали",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-05:i10:r1", "text": "You are lost." },
-          { "responseId": "en:lesson-02:session-05:i10:r2", "text": "Are you lost?" },
-          { "responseId": "en:lesson-02:session-05:i10:r3", "text": "You lost." }
+          {
+            "responseId": "en:lesson-02:session-05:i10:r1",
+            "text": "You are lost."
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i10:r2",
+            "text": "Are you lost?"
+          },
+          {
+            "responseId": "en:lesson-02:session-05:i10:r3",
+            "text": "You lost."
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -1333,14 +1395,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-02:session-05:i10:r1", "targetText": "You are lost.", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-05:i10:r2", "targetText": "Are you lost?", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-05:i10:r3", "targetText": "You lost.", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-02:session-05:i10:r1",
+              "targetText": "You are lost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r2",
+              "targetText": "Are you lost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r3",
+              "targetText": "You lost.",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-05:i10:r2", "correct": false, "testedDimension": "твердження, а не запитання", "feedbackByLocale": { "ru": "В вопросе `are` стояло бы первым: `Are you lost?`. В записи сначала звучит `You`.", "uk": "У запитанні `are` стояло б першим: `Are you lost?`. У записі спочатку звучить `You`." } },
-            { "responseId": "en:lesson-02:session-05:i10:r3", "correct": false, "testedDimension": "повна фраза", "feedbackByLocale": { "ru": "В записи есть `are`: `You are lost.` Без него фраза неполная.", "uk": "У записі є `are`: `You are lost.` Без нього фраза неповна." } }
+            {
+              "responseId": "en:lesson-02:session-05:i10:r2",
+              "correct": false,
+              "testedDimension": "твердження, а не запитання",
+              "feedbackByLocale": {
+                "ru": "В вопросе `are` стояло бы первым: `Are you lost?`. В записи сначала звучит `You`.",
+                "uk": "У запитанні `are` стояло б першим: `Are you lost?`. У записі спочатку звучить `You`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-05:i10:r3",
+              "correct": false,
+              "testedDimension": "повна фраза",
+              "feedbackByLocale": {
+                "ru": "В записи есть `are`: `You are lost.` Без него фраза неполная.",
+                "uk": "У записі є `are`: `You are lost.` Без нього фраза неповна."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1392,7 +1482,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставте слово — сусід сидить у куртці й ",
+          "testedDimension": "Вставте слово — сусід сидить у куртці й тримає горнятко двома руками. Спитайте про холод",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i11:r2",
@@ -1481,7 +1571,7 @@
             "audioTargetId": "en:lesson-02:session-05:i13:audioB",
             "transcript": "already"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «готов",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «готовий»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i13:r2",
@@ -1569,7 +1659,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставте слово — ви стоїте з ключами й че",
+          "testedDimension": "Вставте слово — ви стоїте з ключами й чекаєте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-05:i15:r2",

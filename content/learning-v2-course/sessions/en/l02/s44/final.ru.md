@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i01; family: listen_choose -->
 Цель: `Am I ready?`
 Варианты: `Am I ready?` · `Are we ready?` · `Are you ready?`
+- Are we ready? — *Здесь спрашивают о всей компании. На записи начало `Am I`: друг спрашивает о себе.*
+- Are you ready? — *Это вопрос к вам. В записи друг говорит `I` — «я».*
+
 
 **2 · Вставьте слово — друг проверяет ваши вещи; спросите его, готовы ли вы сами**
 <!-- interaction_id: en:lesson-02:session-44:i02; family: context_gap_grammar -->
 Цель: `Am ___ ready?`
 Варианты: `I` · `we` · `you`
+- we — *Это «мы». Вы спрашиваете о себе, поэтому здесь нужно `I`.*
+- you — *Это «ты» или «вы». Вопрос к другу о вашей готовности начинается с `Am I`.*
+
 
 **3 · Послушайте и соберите — друг задаёт вопрос у двери**
 <!-- interaction_id: en:lesson-02:session-44:i03; family: listen_build_dictation -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i04; family: listen_choose -->
 Цель: `I am not sure.`
 Варианты: `I am not sure.` · `I am sure.` · `We are not sure.`
+- I am sure. — *Без `not` получается «Я уверен». На записи друг говорит, что не уверен.*
+- We are not sure. — *Это «Мы не уверены». На записи первое слово `I`: друг говорит о себе.*
+
 
 **5 · Вставьте слово — вы проверили время в билете; подтвердите другу: «Я уверен»**
 <!-- interaction_id: en:lesson-02:session-44:i05; family: context_gap_grammar -->
 Цель: `I am ___ .`
 Варианты: `sure` · `late` · `early`
+- late — *Это «опоздал» или «опаздываю». Сейчас вы подтверждаете, что уверены во времени: `sure`.*
+- early — *Это «рано». Вы говорите об уверенности в ответе, поэтому нужно `I am sure`.*
+
 
 **6 · Соберите фразу — ваши вещи собраны; сообщите другу, что вы готовы**
 <!-- interaction_id: en:lesson-02:session-44:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i07; family: listen_choose -->
 Цель: `Are we early?`
 Варианты: `Are we early?` · `Am I early?` · `Are we late?`
+- Am I early? — *Это вопрос только о себе. В записи начало `Are we` — вопрос о вас обоих.*
+- Are we late? — *В этом варианте последнее слово `late`. На записи звучит `early` — «рано».*
+
 
 **8 · Вставьте слово — вы собрались у двери и сверяете часы с намеченным временем выхода; спросите друга: «Мы рано?»**
 <!-- interaction_id: en:lesson-02:session-44:i08; family: context_gap_grammar -->
 Цель: `Are we ___ ?`
 Варианты: `early` · `ready` · `sure`
+- ready — *Это вопрос о готовности. Вы уточняете время выхода, поэтому нужно `early`.*
+- sure — *Получится «Мы уверены?» Сейчас вы спрашиваете, опережаете ли намеченное время выхода: `Are we early?`*
+
 
 **9 · Соедините пары — слова перед выходом**
 <!-- interaction_id: en:lesson-02:session-44:i09; family: speed_match -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-44:i12; family: context_gap_grammar -->
 Цель: `Are ___ early?`
 Варианты: `we` · `I` · `she`
+- I — *Это «я». Вопрос о вас обоих требует `we`: `Are we early?`*
+- she — *Это «она». Вы спрашиваете о себе вместе с другом, поэтому выбирайте `we`.*
+
 
 **13 · Соберите фразу — друг назвал время отправления по памяти; уточните, уверен ли он**
 <!-- interaction_id: en:lesson-02:session-44:i13; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-44:i14; family: listen_choose -->
 Цель: `Are we ready?`
 Варианты: `Are we ready?` · `Am I ready?` · `We are ready.`
+- Am I ready? — *Это вопрос о личной готовности. В записи звучит `Are we`: спрашивают обо всех вместе.*
+- We are ready. — *Это сообщение. В записи сначала `Are we`: прозвучал вопрос.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-44:i15; family: scripted_repeat_compare -->

@@ -126,7 +126,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спросил, устали ли",
+          "testedDimension": "Вставьте слово — друг спросил, устали ли вы; вы устали, ответьте коротко: «Да»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i02:r2",
@@ -256,17 +256,27 @@
         "prompt": "Скажите вслух — друг показывает кафе на фотографии; спросите, как оно называется",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-49:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i05:audio"
+        ],
         "accessibilityLabel": "Скажите вслух — друг показывает кафе на фотографии; спросите, как оно называется",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "What is the name?",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-49:i05:audio","transcript":"What is the name?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i05:audio",
+            "transcript": "What is the name?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -449,7 +459,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — вы обсуждаете дорогу от",
+          "testedDimension": "Вставьте слово — вы обсуждаете дорогу от хостела до станции; уточните, близко ли она",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i09:r2",
@@ -727,7 +737,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставьте слово — вы с другом планируете ",
+          "testedDimension": "Вставьте слово — вы с другом планируете выйти на прогулку; уточните, готовы ли вы оба",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i14:r2",
@@ -971,7 +981,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитав, чи ви втом",
+          "testedDimension": "Вставте слово — друг запитав, чи ви втомилися; ви втомилися, дайте коротку відповідь: «Так»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i02:r2",
@@ -1068,7 +1078,7 @@
               "text": "host"
             }
           ],
-          "testedDimension": "Вставте слово — ви працюєте в компанії п",
+          "testedDimension": "Вставте слово — ви працюєте в компанії перший тиждень; на наступному знімку — керівник Марко. Поясніть другові, хто такий Марко",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i04:r2",
@@ -1101,17 +1111,27 @@
         "prompt": "Скажіть уголос — друг показує кафе на фотографії; запитайте, як воно називається",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-49:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-49:i05:audio"
+        ],
         "accessibilityLabel": "Скажіть уголос — друг показує кафе на фотографії; запитайте, як воно називається",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "targetPhrase": "What is the name?",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-49:i05:audio","transcript":"What is the name?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-49:i05:audio",
+            "transcript": "What is the name?"
+          },
           "slowReferenceAudio": null,
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1294,7 +1314,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — ви обговорюєте дорогу ві",
+          "testedDimension": "Вставте слово — ви обговорюєте дорогу від хостелу до станції; уточніть, чи близько вона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i09:r2",
@@ -1572,7 +1592,7 @@
               "text": "he"
             }
           ],
-          "testedDimension": "Вставте слово — ви з другом плануєте вий",
+          "testedDimension": "Вставте слово — ви з другом плануєте вийти на прогулянку; уточніть, чи ви обоє готові",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-49:i14:r2",

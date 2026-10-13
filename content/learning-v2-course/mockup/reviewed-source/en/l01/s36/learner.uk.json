@@ -115,6 +115,15 @@
               "ru": "Только первый кусок. `colleagues` длиннее: «ко-лигз».",
               "uk": "Це тільки початок слова. `colleagues` довше: «ко-ліґз»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "`colleagues` — «коллеги»: вы работаете в одной компании.",
+              "uk": "`colleagues` — «колеги»: ви працюєте в одній компанії."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Один. Вы слышали `friends`, с «з» на конце — их несколько.",
               "uk": "Один. Ви чули `friends`, із «з» у кінці — їх кілька."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "`friends` — «друзья»: они общаются как близкие люди.",
+              "uk": "`friends` — «друзі»: вони спілкуються як близькі люди."
+            }
           }
         ],
         "isWordCard": false,
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — «ми колеги»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` ставят `are` — `We are colleagues.`",
+              "uk": "`is` зайве: з `We` ставлять `are` — `We are colleagues`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -426,6 +454,15 @@
               "ru": "«Гетс», без «с» в середине. В `guests` перед «т» есть «с»: «гэстс».",
               "uk": "«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-36:i08:r1",
+            "correct": true,
+            "testedDimension": "Послухайте й виберіть",
+            "feedbackByLocale": {
+              "ru": "`guests` — «гости»: они пришли ненадолго.",
+              "uk": "`guests` — «гості»: вони прийшли ненадовго."
+            }
           }
         ],
         "isWordCard": false,
@@ -481,6 +518,15 @@
         "testedDimension": "Вставте слово — ці люди прийшли на годин",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-36:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ці люди прийшли на годину й підуть",
+            "feedbackByLocale": {
+              "ru": "Они пришли на час: `guests` — «гости».",
+              "uk": "Вони прийшли на годину: `guests` — «гості»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-36:i09:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ці люди прийшли на годин",
@@ -528,7 +574,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви живете в сусідніх квартирах",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: с `They` ставят `are` — `They are neighbours.`",
+              "uk": "`am` зайве: з `They` ставлять `are` — `They are neighbours`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -561,7 +617,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть — «вони друзі»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: правильно `They are friends.`",
+              "uk": "`is` зайве: правильно `They are friends`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -613,6 +679,15 @@
         "testedDimension": "Вставте слово — ви обідаєте всією команд",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-36:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — колега Міра питає, чому вся команда обідає за одним столом",
+            "feedbackByLocale": {
+              "ru": "Вся команда за одним столом: `together` — «вместе».",
+              "uk": "Уся команда за одним столом: `together` — «разом»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-36:i12:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви обідаєте всією команд",
@@ -656,7 +731,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — за сусіднім столом ніхто не розмовляє",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: правильно `They are quiet.`",
+              "uk": "`is` зайве: правильно `They are quiet`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -789,6 +874,15 @@
         "testedDimension": "Вставте слово — колега весь обід усіх см",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-36:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх",
+            "feedbackByLocale": {
+              "ru": "Он всех смешил: `funny` — «смешной».",
+              "uk": "Він усіх смішив: `funny` — «смішний"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-36:i15:r2",
             "correct": false,
             "testedDimension": "Вставте слово — колега весь обід усіх см",
@@ -913,7 +1007,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i17:s01:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й складіть — ви працюєте в одній компанії",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: правильно `We are colleagues.`",
+              "uk": "`is` зайве: правильно `We are colleagues`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null,
       "ordinal": 21
@@ -1005,7 +1109,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-36:i17:s04:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ці люди прийшли ненадовго",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: правильно `They are guests.`",
+              "uk": "`is` зайве: правильно `They are guests`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null,
       "ordinal": 24
@@ -1017,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2df20403cd41fc08c68de4cc1903cddb383b066f9a24b44a3cf26fbf3e809a73"
+  "learnerFingerprint": "0f36e30568b2bc134d07a5e8a85479d27f5dc167f6ed2cd27daa3a951614bbff"
 }

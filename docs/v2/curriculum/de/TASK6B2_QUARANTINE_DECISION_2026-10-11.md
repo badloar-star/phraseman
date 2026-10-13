@@ -4,10 +4,9 @@
 
 ## Decision
 
-Existing uncommitted `Aufzug` registry, evidence and test bytes are preserved
-in place. They are not accepted as Task 6B2 output, do not receive canonical
-authority and cannot open Task 7, learner-facing authoring, mockup, release or
-promotion.
+Existing `Aufzug` registry, evidence and test bytes are preserved in place.
+They are not accepted as Task 6B2 output, do not receive canonical authority
+and cannot open Task 7, learner-facing authoring, mockup, release or promotion.
 
 ## Evidence
 
@@ -15,8 +14,10 @@ Task 6B1 admitted only the `Nachbarin` canonical row and allowed the next step
 solely as source adjudication of `Aufzug` candidate-only. Task 6B2 separately
 forbids creating, accepting or promoting a canonical lexical row. Current live
 bytes already contain an `Aufzug` canonical row, trusted evidence and test
-contacts; their author and authorizing task cannot be established from Git,
-because they are untracked.
+contacts. Git records them in broad snapshot commits
+`b86fc6957d3bfe049b11e88b4ee5b5b556a4d91b` and
+`e2a74ef302fe842cdbc93ef7f722e450be229407`; those snapshots are provenance of
+storage, not a Task 6B2 authorization or a substitute for its gates.
 
 The preserved current SHA-256 values are:
 

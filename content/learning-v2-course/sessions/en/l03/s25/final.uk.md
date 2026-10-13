@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-25:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `cable` · `charger` · `phone`
+- charger — *charger — це зарядний пристрій, а на стійці лежить шнур: cable.*
+- phone — *phone — телефон. Тут потрібен шнур: cable.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-25:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значення варіантів: `charger` — зарядка · `charmer` — чарівна людина · `larger` — більший · `charter` — статут
 Ціль: `charger`
 Варіанти: `charger` · `charmer` · `larger` · `charter`
+- charmer — *У середині `charmer` чути `m`, а в `charger` — дзвінке `дж`.*
+- larger — *У `larger` першим чути `l`; `charger` починається зі звука `ч`.*
+- charter — *Порівняйте середину: `char-ter` звучить із `t`, а `char-ger` — із дзвінким `дж`.*
+
 
 **6 · Розрізніть звук — яке зі знайомих слів прозвучало**
 <!-- interaction_id: en:lesson-03:session-25:i06; family: sound_contrast -->
 Ціль: `cable`
 *cable · charger* → **cable**
+- charger — *На записі не charger: на початку не чути ch.*
+
 
 **7 · З'єднайте слова зі значеннями — предмети на приймальній стійці**
 <!-- interaction_id: en:lesson-03:session-25:i07; family: speed_match -->
@@ -95,11 +104,16 @@
 <!-- interaction_id: en:lesson-03:session-25:i08; family: context_gap_grammar -->
 Ціль: `This is a ___.`
 Варіанти: `phone` · `charger` · `cable`
+- charger — *charger — зарядний пристрій. Тут ви показуєте телефон: phone.*
+- cable — *cable — шнур. Тут ви показуєте телефон: phone.*
+
 
 **9 · Розрізніть звук — charger чи charter**
 <!-- interaction_id: en:lesson-03:session-25:i09; family: sound_contrast -->
 Ціль: `charger`
 *charger · charter* → **charger**
+- charter — *У charger після `char` чути дзвінке `дж`; у charter — `т`.*
+
 
 **10 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-25:i10; family: scripted_repeat_compare -->
@@ -117,11 +131,19 @@
 <!-- interaction_id: en:lesson-03:session-25:i13; family: context_gap_grammar -->
 Ціль: `This ___ a cable.`
 Варіанти: `is` · `are` · `am` · `a`
+- are — *Шнур один. Після `This` тут потрібне `is`.*
+- am — *`am` ставлять після `I`. З предметом поруч потрібна зв'язка `This is`.*
+- a — *`a` вже стоїть перед `cable`. Між `This` і `a cable` потрібне `is`.*
+
 
 **14 · Послухайте й виберіть значення точної фрази**
 <!-- interaction_id: en:lesson-03:session-25:i14; family: listen_choose -->
 Ціль: `This is a cup.`
 Варіанти: `Це чашка` · `Це кепка` · `Це поліцейський` · `Це поріз`
+- Це кепка — *У записі прозвучало `cup` — «чашка». Для «кепка» прозвучало б `cap`.*
+- Це поліцейський — *У записі прозвучало `cup`. Слово `cop` означало б «поліцейський».*
+- Це поріз — *У записі слово закінчується на `p`: `cup`. Для «поріз» прозвучало б `cut`, із `t` наприкінці.*
+
 
 **15 · Складіть фразу — біля вас стоїть пляшка**
 <!-- interaction_id: en:lesson-03:session-25:i15; family: phrase_builder -->
@@ -131,6 +153,10 @@
 <!-- interaction_id: en:lesson-03:session-25:i16; family: context_gap_grammar -->
 Ціль: `This is ___ cup.`
 Варіанти: `a` · `is` · `are` · `cups`
+- is — *Зв'язка `is` уже стоїть після `This`. Перед одним `cup` потрібне маленьке слово `a`.*
+- are — *У цій фразі зв'язка вже є: `This is`. У пропуску перед одним `cup` потрібне `a`.*
+- cups — *`cups` називає кілька чашок. Тут після пропуску вже стоїть форма однієї чашки `cup`, тому потрібне `a`.*
+
 
 **17 · Послухайте та складіть одну фразу**
 <!-- interaction_id: en:lesson-03:session-25:i17; family: listen_build_dictation -->

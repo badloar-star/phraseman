@@ -36,8 +36,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i08",
-    "correctText": "are",
-    "correctResponseId": "en:lesson-01:session-43:i08:r1"
+    "correctText": "They are funny.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i09",
@@ -51,8 +51,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-43:i11",
-    "correctText": "is",
-    "correctResponseId": "en:lesson-01:session-43:i11:r1"
+    "correctText": "She is funny.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-43:i12",

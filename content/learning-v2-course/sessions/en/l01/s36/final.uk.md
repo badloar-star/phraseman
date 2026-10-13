@@ -18,7 +18,7 @@
 
 **Мія питає, ви з Олегом друзі чи як. Ви разом працюєте.**
 
-- ✅ **We are colleagues.**
+- ✅ **We are colleagues.** — *Правильно: We are colleagues — «ми колеги»: з we ставлять are, а colleagues називає ваш робочий зв'язок з Олегом.*
 - ❌ We colleagues. — *Англійська фраза не стоїть без дієслова. Українська пропускає «є», англійська — ні: `we are` + хто ви.*
 - ❌ We is colleagues. — *`is` — про одного. Вас двоє, отже `are`.*
 
@@ -34,7 +34,7 @@
 
 **Показують на двох за дальнім столом: ці весь час разом. Скажіть, хто вони одне одному.**
 
-- ✅ **They are friends.**
+- ✅ **They are friends.** — *Правильно: They are friends — «вони друзі»: з they ставлять are, а friends у множині називає стосунки цих двох людей.*
 - ❌ They friends. — *Два слова поруч — це ще не фраза. Щоб сказати, хто вони, потрібна зв'язка: `they are` + хто.*
 - ❌ They are friend. — *Один друг на двох не буває. Їх двоє — `friends`, із `-s`.*
 
@@ -50,7 +50,7 @@
 
 **Ви киваєте на людей біля вікна: вони не звідси, зайшли на годину. Скажіть, хто це.**
 
-- ✅ **They are guests.**
+- ✅ **They are guests.** — *Правильно: They are guests — «вони гості»: люди зайшли ненадовго, тому guests точно передає ситуацію; з they ставлять are.*
 - ❌ They are neighbours. — *Сусіди — ті, хто поруч постійно. Ці підуть за годину, отже `guests`.*
 - ❌ They guests. — *Зв'язка зникла. Про `they` — `they are` + хто вони.*
 
@@ -65,6 +65,7 @@
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-01:session-36:i02; family: listen_choose -->
 🔊 *colleagues* → **colleagues** · college · call
+- colleagues — *`colleagues` — «колеги»: ви працюєте в одній компанії.*
 - college — *Схоже початком, але це «коледж», і в кінці немає звука «з».*
 - call — *Це тільки початок слова. `colleagues` довше: «ко-ліґз».*
 
@@ -75,12 +76,15 @@
 **4 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-01:session-36:i04; family: listen_choose -->
 🔊 *friends* → **friends** · trends · friend
+- friends — *`friends` — «друзі»: вони спілкуються як близькі люди.*
 - trends — *Початок інший: тут «тр-», а у `friends` — «фр-».*
 - friend — *Один. Ви чули `friends`, із «з» у кінці — їх кілька.*
 
 **5 · Складіть фразу — «ми колеги»**
 <!-- interaction_id: en:lesson-01:session-36:i05; family: phrase_builder -->
 Плитки: `colleagues` `we` `are` `is` → **We are colleagues.**
+*(плитка `is` зайва: `is` зайве: з `We` ставлять `are` — `We are colleagues`.)*
+
 
 **6 · Картка слова — neighbours**
 <!-- interaction_id: en:lesson-01:session-36:i06; family: listen_choose -->
@@ -93,32 +97,41 @@
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-01:session-36:i08; family: listen_choose -->
 🔊 *guests* → **guests** · guess · gets
+- guests — *`guests` — «гості»: вони прийшли ненадовго.*
 - guess — *«Здогад», і в кінці тільки «с». У `guests` чути «стс».*
 - gets — *«Ґетс», без «с» усередині. У `guests` перед «т» є «с»: «ґестс».*
 
 **9 · Вставте слово — ці люди прийшли на годину й підуть**
 <!-- interaction_id: en:lesson-01:session-36:i09; family: context_gap_grammar -->
 They are ___ . → **guests** · neighbours · colleagues
+- guests — *Вони прийшли на годину: `guests` — «гості».*
 - neighbours — *Сусіди нікуди не йдуть, у тому й суть.*
 - colleagues — *Колеги — з вашої роботи. Ці взагалі не звідси.*
 
 **10 · Складіть фразу — ви живете в сусідніх квартирах**
 <!-- interaction_id: en:lesson-01:session-36:i10; family: phrase_builder -->
 Плитки: `neighbours` `are` `we` `am` → **We are neighbours.**
+*(плитка `am` зайва: `am` зайве: з `We` ставлять `are` — `We are neighbours`.)*
+
 
 **11 · Послухайте й складіть — «вони друзі»**
 <!-- interaction_id: en:lesson-01:session-36:i11; family: listen_build_dictation -->
 🔊 *They are friends.* Плитки: `friends` `are` `They` `is` → **They are friends.**
+*(плитка `is` зайва: `is` зайве: правильно `They are friends`.)*
+
 
 **12 · Вставте слово — колега Міра питає, чому вся команда обідає за одним столом**
 <!-- interaction_id: en:lesson-01:session-36:i12; family: context_gap_grammar -->
 We are ___ . → **together** · alone · quiet
+- together — *Уся команда за одним столом: `together` — «разом».*
 - alone — *«Один». Вас за столом восьмеро.*
 - quiet — *«Тихі». Може, й так, але спитали не про шум, а про те, що ви разом.*
 
 **13 · Складіть фразу — за сусіднім столом ніхто не розмовляє**
 <!-- interaction_id: en:lesson-01:session-36:i13; family: phrase_builder -->
 Плитки: `quiet` `They` `are` `is` → **They are quiet.**
+*(плитка `is` зайва: `is` зайве: правильно `They are quiet`.)*
+
 
 **14 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-36:i14; family: speed_match -->
@@ -127,6 +140,7 @@ colleagues — колеги · friends — друзі · neighbours — сусі
 **15 · Вставте слово — колега весь обід усіх смішив, за столом не вщухав сміх**
 <!-- interaction_id: en:lesson-01:session-36:i15; family: context_gap_grammar -->
 They are ___ . → **funny** · kind · loud · lost
+- funny — *Він усіх смішив: `funny` — «смішний».*
 - kind — *«Добрі». Про доброту не йшлося, йшлося про сміх.*
 - loud — *«Гучні». Смішити й шуміти — не те саме.*
 - lost — *«Загубилися». Вони за столом, усе гаразд.*
@@ -142,6 +156,8 @@ They are ___ . → **funny** · kind · loud · lost
 **18 · Послухайте й складіть — ви працюєте в одній компанії**
 <!-- interaction_id: en:lesson-01:session-36:i17:s01; family: listen_build_dictation -->
 🔊 *We are colleagues.* Плитки: `colleagues` `We` `are` `is` → **We are colleagues.**
+*(плитка `is` зайва: `is` зайве: правильно `We are colleagues`.)*
+
 
 **19 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-36:i17:s02; family: scripted_repeat_compare -->
@@ -154,6 +170,8 @@ They are ___ . → **funny** · kind · loud · lost
 **21 · Складіть фразу — ці люди прийшли ненадовго**
 <!-- interaction_id: en:lesson-01:session-36:i17:s04; family: phrase_builder -->
 Плитки: `guests` `They` `are` `is` → **They are guests.**
+*(плитка `is` зайва: `is` зайве: правильно `They are guests`.)*
+
 
 ---
 

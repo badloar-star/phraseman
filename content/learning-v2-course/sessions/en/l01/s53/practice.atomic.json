@@ -23,8 +23,16 @@
             "ru": "Соберите фразу — «я устал»",
             "uk": "Складіть фразу — «я втомився»"
           },
-          "orderedTokens": ["I", "am", "tired"],
+          "orderedTokens": [
+            "I",
+            "am",
+            "tired"
+          ],
           "authoredDistractorTokens": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `I` ставят `am`, поэтому получается `I am tired.` — «я устал».",
+            "uk": "Правильно: після `I` ставлять `am`, тому виходить `I am tired.` — «я втомився»."
+          },
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -74,8 +82,17 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставьте слово — речь про брата, он заня",
+          "testedDimension": "Вставьте слово — речь про брата, он занят",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — речь про брата, он заня",
+              "feedbackByLocale": {
+                "ru": "Верно: с `He` ставят `is`: `He is busy.`",
+                "uk": "Правильно: з `He` ставлять `is`: `He is busy`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i02:r2",
               "correct": false,
@@ -151,9 +168,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i03:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "Верно: в аудио звучит `busy` — «занят».",
+                "uk": "Правильно: в аудіо звучить `busy` — «зайнятий»."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — busy",
+              "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
                 "ru": "Это «легко». Здесь нужно слово «занят»: `busy`.",
                 "uk": "Це «легко». Тут потрібне слово «зайнятий»: `busy`."
@@ -162,7 +188,7 @@
             {
               "responseId": "en:lesson-01:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — busy",
+              "testedDimension": "Послушайте и выберите",
               "feedbackByLocale": {
                 "ru": "Это «тело». Про человека занятого говорят `busy`.",
                 "uk": "Це «тіло». Про зайняту людину кажуть `busy`."
@@ -198,6 +224,10 @@
             "home"
           ],
           "authoredDistractorTokens": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: `we` — «мы», поэтому `We are home.`",
+            "uk": "Правильно: `we` — це «ми», тому `We are home`."
+          },
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -250,6 +280,15 @@
           "testedDimension": "Вставьте слово — про вас и брата вместе",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — про вас и брата вместе",
+              "feedbackByLocale": {
+                "ru": "Верно: `we` — это «мы», поэтому `We are home.`",
+                "uk": "Правильно: `we` — це «ми», тому `We are home`."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i05:r2",
               "correct": false,
               "testedDimension": "Вставьте слово — про вас и брата вместе",
@@ -296,7 +335,11 @@
             "sick"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `She` ставят `is`, а `not` идёт сразу после него: `She is not sick.`",
+            "uk": "Правильно: після `She` ставлять `is`, а `not` іде відразу після нього: `She is not sick`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -347,6 +390,15 @@
           ],
           "testedDimension": "Вставьте слово — сестра здорова",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — сестра здорова",
+              "feedbackByLocale": {
+                "ru": "Верно: `not` делает `She is not sick.` — «она не болеет».",
+                "uk": "Правильно: `not` утворює `She is not sick` — «вона не хворіє»."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i07:r2",
               "correct": false,
@@ -399,7 +451,21 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я не занят»",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `I`; нужна `am` — `I am not busy.`",
+                "uk": "`is` не підходить до `I`; потрібне `am` — `I am not busy`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `I` ставят `am`, затем `not`: `I am not busy.`",
+            "uk": "Правильно: після `I` ставлять `am`, потім `not`: `I am not busy`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -447,9 +513,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i09:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите слово о самочувств",
+              "feedbackByLocale": {
+                "ru": "Верно: в записи было `sick` — «болен».",
+                "uk": "Правильно: у записі було `sick` — «хворий»."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите услышанное слово",
+              "testedDimension": "Послушайте и выберите слово о самочувств",
               "feedbackByLocale": {
                 "ru": "`Six` — «шесть». В записи было `sick` — «болен».",
                 "uk": "`Six` — «шість». У записі було `sick` — «хворий»."
@@ -506,8 +581,17 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — соседи не вместе, кажды",
+          "testedDimension": "Вставьте слово — соседи не вместе, каждый у себя",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — соседи не вместе, кажды",
+              "feedbackByLocale": {
+                "ru": "Верно: `together` значит «вместе»: `They are not together.`",
+                "uk": "Правильно: `together` означає «разом»: `They are not together`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i10:r2",
               "correct": false,
@@ -555,7 +639,11 @@
             "home"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `He` ставят `is`, а `not` идёт сразу после него: `He is not home.`",
+            "uk": "Правильно: після `He` ставлять `is`, а `not` іде відразу після нього: `He is not home`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -658,7 +746,21 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Правда или отрицание? Брат правда занят — скажите как есть",
+              "feedbackByLocale": {
+                "ru": "`not` меняет смысл на отрицание, а брат занят: `He is busy.`",
+                "uk": "`not` змінює зміст на заперечення, а брат зайнятий: `He is busy`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: с `He` ставят `is`: `He is busy.`",
+            "uk": "Правильно: з `He` ставлять `is`: `He is busy`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -669,17 +771,74 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — вы с другом полны сил",
-        "responseOptions": [{ "responseId": "en:lesson-01:session-53:i14:r1", "text": "tired" }, { "responseId": "en:lesson-01:session-53:i14:r2", "text": "busy" }, { "responseId": "en:lesson-01:session-53:i14:r3", "text": "home" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "text": "home"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — вы с другом полны сил",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте слово — вы с другом полны сил", "uk": "Вставте слово — ви з другом сповнені сил" },
+          "localizedScene": {
+            "ru": "Вставьте слово — вы с другом полны сил",
+            "uk": "Вставте слово — ви з другом сповнені сил"
+          },
           "gappedTargetPhrase": "We are not ___ .",
-          "gapOptions": [{ "responseId": "en:lesson-01:session-53:i14:r1", "text": "tired" }, { "responseId": "en:lesson-01:session-53:i14:r2", "text": "busy" }, { "responseId": "en:lesson-01:session-53:i14:r3", "text": "home" }],
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "text": "tired"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "text": "busy"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "text": "home"
+            }
+          ],
           "testedDimension": "выбор tired после not",
-          "choiceFeedback": [{ "responseId": "en:lesson-01:session-53:i14:r2", "correct": false, "testedDimension": "выбор tired после not", "feedbackByLocale": { "ru": "`busy` — «заняты». Здесь вы говорите, что не устали.", "uk": "`busy` — «зайняті». Тут ви кажете, що не втомилися." } }, { "responseId": "en:lesson-01:session-53:i14:r3", "correct": false, "testedDimension": "выбор tired после not", "feedbackByLocale": { "ru": "`home` — «дома». Здесь нужно слово о самочувствии.", "uk": "`home` — «вдома». Тут потрібне слово про самопочуття." } }]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы с другом полны сил",
+              "feedbackByLocale": {
+                "ru": "Верно: `tired` — «уставшие», поэтому `We are not tired.`",
+                "uk": "Правильно: `tired` — «втомлені», тому `We are not tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — вы с другом полны сил",
+              "feedbackByLocale": {
+                "ru": "`busy` — «заняты». Здесь вы говорите, что не устали.",
+                "uk": "`busy` — «зайняті». Тут ви кажете, що не втомилися."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — вы с другом полны сил",
+              "feedbackByLocale": {
+                "ru": "`home` — «дома». Здесь нужно слово о самочувствии.",
+                "uk": "`home` — «вдома». Тут потрібне слово про самопочуття."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -866,9 +1025,29 @@
             "ru": "Соберите фразу — «мы вместе»",
             "uk": "Складіть фразу — «ми разом»"
           },
-          "orderedTokens": ["We", "are", "together"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "We",
+            "are",
+            "together"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i16:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает, вместе ли вы с другом",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `We`; нужна форма `are` — `We are together.`",
+                "uk": "`is` не підходить до `We`; потрібна форма `are` — `We are together`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: с `We` нужна форма `are`: `We are together.`",
+            "uk": "Правильно: з `We` потрібна форма `are`: `We are together`."
+          }
         },
         "scriptedAlternate": null
       }
@@ -892,9 +1071,17 @@
             "ru": "Соберите фразу — «я устал»",
             "uk": "Складіть фразу — «я втомився»"
           },
-          "orderedTokens": ["I", "am", "tired"],
+          "orderedTokens": [
+            "I",
+            "am",
+            "tired"
+          ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `I` ставят `am`, поэтому получается `I am tired.` — «я устал».",
+            "uk": "Правильно: після `I` ставлять `am`, тому виходить `I am tired.` — «я втомився»."
+          }
         },
         "scriptedAlternate": null
       },
@@ -943,8 +1130,17 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставте слово — мова про брата, він зайн",
+          "testedDimension": "Вставте слово — мова про брата, він зайнятий",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — мова про брата, він зайн",
+              "feedbackByLocale": {
+                "ru": "Верно: с `He` ставят `is`: `He is busy.`",
+                "uk": "Правильно: з `He` ставлять `is`: `He is busy`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i02:r2",
               "correct": false,
@@ -1020,9 +1216,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i03:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "Верно: в аудио звучит `busy` — «занят».",
+                "uk": "Правильно: в аудіо звучить `busy` — «зайнятий»."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i03:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — busy",
+              "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
                 "ru": "Это «легко». Здесь нужно слово «занят»: `busy`.",
                 "uk": "Це «легко». Тут потрібне слово «зайнятий»: `busy`."
@@ -1031,7 +1236,7 @@
             {
               "responseId": "en:lesson-01:session-53:i03:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — busy",
+              "testedDimension": "Послухайте і виберіть",
               "feedbackByLocale": {
                 "ru": "Это «тело». Про человека занятого говорят `busy`.",
                 "uk": "Це «тіло». Про зайняту людину кажуть `busy`."
@@ -1067,7 +1272,11 @@
             "home"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: `we` — «мы», поэтому `We are home.`",
+            "uk": "Правильно: `we` — це «ми», тому `We are home`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -1119,6 +1328,15 @@
           "testedDimension": "Вставте слово — про вас із братом разом",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — про вас із братом разом",
+              "feedbackByLocale": {
+                "ru": "Верно: `we` — это «мы», поэтому `We are home.`",
+                "uk": "Правильно: `we` — це «ми», тому `We are home`."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i05:r2",
               "correct": false,
               "testedDimension": "Вставте слово — про вас із братом разом",
@@ -1165,7 +1383,11 @@
             "sick"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `She` ставят `is`, а `not` идёт сразу после него: `She is not sick.`",
+            "uk": "Правильно: після `She` ставлять `is`, а `not` іде відразу після нього: `She is not sick`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -1216,6 +1438,15 @@
           ],
           "testedDimension": "Вставте слово — сестра здорова",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — сестра здорова",
+              "feedbackByLocale": {
+                "ru": "Верно: `not` делает `She is not sick.` — «она не болеет».",
+                "uk": "Правильно: `not` утворює `She is not sick` — «вона не хворіє»."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i07:r2",
               "correct": false,
@@ -1268,7 +1499,21 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я не занят»",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `I`; нужна `am` — `I am not busy.`",
+                "uk": "`is` не підходить до `I`; потрібне `am` — `I am not busy`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `I` ставят `am`, затем `not`: `I am not busy.`",
+            "uk": "Правильно: після `I` ставлять `am`, потім `not`: `I am not busy`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -1316,9 +1561,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-53:i09:r1",
+              "correct": true,
+              "testedDimension": "Послухайте й оберіть слово про самопочут",
+              "feedbackByLocale": {
+                "ru": "Верно: в записи было `sick` — «болен».",
+                "uk": "Правильно: у записі було `sick` — «хворий»."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-53:i09:r2",
               "correct": false,
-              "testedDimension": "Выберите услышанное слово",
+              "testedDimension": "Послухайте й оберіть слово про самопочут",
               "feedbackByLocale": {
                 "ru": "`Six` — «шесть». В записи было `sick` — «болен».",
                 "uk": "`Six` — «шість». У записі було `sick` — «хворий»."
@@ -1375,8 +1629,17 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — сусіди не разом, кожен у",
+          "testedDimension": "Вставте слово — сусіди не разом, кожен у себе",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — сусіди не разом, кожен у",
+              "feedbackByLocale": {
+                "ru": "Верно: `together` значит «вместе»: `They are not together.`",
+                "uk": "Правильно: `together` означає «разом»: `They are not together`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-53:i10:r2",
               "correct": false,
@@ -1424,7 +1687,11 @@
             "home"
           ],
           "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "slotFeedback": [],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: после `He` ставят `is`, а `not` идёт сразу после него: `He is not home.`",
+            "uk": "Правильно: після `He` ставлять `is`, а `not` іде відразу після нього: `He is not home`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -1524,8 +1791,24 @@
             "is",
             "busy"
           ],
-          "authoredDistractorTokens": [],
-          "slotFeedback": []
+          "authoredDistractorTokens": [
+            "not"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Правда или отрицание? Брат правда занят — скажите как есть",
+              "feedbackByLocale": {
+                "ru": "`not` меняет смысл на отрицание, а брат занят: `He is busy.`",
+                "uk": "`not` змінює зміст на заперечення, а брат зайнятий: `He is busy`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: с `He` ставят `is`: `He is busy.`",
+            "uk": "Правильно: з `He` ставлять `is`: `He is busy`."
+          }
         },
         "scriptedAlternate": null
       },
@@ -1536,17 +1819,74 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставте слово — ви з другом сповнені сил",
-        "responseOptions": [{ "responseId": "en:lesson-01:session-53:i14:r1", "text": "tired" }, { "responseId": "en:lesson-01:session-53:i14:r2", "text": "busy" }, { "responseId": "en:lesson-01:session-53:i14:r3", "text": "home" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-53:i14:r1",
+            "text": "tired"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r2",
+            "text": "busy"
+          },
+          {
+            "responseId": "en:lesson-01:session-53:i14:r3",
+            "text": "home"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — ви з другом сповнені сил",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте слово — вы с другом полны сил", "uk": "Вставте слово — ви з другом сповнені сил" },
+          "localizedScene": {
+            "ru": "Вставьте слово — вы с другом полны сил",
+            "uk": "Вставте слово — ви з другом сповнені сил"
+          },
           "gappedTargetPhrase": "We are not ___ .",
-          "gapOptions": [{ "responseId": "en:lesson-01:session-53:i14:r1", "text": "tired" }, { "responseId": "en:lesson-01:session-53:i14:r2", "text": "busy" }, { "responseId": "en:lesson-01:session-53:i14:r3", "text": "home" }],
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "text": "tired"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "text": "busy"
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "text": "home"
+            }
+          ],
           "testedDimension": "вибір tired після not",
-          "choiceFeedback": [{ "responseId": "en:lesson-01:session-53:i14:r2", "correct": false, "testedDimension": "вибір tired після not", "feedbackByLocale": { "ru": "`busy` — «заняты». Здесь вы говорите, что не устали.", "uk": "`busy` — «зайняті». Тут ви кажете, що не втомилися." } }, { "responseId": "en:lesson-01:session-53:i14:r3", "correct": false, "testedDimension": "вибір tired після not", "feedbackByLocale": { "ru": "`home` — «дома». Здесь нужно слово о самочувствии.", "uk": "`home` — «вдома». Тут потрібне слово про самопочуття." } }]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви з другом сповнені сил",
+              "feedbackByLocale": {
+                "ru": "Верно: `tired` — «уставшие», поэтому `We are not tired.`",
+                "uk": "Правильно: `tired` — «втомлені», тому `We are not tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — ви з другом сповнені сил",
+              "feedbackByLocale": {
+                "ru": "`busy` — «заняты». Здесь вы говорите, что не устали.",
+                "uk": "`busy` — «зайняті». Тут ви кажете, що не втомилися."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-53:i14:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — ви з другом сповнені сил",
+              "feedbackByLocale": {
+                "ru": "`home` — «дома». Здесь нужно слово о самочувствии.",
+                "uk": "`home` — «вдома». Тут потрібне слово про самопочуття."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1733,9 +2073,29 @@
             "ru": "Соберите фразу — «мы вместе»",
             "uk": "Складіть фразу — «ми разом»"
           },
-          "orderedTokens": ["We", "are", "together"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "We",
+            "are",
+            "together"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-53:i16:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает, вместе ли вы с другом",
+              "feedbackByLocale": {
+                "ru": "`is` не подходит к `We`; нужна форма `are` — `We are together.`",
+                "uk": "`is` не підходить до `We`; потрібна форма `are` — `We are together`."
+              }
+            }
+          ],
+          "completionFeedbackByLocale": {
+            "ru": "Верно: с `We` нужна форма `are`: `We are together.`",
+            "uk": "Правильно: з `We` потрібна форма `are`: `We are together`."
+          }
         },
         "scriptedAlternate": null
       }

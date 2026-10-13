@@ -1,0 +1,9 @@
+id	time	result	detail	file
+learn-016	2026-10-12T21:49:06.806Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/learn-016.png
+learn-017	2026-10-12T21:49:08.325Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/learn-017.png
+learn-018	2026-10-12T21:49:09.788Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/learn-018.png
+community-020	2026-10-12T21:49:10.890Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/community-020.png
+profile-011	2026-10-12T21:49:12.425Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/profile-011.png
+profile-012	2026-10-12T21:49:13.662Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/profile-012.png
+profile-013	2026-10-12T21:49:14.791Z	failed	склейка_не_удалась: own error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\profile-013.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=172434 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/profile-013.png
+profile-014	2026-10-12T21:49:16.039Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/profile-014.png

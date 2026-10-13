@@ -58,6 +58,9 @@
 <!-- interaction_id: en:lesson-03:session-50:i05; family: listen_choose -->
 Цель: `grey`
 Варианты: `grey` · `black` · `white`
+- black — *В записи звучит `grey`, а не `black`.*
+- white — *В записи звучит `grey`, а не `white`.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-50:i02; family: scripted_repeat_compare -->
@@ -94,6 +97,10 @@
 <!-- interaction_id: en:lesson-03:session-50:i09; family: context_gap_grammar -->
 Цель: `A ___ sofa is here.`
 Варианты: `black` · `white` · `grey` · `sofa`
+- white — *Белыми были стулья, а у дивана здесь нужен `black`.*
+- grey — *Серыми были столы, а здесь нужен цвет дивана.*
+- sofa — *`Sofa` уже стоит после пропуска; здесь нужен цвет.*
+
 
 **12 · Соберите фразу — вы возвращаетесь к серым столам**
 <!-- interaction_id: en:lesson-03:session-50:i12; family: phrase_builder -->
@@ -103,6 +110,10 @@
 <!-- interaction_id: en:lesson-03:session-50:i13; family: context_gap_grammar -->
 Цель: `The grey ___ are here.`
 Варианты: `tables` · `table` · `sofa` · `chair`
+- table — *После `are` нужен предмет во множественном числе: `tables`.*
+- sofa — *Здесь речь о серых столах, а не о диване.*
+- chair — *Здесь речь о серых столах, а не об одном стуле.*
+
 
 **14 · Соберите фразу — вы нашли один белый стул**
 <!-- interaction_id: en:lesson-03:session-50:i14; family: phrase_builder -->
@@ -116,11 +127,19 @@
 <!-- interaction_id: en:lesson-03:session-50:i16; family: listen_choose -->
 Цель: `The black sofas are here.`
 Варианты: `Чёрные диваны здесь.` · `Здесь есть чёрный диван.` · `Белые диваны здесь.` · `Где чёрные диваны?`
+- Здесь есть чёрный диван. — *В записи `the black sofas`: это уже известные диваны, и их несколько.*
+- Белые диваны здесь. — *В записи звучит `black`, а не `white`.*
+- Где чёрные диваны? — *В записи утверждение, а не вопрос.*
+
 
 **17 · Вставьте артикль — вы снова показываете тот же белый стул у двери**
 <!-- interaction_id: en:lesson-03:session-50:i17; family: context_gap_grammar -->
 Цель: `___ white chair is here.`
 Варианты: `The` · `A` · `An` · `без артикля`
+- A — *`a` вводит один предмет впервые. Здесь речь о том же стуле, который уже выбрали, поэтому нужен `the`.*
+- An — *`an` бывает перед гласным звуком, а `white` начинается со звука /w/. Кроме того, стул уже известен: нужен `the`.*
+- без артикля — *Один исчисляемый предмет нельзя назвать без определителя. Здесь это известный стул: `the white chair`.*
+
 
 ## Для сборщика
 new_words: black — чёрный — Цвет дивана.

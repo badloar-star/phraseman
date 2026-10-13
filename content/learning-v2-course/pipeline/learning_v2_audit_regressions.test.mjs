@@ -382,7 +382,9 @@ test("context-gap Markdown feedback must survive exactly into the atomic locale"
         { responseId: "i1:r1", text: "are" },
         { responseId: "i1:r2", text: "is" },
       ],
-      choiceFeedback: [{ responseId: "i1:r2", feedbackByLocale: { ru: "Общее неверно." } }],
+      testedDimension: task.title,
+      localizedScene: { ru: task.title },
+      choiceFeedback: [{ responseId: "i1:r2", correct: false, testedDimension: task.title, feedbackByLocale: { ru: "Общее неверно." } }],
     },
   };
 
@@ -410,7 +412,7 @@ test("explicit feedback on the declared correct Markdown option cannot disappear
         { responseId: "i1:r1", text: "are" },
         { responseId: "i1:r2", text: "is" },
       ],
-      choiceFeedback: [{ responseId: "i1:r2", feedbackByLocale: { ru: "Для нескольких мест нужен are." } }],
+      choiceFeedback: [{ responseId: "i1:r2", correct: false, testedDimension: "", feedbackByLocale: { ru: "Для нескольких мест нужен are." } }],
     },
   };
   assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
@@ -470,6 +472,8 @@ test("multiple raw inline-code spans normalize independently before fence handli
       ],
       choiceFeedback: [{
         responseId: "en:lesson-02:session-01:i01:r2",
+        correct: false,
+        testedDimension: "",
         feedbackByLocale: { ru: "Gate — это ворота; garden — это сад." },
       }],
     },
@@ -479,7 +483,172 @@ test("multiple raw inline-code spans normalize independently before fence handli
   assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
 });
 
-test("Markdown feedback is optional while complete atomic enrichment remains authoritative", () => {
+test("choice feedback parity rejects stale learner-visible atomic entries", () => {
+  const task = {
+    family: "context_gap_grammar",
+    target: "They ___ quiet.",
+    options: [
+      { text: "are", correct: true, feedback: "Верно: с they нужна форма are." },
+      { text: "is", correct: false, feedback: "Форма is не подходит к they." },
+    ],
+  };
+  const interaction = {
+    interactionId: "en:lesson-01:session-52:i11",
+    responseOptions: [
+      { responseId: "en:lesson-01:session-52:i11:r1", text: "are" },
+      { responseId: "en:lesson-01:session-52:i11:r2", text: "is" },
+    ],
+    modePayload: {
+      gappedTargetPhrase: "They ___ quiet.",
+      gapOptions: [
+        { responseId: "en:lesson-01:session-52:i11:r1", text: "are" },
+        { responseId: "en:lesson-01:session-52:i11:r2", text: "is" },
+      ],
+      choiceFeedback: [
+        {
+          responseId: "en:lesson-01:session-52:i11:r1",
+          correct: true,
+          testedDimension: "",
+          feedbackByLocale: { ru: "Верно: с they нужна форма are." },
+        },
+        {
+          responseId: "en:lesson-01:session-52:i11:r2",
+          correct: false,
+          testedDimension: "",
+          feedbackByLocale: { ru: "Форма is не подходит к they." },
+        },
+      ],
+    },
+  };
+
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  interaction.modePayload.choiceFeedback.push({
+    responseId: "en:lesson-01:session-52:i11:r999",
+    feedbackByLocale: { ru: "Устаревший разбор, которого нет в Markdown." },
+  });
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+});
+
+test("choice feedback parity binds correct feedback and the full tested dimension", () => {
+  const title = "Вставьте слово — вас спросили, как дела, всё хорошо";
+  const interactionId = "en:lesson-01:session-01:i10";
+  const task = {
+    family: "context_gap_grammar",
+    title,
+    target: "I am ___.",
+    options: [
+      { text: "fine", correct: true, feedback: "Верно: I am fine." },
+      { text: "here", correct: false, feedback: "Here отвечает на вопрос о месте." },
+    ],
+  };
+  const canonical = {
+    interactionId,
+    responseOptions: [
+      { responseId: `${interactionId}:r1`, text: "fine" },
+      { responseId: `${interactionId}:r2`, text: "here" },
+    ],
+    modePayload: {
+      gappedTargetPhrase: "I am ___.",
+      gapOptions: [
+        { responseId: `${interactionId}:r1`, text: "fine" },
+        { responseId: `${interactionId}:r2`, text: "here" },
+      ],
+      testedDimension: title,
+      localizedScene: { ru: title },
+      choiceFeedback: [
+        { responseId: `${interactionId}:r1`, correct: true, testedDimension: title, feedbackByLocale: { ru: "Верно: I am fine." } },
+        { responseId: `${interactionId}:r2`, correct: false, testedDimension: title, feedbackByLocale: { ru: "Here отвечает на вопрос о месте." } },
+      ],
+    },
+  };
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, canonical, "ru"), null);
+
+  const staleCorrect = structuredClone(canonical);
+  staleCorrect.modePayload.choiceFeedback[0].feedbackByLocale.ru = "Старый правильный разбор.";
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleCorrect, "ru"), "modePayload.choiceFeedback");
+
+  const truncatedDimension = structuredClone(canonical);
+  truncatedDimension.modePayload.choiceFeedback[1].testedDimension = "Вставьте слово — вас спросили, как дела,";
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, truncatedDimension, "ru"), "modePayload.choiceFeedback");
+});
+
+test("word-card parity binds both learner-visible definition copies", () => {
+  const interactionId = "en:lesson-01:session-01:i07";
+  const task = {
+    family: "listen_choose",
+    card: { word: "happy", definition: "«рад / рада». Хорошая новость радует." },
+    options: [],
+  };
+  const canonical = {
+    interactionId,
+    responseOptions: [],
+    modePayload: {
+      referenceAudio: { transcript: "happy" },
+      isWordCard: true,
+      localizedMeaningChoices: [{
+        responseId: `${interactionId}:r1`,
+        targetText: "happy",
+        meaningByLocale: { ru: "«рад / рада». Хорошая новость радует." },
+      }],
+      wordCard: {
+        word: "happy",
+        definitionByLocale: { ru: "«рад / рада». Хорошая новость радует." },
+      },
+      choiceFeedback: [],
+    },
+  };
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, canonical, "ru"), null);
+
+  const staleMeaning = structuredClone(canonical);
+  staleMeaning.modePayload.localizedMeaningChoices[0].meaningByLocale.ru = "«рад». Старая копия.";
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleMeaning, "ru"), "modePayload.localizedMeaningChoices");
+
+  const staleCard = structuredClone(canonical);
+  staleCard.modePayload.wordCard.definitionByLocale.ru = "«рад». Старая копия.";
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, staleCard, "ru"), "modePayload.wordCard.definitionByLocale");
+});
+
+test("builder slot-feedback parity rejects a missing authored tile explanation", () => {
+  const interactionId = "en:lesson-01:session-52:i12";
+  const task = {
+    family: "phrase_builder",
+    interactionId,
+    title: "Соберите фразу",
+    body: "Плитки: `They` `are` `quiet` `is`\n\n*Плитка `is` лишняя: с they нужна форма are.*",
+    target: "They are quiet",
+    tokens: ["They", "are", "quiet", "is"],
+    options: [],
+  };
+  const interaction = {
+    interactionId,
+    responseOptions: [],
+    modePayload: {
+      targetPhrase: "They are quiet",
+      orderedTokens: ["They", "are", "quiet"],
+      authoredDistractorTokens: ["is"],
+      slotFeedback: [],
+    },
+  };
+
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.slotFeedback");
+  interaction.modePayload.slotFeedback = [{
+    responseId: `${interactionId}:tile:d1`,
+    correct: false,
+    testedDimension: task.title,
+    feedbackByLocale: { ru: "с they нужна форма are." },
+  }];
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
+  for (const mutate of [
+    (copy) => { copy.modePayload.slotFeedback[0].correct = true; },
+    (copy) => { copy.modePayload.slotFeedback[0].testedDimension = "Сокращённое описание"; },
+  ]) {
+    const copy = structuredClone(interaction);
+    mutate(copy);
+    assert.equal(firstMarkdownAtomicLearnerMismatch(task, copy, "ru"), "modePayload.slotFeedback");
+  }
+});
+
+test("learner-visible atomic choice feedback cannot exceed the Markdown contract", () => {
   const task = {
     family: "context_gap_grammar",
     target: "___",
@@ -504,10 +673,9 @@ test("Markdown feedback is optional while complete atomic enrichment remains aut
     },
   };
 
+  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), "modePayload.choiceFeedback");
+  interaction.modePayload.choiceFeedback = [];
   assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
-  interaction.modePayload.choiceFeedback[0].responseId = "i1:r1";
-  assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null,
-    "optional Markdown does not invent an ID binding; the strict atomic completeness gate rejects this separately");
 });
 
 test("choice IDs and the declared correct option stay bound from Markdown through answers and feedback", () => {
@@ -539,9 +707,12 @@ test("choice IDs and the declared correct option stay bound from Markdown throug
         { responseId: `${interactionId}:r1`, text: "are" },
         { responseId: `${interactionId}:r2`, text: "is" },
       ],
+      testedDimension: task.title,
+      localizedScene: { ru: task.title },
       choiceFeedback: [{
         responseId: `${interactionId}:r2`,
         correct: false,
+        testedDimension: task.title,
         feedbackByLocale: { ru: "Для нескольких мест нужен are." },
       }],
     },
@@ -592,7 +763,7 @@ test("sound contrast keeps canonical contrasts and both audio contracts", () => 
       contrastB: "sheep",
       audioA: { audioTargetId: `${interactionId}:audioA`, transcript: "ship" },
       audioB: { audioTargetId: `${interactionId}:audioB`, transcript: "sheep" },
-      choiceFeedback: [{ responseId: `${interactionId}:r2`, feedbackByLocale: { ru: "Долгий звук." } }],
+      choiceFeedback: [{ responseId: `${interactionId}:r2`, correct: false, testedDimension: "", feedbackByLocale: { ru: "Долгий звук." } }],
     },
   };
   assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru"), null);
@@ -710,7 +881,9 @@ for (const fixture of [
     const answer = atomic.answers.find((candidate) => candidate.interactionId === task?.interactionId);
     assert.ok(task && interaction, "fixture interaction must exist in Markdown and atomic source");
     assert.equal(Object.prototype.hasOwnProperty.call(task, "tokens"), false);
-    assert.equal(firstMarkdownAtomicLearnerMismatch(task, interaction, "ru", answer), null);
+    const interactionWithoutFeedback = structuredClone(interaction);
+    interactionWithoutFeedback.modePayload.slotFeedback = [];
+    assert.equal(firstMarkdownAtomicLearnerMismatch(task, interactionWithoutFeedback, "ru", answer), null);
   });
 }
 
@@ -827,6 +1000,7 @@ test("an authored visible condition cannot disappear between Markdown and atomic
     modePayload: {
       gappedTargetPhrase: "___",
       gapOptions: task.options.map((option, index) => ({ responseId: `i1:r${index + 1}`, text: option.text })),
+      testedDimension: task.title,
       localizedScene: { ru: "" },
       choiceFeedback: [{ responseId: "i1:r2", feedbackByLocale: { ru: "Вопрос о нескольких платформах." } }],
     },
@@ -852,6 +1026,7 @@ test("unlabelled learner guidance before a task is projected while service field
     modePayload: {
       gappedTargetPhrase: "There ___ two platforms.",
       gapOptions: task.options.map((option, index) => ({ responseId: `${task.interactionId}:r${index + 1}`, text: option.text })),
+      testedDimension: task.title,
       localizedScene: { ru: "" },
       choiceFeedback: [{ responseId: `${task.interactionId}:r2`, feedbackByLocale: { ru: "Для двух нужна форма are." } }],
     },

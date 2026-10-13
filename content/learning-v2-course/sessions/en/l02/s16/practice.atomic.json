@@ -164,8 +164,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is it crowded?",
-          "localizedMeaning": {"ru":"Соберите вопрос — свободных столиков нет, люди стоят вдоль стены","uk":"Складіть запитання — вільних столиків немає, люди стоять попід стіною"},
-          "orderedTokens": ["Is","it","crowded"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — свободных столиков нет, люди стоят вдоль стены",
+            "uk": "Складіть запитання — вільних столиків немає, люди стоять попід стіною"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "crowded"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -178,23 +185,69 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — за соседним столом кричат в трубку; вы спрашиваете о шуме",
-        "responseOptions": [{"responseId":"en:lesson-02:session-16:i04:r1","text":"Is it noisy?"},{"responseId":"en:lesson-02:session-16:i04:r2","text":"It is noisy."},{"responseId":"en:lesson-02:session-16:i04:r3","text":"Is it crowded?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-16:i04:r1",
+            "text": "Is it noisy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i04:r2",
+            "text": "It is noisy."
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i04:r3",
+            "text": "Is it crowded?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-16:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-16:i04:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите — за соседним столом кричат в трубку; вы спрашиваете о шуме",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-16:i04:audio","transcript":"Is it noisy?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-16:i04:audio",
+            "transcript": "Is it noisy?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId":"en:lesson-02:session-16:i04:r1","targetText":"Is it noisy?","meaningByLocale":null},
-            {"responseId":"en:lesson-02:session-16:i04:r2","targetText":"It is noisy.","meaningByLocale":null},
-            {"responseId":"en:lesson-02:session-16:i04:r3","targetText":"Is it crowded?","meaningByLocale":null}
+            {
+              "responseId": "en:lesson-02:session-16:i04:r1",
+              "targetText": "Is it noisy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r2",
+              "targetText": "It is noisy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r3",
+              "targetText": "Is it crowded?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId":"en:lesson-02:session-16:i04:r2","correct":false,"testedDimension":"вопрос или утверждение","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is noisy.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is noisy.` — твердження."}},
-            {"responseId":"en:lesson-02:session-16:i04:r3","correct":false,"testedDimension":"слово noisy в записи","feedbackByLocale":{"ru":"`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».","uk":"`crowded` — «людно». У записі після `it` звучить `noisy`: «гучно»."}}
+            {
+              "responseId": "en:lesson-02:session-16:i04:r2",
+              "correct": false,
+              "testedDimension": "вопрос или утверждение",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is noisy.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is noisy.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r3",
+              "correct": false,
+              "testedDimension": "слово noisy в записи",
+              "feedbackByLocale": {
+                "ru": "`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».",
+                "uk": "`crowded` — «людно». У записі після `it` звучить `noisy`: «гучно»."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -238,7 +291,7 @@
             "audioTargetId": "en:lesson-02:session-16:i05:audioB",
             "transcript": "cloudy"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «люд",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «людно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-16:i05:r2",
@@ -500,7 +553,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она любопытная?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she curious?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -599,7 +662,17 @@
           "authoredDistractorTokens": [
             "curious"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — ответьте «да, она любопытная» коротко",
+              "feedbackByLocale": {
+                "ru": "короткий ответ уже закончен: `Yes, she is.`",
+                "uk": "коротка відповідь уже завершена: `Yes, she is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -686,8 +759,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is he lost?",
-          "localizedMeaning": {"ru":"Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он","uk":"Складіть запитання — Антон біля входу не може знайти потрібну адресу й просить допомоги; запитайте, чи він заблукав"},
-          "orderedTokens": ["Is","he","lost"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он",
+            "uk": "Складіть запитання — Антон біля входу не може знайти потрібну адресу й просить допомоги; запитайте, чи він заблукав"
+          },
+          "orderedTokens": [
+            "Is",
+            "he",
+            "lost"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -722,7 +802,17 @@
           "authoredDistractorTokens": [
             "crowded"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «здесь шумно?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о шуме, поэтому нужно `noisy`: `Is it noisy?`",
+                "uk": "тут питають про шум, тому потрібне `noisy`: `Is it noisy?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1186,8 +1276,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is it crowded?",
-          "localizedMeaning": {"ru":"Соберите вопрос — свободных столиков нет, люди стоят вдоль стены","uk":"Складіть запитання — вільних столиків немає, люди стоять попід стіною"},
-          "orderedTokens": ["Is","it","crowded"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — свободных столиков нет, люди стоят вдоль стены",
+            "uk": "Складіть запитання — вільних столиків немає, люди стоять попід стіною"
+          },
+          "orderedTokens": [
+            "Is",
+            "it",
+            "crowded"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1200,23 +1297,69 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть — за сусіднім столом кричать у слухавку; ви питаєте про гамір",
-        "responseOptions": [{"responseId":"en:lesson-02:session-16:i04:r1","text":"Is it noisy?"},{"responseId":"en:lesson-02:session-16:i04:r2","text":"It is noisy."},{"responseId":"en:lesson-02:session-16:i04:r3","text":"Is it crowded?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-16:i04:r1",
+            "text": "Is it noisy?"
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i04:r2",
+            "text": "It is noisy."
+          },
+          {
+            "responseId": "en:lesson-02:session-16:i04:r3",
+            "text": "Is it crowded?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-16:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-16:i04:audio"
+        ],
         "accessibilityLabel": "Послухайте й виберіть — за сусіднім столом кричать у слухавку; ви питаєте про гамір",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-16:i04:audio","transcript":"Is it noisy?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-16:i04:audio",
+            "transcript": "Is it noisy?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId":"en:lesson-02:session-16:i04:r1","targetText":"Is it noisy?","meaningByLocale":null},
-            {"responseId":"en:lesson-02:session-16:i04:r2","targetText":"It is noisy.","meaningByLocale":null},
-            {"responseId":"en:lesson-02:session-16:i04:r3","targetText":"Is it crowded?","meaningByLocale":null}
+            {
+              "responseId": "en:lesson-02:session-16:i04:r1",
+              "targetText": "Is it noisy?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r2",
+              "targetText": "It is noisy.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r3",
+              "targetText": "Is it crowded?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            {"responseId":"en:lesson-02:session-16:i04:r2","correct":false,"testedDimension":"вопрос или утверждение","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is noisy.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is noisy.` — твердження."}},
-            {"responseId":"en:lesson-02:session-16:i04:r3","correct":false,"testedDimension":"слово noisy в записи","feedbackByLocale":{"ru":"`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».","uk":"`crowded` — «людно». У записі після `it` звучить `noisy`: «гучно»."}}
+            {
+              "responseId": "en:lesson-02:session-16:i04:r2",
+              "correct": false,
+              "testedDimension": "вопрос или утверждение",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is noisy.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is noisy.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-16:i04:r3",
+              "correct": false,
+              "testedDimension": "слово noisy в записи",
+              "feedbackByLocale": {
+                "ru": "`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».",
+                "uk": "`crowded` — «людно». У записі після `it` звучить `noisy`: «гучно»."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1260,7 +1403,7 @@
             "audioTargetId": "en:lesson-02:session-16:i05:audioB",
             "transcript": "cloudy"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «людно",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «людно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-16:i05:r2",
@@ -1522,7 +1665,17 @@
           "authoredDistractorTokens": [
             "he"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она любопытная?»",
+              "feedbackByLocale": {
+                "ru": "вопрос о женщине, поэтому нужен `she`: `Is she curious?`",
+                "uk": "запитання про жінку, тому потрібне `she`: `Is she curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1621,7 +1774,17 @@
           "authoredDistractorTokens": [
             "curious"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — ответьте «да, она любопытная» коротко",
+              "feedbackByLocale": {
+                "ru": "короткий ответ уже закончен: `Yes, she is.`",
+                "uk": "коротка відповідь уже завершена: `Yes, she is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1708,8 +1871,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Is he lost?",
-          "localizedMeaning": {"ru":"Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он","uk":"Складіть запитання — Антон біля входу не може знайти потрібну адресу й просить допомоги; запитайте, чи він заблукав"},
-          "orderedTokens": ["Is","he","lost"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он",
+            "uk": "Складіть запитання — Антон біля входу не може знайти потрібну адресу й просить допомоги; запитайте, чи він заблукав"
+          },
+          "orderedTokens": [
+            "Is",
+            "he",
+            "lost"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1744,7 +1914,17 @@
           "authoredDistractorTokens": [
             "crowded"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-16:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «здесь шумно?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о шуме, поэтому нужно `noisy`: `Is it noisy?`",
+                "uk": "тут питають про шум, тому потрібне `noisy`: `Is it noisy?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

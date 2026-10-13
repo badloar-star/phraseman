@@ -61,11 +61,17 @@
 <!-- interaction_id: en:lesson-02:session-16:i01; family: listen_choose -->
 Цель: `thirsty`
 Варианты: `thirsty` · `thirty` · `dirty`
+- thirty — *Это «тридцать». В `thirsty` перед концом слышно «с», в `thirty` его нет.*
+- dirty — *Это «грязный». Слово начинается с «д», а `thirsty` — с другого звука, языком между зубами.*
+
 
 **2 · Вставьте слово — Макс у стойки просит второй стакан воды**
 <!-- interaction_id: en:lesson-02:session-16:i02; family: context_gap_grammar -->
 Цель: `Is he ___ ?`
 Варианты: `thirsty` · `lost` · `awake`
+- lost — *«Заблудился». Он стоит у стойки и заказывает — дорогу не ищет.*
+- awake — *«Проснулся, не спит». Это и так видно, а вода — про жажду.*
+
 
 **3 · Соберите вопрос — свободных столиков нет, люди стоят вдоль стены**
 <!-- interaction_id: en:lesson-02:session-16:i03; family: phrase_builder -->
@@ -75,10 +81,15 @@
 <!-- interaction_id: en:lesson-02:session-16:i04; family: listen_choose -->
 Цель: `Is it noisy?`
 Варианты: `Is it noisy?` · `It is noisy.` · `Is it crowded?`
+- It is noisy. — *В вопросе первым звучит `Is`. `It is noisy.` — сообщение.*
+- Is it crowded? — *`crowded` — «людно». В записи после `it` звучит `noisy`: «шумно».*
+
 
 **5 · Различите звуки — какое из двух про «людно»?**
 <!-- interaction_id: en:lesson-02:session-16:i05; family: sound_contrast -->
 Варианты: `crowded` · `cloudy`
+- cloudy — *Это «облачно». Оба слова начинаются с «к», но дальше в `crowded` идёт «р», а в `cloudy` — «л».*
+
 
 **6 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-16:i06; family: speed_match -->
@@ -89,29 +100,45 @@
 <!-- interaction_id: en:lesson-02:session-16:i07; family: listen_choose -->
 Цель: `handsome`
 Варианты: `handsome` · `handle` · `hands`
+- handle — *Это «ручка» — у двери или у чашки. Второй кусок слова другой.*
+- hands — *Это «руки». В `handsome` после «хэнд» идёт ещё слог.*
+
 
 **8 · Вставьте слово — Олег за дальним столиком; все на него оглядываются**
 <!-- interaction_id: en:lesson-02:session-16:i08; family: context_gap_grammar -->
 Цель: `Is he ___ ?`
 Варианты: `handsome` · `thirsty` · `noisy`
+- thirsty — *«Хочет пить». Оглядываются не на жажду.*
+- noisy — *«Шумный». Он сидит молча, шума от него нет.*
+
 
 **9 · Послушайте и соберите — «она любопытная?»**
 <!-- interaction_id: en:lesson-02:session-16:i09; family: listen_build_dictation -->
 Цель: `Is she curious?`
+🔊 *Is she curious?* Плитки: `Is` `she` `curious` `he`
+*Плитка `he` лишняя: вопрос о женщине, поэтому нужен `she`: `Is she curious?`*
 
 **10 · Вставьте слово — Олег сидит в мягком кресле у окна и не хочет уходить**
 <!-- interaction_id: en:lesson-02:session-16:i10; family: context_gap_grammar -->
 Цель: `Is he ___ ?`
 Варианты: `comfortable` · `lost` · `dizzy`
+- lost — *«Заблудился». Он в кресле, а не на улице.*
+- dizzy — *«Голова кружится». Тогда бы он как раз хотел уйти.*
+
 
 **11 · Соберите фразу — ответьте «да, она любопытная» коротко**
 <!-- interaction_id: en:lesson-02:session-16:i11; family: phrase_builder -->
 Цель: `Yes, she is.`
+Плитки: `Yes,` `she` `is` `curious`
+*Плитка `curious` лишняя: короткий ответ уже закончен: `Yes, she is.`*
 
 **12 · Вставьте слово — Мира встала и схватилась за стол, её качнуло**
 <!-- interaction_id: en:lesson-02:session-16:i12; family: context_gap_grammar -->
 Цель: `Is she ___ ?`
 Варианты: `dizzy` · `cheerful` · `awake`
+- cheerful — *«Весёлая». Хвататься за стол от веселья не станут.*
+- awake — *«Не спит». Она только что встала — это и так ясно.*
+
 
 **13 · Соберите вопрос — Антон у входа не может найти нужный адрес и просит помощи; спросите, не заблудился ли он**
 <!-- interaction_id: en:lesson-02:session-16:i13; family: phrase_builder -->
@@ -120,6 +147,8 @@
 **14 · Послушайте и соберите — «здесь шумно?»**
 <!-- interaction_id: en:lesson-02:session-16:i14; family: listen_build_dictation -->
 Цель: `Is it noisy?`
+🔊 *Is it noisy?* Плитки: `Is` `it` `noisy` `crowded`
+*Плитка `crowded` лишняя: здесь спрашивают о шуме, поэтому нужно `noisy`: `Is it noisy?`*
 
 **15 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-16:i15; family: speed_match -->

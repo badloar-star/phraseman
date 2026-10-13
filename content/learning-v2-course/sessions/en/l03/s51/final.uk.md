@@ -59,6 +59,9 @@
 <!-- interaction_id: en:lesson-03:session-51:i07; family: listen_choose -->
 Ціль: `pink`
 Варіанти: `pink` · `navy` · `violet`
+- navy — *У записі звучить `pink`, не `navy`.*
+- violet — *У записі звучить `pink`, не `violet`.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-51:i04; family: scripted_repeat_compare -->
@@ -78,6 +81,8 @@
 <!-- interaction_id: en:lesson-03:session-51:i01; family: sound_contrast -->
 Ціль: `violet`
 Варіанти: `violet` · `violent`
+- violent — *`violent` — інше слово. У записі звучить колір `violet`.*
+
 
 **8 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-03:session-51:i02; family: speed_match -->
@@ -97,11 +102,19 @@
 <!-- interaction_id: en:lesson-03:session-51:i10; family: context_gap_grammar -->
 Ціль: `___ purple chair is here.`
 Варіанти: `A` · `An` · `The` · `Purple`
+- An — *Purple починається зі звуку /p/, тому потрібен `A`.*
+- The — *Крісло називають уперше, а тут перевіряється `A` перед /p/.*
+- Purple — *Purple уже стоїть після пропуску; сюди ставлять артикль.*
+
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-03:session-51:i12; family: listen_choose -->
 Ціль: `A navy chair is here.`
 Варіанти: `Тут є темно-синє крісло.` · `Тут є фіолетове крісло.` · `Тут є темно-сині крісла.` · `Де темно-синє крісло?`
+- Тут є фіолетове крісло. — *У записі звучить `navy`, а не `violet`.*
+- Тут є темно-сині крісла. — *У записі одне крісло: `a chair`, а не кілька крісел.*
+- Де темно-синє крісло? — *У записі твердження, а не запитання.*
+
 
 **13 · Складіть фразу — ви відповідаєте про темно-синє крісло**
 <!-- interaction_id: en:lesson-03:session-51:i13; family: phrase_builder -->
@@ -111,6 +124,10 @@
 <!-- interaction_id: en:lesson-03:session-51:i14; family: context_gap_grammar -->
 Ціль: `___ pink chair is here.`
 Варіанти: `A` · `An` · `The` · `Pink`
+- An — *Pink починається зі звуку /p/, тому потрібен `A`.*
+- The — *Крісло називають уперше, а тут перевіряється `A` перед /p/.*
+- Pink — *Pink уже стоїть після пропуску; сюди ставлять артикль.*
+
 
 **15 · Послухайте та складіть фразу**
 <!-- interaction_id: en:lesson-03:session-51:i15; family: listen_build_dictation -->
@@ -124,6 +141,10 @@
 <!-- interaction_id: en:lesson-03:session-51:i17; family: context_gap_grammar -->
 Ціль: `___ violet chair is here.`
 Варіанти: `A` · `An` · `The` · `Violet`
+- An — *Violet починається зі звуку /v/, тому потрібен `A`.*
+- The — *Це перша згадка про одне крісло, тому тут не `The`.*
+- Violet — *Violet уже стоїть після пропуску; сюди потрібен артикль.*
+
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

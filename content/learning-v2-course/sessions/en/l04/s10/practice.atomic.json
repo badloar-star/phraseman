@@ -292,24 +292,24 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-      "prompt": "На карте магазин отмечен внутри здания, а отеля рядом с ним нет. На вопрос `Is there a hotel near the shop in the building?` выберите полный отрицательный ответ",
+        "prompt": "На карте магазин отмечен внутри здания, а отеля рядом с ним нет. На вопрос `Is there a hotel near the shop in the building?` выберите полный отрицательный ответ",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-10:i06:r1",
-          "text": "No, there is not."
+            "text": "No, there is not."
           },
           {
             "responseId": "en:lesson-04:session-10:i06:r2",
-          "text": "No, there not is."
+            "text": "No, there not is."
           },
           {
             "responseId": "en:lesson-04:session-10:i06:r3",
-          "text": "No, is there not."
+            "text": "No, is there not."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "На карте магазин отмечен внутри здания, а отеля рядом с ним нет. На вопрос `Is there a hotel near the shop in the building?` выберите полный отрицательный ответ",
+        "accessibilityLabel": "На карте магазин отмечен внутри здания, а отеля рядом с ним нет. На вопрос `Is there a hotel near the shop in the building?` выберите полный отрицательный ответ",
         "modePayload": {
           "family": "context_gap_grammar",
           "gappedTargetPhrase": "___",
@@ -575,8 +575,8 @@
             }
           ],
           "localizedScene": {
-          "ru": "На карте пекарня находится рядом с площадкой в этом районе.",
-          "uk": "На мапі пекарня розташована поруч із майданчиком у цьому районі."
+            "ru": "На карте пекарня находится рядом с площадкой в этом районе. На вопрос `Is there a bakery near the playground in this neighbourhood?` выберите короткий ответ.",
+            "uk": "На мапі пекарня розташована поруч із майданчиком у цьому районі."
           }
         }
       },
@@ -586,11 +586,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "сотрудник объясняет: отель на другой улице, а на этой улице рядом с клиникой гостиницы нет. Вопрос: `Is there a hotel on this street near the clinic?` Соберите короткий ответ.",
+        "prompt": "Сотрудник объясняет: отель на другой улице, а на этой улице рядом с клиникой гостиницы нет. Вопрос: `Is there a hotel on this street near the clinic?` Соберите короткий ответ.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "сотрудник объясняет: отель на другой улице, а на этой улице рядом с клиникой гостиницы нет. Вопрос: `Is there a hotel on this street near the clinic?` Соберите короткий ответ.",
+        "accessibilityLabel": "Сотрудник объясняет: отель на другой улице, а на этой улице рядом с клиникой гостиницы нет. Вопрос: `Is there a hotel on this street near the clinic?` Соберите короткий ответ.",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "No, there isn't.",
@@ -899,24 +899,24 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-      "prompt": "На карті магазин позначено всередині будівлі, а готелю поруч із ним немає. На питання `Is there a hotel near the shop in the building?` оберіть повну заперечну відповідь",
+        "prompt": "На карті магазин позначено всередині будівлі, а готелю поруч із ним немає. На питання `Is there a hotel near the shop in the building?` оберіть повну заперечну відповідь",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-10:i06:r1",
-          "text": "No, there is not."
+            "text": "No, there is not."
           },
           {
             "responseId": "en:lesson-04:session-10:i06:r2",
-          "text": "No, there not is."
+            "text": "No, there not is."
           },
           {
             "responseId": "en:lesson-04:session-10:i06:r3",
-          "text": "No, is there not."
+            "text": "No, is there not."
           }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "На карті магазин позначено всередині будівлі, а готелю поруч із ним немає. На питання `Is there a hotel near the shop in the building?` оберіть повну заперечну відповідь",
+        "accessibilityLabel": "На карті магазин позначено всередині будівлі, а готелю поруч із ним немає. На питання `Is there a hotel near the shop in the building?` оберіть повну заперечну відповідь",
         "modePayload": {
           "family": "context_gap_grammar",
           "gappedTargetPhrase": "___",
@@ -1182,8 +1182,8 @@
             }
           ],
           "localizedScene": {
-          "ru": "На карте пекарня находится рядом с площадкой в этом районе.",
-          "uk": "На мапі пекарня розташована поруч із майданчиком у цьому районі."
+            "ru": "На карте пекарня находится рядом с площадкой в этом районе.",
+            "uk": "На карті пекарня розташована біля майданчика в цьому районі. На питання `Is there a bakery near the playground in this neighbourhood?` оберіть коротку відповідь."
           }
         }
       },
@@ -1193,11 +1193,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "працівник пояснює: готель на іншій вулиці, а на цій вулиці біля клініки готелю немає. Питання: `Is there a hotel on this street near the clinic?` Складіть коротку відповідь.",
+        "prompt": "Працівник пояснює: готель на іншій вулиці, а на цій вулиці біля клініки готелю немає. Питання: `Is there a hotel on this street near the clinic?` Складіть коротку відповідь.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "працівник пояснює: готель на іншій вулиці, а на цій вулиці біля клініки готелю немає. Питання: `Is there a hotel on this street near the clinic?` Складіть коротку відповідь.",
+        "accessibilityLabel": "Працівник пояснює: готель на іншій вулиці, а на цій вулиці біля клініки готелю немає. Питання: `Is there a hotel on this street near the clinic?` Складіть коротку відповідь.",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "No, there isn't.",

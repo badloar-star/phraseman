@@ -64,6 +64,9 @@
 <!-- interaction_id: en:lesson-02:session-21:i01; family: context_gap_grammar -->
 Ціль: `___ is the station?`
 Варіанти: `Where` · `What` · `Is`
+- What — *Це «що таке вокзал?» Про місце питає `where`.*
+- Is — *З `is` виходить «це вокзал?» — питання про те саме, а не про дорогу.*
+
 
 **2 · Складіть запитання — біля каси на табло незнайоме слово, і ви просите працівника пояснити його**
 <!-- interaction_id: en:lesson-02:session-21:i02; family: phrase_builder -->
@@ -72,24 +75,36 @@
 **3 · Розрізніть звуки — яке з двох про «де»?**
 <!-- interaction_id: en:lesson-02:session-21:i03; family: sound_contrast -->
 Варіанти: `where` · `there`
+- there — *Це «там» — про місце, а не питання. І починається інакше, ніж `where`.*
+
 
 **4 · Складіть фразу — «де вокзал?»**
 <!-- interaction_id: en:lesson-02:session-21:i04; family: phrase_builder -->
 Ціль: `Where is the station?`
+Плитки: `Where` `is` `the` `station` `what`
+*Плитка `what` зайва: `what` означає «що», а щоб запитати про місце, запитання починається з `Where is`.*
 
 **5 · Вставте слово — крамниці десь далі коридором**
 <!-- interaction_id: en:lesson-02:session-21:i05; family: context_gap_grammar -->
 Ціль: `Where ___ the shops?`
 Варіанти: `are` · `is` · `am`
+- is — *`shops` — не одна крамниця, а кілька. Для кількох — `are`.*
+- am — *`am` іде тільки з `I`. Про крамниці — `are`.*
+
 
 **6 · Розрізніть звуки — яке з двох про «вулицю»?**
 <!-- interaction_id: en:lesson-02:session-21:i06; family: sound_contrast -->
 Варіанти: `street` · `sweet`
+- sweet — *Це «солодкий», до вулиці стосунку не має.*
+
 
 **7 · Вставте слово — вулиця одна, і вам треба, де вона**
 <!-- interaction_id: en:lesson-02:session-21:i07; family: context_gap_grammar -->
 Ціль: `Where ___ the street?`
 Варіанти: `is` · `are` · `what`
+- are — *Вулиця одна. Для одного предмета — `is`.*
+- what — *Після `what` потрібне `is`: питання починається з `what is`.*
+
 
 **8 · Складіть фразу — «де туалети?»**
 <!-- interaction_id: en:lesson-02:session-21:i08; family: phrase_builder -->
@@ -104,6 +119,9 @@
 <!-- interaction_id: en:lesson-02:session-21:i10; family: context_gap_grammar -->
 Ціль: `It is ___ the house.`
 Варіанти: `behind` · `near` · `where`
+- near — *Це «поруч». А будинок стоїть перед вокзалом і затуляє його — отже `behind`.*
+- where — *`where` питає. У відповіді воно не потрібне.*
+
 
 **11 · Складіть відповідь — працівник біля каси сказав, що до вокзалу йти дві хвилини**
 <!-- interaction_id: en:lesson-02:session-21:i11; family: phrase_builder -->
@@ -112,6 +130,8 @@
 **12 · Послухайте і складіть — «де крамниці?»**
 <!-- interaction_id: en:lesson-02:session-21:i12; family: listen_build_dictation -->
 Ціль: `Where are the shops?`
+🔊 *Where are the shops?* Плитки: `Where` `are` `the` `shops` `is`
+*Плитка `is` зайва: крамниць кілька, тому потрібна форма `are`: `Where are the shops?`*
 
 **13 · Скажіть уголос — на платформі ви показуєте працівнику незнайоме слово на квитку**
 <!-- interaction_id: en:lesson-02:session-21:i13; family: scripted_repeat_compare -->
@@ -121,6 +141,9 @@
 <!-- interaction_id: en:lesson-02:session-21:i14; family: context_gap_grammar -->
 Ціль: `___ is it?`
 Варіанти: `Where` · `What` · `Is`
+- What — *`What is it?` означає «що це?». Ви вже знаєте, що це каса; треба спитати, де вона.*
+- Is — *З `Is` вийде `Is is it?`: два `is` поспіль. Запитання про місце починається з `Where`.*
+
 
 **15 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-21:i15; family: speed_match -->

@@ -139,6 +139,8 @@ You ___ not crazy. → **are** · am · is
 **15 · Послухайте й складіть — Міра залишилася після зустрічі сама; скажіть їй: «ти не сама»**
 <!-- interaction_id: en:lesson-01:session-11:i15; family: listen_build_dictation -->
 🔊 *You are not alone.* Плитки: `alone` `are` `not` `You` `no` → **You are not alone.**
+*(плитка `no` зайва: Треба сказати «не сама» — `not alone`; плитка `no` у цю фразу не входить.)*
+
 
 **16 · Складіть фразу — Міра принесла вам забутий блокнот, а ви дякуєте їй**
 <!-- interaction_id: en:lesson-01:session-11:i16; family: phrase_builder -->
@@ -148,6 +150,8 @@ You ___ not crazy. → **are** · am · is
 **17 · Послухайте й складіть — Ліна питає Міру, чи може та допомогти з коробками. Міра вільна; скажіть їй: «ти не зайнята»**
 <!-- interaction_id: en:lesson-01:session-11:i17; family: listen_build_dictation -->
 🔊 *You are not busy.* Плитки: `You` `are` `not` `busy` `is` → **You are not busy.**
+*(плитка `is` зайва: З `You` використовують `are`; тут потрібно `You are not busy`, а не `is`.)*
+
 
 **18 · Скажіть уголос — Ліна звірила цифри Міри з таблицею: вони правильні. Міра сумнівається; скажіть їй, що вона не помиляється**
 <!-- interaction_id: en:lesson-01:session-11:i18; family: scripted_repeat_compare -->

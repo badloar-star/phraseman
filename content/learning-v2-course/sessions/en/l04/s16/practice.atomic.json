@@ -361,7 +361,7 @@
               "text": "There"
             }
           ],
-          "testedDimension": "В саду вы проверяете, есть ли один бассе",
+          "testedDimension": "В саду вы проверяете, есть ли один бассейн. Вставьте начало вопроса",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-16:i06:r2",
@@ -586,7 +586,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "задайте вопрос о бассейне",
+        "prompt": "Задайте вопрос о бассейне",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-16:i11:r1",
@@ -603,11 +603,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "задайте вопрос о бассейне",
+        "accessibilityLabel": "Задайте вопрос о бассейне",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "задайте вопрос о бассейне",
+            "ru": "Задайте вопрос о бассейне",
             "uk": "поставте питання про басейн"
           },
           "gappedTargetPhrase": "___ there a swimming pool?",
@@ -655,11 +655,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "после вопроса `Is there a swimming pool?` бассейн есть; дайте отдельный короткий ответ",
+        "prompt": "После вопроса `Is there a swimming pool?` бассейн есть; дайте отдельный короткий ответ",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "после вопроса `Is there a swimming pool?` бассейн есть; дайте отдельный короткий ответ",
+        "accessibilityLabel": "После вопроса `Is there a swimming pool?` бассейн есть; дайте отдельный короткий ответ",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Yes, there is.",
@@ -1038,7 +1038,7 @@
               "text": "There"
             }
           ],
-          "testedDimension": "У саду ви перевіряєте, чи є один басейн.",
+          "testedDimension": "У саду ви перевіряєте, чи є один басейн. Вставте початок питання",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-16:i06:r2",
@@ -1263,7 +1263,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "поставте питання про басейн",
+        "prompt": "Поставте питання про басейн",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-16:i11:r1",
@@ -1280,12 +1280,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "поставте питання про басейн",
+        "accessibilityLabel": "Поставте питання про басейн",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "задайте вопрос о бассейне",
-            "uk": "поставте питання про басейн"
+            "uk": "Поставте питання про басейн"
           },
           "gappedTargetPhrase": "___ there a swimming pool?",
           "gapOptions": [
@@ -1332,11 +1332,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "після питання `Is there a swimming pool?` басейн є; дайте окрему коротку відповідь",
+        "prompt": "Після питання `Is there a swimming pool?` басейн є; дайте окрему коротку відповідь",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "після питання `Is there a swimming pool?` басейн є; дайте окрему коротку відповідь",
+        "accessibilityLabel": "Після питання `Is there a swimming pool?` басейн є; дайте окрему коротку відповідь",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Yes, there is.",

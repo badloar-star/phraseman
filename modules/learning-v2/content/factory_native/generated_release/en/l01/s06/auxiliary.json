@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-06",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-06:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro1:r2": {
+          "ru": "Русское «в» просочилось. `home` уже значит «дома», `in` тут лишнее.",
+          "uk": "Прийменник тут зайвий. `home` уже означає «вдома», `in` нічого не додає."
+        },
+        "en:lesson-01:session-06:intro1:r3": {
+          "ru": "После I нужно `am`: о себе говорим `I am`.",
+          "uk": "Після I потрібне `am`: про себе кажемо `I am`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro2:r2": {
+          "ru": "Перед `home` не ставят `to`: `home` здесь уже значит «домой».",
+          "uk": "Перед `home` не ставлять `to`: `home` тут уже означає «додому»."
+        },
+        "en:lesson-01:session-06:intro2:r3": {
+          "ru": "После `I` нужно `am`: говорят `I am back`.",
+          "uk": "Після `I` потрібне `am`: кажуть `I am back`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-06:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-06:intro3:r2": {
+          "ru": "Правда, но не ответ. Спросили про работу, а не про место.",
+          "uk": "Правда, але не відповідь. Спитали про роботу, а не про місце."
+        },
+        "en:lesson-01:session-06:intro3:r3": {
+          "ru": "Это «я ещё не закончил» — ровно наоборот: `not` меняет смысл фразы.",
+          "uk": "Це «я ще не закінчив» — рівно навпаки: `not` змінює зміст фрази."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8ab2509c27a646b20d187b0d2977591876e3e0d2111712a39ace7d354e1e7776"
+}

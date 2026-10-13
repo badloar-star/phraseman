@@ -79,6 +79,7 @@ Everyone is ___ . → **kind** · tired · alone
 **4 · Складіть фразу — «тиждень важкий», про тиждень через `it`**
 <!-- interaction_id: en:lesson-01:session-56:i04; family: phrase_builder -->
 Плитки: `hard` `is` `It` `are` → **It is hard.**
+*Плитка `are` зайва: `it` говорить про один тиждень, тому потрібна форма `is`: `It is hard.`*
 
 **5 · Оберіть форму — про всіх колег одразу**
 <!-- interaction_id: en:lesson-01:session-56:i05; family: context_gap_grammar -->
@@ -89,6 +90,7 @@ Everyone ___ kind. → **is** · are · am
 **6 · Послухайте і складіть — «я втомився»**
 <!-- interaction_id: en:lesson-01:session-56:i06; family: listen_build_dictation -->
 🔊 *I am tired.* Плитки: `tired` `am` `I` `is` → **I am tired.**
+*Плитка `is` зайва: після `I` потрібна форма `am`: `I am tired.`*
 
 **7 · Вставте слово — брат питає про квартиру, там тепло**
 <!-- interaction_id: en:lesson-01:session-56:i07; family: context_gap_grammar -->
@@ -103,6 +105,7 @@ week — тиждень · tired — втомився · kind — добрий �
 **9 · Складіть фразу — поруч із вами друзі; скажіть, що ви не сам**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: phrase_builder -->
 Плитки: `alone` `not` `I` `am` `no` → **I am not alone.**
+*Плитка `no` зайва: заперечення в цій фразі будується словом `not` після `am`: `I am not alone.`*
 
 **10 · Вставте слово — брат питає, чи не нудно вам у порожній квартирі**
 <!-- interaction_id: en:lesson-01:session-56:i10; family: context_gap_grammar -->
@@ -119,10 +122,12 @@ I am not ___ . → **alone** · warm · kind
 **12 · Послухайте і складіть — «квартира тепла»**
 <!-- interaction_id: en:lesson-01:session-56:i12; family: listen_build_dictation -->
 🔊 *The flat is warm.* Плитки: `warm` `flat` `is` `The` `are` → **The flat is warm.**
+*Плитка `are` зайва: `flat` — одна квартира, тому потрібна форма `is`: `The flat is warm.`*
 
 **13 · Складіть фразу — «тиждень не важкий»**
 <!-- interaction_id: en:lesson-01:session-56:i13; family: phrase_builder -->
 Плитки: `hard` `not` `is` `It` `no` → **It is not hard.**
+*Плитка `no` зайва: заперечення тут будується словом `not` після `is`: `It is not hard.`*
 
 **14 · Оберіть форму — про тиждень, який був легкий**
 <!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->
@@ -133,6 +138,7 @@ It ___ not hard. → **is** · are · am
 **15 · Складіть фразу — брат: «Ти там втомився?» Дайте відповідь, що ні**
 <!-- interaction_id: en:lesson-01:session-56:i15; family: phrase_builder -->
 Плитки: `tired` `am` `I` `not` `no` → **I am not tired.**
+*Плитка `no` зайва: після `I am` для заперечення потрібне `not`: `I am not tired.`*
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-56:i16:s01; family: scripted_repeat_compare -->
@@ -167,6 +173,7 @@ I ___ not alone. → **am** · is · are
 **21 · Складіть фразу — ви говорите про доброзичливих людей поруч**
 <!-- interaction_id: en:lesson-01:session-56:i17:s04; family: phrase_builder -->
 Плитки: `Everyone` `is` `kind.` `are` → **Everyone is kind.**
+*Плитка `are` зайва: `everyone` говорить про людей по одному, тому потрібна форма `is`: `Everyone is kind.`*
 
 ---
 

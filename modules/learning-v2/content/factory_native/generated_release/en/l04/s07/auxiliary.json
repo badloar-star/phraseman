@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-04:session-07",
+  "entries": [
+    {
+      "interactionId": "en:lesson-04:session-07:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-07:intro1:r2": {
+          "ru": "`Building` — здание. Во дворе показана `playground`.",
+          "uk": "`Building` — будівля. У дворі показано `playground`."
+        },
+        "en:lesson-04:session-07:intro1:r3": {
+          "ru": "`Shop` — магазин. Здесь нужна `playground`.",
+          "uk": "`Shop` — магазин. Тут потрібне `playground`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-07:intro2:r2": {
+          "ru": "Площадка одна: нужно `There is a playground`.",
+          "uk": "Майданчик один: потрібне `There is a playground`."
+        },
+        "en:lesson-04:session-07:intro2:r3": {
+          "ru": "Перед одним исчисляемым местом нужен `a`: `a playground`.",
+          "uk": "Перед одним злічуваним місцем потрібен `a`: `a playground`."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-04:session-07:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-04:session-07:intro3:r2": {
+          "ru": "Зданий несколько, поэтому нужно `There are buildings`.",
+          "uk": "Будинків кілька, тому потрібне `There are buildings`."
+        },
+        "en:lesson-04:session-07:intro3:r3": {
+          "ru": "Одно `a building` не подходит к `There are`; здесь несколько `buildings`.",
+          "uk": "Одне `a building` не підходить до `There are`; тут кілька `buildings`."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2621ba1f2074b32ed8181c2c9b54a7a24ff03b83e0c314ffea290fa0fc435009"
+}

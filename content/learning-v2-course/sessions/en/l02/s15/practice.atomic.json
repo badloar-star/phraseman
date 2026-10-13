@@ -424,7 +424,17 @@
           "authoredDistractorTokens": [
             "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «оно простое?» про белую чашку без рисунка",
+              "feedbackByLocale": {
+                "ru": "речь о чашке, поэтому нужно `it`: `Is it plain?`",
+                "uk": "йдеться про чашку, тому потрібне `it`: `Is it plain?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -473,7 +483,7 @@
               "text": "elegant"
             }
           ],
-          "testedDimension": "Вставьте слово — в зале ни одного свобод",
+          "testedDimension": "Вставьте слово — в зале ни одного свободного столика",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i09:r2",
@@ -534,7 +544,7 @@
             "audioTargetId": "en:lesson-02:session-15:i10:audioB",
             "transcript": "pain"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «про",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «простой»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i10:r2",
@@ -647,7 +657,17 @@
           "authoredDistractorTokens": [
             "plain"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «Мира красивая?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о внешности Миры, поэтому нужно `pretty`: `Is she pretty?`",
+                "uk": "тут питають про зовнішність Міри, тому потрібне `pretty`: `Is she pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -812,7 +832,7 @@
               "text": "elegant"
             }
           ],
-          "testedDimension": "Вставьте слово — музыка играет так, что ",
+          "testedDimension": "Вставьте слово — музыка играет так, что приходится повышать голос",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i15:r2",
@@ -862,7 +882,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Макс ест уже второй сэндвич; спросите, голоден ли он",
+              "feedbackByLocale": {
+                "ru": "это вопрос о голоде без отрицания: `Is he hungry?`",
+                "uk": "це питання про голод без заперечення: `Is he hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -961,7 +991,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i18:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — Мира в изящном платье; на вопрос `Is she elegant?` вы согласны",
+              "feedbackByLocale": {
+                "ru": "с `she` нужна форма `is`: `Yes, she is.`",
+                "uk": "з `she` потрібна форма `is`: `Yes, she is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -972,12 +1012,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите услышанную реплику о белой чашке без рисунка",
-        "responseOptions": [{"responseId":"en:lesson-02:session-15:i19:r1","text":"Is it plain?"},{"responseId":"en:lesson-02:session-15:i19:r2","text":"It is plain."},{"responseId":"en:lesson-02:session-15:i19:r3","text":"Is it elegant?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-15:i19:r1",
+            "text": "Is it plain?"
+          },
+          {
+            "responseId": "en:lesson-02:session-15:i19:r2",
+            "text": "It is plain."
+          },
+          {
+            "responseId": "en:lesson-02:session-15:i19:r3",
+            "text": "Is it elegant?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-15:i19:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-15:i19:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите услышанную реплику о белой чашке без рисунка",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-02:session-15:i19:audio","transcript":"Is it plain?"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-02:session-15:i19:r1","targetText":"Is it plain?","meaningByLocale":null},{"responseId":"en:lesson-02:session-15:i19:r2","targetText":"It is plain.","meaningByLocale":null},{"responseId":"en:lesson-02:session-15:i19:r3","targetText":"Is it elegant?","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-15:i19:r2","correct":false,"testedDimension":"вопрос, а не сообщение","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is plain.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is plain.` — твердження."}},{"responseId":"en:lesson-02:session-15:i19:r3","correct":false,"testedDimension":"значение plain","feedbackByLocale":{"ru":"`elegant` — «элегантный». В записи звучит `plain`: «простой, без рисунка».","uk":"`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка"}}],"isWordCard":false,"wordCard":null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-15:i19:audio",
+            "transcript": "Is it plain?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-15:i19:r1",
+              "targetText": "Is it plain?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r2",
+              "targetText": "It is plain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r3",
+              "targetText": "Is it elegant?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i19:r2",
+              "correct": false,
+              "testedDimension": "вопрос, а не сообщение",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is plain.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is plain.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r3",
+              "correct": false,
+              "testedDimension": "значение plain",
+              "feedbackByLocale": {
+                "ru": "`elegant` — «элегантный». В записи звучит `plain`: «простой, без рисунка».",
+                "uk": "`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1501,7 +1601,17 @@
           "authoredDistractorTokens": [
             "she"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «оно простое?» про белую чашку без рисунка",
+              "feedbackByLocale": {
+                "ru": "речь о чашке, поэтому нужно `it`: `Is it plain?`",
+                "uk": "йдеться про чашку, тому потрібне `it`: `Is it plain?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1550,7 +1660,7 @@
               "text": "elegant"
             }
           ],
-          "testedDimension": "Вставте слово — у залі жодного вільного ",
+          "testedDimension": "Вставте слово — у залі жодного вільного столика",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i09:r2",
@@ -1611,7 +1721,7 @@
             "audioTargetId": "en:lesson-02:session-15:i10:audioB",
             "transcript": "pain"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «прост",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «простий»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i10:r2",
@@ -1724,7 +1834,17 @@
           "authoredDistractorTokens": [
             "plain"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «Мира красивая?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о внешности Миры, поэтому нужно `pretty`: `Is she pretty?`",
+                "uk": "тут питають про зовнішність Міри, тому потрібне `pretty`: `Is she pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1889,7 +2009,7 @@
               "text": "elegant"
             }
           ],
-          "testedDimension": "Вставте слово — музика грає так, що дово",
+          "testedDimension": "Вставте слово — музика грає так, що доводиться підвищувати голос",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-15:i15:r2",
@@ -1939,7 +2059,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — Макс ест уже второй сэндвич; спросите, голоден ли он",
+              "feedbackByLocale": {
+                "ru": "это вопрос о голоде без отрицания: `Is he hungry?`",
+                "uk": "це питання про голод без заперечення: `Is he hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2038,7 +2168,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i18:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — Мира в изящном платье; на вопрос `Is she elegant?` вы согласны",
+              "feedbackByLocale": {
+                "ru": "с `she` нужна форма `is`: `Yes, she is.`",
+                "uk": "з `she` потрібна форма `is`: `Yes, she is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2049,12 +2189,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть почуту репліку про білу чашку без малюнка",
-        "responseOptions": [{"responseId":"en:lesson-02:session-15:i19:r1","text":"Is it plain?"},{"responseId":"en:lesson-02:session-15:i19:r2","text":"It is plain."},{"responseId":"en:lesson-02:session-15:i19:r3","text":"Is it elegant?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-15:i19:r1",
+            "text": "Is it plain?"
+          },
+          {
+            "responseId": "en:lesson-02:session-15:i19:r2",
+            "text": "It is plain."
+          },
+          {
+            "responseId": "en:lesson-02:session-15:i19:r3",
+            "text": "Is it elegant?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-15:i19:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-15:i19:audio"
+        ],
         "accessibilityLabel": "Послухайте й виберіть почуту репліку про білу чашку без малюнка",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-02:session-15:i19:audio","transcript":"Is it plain?"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-02:session-15:i19:r1","targetText":"Is it plain?","meaningByLocale":null},{"responseId":"en:lesson-02:session-15:i19:r2","targetText":"It is plain.","meaningByLocale":null},{"responseId":"en:lesson-02:session-15:i19:r3","targetText":"Is it elegant?","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-15:i19:r2","correct":false,"testedDimension":"запитання, а не твердження","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is plain.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is plain.` — твердження."}},{"responseId":"en:lesson-02:session-15:i19:r3","correct":false,"testedDimension":"значення plain","feedbackByLocale":{"ru":"`elegant` — «элегантный». В записи звучит `plain`: «простой, без рисунка».","uk":"`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка"}}],"isWordCard":false,"wordCard":null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-15:i19:audio",
+            "transcript": "Is it plain?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-15:i19:r1",
+              "targetText": "Is it plain?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r2",
+              "targetText": "It is plain.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r3",
+              "targetText": "Is it elegant?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-15:i19:r2",
+              "correct": false,
+              "testedDimension": "запитання, а не твердження",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is plain.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is plain.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-15:i19:r3",
+              "correct": false,
+              "testedDimension": "значення plain",
+              "feedbackByLocale": {
+                "ru": "`elegant` — «элегантный». В записи звучит `plain`: «простой, без рисунка».",
+                "uk": "`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка"
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },

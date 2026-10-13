@@ -62,38 +62,59 @@
 <!-- interaction_id: en:lesson-02:session-06:i01; family: listen_choose -->
 Цель: `lost`
 Варианты: `lost` · `lot` · `last`
+- lot — *Другое слово: `a lot` — «много». В `lost` в конце слышно «ст», в `lot` — только «т».*
+- last — *Другая гласная и другой смысл: `last` — «последний».*
+
 
 **2 · Вставьте слово — Ира с телефоном-картой вертится на месте**
 <!-- interaction_id: en:lesson-02:session-06:i02; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `lost` · `awake` · `hungry`
+- awake — *«Проснулась?» Она на ногах посреди улицы, это и так видно.*
+- hungry — *«Голодна?» Она ищет дорогу, а не еду.*
+
 
 **3 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-02:session-06:i03; family: listen_choose -->
 Цель: `thirsty`
 Варианты: `thirsty` · `dirty` · `thirty`
+- dirty — *`dirty` — «грязный». Речь о человеке у фонтанчика, а не о пятне на куртке.*
+- thirty — *`thirty` — «тридцать». В `thirsty` есть «с» перед последней частью, в `thirty` его нет.*
+
 
 **4 · Соберите фразу — спросить Иру, не хочет ли она пить**
 <!-- interaction_id: en:lesson-02:session-06:i04; family: phrase_builder -->
 Цель: `Are you thirsty?`
+Плитки: `Are` · `you` · `thirsty` · `is`
+*Плитка `is` лишняя: с `you` нужна форма `are`: `Are you thirsty?`*
 
 **5 · Вставьте слово — Ольга уронила сумку и села на скамейку**
 <!-- interaction_id: en:lesson-02:session-06:i05; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `ok` · `cold` · `thirsty`
+- cold — *«Замёрзла?» На улице тепло, дело не в холоде.*
+- thirsty — *«Хочешь пить?» Она только что упала — сначала спрашивают, цела ли.*
+
 
 **6 · Послушайте и соберите — «ты голоден?»**
 <!-- interaction_id: en:lesson-02:session-06:i06; family: listen_build_dictation -->
 Цель: `Are you hungry?`
+🔊 *Are you hungry?* Плитки: `Are` · `you` · `hungry` · `cold`
+*Плитка `cold` лишняя: вопрос спрашивает о голоде, поэтому нужно `hungry`: `Are you hungry?`*
 
 **7 · Различите звуки — какое из двух про «холодно»?**
 <!-- interaction_id: en:lesson-02:session-06:i07; family: sound_contrast -->
 Варианты: `cold` · `gold`
+- gold — *`gold` — «золото». Слова различаются первым звуком: «к» против «г», дальше всё одинаково.*
+
 
 **8 · Вставьте слово — Никита без куртки, плечи подняты, руки в рукавах**
 <!-- interaction_id: en:lesson-02:session-06:i08; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `cold` · `lost` · `ok`
+- lost — *«Заблудился?» Он стоит у своей остановки, дорогу не ищет.*
+- ok — *`Are you ok?` спрашивают, когда человеку плохо непонятно отчего. Тут видно отчего — он мёрзнет.*
+
 
 **9 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-06:i09; family: speed_match -->
@@ -103,24 +124,36 @@
 **10 · Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он**
 <!-- interaction_id: en:lesson-02:session-06:i10; family: phrase_builder -->
 Цель: `Are you lost?`
+Плитки: `Are` · `you` · `lost` · `not`
+*Плитка `not` лишняя: вопрос прямо спрашивает, заблудились ли вы; отрицание не нужно: `Are you lost?`*
 
 **11 · Вставьте слово — Ира стоит у фонтанчика и облизывает губы**
 <!-- interaction_id: en:lesson-02:session-06:i11; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `thirsty` · `awake` · `lost`
+- awake — *«Проснулся?» Он бодро стоит у воды, со сном это не связано.*
+- lost — *«Заблудился?» Он никуда не идёт, он смотрит на воду.*
+
 
 **12 · Послушайте и соберите — «ты в порядке?»**
 <!-- interaction_id: en:lesson-02:session-06:i12; family: listen_build_dictation -->
 Цель: `Are you ok?`
+🔊 *Are you ok?* Плитки: `Are` · `you` · `ok` · `hungry`
+*Плитка `hungry` лишняя: здесь спрашивают о самочувствии в целом: `Are you ok?`*
 
 **13 · Вставьте слово — сосед по комнате сидит с закрытыми глазами, вы уходите**
 <!-- interaction_id: en:lesson-02:session-06:i13; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `awake` · `cold` · `thirsty`
+- cold — *«Замёрз?» В комнате обычная температура, дело не в этом.*
+- thirsty — *«Хочешь пить?» Вы проверяете, спит он или нет.*
+
 
 **14 · Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он**
 <!-- interaction_id: en:lesson-02:session-06:i14; family: phrase_builder -->
 Цель: `Are you cold?`
+Плитки: `Are` · `you` · `cold` · `am`
+*Плитка `am` лишняя: с `you` нужна форма `are`; `am` употребляется с `I`.*
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-06:i15:s01; family: scripted_repeat_compare -->
@@ -138,6 +171,9 @@
 <!-- interaction_id: en:lesson-02:session-06:i17:s01; family: listen_choose -->
 Цель: `Are you lost?`
 Варианты: `Are you lost?` · `You are lost.` · `Are you late?`
+- You are lost. — *В записи первым звучит `Are`, поэтому это вопрос. `You are lost.` — сообщение.*
+- Are you late? — *`late` — «опоздал». В записи после `you` звучит `lost`: «заблудился».*
+
 
 **19 · Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она**
 <!-- interaction_id: en:lesson-02:session-06:i17:s02; family: phrase_builder -->

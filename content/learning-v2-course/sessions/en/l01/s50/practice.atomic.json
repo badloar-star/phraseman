@@ -288,7 +288,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — мама спрашивает, какая ",
+          "testedDimension": "Вставьте слово — мама спрашивает, какая работа",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-50:i05:r2",
@@ -338,7 +338,26 @@
             "not",
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
+              "feedbackByLocale": {
+                "ru": "она меняет смысл на «он не добрый», а здесь вы его хвалите",
+                "uk": "вона змінює зміст на «він не добрий», а тут ви його хвалите"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i06:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
+              "feedbackByLocale": {
+                "ru": "в `He's` уже есть `he is`, второе `is` не нужно",
+                "uk": "у `He's` уже є `he is`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -698,7 +717,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставьте слово — квартира стоит дороже, ",
+          "testedDimension": "Вставьте слово — квартира стоит дороже, чем вы рассчитывали",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-50:i12:r2",
@@ -751,7 +770,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она не маленькая», про город",
+              "feedbackByLocale": {
+                "ru": "в `isn't` уже есть `is not`, второе `is` не нужно",
+                "uk": "у `isn't` уже є `is not`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -781,7 +810,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «начальник не добрый»",
+              "feedbackByLocale": {
+                "ru": "в `isn't` уже есть `is not`, второе `is` не нужно",
+                "uk": "у `isn't` уже є `is not`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -830,7 +869,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставьте слово — мама спрашивает, как вы",
+          "testedDimension": "Вставьте слово — мама спрашивает, как вы после недели",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-50:i15:r2",
@@ -975,7 +1014,26 @@
             "small.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы показываете другу новую вещь",
+              "feedbackByLocale": {
+                "ru": "`small` означает «маленькая», а вы говорите, что вещь новая",
+                "uk": "`small` означає «маленька», а ви кажете, що річ нова"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i17:s01:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы показываете другу новую вещь",
+              "feedbackByLocale": {
+                "ru": "`It's` уже означает `it is`; `are` нужно для нескольких",
+                "uk": "`It's` уже означає `it is`; `are` потрібне для кількох"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1034,7 +1092,26 @@
             "new.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i17:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете маленькую вещь на столе",
+              "feedbackByLocale": {
+                "ru": "`new` означает «новая», а вы описываете размер вещи",
+                "uk": "`new` означає «нова», а ви описуєте розмір речі"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i17:s03:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете маленькую вещь на столе",
+              "feedbackByLocale": {
+                "ru": "`It's` уже означает `it is`; `are` нужно для нескольких",
+                "uk": "`It's` уже означає `it is`; `are` потрібне для кількох"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1406,7 +1483,26 @@
             "not",
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
+              "feedbackByLocale": {
+                "ru": "она меняет смысл на «он не добрый», а здесь вы его хвалите",
+                "uk": "вона змінює зміст на «він не добрий», а тут ви його хвалите"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i06:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — мама спрашивает про начальника; он к вам хорошо относится",
+              "feedbackByLocale": {
+                "ru": "в `He's` уже есть `he is`, второе `is` не нужно",
+                "uk": "у `He's` уже є `he is`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1766,7 +1862,7 @@
               "text": "new"
             }
           ],
-          "testedDimension": "Вставте слово — квартира коштує більше, ",
+          "testedDimension": "Вставте слово — квартира коштує більше, ніж ви розраховували",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-50:i12:r2",
@@ -1819,7 +1915,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «она не маленькая», про город",
+              "feedbackByLocale": {
+                "ru": "в `isn't` уже есть `is not`, второе `is` не нужно",
+                "uk": "у `isn't` уже є `is not`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1849,7 +1955,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «начальник не добрый»",
+              "feedbackByLocale": {
+                "ru": "в `isn't` уже есть `is not`, второе `is` не нужно",
+                "uk": "у `isn't` уже є `is not`, друге `is` не потрібне"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1898,7 +2014,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставте слово — мама питає, як ви після ",
+          "testedDimension": "Вставте слово — мама питає, як ви після тижня",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-50:i15:r2",
@@ -2043,7 +2159,26 @@
             "small.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы показываете другу новую вещь",
+              "feedbackByLocale": {
+                "ru": "`small` означает «маленькая», а вы говорите, что вещь новая",
+                "uk": "`small` означає «маленька», а ви кажете, що річ нова"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i17:s01:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы показываете другу новую вещь",
+              "feedbackByLocale": {
+                "ru": "`It's` уже означает `it is`; `are` нужно для нескольких",
+                "uk": "`It's` уже означає `it is`; `are` потрібне для кількох"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2102,7 +2237,26 @@
             "new.",
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-50:i17:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете маленькую вещь на столе",
+              "feedbackByLocale": {
+                "ru": "`new` означает «новая», а вы описываете размер вещи",
+                "uk": "`new` означає «нова», а ви описуєте розмір речі"
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-50:i17:s03:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы описываете маленькую вещь на столе",
+              "feedbackByLocale": {
+                "ru": "`It's` уже означает `it is`; `are` нужно для нескольких",
+                "uk": "`It's` уже означає `it is`; `are` потрібне для кількох"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

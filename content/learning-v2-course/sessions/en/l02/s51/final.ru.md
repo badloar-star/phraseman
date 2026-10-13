@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i02; family: listen_choose -->
 Цель: `Excuse me.`
 Варианты: `Excuse me.` · `Excuse us.` · `Excuse you.`
+- Excuse us. — *Слово `us` начинается с гласного, рот открыт. В записи последнее слово начинается с «м», при сомкнутых губах: `me`.*
+- Excuse you. — *В `you` начало как у русского «йод», затем губы округляются. В записи звучит `me`: сначала «м» при сомкнутых губах.*
+
 
 **3 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i03:s01; family: scripted_repeat_compare -->
@@ -73,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-51:i04; family: context_gap_grammar -->
 Цель: `Is it ___ ?`
 Варианты: `near` · `ready` · `sorry`
+- ready — *Это «готово». Вы уточняете расстояние до станции: `near`.*
+- sorry — *Это слово для извинения. Сейчас нужен вопрос о близости станции: `Is it near?`*
+
 
 **6 · Послушайте и выберите — какая реплика прохожего прозвучала в ответ**
 <!-- interaction_id: en:lesson-02:session-51:i05; family: listen_choose -->
 Цель: `It is near.`
 Варианты: `It is near.` · `Is it near?` · `It is here.`
+- Is it near? — *Это вопрос. В записи сначала `It is`: прохожий сообщает о расстоянии.*
+- It is here. — *Это «Это здесь». На записи последнее слово `near` — «близко».*
+
 
 **7 · Соберите фразу — друг спрашивает, уверены ли вы, что поняли дорогу; вы сомневаетесь, скажите об этом**
 <!-- interaction_id: en:lesson-02:session-51:i06; family: phrase_builder -->
@@ -87,6 +96,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i07; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `sure` · `sorry` · `near`
+- sorry — *Так вы спросите, сожалеет ли друг. Вам нужно проверить его уверенность: `sure`.*
+- near — *Это «близко». Вы спрашиваете не о расстоянии до друга, а о его уверенности.*
+
 
 **9 · Соберите фразу — вы перебили прохожего, пока он уточнял поворот; скажите полную фразу «Я извиняюсь»**
 <!-- interaction_id: en:lesson-02:session-51:i08; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i10:s01; family: context_gap_grammar -->
 Цель: `___ .`
 Варианты: `Excuse me` · `I am sure` · `We are ready`
+- I am sure — *Это «Я уверен». Чтобы привлечь внимание, здесь подходит готовое обращение `Excuse me`.*
+- We are ready — *Это «Мы готовы». Сейчас вы начинаете обращение к прохожему: `Excuse me`.*
+
 
 **12 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i10:s02; family: scripted_repeat_compare -->
@@ -110,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i11; family: listen_choose -->
 Цель: `Where is the station?`
 Варианты: `Where is the station?` · `What is the station?` · `Is the station near?`
+- What is the station? — *Так спрашивают, что это за станция. В записи вопрос начинается с `Where`: друг спрашивает о месте.*
+- Is the station near? — *Это вопрос о расстоянии. В записи звучит вопрос «Где станция?»*
+
 
 **14 · Послушайте и соберите — прохожий показывает место станции на вашей карте**
 <!-- interaction_id: en:lesson-02:session-51:i12; family: listen_build_dictation -->
@@ -119,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i13; family: context_gap_grammar -->
 Цель: `Yes, it ___ .`
 Варианты: `is` · `are` · `am`
+- are — *В этом коротком ответе после `it` нужна форма `is`: `Yes, it is`.*
+- am — *Форма `am` подходит к `I`. Здесь сохраняем `it is`: `Yes, it is`.*
+
 
 **16 · Соберите фразу — вы подходите к прохожему, чтобы уточнить дорогу**
 <!-- interaction_id: en:lesson-02:session-51:i14:s01; family: phrase_builder -->
@@ -128,6 +149,9 @@
 <!-- interaction_id: en:lesson-02:session-51:i14:s02; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `busy` · `station` · `name`
+- station — *Это «станция». О занятости человека спрашиваем со словом `busy`.*
+- name — *Это «имя». Чтобы узнать, занят ли прохожий, нужно `Are you busy?`*
+
 
 **18 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-51:i15; family: scripted_repeat_compare -->

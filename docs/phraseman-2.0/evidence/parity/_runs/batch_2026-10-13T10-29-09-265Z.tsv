@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-058	2026-10-13T10:30:16.208Z	error	12137	step_target_not_found:Пожаловаться+ждали_metro_29мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-29-09-265Z/cards-058.error.png	0

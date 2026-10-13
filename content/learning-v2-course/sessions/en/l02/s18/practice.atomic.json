@@ -288,7 +288,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — вы спрашиваете про мага",
+          "testedDimension": "Вставьте слово — вы спрашиваете про магазины",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i05:r2",
@@ -325,11 +325,19 @@
         "accessibilityLabel": "Соберите вопрос — у туристической карты вы ищете единственный вокзал города",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase":"Where is the station?",
-          "localizedMeaning":{"ru":"Соберите вопрос — у туристической карты вы ищете единственный вокзал города","uk":"Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста"},
-          "orderedTokens":["Where","is","the","station"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "targetPhrase": "Where is the station?",
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — у туристической карты вы ищете единственный вокзал города",
+            "uk": "Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "station"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -340,12 +348,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте запись у стойки информации и выберите услышанную фразу",
-        "responseOptions": [{"responseId":"en:lesson-02:session-18:i07:r1","text":"Where are the toilets?"},{"responseId":"en:lesson-02:session-18:i07:r2","text":"Where is the station?"},{"responseId":"en:lesson-02:session-18:i07:r3","text":"Where are the shops?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i07:r1",
+            "text": "Where are the toilets?"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i07:r2",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i07:r3",
+            "text": "Where are the shops?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-18:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-18:i07:audio"
+        ],
         "accessibilityLabel": "Послушайте запись у стойки информации и выберите услышанную фразу",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-02:session-18:i07:audio","transcript":"Where are the toilets?"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-02:session-18:i07:r1","targetText":"Where are the toilets?","meaningByLocale":null},{"responseId":"en:lesson-02:session-18:i07:r2","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-18:i07:r3","targetText":"Where are the shops?","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-18:i07:r2","correct":false,"testedDimension":"место в вопросе","feedbackByLocale":{"ru":"В записи звучит `toilets`, а не `station`.","uk":"У записі звучить `toilets`, а не `station`."}},{"responseId":"en:lesson-02:session-18:i07:r3","correct":false,"testedDimension":"место в вопросе","feedbackByLocale":{"ru":"В записи звучит `toilets`, а не `shops`.","uk":"У записі звучить `toilets`, а не `shops`."}}],"isWordCard":false,"wordCard":null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-18:i07:audio",
+            "transcript": "Where are the toilets?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-18:i07:r1",
+              "targetText": "Where are the toilets?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r2",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r3",
+              "targetText": "Where are the shops?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-18:i07:r2",
+              "correct": false,
+              "testedDimension": "место в вопросе",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `toilets`, а не `station`.",
+                "uk": "У записі звучить `toilets`, а не `station`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r3",
+              "correct": false,
+              "testedDimension": "место в вопросе",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `toilets`, а не `shops`.",
+                "uk": "У записі звучить `toilets`, а не `shops`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -437,7 +505,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставьте слово — в субботу тут не протол",
+          "testedDimension": "Вставьте слово — в субботу тут не протолкнуться",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i09:r2",
@@ -491,7 +559,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-18:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где магазины?»",
+              "feedbackByLocale": {
+                "ru": "магазинов несколько, поэтому нужна форма `are`: `Where are the shops?`",
+                "uk": "магазинів кілька, тому потрібна форма `are`: `Where are the shops?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -605,7 +683,7 @@
             "audioTargetId": "en:lesson-02:session-18:i12:audioB",
             "transcript": "treat"
           },
-          "testedPhoneticContrast": "Различите слова — какое из двух про «ули",
+          "testedPhoneticContrast": "Различите слова — какое из двух про «улицу»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i12:r2",
@@ -665,7 +743,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставьте слово — вы третий раз выходите ",
+          "testedDimension": "Вставьте слово — вы третий раз выходите к одному и тому же входу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i13:r2",
@@ -698,10 +776,18 @@
         "prompt": "Послушайте и соберите — у карты вы спрашиваете про единственный вокзал",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-18:i14:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-18:i14:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — у карты вы спрашиваете про единственный вокзал",
         "modePayload": {
-          "family": "listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-02:session-18:i14:audio","transcript":"Where is the station?"},"slowReferenceAudio":null,"hiddenTargetPhrase":"Where is the station?",
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-18:i14:audio",
+            "transcript": "Where is the station?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the station?",
           "orderedTokens": [
             "Where",
             "is",
@@ -758,7 +844,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставьте слово — вы у входа и ищете этаж",
+          "testedDimension": "Вставьте слово — вы у входа и ищете этаж с витринами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i15:r2",
@@ -902,9 +988,14 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Where are the toilets?",
-          "orderedTokens":["Where","are","the","toilets"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "orderedTokens": [
+            "Where",
+            "are",
+            "the",
+            "toilets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1230,11 +1321,19 @@
         "accessibilityLabel": "Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста",
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase":"Where is the station?",
-          "localizedMeaning":{"ru":"Соберите вопрос — у туристической карты вы ищете единственный вокзал города","uk":"Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста"},
-          "orderedTokens":["Where","is","the","station"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "targetPhrase": "Where is the station?",
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — у туристической карты вы ищете единственный вокзал города",
+            "uk": "Складіть запитання — біля туристичної карти ви шукаєте єдиний вокзал міста"
+          },
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "station"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1242,12 +1341,75 @@
         "interactionId": "en:lesson-02:session-18:i07",
         "ordinal": 10,
         "purpose": "guided_practice",
-        "family": "listen_choose","inputMode": "single_choice","prompt": "Послухайте запис біля стійки інформації та виберіть почуту фразу","responseOptions": [{"responseId":"en:lesson-02:session-18:i07:r1","text":"Where are the toilets?"},{"responseId":"en:lesson-02:session-18:i07:r2","text":"Where is the station?"},{"responseId":"en:lesson-02:session-18:i07:r3","text":"Where are the shops?"}],
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте запис біля стійки інформації та виберіть почуту фразу",
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-18:i07:r1",
+            "text": "Where are the toilets?"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i07:r2",
+            "text": "Where is the station?"
+          },
+          {
+            "responseId": "en:lesson-02:session-18:i07:r3",
+            "text": "Where are the shops?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-18:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-18:i07:audio"
+        ],
         "accessibilityLabel": "Послухайте запис біля стійки інформації та виберіть почуту фразу",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-02:session-18:i07:audio","transcript":"Where are the toilets?"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-02:session-18:i07:r1","targetText":"Where are the toilets?","meaningByLocale":null},{"responseId":"en:lesson-02:session-18:i07:r2","targetText":"Where is the station?","meaningByLocale":null},{"responseId":"en:lesson-02:session-18:i07:r3","targetText":"Where are the shops?","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-02:session-18:i07:r2","correct":false,"testedDimension":"місце в запитанні","feedbackByLocale":{"ru":"В записи звучит `toilets`, а не `station`.","uk":"У записі звучить `toilets`, а не `station`."}},{"responseId":"en:lesson-02:session-18:i07:r3","correct":false,"testedDimension":"місце в запитанні","feedbackByLocale":{"ru":"В записи звучит `toilets`, а не `shops`.","uk":"У записі звучить `toilets`, а не `shops`."}}],"isWordCard":false,"wordCard":null
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-18:i07:audio",
+            "transcript": "Where are the toilets?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-18:i07:r1",
+              "targetText": "Where are the toilets?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r2",
+              "targetText": "Where is the station?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r3",
+              "targetText": "Where are the shops?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-18:i07:r2",
+              "correct": false,
+              "testedDimension": "місце в запитанні",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `toilets`, а не `station`.",
+                "uk": "У записі звучить `toilets`, а не `station`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-18:i07:r3",
+              "correct": false,
+              "testedDimension": "місце в запитанні",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `toilets`, а не `shops`.",
+                "uk": "У записі звучить `toilets`, а не `shops`."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1339,7 +1501,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставте слово — у суботу тут не проштовх",
+          "testedDimension": "Вставте слово — у суботу тут не проштовхнутися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i09:r2",
@@ -1393,7 +1555,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-18:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «где магазины?»",
+              "feedbackByLocale": {
+                "ru": "магазинов несколько, поэтому нужна форма `are`: `Where are the shops?`",
+                "uk": "магазинів кілька, тому потрібна форма `are`: `Where are the shops?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1507,7 +1679,7 @@
             "audioTargetId": "en:lesson-02:session-18:i12:audioB",
             "transcript": "treat"
           },
-          "testedPhoneticContrast": "Розрізніть слова — яке з двох про «вулиц",
+          "testedPhoneticContrast": "Розрізніть слова — яке з двох про «вулицю»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i12:r2",
@@ -1567,7 +1739,7 @@
               "text": "cold"
             }
           ],
-          "testedDimension": "Вставте слово — ви втретє виходите до то",
+          "testedDimension": "Вставте слово — ви втретє виходите до того самого входу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i13:r2",
@@ -1600,10 +1772,18 @@
         "prompt": "Послухайте й складіть — біля карти ви питаєте про єдиний вокзал",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-18:i14:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-18:i14:audio"
+        ],
         "accessibilityLabel": "Послухайте й складіть — біля карти ви питаєте про єдиний вокзал",
         "modePayload": {
-          "family": "listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-02:session-18:i14:audio","transcript":"Where is the station?"},"slowReferenceAudio":null,"hiddenTargetPhrase":"Where is the station?",
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-18:i14:audio",
+            "transcript": "Where is the station?"
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "Where is the station?",
           "orderedTokens": [
             "Where",
             "is",
@@ -1660,7 +1840,7 @@
               "text": "street"
             }
           ],
-          "testedDimension": "Вставте слово — ви біля входу і шукаєте ",
+          "testedDimension": "Вставте слово — ви біля входу і шукаєте поверх з вітринами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-18:i15:r2",
@@ -1804,9 +1984,14 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Where are the toilets?",
-          "orderedTokens":["Where","are","the","toilets"],
-          "authoredDistractorTokens":[],
-          "slotFeedback":[]
+          "orderedTokens": [
+            "Where",
+            "are",
+            "the",
+            "toilets"
+          ],
+          "authoredDistractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

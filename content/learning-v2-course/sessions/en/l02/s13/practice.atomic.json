@@ -266,7 +266,7 @@
               "text": "him"
             }
           ],
-          "testedDimension": "Вставьте слово — вы отвечаете спутнику, ",
+          "testedDimension": "Вставьте слово — вы отвечаете спутнику, а не спрашиваете",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-13:i05:r2",
@@ -483,7 +483,7 @@
             "audioTargetId": "en:lesson-02:session-13:i10:audioB",
             "transcript": "angry"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «гол",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «голодный»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-13:i10:r2",
@@ -1239,7 +1239,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставте слово — запитання чи повідомленн",
+          "testedDimension": "Вставте слово — запитання чи повідомлення?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-13:i03:r2",
@@ -1336,7 +1336,7 @@
               "text": "him"
             }
           ],
-          "testedDimension": "Вставте слово — ви відповідаєте супутник",
+          "testedDimension": "Вставте слово — ви відповідаєте супутнику, а не запитуєте",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-13:i05:r2",
@@ -1553,7 +1553,7 @@
             "audioTargetId": "en:lesson-02:session-13:i10:audioB",
             "transcript": "angry"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «голод",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «голодний»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-13:i10:r2",

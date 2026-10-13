@@ -108,6 +108,7 @@ People ___ loud. → **are** · is · am
 Мама питає, як справи у вашій сім'ї. Складіть відповідь.
 
 Плитки: `is` `family` `My` `fine` `are` → **My family is fine.**
+*(плитка `are` зайва: `family` — одна сім'я як ціле, тому тут потрібне `is`)*
 *(`my` — «мій»; одна плитка зайва)*
 
 **11 · Вставте слово — в офісі о шостій вечора порожньо**
@@ -127,6 +128,7 @@ everyone — всі · nobody — ніхто · people — люди · family �
 Мама питає про колег. Послухайте й складіть відповідь: усі зайняті.
 
 🔊 *Everyone is busy.* Плитки: `is` `busy` `everyone` `are` → **Everyone is busy.**
+*(плитка `are` зайва: `everyone` потребує `is`, навіть коли йдеться про всіх)*
 *(`busy` — «зайнятий»)*
 
 **14 · Складіть фразу — робочий день скінчився, і сил не лишилося**
@@ -134,6 +136,7 @@ everyone — всі · nobody — ніхто · people — люди · family �
 Мама питає, як ви після робочого дня. Складіть відповідь.
 
 Плитки: `tired` `I` `is` `am` → **I am tired.**
+*(плитка `is` зайва: після `I` потрібна форма `am`)*
 
 **15 · Вставте слово — про себе після тижня**
 <!-- interaction_id: en:lesson-01:session-49:i15; family: context_gap_grammar -->
@@ -162,6 +165,7 @@ I ___ fine. → **am** · is · are
 **19 · Складіть фразу — ви описуєте всю дружню команду**
 <!-- interaction_id: en:lesson-01:session-49:i17:s02; family: phrase_builder -->
 Плитки: `Everyone` `is` `kind` `are` → **Everyone is kind.**
+*(плитка `are` зайва: після `everyone` потрібна форма `is`)*
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-49:i17:s03; family: scripted_repeat_compare -->

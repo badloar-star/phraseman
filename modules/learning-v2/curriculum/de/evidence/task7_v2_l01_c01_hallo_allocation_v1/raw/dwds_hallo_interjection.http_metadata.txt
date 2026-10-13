@@ -1,0 +1,7 @@
+canonical-url: https://www.dwds.de/wb/hallo
+final-url: https://www.dwds.de/wb/hallo
+http-status: 200
+content-type: text/html; charset=UTF-8
+etag: 
+last-modified: 
+transport: DIRECT_PUBLIC_HTTPS

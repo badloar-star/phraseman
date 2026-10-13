@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c05-das-ist-source-extraction-map.v1",
+  "rawSources": {
+    "dwdsSein": {
+      "requestedUrl": "https://www.dwds.de/wb/sein",
+      "canonicalUrl": "https://www.dwds.de/wb/sein",
+      "path": "raw/dwds_sein.html",
+      "sha256": "bcc581983ae4bb68c698ab512ac0bf15e522fdde800bc87b0b898d573761d915",
+      "bytes": 220384,
+      "metadataPath": "raw/dwds_sein.http_metadata.txt",
+      "metadataSha256": "c85ed9d1a13bf1b124584cdc65cbefff56e8befd93d0000971c557428d0443d5",
+      "metadataBytes": 270,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1",
+    "checkpointPacketId": "de_l01_c05_s40",
+    "headword": "sein",
+    "verifiedForm": "ist",
+    "verifiedFormLocator": "3. Person Singular Indikativ Präsens Aktiv",
+    "evidenceFunction": "THIRD_PERSON_PRESENT_FORM_IN_AUTHORITATIVE_LEXICAL_ENTRY"
+  },
+  "unsupportedClaims": {
+    "exactLearnerPhrase": "NOT_CLAIMED:_CAPTURE_DOES_NOT_PROVE_THE_EXACT_CASED_PHRASE_DAS_IST",
+    "usageNaturalness": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "canonicalAdmission": "NOT_GRANTED_BY_SOURCE_CAPTURE"
+  }
+}

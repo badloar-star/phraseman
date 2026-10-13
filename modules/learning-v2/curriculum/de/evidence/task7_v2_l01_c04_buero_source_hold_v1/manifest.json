@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c04-buero-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "sourcePlanId": "de_lex_plan_l01_c04_buero_v1",
+    "checkpointPacketId": "de_l01_c04_s32"
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "b6100ea79a11b831e129069e8d33fac532d5ad6b293294b12afdd77824dc6963"
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "sourceHeadword": "Büro",
+      "sourcePartOfSpeech": "Substantiv (Neutrum)",
+      "article": "das",
+      "nominativePlural": "Büros",
+      "sourceCoreGerman": "Raum eines Gebäudes oder Bereich, in dem am Schreibtisch oder Computer schriftliche oder verwaltende Arbeiten erledigt werden"
+    },
+    "unsupportedClaims": {
+      "caretakerSpecificOffice": "UNSUPPORTED_BY_CAPTURED_SOURCE"
+    }
+  },
+  "allocation": {
+    "sourcePlanId": "de_lex_plan_l01_c04_buero_v1",
+    "checkpointPacketId": "de_l01_c04_s32",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING"
+  }
+}

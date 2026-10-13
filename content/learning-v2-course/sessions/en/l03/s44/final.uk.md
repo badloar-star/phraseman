@@ -55,6 +55,9 @@
 <!-- interaction_id: en:lesson-03:session-44:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `assistant` · `seller` · `customer`
+- ✅ assistant — *Поруч із касиром стоїть помічник: `assistant`.*
+- seller — *`seller` — продавець. В умові названо помічника, тому потрібне `assistant`.*
+- customer — *`customer` — покупець. Поруч із касиром стоїть помічник: `assistant`.*
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-44:i02; family: scripted_repeat_compare -->
@@ -90,6 +93,10 @@
 <!-- interaction_id: en:lesson-03:session-44:i09; family: context_gap_grammar -->
 Ціль: `___ customer is here.`
 Варіанти: `The` · `A` · `An` · `без артикля`
+- ✅ The — *Покупця вже назвали, тому потрібне `The customer`.*
+- A — *Покупця вже назвали.*
+- An — *Перед `customer` потрібен не `an`.*
+- без артикля — *Потрібен артикль: йдеться про вже названого покупця.*
 
 **12 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-44:i12; family: scripted_repeat_compare -->
@@ -98,25 +105,41 @@
 **13 · Послухайте й складіть фразу**
 <!-- interaction_id: en:lesson-03:session-44:i13; family: listen_build_dictation -->
 Ціль: `An assistant is here.`
+Плитки: `An` `assistant` `is` `here` `The`
+*(плитка `The` зайва: помічника називають уперше, тому потрібне `An assistant`.)*
 
 **14 · Складіть фразу — помічника вже назвали**
 <!-- interaction_id: en:lesson-03:session-44:i14; family: phrase_builder -->
 Ціль: `The assistant is here.`
+Плитки: `The` `assistant` `is` `here` `An`
+*(плитка `An` зайва: помічника вже назвали, тому потрібне `The assistant`.)*
 
 **15 · Вставте початок — новий помічник**
 <!-- interaction_id: en:lesson-03:session-44:i15; family: context_gap_grammar -->
 Ціль: `___ assistant is here.`
 Варіанти: `An` · `A` · `The` · `без артикля`
+- ✅ An — *Перед новим `assistant` потрібне `An`: слово починається з голосного звука.*
+- A — *Перед `assistant` потрібен `an`.*
+- The — *Помічника ще не називали.*
+- без артикля — *Потрібен артикль.*
 
 **16 · Послухайте й виберіть точне значення фрази**
 <!-- interaction_id: en:lesson-03:session-44:i16; family: listen_choose -->
 Ціль: `The customer is here.`
 Варіанти: `Цей покупець тут` · `Тут покупець` · `Цей продавець тут` · `Де покупець?`
+- ✅ Цей покупець тут — *`The customer is here.` — це твердження про конкретного покупця.*
+- Тут покупець — *У записі є `the`.*
+- Цей продавець тут — *Звучить `customer`, а не `seller`.*
+- Де покупець? — *Це твердження.*
 
 **17 · Вставте маленьке слово — касир уперше повідомляє, що покупець готовий до обслуговування**
 <!-- interaction_id: en:lesson-03:session-44:i17; family: context_gap_grammar -->
 Ціль: `___ customer is ready.`
 Варіанти: `A` · `The` · `An` · `без артикля`
+- ✅ A — *Касир бачить нового одного покупця вперше: `A customer is ready.`*
+- The — *`the customer` може здаватися знайомою формою для конкретної людини. Але касир бачить цього покупця вперше, тому спочатку потрібне `a customer`. У новій сцені обирайте `the` лише для людини, яку вже розуміють обидва.*
+- An — *`an` — теж артикль для однієї людини, тому його легко пригадати. Але `customer` починається зі звуку /k/, не з голосного, тому потрібне `a`. У новій фразі спершу слухайте перший звук наступного слова.*
+- без артикля — *Форма без артикля буває у множині або з незлічуваними словами. Тут один новий покупець, тому перед `customer` потрібне `a`. У новій фразі перевірте: предмет один і злічуваний? Тоді артикль обов’язковий.*
 
 ## Для сборщика
 atomic_practice: practice.atomic.json

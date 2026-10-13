@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i01; family: listen_choose -->
 Ціль: `Am I ready?`
 Варіанти: `Am I ready?` · `Are we ready?` · `Are you ready?`
+- Are we ready? — *Тут запитують про вас обох. У записі звучить початок `Am I`: друг запитує про себе.*
+- Are you ready? — *Це запитання до вас. У записі друг говорить `I` — «я».*
+
 
 **2 · Вставте слово — друг перевіряє ваші речі; запитайте його, чи ви самі готові**
 <!-- interaction_id: en:lesson-02:session-44:i02; family: context_gap_grammar -->
 Ціль: `Am ___ ready?`
 Варіанти: `I` · `we` · `you`
+- we — *Це «ми». Ви запитуєте про себе, тому тут потрібне `I`.*
+- you — *Це «ти» або «ви». Щоб запитати друга про свою готовність, почніть із `Am I`.*
+
 
 **3 · Послухайте й складіть — друг ставить запитання біля дверей**
 <!-- interaction_id: en:lesson-02:session-44:i03; family: listen_build_dictation -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i04; family: listen_choose -->
 Ціль: `I am not sure.`
 Варіанти: `I am not sure.` · `I am sure.` · `We are not sure.`
+- I am sure. — *Без `not` вийде «Я впевнений». У записі друг говорить, що не впевнений.*
+- We are not sure. — *Це «Ми не впевнені». Перше слово в записі — `I`: друг говорить про себе.*
+
 
 **5 · Вставте слово — ви перевірили час у квитку; підтвердьте другові: «Я впевнений»**
 <!-- interaction_id: en:lesson-02:session-44:i05; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `sure` · `late` · `early`
+- late — *Це «запізнився» або «запізнююся». Зараз ви підтверджуєте, що впевнені щодо часу: `sure`.*
+- early — *Це «рано». Ви говорите про впевненість у відповіді, тому потрібне `I am sure`.*
+
 
 **6 · Складіть фразу — ваші речі зібрані; повідомте другові, що ви готові**
 <!-- interaction_id: en:lesson-02:session-44:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-44:i07; family: listen_choose -->
 Ціль: `Are we early?`
 Варіанти: `Are we early?` · `Am I early?` · `Are we late?`
+- Am I early? — *Це запитання лише про себе. У записі звучить початок `Are we` — запитання про вас обох.*
+- Are we late? — *У цьому варіанті останнє слово `late`. У записі звучить `early` — «рано».*
+
 
 **8 · Вставте слово — ви зібралися біля дверей і звіряєте годинник із запланованим часом виходу; запитайте друга: «Ми виходимо раніше?»**
 <!-- interaction_id: en:lesson-02:session-44:i08; family: context_gap_grammar -->
 Ціль: `Are we ___ ?`
 Варіанти: `early` · `ready` · `sure`
+- ready — *Це запитання про готовність. Ви уточнюєте час виходу, тому потрібне `early`.*
+- sure — *Вийде «Ми впевнені?» Зараз ви запитуєте, чи випереджаєте запланований час виходу: `Are we early?`*
+
 
 **9 · З’єднайте пари — слова перед виходом**
 <!-- interaction_id: en:lesson-02:session-44:i09; family: speed_match -->
@@ -107,6 +125,9 @@
 <!-- interaction_id: en:lesson-02:session-44:i12; family: context_gap_grammar -->
 Ціль: `Are ___ early?`
 Варіанти: `we` · `I` · `she`
+- I — *Це «я». Для запитання про вас обох потрібне `we`: `Are we early?`*
+- she — *Це «вона». Ви запитуєте і про себе, і про друга, тому виберіть `we`.*
+
 
 **13 · Складіть фразу — друг назвав час відправлення з пам’яті; уточніть, чи він упевнений**
 <!-- interaction_id: en:lesson-02:session-44:i13; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-44:i14; family: listen_choose -->
 Ціль: `Are we ready?`
 Варіанти: `Are we ready?` · `Am I ready?` · `We are ready.`
+- Am I ready? — *Це запитання про особисту готовність. У записі звучить `Are we`: запитують про вас обох.*
+- We are ready. — *Це повідомлення. У записі спочатку звучить `Are we`: прозвучало запитання.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-44:i15; family: scripted_repeat_compare -->

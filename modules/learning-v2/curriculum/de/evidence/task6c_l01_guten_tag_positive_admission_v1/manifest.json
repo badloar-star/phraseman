@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-guten-tag-positive-admission-manifest.v1",
+  "status": "PASS",
+  "decision": "EXACT_POSITIVE_CANONICAL_LEXICAL_SENSE_ADMISSION",
+  "reviewStatus": "PENDING_INDEPENDENT_REVIEW",
+  "scope": {
+    "admissionScope": "DWDS_D_1_1_GREETING_HALF_LEXICAL_ONLY",
+    "sourcePlanId": "de_lex_plan_l01_c04_guten_tag_v1",
+    "canonicalSenseId": "de_lex_l01_c04_guten_tag_v1",
+    "checkpointPacketId": "de_l01_c04_s32",
+    "plannedUsePacketIds": ["de_l01_c04_s32"],
+    "firstIntroductionPacketId": null,
+    "firstScoredUsePacketId": null
+  },
+  "lexicalBoundary": {
+    "sourceSenseAnchor": "d-1-1",
+    "admittedMeaning": "höfliche Formel zur Begrüßung",
+    "pragmaticFunction": "interaction_opening",
+    "sourcePolitenessMarker": "höfliche",
+    "register": null,
+    "neutralRegisterClaim": false,
+    "formalRegisterClaim": false,
+    "unqualifiedFormalAddressClaim": false,
+    "timeOfDayScope": ["am Vormittag", "am Mittag", "am Nachmittag"],
+    "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION",
+    "occasionalFarewellTailExcluded": true,
+    "rareAngryDismissalD12Excluded": true
+  },
+  "phraseBoundary": {
+    "phraseAdmission": false,
+    "phraseAuthority": false,
+    "phraseFrameModified": false,
+    "phraseMappingModified": false,
+    "addresseeCompositionClaim": false,
+    "phraseClaims": "HALLO_EXACT_ONLY"
+  },
+  "sourceBindings": {
+    "dwdsRaw": {
+      "path": "raw/dwds_guten_tag.html",
+      "bytes": 44909,
+      "sha256": "542050aad29117960da3264eaa73dbb41ffe252b7330d1809a4dc6e47c97ebf2"
+    },
+    "dwdsMetadata": {
+      "path": "raw/dwds_guten_tag.http_metadata.json",
+      "bytes": 725,
+      "sha256": "b6ecc0a42a37f89f327d30b344ec32b18d7fa79b4995d386fe28699c41fa150b"
+    },
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "bytes": 3101,
+      "sha256": "ce73ac77e2b97229ef9ea94f47ba2b3318bead5886dfe26f4e523911af9f1e57"
+    },
+    "lexicalEvidence": {
+      "path": "lexical_evidence.json",
+      "bytes": 1970,
+      "sha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    "oldGutenTagHoldModule": {
+      "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c04_guten_tag_source_hold_de_v1.ts",
+      "sha256": "1804b07619e917f942e47f4518b4364a67150dfd16cdaf7e210aa2dfabaa68c0"
+    },
+    "oldGutenTagHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c04_guten_tag_source_hold_v1/manifest.json",
+      "sha256": "c253a9a16764f19804e320effefb5f4d9ff85e3ab1eb045f0f2aecb90dc8b7bb"
+    },
+    "oldGutenTagHoldExtractionMap": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c04_guten_tag_source_hold_v1/extraction_map.json",
+      "sha256": "b72e8f7ef2e66170cdbba46f34fffe1efffcbe07bbcb93e410636b34bbac1db6"
+    },
+    "goethePdf": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c04_guten_tag_source_hold_v1/raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085"
+    },
+    "goetheMetadata": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c04_guten_tag_source_hold_v1/raw/goethe_a1_redemittel.http_metadata.txt",
+      "sha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47"
+    },
+    "formulaicManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/manifest.json",
+      "sha256": "2c3bca21dc11dee134979bacf64520cca3ce1dce1d0bd58b16657d2f75955e98"
+    },
+    "formulaicExtractionMap": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_seven_formulaic_v1/extraction_map.json",
+      "sha256": "4cb9d040275870fe6857b222c9bad26fab46646094994a7704bb9d9f0c93c3a7"
+    },
+    "formulaicClosure": {
+      "path": "docs/v2/curriculum/de/task6c-l01-seven-formulaic-closure-v1/F.json",
+      "sha256": "48040a29b481c4c29f325f0f2529b95e6ef58e212196ac68298272a611c1e1be"
+    }
+  },
+  "predecessorBindings": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "lexicalV2": {
+      "sha256": "31934e35b5278c7a7e901d08e02da5398f3503825782acbb604d06de094726a5"
+    },
+    "task6V2": {
+      "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f"
+    },
+    "inventoryV2": {
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    },
+    "lexicalV3": {
+      "sha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "task6V3": {
+      "sha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "inventoryV3": {
+      "sha256": "702a491699774d2f0cc90c19755bc8747a0b1663ddd2e94f272b68d40ddc1d88"
+    },
+    "lexicalV4": {
+      "sha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task6V4": {
+      "sha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "inventoryV4": {
+      "sha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    },
+    "lexicalV5": {
+      "sha256": "4ed741cc0e457eff0c3500f98e6c8d62a33a951110d428ff1333075eca99a2c7"
+    },
+    "task6V5": {
+      "sha256": "9bbf41335e13dff8f97be3bbd05f21284c99e62c31d5fcb63f7b5f0ab324af91"
+    },
+    "inventoryV5": {
+      "sha256": "e1c01fa8ef727c23d128d07bbe5cf67f7c04c6539610817ba39b6e0b555fb3b4"
+    },
+    "lexicalV6": {
+      "sha256": "3d45077cba6f20e826ce3fa04732a91fec15d571ac9a0cb54923c8ec84c66e55"
+    },
+    "task6V6": {
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    "inventoryV6": {
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    },
+    "v6Closure": {
+      "sha256": "7d12e8f92cc4f190a53cbd2a04463fbd04dde42d39063b704059400e8af0577c"
+    },
+    "defaultConsumer": {
+      "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59"
+    },
+    "englishManifest": {
+      "sha256": "bfcc82ba0300eba9f706bdd82e7b2a6a9d2b5a9ea18859bff2d451b39d7fe976"
+    }
+  },
+  "artifactBindings": {
+    "lexicalV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v7.json",
+      "sha256": "a52b925ee5e6d3adbd1de87749e7722424f6fc9c1fb5a50e3f306d2ad2fce5b1"
+    },
+    "task6V7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v7.json",
+      "sha256": "29e2c6b7e379acd2fa69431e28d25eb6c1e97466555bc7751eafe05693b33195"
+    },
+    "inventoryV7": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v7.json",
+      "sha256": "d409e6cc0a909fdcf486c69308f8d2de84b2a6db688d7a90d31f933e14c0f69b"
+    }
+  },
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

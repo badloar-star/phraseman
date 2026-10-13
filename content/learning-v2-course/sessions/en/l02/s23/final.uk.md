@@ -66,6 +66,9 @@
 <!-- interaction_id: en:lesson-02:session-23:i02; family: listen_choose -->
 Ціль: `corner`
 Варіанти: `corner` · `corn` · `cover`
+- corn — *Це «кукурудза». Коротше на склад: у `corner` два, у `corn` один.*
+- cover — *«Накривати». З цієї трійки про ріг вулиці лише `corner`.*
+
 
 **3 · Картка слова — bridge**
 <!-- interaction_id: en:lesson-02:session-23:i03; family: listen_choose -->
@@ -75,11 +78,17 @@
 <!-- interaction_id: en:lesson-02:session-23:i04; family: listen_choose -->
 Ціль: `bridge`
 Варіанти: `bridge` · `fridge` · `bread`
+- fridge — *«Холодильник». Відрізняється першим звуком: `f` проти `b`.*
+- bread — *«Хліб». Голосний інший: у `bridge` чути «і», у `bread` — «е».*
+
 
 **5 · Вставте слово — вам сказали «чекайте на розі», а ви не зрозуміли на якому**
 <!-- interaction_id: en:lesson-02:session-23:i05; family: context_gap_grammar -->
 Ціль: `Where is the ___ ?`
 Варіанти: `corner` · `station` · `shops`
+- station — *«Вокзал» — про нього вас не просили, зустріч призначено на розі.*
+- shops — *«Магазини» — теж не те місце, вам назвали ріг.*
+
 
 **6 · Складіть фразу — «де міст?»**
 <!-- interaction_id: en:lesson-02:session-23:i06; family: phrase_builder -->
@@ -88,15 +97,22 @@
 **7 · Послухайте й складіть — «він поруч»**
 <!-- interaction_id: en:lesson-02:session-23:i07; family: listen_build_dictation -->
 Ціль: `It is near.`
+🔊 *It is near.* Плитки: `It` `is` `near` `behind`
+*Плитка `behind` зайва: у записі сказано `near` — «поруч», а не `behind` — «позаду».*
 
 **8 · Вставте слово — вокзал стоїть просто за рядом магазинів**
 <!-- interaction_id: en:lesson-02:session-23:i08; family: context_gap_grammar -->
 Ціль: `The station is ___ the shops.`
 Варіанти: `behind` · `near` · `corner`
+- near — *«Поруч» — але вам сказали конкретніше: вокзал саме за магазинами.*
+- corner — *Це «ріг», а не слово про те, де що стоїть.*
+
 
 **9 · Розрізніть звуки — яке з двох про «міст»?**
 <!-- interaction_id: en:lesson-02:session-23:i09; family: sound_contrast -->
 Варіанти: `bridge` · `fridge`
+- fridge — *Це «холодильник». Перший звук інший: `f` замість `b`.*
+
 
 **10 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-23:i10; family: speed_match -->
@@ -107,15 +123,23 @@
 <!-- interaction_id: en:lesson-02:session-23:i11; family: context_gap_grammar -->
 Ціль: `The shops are ___ the bridge.`
 Варіанти: `behind` · `near` · `station`
+- near — *Тоді б ви їх побачили з цього берега. Магазини відкриваються тільки за мостом.*
+- station — *«Вокзал» — це місце, а не слово про те, де воно.*
+
 
 **12 · Складіть запитання — у руці записка з назвою вулиці, а навколо незнайомий район**
 <!-- interaction_id: en:lesson-02:session-23:i12; family: phrase_builder -->
 Ціль: `Where is the street?`
+Плитки: `Where` `is` `the` `street` `it`
+*Плитка `it` зайва: запитання про місце починається з `Where is`; `It is` починає відповідь, а не запитання.*
 
 **13 · Вставте слово — ви питаєте, як пройти до поїздів**
 <!-- interaction_id: en:lesson-02:session-23:i13; family: context_gap_grammar -->
 Ціль: `Where is the ___ ?`
 Варіанти: `station` · `corner` · `bridge`
+- corner — *«Ріг» — до поїздів він не веде.*
+- bridge — *«Міст» — теж не те місце, де ходять поїзди.*
+
 
 **14 · Послухайте й складіть — «магазини за вокзалом»**
 <!-- interaction_id: en:lesson-02:session-23:i14; family: listen_build_dictation -->
@@ -124,6 +148,8 @@
 **15 · Складіть відповідь — у вас запитали про вокзал, а він за два кроки**
 <!-- interaction_id: en:lesson-02:session-23:i15; family: phrase_builder -->
 Ціль: `It is near.`
+Плитки: `It` `is` `near` `are`
+*Плитка `are` зайва: йдеться про один вокзал, тому відповідь починається з `It is`.*
 
 **16 · Послухайте й складіть — працівник біля схеми пояснює, де розташована вулиця**
 <!-- interaction_id: en:lesson-02:session-23:i16; family: listen_build_dictation -->

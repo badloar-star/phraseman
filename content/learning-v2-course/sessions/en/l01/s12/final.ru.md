@@ -93,6 +93,8 @@ You are ___ . → **brave** · calm · tired
 **6 · Соберите фразу — «я спокоен» (про себя)**
 <!-- interaction_id: en:lesson-01:session-12:i06; family: phrase_builder -->
 Плитки: `calm` `I` `am` `are` → **I am calm.**
+*(плитка `are` лишняя: После I ставят am, поэтому are здесь лишнее.)*
+
 
 **7 · Карточка слова — honest**
 <!-- interaction_id: en:lesson-01:session-12:i07; family: listen_choose -->
@@ -123,10 +125,14 @@ calm — спокойный · brave — смелый · honest — честны
 **12 · Соберите фразу — Нина прямо сказала клиенту, что сроки сорваны; скажите ей, что она честная**
 <!-- interaction_id: en:lesson-01:session-12:i12; family: phrase_builder -->
 Плитки: `You` `are` `honest` `is` → **You are honest.**
+*(плитка `is` лишняя: После You ставят are, а не is.)*
+
 
 **13 · Послушайте и соберите — Никита нашёл решение; скажите ему: «ты умный»**
 <!-- interaction_id: en:lesson-01:session-12:i13; family: listen_build_dictation -->
 🔊 *You are smart.* Плитки: `smart` `are` `You` `am` → **You are smart.**
+*(плитка `am` лишняя: Про Никиту говорят You are smart, не You am smart.)*
+
 
 **14 · Карточка слова — quiet**
 <!-- interaction_id: en:lesson-01:session-12:i14; family: listen_choose -->
@@ -141,10 +147,14 @@ I ___ sure. → **am** · are · is
 **16 · Послушайте и соберите — в библиотеке Лина говорит вполголоса; скажите: «ты тихая»**
 <!-- interaction_id: en:lesson-01:session-12:i16; family: listen_build_dictation -->
 🔊 *You are quiet.* Плитки: `You` `are` `quiet` `is` → **You are quiet.**
+*(плитка `is` лишняя: После You ставят are, а не is.)*
+
 
 **17 · Соберите фразу — Никита сверил решение с инструкцией и уверен, что оно верное**
 <!-- interaction_id: en:lesson-01:session-12:i17; family: phrase_builder -->
 Плитки: `sure` `You` `are` `am` → **You are sure.**
+*(плитка `am` лишняя: После You ставят are, поэтому am лишнее.)*
+
 
 **18 · Произнесите одну фразу — Никита показывает вам расчёт; вы сверили его и подтверждаете, что он прав**
 <!-- interaction_id: en:lesson-01:session-12:i18; family: scripted_repeat_compare -->

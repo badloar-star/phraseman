@@ -90,19 +90,73 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — на ценнике под предметом с педалями",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-36:i05:r1", "text": "bicycle" }, { "responseId": "en:lesson-03:session-36:i05:r2", "text": "flower" }, { "responseId": "en:lesson-03:session-36:i05:r3", "text": "tree" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i05:r1",
+            "text": "bicycle"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i05:r2",
+            "text": "flower"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i05:r3",
+            "text": "tree"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — на ценнике под предметом с педалями",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте слово — на ценнике под предметом с педалями", "uk": "Вставте слово — на ціннику під предметом із педалями" },
+          "localizedScene": {
+            "ru": "Вставьте слово — на ценнике под предметом с педалями",
+            "uk": "Вставте слово — на ціннику під предметом із педалями"
+          },
           "gappedTargetPhrase": "___",
-          "gapOptions": [{ "responseId": "en:lesson-03:session-36:i05:r1", "text": "bicycle" }, { "responseId": "en:lesson-03:session-36:i05:r2", "text": "flower" }, { "responseId": "en:lesson-03:session-36:i05:r3", "text": "tree" }],
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i05:r1",
+              "text": "bicycle"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r2",
+              "text": "flower"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r3",
+              "text": "tree"
+            }
+          ],
           "testedDimension": "Выбор предмета по признаку педалей",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-36:i05:r2", "correct": false, "testedDimension": "Выбор предмета по признаку педалей", "feedbackByLocale": { "ru": "`flower` — это цветок. В условии назван предмет с педалями, поэтому нужен `bicycle`.", "uk": "`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`." } },
-            { "responseId": "en:lesson-03:session-36:i05:r3", "correct": false, "testedDimension": "Выбор предмета по признаку педалей", "feedbackByLocale": { "ru": "`tree` — это дерево. Педали есть у велосипеда, поэтому нужен `bicycle`.", "uk": "`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`." } }
+            {
+              "responseId": "en:lesson-03:session-36:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "У предмета с педалями нужен `bicycle` — «велосипед».",
+                "uk": "Предмет із педалями — це `bicycle`, «велосипед»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "`flower` — это цветок. В условии назван предмет с педалями, поэтому нужен `bicycle`.",
+                "uk": "`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "`tree` — это дерево. Педали есть у велосипеда, поэтому нужен `bicycle`.",
+                "uk": "`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -194,17 +248,27 @@
         "prompt": "Произнесите слово",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-36:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i06:audio"
+        ],
         "accessibilityLabel": "Произнесите слово",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-36:i06:audio", "transcript": "bicycle" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i06:audio",
+            "transcript": "bicycle"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "bicycle",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -222,22 +286,68 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-36:i07:p1", "target": "tree", "meaningByLocale": { "ru": "дерево", "uk": "дерево" } },
-            { "pairId": "en:lesson-03:session-36:i07:p2", "target": "flower", "meaningByLocale": { "ru": "цветок", "uk": "квітка" } },
-            { "pairId": "en:lesson-03:session-36:i07:p3", "target": "bicycle", "meaningByLocale": { "ru": "велосипед", "uk": "велосипед" } },
-            { "pairId": "en:lesson-03:session-36:i07:p4", "target": "frame", "meaningByLocale": { "ru": "рамка", "uk": "рамка" } }
+            {
+              "pairId": "en:lesson-03:session-36:i07:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p2",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p3",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p4",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            }
           ],
-          "leftColumn": ["tree", "flower", "bicycle", "frame"],
-          "rightColumn": ["дерево", "цветок", "велосипед", "рамка"],
+          "leftColumn": [
+            "tree",
+            "flower",
+            "bicycle",
+            "frame"
+          ],
+          "rightColumn": [
+            "дерево",
+            "цветок",
+            "велосипед",
+            "рамка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-36:i08",
-        "ordinal": 10,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -266,7 +376,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-36:i09",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -291,13 +401,14 @@
             "a",
             "frame"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-36:i10",
-        "ordinal": 12,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -360,7 +471,35 @@
             "are",
             "flowers"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "в записи один цветок, поэтому начало `That is`.",
+                "uk": "у записі одна квітка, тому початок `That is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d2",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "с одним цветком нужна форма `is`.",
+                "uk": "з однією квіткою потрібна форма `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d3",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "в записи один `flower`, не несколько цветов.",
+                "uk": "у записі один `flower`, а не кілька квітів."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -425,6 +564,15 @@
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i12:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите точное значение фр",
+              "feedbackByLocale": {
+                "ru": "`That is` и `a bicycle` указывают на один велосипед.",
+                "uk": "`That is` і `a bicycle` указують на один велосипед."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-36:i12:r2",
               "correct": false,
@@ -511,8 +659,17 @@
               "text": "be"
             }
           ],
-          "testedDimension": "Вставьте форму — за стеклом несколько ве",
+          "testedDimension": "Вставьте форму — за стеклом несколько велосипедов",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставьте форму — за стеклом несколько ве",
+              "feedbackByLocale": {
+                "ru": "После `Those` и нескольких велосипедов нужна форма `are`.",
+                "uk": "Після `Those` і кількох велосипедів потрібна форма `are`."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-36:i13:r2",
               "correct": false,
@@ -573,7 +730,44 @@
             "a",
             "bicycle"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "здесь несколько велосипедов, поэтому нужно `Those`.",
+                "uk": "тут кілька велосипедів, тому потрібно `Those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "с несколькими велосипедами нужна форма `are`.",
+                "uk": "з кількома велосипедами потрібна форма `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d3",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "перед несколькими велосипедами артикль `a` не ставят.",
+                "uk": "перед кількома велосипедами артикль `a` не ставлять."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d4",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "здесь несколько `bicycles`.",
+                "uk": "тут кілька `bicycles`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -639,7 +833,17 @@
           "authoredDistractorTokens": [
             "photo"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i16:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите одну фразу — несколько цветов",
+              "feedbackByLocale": {
+                "ru": "в записи несколько цветов, не фотография.",
+                "uk": "у записі кілька квітів, а не фотографія."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -763,7 +967,8 @@
             "are",
             "bicycles."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -854,19 +1059,73 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Вставте слово — на ціннику під предметом із педалями",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-36:i05:r1", "text": "bicycle" }, { "responseId": "en:lesson-03:session-36:i05:r2", "text": "flower" }, { "responseId": "en:lesson-03:session-36:i05:r3", "text": "tree" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-36:i05:r1",
+            "text": "bicycle"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i05:r2",
+            "text": "flower"
+          },
+          {
+            "responseId": "en:lesson-03:session-36:i05:r3",
+            "text": "tree"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — на ціннику під предметом із педалями",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вставьте слово — на ценнике под предметом с педалями", "uk": "Вставте слово — на ціннику під предметом із педалями" },
+          "localizedScene": {
+            "ru": "Вставьте слово — на ценнике под предметом с педалями",
+            "uk": "Вставте слово — на ціннику під предметом із педалями"
+          },
           "gappedTargetPhrase": "___",
-          "gapOptions": [{ "responseId": "en:lesson-03:session-36:i05:r1", "text": "bicycle" }, { "responseId": "en:lesson-03:session-36:i05:r2", "text": "flower" }, { "responseId": "en:lesson-03:session-36:i05:r3", "text": "tree" }],
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-36:i05:r1",
+              "text": "bicycle"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r2",
+              "text": "flower"
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r3",
+              "text": "tree"
+            }
+          ],
           "testedDimension": "Вибір предмета за ознакою педалей",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-36:i05:r2", "correct": false, "testedDimension": "Вибір предмета за ознакою педалей", "feedbackByLocale": { "ru": "`flower` — это цветок. В условии назван предмет с педалями, поэтому нужен `bicycle`.", "uk": "`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`." } },
-            { "responseId": "en:lesson-03:session-36:i05:r3", "correct": false, "testedDimension": "Вибір предмета за ознакою педалей", "feedbackByLocale": { "ru": "`tree` — это дерево. Педали есть у велосипеда, поэтому нужен `bicycle`.", "uk": "`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`." } }
+            {
+              "responseId": "en:lesson-03:session-36:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "У предмета с педалями нужен `bicycle` — «велосипед».",
+                "uk": "Предмет із педалями — це `bicycle`, «велосипед»."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "`flower` — это цветок. В условии назван предмет с педалями, поэтому нужен `bicycle`.",
+                "uk": "`flower` — це квітка. В умові названо предмет із педалями, тому потрібне `bicycle`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i05:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — на ценнике под предмето",
+              "feedbackByLocale": {
+                "ru": "`tree` — это дерево. Педали есть у велосипеда, поэтому нужен `bicycle`.",
+                "uk": "`tree` — це дерево. Педалі є у велосипеда, тому потрібне `bicycle`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -958,17 +1217,27 @@
         "prompt": "Промовте слово",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-36:i06:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-36:i06:audio"
+        ],
         "accessibilityLabel": "Промовте слово",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-36:i06:audio", "transcript": "bicycle" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-36:i06:audio",
+            "transcript": "bicycle"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "bicycle",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -986,22 +1255,68 @@
         "modePayload": {
           "family": "speed_match",
           "pairGrid": [
-            { "pairId": "en:lesson-03:session-36:i07:p1", "target": "tree", "meaningByLocale": { "ru": "дерево", "uk": "дерево" } },
-            { "pairId": "en:lesson-03:session-36:i07:p2", "target": "flower", "meaningByLocale": { "ru": "цветок", "uk": "квітка" } },
-            { "pairId": "en:lesson-03:session-36:i07:p3", "target": "bicycle", "meaningByLocale": { "ru": "велосипед", "uk": "велосипед" } },
-            { "pairId": "en:lesson-03:session-36:i07:p4", "target": "frame", "meaningByLocale": { "ru": "рамка", "uk": "рамка" } }
+            {
+              "pairId": "en:lesson-03:session-36:i07:p1",
+              "target": "tree",
+              "meaningByLocale": {
+                "ru": "дерево",
+                "uk": "дерево"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p2",
+              "target": "flower",
+              "meaningByLocale": {
+                "ru": "цветок",
+                "uk": "квітка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p3",
+              "target": "bicycle",
+              "meaningByLocale": {
+                "ru": "велосипед",
+                "uk": "велосипед"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-36:i07:p4",
+              "target": "frame",
+              "meaningByLocale": {
+                "ru": "рамка",
+                "uk": "рамка"
+              }
+            }
           ],
-          "leftColumn": ["tree", "flower", "bicycle", "frame"],
-          "rightColumn": ["дерево", "квітка", "велосипед", "рамка"],
+          "leftColumn": [
+            "tree",
+            "flower",
+            "bicycle",
+            "frame"
+          ],
+          "rightColumn": [
+            "дерево",
+            "квітка",
+            "велосипед",
+            "рамка"
+          ],
           "pairingKey": "pair_id",
-          "timerPolicy": { "enabledByDefault": true, "learnerCanDisable": true, "pausesOnInterruption": true },
-          "finishStats": ["speed", "accuracy", "personal_best"]
+          "timerPolicy": {
+            "enabledByDefault": true,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "speed",
+            "accuracy",
+            "personal_best"
+          ]
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-36:i08",
-        "ordinal": 10,
+        "ordinal": 11,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
@@ -1030,7 +1345,7 @@
       },
       {
         "interactionId": "en:lesson-03:session-36:i09",
-        "ordinal": 11,
+        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
@@ -1055,13 +1370,14 @@
             "a",
             "frame"
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
       {
         "interactionId": "en:lesson-03:session-36:i10",
-        "ordinal": 12,
+        "ordinal": 13,
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
@@ -1124,7 +1440,35 @@
             "are",
             "flowers"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "в записи один цветок, поэтому начало `That is`.",
+                "uk": "у записі одна квітка, тому початок `That is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d2",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "с одним цветком нужна форма `is`.",
+                "uk": "з однією квіткою потрібна форма `is`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i11:tile:d3",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — за стеклом один цветок",
+              "feedbackByLocale": {
+                "ru": "в записи один `flower`, не несколько цветов.",
+                "uk": "у записі один `flower`, а не кілька квітів."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1189,6 +1533,15 @@
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i12:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите точное значение фр",
+              "feedbackByLocale": {
+                "ru": "`That is` и `a bicycle` указывают на один велосипед.",
+                "uk": "`That is` і `a bicycle` указують на один велосипед."
+              }
+            },
             {
               "responseId": "en:lesson-03:session-36:i12:r2",
               "correct": false,
@@ -1278,6 +1631,15 @@
           "testedDimension": "Вставьте форму — за стеклом несколько ве",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-03:session-36:i13:r1",
+              "correct": true,
+              "testedDimension": "Вставьте форму — за стеклом несколько ве",
+              "feedbackByLocale": {
+                "ru": "После `Those` и нескольких велосипедов нужна форма `are`.",
+                "uk": "Після `Those` і кількох велосипедів потрібна форма `are`."
+              }
+            },
+            {
               "responseId": "en:lesson-03:session-36:i13:r2",
               "correct": false,
               "testedDimension": "Вставьте форму — за стеклом несколько ве",
@@ -1337,7 +1699,44 @@
             "a",
             "bicycle"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "здесь несколько велосипедов, поэтому нужно `Those`.",
+                "uk": "тут кілька велосипедів, тому потрібно `Those`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "с несколькими велосипедами нужна форма `are`.",
+                "uk": "з кількома велосипедами потрібна форма `are`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d3",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "перед несколькими велосипедами артикль `a` не ставят.",
+                "uk": "перед кількома велосипедами артикль `a` не ставлять."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-36:i14:tile:d4",
+              "correct": false,
+              "testedDimension": "Соберите описание — за стеклом несколько велосипедов",
+              "feedbackByLocale": {
+                "ru": "здесь несколько `bicycles`.",
+                "uk": "тут кілька `bicycles`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1403,7 +1802,17 @@
           "authoredDistractorTokens": [
             "photo"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-03:session-36:i16:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите одну фразу — несколько цветов",
+              "feedbackByLocale": {
+                "ru": "в записи несколько цветов, не фотография.",
+                "uk": "у записі кілька квітів, а не фотографія."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1527,7 +1936,8 @@
             "are",
             "bicycles."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1540,24 +1950,24 @@
       "correctResponseId": "en:lesson-03:session-36:i01:r1"
     },
     {
-      "interactionId": "en:lesson-03:session-36:i02",
-      "correctText": "tree",
+      "interactionId": "en:lesson-03:session-36:i03",
+      "correctText": "flower",
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-03:session-36:i03",
-      "correctText": "flower",
+      "interactionId": "en:lesson-03:session-36:i05",
+      "correctText": "bicycle",
+      "correctResponseId": "en:lesson-03:session-36:i05:r1"
+    },
+    {
+      "interactionId": "en:lesson-03:session-36:i02",
+      "correctText": "tree",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-03:session-36:i04",
       "correctText": "flower",
       "correctResponseId": "en:lesson-03:session-36:i04:r1"
-    },
-    {
-      "interactionId": "en:lesson-03:session-36:i05",
-      "correctText": "bicycle",
-      "correctResponseId": "en:lesson-03:session-36:i05:r1"
     },
     {
       "interactionId": "en:lesson-03:session-36:i06",

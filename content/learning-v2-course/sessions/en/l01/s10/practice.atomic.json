@@ -54,7 +54,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — early",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i02:r1",
@@ -182,7 +182,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — fast",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i04:r1",
@@ -293,8 +293,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира уже за столиком",
               "feedbackByLocale": {
-                "ru": "После `You` используют `are`, а `am` бывает только после `I`.",
-                "uk": "Після `You` використовують `are`, а `am` буває лише після `I`."
+                "ru": "после `You` используют `are`, а `am` бывает только после `I`",
+                "uk": "після `You` використовують `are`, а `am` буває лише після `I`"
               }
             }
           ]
@@ -428,7 +428,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите — quiet",
+        "prompt": "Послушайте и выберите",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i08:r1",
@@ -620,8 +620,8 @@
               "correct": false,
               "testedDimension": "Послушайте и соберите — «ты быстрая»",
               "feedbackByLocale": {
-                "ru": "Запись просит назвать скорость — `fast`, а не время прихода.",
-                "uk": "Запис просить назвати швидкість — `fast`, а не час приходу."
+                "ru": "запись просит назвать скорость — `fast`, а не время прихода",
+                "uk": "запис просить назвати швидкість — `fast`, а не час приходу"
               }
             }
           ]
@@ -766,8 +766,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
               "feedbackByLocale": {
-                "ru": "С `You` используют `are`, а не `is`.",
-                "uk": "З `You` використовують `are`, а не `is`."
+                "ru": "с `You` используют `are`, а не `is`",
+                "uk": "з `You` використовують `are`, а не `is`"
               }
             }
           ]
@@ -884,8 +884,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — Мира уже надела куртку и стоит у двери",
               "feedbackByLocale": {
-                "ru": "У двери Мира готова идти — `ready`, а не «занята».",
-                "uk": "Біля дверей Міра готова йти — `ready`, а не «зайнята»."
+                "ru": "у двери Мира готова идти — `ready`, а не «занята»",
+                "uk": "біля дверей Міра готова йти — `ready`, а не «зайнята»"
               }
             }
           ]
@@ -1064,8 +1064,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
               "feedbackByLocale": {
-                "ru": "После `I` используют `am`, а не `is`.",
-                "uk": "Після `I` використовують `am`, а не `is`."
+                "ru": "после `I` используют `am`, а не `is`",
+                "uk": "після `I` використовують `am`, а не `is`"
               }
             },
             {
@@ -1073,8 +1073,8 @@
               "correct": false,
               "testedDimension": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
               "feedbackByLocale": {
-                "ru": "Вы говорите, что устали, поэтому отрицание не нужно.",
-                "uk": "Ви кажете, що втомилися, тому заперечення не потрібне."
+                "ru": "вы говорите, что устали, поэтому отрицание не нужно",
+                "uk": "ви кажете, що втомилися, тому заперечення не потрібне"
               }
             }
           ]
@@ -1165,7 +1165,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — early",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i02:r1",
@@ -1293,7 +1293,7 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — fast",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i04:r1",
@@ -1402,10 +1402,10 @@
             {
               "responseId": "en:lesson-01:session-10:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра вже за столиком",
+              "testedDimension": "Соберите фразу — Мира уже за столиком",
               "feedbackByLocale": {
-                "ru": "После `You` используют `are`, а `am` бывает только после `I`.",
-                "uk": "Після `You` використовують `are`, а `am` буває лише після `I`."
+                "ru": "после `You` используют `are`, а `am` бывает только после `I`",
+                "uk": "після `You` використовують `are`, а `am` буває лише після `I`"
               }
             }
           ]
@@ -1539,7 +1539,7 @@
         "purpose": "guided_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть — quiet",
+        "prompt": "Послухайте і виберіть",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-10:i08:r1",
@@ -1729,10 +1729,10 @@
             {
               "responseId": "en:lesson-01:session-10:i10:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «ти швидка»",
+              "testedDimension": "Послушайте и соберите — «ты быстрая»",
               "feedbackByLocale": {
-                "ru": "Запись просит назвать скорость — `fast`, а не время прихода.",
-                "uk": "Запис просить назвати швидкість — `fast`, а не час приходу."
+                "ru": "запись просит назвать скорость — `fast`, а не время прихода",
+                "uk": "запис просить назвати швидкість — `fast`, а не час приходу"
               }
             }
           ]
@@ -1875,10 +1875,10 @@
             {
               "responseId": "en:lesson-01:session-10:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра мовчить над порожнім горнятком; скажіть їй про це",
+              "testedDimension": "Соберите фразу — Мира молчит над пустой чашкой; скажите ей об этом",
               "feedbackByLocale": {
-                "ru": "С `You` используют `are`, а не `is`.",
-                "uk": "З `You` використовують `are`, а не `is`."
+                "ru": "с `You` используют `are`, а не `is`",
+                "uk": "з `You` використовують `are`, а не `is`"
               }
             }
           ]
@@ -1993,10 +1993,10 @@
             {
               "responseId": "en:lesson-01:session-10:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Міра вже вдягла куртку і стоїть біля дверей",
+              "testedDimension": "Соберите фразу — Мира уже надела куртку и стоит у двери",
               "feedbackByLocale": {
-                "ru": "У двери Мира готова идти — `ready`, а не «занята».",
-                "uk": "Біля дверей Міра готова йти — `ready`, а не «зайнята»."
+                "ru": "у двери Мира готова идти — `ready`, а не «занята»",
+                "uk": "біля дверей Міра готова йти — `ready`, а не «зайнята»"
               }
             }
           ]
@@ -2173,19 +2173,19 @@
             {
               "responseId": "en:lesson-01:session-10:i19:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+              "testedDimension": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
               "feedbackByLocale": {
-                "ru": "После `I` используют `am`, а не `is`.",
-                "uk": "Після `I` використовують `am`, а не `is`."
+                "ru": "после `I` используют `am`, а не `is`",
+                "uk": "після `I` використовують `am`, а не `is`"
               }
             },
             {
               "responseId": "en:lesson-01:session-10:i19:tile:d2",
               "correct": false,
-              "testedDimension": "Складіть фразу — після довгої дороги ви кажете Олегові, що втомилися",
+              "testedDimension": "Соберите фразу — после долгой дороги вы говорите Олегу, что устали",
               "feedbackByLocale": {
-                "ru": "Вы говорите, что устали, поэтому отрицание не нужно.",
-                "uk": "Ви кажете, що втомилися, тому заперечення не потрібне."
+                "ru": "вы говорите, что устали, поэтому отрицание не нужно",
+                "uk": "ви кажете, що втомилися, тому заперечення не потрібне"
               }
             }
           ]

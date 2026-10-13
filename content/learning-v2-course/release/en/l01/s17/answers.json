@@ -37,7 +37,7 @@
   {
     "interactionId": "en:lesson-01:session-17:i08",
     "correctText": "new",
-    "correctResponseId": null
+    "correctResponseId": "en:lesson-01:session-17:i08:r1"
   },
   {
     "interactionId": "en:lesson-01:session-17:i09",
@@ -56,8 +56,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-17:i12",
-    "correctText": "tired",
-    "correctResponseId": "en:lesson-01:session-17:i12:r1"
+    "correctText": "He is tired.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-17:i13",

@@ -88,12 +88,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Выберите название — на ближней полке стоит сапог",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i05:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i05:r2", "text": "belt" }, { "responseId": "en:lesson-03:session-31:i05:r3", "text": "hat" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i05:r1",
+            "text": "boot"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i05:r2",
+            "text": "belt"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i05:r3",
+            "text": "hat"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Выберите название — на ближней полке стоит сапог",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На ближней полке стоит сапог. Выберите его название.", "uk": "На ближній полиці стоїть чобіт. Виберіть його назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-31:i05:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i05:r2", "text": "belt" }, { "responseId": "en:lesson-03:session-31:i05:r3", "text": "hat" }], "testedDimension": "Сапог на полке: boot", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i05:r2", "correct": false, "testedDimension": "Сапог на полке: boot", "feedbackByLocale": { "ru": "Belt — ремень. Здесь нужен сапог: boot.", "uk": "Belt — ремінь. Тут потрібен чобіт: boot." } }, { "responseId": "en:lesson-03:session-31:i05:r3", "correct": false, "testedDimension": "Сапог на полке: boot", "feedbackByLocale": { "ru": "Hat — шляпа. Здесь нужен сапог: boot.", "uk": "Hat — капелюх. Тут потрібен чобіт: boot." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите название — на ближней полке стоит сапог",
+            "uk": "На ближній полиці стоїть чобіт. Виберіть його назву."
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-31:i05:r1",
+              "text": "boot"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r2",
+              "text": "belt"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r3",
+              "text": "hat"
+            }
+          ],
+          "testedDimension": "Сапог на полке: boot",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Сапог на полке: boot",
+              "feedbackByLocale": {
+                "ru": "Belt — ремень. Здесь нужен сапог: boot.",
+                "uk": "Belt — ремінь. Тут потрібен чобіт: boot."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Сапог на полке: boot",
+              "feedbackByLocale": {
+                "ru": "Hat — шляпа. Здесь нужен сапог: boot.",
+                "uk": "Hat — капелюх. Тут потрібен чобіт: boot."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -243,12 +296,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — boot или book",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i06:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i06:r2", "text": "book" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i06:r1",
+            "text": "boot"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r2",
+            "text": "book"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-31:i06:audioA", "en:lesson-03:session-31:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-31:i06:audioA",
+          "en:lesson-03:session-31:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — boot или book",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "boot", "contrastB": "book", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-31:i06:audioA", "transcript": "boot" }, "audioB": { "audioTargetId": "en:lesson-03:session-31:i06:audioB", "transcript": "book" }, "testedPhoneticContrast": "В boot слышится долгий звук /uː/", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i06:r2", "correct": false, "testedDimension": "В boot слышится долгий звук /uː/", "feedbackByLocale": { "ru": "Book — книга. В boot гласный длиннее: boot.", "uk": "Book — книга. У boot голосний довший: boot." } }]
+          "family": "sound_contrast",
+          "contrastA": "boot",
+          "contrastB": "book",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-31:i06:audioA",
+            "transcript": "boot"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-31:i06:audioB",
+            "transcript": "book"
+          },
+          "testedPhoneticContrast": "В boot слышится долгий звук /uː/",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "В boot слышится долгий звук /uː/",
+              "feedbackByLocale": {
+                "ru": "Book — книга. В boot гласный длиннее: boot.",
+                "uk": "Book — книга. У boot голосний довший: boot."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -332,12 +421,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Выберите форму — эта вещь лежит здесь",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-31:i08:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i08:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Выберите форму — эта вещь лежит здесь",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.", "uk": "Ця річ лежить тут. Виберіть форму для одного предмета." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-31:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-31:i08:r2", "text": "are" }], "testedDimension": "Один предмет: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i08:r2", "correct": false, "testedDimension": "Один предмет: This is here.", "feedbackByLocale": { "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.", "uk": "Are — для кількох предметів. Тут один предмет: This is here." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Выберите форму — эта вещь лежит здесь",
+            "uk": "Ця річ лежить тут. Виберіть форму для одного предмета."
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-31:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i08:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Один предмет: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.",
+                "uk": "Are — для кількох предметів. Тут один предмет: This is here."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -348,12 +473,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — This или That",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-31:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-31:i09:audioA", "en:lesson-03:session-31:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-31:i09:audioA",
+          "en:lesson-03:session-31:i09:audioB"
+        ],
         "accessibilityLabel": "Различите слово — This или That",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-31:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-31:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This — предмет рядом; That — дальше", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i09:r2", "correct": false, "testedDimension": "This — предмет рядом; That — дальше", "feedbackByLocale": { "ru": "That используют для предмета дальше. Здесь предмет рядом: This.", "uk": "That використовують для предмета далі. Тут предмет поруч: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-31:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-31:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This — предмет рядом; That — дальше",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "This — предмет рядом; That — дальше",
+              "feedbackByLocale": {
+                "ru": "That используют для предмета дальше. Здесь предмет рядом: This.",
+                "uk": "That використовують для предмета далі. Тут предмет поруч: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -447,7 +608,8 @@
             "belt,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -504,7 +666,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте указатель — сапог стоит прямо п",
+          "testedDimension": "Вставьте указатель — сапог стоит прямо перед вами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-31:i13:r2",
@@ -715,7 +877,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставьте указатель — ремень уже положили",
+          "testedDimension": "Вставьте указатель — ремень уже положили на стол перед вами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-31:i16:r2",
@@ -774,7 +936,8 @@
             "hat,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -837,7 +1000,8 @@
             "boot,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -926,12 +1090,65 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Виберіть назву — на ближній полиці стоїть чобіт",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i05:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i05:r2", "text": "belt" }, { "responseId": "en:lesson-03:session-31:i05:r3", "text": "hat" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i05:r1",
+            "text": "boot"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i05:r2",
+            "text": "belt"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i05:r3",
+            "text": "hat"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Виберіть назву — на ближній полиці стоїть чобіт",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "На ближней полке стоит сапог. Выберите его название.", "uk": "На ближній полиці стоїть чобіт. Виберіть його назву." }, "gappedTargetPhrase": "___", "gapOptions": [{ "responseId": "en:lesson-03:session-31:i05:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i05:r2", "text": "belt" }, { "responseId": "en:lesson-03:session-31:i05:r3", "text": "hat" }], "testedDimension": "Чобіт на полиці: boot", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i05:r2", "correct": false, "testedDimension": "Чобіт на полиці: boot", "feedbackByLocale": { "ru": "Belt — ремень. Здесь нужен сапог: boot.", "uk": "Belt — ремінь. Тут потрібен чобіт: boot." } }, { "responseId": "en:lesson-03:session-31:i05:r3", "correct": false, "testedDimension": "Чобіт на полиці: boot", "feedbackByLocale": { "ru": "Hat — шляпа. Здесь нужен сапог: boot.", "uk": "Hat — капелюх. Тут потрібен чобіт: boot." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "На ближней полке стоит сапог. Выберите его название.",
+            "uk": "Виберіть назву — на ближній полиці стоїть чобіт"
+          },
+          "gappedTargetPhrase": "___",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-31:i05:r1",
+              "text": "boot"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r2",
+              "text": "belt"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r3",
+              "text": "hat"
+            }
+          ],
+          "testedDimension": "Чобіт на полиці: boot",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i05:r2",
+              "correct": false,
+              "testedDimension": "Чобіт на полиці: boot",
+              "feedbackByLocale": {
+                "ru": "Belt — ремень. Здесь нужен сапог: boot.",
+                "uk": "Belt — ремінь. Тут потрібен чобіт: boot."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i05:r3",
+              "correct": false,
+              "testedDimension": "Чобіт на полиці: boot",
+              "feedbackByLocale": {
+                "ru": "Hat — шляпа. Здесь нужен сапог: boot.",
+                "uk": "Hat — капелюх. Тут потрібен чобіт: boot."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1081,12 +1298,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — boot або book",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i06:r1", "text": "boot" }, { "responseId": "en:lesson-03:session-31:i06:r2", "text": "book" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i06:r1",
+            "text": "boot"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i06:r2",
+            "text": "book"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-31:i06:audioA", "en:lesson-03:session-31:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-31:i06:audioA",
+          "en:lesson-03:session-31:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — boot або book",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "boot", "contrastB": "book", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-31:i06:audioA", "transcript": "boot" }, "audioB": { "audioTargetId": "en:lesson-03:session-31:i06:audioB", "transcript": "book" }, "testedPhoneticContrast": "У boot чути довгий звук /uː/", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i06:r2", "correct": false, "testedDimension": "У boot чути довгий звук /uː/", "feedbackByLocale": { "ru": "Book — книга. В boot гласный длиннее: boot.", "uk": "Book — книга. У boot голосний довший: boot." } }]
+          "family": "sound_contrast",
+          "contrastA": "boot",
+          "contrastB": "book",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-31:i06:audioA",
+            "transcript": "boot"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-31:i06:audioB",
+            "transcript": "book"
+          },
+          "testedPhoneticContrast": "У boot чути довгий звук /uː/",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i06:r2",
+              "correct": false,
+              "testedDimension": "У boot чути довгий звук /uː/",
+              "feedbackByLocale": {
+                "ru": "Book — книга. В boot гласный длиннее: boot.",
+                "uk": "Book — книга. У boot голосний довший: boot."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1170,12 +1423,48 @@
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
         "prompt": "Виберіть форму — ця річ лежить тут",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-31:i08:r2", "text": "are" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i08:r1",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i08:r2",
+            "text": "are"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Виберіть форму — ця річ лежить тут",
         "modePayload": {
-          "family": "context_gap_grammar", "localizedScene": { "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.", "uk": "Ця річ лежить тут. Виберіть форму для одного предмета." }, "gappedTargetPhrase": "This ___ here.", "gapOptions": [{ "responseId": "en:lesson-03:session-31:i08:r1", "text": "is" }, { "responseId": "en:lesson-03:session-31:i08:r2", "text": "are" }], "testedDimension": "Один предмет: This is here.", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i08:r2", "correct": false, "testedDimension": "Один предмет: This is here.", "feedbackByLocale": { "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.", "uk": "Are — для кількох предметів. Тут один предмет: This is here." } }]
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Эта вещь лежит здесь. Выберите форму для одного предмета.",
+            "uk": "Виберіть форму — ця річ лежить тут"
+          },
+          "gappedTargetPhrase": "This ___ here.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-31:i08:r1",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-03:session-31:i08:r2",
+              "text": "are"
+            }
+          ],
+          "testedDimension": "Один предмет: This is here.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i08:r2",
+              "correct": false,
+              "testedDimension": "Один предмет: This is here.",
+              "feedbackByLocale": {
+                "ru": "Are — для нескольких предметов. Здесь один предмет: This is here.",
+                "uk": "Are — для кількох предметів. Тут один предмет: This is here."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1186,12 +1475,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — This або That",
-        "responseOptions": [{ "responseId": "en:lesson-03:session-31:i09:r1", "text": "This" }, { "responseId": "en:lesson-03:session-31:i09:r2", "text": "That" }],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-31:i09:r1",
+            "text": "This"
+          },
+          {
+            "responseId": "en:lesson-03:session-31:i09:r2",
+            "text": "That"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-31:i09:audioA", "en:lesson-03:session-31:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-31:i09:audioA",
+          "en:lesson-03:session-31:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — This або That",
         "modePayload": {
-          "family": "sound_contrast", "contrastA": "This", "contrastB": "That", "ipaA": "", "ipaB": "", "audioA": { "audioTargetId": "en:lesson-03:session-31:i09:audioA", "transcript": "This" }, "audioB": { "audioTargetId": "en:lesson-03:session-31:i09:audioB", "transcript": "That" }, "testedPhoneticContrast": "This — предмет поруч; That — далі", "choiceFeedback": [{ "responseId": "en:lesson-03:session-31:i09:r2", "correct": false, "testedDimension": "This — предмет поруч; That — далі", "feedbackByLocale": { "ru": "That используют для предмета дальше. Здесь предмет рядом: This.", "uk": "That використовують для предмета далі. Тут предмет поруч: This." } }]
+          "family": "sound_contrast",
+          "contrastA": "This",
+          "contrastB": "That",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-31:i09:audioA",
+            "transcript": "This"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-31:i09:audioB",
+            "transcript": "That"
+          },
+          "testedPhoneticContrast": "This — предмет поруч; That — далі",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-31:i09:r2",
+              "correct": false,
+              "testedDimension": "This — предмет поруч; That — далі",
+              "feedbackByLocale": {
+                "ru": "That используют для предмета дальше. Здесь предмет рядом: This.",
+                "uk": "That використовують для предмета далі. Тут предмет поруч: This."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1285,7 +1610,8 @@
             "belt,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1612,7 +1938,8 @@
             "hat,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1675,7 +2002,8 @@
             "boot,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

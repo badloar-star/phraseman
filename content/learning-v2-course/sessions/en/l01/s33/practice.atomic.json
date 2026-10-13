@@ -7,7 +7,7 @@
     "ru": [
       {
         "interactionId": "en:lesson-01:session-33:i01",
-        "ordinal": 1,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -101,9 +101,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
+              "feedbackByLocale": {
+                "ru": "`together` — «вместе»: вы с Олегом идёте не поодиночке.",
+                "uk": "`together` — «разом»: ви з Олегом ідете не окремо."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — together",
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
               "feedbackByLocale": {
                 "ru": "Другое слово, «завтра». Начало похоже, а дальше расходятся: слушайте конец.",
                 "uk": "Інше слово, «завтра». Початок схожий, а далі розходяться: слухайте кінець."
@@ -112,7 +121,7 @@
             {
               "responseId": "en:lesson-01:session-33:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — together",
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
               "feedbackByLocale": {
                 "ru": "На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.",
                 "uk": "На слух початок той самий. Слухайте, що йде далі: у `together` є закінчення `-er`."
@@ -169,8 +178,17 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — команда собралась у две",
+          "testedDimension": "Вставьте слово — команда собралась у двери",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — команда собралась у две",
+              "feedbackByLocale": {
+                "ru": "Команда — это несколько людей, поэтому `We are`.",
+                "uk": "Команда — це кілька людей, тому `We are`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i03:r2",
               "correct": false,
@@ -266,8 +284,17 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
+          "testedDimension": "Вставьте слово — вы вышли из офиса всей компанией, не поодиночке",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
+              "feedbackByLocale": {
+                "ru": "Вышли всей компанией: `together` — «вместе».",
+                "uk": "Вийшли всією компанією: `together` — «разом»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i05:r2",
               "correct": false,
@@ -319,7 +346,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «мы вместе»",
+              "feedbackByLocale": {
+                "ru": "с `We` ставят `are` — `We are together.`",
+                "uk": "з `We` ставлять `are` — `We are together`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -368,8 +405,17 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — коллега смотрит на часы",
+          "testedDimension": "Вставьте слово — коллега смотрит на часы: перерыв начался десять минут назад",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — коллега смотрит на часы",
+              "feedbackByLocale": {
+                "ru": "Перерыв начался раньше, значит вы `late` — «опоздали».",
+                "uk": "Перерва почалася раніше, отже ви `late` — «запізнилися»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i07:r2",
               "correct": false,
@@ -538,8 +584,17 @@
               "text": "He"
             }
           ],
-          "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
+          "testedDimension": "Вставьте слово — в кафе смотрят на вас четверых: один столик или разные?",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
+              "feedbackByLocale": {
+                "ru": "Вас четверо за одним столом: `We` — «мы».",
+                "uk": "Вас четверо за одним столом: `We` — «ми»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i10:r2",
               "correct": false,
@@ -685,7 +740,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит",
+              "feedbackByLocale": {
+                "ru": "с `We` нужна форма `are`.",
+                "uk": "з `We` потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -716,7 +781,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — коллега зовёт есть, все хотят",
+            "ru": "Вставьте слово — Ира зовёт всю команду обедать",
             "uk": "Вставте слово — колега кличе їсти, хочуть усі"
           },
           "gappedTargetPhrase": "We are ___ .",
@@ -737,9 +802,18 @@
           "testedDimension": "Вставьте слово — коллега зовёт есть, все",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
+              "feedbackByLocale": {
+                "ru": "Команда идёт обедать, потому что `hungry` — «голодные».",
+                "uk": "Команда йде обідати, бо `hungry` — «голодні»"
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i14:r2",
               "correct": false,
-              "testedDimension": "Вставьте слово — коллега зовёт есть, все",
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
               "feedbackByLocale": {
                 "ru": "Про компанию тут и так понятно. Вопрос был про еду.",
                 "uk": "Про гурт тут і так зрозуміло. Питання було про їжу."
@@ -748,7 +822,7 @@
             {
               "responseId": "en:lesson-01:session-33:i14:r3",
               "correct": false,
-              "testedDimension": "Вставьте слово — коллега зовёт есть, все",
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
               "feedbackByLocale": {
                 "ru": "Никто не опаздывает, все просто голодные.",
                 "uk": "Ніхто не запізнюється, усі просто голодні."
@@ -844,9 +918,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i16:s01:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
+              "feedbackByLocale": {
+                "ru": "Вся команда хочет есть: `We are hungry.`",
+                "uk": "Уся команда хоче їсти: `We are hungry`."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i16:s01:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу — вы все хотите есть",
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
               "feedbackByLocale": {
                 "ru": "Здесь речь не об опоздании: все хотят есть.",
                 "uk": "Тут не про запізнення: усі хочуть їсти."
@@ -855,7 +938,7 @@
             {
               "responseId": "en:lesson-01:session-33:i16:s01:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите фразу — вы все хотите есть",
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
               "feedbackByLocale": {
                 "ru": "Готовность — другое значение. Здесь все голодны.",
                 "uk": "Готовність — інше значення. Тут усі голодні."
@@ -929,7 +1012,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i16:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — вся команда уже в куртках и ждёт у двери",
+              "feedbackByLocale": {
+                "ru": "`We are ready.`",
+                "uk": "`We are ready`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }
@@ -937,7 +1030,7 @@
     "uk": [
       {
         "interactionId": "en:lesson-01:session-33:i01",
-        "ordinal": 1,
+        "ordinal": 4,
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
@@ -1031,9 +1124,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
+              "feedbackByLocale": {
+                "ru": "`together` — «вместе»: вы с Олегом идёте не поодиночке.",
+                "uk": "`together` — «разом»: ви з Олегом ідете не окремо."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — together",
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
               "feedbackByLocale": {
                 "ru": "Другое слово, «завтра». Начало похоже, а дальше расходятся: слушайте конец.",
                 "uk": "Інше слово, «завтра». Початок схожий, а далі розходяться: слухайте кінець."
@@ -1042,7 +1144,7 @@
             {
               "responseId": "en:lesson-01:session-33:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — together",
+              "testedDimension": "Послушайте и выберите — вы с Олегом идёт",
               "feedbackByLocale": {
                 "ru": "На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.",
                 "uk": "На слух початок той самий. Слухайте, що йде далі: у `together` є закінчення `-er`."
@@ -1099,12 +1201,21 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — команда зібралася біля д",
+          "testedDimension": "Вставте слово — команда зібралася біля дверей",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i03:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — команда собралась у две",
+              "feedbackByLocale": {
+                "ru": "Команда — это несколько людей, поэтому `We are`.",
+                "uk": "Команда — це кілька людей, тому `We are`."
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i03:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — команда зібралася біля д",
+              "testedDimension": "Вставьте слово — команда собралась у две",
               "feedbackByLocale": {
                 "ru": "`am` держится только за `I`. Для «мы» — `are`.",
                 "uk": "`am` тримається тільки за `I`. Для «ми» — `are`."
@@ -1113,7 +1224,7 @@
             {
               "responseId": "en:lesson-01:session-33:i03:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — команда зібралася біля д",
+              "testedDimension": "Вставьте слово — команда собралась у две",
               "feedbackByLocale": {
                 "ru": "`is` — про одного: он или она. Нас несколько.",
                 "uk": "`is` — про одного: він або вона. Нас кілька."
@@ -1196,12 +1307,21 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставте слово — ви вийшли з офісу всім г",
+          "testedDimension": "Вставте слово — ви вийшли з офісу всім гуртом, а не поодинці",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
+              "feedbackByLocale": {
+                "ru": "Вышли всей компанией: `together` — «вместе».",
+                "uk": "Вийшли всією компанією: `together` — «разом»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i05:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — ви вийшли з офісу всім г",
+              "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
               "feedbackByLocale": {
                 "ru": "«Готовы» — это про сборы, а не про то, что вы одной компанией.",
                 "uk": "«Готові» — це про збори, а не про те, що ви одним гуртом."
@@ -1210,7 +1330,7 @@
             {
               "responseId": "en:lesson-01:session-33:i05:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — ви вийшли з офісу всім г",
+              "testedDimension": "Вставьте слово — вы вышли из офиса всей ",
               "feedbackByLocale": {
                 "ru": "Про еду вопроса не было. Про компанию — `together`.",
                 "uk": "Про їжу питання не було. Про гурт — `together`."
@@ -1249,7 +1369,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «мы вместе»",
+              "feedbackByLocale": {
+                "ru": "с `We` ставят `are` — `We are together.`",
+                "uk": "з `We` ставлять `are` — `We are together`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1298,12 +1428,21 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — колега дивиться на годин",
+          "testedDimension": "Вставте слово — колега дивиться на годинник: перерва почалася десять хвилин тому",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — коллега смотрит на часы",
+              "feedbackByLocale": {
+                "ru": "Перерыв начался раньше, значит вы `late` — «опоздали».",
+                "uk": "Перерва почалася раніше, отже ви `late` — «запізнилися»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i07:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — колега дивиться на годин",
+              "testedDimension": "Вставьте слово — коллега смотрит на часы",
               "feedbackByLocale": {
                 "ru": "Это «рано». А вы уже задержались.",
                 "uk": "Це «рано». А ви вже затрималися."
@@ -1312,7 +1451,7 @@
             {
               "responseId": "en:lesson-01:session-33:i07:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — колега дивиться на годин",
+              "testedDimension": "Вставьте слово — коллега смотрит на часы",
               "feedbackByLocale": {
                 "ru": "«Готовы» — про сборы. Про время — `late`.",
                 "uk": "«Готові» — про збори. Про час — `late`."
@@ -1468,12 +1607,21 @@
               "text": "He"
             }
           ],
-          "testedDimension": "Вставте слово — у кав'ярні дивляться на ",
+          "testedDimension": "Вставте слово — у кав'ярні дивляться на вас чотирьох: один столик чи різні?",
           "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
+              "feedbackByLocale": {
+                "ru": "Вас четверо за одним столом: `We` — «мы».",
+                "uk": "Вас четверо за одним столом: `We` — «ми»"
+              }
+            },
             {
               "responseId": "en:lesson-01:session-33:i10:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — у кав'ярні дивляться на ",
+              "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
               "feedbackByLocale": {
                 "ru": "`I` — это один человек, поэтому с ним было бы `am`. А вас в кафе четверо.",
                 "uk": "`I` — це одна людина, тому з ним було б `am`. А вас у кав'ярні четверо."
@@ -1482,7 +1630,7 @@
             {
               "responseId": "en:lesson-01:session-33:i10:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — у кав'ярні дивляться на ",
+              "testedDimension": "Вставьте слово — в кафе смотрят на вас ч",
               "feedbackByLocale": {
                 "ru": "Это один мужчина, поэтому здесь было бы `is`.",
                 "uk": "Це один чоловік, тому тут було б `is`."
@@ -1615,7 +1763,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит",
+              "feedbackByLocale": {
+                "ru": "с `We` нужна форма `are`.",
+                "uk": "з `We` потрібна форма `are`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1647,7 +1805,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — коллега зовёт есть, все хотят",
-            "uk": "Вставте слово — колега кличе їсти, хочуть усі"
+            "uk": "Вставте слово — Іра кличе всю команду обідати"
           },
           "gappedTargetPhrase": "We are ___ .",
           "gapOptions": [
@@ -1667,9 +1825,18 @@
           "testedDimension": "Вставте слово — колега кличе їсти, хочут",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
+              "feedbackByLocale": {
+                "ru": "Команда идёт обедать, потому что `hungry` — «голодные».",
+                "uk": "Команда йде обідати, бо `hungry` — «голодні»"
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i14:r2",
               "correct": false,
-              "testedDimension": "Вставте слово — колега кличе їсти, хочут",
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
               "feedbackByLocale": {
                 "ru": "Про компанию тут и так понятно. Вопрос был про еду.",
                 "uk": "Про гурт тут і так зрозуміло. Питання було про їжу."
@@ -1678,7 +1845,7 @@
             {
               "responseId": "en:lesson-01:session-33:i14:r3",
               "correct": false,
-              "testedDimension": "Вставте слово — колега кличе їсти, хочут",
+              "testedDimension": "Вставьте слово — Ира зовёт всю команду о",
               "feedbackByLocale": {
                 "ru": "Никто не опаздывает, все просто голодные.",
                 "uk": "Ніхто не запізнюється, усі просто голодні."
@@ -1774,9 +1941,18 @@
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
             {
+              "responseId": "en:lesson-01:session-33:i16:s01:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
+              "feedbackByLocale": {
+                "ru": "Вся команда хочет есть: `We are hungry.`",
+                "uk": "Уся команда хоче їсти: `We are hungry`."
+              }
+            },
+            {
               "responseId": "en:lesson-01:session-33:i16:s01:r2",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу — ви всі хочете їсти",
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
               "feedbackByLocale": {
                 "ru": "Здесь речь не об опоздании: все хотят есть.",
                 "uk": "Тут не про запізнення: усі хочуть їсти."
@@ -1785,7 +1961,7 @@
             {
               "responseId": "en:lesson-01:session-33:i16:s01:r3",
               "correct": false,
-              "testedDimension": "Послухайте й виберіть фразу — ви всі хочете їсти",
+              "testedDimension": "Послушайте и выберите фразу — вся команд",
               "feedbackByLocale": {
                 "ru": "Готовность — другое значение. Здесь все голодны.",
                 "uk": "Готовність — інше значення. Тут усі голодні."
@@ -1859,7 +2035,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-33:i16:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — вся команда уже в куртках и ждёт у двери",
+              "feedbackByLocale": {
+                "ru": "`We are ready.`",
+                "uk": "`We are ready`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }

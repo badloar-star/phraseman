@@ -1,0 +1,215 @@
+/* PhraseMan 2.0 — «Моменты вовлечения»: ОБОЛОЧКА ПРИЛОЖЕНИЯ для телефонов галереи (этап 4, 13–14.10.2026).
+   зачем (владелец: «ВСЕ МАКЕТЫ, ВСЕ СОСТОЯНИЯ ДОЛЖНЫ БЫТЬ В СТИЛЕ ПРИЛОЖЕНИЯ PHRASEMAN 2.0», «ВСЁ СТРОГО В ТЕКУЩЕЙ ТЕМЕ»,
+   чек-лист docs/phraseman-2.0/MOCKUP_REQUIREMENTS_OWNER_2026-10-13.md): внутри телефона — только токены настоящей темы и компоненты
+   из кода. Подключается ПОСЛЕ engagement-moments.css/-v2/-v3 и переопределяет их «галерейные» токены.
+   Тема: grad_aurora «Аврора» (constants/liquidGlassThemePalette.ts, liquidGlassTokens): тёмная k=1 и светлая k=1.
+   Компоненты: V2Button (V2Kit.tsx), GlassAlertDialog, KitSheetModal, V2TabBar, EnergyBar glass/solidBolt, плашки «Тень» (SHADOW_STYLE_SPEC),
+   Пик: SpirePodium / SpireClimbDock / SpireFloorInfo / SpireFriendsRow, урок: шапка плеера learning_v2_direct_session_player_v1. */
+
+/* ---------- токены темы: ТЁМНАЯ Аврора k=1 ---------- */
+.em-ph { font-family: Inter, sans-serif;
+  --bg: #0C0D10; --bg2: #181A1F; --bg-bottom: #16181D; --tx: #FFFFFF; --sc: #BCBDC0; --mu: #BCBDC0;
+  --acc: #7EF0C8; --on: #04261D; --acc-text: #98F3D3; --acc-soft: rgba(126,240,200,.24); --acc-tile: #374A45; --acc2: #7C5CFF;
+  --cta: #7EF0C8; --cta-ink: #04261D; --control: #3A3A40; --sheet: #28282E; --card: #202B29;
+  --plate1: #212224; --plate2: #16171A; --raised1: #303134; --raised2: #1D1E21; --sheetplate1: #3A3A40; --sheetplate2: #313136;
+  --ti: rgba(255,255,255,.07); --ti2: #3A3A40; --trk: #3A3A40; --line: rgba(255,255,255,.09); --dim: rgba(0,0,0,.62);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9);
+  --good: #73CB87; --bad: #FA8079; --warn: #F0C551; --gold: #F0C551; --gold2: #8E6522; --bolt: #FFFFFF; --flame: #7EF0C8;
+  --s1: var(--plate1); --s2: var(--plate2); --so1: var(--raised1); --so2: var(--raised2);
+  color: var(--tx);
+  /* V2Backdrop: вертикальный градиент bgTop → bg до 60 % + три пятна блума (bgGlow #38E0AAB3 / #7C5CFFB3 / #38E0AAB3) */
+  background: radial-gradient(78% 36% at 6% 2%, rgba(56,224,170,.70), transparent 72%), radial-gradient(62% 32% at 108% 56%, rgba(124,92,255,.70), transparent 74%), radial-gradient(80% 28% at 26% 108%, rgba(56,224,170,.70), transparent 76%), linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
+/* ---------- токены темы: СВЕТЛАЯ Аврора k=1 ---------- */
+.em-ph.lite { --bg: #DED7F9; --bg2: #CCF1E7; --bg-bottom: #DED7F9; --tx: #111114; --sc: #5C5C63; --mu: #5B5B62;
+  --acc: #48816E; --on: #FFFFFF; --acc-text: #185E47; --acc-soft: rgba(126,240,200,.30); --acc-tile: #C2F0E2; --acc2: #5B49D6;
+  --cta: #7EF0C8; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF;
+  --plate1: #FFFFFF; --plate2: #F5F5F6; --raised1: #FFFFFF; --raised2: #FAFAFB; --sheetplate1: #FFFFFF; --sheetplate2: #F5F5F6;
+  --ti: rgba(20,20,40,.06); --ti2: #ECECEF; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(20,22,28,.45);
+  --sh: 0 14px 26px -14px rgba(10,10,20,.34), 0 1px 3px rgba(10,10,20,.06); --sh2: 0 5px 10px -5px rgba(10,10,20,.28); --sho: 0 26px 40px -14px rgba(10,10,20,.46), 0 2px 4px rgba(10,10,20,.08);
+  --good: #006F30; --bad: #AB3837; --warn: #7F5700; --gold: #7F5700; --gold2: #5A3E00; --bolt: #111114; --flame: #48816E;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
+.em-ph .sb { color: var(--tx); }
+.em-ph .sb svg { fill: var(--tx); }
+
+/* ---------- плашки «Тень» (KitSurface / homePlate) ---------- */
+.em-ph .sf { background: linear-gradient(180deg, var(--plate1), var(--plate2)); box-shadow: var(--sh); border-radius: 18px; }
+.em-ph .sf.on { background: linear-gradient(180deg, var(--raised1), var(--raised2)); box-shadow: var(--sho); transform: translateY(-3px); }
+.em-ph .sf .sf { box-shadow: var(--sh2); }
+.em-ph .home .sf { background: color-mix(in srgb, var(--plate1) 50%, transparent); } /* HOME_PLATE_ALPHA 0.5 */
+.em-ph .home .sf.on { background: color-mix(in srgb, var(--raised1) 50%, transparent); transform: none; box-shadow: var(--sh); }
+.em-ph .tone { background: var(--ti); border-radius: 14px; }
+.em-ph .row { border-radius: 14px; }
+.em-ph .row .tile { background: var(--ti); color: var(--tx); border-radius: 10px; width: 41px; height: 41px; box-shadow: var(--sh2); }
+
+/* ---------- типографика D145 ---------- */
+.em-ph .ov { font-size: 13px; line-height: 17px; letter-spacing: 1.4px; font-weight: 700; text-transform: uppercase; color: var(--sc); }
+.em-ph .h-xl { font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.6px; }
+.em-ph .h-lg { font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; }
+.em-ph .h-md { font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.em-ph .p { font-size: 16px; line-height: 22px; color: var(--sc); }
+.em-ph .small { font-size: 13px; line-height: 17px; color: var(--sc); }
+.em-ph .top .ttl { font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.5px; }
+.em-ph .io { font-family: IoniconsApp; font-style: normal; line-height: 1; display: inline-block; }
+
+/* ---------- V2Button ---------- */
+.em-ph .cta { height: 52px; border-radius: 26px; padding: 0 24px; font-size: 16px; line-height: 22px; font-weight: 700; gap: 10px; background: var(--cta); color: var(--cta-ink);
+  box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); transition: transform 240ms cubic-bezier(.3,1.4,.5,1), opacity 160ms; }
+.em-ph .cta:active { transform: scale(.97); opacity: .86; transition-duration: 90ms; }
+.em-ph .cta.white { background: var(--cta); color: var(--cta-ink); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
+.em-ph .cta.gold { background: var(--cta); color: var(--cta-ink); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
+/* secondary: bg opaqueControl + nested shadow, текст text (не сливается — владелец 13.10) */
+.em-ph .cta.ghost, .em-ph .cta.tone { background: var(--control); color: var(--tx); box-shadow: var(--sh2); height: 52px; font-weight: 700; }
+.em-ph .cta.dis { background: var(--control); color: var(--mu); box-shadow: none; opacity: .72; }
+.em-ph .cta .ar, .em-ph .cta .ar-io { position: absolute; right: 22px; }
+.em-ph .cta + .cta { margin-top: 12px; }
+.em-ph .xbtn { background: var(--control); color: var(--tx); box-shadow: var(--sh2); width: 44px; height: 44px; }
+/* круглая кнопка-значок (V2IconButton 44, glassRaised) */
+.em-ph .ib { width: 44px; height: 44px; border-radius: 22px; background: var(--control); box-shadow: var(--sh2); display: inline-flex; align-items: center; justify-content: center; color: var(--tx); flex: none; }
+.em-ph .ib .io { font-size: 20px; }
+
+/* ---------- пилюли шапки, энергия, монеты ---------- */
+.em-ph .pill { background: var(--control); box-shadow: var(--sh2); border-radius: 14px; height: 46px; padding: 0 12px; gap: 8px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--tx); }
+.em-ph .pill .io { font-size: 20px; color: var(--acc); }
+.em-ph .pill.gold { color: var(--tx); }
+.em-ph .pill.acc { background: var(--cta); color: var(--cta-ink); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
+.em-ph .pill.plus { background: var(--acc-soft); color: var(--acc-text); font-size: 13px; height: 24px; padding: 0 9px; letter-spacing: .5px; border-radius: 12px; box-shadow: none; }
+/* EnergyBar glass solidBolt: 60×28, radius 14, bg opaqueControl, болт 17 + число 16/900 */
+.em-ph .pill.en { height: 28px; width: 60px; padding: 0 4px; gap: 2px; border-radius: 14px; justify-content: center; font-size: 16px; line-height: 22px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.em-ph .pill.en .ic, .em-ph .pill.en .io { color: var(--tx); font-size: 17px; width: 17px; height: 17px; }
+.em-ph .pik .pill.en { background: transparent; box-shadow: none; width: auto; height: 37px; padding: 0 6px; }
+.em-ph .chip { background: var(--ti); color: var(--sc); font-size: 13px; line-height: 17px; font-weight: 700; height: 28px; border-radius: 14px; padding: 0 10px; }
+.em-ph .chip.lvl { background: var(--control); color: var(--tx); box-shadow: var(--sh2); }
+
+/* ---------- окна и шторки ---------- */
+/* GlassAlertDialog: radius 25, padding 20, фон opaqueSheet + plateFill, заголовок 23/800, текст 16 secondary, кнопки ряд gap 9, minHeight 44, radius 22 */
+.em-ph .modal { left: 24px; right: 24px; border-radius: 25px; padding: 20px; background: linear-gradient(180deg, var(--sheetplate1), var(--sheetplate2)); box-shadow: var(--sh); }
+.em-ph .modal .h-lg { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; }
+.em-ph .modal .p { text-align: center; margin-top: 9px; }
+.em-ph .modal .cta { min-height: 44px; height: auto; padding: 8px 12px; border-radius: 22px; }
+.em-ph .modal .acts { display: flex; gap: 9px; margin-top: 18px; }
+.em-ph .modal .acts .cta { flex: 1; margin: 0; }
+.em-ph .modal .stage { width: 68px; height: 68px; border-radius: 23px; margin: 0 auto 15px; background: var(--control); display: flex; align-items: center; justify-content: center; color: var(--tx); }
+.em-ph .modal .stage .io { font-size: 26px; }
+/* KitSheetModal: radius 28, padding 12/18/40, фон opaqueSheet, grabber 44×5 mutedText */
+.em-ph .sheet { border-radius: 28px 28px 0 0; padding: 12px 18px 40px; background: var(--sheet); box-shadow: 0 -20px 50px rgba(0,0,0,.35); }
+.em-ph .sheet .grab { width: 44px; height: 5px; background: var(--mu); margin: 0 auto 16px; border-radius: 3px; }
+.em-ph .sheet .h-md { font-size: 26px; line-height: 31px; font-weight: 800; letter-spacing: -.4px; }
+.em-ph .dim { background: var(--dim); backdrop-filter: none; -webkit-backdrop-filter: none; }
+.em-ph .toast { background: linear-gradient(180deg, var(--sheetplate1), var(--sheetplate2)); box-shadow: var(--sh); border-radius: 18px; }
+.em-ph .toast .tile { background: var(--ti); border-radius: 10px; }
+.em-ph .full { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
+.em-ph .full.clear { background: transparent; }
+.em-ph .glowspot { background: radial-gradient(circle, var(--acc-soft), transparent 65%); }
+.em-ph .glowspot.gold, .em-ph .glowspot.violet, .em-ph .glowspot.red { background: radial-gradient(circle, var(--acc-soft), transparent 65%); } /* всё — из токенов текущей темы */
+.em-ph .dock::before { background: linear-gradient(180deg, transparent, var(--bg) 60%); }
+
+/* ---------- V2TabBar: капсула 66, radius 33, поля 12, активная плашка 48/18 ---------- */
+.em-ph .tabbar { position: absolute; left: 12px; right: 12px; bottom: 14px; height: 66px; border-radius: 33px; z-index: 20; display: flex; align-items: center; padding: 9px; gap: 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--control) 90%, transparent), color-mix(in srgb, var(--bg-bottom) 94%, transparent)); box-shadow: 0 14px 20px rgba(0,0,0,.55); }
+.em-ph.lite .tabbar { box-shadow: 0 10px 20px rgba(10,10,20,.22); }
+.em-ph .tabbar .tb { flex: 1; height: 48px; border-radius: 18px; display: flex; align-items: center; justify-content: center; color: var(--mu); }
+.em-ph .tabbar .tb .io { font-size: 28px; }
+.em-ph .tabbar .tb.on { color: var(--acc); background: radial-gradient(120% 95% at 22% 0%, color-mix(in srgb, var(--acc) 32%, transparent), color-mix(in srgb, var(--acc) 16%, transparent) 55%, rgba(255,255,255,.1)); box-shadow: 0 0 11px rgba(0,0,0,.22); }
+
+/* ---------- Пик (SpirePodium / SpireClimbDock / SpireFloorInfo / SpireFriendsRow) ---------- */
+.em-ph .pik .room-h { display: flex; justify-content: space-between; align-items: baseline; margin: 26px 2px 0; font-size: 16px; line-height: 21px; font-weight: 700; }
+.em-ph .pik .room-h span { font-weight: 600; color: var(--sc); }
+.em-ph .pik .podium { display: flex; align-items: flex-end; justify-content: center; gap: 12px; margin-top: 18px; height: auto; }
+.em-ph .pik .podium .pl { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; width: auto; }
+.em-ph .pik .podium .pl .nm { font-size: 16px; font-weight: 700; max-width: 110px; }
+.em-ph .pik .podium .pl .sp { font-size: 13px; color: var(--sc); }
+.em-ph .pik .podium .pl .blk { width: 100%; border-radius: 14px 14px 6px 6px; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-size: 20px; font-weight: 700; background: linear-gradient(180deg, var(--plate1), var(--plate2)); box-shadow: var(--sh); color: var(--tx); animation: none; transform: none; }
+.em-ph .pik .podium .pl.p1 .blk { height: 88px; background: var(--control); }
+.em-ph .pik .podium .pl.p2 .blk { height: 66px; } .em-ph .pik .podium .pl.p3 .blk { height: 50px; }
+.em-ph .pik .allbtn { margin-top: 16px; min-height: 52px; border-radius: 26px; background: var(--control); box-shadow: var(--sh2); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: var(--tx); }
+.em-ph .pik .finfo { margin-top: 12px; min-height: 72px; padding: 14px 16px; border-radius: 16px; display: flex; align-items: center; gap: 12px; }
+.em-ph .pik .finfo .tt { font-size: 16px; line-height: 21px; font-weight: 700; } .em-ph .pik .finfo .st { font-size: 16px; line-height: 20px; color: var(--sc); margin-top: 2px; }
+.em-ph .pik .finfo .who { display: flex; } .em-ph .pik .finfo .who img { width: 28px; height: 28px; border-radius: 50%; margin-left: -8px; } .em-ph .pik .finfo .who img:first-child { margin-left: 0; }
+.em-ph .pik .frh { margin: 26px 0 12px; font-size: 16px; line-height: 21px; font-weight: 700; }
+.em-ph .pik .friends { display: flex; gap: 10px; overflow: hidden; }
+.em-ph .pik .fr { flex: none; display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 14px 0 8px; border-radius: 23px; background: var(--control); box-shadow: var(--sh2); font-size: 16px; font-weight: 700; }
+.em-ph .pik .fr img { width: 30px; height: 30px; border-radius: 50%; } .em-ph .pik .fr span { color: var(--sc); }
+.em-ph .pik .spire-window { margin-top: 18px; }
+.em-ph .pik .dock .cta { min-height: 52px; }
+.em-ph .pik .dock .note { font-size: 13px; line-height: 18px; text-align: center; color: var(--sc); margin-bottom: 10px; }
+.em-ph .pik .dock .pluslink { height: 44px; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 700; color: var(--tx); }
+/* Итог недели (SpireWeekResultCard): radius 20, padding 16, cardRaised, башня 58×103, монета 26 в углу, overline 13/2, заголовок 19/24, подзаголовок 16 */
+.em-ph .pik .week { margin-top: 16px; border-radius: 20px; padding: 16px; display: flex; gap: 14px; align-items: center; background: linear-gradient(180deg, var(--raised1), var(--raised2)); box-shadow: var(--sh); }
+.em-ph .pik .week .mt { position: relative; width: 58px; height: 103px; flex: none; }
+.em-ph .pik .week .mt svg { display: block; width: 58px; height: auto; }
+.em-ph .pik .week .mt .coin { position: absolute; right: -9px; bottom: -5px; width: 26px; height: 26px; border-radius: 50%; box-shadow: 0 0 0 3px var(--raised2); }
+.em-ph .pik .week .ov { letter-spacing: 2px; }
+.em-ph .pik .week .ti { font-size: 19px; line-height: 24px; font-weight: 700; margin-top: 6px; }
+.em-ph .pik .week .su { font-size: 16px; line-height: 21px; color: var(--sc); margin-top: 4px; }
+
+/* ---------- лестница участников («Все участники») ---------- */
+.em-ph .lrow { border-radius: 14px; background: linear-gradient(180deg, var(--plate1), var(--plate2)); box-shadow: var(--sh2); }
+.em-ph .lrow.me { background: linear-gradient(180deg, var(--raised1), var(--raised2)); box-shadow: var(--sh); }
+.em-ph .lrow .pos { color: var(--sc); } .em-ph .lrow .pt { color: var(--sc); font-size: 16px; } .em-ph .lrow.me .pt { color: var(--tx); }
+
+/* ---------- урок: шапка плеера ---------- */
+.em-ph .lesson-top { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.em-ph .lesson-top .cnt { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; margin-top: 5px; }
+.em-ph .bar { height: 6px; border-radius: 3px; background: var(--control); }
+.em-ph .bar i { background: var(--acc); border-radius: 3px; min-width: 4%; }
+.em-ph .heat { height: 6px; border-radius: 3px; background: var(--control); }
+.em-ph .heat > i { background: var(--acc); }
+.em-ph .heat.h2 > i { background: linear-gradient(90deg, var(--acc), var(--warn)); box-shadow: 0 0 14px color-mix(in srgb, var(--warn) 50%, transparent); }
+.em-ph .heat.h3 > i { background: linear-gradient(90deg, var(--acc), var(--warn) 60%, var(--bad)); box-shadow: 0 0 22px color-mix(in srgb, var(--bad) 60%, transparent); }
+.em-ph .heat .tip { background: var(--control); color: var(--tx); box-shadow: var(--sh2); }
+.em-ph .heat .tip::after { background: var(--control); }
+.em-ph .q-under .opt, .em-ph .opt { border-radius: 14px; background: linear-gradient(180deg, var(--plate1), var(--plate2)); box-shadow: var(--sh2); font-size: 16px; }
+.em-ph .q-under .opt.ok { background: color-mix(in srgb, var(--good) 16%, var(--plate1)); color: var(--good); }
+.em-ph .q-under .opt.no { background: color-mix(in srgb, var(--bad) 16%, var(--plate1)); color: var(--bad); }
+.em-ph .opt.burn { background: color-mix(in srgb, var(--warn) 20%, var(--plate1)); color: var(--warn); }
+
+/* ---------- персонаж-монета: реплика — как GlassAlertDialog, из токенов ---------- */
+.em-ph .cc .say { background: linear-gradient(180deg, var(--sheetplate1), var(--sheetplate2)); color: var(--tx); box-shadow: var(--sh); font-size: 16px; }
+.em-ph .cc .say.gold { background: var(--cta); color: var(--cta-ink); }
+.em-ph .cc .crown svg path { fill: var(--acc); stroke: color-mix(in srgb, var(--acc) 60%, #000); }
+
+/* ---------- стоп «галерейных» цветов: всё из токенов ---------- */
+.em-ph .stamp { border: none; background: var(--control); color: var(--acc-text); box-shadow: var(--sh); letter-spacing: 4px; }
+.em-ph .sharecard { background: linear-gradient(180deg, var(--raised1), var(--raised2)) !important; color: var(--tx); box-shadow: var(--sho); }
+.em-ph .sharecard .brand { color: var(--sc); }
+.em-ph .fw, .em-ph .pour, .em-ph .fly { background: var(--acc); }
+.em-ph .fwcore { background: var(--acc); }
+.em-ph .combo-badge { background: var(--control); color: var(--acc-text); box-shadow: var(--sh2); }
+.em-ph .combo-badge.l3 { background: var(--cta); color: var(--cta-ink); }
+.em-ph .bigcombo b { background: linear-gradient(180deg, var(--tx), var(--acc)); -webkit-background-clip: text; background-clip: text; }
+.em-ph .bigcombo span { color: var(--acc); }
+.em-ph svg.zap path { stroke: var(--acc); filter: drop-shadow(0 0 10px var(--acc)); }
+.em-ph .edge { animation-name: emEdgeAcc; }
+@keyframes emEdgeAcc { 0% { box-shadow: inset 0 0 0 0 transparent; } 25% { box-shadow: inset 0 0 90px -20px var(--acc); } 100% { box-shadow: inset 0 0 0 0 transparent; } }
+.em-ph .vignette { background: radial-gradient(ellipse at center, transparent 50%, var(--acc-soft) 100%); }
+.em-ph .vignette.cold { background: radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--acc2) 35%, transparent) 100%); }
+.em-ph .zone { background: linear-gradient(90deg, var(--good) 0 17%, var(--control) 17%); }
+.em-ph .zone-line { background: var(--acc); box-shadow: 0 0 12px var(--acc); } .em-ph .zone-lbl { color: var(--acc-text); }
+.em-ph .delta { color: var(--good); }
+.em-ph .dusk, .em-ph .sky .stars, .em-ph .poster, .em-ph .ice, .em-ph .fog { background: transparent; }
+.em-ph .sky { background: transparent; }
+.em-ph .lgtag { background: var(--control); box-shadow: var(--sh2); color: var(--tx); }
+.em-ph .lgs .lg i { box-shadow: none; }
+.em-ph .mint { background: var(--bg); }
+.em-ph .mint .press { background: linear-gradient(90deg, transparent, var(--acc), transparent); }
+.em-ph .call { background: linear-gradient(180deg, var(--bg2), var(--bg) 60%); }
+.em-ph .call .b.ok { background: var(--cta); color: var(--cta-ink); box-shadow: 0 10px 30px color-mix(in srgb, var(--cta) 50%, transparent); }
+.em-ph .call .b.no { background: var(--control); color: var(--tx); }
+.em-ph .bub.them { background: var(--control); color: var(--tx); }
+.em-ph .bub.me { background: var(--cta); color: var(--cta-ink); }
+.em-ph .bub.them.k-cafe, .em-ph .bub.them.k-pharm, .em-ph .bub.them.k-doc { background: var(--control); color: var(--tx); }
+.em-ph .receipt { background: var(--control); color: var(--tx); box-shadow: var(--sh2); }
+.em-ph .hintchip, .em-ph .ghostin, .em-ph .scene-bar { background: var(--control); box-shadow: var(--sh2); color: var(--sc); }
+.em-ph .ghostin .mic { background: var(--cta); color: var(--cta-ink); }
+.em-ph .chips .ch { background: var(--control); color: var(--tx); box-shadow: var(--sh2); }
+.em-ph .who .av { background: var(--control); box-shadow: var(--sh2); }
+.em-ph .goal .n.ok, .em-ph .goalline .n.ok { background: var(--acc); color: var(--on); }
+.em-ph .frame-gold { display: none; }
+.em-ph .hap { position: absolute; right: -64px; top: 50%; transform: translateY(-50%); width: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; font: 700 10px Inter, sans-serif; color: #D6B4FF; opacity: 0; pointer-events: none; z-index: 90; }
+.em-ph-wrap { position: relative; }
+.em-ph-wrap .hap { position: absolute; right: -64px; top: 50%; transform: translateY(-50%); width: 52px; display: flex; flex-direction: column; align-items: center; gap: 4px; font: 700 10px Inter, sans-serif; color: #D6B4FF; opacity: 0; pointer-events: none; z-index: 90; }
+.em-ph-wrap .hap.on { animation: emHapIn 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes emHapIn { 0% { opacity: 0; transform: translateY(-50%) scale(.6); } 20% { opacity: 1; transform: translateY(-50%) scale(1.15); } 100% { opacity: 0; transform: translateY(-50%) scale(1); } }
+.em-ph-wrap .hap i { width: 22px; height: 22px; border-radius: 50%; background: #D6B4FF; box-shadow: 0 0 0 4px rgba(214,180,255,.25), 0 0 0 9px rgba(214,180,255,.1); }
+.em-ph-wrap .hap.light i { transform: scale(.7); } .em-ph-wrap .hap.heavy i, .em-ph-wrap .hap.rigid i { transform: scale(1.25); }
+.em-var .lbl .req { margin-left: auto; font-size: 11px; font-weight: 700; color: #8BE5B6; letter-spacing: .5px; }

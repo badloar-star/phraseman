@@ -1,0 +1,7 @@
+canonical-url: https://www.dwds.de/wb/sein
+requested-url: https://www.dwds.de/wb/sein
+http-status: 200
+content-type: text/html; charset=UTF-8
+transport: DIRECT_PUBLIC_HTTPS
+body-sha256: bcc581983ae4bb68c698ab512ac0bf15e522fdde800bc87b0b898d573761d915
+body-bytes: 220384

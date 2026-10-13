@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c02-tschuess-source-extraction-map.v1",
+  "rawSources": {
+    "dwds": {
+      "requestedUrl": "https://www.dwds.de/wb/tsch%C3%BCss",
+      "canonicalUrl": "https://www.dwds.de/wb/Tsch%C3%BCss",
+      "path": "raw/dwds_tschuess.html",
+      "sha256": "78c9f5c885d69b0719a5910e207c5f73113ef4ea7cbf45c57a794ef55df15650",
+      "bytes": 61803,
+      "metadataPath": "raw/dwds_tschuess.http_metadata.txt",
+      "metadataSha256": "19753582d54465ce04d3cc14c602f9e75adfe5ea7816ef947a5781535c2d09ef",
+      "metadataBytes": 285,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    },
+    "goetheA1Pdf": {
+      "requestedUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "path": "raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "bytes": 3685205,
+      "metadataPath": "raw/goethe_a1_redemittel.http_metadata.txt",
+      "metadataSha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47",
+      "metadataBytes": 400,
+      "transport": "DIRECT_PUBLIC_HTTPS",
+      "extractionStatus": "NOT_CLAIMED_NO_TEXT_LOCATOR_IN_THIS_PACKET"
+    }
+  },
+  "extractions": {
+    "dwdsIdentity": {
+      "title": "Tschüss – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Tschüss",
+      "sourcePartOfSpeech": "Interjektion",
+      "grammarLocator": "Formen / Grammatik",
+      "grammarSpanSha256": "3bd62a0d30a74147f14e72ff23aa04ee226863a9fd3c5f448e06a1ad71b5ff6e",
+      "grammarSpanUtf8Bytes": 193
+    },
+    "dwdsLeaveTaking": {
+      "sourceAnchor": "d-1-1",
+      "registerMarkersGerman": ["landschaftlich", "umgangssprachlich"],
+      "exactDefinitionsGerman": ["lebe wohl!", "auf Wiedersehen!"],
+      "spanSha256": "886e8ae8b66e7c5449993fcb55e89bce5892caed030927ea758ef5170fece164",
+      "spanUtf8Bytes": 593
+    }
+  },
+  "unsupportedClaims": {
+    "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCES",
+    "officialPedagogicalOccurrence": "NOT_EXTRACTED_NO_TEXT_LOCATOR_IN_THIS_PACKET",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "phraseAuthority": "OUT_OF_SCOPE"
+  }
+}

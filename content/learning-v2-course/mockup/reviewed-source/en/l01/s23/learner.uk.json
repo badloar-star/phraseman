@@ -289,7 +289,7 @@
           {
             "responseId": "en:lesson-01:session-23:i05:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — Ліна прямо каже, що Денис терплячий",
+            "testedDimension": "Соберите фразу — Лина прямо говорит, что",
             "feedbackByLocale": {
               "ru": "`am` лишнее: с `He` ставят `is` — `He is patient.`",
               "uk": "`am` зайве: з `He` ставлять `is` — `He is patient`."
@@ -327,7 +327,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — Олег бурчит на всё подряд каждый день",
-          "uk": "Вставте слово — Олег бурчить на все підряд щодня"
+          "uk": "Вставте слово — Ліна прямо каже: «Олег буркотливий»"
         },
         "gappedTargetPhrase": "He is ___ .",
         "gapOptions": [
@@ -734,7 +734,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — коллега Лина рассказывает, что Анна очень мягкая с детьми",
-          "uk": "Вставте слово — колега Ліна розповідає, що Анна дуже лагідна з дітьми"
+          "uk": "Вставте слово — Ліна прямо каже: «Анна лагідна з дітьми»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -818,7 +818,7 @@
           {
             "responseId": "en:lesson-01:session-23:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Послухайте і складіть — «вона не горда»",
+            "testedDimension": "Послушайте и соберите — «она не гордая»",
             "feedbackByLocale": {
               "ru": "`are` лишнее: с `She` ставят `is` — `She is not proud.`",
               "uk": "`are` зайве: з `She` ставлять `is` — `She is not proud`."
@@ -858,7 +858,7 @@
           {
             "responseId": "en:lesson-01:session-23:i14:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — усі навколо кричать, а Денис біля дверей стоїть спокійно",
+            "testedDimension": "Соберите фразу — все вокруг кричат, а Де",
             "feedbackByLocale": {
               "ru": "`not` лишнее: Денис спокойный, поэтому `He is calm.`, без отрицания.",
               "uk": "`not` зайве: Денис спокійний, тому `He is calm`, без заперечення."
@@ -896,7 +896,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — Анна весь день спокойно отвечает на вопросы и ни разу не повысила голос",
-          "uk": "Вставте слово — Анна весь день спокійно відповідає на запитання і жодного разу не підвищила голос"
+          "uk": "Вставте слово — Ліна прямо каже: «Анна добра, Анна всім допомагає»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -976,7 +976,7 @@
           {
             "responseId": "en:lesson-01:session-23:i16:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — Ліна бачить, як Олег грюкає дверима: він злиться",
+            "testedDimension": "Соберите фразу — Лина видит, как Олег хл",
             "feedbackByLocale": {
               "ru": "`are` лишнее: с `He` ставят `is` — `He is angry.`",
               "uk": "`are` зайве: з `He` ставлять `is` — `He is angry`."
@@ -1014,7 +1014,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вставьте слово — Анна за весь вечер не сказала ни слова",
-          "uk": "Вставте слово — Анна за весь вечір не сказала жодного слова"
+          "uk": "Вставте слово — Ліна прямо каже: «Анна тиха»"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -1170,5 +1170,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c97069e9d214a27e846298f9fd83cb096ab1d122d6f90126deb06e0863a9a893"
+  "learnerFingerprint": "963676ca8f6747c8ca1dea7a675ce1bbd40a33772238b7c847c503b278961999"
 }

@@ -90,12 +90,78 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
-        "responseOptions":[{"responseId":"en:lesson-03:session-51:i07:r1","text":"pink"},{"responseId":"en:lesson-03:session-51:i07:r2","text":"navy"},{"responseId":"en:lesson-03:session-51:i07:r3","text":"violet"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i07:r1",
+            "text": "pink"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i07:r2",
+            "text": "navy"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i07:r3",
+            "text": "violet"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-51:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i07:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-51:i07:audio","transcript":"pink"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-51:i07:r1","targetText":"pink","meaningByLocale":null},{"responseId":"en:lesson-03:session-51:i07:r2","targetText":"navy","meaningByLocale":null},{"responseId":"en:lesson-03:session-51:i07:r3","targetText":"violet","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-51:i07:r2","correct":false,"testedDimension":"Выберите услышанный цвет","feedbackByLocale":{"ru":"В записи звучит `pink`, не `navy`.","uk":"У записі звучить `pink`, не `navy`."}},{"responseId":"en:lesson-03:session-51:i07:r3","correct":false,"testedDimension":"Выберите услышанный цвет","feedbackByLocale":{"ru":"В записи звучит `pink`, не `violet`.","uk":"У записі звучить `pink`, не `violet`."}}],"isWordCard":true,"wordCard":{"word":"pink","definitionByLocale":{"ru":"«розовый». Цвет кресла на ценнике.","uk":"«рожевий». Колір крісла на ціннику."}} 
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-51:i07:audio",
+            "transcript": "pink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-51:i07:r1",
+              "targetText": "pink",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r2",
+              "targetText": "navy",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r3",
+              "targetText": "violet",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-51:i07:r2",
+              "correct": false,
+              "testedDimension": "Выберите услышанный цвет",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `pink`, не `navy`.",
+                "uk": "У записі звучить `pink`, не `navy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r3",
+              "correct": false,
+              "testedDimension": "Выберите услышанный цвет",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `pink`, не `violet`.",
+                "uk": "У записі звучить `pink`, не `violet`."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pink",
+            "definitionByLocale": {
+              "ru": "«розовый». Цвет кресла на ценнике.",
+              "uk": "«рожевий». Колір крісла на ціннику."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -189,7 +255,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соедините цвета со значениями",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-51:i08:p1","target":"pink","meaningByLocale":{"ru":"розовый","uk":"рожевий"}},{"pairId":"en:lesson-03:session-51:i08:p2","target":"box","meaningByLocale":{"ru":"коробка","uk":"коробка"}},{"pairId":"en:lesson-03:session-51:i08:p3","target":"chair","meaningByLocale":{"ru":"кресло","uk":"крісло"}},{"pairId":"en:lesson-03:session-51:i08:p4","target":"table","meaningByLocale":{"ru":"стол","uk":"стіл"}}],"leftColumn":["pink","box","chair","table"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-51:i08:p1",
+              "target": "pink",
+              "meaningByLocale": {
+                "ru": "розовый",
+                "uk": "рожевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p2",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p3",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p4",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pink",
+            "box",
+            "chair",
+            "table"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -200,12 +306,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — violet или violent",
-        "responseOptions":[{"responseId":"en:lesson-03:session-51:i01:r1","text":"violet"},{"responseId":"en:lesson-03:session-51:i01:r2","text":"violent"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i01:r1",
+            "text": "violet"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i01:r2",
+            "text": "violent"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds":["en:lesson-03:session-51:i01:audioA","en:lesson-03:session-51:i01:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i01:audioA",
+          "en:lesson-03:session-51:i01:audioB"
+        ],
         "accessibilityLabel": "Различите слово — violet или violent",
         "modePayload": {
-          "family":"sound_contrast","contrastA":"violet","contrastB":"violent","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-51:i01:audioA","transcript":"violet"},"audioB":{"audioTargetId":"en:lesson-03:session-51:i01:audioB","transcript":"violent"},"testedPhoneticContrast":"В violet после /v/ слышится /aɪ/, не /aɪə/.","choiceFeedback":[{"responseId":"en:lesson-03:session-51:i01:r2","correct":false,"testedDimension":"Различите violet и violent","feedbackByLocale":{"ru":"`violent` — другое слово. В записи звучит цвет `violet`.","uk":"`violent` — інше слово. У записі звучить колір `violet`."}}]
+          "family": "sound_contrast",
+          "contrastA": "violet",
+          "contrastB": "violent",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-51:i01:audioA",
+            "transcript": "violet"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-51:i01:audioB",
+            "transcript": "violent"
+          },
+          "testedPhoneticContrast": "В violet после /v/ слышится /aɪ/, не /aɪə/.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-51:i01:r2",
+              "correct": false,
+              "testedDimension": "Различите violet и violent",
+              "feedbackByLocale": {
+                "ru": "`violent` — другое слово. В записи звучит цвет `violet`.",
+                "uk": "`violent` — інше слово. У записі звучить колір `violet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -221,7 +363,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "Соедините слова со значениями",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-51:i02:p1","target":"navy","meaningByLocale":{"ru":"тёмно-синий","uk":"темно-синій"}},{"pairId":"en:lesson-03:session-51:i02:p2","target":"box","meaningByLocale":{"ru":"коробка","uk":"коробка"}},{"pairId":"en:lesson-03:session-51:i02:p3","target":"chair","meaningByLocale":{"ru":"кресло","uk":"крісло"}},{"pairId":"en:lesson-03:session-51:i02:p4","target":"table","meaningByLocale":{"ru":"стол","uk":"стіл"}}],"leftColumn":["navy","box","chair","table"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-51:i02:p1",
+              "target": "navy",
+              "meaningByLocale": {
+                "ru": "тёмно-синий",
+                "uk": "темно-синій"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p2",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p3",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p4",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navy",
+            "box",
+            "chair",
+            "table"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -384,7 +566,7 @@
               "text": "Purple"
             }
           ],
-          "testedDimension": "Вставьте артикль — на ценнике пурпурный ",
+          "testedDimension": "Вставьте артикль — на ценнике пурпурный цвет",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-51:i10:r2",
@@ -596,7 +778,7 @@
               "text": "Pink"
             }
           ],
-          "testedDimension": "Вставьте артикль — на ценнике розовый цв",
+          "testedDimension": "Вставьте артикль — на ценнике розовый цвет",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-51:i14:r2",
@@ -638,10 +820,29 @@
         "prompt": "Послушайте и соберите фразу",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-51:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i15:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите фразу",
         "modePayload": {
-          "family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-51:i15:audio","transcript":"This is a pink chair."},"slowReferenceAudio":null,"hiddenTargetPhrase":"This is a pink chair.","orderedTokens":["This","is","a","pink","chair"],"distractorTokens":["An"]
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-51:i15:audio",
+            "transcript": "This is a pink chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a pink chair.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "pink",
+            "chair"
+          ],
+          "distractorTokens": [
+            "An"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -684,7 +885,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "новое кресло в зале",
+        "prompt": "Новое кресло в зале",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-51:i17:r1",
@@ -705,11 +906,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "новое кресло в зале",
+        "accessibilityLabel": "Новое кресло в зале",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "новое кресло в зале",
+            "ru": "Новое кресло в зале",
             "uk": "нове крісло в залі"
           },
           "gappedTargetPhrase": "___ violet chair is here.",
@@ -851,12 +1052,78 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
-        "responseOptions":[{"responseId":"en:lesson-03:session-51:i07:r1","text":"pink"},{"responseId":"en:lesson-03:session-51:i07:r2","text":"navy"},{"responseId":"en:lesson-03:session-51:i07:r3","text":"violet"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i07:r1",
+            "text": "pink"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i07:r2",
+            "text": "navy"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i07:r3",
+            "text": "violet"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-51:i07:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i07:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
-          "family":"listen_choose","referenceAudio":{"audioTargetId":"en:lesson-03:session-51:i07:audio","transcript":"pink"},"slowReferenceAudio":null,"localizedMeaningChoices":[{"responseId":"en:lesson-03:session-51:i07:r1","targetText":"pink","meaningByLocale":null},{"responseId":"en:lesson-03:session-51:i07:r2","targetText":"navy","meaningByLocale":null},{"responseId":"en:lesson-03:session-51:i07:r3","targetText":"violet","meaningByLocale":null}],"transcriptRevealPolicy":"after_first_attempt","choiceFeedback":[{"responseId":"en:lesson-03:session-51:i07:r2","correct":false,"testedDimension":"Виберіть почутий колір","feedbackByLocale":{"ru":"В записи звучит `pink`, не `navy`.","uk":"У записі звучить `pink`, не `navy`."}},{"responseId":"en:lesson-03:session-51:i07:r3","correct":false,"testedDimension":"Виберіть почутий колір","feedbackByLocale":{"ru":"В записи звучит `pink`, не `violet`.","uk":"У записі звучить `pink`, не `violet`."}}],"isWordCard":true,"wordCard":{"word":"pink","definitionByLocale":{"ru":"«розовый». Цвет кресла на ценнике.","uk":"«рожевий». Колір крісла на ціннику."}}
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-51:i07:audio",
+            "transcript": "pink"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-51:i07:r1",
+              "targetText": "pink",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r2",
+              "targetText": "navy",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r3",
+              "targetText": "violet",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-51:i07:r2",
+              "correct": false,
+              "testedDimension": "Виберіть почутий колір",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `pink`, не `navy`.",
+                "uk": "У записі звучить `pink`, не `navy`."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-51:i07:r3",
+              "correct": false,
+              "testedDimension": "Виберіть почутий колір",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `pink`, не `violet`.",
+                "uk": "У записі звучить `pink`, не `violet`."
+              }
+            }
+          ],
+          "isWordCard": true,
+          "wordCard": {
+            "word": "pink",
+            "definitionByLocale": {
+              "ru": "«розовый». Цвет кресла на ценнике.",
+              "uk": "«рожевий». Колір крісла на ціннику."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -950,7 +1217,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "З’єднайте кольори зі значеннями",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-51:i08:p1","target":"pink","meaningByLocale":{"ru":"розовый","uk":"рожевий"}},{"pairId":"en:lesson-03:session-51:i08:p2","target":"box","meaningByLocale":{"ru":"коробка","uk":"коробка"}},{"pairId":"en:lesson-03:session-51:i08:p3","target":"chair","meaningByLocale":{"ru":"кресло","uk":"крісло"}},{"pairId":"en:lesson-03:session-51:i08:p4","target":"table","meaningByLocale":{"ru":"стол","uk":"стіл"}}],"leftColumn":["pink","box","chair","table"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-51:i08:p1",
+              "target": "pink",
+              "meaningByLocale": {
+                "ru": "розовый",
+                "uk": "рожевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p2",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p3",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i08:p4",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "pink",
+            "box",
+            "chair",
+            "table"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -961,12 +1268,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — violet або violent",
-        "responseOptions":[{"responseId":"en:lesson-03:session-51:i01:r1","text":"violet"},{"responseId":"en:lesson-03:session-51:i01:r2","text":"violent"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-51:i01:r1",
+            "text": "violet"
+          },
+          {
+            "responseId": "en:lesson-03:session-51:i01:r2",
+            "text": "violent"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds":["en:lesson-03:session-51:i01:audioA","en:lesson-03:session-51:i01:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i01:audioA",
+          "en:lesson-03:session-51:i01:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — violet або violent",
         "modePayload": {
-          "family":"sound_contrast","contrastA":"violet","contrastB":"violent","ipaA":"","ipaB":"","audioA":{"audioTargetId":"en:lesson-03:session-51:i01:audioA","transcript":"violet"},"audioB":{"audioTargetId":"en:lesson-03:session-51:i01:audioB","transcript":"violent"},"testedPhoneticContrast":"У violet після /v/ чути /aɪ/, не /aɪə/.","choiceFeedback":[{"responseId":"en:lesson-03:session-51:i01:r2","correct":false,"testedDimension":"Розрізніть violet і violent","feedbackByLocale":{"ru":"`violent` — другое слово. В записи звучит цвет `violet`.","uk":"`violent` — інше слово. У записі звучить колір `violet`."}}]
+          "family": "sound_contrast",
+          "contrastA": "violet",
+          "contrastB": "violent",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-51:i01:audioA",
+            "transcript": "violet"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-51:i01:audioB",
+            "transcript": "violent"
+          },
+          "testedPhoneticContrast": "У violet після /v/ чути /aɪ/, не /aɪə/.",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-51:i01:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть violet і violent",
+              "feedbackByLocale": {
+                "ru": "`violent` — другое слово. В записи звучит цвет `violet`.",
+                "uk": "`violent` — інше слово. У записі звучить колір `violet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -982,7 +1325,47 @@
         "audioTargetIds": [],
         "accessibilityLabel": "З’єднайте слова зі значеннями",
         "modePayload": {
-          "family":"speed_match","pairGrid":[{"pairId":"en:lesson-03:session-51:i02:p1","target":"navy","meaningByLocale":{"ru":"тёмно-синий","uk":"темно-синій"}},{"pairId":"en:lesson-03:session-51:i02:p2","target":"box","meaningByLocale":{"ru":"коробка","uk":"коробка"}},{"pairId":"en:lesson-03:session-51:i02:p3","target":"chair","meaningByLocale":{"ru":"кресло","uk":"крісло"}},{"pairId":"en:lesson-03:session-51:i02:p4","target":"table","meaningByLocale":{"ru":"стол","uk":"стіл"}}],"leftColumn":["navy","box","chair","table"]
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-51:i02:p1",
+              "target": "navy",
+              "meaningByLocale": {
+                "ru": "тёмно-синий",
+                "uk": "темно-синій"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p2",
+              "target": "box",
+              "meaningByLocale": {
+                "ru": "коробка",
+                "uk": "коробка"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p3",
+              "target": "chair",
+              "meaningByLocale": {
+                "ru": "кресло",
+                "uk": "крісло"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-51:i02:p4",
+              "target": "table",
+              "meaningByLocale": {
+                "ru": "стол",
+                "uk": "стіл"
+              }
+            }
+          ],
+          "leftColumn": [
+            "navy",
+            "box",
+            "chair",
+            "table"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1399,10 +1782,29 @@
         "prompt": "Послухайте та складіть фразу",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-51:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-51:i15:audio"
+        ],
         "accessibilityLabel": "Послухайте та складіть фразу",
         "modePayload": {
-          "family":"listen_build_dictation","referenceAudio":{"audioTargetId":"en:lesson-03:session-51:i15:audio","transcript":"This is a pink chair."},"slowReferenceAudio":null,"hiddenTargetPhrase":"This is a pink chair.","orderedTokens":["This","is","a","pink","chair"],"distractorTokens":["An"]
+          "family": "listen_build_dictation",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-51:i15:audio",
+            "transcript": "This is a pink chair."
+          },
+          "slowReferenceAudio": null,
+          "hiddenTargetPhrase": "This is a pink chair.",
+          "orderedTokens": [
+            "This",
+            "is",
+            "a",
+            "pink",
+            "chair"
+          ],
+          "distractorTokens": [
+            "An"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1445,7 +1847,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "нове крісло в залі",
+        "prompt": "Нове крісло в залі",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-51:i17:r1",
@@ -1466,12 +1868,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "нове крісло в залі",
+        "accessibilityLabel": "Нове крісло в залі",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "новое кресло в зале",
-            "uk": "нове крісло в залі"
+            "uk": "Нове крісло в залі"
           },
           "gappedTargetPhrase": "___ violet chair is here.",
           "gapOptions": [

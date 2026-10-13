@@ -1,0 +1,270 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l02-source-admission-candidate.v1",
+  "status": "HOLD",
+  "admissionStatus": "PARTIAL_CANDIDATE",
+  "candidateAcceptance": "HOLD",
+  "reviewStatus": "PENDING_INDEPENDENT_REVIEW",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "releaseAuthorized": false,
+  "task5": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3"
+  },
+  "capture": {
+    "root": "modules/learning-v2/curriculum/de/evidence/learning-v2-de-task6c-l02-identity-capture-v4-live-20261012T085552906Z",
+    "manifestSha256": "e79b6c6016638ecc943ef633b814761ed5c95595a4e61171fb057da84273a535",
+    "inputDigestSha256": "46b37ef51279390e64dfe29f10ce256a0525684718df1a04d93ac4af43a768b2",
+    "runnerSha256": "311781451a460a54ac9799f7bfb01d313d8a48e104ef0a684656e4b9c9432feb",
+    "taskRecordSha256": "360043bcaeb65f1a929852288ac2231f16c591cb809ea6c848e22dd2e982679e"
+  },
+  "platformExecution": {
+    "threadId": "01a12f4f-9a9c-77f1-8087-1095775139d3",
+    "turnId": "01a12f4f-9b04-7020-9c5b-12b14b30d3e5",
+    "captureEventId": "exec-beb69885-7dc7-4b51-8e45-25b1b1f06a9a",
+    "postrunEventIds": [
+      "exec-9cdf2aab-683a-4a2a-8799-4593fc4318f3",
+      "exec-62db09a9-d491-4ab2-9af6-f6beba7f52aa"
+    ],
+    "executionAuthority": "EXTERNAL_PLATFORM_HISTORY_VERIFIED_OUTSIDE_ARTIFACT",
+    "selfProof": false
+  },
+  "reconciliationAnchors": {
+    "role": "RECONCILIATION_ANCHOR_NOT_RUNTIME_DEPENDENCY",
+    "runtimeDependency": false,
+    "existingCanonicalSenseIds": [
+      "de_lex_l01_c01_nachbarin_v1",
+      "de_lex_l01_c02_aufzug_v1"
+    ],
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts",
+      "byteSha256": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c"
+    },
+    "lexicalRegistry": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json",
+      "byteSha256": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29"
+    },
+    "task6Kernel": {
+      "path": "modules/learning-v2/curriculum/de/task6_registry_contract_de_v1.ts",
+      "byteSha256": "4e0a1dc41a62ae81eb516333f19339658590c5cbef39edaf20a1d6219ecfca4d"
+    },
+    "canonicalBundle": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+      "byteSha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31"
+    }
+  },
+  "regionalPolicy": {
+    "authorityOnly": "DE_REG_BASELINE_001_RECONCILIATION_ANCHOR",
+    "productionPolicyClaim": "UNADJUDICATED",
+    "regionClaim": "UNADJUDICATED",
+    "productiveUseAuthorized": false,
+    "freeArticleProduction": false,
+    "finiteVerbProduction": false
+  },
+  "limitations": [
+    "NO_CANONICAL_ROW_REGISTRATION",
+    "NO_TASK6_KERNEL_COMPATIBILITY",
+    "NO_TASK6_COMPLETION",
+    "NO_TASK7_UNLOCK_OR_CONTACT",
+    "NO_LEARNER_OR_TRANSLATION_CONTENT",
+    "NO_AUDIO_MOCKUP_RUNTIME_RELEASE_OR_PUBLICATION",
+    "SEPARATE_VERSIONED_EVIDENCE_AND_KERNEL_MIGRATION_REQUIRED"
+  ],
+  "rows": [
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+      "candidateCanonicalSenseId": "de_lex_l02_c01_wohnen_v1",
+      "admissionRole": "CANDIDATE_NOT_CANONICAL",
+      "semanticAlignment": "SOURCE_D1_1_SUPPORTS_RESIDENCE_CORE_TASK5_CONTEXT_NARROWED",
+      "lemma": "wohnen",
+      "task5": {
+        "semanticIdentity": "wohnen|live or reside at a home",
+        "senseGloss": "live or reside at a home",
+        "communicativeUse": "notice the person-number choice in a bounded residence action"
+      },
+      "lexicalPackage": {
+        "partOfSpeech": "verb",
+        "lemma": "wohnen",
+        "noun": null,
+        "verb": {
+          "infinitive": "wohnen",
+          "valencyFrame": "intransitive residence frame",
+          "separability": "inseparable",
+          "perfectAuxiliary": "haben",
+          "sourceAttestation": {
+            "partOfSpeechLabel": "Verb",
+            "attestedPresent3sg": "wohnt",
+            "attestedPreterite3sg": "wohnte",
+            "attestedPerfect3sg": "hat gewohnt",
+            "kernelValencyAdjudication": "REQUIRED_IN_SEPARATE_V2_MIGRATION"
+          }
+        }
+      },
+      "source": {
+        "sourceUrl": "https://www.dwds.de/wb/wohnen",
+        "sourceAnchor": "d-1-1",
+        "body": {
+          "path": "decoded-representation/wohnen.html",
+          "bytes": 105840,
+          "sha256": "1b2f4f0d0758994c9318e2dfd43feae66a3eaff35747ea439ccc7ad6440c85ce"
+        },
+        "header": {
+          "path": "headers/wohnen.normalized.json",
+          "bytes": 930,
+          "sha256": "f6da2cb323390bb29f294757bad80c4e71a2a4e76605ca7af82673d6d84861b3"
+        },
+        "senseSpan": {
+          "bytes": 9050,
+          "sha256": "cfe8f854857d65223619ea5c223c076592ff6424dbeb7a93f0b3526d0bebafb0"
+        },
+        "morphologySpan": {
+          "bytes": 792,
+          "sha256": "71208e25cfa546245f0970b02ad201564630f5fff576acfc38d851daa520be72"
+        },
+        "definitionGerman": "seinen ständigen Aufenthalt an einem bestimmten Ort, seine Wohnung in einem bestimmten Haus haben"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+      "candidateCanonicalSenseId": "de_lex_l02_c01_kueche_v1",
+      "admissionRole": "CANDIDATE_NOT_CANONICAL",
+      "semanticAlignment": "SOURCE_D1_1_SUPPORTS_ROOM_CORE_TASK5_SHARED_CONTEXT_NARROWED",
+      "lemma": "Küche",
+      "task5": {
+        "semanticIdentity": "kuche|room for preparing food",
+        "senseGloss": "room for preparing food",
+        "communicativeUse": "identify the shared room without a gender prediction rule"
+      },
+      "lexicalPackage": {
+        "partOfSpeech": "noun",
+        "lemma": "Küche",
+        "noun": {
+          "article": "die",
+          "singular": "Küche",
+          "plural": "Küchen",
+          "sourceGenderLabel": "Femininum"
+        },
+        "verb": null
+      },
+      "source": {
+        "sourceUrl": "https://www.dwds.de/wb/K%C3%BCche",
+        "sourceAnchor": "d-1-1",
+        "body": {
+          "path": "decoded-representation/kueche.html",
+          "bytes": 103719,
+          "sha256": "6b416970816020195cb24b458209c78327f404e8d0e71b5c9f6b43692509af3e"
+        },
+        "header": {
+          "path": "headers/kueche.normalized.json",
+          "bytes": 928,
+          "sha256": "57ab4f72c9f4d6183f63926d4ef47bc174b2594058cb65df654110653e10d545"
+        },
+        "senseSpan": {
+          "bytes": 4397,
+          "sha256": "1394d2752dd905044eeb49b03b75062e2bd42e7c9beca7f3ddf106ab6c29f97b"
+        },
+        "morphologySpan": {
+          "bytes": 358,
+          "sha256": "da8cfb368db1428770a22217e70127760325dd3c278f98a1b901b52d954879ed"
+        },
+        "definitionGerman": "Raum, in dem die Speisen zubereitet und gekocht werden"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+      "candidateCanonicalSenseId": "de_lex_l02_c02_tasse_v1",
+      "admissionRole": "CANDIDATE_NOT_CANONICAL",
+      "semanticAlignment": "SOURCE_D1_1_SUPPORTS_HANDLED_HOT_DRINK_VESSEL_CORE",
+      "lemma": "Tasse",
+      "task5": {
+        "semanticIdentity": "tasse|handled cup for a hot drink",
+        "senseGloss": "handled cup for a hot drink",
+        "communicativeUse": "retrieve a complete noun package for an everyday shared object"
+      },
+      "lexicalPackage": {
+        "partOfSpeech": "noun",
+        "lemma": "Tasse",
+        "noun": {
+          "article": "die",
+          "singular": "Tasse",
+          "plural": "Tassen",
+          "sourceGenderLabel": "Femininum"
+        },
+        "verb": null
+      },
+      "source": {
+        "sourceUrl": "https://www.dwds.de/wb/Tasse",
+        "sourceAnchor": "d-1-1",
+        "body": {
+          "path": "decoded-representation/tasse.html",
+          "bytes": 87110,
+          "sha256": "b2c6778db4fdc35540b354128ec30370027e41ec035769cc013140a852d269bb"
+        },
+        "header": {
+          "path": "headers/tasse.normalized.json",
+          "bytes": 926,
+          "sha256": "8d7df3bd958f07a8ef774cea7d0d44bad03076a723f43fb9241202f4749d850d"
+        },
+        "senseSpan": {
+          "bytes": 7879,
+          "sha256": "15c9ae0e32b41c0594e402146f55d59977b01110ffbce5fe49389efa85ef1849"
+        },
+        "morphologySpan": {
+          "bytes": 350,
+          "sha256": "8ae608d82a86b4a06da26eb41d19fc0f72dcb0f76ef367d699ed097b355037bc"
+        },
+        "definitionGerman": "Trinkgefäß (mit Henkel), besonders für heiße Getränke"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+      "candidateCanonicalSenseId": "de_lex_l02_c02_teller_v1",
+      "admissionRole": "CANDIDATE_NOT_CANONICAL",
+      "semanticAlignment": "SOURCE_D1_1_SUPPORTS_PLATE_OBJECT_CORE_TASK5_USE_CONTEXT_NARROWED",
+      "lemma": "Teller",
+      "task5": {
+        "semanticIdentity": "teller|flat dish used for serving food",
+        "senseGloss": "flat dish used for serving food",
+        "communicativeUse": "contrast a complete masculine singular-plural package with a visible object"
+      },
+      "lexicalPackage": {
+        "partOfSpeech": "noun",
+        "lemma": "Teller",
+        "noun": {
+          "article": "der",
+          "singular": "Teller",
+          "plural": "Teller",
+          "sourceGenderLabel": "Maskulinum"
+        },
+        "verb": null
+      },
+      "source": {
+        "sourceUrl": "https://www.dwds.de/wb/Teller",
+        "sourceAnchor": "d-1-1",
+        "body": {
+          "path": "decoded-representation/teller.html",
+          "bytes": 74185,
+          "sha256": "7be76f44dd449c750844755fbb553bdc5e66f9edcc3a197fdb9afcb0a5d01b9b"
+        },
+        "header": {
+          "path": "headers/teller.normalized.json",
+          "bytes": 926,
+          "sha256": "d7dc3d71737f746f3ea73f1c55e67f89b0310f056c4715d923f587f3e254cddd"
+        },
+        "senseSpan": {
+          "bytes": 4390,
+          "sha256": "b7792d5c8dde13ea5d7796c223da7619e219d4f53b12bc0231fe357dbca443e6"
+        },
+        "morphologySpan": {
+          "bytes": 355,
+          "sha256": "9d4c48146b1462b661d790dcb0b8fc042fb6b51ab498155eeed0073714007a0b"
+        },
+        "definitionGerman": "rundes Essgeschirr mit erhöhtem Rand, meist aus Porzellan oder Steingut"
+      }
+    }
+  ]
+}

@@ -195,7 +195,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед спрашивает, добры",
+          "testedDimension": "Вставьте слово — сосед спрашивает, добрый ли ваш начальник",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i03:r2",
@@ -237,9 +237,25 @@
             "ru": "Соберите фразу — про вашего брата, он всегда собран",
             "uk": "Складіть фразу — про вашого брата, він завжди зібраний"
           },
-          "orderedTokens": ["He", "is", "ready"],
-          "authoredDistractorTokens": ["are"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "He",
+            "is",
+            "ready"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — про вашего брата, он всегда собран",
+              "feedbackByLocale": {
+                "ru": "`he` — один человек, поэтому нужна форма `is`: `He is ready.`",
+                "uk": "`he` — одна людина, тому потрібна форма `is`: `He is ready.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -411,7 +427,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «мы заняты»",
+              "feedbackByLocale": {
+                "ru": "`we` — это несколько человек, поэтому нужна форма `are`: `We are busy.`",
+                "uk": "`we` — це кілька людей, тому потрібна форма `are`: `We are busy.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -423,26 +449,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — сосед уточняет, занята ли она",
         "responseOptions": [
-          {"responseId": "en:lesson-01:session-55:i08:r1", "text": "not"},
-          {"responseId": "en:lesson-01:session-55:i08:r2", "text": "no"},
-          {"responseId": "en:lesson-01:session-55:i08:r3", "text": "am"}
+          {
+            "responseId": "en:lesson-01:session-55:i08:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r3",
+            "text": "am"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — сосед уточняет, занята ли она",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Сосед уточняет, занята ли она.", "uk": "Сусід уточнює, чи вона зайнята."},
+          "localizedScene": {
+            "ru": "Вставьте слово — сосед уточняет, занята ли она",
+            "uk": "Сусід уточнює, чи вона зайнята."
+          },
           "gappedTargetPhrase": "She is ___ busy.",
           "gapOptions": [
-            {"responseId": "en:lesson-01:session-55:i08:r1", "text": "not"},
-            {"responseId": "en:lesson-01:session-55:i08:r2", "text": "no"},
-            {"responseId": "en:lesson-01:session-55:i08:r3", "text": "am"}
+            {
+              "responseId": "en:lesson-01:session-55:i08:r1",
+              "text": "not"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "text": "no"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "text": "am"
+            }
           ],
           "testedDimension": "not после is",
           "choiceFeedback": [
-            {"responseId": "en:lesson-01:session-55:i08:r2", "correct": false, "testedDimension": "not после is", "feedbackByLocale": {"ru": "После `is` для отрицания нужно `not`, не `no`.", "uk": "Після `is` для заперечення потрібне `not`, не `no`."}},
-            {"responseId": "en:lesson-01:session-55:i08:r3", "correct": false, "testedDimension": "not после is", "feedbackByLocale": {"ru": "`am` бывает с `I`; здесь после `is` нужно `not`.", "uk": "`am` буває з `I`; тут після `is` потрібне `not`."}}
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "not после is",
+              "feedbackByLocale": {
+                "ru": "После `is` для отрицания нужно `not`, не `no`.",
+                "uk": "Після `is` для заперечення потрібне `not`, не `no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "not после is",
+              "feedbackByLocale": {
+                "ru": "`am` бывает с `I`; здесь после `is` нужно `not`.",
+                "uk": "`am` буває з `I`; тут після `is` потрібне `not`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -484,7 +547,7 @@
             "audioTargetId": "en:lesson-01:session-55:i09:audioB",
             "transcript": "worm"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «теп",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «тепло»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i09:r2",
@@ -544,7 +607,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед волнуется, как у ",
+          "testedDimension": "Вставьте слово — сосед волнуется, как у вас зимой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i10:r2",
@@ -597,7 +660,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты в безопасности»",
+              "feedbackByLocale": {
+                "ru": "`am` употребляют только с `I`; после `you` нужна форма `are`: `You are safe.`",
+                "uk": "`am` уживають тільки з `I`; після `you` потрібна форма `are`: `You are safe.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -799,7 +872,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — они ещё собираются, выходить рано",
+              "feedbackByLocale": {
+                "ru": "`they` — это несколько человек, поэтому нужна форма `are`: `They are not ready.`",
+                "uk": "`they` — це кілька людей, тому потрібна форма `are`: `They are not ready.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1226,7 +1309,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — сусід питає, чи добрий в",
+          "testedDimension": "Вставте слово — сусід питає, чи добрий ваш начальник",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i03:r2",
@@ -1268,9 +1351,25 @@
             "ru": "Соберите фразу — про вашего брата, он всегда собран",
             "uk": "Складіть фразу — про вашого брата, він завжди зібраний"
           },
-          "orderedTokens": ["He", "is", "ready"],
-          "authoredDistractorTokens": ["are"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "He",
+            "is",
+            "ready"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — про вашего брата, он всегда собран",
+              "feedbackByLocale": {
+                "ru": "`he` — один человек, поэтому нужна форма `is`: `He is ready.`",
+                "uk": "`he` — одна людина, тому потрібна форма `is`: `He is ready.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1442,7 +1541,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «мы заняты»",
+              "feedbackByLocale": {
+                "ru": "`we` — это несколько человек, поэтому нужна форма `are`: `We are busy.`",
+                "uk": "`we` — це кілька людей, тому потрібна форма `are`: `We are busy.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1454,26 +1563,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — сусід уточнює, чи вона зайнята",
         "responseOptions": [
-          {"responseId": "en:lesson-01:session-55:i08:r1", "text": "not"},
-          {"responseId": "en:lesson-01:session-55:i08:r2", "text": "no"},
-          {"responseId": "en:lesson-01:session-55:i08:r3", "text": "am"}
+          {
+            "responseId": "en:lesson-01:session-55:i08:r1",
+            "text": "not"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r2",
+            "text": "no"
+          },
+          {
+            "responseId": "en:lesson-01:session-55:i08:r3",
+            "text": "am"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — сусід уточнює, чи вона зайнята",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": {"ru": "Сосед уточняет, занята ли она.", "uk": "Сусід уточнює, чи вона зайнята."},
+          "localizedScene": {
+            "ru": "Сосед уточняет, занята ли она.",
+            "uk": "Вставте слово — сусід уточнює, чи вона зайнята"
+          },
           "gappedTargetPhrase": "She is ___ busy.",
           "gapOptions": [
-            {"responseId": "en:lesson-01:session-55:i08:r1", "text": "not"},
-            {"responseId": "en:lesson-01:session-55:i08:r2", "text": "no"},
-            {"responseId": "en:lesson-01:session-55:i08:r3", "text": "am"}
+            {
+              "responseId": "en:lesson-01:session-55:i08:r1",
+              "text": "not"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "text": "no"
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "text": "am"
+            }
           ],
           "testedDimension": "not після is",
           "choiceFeedback": [
-            {"responseId": "en:lesson-01:session-55:i08:r2", "correct": false, "testedDimension": "not після is", "feedbackByLocale": {"ru": "После `is` для отрицания нужно `not`, не `no`.", "uk": "Після `is` для заперечення потрібне `not`, не `no`."}},
-            {"responseId": "en:lesson-01:session-55:i08:r3", "correct": false, "testedDimension": "not після is", "feedbackByLocale": {"ru": "`am` бывает с `I`; здесь после `is` нужно `not`.", "uk": "`am` буває з `I`; тут після `is` потрібне `not`."}}
+            {
+              "responseId": "en:lesson-01:session-55:i08:r2",
+              "correct": false,
+              "testedDimension": "not після is",
+              "feedbackByLocale": {
+                "ru": "После `is` для отрицания нужно `not`, не `no`.",
+                "uk": "Після `is` для заперечення потрібне `not`, не `no`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-55:i08:r3",
+              "correct": false,
+              "testedDimension": "not після is",
+              "feedbackByLocale": {
+                "ru": "`am` бывает с `I`; здесь после `is` нужно `not`.",
+                "uk": "`am` буває з `I`; тут після `is` потрібне `not`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1515,7 +1661,7 @@
             "audioTargetId": "en:lesson-01:session-55:i09:audioB",
             "transcript": "worm"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «тепло",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «тепло»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i09:r2",
@@ -1575,7 +1721,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — сусід хвилюється, як у в",
+          "testedDimension": "Вставте слово — сусід хвилюється, як у вас узимку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-55:i10:r2",
@@ -1628,7 +1774,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты в безопасности»",
+              "feedbackByLocale": {
+                "ru": "`am` употребляют только с `I`; после `you` нужна форма `are`: `You are safe.`",
+                "uk": "`am` уживають тільки з `I`; після `you` потрібна форма `are`: `You are safe.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1830,7 +1986,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-55:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — они ещё собираются, выходить рано",
+              "feedbackByLocale": {
+                "ru": "`they` — это несколько человек, поэтому нужна форма `are`: `They are not ready.`",
+                "uk": "`they` — це кілька людей, тому потрібна форма `are`: `They are not ready.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

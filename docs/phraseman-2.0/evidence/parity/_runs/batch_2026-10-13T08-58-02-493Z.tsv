@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+overlays-campaigns-006	2026-10-13T08:58:58.682Z	error	14005	step_target_not_found:#promo-code-submit+ждали_metro_27мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T08-58-02-493Z/overlays-campaigns-006.error.png	0

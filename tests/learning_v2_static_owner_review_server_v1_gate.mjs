@@ -5,11 +5,8 @@ import { resolve } from "node:path";
 
 import { startLearningV2StaticOwnerReviewServer } from "../scripts/serve_learning_v2_static_owner_review.mjs";
 
-const rootDirectory = resolve(
-  process.cwd(),
-  ".codex-tmp",
-  "learning-v2-owner-review",
-);
+const rootDirectory = await mkdtemp(resolve(tmpdir(), "learning-v2-owner-review-default-"));
+await writeFile(resolve(rootDirectory, "index.html"), "<!doctype html><title>Learning V2 · Owner Review</title>", "utf8");
 const running = await startLearningV2StaticOwnerReviewServer({
   host: "127.0.0.1",
   port: 0,
@@ -40,6 +37,7 @@ try {
   assert.equal(hiddenFile.status, 404, "server must expose only the review page");
 } finally {
   await running.close();
+  await rm(rootDirectory, { recursive: true, force: true });
 }
 
 const reloadDirectory = await mkdtemp(resolve(tmpdir(), "learning-v2-owner-review-"));

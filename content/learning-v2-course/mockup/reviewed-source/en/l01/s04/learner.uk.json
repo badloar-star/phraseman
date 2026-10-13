@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть — early",
+      "prompt": "Послухайте і виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i02:r1",
@@ -71,7 +71,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i02:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть — early",
+      "accessibilityLabel": "Послухайте і виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -179,7 +179,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть — right",
+      "prompt": "Послухайте і виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i04:r1",
@@ -198,7 +198,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i04:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть — right",
+      "accessibilityLabel": "Послухайте і виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -306,7 +306,7 @@
       "purpose": "supported_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть — wrong",
+      "prompt": "Послухайте і виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i06:r1",
@@ -325,7 +325,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i06:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть — wrong",
+      "accessibilityLabel": "Послухайте і виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -493,7 +493,7 @@
       "purpose": "guided_practice",
       "family": "listen_choose",
       "inputMode": "single_choice",
-      "prompt": "Послухайте і виберіть — free",
+      "prompt": "Послухайте і виберіть",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-04:i09:r1",
@@ -512,7 +512,7 @@
       "audioTargetIds": [
         "en:lesson-01:session-04:i09:audio"
       ],
-      "accessibilityLabel": "Послухайте і виберіть — free",
+      "accessibilityLabel": "Послухайте і виберіть",
       "modePayload": {
         "family": "listen_choose",
         "referenceAudio": {
@@ -711,9 +711,10 @@
           {
             "responseId": "en:lesson-01:session-04:i12:tile:d1",
             "correct": false,
+            "testedDimension": "Послушайте и соберите — вы отстаиваете с",
             "feedbackByLocale": {
-              "ru": "right — «прав», но здесь вы говорите I am not wrong: «я не ошибаюсь».",
-              "uk": "right — «правий», але тут ви кажете I am not wrong: «я не помиляюся»."
+              "ru": "«прав», но здесь вы говорите «я не ошибаюсь»",
+              "uk": "«правий», але тут ви кажете «я не помиляюся»"
             }
           }
         ]
@@ -828,9 +829,10 @@
           {
             "responseId": "en:lesson-01:session-04:i14:tile:d1",
             "correct": false,
+            "testedDimension": "Соберите фразу — все задачи закончены, и",
             "feedbackByLocale": {
-              "ru": "not лишнее: здесь все задачи закончены, значит I am free.",
-              "uk": "not зайве: тут усі завдання завершені, отже I am free."
+              "ru": "все задачи закончены, значит I am free",
+              "uk": "усі завдання завершені, отже I am free"
             }
           }
         ]
@@ -969,9 +971,10 @@
           {
             "responseId": "en:lesson-01:session-04:i16:tile:d1",
             "correct": false,
+            "testedDimension": "Соберите фразу — в зале ещё пусто, вы пр",
             "feedbackByLocale": {
-              "ru": "С I нужна форма am, поэтому is лишнее.",
-              "uk": "З I потрібна форма am, тому is зайве."
+              "ru": "с I нужна форма am",
+              "uk": "з I потрібна форма am"
             }
           }
         ]
@@ -1081,9 +1084,10 @@
           {
             "responseId": "en:lesson-01:session-04:i18:tile:d1",
             "correct": false,
+            "testedDimension": "Соберите фразу — Мира спрашивает, как вы",
             "feedbackByLocale": {
-              "ru": "not меняет смысл на отрицание, а здесь: I am fine.",
-              "uk": "not змінює зміст на заперечення, а тут: I am fine."
+              "ru": "здесь I am fine — «у меня всё хорошо»",
+              "uk": "тут I am fine — «у мене все добре»"
             }
           }
         ]
@@ -1153,9 +1157,10 @@
           {
             "responseId": "en:lesson-01:session-04:i20:tile:d1",
             "correct": false,
+            "testedDimension": "Соберите фразу — вы перепроверили расчёт",
             "feedbackByLocale": {
-              "ru": "wrong означает «неверно», но расчёт верный: I am right.",
-              "uk": "wrong означає «неправильно», але розрахунок вірний: I am right."
+              "ru": "расчёт верный, поэтому I am right",
+              "uk": "розрахунок вірний, тому I am right"
             }
           }
         ]
@@ -1190,7 +1195,7 @@
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Начальник спрашивает, можете ли вы взять новую задачу. Все прежние задачи уже закончены.",
-          "uk": "Керівник питає, чи можете ви взяти нове завдання. Усі попередні завдання вже завершені."
+          "uk": "Вставте слово — керівник питає, чи готові ви до нового завдання"
         },
         "gappedTargetPhrase": "I am ___ .",
         "gapOptions": [
@@ -1245,5 +1250,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b1d9e7725716cce0f971a998f5e6211aaf40a6c187c6d3c3b62b15868ac570c9"
+  "learnerFingerprint": "2897f60657fd588cee48099d4493fd65745f8550ece6b7e0f56d622fd73ad1f1"
 }

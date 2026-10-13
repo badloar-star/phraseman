@@ -115,6 +115,15 @@
               "ru": "Внутри нет «р». `gate` — «ворота».",
               "uk": "Усередині немає «р». `gate` — «ворота»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `great`: оно звучит в аудио и значит «отличный».",
+              "uk": "Обрано слово `great`: воно звучить в аудіо й означає «чудовий»."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Начало похоже, дальше всё расходится: в `awful` нет «к».",
               "uk": "Початок схожий, далі все розходиться: в `awful` немає «к»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `awful`: оно звучит в аудио и значит «ужасный».",
+              "uk": "Обрано слово `awful`: воно звучить в аудіо й означає «жахливий"
+            }
           }
         ],
         "isWordCard": false,
@@ -266,7 +284,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «он отличный»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: в `He's great.` слово `is` уже спрятано в `He's`.",
+              "uk": "`is` зайве: у `He's great` слово `is` уже заховане в `He's`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -382,6 +410,15 @@
               "ru": "Другая гласная и другое слово — «пистолет».",
               "uk": "Інший голосний і інше слово — «пістолет»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i07:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `gone`: в аудио слышно `gone`, «ушёл».",
+              "uk": "Обрано слово `gone`: в аудіо чути `gone`, «пішов"
+            }
           }
         ],
         "isWordCard": false,
@@ -437,6 +474,15 @@
         "testedDimension": "Вставьте слово — начальник в баре всем п",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — начальник в баре всем понравился",
+            "feedbackByLocale": {
+              "ru": "Начальник всем понравился, поэтому он `great` — «отличный».",
+              "uk": "Начальник усім сподобався, тому він `great` — «чудовий"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — начальник в баре всем п",
@@ -486,7 +532,17 @@
         "authoredDistractorTokens": [
           "She"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — Лина читает сообщение: «Она тихая»",
+            "feedbackByLocale": {
+              "ru": "Нужно `She's quiet.`: `She` без `is` не образует фразу.",
+              "uk": "Потрібно `She's quiet`: `She` без `is` не утворює фразу."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -592,7 +648,26 @@
           "great",
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`great` лишнее: в аудио `It's awful.`",
+              "uk": "`great` зайве: в аудіо `It's awful`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i11:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно ужасное»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `It's awful.`",
+              "uk": "`is` зайве: воно вже заховане в `It's awful`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -644,6 +719,15 @@
         "testedDimension": "Вставьте слово — вы обернулись, а стул д",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i12:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы обернулись, а стул друга пустой",
+            "feedbackByLocale": {
+              "ru": "Стул пустой, значит друг `gone` — «ушёл».",
+              "uk": "Стілець порожній, отже друг `gone` — «пішов"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i12:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы обернулись, а стул д",
@@ -691,7 +775,26 @@
           "is",
           "quiet"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's funny.`",
+              "uk": "`is` зайве: воно вже заховане в `She's funny`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i13:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — она пошутила, и вы смеётесь; скажите про неё коротко",
+            "feedbackByLocale": {
+              "ru": "`quiet` лишнее: после шутки говорят `She's funny.`",
+              "uk": "`quiet` зайве: після жарту кажуть `She's funny`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -724,7 +827,26 @@
           "gone",
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`gone` лишнее: в аудио `He's here.`",
+              "uk": "`gone` зайве: в аудіо `He's here`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-42:i14:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он здесь»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `He's here.`",
+              "uk": "`is` зайве: воно вже заховане в `He's here`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -776,6 +898,15 @@
         "testedDimension": "Вставьте слово — на улице ливень, вы заб",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-42:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — на улице ливень, вы забежали в паб",
+            "feedbackByLocale": {
+              "ru": "На улице ливень, поэтому погода `awful` — «ужасная».",
+              "uk": "Надворі злива, тому погода `awful` — «жахлива"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-42:i15:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — на улице ливень, вы заб",
@@ -822,7 +953,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-42:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — её всё нет, а начало было в семь; скажите коротко",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `She's late.`",
+              "uk": "`is` зайве: воно вже заховане в `She's late`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -932,5 +1073,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "961587730f8e562d9ebc521e6e8ca13a6eb96d2e0e0f5c7b93c4188feff10932"
+  "learnerFingerprint": "20d023d9ed3dfb46ea0cd5602c453ae88ec418853c961ae747b0e2785e46fcde"
 }

@@ -86,6 +86,8 @@
 **5 · Складіть фразу — лампочка в коридорі не горить**
 <!-- interaction_id: en:lesson-01:session-28:i05; family: phrase_builder -->
 Плитки: `broken` `It` `is` `open` → **It is broken.**
+*(плитка `open` зайва: `open` зайве: лампочка не світиться, отже `It is broken`.)*
+
 
 **6 · Картка слова — closed**
 <!-- interaction_id: en:lesson-01:session-28:i06; family: listen_choose -->
@@ -116,6 +118,8 @@ It is ___ . → **closed** · open · new
 **11 · Послухайте і складіть — «воно порожнє»**
 <!-- interaction_id: en:lesson-01:session-28:i11; family: listen_build_dictation -->
 🔊 *It is empty.* Плитки: `empty` `is` `It` `closed` → **It is empty.**
+*(плитка `closed` зайва: `closed` зайве: фраза про порожній предмет — `It is empty`.)*
+
 
 **12 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-28:i12; family: speed_match -->
@@ -147,6 +151,8 @@ It is ___ . → **hot** · cold · broken
 **17 · Складіть фразу — комора два кроки завдовжки, шафа і все**
 <!-- interaction_id: en:lesson-01:session-28:i17; family: phrase_builder -->
 Плитки: `small` `It` `is` `are` → **It is small.**
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is small`.)*
+
 
 **18 · Вставте слово — `new` означає «новий». Ви заїхали тиждень тому, шпалери ще пахнуть фарбою**
 <!-- interaction_id: en:lesson-01:session-28:i18; family: context_gap_grammar -->
@@ -173,6 +179,8 @@ cold — холодно · hot — гаряче · small — маленький 
 **23 · Складіть одну фразу**
 <!-- interaction_id: en:lesson-01:session-28:i21:s01; family: phrase_builder -->
 Плитки: `closed.` `It` `is` `new` → **It is closed.**
+*(плитка `new` зайва: `new` зайве: фраза про зачинене місце — `It is closed`.)*
+
 
 **24 · Скажіть уголос — квартира маленька**
 <!-- interaction_id: en:lesson-01:session-28:i21:s02; family: scripted_repeat_compare -->

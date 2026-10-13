@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-37:i01; family: listen_choose -->
 Ціль: `Whose is it?`
 Варіанти: `Whose is it?` · `Who is it?` · `Where is it?`
+- Who is it? — *Це «Хто це?». У записі перше слово — `Whose`: гість питає, чия це річ.*
+- Where is it? — *Це «Де це?». Прозвучало питання про те, кому належить річ, — `Whose is it?`*
+
 
 **2 · Вставте слово — Алекс махає Іллі; дізнайтеся, хто він**
 <!-- interaction_id: en:lesson-02:session-37:i02; family: context_gap_grammar -->
 Ціль: `___ is he?`
 Варіанти: `Who` · `Whose` · `Where`
+- Whose — *Ви з’ясовуєте, хто цей чоловік. Почніть із `Who`; `Whose` означає «чий».*
+- Where — *Вийде «Де він?». Вам потрібно дізнатися, хто той чоловік, що зараз махає другові.*
+
 
 **3 · Складіть фразу — запитайте Іллю про Алекса біля дверей: «Хто він?»**
 <!-- interaction_id: en:lesson-02:session-37:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i04; family: listen_choose -->
 Ціль: `strangers`
 Варіанти: `strangers` · `rangers` · `dangers`
+- rangers — *`Rangers` — «рейнджери». Послухайте початок слова: у записі `strangers`.*
+- dangers — *`Dangers` — «небезпеки». Послухайте початок слова: у записі `strangers`.*
+
 
 **5 · Складіть фразу — господар питає, чи знаєте ви двох людей біля дверей; скажіть: «Вони незнайомці»**
 <!-- interaction_id: en:lesson-02:session-37:i05; family: phrase_builder -->
@@ -79,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-37:i06; family: context_gap_grammar -->
 Ціль: `___ is it?`
 Варіанти: `Whose` · `Who` · `What`
+- Who — *Вийде «Хто це?». Ви шукаєте власника шарфа, тому потрібне `Whose`.*
+- What — *Вийде «Що це?». Ви вже бачите, що це шарф; тепер з’ясовуєте, чий він.*
+
 
 **7 · Послухайте й виберіть слово**
 <!-- interaction_id: en:lesson-02:session-37:i07; family: listen_choose -->
 Ціль: `twins`
 Варіанти: `twins` · `pins` · `sins`
+- pins — *`Pins` — «шпильки». Послухайте початок слова: у записі `twins`.*
+- sins — *`Sins` — «гріхи». Послухайте початок слова: у записі `twins`.*
+
 
 **8 · Складіть фразу — гість прийняв вас із другом за близнюків; виправте його: «Ми не близнюки»**
 <!-- interaction_id: en:lesson-02:session-37:i08; family: phrase_builder -->
@@ -93,6 +108,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i09; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `sure` · `twins` · `host`
+- twins — *Це «близнюки». Щоб підтвердити впевненість, скажіть `I am sure`.*
+- host — *Це «господар вечірки». Тут ви кажете, що точно знаєте відповідь: потрібне `sure`.*
+
 
 **10 · З’єднайте пари — пригадайте слова з розмови в передпокої**
 <!-- interaction_id: en:lesson-02:session-37:i10; family: speed_match -->
@@ -103,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i11; family: listen_choose -->
 Ціль: `Who are these people?`
 Варіанти: `Who are these people?` · `Where are these people?` · `Who is the host?`
+- Where are these people? — *Це питання про місце. На початку запису `Who`: сусід хоче дізнатися, хто ці люди.*
+- Who is the host? — *Це питання про одного господаря вечірки. Наприкінці запису чути `these people` — «ці люди».*
+
 
 **12 · Складіть фразу — запитайте друга про компанію, яка чекає біля дверей: «Хто ці люди?»**
 <!-- interaction_id: en:lesson-02:session-37:i12; family: phrase_builder -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-37:i14; family: context_gap_grammar -->
 Ціль: `Who ___ the host?`
 Варіанти: `is` · `are` · `am`
+- are — *З `are` запитання не складається: йдеться про одного господаря. Правильно: `Who is the host?`*
+- am — *`Am` ставимо після `I`. Тут запитання починається з `Who`, тому потрібне `is`: `Who is the host?`*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-37:i15; family: scripted_repeat_compare -->

@@ -115,6 +115,15 @@
               "ru": "Похоже, но гласная другая. `last` — «последний».",
               "uk": "Схоже, але голосна інша. `last` — «останній»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `lost`: после `lo` слышно `st`.",
+              "uk": "Ви чуєте `lost`: після `lo` чути `st`."
+            }
           }
         ],
         "isWordCard": false,
@@ -191,7 +200,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «мы заблудились»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are lost.`",
+              "uk": "`is` зайве: з `We` кажуть `We are lost.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -329,6 +348,15 @@
         "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-38:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вокруг спокойно, никто никуда не бежит",
+            "feedbackByLocale": {
+              "ru": "Вокруг спокойно, значит `We are safe.` — «мы в безопасности».",
+              "uk": "Навколо спокійно, тому `We are safe.` — «ми в безпеці»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-38:i07:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вокруг спокойно, никто ",
@@ -397,6 +425,15 @@
               "ru": "Это «спасать». Здесь конец слова звонкий, тянется — а нужен короткий и глухой.",
               "uk": "Це «рятувати». Тут кінець слова дзвінкий — а потрібен глухий."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-38:i08:r1",
+            "correct": true,
+            "testedDimension": "Различите звуки — вы добрались домой без происшествий. Какое слово подходит?",
+            "feedbackByLocale": {
+              "ru": "Подходит `safe` — «в безопасности». `save` значит «спасать».",
+              "uk": "Підходить `safe` — «у безпеці». `save` означає «рятувати»."
+            }
           }
         ]
       },
@@ -431,7 +468,17 @@
         "authoredDistractorTokens": [
           "safe"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они дома»",
+            "feedbackByLocale": {
+              "ru": "`safe` здесь лишнее: в фразе `They are home.` говорят, что они дома.",
+              "uk": "`safe` тут зайве: у фразі `They are home.` сказано, що вони вдома."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -482,6 +529,15 @@
         ],
         "testedDimension": "Вставьте слово — все развернулись и идут",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — все развернулись и идут той же дорогой",
+            "feedbackByLocale": {
+              "ru": "Идут той же дорогой обратно: `We are back.`",
+              "uk": "Ідуть тією ж дорогою назад: `We are back.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-38:i10:r2",
             "correct": false,
@@ -668,6 +724,15 @@
         "testedDimension": "Вставьте слово — идёте всей толпой, не р",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-38:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — идёте всей толпой, не разбредаясь",
+            "feedbackByLocale": {
+              "ru": "Идут одной группой: `We are together.`",
+              "uk": "Ідуть однією групою: `We are together.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-38:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — идёте всей толпой, не р",
@@ -758,7 +823,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — до дома ещё ехать и ехать",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are far.`",
+              "uk": "`is` зайве: з `We` кажуть `We are far.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -791,7 +866,17 @@
         "authoredDistractorTokens": [
           "home"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-38:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они в безопасности»",
+            "feedbackByLocale": {
+              "ru": "`home` здесь лишнее: в фразе `They are safe.` говорят, что они в безопасности.",
+              "uk": "`home` тут зайве: у фразі `They are safe.` сказано, що вони в безпеці."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -934,5 +1019,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "69204c3993b8364dd3b744258a831b3ed99f1ed7bad1741f0905e63c3b31485b"
+  "learnerFingerprint": "711b33d17a04c3c62f4814e94e056363f948b0abd8106eb82ac1ab632f3e571b"
 }

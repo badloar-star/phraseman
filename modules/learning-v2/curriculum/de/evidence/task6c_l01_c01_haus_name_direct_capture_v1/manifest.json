@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-c01-haus-name-direct-capture.v1",
+  "captureKind": "RAW_AUTHORITATIVE_RESPONSE_BYTES",
+  "status": "HOLD",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "upstream": {
+    "additiveContractPath": "modules/learning-v2/curriculum/de/task6c_additive_source_plan_contract_de_v1.ts",
+    "additiveContractSha256": "33d0e3bc1fc31b2785291dfd7cc8519d582d26b5a4d9e6a1e0d86208269cb480",
+    "task5BlueprintPath": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+    "task5BlueprintSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29"
+  },
+  "captures": [
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_haus_v1",
+      "canonicalSenseId": "de_lex_task6c_l01_c01_haus_v1",
+      "lemma": "Haus",
+      "canonicalUrl": "https://www.dwds.de/wb/Haus",
+      "finalUrl": "https://www.dwds.de/wb/Haus",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Haus – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Haus",
+      "headwordArticleSpan": {
+        "sha256": "605390082e1d9c3e1c099f3cd442f94f4083520a8f6b07dfbd685e8820224ca5",
+        "utf8Bytes": 55
+      },
+      "headers": {
+        "path": "haus.http_headers.txt",
+        "sha256": "19df1cd818fc94a700a3bb2f8654cd1934e2ba534061d201a500444d2b2905cd",
+        "bytes": 327
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_task6c_l01_c01_haus_v1.html",
+        "sha256": "55a7d95020c931a914aa37d8c8e4f3d06db9f2eccd04a879aaea2a2030cfd758",
+        "bytes": 248511
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1-1",
+        "sha256": "5e018aeb07d6f345078cc956ece1c3bfdb7275745901707924415e189ed3eae8",
+        "utf8Bytes": 11008
+      },
+      "morphologySpan": {
+        "sha256": "19878c724acd5f0f8f912a50e7ac3a5a274fb256eda15a68814ab7aadb61bf95",
+        "utf8Bytes": 348
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_name_v1",
+      "canonicalSenseId": "de_lex_task6c_l01_c01_name_v1",
+      "lemma": "Name",
+      "canonicalUrl": "https://www.dwds.de/wb/Name",
+      "finalUrl": "https://www.dwds.de/wb/Name",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Name – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Name",
+      "headwordArticleSpan": {
+        "sha256": "12c5d4c364d91a84e371636353c14c094d4834d2f4ae6b197e81b3862edb30d4",
+        "utf8Bytes": 55
+      },
+      "headers": {
+        "path": "name.http_headers.txt",
+        "sha256": "239790c75a2d32602d01b1c05a1925f7b06a76cc1ccec75bd38d459c5ff3bfd6",
+        "bytes": 326
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_task6c_l01_c01_name_v1.html",
+        "sha256": "515a517f61911b381d487ef7ab1072747ae99abcccb90252aaca30a864d899b6",
+        "bytes": 153335
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1-1",
+        "sha256": "80ad42be5dac63958a2107e113d53a0b4d1a53d55572b3d674fd9db68a4f2f1b",
+        "utf8Bytes": 10667
+      },
+      "morphologySpan": {
+        "sha256": "bcb0fa68d2fe801156db77dddf44cd40534a1103924d52fcbfbd260981fa872b",
+        "utf8Bytes": 349
+      }
+    }
+  ],
+  "admission": {
+    "semanticAdmission": "NOT_EVALUATED",
+    "holdReason": "DIRECT_RAW_CAPTURE_ONLY_INDEPENDENT_SEMANTIC_REVIEW_REQUIRED"
+  }
+}

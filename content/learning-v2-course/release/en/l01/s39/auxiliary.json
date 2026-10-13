@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro1:r2": {
-          "ru": "Скрепка выпала. По-русски «мы рано» держится само, по-английски между `we` и словом нужно `are`.",
-          "uk": "Скріпка випала. Українською «ми рано» тримається саме, англійською між `we` і словом потрібне `are`."
+          "ru": "После `we` нужно `are`: We are early.",
+          "uk": "Після `we` потрібне `are`: We are early."
         },
         "en:lesson-01:session-39:intro1:r3": {
           "ru": "`is` — про одного. Вас двое, значит `are`.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-39:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro2:r2": {
-          "ru": "`not` встал не туда. Сначала скрепка `are`, потом `not`: `they are not`.",
-          "uk": "`not` став не туди. Спочатку скріпка `are`, потім `not`: `they are not`."
+          "ru": "Сначала `are`, затем `not`: They are not right.",
+          "uk": "Спочатку `are`, потім `not`: They are not right."
         },
         "en:lesson-01:session-39:intro2:r3": {
           "ru": "Это «они не ошиблись» — ровно наоборот. С `wrong` отрицание переворачивает смысл.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-39:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-39:intro3:r2": {
-          "ru": "Опять без скрепки. `are` не украшение: без него фразы просто нет.",
-          "uk": "Знову без скріпки. `are` не прикраса: без нього фрази просто немає."
+          "ru": "После `we` поставьте `are`: We are fine.",
+          "uk": "Після `we` поставте `are`: We are fine."
         },
         "en:lesson-01:session-39:intro3:r3": {
           "ru": "`am` — только про себя одного. Про «мы» — `are`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "dd65bec5e1c87e686cc019b43046f507e4b7d3eda4b2ebfa326357b4557f2b21"
+  "auxiliaryFingerprint": "8232ed05d868fc147bc74b519979cdc9d12b9c469221867a0f8706639f3563d6"
 }

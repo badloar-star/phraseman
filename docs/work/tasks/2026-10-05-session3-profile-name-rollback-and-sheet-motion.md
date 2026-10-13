@@ -1,6 +1,6 @@
 # Task packet: плашка отката имени и движение двух шторок по kit.css
 
-Governance-ID: TG-4B33CF120684
+Governance-ID: TG-882E28EEC1E2
 Status: In progress
 Owner: сессия 3 (макеты владельца)
 Related epic/enabler: Motion п.8 (AGENTS.md), baseline config/motion-hybrid-baseline.json
@@ -63,3 +63,11 @@ Scope: docs/design/v2-app/video-redesign.html (починить белую ст�
 ## Addendum 2026-10-11 (3): макет контекстных пейволлов
 
 Scope: docs/design/v2-app/paywall-context-redesign.html (3 варианта × состояния по всем входам + «Цена недоступна — повторить») и docs/design/v2-app/paywall-context-texts.md (таблица коротких текстов ru для согласования владельцем ДО коммита кода). Только макет и тексты в docs; код приложения не меняется. Данных, разрешений, платёжных вызовов нет (цены в макете примерные). Откат — удаление двух файлов.
+
+## Addendum 2026-10-11 (4): фраза выхода в макете диалогов, карточка участников, гейт паритета
+
+Scope: docs/design/v2-app/dialogs.html (фраза выхода «Переписка не сохранится…», убрать карточку участников в брифинге — решения владельца), scripts/visual_parity_gate.mjs + tests/visual_parity_gate.test.mjs (синхронизация с отметками Сверки «match»), проверка (без правки) docs/phraseman-2.0/registries/visual_parity.json — не показывает ли match 0 при проверенных экранах; реестр и evidence не правлю. Данных и разрешений нет; откат — откат файлов.
+
+## Addendum 2026-10-11 (5): макеты экранов релиза без макета (приказ владельца через координатора)
+
+Scope: docs/design/v2-app/*.html — по одному HTML на группу из docs/phraseman-2.0/OWNER_MOCKUP_NEEDED_2026-10-10.md (11 групп / 94 состояния; начало — группа 1: пейволл Plus цена/покупка, paywalls-011…018 кроме 017), плюс запись пути макета в docs/phraseman-2.0/registries/visual_parity.json (mockup/mockup_pinned, статус no_mockup → pending) — разрешено приказом владельца. Код приложения не меняется; тексты — реальные ru из кода, картинок не выдумываю. Данных, разрешений, платёжных вызовов нет. Откат — откат коммитов группы.

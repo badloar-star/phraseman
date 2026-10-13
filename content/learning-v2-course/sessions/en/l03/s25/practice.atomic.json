@@ -108,7 +108,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "На стойке лежит провод. Выберите его название.",
+            "ru": "Вставьте слово — на стойке лежит провод; выберите его название",
             "uk": "На стійці лежить шнур. Виберіть його назву."
           },
           "gappedTargetPhrase": "___",
@@ -422,26 +422,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — вы указываете на телефон рядом с собой",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-25:i08:r1", "text": "phone" },
-          { "responseId": "en:lesson-03:session-25:i08:r2", "text": "charger" },
-          { "responseId": "en:lesson-03:session-25:i08:r3", "text": "cable" }
+          {
+            "responseId": "en:lesson-03:session-25:i08:r1",
+            "text": "phone"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r2",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r3",
+            "text": "cable"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — вы указываете на телефон рядом с собой",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вы указываете на телефон рядом с собой.", "uk": "Ви показуєте телефон поруч із собою." },
+          "localizedScene": {
+            "ru": "Вставьте слово — вы указываете на телефон рядом с собой",
+            "uk": "Ви показуєте телефон поруч із собою."
+          },
           "gappedTargetPhrase": "This is a ___.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-25:i08:r1", "text": "phone" },
-            { "responseId": "en:lesson-03:session-25:i08:r2", "text": "charger" },
-            { "responseId": "en:lesson-03:session-25:i08:r3", "text": "cable" }
+            {
+              "responseId": "en:lesson-03:session-25:i08:r1",
+              "text": "phone"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "text": "charger"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "text": "cable"
+            }
           ],
           "testedDimension": "Вставьте слово — вы указываете на телефон рядом с собой",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-25:i08:r2", "correct": false, "testedDimension": "Вставьте слово — вы указываете на телефон рядом с собой", "feedbackByLocale": { "ru": "charger — зарядка. Здесь вы показываете телефон: phone.", "uk": "charger — зарядний пристрій. Тут ви показуєте телефон: phone." } },
-            { "responseId": "en:lesson-03:session-25:i08:r3", "correct": false, "testedDimension": "Вставьте слово — вы указываете на телефон рядом с собой", "feedbackByLocale": { "ru": "cable — провод. Здесь вы показываете телефон: phone.", "uk": "cable — шнур. Тут ви показуєте телефон: phone." } }
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Вставьте слово — вы указываете на телефон рядом с собой",
+              "feedbackByLocale": {
+                "ru": "charger — зарядка. Здесь вы показываете телефон: phone.",
+                "uk": "charger — зарядний пристрій. Тут ви показуєте телефон: phone."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Вставьте слово — вы указываете на телефон рядом с собой",
+              "feedbackByLocale": {
+                "ru": "cable — провод. Здесь вы показываете телефон: phone.",
+                "uk": "cable — шнур. Тут ви показуєте телефон: phone."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -454,11 +491,20 @@
         "inputMode": "single_choice",
         "prompt": "Различите звук — charger или charter",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-25:i09:r1", "text": "charger" },
-          { "responseId": "en:lesson-03:session-25:i09:r2", "text": "charter" }
+          {
+            "responseId": "en:lesson-03:session-25:i09:r1",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r2",
+            "text": "charter"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-25:i09:audioA", "en:lesson-03:session-25:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i09:audioA",
+          "en:lesson-03:session-25:i09:audioB"
+        ],
         "accessibilityLabel": "Различите звук — charger или charter",
         "modePayload": {
           "family": "sound_contrast",
@@ -466,11 +512,25 @@
           "contrastB": "charter",
           "ipaA": "",
           "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-25:i09:audioA", "transcript": "charger" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-25:i09:audioB", "transcript": "charter" },
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audioA",
+            "transcript": "charger"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audioB",
+            "transcript": "charter"
+          },
           "testedPhoneticContrast": "Различите звук — charger или charter",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-25:i09:r2", "correct": false, "testedDimension": "Различите звук — charger или charter", "feedbackByLocale": { "ru": "В charger после `char` слышно звонкое `дж`; в charter — `т`.", "uk": "У charger після `char` чути дзвінке `дж`; у charter — `т`." } }
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Различите звук — charger или charter",
+              "feedbackByLocale": {
+                "ru": "В charger после `char` слышно звонкое `дж`; в charter — `т`.",
+                "uk": "У charger після `char` чути дзвінке `дж`; у charter — `т`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -568,7 +628,8 @@
             "a",
             "charger."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -625,7 +686,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте слово — вы показываете один про",
+          "testedDimension": "Вставьте слово — вы показываете один провод рядом с собой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-25:i13:r2",
@@ -838,7 +899,7 @@
               "text": "cups"
             }
           ],
-          "testedDimension": "Вставьте маленькое слово — вы показывает",
+          "testedDimension": "Вставьте маленькое слово — вы показываете одну чашку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-25:i16:r2",
@@ -898,7 +959,8 @@
             "a",
             "cable."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1008,7 +1070,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "На стойке лежит провод. Выберите его название.",
-            "uk": "На стійці лежить шнур. Виберіть його назву."
+            "uk": "Вставте слово — на стійці лежить шнур; виберіть його назву"
           },
           "gappedTargetPhrase": "___",
           "gapOptions": [
@@ -1321,26 +1383,63 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — ви показуєте телефон поруч із собою",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-25:i08:r1", "text": "phone" },
-          { "responseId": "en:lesson-03:session-25:i08:r2", "text": "charger" },
-          { "responseId": "en:lesson-03:session-25:i08:r3", "text": "cable" }
+          {
+            "responseId": "en:lesson-03:session-25:i08:r1",
+            "text": "phone"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r2",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i08:r3",
+            "text": "cable"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — ви показуєте телефон поруч із собою",
         "modePayload": {
           "family": "context_gap_grammar",
-          "localizedScene": { "ru": "Вы указываете на телефон рядом с собой.", "uk": "Ви показуєте телефон поруч із собою." },
+          "localizedScene": {
+            "ru": "Вы указываете на телефон рядом с собой.",
+            "uk": "Вставте слово — ви показуєте телефон поруч із собою"
+          },
           "gappedTargetPhrase": "This is a ___.",
           "gapOptions": [
-            { "responseId": "en:lesson-03:session-25:i08:r1", "text": "phone" },
-            { "responseId": "en:lesson-03:session-25:i08:r2", "text": "charger" },
-            { "responseId": "en:lesson-03:session-25:i08:r3", "text": "cable" }
+            {
+              "responseId": "en:lesson-03:session-25:i08:r1",
+              "text": "phone"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "text": "charger"
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "text": "cable"
+            }
           ],
           "testedDimension": "Вставте слово — ви показуєте телефон поруч із собою",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-25:i08:r2", "correct": false, "testedDimension": "Вставте слово — ви показуєте телефон поруч із собою", "feedbackByLocale": { "ru": "charger — зарядка. Здесь вы показываете телефон: phone.", "uk": "charger — зарядний пристрій. Тут ви показуєте телефон: phone." } },
-            { "responseId": "en:lesson-03:session-25:i08:r3", "correct": false, "testedDimension": "Вставте слово — ви показуєте телефон поруч із собою", "feedbackByLocale": { "ru": "cable — провод. Здесь вы показываете телефон: phone.", "uk": "cable — шнур. Тут ви показуєте телефон: phone." } }
+            {
+              "responseId": "en:lesson-03:session-25:i08:r2",
+              "correct": false,
+              "testedDimension": "Вставте слово — ви показуєте телефон поруч із собою",
+              "feedbackByLocale": {
+                "ru": "charger — зарядка. Здесь вы показываете телефон: phone.",
+                "uk": "charger — зарядний пристрій. Тут ви показуєте телефон: phone."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-25:i08:r3",
+              "correct": false,
+              "testedDimension": "Вставте слово — ви показуєте телефон поруч із собою",
+              "feedbackByLocale": {
+                "ru": "cable — провод. Здесь вы показываете телефон: phone.",
+                "uk": "cable — шнур. Тут ви показуєте телефон: phone."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1353,11 +1452,20 @@
         "inputMode": "single_choice",
         "prompt": "Розрізніть звук — charger чи charter",
         "responseOptions": [
-          { "responseId": "en:lesson-03:session-25:i09:r1", "text": "charger" },
-          { "responseId": "en:lesson-03:session-25:i09:r2", "text": "charter" }
+          {
+            "responseId": "en:lesson-03:session-25:i09:r1",
+            "text": "charger"
+          },
+          {
+            "responseId": "en:lesson-03:session-25:i09:r2",
+            "text": "charter"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-25:i09:audioA", "en:lesson-03:session-25:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-25:i09:audioA",
+          "en:lesson-03:session-25:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть звук — charger чи charter",
         "modePayload": {
           "family": "sound_contrast",
@@ -1365,11 +1473,25 @@
           "contrastB": "charter",
           "ipaA": "",
           "ipaB": "",
-          "audioA": { "audioTargetId": "en:lesson-03:session-25:i09:audioA", "transcript": "charger" },
-          "audioB": { "audioTargetId": "en:lesson-03:session-25:i09:audioB", "transcript": "charter" },
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audioA",
+            "transcript": "charger"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-25:i09:audioB",
+            "transcript": "charter"
+          },
           "testedPhoneticContrast": "Розрізніть звук — charger чи charter",
           "choiceFeedback": [
-            { "responseId": "en:lesson-03:session-25:i09:r2", "correct": false, "testedDimension": "Розрізніть звук — charger чи charter", "feedbackByLocale": { "ru": "В charger после `char` слышно звонкое `дж`; в charter — `т`.", "uk": "У charger після `char` чути дзвінке `дж`; у charter — `т`." } }
+            {
+              "responseId": "en:lesson-03:session-25:i09:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть звук — charger чи charter",
+              "feedbackByLocale": {
+                "ru": "В charger после `char` слышно звонкое `дж`; в charter — `т`.",
+                "uk": "У charger після `char` чути дзвінке `дж`; у charter — `т`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1467,7 +1589,8 @@
             "a",
             "charger."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1797,7 +1920,8 @@
             "a",
             "cable."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

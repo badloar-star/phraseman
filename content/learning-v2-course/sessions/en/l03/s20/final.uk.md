@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i02; family: listen_choose -->
 Ціль: `glass`
 Варіанти: `glass` · `class` · `grass`
+- class — *`class` — «клас». На початку чути «кл», а в `glass` — звук, близький до українського «ґ», перед «л». Далі слова звучать однаково.*
+- grass — *`grass` — «трава». Після першого звука в ньому чути англійський звук без дотику язика до горбиків за верхніми зубами. У `glass` там «л», і язик торкається цих горбиків.*
+
 
 **3 · Картка слова — brush**
 <!-- interaction_id: en:lesson-03:session-20:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i04; family: listen_choose -->
 Ціль: `brush`
 Варіанти: `brush` · `blush` · `crush`
+- blush — *`blush` — «червоніти». Після «б» чути «л», і язик торкається горбиків за верхніми зубами. У `brush` там англійський звук без такого дотику.*
+- crush — *`crush` — «розчавити». Спочатку чути «к», а в `brush` — «б». Далі слова звучать однаково.*
+
 
 **5 · Промовте слово — комірник показує дві склянки й просить назвати їх англійською**
 <!-- interaction_id: en:lesson-03:session-20:i05; family: scripted_repeat_compare -->
@@ -87,6 +93,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i08; family: listen_choose -->
 Ціль: `bench`
 Варіанти: `bench` · `bunch` · `drench`
+- bunch — *`bunch` — «пучок». Голосний звучить як у `brush`; у `bench` він інший, язик ближче до передньої частини рота. Порівняйте середину.*
+- drench — *`drench` — «промочити наскрізь». На початку чути «д» і англійський звук без дотику язика до горбиків за верхніми зубами; у `bench` спершу звучить «б». Далі слова збігаються.*
+
 
 **9 · Промовте слово — кур’єр показує дві щітки й просить назвати їх англійською**
 <!-- interaction_id: en:lesson-03:session-20:i09; family: scripted_repeat_compare -->
@@ -96,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i10; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `boxes` · `box` · `boxs`
+- box — *Біля дверей дві коробки. У цій фразі потрібна назва кількох: `boxes`.*
+- boxs — *До `box` для кількох додаємо `es`: `boxes`. Така назва звучить у два склади.*
+
 
 **11 · Зберіть питання — у закритій коробці мають бути дві щітки; звірте замовлення з кур’єром: «Це щітки?»**
 <!-- interaction_id: en:lesson-03:session-20:i11; family: phrase_builder -->
@@ -111,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i13; family: listen_choose -->
 Ціль: `benches`
 Варіанти: `benches` · `bench` · `bunch`
+- bench — *`bench` — «лавка», один склад. У записі `benches` — «лавки», два склади. Дослухайте коротке закінчення.*
+- bunch — *`bunch` — «пучок», один склад із голосним як у `brush`. У `benches` перший голосний як у `bench`, а потім чути другий склад.*
+
 
 **14 · З’єднайте назви з українськими значеннями — слова з доставки**
 <!-- interaction_id: en:lesson-03:session-20:i14; family: speed_match -->
@@ -121,6 +136,9 @@
 <!-- interaction_id: en:lesson-03:session-20:i15; family: listen_choose -->
 Ціль: `box`
 Варіанти: `box` · `boxes` · `fox`
+- boxes — *`boxes` — «коробки», два склади. У записі `box` — «коробка»: один склад із кінцевим поєднанням «кс».*
+- fox — *`fox` — «лисиця». На початку чути «ф», а в `box` — «б». Далі звучання збігається.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-20:i16; family: scripted_repeat_compare -->

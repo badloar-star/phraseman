@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-005	2026-10-13T01:43:17.967Z	error	12978	step_target_not_found:#auth-google-button+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T01-42-23-896Z/onboarding-005.error.png	0

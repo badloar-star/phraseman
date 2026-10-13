@@ -1,0 +1,14 @@
+{
+  "algorithm": "sha256(json-v1; git-index+working-tree; tracked+untracked-nonignored+stable-ignored-release)",
+  "entryCount": 12733,
+  "scope": "Learning-V2 semantic scope v2; tracked+untracked-nonignored plus stable ignored runtime release; excludes only nested .codex-tmp/.tmp, Android build cache, functions-content node_modules, and exact future B3A receipts",
+  "snapshotSha256": "4c3b1c76bec14aaab433183c5a87e3b5da4b7bdab1021a0ac5d4080ba8ba9156",
+  "writableAllowlist": [
+    "docs/v2/curriculum/de/TASK6B3A_FINAL_ACCEPTANCE_MANIFEST_2026-10-11.json",
+    "docs/v2/curriculum/de/TASK6B3A_FINAL_ADVERSARIAL_REVIEW_2026-10-11.md",
+    "docs/v2/curriculum/de/TASK6B3A_FINAL_SPEC_REVIEW_2026-10-11.md",
+    "docs/v2/curriculum/de/TASK6B3A_GUARDIAN_RECEIPT_2026-10-11.md",
+    "docs/v2/curriculum/de/TASK6B3A_PRE_ACCEPTANCE_MANIFEST_2026-10-11.json",
+    "docs/v2/curriculum/de/TASK6B3A_PROTECTED_SURFACE_BASELINE_2026-10-11.json"
+  ]
+}

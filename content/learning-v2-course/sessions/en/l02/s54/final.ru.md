@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i02; family: listen_choose -->
 Цель: `landlord`
 Варианты: `landlord` · `landmark` · `landslide`
+- landmark — *Это «ориентир». Второй слог начинается с «м» при сомкнутых губах. В `landlord` он начинается с «л».*
+- landslide — *Это «оползень». Второй слог начинается с «с», затем слышен «л». В записи второй слог начинается сразу с «л»: `landlord`.*
+
 
 **3 · Соберите фразу — друг указывает на мужчину, который отвечает на вопросы; уточните, арендодатель ли он**
 <!-- interaction_id: en:lesson-02:session-54:i03; family: phrase_builder -->
@@ -73,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i05; family: listen_choose -->
 Цель: `rent`
 Варианты: `rent` · `lent` · `sent`
+- lent — *Это «одолжил». Первый звук такой же, как в `landlord`. В записи начало как в `ready`: `rent`.*
+- sent — *Это «отправил», с «с» в начале. В записи первый звук такой же, как в `ready`: `rent`.*
+
 
 **6 · Соберите фразу — хозяин показывает сумму в объявлении; уточните, это ли арендная плата**
 <!-- interaction_id: en:lesson-02:session-54:i06; family: phrase_builder -->
@@ -82,11 +88,17 @@
 <!-- interaction_id: en:lesson-02:session-54:i07; family: context_gap_grammar -->
 Цель: `The ___ is small.`
 Варианты: `flat` · `landlord` · `rules`
+- landlord — *Это «арендодатель». Вы описываете размер квартиры, поэтому нужно `flat`.*
+- rules — *Это «правила». Чтобы сказать о квартире, выберите `flat`: `The flat is small`.*
+
 
 **8 · Послушайте и выберите — какая реплика друга прозвучала после осмотра**
 <!-- interaction_id: en:lesson-02:session-54:i08; family: listen_choose -->
 Цель: `The flat is quiet.`
 Варианты: `The flat is quiet.` · `Is the flat quiet?` · `The flat is quite small.`
+- Is the flat quiet? — *Это вопрос. В записи друг сообщает: сначала `The flat is`.*
+- The flat is quite small. — *Это «Квартира довольно маленькая». В записи после `is` звучит `quiet` — «тихая».*
+
 
 **9 · Соберите фразу — хозяин объяснил правила; уточните у друга, понятны ли они ему**
 <!-- interaction_id: en:lesson-02:session-54:i09; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i11; family: context_gap_grammar -->
 Цель: `Yes, he ___ .`
 Варианты: `is` · `are` · `am`
+- are — *После `he` в этом коротком ответе нужно `is`: `Yes, he is`.*
+- am — *Форма `am` сочетается с `I`. Здесь вы отвечаете о мужчине: `he is`.*
+
 
 **12 · Соберите фразу — Лена сверяет объявление с листом Михаила: суммы разные; спросите, верно ли указана цена**
 <!-- interaction_id: en:lesson-02:session-54:i12; family: phrase_builder -->
@@ -115,6 +130,9 @@
 <!-- interaction_id: en:lesson-02:session-54:i14; family: context_gap_grammar -->
 Цель: `The rules ___ clear.`
 Варианты: `are` · `is` · `am`
+- is — *В этом сообщении с `the rules` нужна форма `are`: `The rules are clear`.*
+- am — *Форма `am` сочетается с `I`. Здесь вы говорите о правилах, поэтому нужно `are`.*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-54:i15; family: scripted_repeat_compare -->

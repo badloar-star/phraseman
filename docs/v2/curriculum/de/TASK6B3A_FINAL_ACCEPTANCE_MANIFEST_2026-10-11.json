@@ -1,0 +1,47 @@
+{
+  "stage": "FINAL_ACCEPTANCE",
+  "status": {
+    "historicalB1Replay": "UNAVAILABLE_NOT_CLAIMED",
+    "b3Acceptance": "NOT_ESTABLISHED",
+    "b3aAcceptance": "ESTABLISHED",
+    "candidateAcceptance": "ACCEPTED_UNDER_B4_CURRENT_STATE",
+    "rowsPromoted": 0,
+    "task7Contacts": "UNVERIFIED",
+    "learnerAuthoring": "HOLD",
+    "mockup": "HOLD",
+    "audio": "HOLD",
+    "runtime": "HOLD",
+    "releaseAuthority": "HOLD",
+    "englishAuthority": "EXCLUDED"
+  },
+  "closure": {
+    "docs/v2/curriculum/de/TASK_PACKET_STAGE_0.md": "82d29e357da2e5444aa377de33dd07f06fe12dbaa8f1e3c3de8285d297489ba5",
+    "docs/v2/curriculum/de/OWNER_DECISIONS.md": "eff5412a13531052aa56c1e40f4058f35da405297b418ca8fcbb7b44bc19f615",
+    "docs/v2/curriculum/de/TASK6B1_LEXICAL_REVIEW_RECEIPT_2026-10-08.md": "183d82f9f83d5d79ab7078767cb468004b54a6b7fac656022c0daab642bd9bd0",
+    "docs/v2/curriculum/de/TASK6B2_SOURCE_ADJUDICATION_RECEIPT_2026-10-11.md": "a87d60144ff8274e54f41a1a0cea76ec716d09dea4da75e94a922339f9a63746",
+    "docs/v2/curriculum/de/TASK6B2_QUARANTINE_DECISION_2026-10-11.md": "e3f700d0d6a8553af4d1807f3188bc16f1c4f3d2f0b20c7a7a571e5768487acf",
+    "docs/v2/curriculum/de/TASK_PACKET_6B3_AUFZUG_CANONICAL_MATERIALIZATION.md": "ef5548642c83759464cb51754bb75a1288e4ecd3a191a080334fab4d9395c1c3",
+    "docs/v2/curriculum/de/TASK_PACKET_6B4_AUFZUG_CURRENT_STATE_ADMISSION.md": "cdf079e2d7b9ab4c0701de8e5922f293ad40dfd1365a3e9179cf5f3c18eba328",
+    "docs/v2/curriculum/de/TASK6B4_AUTHORITY_RECORD_2026-10-11.md": "5859467b20dff7b3b915997b8f300c8aea700cb3d94c1a070c9821a814441508",
+    "docs/v2/curriculum/de/TASK6B4_FINAL_METHOD_ADVISOR_RECEIPT_R4_2026-10-11.md": "48c08d2d83962ea6f9110f34005c078423221df53d2c127937384b049704b206",
+    "docs/v2/curriculum/de/TASK6B4_GUARDIAN_RECEIPT_2026-10-11.md": "906776679332d683ef3488dbdb3876a2758baad9decf176e198c25739ba7a3e1",
+    "docs/v2/curriculum/de/TASK6B4_VALIDATION_RECEIPT_2026-10-11.md": "16be7e1684b165e837a84dcb2262b41b56422b18b37907ea7b9cb2bbff11cabb",
+    "docs/v2/curriculum/de/TASK6B3A_AUTHORITY_RECORD_2026-10-11.md": "3f185bf2fb61b91b555c8d41a495b6e173bbc90d94cdc1d52bdc741c2310e642",
+    "docs/v2/curriculum/de/TASK6B3A_METHOD_ADVISOR_RECEIPT_R3_2026-10-11.md": "8d37f3a1eb465e0a2a43dba2ed348d1168cb6955f09b21d728676ae6bb7fb520",
+    "docs/v2/curriculum/de/TASK6B3A_METHOD_ADVISOR_RECEIPT_R4_2026-10-11.md": "ba9a54d9c74b1c6dfa77b5a8fe02768fdd76263ca3395cea9af332732f80fd5b",
+    "docs/v2/curriculum/de/TASK6B3A_METHOD_ADVISOR_RECEIPT_R5_2026-10-11.md": "b6584469a7681a5b36bbdceabbdc23c4b45881592cedee41fa0ae3661101e0f6",
+    "docs/v2/curriculum/de/TASK_PACKET_6B3A_AUFZUG_CURRENT_STATE_ACCEPTANCE.md": "9c8a42b962112cd96eeac7e0f68ccf4897f23761a22c17ae1f4b22aeba6f7d2e",
+    "docs/v2/curriculum/de/TASK6B3A_GUARDIAN_RECEIPT_2026-10-11.md": "e70d9d3cd3fe95362807e17b210f7c2847bb094cbbfb972ff8613259bdcc3ee6",
+    "docs/v2/curriculum/de/TASK6B3A_PROTECTED_SURFACE_BASELINE_2026-10-11.json": "5c710f7bc4ad81e8e1cbc6cc8ea581384272a2ad33a50dd143893d92ec3c74d1",
+    "modules/learning-v2/curriculum/de/lexical_item_evidence_de_v1.ts": "10c80c5f418b9e3f804f243b5ec8e8f5f03243023f938187b1a45a4b56edf74c",
+    "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v1.json": "3290e4f77449963f3ae836f609c7ca4a988ae165a2a3dc2daef51f2d8ca83d29",
+    "tests/learning_v2_de_lexical_registry_gate.ts": "3346867a3c40fecf6dcf11ef12c97f9de52a949a7db64870957ac08235c36f58",
+    "tests/learning_v2_de_aufzug_current_state_admission_gate.ts": "a06b939b8965eb113af0779781a9cd630af1edf0b64b011fc9ea9c31e81fc771",
+    "tests/learning_v2_de_aufzug_b3a_acceptance_gate.ts": "29cf32c09b1eb0d80747a4795f6bd3438cc2d6dbc29d66773b878e3e5a9ae36b"
+  },
+  "preManifestSha256": "ce38d1ec32175241c6cc7ae0453b7764f255763b54981c09fe381e8d385be97b",
+  "reviews": {
+    "spec": "2d5cd401e442b0144ef0c4657917f563202141633f83b35572c8337d22c400e7",
+    "adversarial": "d3296bf39a76cdcd0c21e6df3082a61b57658fa49210cf755962d551d2d02021"
+  }
+}

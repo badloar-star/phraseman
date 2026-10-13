@@ -1,0 +1,3 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-011	2026-10-13T01:56:02.878Z	error	0	Error: adb_failed args=shell am force-stop app.phraseman status=20 error= stderr=cmd: Can't find service: activity
+		0

@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-26:i05; family: context_gap_grammar -->
 Ціль: `___`
 Варіанти: `speaker` · `screen` · `picture`
+- screen — *screen — екран. Тут потрібна колонка: speaker.*
+- picture — *picture — картина. Тут потрібна колонка: speaker.*
+
 
 **4 · Промовте слово**
 <!-- interaction_id: en:lesson-03:session-26:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значення варіантів: `screen` — екран · `green` — зелений · `scream` — крик · `stream` — потік
 Ціль: `screen`
 Варіанти: `screen` · `green` · `scream` · `stream`
+- green — *У `green` початок — `gr`; у `screen` перед `r` чути `s` і `k`: `skr`.*
+- scream — *`scream` закінчується на `m`, а `screen` — на `n`.*
+- stream — *У `stream` після `s` чути `t`; у `screen` — поєднання `kr`.*
+
 
 **6 · Розрізніть звук — speaker чи sticker**
 <!-- interaction_id: en:lesson-03:session-26:i06; family: sound_contrast -->
 Ціль: `speaker`
 *speaker · sticker* → **speaker**
+- sticker — *У speaker після `s` чути `p`; у sticker — `t`.*
+
 
 **7 · З'єднайте слова зі значеннями — предмети на сцені**
 <!-- interaction_id: en:lesson-03:session-26:i07; family: speed_match -->
@@ -95,11 +104,15 @@
 <!-- interaction_id: en:lesson-03:session-26:i08; family: sound_contrast -->
 Ціль: `That`
 *That · This* → **That**
+- This — *This вказує на предмет поруч; у завданні потрібен предмет далеко: that.*
+
 
 **9 · Вставте форму — один предмет стоїть удалині**
 <!-- interaction_id: en:lesson-03:session-26:i09; family: context_gap_grammar -->
 Ціль: `That ___ there.`
 Варіанти: `is` · `are`
+- are — *Are використовують з кількома предметами. Тут предмет один, тому is.*
+
 
 **10 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-26:i10; family: scripted_repeat_compare -->
@@ -117,11 +130,19 @@
 <!-- interaction_id: en:lesson-03:session-26:i13; family: context_gap_grammar -->
 Ціль: `That ___ a speaker.`
 Варіанти: `is` · `are` · `am` · `a`
+- are — *Колонка одна. Після `That` тут потрібне `is`.*
+- am — *`am` ставлять після `I`. Для одного далекого предмета потрібна зв'язка `That is`.*
+- a — *`a` уже стоїть перед `speaker`. Між `That` і `a speaker` потрібне `is`.*
+
 
 **14 · Послухайте й виберіть значення точної фрази**
 <!-- interaction_id: en:lesson-03:session-26:i14; family: listen_choose -->
 Ціль: `That is a screen.`
 Варіанти: `Це екран` · `Це пружина` · `Це крик` · `Це струмок`
+- Це пружина — *У записі прозвучало `screen` — «екран». Для «пружина» прозвучало б `spring`, зі звуком `p` після `s`.*
+- Це крик — *Почуте `screen` закінчується на `n`; слово `scream` — «крик» — закінчується на `m`.*
+- Це струмок — *У записі звучить поєднання `skr` у `screen`; слово `stream` — «струмок» — починається зі `str`.*
+
 
 **15 · Складіть фразу — колонка стоїть далеко від вас**
 <!-- interaction_id: en:lesson-03:session-26:i15; family: phrase_builder -->
@@ -131,6 +152,10 @@
 <!-- interaction_id: en:lesson-03:session-26:i16; family: context_gap_grammar -->
 Ціль: `___ is a picture.`
 Варіанти: `That` · `This` · `Is` · `A`
+- This — *`this` указує на предмет поруч. Картина стоїть біля дальньої стіни, тому потрібне `That`.*
+- Is — *Зв'язка `is` уже стоїть після пропуску. На початку потрібне вказівне слово для предмета вдалині — `That`.*
+- A — *Фраза вже містить `a picture`. На початку потрібне вказівне слово для предмета вдалині — `That`.*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-26:i17; family: scripted_repeat_compare -->

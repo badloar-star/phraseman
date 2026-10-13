@@ -1,0 +1,4489 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "targetLanguage": "en",
+  "interactions": [
+    {
+      "interactionId": "en:lesson-01:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i01:audio",
+          "transcript": "here"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i01:r1",
+            "targetText": "here",
+            "meaningByLocale": {
+              "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+              "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i01:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+              "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+            },
+            "analysisV1": {
+              "text": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "explanationByLocale": {
+                "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "here",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "here",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте, где находится говорящий.",
+                    "uk": "Повідомляє про місце, де перебуває мовець."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "here",
+          "definitionByLocale": {
+            "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+            "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i02:r1",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i02:r2",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i02:r3",
+          "text": "fine"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+          "uk": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i02:r1",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r2",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r3",
+            "text": "fine"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i02:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+            "feedbackByLocale": {
+              "ru": "Верно: here означает «здесь», поэтому I am here сообщает Мире, что вы уже в офисе.",
+              "uk": "Правильно: here означає «тут», тому I am here повідомляє Мірі, що ви вже в офісі."
+            },
+            "analysisV1": {
+              "text": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "explanationByLocale": {
+                "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "here",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "here",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте, где находится говорящий.",
+                    "uk": "Повідомляє про місце, де перебуває мовець."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова». Это подходит перед началом дела, но Мира спрашивает, добрались ли вы до офиса.",
+              "uk": "Ready означає «готовий / готова». Це доречно перед початком справи, але Міра питає, чи ви дісталися офісу."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова». Это подходит перед началом дела, но Мира спрашивает, добрались ли вы до офиса.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова». Це доречно перед початком справи, але Міра питає, чи ви дісталися офісу."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова». Это подходит перед началом дела, но Мира спрашивает, добрались ли вы до офиса.",
+              "uk": "Ready означає «готовий / готова». Це доречно перед початком справи, але Міра питає, чи ви дісталися офісу."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / here: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / here: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+            "feedbackByLocale": {
+              "ru": "Fine означает «всё хорошо». Это ответ на «как дела?», а здесь нужно назвать своё местоположение: I am here.",
+              "uk": "Fine означає «усе добре». Це відповідь на «як справи?», а тут треба назвати своє місце: I am here."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«fine» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Fine означает «всё хорошо». Это ответ на «как дела?», а здесь нужно назвать своё местоположение: I am here.",
+              "uk": "«fine» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Fine означає «усе добре». Це відповідь на «як справи?», а тут треба назвати своє місце: I am here."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Fine означает «всё хорошо». Это ответ на «как дела?», а здесь нужно назвать своё местоположение: I am here.",
+              "uk": "Fine означає «усе добре». Це відповідь на «як справи?», а тут треба назвати своє місце: I am here."
+            },
+            "minimalContrastByLocale": {
+              "ru": "fine / here: меняется ответ на конкретную ситуацию.",
+              "uk": "fine / here: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i03:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i03:audio",
+          "transcript": "ready"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i03:r1",
+            "targetText": "ready",
+            "meaningByLocale": {
+              "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+              "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i03:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+              "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "ready",
+          "definitionByLocale": {
+            "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+            "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i04:r1",
+          "text": "ready"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i04:r2",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i04:r3",
+          "text": "happy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+          "uk": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i04:r1",
+            "text": "ready"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r2",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r3",
+            "text": "happy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i04:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+            "feedbackByLocale": {
+              "ru": "Верно: ready означает «готов / готова». Антон спрашивает, можно ли начинать, поэтому I am ready подходит.",
+              "uk": "Правильно: ready означає «готовий / готова». Антон питає, чи можна починати, тому I am ready підходить."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+            "feedbackByLocale": {
+              "ru": "Fine означает «всё хорошо». Здесь нужно сказать, что вы готовы начать: I am ready.",
+              "uk": "Fine означає «усе добре». Тут треба сказати, що ви готові почати: I am ready."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«fine» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Fine означает «всё хорошо». Здесь нужно сказать, что вы готовы начать: I am ready.",
+              "uk": "«fine» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Fine означає «усе добре». Тут треба сказати, що ви готові почати: I am ready."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Fine означает «всё хорошо». Здесь нужно сказать, что вы готовы начать: I am ready.",
+              "uk": "Fine означає «усе добре». Тут треба сказати, що ви готові почати: I am ready."
+            },
+            "minimalContrastByLocale": {
+              "ru": "fine / ready: меняется ответ на конкретную ситуацию.",
+              "uk": "fine / ready: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+            "feedbackByLocale": {
+              "ru": "Happy означает «рад / рада». Здесь речь о готовности начать, поэтому нужно ready: I am ready.",
+              "uk": "Happy означає «радий / рада». Тут ідеться про готовність почати, тому потрібно ready: I am ready."
+            },
+            "analysisV1": {
+              "text": "happy",
+              "meaningByLocale": {
+                "ru": "рад / рада",
+                "uk": "радий / рада"
+              },
+              "explanationByLocale": {
+                "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "happy",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "happy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "рад / рада",
+                    "uk": "радий / рада"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am описывает радость говорящего.",
+                    "uk": "Після am описує радість мовця."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«happy» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Happy означает «рад / рада». Здесь речь о готовности начать, поэтому нужно ready: I am ready.",
+              "uk": "«happy» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Happy означає «радий / рада». Тут ідеться про готовність почати, тому потрібно ready: I am ready."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Happy означает «рад / рада». Здесь речь о готовности начать, поэтому нужно ready: I am ready.",
+              "uk": "Happy означає «радий / рада». Тут ідеться про готовність почати, тому потрібно ready: I am ready."
+            },
+            "minimalContrastByLocale": {
+              "ru": "happy / ready: меняется ответ на конкретную ситуацию.",
+              "uk": "happy / ready: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i05:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i05:audio",
+          "transcript": "fine"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i05:r1",
+            "targetText": "fine",
+            "meaningByLocale": {
+              "ru": "«хорошо, в порядке». Ответ на «как дела», когда всё нормально и вдаваться в подробности не хочется.",
+              "uk": "«добре, у порядку». Відповідь на «як справи», коли все гаразд і вдаватися в подробиці не хочеться."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i05:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+              "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "fine",
+          "definitionByLocale": {
+            "ru": "«хорошо, в порядке». Ответ на «как дела», когда всё нормально и вдаваться в подробности не хочется.",
+            "uk": "«добре, у порядку». Відповідь на «як справи», коли все гаразд і вдаватися в подробиці не хочеться."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i06:r1",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i06:r2",
+          "text": "here"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i06:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+          "uk": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i06:r1",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r2",
+            "text": "here"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+            "feedbackByLocale": {
+              "ru": "Верно: fine означает «хорошо, в порядке». На вопрос о том, как у вас дела, вы говорите I am fine.",
+              "uk": "Правильно: fine означає «добре, гаразд». На запитання про ваші справи ви кажете I am fine."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+            "feedbackByLocale": {
+              "ru": "Here означает «здесь»: это о месте, а не о самочувствии. Здесь: I am fine.",
+              "uk": "Here означає «тут»: це про місце, а не про самопочуття. Тут: I am fine."
+            },
+            "analysisV1": {
+              "text": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "explanationByLocale": {
+                "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "here",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "here",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте, где находится говорящий.",
+                    "uk": "Повідомляє про місце, де перебуває мовець."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«here» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Here означает «здесь»: это о месте, а не о самочувствии. Здесь: I am fine.",
+              "uk": "«here» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Here означає «тут»: це про місце, а не про самопочуття. Тут: I am fine."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Here означает «здесь»: это о месте, а не о самочувствии. Здесь: I am fine.",
+              "uk": "Here означає «тут»: це про місце, а не про самопочуття. Тут: I am fine."
+            },
+            "minimalContrastByLocale": {
+              "ru": "here / fine: меняется ответ на конкретную ситуацию.",
+              "uk": "here / fine: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова»: это о готовности, а не о самочувствии. Здесь: I am fine.",
+              "uk": "Ready означає «готовий / готова»: це про готовність, а не про самопочуття. Тут: I am fine."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова»: это о готовности, а не о самочувствии. Здесь: I am fine.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова»: це про готовність, а не про самопочуття. Тут: I am fine."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова»: это о готовности, а не о самочувствии. Здесь: I am fine.",
+              "uk": "Ready означає «готовий / готова»: це про готовність, а не про самопочуття. Тут: I am fine."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / fine: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / fine: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i07",
+      "ordinal": 10,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Новое слово",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i07:audio"
+      ],
+      "accessibilityLabel": "Новое слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i07:audio",
+          "transcript": "happy"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:r1",
+            "targetText": "happy",
+            "meaningByLocale": {
+              "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+              "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+              "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+            },
+            "analysisV1": {
+              "text": "happy",
+              "meaningByLocale": {
+                "ru": "рад / рада",
+                "uk": "радий / рада"
+              },
+              "explanationByLocale": {
+                "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "happy",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "happy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "рад / рада",
+                    "uk": "радий / рада"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am описывает радость говорящего.",
+                    "uk": "Після am описує радість мовця."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "happy",
+          "definitionByLocale": {
+            "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+            "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i07:a01",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i07:a01:r1",
+          "text": "happy"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i07:a01:r2",
+          "text": "fine"
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i07:a01:r3",
+          "text": "ready"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+          "uk": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді"
+        },
+        "gappedTargetPhrase": "I am ___.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r1",
+            "text": "happy"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r2",
+            "text": "fine"
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r3",
+            "text": "ready"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+            "feedbackByLocale": {
+              "ru": "Верно: happy означает «рад / рада». После хорошей новости I am happy прямо сообщает о вашей радости.",
+              "uk": "Правильно: happy означає «радий / рада». Після хорошої новини I am happy прямо повідомляє про вашу радість."
+            },
+            "analysisV1": {
+              "text": "happy",
+              "meaningByLocale": {
+                "ru": "рад / рада",
+                "uk": "радий / рада"
+              },
+              "explanationByLocale": {
+                "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "happy",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "happy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "рад / рада",
+                    "uk": "радий / рада"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am описывает радость говорящего.",
+                    "uk": "Після am описує радість мовця."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+            "feedbackByLocale": {
+              "ru": "Fine означает «всё хорошо, в порядке». Это можно сказать о самочувствии, но новость вызвала именно радость.",
+              "uk": "Fine означає «усе добре, гаразд». Це можна сказати про самопочуття, але новина викликала саме радість."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«fine» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Fine означает «всё хорошо, в порядке». Это можно сказать о самочувствии, но новость вызвала именно радость.",
+              "uk": "«fine» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Fine означає «усе добре, гаразд». Це можна сказати про самопочуття, але новина викликала саме радість."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Fine означает «всё хорошо, в порядке». Это можно сказать о самочувствии, но новость вызвала именно радость.",
+              "uk": "Fine означає «усе добре, гаразд». Це можна сказати про самопочуття, але новина викликала саме радість."
+            },
+            "minimalContrastByLocale": {
+              "ru": "fine / happy: меняется ответ на конкретную ситуацию.",
+              "uk": "fine / happy: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i07:a01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова». После хорошей новости вы рады, поэтому здесь happy: I am happy.",
+              "uk": "Ready означає «готовий / готова». Після доброї новини ви раді, тому тут happy: I am happy."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова». После хорошей новости вы рады, поэтому здесь happy: I am happy.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова». Після доброї новини ви раді, тому тут happy: I am happy."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова». После хорошей новости вы рады, поэтому здесь happy: I am happy.",
+              "uk": "Ready означає «готовий / готова». Після доброї новини ви раді, тому тут happy: I am happy."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / happy: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / happy: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i08",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините пары",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соедините пары",
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-01:i08:p1",
+            "target": "here",
+            "meaningByLocale": {
+              "ru": "здесь",
+              "uk": "тут"
+            },
+            "analysisV1": {
+              "lemma": "here",
+              "partOfSpeech": "adverb",
+              "partOfSpeechLabelByLocale": {
+                "ru": "наречие",
+                "uk": "прислівник"
+              },
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает, где находится говорящий.",
+                "uk": "Після I am повідомляє, де перебуває мовець."
+              },
+              "matchExplanationByLocale": {
+                "ru": "here соответствует «здесь»: слово сообщает о месте, где находится говорящий.",
+                "uk": "here відповідає «тут»: слово повідомляє про місце, де перебуває мовець."
+              },
+              "sourceRefs": [
+                "final.ru.md#intro-1",
+                "final.uk.md#intro-1",
+                "modules/learning-v2/curriculum/en/lexical_senses_en_v2.ts#here.adverb.01"
+              ],
+              "phrase": {
+                "text": "here",
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "explanationByLocale": {
+                  "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                  "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+                },
+                "units": [
+                  {
+                    "text": "here",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "here",
+                    "partOfSpeech": "adverb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "наречие",
+                      "uk": "прислівник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "здесь",
+                      "uk": "тут"
+                    },
+                    "functionByLocale": {
+                      "ru": "Сообщает о месте, где находится говорящий.",
+                      "uk": "Повідомляє про місце, де перебуває мовець."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p2",
+            "target": "ready",
+            "meaningByLocale": {
+              "ru": "готов / готова",
+              "uk": "готовий / готова"
+            },
+            "analysisV1": {
+              "lemma": "ready",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "functionByLocale": {
+                "ru": "После I am описывает готовность говорящего начать.",
+                "uk": "Після I am описує готовність мовця почати."
+              },
+              "matchExplanationByLocale": {
+                "ru": "ready соответствует «готов / готова»: слово сообщает о готовности начать.",
+                "uk": "ready відповідає «готовий / готова»: слово повідомляє про готовність почати."
+              },
+              "sourceRefs": [
+                "final.ru.md#intro-2",
+                "final.uk.md#intro-2",
+                "modules/learning-v2/curriculum/en/lexical_senses_en_v2.ts#ready.adjective.01"
+              ],
+              "phrase": {
+                "text": "ready",
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "explanationByLocale": {
+                  "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                  "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+                },
+                "units": [
+                  {
+                    "text": "ready",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "ready",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "готов / готова",
+                      "uk": "готовий / готова"
+                    },
+                    "functionByLocale": {
+                      "ru": "Описывает готовность говорящего начать.",
+                      "uk": "Описує готовність мовця почати."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p3",
+            "target": "fine",
+            "meaningByLocale": {
+              "ru": "хорошо",
+              "uk": "добре"
+            },
+            "analysisV1": {
+              "lemma": "fine",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "хорошо",
+                "uk": "добре"
+              },
+              "functionByLocale": {
+                "ru": "После I am сообщает, что у говорящего всё хорошо.",
+                "uk": "Після I am повідомляє, що в мовця все добре."
+              },
+              "matchExplanationByLocale": {
+                "ru": "fine соответствует «хорошо»: так отвечают о самочувствии, когда всё в порядке.",
+                "uk": "fine відповідає «добре»: так відповідають про самопочуття, коли все гаразд."
+              },
+              "sourceRefs": [
+                "final.ru.md#practice-i05",
+                "final.uk.md#practice-i05",
+                "modules/learning-v2/curriculum/en/session_lexical_assignments_en_v2.ts#en.fine.adjective.01"
+              ],
+              "phrase": {
+                "text": "fine",
+                "meaningByLocale": {
+                  "ru": "всё хорошо",
+                  "uk": "усе добре"
+                },
+                "explanationByLocale": {
+                  "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                  "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+                },
+                "units": [
+                  {
+                    "text": "fine",
+                    "start": 0,
+                    "end": 4,
+                    "lemma": "fine",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "всё хорошо",
+                      "uk": "усе добре"
+                    },
+                    "functionByLocale": {
+                      "ru": "После am сообщает, что у говорящего всё хорошо.",
+                      "uk": "Після am повідомляє, що в мовця все добре."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i08:p4",
+            "target": "happy",
+            "meaningByLocale": {
+              "ru": "рад / рада",
+              "uk": "радий / рада"
+            },
+            "analysisV1": {
+              "lemma": "happy",
+              "partOfSpeech": "adjective",
+              "partOfSpeechLabelByLocale": {
+                "ru": "прилагательное",
+                "uk": "прикметник"
+              },
+              "meaningByLocale": {
+                "ru": "рад / рада",
+                "uk": "радий / рада"
+              },
+              "functionByLocale": {
+                "ru": "После I am описывает радость говорящего.",
+                "uk": "Після I am описує радість мовця."
+              },
+              "matchExplanationByLocale": {
+                "ru": "happy соответствует «рад / рада»: слово сообщает о радости от новости или результата.",
+                "uk": "happy відповідає «радий / рада»: слово повідомляє про радість від новини або результату."
+              },
+              "sourceRefs": [
+                "final.ru.md#intro-3",
+                "final.uk.md#intro-3",
+                "modules/learning-v2/curriculum/en/session_lexical_assignments_en_v2.ts#en.happy.adjective.01"
+              ],
+              "phrase": {
+                "text": "happy",
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "explanationByLocale": {
+                  "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                  "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+                },
+                "units": [
+                  {
+                    "text": "happy",
+                    "start": 0,
+                    "end": 5,
+                    "lemma": "happy",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "рад / рада",
+                      "uk": "радий / рада"
+                    },
+                    "functionByLocale": {
+                      "ru": "После am описывает радость говорящего.",
+                      "uk": "Після am описує радість мовця."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "leftColumn": [
+          "here",
+          "ready",
+          "fine",
+          "happy"
+        ],
+        "rightColumn": [
+          "здесь",
+          "готов / готова",
+          "хорошо",
+          "рад / рада"
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": true,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "speed",
+          "accuracy",
+          "personal_best"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i09",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am here.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+          "uk": "Складіть фразу — колега шукає вас, а ви вже в кімнаті"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "here"
+        ],
+        "authoredDistractorTokens": [
+          "ready"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова». Здесь нужно сообщить, где вы: I am here.",
+              "uk": "Ready означає «готовий / готова». Тут треба повідомити, де ви: I am here."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова». Здесь нужно сообщить, где вы: I am here.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова». Тут треба повідомити, де ви: I am here."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова». Здесь нужно сообщить, где вы: I am here.",
+              "uk": "Ready означає «готовий / готова». Тут треба повідомити, де ви: I am here."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / I am here.: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / I am here.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am here. — «Я здесь».",
+          "uk": "Правильно: I am here. — «Я тут»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am here. — «Я здесь».",
+            "uk": "Правильно: I am here. — «Я тут»."
+          },
+          "phrase": {
+            "text": "I am here.",
+            "meaningByLocale": {
+              "ru": "Я здесь.",
+              "uk": "Я тут."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о месте, а here сообщает, что говорящий находится здесь.",
+              "uk": "I називає мовця, am пов'язує його зі словом про місце, а here повідомляє, що мовець перебуває тут."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 5,
+                "end": 9,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i13",
+      "purpose": "retrieval_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте фразу Миры у входа и выберите её смысл",
+      "accessibilityLabel": "Послушайте фразу Миры у входа и выберите её смысл",
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i13:audio"
+      ],
+      "scriptedAlternate": null,
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-01:i13:r1",
+          "text": "Я здесь."
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i13:r2",
+          "text": "Я готов / готова."
+        },
+        {
+          "responseId": "en:lesson-01:session-01:i13:r3",
+          "text": "У меня всё хорошо."
+        }
+      ],
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i13:audio",
+          "transcript": "I am here."
+        },
+        "slowReferenceAudio": null,
+        "transcriptRevealPolicy": "after_first_attempt",
+        "isWordCard": false,
+        "localizedScene": {
+          "ru": "Мира ждёт вас у входа; вы сообщаете, что уже здесь.",
+          "uk": "Міра чекає на вас біля входу; ви повідомляєте, що вже тут."
+        },
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r1",
+            "targetText": "Я здесь.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "targetText": "Я готов / готова.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "targetText": "У меня всё хорошо.",
+            "meaningByLocale": null
+          }
+        ],
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r1",
+            "correct": true,
+            "testedDimension": "Послушайте фразу Миры у входа и выберите её смысл",
+            "feedbackByLocale": {
+              "ru": "Верно: `I am here` означает «я здесь». Так вы отвечаете Мире у входа.",
+              "uk": "Правильно: `I am here` означає «я тут». Так ви відповідаєте Мірі біля входу."
+            },
+            "analysisV1": {
+              "text": "Я здесь.",
+              "meaningByLocale": {
+                "ru": "Я здесь.",
+                "uk": "Я тут."
+              },
+              "explanationByLocale": {
+                "ru": "Верно: `I am here` означает «я здесь». Так вы отвечаете Мире у входа.",
+                "uk": "Правильно: `I am here` означає «я тут». Так ви відповідаєте Мірі біля входу."
+              },
+              "units": [
+                {
+                  "text": "Я",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "я",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "личное местоимение"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Называет говорящего и служит подлежащим."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "здесь",
+                  "start": 2,
+                  "end": 7,
+                  "lemma": "здесь",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "наречие"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "здесь"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте говорящего.",
+                    "uk": "Сообщает о месте говорящего."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 7,
+                  "end": 8,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "correct": false,
+            "testedDimension": "Послушайте фразу Миры у входа и выберите её смысл",
+            "feedbackByLocale": {
+              "ru": "`I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+              "uk": "`I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+            },
+            "analysisV1": {
+              "text": "Я готов / готова.",
+              "meaningByLocale": {
+                "ru": "Я готов / готова.",
+                "uk": "Я готовий / готова."
+              },
+              "explanationByLocale": {
+                "ru": "`I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+                "uk": "`I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+              },
+              "units": [
+                {
+                  "text": "Я",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "я",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "личное местоимение"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего и служит подлежащим.",
+                    "uk": "Называет говорящего и служит подлежащим."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "готов",
+                  "start": 2,
+                  "end": 7,
+                  "lemma": "готов",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прилагательное"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов",
+                    "uk": "готов"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего в мужском роде.",
+                    "uk": "Описывает готовность говорящего в мужском роде."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "/",
+                  "start": 8,
+                  "end": 9,
+                  "lemma": "/",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "разделительный знак",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "разделяет варианты рода",
+                    "uk": "розділяє варіанти роду"
+                  },
+                  "functionByLocale": {
+                    "ru": "Показывает два согласованных варианта формы.",
+                    "uk": "Показує два узгоджені варіанти форми."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "готова",
+                  "start": 10,
+                  "end": 16,
+                  "lemma": "готов",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прилагательное"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готова",
+                    "uk": "готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего в женском роде.",
+                    "uk": "Описывает готовность говорящего в женском роде."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 16,
+                  "end": 17,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«Я готов / готова.» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: `I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+              "uk": "«Я готовий / готова.» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: `I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "`I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+              "uk": "`I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+            },
+            "minimalContrastByLocale": {
+              "ru": "Я готов / готова. / Я здесь.: меняется ответ на конкретную ситуацию.",
+              "uk": "Я готовий / готова. / Я здесь.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "correct": false,
+            "testedDimension": "Послушайте фразу Миры у входа и выберите её смысл",
+            "feedbackByLocale": {
+              "ru": "`I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+              "uk": "`I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+            },
+            "analysisV1": {
+              "text": "У меня всё хорошо.",
+              "meaningByLocale": {
+                "ru": "У меня всё хорошо.",
+                "uk": "У мене все добре."
+              },
+              "explanationByLocale": {
+                "ru": "`I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+                "uk": "`I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+              },
+              "units": [
+                {
+                  "text": "У",
+                  "start": 0,
+                  "end": 1,
+                  "lemma": "у",
+                  "partOfSpeech": "preposition",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "предлог",
+                    "uk": "предлог"
+                  },
+                  "meaningByLocale": {
+                    "ru": "у",
+                    "uk": "у"
+                  },
+                  "functionByLocale": {
+                    "ru": "В конструкции «у меня» вводит человека, чьё состояние описывается.",
+                    "uk": "В конструкции «у меня» вводит человека, чьё состояние описывается."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "меня",
+                  "start": 2,
+                  "end": 6,
+                  "lemma": "я",
+                  "partOfSpeech": "personal_pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "личное местоимение"
+                  },
+                  "meaningByLocale": {
+                    "ru": "меня",
+                    "uk": "меня"
+                  },
+                  "functionByLocale": {
+                    "ru": "Вместе с «у» указывает на говорящего.",
+                    "uk": "Вместе с «у» указывает на говорящего."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "всё",
+                  "start": 7,
+                  "end": 10,
+                  "lemma": "всё",
+                  "partOfSpeech": "pronoun",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "местоимение",
+                    "uk": "местоимение"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё",
+                    "uk": "всё"
+                  },
+                  "functionByLocale": {
+                    "ru": "Обобщает состояние дел.",
+                    "uk": "Обобщает состояние дел."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": "хорошо",
+                  "start": 11,
+                  "end": 17,
+                  "lemma": "хорошо",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "наречие"
+                  },
+                  "meaningByLocale": {
+                    "ru": "хорошо",
+                    "uk": "хорошо"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает положительную оценку состояния.",
+                    "uk": "Сообщает положительную оценку состояния."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                },
+                {
+                  "text": ".",
+                  "start": 17,
+                  "end": 18,
+                  "lemma": ".",
+                  "partOfSpeech": "punctuation",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает предложение.",
+                    "uk": "Завершує речення."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "wrong_lexeme",
+            "whyTemptingByLocale": {
+              "ru": "«У меня всё хорошо.» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: `I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+              "uk": "«У мене все добре.» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: `I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "`I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+              "uk": "`I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+            },
+            "minimalContrastByLocale": {
+              "ru": "У меня всё хорошо. / Я здесь.: меняется ответ на конкретную ситуацию.",
+              "uk": "У мене все добре. / Я здесь.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Само слово возможно в другой ситуации, но не передаёт требуемый здесь смысл.",
+              "uk": "Саме слово можливе в іншій ситуації, але не передає потрібного тут змісту."
+            }
+          }
+        ]
+      },
+      "ordinal": 14
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i10",
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+      "accessibilityLabel": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "scriptedAlternate": null,
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am fine.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+          "uk": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "ready",
+          "here"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова». О самочувствии говорят I am fine.",
+              "uk": "Ready означає «готовий / готова». Про самопочуття кажуть I am fine."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова». О самочувствии говорят I am fine.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова». Про самопочуття кажуть I am fine."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова». О самочувствии говорят I am fine.",
+              "uk": "Ready означає «готовий / готова». Про самопочуття кажуть I am fine."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / I am fine.: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / I am fine.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i10:tile:d2",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+            "feedbackByLocale": {
+              "ru": "Here означает «здесь». Вопрос не о месте, а о том, как вы: I am fine.",
+              "uk": "Here означає «тут». Запитання не про місце, а про те, як ви: I am fine."
+            },
+            "analysisV1": {
+              "text": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "explanationByLocale": {
+                "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "here",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "here",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте, где находится говорящий.",
+                    "uk": "Повідомляє про місце, де перебуває мовець."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«here» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Here означает «здесь». Вопрос не о месте, а о том, как вы: I am fine.",
+              "uk": "«here» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Here означає «тут». Запитання не про місце, а про те, як ви: I am fine."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Here означает «здесь». Вопрос не о месте, а о том, как вы: I am fine.",
+              "uk": "Here означає «тут». Запитання не про місце, а про те, як ви: I am fine."
+            },
+            "minimalContrastByLocale": {
+              "ru": "here / I am fine.: меняется ответ на конкретную ситуацию.",
+              "uk": "here / I am fine.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am fine. — «У меня всё хорошо».",
+          "uk": "Правильно: I am fine. — «У мене все добре»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am fine. — «У меня всё хорошо».",
+            "uk": "Правильно: I am fine. — «У мене все добре»."
+          },
+          "phrase": {
+            "text": "I am fine.",
+            "meaningByLocale": {
+              "ru": "У меня всё хорошо.",
+              "uk": "У мене все добре."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а fine означает, что у говорящего всё хорошо.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а fine означає, що в мовця все добре."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "fine",
+                "start": 5,
+                "end": 9,
+                "lemma": "fine",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "всё хорошо",
+                  "uk": "усе добре"
+                },
+                "functionByLocale": {
+                  "ru": "После am сообщает, что у говорящего всё хорошо.",
+                  "uk": "Після am повідомляє, що в мовця все добре."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "ordinal": 15
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i12",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте реплику коллеги перед началом встречи и соберите её",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте реплику коллеги перед началом встречи и соберите её",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i12:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am ready.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "fine"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте реплику коллеги перед началом встречи и соберите её",
+            "feedbackByLocale": {
+              "ru": "Fine означает «всё хорошо», а коллега сообщает, что готов к встрече: I am ready.",
+              "uk": "Fine означає «усе добре», а колега повідомляє, що готовий до зустрічі: I am ready."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«fine» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Fine означает «всё хорошо», а коллега сообщает, что готов к встрече: I am ready.",
+              "uk": "«fine» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Fine означає «усе добре», а колега повідомляє, що готовий до зустрічі: I am ready."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Fine означает «всё хорошо», а коллега сообщает, что готов к встрече: I am ready.",
+              "uk": "Fine означає «усе добре», а колега повідомляє, що готовий до зустрічі: I am ready."
+            },
+            "minimalContrastByLocale": {
+              "ru": "fine / I am ready.: меняется ответ на конкретную ситуацию.",
+              "uk": "fine / I am ready.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am ready. — «Я готов / готова».",
+          "uk": "Правильно: I am ready. — «Я готовий / готова»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am ready. — «Я готов / готова».",
+            "uk": "Правильно: I am ready. — «Я готовий / готова»."
+          },
+          "phrase": {
+            "text": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Я готов / готова.",
+              "uk": "Я готовий / готова."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 5,
+                "end": 10,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Описывает готовность говорящего начать.",
+                  "uk": "Описує готовність мовця почати."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i11",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am ready.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+          "uk": "Складіть фразу — начальник питає, чи ви готові почати"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "ready"
+        ],
+        "authoredDistractorTokens": [
+          "happy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+            "feedbackByLocale": {
+              "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
+              "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
+            },
+            "analysisV1": {
+              "text": "happy",
+              "meaningByLocale": {
+                "ru": "рад / рада",
+                "uk": "радий / рада"
+              },
+              "explanationByLocale": {
+                "ru": "happy — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "happy — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "happy",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "happy",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "рад / рада",
+                    "uk": "радий / рада"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am описывает радость говорящего.",
+                    "uk": "Після am описує радість мовця."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«happy» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
+              "uk": "«happy» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Happy означає «радий / рада». Тут питають про готовність: I am ready."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
+              "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
+            },
+            "minimalContrastByLocale": {
+              "ru": "happy / I am ready.: меняется ответ на конкретную ситуацию.",
+              "uk": "happy / I am ready.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am ready. — «Я готов / готова».",
+          "uk": "Правильно: I am ready. — «Я готовий / готова»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am ready. — «Я готов / готова».",
+            "uk": "Правильно: I am ready. — «Я готовий / готова»."
+          },
+          "phrase": {
+            "text": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Я готов / готова.",
+              "uk": "Я готовий / готова."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 5,
+                "end": 10,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Описывает готовность говорящего начать.",
+                  "uk": "Описує готовність мовця почати."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i14",
+      "ordinal": 18,
+      "purpose": "retrieval_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i14:audio",
+          "transcript": "I am here."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am here.",
+        "explanationV1": {
+          "phrase": {
+            "text": "I am here.",
+            "meaningByLocale": {
+              "ru": "Я здесь.",
+              "uk": "Я тут."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о месте, а here сообщает, что говорящий находится здесь.",
+              "uk": "I називає мовця, am пов'язує його зі словом про місце, а here повідомляє, що мовець перебуває тут."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "here",
+                "start": 5,
+                "end": 9,
+                "lemma": "here",
+                "partOfSpeech": "adverb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "наречие",
+                  "uk": "прислівник"
+                },
+                "meaningByLocale": {
+                  "ru": "здесь",
+                  "uk": "тут"
+                },
+                "functionByLocale": {
+                  "ru": "Сообщает о месте, где находится говорящий.",
+                  "uk": "Повідомляє про місце, де перебуває мовець."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        },
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i15",
+      "ordinal": 19,
+      "purpose": "independent_check",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "I am happy.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+          "uk": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді"
+        },
+        "orderedTokens": [
+          "I",
+          "am",
+          "happy"
+        ],
+        "authoredDistractorTokens": [
+          "ready"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+            "feedbackByLocale": {
+              "ru": "Ready означает «готов / готова». Здесь нужна эмоция после хорошей новости о рабочем месте: happy — «рад / рада».",
+              "uk": "Ready означає «готовий / готова». Тут потрібна емоція після доброї новини про робоче місце: happy — «радий / рада»."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Ready означает «готов / готова». Здесь нужна эмоция после хорошей новости о рабочем месте: happy — «рад / рада».",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Ready означає «готовий / готова». Тут потрібна емоція після доброї новини про робоче місце: happy — «радий / рада»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Ready означает «готов / готова». Здесь нужна эмоция после хорошей новости о рабочем месте: happy — «рад / рада».",
+              "uk": "Ready означає «готовий / готова». Тут потрібна емоція після доброї новини про робоче місце: happy — «радий / рада»."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / I am happy.: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / I am happy.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am happy. — «Я рад / рада».",
+          "uk": "Правильно: I am happy. — «Я радий / рада»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am happy. — «Я рад / рада».",
+            "uk": "Правильно: I am happy. — «Я радий / рада»."
+          },
+          "phrase": {
+            "text": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Я рад / рада.",
+              "uk": "Я радий / рада."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а happy сообщает, что говорящий рад.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а happy повідомляє, що мовець радий."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 5,
+                "end": 10,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "После am описывает радость говорящего.",
+                  "uk": "Після am описує радість мовця."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i16",
+      "ordinal": 20,
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте, как Мира говорит о своём первом рабочем дне; соберите её слова",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i16:audio"
+      ],
+      "accessibilityLabel": "Послушайте, как Мира говорит о своём первом рабочем дне; соберите её слова",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i16:audio",
+          "transcript": "I am happy."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am happy.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "happy"
+        ],
+        "authoredDistractorTokens": [
+          "fine"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте, как Мира говорит о своём первом рабочем дне; соберите её слова",
+            "feedbackByLocale": {
+              "ru": "Фраза строится по порядку: I → am → happy. В этой ситуации happy значит «рад / рада»; fine изменило бы смысл на «у меня всё хорошо».",
+              "uk": "Фраза будується в такому порядку: I → am → happy. У цій ситуації happy означає «радий / рада»; fine змінило б зміст на «у мене все добре»."
+            },
+            "analysisV1": {
+              "text": "fine",
+              "meaningByLocale": {
+                "ru": "всё хорошо",
+                "uk": "усе добре"
+              },
+              "explanationByLocale": {
+                "ru": "fine — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "fine — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "fine",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "fine",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "После am сообщает, что у говорящего всё хорошо.",
+                    "uk": "Після am повідомляє, що в мовця все добре."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«fine» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: Фраза строится по порядку: I → am → happy. В этой ситуации happy значит «рад / рада»; fine изменило бы смысл на «у меня всё хорошо».",
+              "uk": "«fine» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: Фраза будується в такому порядку: I → am → happy. У цій ситуації happy означає «радий / рада»; fine змінило б зміст на «у мене все добре»."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "Фраза строится по порядку: I → am → happy. В этой ситуации happy значит «рад / рада»; fine изменило бы смысл на «у меня всё хорошо».",
+              "uk": "Фраза будується в такому порядку: I → am → happy. У цій ситуації happy означає «радий / рада»; fine змінило б зміст на «у мене все добре»."
+            },
+            "minimalContrastByLocale": {
+              "ru": "fine / I am happy.: меняется ответ на конкретную ситуацию.",
+              "uk": "fine / I am happy.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am happy. — «Я рад / рада».",
+          "uk": "Правильно: I am happy. — «Я радий / рада»."
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am happy. — «Я рад / рада».",
+            "uk": "Правильно: I am happy. — «Я радий / рада»."
+          },
+          "phrase": {
+            "text": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Я рад / рада.",
+              "uk": "Я радий / рада."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а happy сообщает, что говорящий рад.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а happy повідомляє, що мовець радий."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "happy",
+                "start": 5,
+                "end": 10,
+                "lemma": "happy",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "рад / рада",
+                  "uk": "радий / рада"
+                },
+                "functionByLocale": {
+                  "ru": "После am описывает радость говорящего.",
+                  "uk": "Після am описує радість мовця."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17:s01",
+      "purpose": "independent_check",
+      "family": "speed_match",
+      "inputMode": "pair_grid",
+      "prompt": "Соедините фразы с подходящими ситуациями",
+      "accessibilityLabel": "Соедините фразы с подходящими ситуациями",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "scriptedAlternate": null,
+      "modePayload": {
+        "family": "speed_match",
+        "pairGrid": [
+          {
+            "pairId": "en:lesson-01:session-01:i17:s01:p1",
+            "target": "I am here.",
+            "meaningByLocale": {
+              "ru": "Мира ждёт вас у входа.",
+              "uk": "Міра чекає на вас біля входу."
+            },
+            "analysisV1": {
+              "lemma": "I am here.",
+              "partOfSpeech": "sentence",
+              "partOfSpeechLabelByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              },
+              "meaningByLocale": {
+                "ru": "Мира ждёт вас у входа.",
+                "uk": "Міра чекає на вас біля входу."
+              },
+              "functionByLocale": {
+                "ru": "Подходит к ситуации: Мира ждёт вас у входа.",
+                "uk": "Підходить до ситуації: Міра чекає на вас біля входу."
+              },
+              "matchExplanationByLocale": {
+                "ru": "Ситуация подсказывает фразу I am here.",
+                "uk": "Ситуація підказує фразу I am here."
+              },
+              "sourceRefs": [
+                "final.ru.md#practice-i17-s01",
+                "final.uk.md#practice-i17-s01"
+              ],
+              "phrase": {
+                "text": "I am here.",
+                "meaningByLocale": {
+                  "ru": "Я здесь.",
+                  "uk": "Я тут."
+                },
+                "explanationByLocale": {
+                  "ru": "I называет говорящего, am связывает его со словом о месте, а here сообщает, что говорящий находится здесь.",
+                  "uk": "I називає мовця, am пов'язує його зі словом про місце, а here повідомляє, що мовець перебуває тут."
+                },
+                "units": [
+                  {
+                    "text": "I",
+                    "start": 0,
+                    "end": 1,
+                    "lemma": "I",
+                    "partOfSpeech": "personal_pronoun",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "личное местоимение",
+                      "uk": "особовий займенник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "я",
+                      "uk": "я"
+                    },
+                    "functionByLocale": {
+                      "ru": "Называет говорящего и служит подлежащим.",
+                      "uk": "Називає мовця й слугує підметом."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "am",
+                    "start": 2,
+                    "end": 4,
+                    "lemma": "be",
+                    "partOfSpeech": "linking_verb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "глагол-связка",
+                      "uk": "дієслово-зв'язка"
+                    },
+                    "meaningByLocale": {
+                      "ru": "форма be после I",
+                      "uk": "форма be після I"
+                    },
+                    "functionByLocale": {
+                      "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                      "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "here",
+                    "start": 5,
+                    "end": 9,
+                    "lemma": "here",
+                    "partOfSpeech": "adverb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "наречие",
+                      "uk": "прислівник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "здесь",
+                      "uk": "тут"
+                    },
+                    "functionByLocale": {
+                      "ru": "Сообщает о месте, где находится говорящий.",
+                      "uk": "Повідомляє про місце, де перебуває мовець."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "start": 9,
+                    "end": 10,
+                    "lemma": ".",
+                    "partOfSpeech": "punctuation",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "знак препинания",
+                      "uk": "розділовий знак"
+                    },
+                    "meaningByLocale": {
+                      "ru": "конец утверждения",
+                      "uk": "кінець твердження"
+                    },
+                    "functionByLocale": {
+                      "ru": "Завершает предложение.",
+                      "uk": "Завершує речення."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i17:s01:p2",
+            "target": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Встречу можно начинать.",
+              "uk": "Зустріч можна починати."
+            },
+            "analysisV1": {
+              "lemma": "I am ready.",
+              "partOfSpeech": "sentence",
+              "partOfSpeechLabelByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              },
+              "meaningByLocale": {
+                "ru": "Встречу можно начинать.",
+                "uk": "Зустріч можна починати."
+              },
+              "functionByLocale": {
+                "ru": "Подходит к ситуации: Встречу можно начинать.",
+                "uk": "Підходить до ситуації: Зустріч можна починати."
+              },
+              "matchExplanationByLocale": {
+                "ru": "Ситуация подсказывает фразу I am ready.",
+                "uk": "Ситуація підказує фразу I am ready."
+              },
+              "sourceRefs": [
+                "final.ru.md#practice-i17-s01",
+                "final.uk.md#practice-i17-s01"
+              ],
+              "phrase": {
+                "text": "I am ready.",
+                "meaningByLocale": {
+                  "ru": "Я готов / готова.",
+                  "uk": "Я готовий / готова."
+                },
+                "explanationByLocale": {
+                  "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+                  "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+                },
+                "units": [
+                  {
+                    "text": "I",
+                    "start": 0,
+                    "end": 1,
+                    "lemma": "I",
+                    "partOfSpeech": "personal_pronoun",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "личное местоимение",
+                      "uk": "особовий займенник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "я",
+                      "uk": "я"
+                    },
+                    "functionByLocale": {
+                      "ru": "Называет говорящего и служит подлежащим.",
+                      "uk": "Називає мовця й слугує підметом."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "am",
+                    "start": 2,
+                    "end": 4,
+                    "lemma": "be",
+                    "partOfSpeech": "linking_verb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "глагол-связка",
+                      "uk": "дієслово-зв'язка"
+                    },
+                    "meaningByLocale": {
+                      "ru": "форма be после I",
+                      "uk": "форма be після I"
+                    },
+                    "functionByLocale": {
+                      "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                      "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "ready",
+                    "start": 5,
+                    "end": 10,
+                    "lemma": "ready",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "готов / готова",
+                      "uk": "готовий / готова"
+                    },
+                    "functionByLocale": {
+                      "ru": "Описывает готовность говорящего начать.",
+                      "uk": "Описує готовність мовця почати."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "start": 10,
+                    "end": 11,
+                    "lemma": ".",
+                    "partOfSpeech": "punctuation",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "знак препинания",
+                      "uk": "розділовий знак"
+                    },
+                    "meaningByLocale": {
+                      "ru": "конец утверждения",
+                      "uk": "кінець твердження"
+                    },
+                    "functionByLocale": {
+                      "ru": "Завершает предложение.",
+                      "uk": "Завершує речення."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i17:s01:p3",
+            "target": "I am fine.",
+            "meaningByLocale": {
+              "ru": "Коллега спрашивает, как у вас дела.",
+              "uk": "Колега запитує, як ваші справи."
+            },
+            "analysisV1": {
+              "lemma": "I am fine.",
+              "partOfSpeech": "sentence",
+              "partOfSpeechLabelByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              },
+              "meaningByLocale": {
+                "ru": "Коллега спрашивает, как у вас дела.",
+                "uk": "Колега запитує, як ваші справи."
+              },
+              "functionByLocale": {
+                "ru": "Подходит к ситуации: Коллега спрашивает, как у вас дела.",
+                "uk": "Підходить до ситуації: Колега запитує, як ваші справи."
+              },
+              "matchExplanationByLocale": {
+                "ru": "Ситуация подсказывает фразу I am fine.",
+                "uk": "Ситуація підказує фразу I am fine."
+              },
+              "sourceRefs": [
+                "final.ru.md#practice-i17-s01",
+                "final.uk.md#practice-i17-s01"
+              ],
+              "phrase": {
+                "text": "I am fine.",
+                "meaningByLocale": {
+                  "ru": "У меня всё хорошо.",
+                  "uk": "У мене все добре."
+                },
+                "explanationByLocale": {
+                  "ru": "I называет говорящего, am связывает его со словом о состоянии, а fine означает, что у говорящего всё хорошо.",
+                  "uk": "I називає мовця, am пов'язує його зі словом про стан, а fine означає, що в мовця все добре."
+                },
+                "units": [
+                  {
+                    "text": "I",
+                    "start": 0,
+                    "end": 1,
+                    "lemma": "I",
+                    "partOfSpeech": "personal_pronoun",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "личное местоимение",
+                      "uk": "особовий займенник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "я",
+                      "uk": "я"
+                    },
+                    "functionByLocale": {
+                      "ru": "Называет говорящего и служит подлежащим.",
+                      "uk": "Називає мовця й слугує підметом."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "am",
+                    "start": 2,
+                    "end": 4,
+                    "lemma": "be",
+                    "partOfSpeech": "linking_verb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "глагол-связка",
+                      "uk": "дієслово-зв'язка"
+                    },
+                    "meaningByLocale": {
+                      "ru": "форма be после I",
+                      "uk": "форма be після I"
+                    },
+                    "functionByLocale": {
+                      "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                      "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "fine",
+                    "start": 5,
+                    "end": 9,
+                    "lemma": "fine",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "всё хорошо",
+                      "uk": "усе добре"
+                    },
+                    "functionByLocale": {
+                      "ru": "После am сообщает, что у говорящего всё хорошо.",
+                      "uk": "Після am повідомляє, що в мовця все добре."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "start": 9,
+                    "end": 10,
+                    "lemma": ".",
+                    "partOfSpeech": "punctuation",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "знак препинания",
+                      "uk": "розділовий знак"
+                    },
+                    "meaningByLocale": {
+                      "ru": "конец утверждения",
+                      "uk": "кінець твердження"
+                    },
+                    "functionByLocale": {
+                      "ru": "Завершает предложение.",
+                      "uk": "Завершує речення."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "pairId": "en:lesson-01:session-01:i17:s01:p4",
+            "target": "I am happy.",
+            "meaningByLocale": {
+              "ru": "Вас радует хорошая новость.",
+              "uk": "Вас тішить добра новина."
+            },
+            "analysisV1": {
+              "lemma": "I am happy.",
+              "partOfSpeech": "sentence",
+              "partOfSpeechLabelByLocale": {
+                "ru": "фраза",
+                "uk": "фраза"
+              },
+              "meaningByLocale": {
+                "ru": "Вас радует хорошая новость.",
+                "uk": "Вас тішить добра новина."
+              },
+              "functionByLocale": {
+                "ru": "Подходит к ситуации: Вас радует хорошая новость.",
+                "uk": "Підходить до ситуації: Вас тішить добра новина."
+              },
+              "matchExplanationByLocale": {
+                "ru": "Ситуация подсказывает фразу I am happy.",
+                "uk": "Ситуація підказує фразу I am happy."
+              },
+              "sourceRefs": [
+                "final.ru.md#practice-i17-s01",
+                "final.uk.md#practice-i17-s01"
+              ],
+              "phrase": {
+                "text": "I am happy.",
+                "meaningByLocale": {
+                  "ru": "Я рад / рада.",
+                  "uk": "Я радий / рада."
+                },
+                "explanationByLocale": {
+                  "ru": "I называет говорящего, am связывает его со словом о состоянии, а happy сообщает, что говорящий рад.",
+                  "uk": "I називає мовця, am пов'язує його зі словом про стан, а happy повідомляє, що мовець радий."
+                },
+                "units": [
+                  {
+                    "text": "I",
+                    "start": 0,
+                    "end": 1,
+                    "lemma": "I",
+                    "partOfSpeech": "personal_pronoun",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "личное местоимение",
+                      "uk": "особовий займенник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "я",
+                      "uk": "я"
+                    },
+                    "functionByLocale": {
+                      "ru": "Называет говорящего и служит подлежащим.",
+                      "uk": "Називає мовця й слугує підметом."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "am",
+                    "start": 2,
+                    "end": 4,
+                    "lemma": "be",
+                    "partOfSpeech": "linking_verb",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "глагол-связка",
+                      "uk": "дієслово-зв'язка"
+                    },
+                    "meaningByLocale": {
+                      "ru": "форма be после I",
+                      "uk": "форма be після I"
+                    },
+                    "functionByLocale": {
+                      "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                      "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": "happy",
+                    "start": 5,
+                    "end": 10,
+                    "lemma": "happy",
+                    "partOfSpeech": "adjective",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "прилагательное",
+                      "uk": "прикметник"
+                    },
+                    "meaningByLocale": {
+                      "ru": "рад / рада",
+                      "uk": "радий / рада"
+                    },
+                    "functionByLocale": {
+                      "ru": "После am описывает радость говорящего.",
+                      "uk": "Після am описує радість мовця."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  },
+                  {
+                    "text": ".",
+                    "start": 10,
+                    "end": 11,
+                    "lemma": ".",
+                    "partOfSpeech": "punctuation",
+                    "partOfSpeechLabelByLocale": {
+                      "ru": "знак препинания",
+                      "uk": "розділовий знак"
+                    },
+                    "meaningByLocale": {
+                      "ru": "конец утверждения",
+                      "uk": "кінець твердження"
+                    },
+                    "functionByLocale": {
+                      "ru": "Завершает предложение.",
+                      "uk": "Завершує речення."
+                    },
+                    "sourceRefs": [
+                      "final.ru.md#practice",
+                      "final.uk.md#practice"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "leftColumn": [
+          "I am here.",
+          "I am ready.",
+          "I am fine.",
+          "I am happy."
+        ],
+        "rightColumn": [
+          "Мира ждёт вас у входа.",
+          "Встречу можно начинать.",
+          "Коллега спрашивает, как у вас дела.",
+          "Вас радует хорошая новость."
+        ],
+        "pairingKey": "pair_id",
+        "timerPolicy": {
+          "enabledByDefault": false,
+          "learnerCanDisable": true,
+          "pausesOnInterruption": true
+        },
+        "finishStats": [
+          "accuracy"
+        ]
+      },
+      "ordinal": 21
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17:s02",
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Антон начинает встречу; сообщите, что готовы",
+      "accessibilityLabel": "Скажите вслух — Антон начинает встречу; сообщите, что готовы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i17:s02:audio"
+      ],
+      "scriptedAlternate": null,
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "targetPhrase": "I am ready.",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i17:s02:audio",
+          "transcript": "I am ready."
+        },
+        "slowReferenceAudio": null,
+        "explanationV1": {
+          "phrase": {
+            "text": "I am ready.",
+            "meaningByLocale": {
+              "ru": "Я готов / готова.",
+              "uk": "Я готовий / готова."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а ready сообщает о готовности.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а ready повідомляє про готовність."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "ready",
+                "start": 5,
+                "end": 10,
+                "lemma": "ready",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "готов / готова",
+                  "uk": "готовий / готова"
+                },
+                "functionByLocale": {
+                  "ru": "Описывает готовность говорящего начать.",
+                  "uk": "Описує готовність мовця почати."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 10,
+                "end": 11,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        },
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "ordinal": 22
+    },
+    {
+      "interactionId": "en:lesson-01:session-01:i17:s03",
+      "purpose": "independent_check",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — коллега спрашивает, как у вас дела",
+      "accessibilityLabel": "Послушайте и соберите — коллега спрашивает, как у вас дела",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-01:i17:s03:audio"
+      ],
+      "scriptedAlternate": null,
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "hiddenTargetPhrase": "I am fine.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "fine"
+        ],
+        "authoredDistractorTokens": [
+          "ready",
+          "here"
+        ],
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-01:i17:s03:audio",
+          "transcript": "I am fine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaning": {
+          "ru": "На вопрос о самочувствии: «У меня всё хорошо».",
+          "uk": "На запитання про самопочуття: «У мене все добре.»"
+        },
+        "explanationV1": {
+          "completionFeedbackByLocale": {
+            "ru": "Верно: I am fine. — «У меня всё хорошо».",
+            "uk": "Правильно: I am fine. — «У мене все добре»."
+          },
+          "phrase": {
+            "text": "I am fine.",
+            "meaningByLocale": {
+              "ru": "У меня всё хорошо.",
+              "uk": "У мене все добре."
+            },
+            "explanationByLocale": {
+              "ru": "I называет говорящего, am связывает его со словом о состоянии, а fine означает, что у говорящего всё хорошо.",
+              "uk": "I називає мовця, am пов'язує його зі словом про стан, а fine означає, що в мовця все добре."
+            },
+            "units": [
+              {
+                "text": "I",
+                "start": 0,
+                "end": 1,
+                "lemma": "I",
+                "partOfSpeech": "personal_pronoun",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "личное местоимение",
+                  "uk": "особовий займенник"
+                },
+                "meaningByLocale": {
+                  "ru": "я",
+                  "uk": "я"
+                },
+                "functionByLocale": {
+                  "ru": "Называет говорящего и служит подлежащим.",
+                  "uk": "Називає мовця й слугує підметом."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "am",
+                "start": 2,
+                "end": 4,
+                "lemma": "be",
+                "partOfSpeech": "linking_verb",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "глагол-связка",
+                  "uk": "дієслово-зв'язка"
+                },
+                "meaningByLocale": {
+                  "ru": "форма be после I",
+                  "uk": "форма be після I"
+                },
+                "functionByLocale": {
+                  "ru": "Связывает I с сообщением о говорящем; в полной фразе после I обязательна форма am.",
+                  "uk": "Пов'язує I з повідомленням про мовця; у повній фразі після I обов'язкова форма am."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": "fine",
+                "start": 5,
+                "end": 9,
+                "lemma": "fine",
+                "partOfSpeech": "adjective",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "прилагательное",
+                  "uk": "прикметник"
+                },
+                "meaningByLocale": {
+                  "ru": "всё хорошо",
+                  "uk": "усе добре"
+                },
+                "functionByLocale": {
+                  "ru": "После am сообщает, что у говорящего всё хорошо.",
+                  "uk": "Після am повідомляє, що в мовця все добре."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              },
+              {
+                "text": ".",
+                "start": 9,
+                "end": 10,
+                "lemma": ".",
+                "partOfSpeech": "punctuation",
+                "partOfSpeechLabelByLocale": {
+                  "ru": "знак препинания",
+                  "uk": "розділовий знак"
+                },
+                "meaningByLocale": {
+                  "ru": "конец утверждения",
+                  "uk": "кінець твердження"
+                },
+                "functionByLocale": {
+                  "ru": "Завершает предложение.",
+                  "uk": "Завершує речення."
+                },
+                "sourceRefs": [
+                  "final.ru.md#practice",
+                  "final.uk.md#practice"
+                ]
+              }
+            ]
+          }
+        },
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-01:i17:s03:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — коллега спрашивает, как у вас дела",
+            "feedbackByLocale": {
+              "ru": "`ready` — «готов / готова». Здесь нужен ответ о самочувствии: `I am fine`.",
+              "uk": "`ready` — «готовий / готова». Тут потрібна відповідь про самопочуття: `I am fine`."
+            },
+            "analysisV1": {
+              "text": "ready",
+              "meaningByLocale": {
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
+              },
+              "explanationByLocale": {
+                "ru": "ready — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "ready — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "ready",
+                  "start": 0,
+                  "end": 5,
+                  "lemma": "ready",
+                  "partOfSpeech": "adjective",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает готовность говорящего начать.",
+                    "uk": "Описує готовність мовця почати."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«ready» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: `ready` — «готов / готова». Здесь нужен ответ о самочувствии: `I am fine`.",
+              "uk": "«ready» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: `ready` — «готовий / готова». Тут потрібна відповідь про самопочуття: `I am fine`."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "`ready` — «готов / готова». Здесь нужен ответ о самочувствии: `I am fine`.",
+              "uk": "`ready` — «готовий / готова». Тут потрібна відповідь про самопочуття: `I am fine`."
+            },
+            "minimalContrastByLocale": {
+              "ru": "ready / I am fine.: меняется ответ на конкретную ситуацию.",
+              "uk": "ready / I am fine.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i17:s03:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — коллега спрашивает, как у вас дела",
+            "feedbackByLocale": {
+              "ru": "`here` — «здесь». Здесь спрашивают не о месте, а о том, как вы: `I am fine`.",
+              "uk": "`here` — «тут». Тут питають не про місце, а про те, як ви: `I am fine`."
+            },
+            "analysisV1": {
+              "text": "here",
+              "meaningByLocale": {
+                "ru": "здесь",
+                "uk": "тут"
+              },
+              "explanationByLocale": {
+                "ru": "here — отдельное слово; его смысл и роль зависят от ситуации и позиции после I am.",
+                "uk": "here — окреме слово; його зміст і роль залежать від ситуації та позиції після I am."
+              },
+              "units": [
+                {
+                  "text": "here",
+                  "start": 0,
+                  "end": 4,
+                  "lemma": "here",
+                  "partOfSpeech": "adverb",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие",
+                    "uk": "прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает о месте, где находится говорящий.",
+                    "uk": "Повідомляє про місце, де перебуває мовець."
+                  },
+                  "sourceRefs": [
+                    "final.ru.md#practice",
+                    "final.uk.md#practice"
+                  ]
+                }
+              ]
+            },
+            "errorType": "distractor_token",
+            "whyTemptingByLocale": {
+              "ru": "«here» знакомо и подходит по форме, поэтому его легко выбрать автоматически. Проверка ситуации: `here` — «здесь». Здесь спрашивают не о месте, а о том, как вы: `I am fine`.",
+              "uk": "«here» знайоме й підходить за формою, тому його легко вибрати автоматично. Перевірка ситуації: `here` — «тут». Тут питають не про місце, а про те, як ви: `I am fine`."
+            },
+            "whyWrongHereByLocale": {
+              "ru": "`here` — «здесь». Здесь спрашивают не о месте, а о том, как вы: `I am fine`.",
+              "uk": "`here` — «тут». Тут питають не про місце, а про те, як ви: `I am fine`."
+            },
+            "minimalContrastByLocale": {
+              "ru": "here / I am fine.: меняется ответ на конкретную ситуацию.",
+              "uk": "here / I am fine.: змінюється відповідь на конкретну ситуацію."
+            },
+            "acceptabilityBoundaryByLocale": {
+              "ru": "Такой вариант не является полной нейтральной фразой, которую отрабатывает это занятие.",
+              "uk": "Такий варіант не є повною нейтральною фразою, яку відпрацьовує це заняття."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "Верно: I am fine. — «У меня всё хорошо».",
+          "uk": "Правильно: I am fine. — «У мене все добре»."
+        }
+      },
+      "ordinal": 23
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "944db2d2465f30e11c2c94be9510ee97239de89db3e3a9f114757058a6906670"
+}

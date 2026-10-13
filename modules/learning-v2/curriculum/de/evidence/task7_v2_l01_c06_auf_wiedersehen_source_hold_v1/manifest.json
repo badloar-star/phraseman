@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c06-auf-wiedersehen-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1",
+    "checkpointPacketId": "de_l01_c06_s48",
+    "semanticIdentity": "auf wiedersehen|neutral formal leave taking",
+    "lemmaOrExpression": "Auf Wiedersehen"
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "b55246c8274075182f3f534ae12470a0550cfbc79d128ac349d3fae5b0bb558e",
+      "bytes": 1427
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "officialPedagogicalOccurrence": "Auf Wiedersehen! / Tschüs!"
+    },
+    "unsupportedClaims": {
+      "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCE"
+    }
+  },
+  "allocation": {
+    "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1",
+    "checkpointPacketId": "de_l01_c06_s48",
+    "sessionId": "de_l01_s06",
+    "chapterId": "de_l01_c06",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING"
+  }
+}

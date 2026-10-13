@@ -288,7 +288,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — все побоялись возразить клиенту, а он возразил",
+            "ru": "Вставьте слово — Никита заметил ошибку в сроке для клиента и спокойно сказал об этом",
             "uk": "Вставте слово — усі побоялися заперечити клієнту, а він заперечив"
           },
           "gappedTargetPhrase": "You are ___ .",
@@ -868,7 +868,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы уверены",
+            "ru": "Вставьте слово — вы проверили время отправления в билете и уверены в нём",
             "uk": "Вставте слово — ви впевнені"
           },
           "gappedTargetPhrase": "I ___ sure.",
@@ -1427,7 +1427,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — все побоялись возразить клиенту, а он возразил",
-            "uk": "Вставте слово — усі побоялися заперечити клієнту, а він заперечив"
+            "uk": "Вставте слово — Микита помітив помилку в терміні для клієнта й спокійно сказав про це"
           },
           "gappedTargetPhrase": "You are ___ .",
           "gapOptions": [
@@ -1507,7 +1507,7 @@
             {
               "responseId": "en:lesson-01:session-12:i06:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «я спокійний» (про себе)",
+              "testedDimension": "Соберите фразу — «я спокоен» (про себя)",
               "feedbackByLocale": {
                 "ru": "После I ставят am, поэтому are здесь лишнее.",
                 "uk": "Після I ставлять am, тому are тут зайве."
@@ -1883,7 +1883,7 @@
             {
               "responseId": "en:lesson-01:session-12:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Ніна прямо сказала клієнту, що терміни зірвані; скажіть їй, що вона чесна",
+              "testedDimension": "Соберите фразу — Нина прямо сказала клиенту, что сроки сорваны; скажите ей, что она честная",
               "feedbackByLocale": {
                 "ru": "После You ставят are, а не is.",
                 "uk": "Після You ставлять are, а не is."
@@ -1926,7 +1926,7 @@
             {
               "responseId": "en:lesson-01:session-12:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — Микита знайшов рішення; скажіть йому: «ти розумний»",
+              "testedDimension": "Послушайте и соберите — Никита нашёл решение; скажите ему: «ты умный»",
               "feedbackByLocale": {
                 "ru": "Про Никиту говорят You are smart, не You am smart.",
                 "uk": "Про Микиту кажуть You are smart, а не You am smart."
@@ -2007,7 +2007,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — вы уверены",
-            "uk": "Вставте слово — ви впевнені"
+            "uk": "Вставте слово — ви перевірили час відправлення в квитку й упевнені в ньому"
           },
           "gappedTargetPhrase": "I ___ sure.",
           "gapOptions": [
@@ -2090,7 +2090,7 @@
             {
               "responseId": "en:lesson-01:session-12:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте й складіть — у бібліотеці Ліна говорить упівголоса; скажіть: «ти тиха»",
+              "testedDimension": "Послушайте и соберите — в библиотеке Лина говорит вполголоса; скажите: «ты тихая»",
               "feedbackByLocale": {
                 "ru": "После You ставят are, а не is.",
                 "uk": "Після You ставлять are, а не is."
@@ -2130,7 +2130,7 @@
             {
               "responseId": "en:lesson-01:session-12:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Микита звірив рішення з інструкцією і впевнений, що воно правильне",
+              "testedDimension": "Соберите фразу — Никита сверил решение с инструкцией и уверен, что оно верное",
               "feedbackByLocale": {
                 "ru": "После You ставят are, поэтому am лишнее.",
                 "uk": "Після You ставлять are, тому am зайве."

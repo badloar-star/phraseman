@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "learning-v2-de-guten-tag-v11-native-reparse-reconciliation-manifest.v1",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "provenance": "LOCAL_WORKTREE_NOT_IMMUTABLE_EXTERNAL_RUNNER",
+  "constructiveInputs": [
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v6.json",
+      "sha256": "3d45077cba6f20e826ce3fa04732a91fec15d571ac9a0cb54923c8ec84c66e55"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_final_review_closure_v1/closure.json",
+      "sha256": "7d12e8f92cc4f190a53cbd2a04463fbd04dde42d39063b704059400e8af0577c"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/lexical_evidence.json",
+      "sha256": "132f65574f9e858a8c7ec22fc6269732a269c4e122fa6a2304caab8bcfd21ddc"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/manifest.json",
+      "sha256": "23c83a69e545957a8a5314894d27707a2a63991c68dbaeebd50d8592dcb8a0be"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/extraction_map.json",
+      "sha256": "ce73ac77e2b97229ef9ea94f47ba2b3318bead5886dfe26f4e523911af9f1e57"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/raw/dwds_guten_tag.html",
+      "sha256": "542050aad29117960da3264eaa73dbb41ffe252b7330d1809a4dc6e47c97ebf2"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_positive_admission_v1/raw/dwds_guten_tag.http_metadata.json",
+      "sha256": "b6ecc0a42a37f89f327d30b344ec32b18d7fa79b4995d386fe28699c41fa150b"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    }
+  ],
+  "rejectedAudits": [
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v10.json",
+      "byteSha256": "77f0f1df558c9d0ee3c9b8e14f046c63e2261e3e5531e70a4a36dd4f79ad7be4",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v10.json",
+      "byteSha256": "93e7a4f2413f879945c5f740d5f98cc0b18c5a60c03bb80eac32697ec1ac6ecd",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v10.json",
+      "byteSha256": "dff3fb050d58906eadbb92b0e75fc955e6d7ce848a9164c17f8b574a102679eb",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v10_evidence_only_reconciliation_de_v1.ts",
+      "byteSha256": "5d7aff945ffa5f32c9d2f33bf85a6deed99079ce43d867ca4c3e4d5d92af6a11",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "tests/learning_v2_de_task6c_l01_guten_tag_v10_evidence_only_reconciliation_gate.ts",
+      "byteSha256": "3a18b3290c276ee27b0958cb96a26ca4ed91ccd82a43cb39aa1499bcad8e2bdf",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v10_typescript_evidence.mjs",
+      "byteSha256": "e58d1e92bda41e443ad4ee9db92b4b7a31bcad9d52922e18457c6078b2113a95",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/manifest.json",
+      "byteSha256": "062d709fbb877d75ee327e02dea6abb02fc8b86996cd345ad2f9a9d78eec1c01",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/typescript_evidence.json",
+      "byteSha256": "166ccf86e389d5cd640c812e97e991829166e7119377b893c47c66a0f3769c95",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/focused_tsc.log",
+      "byteSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_guten_tag_v10_evidence_only_reconciliation_v1/logs/repository_tsc_8192.log",
+      "byteSha256": "c1ddaee2bf4d1853e53f288e60b306962074490ac735a28a58adac32f0c734f7",
+      "status": "REJECTED_NOT_AUTHORITY"
+    },
+    {
+      "path": "docs/v2/curriculum/de/TASK6C_L01_GUTEN_TAG_V10_EVIDENCE_ONLY_RECONCILIATION_RECEIPT_2026-10-13.md",
+      "byteSha256": "a0d89d62aa541cc74223c321e6ac66698e853bf182b5f01d8335ef9607b5fa57",
+      "status": "REJECTED_NOT_AUTHORITY"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v11.json",
+      "sha256": "77f0f1df558c9d0ee3c9b8e14f046c63e2261e3e5531e70a4a36dd4f79ad7be4"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v11.json",
+      "sha256": "ed53ffe5adf9ce9b93c9f01076ec923bed30f9692b334aead28c7bf2d7176e91"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v11.json",
+      "sha256": "ae02c3baa0c34cb0a12a844c1637b69a45460be987f8d2f5bf1c86fd5d3283f6"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/task6c_l01_guten_tag_v11_native_reparse_reconciliation_de_v1.ts",
+      "sha256": "8f4db9a4f3c5a83559c900cd8e2c8ba0f5780e812f032b2bc6a97e7ff3097102"
+    },
+    {
+      "path": "tests/learning_v2_de_task6c_l01_guten_tag_v11_native_reparse_reconciliation_gate.ts",
+      "sha256": "e9514de9a06480f947c6a5c7ffddb2bfd8822e9b987448ba2af802a94c564b50"
+    },
+    {
+      "path": "scripts/capture_learning_v2_de_task6c_l01_guten_tag_v11_typescript_evidence.mjs",
+      "sha256": "fb11abc24c4ec8a832c2c77e318868fe8c431060ca8092375e52d481ed8fd58a"
+    }
+  ],
+  "authority": {
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "phraseAuthority": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

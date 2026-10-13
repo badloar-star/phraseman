@@ -288,7 +288,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставьте слово — в зале не пройти между ",
+          "testedDimension": "Вставьте слово — в зале не пройти между столиками",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i05:r2",
@@ -338,7 +338,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «шумно ли тут?»",
+              "feedbackByLocale": {
+                "ru": "с `it` нужна форма `is`: `Is it noisy?`",
+                "uk": "з `it` потрібна форма `is`: `Is it noisy?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -387,7 +397,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — вы сели, спина утонула ",
+          "testedDimension": "Вставьте слово — вы сели, спина утонула в мягком кресле",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i07:r2",
@@ -658,7 +668,17 @@
           "authoredDistractorTokens": [
             "noisy"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «людно ли тут?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают, много ли людей, поэтому нужно `crowded`: `Is it crowded?`",
+                "uk": "тут питають, чи багато людей, тому потрібне `crowded`: `Is it crowded?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -699,7 +719,7 @@
             "audioTargetId": "en:lesson-02:session-10:i12:audioB",
             "transcript": "cloudy"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «люд",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «людно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i12:r2",
@@ -759,7 +779,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — вы вошли с улицы без ку",
+          "testedDimension": "Вставьте слово — вы вошли с улицы без куртки и сразу поёжились",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i13:r2",
@@ -809,7 +829,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему",
+              "feedbackByLocale": {
+                "ru": "с `it` нужна форма `is`; `am` употребляется с `I`.",
+                "uk": "з `it` потрібна форма `is`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -858,7 +888,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставьте слово — спутник спрашивает, как",
+          "testedDimension": "Вставьте слово — спутник спрашивает, как вам тут, и всё вас устраивает",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i15:r2",
@@ -1332,7 +1362,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставте слово — у залі не пройти між сто",
+          "testedDimension": "Вставте слово — у залі не пройти між столиками",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i05:r2",
@@ -1382,7 +1412,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «шумно ли тут?»",
+              "feedbackByLocale": {
+                "ru": "с `it` нужна форма `is`: `Is it noisy?`",
+                "uk": "з `it` потрібна форма `is`: `Is it noisy?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1431,7 +1471,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — ви сіли, спина потонула ",
+          "testedDimension": "Вставте слово — ви сіли, спина потонула в м'якому кріслі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i07:r2",
@@ -1702,7 +1742,17 @@
           "authoredDistractorTokens": [
             "noisy"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «людно ли тут?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают, много ли людей, поэтому нужно `crowded`: `Is it crowded?`",
+                "uk": "тут питають, чи багато людей, тому потрібне `crowded`: `Is it crowded?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1743,7 +1793,7 @@
             "audioTargetId": "en:lesson-02:session-10:i12:audioB",
             "transcript": "cloudy"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «людно",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «людно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i12:r2",
@@ -1803,7 +1853,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — ви зайшли з вулиці без к",
+          "testedDimension": "Вставте слово — ви зайшли з вулиці без куртки й одразу щулитесь",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i13:r2",
@@ -1853,7 +1903,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-10:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — он пересел на другой стул и всё равно ёрзает; спросите, удобно ли ему",
+              "feedbackByLocale": {
+                "ru": "с `it` нужна форма `is`; `am` употребляется с `I`.",
+                "uk": "з `it` потрібна форма `is`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1902,7 +1962,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставте слово — супутник питає, як вам т",
+          "testedDimension": "Вставте слово — супутник питає, як вам тут, і вас усе влаштовує",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-10:i15:r2",

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-03",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-03:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro1:r2": {
+          "ru": "Am выпало. Not не заменяет скрепку, он встаёт после неё: I am not.",
+          "uk": "Am випало. Not не замінює скріпку, він стає після неї: I am not."
+        },
+        "en:lesson-01:session-03:intro1:r3": {
+          "ru": "Not убежал в конец. По-английски он стоит сразу после am, ещё до слова о вас.",
+          "uk": "Not утік у кінець. Англійською він стоїть одразу після am, ще до слова про вас."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro2:r2": {
+          "ru": "«No» — это ответ «нет» на вопрос. Внутри фразы «не» по-английски — not. И am потерялось.",
+          "uk": "«No» — це відповідь «ні» на питання. Усередині фрази «не» англійською — not. І am загубилося."
+        },
+        "en:lesson-01:session-03:intro2:r3": {
+          "ru": "Почти. Но после am стоит именно not, а не no. Not — для фразы, no — для ответа одним словом.",
+          "uk": "Майже. Але після am стоїть саме not, а не no. Not — для фрази, no — для відповіді одним словом."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-03:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-03:intro3:r2": {
+          "ru": "Not опять сбежал в конец. Его место — сразу после am, перед sure.",
+          "uk": "Not знову втік у кінець. Його місце — одразу після am, перед sure."
+        },
+        "en:lesson-01:session-03:intro3:r3": {
+          "ru": "Скрепку забыли. Без am не бывает и not: сначала I am, потом уже not.",
+          "uk": "Скріпку забули. Без am не буває і not: спершу I am, потім уже not."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "a955894eb4867c69af49729b940d7d1f22d2ae598740a4198688cf514070cda1"
+}

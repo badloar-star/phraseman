@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-19",
   "learningOutcomeByLocale": {
-    "ru": "`He is not` / `She is not` + слово",
-    "uk": "`He is not` / `She is not` + слово"
+    "ru": "как сказать о мужчине и женщине `He is not` / `She is not`",
+    "uk": "як сказати про чоловіка й жінку `He is not` / `She is not`"
   },
   "pages": [
     {
@@ -65,12 +65,12 @@
       "pageId": "en:lesson-01:session-19:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "`mean` и `rude` — злой не одинаково",
+        "ru": "`mean` и `rude` — злой по-разному",
         "uk": "`mean` і `rude` — злий по-різному"
       },
       "bodyByLocale": {
-        "ru": "`mean` — «вредный»: обижает нарочно. `rude` — «грубый»: перебивает и не здоровается.\n\nРазница в намерении. Грубый может просто не уметь вести себя, вредный — умеет и делает.\n\nПро женщину всё так же, только `he` меняется на `she`: `She is not rude`.",
-        "uk": "`mean` — «шкідливий»: людина кривдить навмисне, їй це подобається. `rude` — «грубий»: перебиває, не вітається, розмовляє звисока.\n\nРізниця проста: `rude` — про манери, `mean` — про намір. Грубий може просто не вміти, шкідливий — уміє і робить.\n\nПро жінку все те саме, тільки `he` міняється на `she`: `She is not rude`."
+        "ru": "`mean` — «недобрый»: обижает нарочно. `rude` — «грубый»: перебивает и не здоровается.\n\nРазница в намерении. Грубый может просто не уметь вести себя, а недобрый обижает нарочно.\n\nПро женщину всё так же, только `he` меняется на `she`: `She is not rude`.",
+        "uk": "`mean` — «недобрий»: людина кривдить навмисне. `rude` — «грубий»: перебиває, не вітається, розмовляє звисока.\n\nРізниця проста: `rude` — про манери, `mean` — про намір. Грубий може просто не вміти, а недобрий кривдить навмисне.\n\nПро жінку все те саме, тільки `he` міняється на `she`: `She is not rude`."
       },
       "question": {
         "interactionId": "en:lesson-01:session-19:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3fe107c88dff1b138cdd04b1e739ae03d894f306ea247eba847d3bb9465bf129"
+  "introFingerprint": "a6f6e76c29326f09403d3742473551e5b924a459fedf6cf7b3eeef5c64adcde0"
 }

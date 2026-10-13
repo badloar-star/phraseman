@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-independent-review-record.v1",
+  "recordKind": "ORCHESTRATION_ATTESTED_TRANSCRIPT_SUMMARY",
+  "source": "root message transcript",
+  "reviewTaskIdentity": "/root/six_noun_native_review",
+  "reviewerRole": "NATIVE_GERMAN_REVIEW",
+  "reviewedManifest": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/manifest.json",
+    "sha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55"
+  },
+  "verdict": "PASS",
+  "scope": [
+    "Bounded candidate-as-HOLD review reported no P0-P2.",
+    "Reported exact Garten Task5 communicative-use context and its rejection regression.",
+    "Reported six Task5 gloss/use, semantic identity, source and morphology bindings.",
+    "Reported corrected d-1-2 handling for Aufzug and Briefkasten and exclusion of Swiss Hausmeister d-1-2.",
+    "Reported DE productive baseline with AT/CH receptive treatment and release boundary.",
+    "Reported three targeted gates exited zero and no upstream or English mutation."
+  ],
+  "limitations": [
+    "THIS_RECORD_DOES_NOT_SELF_PROVE_INDEPENDENCE",
+    "This is an orchestration-attested transcript summary, not the reviewer transcript.",
+    "Canonical admission remains forbidden; no learner, audio, packet, runtime, or release path was exercised."
+  ],
+  "status": "HOLD_ONLY"
+}

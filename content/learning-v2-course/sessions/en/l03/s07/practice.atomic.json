@@ -249,7 +249,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+        "prompt": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-07:i05:r1",
@@ -258,34 +258,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+        "accessibilityLabel": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a drawer.",
+          "targetPhrase": "It is a drawer.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
-          "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
+            "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+            "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "drawer"
+            "It",
+            "is",
+            "a",
+            "drawer"
           ],
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг спраши",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним ящиком — `a`: `It is a drawer`.",
-            "uk": "Після `It` потрібна форма `is`, а перед однією шухлядою — `a`: `It is a drawer`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -443,17 +433,7 @@
           "authoredDistractorTokens": [
             "drawer"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i08:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — друг говорит о м",
-              "feedbackByLocale": {
-                "ru": "В записи назван `cupboard`, поэтому собираем `It is a cupboard`.",
-                "uk": "У записі названо `cupboard`, тому складаємо `It is a cupboard`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -594,17 +574,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i11:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг стоит у шкафа; сп",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом шкафе начинаем с `Is it`, а затем добавляем `open`.",
-                "uk": "Запитання про цю шафу починаємо з `Is it`, а потім додаємо `open`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -653,7 +623,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг не видит дверцы из",
+          "testedDimension": "Вставьте слово — друг не видит дверцы из-за коробки; сообщите «Он закрыт» (`closed` — «закрыт»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-07:i12:r2",
@@ -743,17 +713,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите отрицание — друг хочет повесить",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`, дальше — `not a wardrobe`. `am` осталось бы без подходящего `I`.",
-                "uk": "Після `It` потрібне `is`, далі — `not a wardrobe`. Для `am` тут немає потрібного `I`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -802,7 +762,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает о выдви",
+          "testedDimension": "Вставьте слово — друг спрашивает о выдвижном ящике; сообщите «Он открыт»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-07:i15:r2",
@@ -891,17 +851,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — под крышкой нового сто",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`, затем добавляем `a drawer`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`, а потім додаємо `a drawer`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1151,7 +1101,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
+        "prompt": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-07:i05:r1",
@@ -1160,34 +1110,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
+        "accessibilityLabel": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a drawer.",
+          "targetPhrase": "It is a drawer.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
-          "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
+            "ru": "Соберите полную фразу — друг вынул ящик из стола; скажите «Это выдвижной ящик»",
+            "uk": "Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "drawer"
+            "It",
+            "is",
+            "a",
+            "drawer"
           ],
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг запитує, к",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним ящиком — `a`: `It is a drawer`.",
-            "uk": "Після `It` потрібна форма `is`, а перед однією шухлядою — `a`: `It is a drawer`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1345,17 +1285,7 @@
           "authoredDistractorTokens": [
             "drawer"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i08:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — друг говорить пр",
-              "feedbackByLocale": {
-                "ru": "В записи назван `cupboard`, поэтому собираем `It is a cupboard`.",
-                "uk": "У записі названо `cupboard`, тому складаємо `It is a cupboard`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1496,17 +1426,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i11:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — друг стоїть біля ша",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом шкафе начинаем с `Is it`, а затем добавляем `open`.",
-                "uk": "Запитання про цю шафу починаємо з `Is it`, а потім додаємо `open`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1555,7 +1475,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — друг не бачить дверцят з",
+          "testedDimension": "Вставте слово — друг не бачить дверцят за коробкою; повідомте «Вона зачинена» (`closed` — «зачинена»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-07:i12:r2",
@@ -1645,17 +1565,7 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i14:r1",
-              "correct": false,
-              "testedDimension": "Складіть заперечення — друг хоче повісит",
-              "feedbackByLocale": {
-                "ru": "После `It` нужно `is`, дальше — `not a wardrobe`. `am` осталось бы без подходящего `I`.",
-                "uk": "Після `It` потрібне `is`, далі — `not a wardrobe`. Для `am` тут немає потрібного `I`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1704,7 +1614,7 @@
               "text": "Am"
             }
           ],
-          "testedDimension": "Вставте слово — друг запитує про висувну",
+          "testedDimension": "Вставте слово — друг запитує про висувну шухляду; повідомте «Вона відчинена»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-07:i15:r2",
@@ -1793,17 +1703,7 @@
           "authoredDistractorTokens": [
             "Are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-07:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — під кришкою нового ",
-              "feedbackByLocale": {
-                "ru": "Вопрос об этом предмете начинаем с `Is it`, затем добавляем `a drawer`.",
-                "uk": "Запитання про цей предмет починаємо з `Is it`, а потім додаємо `a drawer`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

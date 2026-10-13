@@ -306,7 +306,7 @@
               "text": "home"
             }
           ],
-          "testedDimension": "Вставьте слово — сын соседа лежит с закр",
+          "testedDimension": "Вставьте слово — сын соседа лежит с закрытыми глазами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i05:r2",
@@ -595,7 +595,7 @@
               "text": "quiet"
             }
           ],
-          "testedDimension": "Вставьте слово — дочь соседа второй день",
+          "testedDimension": "Вставьте слово — дочь соседа второй день не выходит, температура",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i10:r2",
@@ -789,7 +789,7 @@
               "text": "ill"
             }
           ],
-          "testedDimension": "Вставьте слово — дочь соседа сидит с кни",
+          "testedDimension": "Вставьте слово — дочь соседа сидит с книгой и не издаёт ни звука",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i13:r2",
@@ -1394,7 +1394,7 @@
               "text": "home"
             }
           ],
-          "testedDimension": "Вставте слово — син сусіда лежить із зап",
+          "testedDimension": "Вставте слово — син сусіда лежить із заплющеними очима",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i05:r2",
@@ -1628,7 +1628,7 @@
             {
               "responseId": "en:lesson-01:session-22:i09:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «вона поїхала»",
+              "testedDimension": "Соберите фразу — «она уехала»",
               "feedbackByLocale": {
                 "ru": "`am` лишнее: с `She` ставят `is` — `She is away.`",
                 "uk": "`am` зайве: з `She` ставлять `is` — `She is away`."
@@ -1683,7 +1683,7 @@
               "text": "quiet"
             }
           ],
-          "testedDimension": "Вставте слово — донька сусіда другий ден",
+          "testedDimension": "Вставте слово — донька сусіда другий день не виходить, температура",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i10:r2",
@@ -1749,7 +1749,7 @@
             {
               "responseId": "en:lesson-01:session-22:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «він не спить»",
+              "testedDimension": "Послушайте и соберите — «он не спит»",
               "feedbackByLocale": {
                 "ru": "`asleep` лишнее: в записи он не спит, поэтому `He is awake.`",
                 "uk": "`asleep` зайве: у записі він не спить, тому `He is awake`."
@@ -1877,7 +1877,7 @@
               "text": "ill"
             }
           ],
-          "testedDimension": "Вставте слово — донька сусіда сидить із ",
+          "testedDimension": "Вставте слово — донька сусіда сидить із книжкою і не видає ані звуку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-22:i13:r2",
@@ -1940,7 +1940,7 @@
             {
               "responseId": "en:lesson-01:session-22:i14:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — її немає на роботі, вона в себе вдома",
+              "testedDimension": "Соберите фразу — её нет на работе, она у себя дома",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `She` ставят `is` — `She is home.`",
                 "uk": "`are` зайве: з `She` ставлять `is` — `She is home`."
@@ -2013,7 +2013,7 @@
             {
               "responseId": "en:lesson-01:session-22:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Ніна позіхає третій раз поспіль",
+              "testedDimension": "Соберите фразу — Нина зевает третий раз подряд",
               "feedbackByLocale": {
                 "ru": "`not` лишнее: Нина зевает, поэтому `She is tired.`, без отрицания.",
                 "uk": "`not` зайве: Ніна позіхає, тому `She is tired`, без заперечення."
@@ -2086,7 +2086,7 @@
             {
               "responseId": "en:lesson-01:session-22:i17:s02:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «вона не спить»",
+              "testedDimension": "Соберите фразу — «она не спит»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `She` ставят `is` — `She is awake.`",
                 "uk": "`are` зайве: з `She` ставлять `is` — `She is awake`."
@@ -2129,7 +2129,7 @@
             {
               "responseId": "en:lesson-01:session-22:i17:s03:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «він поїхав»",
+              "testedDimension": "Послушайте и соберите — «он уехал»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `He` ставят `is` — `He is away.`",
                 "uk": "`are` зайве: з `He` ставлять `is` — `He is away`."
@@ -2169,7 +2169,7 @@
             {
               "responseId": "en:lesson-01:session-22:i17:s04:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — сусід прямо каже, що втомився",
+              "testedDimension": "Соберите фразу — сосед прямо говорит, что устал",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `He` ставят `is` — `He is tired.`",
                 "uk": "`are` зайве: з `He` ставлять `is` — `He is tired`."

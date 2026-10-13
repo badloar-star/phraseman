@@ -346,7 +346,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставьте слово — турист вертит головой н",
+          "testedDimension": "Вставьте слово — турист вертит головой на перекрёстке и не понимает, куда идти",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-14:i06:r2",
@@ -1306,7 +1306,7 @@
             {
               "responseId": "en:lesson-01:session-14:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — турист перестав озиратися",
+              "testedDimension": "Соберите фразу — турист перестал оглядываться",
               "feedbackByLocale": {
                 "ru": "С `you` нельзя `am`: правильная фраза — `You are safe.`",
                 "uk": "З `you` не можна `am`: правильна фраза — `You are safe`."
@@ -1361,7 +1361,7 @@
               "text": "ready"
             }
           ],
-          "testedDimension": "Вставте слово — турист крутить головою н",
+          "testedDimension": "Вставте слово — турист крутить головою на перехресті й не розуміє, куди йти",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-14:i06:r2",
@@ -1654,7 +1654,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — вы говорите туристу, что он в безопасности",
-            "uk": "Вставте слово — ви кажете туристові, що він у безпеці"
+            "uk": "Вставте слово — ви кажете Алексу, що він у безпеці"
           },
           "gappedTargetPhrase": "You ___ safe.",
           "gapOptions": [
@@ -1737,7 +1737,7 @@
             {
               "responseId": "en:lesson-01:session-14:i12:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «тобі тепло»",
+              "testedDimension": "Послушайте и соберите — «тебе тепло»",
               "feedbackByLocale": {
                 "ru": "`dry` значит «сухой», но запись говорит `You are warm.`",
                 "uk": "`dry` означає «сухий», але в записі звучить `You are warm`."
@@ -1777,7 +1777,7 @@
             {
               "responseId": "en:lesson-01:session-14:i13:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — Алекс кивнув і взяв сумку; скажіть йому: «ти готовий іти»",
+              "testedDimension": "Соберите фразу — Алекс кивнул и взял сумку; скажите ему: «ты готов идти»",
               "feedbackByLocale": {
                 "ru": "`not` изменит смысл на «ты не готов». Нужна фраза `You are ready.`",
                 "uk": "`not` змінить зміст на «ти не готовий». Потрібна фраза `You are ready`."
@@ -1947,7 +1947,7 @@
             {
               "responseId": "en:lesson-01:session-14:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — повз із ревом проноситься машина, турист здригається; скажіть, що він наляканий",
+              "testedDimension": "Соберите фразу — мимо с рёвом проносится машина, турист вздрагивает; скажите, что он испуган",
               "feedbackByLocale": {
                 "ru": "После `you` нужно `are`, не `is`: `You are scared.`",
                 "uk": "Після `you` потрібне `are`, не `is`: `You are scared`."
@@ -1990,7 +1990,7 @@
             {
               "responseId": "en:lesson-01:session-14:i17:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «тобі холодно»",
+              "testedDimension": "Послушайте и соберите — «тебе холодно»",
               "feedbackByLocale": {
                 "ru": "`scared` значит «испуган», но запись говорит `You are cold.`",
                 "uk": "`scared` означає «наляканий», але в записі звучить `You are cold`."

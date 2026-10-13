@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i02; family: listen_choose -->
 Ціль: `drawer`
 Варіанти: `drawer` · `drier` · `dream`
+- drier — *У `drier` чути рухомий голосний, схожий на «ай». У `drawer` голосний звучить рівніше й з округленими губами. У записі — `drawer`.*
+- dream — *У `dream` голосний вимовляють із розтягнутими губами, а в `drawer` — з округленими. Тут звучить `drawer`.*
+
 
 **3 · Картка слова — cupboard**
 <!-- interaction_id: en:lesson-03:session-07:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i04; family: listen_choose -->
 Ціль: `cupboard`
 Варіанти: `cupboard` · `covered` · `coward`
+- covered — *У середині `covered` для звука `v` нижня губа торкається верхніх зубів. У `cupboard` для `b` змикаються обидві губи. У записі — `cupboard`.*
+- coward — *На початку `coward` голосний помітно ковзає, наче в «ау». У `cupboard` він короткий, а потім губи змикаються для `b`. Тут — `cupboard`.*
+
 
 **5 · Складіть повну фразу — друг вийняв шухляду зі стола; скажіть «Це висувна шухляда»**
 <!-- interaction_id: en:lesson-03:session-07:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i07; family: listen_choose -->
 Ціль: `wardrobe`
 Варіанти: `wardrobe` · `warble` · `warlock`
+- warble — *У `warble` далі чути `b`, а в `wardrobe` — `d` та англійське `/r/`: язик не торкається піднебіння, на відміну від українського «р». Тут — `wardrobe`.*
+- warlock — *Після схожого початку в `warlock` чути `l`, а в `wardrobe` — `d` та англійське `/r/`. Тут — `wardrobe`.*
+
 
 **8 · Послухайте й складіть — друг говорить про меблі біля коробки**
 <!-- interaction_id: en:lesson-03:session-07:i08; family: listen_build_dictation -->
@@ -107,6 +116,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i12; family: context_gap_grammar -->
 Ціль: `It ___ closed.`
 Варіанти: `is` · `are` · `am`
+- are — *Для цієї фрази потрібне `It is closed`. Форма `are` з `It` не вживається.*
+- am — *Форма `am` підходить до `I`. Про шафу тут говоримо `It is closed`.*
+
 
 **13 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-07:i13; family: scripted_repeat_compare -->
@@ -121,6 +133,9 @@
 <!-- interaction_id: en:lesson-03:session-07:i15; family: context_gap_grammar -->
 Ціль: `___ is open.`
 Варіанти: `It` · `Is` · `Am`
+- Is — *`is` уже стоїть перед `open`. Спочатку вкажіть на предмет за допомогою `It`.*
+- Am — *Для фрази про шухляду потрібне `It is open`; починати її з `Am` тут не можна.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-07:i16; family: scripted_repeat_compare -->

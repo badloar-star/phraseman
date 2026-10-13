@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-33:i02; family: listen_choose -->
 Цель: `host`
 Варианты: `host` · `coast` · `toast`
+- coast — *`Coast` — «побережье». Послушайте первый звук: в записи `host`.*
+- toast — *`Toast` — «тост». Послушайте первый звук: в записи `host`.*
+
 
 **3 · Карточка слова — guest**
 <!-- interaction_id: en:lesson-02:session-33:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-33:i04; family: listen_choose -->
 Цель: `guest`
 Варианты: `guest` · `best` · `west`
+- best — *`Best` — «лучший». Послушайте первый звук: в записи `guest`.*
+- west — *`West` — «запад». Послушайте первый звук: в записи `guest`.*
+
 
 **5 · Соберите фразу — спросите соседа: «Кто хозяин?»**
 <!-- interaction_id: en:lesson-02:session-33:i05; family: phrase_builder -->
@@ -78,6 +84,9 @@
 <!-- interaction_id: en:lesson-02:session-33:i06; family: context_gap_grammar -->
 Цель: `Who is the ___ ?`
 Варианты: `guest` · `host` · `name`
+- host — *Это «хозяин». Вопрос нужен про гостя — `guest`.*
+- name — *Это «имя». Здесь вы спрашиваете, кто гость, а не как его зовут.*
+
 
 **7 · Произнесите фразу — вы хотите поблагодарить хозяина, но не знаете, кто он**
 <!-- interaction_id: en:lesson-02:session-33:i07; family: scripted_repeat_compare -->
@@ -87,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-33:i08; family: listen_choose -->
 Цель: `guests`
 Варианты: `guests` · `tests` · `vests`
+- tests — *`Tests` — «тесты». Послушайте первый звук: в записи `guests`.*
+- vests — *`Vests` — «жилеты». Послушайте первый звук: в записи `guests`.*
+
 
 **9 · Вставьте слово — скажите, что хозяин близко**
 <!-- interaction_id: en:lesson-02:session-33:i09; family: context_gap_grammar -->
 Цель: `The host is ___ .`
 Варианты: `near` · `cheerful` · `name`
+- cheerful — *Это «весёлый». Нужно сообщить о расстоянии — «близко».*
+- name — *Это «имя». Оно не передаёт, где находится хозяин.*
+
 
 **10 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-33:i10; family: speed_match -->
@@ -102,6 +117,9 @@
 <!-- interaction_id: en:lesson-02:session-33:i11; family: listen_choose -->
 Цель: `name`
 Варианты: `name` · `game` · `fame`
+- game — *`Game` — «игра». Послушайте первый звук: в записи `name`.*
+- fame — *`Fame` — «слава». Послушайте первый звук: в записи `name`.*
+
 
 **12 · Соберите фразу — о хозяине: «Он не весёлый»**
 <!-- interaction_id: en:lesson-02:session-33:i12; family: phrase_builder -->
@@ -115,6 +133,9 @@
 <!-- interaction_id: en:lesson-02:session-33:i14; family: context_gap_grammar -->
 Цель: `The guest is near the ___ .`
 Варианты: `corner` · `host` · `guests`
+- host — *Получится «рядом с хозяином». Сосед назвал угол комнаты.*
+- guests — *Получится «рядом с гостями». Вам нужно место — угол, `corner`.*
+
 
 **15 · Послушайте и соберите — сосед подсказывает, где хозяин**
 <!-- interaction_id: en:lesson-02:session-33:i15; family: listen_build_dictation -->

@@ -124,6 +124,15 @@
         "testedDimension": "Виберіть форму після `we` — ви говорите за весь свій стіл",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-40:i02:r1",
+            "correct": true,
+            "testedDimension": "Виберіть форму після `we` — ви говорите за весь свій стіл",
+            "feedbackByLocale": {
+              "ru": "После `we` говорят `We are friendly.`",
+              "uk": "Після `we` кажуть `We are friendly`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-40:i02:r2",
             "correct": false,
             "testedDimension": "Виберіть форму після `we` — ви говорите за весь свій стіл",
@@ -167,7 +176,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — з-за стіни весь день гримить сміх",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `They` говорят `They are loud.`",
+              "uk": "`is` зайве: з `They` кажуть `They are loud`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -240,6 +259,15 @@
               "ru": "На конце «нг», а не «нд». И это «король».",
               "uk": "У кінці «нґ», а не «нд». І це «король»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `kind`: в конце звучит `nd`.",
+              "uk": "Ви чуєте `kind`: у кінці звучить `nd`."
+            }
           }
         ],
         "isWordCard": false,
@@ -273,7 +301,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — за вашим столом усі добрі",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `We` говорят `We are kind.`",
+              "uk": "`is` зайве: з `We` кажуть `We are kind`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -356,6 +394,15 @@
         "testedDimension": "Вставте слово — за вашим столом цілий об",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-40:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — за вашим столом цілий обід сміються",
+            "feedbackByLocale": {
+              "ru": "За столом смеются, значит `We are funny.`",
+              "uk": "За столом сміються, отже `We are funny`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-40:i07:r2",
             "correct": false,
             "testedDimension": "Вставте слово — за вашим столом цілий об",
@@ -423,6 +470,15 @@
             "feedbackByLocale": {
               "ru": "Это «ребёнок». `kind` — «кайнд», гласная «ай» и «нд» на конце; `kid` — «кид», короткое «и».",
               "uk": "Це «дитина». `kind` — «кайнд», голосна «ай» і «нд» у кінці; `kid` — «кід», коротке «і»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i08:r1",
+            "correct": true,
+            "testedDimension": "Розрізніть звуки — яке з двох про «добрий»?",
+            "feedbackByLocale": {
+              "ru": "`kind` значит «добрый». `kid` — «ребёнок».",
+              "uk": "`kind` означає «добрий». `kid` — «дитина»."
             }
           }
         ]
@@ -498,6 +554,15 @@
               "ru": "«Мэйн» — другая гласная. `mean` — «мин», долгое «и».",
               "uk": "«Мейн» — інша голосна. `mean` — «мін», довге «і»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-40:i09:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Вы слышите `mean` — «злой».",
+              "uk": "Ви чуєте `mean` — «злий»."
+            }
           }
         ],
         "isWordCard": false,
@@ -552,6 +617,15 @@
         ],
         "testedDimension": "Вставте слово — ви не згодні, що ваш від",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви не згодні, що ваш відділ злий",
+            "feedbackByLocale": {
+              "ru": "Вы отрицаете, что отдел злой: `We are not mean.`",
+              "uk": "Ви заперечуєте, що відділ злий: `We are not mean`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-40:i10:r2",
             "correct": false,
@@ -651,6 +725,15 @@
         "testedDimension": "Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-40:i12:r1",
+            "correct": true,
+            "testedDimension": "Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу",
+            "feedbackByLocale": {
+              "ru": "После `they` говорят `They are funny.`",
+              "uk": "Після `they` кажуть `They are funny`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-40:i12:r2",
             "correct": false,
             "testedDimension": "Виберіть форму після `they` — ви розповідаєте про людей з іншого відділу",
@@ -695,7 +778,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви працюєте з цими людьми в одному відділі",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: с `They` говорят `They are my colleagues.`",
+              "uk": "`is` зайве: з `They` кажуть `They are my colleagues`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -829,7 +922,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-40:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — ви зустрічаєте новачків привітно; скажіть, які ви",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: вы говорите, что вы приветливые — `We are friendly.`",
+              "uk": "`not` зайве: ви кажете, що ви привітні — `We are friendly`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -972,5 +1075,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c27a601b9fa0a67dba581bd8caa1d0cbdfe9d5e39908722bef4cd251dfd49741"
+  "learnerFingerprint": "fc2eafcfece379c7583ad2828e6ba8a7b049b84487805815d4898a3c8b4dbe63"
 }

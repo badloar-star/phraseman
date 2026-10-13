@@ -100,6 +100,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i09; family: context_gap_grammar -->
 Цель: `___ are barcodes.`
 Варианты: `Those` · `These` · `That` · `This`
+- These — *`These are barcodes` подходит для штрихкодов рядом. Эта группа дальше, поэтому нужно `Those`.*
+- That — *`That` относится к одному предмету и требует `is`. Здесь штрихкодов несколько.*
+- This — *`This` относится к одному предмету рядом. Здесь называют далёкую группу.*
+
 
 **12 · Соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-40:i12:s01; family: phrase_builder -->
@@ -113,6 +117,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i13; family: listen_choose -->
 Цель: `Those are coupons.`
 Варианты: `Это купоны` · `Это купон` · `Это штрихкоды` · `Это защитные пломбы`
+- Это купон — *В записи слышны `those are` и `coupons`: называют несколько купонов.*
+- Это штрихкоды — *Названы `coupons` — купоны, а не `barcodes` — штрихкоды.*
+- Это защитные пломбы — *Названы `coupons`, а защитные пломбы — `seals`.*
+
 
 **15 · Соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-40:i14:s01; family: phrase_builder -->
@@ -162,6 +170,10 @@
 <!-- interaction_id: en:lesson-03:session-40:i17:s04; family: listen_choose -->
 Цель: `These are coupons.`
 Варианты: `These are coupons.` · `barcode` · `seal` · `coupon`
+- barcode — *В записи звучит `These are coupons.`, а не `barcode`.*
+- seal — *В записи звучит `These are coupons.`, а не `seal`.*
+- coupon — *В записи звучит `These are coupons.`, а не `coupon`.*
+
 
 ## Для сборщика
 new_words: barcode — штрихкод — Ряд тёмных полос и цифр на упаковке, по которому определяют товар.

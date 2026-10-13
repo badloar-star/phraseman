@@ -62,6 +62,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i02; family: listen_choose -->
 Ціль: `spoon`
 Варіанти: `spoon` · `soon` · `swoon`
+- soon — *`soon` — «незабаром». Це коли принесуть ложку, а не як її назвати. У `soon` після англійського `s` одразу починається голосний; у `spoon` між ними губи повністю змикаються на `p` і розкриваються.*
+- swoon — *`swoon` — «непритомніти». Після початкового англійського `s` губи округлюються й плавно переходять до голосного. У `spoon` на цьому місці губи повністю змикаються на `p` і розкриваються.*
+
 
 **3 · Картка слова — fork**
 <!-- interaction_id: en:lesson-03:session-23:i03; family: listen_choose -->
@@ -71,6 +74,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i04; family: listen_choose -->
 Ціль: `fork`
 Варіанти: `fork` · `pork` · `cork`
+- pork — *`pork` — «свинина». На початку губи повністю змикаються на `p` і розкриваються. У `fork` повітря відразу йде між нижньою губою та верхніми зубами на `f`.*
+- cork — *`cork` — «корок», яким закривають пляшку. Початок утворюється змиканням і розмиканням задньої частини язика на `k`. На початку `fork` повітря проходить між нижньою губою та верхніми зубами на `f`.*
+
 
 **5 · Зберіть фразу — друг питає, що ви залишили біля шухляди; там одна ложка, скажіть «Це ложка»**
 <!-- interaction_id: en:lesson-03:session-23:i05; family: phrase_builder -->
@@ -81,6 +87,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i06; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `spoons` · `spoon` · `a spoon`
+- spoon — *Ви тримаєте три ложки. Їхня назва — `spoons`, із `s` наприкінці.*
+- a spoon — *`a spoon` називає одну ложку. Тут їх три, тому потрібно `spoons`.*
+
 
 **7 · Картка слова — cup**
 <!-- interaction_id: en:lesson-03:session-23:i07; family: listen_choose -->
@@ -90,6 +99,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i08; family: listen_choose -->
 Ціль: `cup`
 Варіанти: `cup` · `cap` · `cop`
+- cap — *`cap` — «кепка». Голосний вимовляється з язиком низько спереду. У `cup` язик ближче до середини рота, губи не округлені. Початок і кінець слів однакові.*
+- cop — *`cop` — розмовне «поліцейський». Голосний утворюється язиком ближче до задньої частини рота. У `cup` голосний у середині рота, губи не округлені; порівняйте середину слів.*
+
 
 **9 · Зберіть питання — друг розгортає ще один набір столового приладдя, ви стоїте біля шухляди й уточнюєте «Це виделки?»**
 <!-- interaction_id: en:lesson-03:session-23:i09; family: phrase_builder -->
@@ -100,6 +112,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i10; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `bowls` · `bowl` · `a bowl`
+- bowl — *На столі дві миски. Потрібна форма `bowls`, назва кількох.*
+- a bowl — *`a bowl` означає одну миску. Ви називаєте дві: `They are bowls`.*
+
 
 **11 · Послухайте й зберіть — що сказав друг**
 <!-- interaction_id: en:lesson-03:session-23:i11; family: listen_build_dictation -->
@@ -110,6 +125,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i12; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `a cup` · `cup` · `cups`
+- cup — *У цій фразі одну чашку називаємо `a cup`. Перед `cup` пропущено `a`.*
+- cups — *`cups` означає кілька чашок. Біля раковини одна: `a cup`.*
+
 
 **13 · Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь.**
 <!-- interaction_id: en:lesson-03:session-23:i13; family: phrase_builder -->
@@ -129,6 +147,9 @@
 <!-- interaction_id: en:lesson-03:session-23:i16; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `a fork` · `forks` · `fork`
+- forks — *`forks` — кілька виделок. Під папером одна: `a fork`.*
+- fork — *У цій фразі одну виделку називаємо `a fork`. Слово `a` пропускати не варто.*
+
 
 **17 · Складіть фразу — друг звільнив верхню полицю й питає, що ви туди несете; у вас дві чашки**
 <!-- interaction_id: en:lesson-03:session-23:i17; family: phrase_builder -->

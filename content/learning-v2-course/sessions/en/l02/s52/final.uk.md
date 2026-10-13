@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-02:session-52:i01; family: listen_choose -->
 Ціль: `Are you ready?`
 Варіанти: `Are you ready?` · `Are we ready?` · `You are ready.`
+- Are we ready? — *У цьому запитанні звучить `we` — «ми». У записі працівник звертається до вас: `Are you`.*
+- You are ready. — *Це повідомлення. У записі перші слова стоять інакше: `Are you`.*
+
 
 **2 · Складіть фразу — працівник запитав, чи готові ви показати квиток; ви ще шукаєте його в телефоні, дайте коротку відповідь «Ні»**
 <!-- interaction_id: en:lesson-02:session-52:i02; family: phrase_builder -->
@@ -65,6 +68,9 @@
 <!-- interaction_id: en:lesson-02:session-52:i03; family: listen_choose -->
 Ціль: `Who is he?`
 Варіанти: `Who is he?` · `Where is he?` · `Who is she?`
+- Where is he? — *Це запитання про місце. У записі перше слово — `Who`, «хто».*
+- Who is she? — *Це запитання про жінку. Наприкінці запису звучить `he` — «він».*
+
 
 **4 · Складіть фразу — друг запитав про чоловіка з ключами; ви знаєте, що він керівник клубу, поясніть, хто він**
 <!-- interaction_id: en:lesson-02:session-52:i04; family: phrase_builder -->
@@ -74,16 +80,25 @@
 <!-- interaction_id: en:lesson-02:session-52:i05; family: context_gap_grammar -->
 Ціль: `Where ___ he?`
 Варіанти: `is` · `are` · `am`
+- are — *У цьому запитанні про чоловіка потрібне `is`: `Where is he?`.*
+- am — *Форма `am` поєднується з `I`. Тут запитання з `he`, тому обираємо `is`.*
+
 
 **6 · Послухайте й виберіть — яка репліка працівниці прозвучала у відповідь**
 <!-- interaction_id: en:lesson-02:session-52:i06; family: listen_choose -->
 Ціль: `He is inside.`
 Варіанти: `He is inside.` · `He is outside.` · `Is he inside?`
+- He is outside. — *Це «Він зовні». Останнє слово в записі — `inside`, «усередині».*
+- Is he inside? — *Це запитання. У записі працівниця повідомляє: спочатку `He is`.*
+
 
 **7 · Вставте слово — ви показуєте на залу; запитайте працівницю, чи відкрита вона**
 <!-- interaction_id: en:lesson-02:session-52:i07; family: context_gap_grammar -->
 Ціль: `Is it ___ ?`
 Варіанти: `open` · `ready` · `sure`
+- ready — *Це запитання про готовність. За умовою ви уточнюєте, чи відкрита зала: `open`.*
+- sure — *Це «впевнений». Для запитання про відкриту залу потрібне `Is it open?`.*
+
 
 **8 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-52:i08:s01; family: scripted_repeat_compare -->
@@ -97,11 +112,17 @@
 <!-- interaction_id: en:lesson-02:session-52:i09; family: listen_choose -->
 Ціль: `Are we here?`
 Варіанти: `Are we here?` · `We are here.` · `Are you here?`
+- We are here. — *Це повідомлення. У записі перші слова — `Are we`: друг запитує.*
+- Are you here? — *Це запитання з `you`. У записі звучить `we`, що охоплює вас обох.*
+
 
 **11 · Вставте слово — друг показав ваше місце на плані й запитав «Ми тут?»; місце вказано правильно, дайте коротку відповідь «Так»**
 <!-- interaction_id: en:lesson-02:session-52:i10; family: context_gap_grammar -->
 Ціль: `Yes, we ___ .`
 Варіанти: `are` · `is` · `am`
+- is — *У цій короткій відповіді з `we` потрібна форма `are`: `Yes, we are`.*
+- am — *Форма `am` поєднується з `I`. Тут зберігаємо `we are`.*
+
 
 **12 · З’єднайте пари — слова для розмови біля входу**
 <!-- interaction_id: en:lesson-02:session-52:i11; family: speed_match -->
@@ -116,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-52:i13; family: listen_choose -->
 Ціль: `Is he ready?`
 Варіанти: `Is he ready?` · `He is ready.` · `Is she ready?`
+- He is ready. — *Це повідомлення. У записі спочатку `Is he`: працівниця ставить запитання.*
+- Is she ready? — *Це запитання про жінку. У записі після `Is` звучить `he`.*
+
 
 **15 · Складіть фразу — керівник повернувся до дверей і стоїть поруч із вами; повідомте другові «Керівник тут»**
 <!-- interaction_id: en:lesson-02:session-52:i14; family: phrase_builder -->

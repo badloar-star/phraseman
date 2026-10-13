@@ -963,7 +963,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "на новой карте отмечена маленькая пекарня. Вставьте название места",
+        "prompt": "На новой карте отмечена маленькая пекарня. Вставьте название места",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-01:i17:r1",
@@ -980,11 +980,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "на новой карте отмечена маленькая пекарня. Вставьте название места",
+        "accessibilityLabel": "На новой карте отмечена маленькая пекарня. Вставьте название места",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "на новой карте отмечена маленькая пекарня. Вставьте название места",
+            "ru": "На новой карте отмечена маленькая пекарня. Вставьте название места",
             "uk": "на новій карті позначено маленьку пекарню. Вставте назву місця"
           },
           "gappedTargetPhrase": "There is a small ___.",
@@ -1988,7 +1988,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "на новій карті позначено маленьку пекарню. Вставте назву місця",
+        "prompt": "На новій карті позначено маленьку пекарню. Вставте назву місця",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-01:i17:r1",
@@ -2005,12 +2005,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "на новій карті позначено маленьку пекарню. Вставте назву місця",
+        "accessibilityLabel": "На новій карті позначено маленьку пекарню. Вставте назву місця",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "на новой карте отмечена маленькая пекарня. Вставьте название места",
-            "uk": "на новій карті позначено маленьку пекарню. Вставте назву місця"
+            "uk": "На новій карті позначено маленьку пекарню. Вставте назву місця"
           },
           "gappedTargetPhrase": "There is a small ___.",
           "gapOptions": [

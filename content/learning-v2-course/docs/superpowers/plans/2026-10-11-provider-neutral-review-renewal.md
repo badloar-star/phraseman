@@ -1,0 +1,134 @@
+# Provider-neutral review renewal Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use subagent-driven-development or executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Allow a changed Learning V2 session to receive fresh, independently supplied review evidence and a bound release-ready status without calling a prohibited provider or rebinding old verdicts.
+
+**Architecture:** The pipeline exports an immutable, hash-bound review packet. Independently produced verdicts are imported only after contract, identity, evidence, and snapshot checks; a separate finalizer writes status only after existing readiness checks pass. Existing authoring and localization commands remain untouched.
+
+**Tech Stack:** Node.js ESM, existing `pipeline/run.mjs`, `session_readiness.mjs`, Node test runner.
+
+---
+
+### Task 1: Export a current immutable review packet
+
+**Files:**
+
+- Modify: `pipeline/run.mjs`
+- Test: `pipeline/review_renewal.test.mjs`
+
+- [ ] **Step 1: Write the failing export test**
+
+```js
+const packet = JSON.parse(fs.readFileSync(packetPath, "utf8"));
+assert.equal(packet.sessionId, "en/l01/s01");
+assert.equal(packet.bindings.practiceAtomicSha256, digest("practice.atomic.json"));
+assert.deepEqual(packet.requiredRoles, requiredJudgesForSession("en/l01/s01"));
+```
+
+- [ ] **Step 2: Run it to verify it fails**
+
+Run: `node --test pipeline/review_renewal.test.mjs`
+
+Expected: FAIL because `review-export` does not exist.
+
+- [ ] **Step 3: Implement read-only `review-export`**
+
+```js
+// Build packet from captureCanonicalJudgeSnapshot(sessionDir, locales).
+// Include exact canonical text, computed bindings, required roles and prompt contracts.
+// Write only to the explicit --out path.
+```
+
+- [ ] **Step 4: Run the focused test**
+
+Run: `node --test pipeline/review_renewal.test.mjs`
+
+Expected: export assertions PASS.
+
+### Task 2: Safely import independent review evidence
+
+**Files:**
+
+- Modify: `pipeline/run.mjs`
+- Test: `pipeline/review_renewal.test.mjs`
+
+- [ ] **Step 1: Write failing stale-input and identity tests**
+
+```js
+assert.notEqual(run("review-import", staleInput).status, 0);
+assert.deepEqual(beforeReceiptBytes(), afterReceiptBytes());
+assert.notEqual(run("review-import", duplicateReviewerInput).status, 0);
+```
+
+- [ ] **Step 2: Implement `review-import`**
+
+```js
+// Recompute bindings from current bytes; never accept supplied hashes.
+// Validate role coverage, verdict/evidence shape and independent reviewer identities.
+// Atomically write only accepted imported receipts; preserve the verdict exactly.
+```
+
+- [ ] **Step 3: Run focused tests**
+
+Run: `node --test pipeline/review_renewal.test.mjs pipeline/session_readiness_evidence.test.mjs`
+
+Expected: PASS; malformed, stale, duplicate and REVISE inputs stay non-green.
+
+### Task 3: Review existing locales and finalize bound status
+
+**Files:**
+
+- Modify: `pipeline/run.mjs`
+- Test: `pipeline/review_renewal.test.mjs`
+
+- [ ] **Step 1: Write no-source-write and fail-closed status tests**
+
+```js
+assert.equal(before("final.uk.md"), after("final.uk.md"));
+assert.notEqual(run("finalize-status", incompleteReviewInput).status, 0);
+assert.equal(before("status.json"), after("status.json"));
+```
+
+- [ ] **Step 2: Implement commands**
+
+```js
+// review-existing-locales imports review evidence for current RU/UK only.
+// finalize-status reruns deterministic gates and sessionReadiness before atomically writing status.
+```
+
+- [ ] **Step 3: Verify end-to-end fixture**
+
+Run: `node --test pipeline/review_renewal.test.mjs pipeline/session_readiness_evidence.test.mjs pipeline/build_release_canonical_readiness.test.mjs`
+
+Expected: PASS.
+
+### Task 4: Resume the course in order
+
+**Files:**
+
+- Modify: session receipts and `status.json` only after independent review evidence
+- Modify: `release/en/<lesson>/<session>/*` only after readiness PASS
+
+- [ ] **Step 1: Export session S01**
+
+Run: `node pipeline/run.mjs review-export --session en/l01/s01 --locales uk --out <packet>`
+
+- [ ] **Step 2: Collect separate reviewer outputs and import them**
+
+Run: `node pipeline/run.mjs review-import --session en/l01/s01 --in <results>`
+
+- [ ] **Step 3: Import locale review and finalize status**
+
+Run: `node pipeline/run.mjs review-existing-locales --session en/l01/s01 --in <locale-results>` then `node pipeline/run.mjs finalize-status --session en/l01/s01 --locales uk`
+
+- [ ] **Step 4: Build, parity-check, then refresh the mockup**
+
+Run: `node pipeline/build_release.mjs --session en/l01/s01 --locales ru,uk`, `node pipeline/build_release.mjs --session en/l01/s01 --locales ru,uk --check-source-release`, and `node pipeline/build_mockup.mjs --out mockup/index.html`.
+
+## Self-review
+
+- Every receipt is bound to current bytes; no hash rebinding is permitted.
+- A non-PASS verdict is preserved and cannot turn a card green.
+- Existing locale files are never regenerated by a review command.
+- `requiredJudgesForSession()` remains the only role authority, including progression where required.

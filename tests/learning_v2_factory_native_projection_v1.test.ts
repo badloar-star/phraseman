@@ -7,11 +7,129 @@ import {
   FACTORY_NATIVE_DISPLAY_LOCALE_FALLBACK_V1,
   factoryNativeSpeedMatchColumnsV1,
   factoryNativeLearningV2AvailabilityV1,
+  factoryNativeIntroResponseFeedbackByIdV1,
+  factoryNativeExplanationV1,
+  factoryNativeOrderedTokenSlotFeedbackV1,
   materializeFactoryNativeLearningV2SessionV1,
 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
 import { evaluateLearningV2CourseSessionInteractionV1 } from "../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import { createLearningV2CourseSessionDeviceRunV1 } from "../modules/learning-v2/runtime/course_session_device_run_v1";
 import { adaptLearningV2DirectSessionIntroV1 } from "../app/learning_v2_direct_session_intro_adapter_v1";
+
+test("factory-native preserves legacy wrong-only and new all-response intro feedback", () => {
+  const feedback = factoryNativeIntroResponseFeedbackByIdV1({
+    rawAuxiliary: {
+      entries: [{
+        interactionId: "en:lesson-01:session-01:intro1:q",
+        responseFeedbackById: {
+          "en:lesson-01:session-01:intro1:r2": { ru: "Пропущено am.", uk: "Пропущено am." },
+          "en:lesson-01:session-01:intro1:r3": { ru: "Пропущено I.", uk: "Пропущено I." },
+        },
+      }],
+    },
+    sourceInteractionId: "en:lesson-01:session-01:intro1:q",
+    sourceResponseIds: [
+      "en:lesson-01:session-01:intro1:r1",
+      "en:lesson-01:session-01:intro1:r2",
+      "en:lesson-01:session-01:intro1:r3",
+    ],
+    sourceCorrectResponseId: "en:lesson-01:session-01:intro1:r1",
+    oldPrefix: "en:lesson-01:session-01",
+    courseSessionId: "lesson-01:session:01",
+  });
+  assert.equal(feedback["lesson-01:session:01:intro1:r1"], undefined);
+  const completeFeedback = factoryNativeIntroResponseFeedbackByIdV1({
+    rawAuxiliary: {
+      entries: [{
+        interactionId: "en:lesson-01:session-01:intro1:q",
+        responseFeedbackById: {
+          "en:lesson-01:session-01:intro1:r1": { ru: "Верно.", uk: "Правильно." },
+          "en:lesson-01:session-01:intro1:r2": { ru: "Пропущено am.", uk: "Пропущено am." },
+          "en:lesson-01:session-01:intro1:r3": { ru: "Пропущено I.", uk: "Пропущено I." },
+        },
+      }],
+    },
+    sourceInteractionId: "en:lesson-01:session-01:intro1:q",
+    sourceResponseIds: [
+      "en:lesson-01:session-01:intro1:r1",
+      "en:lesson-01:session-01:intro1:r2",
+      "en:lesson-01:session-01:intro1:r3",
+    ],
+    sourceCorrectResponseId: "en:lesson-01:session-01:intro1:r1",
+    oldPrefix: "en:lesson-01:session-01",
+    courseSessionId: "lesson-01:session:01",
+  });
+  assert.equal(completeFeedback["lesson-01:session:01:intro1:r1"].ru, "Верно.");
+});
+
+test("factory-native maps S01 i16 authored distractor feedback to the generated runtime tile", () => {
+  const source = JSON.parse(fs.readFileSync(
+    path.resolve(__dirname, "../content/learning-v2-course/sessions/en/l01/s01/practice.atomic.json"),
+    "utf8",
+  )) as {
+    interactionsByLocale: Record<string, Array<{
+      interactionId: string;
+      modePayload: Record<string, unknown>;
+    }>>;
+  };
+  const raw = source.interactionsByLocale.ru.find((entry) =>
+    entry.interactionId === "en:lesson-01:session-01:i16")?.modePayload;
+  assert.ok(raw);
+  const runtimeOptions = ["I", "am", "happy", "fine"].map((text, index) => ({
+    responseId: `lesson-01:session:01:i16:t${String(index + 1).padStart(2, "0")}`,
+    text,
+  }));
+  const feedback = factoryNativeOrderedTokenSlotFeedbackV1(raw, runtimeOptions);
+  assert.deepEqual(feedback.map((entry) => entry.responseId), ["lesson-01:session:01:i16:t04"]);
+  assert.equal(
+    feedback[0]?.feedbackByLocale.ru,
+    "Фраза строится по порядку: I → am → happy. В этой ситуации happy значит «рад / рада»; fine изменило бы смысл на «у меня всё хорошо».",
+  );
+  assert.equal(
+    feedback[0]?.feedbackByLocale.uk,
+    "Фраза будується в такому порядку: I → am → happy. У цій ситуації happy означає «радий / рада»; fine змінило б зміст на «у мене все добре».",
+  );
+});
+
+test("factory-native preserves the complete S01 phrase and speed-match explanation packets", () => {
+  const sidecar = JSON.parse(fs.readFileSync(
+    path.resolve(__dirname, "../content/learning-v2-course/sessions/en/l01/s01/practice.explanations.v1.json"),
+    "utf8",
+  ));
+  const phrase = sidecar.interactions["en:lesson-01:session-01:i09"];
+  const projectedPhrase = factoryNativeExplanationV1(phrase);
+  assert.equal(projectedPhrase?.completionFeedbackByLocale.uk, phrase.completionFeedbackByLocale.uk);
+  assert.equal(projectedPhrase?.phrase.units[0]?.lemma, phrase.phrase.units[0].lemma);
+  assert.equal(projectedPhrase?.phrase.units[0]?.functionByLocale.uk, phrase.phrase.units[0].functionByLocale.uk);
+  assert.equal(
+    factoryNativeExplanationV1({ completionFeedbackByLocale: phrase.completionFeedbackByLocale })
+      ?.completionFeedbackByLocale?.ru,
+    phrase.completionFeedbackByLocale.ru,
+  );
+
+  const pair = sidecar.interactions["en:lesson-01:session-01:i08"].pairs[0];
+  const projectedAnalysis = factoryNativeExplanationV1({ analysisV1: pair.analysisV1 })?.analysisV1;
+  assert.equal(projectedAnalysis?.lemma, pair.analysisV1.lemma);
+  assert.equal(projectedAnalysis?.meaningByLocale.ru, pair.analysisV1.meaningByLocale.ru);
+  assert.equal(projectedAnalysis?.matchExplanationByLocale.uk, pair.analysisV1.matchExplanationByLocale.uk);
+  assert.deepEqual(projectedAnalysis?.sourceRefs, pair.analysisV1.sourceRefs);
+});
+
+test("direct player reveals the authored ordered-token explanation only from the second wrong attempt", () => {
+  const player = fs.readFileSync(
+    path.resolve(__dirname, "../app/learning_v2_direct_session_player_v1.tsx"),
+    "utf8",
+  );
+  assert.match(player, /!isCheckpoint && wrongCount >= 2 && auxiliary/u);
+  assert.match(
+    player,
+    /orderedIds\.find\([\s\S]{0,240}auxiliary\?\.responseFeedbackById\?\.\[responseId\] !== undefined/u,
+  );
+  assert.match(
+    player,
+    /auxiliary\.responseFeedbackById\?\.\[lastWrongResponseId\]\?\.\[lang\][\s\S]{0,120}auxiliary\.secondErrorExplanationByLocale\[lang\]/u,
+  );
+});
 
 // зачем (координатор §46, 2026-10-01): файл был сценарием из голых assert без
 // единого test(), и jest его не исполнял («must contain at least one test») —
@@ -68,6 +186,7 @@ const first = materializeFactoryNativeLearningV2SessionV1({
   interfaceLocale: "ru",
 });
 assert.ok(first);
+
 assert.equal(first.courseSessionId, "lesson-01:session:01");
 assert.equal(first.introChild.pages[0].bodyByLocale.ru.includes("`I`"), false);
 assert.equal(first.introChild.pages[0].bodyRunsByLocale?.ru.every((run) => run.semantic === "explanation"), true);
@@ -145,6 +264,11 @@ assert.equal(feedbackForDisplayedText("I here."),
 assert.equal(feedbackForDisplayedText("Am here."),
   "Пропало I — непонятно, кто здесь. Скрепке нужен тот, кого она скрепляет.");
 assert.equal(
+  feedbackForDisplayedText("I am here."),
+  undefined,
+  "the error-feedback map must not target the correct intro response",
+);
+assert.equal(
   first.practiceSemanticsByInteractionId["lesson-01:session:01:i02"]
     ?.reviewedMeaningByLocale,
   null,
@@ -152,8 +276,50 @@ assert.equal(
 );
 assert.equal(
   first.practiceSemanticsByInteractionId["lesson-01:session:01:i09"]
-    ?.reviewedMeaningByLocale?.ru,
-  "я здесь",
+    ?.reviewedMeaningByLocale,
+  null,
+  "a contextual builder instruction is not a reviewed translation of its answer",
+);
+
+const repairedMissingScene = materializeFactoryNativeLearningV2SessionV1({
+  lessonOrdinal: 1,
+  sessionOrdinal: 6,
+  interfaceLocale: "ru",
+});
+assert.ok(repairedMissingScene);
+const repairedGap = repairedMissingScene.learnerChild.interactions.find((entry) =>
+  entry.modePayload?.family === "context_gap_grammar");
+assert.ok(repairedGap);
+assert.ok(repairedGap.modePayload.localizedScene.ru.trim(), "a legacy missing scene is restored from reviewed source title");
+assert.ok(repairedGap.modePayload.localizedScene.uk.trim(), "the restored scene has both reviewed interface locales");
+
+const repairedMissingAuxiliary = materializeFactoryNativeLearningV2SessionV1({
+  lessonOrdinal: 1,
+  sessionOrdinal: 8,
+  interfaceLocale: "ru",
+});
+assert.ok(repairedMissingAuxiliary);
+assert.equal(
+  repairedMissingAuxiliary.auxiliaryChild.entries[0]?.responseFeedbackById?.[
+    "lesson-01:session:08:intro1:r2"
+  ]?.ru,
+  "После I нужно `am`: о себе говорим `I am`.",
+  "a release without auxiliary.json restores the reviewed explanation from the generated source manifest",
+);
+
+const repairedPhraseScene = materializeFactoryNativeLearningV2SessionV1({
+  lessonOrdinal: 2,
+  sessionOrdinal: 11,
+  interfaceLocale: "ru",
+});
+assert.ok(repairedPhraseScene);
+const repairedPhrase = repairedPhraseScene.learnerChild.interactions.find((entry) =>
+  entry.interactionId.endsWith(":i02"));
+assert.ok(repairedPhrase?.modePayload && repairedPhrase.modePayload.family === "phrase_builder");
+assert.equal(
+  repairedPhrase.modePayload.localizedMeaning.ru,
+  "Женщина кутается в шарф и держит руки в карманах. Спутник спрашивает: «Ей холодно?» Соберите полный ответ «да».",
+  "the reviewed source scene is retained as the phrase-builder explanation",
 );
 
 const unsupportedDisplayLocale = materializeFactoryNativeLearningV2SessionV1({
@@ -201,8 +367,10 @@ for (const row of availability.sessions) for (const interfaceLocale of ["ru", "u
     const auxiliary: FactoryAuxiliaryEntry | undefined = session.auxiliaryChild.entries.find((entry) =>
       entry.interactionId === page.question.interactionId);
     const feedback: NonNullable<FactoryAuxiliaryEntry["responseFeedbackById"]> = auxiliary?.responseFeedbackById ?? {};
+    const visibleIds = page.question.choicesByLocale[interfaceLocale].map((choice) => choice.responseId);
     assert.equal(Object.keys(feedback).length,
-      page.question.choicesByLocale[interfaceLocale].length - 1);
+      visibleIds.length - 1,
+      `${page.question.interactionId}: every wrong visible intro response needs reviewed feedback`);
     for (const localizedFeedback of Object.values(feedback)) {
       assert.ok(localizedFeedback.ru.trim());
       assert.ok(localizedFeedback.uk.trim());

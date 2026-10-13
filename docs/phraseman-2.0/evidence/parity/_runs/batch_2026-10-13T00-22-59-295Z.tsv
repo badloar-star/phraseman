@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-006	2026-10-13T00:23:19.379Z	ok	12210	marker+пусто_1306мс+склейка+ждали_metro_24мс	docs/phraseman-2.0/evidence/parity/spire-gap-006.png	1306

@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i01; family: listen_choose -->
 Ціль: `Am I polite?`
 Варіанти: `Am I polite?` · `Are you polite?` · `Am I rude?`
+- Are you polite? — *Це запитання до співрозмовника. Запис починається з `Am I`: друг запитує про себе.*
+- Am I rude? — *Це запитання про грубість. Останнє слово в записі — `polite`, «ввічливий».*
+
 
 **2 · Вставте слово — попросіть друга оцінити вашу ввічливість: «Я ввічливий?»**
 <!-- interaction_id: en:lesson-02:session-47:i02; family: context_gap_grammar -->
 Ціль: `Am I ___ ?`
 Варіанти: `polite` · `rude` · `ready`
+- rude — *Це «грубий». Ви запитуєте саме про ввічливість, тому потрібне `polite`.*
+- ready — *Це «готовий». Тут запитання про вашу манеру спілкування, а не про готовність.*
+
 
 **3 · Складіть фразу — вам важлива думка друга про те, наскільки ви ввічливі; запитайте його**
 <!-- interaction_id: en:lesson-02:session-47:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i04; family: listen_choose -->
 Ціль: `Are we rude?`
 Варіанти: `Are we rude?` · `Am I rude?` · `Are we ready?`
+- Am I rude? — *Це запитання лише про себе. Запис починається з `Are we` — «ми».*
+- Are we ready? — *Це «Ми готові?» Останнє слово в записі — `rude`: запитують про грубість.*
+
 
 **5 · Вставте слово — відвідувач за сусіднім столиком ображає офіціанта; скажіть другові: «Він грубий»**
 <!-- interaction_id: en:lesson-02:session-47:i05; family: context_gap_grammar -->
 Ціль: `He is ___ .`
 Варіанти: `rude` · `polite` · `hungry`
+- polite — *Це «ввічливий». Образливе звертання тут описує слово `rude`.*
+- hungry — *Це «голодний». Ви оцінюєте поводження з офіціантом, а не причину невдоволення.*
+
 
 **6 · Складіть фразу — друг запитує, чи задоволені ви своєю манерою розмовляти; ви сумніваєтеся**
 <!-- interaction_id: en:lesson-02:session-47:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i07; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `ready` · `sure` · `late`
+- sure — *Це «впевнений». Зараз ви повідомляєте, що готові зробити замовлення: `ready`.*
+- late — *Це «запізнився» або «запізнююся». Ви говорите про готовність, тому потрібне `I am ready`.*
+
 
 **8 · Послухайте й виберіть — що офіціант сказав вашому другові**
 <!-- interaction_id: en:lesson-02:session-47:i08; family: listen_choose -->
 Ціль: `You are polite.`
 Варіанти: `You are polite.` · `You are not polite.` · `Are you polite?`
+- You are not polite. — *Слово `not` змінює оцінку на негативну. У записі його немає.*
+- Are you polite? — *Це запитання. Запис починається з `You are`: офіціант дає оцінку.*
+
 
 **9 · З’єднайте пари — слова для розмови за обідом**
 <!-- interaction_id: en:lesson-02:session-47:i09; family: speed_match -->
@@ -103,11 +121,17 @@
 <!-- interaction_id: en:lesson-02:session-47:i11; family: context_gap_grammar -->
 Ціль: `___ I polite?`
 Варіанти: `Am` · `Is` · `Are`
+- Is — *Запитання про себе тут починається з `Am I`.*
+- Are — *Сполучення `Are I` не підходить для цього запитання. Скажіть `Am I polite?`*
+
 
 **12 · Послухайте й виберіть — яка репліка друга прозвучала за столом**
 <!-- interaction_id: en:lesson-02:session-47:i12; family: listen_choose -->
 Ціль: `Am I ready?`
 Варіанти: `Am I ready?` · `I am ready.` · `Are we ready?`
+- I am ready. — *Це повідомлення. Запис починається з `Am I`: друг ставить запитання.*
+- Are we ready? — *Це запитання про вас обох. У записі друг говорить `I` і запитує про себе.*
+
 
 **13 · Послухайте й складіть — друг звертається до офіціанта**
 <!-- interaction_id: en:lesson-02:session-47:i13; family: listen_build_dictation -->

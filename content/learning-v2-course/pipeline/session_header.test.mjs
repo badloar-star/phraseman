@@ -43,3 +43,17 @@ test("today header supplies the learner outcome in Russian and Ukrainian", () =>
   assert.equal(ru.operation, "Скажете, довольны ли вы результатом.");
   assert.equal(uk.operation, "Скажете, чи задоволені ви результатом.");
 });
+
+test("what-you-will-master header supplies a nonempty learner outcome", () => {
+  const ru = parseSessionHeader("**Что вы освоите:** Скажете, где вы после работы.");
+  const uk = parseSessionHeader("**Що ви опануєте:** Скажете, де ви після роботи.");
+  assert.equal(ru.operation, "Скажете, где вы после работы.");
+  assert.equal(uk.operation, "Скажете, де ви після роботи.");
+});
+
+test("what-you-will-review header remains a learner-facing outcome", () => {
+  const ru = parseSessionHeader("**Что вы повторите:** Формы `am`, `is` и `are`.");
+  const uk = parseSessionHeader("**Що ви повторите:** Форми `am`, `is` і `are`.");
+  assert.equal(ru.operation, "Формы `am`, `is` и `are`.");
+  assert.equal(uk.operation, "Форми `am`, `is` і `are`.");
+});

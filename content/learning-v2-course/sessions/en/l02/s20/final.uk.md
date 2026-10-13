@@ -62,6 +62,9 @@
 <!-- interaction_id: en:lesson-02:session-20:i01; family: listen_choose -->
 Ціль: `station`
 Варіанти: `station` · `street` · `standing`
+- street — *Це «вулиця». Третій звук там «р», а в `station` — «ей».*
+- standing — *Початок спільний, а далі розходяться: у `station` іде «ей», у `standing` — «ен».*
+
 
 **2 · Складіть повідомлення — на карті об’єкт поруч із вами**
 <!-- interaction_id: en:lesson-02:session-20:i02; family: phrase_builder -->
@@ -70,11 +73,16 @@
 **3 · Розрізніть звуки — яке з двох про «поряд»?**
 <!-- interaction_id: en:lesson-02:session-20:i03; family: sound_contrast -->
 Варіанти: `near` · `nine`
+- nine — *Це «дев'ять». Перший звук один, а голосний різний: «ай» проти «іе».*
+
 
 **4 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-02:session-20:i04; family: listen_choose -->
 Ціль: `behind`
 Варіанти: `behind` · `bell` · `behave`
+- bell — *Один склад, коротко. `behind` тягнеться на два.*
+- behave — *Початок той самий, кінець інший: у `behind` чути «айнд».*
+
 
 **5 · Картка слова — crowded**
 <!-- interaction_id: en:lesson-02:session-20:i05; family: listen_choose -->
@@ -84,6 +92,9 @@
 <!-- interaction_id: en:lesson-02:session-20:i06; family: listen_choose -->
 Ціль: `crowded`
 Варіанти: `crowded` · `cloud` · `crow`
+- cloud — *«Хмара». Перший звук спільний, але далі «л», а в `crowded` — «р».*
+- crow — *Це «ворона», і слово коротше: у `crowded` два склади, у `crow` один.*
+
 
 **7 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-20:i07; family: speed_match -->
@@ -93,42 +104,64 @@
 **8 · Послухайте і зберіть — «де вокзал?»**
 <!-- interaction_id: en:lesson-02:session-20:i08; family: listen_build_dictation -->
 Ціль: `Where is the station?`
+🔊 *Where is the station?* Плитки: `Where` `is` `the` `station` `street`
+*Плитка `street` зайва: у записі питають про вокзал — `station`, а не про вулицю — `street`.*
 
 **9 · Вставте слово — перехожий показує: іти пару хвилин**
 <!-- interaction_id: en:lesson-02:session-20:i09; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `near` · `behind` · `crowded`
+- behind — *«За, позаду» — тоді б показали назад, а не вперед.*
+- crowded — *«Людно» — це про натовп, а не про відстань.*
+
 
 **10 · Послухайте і зберіть — «де вулиця?»**
 <!-- interaction_id: en:lesson-02:session-20:i10; family: listen_build_dictation -->
 Ціль: `Where is the street?`
+🔊 *Where is the street?* Плитки: `Where` `is` `the` `street` `station`
+*Плитка `station` зайва: у записі питають про вулицю — `street`, а не про вокзал — `station`.*
 
 **11 · Вставте слово — ви шукаєте вулицю, а не вокзал**
 <!-- interaction_id: en:lesson-02:session-20:i11; family: context_gap_grammar -->
 Ціль: `Where is the ___ ?`
 Варіанти: `street` · `station` · `near`
+- station — *Це «вокзал». Вулиця — `street`.*
+- near — *«Поряд» — це відповідь, а не місце, яке ви шукаєте.*
+
 
 **12 · Послухайте і виберіть — що саме спитали?**
 <!-- interaction_id: en:lesson-02:session-20:i12; family: listen_choose -->
 Ціль: `Where is the station?`
 Варіанти: `де вокзал` · `де вулиця` · `вокзал поряд`
+- де вулиця — *Прозвучало `station`, а «вулиця» — це `street`.*
+- вокзал поряд — *Фраза почалася з `where` — отже це питання.*
+
 
 **13 · Вставте слово — біля виходу натовп, ідете боком**
 <!-- interaction_id: en:lesson-02:session-20:i13; family: context_gap_grammar -->
 Ціль: `The street is ___ .`
 Варіанти: `crowded` · `near` · `behind`
+- near — *«Поряд» — про відстань, а ви кажете про людей.*
+- behind — *«Позаду» — теж про місце, а не про натовп.*
+
 
 **14 · Складіть фразу — перехожий показує за вокзал: вхід розташований там**
 <!-- interaction_id: en:lesson-02:session-20:i14; family: phrase_builder -->
 Ціль: `It is behind the station.`
+Плитки: `It` `is` `behind` `the` `station` `where`
+*Плитка `where` зайва: це питальне слово, а тут ви повідомляєте, де вхід: `It is behind the station.`*
 
 **15 · Послухайте і зберіть — відповідь перехожого**
 <!-- interaction_id: en:lesson-02:session-20:i15; family: listen_build_dictation -->
 Ціль: `It is near.`
+🔊 *It is near.* Плитки: `It` `is` `near` `behind`
+*Плитка `behind` зайва: у записі сказано `near` — «поруч», а не `behind` — «позаду».*
 
 **16 · Складіть запитання — вам назвали адресу, але не сказали дорогу; запитайте про вулицю**
 <!-- interaction_id: en:lesson-02:session-20:i16; family: phrase_builder -->
 Ціль: `Where is the street?`
+Плитки: `Where` `is` `the` `street` `It`
+*Плитка `It` зайва: запитання про місце починається з `Where is`, а `It is` починає відповідь.*
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-20:i17:s01; family: scripted_repeat_compare -->

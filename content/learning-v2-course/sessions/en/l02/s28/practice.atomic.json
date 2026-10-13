@@ -161,7 +161,7 @@
             "audioTargetId": "en:lesson-02:session-28:i03:audioB",
             "transcript": "nice"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «цен",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «цену»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i03:r2",
@@ -205,7 +205,17 @@
           "authoredDistractorTokens": [
             "the"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «что это?»",
+              "feedbackByLocale": {
+                "ru": "после `this` в коротком вопросе нет существительного; фраза заканчивается на `this?`",
+                "uk": "після `this` у короткому запитанні немає іменника; фраза закінчується на `this?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -608,7 +618,7 @@
               "text": "weather"
             }
           ],
-          "testedDimension": "Вставьте слово — вы не поняли, как назыв",
+          "testedDimension": "Вставьте слово — вы не поняли, как называется блюдо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i11:r2",
@@ -650,9 +660,26 @@
             "ru": "Соберите вопрос — вы записываете адрес кафе и просите официанта назвать улицу",
             "uk": "Складіть запитання — ви записуєте адресу кафе й просите офіціанта назвати вулицю"
           },
-          "orderedTokens": ["What", "is", "the", "street"],
-          "authoredDistractorTokens": ["price"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "What",
+            "is",
+            "the",
+            "street"
+          ],
+          "authoredDistractorTokens": [
+            "price"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы записываете адрес кафе и просите официанта назвать улицу",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете название улицы — `street`, а не цену.",
+                "uk": "ви питаєте назву вулиці — `street`, а не ціну."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -686,7 +713,17 @@
           "authoredDistractorTokens": [
             "price"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «сколько времени?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают время — `time`, а не цену — `price`.",
+                "uk": "у записі питають час — `time`, а не ціну — `price`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -717,7 +754,17 @@
           "authoredDistractorTokens": [
             "name"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете цену — `price`, а не название.",
+                "uk": "ви питаєте ціну — `price`, а не назву."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -766,7 +813,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставьте слово — за окном ливень, спутни",
+          "testedDimension": "Вставьте слово — за окном ливень, спутник спрашивает, что там снаружи",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i15:r2",
@@ -796,17 +843,17 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
+        "prompt": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
+        "accessibilityLabel": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "What is the name?",
           "localizedMeaning": {
-            "ru": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
-            "uk": "Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну"
+            "ru": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
+            "uk": "Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву"
           },
           "orderedTokens": [
             "What",
@@ -817,7 +864,17 @@
           "authoredDistractorTokens": [
             "price"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
+              "feedbackByLocale": {
+                "ru": "здесь нужно узнать название — `name`, а не цену.",
+                "uk": "тут треба дізнатися назву — `name`, а не ціну."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1078,7 +1135,7 @@
             "audioTargetId": "en:lesson-02:session-28:i03:audioB",
             "transcript": "nice"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «ціну»",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «ціну»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i03:r2",
@@ -1122,7 +1179,17 @@
           "authoredDistractorTokens": [
             "the"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «что это?»",
+              "feedbackByLocale": {
+                "ru": "после `this` в коротком вопросе нет существительного; фраза заканчивается на `this?`",
+                "uk": "після `this` у короткому запитанні немає іменника; фраза закінчується на `this?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1525,7 +1592,7 @@
               "text": "weather"
             }
           ],
-          "testedDimension": "Вставте слово — ви не зрозуміли, як нази",
+          "testedDimension": "Вставте слово — ви не зрозуміли, як називається страва",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i11:r2",
@@ -1567,9 +1634,26 @@
             "ru": "Соберите вопрос — вы записываете адрес кафе и просите официанта назвать улицу",
             "uk": "Складіть запитання — ви записуєте адресу кафе й просите офіціанта назвати вулицю"
           },
-          "orderedTokens": ["What", "is", "the", "street"],
-          "authoredDistractorTokens": ["price"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "What",
+            "is",
+            "the",
+            "street"
+          ],
+          "authoredDistractorTokens": [
+            "price"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы записываете адрес кафе и просите официанта назвать улицу",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете название улицы — `street`, а не цену.",
+                "uk": "ви питаєте назву вулиці — `street`, а не ціну."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1603,7 +1687,17 @@
           "authoredDistractorTokens": [
             "price"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «сколько времени?»",
+              "feedbackByLocale": {
+                "ru": "в записи спрашивают время — `time`, а не цену — `price`.",
+                "uk": "у записі питають час — `time`, а не ціну — `price`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1634,7 +1728,17 @@
           "authoredDistractorTokens": [
             "name"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
+              "feedbackByLocale": {
+                "ru": "вы спрашиваете цену — `price`, а не название.",
+                "uk": "ви питаєте ціну — `price`, а не назву."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1683,7 +1787,7 @@
               "text": "name"
             }
           ],
-          "testedDimension": "Вставте слово — за вікном злива, супутни",
+          "testedDimension": "Вставте слово — за вікном злива, супутник питає, що там надворі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-28:i15:r2",
@@ -1713,17 +1817,17 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну",
+        "prompt": "Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну",
+        "accessibilityLabel": "Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "What is the name?",
           "localizedMeaning": {
-            "ru": "Соберите вопрос — на витрине нет ни одного ценника; спросите про цену",
-            "uk": "Складіть запитання — на вітрині немає жодного цінника; запитайте про ціну"
+            "ru": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
+            "uk": "Складіть запитання — у заявці на проєкт немає заголовка; запитайте його назву"
           },
           "orderedTokens": [
             "What",
@@ -1734,7 +1838,17 @@
           "authoredDistractorTokens": [
             "price"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-28:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в заявке на проект нет заголовка; спросите его название",
+              "feedbackByLocale": {
+                "ru": "здесь нужно узнать название — `name`, а не цену.",
+                "uk": "тут треба дізнатися назву — `name`, а не ціну."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

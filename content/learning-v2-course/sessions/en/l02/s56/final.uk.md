@@ -56,6 +56,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i01; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `free` · `closed` · `crowded`
+- closed — *Це «зачинений». Зараз ви запитуєте, чи вільна людина: `Are you free?`.*
+- crowded — *Це «людний, переповнений». Для запитання про те, чи вільний співрозмовник, потрібне `free`.*
+
 
 **2 · Складіть фразу — мешканець запитує, чи вільні ви; тепер ви можете приділити йому час, коротко дайте відповідь «Так»**
 <!-- interaction_id: en:lesson-02:session-56:i02; family: phrase_builder -->
@@ -66,6 +69,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i03; family: listen_choose -->
 Ціль: `Who is she?`
 Варіанти: `Who is she?` · `Where is she?` · `Who is he?`
+- Where is she? — *Цей варіант починається з `Where` — «де». Перше слово в записі — `Who`, «хто».*
+- Who is he? — *У цьому варіанті звучить `he` — «він». Останнє слово в записі — `she`, «вона».*
+
 
 **4 · Складіть фразу — мешканець запитав про жінку за стійкою; ви знаєте, що вона керує хостелом, поясніть, хто вона**
 <!-- interaction_id: en:lesson-02:session-56:i04; family: phrase_builder -->
@@ -75,6 +81,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i05; family: context_gap_grammar -->
 Ціль: `Where ___ she?`
 Варіанти: `is` · `are` · `am`
+- are — *У цьому запитанні з `she` потрібна форма `is`: `Where is she?`.*
+- am — *Форма `am` поєднується з `I`. Тут ви запитуєте про жінку: `Where is she?`.*
+
 
 **6 · Послухайте й складіть — працівник відповідає на ваше запитання про керівницю**
 <!-- interaction_id: en:lesson-02:session-56:i06; family: listen_build_dictation -->
@@ -88,6 +97,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i08; family: context_gap_grammar -->
 Ціль: `Are we ___ ?`
 Варіанти: `wrong` · `free` · `hungry`
+- free — *Це «вільні». Зараз ви перевіряєте своє спільне припущення, тому потрібне `wrong`.*
+- hungry — *Це «голодні». Щоб уточнити, чи не помилилися ви, запитайте `Are we wrong?`.*
+
 
 **9 · З’єднайте пари — люди та стан справ**
 <!-- interaction_id: en:lesson-02:session-56:i09; family: speed_match -->
@@ -102,6 +114,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i10:s02; family: listen_choose -->
 Ціль: `Are you ready?`
 Варіанти: `Are you ready?` · `Are we ready?` · `You are ready.`
+- Are we ready? — *У цьому варіанті звучить `we` — «ми». У записі після `Are` йде `you`.*
+- You are ready. — *Після звертання тут іде повідомлення `You are ready`. У записі порядок інший: `Are you ready?`.*
+
 
 **12 · Складіть фразу — на стійці лежить ключ, який ніхто не забирає; покажіть його працівникам і запитайте, чий він**
 <!-- interaction_id: en:lesson-02:session-56:i11; family: phrase_builder -->
@@ -111,6 +126,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i12; family: context_gap_grammar -->
 Ціль: `No, she ___ not.`
 Варіанти: `is` · `am` · `are`
+- am — *Ви відповідаєте про жінку, тому зберігаєте `she is`: `No, she is not`.*
+- are — *Після `she` у цій короткій відповіді потрібне `is`: `No, she is not`.*
+
 
 **14 · Складіть фразу — після дзвінка керівниця показує спільну кухню; запитайте, які там правила**
 <!-- interaction_id: en:lesson-02:session-56:i13; family: phrase_builder -->
@@ -120,6 +138,9 @@
 <!-- interaction_id: en:lesson-02:session-56:i14; family: listen_choose -->
 Ціль: `Are the toilets here?`
 Варіанти: `Are the toilets here?` · `The toilets are here.` · `Are the toilets near?`
+- The toilets are here. — *Це повідомлення з початком `The toilets are`. У записі спочатку звучить `Are the toilets`.*
+- Are the toilets near? — *У цьому варіанті останнє слово — `near`, «близько». У записі звучить `here` — «тут».*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-56:i15; family: scripted_repeat_compare -->

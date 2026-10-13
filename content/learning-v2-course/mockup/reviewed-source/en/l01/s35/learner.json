@@ -115,6 +115,15 @@
               "ru": "«Ботинок». Начало похоже, но `shoe` на этом и заканчивается, а в `sure` есть «р».",
               "uk": "«Туфля». Початок схожий, але `shoe` на цьому й закінчується, а в `sure` є «р»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`sure` — «уверены»: вы не знаете, открыто ли кафе, поэтому `not sure`.",
+              "uk": "`sure` — «впевнені»: ви не знаєте, чи відкрита кав'ярня, тому `not sure`."
+            }
           }
         ],
         "isWordCard": false,
@@ -233,6 +242,15 @@
             "feedbackByLocale": {
               "ru": "«Кольцо». Гласная другая: в `ring` слышно «и», в `wrong` — «о».",
               "uk": "«Каблучка». Голосна інша: у `ring` чути «і», у `wrong` — «о»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`wrong` — «неправы, ошибаемся»: так говорят о неверном выводе.",
+              "uk": "`wrong` — «неправі, помиляємося»: так кажуть про хибний висновок."
             }
           }
         ],
@@ -382,6 +400,15 @@
               "ru": "«Жарить». Начало то же, а гласная в конце другая.",
               "uk": "«Смажити». Початок той самий, а голосна в кінці інша."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-35:i07:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "`free` — «свободны»: дел нет, можно остаться или уйти.",
+              "uk": "`free` — «вільні»: справ немає, можна залишитися або піти."
+            }
           }
         ],
         "isWordCard": false,
@@ -480,6 +507,15 @@
         "testedDimension": "Вставьте слово — вы не уверены, открыто ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-35:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы не уверены, открыто ли кафе",
+            "feedbackByLocale": {
+              "ru": "Вы не знаете ответа: `We are not sure.`",
+              "uk": "Ви не знаєте відповіді: `We are not sure.`"
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-35:i09:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы не уверены, открыто ",
@@ -531,7 +567,17 @@
         "authoredDistractorTokens": [
           "no"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мы не одни»",
+            "feedbackByLocale": {
+              "ru": "`no` лишнее: отрицание здесь — `not`: `We are not alone.`",
+              "uk": "`no` зайве: заперечення тут — `not`: `We are not alone.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -582,6 +628,15 @@
         ],
         "testedDimension": "Выберите `are` после `we`",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i11:r1",
+            "correct": true,
+            "testedDimension": "Выберите форму — Ира и Олег уже пообедали и не голодны",
+            "feedbackByLocale": {
+              "ru": "С `We` ставят `are`: `We are not hungry.`",
+              "uk": "З `We` ставлять `are`: `We are not hungry.`"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-35:i11:r2",
             "correct": false,
@@ -725,6 +780,15 @@
         "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-35:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — руководитель спрашивает, можем ли мы задержаться: после обеда совещание",
+            "feedbackByLocale": {
+              "ru": "После обеда у вас нет времени: `not free` — «не свободны».",
+              "uk": "Після обіду у вас немає часу: `not free` — «не вільні»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-35:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — спрашивают, можем ли мы",
@@ -772,7 +836,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Утверждение или отрицание? Все уже с куртками, можно идти",
+            "feedbackByLocale": {
+              "ru": "`not` лишнее: вы уже готовы, поэтому `We are ready.`",
+              "uk": "`not` зайве: ви вже готові, тому `We are ready.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -806,7 +880,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-35:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — вы закончили все дела и можете уйти",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: после `We` ставят `are` — `We are not busy.`",
+              "uk": "`is` зайве: після `We` ставлять `are` — `We are not busy.`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1011,5 +1095,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "77d771e4cc2d0f9a166b5d5ba38105e395ac0f5ad138207df3fdc351ad0b662c"
+  "learnerFingerprint": "37b9691ee219f040b73db387c7cf4fe9bc5d19b0a6efb7f8096102cbccd0ca22"
 }

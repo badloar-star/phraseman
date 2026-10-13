@@ -44,9 +44,9 @@
       "segmentIndex": 1,
       "sourceSegment": "here",
       "newInteractionId": "en:lesson-01:session-01:i02",
-      "newTargetSegment": "here",
+      "newTargetSegment": "I am ___.",
       "correctText": "here",
-      "audioTranscript": "here"
+      "audioTranscript": null
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -66,9 +66,9 @@
       "segmentIndex": 1,
       "sourceSegment": "ready",
       "newInteractionId": "en:lesson-01:session-01:i04",
-      "newTargetSegment": "ready",
+      "newTargetSegment": "I am ___.",
       "correctText": "ready",
-      "audioTranscript": "ready"
+      "audioTranscript": null
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -88,9 +88,9 @@
       "segmentIndex": 1,
       "sourceSegment": "fine",
       "newInteractionId": "en:lesson-01:session-01:i06",
-      "newTargetSegment": "fine",
+      "newTargetSegment": "I am ___.",
       "correctText": "fine",
-      "audioTranscript": "fine"
+      "audioTranscript": null
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -132,8 +132,8 @@
       "segmentIndex": 1,
       "sourceSegment": "I am ___ .",
       "newInteractionId": "en:lesson-01:session-01:i10",
-      "newTargetSegment": "I am ___ .",
-      "correctText": "fine",
+      "newTargetSegment": "I am fine.",
+      "correctText": "I am fine.",
       "audioTranscript": null
     },
     {
@@ -165,9 +165,9 @@
       "segmentIndex": 1,
       "sourceSegment": "___ am here.",
       "newInteractionId": "en:lesson-01:session-01:i13",
-      "newTargetSegment": "___ am here.",
-      "correctText": "I",
-      "audioTranscript": null
+      "newTargetSegment": "I am here.",
+      "correctText": "Я здесь.",
+      "audioTranscript": "I am here."
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -176,9 +176,9 @@
       "segmentIndex": 1,
       "sourceSegment": "I am happy.",
       "newInteractionId": "en:lesson-01:session-01:i14",
-      "newTargetSegment": "I am happy.",
-      "correctText": "I am happy.",
-      "audioTranscript": "I am happy."
+      "newTargetSegment": "I am here.",
+      "correctText": "I am here.",
+      "audioTranscript": "I am here."
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -198,9 +198,9 @@
       "segmentIndex": 1,
       "sourceSegment": "I am fine.",
       "newInteractionId": "en:lesson-01:session-01:i16",
-      "newTargetSegment": "I am fine.",
-      "correctText": "I am fine.",
-      "audioTranscript": "I am fine."
+      "newTargetSegment": "I am happy.",
+      "correctText": "I am happy.",
+      "audioTranscript": "I am happy."
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -209,9 +209,9 @@
       "segmentIndex": 1,
       "sourceSegment": "I am here.",
       "newInteractionId": "en:lesson-01:session-01:i17:s01",
-      "newTargetSegment": "I am here.",
-      "correctText": "I am here.",
-      "audioTranscript": "I am here."
+      "newTargetSegment": "en:lesson-01:session-01:i17:s01:p1=I am here.\nen:lesson-01:session-01:i17:s01:p2=I am ready.\nen:lesson-01:session-01:i17:s01:p3=I am fine.\nen:lesson-01:session-01:i17:s01:p4=I am happy.",
+      "correctText": "en:lesson-01:session-01:i17:s01:p1=I am here.\nen:lesson-01:session-01:i17:s01:p2=I am ready.\nen:lesson-01:session-01:i17:s01:p3=I am fine.\nen:lesson-01:session-01:i17:s01:p4=I am happy.",
+      "audioTranscript": null
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -220,9 +220,9 @@
       "segmentIndex": 2,
       "sourceSegment": "I am ready.",
       "newInteractionId": "en:lesson-01:session-01:i17:s02",
-      "newTargetSegment": "I am ___.",
-      "correctText": "ready",
-      "audioTranscript": null
+      "newTargetSegment": "I am ready.",
+      "correctText": "I am ready.",
+      "audioTranscript": "I am ready."
     },
     {
       "courseSessionId": "en:lesson-01:session-01",
@@ -11676,7 +11676,7 @@
       "sourceSegment": "week",
       "newInteractionId": "en:lesson-01:session-52:i01",
       "newTargetSegment": "week",
-      "correctText": "week",
+      "correctText": "",
       "audioTranscript": "week"
     },
     {
@@ -11698,7 +11698,7 @@
       "sourceSegment": "day",
       "newInteractionId": "en:lesson-01:session-52:i03",
       "newTargetSegment": "day",
-      "correctText": "day",
+      "correctText": "",
       "audioTranscript": "day"
     },
     {
@@ -11720,7 +11720,7 @@
       "sourceSegment": "night",
       "newInteractionId": "en:lesson-01:session-52:i05",
       "newTargetSegment": "night",
-      "correctText": "night",
+      "correctText": "",
       "audioTranscript": "night"
     },
     {
@@ -11753,7 +11753,7 @@
       "sourceSegment": "morning",
       "newInteractionId": "en:lesson-01:session-52:i08",
       "newTargetSegment": "morning",
-      "correctText": "morning",
+      "correctText": "",
       "audioTranscript": "morning"
     },
     {
@@ -11775,7 +11775,7 @@
       "sourceSegment": "en:lesson-01:session-52:i10:p1=week en:lesson-01:session-52:i10:p2=day en:lesson-01:session-52:i10:p3=night en:lesson-01:session-52:i10:p4=morning",
       "newInteractionId": "en:lesson-01:session-52:i10",
       "newTargetSegment": "en:lesson-01:session-52:i10:p1=week\nen:lesson-01:session-52:i10:p2=day\nen:lesson-01:session-52:i10:p3=night\nen:lesson-01:session-52:i10:p4=morning",
-      "correctText": "en:lesson-01:session-52:i10:p1=week\nen:lesson-01:session-52:i10:p2=day\nen:lesson-01:session-52:i10:p3=night\nen:lesson-01:session-52:i10:p4=morning",
+      "correctText": "",
       "audioTranscript": null
     },
     {
@@ -11796,8 +11796,8 @@
       "segmentIndex": 1,
       "sourceSegment": "The days are quiet.",
       "newInteractionId": "en:lesson-01:session-52:i12",
-      "newTargetSegment": "The days are quiet.",
-      "correctText": "The days are quiet.",
+      "newTargetSegment": "The days are busy.",
+      "correctText": "The days are busy.",
       "audioTranscript": null
     },
     {
@@ -11829,9 +11829,9 @@
       "segmentIndex": 1,
       "sourceSegment": "The morning is early.",
       "newInteractionId": "en:lesson-01:session-52:i15",
-      "newTargetSegment": "The morning is early.",
-      "correctText": "The morning is early.",
-      "audioTranscript": "The morning is early."
+      "newTargetSegment": "It is early in the morning.",
+      "correctText": "It is early in the morning.",
+      "audioTranscript": "It is early in the morning."
     },
     {
       "courseSessionId": "en:lesson-01:session-52",
@@ -11851,8 +11851,8 @@
       "segmentIndex": 1,
       "sourceSegment": "I am fine.",
       "newInteractionId": "en:lesson-01:session-52:i17",
-      "newTargetSegment": "I am ___.",
-      "correctText": "fine",
+      "newTargetSegment": "I am ___ in the morning.",
+      "correctText": "tired",
       "audioTranscript": null
     },
     {
@@ -23192,8 +23192,8 @@
       "segmentIndex": 1,
       "sourceSegment": "Yes, I am.",
       "newInteractionId": "en:lesson-02:session-50:i17",
-      "newTargetSegment": "Yes, I am.",
-      "correctText": "Yes, I am.",
+      "newTargetSegment": "Yes, I ___ .",
+      "correctText": "am",
       "audioTranscript": null
     },
     {
@@ -35970,6 +35970,55 @@
   ],
   "amendments": [
     {
+      "courseSessionId": "en:lesson-01:session-52",
+      "oldInteractionId": "en:lesson-01:session-52:i12",
+      "segmentIndex": 1,
+      "from": "The days are quiet.",
+      "to": "The days are busy.",
+      "reason": "Corrected an internal contradiction: the original scenario draft, the Sunday-call scene, and the reviewed current exercises describe busy days and quiet nights. The phrase-builder keeps the same `days are` construction and records the historical quiet-days source without erasing it (2026-10-11)."
+    },
+    {
+      "action": "retire",
+      "courseSessionId": "en:lesson-01:session-52",
+      "oldInteractionId": "en:lesson-01:session-52:i13",
+      "segmentIndex": 1,
+      "from": "I am ___ .",
+      "replacementInteractionId": "en:lesson-01:session-52:i17",
+      "reason": "Retired an out-of-scope wellbeing drill so this session stays with its stated week, days, nights, and morning story. The current morning response keeps the first-person `I am` practice in a concrete situation (2026-10-11)."
+    },
+    {
+      "action": "addition",
+      "courseSessionId": "en:lesson-01:session-52",
+      "newInteractionId": "en:lesson-01:session-52:i19",
+      "reason": "Added an independent listening check for the complete response `The week is busy.` after the spoken Sunday-call recap. It checks comprehension of the same stated situation without replacing a historical exercise (2026-10-11)."
+    },
+    {
+      "action": "addition",
+      "courseSessionId": "en:lesson-01:session-52",
+      "newInteractionId": "en:lesson-01:session-52:i20",
+      "reason": "Added an independent check in which the learner builds the established answer about busy days in the same phone-call story; it replaces no historical exercise (2026-10-11)."
+    },
+    {
+      "action": "addition",
+      "courseSessionId": "en:lesson-01:session-52",
+      "newInteractionId": "en:lesson-01:session-52:i21",
+      "reason": "Added an independent check in which the learner recognizes the established answer about quiet nights in the same phone-call story; it replaces no historical exercise (2026-10-11)."
+    },
+    {
+      "action": "addition",
+      "courseSessionId": "en:lesson-01:session-52",
+      "newInteractionId": "en:lesson-01:session-52:i22",
+      "reason": "Added an independent check in which the learner builds the established morning-tiredness response in the same phone-call story; it replaces no historical exercise (2026-10-11)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-52",
+      "oldInteractionId": "en:lesson-01:session-52:i15",
+      "segmentIndex": 1,
+      "from": "The morning is early.",
+      "to": "It is early in the morning.",
+      "reason": "Replaced the unnatural isolated description of a morning with the natural time-of-day statement; the meaning «утром рано» and the listening-and-construction action remain explicit (2026-10-11)."
+    },
+    {
       "courseSessionId": "en:lesson-02:session-49",
       "oldInteractionId": "en:lesson-02:session-49:i05",
       "segmentIndex": 1,
@@ -37665,15 +37714,7 @@
       "segmentIndex": 1,
       "from": "I ___ ready.",
       "to": "I am ready.",
-      "reason": "Replaced the second consecutive gap-fill with a full phrase build in the same explicit work scene; the learner now constructs the complete message rather than selecting only am (2026-10-09)."
-    },
-    {
-      "courseSessionId": "en:lesson-01:session-01",
-      "oldInteractionId": "en:lesson-01:session-01:i17",
-      "segmentIndex": 2,
-      "from": "I am ready.",
-      "to": "I am ___.",
-      "reason": "Replaced a consecutive spoken-repeat task with a scene-bound choice of ready in the same complete sentence; each wrong option receives a localized explanation (2026-10-09)."
+      "reason": "Replaced the gap-fill with a complete phrase build and interleaved it with distinct listening and dictation actions; the learner constructs the full readiness reply without duplicating the adjacent task mechanic (2026-10-13)."
     },
     {
       "courseSessionId": "en:lesson-01:session-02",
@@ -39391,20 +39432,21 @@
       "reason": "Replaced an adjacent phrase assembly with one-word retrieval in the same cold-outside situation; `cold` remains the sole accepted answer (2026-10-10)."
     },
     {
+      "action": "retire",
       "courseSessionId": "en:lesson-01:session-52",
       "oldInteractionId": "en:lesson-01:session-52:i14",
       "segmentIndex": 1,
       "from": "Everyone ___ kind.",
-      "to": "Everyone is kind.",
-      "reason": "Replaced the adjacent gap choice with one full-phrase construction; the same colleagues meaning remains explicit (2026-10-10)."
+      "replacementInteractionId": "en:lesson-01:session-52:i07",
+      "reason": "Retired an out-of-scope statement about unnamed people so the learner is not asked to imagine an unrelated situation. The current week question gives the same singular `is` decision inside the stated phone-call story (2026-10-11)."
     },
     {
       "courseSessionId": "en:lesson-01:session-52",
       "oldInteractionId": "en:lesson-01:session-52:i17",
       "segmentIndex": 1,
       "from": "I am fine.",
-      "to": "I am ___.",
-      "reason": "Replaced adjacent phrase assembly with one-word retrieval in the same clear wellbeing situation (2026-10-10)."
+      "to": "I am ___ in the morning.",
+      "reason": "Replaced a generic wellbeing phrase with a concrete morning response that belongs to the stated phone-call story. The learner still chooses the form after `I am`, now with the meaningful target `tired` (2026-10-11)."
     },
     {
       "courseSessionId": "en:lesson-01:session-55",
@@ -39751,18 +39793,90 @@
       "reason": "Retargeted the repeated ownership gap to identify the host; the who-versus-whose contrast, `is`, and the host scene remain practiced in the session (2026-10-11)."
     },
     {
-      "action": "addition",
-      "courseSessionId": "en:lesson-01:session-01",
-      "newInteractionId": "en:lesson-01:session-01:i07:a01",
-      "reason": "Added a separate visible happy listening discrimination after the word card; it replaces no historical exercise (2026-10-11)."
-    },
-    {
       "courseSessionId": "en:lesson-01:session-05",
       "oldInteractionId": "en:lesson-01:session-05:i12",
       "segmentIndex": 1,
       "from": "I am ___ sick.",
       "to": "I am ___ .",
       "reason": "Removed the duplicated fixed word `sick` from the gap frame so selecting the required `not` forms exactly `I am not sick.`, rather than the impossible `I am not sick sick.` (2026-10-11)."
+    },
+    {
+      "courseSessionId": "en:lesson-02:session-50",
+      "oldInteractionId": "en:lesson-02:session-50:i17",
+      "segmentIndex": 1,
+      "from": "Yes, I am.",
+      "to": "Yes, I ___ .",
+      "reason": "Replaced a second adjacent reconstruction of `Yes, I am.` with a contextual choice of `am`; the learner still completes and receives feedback on the same full reply, while the action tests the I/am contrast instead of repeating the earlier builder (2026-10-11)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i02",
+      "segmentIndex": 1,
+      "from": "here",
+      "to": "I am ___.",
+      "reason": "Recorded the original-to-current S01 content substitution for preservation review (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i04",
+      "segmentIndex": 1,
+      "from": "ready",
+      "to": "I am ___.",
+      "reason": "Recorded the original-to-current S01 content substitution for preservation review (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i06",
+      "segmentIndex": 1,
+      "from": "fine",
+      "to": "I am ___.",
+      "reason": "Recorded the original-to-current S01 content substitution for preservation review (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i14",
+      "segmentIndex": 1,
+      "from": "I am happy.",
+      "to": "I am here.",
+      "reason": "Recorded the original-to-current S01 content substitution for preservation review (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i16",
+      "segmentIndex": 1,
+      "from": "I am fine.",
+      "to": "I am happy.",
+      "reason": "Recorded the original-to-current S01 content substitution for preservation review (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i17",
+      "segmentIndex": 1,
+      "from": "I am here.",
+      "to": "en:lesson-01:session-01:i17:s01:p1=I am here.\nen:lesson-01:session-01:i17:s01:p2=I am ready.\nen:lesson-01:session-01:i17:s01:p3=I am fine.\nen:lesson-01:session-01:i17:s01:p4=I am happy.",
+      "reason": "The current i17:s01 is a phrase-to-situation matching set. It retains the legacy first phrase `I am here.` and adds the three explicitly displayed alternatives; this records the observed change of task representation (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i13",
+      "segmentIndex": 1,
+      "from": "___ am here.",
+      "to": "I am here.",
+      "reason": "The current i13 is a phrase-builder with the checked target `I am here.`; this records the actual replacement of the legacy gap target (2026-10-12)."
+    },
+    {
+      "courseSessionId": "en:lesson-01:session-01",
+      "oldInteractionId": "en:lesson-01:session-01:i10",
+      "segmentIndex": 1,
+      "from": "I am ___ .",
+      "to": "I am fine.",
+      "reason": "The current i10 is a phrase-builder whose target and checked answer are `I am fine.`; this records the actual replacement of the legacy gap target, rather than incorrectly describing it as punctuation-only (2026-10-12)."
+    },
+    {
+      "action": "addition",
+      "courseSessionId": "en:lesson-01:session-01",
+      "newInteractionId": "en:lesson-01:session-01:i07:a01",
+      "reason": "Added a separate visible happy listening discrimination after the word card; it replaces no historical exercise (2026-10-11)."
     }
   ]
 }

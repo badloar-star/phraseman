@@ -86,6 +86,8 @@ It is ___ . → **light** · heavy · new
 **5 · Соберите фразу — «оно тяжёлое»**
 <!-- interaction_id: en:lesson-01:session-29:i05; family: phrase_builder -->
 Плитки: `heavy` `It` `is` `light` → **It is heavy.**
+*(плитка `light` лишняя: `light` лишнее: предмет тяжёлый — `It is heavy.`)*
+
 
 **6 · Карточка слова — clean**
 <!-- interaction_id: en:lesson-01:session-29:i06; family: listen_choose -->
@@ -120,10 +122,14 @@ It is ___ . → **empty** · dirty · heavy
 **12 · Соберите фразу — рубашку только что постирали, она чистая**
 <!-- interaction_id: en:lesson-01:session-29:i12; family: phrase_builder -->
 Плитки: `clean` `It` `is` `are` → **It is clean.**
+*(плитка `are` лишняя: `are` лишнее: после `It` ставят `is` — `It is clean.`)*
+
 
 **13 · Послушайте и соберите — «оно грязное»**
 <!-- interaction_id: en:lesson-01:session-29:i13; family: listen_build_dictation -->
 🔊 *It is dirty.* Плитки: `dirty` `is` `It` `clean` → **It is dirty.**
+*(плитка `clean` лишняя: `clean` лишнее: фраза о грязном предмете — `It is dirty.`)*
+
 
 **14 · Карточка слова — broken**
 <!-- interaction_id: en:lesson-01:session-29:i14; family: listen_choose -->
@@ -132,6 +138,8 @@ It is ___ . → **empty** · dirty · heavy
 **15 · Соберите фразу — чашка выпала из рук и раскололась**
 <!-- interaction_id: en:lesson-01:session-29:i15; family: phrase_builder -->
 Плитки: `broken` `It` `is` `he` → **It is broken.**
+*(плитка `he` лишняя: `he` лишнее: речь о чашке, поэтому `It is broken.`)*
+
 
 **16 · Вставьте слово — квартира маленькая, две комнаты и всё**
 <!-- interaction_id: en:lesson-01:session-29:i16; family: context_gap_grammar -->
@@ -160,6 +168,19 @@ small — маленький · new — новый · empty — пустой · 
 🎙 **It is new.**
 
 ---
+
+## Пояснения к проверенным ответам
+
+- 2: **heavy** — «тяжёлый», не `happy` и не `hairy`.
+- 4: **light** — пустую коробку легко поднять; `heavy` означает наоборот.
+- 5: лишняя плитка **light**: предмет тяжёлый — `It is heavy.`
+- 7: **clean** — «чистый», не `clear` и не `queen`.
+- 9: **dirty** — «грязный», не `thirty` и не `daddy`.
+- 11: **empty** — в сумке ничего не осталось.
+- 12: лишняя плитка **are**: после `It` ставят `is`.
+- 13: лишняя плитка **clean**: здесь `It is dirty.`
+- 15: лишняя плитка **he**: речь о чашке — `It is broken.`
+- 16: **small** — две комнаты, значит квартира маленькая.
 
 ## Для сборщика
 

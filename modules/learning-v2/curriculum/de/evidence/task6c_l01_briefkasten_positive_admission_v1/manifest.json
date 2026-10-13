@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-briefkasten-positive-admission.v1",
+  "status": "PASS",
+  "decision": "EXACT_POSITIVE_CANONICAL_LEXICAL_SENSE_ADMISSION",
+  "scope": {
+    "admissionScope": "EXACT_BRIEFKASTEN_RESIDENTIAL_MAILBOX_NOUN_ONLY",
+    "sourcePlanId": "de_lex_plan_l01_c03_briefkasten_v1",
+    "canonicalSenseId": "de_lex_l01_c03_briefkasten_v1",
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null
+  },
+  "sourceBindings": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v3.json",
+      "sha256": "5934f3f94e87f8b50481096732047c6c5c8591c34ce97c30d413d14519ce21fe"
+    },
+    "raw": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/raw/de_lex_plan_l01_c03_briefkasten_v1.html",
+      "sha256": "d6e63ca2942fb05841e2a89cd30a3c335228dc4d6ba296e4d010e9515bd18342"
+    },
+    "metadata": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_source_hold_v1/raw/dwds_briefkasten.http_metadata.txt",
+      "sha256": "b9314f5e8b3f0b8c884b617ef967b531f06d80fdd8b83c07f89cb172706dfb50"
+    },
+    "sourceExtraction": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_source_hold_v1/extraction_map.json",
+      "sha256": "f97ccbd4f4e95f0361f7fb607cae2f60c2cb4bdac18b89ec9fe34d3568e3cc89"
+    },
+    "sourceHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_source_hold_v1/manifest.json",
+      "sha256": "1e8b97c051384f05d02675bc05de4d3c2c6bc27101bc4e07c951b4671de35d69"
+    },
+    "canonicalHoldManifest": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c03_briefkasten_canonical_admission_hold_v1/manifest.json",
+      "sha256": "d2e8906a0fbcb135bad438fdfc1b52ca836e5b5e382838492a415d506d235d38"
+    },
+    "lexicalV2": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v2.json",
+      "sha256": "31934e35b5278c7a7e901d08e02da5398f3503825782acbb604d06de094726a5"
+    },
+    "task6V2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+      "sha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f"
+    },
+    "inventoryV2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "sha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    },
+    "lexicalV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v3.json",
+      "sha256": "475caad2f4a56a576301836c2bb4590061dd4536cd40553b1638ce605bfdbcbb"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v3.json",
+      "sha256": "8f54a19fcaad578a374c06e3a4ecf5504ab761b1790a296056334aa35bf36862"
+    },
+    "inventoryV3": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v3.json",
+      "sha256": "702a491699774d2f0cc90c19755bc8747a0b1663ddd2e94f272b68d40ddc1d88"
+    },
+    "lexicalV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v4.json",
+      "sha256": "aa08ccd483fb2bebb43a3f2388940a5672708cc70b29e41dfb05e0d4a39bd120"
+    },
+    "task6V4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v4.json",
+      "sha256": "65db4d567150c654c90c14d667811c8682136db753c602d12ed0f8b0808ee1c4"
+    },
+    "inventoryV4": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v4.json",
+      "sha256": "3abf18ea54a4b84f0386a75788b86f6e0c693b7f54819284c8f44237a407d4b6"
+    },
+    "lexicalV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v5.json",
+      "sha256": "4ed741cc0e457eff0c3500f98e6c8d62a33a951110d428ff1333075eca99a2c7"
+    },
+    "task6V5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v5.json",
+      "sha256": "9bbf41335e13dff8f97be3bbd05f21284c99e62c31d5fcb63f7b5f0ab324af91"
+    },
+    "inventoryV5": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v5.json",
+      "sha256": "e1c01fa8ef727c23d128d07bbe5cf67f7c04c6539610817ba39b6e0b555fb3b4"
+    },
+    "v5Closure": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_ich_heisse_final_review_closure_v1/closure.json",
+      "sha256": "c592bf535b160a846b5e2ddade1491d1aa5c4866d8083d007ab1abfe60641c4b"
+    },
+    "defaultConsumer": {
+      "path": "modules/learning-v2/curriculum/de/course_blueprint_contract_de_v1.ts",
+      "sha256": "e85a651e8ee28d8f9b58e16f9be52e3083708bbb5211074f21c94533dcfebf59",
+      "v6Selected": false
+    },
+    "englishSurface": {
+      "roots": [
+        "modules/learning-v2/curriculum/en",
+        "content/learning-v2-course/curriculum/en",
+        "content/learning-v2-course/release/en",
+        "modules/learning-v2/content/factory_native/generated_release/en"
+      ],
+      "fileCount": 1570,
+      "sha256": "33c6dfd1201dfa9e2719eda7b4845a4591fdb2acd7b0cc059f89e1297e2b9f95"
+    }
+  },
+  "artifactBindings": {
+    "lexicalEvidence": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_briefkasten_positive_admission_v1/lexical_evidence.json",
+      "sha256": "bf298f3e6441b615772ff43efb6ec05252aa07fa772a2d15bb2f330ee523ef12"
+    },
+    "lexicalRegistryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/lexical_senses_de_v6.json",
+      "sha256": "3d45077cba6f20e826ce3fa04732a91fec15d571ac9a0cb54923c8ec84c66e55"
+    },
+    "task6V6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v6.json",
+      "sha256": "63d65319b2f41dc6cb08e8e4e407fbf4a6ca71c061229da64a886c62ba9403bc"
+    },
+    "inventoryV6": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v6.json",
+      "sha256": "e940b37e2ea29e479710dada185c8bc1466bb04b61176c8c839432eeaf392677"
+    }
+  },
+  "interpretation": {
+    "lemma": "Briefkasten",
+    "sourcePartOfSpeech": "Substantiv (Maskulinum)",
+    "sourceSenseAnchor": "d-1-2",
+    "rejectedSourceSenseAnchor": "d-1-1",
+    "curriculumPartOfSpeech": "noun",
+    "rule": "SOURCE_GROUNDED_MASCULINE_SUBSTANTIV_TO_NOUN",
+    "nounPackage": {
+      "article": "der",
+      "singular": "Briefkasten",
+      "nominativePlural": "Briefkästen",
+      "broaderMorphologyAuthority": false
+    },
+    "utilityRole": "scene_grounding",
+    "communicativeUse": "ground an introduction at a mailbox area",
+    "sourceRegisterMarkers": null,
+    "register": null,
+    "region": null,
+    "productionPolicy": "NOT_AUTHORIZED_BY_THIS_ADMISSION"
+  },
+  "allocation": {
+    "plannedUsePacketIds": ["de_l01_c03_s24"],
+    "checkpointPacketId": "de_l01_c03_s24",
+    "firstIntroductionPacketId": null,
+    "firstScoredUsePacketId": null,
+    "resolvedPlanIds": 10,
+    "unresolvedPlanIds": 278,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "phraseBoundary": {
+    "phraseAdmission": false,
+    "phraseFrameModified": false,
+    "lexicalSenseLinkAdded": false,
+    "examplesAuthority": false,
+    "phraseClaims": "HALLO_EXACT_ONLY"
+  },
+  "predecessorImmutability": {
+    "v2Changed": false,
+    "v3Changed": false,
+    "v4Changed": false,
+    "v5Changed": false,
+    "sourceHoldChanged": false,
+    "canonicalHoldChanged": false,
+    "v5ClosureChanged": false,
+    "englishSurfaceChanged": false,
+    "defaultConsumerChanged": false
+  },
+  "authority": {
+    "canonicalAdmission": true,
+    "admissionScope": "EXACT_BRIEFKASTEN_RESIDENTIAL_MAILBOX_NOUN_ONLY",
+    "phraseAuthority": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "currentlyMaterializable": false,
+    "materializedPackets": 0,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false,
+    "ownerApproval": "NOT_REQUESTED_NOT_GRANTED"
+  }
+}

@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-55:i01; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `hungry` · `crowded` · `station`
+- crowded — *Це «людний, переповнений». Про свій голод скажіть `I am hungry`.*
+- station — *Це «станція». Щоб повідомити, що ви хочете їсти, потрібне `hungry`.*
+
 
 **2 · Послухайте й виберіть — яка репліка друга прозвучала під час прогулянки**
 <!-- interaction_id: en:lesson-02:session-55:i02; family: listen_choose -->
 Ціль: `Are we hungry?`
 Варіанти: `Are we hungry?` · `Are you hungry?` · `We are hungry.`
+- Are you hungry? — *Тут звучить `you` — «ви». У записі друг вимовляє `we` — «ми».*
+- We are hungry. — *Це повідомлення з початком `We are`. У записі слова стоять у порядку `Are we`.*
+
 
 **3 · Складіть фразу — ви зазирнули до двох магазинів, і в обох повно людей; повідомте другові «У магазинах людно»**
 <!-- interaction_id: en:lesson-02:session-55:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-55:i04; family: listen_choose -->
 Ціль: `Is the station near?`
 Варіанти: `Is the station near?` · `The station is near.` · `Is the station far?`
+- The station is near. — *Тут спочатку йде `The station`. У записі репліка починається з `Is the station`.*
+- Is the station far? — *У цьому варіанті `far` — «далеко». У записі звучить `near` — «близько».*
+
 
 **5 · Складіть фразу — шлях до будинку проходить через станцію; запитайте друга, де вона розташована**
 <!-- interaction_id: en:lesson-02:session-55:i05; family: phrase_builder -->
@@ -79,6 +88,9 @@
 <!-- interaction_id: en:lesson-02:session-55:i06; family: context_gap_grammar -->
 Ціль: `He is the ___ .`
 Варіанти: `host` · `guest` · `station`
+- guest — *Це «гість». Чоловік сам приймає вас у себе, тому тут потрібне `host`.*
+- station — *Це «станція». Ви називаєте роль людини: `He is the host`.*
+
 
 **7 · Промовте фразу — ви показуєте продавцеві обраний товар і запитуєте його ціну**
 <!-- interaction_id: en:lesson-02:session-55:i07; family: scripted_repeat_compare -->
@@ -102,11 +114,17 @@
 <!-- interaction_id: en:lesson-02:session-55:i10:s02; family: listen_choose -->
 Ціль: `Are you busy?`
 Варіанти: `Are you busy?` · `Are you ready?` · `Are we busy?`
+- Are you ready? — *Тут `ready` — «готові». У записі після `you` звучить `busy` — «зайняті».*
+- Are we busy? — *У цьому варіанті запитання починається з `Are we`. У записі звучить `Are you`.*
+
 
 **12 · Вставте слово — друг запитує, чи людно в першому магазині; ви бачили, що там повно людей, коротко дайте відповідь «Так»**
 <!-- interaction_id: en:lesson-02:session-55:i11; family: context_gap_grammar -->
 Ціль: `Yes, it ___ .`
 Варіанти: `is` · `are` · `am`
+- are — *У короткій відповіді з `it` потрібна форма `is`: `Yes, it is`.*
+- am — *Форма `am` поєднується з `I`. Тут відповідь про магазин: `Yes, it is`.*
+
 
 **13 · Послухайте й складіть — друг звірив суму в чеку із цінником і повідомляє результат**
 <!-- interaction_id: en:lesson-02:session-55:i12; family: listen_build_dictation -->
@@ -116,6 +134,9 @@
 <!-- interaction_id: en:lesson-02:session-55:i13; family: context_gap_grammar -->
 Ціль: `It is not ___ .`
 Варіанти: `crowded` · `hungry` · `wrong`
+- hungry — *Це «голодний». Ви описуєте кількість людей на станції, тому потрібне `crowded`.*
+- wrong — *Це «неправий, неправильний». Щоб сказати, що людей небагато, оберіть `not crowded`.*
+
 
 **15 · Складіть фразу — ви прийшли до квартири й бачите кількох незнайомих людей; запитайте друга, хто вони**
 <!-- interaction_id: en:lesson-02:session-55:i14; family: phrase_builder -->

@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-49:i01; family: listen_choose -->
 Цель: `Are you tired?`
 Варианты: `Are you tired?` · `Am I tired?` · `Are you ready?`
+- Am I tired? — *Это вопрос о себе. В записи друг начинает с `Are you` и обращается к вам.*
+- Are you ready? — *Это вопрос о готовности. На записи последнее слово `tired` — «устал».*
+
 
 **2 · Вставьте слово — друг спросил, устали ли вы; вы устали, ответьте коротко: «Да»**
 <!-- interaction_id: en:lesson-02:session-49:i02; family: context_gap_grammar -->
 Цель: `Yes, I ___ .`
 Варианты: `am` · `are` · `is`
+- are — *Вы отвечаете о себе: `Yes, I am`. Здесь нужно `am`.*
+- is — *Сочетание `I is` не подходит для этого ответа. Скажите `Yes, I am`.*
+
 
 **3 · Соберите фразу — друг открыл фотографию с незнакомым вам мужчиной; спросите, кто он**
 <!-- interaction_id: en:lesson-02:session-49:i03; family: phrase_builder -->
@@ -70,6 +76,9 @@
 <!-- interaction_id: en:lesson-02:session-49:i04; family: context_gap_grammar -->
 Цель: `He is the ___ .`
 Варианты: `manager` · `intern` · `host`
+- intern — *Это «стажёр». На снимке человек, который руководит вашей командой: `manager`.*
+- host — *Это «хозяин вечера». Сейчас вы называете рабочую роль мужчины — `manager`.*
+
 
 **5 · Скажите вслух — друг показывает кафе на фотографии; спросите, как оно называется**
 <!-- interaction_id: en:lesson-02:session-49:i05; family: scripted_repeat_compare -->
@@ -83,6 +92,9 @@
 <!-- interaction_id: en:lesson-02:session-49:i07; family: listen_choose -->
 Цель: `Is he new?`
 Варианты: `Is he new?` · `Is she new?` · `He is new.`
+- Is she new? — *Это вопрос о женщине. В записи после `Is` звучит `he` — «он».*
+- He is new. — *Это сообщение. На записи сначала `Is he`: друг задаёт вопрос.*
+
 
 **8 · Соберите фразу — руководитель работает в компании много лет; на вопрос друга, новенький ли он, ответьте коротко: «Нет»**
 <!-- interaction_id: en:lesson-02:session-49:i08; family: phrase_builder -->
@@ -92,6 +104,9 @@
 <!-- interaction_id: en:lesson-02:session-49:i09; family: context_gap_grammar -->
 Цель: `Is it ___ ?`
 Варианты: `near` · `ready` · `tired`
+- ready — *Это «готово». Вы спрашиваете о расстоянии до станции: `near`.*
+- tired — *Это «устал». Для вопроса о близости станции нужно `Is it near?`*
+
 
 **10 · Соедините пары — слова из разговора о неделе**
 <!-- interaction_id: en:lesson-02:session-49:i10; family: speed_match -->
@@ -106,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-49:i12; family: listen_choose -->
 Цель: `I am not sure.`
 Варианты: `I am not sure.` · `I am sure.` · `Are you sure?`
+- I am sure. — *Без `not` это «Я уверен». На записи друг говорит, что не уверен.*
+- Are you sure? — *Это вопрос к собеседнику. В записи друг сообщает о себе: `I am not sure`.*
+
 
 **13 · Послушайте и соберите — друг вернулся к вопросу о расстоянии до станции**
 <!-- interaction_id: en:lesson-02:session-49:i13; family: listen_build_dictation -->
@@ -115,6 +133,9 @@
 <!-- interaction_id: en:lesson-02:session-49:i14; family: context_gap_grammar -->
 Цель: `Are ___ ready?`
 Варианты: `we` · `I` · `he`
+- I — *Это «я». Вы спрашиваете о вас обоих, поэтому нужно `we`.*
+- he — *Это «он». Чтобы включить себя и друга, выберите `we`: `Are we ready?`*
+
 
 **15 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-49:i15; family: scripted_repeat_compare -->

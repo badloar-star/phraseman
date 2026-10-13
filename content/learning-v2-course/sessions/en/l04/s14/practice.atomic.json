@@ -360,7 +360,7 @@
               "text": "There"
             }
           ],
-          "testedDimension": "У магазина вы проверяете, есть ли одно м",
+          "testedDimension": "У магазина вы проверяете, есть ли одно место. Вставьте начало вопроса",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-14:i06:r2",
@@ -618,7 +618,7 @@
               "text": "there"
             }
           ],
-          "testedDimension": "У платформы отмечены две прачечные. Вста",
+          "testedDimension": "У платформы отмечены две прачечные. Вставьте форму в сообщение",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-14:i11:r2",
@@ -648,11 +648,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "карта показывает несколько мест у отеля. Соберите вопрос",
+        "prompt": "Карта показывает несколько мест у отеля. Соберите вопрос",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "карта показывает несколько мест у отеля. Соберите вопрос",
+        "accessibilityLabel": "Карта показывает несколько мест у отеля. Соберите вопрос",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Are there laundrettes near the hotel?",
@@ -1033,7 +1033,7 @@
               "text": "There"
             }
           ],
-          "testedDimension": "Біля магазину ви перевіряєте, чи є одне ",
+          "testedDimension": "Біля магазину ви перевіряєте, чи є одне місце. Вставте початок питання",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-14:i06:r2",
@@ -1291,7 +1291,7 @@
               "text": "there"
             }
           ],
-          "testedDimension": "Біля платформи позначено дві пральні. Вс",
+          "testedDimension": "Біля платформи позначено дві пральні. Вставте форму в повідомлення",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-04:session-14:i11:r2",
@@ -1321,11 +1321,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "карта показує кілька місць біля готелю. Складіть питання",
+        "prompt": "Карта показує кілька місць біля готелю. Складіть питання",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "карта показує кілька місць біля готелю. Складіть питання",
+        "accessibilityLabel": "Карта показує кілька місць біля готелю. Складіть питання",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Are there laundrettes near the hotel?",

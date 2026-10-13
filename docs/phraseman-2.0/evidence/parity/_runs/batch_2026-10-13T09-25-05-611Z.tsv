@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+learn-031	2026-10-13T09:26:17.889Z	error	13955	step_target_not_found:#lesson1-word-option-correct+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T09-25-05-611Z/learn-031.error.png	0

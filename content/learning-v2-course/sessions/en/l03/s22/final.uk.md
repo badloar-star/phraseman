@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i02; family: listen_choose -->
 Ціль: `bottle`
 Варіанти: `bottle` · `battle` · `beetle`
+- battle — *`battle` — «битва». Наголошений голосний вимовляється з язиком ближче до передньої частини рота. У `bottle` язик глибше; порівняйте середину слів.*
+- beetle — *`beetle` — «жук». На наголошеному голосному рот майже закритий, язик високо спереду. У `bottle` рот відкритий ширше, а язик глибше.*
+
 
 **3 · Картка слова — bowl**
 <!-- interaction_id: en:lesson-03:session-22:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i04; family: listen_choose -->
 Ціль: `bowl`
 Варіанти: `bowl` · `bull` · `ball`
+- bull — *`bull` — «бик». Голосний рівний, губи округлені. У `bowl` звучання голосного змінюється: наприкінці губи округлюються сильніше.*
+- ball — *`ball` — «м’яч». Голосний звучить рівно. У `bowl` він змінюється під час звучання: рот наприкінці прикривається, губи округлюються сильніше.*
+
 
 **5 · Зберіть фразу — кур’єр позначає вміст першого відділення коробки; назвіть кілька пляшок для води: «Це пляшки»**
 <!-- interaction_id: en:lesson-03:session-22:i05; family: phrase_builder -->
@@ -79,6 +85,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i06; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `bowls` · `bowl` · `a bowl`
+- bowl — *Перед вами дві миски. Їхня назва — `bowls`, із `s` наприкінці.*
+- a bowl — *`a bowl` — одна миска. Тут називаємо дві: `They are bowls`.*
+
 
 **7 · Картка слова — plate**
 <!-- interaction_id: en:lesson-03:session-22:i07; family: listen_choose -->
@@ -88,6 +97,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i08; family: listen_choose -->
 Ціль: `plate`
 Варіанти: `plate` · `slate` · `late`
+- slate — *`slate` — «сланець», гірська порода. Спочатку чути «с»: повітря йде безперервно. У `plate` початок — англійське `p`: губи змикаються й розкриваються.*
+- late — *`late` — «пізно». Спочатку звучить англійське `l`. У `plate` спершу чути `p`, потім `l`; решта звучить однаково.*
+
 
 **9 · Зберіть питання — ви звіряєте рядок про набір тарілок; кур’єр тримає ще закриту упаковку, уточніть «Це тарілки?»**
 <!-- interaction_id: en:lesson-03:session-22:i09; family: phrase_builder -->
@@ -98,6 +110,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i10; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `dishes` · `dish` · `a dish`
+- dish — *Ви називаєте два предмети посуду. Потрібно `dishes`, форма для кількох блюд.*
+- a dish — *`a dish` називає одне блюдо. Тут їх два: `They are dishes`.*
+
 
 **11 · Послухайте й зберіть — що сказав кур’єр**
 <!-- interaction_id: en:lesson-03:session-22:i11; family: listen_build_dictation -->
@@ -108,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i12; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `a bottle` · `bottle` · `bottles`
+- bottle — *Називаючи одну пляшку в цій фразі, ставимо перед `bottle` слово `a`.*
+- bottles — *`bottles` — кілька пляшок. У відділенні одна: `a bottle`.*
+
 
 **13 · Ви зняли папір із кількох тарілок і показуєте їх кур’єрові. Кур’єр питає, що це. Відповідайте: «Це тарілки».**
 <!-- interaction_id: en:lesson-03:session-22:i13; family: phrase_builder -->
@@ -127,6 +145,9 @@
 <!-- interaction_id: en:lesson-03:session-22:i16; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `a bowl` · `bowls` · `bowl`
+- bowls — *`bowls` називає кілька мисок. Ви дістали одну: `a bowl`.*
+- bowl — *У цій фразі одну миску називаємо `a bowl`. Слово `a` пропускати не варто.*
+
 
 **17 · Складіть фразу — кур’єр перевіряє, чи все зі списку знайдено, і питає про дві миски, які ви відставили на стіл**
 <!-- interaction_id: en:lesson-03:session-22:i17; family: phrase_builder -->

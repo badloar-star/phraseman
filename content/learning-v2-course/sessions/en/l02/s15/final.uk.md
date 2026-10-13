@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-15:i02; family: listen_choose -->
 Ціль: `elegant`
 Варіанти: `elegant` · `element` · `eleven`
+- element — *Це «елемент». Далі розходяться: в `elegant` чути «ґ», в `element` — «м».*
+- eleven — *Це «одинадцять». Теж починається з `ele`, далі розходяться.*
+
 
 **3 · Картка слова — plain**
 <!-- interaction_id: en:lesson-02:session-15:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-15:i04; family: listen_choose -->
 Ціль: `plain`
 Варіанти: `plain` · `pain` · `rain`
+- pain — *Це «біль». У `plain` після «п» чути «л», у `pain` його немає.*
+- rain — *«Дощ». Перший звук інший: `plain` починається з «п», `rain` — з «р».*
+
 
 **5 · Картка слова — handsome**
 <!-- interaction_id: en:lesson-02:session-15:i05; family: listen_choose -->
@@ -82,28 +88,43 @@
 <!-- interaction_id: en:lesson-02:session-15:i07; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `elegant` · `hungry` · `thirsty`
+- hungry — *«Голодний». По костюму цього не побачиш.*
+- thirsty — *«Хоче пити». Костюм про це мовчить.*
+
 
 **8 · Складіть фразу — «воно просте?» про білу чашку без малюнка**
 <!-- interaction_id: en:lesson-02:session-15:i08; family: phrase_builder -->
 Ціль: `Is it plain?`
+Плитки: `Is` `it` `plain` `she`
+*Плитка `she` зайва: йдеться про чашку, тому потрібне `it`: `Is it plain?`*
 
 **9 · Вставте слово — у залі жодного вільного столика**
 <!-- interaction_id: en:lesson-02:session-15:i09; family: context_gap_grammar -->
 Ціль: `The cafe is ___ .`
 Варіанти: `crowded` · `plain` · `elegant`
+- plain — *«Просте». Про кількість людей це нічого не каже.*
+- elegant — *«Елегантне». Про обстановку, а не про натовп.*
+
 
 **10 · Розрізніть звуки — яке з двох про «простий»?**
 <!-- interaction_id: en:lesson-02:session-15:i10; family: sound_contrast -->
 Варіанти: `plain` · `pain`
+- pain — *Це «біль». У `plain` після «п» чути «л», у `pain` його немає.*
+
 
 **11 · Вставте слово — за столиком Макс, на якого озираються**
 <!-- interaction_id: en:lesson-02:session-15:i11; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `handsome` · `noisy` · `crowded`
+- noisy — *«Гучний». Про зовнішність так не скажеш.*
+- crowded — *«Повно людей». Одна людина повною людьми не буває.*
+
 
 **12 · Послухайте й складіть — «Міра гарна?»**
 <!-- interaction_id: en:lesson-02:session-15:i12; family: listen_build_dictation -->
 Ціль: `Is she pretty?`
+🔊 *Is she pretty?* Плитки: `Is` `she` `pretty` `plain`
+*Плитка `plain` зайва: тут питають про зовнішність Міри, тому потрібне `pretty`: `Is she pretty?`*
 
 **13 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-15:i13; family: speed_match -->
@@ -118,24 +139,37 @@
 <!-- interaction_id: en:lesson-02:session-15:i15; family: context_gap_grammar -->
 Ціль: `The cafe is ___ .`
 Варіанти: `noisy` · `pretty` · `elegant`
+- pretty — *«Гарне». Очима видно, вухами — ні.*
+- elegant — *«Елегантне». Про гучність мовчить.*
+
 
 **16 · Складіть фразу — Макс їсть уже другий сендвіч; запитайте, чи він голодний**
 <!-- interaction_id: en:lesson-02:session-15:i16; family: phrase_builder -->
 Ціль: `Is he hungry?`
+Плитки: `Is` `he` `hungry` `not`
+*Плитка `not` зайва: це питання про голод без заперечення: `Is he hungry?`*
 
 **17 · Вставте слово — Макс утретє тягнеться до води**
 <!-- interaction_id: en:lesson-02:session-15:i17; family: context_gap_grammar -->
 Ціль: `Is he ___ ?`
 Варіанти: `thirsty` · `plain` · `handsome`
+- plain — *«Простий». До води це стосунку не має.*
+- handsome — *«Вродливий». Склянка води вроди не виказує.*
+
 
 **18 · Складіть відповідь — Міра у вишуканій сукні; на запитання `Is she elegant?` ви погоджуєтесь**
 <!-- interaction_id: en:lesson-02:session-15:i18; family: phrase_builder -->
 Ціль: `Yes, she is.`
+Плитки: `Yes,` `she` `is` `are`
+*Плитка `are` зайва: з `she` потрібна форма `is`: `Yes, she is.`*
 
 **19 · Послухайте й виберіть почуту репліку про білу чашку без малюнка**
 <!-- interaction_id: en:lesson-02:session-15:i19; family: listen_choose -->
 Ціль: `Is it plain?`
 Варіанти: `Is it plain?` · `It is plain.` · `Is it elegant?`
+- It is plain. — *У запитанні першим звучить `Is`. `It is plain.` — твердження.*
+- Is it elegant? — *`elegant` — «елегантний». У записі звучить `plain`: «простий, без малюнка*
+
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-15:i20:s01; family: scripted_repeat_compare -->

@@ -79,6 +79,8 @@ It is ___ . → **small** · warm · quiet
 <!-- interaction_id: en:lesson-01:session-32:i04; family: phrase_builder -->
 Плитки: `dark` `It` `is` `not` → **It is dark.**
 *Темно и есть, отрицать нечего: плитка `not` лишняя.*
+*(плитка `not` лишняя: `are` лишнее: после `It` ставят `is` — `It is dark.`)*
+
 
 **5 · Вставьте слово — окна на солнечную сторону, света полно**
 <!-- interaction_id: en:lesson-01:session-32:i05; family: context_gap_grammar -->

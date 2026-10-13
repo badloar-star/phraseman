@@ -74,6 +74,15 @@
                 "ru": "Те же буквы, другой порядок: `tried` — «попробовал». Нам нужно «устал».",
                 "uk": "Ті самі літери, інший порядок: `tried` — «спробував». Нам потрібно «втомлений»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i01:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — `tired`",
+              "feedbackByLocale": {
+                "ru": "Выбрано `tired`: именно это слово звучит в аудио и значит «усталый».",
+                "uk": "Обрано `tired`: саме це слово звучить в аудіо й означає «втомлений"
+              }
             }
           ],
           "isWordCard": false,
@@ -95,7 +104,7 @@
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
-            "text": "happy"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
@@ -119,7 +128,7 @@
             },
             {
               "responseId": "en:lesson-01:session-48:i02:r2",
-              "text": "happy"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-01:session-48:i02:r3",
@@ -133,8 +142,8 @@
               "correct": false,
               "testedDimension": "Вставьте слово — вы устали после недели",
               "feedbackByLocale": {
-                "ru": "«Рад» — тоже правда, но друг спросил про силы.",
-                "uk": "«Радий» — теж правда, але друг спитав про сили."
+                "ru": "После `I'm` нельзя поставить `are`: форма `am` уже есть в `I'm`.",
+                "uk": "Після `I'm` не можна поставити `are`: форма `am` уже є в `I'm`."
               }
             },
             {
@@ -144,6 +153,15 @@
               "feedbackByLocale": {
                 "ru": "«Дома» — а вы ещё в пабе.",
                 "uk": "«Удома» — а ви ще в пабі."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — вы устали после недели",
+              "feedbackByLocale": {
+                "ru": "После недели вы `tired` — «устали».",
+                "uk": "Після тижня ви `tired` — «втомилися"
               }
             }
           ]
@@ -219,6 +237,15 @@
                 "ru": "«Ружьё». В пабе такое лучше не говорить.",
                 "uk": "«Рушниця». У пабі таке краще не казати."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i03:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите — `gone`",
+              "feedbackByLocale": {
+                "ru": "Выбрано `gone`: именно это слово звучит в аудио и значит «ушёл».",
+                "uk": "Обрано `gone`: саме це слово звучить в аудіо й означає «пішов"
+              }
             }
           ],
           "isWordCard": false,
@@ -252,7 +279,26 @@
             "is",
             "home"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «она ушла»",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: оно уже спрятано в `She's gone.`",
+                "uk": "`is` зайве: воно вже заховане в `She's gone`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i04:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «она ушла»",
+              "feedbackByLocale": {
+                "ru": "`home` лишнее: нужно сказать, что она ушла — `She's gone.`",
+                "uk": "`home` зайве: треба сказати, що вона пішла — `She's gone`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -320,6 +366,15 @@
                 "ru": "`are` — про «вы», «мы», «они». Про одного — `is`.",
                 "uk": "`are` — про «ви», «ми», «вони». Про одного — `is`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i05:r1",
+              "correct": true,
+              "testedDimension": "Выберите форму после `He` — про друга, которого нет за столом",
+              "feedbackByLocale": {
+                "ru": "После `He` ставят `is`: `He is gone.`",
+                "uk": "Після `He` ставлять `is`: `He is gone`."
+              }
             }
           ]
         },
@@ -362,7 +417,7 @@
             "audioTargetId": "en:lesson-01:session-48:i06:audioB",
             "transcript": "load"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «шум",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «шумный»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i06:r2",
@@ -371,6 +426,15 @@
               "feedbackByLocale": {
                 "ru": "В `loud` слышно «ау», как в «ау, кто здесь». В `load` — «оу».",
                 "uk": "У `loud` чути «ау», як в «ау, хто тут». У `load` — «оу»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i06:r1",
+              "correct": true,
+              "testedDimension": "Различите звуки — какое из двух про «шумный»?",
+              "feedbackByLocale": {
+                "ru": "Выбрано `loud`: это слово значит «шумный».",
+                "uk": "Обрано `loud`: це слово означає «гучний"
               }
             }
           ]
@@ -422,7 +486,7 @@
               "text": "great"
             }
           ],
-          "testedDimension": "Вставьте слово — в пабе тихо, хотя пятни",
+          "testedDimension": "Вставьте слово — в пабе тихо, хотя пятница",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i07:r2",
@@ -440,6 +504,15 @@
               "feedbackByLocale": {
                 "ru": "«Отлично» — вы бы это и не отрицали.",
                 "uk": "«Чудово» — цього б ви й не заперечували."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — в пабе тихо, хотя пятница",
+              "feedbackByLocale": {
+                "ru": "Здесь тихо, поэтому `It isn't loud.`",
+                "uk": "Тут тихо, тому `It isn't loud`."
               }
             }
           ]
@@ -472,7 +545,17 @@
           "authoredDistractorTokens": [
             "They're"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — в пабе пятница, а за соседним столом тихо",
+              "feedbackByLocale": {
+                "ru": "`They're` не подходит: нужна отрицательная форма `They aren't loud.`",
+                "uk": "`They're` не підходить: потрібна заперечна форма `They aren't loud`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -505,7 +588,26 @@
             "I",
             "happy"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "`I` лишнее: оно уже спрятано в `I'm tired.`",
+                "uk": "`I` зайве: воно вже заховане в `I'm tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i09:tile:d2",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "`happy` лишнее: в аудио `I'm tired.`",
+                "uk": "`happy` зайве: в аудіо `I'm tired`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -554,7 +656,7 @@
               "text": "gone"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, как ва",
+          "testedDimension": "Вставьте слово — друг спрашивает, как вам вечер",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i10:r2",
@@ -572,6 +674,15 @@
               "feedbackByLocale": {
                 "ru": "«Ушёл» — про человека, который уехал.",
                 "uk": "«Пішов» — про людину, яка поїхала."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг спрашивает, как вам вечер",
+              "feedbackByLocale": {
+                "ru": "Вопрос о впечатлении от вечера: `great` — «отличный».",
+                "uk": "Питання про враження від вечора: `great` — «чудовий"
               }
             }
           ]
@@ -696,7 +807,7 @@
               "text": "loud"
             }
           ],
-          "testedDimension": "Вставьте слово — друг спрашивает, куда в",
+          "testedDimension": "Вставьте слово — друг спрашивает, куда вы теперь",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i12:r2",
@@ -714,6 +825,15 @@
               "feedbackByLocale": {
                 "ru": "«Шумный» — тоже не место.",
                 "uk": "«Гучний» — теж не місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг спрашивает, куда вы теперь",
+              "feedbackByLocale": {
+                "ru": "На вопрос «куда?» отвечают `home`: `I'm going home.`",
+                "uk": "На питання «куди?» відповідають `home`: `I'm going home`."
               }
             }
           ]
@@ -746,7 +866,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `We`: нужно `We aren't home.`",
+                "uk": "`isn't` не підходить до `We`: потрібно `We aren't home`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -813,6 +943,15 @@
               "feedbackByLocale": {
                 "ru": "«Дома» — а он в пабе.",
                 "uk": "«Удома» — а він у пабі."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — друг весь вечер смеялся",
+              "feedbackByLocale": {
+                "ru": "Друг весь вечер смеялся, значит он `happy` — «рад».",
+                "uk": "Друг увесь вечір сміявся, отже він `happy` — «радий"
               }
             }
           ]
@@ -906,7 +1045,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i16:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы объясняете, почему хотите уйти пораньше",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: оно уже спрятано в `I'm tired.`",
+                "uk": "`are` зайве: воно вже заховане в `I'm tired`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1080,6 +1229,15 @@
                 "ru": "Те же буквы, другой порядок: `tried` — «попробовал». Нам нужно «устал».",
                 "uk": "Ті самі літери, інший порядок: `tried` — «спробував». Нам потрібно «втомлений»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i01:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть — `tired`",
+              "feedbackByLocale": {
+                "ru": "Выбрано `tired`: именно это слово звучит в аудио и значит «усталый».",
+                "uk": "Обрано `tired`: саме це слово звучить в аудіо й означає «втомлений"
+              }
             }
           ],
           "isWordCard": false,
@@ -1101,7 +1259,7 @@
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r2",
-            "text": "happy"
+            "text": "are"
           },
           {
             "responseId": "en:lesson-01:session-48:i02:r3",
@@ -1125,7 +1283,7 @@
             },
             {
               "responseId": "en:lesson-01:session-48:i02:r2",
-              "text": "happy"
+              "text": "are"
             },
             {
               "responseId": "en:lesson-01:session-48:i02:r3",
@@ -1139,8 +1297,8 @@
               "correct": false,
               "testedDimension": "Вставте слово — ви втомилися після тижня",
               "feedbackByLocale": {
-                "ru": "«Рад» — тоже правда, но друг спросил про силы.",
-                "uk": "«Радий» — теж правда, але друг спитав про сили."
+                "ru": "После `I'm` нельзя поставить `are`: форма `am` уже есть в `I'm`.",
+                "uk": "Після `I'm` не можна поставити `are`: форма `am` уже є в `I'm`."
               }
             },
             {
@@ -1150,6 +1308,15 @@
               "feedbackByLocale": {
                 "ru": "«Дома» — а вы ещё в пабе.",
                 "uk": "«Удома» — а ви ще в пабі."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i02:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — ви втомилися після тижня",
+              "feedbackByLocale": {
+                "ru": "После недели вы `tired` — «устали».",
+                "uk": "Після тижня ви `tired` — «втомилися"
               }
             }
           ]
@@ -1225,6 +1392,15 @@
                 "ru": "«Ружьё». В пабе такое лучше не говорить.",
                 "uk": "«Рушниця». У пабі таке краще не казати."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i03:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть — `gone`",
+              "feedbackByLocale": {
+                "ru": "Выбрано `gone`: именно это слово звучит в аудио и значит «ушёл».",
+                "uk": "Обрано `gone`: саме це слово звучить в аудіо й означає «пішов"
+              }
             }
           ],
           "isWordCard": false,
@@ -1258,7 +1434,26 @@
             "is",
             "home"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «она ушла»",
+              "feedbackByLocale": {
+                "ru": "`is` лишнее: оно уже спрятано в `She's gone.`",
+                "uk": "`is` зайве: воно вже заховане в `She's gone`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i04:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «она ушла»",
+              "feedbackByLocale": {
+                "ru": "`home` лишнее: нужно сказать, что она ушла — `She's gone.`",
+                "uk": "`home` зайве: треба сказати, що вона пішла — `She's gone`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1326,6 +1521,15 @@
                 "ru": "`are` — про «вы», «мы», «они». Про одного — `is`.",
                 "uk": "`are` — про «ви», «ми», «вони». Про одного — `is`."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i05:r1",
+              "correct": true,
+              "testedDimension": "Виберіть форму після `He` — про друга, якого немає за столом",
+              "feedbackByLocale": {
+                "ru": "После `He` ставят `is`: `He is gone.`",
+                "uk": "Після `He` ставлять `is`: `He is gone`."
+              }
             }
           ]
         },
@@ -1368,7 +1572,7 @@
             "audioTargetId": "en:lesson-01:session-48:i06:audioB",
             "transcript": "load"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «гучни",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «гучний»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i06:r2",
@@ -1377,6 +1581,15 @@
               "feedbackByLocale": {
                 "ru": "В `loud` слышно «ау», как в «ау, кто здесь». В `load` — «оу».",
                 "uk": "У `loud` чути «ау», як в «ау, хто тут». У `load` — «оу»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i06:r1",
+              "correct": true,
+              "testedDimension": "Розрізніть звуки — яке з двох про «гучний»?",
+              "feedbackByLocale": {
+                "ru": "Выбрано `loud`: это слово значит «шумный».",
+                "uk": "Обрано `loud`: це слово означає «гучний"
               }
             }
           ]
@@ -1428,7 +1641,7 @@
               "text": "great"
             }
           ],
-          "testedDimension": "Вставте слово — у пабі тихо, хоч і п'ятн",
+          "testedDimension": "Вставте слово — у пабі тихо, хоч і п'ятниця",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i07:r2",
@@ -1446,6 +1659,15 @@
               "feedbackByLocale": {
                 "ru": "«Отлично» — вы бы это и не отрицали.",
                 "uk": "«Чудово» — цього б ви й не заперечували."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i07:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — у пабі тихо, хоч і п'ятниця",
+              "feedbackByLocale": {
+                "ru": "Здесь тихо, поэтому `It isn't loud.`",
+                "uk": "Тут тихо, тому `It isn't loud`."
               }
             }
           ]
@@ -1478,7 +1700,17 @@
           "authoredDistractorTokens": [
             "They're"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i08:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — в пабе пятница, а за соседним столом тихо",
+              "feedbackByLocale": {
+                "ru": "`They're` не подходит: нужна отрицательная форма `They aren't loud.`",
+                "uk": "`They're` не підходить: потрібна заперечна форма `They aren't loud`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1511,7 +1743,26 @@
             "I",
             "happy"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "`I` лишнее: оно уже спрятано в `I'm tired.`",
+                "uk": "`I` зайве: воно вже заховане в `I'm tired`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i09:tile:d2",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "`happy` лишнее: в аудио `I'm tired.`",
+                "uk": "`happy` зайве: в аудіо `I'm tired`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1578,6 +1829,15 @@
               "feedbackByLocale": {
                 "ru": "«Ушёл» — про человека, который уехал.",
                 "uk": "«Пішов» — про людину, яка поїхала."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i10:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг питає, як вам вечір",
+              "feedbackByLocale": {
+                "ru": "Вопрос о впечатлении от вечера: `great` — «отличный».",
+                "uk": "Питання про враження від вечора: `great` — «чудовий"
               }
             }
           ]
@@ -1702,7 +1962,7 @@
               "text": "loud"
             }
           ],
-          "testedDimension": "Вставте слово — друг питає, куди ви тепе",
+          "testedDimension": "Вставте слово — друг питає, куди ви тепер",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-48:i12:r2",
@@ -1720,6 +1980,15 @@
               "feedbackByLocale": {
                 "ru": "«Шумный» — тоже не место.",
                 "uk": "«Гучний» — теж не місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг питає, куди ви тепер",
+              "feedbackByLocale": {
+                "ru": "На вопрос «куда?» отвечают `home`: `I'm going home.`",
+                "uk": "На питання «куди?» відповідають `home`: `I'm going home`."
               }
             }
           ]
@@ -1752,7 +2021,17 @@
           "authoredDistractorTokens": [
             "isn't"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — друг спрашивает, куда вы теперь; домой вы ещё не вернулись",
+              "feedbackByLocale": {
+                "ru": "`isn't` не подходит к `We`: нужно `We aren't home.`",
+                "uk": "`isn't` не підходить до `We`: потрібно `We aren't home`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1819,6 +2098,15 @@
               "feedbackByLocale": {
                 "ru": "«Дома» — а он в пабе.",
                 "uk": "«Удома» — а він у пабі."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-48:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — друг цілий вечір сміявся",
+              "feedbackByLocale": {
+                "ru": "Друг весь вечер смеялся, значит он `happy` — «рад».",
+                "uk": "Друг увесь вечір сміявся, отже він `happy` — «радий"
               }
             }
           ]
@@ -1912,7 +2200,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-48:i16:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы объясняете, почему хотите уйти пораньше",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: оно уже спрятано в `I'm tired.`",
+                "uk": "`are` зайве: воно вже заховане в `I'm tired`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

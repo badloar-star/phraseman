@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "learning_v2_factory_checkpoint_v1",
+  "phase": "review",
+  "nextSession": "en/l01/s01",
+  "inputRoot": "C:\\",
+  "inputs": [
+    { "kind": "curriculum", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md", "selector": "Lesson 1 / S01 row", "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499" },
+    { "kind": "vocabulary", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md", "selector": "S01 word inventory: here, ready, fine, happy", "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499" },
+    { "kind": "grammar", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\judgements\\2026-10-13_l01_s01_source_evidence.md", "selector": "S01 I am + complement evidence", "sha256": "0a726074365642e21bd7b3a16c32ab93f0a2b552072df3426981605371258da3" },
+    { "kind": "scenes", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\curriculum\\en\\ПЛАН_КУРСА.md", "selector": "S01 scene: entered the office", "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499" },
+    { "kind": "policy", "path": "Users\\badlo\\.codex\\skills\\learning-v2-factory\\scripts\\policy.json", "sha256": "7207fed85a9f7860222c5aa3b00851ba65888b4a3d7bd8193fe2bc5945b3abc0" },
+    { "kind": "successor_content_receipt", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\outputs\\s01-combined-review-fixed-20261013\\content-receipt.json", "sha256": "99d9e21df90cbd1f386b2debeecca82345b8b5c3e434fab25bf2acf554b029d1" },
+    { "kind": "source_ru", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\sessions\\en\\l01\\s01\\final.ru.md", "sha256": "c9aa8c1970487daf5c9d35932adebec4d7e371c34242209811aa4fe81228b316" },
+    { "kind": "source_uk", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\sessions\\en\\l01\\s01\\final.uk.md", "sha256": "6b915d6606a11c2512b87c08f8d5d12b34f6b0e0ab76a2752bdfb0b4d57e30a8" },
+    { "kind": "atomic_source", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\sessions\\en\\l01\\s01\\practice.atomic.json", "sha256": "7bc91a17c8698a9bb1f90d5ca952bf5eeee8deab963c6d5751ea1c5f6abcaa68" },
+    { "kind": "explanation_sidecar", "path": "appsprojects\\phraseman\\content\\learning-v2-course\\sessions\\en\\l01\\s01\\practice.explanations.v1.json", "sha256": "8ae48095031b2186be0b5e9ecd6b37655a81d0dbcb70c6eca624162d56286524" }
+  ],
+  "packageDigests": {
+    "SKILL.md": "1d6655d9b45758d5ca3f950e120610d362da1a84e60a6ec2f1442aa25de1bfe4",
+    "references/contract.md": "35d68b52cabb23fb417a973a52e7cc2b943bf8f04fc3edc5c76d14ecdc19fdef",
+    "scripts/policy.json": "7207fed85a9f7860222c5aa3b00851ba65888b4a3d7bd8193fe2bc5945b3abc0",
+    "scripts/packet-gate.mjs": "bcdbc588c869d87588aa321852bff432a53addbc409601f213fc317bffc21817",
+    "scripts/factory.mjs": "09256d18d34a0add7a805f0e81c91ef96fa2908bef462f3569054e639509c235"
+  },
+  "completedChecks": [
+    "focused S01 feedback regression: 29/29 PASS",
+    "candidate build: 20 tasks in ru and uk",
+    "successor content receipt and protected no-drift boundary verified",
+    "full-catalogue owner preview resolves the successor without release promotion"
+  ],
+  "pendingChecks": [
+    "fresh independent learner review bound to successor receipt",
+    "fresh independent reader review bound to successor receipt",
+    "fresh independent pedagogy review bound to successor receipt",
+    "fresh independent nonsense review bound to successor receipt",
+    "fresh independent taste review bound to successor receipt",
+    "fresh independent progression review bound to successor receipt",
+    "fresh independent locale review bound to successor receipt",
+    "audio evidence",
+    "canonical sync"
+  ],
+  "createdAt": "2026-10-13T13:05:00+01:00",
+  "authoringAuthorized": false
+}

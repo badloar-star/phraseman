@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-einladung-review-record.v1",
+  "recordKind": "ORCHESTRATION_ATTESTED_TRANSCRIPT_SUMMARY",
+  "transcriptRoot": "/root/einladung_hardened_native",
+  "verdict": "PASS",
+  "findings": { "p0ToP2": 0 },
+  "scope": "EINLADUNG_ADMISSION_SCOPE_SEMANTICS_TRUST_ROOT_HOLD_ONLY",
+  "trustRoot": "IMMUTABLE_CAPTURE_RAW_BYTES_AND_PINNED_AUTHORITIES",
+  "holdState": "HOLD_FORBIDDEN_NO_PROMOTION",
+  "independence": "NOT_SELF_PROVED_BY_THIS_RECEIPT"
+}

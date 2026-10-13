@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywall-gap-002	2026-10-13T10:45:15.418Z	error	12851	step_target_not_found:#paywall-compare-toggle+ждали_metro_36мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-44-23-689Z/paywall-gap-002.error.png	0

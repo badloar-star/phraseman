@@ -62,11 +62,17 @@
 <!-- interaction_id: en:lesson-02:session-32:i01; family: listen_choose -->
 Ціль: `menu`
 Варіанти: `menu` · `money` · `many`
+- money — *Це «гроші». Меню приносять на початку вечері, гроші віддають у кінці.*
+- many — *Це «багато». Слово-опис, а не річ на столі.*
+
 
 **2 · Вставте слово — ви питаєте назву книжечки з їжею**
 <!-- interaction_id: en:lesson-02:session-32:i02; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `menu` · `bill` · `corner`
+- bill — *Це рахунок, папірець у кінці вечері. Їжу за ним не вибирають.*
+- corner — *Це «кут» — про місце, а не про те, що лежить на столі.*
+
 
 **3 · Складіть фразу — спитайте про ціну**
 <!-- interaction_id: en:lesson-02:session-32:i03; family: phrase_builder -->
@@ -76,11 +82,17 @@
 <!-- interaction_id: en:lesson-02:session-32:i04; family: listen_choose -->
 Ціль: `cheap`
 Варіанти: `cheap` · `sheep` · `shop`
+- sheep — *Це «вівця». Перший звук як у слові «шаль», а в `cheap` — як у «чай».*
+- shop — *Це «магазин». Прозвучало `cheap` — це про ціну, а не про місце.*
+
 
 **5 · Вставте слово — страва коштує два євро**
 <!-- interaction_id: en:lesson-02:session-32:i05; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `cheap` · `near` · `lost`
+- near — *Це «поруч», про відстань. Два євро — це про ціну.*
+- lost — *Це «загубився». До тарілки з їжею не стосується.*
+
 
 **6 · Складіть фразу — спитайте, чи дешеве це**
 <!-- interaction_id: en:lesson-02:session-32:i06; family: phrase_builder -->
@@ -89,6 +101,8 @@
 **7 · Розрізніть звуки — яке з двох про «дешевий»?**
 <!-- interaction_id: en:lesson-02:session-32:i07; family: sound_contrast -->
 Варіанти: `cheap` · `jeep`
+- jeep — *Це «джип». Перший звук інший: `jeep` починається з `j`, `cheap` — з `ch`.*
+
 
 **8 · Картка слова — corner**
 <!-- interaction_id: en:lesson-02:session-32:i08; family: listen_choose -->
@@ -98,11 +112,17 @@
 <!-- interaction_id: en:lesson-02:session-32:i09; family: listen_choose -->
 Ціль: `corner`
 Варіанти: `corner` · `coffee` · `cover`
+- coffee — *Це «кава». Прозвучало `corner` — це про місце, а не про напій.*
+- cover — *Це «обкладинка». Прозвучало `corner` — це про кут зали, а не про річ.*
+
 
 **10 · Вставте слово — ви хочете дізнатися, скільки це коштує**
 <!-- interaction_id: en:lesson-02:session-32:i10; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `price` · `cheap` · `near`
+- cheap — *Це опис, «дешевий». А цифру на ціннику звуть `price`.*
+- near — *Це «поруч», про місце. До вартості стосунку не має.*
+
 
 **11 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-32:i11; family: speed_match -->
@@ -117,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-32:i13; family: context_gap_grammar -->
 Ціль: `What is the ___ ?`
 Варіанти: `bill` · `menu` · `toilet`
+- menu — *Меню вам уже принесли на початку. Платять за рахунком.*
+- toilet — *Це місце, а не папірець із сумою.*
+
 
 **14 · Складіть фразу — спитайте, де туалет**
 <!-- interaction_id: en:lesson-02:session-32:i14; family: phrase_builder -->
@@ -126,14 +149,21 @@
 <!-- interaction_id: en:lesson-02:session-32:i15; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `near` · `cheap` · `bill`
+- cheap — *`cheap` — про ціну. А тут мова про те, чи далеко йти.*
+- bill — *Це рахунок, річ. А тут потрібне слово про відстань.*
+
 
 **16 · Послухайте і складіть — «це поруч»**
 <!-- interaction_id: en:lesson-02:session-32:i16; family: listen_build_dictation -->
 Ціль: `It is near.`
+🔊 *It is near.* Плитки: `It` `is` `near` `Where`
+*Плитка `Where` зайва: `Where` починає запитання про місце, а в записі є відповідь: `It is near.`*
 
 **17 · Складіть запитання — ви поїли і кличете офіціанта; запитайте про рахунок**
 <!-- interaction_id: en:lesson-02:session-32:i17; family: phrase_builder -->
 Ціль: `What is the bill?`
+Плитки: `What` `is` `the` `bill` `Where`
+*Плитка `Where` зайва: `Where` питає про місце, а вам потрібне запитання про рахунок: `What is the bill?`*
 
 **18 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-32:i18:s01; family: scripted_repeat_compare -->

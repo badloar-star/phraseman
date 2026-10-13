@@ -86,6 +86,8 @@
 **5 · Соберите фразу — «он отличный»**
 <!-- interaction_id: en:lesson-01:session-42:i05; family: phrase_builder -->
 Плитки: `He's` `great` `is` → **He's great.**
+*(плитка `is` лишняя: `is` лишнее: в `He's great.` слово `is` уже спрятано в `He's`.)*
+
 
 **6 · Карточка слова — gone**
 <!-- interaction_id: en:lesson-01:session-42:i06; family: listen_choose -->
@@ -106,6 +108,8 @@ He's ___ . → **great** · awful · gone
 **9 · Послушайте и соберите — Лина читает сообщение: «Она тихая»**
 <!-- interaction_id: en:lesson-01:session-42:i09; family: listen_build_dictation -->
 🔊 *She's quiet.* Плитки: `She's` `quiet` `She` → **She's quiet.**
+*(плитка `She` лишняя: Нужно `She's quiet.`: `She` без `is` не образует фразу.)*
+
 
 **10 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-42:i10; family: speed_match -->
@@ -114,6 +118,9 @@ great — отлично · awful — ужасный · gone — ушёл · qui
 **11 · Послушайте и соберите — «оно ужасное»**
 <!-- interaction_id: en:lesson-01:session-42:i11; family: listen_build_dictation -->
 🔊 *It's awful.* Плитки: `awful` `It's` `great` `is` → **It's awful.**
+*(плитка `great` лишняя: `great` лишнее: в аудио `It's awful.`)*
+*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `It's awful.`)*
+
 
 **12 · Вставьте слово — вы обернулись, а стул друга пустой**
 <!-- interaction_id: en:lesson-01:session-42:i12; family: context_gap_grammar -->
@@ -125,10 +132,16 @@ He's ___ . → **gone** · here · late
 <!-- interaction_id: en:lesson-01:session-42:i13; family: phrase_builder -->
 Плитки: `funny` `She's` `is` `quiet` → **She's funny.**
 *(`funny` — «смешная», `quiet` — «тихая»)*
+*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `She's funny.`)*
+*(плитка `quiet` лишняя: `quiet` лишнее: после шутки говорят `She's funny.`)*
+
 
 **14 · Послушайте и соберите — «он здесь»**
 <!-- interaction_id: en:lesson-01:session-42:i14; family: listen_build_dictation -->
 🔊 *He's here.* Плитки: `here` `He's` `gone` `is` → **He's here.**
+*(плитка `gone` лишняя: `gone` лишнее: в аудио `He's here.`)*
+*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `He's here.`)*
+
 
 **15 · Вставьте слово — на улице ливень, вы забежали в паб**
 <!-- interaction_id: en:lesson-01:session-42:i15; family: context_gap_grammar -->
@@ -138,6 +151,8 @@ It's ___ . → **awful** · quiet · great
 
 **16 · Соберите фразу — её всё нет, а начало было в семь; скажите коротко**<!-- interaction_id: en:lesson-01:session-42:i16; family: phrase_builder --> (`late` — «опоздала»)
 Плитки: `late` `She's` `is` → **She's late.**
+*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `She's late.`)*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-42:i17:s01; family: scripted_repeat_compare -->

@@ -91,20 +91,69 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-34:i05:r1","text":"duvet"},
-          {"responseId":"en:lesson-03:session-34:i05:r2","text":"blanket"},
-          {"responseId":"en:lesson-03:session-34:i05:r3","text":"sheet"}
+          {
+            "responseId": "en:lesson-03:session-34:i05:r1",
+            "text": "duvet"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i05:r2",
+            "text": "blanket"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i05:r3",
+            "text": "sheet"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-34:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-34:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-34:i05:audio","transcript":"duvet"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-34:i05:r1","targetText":"duvet","meaningByLocale":null},{"responseId":"en:lesson-03:session-34:i05:r2","targetText":"blanket","meaningByLocale":null},{"responseId":"en:lesson-03:session-34:i05:r3","targetText":"sheet","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-34:i05:r2","correct":false,"testedDimension":"На записи звучит duvet","feedbackByLocale":{"ru":"`blanket` — плед. В записи звучит `duvet` — пуховое одеяло.","uk":"`blanket` — плед. У записі звучить `duvet` — пухова ковдра."}},{"responseId":"en:lesson-03:session-34:i05:r3","correct":false,"testedDimension":"На записи звучит duvet","feedbackByLocale":{"ru":"`sheet` — простыня. В записи звучит `duvet` — пуховое одеяло.","uk":"`sheet` — простирадло. У записі звучить `duvet` — пухова ковдра."}}]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-34:i05:audio",
+            "transcript": "duvet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-34:i05:r1",
+              "targetText": "duvet",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r2",
+              "targetText": "blanket",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r3",
+              "targetText": "sheet",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-34:i05:r2",
+              "correct": false,
+              "testedDimension": "На записи звучит duvet",
+              "feedbackByLocale": {
+                "ru": "`blanket` — плед. В записи звучит `duvet` — пуховое одеяло.",
+                "uk": "`blanket` — плед. У записі звучить `duvet` — пухова ковдра."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r3",
+              "correct": false,
+              "testedDimension": "На записи звучит duvet",
+              "feedbackByLocale": {
+                "ru": "`sheet` — простыня. В записи звучит `duvet` — пуховое одеяло.",
+                "uk": "`sheet` — простирадло. У записі звучить `duvet` — пухова ковдра."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -193,12 +242,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — duvet или duty",
-        "responseOptions": [{"responseId":"en:lesson-03:session-34:i06:r1","text":"duvet"},{"responseId":"en:lesson-03:session-34:i06:r2","text":"duty"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-34:i06:r1",
+            "text": "duvet"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i06:r2",
+            "text": "duty"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-34:i06:audioA","en:lesson-03:session-34:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-34:i06:audioA",
+          "en:lesson-03:session-34:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — duvet или duty",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"duvet", "contrastB":"duty", "ipaA":"", "ipaB":"", "audioA":{"audioTargetId":"en:lesson-03:session-34:i06:audioA","transcript":"duvet"}, "audioB":{"audioTargetId":"en:lesson-03:session-34:i06:audioB","transcript":"duty"}, "testedPhoneticContrast":"В duvet после du слышится vet", "choiceFeedback":[{"responseId":"en:lesson-03:session-34:i06:r2","correct":false,"testedDimension":"В duvet после du слышится vet","feedbackByLocale":{"ru":"`duty` — обязанность. В записи после du слышится `vet`: `duvet`.","uk":"`duty` — обов'язок. У записі після du чути `vet`: `duvet`."}}]
+          "family": "sound_contrast",
+          "contrastA": "duvet",
+          "contrastB": "duty",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-34:i06:audioA",
+            "transcript": "duvet"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-34:i06:audioB",
+            "transcript": "duty"
+          },
+          "testedPhoneticContrast": "В duvet после du слышится vet",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-34:i06:r2",
+              "correct": false,
+              "testedDimension": "В duvet после du слышится vet",
+              "feedbackByLocale": {
+                "ru": "`duty` — обязанность. В записи после du слышится `vet`: `duvet`.",
+                "uk": "`duty` — обов'язок. У записі після du чути `vet`: `duvet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -221,9 +306,15 @@
             "uk": "Складіть коротке прохання — подушка лежить поруч"
           },
           "orderedTokens": [
-            "This", "pillow,", "please"
+            "This",
+            "pillow,",
+            "please"
           ],
-          "authoredDistractorTokens": ["That", "blanket", "is"],
+          "authoredDistractorTokens": [
+            "That",
+            "blanket",
+            "is"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -250,9 +341,16 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Those pillows, please.",
           "orderedTokens": [
-            "Those", "pillows,", "please"
+            "Those",
+            "pillows,",
+            "please"
           ],
-          "distractorTokens": ["This", "pillow", "is"]
+          "distractorTokens": [
+            "This",
+            "pillow",
+            "is"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -541,7 +639,7 @@
               "text": "Are"
             }
           ],
-          "testedDimension": "Вставьте указатель — несколько подушек л",
+          "testedDimension": "Вставьте указатель — несколько подушек лежат на дальней полке",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-34:i13:r2",
@@ -794,7 +892,8 @@
             "blankets,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -886,20 +985,69 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
         "responseOptions": [
-          {"responseId":"en:lesson-03:session-34:i05:r1","text":"duvet"},
-          {"responseId":"en:lesson-03:session-34:i05:r2","text":"blanket"},
-          {"responseId":"en:lesson-03:session-34:i05:r3","text":"sheet"}
+          {
+            "responseId": "en:lesson-03:session-34:i05:r1",
+            "text": "duvet"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i05:r2",
+            "text": "blanket"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i05:r3",
+            "text": "sheet"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-34:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-34:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-03:session-34:i05:audio","transcript":"duvet"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-03:session-34:i05:r1","targetText":"duvet","meaningByLocale":null},{"responseId":"en:lesson-03:session-34:i05:r2","targetText":"blanket","meaningByLocale":null},{"responseId":"en:lesson-03:session-34:i05:r3","targetText":"sheet","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-03:session-34:i05:r2","correct":false,"testedDimension":"В записі звучить duvet","feedbackByLocale":{"ru":"`blanket` — плед. В записи звучит `duvet` — пуховое одеяло.","uk":"`blanket` — плед. У записі звучить `duvet` — пухова ковдра."}},{"responseId":"en:lesson-03:session-34:i05:r3","correct":false,"testedDimension":"В записі звучить duvet","feedbackByLocale":{"ru":"`sheet` — простыня. В записи звучит `duvet` — пуховое одеяло.","uk":"`sheet` — простирадло. У записі звучить `duvet` — пухова ковдра."}}]
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-34:i05:audio",
+            "transcript": "duvet"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-34:i05:r1",
+              "targetText": "duvet",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r2",
+              "targetText": "blanket",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r3",
+              "targetText": "sheet",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-34:i05:r2",
+              "correct": false,
+              "testedDimension": "В записі звучить duvet",
+              "feedbackByLocale": {
+                "ru": "`blanket` — плед. В записи звучит `duvet` — пуховое одеяло.",
+                "uk": "`blanket` — плед. У записі звучить `duvet` — пухова ковдра."
+              }
+            },
+            {
+              "responseId": "en:lesson-03:session-34:i05:r3",
+              "correct": false,
+              "testedDimension": "В записі звучить duvet",
+              "feedbackByLocale": {
+                "ru": "`sheet` — простыня. В записи звучит `duvet` — пуховое одеяло.",
+                "uk": "`sheet` — простирадло. У записі звучить `duvet` — пухова ковдра."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -988,12 +1136,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — duvet або duty",
-        "responseOptions": [{"responseId":"en:lesson-03:session-34:i06:r1","text":"duvet"},{"responseId":"en:lesson-03:session-34:i06:r2","text":"duty"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-34:i06:r1",
+            "text": "duvet"
+          },
+          {
+            "responseId": "en:lesson-03:session-34:i06:r2",
+            "text": "duty"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-34:i06:audioA","en:lesson-03:session-34:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-34:i06:audioA",
+          "en:lesson-03:session-34:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — duvet або duty",
         "modePayload": {
-          "family":"sound_contrast", "contrastA":"duvet", "contrastB":"duty", "ipaA":"", "ipaB":"", "audioA":{"audioTargetId":"en:lesson-03:session-34:i06:audioA","transcript":"duvet"}, "audioB":{"audioTargetId":"en:lesson-03:session-34:i06:audioB","transcript":"duty"}, "testedPhoneticContrast":"У duvet після du чути vet", "choiceFeedback":[{"responseId":"en:lesson-03:session-34:i06:r2","correct":false,"testedDimension":"У duvet після du чути vet","feedbackByLocale":{"ru":"`duty` — обязанность. В записи после du слышится `vet`: `duvet`.","uk":"`duty` — обов'язок. У записі після du чути `vet`: `duvet`."}}]
+          "family": "sound_contrast",
+          "contrastA": "duvet",
+          "contrastB": "duty",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-34:i06:audioA",
+            "transcript": "duvet"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-34:i06:audioB",
+            "transcript": "duty"
+          },
+          "testedPhoneticContrast": "У duvet після du чути vet",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-34:i06:r2",
+              "correct": false,
+              "testedDimension": "У duvet після du чути vet",
+              "feedbackByLocale": {
+                "ru": "`duty` — обязанность. В записи после du слышится `vet`: `duvet`.",
+                "uk": "`duty` — обов'язок. У записі після du чути `vet`: `duvet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1016,9 +1200,15 @@
             "uk": "Складіть коротке прохання — подушка лежить поруч"
           },
           "orderedTokens": [
-            "This", "pillow,", "please"
+            "This",
+            "pillow,",
+            "please"
           ],
-          "authoredDistractorTokens": ["That", "blanket", "is"],
+          "authoredDistractorTokens": [
+            "That",
+            "blanket",
+            "is"
+          ],
           "slotFeedback": []
         },
         "scriptedAlternate": null
@@ -1045,9 +1235,16 @@
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Those pillows, please.",
           "orderedTokens": [
-            "Those", "pillows,", "please"
+            "Those",
+            "pillows,",
+            "please"
           ],
-          "distractorTokens": ["This", "pillow", "is"]
+          "distractorTokens": [
+            "This",
+            "pillow",
+            "is"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1589,7 +1786,8 @@
             "blankets,",
             "please."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

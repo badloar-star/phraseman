@@ -144,6 +144,8 @@ It ___ not small. → **is** · am · are
 🔊 *It is not far.* Плитки: `far` `is` `It` `not` `no` → **It is not far.**
 Зайва плитка `no`: усередині фрази після `is` потрібне `not`.
 Зайва плитка `no`: усередині фрази після `is` потрібне `not`.
+*(плитка `no` зайва: `no` зайве: усередині фрази після `is` потрібне `not` — `It is not far`.)*
+
 
 **17 · Картка слова — expensive**
 <!-- interaction_id: en:lesson-01:session-27:i17; family: listen_choose -->
@@ -170,12 +172,16 @@ small — маленький · dark — темно · expensive — дорог�
 Плитки: `far` `not` `It` `is` `are` → **It is not far.**
 Зайва плитка `are`: з `It` ставлять `is`.
 Зайва плитка `are`: з `It` ставлять `is`.
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is not far`.)*
+
 
 **23 · Послухайте і складіть — «це не просто»**
 <!-- interaction_id: en:lesson-01:session-27:i21:s03; family: listen_build_dictation -->
 🔊 *It is not easy.* Плитки: `easy` `It` `not` `is` `are` → **It is not easy.**
 Зайва плитка `are`: з `It` ставлять `is`.
 Зайва плитка `are`: з `It` ставлять `is`.
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is not easy`.)*
+
 
 **24 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-27:i21:s04; family: scripted_repeat_compare -->

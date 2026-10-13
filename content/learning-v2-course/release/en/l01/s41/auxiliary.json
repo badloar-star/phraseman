@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-41:intro3:r2": {
-          "ru": "Скрепка выпала целиком. Между `I` и словом о себе нужно `am` — хотя бы спрятанное в `I'm`.",
-          "uk": "Скріпка випала цілком. Між `I` і словом про себе потрібне `am` — хоча б сховане в `I'm`."
+          "ru": "Между `I` и словом о себе нужна форма `am`, здесь — `I'm`.",
+          "uk": "Між `I` і словом про себе потрібна форма `am`, тут — `I'm`."
         },
         "en:lesson-01:session-41:intro3:r3": {
           "ru": "Без значка `'` это не сокращение. `I'm` пишется с ним.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "fec687239b90e2b177a6b820c66a8a263522072b3369e6ead0d21f28a86160ba"
+  "auxiliaryFingerprint": "c8a0d4a86da76a7e84ef365e1e078b2aea567a63614e3e110a49f8420c12505d"
 }

@@ -78,10 +78,15 @@ I'm ___ . → **tired** · free · wrong
 **4 · Соберите фразу — «пиво холодное»**
 <!-- interaction_id: en:lesson-01:session-44:i04; family: phrase_builder -->
 Плитки: `cold` `It's` `is` → **It's cold.**
+*(плитка `is` лишняя: `is` лишнее: оно уже спрятано в `It's cold.`)*
+
 
 **5 · Послушайте и соберите — «они не правы»**
 <!-- interaction_id: en:lesson-01:session-44:i05; family: listen_build_dictation -->
 🔊 *They're wrong.* Плитки: `wrong` `They're` `are` `cold` → **They're wrong.**
+*(плитка `are` лишняя: `are` лишнее: оно уже спрятано в `They're wrong.`)*
+*(плитка `cold` лишняя: `cold` лишнее: в аудио `They're wrong.`)*
+
 
 **6 · Вставьте слово — приятель весь вечер спорит и путает факты**
 <!-- interaction_id: en:lesson-01:session-44:i06; family: context_gap_grammar -->
@@ -104,6 +109,8 @@ I'm ___ . → **free** · tired · cold
 **9 · Соберите фразу — вас зовут за столик, и дел у вас нет**
 <!-- interaction_id: en:lesson-01:session-44:i09; family: phrase_builder -->
 Плитки: `free` `I'm` `am` → **I'm free.**
+*(плитка `am` лишняя: `am` лишнее: оно уже спрятано в `I'm free.`)*
+
 
 **10 · Послушайте и выберите — что вы услышали?**
 <!-- interaction_id: en:lesson-01:session-44:i10; family: listen_choose -->
@@ -124,6 +131,8 @@ They ___ wrong. → **are** · is · am
 **13 · Соберите фразу — «он замёрз», внимательно: про мужчину**
 <!-- interaction_id: en:lesson-01:session-44:i13; family: phrase_builder -->
 Плитки: `cold` `He's` `It's` → **He's cold.**
+*(плитка `It's` лишняя: `It's` не подходит: речь о мужчине, поэтому `He's cold.`)*
+
 
 **14 · Произнесите фразу — Мира замечает, что вы зеваете**
 <!-- interaction_id: en:lesson-01:session-44:i14:s01; family: scripted_repeat_compare -->
@@ -136,6 +145,8 @@ They ___ wrong. → **are** · is · am
 **16 · Соберите фразу — Лина и её коллега говорят, что вы ошиблись, но правы вы**
 <!-- interaction_id: en:lesson-01:session-44:i15; family: phrase_builder -->
 Плитки: `They're` `wrong` `They` → **They're wrong.**
+*(плитка `They` лишняя: Нужно `They're wrong.`: `They` без `are` не образует фразу.)*
+
 
 **17 · Вставьте значок — друг спрашивает, холодное ли пиво**
 <!-- interaction_id: en:lesson-01:session-44:i16:s01; family: context_gap_grammar -->
@@ -146,6 +157,8 @@ It___ cold. → **'s** · is · are
 **18 · Соберите фразу — Мира спрашивает, почему вы зеваете**
 <!-- interaction_id: en:lesson-01:session-44:i16:s02; family: phrase_builder -->
 Плитки: `I'm` `tired` `are` → **I'm tired.**
+*(плитка `are` лишняя: `are` лишнее: оно уже спрятано в `I'm tired.`)*
+
 
 **19 · Произнесите фразу — Лина уточняет, кто назвал неверное время**
 <!-- interaction_id: en:lesson-01:session-44:i16:s03; family: scripted_repeat_compare -->

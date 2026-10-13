@@ -50,7 +50,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — разговор по телефону за",
+          "testedDimension": "Вставьте слово — разговор по телефону закончился; постоялец тоже убрал телефон, спросите, свободен ли он сейчас",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i01:r2",
@@ -92,7 +92,11 @@
             "ru": "Постоялец спрашивает, свободны ли вы; теперь вы можете уделить ему время, ответьте коротко «Да».",
             "uk": "Мешканець запитує, чи вільні ви; тепер ви можете приділити йому час, коротко дайте відповідь «Так»."
           },
-          "orderedTokens": ["Yes,", "I", "am"],
+          "orderedTokens": [
+            "Yes,",
+            "I",
+            "am"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -248,7 +252,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — пока вы разговаривали, ",
+          "testedDimension": "Вставьте слово — пока вы разговаривали, руководительница отошла; спросите другого сотрудника, где она",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i05:r2",
@@ -376,7 +380,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставьте слово — вы оба считаете, что на",
+          "testedDimension": "Вставьте слово — вы оба считаете, что нашли номер комнаты в списке, но запись не совсем ясна; спросите руководительницу «Мы ошибаемся?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i08:r2",
@@ -655,7 +659,7 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставьте слово — руководительница отвеча",
+          "testedDimension": "Вставьте слово — руководительница отвечает на звонок; постоялец спрашивает вас `Is she free?`, ответьте коротко «Нет»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i12:r2",
@@ -838,7 +842,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -876,17 +883,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-02:session-56:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — сотрудник вас слушает;",
-              "feedbackByLocale": {
-                "ru": "С `the toilets` в этом вопросе нужно `are`: `Where are the toilets?`.",
-                "uk": "З `the toilets` у цьому запитанні потрібне `are`: `Where are the toilets?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -937,7 +934,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — телефонна розмова закінч",
+          "testedDimension": "Вставте слово — телефонна розмова закінчилася; мешканець теж прибрав телефон, запитайте, чи вільний він зараз",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i01:r2",
@@ -979,7 +976,11 @@
             "ru": "Постоялец спрашивает, свободны ли вы; теперь вы можете уделить ему время, ответьте коротко «Да».",
             "uk": "Мешканець запитує, чи вільні ви; тепер ви можете приділити йому час, коротко дайте відповідь «Так»."
           },
-          "orderedTokens": ["Yes,", "I", "am"],
+          "orderedTokens": [
+            "Yes,",
+            "I",
+            "am"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1135,7 +1136,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — поки ви розмовляли, кері",
+          "testedDimension": "Вставте слово — поки ви розмовляли, керівниця відійшла; запитайте іншого працівника, де вона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i05:r2",
@@ -1263,7 +1264,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставте слово — ви обоє вважаєте, що зна",
+          "testedDimension": "Вставте слово — ви обоє вважаєте, що знайшли номер кімнати у списку, але запис не зовсім зрозумілий; запитайте керівницю «Ми помиляємося?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i08:r2",
@@ -1542,7 +1543,7 @@
               "text": "are"
             }
           ],
-          "testedDimension": "Вставте слово — керівниця відповідає на ",
+          "testedDimension": "Вставте слово — керівниця відповідає на дзвінок; мешканець запитує вас `Is she free?`, коротко дайте відповідь «Ні»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-56:i12:r2",
@@ -1725,7 +1726,10 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Excuse me.",
-          "orderedTokens": ["Excuse", "me"],
+          "orderedTokens": [
+            "Excuse",
+            "me"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1763,17 +1767,7 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-02:session-56:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть запитання — працівник вас слуха",
-              "feedbackByLocale": {
-                "ru": "С `the toilets` в этом вопросе нужно `are`: `Where are the toilets?`.",
-                "uk": "З `the toilets` у цьому запитанні потрібне `are`: `Where are the toilets?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

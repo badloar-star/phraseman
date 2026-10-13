@@ -11,7 +11,8 @@ describe("lesson 1 release parity (D150)", () => {
     expect(releasedLesson1SessionSignatureV1(1)).toEqual({
       sessionOrdinal: 1,
       newWords: ["fine", "happy", "here", "ready"],
-      interactionProfile: "standard",
+      // Four bundled scripted-repeat interactions select the voice-heavy profile.
+      interactionProfile: "voice_heavy",
     });
   });
 

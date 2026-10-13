@@ -56,8 +56,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-10:i12",
-    "correctText": "late",
-    "correctResponseId": "en:lesson-01:session-10:i12:r1"
+    "correctText": "You are late.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-10:i13",
@@ -76,8 +76,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-10:i16",
-    "correctText": "busy",
-    "correctResponseId": "en:lesson-01:session-10:i16:r1"
+    "correctText": "I am busy.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-10:i17",
@@ -85,38 +85,18 @@
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-10:i18:s01",
+    "interactionId": "en:lesson-01:session-10:i18",
     "correctText": "You are early.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-10:i18:s02",
-    "correctText": "I am late.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-10:i19:s01",
-    "correctText": "You are quiet.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-10:i19:s02",
+    "interactionId": "en:lesson-01:session-10:i19",
     "correctText": "I am tired.",
     "correctResponseId": null
   },
   {
-    "interactionId": "en:lesson-01:session-10:i20:s01",
-    "correctText": "You are early.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-10:i20:s02",
+    "interactionId": "en:lesson-01:session-10:i20",
     "correctText": "You are fast.",
-    "correctResponseId": null
-  },
-  {
-    "interactionId": "en:lesson-01:session-10:i20:s03",
-    "correctText": "You are quiet.",
     "correctResponseId": null
   }
 ]

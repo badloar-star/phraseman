@@ -86,6 +86,8 @@ It is ___ . → **light** · heavy · new
 **5 · Складіть фразу — «воно важке»**
 <!-- interaction_id: en:lesson-01:session-29:i05; family: phrase_builder -->
 Плитки: `heavy` `It` `is` `light` → **It is heavy.**
+*(плитка `light` зайва: `light` зайве: предмет важкий — `It is heavy`.)*
+
 
 **6 · Картка слова — clean**
 <!-- interaction_id: en:lesson-01:session-29:i06; family: listen_choose -->
@@ -120,10 +122,14 @@ It is ___ . → **empty** · dirty · heavy
 **12 · Складіть фразу — сорочку щойно випрали, вона чиста**
 <!-- interaction_id: en:lesson-01:session-29:i12; family: phrase_builder -->
 Плитки: `clean` `It` `is` `are` → **It is clean.**
+*(плитка `are` зайва: `are` зайве: після `It` ставлять `is` — `It is clean`.)*
+
 
 **13 · Послухайте і складіть — «воно брудне»**
 <!-- interaction_id: en:lesson-01:session-29:i13; family: listen_build_dictation -->
 🔊 *It is dirty.* Плитки: `dirty` `is` `It` `clean` → **It is dirty.**
+*(плитка `clean` зайва: `clean` зайве: фраза про брудний предмет — `It is dirty`.)*
+
 
 **14 · Картка слова — broken**
 <!-- interaction_id: en:lesson-01:session-29:i14; family: listen_choose -->
@@ -132,6 +138,8 @@ It is ___ . → **empty** · dirty · heavy
 **15 · Складіть фразу — чашка випала з рук і розбилася**
 <!-- interaction_id: en:lesson-01:session-29:i15; family: phrase_builder -->
 Плитки: `broken` `It` `is` `he` → **It is broken.**
+*(плитка `he` зайва: `he` зайве: йдеться про чашку, тому `It is broken`.)*
+
 
 **16 · Вставте слово — квартира маленька, дві кімнати і все**
 <!-- interaction_id: en:lesson-01:session-29:i16; family: context_gap_grammar -->
@@ -160,6 +168,19 @@ small — маленький · new — новий · empty — порожній
 🎙 **It is new.**
 
 ---
+
+## Пояснення до перевірених відповідей
+
+- 2: **heavy** — «важкий», не `happy` і не `hairy`.
+- 4: **light** — порожню коробку легко підняти; `heavy` означає навпаки.
+- 5: зайва плитка **light**: предмет важкий — `It is heavy.`
+- 7: **clean** — «чистий», не `clear` і не `queen`.
+- 9: **dirty** — «брудний», не `thirty` і не `daddy`.
+- 11: **empty** — у сумці нічого не лишилося.
+- 12: зайва плитка **are**: після `It` ставлять `is`.
+- 13: зайва плитка **clean**: тут `It is dirty.`
+- 15: зайва плитка **he**: йдеться про чашку — `It is broken.`
+- 16: **small** — дві кімнати, отже квартира маленька.
 
 ## Для сборщика
 

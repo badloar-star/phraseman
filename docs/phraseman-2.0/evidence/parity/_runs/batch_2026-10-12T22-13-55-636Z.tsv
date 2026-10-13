@@ -1,0 +1,5 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-005	2026-10-12T22:14:23.003Z	ok	13719	marker+пусто_1400мс+склейка+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/dialogs-005.png	1400
+dialogs-017	2026-10-12T22:15:31.842Z	error	12973	step_target_not_found:#dialogue-v2-session-hint+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T22-13-55-636Z/dialogs-017.error.png	0
+dialogs-018	2026-10-12T22:16:47.354Z	error	14700	step_target_not_found:#dialogue-v2-session-goals+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T22-13-55-636Z/dialogs-018.error.png	0
+dialogs-036	2026-10-12T22:17:48.091Z	stitch_failed	14356	marker+шагов_5+склейка_не_удалась: own error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-036.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=609645 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T22-13-55-636Z/dialogs-036.bare.png	0

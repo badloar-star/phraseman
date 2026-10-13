@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-010	2026-10-13T17:23:22.392Z	error	29904	step_target_not_found:#dialogue-v2-world-toggle-*+ждали_metro_34мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T17-22-30-791Z/dialogs-010.error.png	0

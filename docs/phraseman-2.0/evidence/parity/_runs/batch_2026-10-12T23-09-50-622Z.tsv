@@ -1,0 +1,5 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-gap-016	2026-10-12T23:10:10.274Z	ok	11089	marker+пусто_1490мс+склейка+ждали_metro_52мс	docs/phraseman-2.0/evidence/parity/spire-gap-016.png	1490
+spire-gap-020	2026-10-12T23:10:34.715Z	blank_too_long	10201	marker+пусто_6_повторов+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T23-09-50-622Z/spire-gap-020.blank_too_long.png	0
+spire-gap-021	2026-10-12T23:10:58.301Z	ok	10950	marker+шагов_1+склейка+ждали_metro_15мс	docs/phraseman-2.0/evidence/parity/spire-gap-021.png	0
+spire-gap-022	2026-10-12T23:11:54.286Z	error	11866	step_target_not_found:#spire-beta-pill+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T23-09-50-622Z/spire-gap-022.error.png	0

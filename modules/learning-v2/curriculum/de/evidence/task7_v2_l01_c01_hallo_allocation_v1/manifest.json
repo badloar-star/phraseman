@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c01-hallo-source-allocation.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ALLOCATION_ONLY",
+    "decision": "PHRASE_AUTHORITY_REQUIRED",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "schemaVersion": "learning-v2-german-chapter-blueprints.v2",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3",
+    "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1",
+    "checkpointPacketId": "de_l01_c01_s08",
+    "planCanonicalBodySha256": "4616ba8b2c84d2f7880cca5a79d76bb8453503b9b2244004c72d455d78fae301"
+  },
+  "allocationScope": {
+    "sessionId": "de_l01_s01",
+    "phraseContextId": "de_pf_l01_c01_hallo_nachbarin_v1",
+    "targetSourcePlanIds": [
+      "de_lex_plan_l01_c01_hallo_v1"
+    ],
+    "excludedSourcePlanIds": [
+      "de_lex_plan_l01_c01_nachbarin_v1"
+    ]
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "3b0ab0c32c3dd8bb42b2c22f0f43bc514272f23c60c97003334418f5afaaabad",
+      "bytes": 2730
+    },
+    "dwds": {
+      "target": {
+        "canonicalUrl": "https://www.dwds.de/wb/hallo",
+        "headword": "hallo",
+        "sourcePartOfSpeech": "Interjektion",
+        "greetingSenseAnchor": "d-1-1-2"
+      },
+      "rejected": {
+        "canonicalUrl": "https://www.dwds.de/wb/Hallo",
+        "headword": "Hallo",
+        "sourcePartOfSpeech": "Substantiv (Neutrum)",
+        "rejectionReason": "NOUN_ENTRY_IS_NOT_THE_TARGET_GREETING_INTERJECTION"
+      }
+    },
+    "goetheA1": {
+      "canonicalUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "rawSha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "sourceHeadword": "hallo",
+      "sourcePartOfSpeech": "Interjektion",
+      "greetingDefinitionGerman": "Anrede zur Begrüßung",
+      "officialLearningOccurrence": "Guten Tag! / Hallo!"
+    },
+    "unsupportedClaims": {
+      "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCES",
+      "phraseContextAuthority": "REQUIRES_SEPARATE_AUTHORITY"
+    }
+  },
+  "allocations": [
+    {
+      "sourcePlanId": "de_lex_plan_l01_c01_hallo_v1",
+      "checkpointPacketId": "de_l01_c01_s08",
+      "sessionId": "de_l01_s01",
+      "phraseContextId": "de_pf_l01_c01_hallo_nachbarin_v1",
+      "contacts": [
+        {
+          "role": "INTRODUCTION_CONTEXT",
+          "packetId": "de_l01_c01_s01"
+        },
+        {
+          "role": "CHECKPOINT_PLANNED_USE",
+          "packetId": "de_l01_c01_s08"
+        }
+      ],
+      "excludedSourcePlanIds": [
+        "de_lex_plan_l01_c01_nachbarin_v1"
+      ],
+      "supportedFields": [
+        "lemmaOrExpression",
+        "sourcePartOfSpeech",
+        "greetingFunction",
+        "officialLearningOccurrence"
+      ],
+      "decision": "PHRASE_AUTHORITY_REQUIRED"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-c01-haus-name-facts.v1",
+  "status": "HOLD_FACTS_ONLY",
+  "canonicalAdmission": "FORBIDDEN",
+  "semanticAdmission": "NOT_EVALUATED",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "capture": {
+    "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_c01_haus_name_direct_capture_v1/manifest.json",
+    "sha256": "3a22f2f16fab0e2894fca4f03c195d10e8ff17dea97f87f6c745f0e9b5817d63"
+  },
+  "facts": [
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_haus_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1-1",
+        "senseSpanSha256": "5e018aeb07d6f345078cc956ece1c3bfdb7275745901707924415e189ed3eae8",
+        "senseSpanUtf8Bytes": 11008,
+        "definitionGerman": "zum Wohnen, Wohnhaus"
+      },
+      "morphology": {
+        "morphologySpanSha256": "19878c724acd5f0f8f912a50e7ac3a5a274fb256eda15a68814ab7aadb61bf95",
+        "morphologySpanUtf8Bytes": 348,
+        "headwordArticleSpanSha256": "605390082e1d9c3e1c099f3cd442f94f4083520a8f6b07dfbd685e8820224ca5",
+        "headwordArticleSpanUtf8Bytes": 55,
+        "lemma": "Haus",
+        "article": "das",
+        "plural": "Häuser",
+        "sourceGenderLabel": "Neutrum"
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_task6c_l01_c01_name_v1",
+      "sourceSense": {
+        "sourceAnchor": "d-1-1-1",
+        "senseSpanSha256": "80ad42be5dac63958a2107e113d53a0b4d1a53d55572b3d674fd9db68a4f2f1b",
+        "senseSpanUtf8Bytes": 10667,
+        "definitionGerman": "Bezeichnung für eine Person, Familienname oder Vorname"
+      },
+      "morphology": {
+        "morphologySpanSha256": "bcb0fa68d2fe801156db77dddf44cd40534a1103924d52fcbfbd260981fa872b",
+        "morphologySpanUtf8Bytes": 349,
+        "headwordArticleSpanSha256": "12c5d4c364d91a84e371636353c14c094d4834d2f4ae6b197e81b3862edb30d4",
+        "headwordArticleSpanUtf8Bytes": 55,
+        "lemma": "Name",
+        "article": "der",
+        "plural": "Namen",
+        "sourceGenderLabel": "Maskulinum"
+      }
+    }
+  ],
+  "factReceipt": {
+    "scope": "RAW_SOURCE_FACTS_ONLY",
+    "verdict": "HOLD_FACTS_ONLY",
+    "noSemanticAdmission": true,
+    "noTranslationClaim": true,
+    "noRegionalOrProductiveClaim": true,
+    "noRegisterClaim": true,
+    "noCanonicalPromotion": true
+  }
+}

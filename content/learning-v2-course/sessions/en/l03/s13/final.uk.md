@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i02; family: listen_choose -->
 Ціль: `earring`
 Варіанти: `earring` · `hearing` · `steering`
+- hearing — *`hearing` — «слух». Перед голосним чути легкий видих. У `earring` початок одразу голосний, без цього видиху.*
+- steering — *`steering` — «кермування». Перед схожою голосною частиною чути «ст». У `earring` слово починається з голосного.*
+
 
 **3 · Картка слова — necklace**
 <!-- interaction_id: en:lesson-03:session-13:i03; family: listen_choose -->
@@ -69,11 +72,17 @@
 <!-- interaction_id: en:lesson-03:session-13:i04; family: listen_choose -->
 Ціль: `necklace`
 Варіанти: `necklace` · `reckless` · `legless`
+- reckless — *`reckless` — «безрозсудний». У `necklace` спершу чути носовий «н». `reckless` починається з плавного англійського звука без тремтіння язика — це не українське «р».*
+- legless — *`legless` — «безногий». На початку чути «л», а в `necklace` — «н». Далі теж різниця: звук, близький до українського «ґ», проти «к».*
+
 
 **5 · Вставте слово — друг пропонує замість прикраси вазу з сусідньої полиці; назвіть її повною фразою (`vase` — «ваза»)**
 <!-- interaction_id: en:lesson-03:session-13:i05; family: context_gap_grammar -->
 Ціль: `It is ___ vase.`
 Варіанти: `a` · `an` · `is`
+- an — *Перший звук назви `vase` — приголосний «в». Тут потрібне `a`.*
+- is — *Після `It` уже стоїть `is`. Перед назвою вази потрібне маленьке `a`, а не друге `is`.*
+
 
 **6 · Картка слова — bracelet**
 <!-- interaction_id: en:lesson-03:session-13:i06; family: listen_choose -->
@@ -83,6 +92,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i07; family: listen_choose -->
 Ціль: `bracelet`
 Варіанти: `bracelet` · `bracing` · `graceless`
+- bracing — *`bracing` — «підбадьорливий». Початок схожий. У `bracelet` наприкінці чути «т», а у `bracing` — носовий звук. Дослухайте слово.*
+- graceless — *`graceless` — «незграбний». Першим лунає звук, близький до українського «ґ», а в `bracelet` — «б». Середина схожа, але початок різний.*
+
 
 **8 · Складіть коротку назву — продавець питає, що вам показати; дайте відповідь двома англійськими словами, що означають «сережка»**
 <!-- interaction_id: en:lesson-03:session-13:i08; family: phrase_builder -->
@@ -93,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i09; family: context_gap_grammar -->
 Ціль: `It is ___ radio.`
 Варіанти: `a` · `an` · `am`
+- an — *`radio` починається з приголосного звуку. Перед цією назвою обираємо `a`.*
+- am — *`am` поєднується з `I`. Після готового початку `It is` тут потрібна назва `a radio`.*
+
 
 **10 · З’єднайте назви з українськими значеннями — варіанти подарунка**
 <!-- interaction_id: en:lesson-03:session-13:i10; family: speed_match -->
@@ -108,6 +123,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i12; family: context_gap_grammar -->
 Ціль: `It is ___ necklace.`
 Варіанти: `a` · `an` · `is`
+- an — *На початку `necklace` чути приголосний «н». Для цієї назви потрібен варіант `a`.*
+- is — *`is` уже є після `It`. Перед назвою намиста лишається поставити `a`.*
+
 
 **13 · Складіть питання — друг тримає іншу прикрасу для руки; уточніть «Це браслет?»**
 <!-- interaction_id: en:lesson-03:session-13:i13; family: phrase_builder -->
@@ -118,6 +136,9 @@
 <!-- interaction_id: en:lesson-03:session-13:i14; family: listen_choose -->
 Ціль: `It is not an earring.`
 Варіанти: `It is not an earring.` · `It is an earring.` · `It is not a necklace.`
+- It is an earring. — *У цьому варіанті після `is` одразу іде `an`. У записі між ними чути `not`: назву заперечують.*
+- It is not a necklace. — *Тут після `a` названо `necklace`. У записі звучить інша назва з `an`: `an earring`.*
+
 
 **15 · Складіть заперечення — друг прийняв пояс за намисто; виправте його: «Це не намисто»**
 <!-- interaction_id: en:lesson-03:session-13:i15; family: phrase_builder -->

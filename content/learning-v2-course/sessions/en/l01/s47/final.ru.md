@@ -76,6 +76,9 @@
 **4 · Соберите фразу — вы за рулём, друг тянется к вашему стакану**
 <!-- interaction_id: en:lesson-01:session-47:i04; family: phrase_builder -->
 Плитки: `sober` `I'm` `am` `he's` → **I'm sober.**
+*(плитка `am` лишняя: `am` лишнее: оно уже спрятано в `I'm sober.`)*
+*(плитка `he's` лишняя: `he's` не подходит: говорите о себе — `I'm sober.`)*
+
 
 **5 · Карточка слова — sleepy**
 <!-- interaction_id: en:lesson-01:session-47:i05; family: listen_choose -->
@@ -120,10 +123,14 @@ He's ___ . → **tired** · sleepy · drunk
 **13 · Послушайте и соберите — «она не сонная»**
 <!-- interaction_id: en:lesson-01:session-47:i13; family: listen_build_dictation -->
 🔊 *She isn't sleepy.* Плитки: `isn't` `She` `sleepy` `aren't` → **She isn't sleepy.**
+*(плитка `aren't` лишняя: `aren't` не подходит к `She`: в аудио `She isn't sleepy.`)*
+
 
 **14 · Соберите фразу — друзья у выхода, все бодрые**
 <!-- interaction_id: en:lesson-01:session-47:i14; family: phrase_builder -->
 Плитки: `They` `aren't` `sleepy` `isn't` → **They aren't sleepy.**
+*(плитка `isn't` лишняя: `isn't` не подходит к `They`: нужно `They aren't sleepy.`)*
+
 
 **15 · Карточка слова — quiet**
 <!-- interaction_id: en:lesson-01:session-47:i15; family: listen_choose -->
@@ -138,6 +145,8 @@ It's ___ . → **quiet** · awake · drunk
 **17 · Соберите фразу — вас ждали к одиннадцати, а на часах полночь**
 <!-- interaction_id: en:lesson-01:session-47:i17; family: phrase_builder -->
 Плитки: `I'm` `late` `quiet` → **I'm late.**
+*(плитка `quiet` лишняя: `quiet` лишнее: на часах полночь, поэтому `I'm late.`)*
+
 
 **18 · Послушайте и соберите — вы прощаетесь и едете к себе**
 <!-- interaction_id: en:lesson-01:session-47:i18; family: listen_build_dictation -->

@@ -50,7 +50,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставьте слово — брат звонит в одиннадца",
+          "testedDimension": "Вставьте слово — брат звонит в одиннадцать вечера, вы зеваете в трубку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i01:r2",
@@ -195,7 +195,7 @@
               "text": "alone"
             }
           ],
-          "testedDimension": "Вставьте слово — брат спрашивает про нов",
+          "testedDimension": "Вставьте слово — брат спрашивает про новых коллег, они хорошие",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i03:r2",
@@ -245,7 +245,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «неделя тяжёлая», про неделю через `it`",
+              "feedbackByLocale": {
+                "ru": "`it` говорит об одной неделе, поэтому нужна форма `is`: `It is hard.`",
+                "uk": "`it` говорить про один тиждень, тому потрібна форма `is`: `It is hard.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -347,7 +357,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "после `I` нужна форма `am`: `I am tired.`",
+                "uk": "після `I` потрібна форма `am`: `I am tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -396,7 +416,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставьте слово — брат спрашивает про ква",
+          "testedDimension": "Вставьте слово — брат спрашивает про квартиру, там тепло",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i07:r2",
@@ -520,7 +540,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рядом с вами друзья; скажите, что вы не один",
+              "feedbackByLocale": {
+                "ru": "отрицание в этой фразе строится словом `not` после `am`: `I am not alone.`",
+                "uk": "заперечення в цій фразі будується словом `not` після `am`: `I am not alone.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -569,7 +599,7 @@
               "text": "kind"
             }
           ],
-          "testedDimension": "Вставьте слово — брат спрашивает, не ску",
+          "testedDimension": "Вставьте слово — брат спрашивает, не скучно ли вам в пустой квартире",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i10:r2",
@@ -630,7 +660,7 @@
             "audioTargetId": "en:lesson-01:session-56:i11:audioB",
             "transcript": "worm"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «теп",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «тепло»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i11:r2",
@@ -675,7 +705,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «квартира тёплая»",
+              "feedbackByLocale": {
+                "ru": "`flat` — одна квартира, поэтому нужна форма `is`: `The flat is warm.`",
+                "uk": "`flat` — одна квартира, тому потрібна форма `is`: `The flat is warm.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -706,7 +746,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «неделя не тяжёлая»",
+              "feedbackByLocale": {
+                "ru": "отрицание здесь строится словом `not` после `is`: `It is not hard.`",
+                "uk": "заперечення тут будується словом `not` після `is`: `It is not hard.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -806,7 +856,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — брат: «Ты там устал?» Ответьте, что нет",
+              "feedbackByLocale": {
+                "ru": "после `I am` для отрицания нужно `not`: `I am not tired.`",
+                "uk": "після `I am` для заперечення потрібне `not`: `I am not tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -950,29 +1010,67 @@
         "inputMode": "single_choice",
         "prompt": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
         "responseOptions": [
-          { "responseId": "en:lesson-01:session-56:i17:s03:r1", "text": "am" },
-          { "responseId": "en:lesson-01:session-56:i17:s03:r2", "text": "is" },
-          { "responseId": "en:lesson-01:session-56:i17:s03:r3", "text": "are" }
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r3",
+            "text": "are"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
         "modePayload": {
           "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
+            "uk": "Вставте слово — друг питає, чи ви зараз самі"
+          },
           "localizedMeaning": {
             "ru": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
             "uk": "Вставте слово — друг питає, чи ви зараз самі"
           },
           "gappedTargetPhrase": "I ___ not alone.",
           "gapOptions": [
-            { "responseId": "en:lesson-01:session-56:i17:s03:r1", "text": "am" },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r2", "text": "is" },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r3", "text": "are" }
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r3",
+              "text": "are"
+            }
           ],
           "testedDimension": "выбор am после I",
           "choiceFeedback": [
-            { "responseId": "en:lesson-01:session-56:i17:s03:r2", "correct": false, "testedDimension": "выбор am после I", "feedbackByLocale": { "ru": "`is` ставят после he, she или it. После `I` нужно `am`.", "uk": "`is` ставлять після he, she або it. Після `I` потрібне `am`." } },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r3", "correct": false, "testedDimension": "выбор am после I", "feedbackByLocale": { "ru": "`are` ставят после you, we или they. После `I` нужно `am`.", "uk": "`are` ставлять після you, we або they. Після `I` потрібне `am`." } }
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r2",
+              "correct": false,
+              "testedDimension": "выбор am после I",
+              "feedbackByLocale": {
+                "ru": "`is` ставят после he, she или it. После `I` нужно `am`.",
+                "uk": "`is` ставлять після he, she або it. Після `I` потрібне `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r3",
+              "correct": false,
+              "testedDimension": "выбор am после I",
+              "feedbackByLocale": {
+                "ru": "`are` ставят после you, we или they. После `I` нужно `am`.",
+                "uk": "`are` ставлять після you, we або they. Після `I` потрібне `am`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -991,10 +1089,29 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Everyone is kind.",
-          "localizedMeaning": { "ru": "Соберите фразу — вы говорите о доброжелательных людях вокруг", "uk": "Складіть фразу — ви говорите про доброзичливих людей поруч" },
-          "orderedTokens": ["Everyone", "is", "kind"],
-          "authoredDistractorTokens": ["are"],
-          "slotFeedback": []
+          "localizedMeaning": {
+            "ru": "Соберите фразу — вы говорите о доброжелательных людях вокруг",
+            "uk": "Складіть фразу — ви говорите про доброзичливих людей поруч"
+          },
+          "orderedTokens": [
+            "Everyone",
+            "is",
+            "kind"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i17:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы говорите о доброжелательных людях вокруг",
+              "feedbackByLocale": {
+                "ru": "`everyone` говорит о людях по одному, поэтому нужна форма `is`: `Everyone is kind.`",
+                "uk": "`everyone` говорить про людей по одному, тому потрібна форма `is`: `Everyone is kind.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1045,7 +1162,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставте слово — брат телефонує об одинад",
+          "testedDimension": "Вставте слово — брат телефонує об одинадцятій вечора, ви позіхаєте в слухавку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i01:r2",
@@ -1190,7 +1307,7 @@
               "text": "alone"
             }
           ],
-          "testedDimension": "Вставте слово — брат питає про нових кол",
+          "testedDimension": "Вставте слово — брат питає про нових колег, вони хороші",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i03:r2",
@@ -1240,7 +1357,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «неделя тяжёлая», про неделю через `it`",
+              "feedbackByLocale": {
+                "ru": "`it` говорит об одной неделе, поэтому нужна форма `is`: `It is hard.`",
+                "uk": "`it` говорить про один тиждень, тому потрібна форма `is`: `It is hard.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1342,7 +1469,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «я устал»",
+              "feedbackByLocale": {
+                "ru": "после `I` нужна форма `am`: `I am tired.`",
+                "uk": "після `I` потрібна форма `am`: `I am tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1391,7 +1528,7 @@
               "text": "tired"
             }
           ],
-          "testedDimension": "Вставте слово — брат питає про квартиру,",
+          "testedDimension": "Вставте слово — брат питає про квартиру, там тепло",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i07:r2",
@@ -1515,7 +1652,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — рядом с вами друзья; скажите, что вы не один",
+              "feedbackByLocale": {
+                "ru": "отрицание в этой фразе строится словом `not` после `am`: `I am not alone.`",
+                "uk": "заперечення в цій фразі будується словом `not` після `am`: `I am not alone.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1564,7 +1711,7 @@
               "text": "kind"
             }
           ],
-          "testedDimension": "Вставте слово — брат питає, чи не нудно ",
+          "testedDimension": "Вставте слово — брат питає, чи не нудно вам у порожній квартирі",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i10:r2",
@@ -1625,7 +1772,7 @@
             "audioTargetId": "en:lesson-01:session-56:i11:audioB",
             "transcript": "worm"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «тепло",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «тепло»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-56:i11:r2",
@@ -1670,7 +1817,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «квартира тёплая»",
+              "feedbackByLocale": {
+                "ru": "`flat` — одна квартира, поэтому нужна форма `is`: `The flat is warm.`",
+                "uk": "`flat` — одна квартира, тому потрібна форма `is`: `The flat is warm.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1701,7 +1858,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «неделя не тяжёлая»",
+              "feedbackByLocale": {
+                "ru": "отрицание здесь строится словом `not` после `is`: `It is not hard.`",
+                "uk": "заперечення тут будується словом `not` після `is`: `It is not hard.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1801,7 +1968,17 @@
           "authoredDistractorTokens": [
             "no"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — брат: «Ты там устал?» Ответьте, что нет",
+              "feedbackByLocale": {
+                "ru": "после `I am` для отрицания нужно `not`: `I am not tired.`",
+                "uk": "після `I am` для заперечення потрібне `not`: `I am not tired.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1945,29 +2122,67 @@
         "inputMode": "single_choice",
         "prompt": "Вставте слово — друг питає, чи ви зараз самі",
         "responseOptions": [
-          { "responseId": "en:lesson-01:session-56:i17:s03:r1", "text": "am" },
-          { "responseId": "en:lesson-01:session-56:i17:s03:r2", "text": "is" },
-          { "responseId": "en:lesson-01:session-56:i17:s03:r3", "text": "are" }
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r1",
+            "text": "am"
+          },
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-56:i17:s03:r3",
+            "text": "are"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [],
         "accessibilityLabel": "Вставте слово — друг питає, чи ви зараз самі",
         "modePayload": {
           "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
+            "uk": "Вставте слово — друг питає, чи ви зараз самі"
+          },
           "localizedMeaning": {
             "ru": "Вставьте слово — друг спрашивает, одни ли вы сейчас",
             "uk": "Вставте слово — друг питає, чи ви зараз самі"
           },
           "gappedTargetPhrase": "I ___ not alone.",
           "gapOptions": [
-            { "responseId": "en:lesson-01:session-56:i17:s03:r1", "text": "am" },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r2", "text": "is" },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r3", "text": "are" }
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r1",
+              "text": "am"
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r2",
+              "text": "is"
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r3",
+              "text": "are"
+            }
           ],
           "testedDimension": "вибір am після I",
           "choiceFeedback": [
-            { "responseId": "en:lesson-01:session-56:i17:s03:r2", "correct": false, "testedDimension": "вибір am після I", "feedbackByLocale": { "ru": "`is` ставят после he, she или it. После `I` нужно `am`.", "uk": "`is` ставлять після he, she або it. Після `I` потрібне `am`." } },
-            { "responseId": "en:lesson-01:session-56:i17:s03:r3", "correct": false, "testedDimension": "вибір am після I", "feedbackByLocale": { "ru": "`are` ставят после you, we или they. После `I` нужно `am`.", "uk": "`are` ставлять після you, we або they. Після `I` потрібне `am`." } }
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r2",
+              "correct": false,
+              "testedDimension": "вибір am після I",
+              "feedbackByLocale": {
+                "ru": "`is` ставят после he, she или it. После `I` нужно `am`.",
+                "uk": "`is` ставлять після he, she або it. Після `I` потрібне `am`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-56:i17:s03:r3",
+              "correct": false,
+              "testedDimension": "вибір am після I",
+              "feedbackByLocale": {
+                "ru": "`are` ставят после you, we или they. После `I` нужно `am`.",
+                "uk": "`are` ставлять після you, we або they. Після `I` потрібне `am`."
+              }
+            }
           ]
         },
         "scriptedAlternate": null
@@ -1986,10 +2201,29 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Everyone is kind.",
-          "localizedMeaning": { "ru": "Соберите фразу — вы говорите о доброжелательных людях вокруг", "uk": "Складіть фразу — ви говорите про доброзичливих людей поруч" },
-          "orderedTokens": ["Everyone", "is", "kind"],
-          "authoredDistractorTokens": ["are"],
-          "slotFeedback": []
+          "localizedMeaning": {
+            "ru": "Соберите фразу — вы говорите о доброжелательных людях вокруг",
+            "uk": "Складіть фразу — ви говорите про доброзичливих людей поруч"
+          },
+          "orderedTokens": [
+            "Everyone",
+            "is",
+            "kind"
+          ],
+          "authoredDistractorTokens": [
+            "are"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-56:i17:s04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — вы говорите о доброжелательных людях вокруг",
+              "feedbackByLocale": {
+                "ru": "`everyone` говорит о людях по одному, поэтому нужна форма `is`: `Everyone is kind.`",
+                "uk": "`everyone` говорить про людей по одному, тому потрібна форма `is`: `Everyone is kind.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       }

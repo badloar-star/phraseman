@@ -115,6 +115,15 @@
               "ru": "Один слог, «маад». `married` длиннее — два слога: «МЭ-рид».",
               "uk": "Один склад, «маад». `married` довше — два склади: «МЕ-рід»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи два слога `married` и в конце слышно `д`: «мэ-рид».",
+              "uk": "У записі два склади `married` і наприкінці чути `д`: «ме-рід"
+            }
           }
         ],
         "isWordCard": false,
@@ -147,8 +156,8 @@
             "responseId": "en:lesson-01:session-20:i03:r1",
             "targetText": "single",
             "meaningByLocale": {
-              "ru": "«не женат», «не замужем». Пары нет — и это просто факт.",
-              "uk": "«неодружений», «незаміжня». Пари немає — і це просто факт."
+              "ru": "«не женат», «не замужем». В этой анкете это значит: человек не состоит в браке.",
+              "uk": "«неодружений», «незаміжня». У цій анкеті це означає: людина не перебуває у шлюбі."
             }
           }
         ],
@@ -158,8 +167,8 @@
         "wordCard": {
           "word": "single",
           "definitionByLocale": {
-            "ru": "«не женат», «не замужем». Пары нет — и это просто факт.",
-            "uk": "«неодружений», «незаміжня». Пари немає — і це просто факт."
+            "ru": "«не женат», «не замужем». В этой анкете это значит: человек не состоит в браке.",
+            "uk": "«неодружений», «незаміжня». У цій анкеті це означає: людина не перебуває у шлюбі."
           }
         }
       },
@@ -223,7 +232,7 @@
             "testedDimension": "Послушайте и выберите — single",
             "feedbackByLocale": {
               "ru": "В середине «м»: «симпл». У `single` — «нг»: «сингл».",
-              "uk": "Усередині «м»: «сімпл». У `single` — «н»: «сінгл»."
+              "uk": "Усередині «м»: «сімпл». У `single` — «нг»: «сінгл»."
             }
           },
           {
@@ -233,6 +242,15 @@
             "feedbackByLocale": {
               "ru": "Обрублен конец. У `single` в хвосте ещё «л».",
               "uk": "Обрубаний кінець. У `single` у хвості ще «л»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `single`: в середине слышно «нг», а в конце — `l`.",
+              "uk": "У записі `single`: у середині чути «нг», а наприкінці — `l`."
             }
           }
         ],
@@ -311,7 +329,7 @@
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В анкете гостя указано, что он состоит в браке. Вставьте слово.",
+          "ru": "Вставьте слово — в анкете гостя указано, что он состоит в браке",
           "uk": "В анкеті гостя вказано, що він перебуває у шлюбі. Вставте слово."
         },
         "gappedTargetPhrase": "He is ___ .",
@@ -332,12 +350,21 @@
         "testedDimension": "Выбор married по явно указанному семейному положению",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-20:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — в анкете гостя указано, что он состоит в браке",
+            "feedbackByLocale": {
+              "ru": "В анкете прямо указано, что он состоит в браке: `He is married.`",
+              "uk": "В анкеті прямо вказано, що він перебуває у шлюбі: `He is married`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-20:i06:r2",
             "correct": false,
             "testedDimension": "Выбор married по явно указанному семейному положению",
             "feedbackByLocale": {
-              "ru": "`Single` — когда пары нет. Здесь в анкете прямо указано, что гость состоит в браке.",
-              "uk": "`Single` — коли пари немає. Тут в анкеті прямо вказано, що гість перебуває у шлюбі."
+              "ru": "Ровно наоборот: `single` — когда пары нет. В анкете указано, что он состоит в браке.",
+              "uk": "Рівно навпаки: `single` — коли пари немає. В анкеті вказано, що він перебуває у шлюбі."
             }
           },
           {
@@ -345,8 +372,8 @@
             "correct": false,
             "testedDimension": "Выбор married по явно указанному семейному положению",
             "feedbackByLocale": {
-              "ru": "`Funny` — «смешной». Здесь нужен факт о семейном положении из анкеты.",
-              "uk": "`Funny` — «смішний». Тут потрібен факт про сімейний стан з анкети."
+              "ru": "«Смешной». Анкета сообщает о семейном положении, а не о чувстве юмора.",
+              "uk": "«Смішний». Анкета повідомляє про сімейний стан, а не про почуття гумору."
             }
           }
         ]
@@ -379,7 +406,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «она не замужем»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: после `She` здесь нужно `is` — `She is single.`",
+              "uk": "`are` зайве: після `She` тут потрібне `is` — `She is single`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -483,8 +520,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — famous",
             "feedbackByLocale": {
-              "ru": "Начало одинаковое, дальше расходится: у `famous` второй слог «мэс».",
-              "uk": "Початок однаковий, далі розходиться: у `famous` другий склад «мас»."
+              "ru": "Первый слог не такой: `family` начинается с «фэ», а `famous` — с «фэй».",
+              "uk": "Перший склад інший: `family` починається з «фе», а `famous` — з «фей»."
             }
           },
           {
@@ -494,6 +531,15 @@
             "feedbackByLocale": {
               "ru": "Первый слог долгий, «фаа». У `famous` он звучит как «фэй».",
               "uk": "Перший склад довгий, «фаа». У `famous` він звучить як «фей»."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i09:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `famous` начинается со звука «фэй», не как `family` и не как `farmer`.",
+              "uk": "У записі `famous` починається зі звуку «фей», не як `family` і не як `farmer`."
             }
           }
         ],
@@ -549,7 +595,7 @@
       "interactionId": "en:lesson-01:session-20:i11",
       "ordinal": 14,
       "purpose": "guided_practice",
-      "family": "sound_contrast",
+      "family": "listen_choose",
       "inputMode": "single_choice",
       "prompt": "Послушайте и выберите",
       "responseOptions": [
@@ -568,25 +614,34 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-20:i11:audioA",
-        "en:lesson-01:session-20:i11:audioB"
+        "en:lesson-01:session-20:i11:audio"
       ],
       "accessibilityLabel": "Послушайте и выберите",
       "modePayload": {
-        "family": "sound_contrast",
-        "contrastA": "rich",
-        "contrastB": "reach",
-        "ipaA": "",
-        "ipaB": "",
-        "audioA": {
-          "audioTargetId": "en:lesson-01:session-20:i11:audioA",
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-20:i11:audio",
           "transcript": "rich"
         },
-        "audioB": {
-          "audioTargetId": "en:lesson-01:session-20:i11:audioB",
-          "transcript": "reach"
-        },
-        "testedPhoneticContrast": "Послушайте и выберите — rich",
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-20:i11:r1",
+            "targetText": "rich",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i11:r2",
+            "targetText": "reach",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i11:r3",
+            "targetText": "ridge",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-01:session-20:i11:r2",
@@ -605,8 +660,19 @@
               "ru": "Кончается на звонкое «дж» — как в «джем». У `rich` в конце глухое «ч».",
               "uk": "Закінчується на дзвінке «дж» — як у «джем». У `rich` в кінці глухе «ч»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-20:i11:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи короткое `rich`: не длинное `reach` и не `ridge` с «дж» в конце.",
+              "uk": "У записі коротке `rich`: не довге `reach` і не `ridge` із «дж» наприкінці."
+            }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -639,7 +705,17 @@
         "authoredDistractorTokens": [
           "famous"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «он богат»",
+            "feedbackByLocale": {
+              "ru": "`famous` лишнее: в записи и фразе сказано `He is rich.`",
+              "uk": "`famous` зайве: у записі й фразі сказано `He is rich`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -649,7 +725,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — про женщину, которую узнают на улице",
+      "prompt": "Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-20:i13:r1",
@@ -666,12 +742,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — про женщину, которую узнают на улице",
+      "accessibilityLabel": "Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — про женщину, которую узнают на улице",
-          "uk": "Вставте слово — про жінку, яку впізнають на вулиці"
+          "ru": "Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась",
+          "uk": "Вставте слово — Ліна каже: гостю впізнають на вулиці після реклами, у якій вона знялася"
         },
         "gappedTargetPhrase": "She is ___ .",
         "gapOptions": [
@@ -688,12 +764,21 @@
             "text": "quiet"
           }
         ],
-        "testedDimension": "Вставьте слово — про женщину, которую уз",
+        "testedDimension": "Лина говорит: прохожие узнают гостью",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Лина говорит: гостью узнают на улице после рекламы, в которой она снялась",
+            "feedbackByLocale": {
+              "ru": "Гостью узнают после рекламы, в которой она снялась: это `famous`, а не `rich` или `quiet`.",
+              "uk": "Гостю впізнають після реклами, у якій вона знялася: це `famous`, а не `rich` чи `quiet`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-20:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — про женщину, которую уз",
+            "testedDimension": "Лина говорит: прохожие узнают гостью",
             "feedbackByLocale": {
               "ru": "«Богатая». Про деньги нам ничего не сказали, сказали про узнавание.",
               "uk": "«Багата». Про гроші нам нічого не сказали, сказали про впізнавання."
@@ -702,7 +787,7 @@
           {
             "responseId": "en:lesson-01:session-20:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — про женщину, которую уз",
+            "testedDimension": "Лина говорит: прохожие узнают гостью",
             "feedbackByLocale": {
               "ru": "«Тихая». Про известность это ничего не говорит.",
               "uk": "«Тиха». Про відомість це нічого не говорить."
@@ -791,7 +876,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — парень за соседним столом весь день молчит",
+      "prompt": "Вставьте слово — Антон весь вечер молчит за столом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-20:i15:r1",
@@ -808,14 +893,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — парень за соседним столом весь день молчит",
+      "accessibilityLabel": "Вставьте слово — Антон весь вечер молчит за столом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — парень за соседним столом весь день молчит",
-          "uk": "Вставте слово — хлопець за сусіднім столом весь день мовчить"
+          "ru": "Вставьте слово — Антон весь вечер молчит за столом",
+          "uk": "Антон увесь день мовчить за столом. Вставте слово."
         },
-        "gappedTargetPhrase": "He is ___ .",
+        "gappedTargetPhrase": "He is ___.",
         "gapOptions": [
           {
             "responseId": "en:lesson-01:session-20:i15:r1",
@@ -830,27 +915,38 @@
             "text": "rich"
           }
         ],
-        "testedDimension": "Вставьте слово — парень за соседним стол",
+        "testedDimension": "quiet по ясному наблюдаемому факту",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Антон весь вечер молчит за столом",
+            "feedbackByLocale": {
+              "ru": "Антон весь вечер молчит за столом, поэтому он `quiet`.",
+              "uk": "Антон увесь вечір мовчить за столом, тому він `quiet`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-20:i15:r2",
             "correct": false,
-            "testedDimension": "Вставьте слово — парень за соседним стол",
+            "testedDimension": "quiet по ясному наблюдаемому факту",
             "feedbackByLocale": {
-              "ru": "«Смешной» — но нам сказали только, что он молчит. Про шутки речи не было.",
-              "uk": "«Смішний» — але нам сказали тільки, що він мовчить. Про жарти мови не було."
+              "ru": "«Смешной» — но нам сказали только, что Антон молчит. Про шутки речи не было.",
+              "uk": "«Смішний» — але нам сказали лише, що Антон мовчить. Про жарти не йшлося."
             }
           },
           {
             "responseId": "en:lesson-01:session-20:i15:r3",
             "correct": false,
-            "testedDimension": "Вставьте слово — парень за соседним стол",
+            "testedDimension": "quiet по ясному наблюдаемому факту",
             "feedbackByLocale": {
-              "ru": "«Богатый». По молчанию про деньги ничего не понять.",
-              "uk": "«Багатий». З мовчання про гроші нічого не зрозуміти."
+              "ru": "«Богатый». Из молчания нельзя понять ничего о деньгах.",
+              "uk": "«Багатий». З мовчання не можна дізнатися нічого про гроші."
             }
           }
-        ]
+        ],
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -883,7 +979,17 @@
         "authoredDistractorTokens": [
           "young"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «она добрая»",
+            "feedbackByLocale": {
+              "ru": "`young` лишнее: в записи и фразе сказано `She is kind.`",
+              "uk": "`young` зайве: у записі й фразі сказано `She is kind`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -893,17 +999,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — он весь вечер всех смешит",
+      "prompt": "Соберите фразу — Антон весь вечер всех смешит",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — он весь вечер всех смешит",
+      "accessibilityLabel": "Соберите фразу — Антон весь вечер всех смешит",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "He is funny.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — он весь вечер всех смешит",
-          "uk": "Складіть фразу — він цілий вечір усіх смішить"
+          "ru": "Соберите фразу — Антон весь вечер всех смешит",
+          "uk": "Складіть фразу — Антон цілий вечір усіх смішить"
         },
         "orderedTokens": [
           "He",
@@ -913,7 +1019,17 @@
         "authoredDistractorTokens": [
           "young"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-20:i17:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Антон весь вечер всех с",
+            "feedbackByLocale": {
+              "ru": "`young` лишнее: Антон смешит всех, поэтому `He is funny.`",
+              "uk": "`young` зайве: Антон смішить усіх, тому `He is funny`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     }
@@ -924,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d1ad06bd474e5955d47b3a6f1780607a469c04a08b596c1b0e68c06d411b3b22"
+  "learnerFingerprint": "b3af10c8ea58b5add60400089f40a90bb0276bed6a070bdac3183a1d85cb56af"
 }

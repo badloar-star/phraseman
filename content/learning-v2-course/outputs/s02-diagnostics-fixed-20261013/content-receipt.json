@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "learning_v2_session_candidate_content_receipt_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "releaseAuthority": false,
+  "candidateRoot": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013",
+  "immutableContentOnly": true,
+  "candidateBundleSha256": "4fe3e22277235529e89c6171a1a51c6b92faddbe94acc8a0973ebc69f56e9497",
+  "fileCount": 19,
+  "inventorySha256": "5f9e237a554c3431855310a7ce74970f4d3738a03c45afcaf66aad153469243d",
+  "projection": {
+    "fileCount": 5,
+    "introPages": 3,
+    "practiceInteractions": 21
+  },
+  "preview": {
+    "generated": false,
+    "fileCount": 0
+  },
+  "sourceSnapshot": {
+    "indexPath": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/index.json",
+    "indexSha256": "6f07fd2a3660a23a57b495fc7bfc18762073781d2f33001ac22b1a1c5941ac94",
+    "originCount": 13
+  },
+  "frozenPredecessor": {
+    "status": "PASS",
+    "receiptPath": "content/learning-v2-course/outputs/s01-i13-scene-fixed-20261013/content-receipt.json",
+    "receiptSha256": "35583adc2953cac73c146e45ae6d2eccbe3f02a7a6ae7a64c52ae73499a216f1",
+    "inventorySha256": "278bcdb7da8d8fdb91abf175bd76c97940be6c085c24d9dbe74644ce80fb6755"
+  },
+  "files": [
+    {
+      "category": "candidate",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/en/l01/s02/answers.json",
+      "bytes": 3043,
+      "sha256": "285ea49442baee22ac8fa9340ff1ad19451be99d27bc93e3c27770277466bad8"
+    },
+    {
+      "category": "candidate",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/en/l01/s02/auxiliary.json",
+      "bytes": 88483,
+      "sha256": "79a751b1b41c934a4253d6c400fbb819f7779382c5474280d6f06013973647b1"
+    },
+    {
+      "category": "candidate",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/en/l01/s02/intro.json",
+      "bytes": 8914,
+      "sha256": "55472d899bca98eee443fdaba082c4e9d0af2dee486856dea2a0775b9f9166d1"
+    },
+    {
+      "category": "candidate",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/en/l01/s02/learner.json",
+      "bytes": 198996,
+      "sha256": "45843388940d18fe322c2503712bf9351ff684ea7caaa95f2611bc0f6f9c2cea"
+    },
+    {
+      "category": "candidate",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/en/l01/s02/learner.uk.json",
+      "bytes": 198842,
+      "sha256": "7727d01cbe6336cb138216ef92e6e74bffcd2014ccd7800fd389d87b081a3a32"
+    },
+    {
+      "category": "evidence",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md",
+      "bytes": 61933,
+      "sha256": "3fb075a8ff5fcf5e6847c87a44241bfc01a1951399ba6fdd41c19a52930ac499"
+    },
+    {
+      "category": "evidence",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/judgements/2026-10-13_l01_s02_source_evidence.md",
+      "bytes": 5455,
+      "sha256": "bc060ec909e72d07bc98eaffd077ef54d7618d68c8425be790fe718f154a24f1"
+    },
+    {
+      "category": "evidence",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/migration/single-phrase-2026-10-03/preservation-ledger.json",
+      "bytes": 1566978,
+      "sha256": "a4682c16403e0aa2a915ccfbe2935e428b01d96f4539bb382b556b932e75c60c"
+    },
+    {
+      "category": "contract",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/pipeline/build_release.mjs",
+      "bytes": 112538,
+      "sha256": "56549bb5ca8c18e83c1d4ffa3141a51b0611206c299a3a653f1bb00e2e7a9432"
+    },
+    {
+      "category": "contract",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/pipeline/build_session_candidate_receipt.mjs",
+      "bytes": 15347,
+      "sha256": "e55d1685d4815792f63ddd448afd9ab16b29d69168b3e05c2b06aae7723278bd"
+    },
+    {
+      "category": "contract",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/pipeline/build_session_candidate_receipt.test.mjs",
+      "bytes": 7084,
+      "sha256": "49b94dea61924d125beff1a1953555e2ed0b958a70d4b0f32c46435df124553c"
+    },
+    {
+      "category": "contract",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/pipeline/l01s02_feedback_repair.test.mjs",
+      "bytes": 13393,
+      "sha256": "878135fbe8b86431994c350154315ddd494dbee48787e3483f159de3e7511d2c"
+    },
+    {
+      "category": "contract",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/pipeline/practice_explanations_v1.mjs",
+      "bytes": 24585,
+      "sha256": "d6405883641a96430bb057cc01e9f1b782f7520ff80ea42c4e33fb0da3e7367a"
+    },
+    {
+      "category": "source",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/sessions/en/l01/s02/final.ru.md",
+      "bytes": 12783,
+      "sha256": "a03f4db070b70bebc09c7f2aa31e466e30d5c565d9633ce6103d237cc9eae831"
+    },
+    {
+      "category": "source",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/sessions/en/l01/s02/final.uk.md",
+      "bytes": 13043,
+      "sha256": "8427f77077fe9b68803c2bc9cf828a25bdd3f62d792449c5fb0e63002370a3eb"
+    },
+    {
+      "category": "source",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/sessions/en/l01/s02/locales_batch.md",
+      "bytes": 13060,
+      "sha256": "965a5f2668ee976cf6a513c741ea450b3c30067f66a34c7d38adb1b23a16885f"
+    },
+    {
+      "category": "source",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/sessions/en/l01/s02/practice.atomic.json",
+      "bytes": 103103,
+      "sha256": "2ad17acbb23a5642a749ecaba2cbedbb6469855d3ed00306d4578b3d2fa2cfbe"
+    },
+    {
+      "category": "source",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/content/learning-v2-course/sessions/en/l01/s02/practice.explanations.v1.json",
+      "bytes": 293262,
+      "sha256": "654e0ee8894503f2eb16b49e9947c8c30e61e572ecbd85fdd8f2146788611ced"
+    },
+    {
+      "category": "snapshot_index",
+      "path": "content/learning-v2-course/outputs/s02-diagnostics-fixed-20261013/source-snapshot/index.json",
+      "bytes": 5544,
+      "sha256": "6f07fd2a3660a23a57b495fc7bfc18762073781d2f33001ac22b1a1c5941ac94"
+    }
+  ]
+}

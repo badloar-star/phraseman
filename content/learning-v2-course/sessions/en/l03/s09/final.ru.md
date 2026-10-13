@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i02; family: listen_choose -->
 Цель: `armchair`
 Варианты: `armchair` · `archer` · `armband`
+- archer — *В `armchair` прямо перед «ч» слышно «м». В `archer` перед «ч» этого звука нет. Прислушайтесь к середине слова.*
+- armband — *Начальная часть у слов общая. Дальше в `armband` звучит «б», а в `armchair` — «ч». Слушайте сразу после «м».*
+
 
 **3 · Карточка слова — oven**
 <!-- interaction_id: en:lesson-03:session-09:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i04; family: listen_choose -->
 Цель: `oven`
 Варианты: `oven` · `even` · `coven`
+- even — *В `even` первая гласная долгая, рот почти закрыт. В `oven` она короткая и более открытая: различаются и звук, и длина.*
+- coven — *В `coven` сначала слышно «к», а затем гласный. В записи слово начинается прямо с гласного: `oven`.*
+
 
 **5 · Карточка слова — umbrella**
 <!-- interaction_id: en:lesson-03:session-09:i05; family: listen_choose -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-03:session-09:i06; family: listen_choose -->
 Цель: `umbrella`
 Варианты: `umbrella` · `umbra` · `embrace`
+- umbra — *В `umbra` два слога, ударение на первом. В `umbrella` три слога, сильнее звучит средний. Не останавливайтесь на похожем начале.*
+- embrace — *В `embrace` два слога, ударение на последнем. В `umbrella` три слога: после ударного среднего слышен ещё один.*
+
 
 **7 · Вставьте слово — рядом стоит стул; назовите его полной фразой (`chair` — «стул»)**
 <!-- interaction_id: en:lesson-03:session-09:i07; family: context_gap_grammar -->
 Цель: `It is ___ chair.`
 Варианты: `a` · `an` · `is`
+- an — *`chair` начинается со звука «ч», он согласный. Для этого названия нужно `a chair`.*
+- is — *`is` уже стоит после `It`. Перед названием одного стула здесь нужно `a`.*
+
 
 **8 · Соберите полную фразу — друг показывает на кресло; скажите «Это кресло»**
 <!-- interaction_id: en:lesson-03:session-09:i08; family: phrase_builder -->
@@ -93,6 +105,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i09; family: context_gap_grammar -->
 Цель: `It ___ a lamp.`
 Варианты: `is` · `an` · `am`
+- an — *Перед `lamp` уже есть `a`. Сейчас не хватает слова после `It`: полное начало — `It is`.*
+- am — *`am` подходит к `I`. Здесь говорим о предмете, поэтому начало — `It is`.*
+
 
 **10 · Соедините названия с русскими значениями — товары в магазине**
 <!-- interaction_id: en:lesson-03:session-09:i10; family: speed_match -->
@@ -117,6 +132,9 @@
 <!-- interaction_id: en:lesson-03:session-09:i14; family: listen_choose -->
 Цель: `Is it an oven?`
 Варианты: `Is it an oven?` · `It is an oven.` · `Is it an umbrella?`
+- It is an oven. — *Этот вариант начинается с `It is`. В записи порядок другой: сначала `Is`, затем `it` — звучит вопрос.*
+- Is it an umbrella? — *Начало вопроса совпадает. Но в конце записи звучит двухсложное `oven`, а не трёхсложное `umbrella`.*
+
 
 **15 · Соберите отрицание — друг указывает на маленький холодильник; поправьте его: «Это не духовка»**
 <!-- interaction_id: en:lesson-03:session-09:i15; family: phrase_builder -->

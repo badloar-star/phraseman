@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c02-tschuess-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ALLOCATION_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3",
+    "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+    "checkpointPacketId": "de_l01_c02_s16",
+    "planCanonicalBodySha256": "ed66798b8c329e82e75177f883db1159e6d0e21eb805b0ca09af25a8db208f9b"
+  },
+  "allocationScope": {
+    "sessionId": "de_l01_s02",
+    "chapterId": "de_l01_c02",
+    "targetSourcePlanIds": ["de_lex_plan_l01_c02_tschuess_v1"],
+    "contacts": [{"role": "CHECKPOINT_PLANNED_USE", "packetId": "de_l01_c02_s16"}]
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "072ae39ffa27ca489d4152bac243dd2ee50de90765d3089dd8f87b7d48d6d0fe",
+      "bytes": 2206
+    },
+    "dwds": {
+      "requestedUrl": "https://www.dwds.de/wb/tsch%C3%BCss",
+      "canonicalUrl": "https://www.dwds.de/wb/Tsch%C3%BCss",
+      "headword": "Tschüss",
+      "sourcePartOfSpeech": "Interjektion",
+      "leaveTakingAnchor": "d-1-1"
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "sourceHeadword": "Tschüss",
+      "sourcePartOfSpeech": "Interjektion",
+      "informalLeaveTaking": "DWDS_MARKED_UMGANGSSPRACHLICH_WITH_LEBE_WOHL_AUF_WIEDERSEHEN"
+    },
+    "unsupportedClaims": {
+      "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCES",
+      "officialPedagogicalOccurrence": "NOT_EXTRACTED_NO_TEXT_LOCATOR_IN_THIS_PACKET"
+    }
+  },
+  "allocations": [{
+    "sourcePlanId": "de_lex_plan_l01_c02_tschuess_v1",
+    "checkpointPacketId": "de_l01_c02_s16",
+    "sessionId": "de_l01_s02",
+    "chapterId": "de_l01_c02",
+    "supportedFields": ["lemmaOrExpression", "sourcePartOfSpeech", "informalLeaveTaking"],
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING"
+  }]
+}

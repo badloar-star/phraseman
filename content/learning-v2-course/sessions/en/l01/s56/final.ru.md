@@ -79,6 +79,7 @@ Everyone is ___ . → **kind** · tired · alone
 **4 · Соберите фразу — «неделя тяжёлая», про неделю через `it`**
 <!-- interaction_id: en:lesson-01:session-56:i04; family: phrase_builder -->
 Плитки: `hard` `is` `It` `are` → **It is hard.**
+*Плитка `are` лишняя: `it` говорит об одной неделе, поэтому нужна форма `is`: `It is hard.`*
 
 **5 · Выберите форму — про всех коллег сразу**
 <!-- interaction_id: en:lesson-01:session-56:i05; family: context_gap_grammar -->
@@ -89,6 +90,7 @@ Everyone ___ kind. → **is** · are · am
 **6 · Послушайте и соберите — «я устал»**
 <!-- interaction_id: en:lesson-01:session-56:i06; family: listen_build_dictation -->
 🔊 *I am tired.* Плитки: `tired` `am` `I` `is` → **I am tired.**
+*Плитка `is` лишняя: после `I` нужна форма `am`: `I am tired.`*
 
 **7 · Вставьте слово — брат спрашивает про квартиру, там тепло**
 <!-- interaction_id: en:lesson-01:session-56:i07; family: context_gap_grammar -->
@@ -103,6 +105,7 @@ week — неделя · tired — устал · kind — добрый · warm �
 **9 · Соберите фразу — рядом с вами друзья; скажите, что вы не один**
 <!-- interaction_id: en:lesson-01:session-56:i09; family: phrase_builder -->
 Плитки: `alone` `not` `I` `am` `no` → **I am not alone.**
+*Плитка `no` лишняя: отрицание в этой фразе строится словом `not` после `am`: `I am not alone.`*
 
 **10 · Вставьте слово — брат спрашивает, не скучно ли вам в пустой квартире**
 <!-- interaction_id: en:lesson-01:session-56:i10; family: context_gap_grammar -->
@@ -119,10 +122,12 @@ I am not ___ . → **alone** · warm · kind
 **12 · Послушайте и соберите — «квартира тёплая»**
 <!-- interaction_id: en:lesson-01:session-56:i12; family: listen_build_dictation -->
 🔊 *The flat is warm.* Плитки: `warm` `flat` `is` `The` `are` → **The flat is warm.**
+*Плитка `are` лишняя: `flat` — одна квартира, поэтому нужна форма `is`: `The flat is warm.`*
 
 **13 · Соберите фразу — «неделя не тяжёлая»**
 <!-- interaction_id: en:lesson-01:session-56:i13; family: phrase_builder -->
 Плитки: `hard` `not` `is` `It` `no` → **It is not hard.**
+*Плитка `no` лишняя: отрицание здесь строится словом `not` после `is`: `It is not hard.`*
 
 **14 · Выберите форму — про неделю, которая была лёгкой**
 <!-- interaction_id: en:lesson-01:session-56:i14; family: context_gap_grammar -->
@@ -133,6 +138,7 @@ It ___ not hard. → **is** · are · am
 **15 · Соберите фразу — брат: «Ты там устал?» Ответьте, что нет**
 <!-- interaction_id: en:lesson-01:session-56:i15; family: phrase_builder -->
 Плитки: `tired` `am` `I` `not` `no` → **I am not tired.**
+*Плитка `no` лишняя: после `I am` для отрицания нужно `not`: `I am not tired.`*
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-56:i16:s01; family: scripted_repeat_compare -->
@@ -167,6 +173,7 @@ I ___ not alone. → **am** · is · are
 **21 · Соберите фразу — вы говорите о доброжелательных людях вокруг**
 <!-- interaction_id: en:lesson-01:session-56:i17:s04; family: phrase_builder -->
 Плитки: `Everyone` `is` `kind.` `are` → **Everyone is kind.**
+*Плитка `are` лишняя: `everyone` говорит о людях по одному, поэтому нужна форма `is`: `Everyone is kind.`*
 
 ---
 

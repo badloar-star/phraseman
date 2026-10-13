@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->
 Ціль: `towel`
 Варіанти: `towel` · `vowel` · `trowel`
+- vowel — *`vowel` — «голосний звук». На початку чути «в»: нижня губа торкається верхніх зубів. У `towel` початок «т»: працює кінчик язика.*
+- trowel — *`trowel` — «кельма». Після початкового «т» у ньому чути англійський звук без дотику язика до горбиків за верхніми зубами. У `towel` після «т» одразу починається голосний.*
+
 
 **3 · Картка слова — curtain**
 <!-- interaction_id: en:lesson-03:session-21:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i04; family: listen_choose -->
 Ціль: `curtain`
 Варіанти: `curtain` · `certain` · `carton`
+- certain — *`certain` — «упевнений». Спочатку чути «с», повітря йде біля передніх зубів. У `curtain` — «к», звук утворюється глибше в роті.*
+- carton — *`carton` — «картонна коробка». У наголошеній частині рот відкритий ширше, чути «а». У `curtain` рот прикритіший, а язик ближче до середини рота.*
+
 
 **5 · Зберіть фразу — кур’єр записує вміст маленького пакета; ви дістали один рушник, скажіть «Це рушник»**
 <!-- interaction_id: en:lesson-03:session-21:i05; family: phrase_builder -->
@@ -79,6 +85,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i06; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `curtains` · `a curtain` · `a curtains`
+- a curtain — *`a curtain` — одна штора. Ви називаєте дві: `They are curtains`.*
+- a curtains — *Назва кількох уже `curtains`. Перед нею у цій фразі `a` зайве.*
+
 
 **7 · Картка слова — pillow**
 <!-- interaction_id: en:lesson-03:session-21:i07; family: listen_choose -->
@@ -88,6 +97,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i08; family: listen_choose -->
 Ціль: `pillow`
 Варіанти: `pillow` · `willow` · `yellow`
+- willow — *`willow` — «верба». На початку губи округлюються й переходять до голосного. У `pillow` губи спершу змикаються, а потім розкриваються для «п».*
+- yellow — *`yellow` — «жовтий». Початок схожий на «йе». У `pillow` спочатку чути «п», а потім короткий голосний із прикритішим ротом.*
+
 
 **9 · Зберіть фразу — кур’єр уточнює, що ви дістали з великого пакета; назвіть кілька подушок «Це подушки»**
 <!-- interaction_id: en:lesson-03:session-21:i09; family: phrase_builder -->
@@ -98,11 +110,17 @@
 <!-- interaction_id: en:lesson-03:session-21:i10; family: context_gap_grammar -->
 Ціль: `It is ___.`
 Варіанти: `a glass` · `glass` · `a glasses`
+- glass — *У коробці одна склянка. Називаючи її в цій фразі, ставимо `a` перед `glass`.*
+- a glasses — *`glasses` — кілька склянок. Тут одна, тому потрібне `a glass`.*
+
 
 **11 · Кур’єр дістає з окремого паковання одну штору й називає товар для накладної. Послухайте та виберіть почуту назву.**
 <!-- interaction_id: en:lesson-03:session-21:i11; family: listen_choose -->
 Ціль: `a curtain`
 Варіанти: `a curtain` · `curtain` · `a curtains`
+- curtain — *`curtain` називає предмет, але в цьому усному записі про один злічуваний предмет потрібен артикль: `a curtain`.*
+- a curtains — *`curtains` означає кілька штор, тому з ним не можна ставити `a`. Кур’єр називає одну: `a curtain`.*
+
 
 **12 · Послухайте й зберіть — що сказав кур’єр**
 <!-- interaction_id: en:lesson-03:session-21:i12; family: listen_build_dictation -->
@@ -113,6 +131,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i13; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `pillows` · `a pillows` · `a pillow`
+- a pillows — *Для кількох тут потрібне `pillows`. Слово `a` перед ним зайве.*
+- a pillow — *`a pillow` називає одну подушку. Ви називаєте дві: `They are pillows`.*
+
 
 **14 · З’єднайте назви з українськими значеннями — слова для накладної**
 <!-- interaction_id: en:lesson-03:session-21:i14; family: speed_match -->
@@ -123,6 +144,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i15; family: context_gap_grammar -->
 Ціль: `They are ___.`
 Варіанти: `glasses` · `a glasses` · `a glass`
+- a glasses — *Ви називаєте кілька склянок. Тут потрібне `glasses`, без `a`.*
+- a glass — *`a glass` називає одну склянку. У коробці кілька: `They are glasses`.*
+
 
 **16 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-21:i16; family: scripted_repeat_compare -->

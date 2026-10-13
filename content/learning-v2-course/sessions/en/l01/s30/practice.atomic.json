@@ -117,6 +117,15 @@
                 "ru": "Один слог. `busy` — два: «би-зи».",
                 "uk": "Один склад. `busy` — два: «бі-зі»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "`busy` — «занято, людно»: слышно два слога, «би-зи». Не `bus` и не `bee`.",
+                "uk": "`busy` — «зайнято, людно»: чути два склади, «бі-зі». Не `bus` і не `bee`."
+              }
             }
           ],
           "isWordCard": false,
@@ -236,6 +245,15 @@
                 "ru": "Начало то же, дальше расходятся. `quiet` — два слога.",
                 "uk": "Початок той самий, далі розходяться. `quiet` — два склади."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i04:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "`quiet` — «тихо». В слове два слога: «ку-айет»; это не `white` и не `queen`.",
+                "uk": "`quiet` — «тихо». У слові два склади: «ку-айет»; це не `white` і не `queen`."
+              }
             }
           ],
           "isWordCard": false,
@@ -288,7 +306,7 @@
               "text": "small"
             }
           ],
-          "testedDimension": "Вставьте слово — в кафе очередь до двери",
+          "testedDimension": "Вставьте слово — в кафе очередь до двери и гул голосов",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-30:i05:r2",
@@ -306,6 +324,15 @@
               "feedbackByLocale": {
                 "ru": "«Маленькое» — про размер, а вы говорите про толпу.",
                 "uk": "«Маленька» — про розмір, а ви кажете про натовп."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — в кафе очередь до двери и гул голосов",
+              "feedbackByLocale": {
+                "ru": "Очередь и гул означают `busy` — «людно». Полная фраза: `It is busy.`",
+                "uk": "Черга й гомін означають `busy` — «людно». Повна фраза: `It is busy`."
               }
             }
           ]
@@ -338,7 +365,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «тут тихо»",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: после `It` ставят `is` — `It is quiet.`",
+                "uk": "`are` зайве: після `It` ставлять `is` — `It is quiet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -453,6 +490,15 @@
               "feedbackByLocale": {
                 "ru": "Без «-д» на конце. `loud` заканчивается на «д».",
                 "uk": "Без «-д» на кінці. `loud` закінчується на «д»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "`loud` — «громко»: в конце слышно «-ауд». Это не `lot` и не `low`.",
+                "uk": "`loud` — «гучно»: наприкінці чути «-ауд». Це не `lot` і не `low`."
               }
             }
           ],
@@ -572,6 +618,15 @@
               "feedbackByLocale": {
                 "ru": "«Дерево». Первый звук «т», а нужен «ф».",
                 "uk": "«Дерево». Перший звук «т», а потрібен «ф»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i10:r1",
+              "correct": true,
+              "testedDimension": "Послушайте и выберите",
+              "feedbackByLocale": {
+                "ru": "`free` — «свободно». Начало — звук «ф», поэтому это не `three` и не `tree`.",
+                "uk": "`free` — «вільно». Початок — звук «ф», тому це не `three` і не `tree`."
               }
             }
           ],
@@ -698,7 +753,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставьте слово — в кафе никого, играет о",
+          "testedDimension": "Вставьте слово — в кафе никого, играет одна тихая песня",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-30:i12:r2",
@@ -716,6 +771,15 @@
               "feedbackByLocale": {
                 "ru": "«Тепло» — про печку, а вы говорите про тишину.",
                 "uk": "«Тепло» — про грубку, а ви кажете про тишу."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — в кафе никого, играет одна тихая песня",
+              "feedbackByLocale": {
+                "ru": "Пустой зал и тихая песня означают `quiet` — «тихо». Полная фраза: `It is quiet.`",
+                "uk": "Порожня зала й тиха пісня означають `quiet` — «тихо». Повна фраза: `It is quiet`."
               }
             }
           ]
@@ -748,7 +812,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — за столиком никого, он свободен",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: про один столик говорят `It is free.`",
+                "uk": "`are` зайве: про один столик кажуть `It is free`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -816,6 +890,15 @@
                 "ru": "«Свободно» — про столик, а вы говорите про само кафе.",
                 "uk": "«Вільно» — про столик, а ви кажете про саму кав'ярню."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставьте слово — кафе работает, дверь открыта и горит вывеска",
+              "feedbackByLocale": {
+                "ru": "Кафе работает, дверь открыта: `open` — «открыто». Полная фраза: `It is open.`",
+                "uk": "Кав'ярня працює, двері відчинені: `open` — «відчинено». Повна фраза: `It is open`."
+              }
             }
           ]
         },
@@ -843,7 +926,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — в кафе всего четыре стола, и они стоят вплотную",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: про одно кафе говорят `It is small.`",
+                "uk": "`are` зайве: про одну кав'ярню кажуть `It is small`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -876,7 +969,17 @@
           "authoredDistractorTokens": [
             "open"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «уже закрыто»",
+              "feedbackByLocale": {
+                "ru": "`open` лишнее: в записи сказано `It is closed.` — «уже закрыто».",
+                "uk": "`open` зайве: у записі сказано `It is closed` — «уже зачинено»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1060,6 +1163,15 @@
                 "ru": "Один слог. `busy` — два: «би-зи».",
                 "uk": "Один склад. `busy` — два: «бі-зі»."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i02:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "`busy` — «занято, людно»: слышно два слога, «би-зи». Не `bus` и не `bee`.",
+                "uk": "`busy` — «зайнято, людно»: чути два склади, «бі-зі». Не `bus` і не `bee`."
+              }
             }
           ],
           "isWordCard": false,
@@ -1179,6 +1291,15 @@
                 "ru": "Начало то же, дальше расходятся. `quiet` — два слога.",
                 "uk": "Початок той самий, далі розходяться. `quiet` — два склади."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i04:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "`quiet` — «тихо». В слове два слога: «ку-айет»; это не `white` и не `queen`.",
+                "uk": "`quiet` — «тихо». У слові два склади: «ку-айет»; це не `white` і не `queen`."
+              }
             }
           ],
           "isWordCard": false,
@@ -1250,6 +1371,15 @@
                 "ru": "«Маленькое» — про размер, а вы говорите про толпу.",
                 "uk": "«Маленька» — про розмір, а ви кажете про натовп."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i05:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — у кав'ярні черга до дверей і гомін голосів",
+              "feedbackByLocale": {
+                "ru": "Очередь и гул означают `busy` — «людно». Полная фраза: `It is busy.`",
+                "uk": "Черга й гомін означають `busy` — «людно». Повна фраза: `It is busy`."
+              }
             }
           ]
         },
@@ -1281,7 +1411,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — «тут тихо»",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: после `It` ставят `is` — `It is quiet.`",
+                "uk": "`are` зайве: після `It` ставлять `is` — `It is quiet`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1396,6 +1536,15 @@
               "feedbackByLocale": {
                 "ru": "Без «-д» на конце. `loud` заканчивается на «д».",
                 "uk": "Без «-д» на кінці. `loud` закінчується на «д»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i08:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "`loud` — «громко»: в конце слышно «-ауд». Это не `lot` и не `low`.",
+                "uk": "`loud` — «гучно»: наприкінці чути «-ауд». Це не `lot` і не `low`."
               }
             }
           ],
@@ -1515,6 +1664,15 @@
               "feedbackByLocale": {
                 "ru": "«Дерево». Первый звук «т», а нужен «ф».",
                 "uk": "«Дерево». Перший звук «т», а потрібен «ф»."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i10:r1",
+              "correct": true,
+              "testedDimension": "Послухайте і виберіть",
+              "feedbackByLocale": {
+                "ru": "`free` — «свободно». Начало — звук «ф», поэтому это не `three` и не `tree`.",
+                "uk": "`free` — «вільно». Початок — звук «ф», тому це не `three` і не `tree`."
               }
             }
           ],
@@ -1641,7 +1799,7 @@
               "text": "warm"
             }
           ],
-          "testedDimension": "Вставте слово — у кав'ярні нікого, грає ",
+          "testedDimension": "Вставте слово — у кав'ярні нікого, грає одна тиха пісня",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-30:i12:r2",
@@ -1659,6 +1817,15 @@
               "feedbackByLocale": {
                 "ru": "«Тепло» — про печку, а вы говорите про тишину.",
                 "uk": "«Тепло» — про грубку, а ви кажете про тишу."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i12:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — у кав'ярні нікого, грає одна тиха пісня",
+              "feedbackByLocale": {
+                "ru": "Пустой зал и тихая песня означают `quiet` — «тихо». Полная фраза: `It is quiet.`",
+                "uk": "Порожня зала й тиха пісня означають `quiet` — «тихо». Повна фраза: `It is quiet`."
               }
             }
           ]
@@ -1691,7 +1858,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — за столиком никого, он свободен",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: про один столик говорят `It is free.`",
+                "uk": "`are` зайве: про один столик кажуть `It is free`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1759,6 +1936,15 @@
                 "ru": "«Свободно» — про столик, а вы говорите про само кафе.",
                 "uk": "«Вільно» — про столик, а ви кажете про саму кав'ярню."
               }
+            },
+            {
+              "responseId": "en:lesson-01:session-30:i14:r1",
+              "correct": true,
+              "testedDimension": "Вставте слово — кав'ярня працює, двері відчинені й горить вивіска",
+              "feedbackByLocale": {
+                "ru": "Кафе работает, дверь открыта: `open` — «открыто». Полная фраза: `It is open.`",
+                "uk": "Кав'ярня працює, двері відчинені: `open` — «відчинено». Повна фраза: `It is open`."
+              }
             }
           ]
         },
@@ -1786,7 +1972,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — в кафе всего четыре стола, и они стоят вплотную",
+              "feedbackByLocale": {
+                "ru": "`are` лишнее: про одно кафе говорят `It is small.`",
+                "uk": "`are` зайве: про одну кав'ярню кажуть `It is small`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1819,7 +2015,17 @@
           "authoredDistractorTokens": [
             "open"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-30:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «уже закрыто»",
+              "feedbackByLocale": {
+                "ru": "`open` лишнее: в записи сказано `It is closed.` — «уже закрыто».",
+                "uk": "`open` зайве: у записі сказано `It is closed` — «уже зачинено»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

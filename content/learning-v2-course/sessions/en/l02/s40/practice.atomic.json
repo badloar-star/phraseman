@@ -328,7 +328,7 @@
               "text": "guest"
             }
           ],
-          "testedDimension": "Вставьте слово — вы объясняете другу, чт",
+          "testedDimension": "Вставьте слово — вы объясняете другу, что Мира руководит командой Антона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i06:r2",
@@ -502,7 +502,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — рядом остановились ещё ",
+          "testedDimension": "Вставьте слово — рядом остановились ещё двое гостей; спросите друга: «Кто эти люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i09:r2",
@@ -672,7 +672,7 @@
               "text": "Whose"
             }
           ],
-          "testedDimension": "Вставьте слово — руководительница отошла",
+          "testedDimension": "Вставьте слово — руководительница отошла, а вы хотите с ней поговорить; спросите, где она",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i12:r2",
@@ -1177,7 +1177,7 @@
               "text": "guest"
             }
           ],
-          "testedDimension": "Вставте слово — ви пояснюєте другові, що",
+          "testedDimension": "Вставте слово — ви пояснюєте другові, що Міра керує командою Антона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i06:r2",
@@ -1351,7 +1351,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — поруч зупинилися ще двоє",
+          "testedDimension": "Вставте слово — поруч зупинилися ще двоє гостей; запитайте друга: «Хто ці люди?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i09:r2",
@@ -1521,7 +1521,7 @@
               "text": "Whose"
             }
           ],
-          "testedDimension": "Вставте слово — керівниця відійшла, а ви",
+          "testedDimension": "Вставте слово — керівниця відійшла, а ви хочете з нею поговорити; запитайте, де вона",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-40:i12:r2",

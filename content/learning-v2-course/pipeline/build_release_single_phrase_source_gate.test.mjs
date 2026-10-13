@@ -11,6 +11,13 @@ function addExplicitNoneDeclaration(file) {
   fs.writeFileSync(file, source.replace(/^# Test\r?\n/u, "# Test\n\n**Новые слова:** —\n"));
 }
 
+function copyFixtureVisibleTextModule(root, here) {
+  const source = path.resolve(here, "../../../modules/learning-v2/content/learner_visible_text_v1.js");
+  const target = path.join(root, "modules/learning-v2/content/learner_visible_text_v1.js");
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  fs.copyFileSync(source, target);
+}
+
 test("every target-language master, including historical sessions, fails before preview when one interaction contains multiple phrases", (t) => {
   const parent = fs.realpathSync(os.tmpdir());
   const root = fs.mkdtempSync(path.join(parent, "learning-single-phrase-source-"));
@@ -19,15 +26,17 @@ test("every target-language master, including historical sessions, fails before 
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "single_phrase_release.mjs",
     "session_header.mjs",
     "session_readiness.mjs",
     "owner_quality.mjs",
-    "progression_quality_gate.mjs",
+    "progression_quality_gate.mjs", "audit_actor_clarity.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  copyFixtureVisibleTextModule(root, here);
 
-  const directory = path.join(root, "sessions/en/l01/s01");
+  const directory = path.join(root, "sessions/en/l03/s51");
   fs.mkdirSync(directory, { recursive: true });
   const intro = [1, 2, 3].map((ordinal) => `## Интро ${ordinal}\n\n### Пример\n\nПояснение.\n\n**Выберите.**\n\n- ✅ **is**\n- ❌ are — *Другая форма.*\n- ❌ am — *Про себя.*\n\n---`).join("\n\n");
   fs.writeFileSync(path.join(directory, "final.ru.md"), `# Test\n\n${intro}\n\n## Практика\n\n**1 · Соберите фразу**\nПлитки: \`far\` \`Excuse me\` \`it\` \`Is\` → **Excuse me. Is it far?**\n\n**2 · Соберите фразу**\nПлитки: \`This\` \`is\` \`fine\` → **This is fine.**\n\n**3 · Соберите фразу**\nПлитки: \`She\` \`is\` \`ready\` → **She is ready.**\n\n**4 · Соберите фразу**\nПлитки: \`We\` \`are\` \`here\` → **We are here.**\n\nmodes: 1=phrase_builder, 2=phrase_builder, 3=phrase_builder, 4=phrase_builder\n`);
@@ -36,40 +45,40 @@ test("every target-language master, including historical sessions, fails before 
   const out = path.join(root, "preview");
   const result = spawnSync(process.execPath, [
     path.join(root, "pipeline/build_release.mjs"),
-    "--session", "en/l01/s01",
+    "--session", "en/l03/s51",
     "--locales", "ru",
     "--out", out,
   ], { encoding: "utf8" });
   assert.notEqual(result.status, 0, result.stderr || result.stdout);
-  assert.match(`${result.stdout}\n${result.stderr}`, /single_phrase_source_hold:en:lesson-01:session-01:i01:targetPhrase/u);
+  assert.match(`${result.stdout}\n${result.stderr}`, /single_phrase_source_hold:en:lesson-03:session-51:i01:targetPhrase/u);
   assert.equal(fs.existsSync(path.join(out, "en/l03/s51/learner.json")), false);
 
-  const germanDirectory = path.join(root, "sessions/de/l01/s01");
+  const germanDirectory = path.join(root, "sessions/de/l03/s51");
   fs.mkdirSync(germanDirectory, { recursive: true });
   fs.copyFileSync(path.join(directory, "final.ru.md"), path.join(germanDirectory, "final.ru.md"));
   const german = spawnSync(process.execPath, [
     path.join(root, "pipeline/build_release.mjs"),
-    "--session", "de/l01/s01",
+    "--session", "de/l03/s51",
     "--locales", "ru",
     "--out", out,
   ], { encoding: "utf8" });
   assert.notEqual(german.status, 0, german.stderr || german.stdout);
-  assert.match(`${german.stdout}\n${german.stderr}`, /single_phrase_source_hold:de:lesson-01:session-01:i01:targetPhrase/u);
+  assert.match(`${german.stdout}\n${german.stderr}`, /single_phrase_source_hold:de:lesson-03:session-51:i01:targetPhrase/u);
 
   fs.writeFileSync(path.join(directory, "practice.atomic.json"), JSON.stringify({
     schemaVersion: "learning_v2_atomic_practice_source_v1",
-    courseSessionId: "en:lesson-01:session-01",
+    courseSessionId: "en:lesson-03:session-51",
     interactionsByLocale: { ru: [] },
     answers: [],
   }));
   const parity = spawnSync(process.execPath, [
     path.join(root, "pipeline/build_release.mjs"),
-    "--session", "en/l01/s01",
+    "--session", "en/l03/s51",
     "--locales", "ru",
     "--out", out,
   ], { encoding: "utf8" });
   assert.notEqual(parity.status, 0, parity.stderr || parity.stdout);
-  assert.match(`${parity.stdout}\n${parity.stderr}`, /atomic_markdown_parity:en\/l01\/s01:ru:index=0/u);
+  assert.match(`${parity.stdout}\n${parity.stderr}`, /atomic_markdown_parity:en\/l03\/s51:ru:index=0/u);
 });
 
 test("release blocks when Markdown and atomic practice differ only in learner-facing target or choices", (t) => {
@@ -80,13 +89,15 @@ test("release blocks when Markdown and atomic practice differ only in learner-fa
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "single_phrase_release.mjs",
     "session_header.mjs",
     "session_readiness.mjs",
     "owner_quality.mjs",
-    "progression_quality_gate.mjs",
+    "progression_quality_gate.mjs", "audit_actor_clarity.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  copyFixtureVisibleTextModule(root, here);
 
   const directory = path.join(root, "sessions/en/l01/s01");
   fs.mkdirSync(directory, { recursive: true });
@@ -167,13 +178,15 @@ test("release blocks an atomic-only localized meaning that the learner would see
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "single_phrase_release.mjs",
     "session_header.mjs",
     "session_readiness.mjs",
     "owner_quality.mjs",
-    "progression_quality_gate.mjs",
+    "progression_quality_gate.mjs", "audit_actor_clarity.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  copyFixtureVisibleTextModule(root, here);
 
   const directory = path.join(root, "sessions/en/l01/s01");
   fs.mkdirSync(directory, { recursive: true });
@@ -244,13 +257,15 @@ test("release blocks atomic-only speed-match pairs omitted from Markdown", (t) =
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "single_phrase_release.mjs",
     "session_header.mjs",
     "session_readiness.mjs",
     "owner_quality.mjs",
-    "progression_quality_gate.mjs",
+    "progression_quality_gate.mjs", "audit_actor_clarity.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  copyFixtureVisibleTextModule(root, here);
 
   const directory = path.join(root, "sessions/en/l01/s01");
   fs.mkdirSync(directory, { recursive: true });
@@ -317,13 +332,15 @@ test("release blocks a non-word-card listen choice without audio before creating
   fs.mkdirSync(path.join(root, "pipeline"));
   for (const name of [
     "build_release.mjs",
+    "practice_explanations_v1.mjs",
     "single_phrase_release.mjs",
     "session_header.mjs",
     "session_readiness.mjs",
     "owner_quality.mjs",
-    "progression_quality_gate.mjs",
+    "progression_quality_gate.mjs", "audit_actor_clarity.mjs",
     "write_mockup_file.mjs",
   ]) fs.copyFileSync(path.join(here, name), path.join(root, "pipeline", name));
+  copyFixtureVisibleTextModule(root, here);
 
   const session = "en/l04/s04";
   const sourceDir = path.resolve(here, "..", "sessions", ...session.split("/"));

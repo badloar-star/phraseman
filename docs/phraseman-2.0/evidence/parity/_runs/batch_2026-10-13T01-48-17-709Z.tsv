@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-010	2026-10-13T01:48:42.822Z	ok	12466	marker+пусто_1467мс+склейка+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/onboarding-010.png	1467

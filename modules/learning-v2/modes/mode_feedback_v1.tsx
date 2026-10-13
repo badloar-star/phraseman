@@ -1,0 +1,214 @@
+import React from "react";
+import { Text, View } from "react-native";
+import type { LearningV2InterfaceLocale } from "../content/generator_course_contract";
+import type {
+  LearningV2ModeChoiceFeedbackV1,
+  LearningV2ModeNativePayloadV1,
+  LearningV2ModeTextAnalysisV1,
+} from "../contracts/mode_native_payload_v1";
+
+export type LearningV2ModeLearnerFeedbackV1 = Readonly<{
+  tone: "correct" | "wrong";
+  text: string;
+  authored: boolean;
+  responseId: string | null;
+  analysis: LearningV2ModeTextAnalysisV1 | null;
+  diagnostics: Pick<LearningV2ModeChoiceFeedbackV1,
+    "errorType" | "whyTemptingByLocale" | "whyWrongHereByLocale" | "minimalContrastByLocale" | "acceptabilityBoundaryByLocale"
+  > | null;
+}>;
+
+function diagnosticsFromRow(row: LearningV2ModeChoiceFeedbackV1 | undefined) {
+  if (!row || row.correct) return null;
+  return Object.freeze({
+    errorType: row.errorType,
+    whyTemptingByLocale: row.whyTemptingByLocale,
+    whyWrongHereByLocale: row.whyWrongHereByLocale,
+    minimalContrastByLocale: row.minimalContrastByLocale,
+    acceptabilityBoundaryByLocale: row.acceptabilityBoundaryByLocale,
+  });
+}
+
+const CORRECT_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
+  ru: "Верно.",
+  uk: "Правильно.",
+  en: "Correct.",
+  es: "Correcto.",
+  "pt-BR": "Correto.",
+  vi: "Đúng.",
+  id: "Benar.",
+  tr: "Doğru.",
+  pl: "Dobrze.",
+});
+
+const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
+  ru: "Попробуйте ещё раз.",
+  uk: "Спробуйте ще раз.",
+  en: "Try again.",
+  es: "Inténtalo de nuevo.",
+  "pt-BR": "Tente novamente.",
+  vi: "Hãy thử lại.",
+  id: "Coba lagi.",
+  tr: "Tekrar deneyin.",
+  pl: "Spróbuj ponownie.",
+});
+
+function payloadFeedbackRows(
+  payload: LearningV2ModeNativePayloadV1 | null,
+): readonly LearningV2ModeChoiceFeedbackV1[] {
+  if (!payload) return [];
+  if ("choiceFeedback" in payload) return payload.choiceFeedback;
+  if ("slotFeedback" in payload) return payload.slotFeedback;
+  return [];
+}
+
+export function resolveLearningV2ModeFeedbackV1({
+  interfaceLocale,
+  modePayload,
+  outcome,
+  selectedResponseId,
+  orderedResponseIds,
+}: Readonly<{
+  interfaceLocale: LearningV2InterfaceLocale;
+  modePayload: LearningV2ModeNativePayloadV1 | null;
+  outcome: "correct" | "wrong";
+  selectedResponseId: string | null;
+  orderedResponseIds: readonly string[];
+}>): LearningV2ModeLearnerFeedbackV1 {
+  if (modePayload?.family === "scripted_repeat_compare" && modePayload.explanationV1?.phrase) {
+    const analysis = modePayload.explanationV1.phrase;
+    const authoredText = analysis.explanationByLocale[interfaceLocale]?.trim();
+    if (authoredText) return Object.freeze({
+      tone: outcome,
+      text: authoredText,
+      authored: true,
+      responseId: null,
+      analysis,
+      diagnostics: null,
+    });
+  }
+  if (outcome === "correct" && modePayload && (
+    modePayload.family === "phrase_builder" || modePayload.family === "listen_build_dictation"
+  )) {
+    const authoredCompletion = (
+      modePayload.explanationV1?.completionFeedbackByLocale?.[interfaceLocale]
+      ?? modePayload.completionFeedbackByLocale?.[interfaceLocale]
+    )?.trim();
+    if (authoredCompletion) return Object.freeze({
+      tone: "correct",
+      text: authoredCompletion,
+      authored: true,
+      responseId: null,
+      analysis: modePayload.explanationV1?.phrase ?? null,
+      diagnostics: null,
+    });
+  }
+  const rows = payloadFeedbackRows(modePayload);
+  const candidateIds = selectedResponseId
+    ? [selectedResponseId]
+    : orderedResponseIds;
+  const authored = candidateIds
+    .map((responseId) => rows.find((row) => row.responseId === responseId && row.correct === (outcome === "correct")))
+    .find((row): row is LearningV2ModeChoiceFeedbackV1 => row !== undefined);
+  const authoredText = authored?.feedbackByLocale[interfaceLocale]?.trim();
+  if (authored && authoredText) {
+    return Object.freeze({
+      tone: outcome,
+      text: authoredText,
+      authored: true,
+      responseId: authored.responseId,
+      analysis: authored.analysisV1 ?? null,
+      diagnostics: diagnosticsFromRow(authored),
+    });
+  }
+  return Object.freeze({
+    tone: outcome,
+    text: outcome === "correct"
+      ? CORRECT_VERDICT_BY_LOCALE[interfaceLocale]
+      : WRONG_VERDICT_BY_LOCALE[interfaceLocale],
+    authored: false,
+    responseId: null,
+    analysis: null,
+    diagnostics: null,
+  });
+}
+
+export function LearningV2TextAnalysisV1({
+  analysis,
+  interfaceLocale,
+}: Readonly<{
+  analysis: LearningV2ModeTextAnalysisV1;
+  interfaceLocale: LearningV2InterfaceLocale;
+}>) {
+  return (
+    <View testID="learning-v2-text-analysis" style={styles.analysis}>
+      <Text style={styles.analysisPhrase}>{analysis.text}</Text>
+      <Text style={styles.analysisMeaning}>{analysis.meaningByLocale[interfaceLocale]}</Text>
+      <Text style={styles.analysisExplanation}>{analysis.explanationByLocale[interfaceLocale]}</Text>
+      {analysis.units.map((unit, index) => (
+        <View key={`${unit.start}-${unit.end}-${unit.text}-${index}`} style={styles.unit}>
+          <Text style={styles.unitTitle}>{`${unit.text} · ${unit.partOfSpeechLabelByLocale[interfaceLocale]} · ${unit.meaningByLocale[interfaceLocale]}`}</Text>
+          <Text style={styles.unitFunction}>{unit.functionByLocale[interfaceLocale]}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
+
+export function LearningV2ModeFeedbackLaneV1({
+  feedback,
+  interfaceLocale,
+}: Readonly<{
+  feedback: LearningV2ModeLearnerFeedbackV1 | null;
+  interfaceLocale: LearningV2InterfaceLocale;
+}>) {
+  if (!feedback) return null;
+  return (
+    <View
+      testID="learning-v2-mode-feedback-lane"
+      accessibilityLabel={feedback.text}
+      accessibilityLiveRegion="polite"
+      style={[styles.lane, feedback.tone === "correct" ? styles.correct : styles.wrong]}
+    >
+      <Text style={styles.text}>{feedback.text}</Text>
+      {feedback.analysis ? (
+        <LearningV2TextAnalysisV1 analysis={feedback.analysis} interfaceLocale={interfaceLocale} />
+      ) : null}
+      {feedback.tone === "wrong" && feedback.diagnostics?.minimalContrastByLocale?.[interfaceLocale] ? (
+        <Text style={styles.contrast}>{feedback.diagnostics.minimalContrastByLocale[interfaceLocale]}</Text>
+      ) : null}
+    </View>
+  );
+}
+
+const styles = {
+  lane: {
+    marginTop: 18,
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+  },
+  correct: {
+    backgroundColor: "rgba(43, 138, 94, 0.12)",
+    borderColor: "rgba(43, 138, 94, 0.32)",
+  },
+  wrong: {
+    backgroundColor: "rgba(190, 118, 28, 0.12)",
+    borderColor: "rgba(190, 118, 28, 0.32)",
+  },
+  text: {
+    color: "#17332A",
+    fontSize: 16,
+    fontWeight: "600",
+    lineHeight: 23,
+  },
+  analysis: { marginTop: 12, gap: 6 },
+  analysisPhrase: { color: "#17332A", fontSize: 18, fontWeight: "700" },
+  analysisMeaning: { color: "#17332A", fontSize: 16, fontWeight: "600" },
+  analysisExplanation: { color: "#355148", fontSize: 15, lineHeight: 21 },
+  unit: { marginTop: 4 },
+  unitTitle: { color: "#17332A", fontSize: 15, fontWeight: "700" },
+  unitFunction: { color: "#355148", fontSize: 14, lineHeight: 20 },
+  contrast: { color: "#355148", fontSize: 14, lineHeight: 20, marginTop: 10 },
+} as const;

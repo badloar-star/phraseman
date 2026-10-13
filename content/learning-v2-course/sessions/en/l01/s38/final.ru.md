@@ -74,6 +74,8 @@
 **4 · Соберите фразу — «мы заблудились»**
 <!-- interaction_id: en:lesson-01:session-38:i04; family: phrase_builder -->
 Плитки: `lost` `are` `we` `is` → **We are lost.**
+*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are lost.`)*
+
 
 **5 · Карточка слова — home**
 <!-- interaction_id: en:lesson-01:session-38:i05; family: listen_choose -->
@@ -98,6 +100,8 @@ We are ___ . → **safe** · lost · home
 **9 · Послушайте и соберите — «они дома»**
 <!-- interaction_id: en:lesson-01:session-38:i09; family: listen_build_dictation -->
 🔊 *They are home.* Плитки: `home` `are` `they` `safe` → **They are home.**
+*(плитка `safe` лишняя: `safe` здесь лишнее: в фразе `They are home.` говорят, что они дома.)*
+
 
 **10 · Вставьте слово — все развернулись и идут той же дорогой**
 <!-- interaction_id: en:lesson-01:session-38:i10; family: context_gap_grammar -->
@@ -126,10 +130,14 @@ We are ___ . → **together** · home · back
 **15 · Соберите фразу — до дома ещё ехать и ехать**
 <!-- interaction_id: en:lesson-01:session-38:i15; family: phrase_builder -->
 Плитки: `far` `we` `are` `is` → **We are far.**
+*(плитка `is` лишняя: `is` лишнее: с `We` говорят `We are far.`)*
+
 
 **16 · Послушайте и соберите — «они в безопасности»**
 <!-- interaction_id: en:lesson-01:session-38:i16; family: listen_build_dictation -->
 🔊 *They are safe.* Плитки: `safe` `they` `are` `home` → **They are safe.**
+*(плитка `home` лишняя: `home` здесь лишнее: в фразе `They are safe.` говорят, что они в безопасности.)*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-38:i17:s01; family: scripted_repeat_compare -->

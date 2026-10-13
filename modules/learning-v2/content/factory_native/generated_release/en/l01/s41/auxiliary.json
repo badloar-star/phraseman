@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "en:lesson-01:session-41",
+  "entries": [
+    {
+      "interactionId": "en:lesson-01:session-41:intro1:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro1:r2": {
+          "ru": "Значок `'` потерялся. Без него это уже не сокращение, а просто набор букв.",
+          "uk": "Значок `'` загубився. Без нього це вже не скорочення, а просто набір букв."
+        },
+        "en:lesson-01:session-41:intro1:r3": {
+          "ru": "`am` уже спрятано внутри `I'm`. Второй раз его ставить не нужно.",
+          "uk": "`am` уже сховане всередині `I'm`. Удруге його ставити не треба."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:intro2:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro2:r2": {
+          "ru": "`your` — это «твой». Здесь нужно `you're` — сжатое `you are`.",
+          "uk": "`your` — це «твій». Тут потрібне `you're` — стиснуте `you are`."
+        },
+        "en:lesson-01:session-41:intro2:r3": {
+          "ru": "`are` уже внутри `you're`. Одного раза достаточно.",
+          "uk": "`are` уже всередині `you're`. Одного разу досить."
+        }
+      }
+    },
+    {
+      "interactionId": "en:lesson-01:session-41:intro3:q",
+      "responseFeedbackById": {
+        "en:lesson-01:session-41:intro3:r2": {
+          "ru": "Скрепка выпала целиком. Между `I` и словом о себе нужно `am` — хотя бы спрятанное в `I'm`.",
+          "uk": "Скріпка випала цілком. Між `I` і словом про себе потрібне `am` — хоча б сховане в `I'm`."
+        },
+        "en:lesson-01:session-41:intro3:r3": {
+          "ru": "Без значка `'` это не сокращение. `I'm` пишется с ним.",
+          "uk": "Без значка `'` це не скорочення. `I'm` пишеться з ним."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fec687239b90e2b177a6b820c66a8a263522072b3369e6ead0d21f28a86160ba"
+}

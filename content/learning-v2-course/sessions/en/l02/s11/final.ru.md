@@ -62,6 +62,8 @@
 <!-- interaction_id: en:lesson-02:session-11:i02; family: phrase_builder -->
 Мира кутается в шарф и держит руки в карманах. Спутник спрашивает: «Ей холодно?» Соберите полный ответ «да».
 Цель: `Yes, she is cold.`
+Плитки: `Yes,` `she` `is` `cold` `he`
+*Плитка `he` лишняя: Мира — женщина, поэтому нужен `she`: `Yes, she is cold.`*
 Варианты: ``he``
 - he — *Здесь речь о женщине, поэтому нужен `she`, а не `he`.*
 
@@ -87,6 +89,8 @@
 **6 · Послушайте ответ сотрудника: он помог посетителю. Соберите полную фразу**
 <!-- interaction_id: en:lesson-02:session-11:i06; family: listen_build_dictation -->
 Цель: `Yes, he is helpful.`
+🔊 *Yes, he is helpful.* Плитки: `Yes,` `he` `is` `helpful` `she`
+*Плитка `she` лишняя: запись и сцена говорят о сотруднике-мужчине, поэтому нужен `he`.*
 Варианты: `she`
 - she — *В записи ответ о мужчине: `he`, а не `she`.*
 
@@ -111,6 +115,8 @@
 **10 · Соберите ответ: «Она голодна?» — «Нет, она только что пообедала»**
 <!-- interaction_id: en:lesson-02:session-11:i10; family: phrase_builder -->
 Цель: `No, she is not hungry.`
+Плитки: `No,` `she` `is` `not` `hungry` `he`
+*Плитка `he` лишняя: речь о женщине, поэтому нужен `she`: `No, she is not hungry.`*
 Варианты: `he`
 - he — *Речь о женщине, поэтому нужен `she`, а не `he`.*
 
@@ -132,17 +138,23 @@
 **13 · Соберите короткое «да» — сотрудник помог гостю; вопрос: `Is he helpful?`**
 <!-- interaction_id: en:lesson-02:session-11:i13; family: phrase_builder -->
 Цель: `Yes, he is.`
+Плитки: `Yes,` `he` `is` `helpful`
+*Плитка `helpful` лишняя: короткий ответ уже закончен: `Yes, he is.`*
 
 **14 · Послушайте и соберите ответ — гостья ещё не готова уйти**
 <!-- interaction_id: en:lesson-02:session-11:i14; family: listen_build_dictation -->
 Гостья всё ещё ждёт ключ у стойки. Спутник спрашивает: `Is she ready?` Соберите короткий ответ «нет».
 Цель: `No, she is not.`
 Плитки: `No,` `she` `is` `not` `he`
+*Плитка `he` лишняя: вопрос и ответ относятся к гостье, поэтому нужен `she`: `No, she is not.`*
 
 **15 · Послушайте и выберите — сотрудник смотрит не на тот заказ; он отвечает на вопрос `Is he confused?`**
 <!-- interaction_id: en:lesson-02:session-11:i15; family: listen_choose -->
 Цель: `Yes, he is confused.`
 Варианты: `Yes, he is confused.` · `No, he is not confused.` · `Yes, she is confused.`
+- No, he is not confused. — *В записи есть `Yes`, значит это не отрицание.*
+- Yes, she is confused. — *Речь о сотруднике, поэтому в записи `he`, а не `she`.*
+
 
 **16 · Произнесите короткое «да» — Мира помогает гостю**
 <!-- interaction_id: en:lesson-02:session-11:i16:s01; family: scripted_repeat_compare -->

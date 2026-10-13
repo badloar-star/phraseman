@@ -1,0 +1,6 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-007	2026-10-12T16:49:57.829Z	stitch_failed	11134	marker+пусто_1478мс+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-007.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=165317+ждали_metro_40мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T16-49-36-928Z/spire-007.bare.png	1478
+spire-011	2026-10-12T16:50:18.689Z	ok	11099	marker+пусто_1408мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/spire-011.png	1408
+spire-gap-018	2026-10-12T16:50:38.169Z	ok	10062	marker+пусто_1719мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/spire-gap-018.png	1719
+spire-gap-015	2026-10-12T16:50:58.447Z	ok	10035	marker+пусто_1501мс+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/spire-gap-015.png	1501
+community-004	2026-10-12T16:51:20.987Z	ok	12350	marker+пусто_1465мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-004.png	1465

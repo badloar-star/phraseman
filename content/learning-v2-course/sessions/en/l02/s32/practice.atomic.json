@@ -126,7 +126,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставьте слово — вы спрашиваете название",
+          "testedDimension": "Вставьте слово — вы спрашиваете название книжечки с едой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i02:r2",
@@ -389,7 +389,7 @@
             "audioTargetId": "en:lesson-02:session-32:i07:audioB",
             "transcript": "jeep"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «деш",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «дешёвый»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i07:r2",
@@ -568,7 +568,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставьте слово — вы хотите узнать, сколь",
+          "testedDimension": "Вставьте слово — вы хотите узнать, сколько это стоит",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i10:r2",
@@ -753,7 +753,7 @@
               "text": "toilet"
             }
           ],
-          "testedDimension": "Вставьте слово — вы поели и хотите распл",
+          "testedDimension": "Вставьте слово — вы поели и хотите расплатиться",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i13:r2",
@@ -851,7 +851,7 @@
               "text": "bill"
             }
           ],
-          "testedDimension": "Вставьте слово — официант показывает рук",
+          "testedDimension": "Вставьте слово — официант показывает рукой: туалет в двух шагах",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i15:r2",
@@ -904,7 +904,17 @@
           "authoredDistractorTokens": [
             "Where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-32:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «это рядом»",
+              "feedbackByLocale": {
+                "ru": "`Where` начинает вопрос о месте, а в записи дан ответ: `It is near.`",
+                "uk": "`Where` починає запитання про місце, а в записі є відповідь: `It is near.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -935,7 +945,17 @@
           "authoredDistractorTokens": [
             "Where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-32:i17:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы поели и зовёте официанта; спросите про счёт",
+              "feedbackByLocale": {
+                "ru": "`Where` спрашивает о месте, а вам нужен вопрос о счёте: `What is the bill?`",
+                "uk": "`Where` питає про місце, а вам потрібне запитання про рахунок: `What is the bill?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1128,7 +1148,7 @@
               "text": "corner"
             }
           ],
-          "testedDimension": "Вставте слово — ви питаєте назву книжечк",
+          "testedDimension": "Вставте слово — ви питаєте назву книжечки з їжею",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i02:r2",
@@ -1391,7 +1411,7 @@
             "audioTargetId": "en:lesson-02:session-32:i07:audioB",
             "transcript": "jeep"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «дешев",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «дешевий»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i07:r2",
@@ -1570,7 +1590,7 @@
               "text": "near"
             }
           ],
-          "testedDimension": "Вставте слово — ви хочете дізнатися, скі",
+          "testedDimension": "Вставте слово — ви хочете дізнатися, скільки це коштує",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i10:r2",
@@ -1755,7 +1775,7 @@
               "text": "toilet"
             }
           ],
-          "testedDimension": "Вставте слово — ви поїли і хочете розрах",
+          "testedDimension": "Вставте слово — ви поїли і хочете розрахуватися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i13:r2",
@@ -1853,7 +1873,7 @@
               "text": "bill"
             }
           ],
-          "testedDimension": "Вставте слово — офіціант показує рукою: ",
+          "testedDimension": "Вставте слово — офіціант показує рукою: туалет за два кроки",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-32:i15:r2",
@@ -1906,7 +1926,17 @@
           "authoredDistractorTokens": [
             "Where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-32:i16:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «это рядом»",
+              "feedbackByLocale": {
+                "ru": "`Where` начинает вопрос о месте, а в записи дан ответ: `It is near.`",
+                "uk": "`Where` починає запитання про місце, а в записі є відповідь: `It is near.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1937,7 +1967,17 @@
           "authoredDistractorTokens": [
             "Where"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-32:i17:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — вы поели и зовёте официанта; спросите про счёт",
+              "feedbackByLocale": {
+                "ru": "`Where` спрашивает о месте, а вам нужен вопрос о счёте: `What is the bill?`",
+                "uk": "`Where` питає про місце, а вам потрібне запитання про рахунок: `What is the bill?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },

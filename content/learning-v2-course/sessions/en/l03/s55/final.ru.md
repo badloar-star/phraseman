@@ -53,6 +53,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i01; family: listen_choose -->
 Цель: `shape`
 Варианты: `shape` · `ship` · `shade`
+- ship — *Вы выбрали `ship`: оно созвучно, но в записи слышно `shape` — «форма».*
+- shade — *Вы выбрали `shade`: начало похоже, но в записи слышно `shape` — «форма».*
+
 
 **2 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-55:i02; family: scripted_repeat_compare -->
@@ -70,6 +73,8 @@
 <!-- interaction_id: en:lesson-03:session-55:i05; family: sound_contrast -->
 Цель: `material`
 Варианты: `material` · `matter`
+- matter — *`Matter` — это «вопрос, дело» и в нём два слога. В записи `material` — «материал».*
+
 
 **6 · Соедините слова и значения для подписи у дальней стены**
 <!-- interaction_id: en:lesson-03:session-55:i06; family: speed_match -->
@@ -80,12 +85,17 @@
 <!-- interaction_id: en:lesson-03:session-55:i07; family: sound_contrast -->
 Цель: `shape`
 Варианты: `shape` · `ship`
+- ship — *`Ship` — это корабль. В записи `shape` — «форма»: гласный в нём тянется дольше.*
+
 
 **8 · Послушайте и выберите слово**
 <!-- interaction_id: en:lesson-03:session-55:i08; family: listen_choose -->
 Значения вариантов: `material` — материал · `matter` — вопрос · `mature` — зрелый
 Цель: `material`
 Варианты: `material` · `matter` · `mature`
+- matter — *`Matter` короче; в записи звучит `material` — «материал».*
+- mature — *`Mature` похоже началом, но в записи `material` — «материал».*
+
 
 **9 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-55:i09; family: scripted_repeat_compare -->
@@ -104,6 +114,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i12; family: context_gap_grammar -->
 Цель: `This material is ___.`
 Варианты: `soft` · `striped` · `round`
+- striped — *`Striped` описывает узор, а в руках у вас мягкий материал: `soft`.*
+- round — *`Round` описывает форму, а здесь нужна мягкость материала: `soft`.*
+
 
 **13 · Соберите подпись у дальней стены**
 <!-- interaction_id: en:lesson-03:session-55:i13; family: phrase_builder -->
@@ -114,6 +127,9 @@
 Значения вариантов: `The shape is square.` — Форма квадратная. · `The shape is round.` — Форма круглая. · `These shapes are square.` — Эти формы квадратные.
 Цель: `The shape is square.`
 Варианты: `The shape is square.` · `The shape is round.` · `These shapes are square.`
+- The shape is round. — *В записи `square` — «квадратная», а не `round` — «круглая».*
+- These shapes are square. — *В записи одна форма: `The shape is`, а не несколько форм.*
+
 
 **15 · Послушайте и соберите подпись о нескольких узорах рядом**
 <!-- interaction_id: en:lesson-03:session-55:i15; family: listen_build_dictation -->
@@ -123,6 +139,9 @@
 <!-- interaction_id: en:lesson-03:session-55:i16; family: context_gap_grammar -->
 Цель: `___ materials are soft.`
 Варианты: `Those` · `That` · `The`
+- That — *`That` — для одного дальнего предмета; образцов несколько, поэтому `Those`.*
+- The — *`The` не показывает дальние образцы; здесь нужны `Those` для нескольких предметов далеко.*
+
 
 **17 · соберите независимую подпись у дальней стены**
 <!-- interaction_id: en:lesson-03:session-55:i17; family: phrase_builder -->

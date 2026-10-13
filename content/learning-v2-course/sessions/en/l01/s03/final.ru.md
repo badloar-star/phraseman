@@ -22,7 +22,7 @@
 **Начальник сочувственно спрашивает: «Tired?» А вы бодры. Скажите «я не
 устал».**
 
-- ✅ **I am not tired.**
+- ✅ **I am not tired.** — *Верно: `I am not tired` прямо отвечает начальнику «я не устал»: `not` стоит сразу после `am` и отрицает `tired`.*
 - ❌ I not tired. — *После I нужно am: I am not tired.*
 - ❌ I am tired not. — *Not убежал в конец. По-английски он стоит сразу
   после am, ещё до слова о вас.*
@@ -41,7 +41,7 @@
 **Вам предлагают ещё кофе, а вы уже не хотите. Вежливо: «я не замёрз»
 (это они беспокоились, что вы мёрзнете).**
 
-- ✅ **I am not cold.**
+- ✅ **I am not cold.** — *Верно: `I am not cold` — «я не замёрз»: `not` после `am` отрицает `cold`, поэтому вы снимаете их беспокойство.*
 - ❌ I no cold. — *«No» — это ответ «нет» на вопрос. Внутри фразы «не»
   по-английски — not. И am потерялось.*
 - ❌ I am no cold. — *Почти. Но после am стоит именно not, а не no. Not —
@@ -63,7 +63,7 @@
 **Мира спрашивает, во сколько начнётся следующая встреча. Вы не знаете.
 Скажите: «Я не уверен».**
 
-- ✅ **I am not sure.**
+- ✅ **I am not sure.** — *Верно: `I am not sure` — «я не уверен»: `not` после `am` показывает, что вы не знаете точного времени встречи.*
 - ❌ I am sure not. — *Not опять сбежал в конец. Его место — сразу после
   am, перед sure.*
 - ❌ I not sure. — *После I нужно am: I am not sure.*
@@ -79,24 +79,26 @@
 **2 · Послушайте и выберите — hungry**
 <!-- interaction_id: en:lesson-01:session-03:i02; family: listen_choose -->
 🔊 *hungry* → **hungry** · angry · hurry
+- hungry — *Верно: в записи hungry. Это не angry и не hurry.*
 - angry — *Это «сердитый». Слушайте начало: hungry начинается с «х».*
 - hurry — *«Спешить». Без «н» в середине. Hungry — «хан-гри».*
 
 **3 · Карточка слова — cold**
 <!-- interaction_id: en:lesson-01:session-03:i03; family: listen_choose -->
-> **cold** — «холодно, замёрз». Кондиционер в офисе выставлен кем-то из
-> Сибири.
+> **cold** — «холодно, замёрз». Мира включила кондиционер слишком сильно.
 
 **4 · Различите звук — sure и shore**
 <!-- interaction_id: en:lesson-01:session-03:i04; family: sound_contrast -->
 Сначала послушайте `sure`, затем `shore`. Выберите слово, которое звучит в записи.
 🔊 *sure* → **sure** · shore · sugar
+- sure — *Верно: в записи sure, а не shore или sugar.*
 - shore — *`shore` — «берег». В аудио нет долгого «о»: слышно короткое sure.*
 - sugar — *`sugar` — «сахар», два слога. В аудио одно короткое слово sure.*
 
 **5 · Послушайте и выберите — sure**
 <!-- interaction_id: en:lesson-01:session-03:i05; family: listen_choose -->
 🔊 *sure* → **sure** · shore · sugar
+- sure — *Верно: в записи sure. Это слово нужно выбрать.*
 - shore — *«Берег». Звучит похоже, но гласная тянется дольше: sure —
   короткое «шуэ».*
 - sugar — *«Сахар». Слишком длинно — два слога вместо одного.*
@@ -116,6 +118,7 @@ hungry — голодный · cold — замёрз · sure — уверен ·
 **9 · Вставьте слово — вам холодно? Нет.**
 <!-- interaction_id: en:lesson-01:session-03:i09; family: context_gap_grammar -->
 I am ___ cold. → **not** · no · am
+- not — *Верно: not ставится внутри фразы I am not cold.*
 - no — *No — ответ одним словом. Внутри фразы — not.*
 - am — *Am уже стоит. Второе не нужно, нужно not.*
 
@@ -132,6 +135,7 @@ I am ___ cold. → **not** · no · am
 **12 · Вставьте слово — Мира спросила, устали ли вы**
 <!-- interaction_id: en:lesson-01:session-03:i12; family: context_gap_grammar -->
 I ___ not tired. → **am** · is · are
+- am — *Верно: с I используется am: I am not tired.*
 - is — *С `I` нужно `am`, затем `not`: `I am not tired`.*
 - are — *Не для I. I am not — три слова, первые два не меняются.*
 
@@ -143,6 +147,7 @@ I ___ not tired. → **am** · is · are
 **14 · Послушайте и выберите точную фразу — вы больше не заняты**
 <!-- interaction_id: en:lesson-01:session-03:i14; family: listen_choose -->
 🔊 *I am not busy.* → **I am not busy.** · I am busy. · I am not late.
+- I am not busy. — *Верно: в записи I am not busy. — «я не занят».*
 - I am busy. — *В аудио после am слышно not. Ответ означает «я не занят», а не «я занят».*
 - I am not late. — *В аудио последнее слово busy, не late: речь о занятости, не об опоздании.*
 
@@ -166,6 +171,10 @@ tired — устал · busy — занят · late — опаздываю · re
 **19 · Послушайте и выберите точную фразу — вы не голодны**
 <!-- interaction_id: en:lesson-01:session-03:i17:s02; family: listen_choose -->
 🔊 *I am not hungry.* → **I am not hungry.** · I am hungry. · I am not cold.
+- I am not hungry. — *Верно: в записи I am not hungry. — «я не голоден».*
+- I am hungry. — *В аудио после am слышно not. Это «я не голоден», не «я голоден».*
+- I am not cold. — *Последнее слово hungry, не cold: речь о еде, а не о температуре.*
+
 
 **20 · Произнесите фразу — Мира видит, что вы ждёте коллегу; скажите, что вы не один**
 <!-- interaction_id: en:lesson-01:session-03:i17:s03; family: scripted_repeat_compare -->

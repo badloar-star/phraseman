@@ -252,7 +252,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросить Иру, не хочет ли она пить",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you thirsty?`",
+                "uk": "з `you` потрібна форма `are`: `Are you thirsty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -354,7 +364,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты голоден?»",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о голоде, поэтому нужно `hungry`: `Are you hungry?`",
+                "uk": "запитання питає про голод, тому потрібне `hungry`: `Are you hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -395,7 +415,7 @@
             "audioTargetId": "en:lesson-02:session-06:i07:audioB",
             "transcript": "gold"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про «хол",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про «холодно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-06:i07:r2",
@@ -578,7 +598,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос прямо спрашивает, заблудились ли вы; отрицание не нужно: `Are you lost?`",
+                "uk": "запитання прямо питає, чи ви заблукали; заперечення не потрібне: `Are you lost?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -680,7 +710,17 @@
           "authoredDistractorTokens": [
             "hungry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты в порядке?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о самочувствии в целом: `Are you ok?`",
+                "uk": "тут питають про самопочуття загалом: `Are you ok?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -729,7 +769,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед по комнате сидит ",
+          "testedDimension": "Вставьте слово — сосед по комнате сидит с закрытыми глазами, вы уходите",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-06:i13:r2",
@@ -779,7 +819,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -885,9 +935,18 @@
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — Никита снова идёт мимо той же витрины, и вы спрашиваете, не заблудился ли он",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-06:i17:s01:r1", "text": "Are you lost?" },
-          { "responseId": "en:lesson-02:session-06:i17:s01:r2", "text": "You are lost." },
-          { "responseId": "en:lesson-02:session-06:i17:s01:r3", "text": "Are you late?" }
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r1",
+            "text": "Are you lost?"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r2",
+            "text": "You are lost."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r3",
+            "text": "Are you late?"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -902,14 +961,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-02:session-06:i17:s01:r1", "targetText": "Are you lost?", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r2", "targetText": "You are lost.", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r3", "targetText": "Are you late?", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r1",
+              "targetText": "Are you lost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r2",
+              "targetText": "You are lost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r3",
+              "targetText": "Are you late?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-06:i17:s01:r2", "correct": false, "testedDimension": "вопрос, а не сообщение", "feedbackByLocale": { "ru": "В записи первым звучит `Are`, поэтому это вопрос. `You are lost.` — сообщение.", "uk": "У записі першим звучить `Are`, тому це запитання. `You are lost.` — твердження." } },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r3", "correct": false, "testedDimension": "значение lost", "feedbackByLocale": { "ru": "`late` — «опоздал». В записи после `you` звучит `lost`: «заблудился».", "uk": "`late` — «запізнився». У записі після `you` звучить `lost`: «заблукав»." } }
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r2",
+              "correct": false,
+              "testedDimension": "вопрос, а не сообщение",
+              "feedbackByLocale": {
+                "ru": "В записи первым звучит `Are`, поэтому это вопрос. `You are lost.` — сообщение.",
+                "uk": "У записі першим звучить `Are`, тому це запитання. `You are lost.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r3",
+              "correct": false,
+              "testedDimension": "значение lost",
+              "feedbackByLocale": {
+                "ru": "`late` — «опоздал». В записи после `you` звучит `lost`: «заблудился».",
+                "uk": "`late` — «запізнився». У записі після `you` звучить `lost`: «заблукав»."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -930,8 +1017,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Are you ok?",
-          "localizedMeaning": { "ru": "Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она", "uk": "Складіть запитання — Ольга підвелася після падіння; спитайте, чи все з нею гаразд" },
-          "orderedTokens": ["Are", "you", "ok"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она",
+            "uk": "Складіть запитання — Ольга підвелася після падіння; спитайте, чи все з нею гаразд"
+          },
+          "orderedTokens": [
+            "Are",
+            "you",
+            "ok"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1252,7 +1346,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i04:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросить Иру, не хочет ли она пить",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you thirsty?`",
+                "uk": "з `you` потрібна форма `are`: `Are you thirsty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1301,7 +1405,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставте слово — Ольга впустила сумку і с",
+          "testedDimension": "Вставте слово — Ольга впустила сумку і сіла на лавку",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-06:i05:r2",
@@ -1354,7 +1458,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты голоден?»",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о голоде, поэтому нужно `hungry`: `Are you hungry?`",
+                "uk": "запитання питає про голод, тому потрібне `hungry`: `Are you hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1395,7 +1509,7 @@
             "audioTargetId": "en:lesson-02:session-06:i07:audioB",
             "transcript": "gold"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «холод",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про «холодно»?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-06:i07:r2",
@@ -1578,7 +1692,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос прямо спрашивает, заблудились ли вы; отрицание не нужно: `Are you lost?`",
+                "uk": "запитання прямо питає, чи ви заблукали; заперечення не потрібне: `Are you lost?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1680,7 +1804,17 @@
           "authoredDistractorTokens": [
             "hungry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты в порядке?»",
+              "feedbackByLocale": {
+                "ru": "здесь спрашивают о самочувствии в целом: `Are you ok?`",
+                "uk": "тут питають про самопочуття загалом: `Are you ok?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1729,7 +1863,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставте слово — сусід по кімнаті сидить ",
+          "testedDimension": "Вставте слово — сусід по кімнаті сидить із заплющеними очима, ви йдете",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-06:i13:r2",
@@ -1779,7 +1913,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-06:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — Никита третий раз проходит мимо одной витрины; спросите Никиту, не заблудился ли он",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1885,9 +2029,18 @@
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть — Микита знову йде повз ту саму вітрину, і ви питаєте, чи він не заблукав",
         "responseOptions": [
-          { "responseId": "en:lesson-02:session-06:i17:s01:r1", "text": "Are you lost?" },
-          { "responseId": "en:lesson-02:session-06:i17:s01:r2", "text": "You are lost." },
-          { "responseId": "en:lesson-02:session-06:i17:s01:r3", "text": "Are you late?" }
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r1",
+            "text": "Are you lost?"
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r2",
+            "text": "You are lost."
+          },
+          {
+            "responseId": "en:lesson-02:session-06:i17:s01:r3",
+            "text": "Are you late?"
+          }
         ],
         "mediaIds": [],
         "audioTargetIds": [
@@ -1902,14 +2055,42 @@
           },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            { "responseId": "en:lesson-02:session-06:i17:s01:r1", "targetText": "Are you lost?", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r2", "targetText": "You are lost.", "meaningByLocale": null },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r3", "targetText": "Are you late?", "meaningByLocale": null }
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r1",
+              "targetText": "Are you lost?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r2",
+              "targetText": "You are lost.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r3",
+              "targetText": "Are you late?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
-            { "responseId": "en:lesson-02:session-06:i17:s01:r2", "correct": false, "testedDimension": "запитання, а не твердження", "feedbackByLocale": { "ru": "В записи первым звучит `Are`, поэтому это вопрос. `You are lost.` — сообщение.", "uk": "У записі першим звучить `Are`, тому це запитання. `You are lost.` — твердження." } },
-            { "responseId": "en:lesson-02:session-06:i17:s01:r3", "correct": false, "testedDimension": "значення lost", "feedbackByLocale": { "ru": "`late` — «опоздал». В записи после `you` звучит `lost`: «заблудился».", "uk": "`late` — «запізнився». У записі після `you` звучить `lost`: «заблукав»." } }
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r2",
+              "correct": false,
+              "testedDimension": "запитання, а не твердження",
+              "feedbackByLocale": {
+                "ru": "В записи первым звучит `Are`, поэтому это вопрос. `You are lost.` — сообщение.",
+                "uk": "У записі першим звучить `Are`, тому це запитання. `You are lost.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-06:i17:s01:r3",
+              "correct": false,
+              "testedDimension": "значення lost",
+              "feedbackByLocale": {
+                "ru": "`late` — «опоздал». В записи после `you` звучит `lost`: «заблудился».",
+                "uk": "`late` — «запізнився». У записі після `you` звучить `lost`: «заблукав»."
+              }
+            }
           ],
           "isWordCard": false,
           "wordCard": null
@@ -1930,8 +2111,15 @@
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Are you ok?",
-          "localizedMeaning": { "ru": "Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она", "uk": "Складіть запитання — Ольга підвелася після падіння; спитайте, чи все з нею гаразд" },
-          "orderedTokens": ["Are", "you", "ok"],
+          "localizedMeaning": {
+            "ru": "Соберите вопрос — Ольга поднялась после падения; спросите, в порядке ли она",
+            "uk": "Складіть запитання — Ольга підвелася після падіння; спитайте, чи все з нею гаразд"
+          },
+          "orderedTokens": [
+            "Are",
+            "you",
+            "ok"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },

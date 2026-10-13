@@ -55,6 +55,11 @@ import {
 } from "../components/lesson_intro_rich";
 import { splitLearningV2IntroTitleByTargetsV1 } from "./learning_v2_intro_title_semantics_v1";
 import { useScaledTextStyles } from '../hooks/useLineScale';
+import { LearningV2TextAnalysisV1 } from "../modules/learning-v2/modes/mode_feedback_v1";
+import type {
+  LearningV2ModeChoiceDiagnosticV1,
+  LearningV2ModeTextAnalysisV1,
+} from "../modules/learning-v2/contracts/mode_native_payload_v1";
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -308,6 +313,7 @@ export default function LearningV2SessionIntro({
   taskIds,
   evaluateChoice,
   resolveSecondWrongExplanation,
+  resolveChoiceAnalysis,
   onComplete,
   onQuestionComplete,
   onBack,
@@ -330,6 +336,14 @@ export default function LearningV2SessionIntro({
     choiceIndex: number,
     responseId: string | null,
   ) => string | null;
+  resolveChoiceAnalysis?: (
+    interactionId: string,
+    choiceIndex: number,
+    responseId: string | null,
+  ) => Readonly<{
+    analysis: LearningV2ModeTextAnalysisV1;
+    diagnostics: LearningV2ModeChoiceDiagnosticV1 | null;
+  }> | null;
   onComplete: (
     completions: readonly RequiredSessionTaskCompletionInputV3[],
   ) => void;
@@ -425,6 +439,18 @@ export default function LearningV2SessionIntro({
       "")
     : "";
   const answered = selectedCorrectIndex !== null;
+  const analysisChoiceIndex = answered
+    ? selectedCorrectIndex
+    : wrongCount >= 2 && wrongChoiceNudge.choiceIndex >= 0
+      ? wrongChoiceNudge.choiceIndex
+      : null;
+  const choiceAnalysis = question && analysisChoiceIndex !== null
+    ? resolveChoiceAnalysis?.(
+        question.questionId,
+        analysisChoiceIndex,
+        question.responseIdsInVisibleOrder?.[analysisChoiceIndex] ?? null,
+      ) ?? null
+    : null;
 
   useEffect(() => {
     if (screens.length === 0) onComplete([]);
@@ -712,6 +738,16 @@ export default function LearningV2SessionIntro({
                       {questionExplanation}
                     </Text>
                   )}
+                  {choiceAnalysis ? (
+                    <View accessibilityLiveRegion="polite">
+                      <LearningV2TextAnalysisV1 analysis={choiceAnalysis.analysis} interfaceLocale={lang} />
+                      {choiceAnalysis.diagnostics?.minimalContrastByLocale[lang] ? (
+                        <Text style={[sx.explanation, { color: g.secondary }]}>
+                          {choiceAnalysis.diagnostics.minimalContrastByLocale[lang]}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ) : null}
                 </View>
               )}
             </View>

@@ -71,6 +71,9 @@
 <!-- interaction_id: en:lesson-03:session-29:i05; family: context_gap_grammar -->
 Цель: `___`
 Варианты: `stamp` · `letter` · `parcel`
+- letter — *Letter — письмо. На конверте лежит марка: stamp.*
+- parcel — *Parcel — посылка. На конверте лежит марка: stamp.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-29:i02; family: scripted_repeat_compare -->
@@ -85,16 +88,22 @@
 <!-- interaction_id: en:lesson-03:session-29:i06; family: sound_contrast -->
 Цель: `stamp`
 Варианты: `stamp` · `stand`
+- stand — *Stand — стоять. В записи перед последним звуком слышится p: stamp.*
+
 
 **7 · Выберите форму — эта вещь лежит здесь**
 <!-- interaction_id: en:lesson-03:session-29:i08; family: context_gap_grammar -->
 Цель: `This ___ here.`
 Варианты: `is` · `are`
+- are — *Are — для нескольких предметов. Здесь один предмет: This is here.*
+
 
 **8 · Различите слово — This или That**
 <!-- interaction_id: en:lesson-03:session-29:i09; family: sound_contrast -->
 Цель: `This`
 Варианты: `This` · `That`
+- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+
 
 **9 · Произнесите одну фразу — марка лежит рядом на столе**
 <!-- interaction_id: en:lesson-03:session-29:i10; family: scripted_repeat_compare -->
@@ -129,11 +138,18 @@
 <!-- interaction_id: en:lesson-03:session-29:i13:s02; family: context_gap_grammar -->
 Цель: `___ is heavy.`
 Варианты: `It` · `This` · `That` · `Is`
+- This — *`This is heavy` снова указывает на ближнюю вещь. По условию посылка уже названа, поэтому `It` возвращается к ней.*
+- That — *`That` указывает на другую дальнюю вещь. Здесь продолжаем говорить об уже названной посылке: `It is heavy`.*
+- Is — *`Is is heavy` не образует фразу. Про названную вещь начинаем со слова `It`.*
+
 
 **17 · Послушайте одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i14:s01; family: listen_choose -->
 Цель: `That is a letter.`
 Варианты: `Вон письмо.` · `Вот письмо.` · `Вон посылка.`
+- Вот письмо. — *В записи первое слово — `That`, а вариант передаёт `This`: изменился указатель.*
+- Вон посылка. — *В записи назвали `letter`, а не `parcel`; слово `It` затем возвращается именно к письму.*
+
 
 **18 · Соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i14:s02; family: phrase_builder -->
@@ -155,6 +171,10 @@
 <!-- interaction_id: en:lesson-03:session-29:i16:s02; family: context_gap_grammar -->
 Цель: `___ is wet.`
 Варианты: `It` · `That` · `This` · `Am`
+- That — *`That` снова указывает на вещь вдали. Письмо уже названо, поэтому дальше используем `It`.*
+- This — *`This` укажет на ближнюю вещь и сменит точку отсчёта. Здесь продолжаем говорить о названном письме: `It`.*
+- Am — *`am` используется с `I`, когда говорим о себе. Про уже названное письмо нужно `It`.*
+
 
 **23 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-29:i17:s01; family: scripted_repeat_compare -->

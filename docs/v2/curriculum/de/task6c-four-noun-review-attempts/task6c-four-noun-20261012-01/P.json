@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-four-noun-review-attempt-pre.v1",
+  "attemptId": "task6c-four-noun-20261012-01",
+  "stage": "P",
+  "closureAlgorithm": "sha256(json-v1; sorted-path-byte-digests)",
+  "closureEntries": [
+    {
+      "path": "docs/v2/curriculum/de/task6c-full-registry-l01-v1/target-allocation.json",
+      "sha256": "b6ddd2e2fb665fe6c295a624c7009791539473ee23e9141b89b30cbfd507e0f0"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/evidence/task6c_l01_six_noun_admission_v1/manifest.json",
+      "sha256": "a3a44ab4d1bc79ccc0af6741070eeb36267382fab2f44bb3dfb912adcdb42b55"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v1.json",
+      "sha256": "95181fb58d7563fc1ae37f220ad13b2543ccde898dfe1e93922cecc4a082fd31"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_task5_allocation_admission_de_v1.json",
+      "sha256": "044bff82f93c06529595b0b1e41dd7ee61c81ee10bc4adebb084dcf096ec1ff3"
+    },
+    {
+      "path": "modules/learning-v2/curriculum/de/task6c_task5_allocation_admission_de_v1.ts",
+      "sha256": "1e867019e3cfbd804e2ec4bd1486dcbec904a568eaf3d9d9d546f53ec343cbff"
+    },
+    {
+      "path": "tests/learning_v2_de_task6c_task5_allocation_admission_gate.ts",
+      "sha256": "be7ac31870fae2898fc9e2dd1e954512ed6a9b07dd538603f92092c05848ecd5"
+    }
+  ],
+  "closureRootSha256": "49f4c6681fd83d15f197a131a10df6b3b0039b4faf92ca3776abfa45e45110f0",
+  "requiredReviews": [
+    {
+      "reviewRole": "NATIVE_GERMAN_REVIEW",
+      "receiptPath": "review.native.runner-receipt.json",
+      "rawOutputPath": "review.native.raw"
+    },
+    {
+      "reviewRole": "ADVERSARIAL_REVIEW",
+      "receiptPath": "review.adversarial.runner-receipt.json",
+      "rawOutputPath": "review.adversarial.raw"
+    }
+  ],
+  "rejectedEvidenceKinds": ["ORCHESTRATION_ATTESTED_TRANSCRIPT_SUMMARY"],
+  "receiptContract": {
+    "schemaVersion": "learning-v2-runner-independent-review-receipt.v1",
+    "receiptKind": "RUNNER_ISSUED_INDEPENDENT_REVIEW_RECEIPT",
+    "signatureAlgorithm": "ed25519",
+    "runnerTrustRootPath": "docs/v2/curriculum/de/task6c-four-noun-review-attempts/runner-trust-root.json",
+    "requiredExecutionMode": "READ_ONLY",
+    "requiredWorkspaceIsolation": "FRESH_ISOLATED_WORKSPACE"
+  },
+  "status": {
+    "attemptAcceptance": "PENDING_INDEPENDENT_RUNNER_RECEIPTS",
+    "status": "HOLD",
+    "canonicalAdmission": "FORBIDDEN",
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "packetMaterializationAuthority": false,
+    "learnerFacing": false,
+    "learnerAuthoring": "HOLD",
+    "mockup": "HOLD",
+    "audio": "HOLD",
+    "runtime": "HOLD",
+    "release": "HOLD",
+    "englishAuthority": "EXCLUDED"
+  }
+}

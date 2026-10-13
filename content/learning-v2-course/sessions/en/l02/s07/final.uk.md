@@ -65,6 +65,9 @@
 <!-- interaction_id: en:lesson-02:session-07:i02; family: listen_choose -->
 Ціль: `anxious`
 Варіанти: `anxious` · `angry` · `ankle`
+- angry — *Це «злий» — інший стан. Початок `an-` збігається, далі слова розходяться.*
+- ankle — *Це «щиколотка». Збігається лише початок.*
+
 
 **3 · Картка слова — relaxed**
 <!-- interaction_id: en:lesson-02:session-07:i03; family: listen_choose -->
@@ -74,15 +77,23 @@
 <!-- interaction_id: en:lesson-02:session-07:i04; family: listen_choose -->
 Ціль: `relaxed`
 Варіанти: `relaxed` · `relax` · `related`
+- relax — *Без хвостика «-ed». Це «розслабся», а про стан людини — `relaxed`.*
+- related — *Інше слово, «пов'язаний». Збігається лише початок.*
+
 
 **5 · Складіть фразу — запитайте Тома біля воріт про нерви**
 <!-- interaction_id: en:lesson-02:session-07:i05; family: phrase_builder -->
 Ціль: `Are you anxious?`
+Плитки: `Are` · `you` · `anxious` · `is`
+*Плитка `is` зайва: з `you` потрібна форма `are`: `Are you anxious?`*
 
 **6 · Вставте слово — Міра на лавці нікуди не поспішає**
 <!-- interaction_id: en:lesson-02:session-07:i06; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `relaxed` · `hungry` · `cold`
+- hungry — *Це «голодний». Про їжу вона нічого не показувала — вона просто сидить і не квапиться.*
+- cold — *Це «змерз». Ідеться про спокій, а не про температуру.*
+
 
 **7 · Складіть запитання — сусід допив пляшку до дна і питає, де кран**
 <!-- interaction_id: en:lesson-02:session-07:i07; family: phrase_builder -->
@@ -91,11 +102,16 @@
 **8 · Послухайте і складіть — «ти спокійний?»**
 <!-- interaction_id: en:lesson-02:session-07:i08; family: listen_build_dictation -->
 Ціль: `Are you relaxed?`
+🔊 *Are you relaxed?* Плитки: `Are` · `you` · `relaxed` · `anxious`
+*Плитка `anxious` зайва: тут питають, чи людина спокійна, тому потрібне `relaxed`: `Are you relaxed?`*
 
 **9 · Вставте слово — відповідь «так» про себе**
 <!-- interaction_id: en:lesson-02:session-07:i09; family: context_gap_grammar -->
 Ціль: `Yes, I ___ .`
 Варіанти: `am` · `are` · `is`
+- are — *`are` іде з `you`. Про себе — `am`.*
+- is — *У відповіді про себе потрібне `am`.*
+
 
 **10 · Складіть відповідь — вас запитали «`Are you cold?`», а вам не холодно**
 <!-- interaction_id: en:lesson-02:session-07:i10; family: phrase_builder -->
@@ -110,19 +126,29 @@
 <!-- interaction_id: en:lesson-02:session-07:i12; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `cold` · `relaxed` · `thirsty`
+- relaxed — *Це «спокійний». Людина, яка обхопила себе руками на вітрі, виглядає як завгодно, тільки не розслаблено.*
+- thirsty — *Це «хочу пити». Про воду тут нічого не говорить.*
+
 
 **13 · вам справді хочеться їсти**
 <!-- interaction_id: en:lesson-02:session-07:i13; family: phrase_builder -->
 Ціль: `Yes, I am.`
+Плитки: `Yes,` · `I` · `am` · `not`
+*Плитка `not` зайва: це стверджувальна коротка відповідь: `Yes, I am.`*
 
 **14 · Вставте слово — приятель спіткнувся на сходах і тримається за коліно**
 <!-- interaction_id: en:lesson-02:session-07:i14; family: context_gap_grammar -->
 Ціль: `Are you ___ ?`
 Варіанти: `ok` · `hungry` · `thirsty`
+- hungry — *Це «голодний». Ви питаєте приятеля, чи все з ним гаразд, а не чи він голодний.*
+- thirsty — *Це «хочу пити». Про воду цієї миті ніхто не думає.*
+
 
 **15 · Складіть фразу — запитайте приятеля, чи він не голодний**
 <!-- interaction_id: en:lesson-02:session-07:i15; family: phrase_builder -->
 Ціль: `Are you hungry?`
+Плитки: `Are` · `you` · `hungry` · `am`
+*Плитка `am` зайва: з `you` потрібна форма `are`; `am` уживається з `I`.*
 
 **16 · Біля автобуса ваш друг увесь час дивиться на табло й мнеться з квитком. Скажіть йому англійською, що хочете дізнатися, чи він тривожиться.**
 <!-- interaction_id: en:lesson-02:session-07:i16:s01; family: scripted_repeat_compare -->

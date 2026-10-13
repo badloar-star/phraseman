@@ -47,6 +47,21 @@ test("builder feedback is bound to each physical distractor tile, not a choice I
     .some((issue) => issue.reason === "slot_feedback_unknown_tile"));
 });
 
+test("a word card derives its answer from the reviewed word card payload when legacy correctText is empty", () => {
+  const interaction = {
+    interactionId: "en:lesson-01:session-52:i01",
+    family: "listen_choose",
+    inputMode: "single_choice",
+    responseOptions: [],
+    modePayload: {
+      isWordCard: true,
+      referenceAudio: { transcript: "week" },
+      wordCard: { word: "week" },
+    },
+  };
+  assert.deepEqual(answerContractIssues([interaction], [{ interactionId: interaction.interactionId, correctText: "" }]), []);
+});
+
 test("an intro assessed target cannot repeat in practice under a different family", () => {
   const intro = {
     pages: [{
@@ -1152,7 +1167,7 @@ test("choice feedback locale maps must match across locale projections", () => {
   }).some((issue) => issue.reason === "choice_feedback_locale_value_missing"));
 });
 
-test("single-choice feedback explains every option including the correct response", () => {
+test("single-choice feedback covers every selectable option, including the correct answer", () => {
   const interactionId = "en:lesson-03:session-46:i16";
   const correctResponseId = `${interactionId}:r1`;
   const wrongResponseId = `${interactionId}:r2`;
@@ -2006,6 +2021,28 @@ test("single-phrase registry keeps the classified common word card schema out of
     },
   });
   assert.equal(singlePhraseReleaseIssues([interaction]).some((issue) => issue.reason === "unknown_learner_facing_payload"), false);
+});
+
+test("builder completion feedback is a closed localized learner field", () => {
+  const id = "en:lesson-03:session-55:i105";
+  const valid = baseInteraction({
+    interactionId: id,
+    family: "phrase_builder",
+    inputMode: "ordered_tokens",
+    modePayload: {
+      targetPhrase: "This is one.",
+      orderedTokens: ["This", "is", "one"],
+      completionFeedbackByLocale: { ru: "Верно: это одна вещь.", uk: "Правильно: це одна річ." },
+    },
+  });
+  assert.equal(singlePhraseReleaseIssues([valid]).some((issue) => issue.field === "modePayload.completionFeedbackByLocale"), false);
+
+  const malformed = {
+    ...valid,
+    modePayload: { ...valid.modePayload, completionFeedbackByLocale: { ru: { text: "Верно." } } },
+  };
+  assert.ok(singlePhraseReleaseIssues([malformed]).some((issue) =>
+    issue.field === "modePayload.completionFeedbackByLocale.ru" && issue.reason === "unknown_nested_learner_schema"));
 });
 
 test("known learner containers fail closed on unknown nested audio or selectable fields", () => {

@@ -461,31 +461,31 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-      "prompt": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
+        "prompt": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-04:session-05:i11:audio"
         ],
-      "accessibilityLabel": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
+        "accessibilityLabel": "Послушайте и соберите сообщение о магазинах рядом с одним домом",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-04:session-05:i11:audio",
-          "transcript": "There are shops near a house."
+            "transcript": "There are shops near a house."
           },
-        "hiddenTargetPhrase": "There are shops near a house.",
+          "hiddenTargetPhrase": "There are shops near a house.",
           "orderedTokens": [
             "There",
             "are",
             "shops",
             "near",
-          "a",
-          "house"
+            "a",
+            "house"
           ],
           "authoredDistractorTokens": [
             "is",
-          "the"
+            "the"
           ]
         }
       },
@@ -495,21 +495,21 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "соберите сообщение для листовки",
+        "prompt": "Соберите сообщение для листовки",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "соберите сообщение для листовки",
+        "accessibilityLabel": "Соберите сообщение для листовки",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "There is a supermarket near two shops.",
+          "targetPhrase": "There is a supermarket near two shops.",
           "orderedTokens": [
             "There",
             "is",
             "a",
             "supermarket",
             "near",
-          "two",
+            "two",
             "shops"
           ],
           "authoredDistractorTokens": [
@@ -977,31 +977,31 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-      "prompt": "Послухайте й складіть повідомлення про магазини біля одного будинку",
+        "prompt": "Послухайте й складіть повідомлення про магазини біля одного будинку",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-04:session-05:i11:audio"
         ],
-      "accessibilityLabel": "Послухайте й складіть повідомлення про магазини біля одного будинку",
+        "accessibilityLabel": "Послухайте й складіть повідомлення про магазини біля одного будинку",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-04:session-05:i11:audio",
-          "transcript": "There are shops near a house."
+            "transcript": "There are shops near a house."
           },
-        "hiddenTargetPhrase": "There are shops near a house.",
+          "hiddenTargetPhrase": "There are shops near a house.",
           "orderedTokens": [
             "There",
             "are",
             "shops",
             "near",
-          "a",
-          "house"
+            "a",
+            "house"
           ],
           "authoredDistractorTokens": [
             "is",
-          "the"
+            "the"
           ]
         }
       },
@@ -1011,21 +1011,21 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "складіть повідомлення для листівки",
+        "prompt": "Складіть повідомлення для листівки",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "складіть повідомлення для листівки",
+        "accessibilityLabel": "Складіть повідомлення для листівки",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "There is a supermarket near two shops.",
+          "targetPhrase": "There is a supermarket near two shops.",
           "orderedTokens": [
             "There",
             "is",
             "a",
             "supermarket",
             "near",
-          "two",
+            "two",
             "shops"
           ],
           "authoredDistractorTokens": [

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-paywall-002	2026-10-12T17:41:08.377Z	stitch_failed	22826	marker+шагов_1+пусто_1395мс+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-paywall-002.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=303091+ждали_metro_45мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T17-40-30-234Z/onboarding-paywall-002.bare.png	1395

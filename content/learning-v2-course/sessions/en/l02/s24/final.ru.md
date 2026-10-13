@@ -62,11 +62,17 @@
 <!-- interaction_id: en:lesson-02:session-24:i01; family: listen_choose -->
 Цель: `station`
 Варианты: `station` · `stand` · `stay`
+- stand — *Это «стоять». Короче: в `station` два слога, в `stand` один.*
+- stay — *Это «остаться». Тоже один слог против двух у `station`.*
+
 
 **2 · Вставьте слово — вы ищете здание с поездами**
 <!-- interaction_id: en:lesson-02:session-24:i02; family: context_gap_grammar -->
 Цель: `Where is the ___ ?`
 Варианты: `station` · `corner` · `bridge`
+- corner — *«Угол». Про поезда там не знают.*
+- bridge — *«Мост». Через реку он вас проведёт, но поезда стоят не на нём.*
+
 
 **3 · Соберите фразу — «где мост?»**
 <!-- interaction_id: en:lesson-02:session-24:i03; family: phrase_builder -->
@@ -75,11 +81,16 @@
 **4 · Различите звуки — какое из двух про угол?**
 <!-- interaction_id: en:lesson-02:session-24:i04; family: sound_contrast -->
 Варианты: `corner` · `corridor`
+- corridor — *Это «коридор», три слога. В `corner` их два.*
+
 
 **5 · Вставьте слово — прохожий показывает на конец улицы, где она поворачивает**
 <!-- interaction_id: en:lesson-02:session-24:i05; family: context_gap_grammar -->
 Цель: `It is at the ___ .`
 Варианты: `corner` · `station` · `bridge`
+- station — *Улица не поворачивает вокзалом. Место, где сходятся две улицы, — `corner`.*
+- bridge — *Мост идёт через реку, а тут просто поворот улицы.*
+
 
 **6 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-24:i06; family: speed_match -->
@@ -90,33 +101,51 @@
 <!-- interaction_id: en:lesson-02:session-24:i07; family: listen_choose -->
 Цель: `near`
 Варианты: `near` · `name` · `nine`
+- name — *Гласная другая: в `name` она звучит как «эй».*
+- nine — *В `nine` гласная звучит как «ай». В `near` — тянется к «и».*
+
 
 **8 · Вставьте слово — вокзал прямо перед вами, идти минуту**
 <!-- interaction_id: en:lesson-02:session-24:i08; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `near` · `behind` · `lost`
+- behind — *«Позади» — а вокзал у вас перед глазами, не за спиной.*
+- lost — *Это про человека, а не про здание. Вокзал никуда не терялся.*
+
 
 **9 · Послушайте и соберите — «он позади моста»**
 <!-- interaction_id: en:lesson-02:session-24:i09; family: listen_build_dictation -->
 Цель: `It is behind the bridge.`
+🔊 *It is behind the bridge.* Плитки: `It` `is` `behind` `the` `bridge` `near`
+*Плитка `near` лишняя: в записи место находится `behind the bridge` — «позади моста», а не «рядом».*
 
 **10 · Вставьте `is` — выберите слово для вопроса о месте**
 <!-- interaction_id: en:lesson-02:session-24:i10; family: context_gap_grammar -->
 Цель: `Where ___ the corner?`
 Варианты: `is` · `are` · `am`
+- are — *Про одно место — `is`. `are` идёт с другими словами.*
+- am — *Это только про себя: `I am`. Про угол так не спрашивают.*
+
 
 **11 · Различите звуки — какое из двух про усталость?**
 <!-- interaction_id: en:lesson-02:session-24:i11; family: sound_contrast -->
 Варианты: `tired` · `third`
+- third — *Начинается с межзубного звука: язык между зубами. В `tired` первый звук — обычное «т».*
+
 
 **12 · Вставьте слово — спутник просит воды, третий раз за десять минут**
 <!-- interaction_id: en:lesson-02:session-24:i12; family: context_gap_grammar -->
 Цель: `Are you ___ ?`
 Варианты: `thirsty` · `tired` · `lost`
+- tired — *«Устал». От усталости воду не просят.*
+- lost — *«Заблудился». Он рядом с вами и никуда не делся, ему просто пить хочется.*
+
 
 **13 · Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он**
 <!-- interaction_id: en:lesson-02:session-24:i13; family: phrase_builder -->
 Цель: `Are you tired?`
+Плитки: `Are` `you` `tired` `is`
+*Плитка `is` лишняя: вопрос к собеседнику с `you` начинается с `Are you`, а не с `is`.*
 
 **14 · Соедините пары**
 <!-- interaction_id: en:lesson-02:session-24:i14; family: speed_match -->
@@ -126,6 +155,8 @@
 **15 · Соберите фразу — сцена требует ответа, а не вопроса**
 <!-- interaction_id: en:lesson-02:session-24:i15; family: phrase_builder -->
 Цель: `It is near.`
+Плитки: `It` `is` `near` `are`
+*Плитка `are` лишняя: вы говорите об одном месте, поэтому ответ начинается с `It is`.*
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-02:session-24:i16:s01; family: scripted_repeat_compare -->

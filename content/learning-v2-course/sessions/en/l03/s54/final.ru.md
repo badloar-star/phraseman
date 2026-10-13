@@ -62,6 +62,9 @@
 <!-- interaction_id: en:lesson-03:session-54:i07; family: listen_choose -->
 Цель: `striped`
 Варианты: `striped` · `bright` · `pale`
+- bright — *В записи слышно `striped` — «полосатый», а не `bright` — «яркий».*
+- pale — *`Pale` — «бледный». В записи назван узор из полос.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-54:i02; family: scripted_repeat_compare -->
@@ -76,6 +79,8 @@
 <!-- interaction_id: en:lesson-03:session-54:i08; family: sound_contrast -->
 Цель: `striped`
 Варианты: `striped` · `stripped`
+- stripped — *В записи `striped`: это «полосатый». В `stripped` нет гласного перед концом слова.*
+
 
 **7 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-54:i05; family: speed_match -->
@@ -86,6 +91,8 @@
 <!-- interaction_id: en:lesson-03:session-54:i06; family: sound_contrast -->
 Цель: `pale`
 Варианты: `pale` · `peel`
+- peel — *`Peel` — «чистить кожуру». В записи звучит `pale` — «бледный».*
+
 
 **9 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-54:i10; family: scripted_repeat_compare -->
@@ -104,6 +111,10 @@
 <!-- interaction_id: en:lesson-03:session-54:i12; family: context_gap_grammar -->
 Цель: `___ pale rug is here.`
 Варианты: `That` · `A` · `The` · `Those`
+- A — *Здесь вы показываете на дальний коврик, поэтому начало — `That`.*
+- The — *Для этой подписи нужен указатель расстояния `That`, а не `The`.*
+- Those — *`Those` относится к нескольким предметам; коврик один.*
+
 
 **13 · Послушайте и соберите услышанную фразу**
 <!-- interaction_id: en:lesson-03:session-54:i13; family: listen_build_dictation -->
@@ -113,6 +124,10 @@
 <!-- interaction_id: en:lesson-03:session-54:i14; family: context_gap_grammar -->
 Цель: `Those ___ cushions are here.`
 Варианты: `striped` · `bright` · `pale` · `the`
+- bright — *В этой подписи подушки с полосами, поэтому нужно `striped`.*
+- pale — *`Pale` значит «бледный», а здесь описывают полосы.*
+- the — *После `Those` нужно описание `striped`; `the` рядом с указателем не ставят.*
+
 
 **15 · Соберите подпись — друг передвинул бледный коврик ближе к вам**
 <!-- interaction_id: en:lesson-03:session-54:i15; family: phrase_builder -->

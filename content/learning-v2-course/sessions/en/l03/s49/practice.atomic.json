@@ -367,7 +367,8 @@
           ],
           "distractorTokens": [
             "The"
-          ]
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -398,7 +399,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите цвет стола рядом",
+            "ru": "Вставьте цвет в фразу",
             "uk": "Виберіть колір стола поруч"
           },
           "gappedTargetPhrase": "It is a ___ table.",
@@ -576,7 +577,7 @@
               "text": "sofa"
             }
           ],
-          "testedDimension": "Вставьте цвет — новый диван стоит у вход",
+          "testedDimension": "Вставьте цвет — новый диван стоит у входа",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-49:i09:r2",
@@ -978,7 +979,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Продавец показал вам бежевый стул у окна. Через минуту вы подтверждаете, что тот же самый стул всё ещё здесь.",
+            "ru": "Вставьте артикль — продавец уже показал вам бежевый стул",
             "uk": "Продавець показав вам бежевий стілець біля вікна. За хвилину ви підтверджуєте, що той самий стілець усе ще тут."
           },
           "gappedTargetPhrase": "___ beige chair is here.",
@@ -1394,7 +1395,8 @@
           ],
           "distractorTokens": [
             "The"
-          ]
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1426,7 +1428,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите цвет стола рядом",
-            "uk": "Виберіть колір стола поруч"
+            "uk": "Вставте колір у фразу"
           },
           "gappedTargetPhrase": "It is a ___ table.",
           "gapOptions": [
@@ -2006,7 +2008,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Продавец показал вам бежевый стул у окна. Через минуту вы подтверждаете, что тот же самый стул всё ещё здесь.",
-            "uk": "Продавець показав вам бежевий стілець біля вікна. За хвилину ви підтверджуєте, що той самий стілець усе ще тут."
+            "uk": "Вставте артикль — продавець уже показав вам бежевий стілець"
           },
           "gappedTargetPhrase": "___ beige chair is here.",
           "gapOptions": [

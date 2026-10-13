@@ -6,6 +6,7 @@ exports.emailContactDocId = emailContactDocId;
 exports.upsertEmailContact = upsertEmailContact;
 const crypto_1 = require("crypto");
 const firestore_1 = require("firebase-admin/firestore");
+const swallowed_error_1 = require("./swallowed_error"); // зачем: PM-229 — немой catch пишет причину [PM-229]
 const EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 function normalizeEmailContactEmail(value) {
     const email = String(value ?? '').trim().toLowerCase().slice(0, 320);
@@ -65,7 +66,7 @@ async function upsertEmailContact(db, input) {
     if (input.source === 'app' && isApplePrivateRelayEmail(email))
         return false;
     const ref = db.collection('email_contacts').doc(emailContactDocId(email));
-    const snap = await ref.get().catch(() => null);
+    const snap = await ref.get().catch((0, swallowed_error_1.swallowed)('email_contacts:get', null));
     const nowIso = new Date().toISOString();
     const patch = {
         email,

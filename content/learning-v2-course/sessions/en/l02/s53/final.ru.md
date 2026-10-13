@@ -56,11 +56,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i01; family: listen_choose -->
 Цель: `Is he busy?`
 Варианты: `Is he busy?` · `He is busy.` · `Is she busy?`
+- He is busy. — *Это сообщение. В записи сначала `Is he`: друг задаёт вопрос.*
+- Is she busy? — *Это вопрос о женщине. В записи после `Is` звучит `he` — о мужчине; `busy` значит «занят».*
+
 
 **2 · Вставьте слово — сотрудница подтвердила, что выбранной машиной никто не пользуется; сообщите другу, что она свободна**
 <!-- interaction_id: en:lesson-02:session-53:i02; family: context_gap_grammar -->
 Цель: `It is ___ .`
 Варианты: `free` · `busy` · `sure`
+- busy — *Слово `busy` описывает занятого человека. Здесь нужно сообщить, что машина свободна: `free`.*
+- sure — *Это «уверен». Вы сообщаете о свободной машине: `It is free`.*
+
 
 **3 · Соберите фразу — спросите сотрудницу, сколько стоит сушка**
 <!-- interaction_id: en:lesson-02:session-53:i03; family: phrase_builder -->
@@ -70,11 +76,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i04; family: listen_choose -->
 Цель: `Are they wet?`
 Варианты: `Are they wet?` · `They are wet.` · `Are you wet?`
+- They are wet. — *Это сообщение. В записи сначала `Are they`: звучит вопрос.*
+- Are you wet? — *Это вопрос с `you`. В записи звучит `they` — «они», а `wet` значит «мокрые».*
+
 
 **5 · Вставьте слово — после сушки вы проверили полотенца: они сухие; сообщите об этом другу**
 <!-- interaction_id: en:lesson-02:session-53:i05; family: context_gap_grammar -->
 Цель: `They ___ dry.`
 Варианты: `are` · `is` · `am`
+- is — *В сообщении с `they` нужна форма `are`: `They are dry`.*
+- am — *Форма `am` сочетается с `I`. Здесь речь о полотенцах: `They are dry`.*
+
 
 **6 · Соберите фразу — друг спрашивает, уверены ли вы в общей стоимости стирки и сушки; вы сомневаетесь, скажите об этом**
 <!-- interaction_id: en:lesson-02:session-53:i06; family: phrase_builder -->
@@ -84,11 +96,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i07; family: context_gap_grammar -->
 Цель: `___ is she?`
 Варианты: `Who` · `Where` · `How`
+- Where — *Это вопрос о месте. Вы хотите узнать, кто эта женщина: `Who is she?`.*
+- How — *Это вопрос о состоянии или самочувствии: «Как она?» Здесь нужно узнать, кто эта женщина: `Who is she?`.*
+
 
 **8 · Послушайте и выберите — какая реплика друга прозвучала в ответ**
 <!-- interaction_id: en:lesson-02:session-53:i08; family: listen_choose -->
 Цель: `She is the manager.`
 Варианты: `She is the manager.` · `Is she the manager?` · `He is the manager.`
+- Is she the manager? — *Это вопрос. В записи друг сообщает: `She is the manager` — «Она руководитель».*
+- He is the manager. — *Это сообщение о мужчине. На записи первое слово `She` — «она».*
+
 
 **9 · Соедините пары — слова для проверки машины, вещей и цены**
 <!-- interaction_id: en:lesson-02:session-53:i09; family: speed_match -->
@@ -99,11 +117,17 @@
 <!-- interaction_id: en:lesson-02:session-53:i10; family: context_gap_grammar -->
 Цель: `Where ___ the toilets?`
 Варианты: `are` · `is` · `am`
+- is — *В этом вопросе с `the toilets` нужна форма `are`: `Where are the toilets?`.*
+- am — *Форма `am` подходит к `I`. Здесь вопрос о туалетах, поэтому нужно `are`.*
+
 
 **11 · Послушайте и выберите — какая реплика друга прозвучала, когда вы обсуждали объяснение руководительницы**
 <!-- interaction_id: en:lesson-02:session-53:i11; family: listen_choose -->
 Цель: `Is she sure?`
 Варианты: `Is she sure?` · `She is sure.` · `Are you sure?`
+- She is sure. — *Это сообщение. В записи сначала `Is she`: друг задаёт вопрос.*
+- Are you sure? — *Это вопрос к вам. В записи друг спрашивает о женщине: `Is she sure?`.*
+
 
 **12 · Послушайте и соберите — друг сравнил сумму на экране с ценником и говорит о цене**
 <!-- interaction_id: en:lesson-02:session-53:i12; family: listen_build_dictation -->
@@ -113,6 +137,9 @@
 <!-- interaction_id: en:lesson-02:session-53:i13; family: context_gap_grammar -->
 Цель: `No, it ___ not.`
 Варианты: `is` · `are` · `am`
+- are — *После `it` в этом ответе нужно `is`: `No, it is not`.*
+- am — *Форма `am` подходит к `I`. Вы отвечаете о цене, поэтому сохраняем `it is not`.*
+
 
 **14 · Соберите фразу — руководительница отошла от стойки; друг ищет её рядом с вами, сообщите «Её здесь нет»**
 <!-- interaction_id: en:lesson-02:session-53:i14; family: phrase_builder -->

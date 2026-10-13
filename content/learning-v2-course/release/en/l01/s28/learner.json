@@ -115,6 +115,15 @@
               "ru": "Другое слово, «сломал». Нам нужно `broken` — то, что сломано.",
               "uk": "Інше слово, «зламав». Нам потрібне `broken` — те, що зламане."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `broken`: в конце слышно `-ken`. Это «сломано», не `brown` и не `broke`.",
+              "uk": "У записі `broken`: наприкінці чути `-ken`. Це «зламано», не `brown` і не `broke`."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Это «часто». Слушайте середину: в `open` там «п», в `often` — другой звук.",
               "uk": "Це «часто». Слухайте середину: у `open` там «п», у `often` — інший звук."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `open`: после `o` слышно `-pen`. Это «открыто», не `oven` и не `often`.",
+              "uk": "У записі `open`: після `o` чути `-pen`. Це «відкрито», не `oven` і не `often`."
+            }
           }
         ],
         "isWordCard": false,
@@ -267,7 +285,17 @@
         "authoredDistractorTokens": [
           "open"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — лампочка в коридоре не ",
+            "feedbackByLocale": {
+              "ru": "`open` лишнее: лампочка не горит, значит `It is broken.`",
+              "uk": "`open` зайве: лампочка не світиться, отже `It is broken`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -383,6 +411,15 @@
               "ru": "Тоже жужжит, но на самом конце. У `closed` последний звук — «д»: КЛОУЗД.",
               "uk": "Теж дзижчить, але на самому кінці. У `closed` останній звук — «д»: КЛОУЗД."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i07:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `closed`: в конце слышно `-zd`. Это «закрыто», не `cold` и не `clothes`.",
+              "uk": "У записі `closed`: наприкінці чути `-zd`. Це «зачинено», не `cold` і не `clothes`."
+            }
           }
         ],
         "isWordCard": false,
@@ -437,6 +474,15 @@
         ],
         "testedDimension": "Вставьте слово — вы пришли к магазину в ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы пришли к магазину в девять вечера, свет внутри выключен",
+            "feedbackByLocale": {
+              "ru": "В девять вечера магазин не работает и свет выключен, поэтому `closed` — «закрыто».",
+              "uk": "О дев'ятій вечора магазин не працює і світло вимкнене, тому `closed` — «зачинено»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-28:i08:r2",
             "correct": false,
@@ -571,6 +617,15 @@
               "ru": "Только первый звук совпадает. `empty` — два слога: ЭМ-пти.",
               "uk": "Збігається лише перший звук. `empty` — два склади: ЕМ-пті."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i10:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите",
+            "feedbackByLocale": {
+              "ru": "В записи `empty`: это «пусто». Не `enter` и не `any`.",
+              "uk": "У записі `empty`: це «порожньо». Не `enter` і не `any`."
+            }
           }
         ],
         "isWordCard": false,
@@ -607,7 +662,17 @@
         "authoredDistractorTokens": [
           "closed"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «оно пустое»",
+            "feedbackByLocale": {
+              "ru": "`closed` лишнее: фраза о пустом предмете — `It is empty.`",
+              "uk": "`closed` зайве: фраза про порожній предмет — `It is empty`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -732,6 +797,15 @@
         "testedDimension": "Вставьте слово — `cold` значит «холодно»",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-28:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — `cold` значит «холодно». Вы взяли чашку с полки, а чай в ней остыл ещё утром",
+            "feedbackByLocale": {
+              "ru": "Чай остыл, поэтому `cold` — «холодный». `hot` — наоборот, а `empty` — «пустой».",
+              "uk": "Чай охолов, тому `cold` — «холодний». `hot` — навпаки, а `empty` — «порожній»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-28:i13:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — `cold` значит «холодно»",
@@ -779,7 +853,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — форточка на кухне отошл",
+            "feedbackByLocale": {
+              "ru": "окно действительно открыто, отрицать нечего",
+              "uk": "вікно справді відчинене, заперечувати нічого"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -828,7 +912,16 @@
             "testedDimension": "Различите звуки — какое из двух про «зак",
             "feedbackByLocale": {
               "ru": "Это «холодно». В `closed` перед концом жужжит «з», в `cold` на её месте «л»: КЛОУЗД — КОУЛД.",
-              "uk": "Это «холодно». В `closed` перед концом жужжит «з», в `cold` на её месте «л»: КЛОУЗД — КОУЛД."
+              "uk": "Це «холодно». У `closed` перед кінцем дзижчить «з», а в `cold` на її місці стоїть «л»: КЛОУЗД — КОУЛД."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-28:i15:r1",
+            "correct": true,
+            "testedDimension": "Различите звуки — какое из двух про «закрыто»?",
+            "feedbackByLocale": {
+              "ru": "Верный вариант `closed`: в конце звучит `-zd`; `cold` значит «холодно».",
+              "uk": "Правильний варіант `closed`: наприкінці звучить `-zd`; `cold` означає «холодно»."
             }
           }
         ]
@@ -883,6 +976,15 @@
         "testedDimension": "Вставьте слово — `hot` значит «горячо». ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-28:i16:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — `hot` значит «горячо». Вы дотронулись до батареи, и руку пришлось отдёрнуть",
+            "feedbackByLocale": {
+              "ru": "Батарея горячая, поэтому `hot`. `cold` — холодная, а `broken` — сломана.",
+              "uk": "Батарея гаряча, тому `hot`. `cold` — холодна, а `broken` — зламана."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-28:i16:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — `hot` значит «горячо». ",
@@ -908,65 +1010,36 @@
       "interactionId": "en:lesson-01:session-28:i17",
       "ordinal": 20,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — `small` значит «маленький». Вы заглянули в кладовку: два шага в длину, шкаф и всё",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-28:i17:r1",
-          "text": "small"
-        },
-        {
-          "responseId": "en:lesson-01:session-28:i17:r2",
-          "text": "empty"
-        },
-        {
-          "responseId": "en:lesson-01:session-28:i17:r3",
-          "text": "cold"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — кладовка два шага в длину, шкаф и всё",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — `small` значит «маленький». Вы заглянули в кладовку: два шага в длину, шкаф и всё",
+      "accessibilityLabel": "Соберите фразу — кладовка два шага в длину, шкаф и всё",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — `small` значит «маленький». Вы заглянули в кладовку: два шага в длину, шкаф и всё",
-          "uk": "Вставте слово — `small` означає «маленький». Ви зазирнули в комору: два кроки завдовжки, шафа і все"
+        "family": "phrase_builder",
+        "targetPhrase": "It is small.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — кладовка два шага в длину, шкаф и всё",
+          "uk": "Складіть фразу — комора два кроки завдовжки, шафа і все"
         },
-        "gappedTargetPhrase": "It is ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-28:i17:r1",
-            "text": "small"
-          },
-          {
-            "responseId": "en:lesson-01:session-28:i17:r2",
-            "text": "empty"
-          },
-          {
-            "responseId": "en:lesson-01:session-28:i17:r3",
-            "text": "cold"
-          }
+        "orderedTokens": [
+          "It",
+          "is",
+          "small"
         ],
-        "testedDimension": "Вставьте слово — `small` значит «маленьк",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-28:i17:r2",
+            "responseId": "en:lesson-01:session-28:i17:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — `small` значит «маленьк",
+            "testedDimension": "Соберите фразу — кладовка два шага в дли",
             "feedbackByLocale": {
-              "ru": "Шкаф там стоит, значит не пусто. Речь про размер комнаты.",
-              "uk": "Шафа там стоїть, отже не порожньо. Мова про розмір кімнати."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-28:i17:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — `small` значит «маленьк",
-            "feedbackByLocale": {
-              "ru": "Про тепло ничего не сказано. Два шага в длину — это `small`.",
-              "uk": "Про тепло нічого не сказано. Два кроки завдовжки — це `small`."
+              "ru": "`are` лишнее: с `It` ставят `is` — `It is small.`",
+              "uk": "`are` зайве: з `It` ставлять `is` — `It is small`."
             }
           }
         ]
@@ -1020,6 +1093,15 @@
         ],
         "testedDimension": "Вставьте слово — `new` значит «новый». В",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i18:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — `new` значит «новый». Вы въехали неделю назад, обои ещё пахнут краской",
+            "feedbackByLocale": {
+              "ru": "Обои пахнут свежей краской после недавнего заселения, поэтому `new` — «новый».",
+              "uk": "Шпалери пахнуть свіжою фарбою після недавнього заселення, тому `new` — «новий»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-28:i18:r2",
             "correct": false,
@@ -1220,27 +1302,37 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 1 из 2",
+      "prompt": "Соберите одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 1 из 2",
+      "accessibilityLabel": "Соберите одну фразу",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "It is closed.",
         "localizedMeaning": {
-          "ru": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
-          "uk": "Фінал сцени — складіть дві фрази: крамниця зачинена, а квартира маленька"
+          "ru": "соберите две фразы: магазин закрыт, а квартира маленькая",
+          "uk": "складіть дві фрази: крамниця зачинена, а квартира маленька"
         },
         "orderedTokens": [
           "It",
           "is",
-          "closed."
+          "closed"
         ],
         "authoredDistractorTokens": [
           "new"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-28:i21:s01:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите одну фразу",
+            "feedbackByLocale": {
+              "ru": "`new` лишнее: фраза о закрытом месте — `It is closed.`",
+              "uk": "`new` зайве: фраза про зачинене місце — `It is closed`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -1248,29 +1340,32 @@
       "interactionId": "en:lesson-01:session-28:i21:s02",
       "ordinal": 27,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Соберите одну фразу — шаг 2 из 2",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — квартира маленькая",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Соберите одну фразу — шаг 2 из 2",
+      "audioTargetIds": [
+        "en:lesson-01:session-28:i21:s02:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — квартира маленькая",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "It is small.",
-        "localizedMeaning": {
-          "ru": "Финал сцены — соберите две фразы: магазин закрыт, а квартира маленькая",
-          "uk": "Фінал сцени — складіть дві фрази: крамниця зачинена, а квартира маленька"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-28:i21:s02:audio",
+          "transcript": "It is small."
         },
-        "orderedTokens": [
-          "It",
-          "is",
-          "small"
-        ],
-        "authoredDistractorTokens": [
-          "new"
-        ],
-        "slotFeedback": []
+        "slowReferenceAudio": null,
+        "targetPhrase": "It is small.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
       },
       "scriptedAlternate": null
     }
@@ -1281,5 +1376,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "65d80304266ad6d0e370358b21cd6410ce201452d70c621d4a53fb55db8709eb"
+  "learnerFingerprint": "e366a6cef75a9d99df734390ee799b7cb4e859f31bde3c3a7615d9bc688ba98b"
 }

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywall-gap-003	2026-10-13T10:47:37.991Z	error	10419	step_target_not_found:#paywall-compare-toggle+ждали_metro_50мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T10-46-48-840Z/paywall-gap-003.error.png	0

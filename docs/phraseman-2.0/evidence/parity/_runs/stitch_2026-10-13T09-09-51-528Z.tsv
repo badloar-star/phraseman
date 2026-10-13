@@ -1,0 +1,4 @@
+id	time	result	detail	file
+spire-011	2026-10-13T09:09:54.095Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:00:14.658Z code_changed_at=2026-10-13T10:04:32+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/spire-011.png
+spire-014	2026-10-13T09:09:56.813Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:09:29.366Z code_changed_at=2026-10-13T10:04:32+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/spire-014.png
+spire-015	2026-10-13T09:09:58.217Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T09:09:48.470Z code_changed_at=2026-10-13T10:04:32+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/spire-015.png

@@ -34,6 +34,7 @@ module.exports = {
     '<rootDir>/tests/learning_v2_horizons_native.test.tsx',
     '<rootDir>/tests/learning_v2_new_word_encounter_overlay.test.tsx',
     '<rootDir>/tests/learning_v2_practice_viewport.test.tsx',
+    '<rootDir>/tests/learning_v2_mode_feedback_lane.test.tsx',
     '<rootDir>/tests/lesson_session_attempts_integration.test.tsx',
     '<rootDir>/tests/lesson_words_attempts_integration.test.tsx',
     '<rootDir>/tests/mistake_practice_attempts_integration.test.tsx',

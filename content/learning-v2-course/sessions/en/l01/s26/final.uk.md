@@ -85,6 +85,8 @@
 <!-- interaction_id: en:lesson-01:session-26:i05; family: phrase_builder -->
 Плитки: `windy` `It` `is` `not` → **It is windy.**
 Зайва плитка `not`: дерева гне вітром, тому `It is windy`.
+*(плитка `not` зайва: `not` зайве: дерева гне вітром, тому `It is windy`.)*
+
 
 **6 · Картка слова — early**
 <!-- interaction_id: en:lesson-01:session-26:i06; family: listen_choose -->
@@ -105,6 +107,8 @@
 <!-- interaction_id: en:lesson-01:session-26:i09; family: listen_build_dictation -->
 🔊 *It is late.* Плитки: `late` `is` `It` `early` → **It is late.**
 Зайва плитка `early`: у записі `It is late.` — «пізно».
+*(плитка `early` зайва: `early` зайве: у записі `It is late.` — «пізно».)*
+
 
 **10 · Вставте слово — по склу тече, у дворі калюжі**
 <!-- interaction_id: en:lesson-01:session-26:i10; family: context_gap_grammar -->
@@ -132,6 +136,8 @@ It ___ cold. → **is** · am · are
 <!-- interaction_id: en:lesson-01:session-26:i14; family: phrase_builder -->
 Плитки: `cold` `is` `It` `not` → **It is cold.**
 Зайва плитка `not`: надворі зимно, тому `It is cold`.
+*(плитка `not` зайва: `not` зайве: надворі зимно, тому `It is cold`.)*
+
 
 **15 · Вставте слово — батарея гріє, у кімнаті добре**
 <!-- interaction_id: en:lesson-01:session-26:i15; family: context_gap_grammar -->
@@ -144,11 +150,15 @@ It is ___ . → **warm** · cold · rainy
 <!-- interaction_id: en:lesson-01:session-26:i16; family: listen_build_dictation -->
 🔊 *It is quiet.* Плитки: `quiet` `It` `is` `windy` → **It is quiet.**
 Зайва плитка `windy`: у записі `It is quiet.` — «тихо».
+*(плитка `windy` зайва: `windy` зайве: у записі `It is quiet.` — «тихо».)*
+
 
 **17 · Складіть фразу — у кімнаті натоплено**
 <!-- interaction_id: en:lesson-01:session-26:i17; family: phrase_builder -->
 Плитки: `warm` `It` `is` `am` → **It is warm.**
 Зайва плитка `am`: з `It` ставлять `is` — `It is warm`.
+*(плитка `am` зайва: `am` зайве: з `It` ставлять `is` — `It is warm`.)*
+
 
 **18 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-26:i18:s01; family: scripted_repeat_compare -->
@@ -158,11 +168,15 @@ It is ___ . → **warm** · cold · rainy
 <!-- interaction_id: en:lesson-01:session-26:i18:s02; family: phrase_builder -->
 Плитки: `dark` `It` `is` `are` → **It is dark.**
 Зайва плитка `are`: з `It` ставлять `is` — `It is dark`.
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is dark`.)*
+
 
 **20 · Послухайте і складіть — надворі вітряно**
 <!-- interaction_id: en:lesson-01:session-26:i18:s03; family: listen_build_dictation -->
 🔊 *It is windy.* Плитки: `windy` `It` `is` `are` → **It is windy.**
 Зайва плитка `are`: з `It` ставлять `is` — `It is windy`.
+*(плитка `are` зайва: `are` зайве: з `It` ставлять `is` — `It is windy`.)*
+
 
 **21 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-26:i18:s04; family: scripted_repeat_compare -->

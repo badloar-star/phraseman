@@ -1,0 +1,1177 @@
+{
+  "specification": "User messages in this session; requirements are not reduced to completed files.",
+  "variantsPerIcon": 5,
+  "brightnesses": [
+    "dark",
+    "light"
+  ],
+  "layers": [
+    "base",
+    "accent"
+  ],
+  "main": [
+    "lessons",
+    "dialogs",
+    "cards",
+    "continue",
+    "phrase_of_day",
+    "mistakes_entry",
+    "today",
+    "spire_tile"
+  ],
+  "streak": [
+    "streak_01",
+    "streak_02",
+    "streak_03",
+    "streak_04",
+    "streak_05",
+    "streak_06",
+    "streak_07",
+    "streak_08",
+    "streak_09",
+    "streak_10",
+    "streak_freeze",
+    "streak_freeze_overlay"
+  ],
+  "streakTierDays": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90
+  ],
+  "ranks": [
+    "spire_rank_1",
+    "spire_rank_2",
+    "spire_rank_3",
+    "spire_rank_4",
+    "spire_rank_5",
+    "spire_rank_6"
+  ],
+  "rankMapping": "badgeIndex=floor(tier/2)+1; all twelve actual stone league names remain distinct in the tower preview",
+  "crown": [],
+  "lockedArt": {
+    "crown": "Preserve the owner-approved crown; latest direct owner correction forbids replacement variants or substitution."
+  },
+  "flags": [
+    "flag_es",
+    "flag_fr"
+  ],
+  "legacy": [
+    "cards_from_video",
+    "cards_empty_saved"
+  ],
+  "dialogueThemes": [
+    "dialogue_airplane",
+    "dialogue_cup",
+    "dialogue_restaurant",
+    "dialogue_car",
+    "dialogue_train",
+    "dialogue_briefcase",
+    "dialogue_map",
+    "dialogue_compass",
+    "dialogue_cursor",
+    "dialogue_bed",
+    "dialogue_dumbbell",
+    "dialogue_branch",
+    "dialogue_network",
+    "dialogue_wifi",
+    "dialogue_battery"
+  ],
+  "aiOff": [
+    "ai_off"
+  ],
+  "scenarios": [
+    {
+      "id": "coffee",
+      "title": "Закажи кофе",
+      "icon": "cafe-outline"
+    },
+    {
+      "id": "grocery",
+      "title": "В продуктовом",
+      "icon": "basket-outline"
+    },
+    {
+      "id": "clothes_shop",
+      "title": "Магазин одежды",
+      "icon": "shirt-outline"
+    },
+    {
+      "id": "pharmacy",
+      "title": "В аптеке",
+      "icon": "medical-outline"
+    },
+    {
+      "id": "restaurant",
+      "title": "В ресторане",
+      "icon": "restaurant-outline"
+    },
+    {
+      "id": "doctor_visit",
+      "title": "У врача",
+      "icon": "fitness-outline"
+    },
+    {
+      "id": "phone_delivery",
+      "title": "Доставка",
+      "icon": "call-outline"
+    },
+    {
+      "id": "hotel_checkin",
+      "title": "Заселение в отель",
+      "icon": "bed-outline"
+    },
+    {
+      "id": "airport_checkin",
+      "title": "В аэропорту",
+      "icon": "airplane-outline"
+    },
+    {
+      "id": "taxi",
+      "title": "Такси",
+      "icon": "car-outline"
+    },
+    {
+      "id": "train_station",
+      "title": "На вокзале",
+      "icon": "train-outline"
+    },
+    {
+      "id": "lost_luggage",
+      "title": "Потерянный багаж",
+      "icon": "briefcase-outline"
+    },
+    {
+      "id": "tourist_info",
+      "title": "Туристический центр",
+      "icon": "map-outline"
+    },
+    {
+      "id": "car_rental",
+      "title": "Аренда машины",
+      "icon": "key-outline"
+    },
+    {
+      "id": "first_meeting",
+      "title": "Знакомство",
+      "icon": "people-outline"
+    },
+    {
+      "id": "small_talk_neighbor",
+      "title": "Сосед",
+      "icon": "home-outline"
+    },
+    {
+      "id": "work_call",
+      "title": "Рабочий созвон",
+      "icon": "videocam-outline"
+    },
+    {
+      "id": "ask_for_help",
+      "title": "Попросить помощь",
+      "icon": "help-circle-outline"
+    },
+    {
+      "id": "invite_friend",
+      "title": "Пригласить друга",
+      "icon": "calendar-outline"
+    },
+    {
+      "id": "complaint_order",
+      "title": "Проблема с заказом",
+      "icon": "receipt-outline"
+    },
+    {
+      "id": "lesson18_restaurant_table",
+      "title": "Столик в ресторане",
+      "icon": "restaurant-outline"
+    },
+    {
+      "id": "lesson20_lost_bag",
+      "title": "Потерянная сумка",
+      "icon": "bag-outline"
+    },
+    {
+      "id": "seat_stolen_cafe",
+      "title": "Твой столик заняли",
+      "icon": "cafe-outline"
+    },
+    {
+      "id": "taxi_wrong_way",
+      "title": "Таксист едет не туда",
+      "icon": "car-outline"
+    },
+    {
+      "id": "party_fast_talk",
+      "title": "Все говорят слишком быстро",
+      "icon": "sparkles-outline"
+    },
+    {
+      "id": "late_excuse_meeting",
+      "title": "Ты опоздал, и все злятся",
+      "icon": "time-outline"
+    },
+    {
+      "id": "bill_argument",
+      "title": "Спор из-за счёта",
+      "icon": "receipt-outline"
+    },
+    {
+      "id": "upsell_trap",
+      "title": "Тебе впаривают ерунду",
+      "icon": "pricetag-outline"
+    },
+    {
+      "id": "neighbor_noise",
+      "title": "Сосед пришёл жаловаться",
+      "icon": "home-outline"
+    },
+    {
+      "id": "condescending_interviewer",
+      "title": "Собеседник тебя принижает",
+      "icon": "chatbubbles-outline"
+    },
+    {
+      "id": "mistaken_celebrity",
+      "title": "Тебя приняли за знаменитость",
+      "icon": "star-outline"
+    },
+    {
+      "id": "wrong_dish_better",
+      "title": "Принесли не то, но вкуснее",
+      "icon": "restaurant-outline"
+    },
+    {
+      "id": "neighbor_cat_accusation",
+      "title": "Сосед думает, ты прячешь его кота",
+      "icon": "alert-circle-outline"
+    },
+    {
+      "id": "wrong_wedding",
+      "title": "Ты попал не на ту свадьбу",
+      "icon": "happy-outline"
+    },
+    {
+      "id": "salesman_talks_you_out",
+      "title": "Продавец отговаривает покупать",
+      "icon": "pricetag-outline"
+    },
+    {
+      "id": "dramatic_taxi_actor",
+      "title": "Таксист — драматичный актёр",
+      "icon": "car-outline"
+    },
+    {
+      "id": "surprise_guest_speech",
+      "title": "Тебе вручили микрофон",
+      "icon": "mic-outline"
+    },
+    {
+      "id": "broken_robot_waiter",
+      "title": "Робот-официант сломался",
+      "icon": "construct-outline"
+    },
+    {
+      "id": "conspiracy_seatmate",
+      "title": "Сосед в самолёте — конспиролог",
+      "icon": "airplane-outline"
+    },
+    {
+      "id": "mistaken_for_boss",
+      "title": "Тебя приняли за нового шефа",
+      "icon": "briefcase-outline"
+    },
+    {
+      "id": "looping_support_bot",
+      "title": "Бот поддержки ходит по кругу",
+      "icon": "chatbubbles-outline"
+    },
+    {
+      "id": "new_colleague_family",
+      "title": "Новый коллега о семье",
+      "icon": "people-outline"
+    },
+    {
+      "id": "gym_signup_form",
+      "title": "Запись в спортзал",
+      "icon": "clipboard-outline"
+    },
+    {
+      "id": "class_schedule_talk",
+      "title": "Расписание занятий",
+      "icon": "calendar-outline"
+    },
+    {
+      "id": "neighbour_morning_routine",
+      "title": "Сосед о твоём дне",
+      "icon": "sunny-outline"
+    },
+    {
+      "id": "flatmate_room_tour",
+      "title": "Показать комнату",
+      "icon": "home-outline"
+    },
+    {
+      "id": "club_skills_chat",
+      "title": "Что ты умеешь",
+      "icon": "construct-outline"
+    },
+    {
+      "id": "monday_catchup",
+      "title": "Как прошли выходные",
+      "icon": "time-outline"
+    },
+    {
+      "id": "trip_story_swap",
+      "title": "История из поездки",
+      "icon": "airplane-outline"
+    },
+    {
+      "id": "video_call_now",
+      "title": "Что происходит сейчас",
+      "icon": "videocam-outline"
+    },
+    {
+      "id": "interview_experience",
+      "title": "Твой опыт",
+      "icon": "ribbon-outline"
+    },
+    {
+      "id": "plans_next_year",
+      "title": "Планы на будущее",
+      "icon": "compass-outline"
+    },
+    {
+      "id": "moving_day_help",
+      "title": "Помощь на переезде",
+      "icon": "cube-outline"
+    }
+  ],
+  "scenarioCount": 53,
+  "uiCategories": [
+    {
+      "title": "Навигация и управление",
+      "icons": [
+        {
+          "id": "ui_01_01",
+          "label": "закрыть"
+        },
+        {
+          "id": "ui_01_02",
+          "label": "назад"
+        },
+        {
+          "id": "ui_01_03",
+          "label": "вперёд/открыть"
+        },
+        {
+          "id": "ui_01_04",
+          "label": "развернуть"
+        },
+        {
+          "id": "ui_01_05",
+          "label": "свернуть"
+        },
+        {
+          "id": "ui_01_06",
+          "label": "раскрыть список"
+        },
+        {
+          "id": "ui_01_07",
+          "label": "стрелка назад"
+        },
+        {
+          "id": "ui_01_08",
+          "label": "стрелка вперёд"
+        },
+        {
+          "id": "ui_01_09",
+          "label": "стрелка вперёд в круге"
+        },
+        {
+          "id": "ui_01_10",
+          "label": "стрелка вверх"
+        },
+        {
+          "id": "ui_01_11",
+          "label": "стрелка вверх в круге"
+        },
+        {
+          "id": "ui_01_12",
+          "label": "стрелка вниз"
+        },
+        {
+          "id": "ui_01_13",
+          "label": "отменить"
+        },
+        {
+          "id": "ui_01_14",
+          "label": "ещё — горизонтально"
+        },
+        {
+          "id": "ui_01_15",
+          "label": "ещё — вертикально"
+        },
+        {
+          "id": "ui_01_16",
+          "label": "ещё в круге"
+        },
+        {
+          "id": "ui_01_17",
+          "label": "параметры-ползунки"
+        },
+        {
+          "id": "ui_01_18",
+          "label": "фильтр"
+        },
+        {
+          "id": "ui_01_19",
+          "label": "перетащить"
+        },
+        {
+          "id": "ui_01_20",
+          "label": "поиск"
+        },
+        {
+          "id": "ui_01_21",
+          "label": "открыть во внешнем окне"
+        },
+        {
+          "id": "ui_01_22",
+          "label": "выйти"
+        },
+        {
+          "id": "ui_01_23",
+          "label": "стереть символ"
+        },
+        {
+          "id": "ui_01_24",
+          "label": "главная"
+        },
+        {
+          "id": "ui_01_25",
+          "label": "сетка"
+        },
+        {
+          "id": "ui_01_26",
+          "label": "список"
+        },
+        {
+          "id": "ui_01_27",
+          "label": "перемешать"
+        },
+        {
+          "id": "ui_01_28",
+          "label": "повторить"
+        },
+        {
+          "id": "ui_01_29",
+          "label": "обновить"
+        },
+        {
+          "id": "ui_01_30",
+          "label": "обновить в круге"
+        },
+        {
+          "id": "ui_01_31",
+          "label": "синхронизация"
+        }
+      ]
+    },
+    {
+      "title": "Отметки и состояния",
+      "icons": [
+        {
+          "id": "ui_02_01",
+          "label": "галочка"
+        },
+        {
+          "id": "ui_02_02",
+          "label": "галочка в круге"
+        },
+        {
+          "id": "ui_02_03",
+          "label": "двойная галочка"
+        },
+        {
+          "id": "ui_02_04",
+          "label": "крестик в круге"
+        },
+        {
+          "id": "ui_02_05",
+          "label": "плюс"
+        },
+        {
+          "id": "ui_02_06",
+          "label": "плюс в круге"
+        },
+        {
+          "id": "ui_02_07",
+          "label": "минус в круге"
+        },
+        {
+          "id": "ui_02_08",
+          "label": "восклицательный знак в круге"
+        },
+        {
+          "id": "ui_02_09",
+          "label": "предупреждение"
+        },
+        {
+          "id": "ui_02_10",
+          "label": "i"
+        },
+        {
+          "id": "ui_02_11",
+          "label": "i в круге"
+        },
+        {
+          "id": "ui_02_12",
+          "label": "вопрос в круге"
+        },
+        {
+          "id": "ui_02_13",
+          "label": "замок закрыт"
+        },
+        {
+          "id": "ui_02_14",
+          "label": "замок открыт"
+        },
+        {
+          "id": "ui_02_15",
+          "label": "глаз"
+        },
+        {
+          "id": "ui_02_16",
+          "label": "глаз перечёркнутый"
+        },
+        {
+          "id": "ui_02_17",
+          "label": "квадрат с галочкой"
+        },
+        {
+          "id": "ui_02_18",
+          "label": "переключатель вкл"
+        },
+        {
+          "id": "ui_02_19",
+          "label": "переключатель выкл"
+        },
+        {
+          "id": "ui_02_20",
+          "label": "квадрат"
+        },
+        {
+          "id": "ui_02_21",
+          "label": "точка"
+        },
+        {
+          "id": "ui_02_22",
+          "label": "нет сети"
+        },
+        {
+          "id": "ui_02_23",
+          "label": "загрузка в облако"
+        },
+        {
+          "id": "ui_02_24",
+          "label": "сохранить"
+        },
+        {
+          "id": "ui_02_25",
+          "label": "корзина-удалить"
+        },
+        {
+          "id": "ui_02_26",
+          "label": "жук-ошибка"
+        },
+        {
+          "id": "ui_02_27",
+          "label": "бесконечность"
+        },
+        {
+          "id": "ui_02_28",
+          "label": "флажок-пожаловаться"
+        }
+      ]
+    },
+    {
+      "title": "Правка и обмен",
+      "icons": [
+        {
+          "id": "ui_03_01",
+          "label": "редактировать"
+        },
+        {
+          "id": "ui_03_02",
+          "label": "карандаш"
+        },
+        {
+          "id": "ui_03_03",
+          "label": "копировать"
+        },
+        {
+          "id": "ui_03_04",
+          "label": "ножницы"
+        },
+        {
+          "id": "ui_03_05",
+          "label": "поделиться"
+        },
+        {
+          "id": "ui_03_06",
+          "label": "поделиться в соцсетях"
+        },
+        {
+          "id": "ui_03_07",
+          "label": "ссылка"
+        },
+        {
+          "id": "ui_03_08",
+          "label": "булавка"
+        },
+        {
+          "id": "ui_03_09",
+          "label": "буфер обмена"
+        }
+      ]
+    },
+    {
+      "title": "Обучение",
+      "icons": [
+        {
+          "id": "ui_04_01",
+          "label": "шапочка выпускника"
+        },
+        {
+          "id": "ui_04_02",
+          "label": "книга"
+        },
+        {
+          "id": "ui_04_03",
+          "label": "библиотека"
+        },
+        {
+          "id": "ui_04_04",
+          "label": "чтение"
+        },
+        {
+          "id": "ui_04_05",
+          "label": "лампочка"
+        },
+        {
+          "id": "ui_04_06",
+          "label": "текст"
+        },
+        {
+          "id": "ui_04_07",
+          "label": "язык"
+        },
+        {
+          "id": "ui_04_08",
+          "label": "глобус"
+        },
+        {
+          "id": "ui_04_09",
+          "label": "Земля"
+        },
+        {
+          "id": "ui_04_10",
+          "label": "документ"
+        },
+        {
+          "id": "ui_04_11",
+          "label": "газета"
+        },
+        {
+          "id": "ui_04_12",
+          "label": "калькулятор"
+        },
+        {
+          "id": "ui_04_13",
+          "label": "колба"
+        },
+        {
+          "id": "ui_04_14",
+          "label": "пазл"
+        },
+        {
+          "id": "ui_04_15",
+          "label": "волшебная палочка"
+        },
+        {
+          "id": "ui_04_16",
+          "label": "блёстки/ИИ"
+        },
+        {
+          "id": "ui_04_17",
+          "label": "ключ с молотком"
+        }
+      ]
+    },
+    {
+      "title": "Энергия, награды, прогресс",
+      "icons": [
+        {
+          "id": "ui_05_01",
+          "label": "молния"
+        },
+        {
+          "id": "ui_05_02",
+          "label": "звезда"
+        },
+        {
+          "id": "ui_05_03",
+          "label": "лента-награда"
+        },
+        {
+          "id": "ui_05_04",
+          "label": "кубок"
+        },
+        {
+          "id": "ui_05_05",
+          "label": "пьедестал"
+        },
+        {
+          "id": "ui_05_06",
+          "label": "кристалл"
+        },
+        {
+          "id": "ui_05_07",
+          "label": "подарок"
+        },
+        {
+          "id": "ui_05_08",
+          "label": "огонёк серии"
+        },
+        {
+          "id": "ui_05_09",
+          "label": "снежинка-заморозка"
+        },
+        {
+          "id": "ui_05_10",
+          "label": "ракета"
+        },
+        {
+          "id": "ui_05_11",
+          "label": "график вверх"
+        },
+        {
+          "id": "ui_05_12",
+          "label": "график вниз"
+        },
+        {
+          "id": "ui_05_13",
+          "label": "столбики"
+        },
+        {
+          "id": "ui_05_14",
+          "label": "статистика"
+        },
+        {
+          "id": "ui_05_15",
+          "label": "аналитика"
+        },
+        {
+          "id": "ui_05_16",
+          "label": "пульс"
+        },
+        {
+          "id": "ui_05_17",
+          "label": "спидометр"
+        },
+        {
+          "id": "ui_05_18",
+          "label": "песочные часы"
+        },
+        {
+          "id": "ui_05_19",
+          "label": "таймер"
+        },
+        {
+          "id": "ui_05_20",
+          "label": "часы"
+        },
+        {
+          "id": "ui_05_21",
+          "label": "календарь"
+        },
+        {
+          "id": "ui_05_22",
+          "label": "билет"
+        },
+        {
+          "id": "ui_05_23",
+          "label": "ценник"
+        },
+        {
+          "id": "ui_05_24",
+          "label": "чек"
+        },
+        {
+          "id": "ui_05_25",
+          "label": "ключ-доступ"
+        }
+      ]
+    },
+    {
+      "title": "Звук и видео",
+      "icons": [
+        {
+          "id": "ui_06_01",
+          "label": "микрофон"
+        },
+        {
+          "id": "ui_06_02",
+          "label": "микрофон выкл"
+        },
+        {
+          "id": "ui_06_03",
+          "label": "громкость полная"
+        },
+        {
+          "id": "ui_06_04",
+          "label": "громкость средняя"
+        },
+        {
+          "id": "ui_06_05",
+          "label": "ухо"
+        },
+        {
+          "id": "ui_06_06",
+          "label": "наушники"
+        },
+        {
+          "id": "ui_06_07",
+          "label": "ноты"
+        },
+        {
+          "id": "ui_06_08",
+          "label": "радио"
+        },
+        {
+          "id": "ui_06_09",
+          "label": "играть"
+        },
+        {
+          "id": "ui_06_10",
+          "label": "играть в круге"
+        },
+        {
+          "id": "ui_06_11",
+          "label": "перемотка"
+        },
+        {
+          "id": "ui_06_12",
+          "label": "пауза"
+        },
+        {
+          "id": "ui_06_13",
+          "label": "стоп"
+        },
+        {
+          "id": "ui_06_14",
+          "label": "видеокамера"
+        },
+        {
+          "id": "ui_06_15",
+          "label": "камера"
+        },
+        {
+          "id": "ui_06_16",
+          "label": "картинка"
+        },
+        {
+          "id": "ui_06_17",
+          "label": "YouTube"
+        },
+        {
+          "id": "ui_06_18",
+          "label": "диск"
+        },
+        {
+          "id": "ui_06_19",
+          "label": "громкоговоритель"
+        }
+      ]
+    },
+    {
+      "title": "Общение и люди",
+      "icons": [
+        {
+          "id": "ui_07_01",
+          "label": "люди"
+        },
+        {
+          "id": "ui_07_02",
+          "label": "человек"
+        },
+        {
+          "id": "ui_07_03",
+          "label": "профиль в круге"
+        },
+        {
+          "id": "ui_07_04",
+          "label": "добавить друга"
+        },
+        {
+          "id": "ui_07_05",
+          "label": "облачко"
+        },
+        {
+          "id": "ui_07_06",
+          "label": "два облачка"
+        },
+        {
+          "id": "ui_07_07",
+          "label": "облачко пишет"
+        },
+        {
+          "id": "ui_07_08",
+          "label": "квадратное облачко"
+        },
+        {
+          "id": "ui_07_09",
+          "label": "квадратное облачко с точками"
+        },
+        {
+          "id": "ui_07_10",
+          "label": "трубка"
+        },
+        {
+          "id": "ui_07_11",
+          "label": "конверт"
+        },
+        {
+          "id": "ui_07_12",
+          "label": "самолётик-отправить"
+        },
+        {
+          "id": "ui_07_13",
+          "label": "колокольчик"
+        },
+        {
+          "id": "ui_07_14",
+          "label": "колокольчик выкл"
+        },
+        {
+          "id": "ui_07_15",
+          "label": "улыбка"
+        },
+        {
+          "id": "ui_07_16",
+          "label": "палец вверх"
+        },
+        {
+          "id": "ui_07_17",
+          "label": "палец вниз"
+        },
+        {
+          "id": "ui_07_18",
+          "label": "ладонь"
+        },
+        {
+          "id": "ui_07_19",
+          "label": "сердце"
+        },
+        {
+          "id": "ui_07_20",
+          "label": "щит"
+        },
+        {
+          "id": "ui_07_21",
+          "label": "щит с галочкой"
+        },
+        {
+          "id": "ui_07_22",
+          "label": "медицинский крест"
+        }
+      ]
+    },
+    {
+      "title": "Карточки и покупки",
+      "icons": [
+        {
+          "id": "ui_08_01",
+          "label": "закладка"
+        },
+        {
+          "id": "ui_08_02",
+          "label": "слои-набор"
+        },
+        {
+          "id": "ui_08_03",
+          "label": "альбомы"
+        },
+        {
+          "id": "ui_08_04",
+          "label": "кубик"
+        },
+        {
+          "id": "ui_08_05",
+          "label": "банковская карта"
+        },
+        {
+          "id": "ui_08_06",
+          "label": "тележка"
+        },
+        {
+          "id": "ui_08_07",
+          "label": "корзинка"
+        },
+        {
+          "id": "ui_08_08",
+          "label": "витрина"
+        },
+        {
+          "id": "ui_08_09",
+          "label": "сумка"
+        },
+        {
+          "id": "ui_08_10",
+          "label": "футболка"
+        },
+        {
+          "id": "ui_08_11",
+          "label": "монета-руна"
+        }
+      ]
+    },
+    {
+      "title": "Настройки и оформление",
+      "icons": [
+        {
+          "id": "ui_09_01",
+          "label": "шестерёнка"
+        },
+        {
+          "id": "ui_09_02",
+          "label": "молоток"
+        },
+        {
+          "id": "ui_09_03",
+          "label": "палитра"
+        },
+        {
+          "id": "ui_09_04",
+          "label": "солнце"
+        },
+        {
+          "id": "ui_09_05",
+          "label": "луна"
+        },
+        {
+          "id": "ui_09_06",
+          "label": "телефон"
+        },
+        {
+          "id": "ui_09_07",
+          "label": "сигнал связи"
+        }
+      ]
+    },
+    {
+      "title": "Темы диалогов",
+      "icons": [
+        {
+          "id": "ui_10_01",
+          "label": "самолёт"
+        },
+        {
+          "id": "ui_10_02",
+          "label": "чашка"
+        },
+        {
+          "id": "ui_10_03",
+          "label": "вилка с ножом"
+        },
+        {
+          "id": "ui_10_04",
+          "label": "машина"
+        },
+        {
+          "id": "ui_10_05",
+          "label": "поезд"
+        },
+        {
+          "id": "ui_10_06",
+          "label": "портфель"
+        },
+        {
+          "id": "ui_10_07",
+          "label": "карта"
+        },
+        {
+          "id": "ui_10_08",
+          "label": "компас"
+        },
+        {
+          "id": "ui_10_09",
+          "label": "стрелка-курсор"
+        },
+        {
+          "id": "ui_10_10",
+          "label": "кровать"
+        },
+        {
+          "id": "ui_10_11",
+          "label": "гантель"
+        },
+        {
+          "id": "ui_10_12",
+          "label": "ветка-выбор"
+        },
+        {
+          "id": "ui_10_13",
+          "label": "сеть связей"
+        },
+        {
+          "id": "ui_10_14",
+          "label": "вай-фай"
+        },
+        {
+          "id": "ui_10_15",
+          "label": "батарея"
+        }
+      ]
+    }
+  ],
+  "uiCatalogCount": 184,
+  "uiCatalogNote": "All owner-listed icons stay in scope. Reuse with a large-art or dialogue ID requires explicit semantic mapping and complete five-choice evidence; do not count duplicates as separate finished artwork.",
+  "preview": {
+    "sourceHome": "ART_STYLE_FOR_CODEX/home_styles.html",
+    "sourceScreens": "docs/design/v2-app",
+    "originalLayout": true,
+    "allAffectedScreens": true,
+    "independentSelection": true,
+    "persistSelections": true,
+    "namedThemes": 23,
+    "darkLight": true,
+    "hueSlider": true,
+    "intensitySlider": true,
+    "tower": {
+      "source": "docs/design/v2-app/spire.html",
+      "constructionVariants": 5,
+      "leagues": 12,
+      "floors": 15,
+      "interactive": true,
+      "imageGeneration": false
+    }
+  },
+  "assetInvariants": {
+    "directory": "ART_STYLE_FOR_CODEX/trials/S2_clay/{dark,light}",
+    "width": 1024,
+    "height": 1024,
+    "alpha": true,
+    "maxBaseBytes": 409600,
+    "whiteAccent": true,
+    "exactAccentAlignment": true
+  },
+  "productionImport": "Not authorized until the owner chooses candidates."
+}

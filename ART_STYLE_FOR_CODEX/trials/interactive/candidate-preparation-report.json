@@ -1,0 +1,4116 @@
+[
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64448,
+    "accentFramePct": 2.882,
+    "transparentPct": 43.67,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 12,
+      "outlinePts": 347,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 12 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 49802,
+    "accentFramePct": 1.06,
+    "transparentPct": 52.42,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.4,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.6,
+      "outlinePts": 214,
+      "reason": "accent совпадает с основой (на основе 99.4 %, контур по краю 100 %, перепадов внутри 2.6 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59022,
+    "accentFramePct": 0.639,
+    "transparentPct": 52.98,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.9,
+      "outlinePts": 129,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 8.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 55790,
+    "accentFramePct": 0.741,
+    "transparentPct": 52.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.4,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 9.3,
+      "outlinePts": 175,
+      "reason": "accent совпадает с основой (на основе 99.4 %, контур по краю 100 %, перепадов внутри 9.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 63590,
+    "accentFramePct": 1.982,
+    "transparentPct": 52.18,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.8,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8,
+      "outlinePts": 316,
+      "reason": "accent совпадает с основой (на основе 99.8 %, контур по краю 100 %, перепадов внутри 8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70712,
+    "accentFramePct": 2.89,
+    "transparentPct": 43.15,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 10.1,
+      "outlinePts": 347,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 10.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54752,
+    "accentFramePct": 1.084,
+    "transparentPct": 51.77,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.4,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.3,
+      "outlinePts": 217,
+      "reason": "accent совпадает с основой (на основе 99.4 %, контур по краю 100 %, перепадов внутри 1.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 72030,
+    "accentFramePct": 0.641,
+    "transparentPct": 51.94,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 6.6,
+      "outlinePts": 128,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 6.6 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 62968,
+    "accentFramePct": 0.758,
+    "transparentPct": 51.99,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.3,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.2,
+      "outlinePts": 177,
+      "reason": "accent совпадает с основой (на основе 99.3 %, контур по краю 100 %, перепадов внутри 8.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 48450,
+    "accentFramePct": 2.004,
+    "transparentPct": 51.72,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.8,
+      "edgeAlignedPct": 99.7,
+      "interiorEdgePct": 6.3,
+      "outlinePts": 318,
+      "reason": "accent совпадает с основой (на основе 99.8 %, контур по краю 99.7 %, перепадов внутри 6.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 71070,
+    "accentFramePct": 2.385,
+    "transparentPct": 48.19,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.9,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 5.8,
+      "outlinePts": 369,
+      "reason": "accent совпадает с основой (на основе 99.9 %, контур по краю 100 %, перепадов внутри 5.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 74192,
+    "accentFramePct": 2.677,
+    "transparentPct": 44.62,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 28.1,
+      "outlinePts": 333,
+      "reason": "accent_misaligned: внутри слоя 28.1 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67400,
+    "accentFramePct": 1.482,
+    "transparentPct": 45.27,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 18.2,
+      "outlinePts": 234,
+      "reason": "accent_misaligned: внутри слоя 18.2 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 77326,
+    "accentFramePct": 2.748,
+    "transparentPct": 56.91,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 99.4,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 23.5,
+      "outlinePts": 388,
+      "reason": "accent_misaligned: внутри слоя 23.5 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 73210,
+    "accentFramePct": 1.034,
+    "transparentPct": 40.61,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.5,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.9,
+      "outlinePts": 216,
+      "reason": "accent совпадает с основой (на основе 99.5 %, контур по краю 100 %, перепадов внутри 8.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67186,
+    "accentFramePct": 2.409,
+    "transparentPct": 47.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.8,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 5.2,
+      "outlinePts": 370,
+      "reason": "accent совпадает с основой (на основе 99.8 %, контур по краю 100 %, перепадов внутри 5.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 68294,
+    "accentFramePct": 2.712,
+    "transparentPct": 43.97,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 29,
+      "outlinePts": 334,
+      "reason": "accent_misaligned: внутри слоя 29 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70162,
+    "accentFramePct": 1.489,
+    "transparentPct": 44.8,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 15.9,
+      "outlinePts": 234,
+      "reason": "accent_misaligned: внутри слоя 15.9 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 74032,
+    "accentFramePct": 2.83,
+    "transparentPct": 56.19,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 99.4,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 20.4,
+      "outlinePts": 392,
+      "reason": "accent_misaligned: внутри слоя 20.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 83996,
+    "accentFramePct": 1.045,
+    "transparentPct": 40,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.5,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.9,
+      "outlinePts": 216,
+      "reason": "accent совпадает с основой (на основе 99.5 %, контур по краю 100 %, перепадов внутри 8.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59546,
+    "accentFramePct": 2.708,
+    "transparentPct": 44.33,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.4,
+      "outlinePts": 334,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 8.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61942,
+    "accentFramePct": 1.493,
+    "transparentPct": 45.05,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 13.9,
+      "outlinePts": 234,
+      "reason": "accent_misaligned: внутри слоя 13.9 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61630,
+    "accentFramePct": 2.825,
+    "transparentPct": 56.29,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 99.3,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 21.1,
+      "outlinePts": 391,
+      "reason": "accent_misaligned: внутри слоя 21.1 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_03r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 62562,
+    "maskInsetPx": 4,
+    "accentFramePct": 1.04,
+    "transparentPct": 45.03,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 11.8,
+      "outlinePts": 196,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 11.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_empty_saved_option_04r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60230,
+    "maskInsetPx": 4,
+    "accentFramePct": 2.503,
+    "transparentPct": 56.81,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.5,
+      "outlinePts": 336,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 8.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 52366,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.755,
+    "transparentPct": 44.15,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.5,
+      "outlinePts": 335,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_03r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70096,
+    "maskInsetPx": 4,
+    "accentFramePct": 1.048,
+    "transparentPct": 43.98,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 10.7,
+      "outlinePts": 197,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 10.7 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_empty_saved_option_04r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60338,
+    "maskInsetPx": 4,
+    "accentFramePct": 2.554,
+    "transparentPct": 56.38,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 8.7,
+      "outlinePts": 339,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 8.7 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 76212,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.77,
+    "transparentPct": 44.64,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 281,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59830,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.525,
+    "transparentPct": 52.78,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.9,
+      "outlinePts": 138,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50290,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.114,
+    "transparentPct": 45.53,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 227,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 81704,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.059,
+    "transparentPct": 48.65,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.3,
+      "outlinePts": 192,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65934,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.957,
+    "transparentPct": 40.22,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.2,
+      "outlinePts": 204,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 51208,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.012,
+    "transparentPct": 54.09,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.5,
+      "outlinePts": 163,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50888,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.299,
+    "transparentPct": 49.83,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 366,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50906,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.25,
+    "transparentPct": 50.85,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.1,
+      "outlinePts": 216,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 69752,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.809,
+    "transparentPct": 55.78,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 156,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61410,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.318,
+    "transparentPct": 42.31,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3,
+      "outlinePts": 187,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65400,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.531,
+    "transparentPct": 51.05,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.2,
+      "outlinePts": 121,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65358,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.993,
+    "transparentPct": 49.4,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.6,
+      "outlinePts": 392,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.6 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 82268,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.749,
+    "transparentPct": 41.89,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 140,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67664,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.06,
+    "transparentPct": 39.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.1,
+      "outlinePts": 377,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 66208,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.731,
+    "transparentPct": 42.33,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.8,
+      "outlinePts": 150,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 74648,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.779,
+    "transparentPct": 43.7,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 282,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 55376,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.526,
+    "transparentPct": 51.94,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.7,
+      "outlinePts": 136,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.7 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61252,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.135,
+    "transparentPct": 44.68,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 228,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70056,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.071,
+    "transparentPct": 47.5,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.5,
+      "outlinePts": 194,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 63974,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.965,
+    "transparentPct": 39.05,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2,
+      "outlinePts": 207,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 53586,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.014,
+    "transparentPct": 53.3,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.4,
+      "outlinePts": 163,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 43816,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.324,
+    "transparentPct": 49.14,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.2,
+      "outlinePts": 367,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 55018,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.26,
+    "transparentPct": 50.16,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.2,
+      "outlinePts": 216,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64676,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.815,
+    "transparentPct": 55.15,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 156,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56916,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.326,
+    "transparentPct": 42,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3,
+      "outlinePts": 187,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54446,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.536,
+    "transparentPct": 50.59,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.3,
+      "outlinePts": 121,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59030,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.014,
+    "transparentPct": 48.63,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.5,
+      "outlinePts": 394,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 71144,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.762,
+    "transparentPct": 41.2,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 142,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61440,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.088,
+    "transparentPct": 38.43,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.8,
+      "outlinePts": 378,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54812,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.727,
+    "transparentPct": 42.45,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.5,
+      "outlinePts": 150,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60246,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.622,
+    "transparentPct": 52.66,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 5.9,
+      "outlinePts": 206,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 5.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/cards_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 53610,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.701,
+    "transparentPct": 51.31,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.5,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.6,
+      "outlinePts": 273,
+      "reason": "accent совпадает с основой (на основе 99.5 %, контур по краю 100 %, перепадов внутри 7.6 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 58044,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.209,
+    "transparentPct": 52.22,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.7,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 9.3,
+      "outlinePts": 208,
+      "reason": "accent совпадает с основой (на основе 99.7 %, контур по краю 100 %, перепадов внутри 9.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/lessons_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 76704,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.619,
+    "transparentPct": 39.69,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.1,
+      "outlinePts": 309,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/dialogs_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 69360,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.787,
+    "transparentPct": 55.77,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.4,
+      "outlinePts": 224,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65144,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.928,
+    "transparentPct": 50.86,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.3,
+      "outlinePts": 161,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 79080,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.129,
+    "transparentPct": 41.41,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.4,
+      "outlinePts": 236,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 62866,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.4,
+    "transparentPct": 42.27,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.4,
+      "outlinePts": 212,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 66218,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.622,
+    "transparentPct": 52.06,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.5,
+      "outlinePts": 206,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/cards_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65420,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.718,
+    "transparentPct": 50.93,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.5,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.4,
+      "outlinePts": 273,
+      "reason": "accent совпадает с основой (на основе 99.5 %, контур по краю 100 %, перепадов внутри 7.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54458,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.222,
+    "transparentPct": 51.91,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 99.7,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 9.8,
+      "outlinePts": 209,
+      "reason": "accent совпадает с основой (на основе 99.7 %, контур по краю 100 %, перепадов внутри 9.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/lessons_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 75284,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.613,
+    "transparentPct": 38.83,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 96.8,
+      "interiorEdgePct": 2.9,
+      "outlinePts": 311,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 96.8 %, перепадов внутри 2.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/dialogs_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67504,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.795,
+    "transparentPct": 55.26,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1,
+      "outlinePts": 224,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60488,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.93,
+    "transparentPct": 50.56,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.7,
+      "outlinePts": 161,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.7 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 84540,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.138,
+    "transparentPct": 40.88,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.4,
+      "outlinePts": 237,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 72058,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.413,
+    "transparentPct": 42.29,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.4,
+      "outlinePts": 212,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/today_option_01r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 66452,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.766,
+    "transparentPct": 50.95,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.3,
+      "outlinePts": 222,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r2.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r2.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/today_option_01r2.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60574,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.768,
+    "transparentPct": 50.38,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.4,
+      "outlinePts": 222,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 101956,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.776,
+    "transparentPct": 53.12,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 17.8,
+      "outlinePts": 366,
+      "reason": "accent_misaligned: внутри слоя 17.8 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 66284,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.732,
+    "transparentPct": 43.77,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 9.5,
+      "outlinePts": 414,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 9.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56902,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.837,
+    "transparentPct": 47.75,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 21,
+      "outlinePts": 456,
+      "reason": "accent_misaligned: внутри слоя 21 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 58038,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.034,
+    "transparentPct": 48.86,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 12.4,
+      "outlinePts": 408,
+      "reason": "accent_misaligned: внутри слоя 12.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50064,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.011,
+    "transparentPct": 56.9,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 18.7,
+      "outlinePts": 360,
+      "reason": "accent_misaligned: внутри слоя 18.7 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 105346,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.618,
+    "transparentPct": 52.1,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 17.5,
+      "outlinePts": 587,
+      "reason": "accent_misaligned: внутри слоя 17.5 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64526,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.942,
+    "transparentPct": 43.59,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 11.3,
+      "outlinePts": 731,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 11.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60856,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.096,
+    "transparentPct": 47.36,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 28.5,
+      "outlinePts": 649,
+      "reason": "accent_misaligned: внутри слоя 28.5 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61640,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.09,
+    "transparentPct": 48.47,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 13,
+      "outlinePts": 708,
+      "reason": "accent_misaligned: внутри слоя 13 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_2_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 43218,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.853,
+    "transparentPct": 57.46,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 20.7,
+      "outlinePts": 493,
+      "reason": "accent_misaligned: внутри слоя 20.7 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 106382,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.091,
+    "transparentPct": 52.2,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 22.9,
+      "outlinePts": 642,
+      "reason": "accent_misaligned: внутри слоя 22.9 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67144,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.856,
+    "transparentPct": 43.45,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 11.8,
+      "outlinePts": 954,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 11.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59766,
+    "maskInsetPx": 0,
+    "accentFramePct": 7.771,
+    "transparentPct": 47.23,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 25.6,
+      "outlinePts": 976,
+      "reason": "accent_misaligned: внутри слоя 25.6 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61290,
+    "maskInsetPx": 0,
+    "accentFramePct": 9.171,
+    "transparentPct": 48.59,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 12.4,
+      "outlinePts": 1053,
+      "reason": "accent_misaligned: внутри слоя 12.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_3_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 42366,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.344,
+    "transparentPct": 57.14,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 30.4,
+      "outlinePts": 633,
+      "reason": "accent_misaligned: внутри слоя 30.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 103440,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.707,
+    "transparentPct": 51.83,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.9,
+      "outlinePts": 366,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 105950,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.793,
+    "transparentPct": 52.23,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 23.8,
+      "outlinePts": 855,
+      "reason": "accent_misaligned: внутри слоя 23.8 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 62644,
+    "maskInsetPx": 0,
+    "accentFramePct": 6,
+    "transparentPct": 43.6,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 15.1,
+      "outlinePts": 900,
+      "reason": "accent_misaligned: внутри слоя 15.1 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59594,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.331,
+    "transparentPct": 47.37,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 27.3,
+      "outlinePts": 995,
+      "reason": "accent_misaligned: внутри слоя 27.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 62564,
+    "maskInsetPx": 0,
+    "accentFramePct": 8.106,
+    "transparentPct": 48.18,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 18.3,
+      "outlinePts": 1149,
+      "reason": "accent_misaligned: внутри слоя 18.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 41566,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.276,
+    "transparentPct": 57.55,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 35.4,
+      "outlinePts": 718,
+      "reason": "accent_misaligned: внутри слоя 35.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 107258,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.001,
+    "transparentPct": 52.46,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 22.5,
+      "outlinePts": 759,
+      "reason": "accent_misaligned: внутри слоя 22.5 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 63784,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.731,
+    "transparentPct": 43.66,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 17.3,
+      "outlinePts": 929,
+      "reason": "accent_misaligned: внутри слоя 17.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57108,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.607,
+    "transparentPct": 47.22,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 27.6,
+      "outlinePts": 882,
+      "reason": "accent_misaligned: внутри слоя 27.6 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59372,
+    "maskInsetPx": 0,
+    "accentFramePct": 7,
+    "transparentPct": 48.53,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 15.3,
+      "outlinePts": 1075,
+      "reason": "accent_misaligned: внутри слоя 15.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_5_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 47122,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.812,
+    "transparentPct": 57.64,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 48,
+      "outlinePts": 748,
+      "reason": "accent_misaligned: внутри слоя 48 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 108844,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.156,
+    "transparentPct": 51.88,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 16.1,
+      "outlinePts": 948,
+      "reason": "accent_misaligned: внутри слоя 16.1 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65492,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.555,
+    "transparentPct": 43.68,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 21.3,
+      "outlinePts": 1014,
+      "reason": "accent_misaligned: внутри слоя 21.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61534,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.11,
+    "transparentPct": 47.23,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 30.7,
+      "outlinePts": 1026,
+      "reason": "accent_misaligned: внутри слоя 30.7 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 58044,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.292,
+    "transparentPct": 48.56,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 27.4,
+      "outlinePts": 1042,
+      "reason": "accent_misaligned: внутри слоя 27.4 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 43946,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.009,
+    "transparentPct": 57.75,
+    "alignment": {
+      "ok": false,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 40.3,
+      "outlinePts": 854,
+      "reason": "accent_misaligned: внутри слоя 40.3 % пикселей лежат на перепадах основы (нужно ≤ 12 %): деталь стоит поперёк краёв, а не на одной выпуклости"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_02r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_02r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 77202,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.212,
+    "transparentPct": 42.82,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 10.6,
+      "outlinePts": 974,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 10.6 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_1_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64726,
+    "maskInsetPx": 4,
+    "accentFramePct": 2.971,
+    "transparentPct": 47.21,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.3,
+      "outlinePts": 398,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 53234,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.406,
+    "transparentPct": 48.58,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.8,
+      "outlinePts": 392,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.8 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_05r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_05r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_1_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 45454,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.499,
+    "transparentPct": 57.66,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.2,
+      "outlinePts": 335,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.2 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 104052,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.782,
+    "transparentPct": 51.38,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.9,
+      "outlinePts": 518,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_03r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_03r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61560,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.903,
+    "transparentPct": 47.21,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7,
+      "outlinePts": 587,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59760,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.677,
+    "transparentPct": 48.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 7.3,
+      "outlinePts": 635,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 7.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_05r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_05r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_2_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50052,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.935,
+    "transparentPct": 57.58,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.4,
+      "outlinePts": 418,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.4 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 106708,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.361,
+    "transparentPct": 51.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 599,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_03r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_03r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65348,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.143,
+    "transparentPct": 47.23,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 10.2,
+      "outlinePts": 868,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 10.2 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56462,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.772,
+    "transparentPct": 48.31,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.1,
+      "outlinePts": 926,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_05r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_05r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_3_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 35702,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.236,
+    "transparentPct": 57.42,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.7,
+      "outlinePts": 536,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.7 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 107168,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.152,
+    "transparentPct": 51.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 836,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_4_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57608,
+    "maskInsetPx": 4,
+    "accentFramePct": 3.789,
+    "transparentPct": 47.36,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 811,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 68602,
+    "maskInsetPx": 0,
+    "accentFramePct": 6.34,
+    "transparentPct": 47.88,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 5.9,
+      "outlinePts": 1033,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 5.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_05r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_05r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_4_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 52406,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.242,
+    "transparentPct": 57.29,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 617,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 108338,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.785,
+    "transparentPct": 51.57,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 840,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_02r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_02r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70262,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.168,
+    "transparentPct": 43.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.6,
+      "outlinePts": 1023,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.6 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_03r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_03r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60278,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.02,
+    "transparentPct": 47.1,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 10.9,
+      "outlinePts": 925,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 10.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54986,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.965,
+    "transparentPct": 48.47,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1,
+      "outlinePts": 1045,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_05r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_05r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_5_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 48572,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.837,
+    "transparentPct": 57.33,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.6,
+      "outlinePts": 619,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.6 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 107288,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.472,
+    "transparentPct": 50.83,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 872,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_02r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_02r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 71652,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.197,
+    "transparentPct": 42,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.6,
+      "outlinePts": 1114,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.6 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_03r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_03r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 68280,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.061,
+    "transparentPct": 47.14,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.1,
+      "outlinePts": 1040,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_04r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_04r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\spire_rank_6_option_04r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 54662,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.343,
+    "transparentPct": 48.46,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 1058,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/spire_rank_6_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 44550,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.921,
+    "transparentPct": 57.79,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.4,
+      "outlinePts": 700,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64982,
+    "maskInsetPx": 0,
+    "accentFramePct": 7.603,
+    "transparentPct": 44.11,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.9,
+      "outlinePts": 1138,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 73916,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.869,
+    "transparentPct": 40.12,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.8,
+      "outlinePts": 222,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 73946,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.576,
+    "transparentPct": 42.05,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.2,
+      "outlinePts": 520,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.2 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57622,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.58,
+    "transparentPct": 45.38,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 685,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/ai_off_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56854,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.415,
+    "transparentPct": 43.47,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4,
+      "outlinePts": 253,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 83416,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.816,
+    "transparentPct": 58.01,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 147,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70122,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.46,
+    "transparentPct": 55.3,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 248,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 81898,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.518,
+    "transparentPct": 53.19,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.3,
+      "outlinePts": 138,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 77152,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.001,
+    "transparentPct": 42.45,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.8,
+      "outlinePts": 177,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 83332,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.602,
+    "transparentPct": 49.46,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.8,
+      "outlinePts": 113,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.8 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 81914,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.395,
+    "transparentPct": 57.79,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 191,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 77834,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.836,
+    "transparentPct": 52.98,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.3,
+      "outlinePts": 175,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.3 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_crown_500_option_05r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 78388,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.847,
+    "transparentPct": 50.25,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.4,
+      "outlinePts": 132,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_01.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_01.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 148484,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.254,
+    "transparentPct": 44.76,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.5,
+      "outlinePts": 182,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_02.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_02.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 82698,
+    "maskInsetPx": 0,
+    "accentFramePct": 0.524,
+    "transparentPct": 42.33,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 186,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_03.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_03.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 74150,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.783,
+    "transparentPct": 45.27,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 390,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_04.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_04.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 73780,
+    "maskInsetPx": 0,
+    "accentFramePct": 8.641,
+    "transparentPct": 56.76,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.5,
+      "outlinePts": 1376,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.5 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_05.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_05.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/dark/streak_freeze_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 89986,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.723,
+    "transparentPct": 34.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 768,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\continue_option_09r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\continue_option_09r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\continue_option_09r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 82220,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.165,
+    "transparentPct": 54.13,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.4,
+      "outlinePts": 269,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.4 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/phrase_option_02r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/phrase_option_02r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/phrase_option_02r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 81848,
+    "maskInsetPx": 4,
+    "accentFramePct": 2.973,
+    "transparentPct": 44.02,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 11.9,
+      "outlinePts": 573,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 11.9 %)"
+    }
+  },
+  {
+    "source": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/mistakes_option_09r1.source.png",
+    "base": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/mistakes_option_09r1.webp",
+    "accent": "ART_STYLE_FOR_CODEX/trials/S2_clay/light/mistakes_option_09r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 79304,
+    "maskInsetPx": 4,
+    "accentFramePct": 2.181,
+    "transparentPct": 39.73,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 87.9,
+      "interiorEdgePct": 7.4,
+      "outlinePts": 355,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 87.9 %, перепадов внутри 7.4 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\video_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\video_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\video_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 52582,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.217,
+    "transparentPct": 54.31,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.7,
+      "outlinePts": 392,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.7 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\ai_off_option_03r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\ai_off_option_03r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\ai_off_option_03r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 68454,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.674,
+    "transparentPct": 42.17,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 522,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_1_option_01r3.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_1_option_01r3.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_1_option_01r3.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 101206,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.719,
+    "transparentPct": 48.5,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.3,
+      "outlinePts": 366,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_2_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_2_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_2_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 111460,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.816,
+    "transparentPct": 47.73,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.9,
+      "outlinePts": 521,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_3_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_3_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_3_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 106022,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.391,
+    "transparentPct": 49.72,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 599,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_4_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_4_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_4_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 105706,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.213,
+    "transparentPct": 50.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 840,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_5_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_5_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_5_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 115614,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.839,
+    "transparentPct": 47.52,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.1,
+      "outlinePts": 845,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_6_option_01r1.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_6_option_01r1.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\light\\spire_rank_6_option_01r1.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 119810,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.543,
+    "transparentPct": 50.42,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 879,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50138,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.045,
+    "transparentPct": 67.38,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.7,
+      "outlinePts": 411,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.7 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61172,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.184,
+    "transparentPct": 70.44,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0.3,
+      "outlinePts": 335,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 55574,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.355,
+    "transparentPct": 65.02,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4,
+      "outlinePts": 320,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 67888,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.292,
+    "transparentPct": 33.62,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_01_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 58130,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.578,
+    "transparentPct": 59.87,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.8,
+      "outlinePts": 271,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.8 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 50662,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.029,
+    "transparentPct": 65.77,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.3,
+      "outlinePts": 410,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65124,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.193,
+    "transparentPct": 67.75,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 343,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56128,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.485,
+    "transparentPct": 64.76,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3,
+      "outlinePts": 323,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59572,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.29,
+    "transparentPct": 33.33,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_02_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57170,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.516,
+    "transparentPct": 59.06,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 1.3,
+      "outlinePts": 266,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 1.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 55876,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.416,
+    "transparentPct": 61.55,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.5,
+      "outlinePts": 424,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.5 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61842,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.346,
+    "transparentPct": 65.67,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 370,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56086,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.207,
+    "transparentPct": 62.74,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3,
+      "outlinePts": 312,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 70452,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.317,
+    "transparentPct": 34.11,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_03_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61732,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.113,
+    "transparentPct": 60.19,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 5,
+      "outlinePts": 242,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 5 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 56050,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.267,
+    "transparentPct": 62.41,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.2,
+      "outlinePts": 419,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.2 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 63922,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.248,
+    "transparentPct": 66.14,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 350,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57782,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.234,
+    "transparentPct": 61.53,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.7,
+      "outlinePts": 311,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.7 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61742,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.282,
+    "transparentPct": 33.56,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_04_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 60258,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.142,
+    "transparentPct": 59.27,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.6,
+      "outlinePts": 248,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.6 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 51964,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.928,
+    "transparentPct": 66.25,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.9,
+      "outlinePts": 409,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 69486,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.318,
+    "transparentPct": 66.8,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 360,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57946,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.282,
+    "transparentPct": 62.23,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.6,
+      "outlinePts": 314,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.6 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 63294,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.301,
+    "transparentPct": 32.97,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_05_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61268,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.575,
+    "transparentPct": 57.19,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.1,
+      "outlinePts": 272,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 57558,
+    "maskInsetPx": 0,
+    "accentFramePct": 4.835,
+    "transparentPct": 64.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.1,
+      "outlinePts": 405,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.1 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 65914,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.157,
+    "transparentPct": 68.61,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 342,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59194,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.383,
+    "transparentPct": 61.56,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 3.5,
+      "outlinePts": 313,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 3.5 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 68606,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.316,
+    "transparentPct": 33.53,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 246,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_06_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 66554,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.479,
+    "transparentPct": 55.98,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.3,
+      "outlinePts": 266,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.3 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_01.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_01.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_01.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59690,
+    "maskInsetPx": 0,
+    "accentFramePct": 5.073,
+    "transparentPct": 65.39,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 2.8,
+      "outlinePts": 412,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 2.8 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_02.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_02.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_02.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 69416,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.302,
+    "transparentPct": 67.34,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 367,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_03.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_03.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_03.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 59994,
+    "maskInsetPx": 0,
+    "accentFramePct": 3.335,
+    "transparentPct": 60.16,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.9,
+      "outlinePts": 316,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.9 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_04.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_04.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_04.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 61142,
+    "maskInsetPx": 0,
+    "accentFramePct": 1.296,
+    "transparentPct": 33.7,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 0,
+      "outlinePts": 245,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 0 %)"
+    }
+  },
+  {
+    "source": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_05.source.png",
+    "base": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_05.webp",
+    "accent": "C:\\appsprojects\\phraseman\\ART_STYLE_FOR_CODEX\\trials\\S2_clay\\dark\\streak_07_option_05.accent.webp",
+    "size": [
+      1024,
+      1024
+    ],
+    "bytes": 64372,
+    "maskInsetPx": 0,
+    "accentFramePct": 2.404,
+    "transparentPct": 55.87,
+    "alignment": {
+      "ok": true,
+      "onOpaquePct": 100,
+      "edgeAlignedPct": 100,
+      "interiorEdgePct": 4.4,
+      "outlinePts": 260,
+      "reason": "accent совпадает с основой (на основе 100 %, контур по краю 100 %, перепадов внутри 4.4 %)"
+    }
+  }
+]

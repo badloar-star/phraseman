@@ -58,7 +58,7 @@
 ## Практика (19 заданий, поддержка убывает)
 
 **1 · Карточка слова — together**
-<!-- interaction_id: en:lesson-01:session-33:i01; family: listen_choose -->
+<!-- interaction_id: en:lesson-01:session-33:i01; family: word_card -->
 > **together** — «вместе». Одной компанией: идём вместе, сидим вместе, ждём вместе.
 
 **2 · Послушайте и выберите — вы с Олегом идёте на обед вместе**
@@ -66,12 +66,14 @@
 🔊 *together* → **together** · tomorrow · to get
 - tomorrow — *Другое слово, «завтра». Начало похоже, а дальше расходятся: слушайте конец.*
 - to get — *На слух начало то же. Слушайте, что идёт дальше: в `together` есть окончание `-er`.*
+- ✅ together — *`together` — «вместе»: вы с Олегом идёте не поодиночке.*
 
 **3 · Вставьте слово — команда собралась у двери**
 <!-- interaction_id: en:lesson-01:session-33:i03; family: context_gap_grammar -->
 We ___ ready. → **are** · am · is
 - am — *`am` держится только за `I`. Для «мы» — `are`.*
 - is — *`is` — про одного: он или она. Нас несколько.*
+- ✅ are — *Команда — это несколько людей, поэтому `We are`.*
 
 **4 · Соберите фразу — «мы голодные»**
 <!-- interaction_id: en:lesson-01:session-33:i04; family: phrase_builder -->
@@ -82,16 +84,19 @@ We ___ ready. → **are** · am · is
 We are ___ . → **together** · ready · hungry
 - ready — *«Готовы» — это про сборы, а не про то, что вы одной компанией.*
 - hungry — *Про еду вопроса не было. Про компанию — `together`.*
+- ✅ together — *Вышли всей компанией: `together` — «вместе».*
 
 **6 · Послушайте и соберите — «мы вместе»**
 <!-- interaction_id: en:lesson-01:session-33:i06; family: listen_build_dictation -->
 🔊 *We are together.* Плитки: `together` `We` `am` `are` → **We are together.**
+*(плитка `am` лишняя: с `We` ставят `are` — `We are together.`)*
 
 **7 · Вставьте слово — коллега смотрит на часы: перерыв начался десять минут назад**
 <!-- interaction_id: en:lesson-01:session-33:i07; family: context_gap_grammar -->
 We are ___ . → **late** · early · ready
 - early — *Это «рано». А вы уже задержались.*
 - ready — *«Готовы» — про сборы. Про время — `late`.*
+- ✅ late — *Перерыв начался раньше, значит вы `late` — «опоздали».*
 
 **8 · Соедините пары — сопоставьте фразы с их смыслом**
 <!-- interaction_id: en:lesson-01:session-33:i08; family: speed_match -->
@@ -106,6 +111,7 @@ together — вместе · hungry — голодный · ready — готов
 ___ are together. → **We** · I · He
 - I — *`I` — это один человек, поэтому с ним было бы `am`. А вас в кафе четверо.*
 - He — *Это один мужчина, поэтому здесь было бы `is`.*
+- ✅ We — *Вас четверо за одним столом: `We` — «мы».*
 
 **11 · Соберите фразу — «мы готовы»**
 <!-- interaction_id: en:lesson-01:session-33:i11; family: phrase_builder -->
@@ -122,13 +128,14 @@ ___ are together. → **We** · I · He
 **14 · Послушайте и соберите — вы всё ещё сидите за столом, никто никуда не спешит**
 <!-- interaction_id: en:lesson-01:session-33:i13; family: listen_build_dictation -->
 🔊 *We are hungry.* Плитки: `are` `We` `hungry` `is` → **We are hungry.**
-*(плитка `is` лишняя: с `we` нужно `are`.)*
+*(плитка `is` лишняя: с `We` нужна форма `are`.)*
 
 **15 · Вставьте слово — Ира зовёт всю команду обедать**
 <!-- interaction_id: en:lesson-01:session-33:i14; family: context_gap_grammar -->
 We are ___ . → **hungry** · together · late
 - together — *Про компанию тут и так понятно. Вопрос был про еду.*
 - late — *Никто не опаздывает, все просто голодные.*
+- ✅ hungry — *Команда идёт обедать, потому что `hungry` — «голодные».*
 
 **16 · Произнесите одну фразу — официант уже принёс счёт, а вы опаздываете на встречу**
 <!-- interaction_id: en:lesson-01:session-33:i15; family: scripted_repeat_compare -->
@@ -137,6 +144,9 @@ We are ___ . → **hungry** · together · late
 **17 · Послушайте и выберите фразу — вся команда хочет есть**
 <!-- interaction_id: en:lesson-01:session-33:i16:s01; family: listen_choose -->
 🔊 *We are hungry.* → **We are hungry.** · We are late. · We are ready.
+- ✅ We are hungry. — *Вся команда хочет есть: `We are hungry.`*
+- We are late. — *Здесь речь не об опоздании: все хотят есть.*
+- We are ready. — *Готовность — другое значение. Здесь все голодны.*
 
 **18 · Произнесите одну фразу — вы стоите у выхода всей командой**
 <!-- interaction_id: en:lesson-01:session-33:i16:s02; family: scripted_repeat_compare -->
@@ -145,6 +155,7 @@ We are ___ . → **hungry** · together · late
 **19 · Послушайте и соберите — вся команда уже в куртках и ждёт у двери**
 <!-- interaction_id: en:lesson-01:session-33:i16:s03; family: listen_build_dictation -->
 🔊 *We are ready.* Плитки: `ready` `We` `are` `is` → **We are ready.**
+*(плитка `is` лишняя: `We are ready.`)*
 
 ---
 

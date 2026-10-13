@@ -1,0 +1,10 @@
+id	time	result	detail	file
+cards-v2-053	2026-10-13T06:39:34.263Z	stitched	склейка_1800x1327 raw_shot_at=2026-10-13T06:20:55.473Z code_changed_at=2026-10-13T07:36:51+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/cards-v2-053.png
+dialogs-010	2026-10-13T06:39:36.128Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T06:21:14.972Z code_changed_at=2026-10-13T07:36:51+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-010.png
+dialogs-033	2026-10-13T06:39:39.928Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T06:26:07.761Z code_changed_at=2026-10-13T07:36:51+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-033.png
+dialogs-046	2026-10-13T06:39:42.424Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T06:30:31.929Z code_changed_at=2026-10-13T07:36:51+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-046.png
+dialogs-gap-001	2026-10-13T06:39:44.182Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T06:39:30.019Z code_changed_at=2026-10-13T07:36:51+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-gap-001.png
+cards-v2-050	2026-10-13T06:39:44.182Z	skipped	уже_не_голый_1800x1327	docs/phraseman-2.0/evidence/parity/cards-v2-050.png
+dialogs-021	2026-10-13T06:39:44.183Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/dialogs-021.png
+dialogs-024	2026-10-13T06:39:46.069Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T06:24:48.457Z code_changed_at=2026-10-13T07:36:51+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-024.png
+dialogs-037	2026-10-13T06:39:46.070Z	skipped	уже_не_голый_1800x1328	docs/phraseman-2.0/evidence/parity/dialogs-037.png

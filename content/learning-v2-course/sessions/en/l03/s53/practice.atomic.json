@@ -90,19 +90,60 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово",
-        "responseOptions": [{"responseId": "en:lesson-03:session-53:i05:r1", "text": "soft"}, {"responseId": "en:lesson-03:session-53:i05:r2", "text": "plastic"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i05:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r2",
+            "text": "plastic"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i05:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-03:session-53:i05:audio", "transcript": "soft"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i05:audio",
+            "transcript": "soft"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId": "en:lesson-03:session-53:i05:r1", "targetText": "soft", "meaningByLocale": null}, {"responseId": "en:lesson-03:session-53:i05:r2", "targetText": "plastic", "meaningByLocale": null}],
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r1",
+              "targetText": "soft",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "targetText": "plastic",
+              "meaningByLocale": null
+            }
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [{"responseId": "en:lesson-03:session-53:i05:r2", "correct": false, "testedDimension": "Выберите услышанный материал", "feedbackByLocale": {"ru": "В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».", "uk": "У записі звучить `soft` — «м’який», а не `plastic` — «пластиковий»."}}],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Выберите услышанный материал",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».",
+                "uk": "У записі звучить `soft` — «м’який», а не `plastic` — «пластиковий»."
+              }
+            }
+          ],
           "isWordCard": true,
-          "wordCard": {"word": "soft", "definitionByLocale": {"ru": "«мягкий». Так можно описать подушку.", "uk": "«м’який». Так можна описати подушку."}}
+          "wordCard": {
+            "word": "soft",
+            "definitionByLocale": {
+              "ru": "«мягкий». Так можно описать подушку.",
+              "uk": "«м’який». Так можна описати подушку."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -191,17 +232,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Различите слово — soft или sort",
-        "responseOptions": [{"responseId": "en:lesson-03:session-53:i06:r1", "text": "soft"}, {"responseId": "en:lesson-03:session-53:i06:r2", "text": "sort"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i06:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i06:r2",
+            "text": "sort"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i06:audioA", "en:lesson-03:session-53:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i06:audioA",
+          "en:lesson-03:session-53:i06:audioB"
+        ],
         "accessibilityLabel": "Различите слово — soft или sort",
         "modePayload": {
           "family": "sound_contrast",
-          "contrastA": "soft", "contrastB": "sort", "ipaA": "", "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-53:i06:audioA", "transcript": "soft"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-53:i06:audioB", "transcript": "sort"},
+          "contrastA": "soft",
+          "contrastB": "sort",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audioA",
+            "transcript": "soft"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audioB",
+            "transcript": "sort"
+          },
           "testedPhoneticContrast": "В `soft` слышится /f/, а в `sort` — /r/.",
-          "choiceFeedback": [{"responseId": "en:lesson-03:session-53:i06:r2", "correct": false, "testedDimension": "Различите soft и sort", "feedbackByLocale": {"ru": "`sort` — «сортировать». В записи звучит `soft` — «мягкий».", "uk": "`sort` — «сортувати». У записі звучить `soft` — «м’який»."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Различите soft и sort",
+              "feedbackByLocale": {
+                "ru": "`sort` — «сортировать». В записи звучит `soft` — «мягкий».",
+                "uk": "`sort` — «сортувати». У записі звучить `soft` — «м’який»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -218,8 +290,46 @@
         "accessibilityLabel": "Соедините слова со значениями",
         "modePayload": {
           "family": "speed_match",
-          "pairGrid": [{"pairId":"en:lesson-03:session-53:i08:p1","target":"metal","meaningByLocale":{"ru":"металлический","uk":"металевий"}},{"pairId":"en:lesson-03:session-53:i08:p2","target":"chairs","meaningByLocale":{"ru":"стулья","uk":"стільці"}},{"pairId":"en:lesson-03:session-53:i08:p3","target":"tables","meaningByLocale":{"ru":"столы","uk":"столи"}},{"pairId":"en:lesson-03:session-53:i08:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
-          "leftColumn":["metal","chairs","tables","cushions"]
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i08:p1",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p2",
+              "target": "chairs",
+              "meaningByLocale": {
+                "ru": "стулья",
+                "uk": "стільці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p3",
+              "target": "tables",
+              "meaningByLocale": {
+                "ru": "столы",
+                "uk": "столи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p4",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "metal",
+            "chairs",
+            "tables",
+            "cushions"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -231,21 +341,47 @@
         "inputMode": "single_choice",
         "prompt": "Различите слово — plastic или elastic",
         "responseOptions": [
-          {"responseId": "en:lesson-03:session-53:i09:r1", "text": "plastic"},
-          {"responseId": "en:lesson-03:session-53:i09:r2", "text": "elastic"}
+          {
+            "responseId": "en:lesson-03:session-53:i09:r1",
+            "text": "plastic"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i09:r2",
+            "text": "elastic"
+          }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i09:audioA", "en:lesson-03:session-53:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i09:audioA",
+          "en:lesson-03:session-53:i09:audioB"
+        ],
         "accessibilityLabel": "Различите слово — plastic или elastic",
         "modePayload": {
           "family": "sound_contrast",
           "contrastA": "plastic",
           "contrastB": "elastic",
-          "ipaA": "", "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-53:i09:audioA", "transcript": "plastic"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-53:i09:audioB", "transcript": "elastic"},
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-53:i09:audioA",
+            "transcript": "plastic"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-53:i09:audioB",
+            "transcript": "elastic"
+          },
           "testedPhoneticContrast": "В `plastic` нет начального гласного из `elastic`.",
-          "choiceFeedback": [{"responseId": "en:lesson-03:session-53:i09:r2", "correct": false, "testedDimension": "Различите plastic и elastic", "feedbackByLocale": {"ru": "Здесь в начале звучит `plastic`, без начального гласного из `elastic`.", "uk": "Тут на початку звучить `plastic`, без початкового голосного з `elastic`."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Различите plastic и elastic",
+              "feedbackByLocale": {
+                "ru": "Здесь в начале звучит `plastic`, без начального гласного из `elastic`.",
+                "uk": "Тут на початку звучить `plastic`, без початкового голосного з `elastic`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -470,7 +606,7 @@
               "text": "It"
             }
           ],
-          "testedDimension": "Вставьте указатель — пластиковые столы с",
+          "testedDimension": "Вставьте указатель — пластиковые столы стоят на дальнем стеллаже",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-53:i12:r2",
@@ -650,7 +786,7 @@
               "text": "cushions"
             }
           ],
-          "testedDimension": "Вставьте описание — подушки лежат у стой",
+          "testedDimension": "Вставьте описание — подушки лежат у стойки рядом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-53:i14:r2",
@@ -704,8 +840,16 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "These soft cushions, please.",
-          "orderedTokens": ["These", "soft", "cushions,", "please"],
-          "distractorTokens": ["Those"]
+          "orderedTokens": [
+            "These",
+            "soft",
+            "cushions,",
+            "please"
+          ],
+          "distractorTokens": [
+            "Those"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -809,11 +953,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "сотрудник ждёт, что забрать с дальнего стеллажа",
+        "prompt": "Сотрудник ждёт, что забрать с дальнего стеллажа",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "сотрудник ждёт, что забрать с дальнего стеллажа",
+        "accessibilityLabel": "Сотрудник ждёт, что забрать с дальнего стеллажа",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those soft cushions, please.",
@@ -922,19 +1066,60 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте та виберіть слово",
-        "responseOptions": [{"responseId": "en:lesson-03:session-53:i05:r1", "text": "soft"}, {"responseId": "en:lesson-03:session-53:i05:r2", "text": "plastic"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i05:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i05:r2",
+            "text": "plastic"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i05:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i05:audio"
+        ],
         "accessibilityLabel": "Послухайте та виберіть слово",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-03:session-53:i05:audio", "transcript": "soft"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-53:i05:audio",
+            "transcript": "soft"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId": "en:lesson-03:session-53:i05:r1", "targetText": "soft", "meaningByLocale": null}, {"responseId": "en:lesson-03:session-53:i05:r2", "targetText": "plastic", "meaningByLocale": null}],
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r1",
+              "targetText": "soft",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "targetText": "plastic",
+              "meaningByLocale": null
+            }
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
-          "choiceFeedback": [{"responseId": "en:lesson-03:session-53:i05:r2", "correct": false, "testedDimension": "Виберіть почутий матеріал", "feedbackByLocale": {"ru": "В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».", "uk": "У записі звучить `soft` — «м’який», а не `plastic` — «пластиковий»."}}],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i05:r2",
+              "correct": false,
+              "testedDimension": "Виберіть почутий матеріал",
+              "feedbackByLocale": {
+                "ru": "В записи звучит `soft` — «мягкий», а не `plastic` — «пластиковый».",
+                "uk": "У записі звучить `soft` — «м’який», а не `plastic` — «пластиковий»."
+              }
+            }
+          ],
           "isWordCard": true,
-          "wordCard": {"word": "soft", "definitionByLocale": {"ru": "«мягкий». Так можно описать подушку.", "uk": "«м’який». Так можна описати подушку."}}
+          "wordCard": {
+            "word": "soft",
+            "definitionByLocale": {
+              "ru": "«мягкий». Так можно описать подушку.",
+              "uk": "«м’який». Так можна описати подушку."
+            }
+          }
         },
         "scriptedAlternate": null
       },
@@ -1023,17 +1208,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — soft чи sort",
-        "responseOptions": [{"responseId": "en:lesson-03:session-53:i06:r1", "text": "soft"}, {"responseId": "en:lesson-03:session-53:i06:r2", "text": "sort"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i06:r1",
+            "text": "soft"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i06:r2",
+            "text": "sort"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i06:audioA", "en:lesson-03:session-53:i06:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i06:audioA",
+          "en:lesson-03:session-53:i06:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — soft чи sort",
         "modePayload": {
           "family": "sound_contrast",
-          "contrastA": "soft", "contrastB": "sort", "ipaA": "", "ipaB": "",
-          "audioA": {"audioTargetId": "en:lesson-03:session-53:i06:audioA", "transcript": "soft"},
-          "audioB": {"audioTargetId": "en:lesson-03:session-53:i06:audioB", "transcript": "sort"},
+          "contrastA": "soft",
+          "contrastB": "sort",
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audioA",
+            "transcript": "soft"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-53:i06:audioB",
+            "transcript": "sort"
+          },
           "testedPhoneticContrast": "У `soft` чути /f/, а у `sort` — /r/.",
-          "choiceFeedback": [{"responseId": "en:lesson-03:session-53:i06:r2", "correct": false, "testedDimension": "Розрізніть soft і sort", "feedbackByLocale": {"ru": "`sort` — «сортировать». В записи звучит `soft` — «мягкий».", "uk": "`sort` — «сортувати». У записі звучить `soft` — «м’який»."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i06:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть soft і sort",
+              "feedbackByLocale": {
+                "ru": "`sort` — «сортировать». В записи звучит `soft` — «мягкий».",
+                "uk": "`sort` — «сортувати». У записі звучить `soft` — «м’який»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1050,8 +1266,46 @@
         "accessibilityLabel": "З’єднайте слова зі значеннями",
         "modePayload": {
           "family": "speed_match",
-          "pairGrid": [{"pairId":"en:lesson-03:session-53:i08:p1","target":"metal","meaningByLocale":{"ru":"металлический","uk":"металевий"}},{"pairId":"en:lesson-03:session-53:i08:p2","target":"chairs","meaningByLocale":{"ru":"стулья","uk":"стільці"}},{"pairId":"en:lesson-03:session-53:i08:p3","target":"tables","meaningByLocale":{"ru":"столы","uk":"столи"}},{"pairId":"en:lesson-03:session-53:i08:p4","target":"cushions","meaningByLocale":{"ru":"подушки","uk":"подушки"}}],
-          "leftColumn":["metal","chairs","tables","cushions"]
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-03:session-53:i08:p1",
+              "target": "metal",
+              "meaningByLocale": {
+                "ru": "металлический",
+                "uk": "металевий"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p2",
+              "target": "chairs",
+              "meaningByLocale": {
+                "ru": "стулья",
+                "uk": "стільці"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p3",
+              "target": "tables",
+              "meaningByLocale": {
+                "ru": "столы",
+                "uk": "столи"
+              }
+            },
+            {
+              "pairId": "en:lesson-03:session-53:i08:p4",
+              "target": "cushions",
+              "meaningByLocale": {
+                "ru": "подушки",
+                "uk": "подушки"
+              }
+            }
+          ],
+          "leftColumn": [
+            "metal",
+            "chairs",
+            "tables",
+            "cushions"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1062,19 +1316,48 @@
         "family": "sound_contrast",
         "inputMode": "single_choice",
         "prompt": "Розрізніть слово — plastic чи elastic",
-        "responseOptions": [{"responseId":"en:lesson-03:session-53:i09:r1","text":"plastic"},{"responseId":"en:lesson-03:session-53:i09:r2","text":"elastic"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-03:session-53:i09:r1",
+            "text": "plastic"
+          },
+          {
+            "responseId": "en:lesson-03:session-53:i09:r2",
+            "text": "elastic"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-53:i09:audioA", "en:lesson-03:session-53:i09:audioB"],
+        "audioTargetIds": [
+          "en:lesson-03:session-53:i09:audioA",
+          "en:lesson-03:session-53:i09:audioB"
+        ],
         "accessibilityLabel": "Розрізніть слово — plastic чи elastic",
         "modePayload": {
           "family": "sound_contrast",
           "contrastA": "plastic",
           "contrastB": "elastic",
-          "ipaA": "", "ipaB": "",
-          "audioA": {"audioTargetId":"en:lesson-03:session-53:i09:audioA","transcript":"plastic"},
-          "audioB": {"audioTargetId":"en:lesson-03:session-53:i09:audioB","transcript":"elastic"},
+          "ipaA": "",
+          "ipaB": "",
+          "audioA": {
+            "audioTargetId": "en:lesson-03:session-53:i09:audioA",
+            "transcript": "plastic"
+          },
+          "audioB": {
+            "audioTargetId": "en:lesson-03:session-53:i09:audioB",
+            "transcript": "elastic"
+          },
           "testedPhoneticContrast": "У `plastic` немає початкового голосного з `elastic`.",
-          "choiceFeedback": [{"responseId":"en:lesson-03:session-53:i09:r2","correct":false,"testedDimension":"Розрізніть plastic та elastic","feedbackByLocale":{"ru":"Здесь в начале звучит `plastic`, без начального гласного из `elastic`.","uk":"Тут на початку звучить `plastic`, без початкового голосного з `elastic`."}}]
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-03:session-53:i09:r2",
+              "correct": false,
+              "testedDimension": "Розрізніть plastic та elastic",
+              "feedbackByLocale": {
+                "ru": "Здесь в начале звучит `plastic`, без начального гласного из `elastic`.",
+                "uk": "Тут на початку звучить `plastic`, без початкового голосного з `elastic`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1533,8 +1816,16 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "These soft cushions, please.",
-          "orderedTokens": ["These", "soft", "cushions,", "please"],
-          "distractorTokens": ["Those"]
+          "orderedTokens": [
+            "These",
+            "soft",
+            "cushions,",
+            "please"
+          ],
+          "distractorTokens": [
+            "Those"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1638,11 +1929,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "працівник чекає, що забрати з дальнього стелажа",
+        "prompt": "Працівник чекає, що забрати з дальнього стелажа",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "працівник чекає, що забрати з дальнього стелажа",
+        "accessibilityLabel": "Працівник чекає, що забрати з дальнього стелажа",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "Those soft cushions, please.",

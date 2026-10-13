@@ -280,7 +280,7 @@
             "audioTargetId": "en:lesson-02:session-04:i05:audioB",
             "transcript": "careful"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про наст",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про настроение?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i05:r2",
@@ -321,7 +321,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите про настроение",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -354,7 +364,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «тебе любопытно?»",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о любопытстве, поэтому нужно `curious`: `Are you curious?`",
+                "uk": "запитання питає про цікавість, тому потрібне `curious`: `Are you curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -479,7 +499,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед второй час пьёт ч",
+          "testedDimension": "Вставьте слово — сосед второй час пьёт чай и молчит, а вы всё утро без единого глотка",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i09:r2",
@@ -512,16 +532,37 @@
         "prompt": "Послушайте и соберите — «ты весёлый?»",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-04:i10:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-04:i10:audio"
+        ],
         "accessibilityLabel": "Послушайте и соберите — «ты весёлый?»",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-04:i10:audio", "transcript": "Are you cheerful?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-04:i10:audio",
+            "transcript": "Are you cheerful?"
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you cheerful?",
-          "orderedTokens": ["Are", "you", "cheerful"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "cheerful"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты весёлый?»",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you cheerful?`",
+                "uk": "з `you` потрібна форма `are`: `Are you cheerful?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -552,7 +593,17 @@
           "authoredDistractorTokens": [
             "cheerful"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед в футболке стоит у открытого окна и обхватил себя руками",
+              "feedbackByLocale": {
+                "ru": "в этой сцене спрашивают, холодно ли человеку: `Are you cold?`",
+                "uk": "у цій сцені питають, чи холодно людині: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -674,7 +725,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед в футболке стоит ",
+          "testedDimension": "Вставьте слово — сосед в футболке стоит у открытого окна и обхватил себя руками",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i13:r2",
@@ -724,7 +775,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он",
+              "feedbackByLocale": {
+                "ru": "это обычный вопрос о состоянии, без отрицания: `Are you awake?`",
+                "uk": "це звичайне запитання про стан, без заперечення: `Are you awake?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -891,9 +952,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you awake?",
-          "orderedTokens": ["Are", "you", "awake"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "awake"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты не спишь?»",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you awake?`",
+                "uk": "з `you` потрібна форма `are`: `Are you awake?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1249,7 +1326,7 @@
             "audioTargetId": "en:lesson-02:session-04:i05:audioB",
             "transcript": "careful"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про настрі",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про настрій?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i05:r2",
@@ -1290,7 +1367,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i06:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите про настроение",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`; `am` употребляется с `I`.",
+                "uk": "з `you` потрібна форма `are`; `am` уживається з `I`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1323,7 +1410,17 @@
           "authoredDistractorTokens": [
             "cold"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «тебе любопытно?»",
+              "feedbackByLocale": {
+                "ru": "вопрос спрашивает о любопытстве, поэтому нужно `curious`: `Are you curious?`",
+                "uk": "запитання питає про цікавість, тому потрібне `curious`: `Are you curious?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1448,7 +1545,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставте слово — сусід другу годину п'є ч",
+          "testedDimension": "Вставте слово — сусід другу годину п'є чай і мовчить, а ви весь ранок без жодного ковтка",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i09:r2",
@@ -1481,16 +1578,37 @@
         "prompt": "Послухайте і складіть — «ти веселий?»",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-04:i10:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-04:i10:audio"
+        ],
         "accessibilityLabel": "Послухайте і складіть — «ти веселий?»",
         "modePayload": {
           "family": "listen_build_dictation",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-04:i10:audio", "transcript": "Are you cheerful?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-04:i10:audio",
+            "transcript": "Are you cheerful?"
+          },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you cheerful?",
-          "orderedTokens": ["Are", "you", "cheerful"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "cheerful"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i10:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты весёлый?»",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you cheerful?`",
+                "uk": "з `you` потрібна форма `are`: `Are you cheerful?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1521,7 +1639,17 @@
           "authoredDistractorTokens": [
             "cheerful"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i11:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед в футболке стоит у открытого окна и обхватил себя руками",
+              "feedbackByLocale": {
+                "ru": "в этой сцене спрашивают, холодно ли человеку: `Are you cold?`",
+                "uk": "у цій сцені питають, чи холодно людині: `Are you cold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1643,7 +1771,7 @@
               "text": "thirsty"
             }
           ],
-          "testedDimension": "Вставте слово — сусід у футболці стоїть ",
+          "testedDimension": "Вставте слово — сусід у футболці стоїть біля відчиненого вікна і обхопив себе руками",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-04:i13:r2",
@@ -1693,7 +1821,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — в комнате темно и тихо; спросите, не спит ли он",
+              "feedbackByLocale": {
+                "ru": "это обычный вопрос о состоянии, без отрицания: `Are you awake?`",
+                "uk": "це звичайне запитання про стан, без заперечення: `Are you awake?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1860,9 +1998,25 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Are you awake?",
-          "orderedTokens": ["Are", "you", "awake"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": [],
+          "orderedTokens": [
+            "Are",
+            "you",
+            "awake"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-04:i17:s01:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «ты не спишь?»",
+              "feedbackByLocale": {
+                "ru": "с `you` нужна форма `are`: `Are you awake?`",
+                "uk": "з `you` потрібна форма `are`: `Are you awake?`"
+              }
+            }
+          ],
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",

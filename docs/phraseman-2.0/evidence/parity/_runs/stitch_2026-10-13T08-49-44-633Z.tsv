@@ -1,0 +1,9 @@
+id	time	result	detail	file
+auth-gap-001	2026-10-13T08:49:44.636Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/auth-gap-001.png
+auth-gap-003	2026-10-13T08:49:46.242Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:43:41.923Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-003.png
+auth-gap-004	2026-10-13T08:49:48.444Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:44:23.920Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-004.png
+auth-gap-005	2026-10-13T08:49:49.945Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:45:04.333Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-005.png
+auth-gap-008	2026-10-13T08:49:51.480Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:45:40.352Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-008.png
+auth-gap-012	2026-10-13T08:49:53.189Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:46:05.127Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-012.png
+auth-gap-016	2026-10-13T08:49:55.001Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-13T08:46:39.659Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-016.png
+settings-gap-012	2026-10-13T08:49:56.718Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-13T08:48:31.828Z code_changed_at=2026-10-13T09:37:38+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/settings-gap-012.png

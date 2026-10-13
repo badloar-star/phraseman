@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+practice-001	2026-10-13T00:31:59.605Z	error	12161	step_target_not_found:#fc-blitz-opt-target+ждали_metro_26мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-31-28-466Z/practice-001.error.png	0

@@ -60,6 +60,7 @@ const season_pin_index_paths_1 = require("./season_pin_index_paths");
 const season_pin_index_repository_1 = require("./season_pin_index_repository");
 const season_revision_1 = require("../../../modules/learning-v2/authoring/season_revision");
 const season_lifecycle_transition_repository_1 = require("./season_lifecycle_transition_repository");
+const swallowed_error_1 = require("../swallowed_error"); // зачем: PM-229 — немой catch пишет причину [PM-229]
 const episodeDraftDocumentPath = (draftId) => `content_episode_drafts/${draftId}`;
 exports.episodeDraftDocumentPath = episodeDraftDocumentPath;
 const seasonDraftDocumentPath = (draftId) => `content_season_drafts/${draftId}`;
@@ -710,7 +711,8 @@ function createFirestoreEpisodeLifecycleStore(db, options = {}) {
                             if (refs.some((item) => item && typeof item === "object" && item.episodeId === ref.episodeId && item.revision === ref.revision && item.revisionFingerprint === ref.revisionFingerprint && item.contentHash === ref.contentHash))
                                 return true;
                         }
-                        catch {
+                        catch (pm229Error) {
+                            (0, swallowed_error_1.reportSwallowedServer)('content_studio_firestore_authoring_store:document', pm229Error);
                             // Fail closed for malformed/missing canonical Season objects.
                         }
                         continue;

@@ -269,7 +269,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите, проснулся ли сосед",
+              "feedbackByLocale": {
+                "ru": "`am` употребляют только с `I`; в вопросе к `you` нужна форма `are`: `Are you awake?`",
+                "uk": "`am` уживають тільки з `I`; у запитанні до `you` потрібна форма `are`: `Are you awake?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -480,7 +490,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставьте слово — сосед протягивает бутер",
+          "testedDimension": "Вставьте слово — сосед протягивает бутерброд и спрашивает про еду",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-01:i09:r2",
@@ -553,7 +563,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает:",
+        "prompt": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-01:i11:r1",
@@ -570,11 +580,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает:",
+        "accessibilityLabel": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
+            "ru": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает",
             "uk": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся"
           },
           "gappedTargetPhrase": "Are you ___ ?",
@@ -592,7 +602,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставьте слово — вы стоите с картой на у",
+          "testedDimension": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь Сосед спрашивает:",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-01:i11:r2",
@@ -634,9 +644,25 @@
             "ru": "Соберите вопрос — сосед накрывает на стол и зовёт вас есть",
             "uk": "Складіть запитання — сусід накриває на стіл і кличе вас їсти"
           },
-          "orderedTokens": ["Are", "you", "hungry"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "hungry"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед накрывает на стол и зовёт вас есть",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you hungry?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -669,7 +695,17 @@
           "authoredDistractorTokens": [
             "hungry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «вы хотите пить?»",
+              "feedbackByLocale": {
+                "ru": "`hungry` — «голодный», а здесь спрашивают, хотите ли вы пить: `Are you thirsty?`",
+                "uk": "`hungry` — «голодний», а тут питають, чи ви хочете пити: `Are you thirsty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -783,17 +819,27 @@
         "prompt": "Произнесите один вопрос — сосед вернулся с улицы и разглядывает вывеску за окном; спросите, не заблудился ли он",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-01:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-01:i16:audio"
+        ],
         "accessibilityLabel": "Произнесите один вопрос — сосед вернулся с улицы и разглядывает вывеску за окном; спросите, не заблудился ли он",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-01:i16:audio", "transcript": "Are you lost?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-01:i16:audio",
+            "transcript": "Are you lost?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Are you lost?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1162,7 +1208,17 @@
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i05:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — спросите, проснулся ли сосед",
+              "feedbackByLocale": {
+                "ru": "`am` употребляют только с `I`; в вопросе к `you` нужна форма `are`: `Are you awake?`",
+                "uk": "`am` уживають тільки з `I`; у запитанні до `you` потрібна форма `are`: `Are you awake?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1373,7 +1429,7 @@
               "text": "awake"
             }
           ],
-          "testedDimension": "Вставте слово — сусід простягає бутербро",
+          "testedDimension": "Вставте слово — сусід простягає бутерброд і питає про їжу",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-01:i09:r2",
@@ -1446,7 +1502,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає:",
+        "prompt": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає",
         "responseOptions": [
           {
             "responseId": "en:lesson-02:session-01:i11:r1",
@@ -1463,12 +1519,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає:",
+        "accessibilityLabel": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вставьте слово — вы стоите с картой на углу, крутите её и озираетесь",
-            "uk": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся"
+            "uk": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає"
           },
           "gappedTargetPhrase": "Are you ___ ?",
           "gapOptions": [
@@ -1485,7 +1541,7 @@
               "text": "hungry"
             }
           ],
-          "testedDimension": "Вставте слово — ви стоїте з картою на ро",
+          "testedDimension": "Вставте слово — ви стоїте з картою на розі, крутите її і роззираєтеся Сусід питає:",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-01:i11:r2",
@@ -1527,9 +1583,25 @@
             "ru": "Соберите вопрос — сосед накрывает на стол и зовёт вас есть",
             "uk": "Складіть запитання — сусід накриває на стіл і кличе вас їсти"
           },
-          "orderedTokens": ["Are", "you", "hungry"],
-          "authoredDistractorTokens": ["is"],
-          "slotFeedback": []
+          "orderedTokens": [
+            "Are",
+            "you",
+            "hungry"
+          ],
+          "authoredDistractorTokens": [
+            "is"
+          ],
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — сосед накрывает на стол и зовёт вас есть",
+              "feedbackByLocale": {
+                "ru": "в вопросе к `you` нужна форма `are`: `Are you hungry?`",
+                "uk": "у запитанні до `you` потрібна форма `are`: `Are you hungry?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1562,7 +1634,17 @@
           "authoredDistractorTokens": [
             "hungry"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-01:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «вы хотите пить?»",
+              "feedbackByLocale": {
+                "ru": "`hungry` — «голодный», а здесь спрашивают, хотите ли вы пить: `Are you thirsty?`",
+                "uk": "`hungry` — «голодний», а тут питають, чи ви хочете пити: `Are you thirsty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1676,17 +1758,27 @@
         "prompt": "Промовте одне запитання — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-01:i16:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-01:i16:audio"
+        ],
         "accessibilityLabel": "Промовте одне запитання — сусід повернувся з вулиці і роздивляється вивіску за вікном; запитайте, чи він не заблукав",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId": "en:lesson-02:session-01:i16:audio", "transcript": "Are you lost?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-01:i16:audio",
+            "transcript": "Are you lost?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Are you lost?",
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },

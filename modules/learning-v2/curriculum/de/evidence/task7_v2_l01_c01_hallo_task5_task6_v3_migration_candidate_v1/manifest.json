@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c01-hallo-task5-task6-v3-migration-candidate.v1",
+  "status": "HOLD",
+  "decision": "PROPOSED_EXACT_SUCCESSOR_NOT_ACTIVATED",
+  "inputBindings": {
+    "task5V2": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v2",
+      "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+      "canonicalBodySha256": "3c6979ecccd37806f993a78c3403e455ef0c76079ab5d82d1d3d3b66334cfcf3"
+    },
+    "task6V2": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6_canonical_registry_de_v2.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v2",
+      "byteSha256": "ba4ddc48ce99aeb97788ba767e2179c507c8740be24446cbf6b4f9abf591681f",
+      "canonicalBodySha256": "08d18d36fe225e06ca992e7c862036604cb4d78e07eaa6ed7ce7b80db670c880"
+    },
+    "task7Inventory": {
+      "path": "modules/learning-v2/curriculum/de/registries/task6c_full_allocation_inventory_de_v2.json",
+      "byteSha256": "db6f68d392783c120efea506157050b7ac53b805cca4be43b31948458853d415"
+    },
+    "ownerContract": {
+      "path": "modules/learning-v2/curriculum/de/owner_decisions_contract_de_v1.ts",
+      "byteSha256": "4fbbfe8c0412574ed94a5202b7513cdc5b092b74ccda55fd38b880eb2e301e6f",
+      "blueprintApproval": "PENDING"
+    },
+    "protectedSurfaces": {
+      "english": {
+        "roots": [
+          "modules/learning-v2/curriculum/en",
+          "content/learning-v2-course/curriculum/en",
+          "content/learning-v2-course/release/en",
+          "modules/learning-v2/content/factory_native/generated_release/en"
+        ],
+        "fileCount": 1570,
+        "sha256": "8f73cffb0d735b436aad2b7679dd242df0fb609962e43b27229bea2e30934db9"
+      },
+      "germanV1": {
+        "root": "modules/learning-v2/curriculum/de",
+        "excludedPaths": [
+          "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_allocation_de_v1.ts",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/extraction_map.json",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/manifest.json",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_hallo_interjection.html",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_hallo_interjection.http_metadata.txt",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_Hallo_noun.html",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/dwds_Hallo_noun.http_metadata.txt",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/goethe_a1_redemittel.http_metadata.txt",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/raw/goethe_a1_redemittel.pdf",
+          "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_phrase_authority_hold_de_v1.ts",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_phrase_authority_hold_v1/adjudication.json",
+          "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_de_v1.ts",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_v1/candidate.json",
+          "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_de_v1.ts",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/manifest.json",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task5_v3_candidate.json",
+          "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task6_v3_candidate.json"
+        ],
+        "fileCount": 74,
+        "sha256": "34d91df20aa6e52bbdf3106198effe3f42d381e55c477266b4877cdef312e2e6"
+      }
+    },
+    "correctionQuartet": [
+      {
+        "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_v1/candidate.json",
+        "sha256": "31eb560eb2efce736c7d96d643fdad46f8796b55aa222e8b6a3c5702f21ca79a"
+      },
+      {
+        "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_task5_task6_correction_candidate_de_v1.ts",
+        "sha256": "ebdcc450e9ac07ab21ca51efacbdf1b74b053eaa8739a2bee7e91f4266cbe75c"
+      },
+      {
+        "path": "tests/learning_v2_de_task7_v2_l01_c01_hallo_task5_task6_correction_candidate_gate.ts",
+        "sha256": "ba6d82ec429d345c2d2d1f18e9d36162d1f94743496e611749b3b748000585ac"
+      },
+      {
+        "path": "docs/v2/curriculum/de/TASK7_V2_L01C01_HALLO_TASK5_TASK6_CORRECTION_CANDIDATE_2026-10-12.md",
+        "sha256": "3c95eafef3ccb61acea2afd53d7a80da267100f5eafb8ec84cbec0a9caef5e04"
+      }
+    ],
+    "sourceEvidence": {
+      "manifest": {
+        "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/manifest.json",
+        "sha256": "674f789c05922ddce29103393228ee26f4c428255baf4fc646b90c95b97bfd33"
+      },
+      "extraction": {
+        "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_allocation_v1/extraction_map.json",
+        "sha256": "3b0ab0c32c3dd8bb42b2c22f0f43bc514272f23c60c97003334418f5afaaabad"
+      },
+      "priorHold": {
+        "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_phrase_authority_hold_v1/adjudication.json",
+        "sha256": "45778ef06b4eddceaa3ede01e83e95225731b9786cbd39868650add6980259a5"
+      },
+      "priorHoldInspector": {
+        "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_phrase_authority_hold_de_v1.ts",
+        "sha256": "627e19ebc533a0372e98f282e4c15687953afed2d040e3e84dc65c936827b019"
+      },
+      "inspector": {
+        "path": "modules/learning-v2/curriculum/de/task7_v2_l01_c01_hallo_allocation_de_v1.ts",
+        "sha256": "71e96a433e2906ffd86e05aa0ea42a09300c1d83a46ecae680bfa842a637e5aa"
+      }
+    }
+  },
+  "candidateFiles": {
+    "task5V3": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task5_v3_candidate.json",
+      "schemaVersion": "learning-v2-german-chapter-blueprints.v3",
+      "byteSha256": "9cddb7abd7c3564d9ffb46ddfd2600d1dd1b5c2812ac9e6ea79f9625cf58f491",
+      "canonicalBodySha256": "7493df040da25bb9c9cbc741da6e927904a1fdc323e5e2a456e1405b929d6d7e"
+    },
+    "task6V3": {
+      "path": "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c01_hallo_task5_task6_v3_migration_candidate_v1/task6_v3_candidate.json",
+      "schemaVersion": "learning-v2-german-task6-canonical-registry.v3",
+      "byteSha256": "f7d8d8761179f9546d31d00ed95a53518f4b9aa9050bdf39620145799ff260a2",
+      "canonicalBodySha256": "03e4192611e3f180339a385869ebf1b82b46e4f6698ea81b18c8e4088885109f"
+    }
+  },
+  "proposedBinding": {
+    "chapterId": "de_l01_c01",
+    "oldSourcePlanId": "de_lex_plan_l01_c01_hallo_v1",
+    "sourcePlanId": "de_lex_plan_l01_c01_hallo_v2",
+    "oldPhraseFrameId": "de_pf_l01_c01_hallo_nachbarin_v1",
+    "phraseFrameId": "de_pf_l01_c01_hallo_v2",
+    "exactSurface": "Hallo!",
+    "plannedFirstUsePacketId": "de_l01_c01_s08"
+  },
+  "sourceBoundary": {
+    "sourceSupport": "GOETHE_EXACT_ALTERNATIVE_SURFACE_OCCURRENCE_ONLY",
+    "goetheMatchMode": "EXACT_TRIMMED_SLASH_ALTERNATIVE",
+    "goetheExactAlternative": "Hallo!",
+    "cefrEvidenceRole": "GENERAL_CEFR_SCOPE_NOT_EXACT_ATTESTATION"
+  },
+  "candidateFingerprint": {
+    "scope": "CANDIDATE_BUNDLE_ONLY_NOT_OWNER_BLUEPRINT_FINGERPRINT",
+    "algorithm": "SHA256_CANONICAL_JSON_V1",
+    "sha256": "cef7eda9c302bee8d89f8a25bb5ca49eaf2d0a97df1fb270c0b489f7bbb77326"
+  },
+  "authority": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "rowsPromoted": 0,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE",
+    "defaultConsumerChanged": false
+  },
+  "inventory": {
+    "task5PlanIds": 288,
+    "resolvedPlanIds": 6,
+    "unresolvedPlanIds": 282,
+    "packetIds": 1792,
+    "materializedPackets": 0
+  },
+  "reviews": {
+    "ownerApproval": "PENDING",
+    "nativeReview": "REQUIRED",
+    "specReview": "REQUIRED",
+    "adversarialReview": "BLOCKED_UNTIL_NATIVE_AND_SPEC_PASS"
+  }
+}

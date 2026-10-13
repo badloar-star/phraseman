@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-037	2026-10-13T01:56:12.955Z	error	0	Error: adb_failed args=shell am start -a android.intent.action.VIEW -d 'phraseman://dev_state?appearance=clear&theme=graphite&level=0&onboardin status=1 error= 		0

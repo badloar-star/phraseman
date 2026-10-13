@@ -1,0 +1,12 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-009	2026-10-12T15:17:55.879Z	stitch_failed	9708	marker+пусто_1317мс+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\onboarding-009.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=97393+ждали_metro_24мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/onboarding-009.bare.png	1317
+onboarding-015	2026-10-12T15:18:15.236Z	ok	10655	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-015.png	0
+onboarding-018	2026-10-12T15:18:36.271Z	ok	10680	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-018.png	0
+onboarding-022	2026-10-12T15:19:01.867Z	ok	13284	marker+пусто_1522мс+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/onboarding-022.png	1522
+onboarding-paywall-002	2026-10-12T15:20:38.461Z	timeout	90191	нет маркера+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/onboarding-paywall-002.timeout.png	0
+spire-gap-001	2026-10-12T15:22:14.246Z	timeout	90501	нет маркера+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/spire-gap-001.timeout.png	0
+spire-gap-002	2026-10-12T15:23:50.365Z	timeout	90758	нет маркера+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/spire-gap-002.timeout.png	0
+spire-gap-004	2026-10-12T15:25:25.911Z	timeout	91026	нет маркера+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/spire-gap-004.timeout.png	0
+spire-gap-005	2026-10-12T15:27:01.629Z	timeout	90125	нет маркера+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/spire-gap-005.timeout.png	0
+community-001	2026-10-12T15:28:37.013Z	timeout	90415	нет маркера+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/community-001.timeout.png	0
+community-020	2026-10-12T15:30:12.942Z	timeout	90664	нет маркера+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T15-17-36-248Z/community-020.timeout.png	0

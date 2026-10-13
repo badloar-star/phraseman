@@ -11,13 +11,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — here",
+        "prompt": "Новое слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i01:audio"
         ],
-        "accessibilityLabel": "Карточка слова — here",
+        "accessibilityLabel": "Новое слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -30,8 +30,8 @@
               "responseId": "en:lesson-01:session-01:i01:r1",
               "targetText": "here",
               "meaningByLocale": {
-                "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
-                "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+                "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+                "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
               }
             }
           ],
@@ -41,8 +41,8 @@
           "wordCard": {
             "word": "here",
             "definitionByLocale": {
-              "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
-              "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+              "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+              "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
             }
           }
         },
@@ -52,9 +52,9 @@
         "interactionId": "en:lesson-01:session-01:i02",
         "ordinal": 2,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i02:r1",
@@ -62,73 +62,67 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i02:r2",
-            "text": "hair"
+            "text": "ready"
           },
           {
             "responseId": "en:lesson-01:session-01:i02:r3",
-            "text": "hill"
+            "text": "fine"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i02:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i02:audio",
-            "transcript": "here"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+            "uk": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i02:r1",
-              "targetText": "here",
-              "meaningByLocale": null
+              "text": "here"
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r2",
-              "targetText": "hair",
-              "meaningByLocale": null
+              "text": "ready"
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r3",
-              "targetText": "hill",
-              "meaningByLocale": null
+              "text": "fine"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i02:r1",
               "correct": true,
+              "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
               "feedbackByLocale": {
-                "ru": "Верно: в записи here. В нём долгий гласный, и слово не заканчивается на л.",
-                "uk": "Правильно: у записі here. У ньому довгий голосний, і слово не закінчується на л."
+                "ru": "Верно: here означает «здесь», поэтому I am here сообщает Мире, что вы уже в офисе.",
+                "uk": "Правильно: here означає «тут», тому I am here повідомляє Мірі, що ви вже в офісі."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — here",
+              "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
               "feedbackByLocale": {
-                "ru": "Это «волосы», а не «здесь». В записи нужно выбрать слово `here`.",
-                "uk": "Це «волосся», а не «тут». У записі потрібно вибрати слово `here`."
+                "ru": "Ready означает «готов / готова». Это подходит перед началом дела, но Мира спрашивает, добрались ли вы до офиса.",
+                "uk": "Ready означає «готовий / готова». Це доречно перед початком справи, але Міра питає, чи ви дісталися офісу."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — here",
+              "testedDimension": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
               "feedbackByLocale": {
-                "ru": "Это «холм», а не «здесь». В записи нужно выбрать слово `here`.",
-                "uk": "Це «пагорб», а не «тут». У записі потрібно вибрати слово `here`."
+                "ru": "Fine означает «всё хорошо». Это ответ на «как дела?», а здесь нужно назвать своё местоположение: I am here.",
+                "uk": "Fine означає «усе добре». Це відповідь на «як справи?», а тут треба назвати своє місце: I am here."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -138,13 +132,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — ready",
+        "prompt": "Новое слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i03:audio"
         ],
-        "accessibilityLabel": "Карточка слова — ready",
+        "accessibilityLabel": "Новое слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -157,8 +151,8 @@
               "responseId": "en:lesson-01:session-01:i03:r1",
               "targetText": "ready",
               "meaningByLocale": {
-                "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
-                "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+                "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+                "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
               }
             }
           ],
@@ -168,8 +162,8 @@
           "wordCard": {
             "word": "ready",
             "definitionByLocale": {
-              "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
-              "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+              "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+              "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
             }
           }
         },
@@ -179,9 +173,9 @@
         "interactionId": "en:lesson-01:session-01:i04",
         "ordinal": 4,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i04:r1",
@@ -189,68 +183,64 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i04:r2",
-            "text": "really"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-01:i04:r3",
-            "text": "red"
+            "text": "happy"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i04:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i04:audio",
-            "transcript": "ready"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+            "uk": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i04:r1",
-              "targetText": "ready",
-              "meaningByLocale": null
+              "text": "ready"
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r2",
-              "targetText": "really",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r3",
-              "targetText": "red",
-              "meaningByLocale": null
+              "text": "happy"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i04:r1",
               "correct": true,
+              "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
               "feedbackByLocale": {
-                "ru": "Верно: ready — слово из двух слогов, которое заканчивается на -dy.",
-                "uk": "Правильно: ready — слово з двох складів, яке закінчується на -dy."
+                "ru": "Верно: ready означает «готов / готова». Антон спрашивает, можно ли начинать, поэтому I am ready подходит.",
+                "uk": "Правильно: ready означає «готовий / готова». Антон питає, чи можна починати, тому I am ready підходить."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — ready",
+              "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
               "feedbackByLocale": {
-                "ru": "Похожее начало, но это другое слово: «действительно». В записи нужно выбрать `ready`.",
-                "uk": "Схожий початок, але це інше слово: «дійсно». У записі потрібно вибрати `ready`."
+                "ru": "Fine означает «всё хорошо». Здесь нужно сказать, что вы готовы начать: I am ready.",
+                "uk": "Fine означає «усе добре». Тут треба сказати, що ви готові почати: I am ready."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — ready",
+              "testedDimension": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
               "feedbackByLocale": {
-                "ru": "Это «красный», а не «готов». В записи нужно выбрать `ready`.",
-                "uk": "Це «червоний», а не «готовий». У записі потрібно вибрати `ready`."
+                "ru": "Happy означает «рад / рада». Здесь речь о готовности начать, поэтому нужно ready: I am ready.",
+                "uk": "Happy означає «радий / рада». Тут ідеться про готовність почати, тому потрібно ready: I am ready."
               }
             }
           ],
@@ -265,13 +255,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — fine",
+        "prompt": "Новое слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i05:audio"
         ],
-        "accessibilityLabel": "Карточка слова — fine",
+        "accessibilityLabel": "Новое слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -306,9 +296,9 @@
         "interactionId": "en:lesson-01:session-01:i06",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i06:r1",
@@ -316,68 +306,64 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i06:r2",
-            "text": "five"
+            "text": "here"
           },
           {
             "responseId": "en:lesson-01:session-01:i06:r3",
-            "text": "find"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i06:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i06:audio",
-            "transcript": "fine"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+            "uk": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i06:r1",
-              "targetText": "fine",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r2",
-              "targetText": "five",
-              "meaningByLocale": null
+              "text": "here"
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r3",
-              "targetText": "find",
-              "meaningByLocale": null
+              "text": "ready"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i06:r1",
               "correct": true,
+              "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
               "feedbackByLocale": {
-                "ru": "Верно: в записи fine: слово заканчивается на n, а не на v или d.",
-                "uk": "Правильно: у записі fine: слово закінчується на n, а не на v чи d."
+                "ru": "Верно: fine означает «хорошо, в порядке». На вопрос о том, как у вас дела, вы говорите I am fine.",
+                "uk": "Правильно: fine означає «добре, гаразд». На запитання про ваші справи ви кажете I am fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r2",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — fine",
+              "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
               "feedbackByLocale": {
-                "ru": "Это «пять». В конце `five` слышен /v/, а в `fine` — /n/.",
-                "uk": "Це «п'ять». Наприкінці `five` чути /v/, а в `fine` — /n/."
+                "ru": "Here означает «здесь»: это о месте, а не о самочувствии. В этой ситуации нужно сказать: I am fine.",
+                "uk": "Here означає «тут»: це про місце, а не про самопочуття. У цій ситуації потрібно сказати: I am fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r3",
               "correct": false,
-              "testedDimension": "Послушайте и выберите — fine",
+              "testedDimension": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
               "feedbackByLocale": {
-                "ru": "Это «находить». В `find` после /n/ есть ещё /d/; в `fine` его нет.",
-                "uk": "Це «знаходити». У `find` після /n/ є ще /d/; у `fine` його немає."
+                "ru": "Ready означает «готов / готова»: это о готовности, а не о самочувствии. В этой ситуации нужно сказать: I am fine.",
+                "uk": "Ready означає «готовий / готова»: це про готовність, а не про самопочуття. У цій ситуації потрібно сказати: I am fine."
               }
             }
           ],
@@ -392,13 +378,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Карточка слова — happy",
+        "prompt": "Новое слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i07:audio"
         ],
-        "accessibilityLabel": "Карточка слова — happy",
+        "accessibilityLabel": "Новое слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -411,8 +397,8 @@
               "responseId": "en:lesson-01:session-01:i07:r1",
               "targetText": "happy",
               "meaningByLocale": {
-                "ru": "«рад, доволен». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
-                "uk": "«радісний, задоволений». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+                "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+                "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
               }
             }
           ],
@@ -422,8 +408,8 @@
           "wordCard": {
             "word": "happy",
             "definitionByLocale": {
-              "ru": "«рад, доволен». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
-              "uk": "«радісний, задоволений». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+              "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+              "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
             }
           }
         },
@@ -433,9 +419,9 @@
         "interactionId": "en:lesson-01:session-01:i07:a01",
         "ordinal": 8,
         "purpose": "guided_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послушайте и выберите",
+        "prompt": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r1",
@@ -443,73 +429,67 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r2",
-            "text": "hobby"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r3",
-            "text": "heavy"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i07:a01:audio"
-        ],
-        "accessibilityLabel": "Послушайте и выберите",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i07:a01:audio",
-            "transcript": "happy"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+            "uk": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r1",
-              "targetText": "happy",
-              "meaningByLocale": null
+              "text": "happy"
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r2",
-              "targetText": "hobby",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r3",
-              "targetText": "heavy",
-              "meaningByLocale": null
+              "text": "ready"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r1",
               "correct": true,
+              "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
               "feedbackByLocale": {
-                "ru": "Верно: в записи happy — с открытым гласным /æ/ и звуком /p/ в середине.",
-                "uk": "Правильно: у записі happy — з відкритим голосним /æ/ і звуком /p/ посередині."
+                "ru": "Верно: happy означает «рад / рада». После хорошей новости I am happy прямо сообщает о вашей радости.",
+                "uk": "Правильно: happy означає «радий / рада». Після хорошої новини I am happy прямо повідомляє про вашу радість."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r2",
               "correct": false,
-              "testedDimension": "auditory_phonetic_contrast",
+              "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
               "feedbackByLocale": {
-                "ru": "Это «хобби», а не «рад». В записи нужно выбрать `happy`.",
-                "uk": "Це «хобі», а не «радісний». У записі потрібно вибрати `happy`."
+                "ru": "Fine означает «всё хорошо, в порядке». Это можно сказать о самочувствии, но новость вызвала именно радость.",
+                "uk": "Fine означає «усе добре, гаразд». Це можна сказати про самопочуття, але новина викликала саме радість."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r3",
               "correct": false,
-              "testedDimension": "auditory_phonetic_contrast",
+              "testedDimension": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
               "feedbackByLocale": {
-                "ru": "Это «тяжёлый». В середине `heavy` есть /v/, а в `happy` его нет.",
-                "uk": "Це «важкий». У середині `heavy` є /v/, а в `happy` його немає."
+                "ru": "Ready означает «готов / готова». После хорошей новости вы рады, поэтому здесь happy: I am happy.",
+                "uk": "Ready означає «готовий / готова». Після доброї новини ви раді, тому тут happy: I am happy."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -539,8 +519,8 @@
               "pairId": "en:lesson-01:session-01:i08:p2",
               "target": "ready",
               "meaningByLocale": {
-                "ru": "готов",
-                "uk": "готовий"
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
               }
             },
             {
@@ -555,8 +535,8 @@
               "pairId": "en:lesson-01:session-01:i08:p4",
               "target": "happy",
               "meaningByLocale": {
-                "ru": "рад",
-                "uk": "радий"
+                "ru": "рад / рада",
+                "uk": "радий / рада"
               }
             }
           ],
@@ -568,9 +548,9 @@
           ],
           "rightColumn": [
             "здесь",
-            "готов",
+            "готов / готова",
             "хорошо",
-            "рад"
+            "рад / рада"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -616,131 +596,153 @@
             {
               "responseId": "en:lesson-01:session-01:i09:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — коллега ищет вас, а вы уже в комнате",
               "feedbackByLocale": {
-                "ru": "ready означает «готов», а здесь вы сообщаете, где находитесь: I am here.",
-                "uk": "ready означає «готовий», а тут ви повідомляєте, де перебуваєте: I am here."
+                "ru": "Ready означает «готов / готова». Здесь нужно сообщить, где вы: I am here.",
+                "uk": "Ready означає «готовий / готова». Тут треба повідомити, де ви: I am here."
               }
             }
           ]
         },
         "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-01:i13",
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послушайте реплику и выберите её смысл",
+        "accessibilityLabel": "Послушайте реплику и выберите её смысл",
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-01:i13:audio"
+        ],
+        "scriptedAlternate": null,
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r1",
+            "text": "Я здесь."
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "text": "Я готов / готова."
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "text": "У меня всё хорошо."
+          }
+        ],
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-01:i13:audio",
+            "transcript": "I am here."
+          },
+          "slowReferenceAudio": null,
+          "transcriptRevealPolicy": "after_first_attempt",
+          "isWordCard": false,
+          "localizedScene": {
+            "ru": "Вы разговариваете с Мирой; выберите смысл услышанной реплики.",
+            "uk": "Ви розмовляєте з Мірою; виберіть зміст почутої репліки."
+          },
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-01:i13:r1",
+              "targetText": "Я здесь.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r2",
+              "targetText": "Я готов / готова.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r3",
+              "targetText": "У меня всё хорошо.",
+              "meaningByLocale": null
+            }
+          ],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-01:i13:r1",
+              "correct": true,
+              "testedDimension": "Послушайте реплику и выберите её смысл",
+              "feedbackByLocale": {
+          "ru": "Верно: `I am here` означает «я здесь»: here сообщает о месте.",
+          "uk": "Правильно: `I am here` означає «я тут»: here повідомляє про місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r2",
+              "correct": false,
+              "testedDimension": "Послушайте реплику и выберите её смысл",
+              "feedbackByLocale": {
+                "ru": "`I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+                "uk": "`I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r3",
+              "correct": false,
+              "testedDimension": "Послушайте реплику и выберите её смысл",
+              "feedbackByLocale": {
+                "ru": "`I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+                "uk": "`I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+              }
+            }
+          ]
+        },
+        "ordinal": 11
       },
       {
         "interactionId": "en:lesson-01:session-01:i10",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставьте слово — вас спросили, как дела, всё хорошо",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i10:r1",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i10:r2",
-            "text": "here"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i10:r3",
-            "text": "ready"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вставьте слово — вас спросили, как дела, всё хорошо",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — вас спросили, как дела, всё хорошо",
-            "uk": "Вставте слово — вас запитали, як справи, все добре"
-          },
-          "gappedTargetPhrase": "I am ___ .",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i10:r1",
-              "text": "fine"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r2",
-              "text": "here"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r3",
-              "text": "ready"
-            }
-          ],
-          "testedDimension": "Вставьте слово — вас спросили, как дела,",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-01:i10:r1",
-              "correct": true,
-              "testedDimension": "Вставьте слово — вас спросили, как дела,",
-              "feedbackByLocale": {
-                "ru": "Верно: на вопрос «как дела?» отвечают I am fine — «у меня всё хорошо».",
-                "uk": "Правильно: на запитання «як справи?» відповідають I am fine — «у мене все добре»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r2",
-              "correct": false,
-              "testedDimension": "Вставьте слово — вас спросили, как дела,",
-              "feedbackByLocale": {
-                "ru": "«Я здесь» — это ответ на «где ты», а не на «как дела».",
-                "uk": "«Я тут» — це відповідь на «де ти», а не на «як справи»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r3",
-              "correct": false,
-              "testedDimension": "Вставьте слово — вас спросили, как дела,",
-              "feedbackByLocale": {
-                "ru": "«Я готов» — подходит, когда пора начинать, а не когда спрашивают о самочувствии.",
-                "uk": "«Я готовий» — годиться, коли пора починати, а не коли питають про самопочуття."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-01:i11",
-        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — начальник ждёт ответа, вы готовы",
+        "prompt": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+        "accessibilityLabel": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — начальник ждёт ответа, вы готовы",
+        "scriptedAlternate": null,
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am ready.",
+          "targetPhrase": "I am fine.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — начальник ждёт ответа, вы готовы",
-            "uk": "Складіть фразу — начальник чекає відповіді, ви готові"
+            "ru": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+            "uk": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре"
           },
           "orderedTokens": [
             "I",
             "am",
-            "ready"
+            "fine"
           ],
           "authoredDistractorTokens": [
-            "is"
+            "ready",
+            "here"
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-01:i11:tile:d1",
+              "responseId": "en:lesson-01:session-01:i10:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
               "feedbackByLocale": {
-                "ru": "С I нужна форма am, поэтому is здесь лишнее.",
-                "uk": "З I потрібна форма am, тому is тут зайве."
+                "ru": "Ready означает «готов / готова». О самочувствии говорят I am fine.",
+                "uk": "Ready означає «готовий / готова». Про самопочуття кажуть I am fine."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i10:tile:d2",
+              "correct": false,
+              "testedDimension": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+              "feedbackByLocale": {
+                "ru": "Here означает «здесь». Вопрос не о месте, а о том, как вы: I am fine.",
+                "uk": "Here означає «тут». Запитання не про місце, а про те, як ви: I am fine."
               }
             }
           ]
         },
-        "scriptedAlternate": null
+        "ordinal": 12
       },
       {
         "interactionId": "en:lesson-01:session-01:i12",
@@ -748,13 +750,13 @@
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите — «я готов»",
+        "prompt": "Послушайте реплику коллеги перед началом встречи и соберите её",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i12:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите — «я готов»",
+        "accessibilityLabel": "Послушайте реплику коллеги перед началом встречи и соберите её",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -775,9 +777,10 @@
             {
               "responseId": "en:lesson-01:session-01:i12:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте реплику коллеги перед началом встречи и соберите её",
               "feedbackByLocale": {
-                "ru": "В записи звучит ready — «готов»; fine меняет смысл на «всё хорошо».",
-                "uk": "У записі звучить ready — «готовий»; fine змінює зміст на «усе добре»."
+                "ru": "Fine означает «всё хорошо», а коллега сообщает, что готов к встрече: I am ready.",
+                "uk": "Fine означає «усе добре», а колега повідомляє, що готовий до зустрічі: I am ready."
               }
             }
           ]
@@ -785,77 +788,39 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-01:i13",
+        "interactionId": "en:lesson-01:session-01:i11",
         "ordinal": 14,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставьте слово — вы заходите в комнату",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i13:r1",
-            "text": "I"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i13:r2",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i13:r3",
-            "text": "here"
-          }
-        ],
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставьте слово — вы заходите в комнату",
+        "accessibilityLabel": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — вы заходите в комнату",
-            "uk": "Вставте слово — ви заходите в кімнату"
+          "family": "phrase_builder",
+          "targetPhrase": "I am ready.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+            "uk": "Складіть фразу — начальник питає, чи ви готові почати"
           },
-          "gappedTargetPhrase": "___ am here.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i13:r1",
-              "text": "I"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r2",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r3",
-              "text": "here"
-            }
+          "orderedTokens": [
+            "I",
+            "am",
+            "ready"
           ],
-          "testedDimension": "Вставьте слово — вы заходите в комнату",
-          "choiceFeedback": [
+          "authoredDistractorTokens": [
+            "happy"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-01:i13:r1",
-              "correct": true,
-              "testedDimension": "Вставьте слово — вы заходите в комнату",
-              "feedbackByLocale": {
-                "ru": "Верно: I называет говорящего; получается полная фраза I am here.",
-                "uk": "Правильно: I називає мовця; виходить повна фраза I am here."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r2",
+              "responseId": "en:lesson-01:session-01:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Вставьте слово — вы заходите в комнату",
+              "testedDimension": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
               "feedbackByLocale": {
-                "ru": "Сначала нужно назвать того, о ком речь: `I am here`.",
-                "uk": "Спершу треба назвати того, про кого йдеться: `I am here`."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r3",
-              "correct": false,
-              "testedDimension": "Вставьте слово — вы заходите в комнату",
-              "feedbackByLocale": {
-                "ru": "Here — это «здесь»; в этой фразе `here` стоит после `am`.",
-                "uk": "Here — це «тут»; у цій фразі `here` стоїть після `am`."
+                "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
+                "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
               }
             }
           ]
@@ -868,21 +833,96 @@
         "purpose": "retrieval_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — руководитель Антон одобрил вашу идею, и вы этому рады",
+        "prompt": "Скажите вслух — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i14:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — руководитель Антон одобрил вашу идею, и вы этому рады",
+        "accessibilityLabel": "Скажите вслух — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i14:audio",
-            "transcript": "I am happy."
+            "transcript": "I am here."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am happy.",
+          "targetPhrase": "I am here.",
+          "explanationV1": {
+            "phrase": {
+              "text": "I am here.",
+              "meaningByLocale": {
+                "ru": "Я здесь.",
+                "uk": "Я тут."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а here сообщает, где вы находитесь.",
+                "uk": "I називає мовця, am обов'язкове після I, а here повідомляє, де ви перебуваєте."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "here",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие места",
+                    "uk": "прислівник місця"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает, где находится говорящий.",
+                    "uk": "Повідомляє, де перебуває мовець."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -901,17 +941,17 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Соберите фразу — Антон впустил вас в кабинет, и вы этому рады",
+        "prompt": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Соберите фразу — Антон впустил вас в кабинет, и вы этому рады",
+        "accessibilityLabel": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am happy.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — вас впустили, и вы этому рады",
-            "uk": "Складіть фразу — вас впустили, і ви цьому раді"
+            "ru": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+            "uk": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді"
           },
           "orderedTokens": [
             "I",
@@ -919,15 +959,16 @@
             "happy"
           ],
           "authoredDistractorTokens": [
-            "is"
+            "ready"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i15:tile:d1",
               "correct": false,
+              "testedDimension": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
               "feedbackByLocale": {
-                "ru": "С I нужна форма am, поэтому is здесь лишнее.",
-                "uk": "З I потрібна форма am, тому is тут зайве."
+                "ru": "Ready означает «готов / готова». Здесь нужна эмоция после хорошей новости о рабочем месте: happy — «рад / рада».",
+                "uk": "Ready означає «готовий / готова». Тут потрібна емоція після доброї новини про робоче місце: happy — «радий / рада»."
               }
             }
           ]
@@ -940,36 +981,37 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послушайте и соберите — коллега Мира спрашивает, как вы; у вас всё хорошо",
+        "prompt": "Послушайте реплику Миры и соберите её",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i16:audio"
         ],
-        "accessibilityLabel": "Послушайте и соберите — коллега Мира спрашивает, как вы; у вас всё хорошо",
+        "accessibilityLabel": "Послушайте реплику Миры и соберите её",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i16:audio",
-            "transcript": "I am fine."
+            "transcript": "I am happy."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am fine.",
+          "hiddenTargetPhrase": "I am happy.",
           "orderedTokens": [
             "I",
             "am",
-            "fine"
+            "happy"
           ],
           "authoredDistractorTokens": [
-            "happy"
+            "fine"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i16:tile:d1",
               "correct": false,
+              "testedDimension": "Послушайте реплику Миры и соберите её",
               "feedbackByLocale": {
-                "ru": "В записи звучит fine — «всё хорошо»; happy означает «рад».",
-                "uk": "У записі звучить fine — «усе добре»; happy означає «радий»."
+                "ru": "happy означает «рад / рада» и говорит о радости; fine изменило бы смысл на «у меня всё хорошо».",
+                "uk": "happy означає «радий / рада» й говорить про радість; fine змінило б зміст на «у мене все добре»."
               }
             }
           ]
@@ -978,25 +1020,171 @@
       },
       {
         "interactionId": "en:lesson-01:session-01:i17:s01",
-        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "Соедините фразы с подходящими ситуациями",
+        "accessibilityLabel": "Соедините фразы с подходящими ситуациями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "scriptedAlternate": null,
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p1",
+              "target": "I am here.",
+              "meaningByLocale": {
+                "ru": "Вы уже у входа и сообщаете об этом Мире.",
+                "uk": "Ви вже біля входу й повідомляєте про це Мірі."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p2",
+              "target": "I am ready.",
+              "meaningByLocale": {
+                "ru": "Встречу можно начинать.",
+                "uk": "Зустріч можна починати."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p3",
+              "target": "I am fine.",
+              "meaningByLocale": {
+                "ru": "Коллега спрашивает, как у вас дела.",
+                "uk": "Колега запитує, як ваші справи."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p4",
+              "target": "I am happy.",
+              "meaningByLocale": {
+                "ru": "Вас радует хорошая новость.",
+                "uk": "Вас тішить добра новина."
+              }
+            }
+          ],
+          "leftColumn": [
+            "I am here.",
+            "I am ready.",
+            "I am fine.",
+            "I am happy."
+          ],
+          "rightColumn": [
+            "Вы уже у входа и сообщаете об этом Мире.",
+            "Встречу можно начинать.",
+            "Коллега спрашивает, как у вас дела.",
+            "Вас радует хорошая новость."
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": false,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "accuracy"
+          ]
+        },
+        "ordinal": 18
+      },
+      {
+        "interactionId": "en:lesson-01:session-01:i17:s02",
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — коллега ищет вас, а вы уже в комнате",
+        "prompt": "Скажите вслух — Антон начинает встречу; сообщите, что готовы",
+        "accessibilityLabel": "Скажите вслух — Антон начинает встречу; сообщите, что готовы",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-01:i17:s01:audio"
+          "en:lesson-01:session-01:i17:s02:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — коллега ищет вас, а вы уже в комнате",
+        "scriptedAlternate": null,
         "modePayload": {
           "family": "scripted_repeat_compare",
+          "targetPhrase": "I am ready.",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i17:s01:audio",
-            "transcript": "I am here."
+            "audioTargetId": "en:lesson-01:session-01:i17:s02:audio",
+            "transcript": "I am ready."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am here.",
+          "explanationV1": {
+            "phrase": {
+              "text": "I am ready.",
+              "meaningByLocale": {
+                "ru": "Я готов / готова.",
+                "uk": "Я готовий / готова."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а ready сообщает нужный смысл.",
+                "uk": "I називає мовця, am обов'язкове після I, а ready повідомляє потрібний зміст."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "ready",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает состояние готовности говорящего после am.",
+                    "uk": "Описує стан готовності мовця після am."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -1007,118 +1195,139 @@
             "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-01:i17:s02",
-        "ordinal": 19,
-        "purpose": "independent_check",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставьте слово — Антон сообщает, что встреча начинается, и вы подготовились",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r1",
-            "text": "ready"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r2",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r3",
-            "text": "happy"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вставьте слово — Антон сообщает, что встреча начинается, и вы подготовились",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — Антон сообщает, что встреча начинается, и вы подготовились",
-            "uk": "Вставте слово — Антон повідомляє, що зустріч починається, і ви підготувалися"
-          },
-          "gappedTargetPhrase": "I am ___.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r1",
-              "text": "ready"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r2",
-              "text": "fine"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r3",
-              "text": "happy"
-            }
-          ],
-          "testedDimension": "Вы готовы к началу встречи",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r1",
-              "correct": true,
-              "testedDimension": "Вы готовы к началу встречи",
-              "feedbackByLocale": {
-                "ru": "Верно: встреча начинается, а ready означает «готов начать».",
-                "uk": "Правильно: зустріч починається, а ready означає «готовий почати»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r2",
-              "correct": false,
-              "testedDimension": "Вы готовы к началу встречи",
-              "feedbackByLocale": {
-                "ru": "Fine означает «всё хорошо», а не «готов».",
-                "uk": "Fine означає «усе добре», а не «готовий»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r3",
-              "correct": false,
-              "testedDimension": "Вы готовы к началу встречи",
-              "feedbackByLocale": {
-                "ru": "Happy означает «рад», а не «готов».",
-                "uk": "Happy означає «радий», а не «готовий»."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
+        "ordinal": 19
       },
       {
         "interactionId": "en:lesson-01:session-01:i17:s03",
-        "ordinal": 20,
         "purpose": "independent_check",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажите вслух — коллега спрашивает, как вы, и у вас всё хорошо",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Коллега спрашивает, как у вас дела. Послушайте и соберите свой ответ",
+        "accessibilityLabel": "Коллега спрашивает, как у вас дела. Послушайте и соберите свой ответ",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i17:s03:audio"
         ],
-        "accessibilityLabel": "Скажите вслух — коллега спрашивает, как вы, и у вас всё хорошо",
+        "scriptedAlternate": null,
         "modePayload": {
-          "family": "scripted_repeat_compare",
+          "family": "listen_build_dictation",
+          "hiddenTargetPhrase": "I am fine.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "fine"
+          ],
+          "authoredDistractorTokens": [
+            "ready",
+            "here"
+          ],
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i17:s03:audio",
             "transcript": "I am fine."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am fine.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          "localizedMeaning": {
+            "ru": "На вопрос о самочувствии: «У меня всё хорошо».",
+            "uk": "На запитання про самопочуття: «У мене все добре»."
+          },
+          "explanationV1": {
+            "phrase": {
+              "text": "I am fine.",
+              "meaningByLocale": {
+                "ru": "У меня всё хорошо.",
+                "uk": "У мене все добре."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а fine сообщает нужный смысл.",
+                "uk": "I називає мовця, am обов'язкове після I, а fine повідомляє потрібний зміст."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "fine",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное / наречие",
+                    "uk": "прикметник / прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "Уточняет, что вы сообщаете о себе.",
+                    "uk": "Уточнює, що ви повідомляєте про себе."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-01:i17:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает, как у вас дела. Послушайте и соберите свой ответ",
+              "feedbackByLocale": {
+                "ru": "`ready` — «готов / готова». Здесь нужен ответ о самочувствии: `I am fine`.",
+                "uk": "`ready` — «готовий / готова». Тут потрібна відповідь про самопочуття: `I am fine`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i17:s03:tile:d2",
+              "correct": false,
+              "testedDimension": "Коллега спрашивает, как у вас дела. Послушайте и соберите свой ответ",
+              "feedbackByLocale": {
+                "ru": "`here` — «здесь». Здесь спрашивают не о месте, а о том, как вы: `I am fine`.",
+                "uk": "`here` — «тут». Тут питають не про місце, а про те, як ви: `I am fine`."
+              }
+            }
           ]
         },
-        "scriptedAlternate": null
+        "ordinal": 20
       }
     ],
     "uk": [
@@ -1128,13 +1337,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — here",
+        "prompt": "Нове слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i01:audio"
         ],
-        "accessibilityLabel": "Картка слова — here",
+        "accessibilityLabel": "Нове слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1147,8 +1356,8 @@
               "responseId": "en:lesson-01:session-01:i01:r1",
               "targetText": "here",
               "meaningByLocale": {
-                "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
-                "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+                "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+                "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
               }
             }
           ],
@@ -1158,8 +1367,8 @@
           "wordCard": {
             "word": "here",
             "definitionByLocale": {
-              "ru": "«здесь». Там, где вы сейчас стоите. Показать пальцем себе под ноги — это и есть here.",
-              "uk": "«тут». Там, де ви зараз стоїте. Показати пальцем собі під ноги — це і є here."
+              "ru": "«здесь, тут»: в этой комнате, офисе или другом месте, где вы находитесь.",
+              "uk": "«тут»: у цій кімнаті, офісі або іншому місці, де ви перебуваєте."
             }
           }
         },
@@ -1169,9 +1378,9 @@
         "interactionId": "en:lesson-01:session-01:i02",
         "ordinal": 2,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i02:r1",
@@ -1179,73 +1388,67 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i02:r2",
-            "text": "hair"
+            "text": "ready"
           },
           {
             "responseId": "en:lesson-01:session-01:i02:r3",
-            "text": "hill"
+            "text": "fine"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i02:audio"
-        ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i02:audio",
-            "transcript": "here"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мира звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь",
+            "uk": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i02:r1",
-              "targetText": "here",
-              "meaningByLocale": null
+              "text": "here"
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r2",
-              "targetText": "hair",
-              "meaningByLocale": null
+              "text": "ready"
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r3",
-              "targetText": "hill",
-              "meaningByLocale": null
+              "text": "fine"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i02:r1",
               "correct": true,
+              "testedDimension": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
               "feedbackByLocale": {
-                "ru": "Верно: в записи here. В нём долгий гласный, и слово не заканчивается на л.",
-                "uk": "Правильно: у записі here. У ньому довгий голосний, і слово не закінчується на л."
+                "ru": "Верно: here означает «здесь», поэтому I am here сообщает Мире, что вы уже в офисе.",
+                "uk": "Правильно: here означає «тут», тому I am here повідомляє Мірі, що ви вже в офісі."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — here",
+              "testedDimension": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
               "feedbackByLocale": {
-                "ru": "Это «волосы», а не «здесь». В записи нужно выбрать слово `here`.",
-                "uk": "Це «волосся», а не «тут». У записі потрібно вибрати слово `here`."
+                "ru": "Ready означает «готов / готова». Это подходит перед началом дела, но Мира спрашивает, добрались ли вы до офиса.",
+                "uk": "Ready означає «готовий / готова». Це доречно перед початком справи, але Міра питає, чи ви дісталися офісу."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i02:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — here",
+              "testedDimension": "Вставте слово — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
               "feedbackByLocale": {
-                "ru": "Это «холм», а не «здесь». В записи нужно выбрать слово `here`.",
-                "uk": "Це «пагорб», а не «тут». У записі потрібно вибрати слово `here`."
+                "ru": "Fine означает «всё хорошо». Это ответ на «как дела?», а здесь нужно назвать своё местоположение: I am here.",
+                "uk": "Fine означає «усе добре». Це відповідь на «як справи?», а тут треба назвати своє місце: I am here."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1255,13 +1458,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — ready",
+        "prompt": "Нове слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i03:audio"
         ],
-        "accessibilityLabel": "Картка слова — ready",
+        "accessibilityLabel": "Нове слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1274,8 +1477,8 @@
               "responseId": "en:lesson-01:session-01:i03:r1",
               "targetText": "ready",
               "meaningByLocale": {
-                "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
-                "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+                "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+                "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
               }
             }
           ],
@@ -1285,8 +1488,8 @@
           "wordCard": {
             "word": "ready",
             "definitionByLocale": {
-              "ru": "«готов». Шнурки завязаны, куртка надета, можно выходить.",
-              "uk": "«готовий». Шнурки зав'язані, куртка вдягнена, можна виходити."
+              "ru": "«готов / готова». Шнурки завязаны, куртка надета, можно выходить.",
+              "uk": "«готовий / готова». Шнурки зав'язані, куртка вже на вас, можна виходити."
             }
           }
         },
@@ -1296,9 +1499,9 @@
         "interactionId": "en:lesson-01:session-01:i04",
         "ordinal": 4,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i04:r1",
@@ -1306,68 +1509,64 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i04:r2",
-            "text": "really"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-01:i04:r3",
-            "text": "red"
+            "text": "happy"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i04:audio"
-        ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i04:audio",
-            "transcript": "ready"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Антон спрашивает, готовы ли вы начать; скажите, что готовы",
+            "uk": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i04:r1",
-              "targetText": "ready",
-              "meaningByLocale": null
+              "text": "ready"
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r2",
-              "targetText": "really",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r3",
-              "targetText": "red",
-              "meaningByLocale": null
+              "text": "happy"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i04:r1",
               "correct": true,
+              "testedDimension": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
               "feedbackByLocale": {
-                "ru": "Верно: ready — слово из двух слогов, которое заканчивается на -dy.",
-                "uk": "Правильно: ready — слово з двох складів, яке закінчується на -dy."
+                "ru": "Верно: ready означает «готов / готова». Антон спрашивает, можно ли начинать, поэтому I am ready подходит.",
+                "uk": "Правильно: ready означає «готовий / готова». Антон питає, чи можна починати, тому I am ready підходить."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — ready",
+              "testedDimension": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
               "feedbackByLocale": {
-                "ru": "Похожее начало, но это другое слово: «действительно». В записи нужно выбрать `ready`.",
-                "uk": "Схожий початок, але це інше слово: «дійсно». У записі потрібно вибрати `ready`."
+                "ru": "Fine означает «всё хорошо». Здесь нужно сказать, что вы готовы начать: I am ready.",
+                "uk": "Fine означає «усе добре». Тут треба сказати, що ви готові почати: I am ready."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i04:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — ready",
+              "testedDimension": "Вставте слово — Антон питає, чи ви готові почати; скажіть, що готові",
               "feedbackByLocale": {
-                "ru": "Это «красный», а не «готов». В записи нужно выбрать `ready`.",
-                "uk": "Це «червоний», а не «готовий». У записі потрібно вибрати `ready`."
+                "ru": "Happy означает «рад / рада». Здесь речь о готовности начать, поэтому нужно ready: I am ready.",
+                "uk": "Happy означає «радий / рада». Тут ідеться про готовність почати, тому потрібно ready: I am ready."
               }
             }
           ],
@@ -1382,13 +1581,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — fine",
+        "prompt": "Нове слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i05:audio"
         ],
-        "accessibilityLabel": "Картка слова — fine",
+        "accessibilityLabel": "Нове слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1423,9 +1622,9 @@
         "interactionId": "en:lesson-01:session-01:i06",
         "ordinal": 6,
         "purpose": "supported_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i06:r1",
@@ -1433,68 +1632,64 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i06:r2",
-            "text": "five"
+            "text": "here"
           },
           {
             "responseId": "en:lesson-01:session-01:i06:r3",
-            "text": "find"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i06:audio"
-        ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i06:audio",
-            "transcript": "fine"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — коллега спрашивает, как у вас дела; ответьте, что всё хорошо",
+            "uk": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i06:r1",
-              "targetText": "fine",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r2",
-              "targetText": "five",
-              "meaningByLocale": null
+              "text": "here"
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r3",
-              "targetText": "find",
-              "meaningByLocale": null
+              "text": "ready"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i06:r1",
               "correct": true,
+              "testedDimension": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
               "feedbackByLocale": {
-                "ru": "Верно: в записи fine: слово заканчивается на n, а не на v или d.",
-                "uk": "Правильно: у записі fine: слово закінчується на n, а не на v чи d."
+                "ru": "Верно: fine означает «хорошо, в порядке». На вопрос о том, как у вас дела, вы говорите I am fine.",
+                "uk": "Правильно: fine означає «добре, гаразд». На запитання про ваші справи ви кажете I am fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r2",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — fine",
+              "testedDimension": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
               "feedbackByLocale": {
-                "ru": "Это «пять». В конце `five` слышен /v/, а в `fine` — /n/.",
-                "uk": "Це «п'ять». Наприкінці `five` чути /v/, а в `fine` — /n/."
+                "ru": "Here означает «здесь»: это о месте, а не о самочувствии. В этой ситуации нужно сказать: I am fine.",
+                "uk": "Here означає «тут»: це про місце, а не про самопочуття. У цій ситуації потрібно сказати: I am fine."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i06:r3",
               "correct": false,
-              "testedDimension": "Послухайте і виберіть — fine",
+              "testedDimension": "Вставте слово — колега питає, як ваші справи; скажіть, що все добре",
               "feedbackByLocale": {
-                "ru": "Это «находить». В `find` после /n/ есть ещё /d/; в `fine` его нет.",
-                "uk": "Це «знаходити». У `find` після /n/ є ще /d/; у `fine` його немає."
+                "ru": "Ready означает «готов / готова»: это о готовности, а не о самочувствии. В этой ситуации нужно сказать: I am fine.",
+                "uk": "Ready означає «готовий / готова»: це про готовність, а не про самопочуття. У цій ситуації потрібно сказати: I am fine."
               }
             }
           ],
@@ -1509,13 +1704,13 @@
         "purpose": "supported_practice",
         "family": "listen_choose",
         "inputMode": "single_choice",
-        "prompt": "Картка слова — happy",
+        "prompt": "Нове слово",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i07:audio"
         ],
-        "accessibilityLabel": "Картка слова — happy",
+        "accessibilityLabel": "Нове слово",
         "modePayload": {
           "family": "listen_choose",
           "referenceAudio": {
@@ -1528,8 +1723,8 @@
               "responseId": "en:lesson-01:session-01:i07:r1",
               "targetText": "happy",
               "meaningByLocale": {
-                "ru": "«рад, доволен». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
-                "uk": "«радісний, задоволений». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+                "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+                "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
               }
             }
           ],
@@ -1539,8 +1734,8 @@
           "wordCard": {
             "word": "happy",
             "definitionByLocale": {
-              "ru": "«рад, доволен». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
-              "uk": "«радісний, задоволений». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
+              "ru": "«рад / рада, доволен / довольна». Так говорят, когда радует новость или результат; fine значит, что всё в порядке.",
+              "uk": "«радий / рада, задоволений / задоволена». Так кажуть, коли тішить новина або результат; fine означає, що все гаразд."
             }
           }
         },
@@ -1550,9 +1745,9 @@
         "interactionId": "en:lesson-01:session-01:i07:a01",
         "ordinal": 8,
         "purpose": "guided_practice",
-        "family": "listen_choose",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Послухайте і виберіть",
+        "prompt": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
         "responseOptions": [
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r1",
@@ -1560,73 +1755,67 @@
           },
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r2",
-            "text": "hobby"
+            "text": "fine"
           },
           {
             "responseId": "en:lesson-01:session-01:i07:a01:r3",
-            "text": "heavy"
+            "text": "ready"
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": [
-          "en:lesson-01:session-01:i07:a01:audio"
-        ],
-        "accessibilityLabel": "Послухайте і виберіть",
+        "audioTargetIds": [],
+        "accessibilityLabel": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
         "modePayload": {
-          "family": "listen_choose",
-          "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i07:a01:audio",
-            "transcript": "happy"
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — Мира сообщает хорошую новость; ответьте, что вы рады",
+            "uk": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді"
           },
-          "slowReferenceAudio": null,
-          "localizedMeaningChoices": [
+          "gappedTargetPhrase": "I am ___.",
+          "gapOptions": [
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r1",
-              "targetText": "happy",
-              "meaningByLocale": null
+              "text": "happy"
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r2",
-              "targetText": "hobby",
-              "meaningByLocale": null
+              "text": "fine"
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r3",
-              "targetText": "heavy",
-              "meaningByLocale": null
+              "text": "ready"
             }
           ],
-          "transcriptRevealPolicy": "after_first_attempt",
+          "testedDimension": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r1",
               "correct": true,
+              "testedDimension": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
               "feedbackByLocale": {
-                "ru": "Верно: в записи happy — с открытым гласным /æ/ и звуком /p/ в середине.",
-                "uk": "Правильно: у записі happy — з відкритим голосним /æ/ і звуком /p/ посередині."
+                "ru": "Верно: happy означает «рад / рада». После хорошей новости I am happy прямо сообщает о вашей радости.",
+                "uk": "Правильно: happy означає «радий / рада». Після хорошої новини I am happy прямо повідомляє про вашу радість."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r2",
               "correct": false,
-              "testedDimension": "auditory_phonetic_contrast",
+              "testedDimension": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
               "feedbackByLocale": {
-                "ru": "Это «хобби», а не «рад». В записи нужно выбрать `happy`.",
-                "uk": "Це «хобі», а не «радісний». У записі потрібно вибрати `happy`."
+                "ru": "Fine означает «всё хорошо, в порядке». Это можно сказать о самочувствии, но новость вызвала именно радость.",
+                "uk": "Fine означає «усе добре, гаразд». Це можна сказати про самопочуття, але новина викликала саме радість."
               }
             },
             {
               "responseId": "en:lesson-01:session-01:i07:a01:r3",
               "correct": false,
-              "testedDimension": "auditory_phonetic_contrast",
+              "testedDimension": "Вставте слово — Міра повідомляє хорошу новину; відповідайте, що ви раді",
               "feedbackByLocale": {
-                "ru": "Это «тяжёлый». В середине `heavy` есть /v/, а в `happy` его нет.",
-                "uk": "Це «важкий». У середині `heavy` є /v/, а в `happy` його немає."
+                "ru": "Ready означает «готов / готова». После хорошей новости вы рады, поэтому здесь happy: I am happy.",
+                "uk": "Ready означає «готовий / готова». Після доброї новини ви раді, тому тут happy: I am happy."
               }
             }
-          ],
-          "isWordCard": false,
-          "wordCard": null
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1656,8 +1845,8 @@
               "pairId": "en:lesson-01:session-01:i08:p2",
               "target": "ready",
               "meaningByLocale": {
-                "ru": "готов",
-                "uk": "готовий"
+                "ru": "готов / готова",
+                "uk": "готовий / готова"
               }
             },
             {
@@ -1672,8 +1861,8 @@
               "pairId": "en:lesson-01:session-01:i08:p4",
               "target": "happy",
               "meaningByLocale": {
-                "ru": "рад",
-                "uk": "радий"
+                "ru": "рад / рада",
+                "uk": "радий / рада"
               }
             }
           ],
@@ -1684,10 +1873,10 @@
             "happy"
           ],
           "rightColumn": [
-            "здесь",
-            "готов",
-            "хорошо",
-            "рад"
+            "тут",
+            "готовий / готова",
+            "добре",
+            "радий / рада"
           ],
           "pairingKey": "pair_id",
           "timerPolicy": {
@@ -1733,131 +1922,153 @@
             {
               "responseId": "en:lesson-01:session-01:i09:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — колега шукає вас, а ви вже в кімнаті",
               "feedbackByLocale": {
-                "ru": "ready означает «готов», а здесь вы сообщаете, где находитесь: I am here.",
-                "uk": "ready означає «готовий», а тут ви повідомляєте, де перебуваєте: I am here."
+                "ru": "Ready означает «готов / готова». Здесь нужно сообщить, где вы: I am here.",
+                "uk": "Ready означає «готовий / готова». Тут треба повідомити, де ви: I am here."
               }
             }
           ]
         },
         "scriptedAlternate": null
+      },
+      {
+        "interactionId": "en:lesson-01:session-01:i13",
+        "purpose": "retrieval_practice",
+        "family": "listen_choose",
+        "inputMode": "single_choice",
+        "prompt": "Послухайте репліку та виберіть її зміст",
+        "accessibilityLabel": "Послухайте репліку та виберіть її зміст",
+        "mediaIds": [],
+        "audioTargetIds": [
+          "en:lesson-01:session-01:i13:audio"
+        ],
+        "scriptedAlternate": null,
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-01:session-01:i13:r1",
+            "text": "Я тут."
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r2",
+            "text": "Я готовий / готова."
+          },
+          {
+            "responseId": "en:lesson-01:session-01:i13:r3",
+            "text": "У мене все добре."
+          }
+        ],
+        "modePayload": {
+          "family": "listen_choose",
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-01:session-01:i13:audio",
+            "transcript": "I am here."
+          },
+          "slowReferenceAudio": null,
+          "transcriptRevealPolicy": "after_first_attempt",
+          "isWordCard": false,
+          "localizedScene": {
+            "ru": "Вы разговариваете с Мирой; выберите смысл услышанной реплики.",
+            "uk": "Ви розмовляєте з Мірою; виберіть зміст почутої репліки."
+          },
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-01:session-01:i13:r1",
+              "targetText": "Я тут.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r2",
+              "targetText": "Я готовий / готова.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r3",
+              "targetText": "У мене все добре.",
+              "meaningByLocale": null
+            }
+          ],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-01:session-01:i13:r1",
+              "correct": true,
+              "testedDimension": "Послухайте репліку та виберіть її зміст",
+              "feedbackByLocale": {
+          "ru": "Верно: `I am here` означает «я здесь»: here сообщает о месте.",
+          "uk": "Правильно: `I am here` означає «я тут»: here повідомляє про місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r2",
+              "correct": false,
+              "testedDimension": "Послухайте репліку та виберіть її зміст",
+              "feedbackByLocale": {
+                "ru": "`I am ready` — «я готов / готова». Здесь вы говорите не о готовности, а о месте.",
+                "uk": "`I am ready` — «я готовий / готова». Тут ви кажете не про готовність, а про місце."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i13:r3",
+              "correct": false,
+              "testedDimension": "Послухайте репліку та виберіть її зміст",
+              "feedbackByLocale": {
+                "ru": "`I am fine` — «у меня всё хорошо». Это ответ о самочувствии, не о месте.",
+                "uk": "`I am fine` — «у мене все добре». Це відповідь про самопочуття, не про місце."
+              }
+            }
+          ]
+        },
+        "ordinal": 11
       },
       {
         "interactionId": "en:lesson-01:session-01:i10",
-        "ordinal": 11,
-        "purpose": "guided_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставте слово — вас запитали, як справи, все добре",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i10:r1",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i10:r2",
-            "text": "here"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i10:r3",
-            "text": "ready"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вставте слово — вас запитали, як справи, все добре",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — вас спросили, как дела, всё хорошо",
-            "uk": "Вставте слово — вас запитали, як справи, все добре"
-          },
-          "gappedTargetPhrase": "I am ___ .",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i10:r1",
-              "text": "fine"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r2",
-              "text": "here"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r3",
-              "text": "ready"
-            }
-          ],
-          "testedDimension": "Вставте слово — вас запитали, як справи,",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-01:i10:r1",
-              "correct": true,
-              "testedDimension": "Вставте слово — вас запитали, як справи,",
-              "feedbackByLocale": {
-                "ru": "Верно: на вопрос «как дела?» отвечают I am fine — «у меня всё хорошо».",
-                "uk": "Правильно: на запитання «як справи?» відповідають I am fine — «у мене все добре»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r2",
-              "correct": false,
-              "testedDimension": "Вставте слово — вас запитали, як справи,",
-              "feedbackByLocale": {
-                "ru": "«Я здесь» — это ответ на «где ты», а не на «как дела».",
-                "uk": "«Я тут» — це відповідь на «де ти», а не на «як справи»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i10:r3",
-              "correct": false,
-              "testedDimension": "Вставте слово — вас запитали, як справи,",
-              "feedbackByLocale": {
-                "ru": "«Я готов» — подходит, когда пора начинать, а не когда спрашивают о самочувствии.",
-                "uk": "«Я готовий» — годиться, коли пора починати, а не коли питають про самопочуття."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-01:i11",
-        "ordinal": 12,
         "purpose": "guided_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — начальник чекає відповіді, ви готові",
+        "prompt": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре",
+        "accessibilityLabel": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — начальник чекає відповіді, ви готові",
+        "scriptedAlternate": null,
         "modePayload": {
           "family": "phrase_builder",
-          "targetPhrase": "I am ready.",
+          "targetPhrase": "I am fine.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — начальник ждёт ответа, вы готовы",
-            "uk": "Складіть фразу — начальник чекає відповіді, ви готові"
+            "ru": "Соберите фразу — коллега спросил, как у вас дела; ответьте, что всё хорошо",
+            "uk": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре"
           },
           "orderedTokens": [
             "I",
             "am",
-            "ready"
+            "fine"
           ],
           "authoredDistractorTokens": [
-            "is"
+            "ready",
+            "here"
           ],
           "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-01:i11:tile:d1",
+              "responseId": "en:lesson-01:session-01:i10:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре",
               "feedbackByLocale": {
-                "ru": "С I нужна форма am, поэтому is здесь лишнее.",
-                "uk": "З I потрібна форма am, тому is тут зайве."
+                "ru": "Ready означает «готов / готова». О самочувствии говорят I am fine.",
+                "uk": "Ready означає «готовий / готова». Про самопочуття кажуть I am fine."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i10:tile:d2",
+              "correct": false,
+              "testedDimension": "Складіть фразу — колега запитав, як ваші справи; скажіть, що все добре",
+              "feedbackByLocale": {
+                "ru": "Here означает «здесь». Вопрос не о месте, а о том, как вы: I am fine.",
+                "uk": "Here означає «тут». Запитання не про місце, а про те, як ви: I am fine."
               }
             }
           ]
         },
-        "scriptedAlternate": null
+        "ordinal": 12
       },
       {
         "interactionId": "en:lesson-01:session-01:i12",
@@ -1865,13 +2076,13 @@
         "purpose": "retrieval_practice",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте і складіть — «я готовий»",
+        "prompt": "Послухайте репліку колеги перед початком зустрічі та складіть її",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i12:audio"
         ],
-        "accessibilityLabel": "Послухайте і складіть — «я готовий»",
+        "accessibilityLabel": "Послухайте репліку колеги перед початком зустрічі та складіть її",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
@@ -1892,9 +2103,10 @@
             {
               "responseId": "en:lesson-01:session-01:i12:tile:d1",
               "correct": false,
+              "testedDimension": "Послухайте репліку колеги перед початком зустрічі та складіть її",
               "feedbackByLocale": {
-                "ru": "В записи звучит ready — «готов»; fine меняет смысл на «всё хорошо».",
-                "uk": "У записі звучить ready — «готовий»; fine змінює зміст на «усе добре»."
+                "ru": "Fine означает «всё хорошо», а коллега сообщает, что готов к встрече: I am ready.",
+                "uk": "Fine означає «усе добре», а колега повідомляє, що готовий до зустрічі: I am ready."
               }
             }
           ]
@@ -1902,77 +2114,39 @@
         "scriptedAlternate": null
       },
       {
-        "interactionId": "en:lesson-01:session-01:i13",
+        "interactionId": "en:lesson-01:session-01:i11",
         "ordinal": 14,
-        "purpose": "retrieval_practice",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставте слово — ви заходите в кімнату",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i13:r1",
-            "text": "I"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i13:r2",
-            "text": "am"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i13:r3",
-            "text": "here"
-          }
-        ],
+        "purpose": "guided_practice",
+        "family": "phrase_builder",
+        "inputMode": "ordered_tokens",
+        "prompt": "Складіть фразу — начальник питає, чи ви готові почати",
+        "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вставте слово — ви заходите в кімнату",
+        "accessibilityLabel": "Складіть фразу — начальник питає, чи ви готові почати",
         "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — вы заходите в комнату",
-            "uk": "Вставте слово — ви заходите в кімнату"
+          "family": "phrase_builder",
+          "targetPhrase": "I am ready.",
+          "localizedMeaning": {
+            "ru": "Соберите фразу — начальник спрашивает, готовы ли вы начать",
+            "uk": "Складіть фразу — начальник питає, чи ви готові почати"
           },
-          "gappedTargetPhrase": "___ am here.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i13:r1",
-              "text": "I"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r2",
-              "text": "am"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r3",
-              "text": "here"
-            }
+          "orderedTokens": [
+            "I",
+            "am",
+            "ready"
           ],
-          "testedDimension": "Вставте слово — ви заходите в кімнату",
-          "choiceFeedback": [
+          "authoredDistractorTokens": [
+            "happy"
+          ],
+          "slotFeedback": [
             {
-              "responseId": "en:lesson-01:session-01:i13:r1",
-              "correct": true,
-              "testedDimension": "Вставте слово — ви заходите в кімнату",
-              "feedbackByLocale": {
-                "ru": "Верно: I называет говорящего; получается полная фраза I am here.",
-                "uk": "Правильно: I називає мовця; виходить повна фраза I am here."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r2",
+              "responseId": "en:lesson-01:session-01:i11:tile:d1",
               "correct": false,
-              "testedDimension": "Вставте слово — ви заходите в кімнату",
+              "testedDimension": "Складіть фразу — начальник питає, чи ви готові почати",
               "feedbackByLocale": {
-                "ru": "Сначала нужно назвать того, о ком речь: `I am here`.",
-                "uk": "Спершу треба назвати того, про кого йдеться: `I am here`."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i13:r3",
-              "correct": false,
-              "testedDimension": "Вставте слово — ви заходите в кімнату",
-              "feedbackByLocale": {
-                "ru": "Here — это «здесь»; в этой фразе `here` стоит после `am`.",
-                "uk": "Here — це «тут»; у цій фразі `here` стоїть після `am`."
+                "ru": "Happy означает «рад / рада». Здесь спрашивают о готовности: I am ready.",
+                "uk": "Happy означає «радий / рада». Тут питають про готовність: I am ready."
               }
             }
           ]
@@ -1985,21 +2159,96 @@
         "purpose": "retrieval_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — керівник Антон схвалив вашу ідею, і ви цьому раді",
+        "prompt": "Скажіть уголос — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i14:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — керівник Антон схвалив вашу ідею, і ви цьому раді",
+        "accessibilityLabel": "Скажіть уголос — Міра телефонує й питає, чи ви вже дісталися офісу; відповідайте, що ви вже тут",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i14:audio",
-            "transcript": "I am happy."
+            "transcript": "I am here."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am happy.",
+          "targetPhrase": "I am here.",
+          "explanationV1": {
+            "phrase": {
+              "text": "I am here.",
+              "meaningByLocale": {
+                "ru": "Я здесь.",
+                "uk": "Я тут."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а here сообщает, где вы находитесь.",
+                "uk": "I називає мовця, am обов'язкове після I, а here повідомляє, де ви перебуваєте."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "here",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "наречие места",
+                    "uk": "прислівник місця"
+                  },
+                  "meaningByLocale": {
+                    "ru": "здесь",
+                    "uk": "тут"
+                  },
+                  "functionByLocale": {
+                    "ru": "Сообщает, где находится говорящий.",
+                    "uk": "Повідомляє, де перебуває мовець."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2018,17 +2267,17 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "Складіть фразу — Антон впустив вас до кабінету, і ви цьому раді",
+        "prompt": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Складіть фразу — Антон впустив вас до кабінету, і ви цьому раді",
+        "accessibilityLabel": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "I am happy.",
           "localizedMeaning": {
-            "ru": "Соберите фразу — вас впустили, и вы этому рады",
-            "uk": "Складіть фразу — вас впустили, і ви цьому раді"
+            "ru": "Соберите фразу — Мира говорит, что ваше рабочее место готово; вы рады",
+            "uk": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді"
           },
           "orderedTokens": [
             "I",
@@ -2036,15 +2285,16 @@
             "happy"
           ],
           "authoredDistractorTokens": [
-            "is"
+            "ready"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i15:tile:d1",
               "correct": false,
+              "testedDimension": "Складіть фразу — Міра каже, що ваше робоче місце готове; ви раді",
               "feedbackByLocale": {
-                "ru": "С I нужна форма am, поэтому is здесь лишнее.",
-                "uk": "З I потрібна форма am, тому is тут зайве."
+                "ru": "Ready означает «готов / готова». Здесь нужна эмоция после хорошей новости о рабочем месте: happy — «рад / рада».",
+                "uk": "Ready означає «готовий / готова». Тут потрібна емоція після доброї новини про робоче місце: happy — «радий / рада»."
               }
             }
           ]
@@ -2057,36 +2307,37 @@
         "purpose": "independent_check",
         "family": "listen_build_dictation",
         "inputMode": "ordered_tokens",
-        "prompt": "Послухайте і складіть — колега Міра питає, як ви; у вас усе добре",
+        "prompt": "Послухайте репліку Міри та складіть її",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i16:audio"
         ],
-        "accessibilityLabel": "Послухайте і складіть — колега Міра питає, як ви; у вас усе добре",
+        "accessibilityLabel": "Послухайте репліку Міри та складіть її",
         "modePayload": {
           "family": "listen_build_dictation",
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i16:audio",
-            "transcript": "I am fine."
+            "transcript": "I am happy."
           },
           "slowReferenceAudio": null,
-          "hiddenTargetPhrase": "I am fine.",
+          "hiddenTargetPhrase": "I am happy.",
           "orderedTokens": [
             "I",
             "am",
-            "fine"
+            "happy"
           ],
           "authoredDistractorTokens": [
-            "happy"
+            "fine"
           ],
           "slotFeedback": [
             {
               "responseId": "en:lesson-01:session-01:i16:tile:d1",
               "correct": false,
+              "testedDimension": "Послухайте репліку Міри та складіть її",
               "feedbackByLocale": {
-                "ru": "В записи звучит fine — «всё хорошо»; happy означает «рад».",
-                "uk": "У записі звучить fine — «усе добре»; happy означає «радий»."
+                "ru": "happy означает «рад / рада» и говорит о радости; fine изменило бы смысл на «у меня всё хорошо».",
+                "uk": "happy означає «радий / рада» й говорить про радість; fine змінило б зміст на «у мене все добре»."
               }
             }
           ]
@@ -2095,25 +2346,171 @@
       },
       {
         "interactionId": "en:lesson-01:session-01:i17:s01",
-        "ordinal": 18,
+        "purpose": "independent_check",
+        "family": "speed_match",
+        "inputMode": "pair_grid",
+        "prompt": "З'єднайте фрази з відповідними ситуаціями",
+        "accessibilityLabel": "З'єднайте фрази з відповідними ситуаціями",
+        "responseOptions": [],
+        "mediaIds": [],
+        "audioTargetIds": [],
+        "scriptedAlternate": null,
+        "modePayload": {
+          "family": "speed_match",
+          "pairGrid": [
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p1",
+              "target": "I am here.",
+              "meaningByLocale": {
+                "ru": "Вы уже у входа и сообщаете об этом Мире.",
+                "uk": "Ви вже біля входу й повідомляєте про це Мірі."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p2",
+              "target": "I am ready.",
+              "meaningByLocale": {
+                "ru": "Встречу можно начинать.",
+                "uk": "Зустріч можна починати."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p3",
+              "target": "I am fine.",
+              "meaningByLocale": {
+                "ru": "Коллега спрашивает, как у вас дела.",
+                "uk": "Колега запитує, як ваші справи."
+              }
+            },
+            {
+              "pairId": "en:lesson-01:session-01:i17:s01:p4",
+              "target": "I am happy.",
+              "meaningByLocale": {
+                "ru": "Вас радует хорошая новость.",
+                "uk": "Вас тішить добра новина."
+              }
+            }
+          ],
+          "leftColumn": [
+            "I am here.",
+            "I am ready.",
+            "I am fine.",
+            "I am happy."
+          ],
+          "rightColumn": [
+            "Ви вже біля входу й повідомляєте про це Мірі.",
+            "Зустріч можна починати.",
+            "Колега запитує, як ваші справи.",
+            "Вас тішить добра новина."
+          ],
+          "pairingKey": "pair_id",
+          "timerPolicy": {
+            "enabledByDefault": false,
+            "learnerCanDisable": true,
+            "pausesOnInterruption": true
+          },
+          "finishStats": [
+            "accuracy"
+          ]
+        },
+        "ordinal": 18
+      },
+      {
+        "interactionId": "en:lesson-01:session-01:i17:s02",
         "purpose": "independent_check",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — колега шукає вас, а ви вже в кімнаті",
+        "prompt": "Скажіть уголос — Антон починає зустріч; повідомте, що готові",
+        "accessibilityLabel": "Скажіть уголос — Антон починає зустріч; повідомте, що готові",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
-          "en:lesson-01:session-01:i17:s01:audio"
+          "en:lesson-01:session-01:i17:s02:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — колега шукає вас, а ви вже в кімнаті",
+        "scriptedAlternate": null,
         "modePayload": {
           "family": "scripted_repeat_compare",
+          "targetPhrase": "I am ready.",
           "referenceAudio": {
-            "audioTargetId": "en:lesson-01:session-01:i17:s01:audio",
-            "transcript": "I am here."
+            "audioTargetId": "en:lesson-01:session-01:i17:s02:audio",
+            "transcript": "I am ready."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am here.",
+          "explanationV1": {
+            "phrase": {
+              "text": "I am ready.",
+              "meaningByLocale": {
+                "ru": "Я готов / готова.",
+                "uk": "Я готовий / готова."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а ready сообщает нужный смысл.",
+                "uk": "I називає мовця, am обов'язкове після I, а ready повідомляє потрібний зміст."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "ready",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное",
+                    "uk": "прикметник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "готов / готова",
+                    "uk": "готовий / готова"
+                  },
+                  "functionByLocale": {
+                    "ru": "Описывает состояние готовности говорящего после am.",
+                    "uk": "Описує стан готовності мовця після am."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
@@ -2124,118 +2521,139 @@
             "INVALID_AUDIO_OR_SYSTEM"
           ]
         },
-        "scriptedAlternate": null
-      },
-      {
-        "interactionId": "en:lesson-01:session-01:i17:s02",
-        "ordinal": 19,
-        "purpose": "independent_check",
-        "family": "context_gap_grammar",
-        "inputMode": "single_choice",
-        "prompt": "Вставте слово — Антон повідомляє, що зустріч починається, і ви підготувалися",
-        "responseOptions": [
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r1",
-            "text": "ready"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r2",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-01:i17:s02:r3",
-            "text": "happy"
-          }
-        ],
-        "mediaIds": [],
-        "audioTargetIds": [],
-        "accessibilityLabel": "Вставте слово — Антон повідомляє, що зустріч починається, і ви підготувалися",
-        "modePayload": {
-          "family": "context_gap_grammar",
-          "localizedScene": {
-            "ru": "Вставьте слово — встреча начинается, и вы подготовились",
-            "uk": "Вставте слово — зустріч починається, і ви підготувалися"
-          },
-          "gappedTargetPhrase": "I am ___.",
-          "gapOptions": [
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r1",
-              "text": "ready"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r2",
-              "text": "fine"
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r3",
-              "text": "happy"
-            }
-          ],
-          "testedDimension": "Ви готові до початку зустрічі",
-          "choiceFeedback": [
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r1",
-              "correct": true,
-              "testedDimension": "Ви готові до початку зустрічі",
-              "feedbackByLocale": {
-                "ru": "Верно: встреча начинается, а ready означает «готов начать».",
-                "uk": "Правильно: зустріч починається, а ready означає «готовий почати»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r2",
-              "correct": false,
-              "testedDimension": "Ви готові до початку зустрічі",
-              "feedbackByLocale": {
-                "ru": "Fine означает «всё хорошо», а не «готов».",
-                "uk": "Fine означає «усе добре», а не «готовий»."
-              }
-            },
-            {
-              "responseId": "en:lesson-01:session-01:i17:s02:r3",
-              "correct": false,
-              "testedDimension": "Ви готові до початку зустрічі",
-              "feedbackByLocale": {
-                "ru": "Happy означает «рад», а не «готов».",
-                "uk": "Happy означає «радий», а не «готовий»."
-              }
-            }
-          ]
-        },
-        "scriptedAlternate": null
+        "ordinal": 19
       },
       {
         "interactionId": "en:lesson-01:session-01:i17:s03",
-        "ordinal": 20,
         "purpose": "independent_check",
-        "family": "scripted_repeat_compare",
-        "inputMode": "tap_record_compare",
-        "prompt": "Скажіть уголос — колега питає, як ви, і у вас усе добре",
+        "family": "listen_build_dictation",
+        "inputMode": "ordered_tokens",
+        "prompt": "Колега запитує, як ваші справи. Послухайте й складіть свою відповідь",
+        "accessibilityLabel": "Колега запитує, як ваші справи. Послухайте й складіть свою відповідь",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-01:session-01:i17:s03:audio"
         ],
-        "accessibilityLabel": "Скажіть уголос — колега питає, як ви, і у вас усе добре",
+        "scriptedAlternate": null,
         "modePayload": {
-          "family": "scripted_repeat_compare",
+          "family": "listen_build_dictation",
+          "hiddenTargetPhrase": "I am fine.",
+          "orderedTokens": [
+            "I",
+            "am",
+            "fine"
+          ],
+          "authoredDistractorTokens": [
+            "ready",
+            "here"
+          ],
           "referenceAudio": {
             "audioTargetId": "en:lesson-01:session-01:i17:s03:audio",
             "transcript": "I am fine."
           },
           "slowReferenceAudio": null,
-          "targetPhrase": "I am fine.",
-          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-          "modelPlayback": "reference_and_slow",
-          "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": [
-            "PASS_CONFIDENT",
-            "NEEDS_WORK_CONFIDENT",
-            "UNCERTAIN",
-            "INVALID_AUDIO_OR_SYSTEM"
+          "localizedMeaning": {
+            "ru": "На вопрос о самочувствии: «У меня всё хорошо».",
+            "uk": "На запитання про самопочуття: «У мене все добре»."
+          },
+          "explanationV1": {
+            "phrase": {
+              "text": "I am fine.",
+              "meaningByLocale": {
+                "ru": "У меня всё хорошо.",
+                "uk": "У мене все добре."
+              },
+              "explanationByLocale": {
+                "ru": "I называет говорящего, am обязательно после I, а fine сообщает нужный смысл.",
+                "uk": "I називає мовця, am обов'язкове після I, а fine повідомляє потрібний зміст."
+              },
+              "units": [
+                {
+                  "text": "I",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "личное местоимение",
+                    "uk": "особовий займенник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "я",
+                    "uk": "я"
+                  },
+                  "functionByLocale": {
+                    "ru": "Называет говорящего.",
+                    "uk": "Називає мовця."
+                  }
+                },
+                {
+                  "text": "am",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "глагол-связка",
+                    "uk": "дієслово-зв'язка"
+                  },
+                  "meaningByLocale": {
+                    "ru": "форма be после I",
+                    "uk": "форма be після I"
+                  },
+                  "functionByLocale": {
+                    "ru": "Связывает I с сообщением о себе.",
+                    "uk": "Пов'язує I з повідомленням про себе."
+                  }
+                },
+                {
+                  "text": "fine",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "прилагательное / наречие",
+                    "uk": "прикметник / прислівник"
+                  },
+                  "meaningByLocale": {
+                    "ru": "всё хорошо",
+                    "uk": "усе добре"
+                  },
+                  "functionByLocale": {
+                    "ru": "Уточняет, что вы сообщаете о себе.",
+                    "uk": "Уточнює, що ви повідомляєте про себе."
+                  }
+                },
+                {
+                  "text": ".",
+                  "partOfSpeechLabelByLocale": {
+                    "ru": "знак препинания",
+                    "uk": "розділовий знак"
+                  },
+                  "meaningByLocale": {
+                    "ru": "конец утверждения",
+                    "uk": "кінець твердження"
+                  },
+                  "functionByLocale": {
+                    "ru": "Завершает фразу.",
+                    "uk": "Завершує фразу."
+                  }
+                }
+              ]
+            }
+          },
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-01:session-01:i17:s03:tile:d1",
+              "correct": false,
+              "testedDimension": "Колега запитує, як ваші справи. Послухайте й складіть свою відповідь",
+              "feedbackByLocale": {
+                "ru": "`ready` — «готов / готова». Здесь нужен ответ о самочувствии: `I am fine`.",
+                "uk": "`ready` — «готовий / готова». Тут потрібна відповідь про самопочуття: `I am fine`."
+              }
+            },
+            {
+              "responseId": "en:lesson-01:session-01:i17:s03:tile:d2",
+              "correct": false,
+              "testedDimension": "Колега запитує, як ваші справи. Послухайте й складіть свою відповідь",
+              "feedbackByLocale": {
+                "ru": "`here` — «здесь». Здесь спрашивают не о месте, а о том, как вы: `I am fine`.",
+                "uk": "`here` — «тут». Тут питають не про місце, а про те, як ви: `I am fine`."
+              }
+            }
           ]
         },
-        "scriptedAlternate": null
+        "ordinal": 20
       }
     ]
   },
@@ -2291,13 +2709,13 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-01:i10",
-      "correctText": "fine",
-      "correctResponseId": "en:lesson-01:session-01:i10:r1"
+      "interactionId": "en:lesson-01:session-01:i13",
+      "correctText": "Я здесь.",
+      "correctResponseId": "en:lesson-01:session-01:i13:r1"
     },
     {
-      "interactionId": "en:lesson-01:session-01:i11",
-      "correctText": "I am ready.",
+      "interactionId": "en:lesson-01:session-01:i10",
+      "correctText": "I am fine.",
       "correctResponseId": null
     },
     {
@@ -2306,13 +2724,13 @@
       "correctResponseId": null
     },
     {
-      "interactionId": "en:lesson-01:session-01:i13",
-      "correctText": "I",
-      "correctResponseId": "en:lesson-01:session-01:i13:r1"
+      "interactionId": "en:lesson-01:session-01:i11",
+      "correctText": "I am ready.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-01:i14",
-      "correctText": "I am happy.",
+      "correctText": "I am here.",
       "correctResponseId": null
     },
     {
@@ -2322,18 +2740,18 @@
     },
     {
       "interactionId": "en:lesson-01:session-01:i16",
-      "correctText": "I am fine.",
+      "correctText": "I am happy.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-01:i17:s01",
-      "correctText": "I am here.",
+      "correctText": "en:lesson-01:session-01:i17:s01:p1=I am here.\nen:lesson-01:session-01:i17:s01:p2=I am ready.\nen:lesson-01:session-01:i17:s01:p3=I am fine.\nen:lesson-01:session-01:i17:s01:p4=I am happy.",
       "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-01:i17:s02",
-      "correctText": "ready",
-      "correctResponseId": "en:lesson-01:session-01:i17:s02:r1"
+      "correctText": "I am ready.",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-01:session-01:i17:s03",

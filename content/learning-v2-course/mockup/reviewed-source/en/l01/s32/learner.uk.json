@@ -72,6 +72,15 @@
               "ru": "Начало отрезано. В `small` впереди `s`.",
               "uk": "Початок відрізано. У `small` попереду `s`."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i01:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`small` — «маленький». Слышно `small`, не `smell` и не `mall`.",
+              "uk": "`small` — «маленький». Чути `small`, не `smell` і не `mall`."
+            }
           }
         ],
         "isWordCard": false,
@@ -126,6 +135,15 @@
         ],
         "testedDimension": "Вставте слово — про кімнату, яка вам зам",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-32:i02:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — про кімнату, яка вам замала",
+            "feedbackByLocale": {
+              "ru": "Комната мала, поэтому `small` — «маленькая». `It is small.`",
+              "uk": "Кімната мала, тому `small` — «маленька». `It is small`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-32:i02:r2",
             "correct": false,
@@ -217,6 +235,15 @@
               "ru": "Гласная другая и короче. В `dark` она тянется.",
               "uk": "Голосний інший і коротший. У `dark` він тягнеться."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i03:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`dark` — «темно». Это не `park` и не `duck`.",
+              "uk": "`dark` — «темно». Це не `park` і не `duck`."
+            }
           }
         ],
         "isWordCard": false,
@@ -250,7 +277,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-32:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Складіть фразу — «тут темно»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: после `It` ставят `is` — `It is dark.`",
+              "uk": "`are` зайве: після `It` ставлять `is` — `It is dark`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -301,6 +338,15 @@
         ],
         "testedDimension": "Вставте слово — вікна на сонячний бік, с",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-32:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — вікна на сонячний бік, світла повно",
+            "feedbackByLocale": {
+              "ru": "Света полно, значит подходит `dark`: с `not` получается `It is not dark.` — «здесь не темно».",
+              "uk": "Світла повно, тому підходить `dark`: з `not` виходить `It is not dark` — «тут не темно»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-32:i05:r2",
             "correct": false,
@@ -391,6 +437,15 @@
             "feedbackByLocale": {
               "ru": "Похожая концовка, но начало другое: там `of-`.",
               "uk": "Схоже закінчення, але початок інший: там `of-`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i06:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`expensive` — «дорого». Это не `expense` и не `offensive`.",
+              "uk": "`expensive` — «дорого». Це не `expense` і не `offensive`."
             }
           }
         ],
@@ -616,6 +671,15 @@
               "ru": "Впереди `g`. Слушайте первый звук.",
               "uk": "Попереду `g`. Слухайте перший звук."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i10:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`cold` — «холодно». Это не `called` и не `gold`.",
+              "uk": "`cold` — «холодно». Це не `called` і не `gold`."
+            }
           }
         ],
         "isWordCard": false,
@@ -721,6 +785,15 @@
               "ru": "Впереди `t`. Слушайте самое начало слова.",
               "uk": "Попереду `t`. Слухайте самий початок слова."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i12:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`rainy` — «дождливо». Это не `rain` и не `train`.",
+              "uk": "`rainy` — «дощово». Це не `rain` і не `train`."
+            }
           }
         ],
         "isWordCard": false,
@@ -775,6 +848,15 @@
         ],
         "testedDimension": "Вставте слово — зранку ллє не перестаючи",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-32:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — зранку ллє не перестаючи",
+            "feedbackByLocale": {
+              "ru": "Льёт с утра, поэтому `rainy` — «дождливо». `It is rainy.`",
+              "uk": "Ллє зранку, тому `rainy` — «дощово». `It is rainy`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-32:i13:r2",
             "correct": false,
@@ -866,6 +948,15 @@
               "ru": "Впереди `f`. В `warm` начало мягче: `w`.",
               "uk": "Попереду `f`. У `warm` початок м'якший: `w`."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i14:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`warm` — «тепло». Это не `worm` и не `farm`.",
+              "uk": "`warm` — «тепло». Це не `worm` і не `farm`."
+            }
           }
         ],
         "isWordCard": false,
@@ -920,6 +1011,15 @@
         ],
         "testedDimension": "Вставте слово — батареї гарячі, у куртці",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-32:i15:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — батареї гарячі, у куртці вдома спекотно",
+            "feedbackByLocale": {
+              "ru": "Горячие батареи означают `warm` — «тепло». `It is warm.`",
+              "uk": "Гарячі батареї означають `warm` — «тепло». `It is warm`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-32:i15:r2",
             "correct": false,
@@ -1053,6 +1153,15 @@
             "feedbackByLocale": {
               "ru": "Впереди `gr-`. Начало другое.",
               "uk": "Попереду `gr-`. Початок інший."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-32:i17:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "`clean` — «чисто». Это не `clan` и не `green`.",
+              "uk": "`clean` — «чисто». Це не `clan` і не `green`."
             }
           }
         ],
@@ -1273,5 +1382,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ea1e5c7a447aded75221f23d32dd86111a7c17e68e6f985d774843b502d997a5"
+  "learnerFingerprint": "ffe8402cd1d7201b67b3f55cf33abc061d46ae658540311fade492d755c873f6"
 }

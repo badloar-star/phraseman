@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "learning_v2_s01_source_delta_snapshot_v1",
+  "courseSessionId": "en:lesson-01:session-01",
+  "candidateRoot": "outputs/s01-combined-review-fixed-20261013",
+  "candidateBundleSha256": "d5477fdd96ed5992fed62f258e19613b34340bfc9985822760b24a54323ba527",
+  "contentReceiptSha256": "99d9e21df90cbd1f386b2debeecca82345b8b5c3e434fab25bf2acf554b029d1",
+  "contentInventorySha256": "46fe08f75cb35ece300d3823474800e3718192d8ff3136e25c31dcbdd2c315c6",
+  "scope": "Exact pre-repair values for the five S01 sources touched by the i13 scene-neutral feedback delta.",
+  "sourceFiles": [
+    {
+      "path": "sessions/en/l01/s01/final.ru.md",
+      "sha256": "c9aa8c1970487daf5c9d35932adebec4d7e371c34242209811aa4fe81228b316",
+      "i13CorrectFeedbackLine": "- ✅ **Я здесь.** — *Верно: I am here означает «я здесь». Так вы отвечаете Мире у входа.*"
+    },
+    {
+      "path": "sessions/en/l01/s01/final.uk.md",
+      "sha256": "6b915d6606a11c2512b87c08f8d5d12b34f6b0e0ab76a2752bdfb0b4d57e30a8",
+      "i13CorrectFeedbackLine": "- ✅ **Я тут.** — *Правильно: I am here означає «я тут». Так ви відповідаєте Мірі біля входу.*"
+    },
+    {
+      "path": "sessions/en/l01/s01/locales_batch.md",
+      "sha256": "e7aea5299c1407bcd6b64dfed341102b36a5310ff9a1e2ef8127d30ee0c073a9",
+      "i13CorrectFeedbackLine": "- ✅ **Я тут.** — *Правильно: I am here означає «я тут». Так ви відповідаєте Мірі біля входу.*"
+    },
+    {
+      "path": "sessions/en/l01/s01/practice.atomic.json",
+      "sha256": "7bc91a17c8698a9bb1f90d5ca952bf5eeee8deab963c6d5751ea1c5f6abcaa68",
+      "i13CorrectFeedbackByLocale": {
+        "ru": "Верно: `I am here` означает «я здесь». Так вы отвечаете Мире у входа.",
+        "uk": "Правильно: `I am here` означає «я тут». Так ви відповідаєте Мірі біля входу."
+      },
+      "localeProjectionOccurrences": 2
+    },
+    {
+      "path": "sessions/en/l01/s01/practice.explanations.v1.json",
+      "sha256": "8ae48095031b2186be0b5e9ecd6b37655a81d0dbcb70c6eca624162d56286524",
+      "i13CorrectExplanationByLocale": {
+        "ru": "Верно: `I am here` означает «я здесь». Так вы отвечаете Мире у входа.",
+        "uk": "Правильно: `I am here` означає «я тут». Так ви відповідаєте Мірі біля входу."
+      },
+      "i13ReadyAcceptabilityBoundaryByLocale": {
+        "ru": "«Я готов / готова» верно переводит ready; в записи звучит here и говорится о присутствии у входа.",
+        "uk": "«Я готовий / готова» правильно перекладає ready; у записі звучить here й ідеться про присутність біля входу."
+      },
+      "analysisProjectionOccurrences": 2
+    }
+  ],
+  "releaseAuthority": false
+}

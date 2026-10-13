@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l02-direct-capture.v1",
+  "captureKind": "RAW_AUTHORITATIVE_RESPONSE_BYTES",
+  "status": "HOLD",
+  "canonicalAdmission": "FORBIDDEN",
+  "rowsPromoted": 0,
+  "task7Unlock": false,
+  "learnerFacing": false,
+  "phraseClaim": false,
+  "upstream": {
+    "task5BlueprintPath": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+    "task5BlueprintSha256": "494abd91c59c88ed652b3b4cdaaeaa118bc53ef64beb57ff54f735433612eb29"
+  },
+  "captures": [
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_wohnen_v1",
+      "lemma": "wohnen",
+      "canonicalUrl": "https://www.dwds.de/wb/wohnen",
+      "finalUrl": "https://www.dwds.de/wb/wohnen",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "wohnen – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "wohnen",
+      "headers": {
+        "path": "wohnen.http_headers.txt",
+        "sha256": "c416efecc34d2f09387ff9e3384ae76cdbad32778af8feaad364048c86737249",
+        "bytes": 332
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_l02_c01_wohnen_v1.html",
+        "sha256": "1b2f4f0d0758994c9318e2dfd43feae66a3eaff35747ea439ccc7ad6440c85ce",
+        "bytes": 105840
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1",
+        "sha256": "cfe8f854857d65223619ea5c223c076592ff6424dbeb7a93f0b3526d0bebafb0",
+        "utf8Bytes": 9050
+      },
+      "morphologySpan": {
+        "sha256": "71208e25cfa546245f0970b02ad201564630f5fff576acfc38d851daa520be72",
+        "utf8Bytes": 792
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c01_kueche_v1",
+      "lemma": "Küche",
+      "canonicalUrl": "https://www.dwds.de/wb/K%C3%BCche",
+      "finalUrl": "https://www.dwds.de/wb/K%C3%BCche",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Küche – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Küche",
+      "headers": {
+        "path": "kueche.http_headers.txt",
+        "sha256": "4b5781b2a94907d358b22fea42916b03713e8f0e5b9ed6e79b743dfc9c6076de",
+        "bytes": 326
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_l02_c01_kueche_v1.html",
+        "sha256": "6b416970816020195cb24b458209c78327f404e8d0e71b5c9f6b43692509af3e",
+        "bytes": 103719
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1",
+        "sha256": "1394d2752dd905044eeb49b03b75062e2bd42e7c9beca7f3ddf106ab6c29f97b",
+        "utf8Bytes": 4397
+      },
+      "morphologySpan": {
+        "sha256": "da8cfb368db1428770a22217e70127760325dd3c278f98a1b901b52d954879ed",
+        "utf8Bytes": 358
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_tasse_v1",
+      "lemma": "Tasse",
+      "canonicalUrl": "https://www.dwds.de/wb/Tasse",
+      "finalUrl": "https://www.dwds.de/wb/Tasse",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Tasse – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Tasse",
+      "headers": {
+        "path": "tasse.http_headers.txt",
+        "sha256": "2245af3889257ca38f18f9391a6c21365050062fb9fe443a5ca4ffa88311dc56",
+        "bytes": 326
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_l02_c02_tasse_v1.html",
+        "sha256": "b2c6778db4fdc35540b354128ec30370027e41ec035769cc013140a852d269bb",
+        "bytes": 87110
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1",
+        "sha256": "15c9ae0e32b41c0594e402146f55d59977b01110ffbce5fe49389efa85ef1849",
+        "utf8Bytes": 7879
+      },
+      "morphologySpan": {
+        "sha256": "8ae608d82a86b4a06da26eb41d19fc0f72dcb0f76ef367d699ed097b355037bc",
+        "utf8Bytes": 350
+      }
+    },
+    {
+      "sourcePlanId": "de_lex_plan_l02_c02_teller_v1",
+      "lemma": "Teller",
+      "canonicalUrl": "https://www.dwds.de/wb/Teller",
+      "finalUrl": "https://www.dwds.de/wb/Teller",
+      "httpStatus": 200,
+      "contentType": "text/html; charset=UTF-8",
+      "title": "Teller – Schreibung, Definition, Bedeutung, Etymologie, Synonyme, Beispiele | DWDS",
+      "headword": "Teller",
+      "headers": {
+        "path": "teller.http_headers.txt",
+        "sha256": "794a777e849a32e05a689d7001403985d98f4d0895ce9ce009ba14d85bfa6679",
+        "bytes": 331
+      },
+      "rawBody": {
+        "path": "raw/de_lex_plan_l02_c02_teller_v1.html",
+        "sha256": "7be76f44dd449c750844755fbb553bdc5e66f9edcc3a197fdb9afcb0a5d01b9b",
+        "bytes": 74185
+      },
+      "exactSenseSpan": {
+        "sourceAnchor": "d-1-1",
+        "sha256": "b7792d5c8dde13ea5d7796c223da7619e219d4f53b12bc0231fe357dbca443e6",
+        "utf8Bytes": 4390
+      },
+      "morphologySpan": {
+        "sha256": "9d4c48146b1462b661d790dcb0b8fc042fb6b51ab498155eeed0073714007a0b",
+        "utf8Bytes": 355
+      }
+    }
+  ],
+  "admission": {
+    "semanticAdmission": "NOT_EVALUATED",
+    "holdReason": "DIRECT_RAW_CAPTURE_ONLY_FACTS_AND_INDEPENDENT_REVIEW_REQUIRED"
+  }
+}

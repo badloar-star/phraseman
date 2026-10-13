@@ -1,0 +1,17 @@
+{
+  "authorityVersion": "learning-v2-german-task6c-packet-lexical-allocation.v1",
+  "allocationStatus": "PENDING",
+  "canonicalRegistryStatus": "NOT_CANONICAL",
+  "task7Unlock": false,
+  "sourceIdentities": {
+    "task5ChapterBlueprints": {
+      "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v1.json",
+      "canonicalSha256": "e70ef798e06dfa752e9faace47282300a4fd43f8acaf158b2f608a8225f8cf90"
+    }
+  },
+  "coverageRequirement": {
+    "packetCount": 1792,
+    "minimumNewSensesPerPacket": 1,
+    "maximumNewSensesPerPacket": 5
+  }
+}

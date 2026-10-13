@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "learning-v2-de-task6c-l01-guten-tag-positive-extraction-map.v1",
+  "dwds": {
+    "raw": {
+      "path": "raw/dwds_guten_tag.html",
+      "requestedUrl": "https://www.dwds.de/wb/guten%20Tag",
+      "effectiveUrl": "https://www.dwds.de/wb/guten%20Tag",
+      "bytes": 44909,
+      "sha256": "542050aad29117960da3264eaa73dbb41ffe252b7330d1809a4dc6e47c97ebf2"
+    },
+    "metadata": {
+      "path": "raw/dwds_guten_tag.http_metadata.json"
+    },
+    "extractions": {
+      "headword": {
+        "text": "guten Tag",
+        "utf8Bytes": 9,
+        "sha256": "08cb7a81c5c75c7c65c13e6ac58950d4f76ea235aab79fc9080ed4bc877a2627"
+      },
+      "partOfSpeech": {
+        "text": "Mehrwortausdruck",
+        "utf8Bytes": 16,
+        "sha256": "8310d002e0b0fc9476a0a57dcd711df2f5ffd419861ef67db66fe5b8abaaefc4"
+      },
+      "d11Definition": {
+        "anchor": "d-1-1",
+        "text": "höfliche Formel zur Begrüßung, gelegentlich auch zum Abschied",
+        "utf8Bytes": 64,
+        "sha256": "3ecf0cefaebe0bae7eb5f97fdd31781c4d9e936bfeeb7f4803f28049847540fe"
+      },
+      "admittedGreetingHalf": {
+        "text": "höfliche Formel zur Begrüßung",
+        "utf8Bytes": 32,
+        "sha256": "dde66c7b7ded46cc155740ad097d98eac10f4aeed1e4a5c39a77c563398717fd"
+      },
+      "excludedOccasionalFarewellTail": {
+        "text": "gelegentlich auch zum Abschied",
+        "utf8Bytes": 30,
+        "sha256": "028df9054bf8dd401a46f81e49f2207781ab0732037bf155ea8a0b8e4bec516f"
+      },
+      "exactGutenTagExclamation": {
+        "text": "Guten Tag!",
+        "utf8Bytes": 10,
+        "sha256": "00d9b37dae9964f9c6b631c8f9330e8b6177109bbfba9faf7f7537cd074d574c"
+      },
+      "excludedD12": {
+        "anchor": "d-1-2",
+        "usageMarker": "selten",
+        "definition": "Ablehnung, Empörung, Ärger ausdrückende Abschiedsformel zur Beendigung eines (Streit-)‍Gesprächs",
+        "definitionUtf8Bytes": 102,
+        "definitionSha256": "49a6dc90f879dc28859b4a7ee4bc2fdf37c8aeb4657ba94d3ee05361a08facc6"
+      }
+    }
+  },
+  "goethe": {
+    "raw": {
+      "path": "../task7_v2_l01_c04_guten_tag_source_hold_v1/raw/goethe_a1_redemittel.pdf",
+      "bytes": 3685205,
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085"
+    },
+    "metadata": {
+      "path": "../task7_v2_l01_c04_guten_tag_source_hold_v1/raw/goethe_a1_redemittel.http_metadata.txt",
+      "sha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47"
+    },
+    "extractions": {
+      "page": 3,
+      "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN",
+      "timingRows": ["am Vormittag", "am Mittag", "am Nachmittag"],
+      "expression": "Guten Tag! / Hallo!",
+      "normalizedTimingOccurrence": "am Vormittag\nam Mittag\nam Nachmittag\nGuten Tag! / Hallo!",
+      "normalizedTimingOccurrenceUtf8Bytes": 56,
+      "normalizedTimingOccurrenceSha256": "884f46c4f54ac6e4180d8a6321ee6888fc9de29ac8f019ddb2c3d9ef4a7adfac",
+      "expressionUtf8Bytes": 19,
+      "expressionSha256": "e545fb373a9a5e0e5fa664af788d68528275b6b527241f01f684b2f4e4f31949"
+    }
+  }
+}

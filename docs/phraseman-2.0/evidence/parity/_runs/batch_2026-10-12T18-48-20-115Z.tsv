@@ -1,0 +1,21 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+profile-028	2026-10-12T18:49:00.421Z	error	8581	step_target_not_found:#account-logout-button+ждали_metro_41мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-48-20-115Z/profile-028.error.png	0
+profile-029	2026-10-12T18:49:42.272Z	error	8906	step_target_not_found:#account-logout-button+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-48-20-115Z/profile-029.error.png	0
+profile-030	2026-10-12T18:50:38.194Z	stitch_failed	8617	marker+шагов_2+склейка_не_удалась: nto view action[22m [2m - waiting 100ms[22m [2m 56 × waiting for element to be stable[22m [2m - element is not visible[22m [2m - retrying scroll into view action[22m [2m - waiting 500ms[22m+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T18-48-20-115Z/profile-030.bare.png	0
+auth-gap-006	2026-10-12T18:51:15.149Z	ok	8753	marker+шагов_5+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/auth-gap-006.png	0
+auth-gap-007	2026-10-12T18:51:46.798Z	ok	9976	marker+шагов_3+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-007.png	0
+auth-gap-009	2026-10-12T18:52:14.812Z	ok	9992	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-009.png	0
+auth-gap-010	2026-10-12T18:52:41.867Z	ok	9654	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/auth-gap-010.png	0
+auth-gap-011	2026-10-12T18:53:16.868Z	ok	8901	marker+шагов_5+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-011.png	0
+auth-gap-013	2026-10-12T18:53:54.566Z	ok	11319	marker+шагов_4+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/auth-gap-013.png	0
+auth-gap-014	2026-10-12T18:54:22.088Z	ok	11597	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-014.png	0
+auth-gap-015	2026-10-12T18:54:50.632Z	ok	11314	marker+шагов_2+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-015.png	0
+auth-gap-017	2026-10-12T18:55:23.151Z	ok	8808	marker+шагов_4+склейка+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/auth-gap-017.png	0
+auth-gap-018	2026-10-12T18:56:31.609Z	ok	9968	marker+шагов_3+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/auth-gap-018.png	0
+settings-gap-010	2026-10-12T18:57:02.024Z	ok	9777	marker+шагов_4+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/settings-gap-010.png	0
+settings-gap-017	2026-10-12T18:58:04.052Z	ok	8763	marker+шагов_4+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/settings-gap-017.png	0
+settings-gap-027	2026-10-12T18:58:26.721Z	ok	7735	marker+шагов_2+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/settings-gap-027.png	0
+overlays-campaigns-021	2026-10-12T18:58:56.187Z	ok	8406	marker+шагов_3+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/overlays-campaigns-021.png	0
+cards-040	2026-10-12T18:59:24.296Z	ok	12418	marker+шагов_2+склейка+ждали_metro_2мс	docs/phraseman-2.0/evidence/parity/cards-040.png	0
+cards-041	2026-10-12T18:59:53.981Z	ok	14545	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-041.png	0
+cards-042	2026-10-12T19:00:14.896Z	ok	13251	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-042.png	0

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c05-das-ist-source-hold.v1",
+  "status": "HOLD",
+  "authority": {
+    "scope": "SOURCE_BOUND_HOLD_ONLY",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  },
+  "task5V2": {
+    "path": "modules/learning-v2/curriculum/de/chapter_blueprints_de_v2.json",
+    "byteSha256": "18e2be42099785838fc7739ac0c13df2ad1283352881b15ea574fa03099a1b23",
+    "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1",
+    "checkpointPacketId": "de_l01_c05_s40",
+    "semanticIdentity": "das ist|fixed chunk for identifying a person",
+    "lemmaOrExpression": "Das ist"
+  },
+  "sources": {
+    "extractionMap": {
+      "path": "extraction_map.json",
+      "sha256": "ad28cd1bebe17ece14402777a0a3e15e1727d2ea2440209d90e3aeb7890c1644",
+      "bytes": 1175
+    }
+  },
+  "fieldSupport": {
+    "supportedClaims": {
+      "headword": "sein",
+      "verifiedForm": "ist",
+      "evidenceFunction": "THIRD_PERSON_PRESENT_FORM_IN_AUTHORITATIVE_LEXICAL_ENTRY"
+    },
+    "unsupportedClaims": {
+      "exactLearnerPhrase": "NOT_CLAIMED:_CAPTURE_DOES_NOT_PROVE_THE_EXACT_CASED_PHRASE_DAS_IST",
+      "usageNaturalness": "UNSUPPORTED_BY_CAPTURED_SOURCE"
+    }
+  },
+  "allocation": {
+    "sourcePlanId": "de_lex_plan_l01_c05_das_ist_v1",
+    "checkpointPacketId": "de_l01_c05_s40",
+    "sessionId": "de_l01_s05",
+    "chapterId": "de_l01_c05",
+    "decision": "SOURCE_EVIDENCE_CAPTURED_CANONICAL_ADMISSION_PENDING",
+    "supportedFields": ["headword", "verifiedForm"]
+  }
+}

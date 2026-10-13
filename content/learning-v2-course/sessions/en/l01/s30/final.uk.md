@@ -88,6 +88,8 @@ It is ___ . → **busy** · quiet · small
 **6 · Складіть фразу — «тут тихо»**
 <!-- interaction_id: en:lesson-01:session-30:i06; family: phrase_builder -->
 Плитки: `quiet` `is` `It` `are` → **It is quiet.**
+*(плитка `are` зайва: `are` зайве: після `It` ставлять `is` — `It is quiet`.)*
+
 
 **7 · Картка слова — loud**
 <!-- interaction_id: en:lesson-01:session-30:i07; family: listen_choose -->
@@ -122,6 +124,8 @@ It is ___ . → **quiet** · loud · warm
 **13 · Складіть фразу — за столиком нікого, він вільний**
 <!-- interaction_id: en:lesson-01:session-30:i13; family: phrase_builder -->
 Плитки: `free` `It` `is` `are` → **It is free.**
+*(плитка `are` зайва: `are` зайве: про один столик кажуть `It is free`.)*
+
 
 **14 · Вставте слово — кав'ярня працює, двері відчинені й горить вивіска**
 <!-- interaction_id: en:lesson-01:session-30:i14; family: context_gap_grammar -->
@@ -132,10 +136,14 @@ It is ___ . → **open** · closed · free
 **15 · Складіть фразу — у кафе лише чотири столики, і вони стоять впритул**
 <!-- interaction_id: en:lesson-01:session-30:i15; family: phrase_builder -->
 Плитки: `small` `It` `is` `are` → **It is small.**
+*(плитка `are` зайва: `are` зайве: про одну кав'ярню кажуть `It is small`.)*
+
 
 **16 · Послухайте і складіть — «уже зачинено»**
 <!-- interaction_id: en:lesson-01:session-30:i16; family: listen_build_dictation -->
 🔊 *It is closed.* Плитки: `closed` `is` `It` `open` → **It is closed.**
+*(плитка `open` зайва: `open` зайве: у записі сказано `It is closed` — «уже зачинено».)*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-30:i17:s01; family: scripted_repeat_compare -->

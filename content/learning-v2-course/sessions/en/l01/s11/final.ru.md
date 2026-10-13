@@ -139,6 +139,8 @@ You ___ not crazy. → **are** · am · is
 **15 · Послушайте и соберите — Мира осталась после встречи одна; скажите ей: «ты не одна»**
 <!-- interaction_id: en:lesson-01:session-11:i15; family: listen_build_dictation -->
 🔊 *You are not alone.* Плитки: `alone` `are` `not` `You` `no` → **You are not alone.**
+*(плитка `no` лишняя: Нужно сказать «не одна» — `not alone`; плитка `no` в эту фразу не входит.)*
+
 
 **16 · Соберите фразу — Мира принесла вам забытый блокнот, а вы благодарите её**
 <!-- interaction_id: en:lesson-01:session-11:i16; family: phrase_builder -->
@@ -148,6 +150,8 @@ You ___ not crazy. → **are** · am · is
 **17 · Послушайте и соберите — Лина спрашивает Миру, может ли та помочь с коробками. Мира свободна; скажите ей: «ты не занята»**
 <!-- interaction_id: en:lesson-01:session-11:i17; family: listen_build_dictation -->
 🔊 *You are not busy.* Плитки: `You` `are` `not` `busy` `is` → **You are not busy.**
+*(плитка `is` лишняя: С `You` используют `are`; здесь нужно `You are not busy`, не `is`.)*
+
 
 **18 · Скажите вслух — Лина сверила цифры Миры с таблицей: они верны. Мира сомневается; скажите ей, что она не ошибается**
 <!-- interaction_id: en:lesson-01:session-11:i18; family: scripted_repeat_compare -->

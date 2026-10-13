@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i02; family: listen_choose -->
 Ціль: `chair`
 Варіанти: `chair` · `share` · `cheer`
+- share — *На початку `share` чути звук, ближчий до «ш», а на початку `chair` — до «ч». У записі — `chair`.*
+- cheer — *У `cheer` голосний починається ближче до українського «и», а в `chair` — до «е». У записі — `chair`.*
+
 
 **3 · Картка слова — table**
 <!-- interaction_id: en:lesson-03:session-01:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i04; family: listen_choose -->
 Ціль: `table`
 Варіанти: `table` · `fable` · `label`
+- fable — *На початку `fable` чути «ф», а на початку `table` — «т». У записі — `table`.*
+- label — *На початку `label` чути «л», а на початку `table` — «т». У записі — `table`.*
+
 
 **5 · Складіть фразу — друг запитує `What is it?`; ви дістали стілець і відповідаєте повною фразою**
 <!-- interaction_id: en:lesson-03:session-01:i05; family: phrase_builder -->
@@ -83,6 +89,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i07; family: listen_choose -->
 Ціль: `lamp`
 Варіанти: `lamp` · `camp` · `damp`
+- camp — *На початку `camp` чути «к», а на початку `lamp` — «л». У записі — `lamp`.*
+- damp — *На початку `damp` чути «д», а на початку `lamp` — «л». У записі — `lamp`.*
+
 
 **8 · Складіть фразу — з наступної упаковки виглянув стіл**
 <!-- interaction_id: en:lesson-03:session-01:i08; family: phrase_builder -->
@@ -106,6 +115,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i12; family: context_gap_grammar -->
 Ціль: `It ___ chair.`
 Варіанти: `is a` · `is` · `a`
+- is — *З одним `is` вийде `It is chair`: перед назвою предмета бракує `a`.*
+- a — *З одним `a` вийде `It a chair`: після `It` зникло `is`. Тут потрібні обидва слова: `is a`.*
+
 
 **13 · Складіть запитання — видно дріт, але сам предмет ще в коробці; запитайте, чи це лампа**
 <!-- interaction_id: en:lesson-03:session-01:i13; family: phrase_builder -->
@@ -116,6 +128,9 @@
 <!-- interaction_id: en:lesson-03:session-01:i14; family: context_gap_grammar -->
 Ціль: `It ___ ready.`
 Варіанти: `is` · `is a` · `a`
+- is a — *`ready` описує стан. Окреме `a` перед цим словом не потрібне: `It is ready`.*
+- a — *У `It a ready` зникло `is` і з’явилося зайве `a`. Про стан кажуть `It is ready`.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-03:session-01:i15; family: scripted_repeat_compare -->

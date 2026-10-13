@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i02; family: listen_choose -->
 Цель: `couple`
 Варианты: `couple` · `cuddle` · `cutter`
+- cuddle — *Это «обнимать». Переслушайте середину: у `cuddle` там другой согласный, а в записи звучит `couple`.*
+- cutter — *Это «резак». Переслушайте согласный в середине: `cutter` звучит там иначе, а в записи звучит `couple`.*
+
 
 **3 · Карточка слова — crowd**
 <!-- interaction_id: en:lesson-02:session-39:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i04; family: listen_choose -->
 Цель: `crowd`
 Варианты: `crowd` · `cloud` · `proud`
+- cloud — *Это «облако». Переслушайте второй звук в начале: у `cloud` он другой, а в записи звучит `crowd`.*
+- proud — *Это «гордый». Переслушайте самый первый звук: `proud` начинается иначе, а в записи звучит `crowd`.*
+
 
 **5 · Соберите фразу — вы хотите поблагодарить того, кто устроил вечеринку; узнайте, кто хозяин**
 <!-- interaction_id: en:lesson-02:session-39:i05; family: phrase_builder -->
@@ -78,11 +84,17 @@
 <!-- interaction_id: en:lesson-02:session-39:i06; family: context_gap_grammar -->
 Цель: `He is the ___ .`
 Варианты: `host` · `guest` · `intern`
+- guest — *Получится «Он гость». Этот человек сам принимает гостей, поэтому нужен `host`.*
+- intern — *Это «стажёр». Вы называете его роль на вечеринке, а не на работе: `host`.*
+
 
 **7 · Послушайте и выберите — что друг сказал о толпе у дома**
 <!-- interaction_id: en:lesson-02:session-39:i07; family: listen_choose -->
 Цель: `The crowd is outside.`
 Варианты: `The crowd is outside.` · `The crowd is here.` · `The couple is outside.`
+- The crowd is here. — *Здесь последнее слово `here` — «здесь». На записи `outside` — «снаружи».*
+- The couple is outside. — *Это фраза о паре. На записи `crowd` — толпа.*
+
 
 **8 · Соберите фразу — друг ищет знакомую пару; они рядом с вами, сообщите об этом**
 <!-- interaction_id: en:lesson-02:session-39:i08; family: phrase_builder -->
@@ -92,6 +104,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i09; family: context_gap_grammar -->
 Цель: `They are ___ .`
 Варианты: `strangers` · `friends` · `neighbours`
+- friends — *Это «друзья». Вы впервые видите этих людей, поэтому называете их `strangers`.*
+- neighbours — *Это «соседи». Вы не знаете, кто эти люди и где они живут; здесь нужно `strangers`.*
+
 
 **10 · Соедините пары — люди на вечеринке**
 <!-- interaction_id: en:lesson-02:session-39:i10; family: speed_match -->
@@ -106,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-39:i12; family: context_gap_grammar -->
 Цель: `They are ___ .`
 Варианты: `guests` · `twins` · `managers`
+- twins — *Это «близнецы». Вы сообщаете, что этих людей пригласили в гости, а не что они родились вместе.*
+- managers — *Это «руководители». Их работа здесь ни при чём: хозяин пригласил их как гостей — `guests`.*
+
 
 **13 · Послушайте и соберите — друг говорит о людях у двери**
 <!-- interaction_id: en:lesson-02:session-39:i13; family: listen_build_dictation -->

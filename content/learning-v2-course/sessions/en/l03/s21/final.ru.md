@@ -60,6 +60,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i02; family: listen_choose -->
 Цель: `towel`
 Варианты: `towel` · `vowel` · `trowel`
+- vowel — *`vowel` — «гласный звук». В начале звучит «в»: нижняя губа касается верхних зубов. У `towel` начало «т»: работает кончик языка.*
+- trowel — *`trowel` — «мастерок». Начало — сочетание `t` и английского `r`; у `towel` после начального `t` сразу звучит гласный.*
+
 
 **3 · Карточка слова — curtain**
 <!-- interaction_id: en:lesson-03:session-21:i03; family: listen_choose -->
@@ -69,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i04; family: listen_choose -->
 Цель: `curtain`
 Варианты: `curtain` · `certain` · `carton`
+- certain — *`certain` — «уверенный». Первым слышно «с», воздух идёт у передних зубов. В `curtain` — «к», звук образуется глубже во рту.*
+- carton — *`carton` — «картонная коробка». В ударной части рот открыт шире, звучит «а». У `curtain` рот прикрыт, язык ближе к середине рта.*
+
 
 **5 · Соберите фразу — курьер записывает содержимое маленького пакета; вы вынули одно полотенце, скажите «Это полотенце»**
 <!-- interaction_id: en:lesson-03:session-21:i05; family: phrase_builder -->
@@ -79,6 +85,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i06; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `curtains` · `a curtain` · `a curtains`
+- a curtain — *`a curtain` — одна штора. Вы называете две: `They are curtains`.*
+- a curtains — *В названии нескольких уже стоит `curtains`. Перед ним в этой фразе `a` лишнее.*
+
 
 **7 · Карточка слова — pillow**
 <!-- interaction_id: en:lesson-03:session-21:i07; family: listen_choose -->
@@ -88,6 +97,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i08; family: listen_choose -->
 Цель: `pillow`
 Варианты: `pillow` · `willow` · `yellow`
+- willow — *`willow` — «ива». В начале губы округляются и переходят к гласному. У `pillow` губы сначала смыкаются, затем раскрываются для «п».*
+- yellow — *`yellow` — «жёлтый». Начало похоже на «йэ». У `pillow` сначала слышно «п», затем короткий гласный с более прикрытым ртом.*
+
 
 **9 · Соберите фразу — курьер уточняет, что вы вынули из большого пакета; назовите несколько подушек «Это подушки»**
 <!-- interaction_id: en:lesson-03:session-21:i09; family: phrase_builder -->
@@ -98,11 +110,17 @@
 <!-- interaction_id: en:lesson-03:session-21:i10; family: context_gap_grammar -->
 Цель: `It is ___.`
 Варианты: `a glass` · `glass` · `a glasses`
+- glass — *В коробке один стакан. Называя его в этой фразе, ставим `a` перед `glass`.*
+- a glasses — *`glasses` — несколько стаканов. Здесь один, поэтому нужно `a glass`.*
+
 
 **11 · Курьер достаёт из отдельной упаковки одну штору и называет товар для накладной. Послушайте и выберите услышанное название.**
 <!-- interaction_id: en:lesson-03:session-21:i11; family: listen_choose -->
 Цель: `a curtain`
 Варианты: `a curtain` · `curtain` · `a curtains`
+- curtain — *`curtain` называет предмет, но в этой произнесённой записи об одном исчисляемом предмете нужен артикль: `a curtain`.*
+- a curtains — *`curtains` означает несколько штор, поэтому с ним нельзя ставить `a`. Курьер называет одну: `a curtain`.*
+
 
 **12 · Послушайте и соберите — что сказал курьер**
 <!-- interaction_id: en:lesson-03:session-21:i12; family: listen_build_dictation -->
@@ -113,6 +131,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i13; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `pillows` · `a pillows` · `a pillow`
+- a pillows — *Для нескольких здесь нужно `pillows`. Слово `a` перед ним лишнее.*
+- a pillow — *`a pillow` называет одну подушку. Вы называете две: `They are pillows`.*
+
 
 **14 · Соедините названия с русскими значениями — слова для накладной**
 <!-- interaction_id: en:lesson-03:session-21:i14; family: speed_match -->
@@ -123,6 +144,9 @@
 <!-- interaction_id: en:lesson-03:session-21:i15; family: context_gap_grammar -->
 Цель: `They are ___.`
 Варианты: `glasses` · `a glasses` · `a glass`
+- a glasses — *Вы называете несколько стаканов. Здесь нужно `glasses`, без `a`.*
+- a glass — *`a glass` называет один стакан. В коробке несколько: `They are glasses`.*
+
 
 **16 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-21:i16; family: scripted_repeat_compare -->

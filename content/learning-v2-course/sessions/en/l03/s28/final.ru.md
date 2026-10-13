@@ -70,6 +70,9 @@
 <!-- interaction_id: en:lesson-03:session-28:i05; family: context_gap_grammar -->
 Цель: `___`
 Варианты: `wallet` · `backpack` · `suitcase`
+- backpack — *Backpack — рюкзак. Здесь нужен кошелёк: wallet.*
+- suitcase — *Suitcase — чемодан. Здесь нужен кошелёк: wallet.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-28:i02; family: scripted_repeat_compare -->
@@ -80,11 +83,17 @@
 Значения вариантов: `backpack` — рюкзак · `backpacker` — турист с рюкзаком · `package` — посылка · `baggage` — багаж
 Цель: `backpack`
 Варианты: `backpack` · `backpacker` · `package` · `baggage`
+- backpacker — *После полного `backpack` в `backpacker` слышен ещё один слог `er`.*
+- package — *`package` начинается звуком `p`, а `backpack` — звуком `b`.*
+- baggage — *После `ba` в `baggage` слышно `g`, а в `backpack` — `k`.*
+
 
 **6 · Различите слово — wallet или wall**
 <!-- interaction_id: en:lesson-03:session-28:i06; family: sound_contrast -->
 Цель: `wallet`
 Варианты: `wallet` · `wall`
+- wall — *Wall — стена. В записи после wall слышится et: wallet.*
+
 
 **7 · Соедините слова со значениями — вещи перед выходом**
 <!-- interaction_id: en:lesson-03:session-28:i07; family: speed_match -->
@@ -95,11 +104,15 @@
 <!-- interaction_id: en:lesson-03:session-28:i08; family: sound_contrast -->
 Цель: `This`
 Варианты: `This` · `That`
+- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+
 
 **9 · Выберите форму — тот рюкзак стоит там**
 <!-- interaction_id: en:lesson-03:session-28:i09; family: context_gap_grammar -->
 Цель: `That ___ there.`
 Варианты: `is` · `are`
+- are — *Are — для нескольких предметов. Здесь один рюкзак: That is there.*
+
 
 **10 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-28:i10; family: scripted_repeat_compare -->
@@ -117,11 +130,19 @@
 <!-- interaction_id: en:lesson-03:session-28:i13; family: context_gap_grammar -->
 Цель: `___ wallet, please.`
 Варианты: `This` · `That` · `A` · `Is`
+- That — *`that` указывает на дальнюю вещь. Кошелёк прямо перед вами, поэтому нужно `This`.*
+- A — *Перед `wallet` в этой просьбе нужен указатель расстояния. Для ближней вещи это `This`.*
+- Is — *`Is` открывает вопрос, а здесь выбирают ближнюю вещь: `This wallet, please`.*
+
 
 **14 · Послушайте и выберите значение точной просьбы**
 <!-- interaction_id: en:lesson-03:session-28:i14; family: listen_choose -->
 Цель: `This bag, please.`
 Варианты: `Эту сумку, пожалуйста` · `Ту сумку, пожалуйста` · `Этот ключ, пожалуйста` · `Тот ключ, пожалуйста`
+- Ту сумку, пожалуйста — *В записи прозвучало `this`, просьба о ближней сумке; для дальней сумки прозвучало бы `that bag`.*
+- Этот ключ, пожалуйста — *Указатель `this` совпадает, но в записи назвали `bag`, а не `key`.*
+- Тот ключ, пожалуйста — *Здесь отличаются оба ключевых слова: прозвучали `this bag`, а не `that key`.*
+
 
 **15 · Соберите короткую просьбу — телефон лежит далеко на витрине**
 <!-- interaction_id: en:lesson-03:session-28:i15; family: phrase_builder -->
@@ -131,6 +152,10 @@
 <!-- interaction_id: en:lesson-03:session-28:i16; family: context_gap_grammar -->
 Цель: `___ key, please.`
 Варианты: `This` · `That` · `Is` · `A`
+- That — *`that` указывает на дальнюю вещь. Ключ рядом, поэтому нужно `This`.*
+- Is — *`Is` открывает вопрос. Здесь нужна короткая просьба: `This key, please`.*
+- A — *Перед `key` в этой просьбе нужен указатель расстояния. Для ближней вещи это `This`.*
+
 
 **17 · Послушайте и соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-28:i17:s01; family: listen_build_dictation -->

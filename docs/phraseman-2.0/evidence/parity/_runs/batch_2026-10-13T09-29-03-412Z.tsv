@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+community-008	2026-10-13T09:29:57.886Z	error	13563	step_target_not_found:#friends-open-add+ждали_metro_29мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T09-29-03-412Z/community-008.error.png	0

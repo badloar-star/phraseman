@@ -58,6 +58,9 @@
 <!-- interaction_id: en:lesson-03:session-49:i05; family: listen_choose -->
 Цель: `beige`
 Варианты: `beige` · `blue` · `brown`
+- blue — *В записи звучит `beige`, а не `blue`.*
+- brown — *В записи звучит `beige`, а не `brown`.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-49:i02; family: scripted_repeat_compare -->
@@ -85,6 +88,9 @@
 <!-- interaction_id: en:lesson-03:session-49:i11; family: context_gap_grammar -->
 Цель: `It is a ___ table.`
 Варианты: `beige` · `blue` · `brown`
+- blue — *Синим был диван; здесь нужен цвет стола.*
+- brown — *Коричневым был стул; здесь нужен цвет стола.*
+
 
 **10 · Соедините пары — вспомните знакомые цвета**
 <!-- interaction_id: en:lesson-03:session-49:i07; family: speed_match -->
@@ -95,6 +101,10 @@
 <!-- interaction_id: en:lesson-03:session-49:i09; family: context_gap_grammar -->
 Цель: `A ___ sofa is here.`
 Варианты: `blue` · `brown` · `beige` · `sofa`
+- brown — *У входа стоит синий диван, а не коричневый.*
+- beige — *Нужен цвет синего дивана, а не бежевого.*
+- sofa — *`Sofa` уже стоит после пропуска; здесь нужен цвет.*
+
 
 **12 · Соберите фразу — вы отвечаете о стуле у окна**
 <!-- interaction_id: en:lesson-03:session-49:i12; family: phrase_builder -->
@@ -104,6 +114,10 @@
 <!-- interaction_id: en:lesson-03:session-49:i13; family: listen_choose -->
 Цель: `The blue sofa is here.`
 Варианты: `Синий диван здесь.` · `Здесь есть синий диван.` · `Коричневый диван здесь.` · `Где синий диван?`
+- Здесь есть синий диван. — *В записи `the`: это уже выбранный диван.*
+- Коричневый диван здесь. — *В записи звучит `blue`, а не `brown`.*
+- Где синий диван? — *В записи утверждение, а не вопрос.*
+
 
 **14 · Соберите фразу — выбранный стол готов**
 <!-- interaction_id: en:lesson-03:session-49:i14; family: phrase_builder -->
@@ -113,16 +127,28 @@
 <!-- interaction_id: en:lesson-03:session-49:i15; family: context_gap_grammar -->
 Цель: `A ___ table is here.`
 Варианты: `beige` · `blue` · `brown` · `table`
+- blue — *Синим был диван, а здесь нужен цвет стола.*
+- brown — *Коричневым был стул, а здесь нужен цвет стола.*
+- table — *`Table` уже стоит после пропуска; сюда ставят цвет.*
+
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-03:session-49:i16; family: listen_choose -->
 Цель: `The brown chair is here.`
 Варианты: `Коричневый стул здесь.` · `Здесь есть коричневый стул.` · `Бежевый стул здесь.` · `Где коричневый стул?`
+- Здесь есть коричневый стул. — *В записи `the`: это уже выбранный стул.*
+- Бежевый стул здесь. — *В записи звучит `brown`, а не `beige`.*
+- Где коричневый стул? — *В записи утверждение, а не вопрос.*
+
 
 **17 · Вставьте артикль — продавец уже показал вам бежевый стул**
 <!-- interaction_id: en:lesson-03:session-49:i17; family: context_gap_grammar -->
 Цель: `___ beige chair is here.`
 Варианты: `The` · `A` · `An` · `без артикля`
+- A — *`a` вводит один предмет впервые. Этот стул уже был показан, поэтому нужен `the`. Для известного предмета выбирайте `the`.*
+- An — *`an` бывает перед гласным звуком. `beige` начинается со звука /b/, а предмет уже известен: нужен `the`, не `an`.*
+- без артикля — *Один исчисляемый предмет нельзя назвать без определителя. Здесь это уже известный стул: `the beige chair`.*
+
 
 ## Для сборщика
 new_words: blue — синий — Цвет мебели.

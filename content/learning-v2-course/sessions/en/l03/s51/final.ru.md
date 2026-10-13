@@ -59,6 +59,9 @@
 <!-- interaction_id: en:lesson-03:session-51:i07; family: listen_choose -->
 Цель: `pink`
 Варианты: `pink` · `navy` · `violet`
+- navy — *В записи звучит `pink`, не `navy`.*
+- violet — *В записи звучит `pink`, не `violet`.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-51:i04; family: scripted_repeat_compare -->
@@ -78,6 +81,8 @@
 <!-- interaction_id: en:lesson-03:session-51:i01; family: sound_contrast -->
 Цель: `violet`
 Варианты: `violet` · `violent`
+- violent — *`violent` — другое слово. В записи звучит цвет `violet`.*
+
 
 **8 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-03:session-51:i02; family: speed_match -->
@@ -97,11 +102,19 @@
 <!-- interaction_id: en:lesson-03:session-51:i10; family: context_gap_grammar -->
 Цель: `___ purple chair is here.`
 Варианты: `A` · `An` · `The` · `Purple`
+- An — *Purple начинается со звука /p/, поэтому нужен `A`.*
+- The — *Кресло называют впервые, а здесь проверяется `A` перед /p/.*
+- Purple — *Purple уже стоит после пропуска; сюда ставят артикль.*
+
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-03:session-51:i12; family: listen_choose -->
 Цель: `A navy chair is here.`
 Варианты: `Здесь есть тёмно-синее кресло.` · `Здесь есть фиолетовое кресло.` · `Здесь есть тёмно-синие кресла.` · `Где тёмно-синее кресло?`
+- Здесь есть фиолетовое кресло. — *В записи звучит `navy`, а не `violet`.*
+- Здесь есть тёмно-синие кресла. — *В записи одно кресло: `a chair`, а не несколько кресел.*
+- Где тёмно-синее кресло? — *В записи утверждение, а не вопрос.*
+
 
 **13 · Соберите фразу — вы отвечаете о тёмно-синем кресле**
 <!-- interaction_id: en:lesson-03:session-51:i13; family: phrase_builder -->
@@ -111,6 +124,10 @@
 <!-- interaction_id: en:lesson-03:session-51:i14; family: context_gap_grammar -->
 Цель: `___ pink chair is here.`
 Варианты: `A` · `An` · `The` · `Pink`
+- An — *Pink начинается со звука /p/, поэтому нужен `A`.*
+- The — *Кресло называют впервые, а здесь проверяется `A` перед /p/.*
+- Pink — *Pink уже стоит после пропуска; сюда ставят артикль.*
+
 
 **15 · Послушайте и соберите фразу**
 <!-- interaction_id: en:lesson-03:session-51:i15; family: listen_build_dictation -->
@@ -124,6 +141,10 @@
 <!-- interaction_id: en:lesson-03:session-51:i17; family: context_gap_grammar -->
 Цель: `___ violet chair is here.`
 Варианты: `A` · `An` · `The` · `Violet`
+- An — *Violet начинается со звука /v/, поэтому нужен `A`.*
+- The — *Это первое упоминание об одном кресле, поэтому здесь не `The`.*
+- Violet — *Violet уже стоит после пропуска; сюда нужен артикль.*
+
 
 ## Для сборщика
 new_words: violet — фиолетовый — Цвет кресла на ценнике.

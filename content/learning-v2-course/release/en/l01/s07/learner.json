@@ -99,12 +99,21 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-07:i02:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: в записи звучит glad; в конце слышно d.",
+              "uk": "Правильно: у записі звучить glad; наприкінці чути d."
+            },
+            "testedDimension": "Послушайте и выберите — glad"
+          },
+          {
             "responseId": "en:lesson-01:session-07:i02:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — glad",
             "feedbackByLocale": {
-              "ru": "Это «стакан». Конец другой: `glad` кончается на «д».",
-              "uk": "Це «склянка». Кінець інший: `glad` закінчується на «д»."
+              "ru": "`glass` заканчивается на `s`, а `glad` — на `d`.",
+              "uk": "`glass` закінчується на `s`, а `glad` — на `d`."
             }
           },
           {
@@ -112,8 +121,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — glad",
             "feedbackByLocale": {
-              "ru": "«Золото». Гласная не та: в `glad` она короткая и открытая, «глэд».",
-              "uk": "«Золото». Голосна не та: у `glad` вона коротка й відкрита, «глед»."
+              "ru": "В `gold` после `g` слышно «оул», а в `glad` сразу слышно `l` и короткое «э»: «глэд».",
+              "uk": "У `gold` після `g` чути «оул», а в `glad` одразу чути `l` і коротке «е»: «глед»."
             }
           }
         ],
@@ -171,17 +180,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — официант спрашивает, будете ли вы добавку",
+      "prompt": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — официант спрашивает, будете ли вы добавку",
+      "accessibilityLabel": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am full.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — официант спрашивает, будете ли вы добавку",
-          "uk": "Складіть фразу — офіціант питає, чи будете ви добавку"
+          "ru": "Соберите фразу — в кафе официант предлагает добавку, а вы уже сыты",
+          "uk": "Складіть фразу — у кафе офіціант пропонує добавку, а ви вже ситі"
         },
         "orderedTokens": [
           "I",
@@ -191,7 +200,17 @@
         "authoredDistractorTokens": [
           "not"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в кафе официант предлаг",
+            "feedbackByLocale": {
+              "ru": "она изменила бы смысл на «я не сыт»",
+              "uk": "вона змінила б зміст на «я не ситий»"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -291,6 +310,15 @@
         "transcriptRevealPolicy": "after_first_attempt",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-07:i06:r1",
+            "correct": true,
+            "feedbackByLocale": {
+              "ru": "Верно: звучит scared; слово заканчивается на d.",
+              "uk": "Правильно: звучить scared; слово закінчується на d."
+            },
+            "testedDimension": "Послушайте и выберите — scared"
+          },
+          {
             "responseId": "en:lesson-01:session-07:i06:r2",
             "correct": false,
             "testedDimension": "Послушайте и выберите — scared",
@@ -304,8 +332,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите — scared",
             "feedbackByLocale": {
-              "ru": "«Счёт». Один слог и без «эа»: `scared` тянется как «скэрд».",
-              "uk": "«Рахунок». Один склад і без «еа»: `scared` тягнеться як «скерд»."
+              "ru": "`score` заканчивается на `r`, а `scared` — на `d`.",
+              "uk": "`score` закінчується на `r`, а `scared` — на `d`."
             }
           }
         ],
@@ -363,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — третий час презентации про принтеры",
+      "prompt": "Вставьте слово — третий час повторяют одни и те же слайды о принтерах; вы смотрите на часы",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i08:r1",
@@ -380,11 +408,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — третий час презентации про принтеры",
+      "accessibilityLabel": "Вставьте слово — третий час повторяют одни и те же слайды о принтерах; вы смотрите на часы",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — третий час презентации про принтеры",
+          "ru": "Вставьте слово — третий час повторяют одни и те же слайды о принтерах; вы смотрите на часы",
           "uk": "Вставте слово — третя година презентації про принтери"
         },
         "gappedTargetPhrase": "I am ___ .",
@@ -405,12 +433,21 @@
         "testedDimension": "Вставьте слово — третий час презентации ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-07:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — третий час повторяют од",
+            "feedbackByLocale": {
+              "ru": "Верно: третий час однообразной презентации, и вам скучно — bored.",
+              "uk": "Правильно: третя година одноманітної презентації, і вам нудно — bored."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-07:i08:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — третий час презентации ",
             "feedbackByLocale": {
-              "ru": "Страшно на презентации не бывает. Пусто в голове — это `bored`.",
-              "uk": "Страшно на презентації не буває. Порожньо в голові — це `bored`."
+              "ru": "В этой сцене нет опасности: вы не боитесь, вам скучно.",
+              "uk": "У цій сцені немає небезпеки: вам не страшно, вам нудно."
             }
           },
           {
@@ -464,7 +501,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+      "prompt": "Вставьте слово — коллега спрашивает, всё ещё ли вам нужны подсказки, как найти кабинет 4B. Вы уже у двери.",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i10:r1",
@@ -481,11 +518,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+      "accessibilityLabel": "Вставьте слово — коллега спрашивает, всё ещё ли вам нужны подсказки, как найти кабинет 4B. Вы уже у двери.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — вы полдня искали кабинет 4B и наконец стоите у нужной двери",
+          "ru": "Вставьте слово — коллега спрашивает, всё ещё ли вам нужны подсказки, как найти кабинет 4B. Вы уже у двери.",
           "uk": "Вставте слово — ви півдня шукали кабінет 4B і нарешті стоїте біля потрібних дверей"
         },
         "gappedTargetPhrase": "I am not ___ .",
@@ -505,6 +542,15 @@
         ],
         "testedDimension": "Вставьте слово — вы полдня искали кабине",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i10:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — коллега спрашивает, всё",
+            "feedbackByLocale": {
+              "ru": "Верно: вы нашли кабинет и больше не потерялись — lost здесь нужно с not.",
+              "uk": "Правильно: ви знайшли кабінет і більше не заблукали — lost тут потрібне з not."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-07:i10:r2",
             "correct": false,
@@ -557,7 +603,17 @@
         "authoredDistractorTokens": [
           "bored"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «мне не страшно»",
+            "feedbackByLocale": {
+              "ru": "`bored` — «скучно», а в записи звучит `scared` — «страшно»",
+              "uk": "`bored` — «нудно», а в записі звучить `scared` — «страшно»"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -640,7 +696,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — вы отказываетесь от добавки",
+      "prompt": "Вставьте слово — вы уже сыты",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-07:i13:r1",
@@ -657,12 +713,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — вы отказываетесь от добавки",
+      "accessibilityLabel": "Вставьте слово — вы уже сыты",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — вы отказываетесь от добавки",
-          "uk": "Вставте скріпку — ви відмовляєтеся від добавки"
+          "ru": "Вставьте слово — вы уже сыты",
+          "uk": "Вставте слово — ви вже ситі"
         },
         "gappedTargetPhrase": "I ___ full.",
         "gapOptions": [
@@ -679,21 +735,30 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+        "testedDimension": "Вставьте слово — вы уже сыты",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы уже сыты",
+            "feedbackByLocale": {
+              "ru": "Верно: с I используется am: I am full.",
+              "uk": "Правильно: з I вживається am: I am full."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-07:i13:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+            "testedDimension": "Вставьте слово — вы уже сыты",
             "feedbackByLocale": {
-              "ru": "Чужая скрепка. `is` — про кого-то другого, про себя только `am`.",
-              "uk": "Чужа скріпка. `is` — про когось іншого, про себе тільки `am`."
+              "ru": "С `I` используется `am`, не `is`: `I am full`.",
+              "uk": "З `I` використовується `am`, а не `is`: `I am full`."
             }
           },
           {
             "responseId": "en:lesson-01:session-07:i13:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — вы отказываетесь от д",
+            "testedDimension": "Вставьте слово — вы уже сыты",
             "feedbackByLocale": {
               "ru": "Тоже не ваша. `I am` — эти два слова вместе не разлучаются.",
               "uk": "Теж не ваша. `I am` — ці два слова разом не розлучаються."
@@ -707,65 +772,50 @@
       "interactionId": "en:lesson-01:session-07:i14",
       "ordinal": 17,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-07:i14:r1",
-          "text": "sure"
-        },
-        {
-          "responseId": "en:lesson-01:session-07:i14:r2",
-          "text": "lost"
-        },
-        {
-          "responseId": "en:lesson-01:session-07:i14:r3",
-          "text": "bored"
-        }
-      ],
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания",
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите — Саша спрашивает, потерялись ли вы в здании",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — начальник спрашивает, найдёте ли вы выход из здания",
-          "uk": "Вставте слово — начальник питає, чи знайдете ви вихід із будівлі"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i14:audio",
+          "transcript": "I am not lost."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-07:i14:r1",
-            "text": "sure"
-          },
-          {
-            "responseId": "en:lesson-01:session-07:i14:r2",
-            "text": "lost"
-          },
-          {
-            "responseId": "en:lesson-01:session-07:i14:r3",
-            "text": "bored"
-          }
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am not lost.",
+        "orderedTokens": [
+          "I",
+          "am",
+          "not",
+          "lost"
         ],
-        "testedDimension": "Вставьте слово — начальник спрашивает, н",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "is",
+          "are"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-07:i14:r2",
+            "responseId": "en:lesson-01:session-07:i14:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — начальник спрашивает, н",
+            "testedDimension": "Послушайте и соберите — Саша спрашивает,",
             "feedbackByLocale": {
-              "ru": "Ровно наоборот: вы бы тогда не дошли и до лифта.",
-              "uk": "Рівно навпаки: ви б тоді не дійшли й до ліфта."
+              "ru": "с `I` нельзя `is`; нужно `I am not lost`",
+              "uk": "з `I` не вживаємо `is`; потрібно `I am not lost`"
             }
           },
           {
-            "responseId": "en:lesson-01:session-07:i14:r3",
+            "responseId": "en:lesson-01:session-07:i14:tile:d2",
             "correct": false,
-            "testedDimension": "Вставьте слово — начальник спрашивает, н",
+            "testedDimension": "Послушайте и соберите — Саша спрашивает,",
             "feedbackByLocale": {
-              "ru": "Про скуку вас не спрашивали. Речь про уверенность.",
-              "uk": "Про нудьгу вас не питали. Мова про впевненість."
+              "ru": "с `I` нельзя `are`; нужно `I am not lost`",
+              "uk": "з `I` не вживаємо `are`; потрібно `I am not lost`"
             }
           }
         ]
@@ -778,17 +828,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — он переспрашивает: точно доберётесь до дома?",
+      "prompt": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — он переспрашивает: точно доберётесь до дома?",
+      "accessibilityLabel": "Соберите фразу — Саша сомневается: вы точно знаете дорогу домой?",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am sure.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — он переспрашивает: точно доберётесь до дома?",
-          "uk": "Складіть фразу — він перепитує: точно дістанетеся додому?"
+          "ru": "Соберите фразу — Саша уточняет, знаете ли вы дорогу домой",
+          "uk": "Складіть фразу — Сашко уточнює, чи знаєте ви дорогу додому"
         },
         "orderedTokens": [
           "I",
@@ -798,7 +848,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-07:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Саша сомневается: вы то",
+            "feedbackByLocale": {
+              "ru": "с `I` используется `am`, поэтому `I is sure` неверно",
+              "uk": "з `I` вживається `am`, тому `I is sure` неправильно"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -806,67 +866,31 @@
       "interactionId": "en:lesson-01:session-07:i16",
       "ordinal": 19,
       "purpose": "independent_check",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-07:i16:r1",
-          "text": "hungry"
-        },
-        {
-          "responseId": "en:lesson-01:session-07:i16:r2",
-          "text": "full"
-        },
-        {
-          "responseId": "en:lesson-01:session-07:i16:r3",
-          "text": "sure"
-        }
-      ],
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — после пропущенного обеда скажите Нине, что вы голодны",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым",
+      "audioTargetIds": [
+        "en:lesson-01:session-07:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — после пропущенного обеда скажите Нине, что вы голодны",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — в лифте пахнет чужим обедом, и живот отвечает первым",
-          "uk": "Вставте слово — у ліфті пахне чужим обідом, і живіт відповідає першим"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-07:i16:audio",
+          "transcript": "I am hungry."
         },
-        "gappedTargetPhrase": "I am ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-07:i16:r1",
-            "text": "hungry"
-          },
-          {
-            "responseId": "en:lesson-01:session-07:i16:r2",
-            "text": "full"
-          },
-          {
-            "responseId": "en:lesson-01:session-07:i16:r3",
-            "text": "sure"
-          }
-        ],
-        "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-07:i16:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
-            "feedbackByLocale": {
-              "ru": "Были бы сыты — живот бы молчал. Тут ровно наоборот.",
-              "uk": "Були б ситі — живіт би мовчав. Тут рівно навпаки."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-07:i16:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — в лифте пахнет чужим об",
-            "feedbackByLocale": {
-              "ru": "Уверенность желудок не кормит. Голод — это `hungry`.",
-              "uk": "Упевненість шлунка не годує. Голод — це `hungry`."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "I am hungry.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -945,22 +969,22 @@
       "scriptedAlternate": null
     },
     {
-      "interactionId": "en:lesson-01:session-07:i18:s01",
+      "interactionId": "en:lesson-01:session-07:i18",
       "ordinal": 21,
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 1 из 4",
+      "prompt": "Скажите вслух — Дима спрашивает, устали ли вы после длинного дня",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
-        "en:lesson-01:session-07:i18:s01:audio"
+        "en:lesson-01:session-07:i18:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 1 из 4",
+      "accessibilityLabel": "Скажите вслух — Дима спрашивает, устали ли вы после длинного дня",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-07:i18:s01:audio",
+          "audioTargetId": "en:lesson-01:session-07:i18:audio",
           "transcript": "I am tired."
         },
         "slowReferenceAudio": null,
@@ -976,112 +1000,13 @@
         ]
       },
       "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-07:i18:s02",
-      "ordinal": 22,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 2 из 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-07:i18:s02:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 2 из 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-07:i18:s02:audio",
-          "transcript": "I am not lost."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am not lost.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-07:i18:s03",
-      "ordinal": 23,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 3 из 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-07:i18:s03:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 3 из 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-07:i18:s03:audio",
-          "transcript": "I am fine."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am fine.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
-    },
-    {
-      "interactionId": "en:lesson-01:session-07:i18:s04",
-      "ordinal": 24,
-      "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу — шаг 4 из 4",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-07:i18:s04:audio"
-      ],
-      "accessibilityLabel": "Произнесите одну фразу — шаг 4 из 4",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-07:i18:s04:audio",
-          "transcript": "I am glad."
-        },
-        "slowReferenceAudio": null,
-        "targetPhrase": "I am glad.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
-        ]
-      },
-      "scriptedAlternate": null
     }
   ],
-  "practiceInteractionCount": 21,
+  "practiceInteractionCount": 18,
   "firstPracticeOrdinal": 4,
   "evaluatorPayload": "absent_by_exact_schema",
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d4b4618fa3976f2ca648aad13b374bfe3f1d0c671a9182408ddfd2c51a3c95f2"
+  "learnerFingerprint": "a6e779ea51aa297df996ca13b121ea3f69ec29222f7a925dc1eaab6d27edae27"
 }

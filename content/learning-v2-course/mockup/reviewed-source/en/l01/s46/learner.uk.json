@@ -115,6 +115,15 @@
               "ru": "Другое слово, «телефон». В `fun` гласная короткая, без призвука на конце.",
               "uk": "Інше слово, «телефон». У `fun` голосний короткий, без призвуку на кінці."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i02:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `fun`: именно оно звучит в аудио и значит «весело».",
+              "uk": "Обрано слово `fun`: саме воно звучить в аудіо й означає «весело»."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Короткое, один кусок. В `boring` два: `bo-ring`. Слушайте, есть ли хвост после «р».",
               "uk": "Коротке, суцільне. У `boring` чути дві частини: `bo-ring`. Слухайте, чи є хвіст після «р»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `boring`: именно оно звучит в аудио и значит «скучный».",
+              "uk": "Обрано слово `boring`: саме воно звучить в аудіо й означає «нудний"
+            }
           }
         ],
         "isWordCard": false,
@@ -273,12 +291,12 @@
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i05:r1",
+            "responseId": "en:lesson-01:session-46:i05:tile:d1",
             "correct": false,
             "testedDimension": "Складіть фразу — «це весело»",
             "feedbackByLocale": {
-              "ru": "`is` уже спрятано внутри `It's`. Второй раз оно не нужно.",
-              "uk": "`is` уже сховане всередині `It's`. Удруге воно не потрібне."
+              "ru": "`is` лишнее: оно уже спрятано в `It's fun.`",
+              "uk": "`is` зайве: воно вже заховане в `It's fun`."
             }
           }
         ]
@@ -332,6 +350,15 @@
         ],
         "testedDimension": "Вставте слово — ви тричі глянули на годи",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви тричі глянули на годинник за першу півгодину лекції",
+            "feedbackByLocale": {
+              "ru": "Вы всё время смотрите на часы, значит лекция `boring` — «скучная».",
+              "uk": "Ви весь час дивитеся на годинник, отже лекція `boring` — «нудна"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-46:i06:r2",
             "correct": false,
@@ -509,6 +536,15 @@
               "ru": "Это «мы», гласная там долгая и чистая. В `weird` гласная с призвуком и есть согласный на конце.",
               "uk": "Це «ми», голосний там довгий і чистий. У `weird` голосний із призвуком і є приголосний на кінці."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i09:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть",
+            "feedbackByLocale": {
+              "ru": "Выбрано слово `weird`: именно оно звучит в аудио и значит «странный».",
+              "uk": "Обрано слово `weird`: саме воно звучить в аудіо й означає «дивний"
+            }
           }
         ],
         "isWordCard": false,
@@ -553,21 +589,21 @@
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i10:r1",
+            "responseId": "en:lesson-01:session-46:i10:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — про сусідів: «вони дивн",
+            "testedDimension": "Складіть фразу — про сусідів: «вони дивні»",
             "feedbackByLocale": {
-              "ru": "Уже внутри `They're`.",
-              "uk": "Уже всередині `They're`."
+              "ru": "`are` лишнее: оно уже спрятано в `They're weird.`",
+              "uk": "`are` зайве: воно вже заховане в `They're weird`."
             }
           },
           {
-            "responseId": "en:lesson-01:session-46:i10:r2",
+            "responseId": "en:lesson-01:session-46:i10:tile:d2",
             "correct": false,
-            "testedDimension": "Складіть фразу — про сусідів: «вони дивн",
+            "testedDimension": "Складіть фразу — про сусідів: «вони дивні»",
             "feedbackByLocale": {
-              "ru": "Это про одного человека.",
-              "uk": "Це про одну людину."
+              "ru": "`He's` не подходит: речь о соседях, поэтому `They're weird.`",
+              "uk": "`He's` не підходить: ідеться про сусідів, тому `They're weird`."
             }
           }
         ]
@@ -622,6 +658,15 @@
         "testedDimension": "Вставте коротку форму — ви пишете другов",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-46:i11:r1",
+            "correct": true,
+            "testedDimension": "Вставте коротку форму — ви пишете другові, що втомилися (`tired`)",
+            "feedbackByLocale": {
+              "ru": "Краткая форма — `I'm`: это `I am` в одном слове.",
+              "uk": "Коротка форма — `I'm`: це `I am` в одному слові."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-46:i11:r2",
             "correct": false,
             "testedDimension": "Вставте коротку форму — ви пишете другов",
@@ -672,7 +717,26 @@
           "They're",
           "weird"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть — «він класний»",
+            "feedbackByLocale": {
+              "ru": "`They're` не подходит: в аудио один мужчина — `He's cool.`",
+              "uk": "`They're` не підходить: в аудіо один чоловік — `He's cool`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-46:i12:tile:d2",
+            "correct": false,
+            "testedDimension": "Послухайте і складіть — «він класний»",
+            "feedbackByLocale": {
+              "ru": "`weird` лишнее: в аудио `He's cool.`",
+              "uk": "`weird` зайве: в аудіо `He's cool`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -797,6 +861,15 @@
         "testedDimension": "Вставте слово — у чаті обговорюють новен",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-46:i14:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — у чаті обговорюють новенького, який цілий день мовчить (`quiet` — «тихий»)",
+            "feedbackByLocale": {
+              "ru": "Новенький молчит, значит он `quiet` — «тихий».",
+              "uk": "Новенький мовчить, отже він `quiet` — «тихий»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-46:i14:r2",
             "correct": false,
             "testedDimension": "Вставте слово — у чаті обговорюють новен",
@@ -851,12 +924,12 @@
         ],
         "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-46:i15:r1",
+            "responseId": "en:lesson-01:session-46:i15:tile:d1",
             "correct": false,
-            "testedDimension": "Складіть фразу — «серіал не нудний», `no",
+            "testedDimension": "Складіть фразу — «серіал не нудний», `not` усередині слова",
             "feedbackByLocale": {
-              "ru": "Оно уже спрятано в `isn't`. Второй раз не нужно.",
-              "uk": "Воно вже сховане в `isn't`. Удруге не потрібне."
+              "ru": "`not` лишнее: отрицание уже спрятано в `isn't boring.`",
+              "uk": "`not` зайве: заперечення вже заховане в `isn't boring`."
             }
           }
         ]
@@ -910,6 +983,15 @@
         ],
         "testedDimension": "Вставте слово — друг питає про кав'ярню,",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-46:i16:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — друг питає про кав'ярню, куди ви зайшли вперше",
+            "feedbackByLocale": {
+              "ru": "Вы впервые в этом кафе, значит оно `new` — «новое» для вас.",
+              "uk": "Ви вперше в цій кав'ярні, отже вона `new` — «нова» для вас."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-46:i16:r2",
             "correct": false,
@@ -1038,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "edfd1520272499aae52f6eddef876c322a53f1f7d032e736e0b531e19127617c"
+  "learnerFingerprint": "d5ceb8543c5c89b7094b409ea8ed763efda19f05e73806e448512827059d8974"
 }

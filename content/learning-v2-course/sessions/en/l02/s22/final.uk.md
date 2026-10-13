@@ -68,11 +68,17 @@
 <!-- interaction_id: en:lesson-02:session-22:i02; family: listen_choose -->
 Ціль: `downstairs`
 Варіанти: `downstairs` · `dinner` · `doctor`
+- dinner — *Це «вечеря». Голосний на початку інший: у `downstairs` чути «ау», у `dinner` — «і».*
+- doctor — *Це «лікар». Голосний на початку інший: у `downstairs` — «ау», у `doctor` — «о».*
+
 
 **3 · Вставте слово — вам показали на сходи вниз**
 <!-- interaction_id: en:lesson-02:session-22:i03; family: context_gap_grammar -->
 Ціль: `It is ___ .`
 Варіанти: `downstairs` · `near` · `behind`
+- near — *«Поруч». Але вам показали не «за два кроки», а «спустіться».*
+- behind — *«Позаду». Це про бік, а не про поверх.*
+
 
 **4 · Картка слова — upstairs**
 <!-- interaction_id: en:lesson-02:session-22:i04; family: listen_choose -->
@@ -81,11 +87,16 @@
 **5 · Розрізніть звуки — яке з двох про верхній поверх?**
 <!-- interaction_id: en:lesson-02:session-22:i05; family: sound_contrast -->
 Варіанти: `upstairs` · `downstairs`
+- downstairs — *Це «внизу». Слухайте перший склад: «даун» чи «ап» — далі слова однакові.*
+
 
 **6 · Вставте слово — ліфт привіз вас на поверх вище, крамниці тут**
 <!-- interaction_id: en:lesson-02:session-22:i06; family: context_gap_grammar -->
 Ціль: `The shops are ___ .`
 Варіанти: `upstairs` · `downstairs` · `near`
+- downstairs — *Це «внизу», а ви піднялися.*
+- near — *«Поруч» нічого не каже про поверх.*
+
 
 **7 · Картка слова — toilets**
 <!-- interaction_id: en:lesson-02:session-22:i07; family: listen_choose -->
@@ -98,6 +109,8 @@
 **9 · Послухайте і складіть — «це внизу»**
 <!-- interaction_id: en:lesson-02:session-22:i09; family: listen_build_dictation -->
 Ціль: `It is downstairs.`
+🔊 *It is downstairs.* Плитки: `It` `is` `downstairs` `upstairs`
+*Плитка `upstairs` зайва: у записі сказано `downstairs` — «внизу», а не `upstairs` — «нагорі».*
 
 **10 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-22:i10; family: speed_match -->
@@ -108,6 +121,9 @@
 <!-- interaction_id: en:lesson-02:session-22:i11; family: context_gap_grammar -->
 Ціль: `Where ___ the station?`
 Варіанти: `is` · `are` · `am`
+- are — *Вокзал один, отже `is`. `are` пішло б до кількох.*
+- am — *Це тільки про себе: `I am`. До місця воно не йде.*
+
 
 **12 · Картка слова — shops**
 <!-- interaction_id: en:lesson-02:session-22:i12; family: listen_choose -->
@@ -117,19 +133,29 @@
 <!-- interaction_id: en:lesson-02:session-22:i13; family: context_gap_grammar -->
 Ціль: `The shops are ___ .`
 Варіанти: `downstairs` · `upstairs` · `behind`
+- upstairs — *«Нагорі» — але нагорі зараз ви, а крамниці нижче.*
+- behind — *«Позаду». Про поверх це нічого не каже.*
+
 
 **14 · Складіть фразу — ви на верхньому поверсі, і крамниці тут само**
 <!-- interaction_id: en:lesson-02:session-22:i14; family: phrase_builder -->
 Ціль: `The shops are upstairs.`
+Плитки: `The` `shops` `are` `upstairs` `is`
+*Плитка `is` зайва: крамниць кілька, тому потрібна форма `are`: `The shops are upstairs.`*
 
 **15 · Вставте слово — крамниці за два кроки від вас, на тому самому поверсі**
 <!-- interaction_id: en:lesson-02:session-22:i15; family: context_gap_grammar -->
 Ціль: `The shops are ___ .`
 Варіанти: `near` · `upstairs` · `downstairs`
+- upstairs — *Крамниці не на поверсі над вами, вони за два кроки від вас на цьому самому поверсі.*
+- downstairs — *Теж про поверх. А тут ідеться про відстань.*
+
 
 **16 · Складіть запитання — ви зайшли до торгового центру і не бачите вивісок; запитайте, де крамниці**
 <!-- interaction_id: en:lesson-02:session-22:i16; family: phrase_builder -->
 Ціль: `Where are the shops?`
+Плитки: `Where` `are` `the` `shops` `is`
+*Плитка `is` зайва: крамниць кілька, тому в запитанні потрібна форма `are`.*
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-22:i17:s01; family: scripted_repeat_compare -->

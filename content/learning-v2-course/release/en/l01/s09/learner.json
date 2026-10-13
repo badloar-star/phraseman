@@ -115,6 +115,15 @@
               "ru": "«Идти пешком». Начало похоже, но дальше ничего общего.",
               "uk": "«Йти пішки». Початок схожий, але далі нічого спільного."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-09:i02:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — welcome",
+            "feedbackByLocale": {
+              "ru": "Верно: `welcome` — ответ на «спасибо». Услышали «уэл-кам» — выбирайте это слово.",
+              "uk": "Правильно: `welcome` — відповідь на «дякую». Почули «уел-кам» — обирайте це слово."
+            }
           }
         ],
         "isWordCard": false,
@@ -234,6 +243,15 @@
               "ru": "Почти то же звучание, но начинается с «ф». Слушайте первый звук.",
               "uk": "Майже те саме звучання, але починається з «ф». Слухайте перший звук."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-09:i04:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — kind",
+            "feedbackByLocale": {
+              "ru": "Верно: `kind` — «добрый». В слове слышно длинное «ай»: «кайнд».",
+              "uk": "Правильно: `kind` — «добрий». У слові чути довге «ай»: «кайнд»."
+            }
           }
         ],
         "isWordCard": false,
@@ -247,17 +265,17 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — коллега поставила кофе, вы благодарны",
+      "prompt": "Соберите фразу — Мира поставила кофе, вы благодарны",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — коллега поставила кофе, вы благодарны",
+      "accessibilityLabel": "Соберите фразу — Мира поставила кофе, вы благодарны",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are kind.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — коллега поставила кофе, вы благодарны",
-          "uk": "Складіть фразу — колега поставила каву, ви вдячні"
+          "ru": "Соберите фразу — Мира поставила кофе, вы благодарны",
+          "uk": "Складіть фразу — Міра поставила каву, ви вдячні"
         },
         "orderedTokens": [
           "You",
@@ -275,7 +293,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте скрепку — она зевает над своей чашкой",
+      "prompt": "Вставьте слово — Мира устала",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i06:r1",
@@ -292,12 +310,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте скрепку — она зевает над своей чашкой",
+      "accessibilityLabel": "Вставьте слово — Мира устала",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — она зевает над своей чашкой",
-          "uk": "Вставте скріпку — вона позіхає над своєю чашкою"
+          "ru": "Вставьте слово — Мира устала",
+          "uk": "Вставте слово — Міра втомилася"
         },
         "gappedTargetPhrase": "You ___ tired.",
         "gapOptions": [
@@ -314,12 +332,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вставьте скрепку — она зевает над своей ",
+        "testedDimension": "Вставьте слово — она устала",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-09:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира устала",
+            "feedbackByLocale": {
+              "ru": "Верно: после `you` ставят `are`: `You are tired`.",
+              "uk": "Правильно: після `you` ставлять `are`: `You are tired`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-09:i06:r2",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — она зевает над своей ",
+            "testedDimension": "Вставьте слово — она устала",
             "feedbackByLocale": {
               "ru": "`am` живёт только с `I`. Отдать его собеседнику нельзя.",
               "uk": "`am` живе тільки з `I`. Віддати його співрозмовнику не можна."
@@ -328,7 +355,7 @@
           {
             "responseId": "en:lesson-01:session-09:i06:r3",
             "correct": false,
-            "testedDimension": "Вставьте скрепку — она зевает над своей ",
+            "testedDimension": "Вставьте слово — она устала",
             "feedbackByLocale": {
               "ru": "Не для `you`. Про человека напротив — всегда `are`.",
               "uk": "Не для `you`. Про людину навпроти — завжди `are`."
@@ -450,6 +477,15 @@
               "ru": "«Читать». Тянется «и», а в `right` — «ай»: «райт».",
               "uk": "«Читати». Тягнеться «і», а в `right` — «ай»: «райт»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-09:i08:r1",
+            "correct": true,
+            "testedDimension": "Послушайте и выберите — right",
+            "feedbackByLocale": {
+              "ru": "Верно: `right` звучит как «райт» и значит «прав».",
+              "uk": "Правильно: `right` звучить як «райт» і означає «має рацію»."
+            }
           }
         ],
         "isWordCard": false,
@@ -463,17 +499,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — вы сказали «спасибо», она отвечает",
+      "prompt": "Соберите фразу — вы сказали Мире «спасибо», она отвечает",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — вы сказали «спасибо», она отвечает",
+      "accessibilityLabel": "Соберите фразу — вы сказали Мире «спасибо», она отвечает",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "You are welcome.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — вы сказали «спасибо», она отвечает",
-          "uk": "Складіть фразу — ви сказали «дякую», вона відповідає"
+          "ru": "Соберите фразу — вы сказали Мире «спасибо», она отвечает",
+          "uk": "Складіть фразу — ви сказали Мірі «дякую», вона відповідає"
         },
         "orderedTokens": [
           "You",
@@ -534,7 +570,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставьте слово — она рассказала анекдот, и вы всё ещё смеётесь",
+      "prompt": "Вставьте слово — Мира рассказала шутку, и вы всё ещё смеётесь",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-09:i11:r1",
@@ -551,12 +587,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — она рассказала анекдот, и вы всё ещё смеётесь",
+      "accessibilityLabel": "Вставьте слово — Мира рассказала шутку, и вы всё ещё смеётесь",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте слово — она рассказала анекдот, и вы всё ещё смеётесь",
-          "uk": "Вставте слово — вона розповіла анекдот, і ви все ще смієтеся"
+          "ru": "Вставьте слово — Мира рассказала шутку, и вы всё ещё смеётесь",
+          "uk": "Вставте слово — Міра розповіла жарт, і ви все ще смієтеся"
         },
         "gappedTargetPhrase": "You are ___ .",
         "gapOptions": [
@@ -575,6 +611,15 @@
         ],
         "testedDimension": "Вставьте слово — она рассказала анекдот,",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-09:i11:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — Мира рассказала шутку, и вы всё ещё смеётесь",
+            "feedbackByLocale": {
+              "ru": "Верно: смешная шутка — `funny`, поэтому `You are funny`.",
+              "uk": "Правильно: смішний жарт — `funny`, тому `You are funny`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-09:i11:r2",
             "correct": false,
@@ -632,65 +677,46 @@
       "interactionId": "en:lesson-01:session-09:i13",
       "ordinal": 16,
       "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — вы спорили о молоке, и она угадала",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-09:i13:r1",
-          "text": "right"
-        },
-        {
-          "responseId": "en:lesson-01:session-09:i13:r2",
-          "text": "kind"
-        },
-        {
-          "responseId": "en:lesson-01:session-09:i13:r3",
-          "text": "welcome"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — вы спорили о молоке, и она угадала",
+      "accessibilityLabel": "Соберите фразу — Мира сверила список покупок и назвала количество молока правильно",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — вы спорили о молоке, и она угадала",
-          "uk": "Вставте слово — ви сперечалися про молоко, і вона вгадала"
+        "family": "phrase_builder",
+        "targetPhrase": "You are right.",
+        "localizedMeaning": {
+          "ru": "Мира назвала количество молока правильно: соберите полную фразу.",
+          "uk": "Міра правильно назвала кількість молока: складіть повну фразу."
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-09:i13:r1",
-            "text": "right"
-          },
-          {
-            "responseId": "en:lesson-01:session-09:i13:r2",
-            "text": "kind"
-          },
-          {
-            "responseId": "en:lesson-01:session-09:i13:r3",
-            "text": "welcome"
-          }
+        "orderedTokens": [
+          "You",
+          "are",
+          "right"
         ],
-        "testedDimension": "Вставьте слово — вы спорили о молоке, и ",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "am",
+          "not"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-09:i13:r2",
+            "responseId": "en:lesson-01:session-09:i13:tile:d1",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы спорили о молоке, и ",
+            "testedDimension": "Соберите фразу — Мира сверила список пок",
             "feedbackByLocale": {
-              "ru": "«Добрая». Про поступок, а не про то, что она угадала.",
-              "uk": "«Добра». Про вчинок, а не про те, що вона вгадала."
+              "ru": "`am` ставят только после `I`, а здесь подлежащее `You`",
+              "uk": "`am` ставлять лише після `I`, а тут підмет `You`"
             }
           },
           {
-            "responseId": "en:lesson-01:session-09:i13:r3",
+            "responseId": "en:lesson-01:session-09:i13:tile:d2",
             "correct": false,
-            "testedDimension": "Вставьте слово — вы спорили о молоке, и ",
+            "testedDimension": "Соберите фразу — Мира сверила список пок",
             "feedbackByLocale": {
-              "ru": "Это ответ на «спасибо». Здесь она не отвечает, а оказалась права.",
-              "uk": "Це відповідь на «дякую». Тут вона не відповідає, а виявилася права."
+              "ru": "вы подтверждаете, что Мира права, поэтому отрицание не нужно",
+              "uk": "ви підтверджуєте, що Міра має рацію, тому заперечення не потрібне"
             }
           }
         ]
@@ -700,68 +726,32 @@
     {
       "interactionId": "en:lesson-01:session-09:i14",
       "ordinal": 17,
-      "purpose": "retrieval_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставьте слово — свет в офисе ещё не включили, а кофе уже сварен",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-09:i14:r1",
-          "text": "early"
-        },
-        {
-          "responseId": "en:lesson-01:session-09:i14:r2",
-          "text": "tired"
-        },
-        {
-          "responseId": "en:lesson-01:session-09:i14:r3",
-          "text": "funny"
-        }
-      ],
+      "purpose": "independent_check",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Мира пришла до открытия офиса; скажите ей, что она пришла рано",
+      "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — свет в офисе ещё не включили, а кофе уже сварен",
+      "audioTargetIds": [
+        "en:lesson-01:session-09:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Мира пришла до открытия офиса; скажите ей, что она пришла рано",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — свет в офисе ещё не включили, а кофе уже сварен",
-          "uk": "Вставте слово — світло в офісі ще не увімкнули, а кава вже зварена"
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-09:i14:audio",
+          "transcript": "You are early."
         },
-        "gappedTargetPhrase": "You are ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-09:i14:r1",
-            "text": "early"
-          },
-          {
-            "responseId": "en:lesson-01:session-09:i14:r2",
-            "text": "tired"
-          },
-          {
-            "responseId": "en:lesson-01:session-09:i14:r3",
-            "text": "funny"
-          }
-        ],
-        "testedDimension": "Вставьте слово — свет в офисе ещё не вкл",
-        "choiceFeedback": [
-          {
-            "responseId": "en:lesson-01:session-09:i14:r2",
-            "correct": false,
-            "testedDimension": "Вставьте слово — свет в офисе ещё не вкл",
-            "feedbackByLocale": {
-              "ru": "«Ты устал» — может быть, но кофе сварен не поэтому.",
-              "uk": "«Ти втомлена» — можливо, але кава зварена не тому."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-09:i14:r3",
-            "correct": false,
-            "testedDimension": "Вставьте слово — свет в офисе ещё не вкл",
-            "feedbackByLocale": {
-              "ru": "«Ты смешной» — не про то, что она пришла первой.",
-              "uk": "«Ти смішна» — не про те, що вона прийшла першою."
-            }
-          }
+        "slowReferenceAudio": null,
+        "targetPhrase": "You are early.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
         ]
       },
       "scriptedAlternate": null
@@ -845,17 +835,17 @@
       "purpose": "independent_check",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Обманка на внимательность — она спрашивает, во сколько собрание. Вы не знаете",
+      "prompt": "Соберите фразу — Мира спрашивает, во сколько собрание. Вы не знаете",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Обманка на внимательность — она спрашивает, во сколько собрание. Вы не знаете",
+      "accessibilityLabel": "Соберите фразу — Мира спрашивает, во сколько собрание. Вы не знаете",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am not sure.",
         "localizedMeaning": {
-          "ru": "Обманка на внимательность — она спрашивает, во сколько собрание. Вы не знаете",
-          "uk": "Пастка на уважність — вона питає, о котрій збори. Ви не знаєте"
+          "ru": "она спрашивает, во сколько собрание. Вы не знаете",
+          "uk": "вона питає, о котрій збори. Ви не знаєте"
         },
         "orderedTokens": [
           "I",
@@ -866,7 +856,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-09:i16:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира спрашивает, во ско",
+            "feedbackByLocale": {
+              "ru": "после `I` используют `am`, поэтому `are` в этой фразе не подходит",
+              "uk": "після `I` використовують `am`, тому `are` у цій фразі не підходить"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -918,6 +918,15 @@
         "testedDimension": "Вставьте слово — вы толкнули её локтем, ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-09:i17:r1",
+            "correct": true,
+            "testedDimension": "Вставьте слово — вы толкнули её локтем, кофе плеснулся на стол",
+            "feedbackByLocale": {
+              "ru": "Верно: если вы случайно пролили кофе, говорите `I am sorry` — «извините».",
+              "uk": "Правильно: якщо ви випадково розлили каву, кажете `I am sorry` — «вибачте»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-09:i17:r2",
             "correct": false,
             "testedDimension": "Вставьте слово — вы толкнули её локтем, ",
@@ -945,13 +954,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Мира сверила время собрания по календарю, и вы подтверждаете её расчёт",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i18:s01:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Мира сверила время собрания по календарю, и вы подтверждаете её расчёт",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -978,13 +987,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — вы знакомитесь с Мирой в первый рабочий день",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i18:s02:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — вы знакомитесь с Мирой в первый рабочий день",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1011,13 +1020,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — после перерыва вы отвечаете Мире, что уже не устали",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i18:s03:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — после перерыва вы отвечаете Мире, что уже не устали",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1044,13 +1053,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Произнесите одну фразу",
+      "prompt": "Скажите вслух — Мира помогла вам найти нужный кабинет, и вы говорите ей, что она добрая",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-09:i18:s04:audio"
       ],
-      "accessibilityLabel": "Произнесите одну фразу",
+      "accessibilityLabel": "Скажите вслух — Мира помогла вам найти нужный кабинет, и вы говорите ей, что она добрая",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1078,5 +1087,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3a4ab2bc74851de5d83ef9e40bab07d91fea96dc41f9e44dab20ad8233a11bb3"
+  "learnerFingerprint": "a755b8ad06324e89536fb857bb0d2e7c940b0145ecea4643dadb63776829ec2f"
 }

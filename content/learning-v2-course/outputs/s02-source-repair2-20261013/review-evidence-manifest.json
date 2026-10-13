@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "learning_v2_session_review_evidence_manifest_v1",
+  "courseSessionId": "en:lesson-01:session-02",
+  "candidateRoot": "content/learning-v2-course/outputs/s02-source-repair2-20261013",
+  "candidateBundleSha256": "2dbe822dfb063e8413f6f214defbe84c0f8ba46cb59421047b77c6a6f3a54d4d",
+  "candidateReceiptPath": "content/learning-v2-course/outputs/s02-source-repair2-20261013/content-receipt.json",
+  "candidateReceiptInventorySha256": "5afe85d31f0e75ed0473cc6dccddb0e0311398ade2e9aafb37370f6e6fe71363",
+  "requiredRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "eligibleRoles": [],
+  "missingRoles": [
+    "learner",
+    "reader",
+    "pedagogy",
+    "nonsense",
+    "taste",
+    "progression",
+    "locale"
+  ],
+  "roles": [],
+  "textReviewComplete": false,
+  "releaseAuthority": false
+}

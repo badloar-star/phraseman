@@ -11,8 +11,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i03",
-    "correctText": "loud",
-    "correctResponseId": "en:lesson-01:session-40:i03:r1"
+    "correctText": "They are loud.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i04",
@@ -61,8 +61,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-40:i13",
-    "correctText": "colleagues",
-    "correctResponseId": "en:lesson-01:session-40:i13:r1"
+    "correctText": "They are my colleagues.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-40:i14",

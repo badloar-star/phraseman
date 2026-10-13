@@ -126,7 +126,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставьте слово — вы ищете здание с поезд",
+          "testedDimension": "Вставьте слово — вы ищете здание с поездами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i02:r2",
@@ -216,7 +216,7 @@
             "audioTargetId": "en:lesson-02:session-24:i04:audioB",
             "transcript": "corridor"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про угол",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про угол?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i04:r2",
@@ -276,7 +276,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставьте слово — прохожий показывает на ",
+          "testedDimension": "Вставьте слово — прохожий показывает на конец улицы, где она поворачивает",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i05:r2",
@@ -494,7 +494,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставьте слово — вокзал прямо перед вами",
+          "testedDimension": "Вставьте слово — вокзал прямо перед вами, идти минуту",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i08:r2",
@@ -549,7 +549,17 @@
           "authoredDistractorTokens": [
             "near"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он позади моста»",
+              "feedbackByLocale": {
+                "ru": "в записи место находится `behind the bridge` — «позади моста», а не «рядом».",
+                "uk": "у записі місце знаходиться `behind the bridge` — «позаду мосту», а не «поруч»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -659,7 +669,7 @@
             "audioTargetId": "en:lesson-02:session-24:i11:audioB",
             "transcript": "third"
           },
-          "testedPhoneticContrast": "Различите звуки — какое из двух про уста",
+          "testedPhoneticContrast": "Различите звуки — какое из двух про усталость?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i11:r2",
@@ -719,7 +729,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставьте слово — спутник просит воды, тр",
+          "testedDimension": "Вставьте слово — спутник просит воды, третий раз за десять минут",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i12:r2",
@@ -769,7 +779,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос к собеседнику с `you` начинается с `Are you`, а не с `is`.",
+                "uk": "запитання до співрозмовника з `you` починається з `Are you`, а не з `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -872,7 +892,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сцена требует ответа, а не вопроса",
+              "feedbackByLocale": {
+                "ru": "вы говорите об одном месте, поэтому ответ начинается с `It is`.",
+                "uk": "ви говорите про одне місце, тому відповідь починається з `It is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -900,7 +930,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -991,7 +1026,12 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Where is the station?",
-          "orderedTokens": ["Where", "is", "the", "station"],
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "station"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },
@@ -1186,7 +1226,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставте слово — ви шукаєте будівлю з пот",
+          "testedDimension": "Вставте слово — ви шукаєте будівлю з потягами",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i02:r2",
@@ -1276,7 +1316,7 @@
             "audioTargetId": "en:lesson-02:session-24:i04:audioB",
             "transcript": "corridor"
           },
-          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про ріг ву",
+          "testedPhoneticContrast": "Розрізніть звуки — яке з двох про ріг вулиці?",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i04:r2",
@@ -1336,7 +1376,7 @@
               "text": "bridge"
             }
           ],
-          "testedDimension": "Вставте слово — перехожий показує на кін",
+          "testedDimension": "Вставте слово — перехожий показує на кінець вулиці, де вона повертає",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i05:r2",
@@ -1554,7 +1594,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставте слово — вокзал прямо перед вами,",
+          "testedDimension": "Вставте слово — вокзал прямо перед вами, іти хвилину",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i08:r2",
@@ -1609,7 +1649,17 @@
           "authoredDistractorTokens": [
             "near"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i09:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте и соберите — «он позади моста»",
+              "feedbackByLocale": {
+                "ru": "в записи место находится `behind the bridge` — «позади моста», а не «рядом».",
+                "uk": "у записі місце знаходиться `behind the bridge` — «позаду мосту», а не «поруч»."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1779,7 +1829,7 @@
               "text": "lost"
             }
           ],
-          "testedDimension": "Вставте слово — супутник просить води, в",
+          "testedDimension": "Вставте слово — супутник просить води, втретє за десять хвилин",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-24:i12:r2",
@@ -1829,7 +1879,17 @@
           "authoredDistractorTokens": [
             "is"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i13:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите вопрос — спутник третий раз просит воды и садится на каждую скамейку; спросите, устал ли он",
+              "feedbackByLocale": {
+                "ru": "вопрос к собеседнику с `you` начинается с `Are you`, а не с `is`.",
+                "uk": "запитання до співрозмовника з `you` починається з `Are you`, а не з `is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1932,7 +1992,17 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-24:i15:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите фразу — сцена требует ответа, а не вопроса",
+              "feedbackByLocale": {
+                "ru": "вы говорите об одном месте, поэтому ответ начинается с `It is`.",
+                "uk": "ви говорите про одне місце, тому відповідь починається з `It is`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1960,7 +2030,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -2051,7 +2126,12 @@
           },
           "slowReferenceAudio": null,
           "hiddenTargetPhrase": "Where is the station?",
-          "orderedTokens": ["Where", "is", "the", "station"],
+          "orderedTokens": [
+            "Where",
+            "is",
+            "the",
+            "station"
+          ],
           "authoredDistractorTokens": [],
           "slotFeedback": []
         },

@@ -1,0 +1,51 @@
+id	time	result	detail	file
+cards-008	2026-10-13T02:40:37.290Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-008.png
+cards-011	2026-10-13T02:40:37.291Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-011.png
+cards-012	2026-10-13T02:40:37.292Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-012.png
+cards-031	2026-10-13T02:40:37.294Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-031.png
+cards-035	2026-10-13T02:40:37.295Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-035.png
+cards-037	2026-10-13T02:40:37.296Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-037.png
+cards-041	2026-10-13T02:40:37.297Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-041.png
+cards-045	2026-10-13T02:40:37.298Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-045.png
+cards-046	2026-10-13T02:40:37.299Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-046.png
+cards-063	2026-10-13T02:40:37.299Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-063.png
+cards-064	2026-10-13T02:40:37.300Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-064.png
+cards-065	2026-10-13T02:40:37.301Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-065.png
+cards-067	2026-10-13T02:40:37.301Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-067.png
+cards-076	2026-10-13T02:40:41.179Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-076.png
+cards-081	2026-10-13T02:40:43.159Z	failed	склейка_не_удалась: known error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-081.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=130407 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-081.png
+cards-gap-011	2026-10-13T02:40:44.711Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-gap-011.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=381471 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-gap-011.png
+cards-section-034	2026-10-13T02:40:47.130Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-034.png
+cards-section-035	2026-10-13T02:40:47.131Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-035.png
+cards-section-036	2026-10-13T02:40:47.131Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-section-036.png
+cards-section-046	2026-10-13T02:40:48.857Z	failed	склейка_не_удалась: ror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-section-046.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=224370 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-section-046.png
+cards-v2-026	2026-10-13T02:40:48.858Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/cards-v2-026.png
+cards-v2-027	2026-10-13T02:40:50.480Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/cards-v2-027.png
+cards-v2-037	2026-10-13T02:40:52.150Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-037.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=221404 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-037.png
+cards-v2-044	2026-10-13T02:40:53.570Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-044.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=153126 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-044.png
+cards-v2-046	2026-10-13T02:40:55.431Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-046.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=202820 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-046.png
+coins-004	2026-10-13T02:40:55.432Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/coins-004.png
+dialogs-gap-016	2026-10-13T02:40:56.690Z	failed	склейка_не_удалась: error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-gap-016.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=244308 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/dialogs-gap-016.png
+energy-modes-009	2026-10-13T02:40:56.690Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/energy-modes-009.png
+energy-modes-010	2026-10-13T02:40:58.217Z	failed	склейка_не_удалась: rror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\energy-modes-010.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=407715 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/energy-modes-010.png
+mistakes-panel-021	2026-10-13T02:40:58.218Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/mistakes-panel-021.png
+onboarding-002	2026-10-13T02:40:58.219Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-002.png
+onboarding-006	2026-10-13T02:40:58.219Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-006.png
+onboarding-007	2026-10-13T02:40:58.220Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-007.png
+onboarding-008	2026-10-13T02:40:58.221Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-008.png
+onboarding-010	2026-10-13T02:40:58.221Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-010.png
+onboarding-018	2026-10-13T02:40:58.222Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-018.png
+onboarding-025	2026-10-13T02:40:58.223Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-025.png
+onboarding-026	2026-10-13T02:40:58.224Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-026.png
+onboarding-027	2026-10-13T02:40:58.225Z	skipped	уже_не_голый_1800x1328	docs/phraseman-2.0/evidence/parity/onboarding-027.png
+onboarding-028	2026-10-13T02:40:58.225Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-028.png
+onboarding-029	2026-10-13T02:40:58.226Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-029.png
+onboarding-paywall-001	2026-10-13T02:40:58.227Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/onboarding-paywall-001.png
+practice-001	2026-10-13T02:40:58.228Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-001.png
+practice-002	2026-10-13T02:40:58.228Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-002.png
+practice-003	2026-10-13T02:40:58.229Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/practice-003.png
+results-009	2026-10-13T02:40:58.230Z	skipped	уже_не_голый_1800x1303	docs/phraseman-2.0/evidence/parity/results-009.png
+settings-gap-034	2026-10-13T02:40:58.231Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/settings-gap-034.png
+spire-gap-016	2026-10-13T02:40:59.550Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-016.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=283216 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-gap-016.png
+spire-gap-019	2026-10-13T02:41:01.074Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-019.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=645700 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-gap-019.png
+system-015	2026-10-13T02:41:01.074Z	skipped	уже_не_голый_1800x1304	docs/phraseman-2.0/evidence/parity/system-015.png

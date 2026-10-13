@@ -69,6 +69,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i02; family: listen_choose -->
 Ціль: `station`
 Варіанти: `station` · `stand` · `nation`
+- stand — *Це «стояти». Коротше: у `station` два склади, у `stand` один.*
+- nation — *«Нація». На початку `station` два приголосні поспіль — `st-`, язик спершу впирається в піднебіння. У `nation` одразу `n-`, звук іде в ніс.*
+
 
 **3 · Картка слова — street**
 <!-- interaction_id: en:lesson-02:session-17:i03; family: listen_choose -->
@@ -78,6 +81,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i04; family: listen_choose -->
 Ціль: `street`
 Варіанти: `street` · `treat` · `sweet`
+- treat — *«Частування». Починається на «тр», а `street` — на «стр».*
+- sweet — *«Солодкий». Після «с» у `street` іде «тр», а в `sweet` — «в».*
+
 
 **5 · Складіть фразу — спитайте про вокзал**
 <!-- interaction_id: en:lesson-02:session-17:i05; family: phrase_builder -->
@@ -87,11 +93,17 @@
 <!-- interaction_id: en:lesson-02:session-17:i06; family: context_gap_grammar -->
 Ціль: `Where ___ the street?`
 Варіанти: `is` · `are` · `am`
+- are — *`are` іде з `you` і `they`. Про одну вулицю — `is`.*
+- am — *`am` буває тільки поруч з `I`. Про вулицю — `is`.*
+
 
 **7 · Послухайте і виберіть**
 <!-- interaction_id: en:lesson-02:session-17:i07; family: listen_choose -->
 Ціль: `cold`
 Варіанти: `cold` · `gold` · `call`
+- gold — *«Золото». Перший звук інший: `cold` починається на «к», `gold` — на «ґ».*
+- call — *«Дзвонити». Голосна інша: у `cold` чути «оу», у `call` — довге «о».*
+
 
 **8 · Складіть фразу — спитайте про вулицю**
 <!-- interaction_id: en:lesson-02:session-17:i08; family: phrase_builder -->
@@ -101,6 +113,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i09; family: context_gap_grammar -->
 Ціль: `I am ___ .`
 Варіанти: `lost` · `cold` · `noisy`
+- cold — *Це «змерз». Про холод ви нічого не казали — ви не розумієте, де ви.*
+- noisy — *«Гучний». Так кажуть про місце, а не про людину, яка шукає дорогу.*
+
 
 **10 · З'єднайте пари**
 <!-- interaction_id: en:lesson-02:session-17:i10; family: speed_match -->
@@ -110,20 +125,30 @@
 **11 · Послухайте і складіть — «де вокзал?»**
 <!-- interaction_id: en:lesson-02:session-17:i11; family: listen_build_dictation -->
 Ціль: `Where is the station?`
+🔊 *Where is the station?* Плитки: `Where` `is` `the` `station` `are`
+*Плитка `are` зайва: з однією станцією потрібна форма `is`: `Where is the station?`*
 
 **12 · Вставте слово — на вокзалі в час пік не проштовхнутися**
 <!-- interaction_id: en:lesson-02:session-17:i12; family: context_gap_grammar -->
 Ціль: `The station is ___ .`
 Варіанти: `crowded` · `lost` · `street`
+- lost — *«Заблукав» — про людину, яка не розуміє, де вона. Вокзал стоїть на місці.*
+- street — *Це «вулиця», окреме місце. А тут треба сказати, який вокзал.*
+
 
 **13 · Складіть фразу — спершу про себе, потім питання**
 <!-- interaction_id: en:lesson-02:session-17:i13; family: phrase_builder -->
 Ціль: `I am lost.`
+Плитки: `I` `am` `lost` `is`
+*Плитка `is` зайва: про себе кажуть `I am`, а не `I is`: `I am lost.`*
 
 **14 · Вставте слово — повз їдуть машини, і ви не чуєте відповіді**
 <!-- interaction_id: en:lesson-02:session-17:i14; family: context_gap_grammar -->
 Ціль: `The street is ___ .`
 Варіанти: `noisy` · `lost` · `station`
+- lost — *Про вулицю так не кажуть: `lost` — це про того, хто не розуміє, де він.*
+- station — *`station` — вокзал, саме місце. А тут треба сказати, яка вулиця.*
+
 
 **15 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-17:i15:s01; family: scripted_repeat_compare -->
@@ -137,6 +162,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i16; family: listen_choose -->
 Ціль: `Where is the street?`
 Варіанти: `Where is the street?` · `Where is the station?` · `The street is crowded.`
+- Where is the station? — *У записі звучить `street` — «вулиця», а не `station` — «станція».*
+- The street is crowded. — *У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на вулиці людно.*
+
 
 **18 · Послухайте й складіть — біля станції ви кажете перехожому, що заблукали**
 <!-- interaction_id: en:lesson-02:session-17:i17:s01; family: listen_build_dictation -->
@@ -146,6 +174,9 @@
 <!-- interaction_id: en:lesson-02:session-17:i17:s02; family: listen_choose -->
 Ціль: `Where is the station?`
 Варіанти: `Where is the station?` · `Where is the street?` · `The station is crowded.`
+- Where is the street? — *У записі звучить `station` — «станція», а не `street` — «вулиця».*
+- The station is crowded. — *У записі запитання: спочатку звучить `Where`. Цей варіант — повідомлення, що на станції людно.*
+
 
 **20 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-02:session-17:i17:s03; family: scripted_repeat_compare -->

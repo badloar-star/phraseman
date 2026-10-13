@@ -1,0 +1,5 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+overlays-campaigns-016	2026-10-12T21:26:07.845Z	stitch_failed	13320	marker+пусто_1605мс+склейка_не_удалась: open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\overlays-campaigns-016.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=625183 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_30мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-25-46-365Z/overlays-campaigns-016.bare.png	1605
+overlays-campaigns-017	2026-10-12T21:26:33.567Z	stitch_failed	10263	marker+шагов_2+склейка_не_удалась: open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\overlays-campaigns-017.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=647138 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T21-25-46-365Z/overlays-campaigns-017.bare.png	0
+community-013	2026-10-12T21:27:16.467Z	ok	13575	marker+шагов_6+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-013.png	0
+community-021	2026-10-12T21:27:41.103Z	ok	15649	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/community-021.png	0

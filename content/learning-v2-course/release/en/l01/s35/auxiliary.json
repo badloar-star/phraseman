@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-01:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro1:r2": {
-          "ru": "`not` встал перед скрепкой. Порядок обратный: сначала `are`, потом `not`.",
-          "uk": "`not` став перед скріпкою. Порядок зворотний: спершу `are`, потім `not`."
+          "ru": "Сначала `are`, затем `not`: We are not late.",
+          "uk": "Спершу `are`, потім `not`: We are not late."
         },
         "en:lesson-01:session-35:intro1:r3": {
           "ru": "`not` убежал в конец. Его место сразу после `are`, до слова о вас.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-01:session-35:intro2:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro2:r2": {
-          "ru": "`no` — это ответ «нет» на вопрос целиком. Внутри фразы «не» — `not`, и скрепка `are` обязательна.",
-          "uk": "`no` — це відповідь «ні» на все запитання. Усередині фрази «не» — це `not`, і скріпка `are` обов'язкова."
+          "ru": "Внутри фразы используйте `not`: We are not sure.",
+          "uk": "Усередині фрази використовуйте `not`: We are not sure."
         },
         "en:lesson-01:session-35:intro2:r3": {
           "ru": "Слова те же, порядок сломан. После `are` сразу `not`, потом `sure`.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-01:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-01:session-35:intro3:r2": {
-          "ru": "Скрепка пропала. После `we` идёт `are`, и только потом `not`.",
-          "uk": "Скріпка зникла. Після `we` іде `are`, і лише потім `not`."
+          "ru": "После `we` нужны `are not`: We are not wrong.",
+          "uk": "Після `we` потрібні `are not`: We are not wrong."
         },
         "en:lesson-01:session-35:intro3:r3": {
           "ru": "`late` — про время, «опаздываем». Про ошибку — `wrong`.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8108c607c827618a14294470eb7add0e62bf65fe4427821535606298742ee563"
+  "auxiliaryFingerprint": "6978ce3b38c926ab368b86b20d42f60dbc02eccc330a5bc3309cd2766ffe9092"
 }

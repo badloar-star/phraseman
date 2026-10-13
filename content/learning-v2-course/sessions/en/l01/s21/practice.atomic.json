@@ -817,7 +817,7 @@
               "text": "young"
             }
           ],
-          "testedDimension": "Вставьте слово — коллега говорит, что но",
+          "testedDimension": "Вставьте слово — коллега говорит, что новенький весь день молчит",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-21:i14:r2",
@@ -978,7 +978,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — коллега впервые в этой ",
+          "testedDimension": "Вставьте слово — коллега впервые в этой команде, вы обращаетесь к ней",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-21:i17:r2",
@@ -1403,7 +1403,7 @@
             {
               "responseId": "en:lesson-01:session-21:i05:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — «він невисокий»",
+              "testedDimension": "Соберите фразу — «он невысокий»",
               "feedbackByLocale": {
                 "ru": "`am` лишнее: с `He` ставят `is` — `He is short.`",
                 "uk": "`am` зайве: з `He` ставлять `is` — `He is short`."
@@ -1929,7 +1929,7 @@
               "text": "young"
             }
           ],
-          "testedDimension": "Вставте слово — колега каже, що новеньки",
+          "testedDimension": "Вставте слово — колега каже, що новенький цілий день мовчить",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-21:i14:r2",
@@ -1995,7 +1995,7 @@
             {
               "responseId": "en:lesson-01:session-21:i15:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «вона молода»",
+              "testedDimension": "Послушайте и соберите — «она молодая»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `She` ставят `is` — `She is young.`",
                 "uk": "`are` зайве: з `She` ставлять `is` — `She is young`."
@@ -2035,7 +2035,7 @@
             {
               "responseId": "en:lesson-01:session-21:i16:tile:d1",
               "correct": false,
-              "testedDimension": "Складіть фразу — про себе, ви втомилися",
+              "testedDimension": "Соберите фразу — про себя, вы устали",
               "feedbackByLocale": {
                 "ru": "`is` лишнее: с `I` ставят `am` — `I am tired.`",
                 "uk": "`is` зайве: з `I` ставлять `am` — `I am tired`."
@@ -2090,7 +2090,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — колега вперше в цій кома",
+          "testedDimension": "Вставте слово — колега вперше в цій команді, ви звертаєтеся до неї",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-01:session-21:i17:r2",
@@ -2217,7 +2217,7 @@
             {
               "responseId": "en:lesson-01:session-21:i18:s03:tile:d1",
               "correct": false,
-              "testedDimension": "Послухайте і складіть — «він тихий»",
+              "testedDimension": "Послушайте и соберите — «он тихий»",
               "feedbackByLocale": {
                 "ru": "`are` лишнее: с `He` ставят `is` — `He is quiet.`",
                 "uk": "`are` зайве: з `He` ставлять `is` — `He is quiet`."

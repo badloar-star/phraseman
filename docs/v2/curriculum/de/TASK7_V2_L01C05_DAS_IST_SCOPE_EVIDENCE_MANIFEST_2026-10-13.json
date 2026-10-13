@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c05-das-ist-scope-evidence.v1",
+  "status": "HOLD",
+  "scope": "EVIDENCE_AND_RECEIPT_ONLY",
+  "allowlist": [
+    "docs/v2/curriculum/de/TASK7_V2_L01C05_DAS_IST_CANONICAL_ADMISSION_HOLD_RECEIPT_2026-10-13.md",
+    "docs/v2/curriculum/de/TASK7_V2_L01C05_DAS_IST_SOURCE_HOLD_RECEIPT_2026-10-13.md",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/extraction_map.json",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/manifest.json",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/raw/dwds_sein.html",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/raw/dwds_sein.http_metadata.txt",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c05_das_ist_canonical_admission_hold_de_v1.ts",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c05_das_ist_source_hold_de_v1.ts",
+    "scripts/capture_learning_v2_de_task7_v2_l01_c05_das_ist_sources.mjs",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_canonical_admission_hold_gate.ts",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_source_hold_gate.ts",
+    "scripts/guard_learning_v2_de_task7_v2_l01_c05_das_ist_scope.mjs",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_scope_evidence_gate.ts"
+  ],
+  "hashes": {
+    "docs/v2/curriculum/de/TASK7_V2_L01C05_DAS_IST_CANONICAL_ADMISSION_HOLD_RECEIPT_2026-10-13.md": "382b25f502ec9710bc748a80571a7bd2c5ff5b1a38dfa789e0220067ce7fb00c",
+    "docs/v2/curriculum/de/TASK7_V2_L01C05_DAS_IST_SOURCE_HOLD_RECEIPT_2026-10-13.md": "e7129a340183934a6d73dbfe066f18f095db3895d2841da19fd7ec821542e5fd",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/extraction_map.json": "ad28cd1bebe17ece14402777a0a3e15e1727d2ea2440209d90e3aeb7890c1644",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/manifest.json": "4fc211701b6733528a460e4fa28a7b69d72dcb3acc7a1aad8a68b09230c98c63",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/raw/dwds_sein.html": "bcc581983ae4bb68c698ab512ac0bf15e522fdde800bc87b0b898d573761d915",
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/raw/dwds_sein.http_metadata.txt": "c85ed9d1a13bf1b124584cdc65cbefff56e8befd93d0000971c557428d0443d5",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c05_das_ist_canonical_admission_hold_de_v1.ts": "984583d7cf749dd87dddb5eabc5d5621c53eb7bab5898e63ce1b65563a15b93e",
+    "modules/learning-v2/curriculum/de/task7_v2_l01_c05_das_ist_source_hold_de_v1.ts": "61367f823b400806bddaa68553327d29aa4ecd562d0e50ba14d2913982a561f5",
+    "scripts/capture_learning_v2_de_task7_v2_l01_c05_das_ist_sources.mjs": "2a59850bf34149425538e98852dcf6a1fdc5e802180ca19c2f53d8f2d367b10a",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_canonical_admission_hold_gate.ts": "8a34d99db4c06f3941f647a6a950e8915efead556718a52aa5d93c6cb44cc37b",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_source_hold_gate.ts": "8675400bd45f278b062bc1dcc4039e4d0d37efbb7cf99e5c9f98820aab9e85cc",
+    "scripts/guard_learning_v2_de_task7_v2_l01_c05_das_ist_scope.mjs": "45aecbd9b1a8439b8355cb8b857c0f2365c71d6043d7df5d10880c8c52cb4205",
+    "tests/learning_v2_de_task7_v2_l01_c05_das_ist_scope_evidence_gate.ts": "9439e9ca30f8214dc4aaa820248eda066e61c3df7ccb5b24280aaab9d5ee72ed"
+  },
+  "protectedRoots": [
+    "docs/v2/curriculum/de/",
+    "modules/learning-v2/curriculum/de/",
+    "scripts/",
+    "tests/"
+  ],
+  "gitDiffCheckExemptPaths": [
+    "modules/learning-v2/curriculum/de/evidence/task7_v2_l01_c05_das_ist_source_hold_v1/raw/dwds_sein.html"
+  ],
+  "statusSnapshot": {
+    "capturedOn": "2026-10-13",
+    "scopedStatus": "??",
+    "scopedPathCount": 13,
+    "unrelatedPathCount": 3528,
+    "unrelatedStatusSha256": "4b48c8023b60abe1bd69542632c39280cea48b45e5819bd114de0aae152e99da",
+    "unrelatedStatusCounts": { " M": 925, " D": 1, "D ": 9, "??": 2593 },
+    "separation": "The unrelated digest covers every porcelain-v1 -uall record outside this exact allowlist at capture time; it is evidence of pre-existing concurrent work and is not validated as a current clean-tree claim."
+  },
+  "boundary": {
+    "canonicalAdmission": false,
+    "inventoryResolutionApplied": false,
+    "task7Unlock": false,
+    "preauthoringAuthority": false,
+    "learnerFacing": false,
+    "releaseAuthorized": false,
+    "consumerCutover": "NONE"
+  }
+}

@@ -249,7 +249,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
+        "prompt": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-03:i05:r1",
@@ -258,34 +258,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
+        "accessibilityLabel": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a stool.",
+          "targetPhrase": "It is a stool.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
-          "uk": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»"
+            "ru": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
+            "uk": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "stool"
+            "It",
+            "is",
+            "a",
+            "stool"
           ],
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — брат показы",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним табуретом — `a`: `It is a stool`.",
-            "uk": "Після `It` потрібна форма `is`, а перед одним табуретом — `a`: `It is a stool`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -515,7 +505,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — брат держит коври",
+          "testedDimension": "Вставьте часть фразы — брат держит коврик и спрашивает, что это; назовите предмет полной фразой",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-03:i10:r2",
@@ -574,17 +564,7 @@
           "authoredDistractorTokens": [
             "mirror"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — брат обращается ",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `rug`, а не `mirror`: `Is it a rug?`.",
-                "uk": "У записі прозвучало `rug`, а не `mirror`: `Is it a rug?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -706,7 +686,7 @@
               "text": "a not"
             }
           ],
-          "testedDimension": "Вставьте часть фразы — брат принял карти",
+          "testedDimension": "Вставьте часть фразы — брат принял картину за зеркало; возразите: «Это не зеркало»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-03:i13:r2",
@@ -761,17 +741,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i14:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — брат ищет зеркало; вы с",
-              "feedbackByLocale": {
-                "ru": "Сейчас вы сообщаете место, а не называете предмет. Перед `here` в этой фразе `a` не нужно: `It is here`.",
-                "uk": "Зараз ви повідомляєте місце, а не називаєте предмет. Перед `here` у цій фразі `a` не потрібне: `It is here`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -874,17 +844,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — брат принял низкий стол",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Получится `It is not a stool`.",
-                "uk": "Після `It` тут потрібне `is`. Вийде `It is not a stool`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1134,7 +1094,7 @@
         "purpose": "supported_practice",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-      "prompt": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
+        "prompt": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-03:i05:r1",
@@ -1143,34 +1103,24 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
+        "accessibilityLabel": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»",
         "modePayload": {
           "family": "phrase_builder",
-        "targetPhrase": "It is a stool.",
+          "targetPhrase": "It is a stool.",
           "localizedMeaning": {
-          "ru": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
-          "uk": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»"
+            "ru": "Соберите полную фразу — брат показывает на табурет; скажите «Это табурет»",
+            "uk": "Складіть повну фразу — брат показує на табурет; скажіть «Це табурет»"
           },
           "orderedTokens": [
-          "It",
-          "is",
-          "a",
-          "stool"
+            "It",
+            "is",
+            "a",
+            "stool"
           ],
           "authoredDistractorTokens": [
             "am"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i05:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — брат показує на",
-              "feedbackByLocale": {
-            "ru": "После `It` нужна форма `is`, а перед одним табуретом — `a`: `It is a stool`.",
-            "uk": "Після `It` потрібна форма `is`, а перед одним табуретом — `a`: `It is a stool`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1400,7 +1350,7 @@
               "text": "a"
             }
           ],
-          "testedDimension": "Вставте частину фрази — брат тримає кили",
+          "testedDimension": "Вставте частину фрази — брат тримає килимок і запитує, що це; назвіть предмет повною фразою",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-03:i10:r2",
@@ -1459,17 +1409,7 @@
           "authoredDistractorTokens": [
             "mirror"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — брат звертається",
-              "feedbackByLocale": {
-                "ru": "В записи прозвучало `rug`, а не `mirror`: `Is it a rug?`.",
-                "uk": "У записі прозвучало `rug`, а не `mirror`: `Is it a rug?`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1591,7 +1531,7 @@
               "text": "a not"
             }
           ],
-          "testedDimension": "Вставте частину фрази — брат прийняв кар",
+          "testedDimension": "Вставте частину фрази — брат прийняв картину за дзеркало; заперечте: «Це не дзеркало»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-03:i13:r2",
@@ -1646,17 +1586,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i14:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — брат шукає дзеркало; ви",
-              "feedbackByLocale": {
-                "ru": "Сейчас вы сообщаете место, а не называете предмет. Перед `here` в этой фразе `a` не нужно: `It is here`.",
-                "uk": "Зараз ви повідомляєте місце, а не називаєте предмет. Перед `here` у цій фразі `a` не потрібне: `It is here`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1759,17 +1689,7 @@
           "authoredDistractorTokens": [
             "are"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-03:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — брат прийняв низький ст",
-              "feedbackByLocale": {
-                "ru": "После `It` здесь нужна форма `is`. Получится `It is not a stool`.",
-                "uk": "Після `It` тут потрібне `is`. Вийде `It is not a stool`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

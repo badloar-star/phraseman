@@ -288,7 +288,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставьте слово — сотрудник написал, что ",
+          "testedDimension": "Вставьте слово — сотрудник написал, что сборка займёт час; дополните короткое название срока",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i05:r2",
@@ -342,17 +342,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i06:r1",
-              "correct": false,
-              "testedDimension": "Соберите короткое название — друг указыв",
-              "feedbackByLocale": {
-                "ru": "Хотя первой написана `u`, сначала слышен согласный «й». Поэтому короткое название начинается с `A`.",
-                "uk": "Хоча першою написано `u`, спочатку чути приголосний «й». Тому коротка назва починається з `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -401,7 +391,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставьте слово — покупатель принёс чайни",
+          "testedDimension": "Вставьте слово — покупатель принёс чайник в сервис; назовите предмет полной фразой (`kettle` — «чайник»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i07:r2",
@@ -458,17 +448,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i08:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — сотрудник отвеча",
-              "feedbackByLocale": {
-                "ru": "В записи перед `hour` звучит `An`: первая буква названия молчит, а первый звук гласный.",
-                "uk": "У записі перед `hour` звучить `An`: перша літера назви мовчить, а перший звук голосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -517,7 +497,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставьте слово — у стойки оставили пылес",
+          "testedDimension": "Вставьте слово — у стойки оставили пылесос для ремонта; назовите его полной фразой (`vacuum` — «пылесос»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i09:r2",
@@ -722,17 +702,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i12:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — сотрудник назвал время",
-              "feedbackByLocale": {
-                "ru": "Начните вопрос с `Is it`. Перед `hour` нужно `an`: написанная `h` не даёт согласного звука.",
-                "uk": "Почніть питання з `Is it`. Перед `hour` потрібне `an`: написана `h` не дає приголосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -758,16 +728,33 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-11:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-11:i13:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите — сотрудник отвечает, рабочая ли это форма",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-03:session-11:i13:audio", "transcript": "Is it a uniform?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-11:i13:audio",
+            "transcript": "Is it a uniform?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-03:session-11:i13:r1", "targetText": "Is it a uniform?", "meaningByLocale": null},
-            {"responseId": "en:lesson-03:session-11:i13:r2", "targetText": "It is a uniform.", "meaningByLocale": null},
-            {"responseId": "en:lesson-03:session-11:i13:r3", "targetText": "Is it an uniform?", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-03:session-11:i13:r1",
+              "targetText": "Is it a uniform?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-11:i13:r2",
+              "targetText": "It is a uniform.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-11:i13:r3",
+              "targetText": "Is it an uniform?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
@@ -817,7 +804,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -962,17 +954,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — сотрудник показывает ко",
-              "feedbackByLocale": {
-                "ru": "Сначала `It is`, затем название с `a`: слово `uniform` начинается с согласного «й».",
-                "uk": "Спершу `It is`, потім назва з `a`: слово `uniform` починається з приголосного «й»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1261,7 +1243,7 @@
               "text": "Is"
             }
           ],
-          "testedDimension": "Вставте слово — працівник написав, що ск",
+          "testedDimension": "Вставте слово — працівник написав, що складання триватиме годину; доповніть коротку відповідь про час",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i05:r2",
@@ -1315,17 +1297,7 @@
           "authoredDistractorTokens": [
             "An"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i06:r1",
-              "correct": false,
-              "testedDimension": "Складіть коротку назву — друг вказує на ",
-              "feedbackByLocale": {
-                "ru": "Хотя первой написана `u`, сначала слышен согласный «й». Поэтому короткое название начинается с `A`.",
-                "uk": "Хоча першою написано `u`, спочатку чути приголосний «й». Тому коротка назва починається з `A`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1374,7 +1346,7 @@
               "text": "am"
             }
           ],
-          "testedDimension": "Вставте слово — покупець приніс чайник д",
+          "testedDimension": "Вставте слово — покупець приніс чайник до сервісу; назвіть предмет повною фразою (`kettle` — «чайник»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i07:r2",
@@ -1431,17 +1403,7 @@
           "authoredDistractorTokens": [
             "A"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i08:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й складіть — працівник відпов",
-              "feedbackByLocale": {
-                "ru": "В записи перед `hour` звучит `An`: первая буква названия молчит, а первый звук гласный.",
-                "uk": "У записі перед `hour` звучить `An`: перша літера назви мовчить, а перший звук голосний."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1490,7 +1452,7 @@
               "text": "is"
             }
           ],
-          "testedDimension": "Вставте слово — біля стійки залишили пил",
+          "testedDimension": "Вставте слово — біля стійки залишили пилосос на ремонт; назвіть його повною фразою (`vacuum` — «пилосос»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-11:i09:r2",
@@ -1695,17 +1657,7 @@
           "authoredDistractorTokens": [
             "a"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i12:r1",
-              "correct": false,
-              "testedDimension": "Складіть питання — працівник назвав час ",
-              "feedbackByLocale": {
-                "ru": "Начните вопрос с `Is it`. Перед `hour` нужно `an`: написанная `h` не даёт согласного звука.",
-                "uk": "Почніть питання з `Is it`. Перед `hour` потрібне `an`: написана `h` не дає приголосного звуку."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1731,16 +1683,33 @@
           }
         ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-11:i13:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-11:i13:audio"
+        ],
         "accessibilityLabel": "Послухайте й оберіть — працівник відповідає, чи це робоча форма",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": {"audioTargetId": "en:lesson-03:session-11:i13:audio", "transcript": "Is it a uniform?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-11:i13:audio",
+            "transcript": "Is it a uniform?"
+          },
           "slowReferenceAudio": null,
           "localizedMeaningChoices": [
-            {"responseId": "en:lesson-03:session-11:i13:r1", "targetText": "Is it a uniform?", "meaningByLocale": null},
-            {"responseId": "en:lesson-03:session-11:i13:r2", "targetText": "It is a uniform.", "meaningByLocale": null},
-            {"responseId": "en:lesson-03:session-11:i13:r3", "targetText": "Is it an uniform?", "meaningByLocale": null}
+            {
+              "responseId": "en:lesson-03:session-11:i13:r1",
+              "targetText": "Is it a uniform?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-11:i13:r2",
+              "targetText": "It is a uniform.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-03:session-11:i13:r3",
+              "targetText": "Is it an uniform?",
+              "meaningByLocale": null
+            }
           ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [
@@ -1790,7 +1759,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1935,17 +1909,7 @@
           "authoredDistractorTokens": [
             "an"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-11:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — працівник показує компл",
-              "feedbackByLocale": {
-                "ru": "Сначала `It is`, затем название с `a`: слово `uniform` начинается с согласного «й».",
-                "uk": "Спершу `It is`, потім назва з `a`: слово `uniform` починається з приголосного «й»."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

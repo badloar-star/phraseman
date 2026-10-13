@@ -110,6 +110,8 @@ He is ___ . → **asleep** · awake · home
 <!-- interaction_id: en:lesson-01:session-22:i09; family: phrase_builder -->
 Плитки: `away` `She` `is` `am` → **She is away.**
 *`am` лишнее: с `She` ставят `is` — `She is away.`*
+*(плитка `am` лишняя: `am` лишнее: с `She` ставят `is` — `She is away.`)*
+
 
 **10 · Вставьте слово — дочь соседа второй день не выходит, температура**
 <!-- interaction_id: en:lesson-01:session-22:i10; family: context_gap_grammar -->
@@ -122,6 +124,8 @@ She is ___ . → **ill** · away · quiet
 <!-- interaction_id: en:lesson-01:session-22:i11; family: listen_build_dictation -->
 🔊 *He is awake.* Плитки: `awake` `He` `is` `asleep` → **He is awake.**
 *`asleep` лишнее: в записи он не спит, поэтому `He is awake.`*
+*(плитка `asleep` лишняя: `asleep` лишнее: в записи он не спит, поэтому `He is awake.`)*
+
 
 **12 · Соедините пары**
 <!-- interaction_id: en:lesson-01:session-22:i12; family: speed_match -->
@@ -138,6 +142,8 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i14; family: phrase_builder -->
 Плитки: `home` `She` `are` `is` → **She is home.**
 *`are` лишнее: с `She` ставят `is` — `She is home.`*
+*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is` — `She is home.`)*
+
 
 **15 · Скажите вслух — Марта говорит о коллеге Олеге: «Он не болен»**
 <!-- interaction_id: en:lesson-01:session-22:i15; family: scripted_repeat_compare -->
@@ -147,6 +153,8 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i16; family: phrase_builder -->
 Плитки: `tired` `She` `is` `not` → **She is tired.**
 *`not` лишнее: Нина зевает, поэтому `She is tired.`, без отрицания.*
+*(плитка `not` лишняя: `not` лишнее: Нина зевает, поэтому `She is tired.`, без отрицания.)*
+
 
 **17 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-01:session-22:i17:s01; family: scripted_repeat_compare -->
@@ -156,16 +164,22 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i17:s02; family: phrase_builder -->
 Плитки: `awake` `She` `is` `are` → **She is awake.**
 *`are` лишнее: с `She` ставят `is` — `She is awake.`*
+*(плитка `are` лишняя: `are` лишнее: с `She` ставят `is` — `She is awake.`)*
+
 
 **19 · Послушайте и соберите — «он уехал»**
 <!-- interaction_id: en:lesson-01:session-22:i17:s03; family: listen_build_dictation -->
 🔊 *He is away.* Плитки: `away` `He` `is` `are` → **He is away.**
 *`are` лишнее: с `He` ставят `is` — `He is away.`*
+*(плитка `are` лишняя: `are` лишнее: с `He` ставят `is` — `He is away.`)*
+
 
 **20 · Соберите фразу — сосед прямо говорит, что устал**
 <!-- interaction_id: en:lesson-01:session-22:i17:s04; family: phrase_builder -->
 Плитки: `tired` `He` `is` `are` → **He is tired.**
 *`are` лишнее: с `He` ставят `is` — `He is tired.`*
+*(плитка `are` лишняя: `are` лишнее: с `He` ставят `is` — `He is tired.`)*
+
 
 ---
 

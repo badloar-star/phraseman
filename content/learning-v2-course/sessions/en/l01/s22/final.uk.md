@@ -110,6 +110,8 @@ He is ___ . → **asleep** · awake · home
 <!-- interaction_id: en:lesson-01:session-22:i09; family: phrase_builder -->
 Плитки: `away` `She` `is` `am` → **She is away.**
 *`am` зайве: з `She` ставлять `is` — `She is away`.*
+*(плитка `am` зайва: `am` зайве: з `She` ставлять `is` — `She is away`.)*
+
 
 **10 · Вставте слово — донька сусіда другий день не виходить, температура**
 <!-- interaction_id: en:lesson-01:session-22:i10; family: context_gap_grammar -->
@@ -122,6 +124,8 @@ She is ___ . → **ill** · away · quiet
 <!-- interaction_id: en:lesson-01:session-22:i11; family: listen_build_dictation -->
 🔊 *He is awake.* Плитки: `awake` `He` `is` `asleep` → **He is awake.**
 *`asleep` зайве: у записі він не спить, тому `He is awake`.*
+*(плитка `asleep` зайва: `asleep` зайве: у записі він не спить, тому `He is awake`.)*
+
 
 **12 · З'єднайте пари**
 <!-- interaction_id: en:lesson-01:session-22:i12; family: speed_match -->
@@ -138,6 +142,8 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i14; family: phrase_builder -->
 Плитки: `home` `She` `are` `is` → **She is home.**
 *`are` зайве: з `She` ставлять `is` — `She is home`.*
+*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is home`.)*
+
 
 **15 · Скажіть уголос — Марта говорить про колегу Олега: «Він не хворий»**
 <!-- interaction_id: en:lesson-01:session-22:i15; family: scripted_repeat_compare -->
@@ -147,6 +153,8 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i16; family: phrase_builder -->
 Плитки: `tired` `She` `is` `not` → **She is tired.**
 *`not` зайве: Ніна позіхає, тому `She is tired`, без заперечення.*
+*(плитка `not` зайва: `not` зайве: Ніна позіхає, тому `She is tired`, без заперечення.)*
+
 
 **17 · Промовте одну фразу**
 <!-- interaction_id: en:lesson-01:session-22:i17:s01; family: scripted_repeat_compare -->
@@ -156,16 +164,22 @@ She is ___ . → **quiet** · away · ill
 <!-- interaction_id: en:lesson-01:session-22:i17:s02; family: phrase_builder -->
 Плитки: `awake` `She` `is` `are` → **She is awake.**
 *`are` зайве: з `She` ставлять `is` — `She is awake`.*
+*(плитка `are` зайва: `are` зайве: з `She` ставлять `is` — `She is awake`.)*
+
 
 **19 · Послухайте і складіть — «він поїхав»**
 <!-- interaction_id: en:lesson-01:session-22:i17:s03; family: listen_build_dictation -->
 🔊 *He is away.* Плитки: `away` `He` `is` `are` → **He is away.**
 *`are` зайве: з `He` ставлять `is` — `He is away`.*
+*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is away`.)*
+
 
 **20 · Складіть фразу — сусід прямо каже, що втомився**
 <!-- interaction_id: en:lesson-01:session-22:i17:s04; family: phrase_builder -->
 Плитки: `tired` `He` `is` `are` → **He is tired.**
 *`are` зайве: з `He` ставлять `is` — `He is tired`.*
+*(плитка `are` зайва: `are` зайве: з `He` ставлять `is` — `He is tired`.)*
+
 
 ---
 

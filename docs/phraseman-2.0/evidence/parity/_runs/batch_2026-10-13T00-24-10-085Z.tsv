@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-006	2026-10-13T00:24:52.869Z	error	11523	step_target_not_found:#spire-all-members+ждали_metro_24мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-24-10-085Z/spire-006.error.png	0

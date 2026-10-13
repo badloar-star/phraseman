@@ -96,6 +96,10 @@
 <!-- interaction_id: en:lesson-03:session-37:i09; family: context_gap_grammar -->
 Ціль: `___ are buildings.`
 Варіанти: `These` · `Those` · `This` · `That`
+- Those — *`Those are buildings` називає кілька будівель далі. Ці корпуси поруч, тому потрібно `These`.*
+- This — *`This` стосується одного предмета й потребує `is`. Тут будівель кілька.*
+- That — *`That` стосується одного далекого предмета й потребує `is`. Тут кілька будівель поруч.*
+
 
 **10 · Складіть опис — один вхід поруч зі схемою**
 <!-- interaction_id: en:lesson-03:session-37:i12; family: phrase_builder -->
@@ -105,6 +109,10 @@
 <!-- interaction_id: en:lesson-03:session-37:i13; family: listen_choose -->
 Ціль: `These are exits.`
 Варіанти: `Це виходи` · `Це вихід` · `Це входи` · `Це будівлі`
+- Це вихід — *У записі чути `these are` і `exits`: ідеться про кілька виходів.*
+- Це входи — *Число збігається, але названо `exits` — виходи, а не `entrances`.*
+- Це будівлі — *Названо `exits`, а будівлі англійською — `buildings`.*
+
 
 **12 · Вставте слово — біля дальньої стіни один вихід**
 <!-- interaction_id: en:lesson-03:session-37:i11; family: context_gap_grammar -->

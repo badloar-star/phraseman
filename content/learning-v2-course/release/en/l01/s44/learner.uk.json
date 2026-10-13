@@ -72,6 +72,15 @@
               "ru": "Пропало `I`. Без него непонятно, кто устал.",
               "uk": "Зникло `I`. Без нього незрозуміло, хто втомився."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i01:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — що ви почули?",
+            "feedbackByLocale": {
+              "ru": "В аудио `I'm tired.`: `am` уже спрятано в `I'm`.",
+              "uk": "В аудіо `I'm tired`: `am` уже заховане в `I'm`."
+            }
           }
         ],
         "isWordCard": false,
@@ -126,6 +135,15 @@
         ],
         "testedDimension": "Вставте слово — ви позіхаєте цілий вечір",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i02:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви позіхаєте цілий вечір",
+            "feedbackByLocale": {
+              "ru": "Вы зеваете, значит вы `tired` — «устали».",
+              "uk": "Ви позіхаєте, отже ви `tired` — «втомилися»."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-44:i02:r2",
             "correct": false,
@@ -217,6 +235,15 @@
               "ru": "В записи первое слово другое — там `he's`, про одного.",
               "uk": "У записі перше слово інше — там `he's`, про одного."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i03:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — про людину чи про річ?",
+            "feedbackByLocale": {
+              "ru": "В аудио `He's cold.`: речь об одном мужчине.",
+              "uk": "В аудіо `He's cold`: ідеться про одного чоловіка."
+            }
           }
         ],
         "isWordCard": false,
@@ -249,7 +276,17 @@
         "authoredDistractorTokens": [
           "is"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «пиво холодное»",
+            "feedbackByLocale": {
+              "ru": "`is` лишнее: оно уже спрятано в `It's cold.`",
+              "uk": "`is` зайве: воно вже заховане в `It's cold`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -282,7 +319,26 @@
           "are",
           "cold"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они не правы»",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: оно уже спрятано в `They're wrong.`",
+              "uk": "`are` зайве: воно вже заховане в `They're wrong`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i05:tile:d2",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «они не правы»",
+            "feedbackByLocale": {
+              "ru": "`cold` лишнее: в аудио `They're wrong.`",
+              "uk": "`cold` зайве: в аудіо `They're wrong`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -333,6 +389,15 @@
         ],
         "testedDimension": "Вставте слово — приятель цілий вечір спе",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i06:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — приятель цілий вечір сперечається і плутає факти",
+            "feedbackByLocale": {
+              "ru": "Он путает факты, значит он `wrong` — «неправ».",
+              "uk": "Він плутає факти, отже він `wrong` — «не має рації"
+            }
+          },
           {
             "responseId": "en:lesson-01:session-44:i06:r2",
             "correct": false,
@@ -402,6 +467,15 @@
               "ru": "В `called` губы округлены и звук тянется на одной ноте. В `cold` он съезжает: начинается как «о» и уходит к «у».",
               "uk": "У `called` губи округлені і звук тягнеться на одній ноті. У `cold` він з'їжджає: починається як «о» і йде до «у»."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i07:r1",
+            "correct": true,
+            "testedDimension": "Розрізніть звуки — яке з двох про «холодно»?",
+            "feedbackByLocale": {
+              "ru": "Выбрано `cold`: это слово значит «холодно».",
+              "uk": "Обрано `cold`: це слово означає «холодно»."
+            }
           }
         ]
       },
@@ -455,6 +529,15 @@
         "testedDimension": "Вставте слово — вас кличуть за столик, с",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-44:i08:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — вас кличуть за столик, справ у вас немає, ви вільні",
+            "feedbackByLocale": {
+              "ru": "Дел нет, значит вы `free` — «свободны».",
+              "uk": "Справ немає, отже ви `free` — «вільні»."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-44:i08:r2",
             "correct": false,
             "testedDimension": "Вставте слово — вас кличуть за столик, с",
@@ -501,7 +584,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вас зовут за столик, и ",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: оно уже спрятано в `I'm free.`",
+              "uk": "`am` зайве: воно вже заховане в `I'm free`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -571,8 +664,17 @@
             "correct": false,
             "testedDimension": "Послухайте і виберіть — що ви почули?",
             "feedbackByLocale": {
-              "ru": "Скрепка потерялась целиком, а в записи она есть.",
-              "uk": "Скріпка загубилася повністю, а в записі вона є."
+              "ru": "После `it` нужна форма `is`: в записи это короткая форма `it's`.",
+              "uk": "Після `it` потрібна форма `is`: у записі це коротка форма `it's`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i10:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — що ви почули?",
+            "feedbackByLocale": {
+              "ru": "В аудио `It's cold.`: речь о вещи или погоде, не о мужчине.",
+              "uk": "В аудіо `It's cold`: ідеться про річ або погоду, не про чоловіка."
             }
           }
         ],
@@ -660,7 +762,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вставте скріпку — про компанію за сусіднім столом",
+      "prompt": "Виберіть форму після `They` — про компанію за сусіднім столом",
       "responseOptions": [
         {
           "responseId": "en:lesson-01:session-44:i12:r1",
@@ -677,12 +779,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте скріпку — про компанію за сусіднім столом",
+      "accessibilityLabel": "Виберіть форму після `They` — про компанію за сусіднім столом",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вставьте скрепку — про компанию за соседним столом",
-          "uk": "Вставте скріпку — про компанію за сусіднім столом"
+          "ru": "Выберите форму после `They` — про компанию за соседним столом",
+          "uk": "Виберіть форму після `They` — про компанію за сусіднім столом"
         },
         "gappedTargetPhrase": "They ___ wrong.",
         "gapOptions": [
@@ -699,12 +801,21 @@
             "text": "am"
           }
         ],
-        "testedDimension": "Вставте скріпку — про компанію за сусідн",
+        "testedDimension": "Виберіть форму після `They` — про компанію за сусіднім столом",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i12:r1",
+            "correct": true,
+            "testedDimension": "Виберіть форму після `They` — про компанію за сусіднім столом",
+            "feedbackByLocale": {
+              "ru": "После `They` ставят `are`: `They are wrong.`",
+              "uk": "Після `They` ставлять `are`: `They are wrong`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-44:i12:r2",
             "correct": false,
-            "testedDimension": "Вставте скріпку — про компанію за сусідн",
+            "testedDimension": "Виберіть форму після `They` — про компанію за сусіднім столом",
             "feedbackByLocale": {
               "ru": "`is` работает с одним человеком или одной вещью. Их там несколько.",
               "uk": "`is` працює з однією людиною або однією річчю. Їх там кілька."
@@ -713,7 +824,7 @@
           {
             "responseId": "en:lesson-01:session-44:i12:r3",
             "correct": false,
-            "testedDimension": "Вставте скріпку — про компанію за сусідн",
+            "testedDimension": "Виберіть форму після `They` — про компанію за сусіднім столом",
             "feedbackByLocale": {
               "ru": "`am` бывает только с `I`.",
               "uk": "`am` буває тільки з `I`."
@@ -748,7 +859,17 @@
         "authoredDistractorTokens": [
           "It's"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «он замёрз», внимательн",
+            "feedbackByLocale": {
+              "ru": "`It's` не подходит: речь о мужчине, поэтому `He's cold.`",
+              "uk": "`It's` не підходить: ідеться про чоловіка, тому `He's cold`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -758,13 +879,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 2",
+      "prompt": "Промовте фразу — Міра помічає, що ви позіхаєте",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i14:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 2",
+      "accessibilityLabel": "Промовте фразу — Міра помічає, що ви позіхаєте",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -791,13 +912,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 2",
+      "prompt": "Промовте фразу — друг перевіряє пиво й просить сказати про нього",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i14:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 2",
+      "accessibilityLabel": "Промовте фразу — друг перевіряє пиво й просить сказати про нього",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -843,7 +964,17 @@
         "authoredDistractorTokens": [
           "They"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i15:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Лина и её коллега говор",
+            "feedbackByLocale": {
+              "ru": "Нужно `They're wrong.`: `They` без `are` не образует фразу.",
+              "uk": "Потрібно `They're wrong`: `They` без `are` не утворює фразу."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -851,31 +982,76 @@
       "interactionId": "en:lesson-01:session-44:i16:s01",
       "ordinal": 20,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 3",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i16:s01:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 3",
-      "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i16:s01:audio",
-          "transcript": "It's cold."
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте значок — друг питає, чи холодне пиво",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-44:i16:s01:r1",
+          "text": "'s"
         },
-        "slowReferenceAudio": null,
-        "targetPhrase": "It's cold.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        {
+          "responseId": "en:lesson-01:session-44:i16:s01:r2",
+          "text": "is"
+        },
+        {
+          "responseId": "en:lesson-01:session-44:i16:s01:r3",
+          "text": "are"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте значок — друг питає, чи холодне пиво",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте значок — друг спрашивает, холодное ли пиво",
+          "uk": "Вставте значок — друг питає, чи холодне пиво"
+        },
+        "gappedTargetPhrase": "It___ cold.",
+        "gapOptions": [
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r1",
+            "text": "'s"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r2",
+            "text": "is"
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r3",
+            "text": "are"
+          }
+        ],
+        "testedDimension": "Вставте значок — друг питає, чи холодне пиво",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r1",
+            "correct": true,
+            "testedDimension": "Вставте значок — друг питає, чи холодне пиво",
+            "feedbackByLocale": {
+              "ru": "Краткая форма — `it's`, поэтому нужен знак `'s`.",
+              "uk": "Коротка форма — `it's`, тому потрібен знак `'s`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r2",
+            "correct": false,
+            "testedDimension": "Вставте значок — друг питає, чи холодне пиво",
+            "feedbackByLocale": {
+              "ru": "`is` — полная форма; здесь нужно собрать краткую форму `it's`.",
+              "uk": "`is` — повна форма; тут треба зібрати коротку форму `it's`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-44:i16:s01:r3",
+            "correct": false,
+            "testedDimension": "Вставте значок — друг питає, чи холодне пиво",
+            "feedbackByLocale": {
+              "ru": "`are` употребляется с `you`, `we`, `they`, а с `it` — `is` или `'s`.",
+              "uk": "`are` вживається з `you`, `we`, `they`, а з `it` — `is` або `'s`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -884,31 +1060,33 @@
       "interactionId": "en:lesson-01:session-44:i16:s02",
       "ordinal": 21,
       "purpose": "independent_check",
-      "family": "scripted_repeat_compare",
-      "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 3",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — Міра питає, чому ви позіхаєте",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [
-        "en:lesson-01:session-44:i16:s02:audio"
-      ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 3",
+      "audioTargetIds": [],
+      "accessibilityLabel": "Складіть фразу — Міра питає, чому ви позіхаєте",
       "modePayload": {
-        "family": "scripted_repeat_compare",
-        "referenceAudio": {
-          "audioTargetId": "en:lesson-01:session-44:i16:s02:audio",
-          "transcript": "I'm tired."
-        },
-        "slowReferenceAudio": null,
+        "family": "phrase_builder",
         "targetPhrase": "I'm tired.",
-        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
-        "modelPlayback": "reference_and_slow",
-        "learnerPlayback": "available_after_capture",
-        "honestOutcomeStates": [
-          "PASS_CONFIDENT",
-          "NEEDS_WORK_CONFIDENT",
-          "UNCERTAIN",
-          "INVALID_AUDIO_OR_SYSTEM"
+        "orderedTokens": [
+          "I'm",
+          "tired"
+        ],
+        "authoredDistractorTokens": [
+          "are"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-44:i16:s02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Мира спрашивает, почему",
+            "feedbackByLocale": {
+              "ru": "`are` лишнее: оно уже спрятано в `I'm tired.`",
+              "uk": "`are` зайве: воно вже заховане в `I'm tired`."
+            }
+          }
         ]
       },
       "scriptedAlternate": null
@@ -919,13 +1097,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 3",
+      "prompt": "Промовте фразу — Ліна уточнює, хто назвав неправильний час",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-44:i16:s03:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 3",
+      "accessibilityLabel": "Промовте фразу — Ліна уточнює, хто назвав неправильний час",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -953,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "36b08dd6612f8e2efa89b44b62f36bf32ab0ba71152fa8fb40902b94aa089c69"
+  "learnerFingerprint": "650ac9ce43523d1b0a851055ddea3f2cd3412f030a38cfca9d23486416aa1f54"
 }

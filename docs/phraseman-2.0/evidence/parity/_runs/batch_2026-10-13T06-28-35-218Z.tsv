@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+dialogs-040	2026-10-13T06:29:56.347Z	error	16843	step_target_not_found:#dialogue-v2-catalogue-row-*+ждали_metro_23мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T06-28-35-218Z/dialogs-040.error.png	0

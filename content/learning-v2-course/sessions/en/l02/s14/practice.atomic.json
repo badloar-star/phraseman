@@ -212,7 +212,7 @@
               "text": "pretty"
             }
           ],
-          "testedDimension": "Вставьте слово — продавец кладёт руку на",
+          "testedDimension": "Вставьте слово — продавец кладёт руку на коробку и говорит, что другой покупатель уже оплатил её",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i04:r2",
@@ -336,7 +336,17 @@
           "authoredDistractorTokens": [
             "cheap"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите его короткий вопрос",
+              "feedbackByLocale": {
+                "ru": "продавец спрашивает, продано ли это, поэтому нужно `sold`: `Is it sold?`",
+                "uk": "продавець питає, чи це продано, тому потрібне `sold`: `Is it sold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -385,7 +395,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставьте слово — вы прошли в ботинках по",
+          "testedDimension": "Вставьте слово — вы прошли в ботинках по всему магазину, нога нигде не жмёт",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i08:r2",
@@ -620,7 +630,17 @@
           "authoredDistractorTokens": [
             "cheap"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — продавец: «Is it cheap?» Цена вас порадовала. Слово из вопроса не повторяйте",
+              "feedbackByLocale": {
+                "ru": "короткий ответ не повторяет слово из вопроса: `Yes, it is.`",
+                "uk": "коротка відповідь не повторює слово з питання: `Yes, it is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -669,7 +689,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставьте слово — суббота, в магазин не п",
+          "testedDimension": "Вставьте слово — суббота, в магазин не протолкнуться",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i13:r2",
@@ -722,7 +742,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите его короткий вопрос",
+              "feedbackByLocale": {
+                "ru": "это вопрос о внешнем виде без отрицания: `Is it pretty?`",
+                "uk": "це питання про зовнішній вигляд без заперечення: `Is it pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -733,19 +763,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите — вы спрашиваете продавца, дешёвое ли пальто",
-        "responseOptions": [{"responseId":"en:lesson-02:session-14:i15:r1","text":"Is it cheap?"},{"responseId":"en:lesson-02:session-14:i15:r2","text":"It is cheap."},{"responseId":"en:lesson-02:session-14:i15:r3","text":"Is it pretty?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-14:i15:r1",
+            "text": "Is it cheap?"
+          },
+          {
+            "responseId": "en:lesson-02:session-14:i15:r2",
+            "text": "It is cheap."
+          },
+          {
+            "responseId": "en:lesson-02:session-14:i15:r3",
+            "text": "Is it pretty?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-14:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-14:i15:audio"
+        ],
         "accessibilityLabel": "Послушайте и выберите — вы спрашиваете продавца, дешёвое ли пальто",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-02:session-14:i15:audio","transcript":"Is it cheap?"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-14:i15:r1","targetText":"Is it cheap?","meaningByLocale":null},{"responseId":"en:lesson-02:session-14:i15:r2","targetText":"It is cheap.","meaningByLocale":null},{"responseId":"en:lesson-02:session-14:i15:r3","targetText":"Is it pretty?","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-14:i15:r2","correct":false,"testedDimension":"вопрос, а не сообщение","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is cheap.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is cheap.` — твердження."}},{"responseId":"en:lesson-02:session-14:i15:r3","correct":false,"testedDimension":"значение cheap","feedbackByLocale":{"ru":"`pretty` — «красивый». В записи после `it` звучит `cheap`: «дешёвый».","uk":"`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий»."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-14:i15:audio",
+            "transcript": "Is it cheap?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-14:i15:r1",
+              "targetText": "Is it cheap?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r2",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r3",
+              "targetText": "Is it pretty?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "вопрос, а не сообщение",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is cheap.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is cheap.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "значение cheap",
+              "feedbackByLocale": {
+                "ru": "`pretty` — «красивый». В записи после `it` звучит `cheap`: «дешёвый».",
+                "uk": "`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },
@@ -1024,7 +1107,7 @@
               "text": "pretty"
             }
           ],
-          "testedDimension": "Вставте слово — продавець кладе руку на ",
+          "testedDimension": "Вставте слово — продавець кладе руку на коробку й каже, що інший покупець уже оплатив її",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i04:r2",
@@ -1148,7 +1231,17 @@
           "authoredDistractorTokens": [
             "cheap"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i07:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите его короткий вопрос",
+              "feedbackByLocale": {
+                "ru": "продавец спрашивает, продано ли это, поэтому нужно `sold`: `Is it sold?`",
+                "uk": "продавець питає, чи це продано, тому потрібне `sold`: `Is it sold?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1197,7 +1290,7 @@
               "text": "crowded"
             }
           ],
-          "testedDimension": "Вставте слово — ви пройшли в черевиках у",
+          "testedDimension": "Вставте слово — ви пройшли в черевиках усю крамницю, нозі ніде не тисне",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i08:r2",
@@ -1432,7 +1525,17 @@
           "authoredDistractorTokens": [
             "cheap"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i12:tile:d1",
+              "correct": false,
+              "testedDimension": "Соберите ответ — продавец: «Is it cheap?» Цена вас порадовала. Слово из вопроса не повторяйте",
+              "feedbackByLocale": {
+                "ru": "короткий ответ не повторяет слово из вопроса: `Yes, it is.`",
+                "uk": "коротка відповідь не повторює слово з питання: `Yes, it is.`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1481,7 +1584,7 @@
               "text": "comfortable"
             }
           ],
-          "testedDimension": "Вставте слово — субота, у крамницю не пр",
+          "testedDimension": "Вставте слово — субота, у крамницю не протовпитися",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-14:i13:r2",
@@ -1534,7 +1637,17 @@
           "authoredDistractorTokens": [
             "not"
           ],
-          "slotFeedback": []
+          "slotFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i14:tile:d1",
+              "correct": false,
+              "testedDimension": "Послушайте продавца и соберите его короткий вопрос",
+              "feedbackByLocale": {
+                "ru": "это вопрос о внешнем виде без отрицания: `Is it pretty?`",
+                "uk": "це питання про зовнішній вигляд без заперечення: `Is it pretty?`"
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1545,19 +1658,72 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть — ви питаєте продавця, чи дешеве пальто",
-        "responseOptions": [{"responseId":"en:lesson-02:session-14:i15:r1","text":"Is it cheap?"},{"responseId":"en:lesson-02:session-14:i15:r2","text":"It is cheap."},{"responseId":"en:lesson-02:session-14:i15:r3","text":"Is it pretty?"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-14:i15:r1",
+            "text": "Is it cheap?"
+          },
+          {
+            "responseId": "en:lesson-02:session-14:i15:r2",
+            "text": "It is cheap."
+          },
+          {
+            "responseId": "en:lesson-02:session-14:i15:r3",
+            "text": "Is it pretty?"
+          }
+        ],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-14:i15:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-14:i15:audio"
+        ],
         "accessibilityLabel": "Послухайте й виберіть — ви питаєте продавця, чи дешеве пальто",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio":{"audioTargetId":"en:lesson-02:session-14:i15:audio","transcript":"Is it cheap?"},
-          "slowReferenceAudio":null,
-          "localizedMeaningChoices":[{"responseId":"en:lesson-02:session-14:i15:r1","targetText":"Is it cheap?","meaningByLocale":null},{"responseId":"en:lesson-02:session-14:i15:r2","targetText":"It is cheap.","meaningByLocale":null},{"responseId":"en:lesson-02:session-14:i15:r3","targetText":"Is it pretty?","meaningByLocale":null}],
-          "transcriptRevealPolicy":"after_first_attempt",
-          "choiceFeedback":[{"responseId":"en:lesson-02:session-14:i15:r2","correct":false,"testedDimension":"запитання, а не твердження","feedbackByLocale":{"ru":"В вопросе первым звучит `Is`. `It is cheap.` — сообщение.","uk":"У запитанні першим звучить `Is`. `It is cheap.` — твердження."}},{"responseId":"en:lesson-02:session-14:i15:r3","correct":false,"testedDimension":"значення cheap","feedbackByLocale":{"ru":"`pretty` — «красивый». В записи после `it` звучит `cheap`: «дешёвый».","uk":"`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий»."}}],
-          "isWordCard":false,
-          "wordCard":null
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-14:i15:audio",
+            "transcript": "Is it cheap?"
+          },
+          "slowReferenceAudio": null,
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-14:i15:r1",
+              "targetText": "Is it cheap?",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r2",
+              "targetText": "It is cheap.",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r3",
+              "targetText": "Is it pretty?",
+              "meaningByLocale": null
+            }
+          ],
+          "transcriptRevealPolicy": "after_first_attempt",
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-14:i15:r2",
+              "correct": false,
+              "testedDimension": "запитання, а не твердження",
+              "feedbackByLocale": {
+                "ru": "В вопросе первым звучит `Is`. `It is cheap.` — сообщение.",
+                "uk": "У запитанні першим звучить `Is`. `It is cheap.` — твердження."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-14:i15:r3",
+              "correct": false,
+              "testedDimension": "значення cheap",
+              "feedbackByLocale": {
+                "ru": "`pretty` — «красивый». В записи после `it` звучит `cheap`: «дешёвый».",
+                "uk": "`pretty` — «гарний». У записі після `it` звучить `cheap`: «дешевий»."
+              }
+            }
+          ],
+          "isWordCard": false,
+          "wordCard": null
         },
         "scriptedAlternate": null
       },

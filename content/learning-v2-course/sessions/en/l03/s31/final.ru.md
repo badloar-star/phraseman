@@ -72,6 +72,9 @@
 <!-- interaction_id: en:lesson-03:session-31:i05; family: context_gap_grammar -->
 Цель: `___`
 Варианты: `boot` · `belt` · `hat`
+- belt — *Belt — ремень. Здесь нужен сапог: boot.*
+- hat — *Hat — шляпа. Здесь нужен сапог: boot.*
+
 
 **4 · Произнесите слово**
 <!-- interaction_id: en:lesson-03:session-31:i02; family: scripted_repeat_compare -->
@@ -82,11 +85,17 @@
 Значения вариантов: `belt` — ремень · `built` — построил · `bench` — скамья · `bolt` — засов
 Цель: `belt`
 Варианты: `belt` · `built` · `bench` · `bolt`
+- built — *В `built` звучит /ɪ/, а в `belt` — /e/. Конечный `t` есть в обоих словах.*
+- bench — *`bench` заканчивается /ntʃ/, а `belt` — /lt/.*
+- bolt — *В `bolt` середина звучит как /oʊ~əʊ/, а в `belt` — короткий /e/.*
+
 
 **6 · Различите слово — boot или book**
 <!-- interaction_id: en:lesson-03:session-31:i06; family: sound_contrast -->
 Цель: `boot`
 Варианты: `boot` · `book`
+- book — *Book — книга. В boot гласный длиннее: boot.*
+
 
 **7 · Соедините слова со значениями — театральный костюм**
 <!-- interaction_id: en:lesson-03:session-31:i07; family: speed_match -->
@@ -97,11 +106,15 @@
 <!-- interaction_id: en:lesson-03:session-31:i08; family: context_gap_grammar -->
 Цель: `This ___ here.`
 Варианты: `is` · `are`
+- are — *Are — для нескольких предметов. Здесь один предмет: This is here.*
+
 
 **9 · Различите слово — This или That**
 <!-- interaction_id: en:lesson-03:session-31:i09; family: sound_contrast -->
 Цель: `This`
 Варианты: `This` · `That`
+- That — *That используют для предмета дальше. Здесь предмет рядом: This.*
+
 
 **10 · Произнесите одну фразу**
 <!-- interaction_id: en:lesson-03:session-31:i10; family: scripted_repeat_compare -->
@@ -119,11 +132,19 @@
 <!-- interaction_id: en:lesson-03:session-31:i13; family: context_gap_grammar -->
 Цель: `___ boot, please.`
 Варианты: `This` · `That` · `It` · `Is`
+- That — *`that` выбирает вещь вдали. Сапог перед вами, поэтому нужен `This`.*
+- It — *`it boot` не образует просьбу. Перед названием близкой вещи ставим `This`.*
+- Is — *`Is boot` — сломанное начало вопроса. Здесь нужна просьба `This boot, please`.*
+
 
 **14 · Послушайте и выберите точное значение просьбы**
 <!-- interaction_id: en:lesson-03:session-31:i14; family: listen_choose -->
 Цель: `That hat, please.`
 Варианты: `Ту шляпу, пожалуйста.` · `Эту шляпу, пожалуйста.` · `Тот ремень, пожалуйста.` · `Этот ремень, пожалуйста.`
+- Эту шляпу, пожалуйста. — *В записи прозвучало `That`, а этот вариант передаёт `This`.*
+- Тот ремень, пожалуйста. — *Указатель передан верно, но в записи назвали `hat` — шляпу, а не `belt` — ремень.*
+- Этот ремень, пожалуйста. — *Здесь не совпадают оба ключевых слова: прозвучали `That hat`, а не `This belt`.*
+
 
 **15 · Соберите просьбу — сапог стоит у дальней стены**
 <!-- interaction_id: en:lesson-03:session-31:i15; family: phrase_builder -->
@@ -133,6 +154,10 @@
 <!-- interaction_id: en:lesson-03:session-31:i16; family: context_gap_grammar -->
 Цель: `___ belt, please.`
 Варианты: `This` · `That` · `It` · `Am`
+- That — *Ремень уже рядом. После перемещения выбираем `This`, а не прежнее `That`.*
+- It — *`it belt` не образует просьбу. Перед названием выбранной вещи нужен указатель `This`.*
+- Am — *`am` используется с `I`, когда говорим о себе. Здесь выбираем ремень словом `This`.*
+
 
 **17 · Послушайте и соберите одну фразу**
 <!-- interaction_id: en:lesson-03:session-31:i17:s01; family: listen_build_dictation -->

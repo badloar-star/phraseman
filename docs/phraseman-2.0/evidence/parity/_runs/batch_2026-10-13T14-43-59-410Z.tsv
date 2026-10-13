@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+onboarding-018	2026-10-13T14:45:36.472Z	timeout	90361	нет маркера+ждали_metro_22мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T14-43-59-410Z/onboarding-018.timeout.png	0

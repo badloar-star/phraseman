@@ -105,7 +105,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -194,20 +199,27 @@
         "prompt": "Послушайте слово и прочитайте его значение",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-37:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i04:audio"
+        ],
         "accessibilityLabel": "Послушайте слово и прочитайте его значение",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-37:i04:audio", "transcript": "entrance" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i04:audio",
+            "transcript": "entrance"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{
-            "responseId": "en:lesson-03:session-37:i04:r1",
-            "targetText": "entrance",
-            "meaningByLocale": {
-              "ru": "«вход»: место или дверь, через которые входят.",
-              "uk": "«вхід»: місце або двері, через які входять."
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i04:r1",
+              "targetText": "entrance",
+              "meaningByLocale": {
+                "ru": "«вход»: место или дверь, через которые входят.",
+                "uk": "«вхід»: місце або двері, через які входять."
+              }
             }
-          }],
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
@@ -474,7 +486,7 @@
               "text": "That"
             }
           ],
-          "testedDimension": "Вставьте указатель — рядом находятся нес",
+          "testedDimension": "Вставьте указатель — рядом находятся несколько корпусов",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-37:i09:r2",
@@ -640,9 +652,9 @@
         "interactionId": "en:lesson-03:session-37:i11",
         "ordinal": 15,
         "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-      "prompt": "Вставьте слово — у дальней стены один выход",
+        "prompt": "Вставьте слово — у дальней стены один выход",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-37:i11:r1",
@@ -655,24 +667,30 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Вставьте слово — у дальней стены один выход",
+        "accessibilityLabel": "Вставьте слово — у дальней стены один выход",
         "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "У дальней стены указан один выход.",
-          "uk": "Біля дальньої стіни позначено один вихід."
-        },
-        "gappedTargetPhrase": "That is an ___.",
-        "gapOptions": [
-          { "responseId": "en:lesson-03:session-37:i11:r1", "text": "exit" },
-          { "responseId": "en:lesson-03:session-37:i11:r2", "text": "exist" }
-        ],
-        "testedDimension": "Одно конкретное слово по ясному контексту",
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "Вставьте слово — у дальней стены один выход",
+            "uk": "Біля дальньої стіни позначено один вихід."
+          },
+          "gappedTargetPhrase": "That is an ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i11:r1",
+              "text": "exit"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i11:r2",
+              "text": "exist"
+            }
+          ],
+          "testedDimension": "Одно конкретное слово по ясному контексту",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-37:i11:r2",
               "correct": false,
-          "testedDimension": "Одно конкретное слово по ясному контексту",
+              "testedDimension": "Одно конкретное слово по ясному контексту",
               "feedbackByLocale": {
                 "ru": "`Exist` значит «существовать». У дальней стены указан выход — `exit`.",
                 "uk": "`Exist` означає «існувати». Біля дальньої стіни позначено вихід — `exit`."
@@ -982,7 +1000,8 @@
             "an",
             "exit."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1088,7 +1107,12 @@
           "recordControlPolicy": "hold_press_release_with_accessible_toggle",
           "modelPlayback": "reference_and_slow",
           "learnerPlayback": "available_after_capture",
-          "honestOutcomeStates": ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"]
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1177,20 +1201,27 @@
         "prompt": "Послухайте слово та прочитайте його значення",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-03:session-37:i04:audio"],
+        "audioTargetIds": [
+          "en:lesson-03:session-37:i04:audio"
+        ],
         "accessibilityLabel": "Послухайте слово та прочитайте його значення",
         "modePayload": {
           "family": "listen_choose",
-          "referenceAudio": { "audioTargetId": "en:lesson-03:session-37:i04:audio", "transcript": "entrance" },
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-03:session-37:i04:audio",
+            "transcript": "entrance"
+          },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{
-            "responseId": "en:lesson-03:session-37:i04:r1",
-            "targetText": "entrance",
-            "meaningByLocale": {
-              "ru": "«вход»: место или дверь, через которые входят.",
-              "uk": "«вхід»: місце або двері, через які входять."
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-03:session-37:i04:r1",
+              "targetText": "entrance",
+              "meaningByLocale": {
+                "ru": "«вход»: место или дверь, через которые входят.",
+                "uk": "«вхід»: місце або двері, через які входять."
+              }
             }
-          }],
+          ],
           "transcriptRevealPolicy": "after_first_attempt",
           "choiceFeedback": [],
           "isWordCard": true,
@@ -1621,9 +1652,9 @@
         "interactionId": "en:lesson-03:session-37:i11",
         "ordinal": 15,
         "purpose": "guided_practice",
-      "family": "context_gap_grammar",
+        "family": "context_gap_grammar",
         "inputMode": "single_choice",
-      "prompt": "Вставте слово — біля дальньої стіни один вихід",
+        "prompt": "Вставте слово — біля дальньої стіни один вихід",
         "responseOptions": [
           {
             "responseId": "en:lesson-03:session-37:i11:r1",
@@ -1636,27 +1667,33 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — біля дальньої стіни один вихід",
+        "accessibilityLabel": "Вставте слово — біля дальньої стіни один вихід",
         "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "У дальней стены указан один выход.",
-          "uk": "Біля дальньої стіни позначено один вихід."
-        },
-        "gappedTargetPhrase": "That is an ___.",
-        "gapOptions": [
-          { "responseId": "en:lesson-03:session-37:i11:r1", "text": "exit" },
-          { "responseId": "en:lesson-03:session-37:i11:r2", "text": "exist" }
-        ],
-        "testedDimension": "Одне конкретне слово за ясним контекстом",
+          "family": "context_gap_grammar",
+          "localizedScene": {
+            "ru": "У дальней стены указан один выход.",
+            "uk": "Вставте слово — біля дальньої стіни один вихід"
+          },
+          "gappedTargetPhrase": "That is an ___.",
+          "gapOptions": [
+            {
+              "responseId": "en:lesson-03:session-37:i11:r1",
+              "text": "exit"
+            },
+            {
+              "responseId": "en:lesson-03:session-37:i11:r2",
+              "text": "exist"
+            }
+          ],
+          "testedDimension": "Одне конкретне слово за ясним контекстом",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-37:i11:r2",
               "correct": false,
-          "testedDimension": "Одно конкретное слово по ясному контексту",
+              "testedDimension": "Одно конкретное слово по ясному контексту",
               "feedbackByLocale": {
-            "ru": "`Exist` значит «существовать». У дальней стены указан выход — `exit`.",
-            "uk": "`Exist` означає «існувати». Біля дальньої стіни позначено вихід — `exit`."
+                "ru": "`Exist` значит «существовать». У дальней стены указан выход — `exit`.",
+                "uk": "`Exist` означає «існувати». Біля дальньої стіни позначено вихід — `exit`."
               }
             }
           ]
@@ -1961,7 +1998,8 @@
             "an",
             "exit."
           ],
-          "distractorTokens": []
+          "distractorTokens": [],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

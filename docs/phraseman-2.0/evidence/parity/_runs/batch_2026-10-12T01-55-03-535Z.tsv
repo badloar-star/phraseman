@@ -1,0 +1,8 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+cards-010	2026-10-12T01:55:25.828Z	ok	15176	marker+склейка+ждали_metro_25мс	docs/phraseman-2.0/evidence/parity/cards-010.png	0
+dialogs-001	2026-10-12T01:55:50.866Z	ok	13140	marker+склейка+ждали_metro_5мс	docs/phraseman-2.0/evidence/parity/dialogs-001.png	0
+dialogs-002	2026-10-12T01:56:09.932Z	ok	12929	marker+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-002.png	0
+dialogs-008	2026-10-12T01:56:45.215Z	ok	10732	marker+шагов_2+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-008.png	0
+dialogs-014	2026-10-12T01:57:44.098Z	ok	11905	marker+шагов_8+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/dialogs-014.png	0
+dialogs-030	2026-10-12T01:58:43.582Z	stitch_failed	11946	marker+шагов_8+склейка_не_удалась: [PARITY-SHOT] FAILED reason=UNKNOWN: unknown error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\dialogs-030.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=157831+ждали_metro_4мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-12T01-55-03-535Z/dialogs-030.bare.png	0
+cards-034	2026-10-12T01:59:09.057Z	ok	12004	marker+шагов_1+склейка+ждали_metro_3мс	docs/phraseman-2.0/evidence/parity/cards-034.png	0

@@ -71,8 +71,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-30:i15",
-    "correctText": "small",
-    "correctResponseId": "en:lesson-01:session-30:i15:r1"
+    "correctText": "It is small.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-30:i16",

@@ -1,0 +1,10 @@
+id	time	result	detail	file
+home-004	2026-10-13T01:14:39.644Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/home-004.png
+home-005	2026-10-13T01:14:40.735Z	stitched	склейка_1800x1303	docs/phraseman-2.0/evidence/parity/home-005.png
+home-006	2026-10-13T01:14:42.050Z	stitched	склейка_1800x1327	docs/phraseman-2.0/evidence/parity/home-006.png
+spire-gap-004	2026-10-13T01:14:43.350Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/spire-gap-004.png
+spire-gap-010	2026-10-13T01:14:45.628Z	failed	склейка_не_удалась: n error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-010.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=228616 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/spire-gap-010.png
+spire-gap-014	2026-10-13T01:14:46.977Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/spire-gap-014.png
+spire-gap-015	2026-10-13T01:14:48.325Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/spire-gap-015.png
+settings-gap-012	2026-10-13T01:14:49.652Z	stitched	склейка_1800x1304	docs/phraseman-2.0/evidence/parity/settings-gap-012.png
+cards-v2-053	2026-10-13T01:14:51.237Z	failed	склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\cards-v2-053.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=369487 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1229 — исходный голый кадр оставлен на месте	docs/phraseman-2.0/evidence/parity/cards-v2-053.png

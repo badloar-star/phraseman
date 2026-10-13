@@ -343,7 +343,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "На столе есть немного молока. Вставьте слово количества.",
+            "ru": "Вставьте слово количества",
             "uk": "На столі є трохи молока. Вставте слово кількості."
           },
           "gappedTargetPhrase": "There is ___ milk on the table.",
@@ -588,7 +588,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "выберите слово количества",
+        "prompt": "Выберите слово количества",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-18:i11:r1",
@@ -605,11 +605,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "выберите слово количества",
+        "accessibilityLabel": "Выберите слово количества",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "В корзине есть немного молока. Вставьте слово количества.",
+            "ru": "Выберите слово количества",
             "uk": "У кошику є трохи молока. Вставте слово кількості."
           },
           "gappedTargetPhrase": "There is ___ milk in the basket.",
@@ -657,11 +657,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "сообщите о молоке",
+        "prompt": "Сообщите о молоке",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "сообщите о молоке",
+        "accessibilityLabel": "Сообщите о молоке",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is some milk.",
@@ -1025,7 +1025,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "На столе есть немного молока. Вставьте слово количества.",
-            "uk": "На столі є трохи молока. Вставте слово кількості."
+            "uk": "Вставте слово кількості"
           },
           "gappedTargetPhrase": "There is ___ milk on the table.",
           "gapOptions": [
@@ -1269,7 +1269,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "оберіть слово кількості",
+        "prompt": "Оберіть слово кількості",
         "responseOptions": [
           {
             "responseId": "en:lesson-04:session-18:i11:r1",
@@ -1286,12 +1286,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "оберіть слово кількості",
+        "accessibilityLabel": "Оберіть слово кількості",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "В корзине есть немного молока. Вставьте слово количества.",
-            "uk": "У кошику є трохи молока. Вставте слово кількості."
+            "uk": "Оберіть слово кількості"
           },
           "gappedTargetPhrase": "There is ___ milk in the basket.",
           "gapOptions": [
@@ -1338,11 +1338,11 @@
         "purpose": "independent_check",
         "family": "phrase_builder",
         "inputMode": "ordered_tokens",
-        "prompt": "повідомте про молоко",
+        "prompt": "Повідомте про молоко",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "повідомте про молоко",
+        "accessibilityLabel": "Повідомте про молоко",
         "modePayload": {
           "family": "phrase_builder",
           "targetPhrase": "There is some milk.",

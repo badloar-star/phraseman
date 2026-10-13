@@ -61,8 +61,8 @@
   },
   {
     "interactionId": "en:lesson-01:session-36:i13",
-    "correctText": "quiet",
-    "correctResponseId": "en:lesson-01:session-36:i13:r1"
+    "correctText": "They are quiet.",
+    "correctResponseId": null
   },
   {
     "interactionId": "en:lesson-01:session-36:i14",

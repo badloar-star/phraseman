@@ -105,7 +105,20 @@ function learningV2SessionInteractionBudgetV1() {
         remediationPolicy: "retries_and_second_error_explanation_outside_base_count",
     });
 }
+/**
+ * зачем (координатор 04.10, холодный старт; замер модулей №3): топология строится из одних констант и
+ * глубоко заморожена, но каждый вызов заново считает хеш канонического JSON по 1792 сессиям (~0,9–1 с в
+ * дев-сборке). Три модуля курса (release_index, active_catalog, local_progress) звали её при импорте —
+ * ~3 с из 5,5 с импортов корня. Результат детерминирован и неизменяем — считаем один раз.
+ */
+let cachedCourseTopologyV1 = null;
 function buildLearningV2CourseTopologyV1() {
+    if (cachedCourseTopologyV1)
+        return cachedCourseTopologyV1;
+    cachedCourseTopologyV1 = computeLearningV2CourseTopologyV1();
+    return cachedCourseTopologyV1;
+}
+function computeLearningV2CourseTopologyV1() {
     const lessons = Object.freeze(Array.from({ length: exports.LEARNING_V2_COURSE_LESSON_COUNT_V1 }, (_, lessonIndex) => {
         const lessonOrdinal = lessonIndex + 1;
         return Object.freeze({

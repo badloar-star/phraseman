@@ -72,6 +72,15 @@
               "ru": "Другие слова. В записи звучит короткое `I'm`.",
               "uk": "Інші слова. У записі звучить коротке `I'm`."
             }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i01:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — як звучить скорочення",
+            "feedbackByLocale": {
+              "ru": "В аудио сокращение `I'm`, а не два отдельных слова `I am`.",
+              "uk": "В аудіо скорочення `I'm`, а не два окремі слова `I am`."
+            }
           }
         ],
         "isWordCard": false,
@@ -127,6 +136,15 @@
         "testedDimension": "Вставте слово — ви прийшли пізніше за вс",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-41:i02:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви прийшли пізніше за всіх",
+            "feedbackByLocale": {
+              "ru": "Про себя говорят `I'm late.`",
+              "uk": "Про себе кажуть `I'm late`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-41:i02:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви прийшли пізніше за вс",
@@ -140,8 +158,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — ви прийшли пізніше за вс",
             "feedbackByLocale": {
-              "ru": "Одного `I` мало. Нужна скрепка — она внутри `I'm`.",
-              "uk": "Самого `I` замало. Потрібна скріпка — вона всередині `I'm`."
+              "ru": "Одного `I` мало: в `I'm` уже сокращено `am`.",
+              "uk": "Самого `I` замало: у `I'm` уже скорочене `am`."
             }
           }
         ]
@@ -173,7 +191,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «я в порядке»",
+            "feedbackByLocale": {
+              "ru": "она уже спрятана в `I'm`",
+              "uk": "вона вже схована в `I'm`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -234,8 +262,8 @@
             "correct": false,
             "testedDimension": "Послухайте і виберіть — про співрозмовни",
             "feedbackByLocale": {
-              "ru": "Только «ты», без скрепки. В записи слышно два слитых слова.",
-              "uk": "Тільки «ти», без скріпки. У записі чути два злиті слова."
+              "ru": "Здесь нужно `you're`: в нём уже есть `are`.",
+              "uk": "Тут потрібне `you're`: у ньому вже є `are`."
             }
           },
           {
@@ -245,6 +273,15 @@
             "feedbackByLocale": {
               "ru": "«Твой». Звучит точно так же, но в предложении о состоянии нужно `you're`.",
               "uk": "«Твій». Звучить точно так само, але у фразі про стан потрібне `you're`."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i04:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — про співрозмовника",
+            "feedbackByLocale": {
+              "ru": "В аудио `you're`: это `you are` в одном коротком слове.",
+              "uk": "В аудіо `you're`: це `you are` в одному короткому слові."
             }
           }
         ],
@@ -301,6 +338,15 @@
         "testedDimension": "Вставте слово — друг переживає, що спізн",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-41:i05:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — друг переживає, що спізнився, а все гаразд",
+            "feedbackByLocale": {
+              "ru": "Другу говорят `You're fine.`",
+              "uk": "Другові кажуть `You're fine`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-41:i05:r2",
             "correct": false,
             "testedDimension": "Вставте слово — друг переживає, що спізн",
@@ -314,8 +360,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — друг переживає, що спізн",
             "feedbackByLocale": {
-              "ru": "Скрепка пропала. `you` + `are` = `you're`.",
-              "uk": "Скріпка зникла. `you` + `are` = `you're`."
+              "ru": "`you` + `are` сокращается до `you're`.",
+              "uk": "`you` + `are` скорочується до `you're`."
             }
           }
         ]
@@ -347,7 +393,17 @@
         "authoredDistractorTokens": [
           "are"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — «ты опоздал»",
+            "feedbackByLocale": {
+              "ru": "она внутри `You're`",
+              "uk": "вона всередині `You're`"
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -398,6 +454,15 @@
         ],
         "testedDimension": "Вставте слово — у вас спитали дорогу, і ",
         "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i07:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — у вас спитали дорогу, і ви точно знаєте",
+            "feedbackByLocale": {
+              "ru": "Вы знаете ответ, поэтому `I'm sure.`",
+              "uk": "Ви знаєте відповідь, тому `I'm sure`."
+            }
+          },
           {
             "responseId": "en:lesson-01:session-41:i07:r2",
             "correct": false,
@@ -495,6 +560,15 @@
         "testedDimension": "Вставте слово — друг сумнівається, а ви ",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-41:i09:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — друг сумнівається, а ви бачите, що він не помилився",
+            "feedbackByLocale": {
+              "ru": "Вы говорите другу `You're sure.`",
+              "uk": "Ви кажете другові `You're sure`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-41:i09:r2",
             "correct": false,
             "testedDimension": "Вставте слово — друг сумнівається, а ви ",
@@ -508,8 +582,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — друг сумнівається, а ви ",
             "feedbackByLocale": {
-              "ru": "Без скрепки. `you` + `are` = `you're`.",
-              "uk": "Без скріпки. `you` + `are` = `you're`."
+              "ru": "После `you` здесь нужно `are`, поэтому получается `you're`.",
+              "uk": "Після `you` тут потрібне `are`, тому виходить `you're`."
             }
           }
         ]
@@ -520,65 +594,31 @@
       "interactionId": "en:lesson-01:session-41:i10",
       "ordinal": 13,
       "purpose": "guided_practice",
-      "family": "context_gap_grammar",
-      "inputMode": "single_choice",
-      "prompt": "Вставте слово — співрозмовник вибачився, хоча нема за що",
-      "responseOptions": [
-        {
-          "responseId": "en:lesson-01:session-41:i10:r1",
-          "text": "fine"
-        },
-        {
-          "responseId": "en:lesson-01:session-41:i10:r2",
-          "text": "sorry"
-        },
-        {
-          "responseId": "en:lesson-01:session-41:i10:r3",
-          "text": "late"
-        }
-      ],
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Складіть фразу — ви відповідаєте людині, яка дарма вибачилася",
+      "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вставте слово — співрозмовник вибачився, хоча нема за що",
+      "accessibilityLabel": "Складіть фразу — ви відповідаєте людині, яка дарма вибачилася",
       "modePayload": {
-        "family": "context_gap_grammar",
-        "localizedScene": {
-          "ru": "Вставьте слово — собеседник извинился, хотя не за что",
-          "uk": "Вставте слово — співрозмовник вибачився, хоча нема за що"
-        },
-        "gappedTargetPhrase": "You're ___ .",
-        "gapOptions": [
-          {
-            "responseId": "en:lesson-01:session-41:i10:r1",
-            "text": "fine"
-          },
-          {
-            "responseId": "en:lesson-01:session-41:i10:r2",
-            "text": "sorry"
-          },
-          {
-            "responseId": "en:lesson-01:session-41:i10:r3",
-            "text": "late"
-          }
+        "family": "phrase_builder",
+        "targetPhrase": "You're fine.",
+        "orderedTokens": [
+          "You're",
+          "fine"
         ],
-        "testedDimension": "Вставте слово — співрозмовник вибачився,",
-        "choiceFeedback": [
+        "authoredDistractorTokens": [
+          "sorry"
+        ],
+        "slotFeedback": [
           {
-            "responseId": "en:lesson-01:session-41:i10:r2",
+            "responseId": "en:lesson-01:session-41:i10:tile:d1",
             "correct": false,
-            "testedDimension": "Вставте слово — співрозмовник вибачився,",
+            "testedDimension": "Соберите фразу — вы отвечаете человеку, ",
             "feedbackByLocale": {
-              "ru": "Извиняется он, а вы отвечаете. Ему говорят, что всё в порядке.",
-              "uk": "Вибачається він, а ви відповідаєте. Йому кажуть, що все гаразд."
-            }
-          },
-          {
-            "responseId": "en:lesson-01:session-41:i10:r3",
-            "correct": false,
-            "testedDimension": "Вставте слово — співрозмовник вибачився,",
-            "feedbackByLocale": {
-              "ru": "«Опоздал». Он не опаздывал, он извинялся.",
-              "uk": "«Спізнився». Він не спізнювався, він вибачався."
+              "ru": "`sorry` лишнее: человеку отвечают `You're fine.`",
+              "uk": "`sorry` зайве: людині відповідають `You're fine`."
             }
           }
         ]
@@ -686,7 +726,17 @@
         "authoredDistractorTokens": [
           "am"
         ],
-        "slotFeedback": []
+        "slotFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите — «я уверен»",
+            "feedbackByLocale": {
+              "ru": "`am` лишнее: оно уже спрятано в `I'm sure.`",
+              "uk": "`am` зайве: воно вже заховане в `I'm sure`."
+            }
+          }
+        ]
       },
       "scriptedAlternate": null
     },
@@ -738,6 +788,15 @@
         "testedDimension": "Вставте слово — ви все ще за столом, і в",
         "choiceFeedback": [
           {
+            "responseId": "en:lesson-01:session-41:i13:r1",
+            "correct": true,
+            "testedDimension": "Вставте слово — ви все ще за столом, і вам добре",
+            "feedbackByLocale": {
+              "ru": "Вам хорошо: `I'm fine.`",
+              "uk": "Вам добре: `I'm fine`."
+            }
+          },
+          {
             "responseId": "en:lesson-01:session-41:i13:r2",
             "correct": false,
             "testedDimension": "Вставте слово — ви все ще за столом, і в",
@@ -763,28 +822,84 @@
       "interactionId": "en:lesson-01:session-41:i14",
       "ordinal": 17,
       "purpose": "independent_check",
-      "family": "phrase_builder",
-      "inputMode": "ordered_tokens",
-      "prompt": "Складіть фразу — «з тобою все гаразд»",
-      "responseOptions": [],
-      "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть фразу — «з тобою все гаразд»",
-      "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "You're fine.",
-        "localizedMeaning": {
-          "ru": "Соберите фразу — «ты в порядке»",
-          "uk": "Складіть фразу — «з тобою все гаразд»"
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+      "responseOptions": [
+        {
+          "responseId": "en:lesson-01:session-41:i14:r1",
+          "text": "You're fine."
         },
-        "orderedTokens": [
-          "You're",
-          "fine"
+        {
+          "responseId": "en:lesson-01:session-41:i14:r2",
+          "text": "I'm fine."
+        },
+        {
+          "responseId": "en:lesson-01:session-41:i14:r3",
+          "text": "You're late."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i14:audio"
+      ],
+      "accessibilityLabel": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i14:audio",
+          "transcript": "You're fine."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "en:lesson-01:session-41:i14:r1",
+            "targetText": "You're fine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i14:r2",
+            "targetText": "I'm fine.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i14:r3",
+            "targetText": "You're late.",
+            "meaningByLocale": null
+          }
         ],
-        "authoredDistractorTokens": [
-          "are"
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "en:lesson-01:session-41:i14:r2",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+            "feedbackByLocale": {
+              "ru": "«I'm fine» — это ответ о себе; здесь вы успокаиваете другого человека.",
+              "uk": "«I'm fine» — це відповідь про себе; тут ви заспокоюєте іншу людину."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i14:r3",
+            "correct": false,
+            "testedDimension": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+            "feedbackByLocale": {
+              "ru": "«You're late» — это про опоздание. После извинения вы говорите, что всё в порядке.",
+              "uk": "«You're late» — це про запізнення. Після вибачення ви кажете, що все гаразд."
+            }
+          },
+          {
+            "responseId": "en:lesson-01:session-41:i14:r1",
+            "correct": true,
+            "testedDimension": "Послухайте і виберіть — ви заспокоюєте людину після вибачення",
+            "feedbackByLocale": {
+              "ru": "Вы успокаиваете другого человека: `You're fine.`",
+              "uk": "Ви заспокоюєте іншу людину: `You're fine`."
+            }
+          }
         ],
-        "slotFeedback": []
+        "isWordCard": false,
+        "wordCard": null
       },
       "scriptedAlternate": null
     },
@@ -792,27 +907,28 @@
       "interactionId": "en:lesson-01:session-41:i15",
       "ordinal": 18,
       "purpose": "independent_check",
-      "family": "phrase_builder",
+      "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть відповідь — біля стійки спитали: «Хто спізнився?» Відповідайте двома словами",
+      "prompt": "Послухайте і складіть — біля стійки спитали, хто спізнився",
       "responseOptions": [],
       "mediaIds": [],
-      "audioTargetIds": [],
-      "accessibilityLabel": "Складіть відповідь — біля стійки спитали: «Хто спізнився?» Відповідайте двома словами",
+      "audioTargetIds": [
+        "en:lesson-01:session-41:i15:audio"
+      ],
+      "accessibilityLabel": "Послухайте і складіть — біля стійки спитали, хто спізнився",
       "modePayload": {
-        "family": "phrase_builder",
-        "targetPhrase": "I am.",
-        "localizedMeaning": {
-          "ru": "Соберите ответ — у стойки спросили: «Кто опоздал?» Ответьте двумя словами",
-          "uk": "Складіть відповідь — біля стійки спитали: «Хто спізнився?» Відповідайте двома словами"
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "en:lesson-01:session-41:i15:audio",
+          "transcript": "I am."
         },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "I am.",
         "orderedTokens": [
           "I",
           "am"
         ],
-        "authoredDistractorTokens": [
-          "I'm"
-        ],
+        "authoredDistractorTokens": [],
         "slotFeedback": []
       },
       "scriptedAlternate": null
@@ -823,13 +939,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 1 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-41:i16:s01:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 1 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -856,13 +972,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 2 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-41:i16:s02:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 2 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -889,13 +1005,13 @@
       "purpose": "independent_check",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Промовте одну фразу — крок 3 із 3",
+      "prompt": "Промовте одну фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-01:session-41:i16:s03:audio"
       ],
-      "accessibilityLabel": "Промовте одну фразу — крок 3 із 3",
+      "accessibilityLabel": "Промовте одну фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -923,5 +1039,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bafda5a4f0fe5cd93f38bca4586080073bd8fb66337681b216098d745a8480ee"
+  "learnerFingerprint": "0f1c4f4a6f06e6a178e3fa41c4d686b8cde3ab639d82dc6a3a948a9111329164"
 }

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "learning-v2-de-task7-v2-l01-c06-auf-wiedersehen-source-extraction-map.v1",
+  "rawSources": {
+    "goetheA1Redemittel": {
+      "requestedUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "canonicalUrl": "https://lernen.goethe.de/deutschonline/A1/PDF/DE/deutschonline_Redemittel_und_Grammatik_1-18.pdf",
+      "path": "raw/goethe_a1_redemittel.pdf",
+      "sha256": "5e514493a55e10895e04b16be6efcb91c5a3f19d8b18357abe799567e3331085",
+      "bytes": 3685205,
+      "metadataPath": "raw/goethe_a1_redemittel.http_metadata.txt",
+      "metadataSha256": "afa2a1f9de300071b9e885fb3ade745766b53d7f7bd5bee5732f188806db8f47",
+      "metadataBytes": 400,
+      "transport": "DIRECT_PUBLIC_HTTPS"
+    }
+  },
+  "extraction": {
+    "sourcePlanId": "de_lex_plan_l01_c06_auf_wiedersehen_v1",
+    "checkpointPacketId": "de_l01_c06_s48",
+    "pdfPage": 3,
+    "heading": "WIE SAGT MAN? > BEGRÜSSEN UND VERABSCHIEDEN",
+    "exactOccurrence": "Auf Wiedersehen! / Tschüs!",
+    "exactOccurrenceUtf8Bytes": 27,
+    "exactOccurrenceSha256": "fefa8907e7a90ccaa18b44c0aa3f5ce7829ccaed980c69e8f427902c3e692442",
+    "evidenceFunction": "EXACT_OCCURRENCE_IN_OFFICIAL_LEARNING_INVENTORY"
+  },
+  "unsupportedClaims": {
+    "neutralRegister": "UNSUPPORTED_BY_CAPTURED_SOURCE",
+    "canonicalAdmission": "OUT_OF_SCOPE",
+    "learnerPhraseAuthority": "OUT_OF_SCOPE"
+  }
+}

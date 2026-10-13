@@ -275,17 +275,7 @@
           "authoredDistractorTokens": [
             "spoons"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i05:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг спрашивает, что вы",
-              "feedbackByLocale": {
-                "ru": "Возле ящика одна ложка. В этой фразе нужно `a spoon`, а `spoons` называет несколько.",
-                "uk": "Біля шухляди одна ложка. У цій фразі потрібно `a spoon`, а `spoons` називає кілька."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -334,7 +324,7 @@
               "text": "a spoon"
             }
           ],
-          "testedDimension": "Вставьте название — друг спрашивает о пр",
+          "testedDimension": "Вставьте название — друг спрашивает о приборах в вашей руке; вы держите три ложки, скажите «Это ложки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i06:r2",
@@ -508,17 +498,7 @@
           "authoredDistractorTokens": [
             "fork"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i09:r1",
-              "correct": false,
-              "testedDimension": "Соберите вопрос — друг разворачивает ещё",
-              "feedbackByLocale": {
-                "ru": "Вопрос о нескольких приборах из набора. Для нескольких вилок нужно `forks`.",
-                "uk": "Питання про кілька предметів із набору. Для кількох виделок потрібно `forks`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -567,7 +547,7 @@
               "text": "a bowl"
             }
           ],
-          "testedDimension": "Вставьте название — друг освобождает ниж",
+          "testedDimension": "Вставьте название — друг освобождает нижнюю полку и спрашивает, что вы туда поставите; назовите две миски на столе (`bowl` — «миска», `bowls` — «миски»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i10:r2",
@@ -626,17 +606,7 @@
           "authoredDistractorTokens": [
             "cup"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i11:r1",
-              "correct": false,
-              "testedDimension": "Послушайте и соберите — что сказал друг",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `cups`, название нескольких чашек. Отрицание `not` эту форму не меняет.",
-                "uk": "У записі звучить `cups`, назва кількох чашок. Заперечення `not` цієї форми не змінює."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -685,7 +655,7 @@
               "text": "cups"
             }
           ],
-          "testedDimension": "Вставьте название — друг спрашивает, что",
+          "testedDimension": "Вставьте название — друг спрашивает, что вы оставили у раковины; там одна чашка, скажите «Это чашка»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i12:r2",
@@ -731,30 +701,21 @@
         "accessibilityLabel": "Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.",
         "modePayload": {
           "family": "phrase_builder",
-          "localizedMeaning": {"ru":"Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.","uk":"Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь."},
+          "localizedMeaning": {
+            "ru": "Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.",
+            "uk": "Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь."
+          },
           "targetPhrase": "They are forks.",
-          "orderedTokens": ["They", "are", "forks"],
-          "authoredDistractorTokens": ["is", "fork"],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i13:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг показывает несколько вилок",
-              "feedbackByLocale": {
-                "ru": "С `They` нужна форма `are`: речь идёт о нескольких вилках.",
-                "uk": "З `They` потрібна форма `are`: ідеться про кілька виделок."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-23:i13:r2",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг показывает несколько вилок",
-              "feedbackByLocale": {
-                "ru": "В ящике несколько вилок, поэтому нужна форма `forks` с `s`.",
-                "uk": "У шухляді кілька виделок, тому потрібна форма `forks` із `s`."
-              }
-            }
-          ]
+          "orderedTokens": [
+            "They",
+            "are",
+            "forks"
+          ],
+          "authoredDistractorTokens": [
+            "is",
+            "fork"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -909,7 +870,7 @@
               "text": "fork"
             }
           ],
-          "testedDimension": "Вставьте название — друг спрашивает, что",
+          "testedDimension": "Вставьте название — друг спрашивает, что осталось под бумагой; вы нашли одну вилку, скажите «Это вилка»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i16:r2",
@@ -964,17 +925,7 @@
           "authoredDistractorTokens": [
             "cup"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i17:r1",
-              "correct": false,
-              "testedDimension": "Соберите фразу — друг освободил верхнюю ",
-              "feedbackByLocale": {
-                "ru": "Вы называете две чашки. Нужна форма `cups`.",
-                "uk": "Ви називаєте дві чашки. Потрібна форма `cups`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }
@@ -1250,17 +1201,7 @@
           "authoredDistractorTokens": [
             "spoons"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i05:r1",
-              "correct": false,
-              "testedDimension": "Зберіть фразу — друг питає, що ви залиши",
-              "feedbackByLocale": {
-                "ru": "Возле ящика одна ложка. В этой фразе нужно `a spoon`, а `spoons` называет несколько.",
-                "uk": "Біля шухляди одна ложка. У цій фразі потрібно `a spoon`, а `spoons` називає кілька."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1309,7 +1250,7 @@
               "text": "a spoon"
             }
           ],
-          "testedDimension": "Вставте назву — друг питає, що у вас у р",
+          "testedDimension": "Вставте назву — друг питає, що у вас у руці; ви тримаєте три ложки, скажіть «Це ложки»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i06:r2",
@@ -1483,17 +1424,7 @@
           "authoredDistractorTokens": [
             "fork"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i09:r1",
-              "correct": false,
-              "testedDimension": "Зберіть питання — друг розгортає ще один",
-              "feedbackByLocale": {
-                "ru": "Вопрос о нескольких приборах из набора. Для нескольких вилок нужно `forks`.",
-                "uk": "Питання про кілька предметів із набору. Для кількох виделок потрібно `forks`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1542,7 +1473,7 @@
               "text": "a bowl"
             }
           ],
-          "testedDimension": "Вставте назву — друг звільняє нижню поли",
+          "testedDimension": "Вставте назву — друг звільняє нижню полицю й питає, що ви туди поставите; назвіть дві миски на столі (`bowl` — «миска», `bowls` — «миски»)",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i10:r2",
@@ -1601,17 +1532,7 @@
           "authoredDistractorTokens": [
             "cup"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i11:r1",
-              "correct": false,
-              "testedDimension": "Послухайте й зберіть — що сказав друг",
-              "feedbackByLocale": {
-                "ru": "В записи звучит `cups`, название нескольких чашек. Отрицание `not` эту форму не меняет.",
-                "uk": "У записі звучить `cups`, назва кількох чашок. Заперечення `not` цієї форми не змінює."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1660,7 +1581,7 @@
               "text": "cups"
             }
           ],
-          "testedDimension": "Вставте назву — друг питає, що ви залиши",
+          "testedDimension": "Вставте назву — друг питає, що ви залишили біля раковини; там одна чашка, скажіть «Це чашка»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i12:r2",
@@ -1706,30 +1627,21 @@
         "accessibilityLabel": "Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь.",
         "modePayload": {
           "family": "phrase_builder",
-          "localizedMeaning": {"ru":"Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.","uk":"Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь."},
+          "localizedMeaning": {
+            "ru": "Друг показывает на несколько вилок в открытом ящике и спрашивает: «Что это?» Соберите ответ.",
+            "uk": "Друг показує на кілька виделок у відкритій шухляді й запитує: «Що це?» Складіть відповідь."
+          },
           "targetPhrase": "They are forks.",
-          "orderedTokens": ["They", "are", "forks"],
-          "authoredDistractorTokens": ["is", "fork"],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i13:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг показує кілька виделок",
-              "feedbackByLocale": {
-                "ru": "С `They` нужна форма `are`: речь идёт о нескольких вилках.",
-                "uk": "З `They` потрібна форма `are`: ідеться про кілька виделок."
-              }
-            },
-            {
-              "responseId": "en:lesson-03:session-23:i13:r2",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг показує кілька виделок",
-              "feedbackByLocale": {
-                "ru": "В ящике несколько вилок, поэтому нужна форма `forks` с `s`.",
-                "uk": "У шухляді кілька виделок, тому потрібна форма `forks` із `s`."
-              }
-            }
-          ]
+          "orderedTokens": [
+            "They",
+            "are",
+            "forks"
+          ],
+          "authoredDistractorTokens": [
+            "is",
+            "fork"
+          ],
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       },
@@ -1884,7 +1796,7 @@
               "text": "fork"
             }
           ],
-          "testedDimension": "Вставте назву — друг питає, що залишилос",
+          "testedDimension": "Вставте назву — друг питає, що залишилося під папером; ви знайшли одну виделку, скажіть «Це виделка»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-03:session-23:i16:r2",
@@ -1939,17 +1851,7 @@
           "authoredDistractorTokens": [
             "cup"
           ],
-          "slotFeedback": [
-            {
-              "responseId": "en:lesson-03:session-23:i17:r1",
-              "correct": false,
-              "testedDimension": "Складіть фразу — друг звільнив верхню по",
-              "feedbackByLocale": {
-                "ru": "Вы называете две чашки. Нужна форма `cups`.",
-                "uk": "Ви називаєте дві чашки. Потрібна форма `cups`."
-              }
-            }
-          ]
+          "slotFeedback": []
         },
         "scriptedAlternate": null
       }

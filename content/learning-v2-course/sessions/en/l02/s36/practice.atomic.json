@@ -263,7 +263,7 @@
               "text": "guest"
             }
           ],
-          "testedDimension": "Вставьте слово — музыка мешает разговору",
+          "testedDimension": "Вставьте слово — музыка мешает разговору; спросите друга: «Здесь шумно?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-36:i05:r2",
@@ -545,7 +545,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставьте слово — вы точно знаете, кто хо",
+          "testedDimension": "Вставьте слово — вы точно знаете, кто хозяин; скажите другу: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-36:i10:r2",
@@ -1136,7 +1136,7 @@
               "text": "guest"
             }
           ],
-          "testedDimension": "Вставте слово — музика заважає розмові; ",
+          "testedDimension": "Вставте слово — музика заважає розмові; запитайте друга: «Тут шумно?»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-36:i05:r2",
@@ -1418,7 +1418,7 @@
               "text": "noisy"
             }
           ],
-          "testedDimension": "Вставте слово — ви точно знаєте, хто гос",
+          "testedDimension": "Вставте слово — ви точно знаєте, хто господар; скажіть другові: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-36:i10:r2",

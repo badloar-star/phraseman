@@ -126,7 +126,7 @@
               "text": "What"
             }
           ],
-          "testedDimension": "Вставьте слово — покажите куртку гостям ",
+          "testedDimension": "Вставьте слово — покажите куртку гостям и спросите, кому она принадлежит",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i02:r2",
@@ -327,7 +327,7 @@
               "text": "here"
             }
           ],
-          "testedDimension": "Вставьте слово — друг переспрашивает, то",
+          "testedDimension": "Вставьте слово — друг переспрашивает, точно ли куртку принесли с улицы; скажите: «Я уверен»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i06:r2",
@@ -483,7 +483,7 @@
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Гость говорит, что хозяин нашёл владельца куртки. Вы спрашиваете гостя, уверен ли хозяин.",
+            "ru": "Вставьте слово — гость говорит, что хозяин нашёл владельца куртки; спросите гостя, уверен ли хозяин",
             "uk": "Гість каже, що господар знайшов власника куртки. Ви запитуєте гостя, чи впевнений господар."
           },
           "gappedTargetPhrase": "___ the host sure?",
@@ -643,7 +643,7 @@
               "text": "wet"
             }
           ],
-          "testedDimension": "Вставьте слово — друг ищет хозяина; хозя",
+          "testedDimension": "Вставьте слово — друг ищет хозяина; хозяин стоит рядом с вами, сообщите: «Он здесь»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i11:r2",
@@ -813,7 +813,20 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послушайте и выберите слово для вопроса о владельце вещи",
-        "responseOptions": [{"responseId":"en:lesson-02:session-35:i15:r1","text":"whose"},{"responseId":"en:lesson-02:session-35:i15:r2","text":"who"},{"responseId":"en:lesson-02:session-35:i15:r3","text":"where"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i15:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r3",
+            "text": "where"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-35:i15:audio"
@@ -826,8 +839,41 @@
             "transcript": "whose"
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-02:session-35:i15:r1","targetText":"whose","meaningByLocale":null},{"responseId":"en:lesson-02:session-35:i15:r2","targetText":"who","meaningByLocale":null},{"responseId":"en:lesson-02:session-35:i15:r3","targetText":"where","meaningByLocale":null}],
-          "choiceFeedback": [{"responseId":"en:lesson-02:session-35:i15:r2","correct":false,"feedbackByLocale":{"ru":"`who` спрашивает о человеке; о владельце вещи спрашивают `whose`.","uk":"`who` питає про людину; про власника речі питають `whose`."}},{"responseId":"en:lesson-02:session-35:i15:r3","correct":false,"feedbackByLocale":{"ru":"`where` спрашивает о месте; о владельце вещи спрашивают `whose`.","uk":"`where` питає про місце; про власника речі питають `whose`."}}]
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r1",
+              "targetText": "whose",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "targetText": "who",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "targetText": "where",
+              "meaningByLocale": null
+            }
+          ],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "correct": false,
+              "feedbackByLocale": {
+                "ru": "`who` спрашивает о человеке; о владельце вещи спрашивают `whose`.",
+                "uk": "`who` питає про людину; про власника речі питають `whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "correct": false,
+              "feedbackByLocale": {
+                "ru": "`where` спрашивает о месте; о владельце вещи спрашивают `whose`.",
+                "uk": "`where` питає про місце; про власника речі питають `whose`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -873,16 +919,27 @@
         "prompt": "Произнесите фразу — покажите гостю найденную куртку и спросите, кому она принадлежит",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-35:i17:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i17:audio"
+        ],
         "accessibilityLabel": "Произнесите фразу — покажите гостю найденную куртку и спросите, кому она принадлежит",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-35:i17:audio","transcript":"Whose is it?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i17:audio",
+            "transcript": "Whose is it?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Whose is it?",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle",
-          "modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1009,7 +1066,7 @@
               "text": "What"
             }
           ],
-          "testedDimension": "Вставте слово — покажіть куртку гостям і",
+          "testedDimension": "Вставте слово — покажіть куртку гостям і запитайте, кому вона належить",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i02:r2",
@@ -1210,7 +1267,7 @@
               "text": "here"
             }
           ],
-          "testedDimension": "Вставте слово — друг перепитує, чи точно",
+          "testedDimension": "Вставте слово — друг перепитує, чи точно куртку принесли з вулиці; скажіть: «Я впевнений»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i06:r2",
@@ -1367,7 +1424,7 @@
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Гость говорит, что хозяин нашёл владельца куртки. Вы спрашиваете гостя, уверен ли хозяин.",
-            "uk": "Гість каже, що господар знайшов власника куртки. Ви запитуєте гостя, чи впевнений господар."
+            "uk": "Вставте слово — гість каже, що господар знайшов власника куртки; запитайте гостя, чи впевнений господар"
           },
           "gappedTargetPhrase": "___ the host sure?",
           "gapOptions": [
@@ -1526,7 +1583,7 @@
               "text": "wet"
             }
           ],
-          "testedDimension": "Вставте слово — друг шукає господаря; го",
+          "testedDimension": "Вставте слово — друг шукає господаря; господар стоїть поруч із вами, повідомте: «Він тут»",
           "choiceFeedback": [
             {
               "responseId": "en:lesson-02:session-35:i11:r2",
@@ -1696,7 +1753,20 @@
         "family": "listen_choose",
         "inputMode": "single_choice",
         "prompt": "Послухайте й виберіть слово для питання про власника речі",
-        "responseOptions": [{"responseId":"en:lesson-02:session-35:i15:r1","text":"whose"},{"responseId":"en:lesson-02:session-35:i15:r2","text":"who"},{"responseId":"en:lesson-02:session-35:i15:r3","text":"where"}],
+        "responseOptions": [
+          {
+            "responseId": "en:lesson-02:session-35:i15:r1",
+            "text": "whose"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r2",
+            "text": "who"
+          },
+          {
+            "responseId": "en:lesson-02:session-35:i15:r3",
+            "text": "where"
+          }
+        ],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-02:session-35:i15:audio"
@@ -1709,8 +1779,41 @@
             "transcript": "whose"
           },
           "slowReferenceAudio": null,
-          "localizedMeaningChoices": [{"responseId":"en:lesson-02:session-35:i15:r1","targetText":"whose","meaningByLocale":null},{"responseId":"en:lesson-02:session-35:i15:r2","targetText":"who","meaningByLocale":null},{"responseId":"en:lesson-02:session-35:i15:r3","targetText":"where","meaningByLocale":null}],
-          "choiceFeedback": [{"responseId":"en:lesson-02:session-35:i15:r2","correct":false,"feedbackByLocale":{"ru":"`who` спрашивает о человеке; о владельце вещи спрашивают `whose`.","uk":"`who` питає про людину; про власника речі питають `whose`."}},{"responseId":"en:lesson-02:session-35:i15:r3","correct":false,"feedbackByLocale":{"ru":"`where` спрашивает о месте; о владельце вещи спрашивают `whose`.","uk":"`where` питає про місце; про власника речі питають `whose`."}}]
+          "localizedMeaningChoices": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r1",
+              "targetText": "whose",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "targetText": "who",
+              "meaningByLocale": null
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "targetText": "where",
+              "meaningByLocale": null
+            }
+          ],
+          "choiceFeedback": [
+            {
+              "responseId": "en:lesson-02:session-35:i15:r2",
+              "correct": false,
+              "feedbackByLocale": {
+                "ru": "`who` спрашивает о человеке; о владельце вещи спрашивают `whose`.",
+                "uk": "`who` питає про людину; про власника речі питають `whose`."
+              }
+            },
+            {
+              "responseId": "en:lesson-02:session-35:i15:r3",
+              "correct": false,
+              "feedbackByLocale": {
+                "ru": "`where` спрашивает о месте; о владельце вещи спрашивают `whose`.",
+                "uk": "`where` питає про місце; про власника речі питають `whose`."
+              }
+            }
+          ]
         },
         "scriptedAlternate": null
       },
@@ -1756,16 +1859,27 @@
         "prompt": "Промовте фразу — покажіть гостю знайдену куртку й запитайте, кому вона належить",
         "responseOptions": [],
         "mediaIds": [],
-        "audioTargetIds": ["en:lesson-02:session-35:i17:audio"],
+        "audioTargetIds": [
+          "en:lesson-02:session-35:i17:audio"
+        ],
         "accessibilityLabel": "Промовте фразу — покажіть гостю знайдену куртку й запитайте, кому вона належить",
         "modePayload": {
           "family": "scripted_repeat_compare",
-          "referenceAudio": {"audioTargetId":"en:lesson-02:session-35:i17:audio","transcript":"Whose is it?"},
+          "referenceAudio": {
+            "audioTargetId": "en:lesson-02:session-35:i17:audio",
+            "transcript": "Whose is it?"
+          },
           "slowReferenceAudio": null,
           "targetPhrase": "Whose is it?",
-          "recordControlPolicy":"hold_press_release_with_accessible_toggle",
-          "modelPlayback":"reference_and_slow","learnerPlayback":"available_after_capture",
-          "honestOutcomeStates":["PASS_CONFIDENT","NEEDS_WORK_CONFIDENT","UNCERTAIN","INVALID_AUDIO_OR_SYSTEM"]
+          "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+          "modelPlayback": "reference_and_slow",
+          "learnerPlayback": "available_after_capture",
+          "honestOutcomeStates": [
+            "PASS_CONFIDENT",
+            "NEEDS_WORK_CONFIDENT",
+            "UNCERTAIN",
+            "INVALID_AUDIO_OR_SYSTEM"
+          ]
         },
         "scriptedAlternate": null
       }
@@ -1783,9 +1897,9 @@
       "correctResponseId": "en:lesson-02:session-35:i02:r1"
     },
     {
-    "interactionId": "en:lesson-02:session-35:i03",
-    "correctText": "Whose is it?",
-    "correctResponseId": null
+      "interactionId": "en:lesson-02:session-35:i03",
+      "correctText": "Whose is it?",
+      "correctResponseId": null
     },
     {
       "interactionId": "en:lesson-02:session-35:i04",
@@ -1844,8 +1958,8 @@
     },
     {
       "interactionId": "en:lesson-02:session-35:i15",
-    "correctText": "whose",
-    "correctResponseId": "en:lesson-02:session-35:i15:r1"
+      "correctText": "whose",
+      "correctResponseId": "en:lesson-02:session-35:i15:r1"
     },
     {
       "interactionId": "en:lesson-02:session-35:i16",

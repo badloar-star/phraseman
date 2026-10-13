@@ -3112,6 +3112,42 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "personal"
+    },
+    {
+      "prefix": "economy_daily_stats_tail_v1",
+      "domain": "economy",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "friend_blocked_v1",
+      "domain": "friends",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "prefix": "mistake_restore_full_done_v1",
+      "domain": "practice",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "prefix": "profile_card_public_v1",
+      "domain": "friends",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
     }
   ]
 }

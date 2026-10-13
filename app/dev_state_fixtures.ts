@@ -636,6 +636,9 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         // зачем (EN_EXTRA2 13.10, en-home-001/paywalls-023): онбординг, открытый предыдущей ссылкой (onbstep), живёт в памяти
         // _layout — без этого события он оставался поверх next= до холодного старта.
         emitAppEvent('dev_onboarding_done');
+        // зачем (EN_EXTRA2 13.10, en-home-001/paywalls-023): онбординг, открытый предыдущей ссылкой (onbstep), живёт в памяти
+        // _layout — без этого события он оставался поверх next= до холодного старта.
+        emitAppEvent('dev_onboarding_done');
       } else {
         await AsyncStorage.multiRemove(['onboarding_done', 'onboarding_step', 'onboarding_flow_version_v1']);
         if (request.onbStep) {

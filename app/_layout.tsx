@@ -3396,6 +3396,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     return () => sub.remove();
   }, []);
 
+  // зачем (EN_EXTRA2 13.10, en-home-001/paywalls-023): dev_state `onboarding=done` закрывает оверлей, открытый предыдущей ссылкой
+  // (onbstep → dev_onboarding_restart). Без этого «Your data stays yours» оставался поверх next= до холодного старта. Только dev_state.
+  useEffect(() => {
+    const sub = onAppEvent('dev_onboarding_done', () => {
+      setShow((prev) => {
+        console.log(`[DEV-STATE] onboarding overlay closed by onboarding=done wasVisible=${prev ? 'yes' : 'no'}`); // guard-ok: dev-ветка, одно событие на ссылку
+        return false;
+      });
+      setOnboardingPaywallActive(false);
+      setOnboardingStartAtName(false);
+    });
+    return () => sub.remove();
+  }, []);
+
   // После закрытия онбординга и монтирования Stack — переходим на нужный экран
   useEffect(() => {
     const sub = onAppEvent('onboarding_paywall_completed', () => {

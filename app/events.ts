@@ -198,6 +198,8 @@ export type AppEventMap = {
   onboarding_paywall_completed: undefined;
   /** DEV-центр: перезапустить боевой онбординг с первого экрана. */
   dev_onboarding_restart: undefined;
+  /** dev_state `onboarding=done`: закрыть уже открытый оверлей онбординга (иначе он переживал следующую ссылку робота). */
+  dev_onboarding_done: undefined;
   /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
   app_first_content_ready: undefined;
   /** Главный экран из отложенного чанка уже смонтирован; splash не должен раскрывать его placeholder. */

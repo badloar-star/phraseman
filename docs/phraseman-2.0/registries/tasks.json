@@ -8,7 +8,7 @@
     ],
     "basis": "SAFETY",
     "stage": "A",
-    "status": "planned",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -41,6 +41,7 @@
       "PROGRESS.md раздел 4"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): ветка 2.0 = feature/referral-roulette, сборка в сторе 1.6.19 (D94 OWNER_FINAL 30.09; 0033c9ea7). Совместимость серверной части 17.10 сверена и с 1.6.19 (79369b347).",
       "HEAD/ветка/версия 1.6.24(130) зафиксированы; опубликованная сборка в сторе НЕ подтверждена (A1 открыт)"
     ],
     "actual_cost": null,
@@ -382,7 +383,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "ready_audit",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -404,7 +405,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): реестр строк + чистка текстов про удалённое — 6d67bbb41, a7eb3d4e8 (вопросы закрыты Q74)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -510,6 +511,7 @@
       "2026-10-04: evidence/PM-010_weak_device_baseline_2026-10-04.md — store-release fin7 на слабом профиле (2 ядра / 2 ГБ, Android 15 эмулятор), бандлер выключен, dev-клиент не использовался; цифры там же"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: два пункта A1 (задержка тапа, плохая сеть) — на релизной сборке; база A2 принята (627bc0a8d).",
       "2026-10-04: A2 принят (замеры только store-release, бандлер выключен). A1 выполнен кроме прямой задержки тапа (нужна инструментация приложения) и деградированной сети — задача остаётся в ready_audit до решения координатора по этим двум пунктам. Evidence: PM-010_weak_device_baseline_2026-10-04.md, INBOX §141."
     ],
     "actual_cost": null,
@@ -554,7 +556,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: реальные расходы и конверсии — по счетам/аналитике после выхода (PROGRESS R8); оценка по коду — FIREBASE_COST_R1_2026-10-13.md."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -571,7 +573,7 @@
     ],
     "basis": "OWNER",
     "stage": "A",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -603,7 +605,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): путь YouTube → набор → тренировка: PM-012-A1 принят (0033c9ea7), наборы «Из видео» = обычные наборы с videoId (VideoSetView/VideoPackRow)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2177,7 +2179,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2207,7 +2209,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): повышение ранга монеты — 276fc003f (PM-075, атомарно с тратой), app/coin_rank_upgrade_v1.ts."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -2566,7 +2568,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -2623,6 +2625,7 @@
       "tests/pm048_gift_section_retirement.probe.ts: PM-048 GIFT SECTION RETIREMENT: PASS; remaining level-gift module is compatibility/parser surface and active catalog excludes retired IDs"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): раздел «Подарки» удалён (GlobalFriendGiftHost и опрос удалены, 4ca66f5d6), миграция в монеты D51/D53 (473a6b9f3).",
       "Removed process-wide friend gift polling, AppState/account listeners and gift modal by unmounting/deleting the exclusive host. Friends screen gift picker, receive modal, gift handlers/subscription and sheet CTA are also removed. Friend gift outbox, inbox, client RPC, inventory, dead active-gift inventory and background sync drain are removed. Streak and statistics no longer call/read/display server friend chain shield; local freeze remains. Cloud sync no longer hydrates the retired shield and deletes the local key during restore; outbound blocklists remain until server producers/rules are retired. Server gift callables removed from source/export/deploy lists, while shared Expo push remains in a neutral module. PM-048-A1/A2 remain open: other gift producers, published Firebase functions, legacy pending data and purchase rights not yet purged; no deployment was run.",
       "2026-10-04 (координатор, §140): PM-048 остаётся в review ДО РЕЛИЗА — критерий A2 (перевод неиспользованных спинов/подарков в монеты) выполняется миграцией после релиза скриптом с пробным прогоном по команде владельца (D90/D91, Q12); до тех пор не закрывать. A1 подтверждён, путь подарка попыток удалён (ef0eea570).",
       "2026-10-04 (App Check): по независимому ревью A1 PASS, A2 ждёт миграции после релиза — остаётся в review. Красные сторожа починены по смыслу (a6bdd027c): loyalty_gift_flow_contract (подарок удалён в 285ac732c → тест проверяет отсутствие), friends_tab_gift_interaction_contract (окно «уровень дружбы вырос» убрано в 61830d835), spin_gift_storage_integrity (бонусная энергия читается как 0 при миграции схемы v2 — НАМЕРЕННО: D07/D09, ENERGY_BONUS_CAPACITY_LIMIT = 0 с 00d854736 от 30.09; не потеря)."
@@ -4900,7 +4903,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "L0",
     "model": "gpt-6-luna",
     "reasoning": "low",
@@ -4938,6 +4941,7 @@
       "commit ac9c8e31d"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): ценники энергии убраны ac9c8e31d; хвост «−20⚡» на экзамене — в коде 0 вхождений на 13.10.",
       "typecheck: 0 ошибок в затронутых файлах",
       "app/learning-v2/lesson/[id].tsx: ценники убраны локально, НЕ закоммичено (чужие правки в файле)",
       "пачка 15: остаток — A1 NOT_MET (Free/Plus, все режимы и локали на устройстве не проверены; кадр только Блиц), gate MIGRATION_AND_ROLLBACK не закрыт, DESIGN в gates не заявлен; pm086_energy_price_text.probe PASS (modes=16, locales=9)"
@@ -6283,7 +6287,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6317,7 +6321,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): контракт единого пакета ролика — 790e24a99, A1 — a82075bbe."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6577,7 +6581,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: перенесено на Главную (fcddbd898), отдельная проверка скролла списка — после выхода."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6701,7 +6705,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6736,7 +6740,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): ролик → нужные карточки: потолок ожидания вместо вечного скелета — 1451ed327."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6753,7 +6757,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -6788,7 +6792,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): жизненный цикл плеера (без autoplay/прогрева, неактивный размонтируется) — сторож ea70142c4."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -7792,7 +7796,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7822,7 +7826,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): каталог диалогов переделан по макету dialogs.html (Liquid Glass) — 7edbc5096, сессия 2e7c25009; кадры hub/briefing — Сверка (d7cf7113d)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -8257,7 +8261,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -8293,6 +8297,7 @@
       "9bbd9f024: V1 не импортирует V2, V2 берёт V1 одной точкой legacy_lesson_payload.ts; lesson_lock_system 50/50, legacy_free_lesson_access 10/10, lesson1_release_parity 2/2, lessons_v2_surface_contract 6/6"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): изоляция V1 (9bbd9f024: V1 не импортирует V2); вид списка уроков V1 в стиле 2.0 — после 02.10 переделан (вкладка «Обучение»), подтверждение кадрами Сверки (learn-*).",
       "2026-10-02: A1 NOT_MET — вид списка уроков V1 в новом стиле (Дизайн, эмулятор); 3 сторожа V1 устарели после D71/D121/D122 (lesson_access_rule_owner, legacy_free_lesson_wiring, lessons_entry_opens_legacy_guard)"
     ],
     "actual_cost": null,
@@ -8689,7 +8694,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: позиционирование V1 — маркетинг (content/marketing), не код выпуска."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -8844,7 +8849,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (б) зависит от решения 15.10 12:00 по Learning V2 (план Б); зона Codex."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -8893,7 +8898,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (б) зависит от решения 15.10 12:00 по Learning V2 (план Б); зона Codex."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9101,7 +9106,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: расширение V1 по спросу локали — нужны данные спроса после выхода (D96)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -9118,7 +9123,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -9151,6 +9156,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): простой список и добавление друга: блокировка/«Привет» 7232941b9, «Связь пропала» при сбое сети 4574907ad.",
       "2026-10-02: A1 NOT_MET — проверка на устройстве; для «Дизайна»: при сбое сети sendFriendRequest отдаёт общий error («Что-то пошло не так») — нужен результат network и текст «Связь пропала» (Q-E2)"
     ],
     "actual_cost": null,
@@ -10648,7 +10654,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "review",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10678,7 +10684,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): общая статистика сохранена: экраны stats_* и «Активность за год» (0bc13b5b7, 5c4a70067, 1ac6145bc); подтверждение — кадры Сверки."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12045,6 +12051,7 @@
       "просмотр 11 экранов с setLoading(true): вечного skeleton не найдено (исполнитель Ядра, 44e86c4a4 RUNTIME.md)"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) R1: правило «каждый раздел мгновенно» (владелец 04.10) — продолжается по зонам (Ядро сегодня: монеты Уроков 2b14192a2, лента видео 7757f8de5); закрыть по кадрам Сверки до 16.10.",
       "2026-10-01: A1 NOT_MET (Дизайн: пустое/ошибочное состояние — вёрстка), A2 NOT_MET (эмулятор: самолётный режим → «Мои наборы», комментарии набора; PackCommentsSheet и блиц без дедлайна)",
       "2026-10-04 (App Check): A1 — cached-first реализован для опроса, «Мои ошибки» (список), достижений, пикера языка, комментариев набора, шторки объяснений, прогрева V2 (e47c1c04c, 83cc65a5e; таблица INBOX §141 B). A2 — шторка комментариев: дедлайн 8 с, строка «не удалось загрузить» и повтор, запоздавший ответ сливается (b17edb044). Остаётся: блиц без дедлайна, прогон на эмуляторе в самолётном режиме («Мои наборы», комментарии), экраны из таблицы §141 B со статусом «раздать».",
       "2026-10-04 честный статус (App Check): сделана часть: cached-first для опроса, «Мои ошибки», достижений, пикера языка, комментариев набора, шторки объяснений, прогрева V2; самолётный прогон 12/12 разделов открываются офлайн к 1,5 с (INBOX §144). Осталось: A1 — экраны из таблицы §141 B со статусом «раздать» (владельцы разделов); A2 — блиц без дедлайна и честная ошибка вместо вечного skeleton на остальных экранах.",
@@ -12174,6 +12181,7 @@
       "2026-10-03 evidence/PM-216_content_lazy_2026-10-03.md: путь старта без 1,53 МБ учебного контента (замыкание 21,26 -> 19,72 МБ), строки [CONTENT-LAZY], tests/content_lazy_startup.test.ts 10/10"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) R1, день сборки 16.10: обмер release-бандла скриптом pm216 на стор-экспорте (Ядро, ~20 мин, R1_RUNBOOK §3 шаг 8).",
       "2026-10-02: A1 NOT_MET — нужна релизная сборка и обмер скриптом (владелец); удаление 95 файлов 1.37 МБ — отдельной задачей после решения «Дизайна» по темам Главной",
       "2026-10-02 координатор (Q111): baseline = локальный замер release-сборки на профиле 2 ядра / 2 ГБ; App Check не участвует (запломбирован)",
       "2026-10-03 ревизия реестра: A1 НЕ принят — нет установочных файлов обеих платформ (iOS IPA без Mac/EAS; локальный release-APK x86_64 от 02.10 старше сегодняшних изменений); JS и ассеты по обеим платформам измерены. Убрать из бандла нечего без решений владельца: мёртвые app/*.ts в него не входят, реальный вес — учебный контент (ES, idioms, theory, манифесты V2 около 13 % бандла) — кандидаты на ленивую или серверную доставку в отчёте",
@@ -12379,6 +12387,7 @@
       "2026-10-03: числа основаны на измеренной baseline по Q111 (локальный release, профиль 2 ядра / 2 ГБ), не взяты от балды: config/perf-budgets.json — первый кадр Главной по 12 запускам §78 (медиана 1715, p90 2155 мс, бюджет +25 %), бандл по обмеру 03.10 обеих платформ (android JS 36 452 788 Б, ios 36 441 805 Б, бюджет +2 %), [COLD-START-IO] — потолок = значения до §93 (calls 665, maxInflight 47) с пометкой снизить после повторного замера; инструмент scripts/pm220_perf_gates.mjs (bundle/homepaint/coldio), tests/pm220_perf_gate_tools.test.mjs 6/6, прогон на реальных данных: бандл OK, 12 логов homepaint OK; baseline слабого физического Android и iPhone НЕ снимался (вне Q111)"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) после сборки 16.10: числа baseline на релизной сборке (слабый Android) — Ядро/Сверка; ворота уже есть (7a4b26cde).",
       "Owner decision 2026-09-27: персональные планы давно должны быть удалены из релизного контура; не восстанавливать их в новом релизе.",
       "2026-10-02: A1/A2 NOT_MET — baseline на слабом Android и iPhone (владелец, одна релизная сборка вместе с PM-216)",
       "2026-10-02 координатор (Q111): baseline = локальный замер release-сборки на профиле 2 ядра / 2 ГБ; App Check не участвует (запломбирован)",
@@ -12402,7 +12411,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -12439,6 +12448,7 @@
       "819353205: PM-221 PROBE PASS total=496 keep=409 tombstone=56 owner-decision=2 (статическая проверка)"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): карта серверных доменов, A1 закрыт — faf1cf469 (мёртвые statsInsightsGenerate/weeklyReviewGenerate удалены), 04f4868b1.",
       "2026-10-01 исполнитель Ядра: A1 NOT_MET — 14 облачных функций без кода + 2 в коде ждут решения координатора (вопрос в INBOX)"
     ],
     "actual_cost": null,
@@ -12494,6 +12504,7 @@
       "PM-222 PROBE PASS: 17 снятых не экспортируются, must_stay_exported=11, 423 живых экспорта"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: снятие кронов — окно слива 14+7 дней после выхода (b23db30ae, D91/D78).",
       "2026-10-01: A1 NOT_MET — окно слива очередей и выкладка владельцем после релиза 2.0 (D91/D78)",
       "2026-10-04 (решение координатора): окно слива очередей после релиза = 14 дней от выхода сборки в стор; ежедневная проверка остатка очереди по логам; если на 14-й день остаток > 0 — окно продлевается на 7 дней с записью в реестр (новая заметка в этой задаче). Выкладка и сам слив — владелец после релиза (D91). Критерий A1 остаётся НЕ принятым до исполнения.",
       "2026-10-04 честный статус (App Check): по сути сделана только политика: окно слива очередей 14 дней после выхода сборки (решение координатора). Осталось (владелец/консоль, D91): выкладка релиза, ежедневная проверка остатка очереди по логам, отключение consumers после слива; критерий A1 не принят до исполнения."
@@ -12612,7 +12623,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (б) R1: рубильник ИИ есть (2c24c96f7); бюджет-оповещение в консоли GCP — владелец, ~10 мин, до 17.10."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -12901,6 +12912,7 @@
       "0ee7a1372, edea8fec7, 1c6ba0f4e, 1cae1c87f: app/swallow_log.ts (поведение прежнее, причина в журнал), замена в 121 файле; проба pm229 PASS silentCatch 784→368; tests/swallow_log 5/5; выборка Ядра: premium_guard 29/29, premium_context_vip 11/11, app_resume_policy 10/10, cloud_sync_identity_anchor 5/5, perf_freeze 12/12, layout_stability 15/15, today_tasks_counting 17/17"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) после R1 остаток: немые catch сокращены (сервер 495c9f3ad, клиент swallow_log); остаток auth_provider/shards — по CORE_AFTER_R1.",
       "2026-10-01: A1 NOT_MET (частично): остаток auth_provider.ts 26, account_switch_quarantine 3 (правит другая сессия), shards_system 14, support_report.tsx (Дизайн)",
       "2026-10-02: A1 NOT_MET — остаток: auth_provider.ts (26), account_switch_quarantine.ts (3) — другая сессия; экраны и _layout — Дизайн; app_snapshot_bootstrap (5), statsCache (3) — грязные",
       "2026-10-03 ревизия реестра: в review НЕ переведена — A1 не выполнен. Клиентских немых catch 813 → 41 (проба pm229 PASS; 241 → 42 за смену 03.10, коммиты db985607f, 70b6e126e, 62c7b2fc4, 474a4581e, 7020712da); остаток: auth_provider.ts 26 (зона Account V2 — существенные операции входа), account_switch_quarantine 3, app_snapshot_bootstrap 5, statsCache 3, debug-logger/keyed_exclusive_transaction/account_detach_latch 4 (намеренный разрыв цепочки очереди). Закрыть A1 можно после освобождения auth_provider.ts (8Q Account V2)",
@@ -13586,7 +13598,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: одна ветка де-факто (правило одного дерева, D94); чистка веток — после выхода."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13633,7 +13645,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: архив уникальной истории перед удалением веток (инвентарь pm239)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13689,7 +13701,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: удаление согласованного списка веток."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13739,6 +13751,7 @@
       "bbc9323e2: проект evidence/PM-243_legacy_purge_deadline_2026-10-01.md (6 ворот, группы G1/G2/G3)"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: сроки чистки legacy-данных G1/G2 (bbc9323e2) — решение владельца после выхода.",
       "2026-10-01: A1/A2 NOT_MET — сроки G1/G2 и бэкфилл expireAt ждут решения координатора/владельца (INBOX §62/Q107–Q109)"
     ],
     "actual_cost": null,
@@ -13817,7 +13830,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "review",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -13850,7 +13863,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): служебные тексты: инвентарь dff990bef + 3 пачки (5e8701450, 024527dee, 4bfdfb659); остаток — файлы зоны «Дизайн» по инвентарю."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13867,7 +13880,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -13896,7 +13909,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): выбор между пейволами отменён: единственный пейвол Plus «Честный пробный период», A–G удалены (60155883a, решение владельца 30.09)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13913,7 +13926,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -13942,7 +13955,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): один пейвол Plus без вариантов A–G (60155883a), контекстная шторка (2bc1ed3c6), R1 UX-аудит (303ec6392), условия не сокращены."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -13998,6 +14011,7 @@
       "2026-10-03 39e077ac9: из политики убраны Arena-матчи/дуэли, клубы, подарки, бусты, аватар-предметы, Shards/Runes, голосовой репетитор, XP; grep по четырём legal/*.json: Shards/Runes/XP/voice tutor = 0; Arena/tournament/club/gift остаются только в оговорке об исторических записях ретайренных функций и «gift choice» веб-заказа сертификатов; список «было → стало» — INBOX_COORDINATOR_FROM_CORE.md («Политика и условия под реальную 2.0»)"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) R1: текст готов и ревью PASS (35acc1a37, fe079cd49); публикация — 17.10, R1_RUNBOOK §3а шаг 7 (решение владельца 13.10).",
       "2026-10-03 ревизия реестра (координатор): PM-248 → review; опубликованный текст — после выкладки координатором (knowlywww, admin)",
       "2026-10-04 независимое ревью (App Check, только чтение): PASS с одной правкой текста. Политика legal/privacy_policy_en.json (27 разделов) сверена с кодом: (1) срок 90 дней для журналов приложения (раздел 19) — совпадает с реализованным TTL app_errors/app_activity (бэкфилл expireAt 03.10); (2) отдельное согласие для диалогов ИИ и разбора ошибок (раздел 11) — гейты есть в коде (app/ai_dialog_consent*.ts, ai_explain_consent.ts, ai_consent_factory.ts); (3) удаление аккаунта с отсрочкой 14 дней — ACCOUNT_DELETE_GRACE_MS = 14 суток (functions/src/account_delete_grace.ts); (4) память диалогов: rawTranscriptRetention = forbidden (functions/src/dialogue_v2_memory_contract.ts) — не противоречит разделам 11/13; (5) продуктовая аналитика за согласием: trackActivity пишет в Firestore не-ошибочные события только при isAnalyticsConsentGranted (app/app_activity.ts:112), следы LESSON-EXIT попадают под этот гейт — раздел 10 это описывает; (6) в политике нет Shards/Runes/XP/голосового репетитора. Замечания: (а) раздел 5 перечисляет среди публичных полей «points» — публичный снимок профиля (app/public_profile_snapshot.ts) очков не публикует (XP удалён) → убрать слово «points»; (б) разделы про Шпиль (floor, steps, weekly result) описывают функцию, код которой за выключенным флагом — публиковать вместе с включением Шпиля или пометить; (в) публикация и юридическая проверка остаются за владельцем. Статус оставлен review (публикации нет)."
     ],
@@ -14051,6 +14065,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) R1: Terms обновлены 39e077ac9; абзац о переходе старых прав (A1) — владелец/юрист до отправки 17.10.",
       "2026-10-03 ревизия реестра: в review НЕ переведена — A1 не выполнен. Terms обновлены 39e077ac9 (Shards/Runes/Arena/gift/XP сняты, §4/§7/§8/§10 переписаны; PM-248 тем же коммитом), но абзац о переходе старых прав (D68/D70/D103/D100/D122, черновик в legal/LEGAL_2_0_DRAFT.md) НЕ внесён: нужно подтверждение владельца про сохранение Plus/вечного Pro"
     ],
     "actual_cost": null,
@@ -14102,7 +14117,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (б) R1: store-декларации — evidence/E24_store_declarations_2026-10-01.md; заполнить в консолях — владелец до отправки 17.10."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -14214,6 +14229,7 @@
       "bbc9323e2: реестр блокирующих замечаний обновлён в evidence/E24_release_process_2026-10-01.md"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (б) R1: финальный проход ревью — в день сборки 16.10 (release:precheck репетиция 13.10: ecf623e8b, остался гейт паритета).",
       "2026-10-01: A1/A2 NOT_MET — финальный проход невозможен до закрытия planned; открыты TTL-выкладка, генератор PM-221 vs D148, economy_constitution_contract:234",
       "Политика §19 (90 дней) выложена; бэкфилл expireAt: app_errors 6360, app_activity 4572 (итого 10 932), ошибок 0; повторный прогон: без срока 0. TTL удалит ~4443 в первые сутки — проверить 05.10.",
       "Политика §19 (90 дней) выложена; бэкфилл expireAt: app_errors 6360, app_activity 4572 (итого 10 932), ошибок 0; повторный прогон: без срока 0. TTL удалит ~4443 в первые сутки — проверить 05.10."
@@ -14322,7 +14338,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): (б) R1: матрица обновления/регрессии = ручные проверки OWNER_RELEASE_STEPS §6 на сборке 16.10 (владелец + Сверка)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -14339,7 +14355,7 @@
     ],
     "basis": "SAFETY",
     "stage": "D",
-    "status": "planned",
+    "status": "superseded",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -14368,7 +14384,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): поэтапный выпуск отменён решением владельца R7: «СРАЗУ ВСЕМ»; план отката и порядок дня отправки — R1_RUNBOOK §3а/§3б (bd670c8fa)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -14385,7 +14401,7 @@
     ],
     "basis": "OWNER",
     "stage": "D",
-    "status": "planned",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -14418,7 +14434,7 @@
     "owner": null,
     "reviewer": null,
     "evidence": [],
-    "notes": [],
+    "notes": ["2026-10-13 сверка Ядра (вопрос владельца): тексты «Что нового» на 9 языках — STORE_WHATS_NEW.md; окно в приложении — патч RELEASE_NOTES_V2_GATE (R1_RUNBOOK §3 шаг 4, «показывать» — владелец Q15)."],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -14481,6 +14497,7 @@
       "bbc9323e2: пересчёт 277/277 задач с model/reasoning, 0 расхождений у 275 карточек (PM-288/289 без карточек — render_views); 01_BIBLE.md:65 «Промпт сам по себе не переключает модель»; prompts/01_START_READONLY.md:2"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) процесс, не выпуск: A2 — вывод клиента со списком моделей (владелец).",
       "2026-10-01: A2 NOT_MET (владелец): нужен вывод клиента со списком доступных моделей; проект соответствия профилей в evidence/E24_release_process_2026-10-01.md"
     ],
     "actual_cost": null,
@@ -15117,7 +15134,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -15162,6 +15179,7 @@
       "2026-10-01 ревью пачки 8: node --test tests/spire_game_source_contract.test.mjs 12/12 PASS (в т.ч. отсутствие немых catch, спиннера, durable-очереди); коммиты 951f3bf87, 6ea086014, 315c3edb6, 847fe6ff0 существуют; правят components/spire/*.tsx"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): экраны и хуки Шпиля в бою: SpireHomeScreen/Step/Result/Tower; 13.10 — соперники с рангом монеты (038a89f57, 858c47e9f), «Пик» в пушах (f3e740f61), сверка кадров Сверкой.",
       "Решения владельца 2026-09-24, D54; концепт docs/TOWER.md",
       "Дизайн: проверка в эмуляторе в очереди (эмулятор занят другой сессией)",
       "2026-10-01 пачка 8: PASS по сути, остаётся review — ждёт DESIGN_APPROVED_FOR_VISIBLE_CHANGES: макет docs/design/v2-app/spire.html есть, MOCKUP_GAP_AUDIT.md:156 «не сверено построчно», в DESIGN_GATE_OWNER_REVIEW.md Шпиля нет, проверки в эмуляторе не было. Reviewer в реестре был «self-check» — заменён независимым.",
@@ -15555,7 +15573,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -15596,6 +15614,7 @@
       "scripts/convert_learning_v2_to_spire_listen_tasks.mjs"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): задания на слух/диктант в пакете недели en (c657451a8), голос телефона (1fdc4b904); es/de/fr — без V2-озвучки, как в evidence.",
       "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md",
       "Learning V2 покрывает ТОЛЬКО английский (155 learner.json файлов, все targetLanguage='en'). de/fr — только пустые REQUIREMENT_MANIFEST_V1.json без сессий; es в V2 как курс не встречается вообще. Preflight-формулировка «в основном испанский курс» не подтвердилась.",
       "Конвертер собрал 611 черновых заданий Шпиля (493 listen + 118 dictate) из реальных V2-текстов, без выдумывания. A2 НЕ принят: audioUri — плейсхолдер device-tts:<lang>:<hash>, реальный источник звука (файл в Storage vs on-device TTS, см. D47) не решён этой сессией — архитектурный вопрос для владельца/отдельной сессии."
@@ -15616,7 +15635,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -15658,6 +15677,7 @@
       "docs/work/tasks/2026-09-24_pm287_spire_task_flag.md"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): быстрое снятие задания es/de/fr (9dd6e48aa), публикация с пометкой «бета» — D77 OWNER_FINAL.",
       "Решение владельца 2026-09-24, D55 (T39–T42); evidence/PM-270_pool_preflight.md",
       "PM-287 реализовано 2026-09-24 частично: A2 полностью закрыт — новый callable adminSpireTaskFlagAdd/Remove/List поверх config/spire_task_flags_{lang}, быстрое снятие задания без релиза и без отката пула. A1 НЕ принят: acceptance требует, чтобы пулы es/de/fr были реально опубликованы через админку (adminArenaPublicationActivate) — эта сессия публикацию не выполняла (не входило в разрешённый объём «небольшой задачи», требует отдельного явного шага оператора). Механизм автовключения языка уже существует и ничего нового не требует: как только adminArenaPublicationActivate переводит targetPublications.{lang} в ready/enabled=true, Шпиль (через PM-272, ещё planned) читает ту же публикацию — отдельного тумблера «включить язык X» нет. Задокументировано в docs/work/tasks/2026-09-24_pm287_spire_task_flag.md, раздел Architecture. Осталось для закрытия A1: реальная публикация es/de/fr через adminArenaPublicationStage/Activate (отдельная сессия/задача) и реализация PM-272, которая должна вызвать spireFlaggedTaskIds() при сборке пакета — законтейнировано как техдолг.",
       "Проверено (сессия «Башня», 2026-09-24): реальный jest-прогон (не самодельная замена раннера) — 105/105 spire-тестов зелёные (functions/: spire_coins, spire_pack_contract, spire_progress_contract, spire_finalize_core, spire_league_migration_contract, spire_residents — 91 тестов; tests/: spire_report_queue, spire_residents_mirror_contract, spire_tier_names — 14 тестов). Полный npm run typecheck: 181 ошибка, ВСЕ в известном чужом долге (learning-v2/content/source и preview, flashcards, чужой скрипт) — 0 в файлах Шпиля."
@@ -15757,7 +15777,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -15792,6 +15812,7 @@
       "e7709a89a: удалён дев-экран flashcards_market_dev (рынок наборов за жемчуг) с маршрутом, ссылками в витрине/реестрах/text-integrity, ключ flashcards_market_dev_owned_v1 снят с синхронизации (оставлен в очистке при смене аккаунта); сторож mobile_admin_panel_retirement_contract 5/5 требует отсутствия экрана; typecheck 0"
     ],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): код жемчуга удалён, «PM-289 закрыт» — 3cf1be26f (этапы a850ef0f4, ece811060, 0c3c4708f).",
       "2026-10-01 заведена по §57 координатора. Уже сделано: шаги жемчуга сняты с холодного старта (3b4ba428c), из lesson1 и рефералки (199174517). Осталось: вход/восстановление (auth_provider, auth_clean_install_recovery_adoption), журнал и pending grants, pearl_retire_d70 (открывает журнал через loadShardsFromCloud), сторожа.",
       "2026-10-01 этап 1: A1/A2 NOT_MET — auth_provider правит другая сессия; жемчуг виден на Главной/в Магазине (Дизайн); pearl_retire_d70 и loadShardsFromCloud в восстановлении оставлены осознанно, иначе остаток не обнулится",
       "2026-10-02 этап 2: A1/A2 NOT_MET — держит app/auth_provider.ts (правит Account V2): строки 116–124, 2812–2813, 2979–2980, 3003/3015, 3093–3132, 3158–3245, 3623–3625; затем удалить shards_system/delta_queue/pending_grants/client_shard_*/phone_state мост и из _layout pearl_retire_d70 + GlobalShardsEarnedHost (этап 3)",
@@ -15848,6 +15869,7 @@
     "reviewer": null,
     "evidence": [],
     "notes": [
+      "2026-10-13 сверка Ядра (вопрос владельца): (в) после R1: денежный журнал шардов — деньги и миграция с гейтом (b5fa098e2 план + сухой прогон).",
       "2026-10-04 (решение координатора, сессия App Check): заведена из PM-289. Срез PM-289 «вход без шардов» (AccountV2, после S2d) денежный журнал не трогает: его удаление затрагивает деньги пользователей и требует миграции и гейта MIGRATION_AND_ROLLBACK_APPROVED_BEFORE_DESTRUCTIVE_CHANGE. Точки: app/economy/client_shard_operation_ledger.ts (в т.ч. phone-state mirror outbox), список blocklist ключей client_shard_operation_v1: в app/cloud_sync.ts (~683), app/auth_provider.ts (импорт shards_pending_grants ~4056 — в срезе PM-289).",
       "2026-10-04 (App Check): план и пробный прогон миграции журнала — INBOX §PM-290 (b5fa098e2): scripts/pm290_shard_ledger_dry_run.mjs + tests/pm290_shard_ledger_dry_run.test.mjs 5/5 на синтетическом снимке. Инварианты: ключи вне плана неизменны, кошелёк монет/рун не затронут, нет prepared/конфликтов, каждое купленное право материализовано; откат — резервная копия удаляемых пар. Главный риск: права, купленные за жемчуг, другое устройство достраивает из журнала — порядок Э1 (материализация) → ≥14 дней → Э2 (удаление ключей) → Э3 (код). Код не удалялся, гейт MIGRATION_AND_ROLLBACK не одобрен; пробный прогон на реальном дампе хранилища — после согласования."
     ],

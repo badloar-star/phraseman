@@ -158,6 +158,53 @@ describe('safe_commit.sh', () => {
     expect(src.trimEnd().endsWith('exit 0\n}')).toBe(true);
   });
 
+  // зачем (🔴 координатор 13.10, ba4405cd5 «удалить весь репозиторий»): timeout послал TERM скрипту посреди коммита, cleanup снял
+  // временный индекс, git перечитал его после pre-commit — пустое дерево. Ниже — живые сценарии, а не текст файла.
+  const hook = (name: string, body: string): void => {
+    const file = path.join(repo, '.nohooks', name);
+    fs.writeFileSync(file, `#!/bin/sh\n${body}\n`);
+    fs.chmodSync(file, 0o755);
+  };
+
+  it('TERM посреди хука не прерывает коммит: дерево целое, ветка сдвинута ровно на свой коммит', () => {
+    write('f.txt', 'a\nb\nc\nd\n');
+    hook('pre-commit', 'kill -TERM "$SAFE_COMMIT_SELF_PID"; sleep 1; exit 0');
+    const before = git('ls-tree', '-r', '--name-only', 'HEAD').split('\n').length;
+    const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt']);
+    expect(r.code).toBe(0);
+    expect(r.out).toContain('критическая секция');
+    expect(commits()).toBe(2);
+    expect(git('ls-tree', '-r', '--name-only', 'HEAD').split('\n').length).toBe(before);
+    expect(git('show', 'HEAD:f.txt')).toBe('a\nb\nc\nd');
+  });
+
+  it('хук удалил временный индекс (сценарий аварии) — отказ, ветка не сдвинута, пустого коммита нет', () => {
+    write('f.txt', 'a\nb\nc\nd\n');
+    hook('pre-commit', 'rm -f "$GIT_INDEX_FILE"; exit 0');
+    const head = git('rev-parse', 'HEAD');
+    const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt']);
+    expect(r.code).toBe(6);
+    expect(r.out).toContain('временный индекс исчез/пуст после pre-commit');
+    expect(git('rev-parse', 'HEAD')).toBe(head);
+    expect(git('ls-tree', '-r', '--name-only', 'HEAD')).toContain('f.txt');
+  });
+
+  it('коммит, после которого в дереве < 90 % путей HEAD, — отказ даже при совпавшем --expect; явное разрешение пропускает', () => {
+    for (let i = 0; i < 8; i += 1) write(`many/${i}.txt`, `${i}\n`);
+    git('add', 'many');
+    git('commit', '-qm', 'many');
+    for (const i of [0, 1, 2]) fs.rmSync(path.join(repo, `many/${i}.txt`));
+    const args = ['-m', 'msg.txt', '--expect', 'many/0.txt=0/1', '--expect', 'many/1.txt=0/1', '--expect', 'many/2.txt=0/1',
+      '--', 'many/0.txt', 'many/1.txt', 'many/2.txt'];
+    const refused = run(args);
+    expect(refused.code).toBe(3);
+    expect(refused.out).toContain('массовое удаление');
+    expect(commits()).toBe(2);
+    const allowed = run(args, { SAFE_COMMIT_ALLOW_MASS_DELETE: '1' });
+    expect(allowed.code).toBe(0);
+    expect(commits()).toBe(3);
+  });
+
   it('после коммита замок освобождён, общий индекс по своим путям совпадает с HEAD', () => {
     write('f.txt', 'a\nb\nc\nd\n');
     const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt']);

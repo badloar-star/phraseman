@@ -14,8 +14,10 @@
 #   2) временный индекс строится от HEAD ВНУТРИ замка — HEAD не сдвинется до коммита;
 #   3) в коммит идут только перечисленные пути (целиком) и/или хунки из patch-файлов (`git apply --cached`);
 #   4) numstat сверяется с ожидаемым В МОМЕНТ КОММИТА (а не заранее): лишний путь или другое число строк → ОТКАЗ;
-#   5) обычный `git commit` с хуками (pre-commit работает); ошибка «Unable to create …lock» → журнал (текст, путь, держатели
-#      git.exe) и ожидание до 180 с со снятием брошенного замка; прочие сбои — 3 повтора; проверка родителя и заголовка;
+#   5) дерево из временного индекса ДО хуков (неизменяемый объект) + повторная сверка numstat по дереву + стоп, если в дереве
+#      < 90 % путей HEAD; pre-commit/post-commit явно; `git commit-tree` + атомарный `git update-ref ветка NEW BASE`; от хуков
+#      до сдвига ветки TERM/INT/HUP игнорируются; несовпадение после сдвига → откат ветки; «Unable to create …lock» → журнал
+#      и ожидание до 180 с со снятием брошенного замка; прочие сбои — 3 повтора;
 #   6) после коммита общий индекс синхронизируется с HEAD только по своим путям (до 180 с; брошенный пустой index.lock
 #      старше 60 с снимается, если нет git.exe старше 60 с);
 #   7) каждая ветка пишет строку [SAFE-COMMIT] — вся цепочка ищется одним grep.
@@ -30,7 +32,9 @@
 #   --wait-window    пути кода (app/ components/ modules/ functions/ hooks/ constants/) ждать окна :00–:05 / :30–:35;
 #   --dry-run        собрать временный индекс, напечатать numstat и выйти без коммита.
 # Окружение: SAFE_COMMIT_LOCK (путь замка, для тестов), SAFE_COMMIT_IGNORE_WINDOW=1 (не проверять окно кода),
-#             SAFE_COMMIT_OLD_GIT_CHECK=skip (не проверять живые git.exe перед снятием брошенного index.lock — только для тестов).
+#             SAFE_COMMIT_OLD_GIT_CHECK=skip (не проверять живые git.exe перед снятием брошенного index.lock — только для тестов),
+#             SAFE_COMMIT_ALLOW_MASS_DELETE=1 (осознанно разрешить коммит, после которого в дереве < 90 % путей HEAD).
+# НЕ оборачивать в timeout и не убивать: в критической секции сигналы игнорируются, kill -9 оставит замок.
 # Коды выхода: 0 — коммит есть; 2 — неверный вызов; 3 — отказ сверки numstat; 4 — вне окна кода;
 #              5 — patch не лёг; 6 — коммит не создан; 7 — HEAD сдвинулся / заголовок не тот.
 # Сторож: tests/safe_commit_script_contract.test.ts (живой прогон во временном репозитории).
@@ -178,24 +182,66 @@ for p in "${!EXPECT[@]}"; do
 done
 if [ "$fail" -ne 0 ]; then say "отказ: сверка numstat не прошла — коммит НЕ сделан, HEAD=${BASE:0:9}"; exit 3; fi
 
-# 5) Коммит с хуками; повтор при падении git (segfault rc=139 бывал), но только если HEAD не сдвинулся.
+# 5) Коммит: дерево → хуки → commit-tree → атомарный сдвиг ветки.
+# зачем (🔴 координатор 13.10, коммит ba4405cd5 «удалить весь репозиторий», 50 785 файлов): `timeout … safe_commit.sh` послал TERM
+# bash'у, `trap cleanup EXIT` удалил временный индекс, а дочерний `git commit` был жив — git перечитывает индекс ПОСЛЕ pre-commit,
+# индекса нет → пустое дерево. Теперь: (1) дерево пишется из индекса ДО хуков и дальше живёт как неизменяемый объект;
+# (2) numstat BASE..TREE сверяется ещё раз по объекту; (3) жёсткий стоп, если в дереве < 90 % путей HEAD; (4) от хуков до сдвига
+# ветки TERM/INT/HUP игнорируются (дети наследуют); (5) хук изменил/удалил индекс → отказ; (6) ветка сдвигается
+# `git update-ref <ветка> NEW BASE` — только если она всё ещё на BASE; (7) после сдвига numstat не совпал → откат ветки и отказ.
 SUBJECT=$(head -1 "$MSG")
 rc=1
-# зачем (координатор 13.10, данные Сверки): `git commit` падал rc=128 «Unable to create …/index.lock: File exists».
-# Трасса 13.10 показала: ни хуки, ни сам commit при временном индексе общий .git/index.lock не берут — поэтому сперва
-# журнал: полный текст ошибки, путь замка, держатели git.exe. Ошибка про замок → ждём до 180 с (10×18 с), снимая брошенный
-# по правилу 60 с; любая другая ошибка → 3 быстрые попытки, как раньше.
-lock_waits=0; quick=0
+TREE=$(GIT_INDEX_FILE="$TMP_INDEX" git write-tree 2>"$TMP_INDEX.cerr"); rc=$?
+if [ "$rc" -ne 0 ] || [ -z "$TREE" ]; then say "отказ: write-tree не удался (rc=$rc): $(tr '\n' ' ' < "$TMP_INDEX.cerr" | head -c 200)"; exit 6; fi
+say "дерево ${TREE:0:9} записано из временного индекса (до хуков)"
+TREE_NUMSTAT=$(git -c core.quotepath=false diff --numstat --no-renames "$BASE" "$TREE")
+tfail=0; declare -A TSEEN=()
+while IFS=$'\t' read -r a d p; do
+  [ -z "$p" ] && continue
+  TSEEN["$p"]=1
+  [ "$a $d" = "${EXPECT[$p]:-}" ] || { say "ОТКАЗ: в дереве $p +$a/-$d — не совпало с ожиданием (дерево ≠ сверка индекса)"; tfail=1; }
+done <<< "$TREE_NUMSTAT"
+for p in "${!EXPECT[@]}"; do [ -n "${TSEEN[$p]:-}" ] || { say "ОТКАЗ: в дереве нет изменений ожидаемого пути $p"; tfail=1; }; done
+if [ "$tfail" -ne 0 ]; then say "отказ: сверка дерева не прошла — коммит НЕ сделан, HEAD=${BASE:0:9}"; exit 3; fi
+BASE_PATHS=$(git ls-tree -r --name-only "$BASE" | wc -l | tr -dc '0-9'); TREE_PATHS=$(git ls-tree -r --name-only "$TREE" | wc -l | tr -dc '0-9')
+say "сверка дерева: пути $TREE_PATHS из $BASE_PATHS в HEAD"
+if [ $(( ${TREE_PATHS:-0} * 10 )) -lt $(( ${BASE_PATHS:-0} * 9 )) ]; then
+  if [ "${SAFE_COMMIT_ALLOW_MASS_DELETE:-0}" = "1" ]; then say "ВНИМАНИЕ: в дереве < 90 % путей HEAD — разрешено SAFE_COMMIT_ALLOW_MASS_DELETE=1"
+  else say "ОТКАЗ: в дереве $TREE_PATHS путей из $BASE_PATHS (< 90 %) — массовое удаление, коммит НЕ сделан"; exit 3; fi
+fi
+
+# Критическая секция: TERM/INT/HUP не прерывают — иначе cleanup снимет индекс и замок из-под живых детей.
+# `trap ''` (игнор, а не обработчик): игнор наследуют дети — timeout шлёт TERM всей группе процессов, включая git.
+say "критическая секция: TERM/INT/HUP игнорируются до сдвига ветки"
+trap '' TERM INT HUP
+export SAFE_COMMIT_SELF_PID=$$
+HOOKS_DIR=$(git rev-parse --git-path hooks 2>/dev/null)
+HP=$(git config --get core.hooksPath 2>/dev/null) && [ -n "$HP" ] && HOOKS_DIR="$HP"
+if [ -n "$HOOKS_DIR" ] && [ -x "$HOOKS_DIR/pre-commit" ]; then
+  say "хук pre-commit: $HOOKS_DIR/pre-commit"
+  GIT_INDEX_FILE="$TMP_INDEX" "$HOOKS_DIR/pre-commit"; hrc=$?
+  if [ "$hrc" -ne 0 ]; then say "отказ: pre-commit вернул $hrc — коммит НЕ сделан, HEAD=${BASE:0:9}"; exit 6; fi
+  if [ ! -s "$TMP_INDEX" ]; then say "ОТКАЗ: временный индекс исчез/пуст после pre-commit — коммит НЕ сделан"; exit 6; fi
+  TREE_AFTER=$(GIT_INDEX_FILE="$TMP_INDEX" git write-tree 2>/dev/null)
+  if [ "$TREE_AFTER" != "$TREE" ]; then say "ОТКАЗ: pre-commit изменил индекс (дерево ${TREE_AFTER:0:9} ≠ ${TREE:0:9}) — коммит НЕ сделан"; exit 6; fi
+  say "pre-commit прошёл, дерево не изменилось"
+else
+  say "хук pre-commit: нет ($HOOKS_DIR)"
+fi
+NEW=$(git commit-tree "$TREE" -p "$BASE" -F "$MSG" 2>"$TMP_INDEX.cerr"); rc=$?
+if [ "$rc" -ne 0 ] || [ -z "$NEW" ]; then say "отказ: commit-tree не удался (rc=$rc): $(tr '\n' ' ' < "$TMP_INDEX.cerr" | head -c 200)"; exit 6; fi
+REF=$(git symbolic-ref -q HEAD || echo HEAD)
+say "объект коммита ${NEW:0:9} создан; сдвиг $REF ${BASE:0:9} → ${NEW:0:9} (атомарно, только с ${BASE:0:9})"
+# Ошибка про замок ветки → ждём до 180 с (10×18 с), снимая брошенный по правилу 60 с; любая другая ошибка → 3 быстрые попытки.
+lock_waits=0; quick=0; rc=1
 while :; do
-  GIT_INDEX_FILE="$TMP_INDEX" git commit -q -F "$MSG" 2>"$TMP_INDEX.cerr"; rc=$?
+  git update-ref -m "commit: $SUBJECT" "$REF" "$NEW" "$BASE" 2>"$TMP_INDEX.cerr"; rc=$?
   cat "$TMP_INDEX.cerr" >&2
+  [ "$rc" -eq 0 ] && break
   NOW=$(git rev-parse HEAD)
-  if [ "$NOW" != "$BASE" ] && [ "$(git log -1 --format=%s)" = "$SUBJECT" ]; then rc=0; break; fi
-  if [ "$NOW" != "$BASE" ]; then say "отказ: HEAD сдвинулся на ${NOW:0:9} чужим коммитом"; exit 7; fi
+  if [ "$NOW" != "$BASE" ]; then say "отказ: HEAD сдвинулся на ${NOW:0:9} чужим коммитом — объект ${NEW:0:9} брошен, ветка не тронута"; exit 7; fi
   lock_path=$(grep -o "Unable to create '[^']*'" "$TMP_INDEX.cerr" | head -1 | sed "s/Unable to create '//; s/'$//")
-  # зачем (13.10, найдено на собственном коммите 6eba48fbf): git commit падает rc=139 и оставляет замок СВОЕГО временного
-  # индекса; следующая попытка упирается в «Unable to create '…safe_commit_index_N.lock'». Этот индекс — только наш (уникальное
-  # имя, под общим замком коммита), поэтому его замок после падения снимаем сразу, без ожидания 60 с.
+  # зачем (13.10, 6eba48fbf): при падении git (rc=139) замок своего временного индекса снимается сразу — он только наш.
   if [ -e "$TMP_INDEX.lock" ] && { [ "$rc" -eq 139 ] || [ "$lock_path" = "$TMP_INDEX.lock" ]; }; then
     rm -f "$TMP_INDEX.lock" && say "снят замок своего временного индекса после падения git (rc=$rc) — повтор"
     own_lock_clears=$(( ${own_lock_clears:-0} + 1 ))
@@ -217,15 +263,22 @@ while :; do
   fi
 done
 rm -f "$TMP_INDEX.cerr"
-if [ "$rc" -ne 0 ]; then say "отказ: коммит не создан (rc=$rc; ожиданий замка $lock_waits, быстрых попыток $quick)"; exit 6; fi
+if [ "$rc" -ne 0 ]; then trap - TERM INT HUP; say "отказ: коммит не создан (rc=$rc; ожиданий замка $lock_waits, быстрых попыток $quick)"; exit 6; fi
 HEAD_NEW=$(git rev-parse HEAD)
 PARENT=$(git rev-parse HEAD^)
-if [ "$PARENT" != "$BASE" ]; then say "ТРЕВОГА: родитель ${PARENT:0:9} ≠ база ${BASE:0:9}"; exit 7; fi
+if [ "$HEAD_NEW" != "$NEW" ] || [ "$PARENT" != "$BASE" ]; then trap - TERM INT HUP; say "ТРЕВОГА: после сдвига HEAD=${HEAD_NEW:0:9}, родитель ${PARENT:0:9} (ждали ${NEW:0:9} от ${BASE:0:9})"; exit 7; fi
 POST=$(git -c core.quotepath=false show --numstat --no-renames --format= HEAD)
+pfail=0
 while IFS=$'\t' read -r a d p; do
   [ -z "$p" ] && continue
-  [ "$a $d" = "${EXPECT[$p]:-}" ] || say "ТРЕВОГА: в коммите $p +$a/-$d не совпал с ожиданием — проверь git show"
+  [ "$a $d" = "${EXPECT[$p]:-}" ] || { say "ТРЕВОГА: в коммите $p +$a/-$d не совпал с ожиданием"; pfail=1; }
 done <<< "$POST"
+if [ "$pfail" -ne 0 ]; then
+  if git update-ref -m "safe_commit: откат несовпавшего коммита" "$REF" "$BASE" "$NEW"; then say "ОТКАТ: ветка возвращена на ${BASE:0:9}, коммит ${NEW:0:9} снят"; else say "ТРЕВОГА: откат не удался — проверь git log"; fi
+  trap - TERM INT HUP; exit 7
+fi
+trap - TERM INT HUP
+if [ -n "$HOOKS_DIR" ] && [ -x "$HOOKS_DIR/post-commit" ]; then "$HOOKS_DIR/post-commit" || say "post-commit вернул $? — коммит уже есть, продолжаю"; fi
 say "коммит ${HEAD_NEW:0:9} родитель_ok=yes заголовок_ok=yes"
 
 # 6) Общий индекс: синхронизировать с HEAD только свои пути, с повторами при занятом index.lock.

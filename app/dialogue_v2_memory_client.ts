@@ -3,6 +3,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
 import { DIALOGUE_V2_CATALOGUE_INDEX, getDialogueV2CatalogueEntry } from '../shared/dialogue_v2_catalogue_index';
 import { getDevDialogMemory } from './dev_dialog_state';
+import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 
 const FUNCTIONS_REGION = 'us-central1';
 const STUDY_TARGETS = new Set(['en', 'es', 'fr', 'de']);
@@ -303,6 +304,11 @@ export async function resumeDialogueV2Memory(
  * очистка не стирает настоящую память аккаунта. `cleared` — после «успешной» очистки в этом процессе.
  */
 let devMemoryCleared = false;
+function devObjectiveIds(scenarioId: string, count: number): string[] {
+  const ids = Object.keys(dialogueV2UiCopy('en', scenarioId)?.objectiveLabels ?? {}).slice(0, count);
+  if (ids.length < count) console.warn(`[DEV-STATE] dialogs: у сцены ${scenarioId} задач в справочнике ${ids.length} из ${count} нужных`); // guard-ok: dev-ветка
+  return ids;
+}
 function devMemoryView(studyTarget: DialogueV2MemoryStudyTarget): DialogueV2MemoryView {
   const [first, second] = DIALOGUE_V2_CATALOGUE_INDEX;
   if (devMemoryCleared || !first || !second) return { ok: true, studyTarget, sharedSummary: null, scenarioCheckpoints: [] };
@@ -311,8 +317,10 @@ function devMemoryView(studyTarget: DialogueV2MemoryStudyTarget): DialogueV2Memo
     studyTarget,
     sharedSummary: { scenarioId: first.id, strengths: ['Вежливые просьбы', 'Заказ в кафе'], focusAreas: ['Прошедшее время'], completedObjectives: 7 },
     scenarioCheckpoints: [
-      { scenarioId: first.id, nextObjectiveIndex: 2, completedObjectiveIds: ['greet', 'order'], personaState: {} },
-      { scenarioId: second.id, nextObjectiveIndex: 1, completedObjectiveIds: ['greet'], personaState: {} },
+      // зачем (пересъёмка Сверки 13.10, dialogs-gap-005/006): выдуманные 'greet'/'order' не находились в каталоге → «Сохранённая
+      // задача»; берём настоящие номера задач этих сцен из справочника интерфейса.
+      { scenarioId: first.id, nextObjectiveIndex: 2, completedObjectiveIds: devObjectiveIds(first.id, 2), personaState: {} },
+      { scenarioId: second.id, nextObjectiveIndex: 1, completedObjectiveIds: devObjectiveIds(second.id, 1), personaState: {} },
     ],
   };
 }

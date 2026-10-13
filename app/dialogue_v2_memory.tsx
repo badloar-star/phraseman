@@ -25,6 +25,7 @@ import {
 import { triLang } from '../constants/i18n';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
+import { dialogueV2UiCopy } from './dialogue_v2_ui_copy';
 import { usePremium } from '../components/PremiumContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { PressableScale } from '../components/feedback/PressableScale';
@@ -77,13 +78,21 @@ function visibleText(value: unknown, maxLength: number): string | null {
     : null;
 }
 
-/** Builds display labels only; malformed catalogue fragments are ignored and never rendered. */
-function catalogueLabels(
+/**
+ * Builds display labels only; malformed catalogue fragments are ignored and never rendered.
+ * зачем (пересъёмка Сверки 13.10, dialogs-gap-005/006): пакет каталога — на языке ИЗУЧЕНИЯ, поэтому при русском интерфейсе названия
+ * сцен и задач были английскими. Сначала перевод интерфейса (dialogueV2UiCopy — тот же источник, что у брифинга и итога),
+ * пакет каталога — запасной вариант.
+ */
+export function catalogueLabels(
   envelope: DialogueV2CatalogueReleaseEnvelope | null,
   expectedTarget: DialogueV2MemoryStudyTarget,
+  uiLang?: string,
 ): CatalogueLabels {
   const scenarioTitles = new Map<string, string>();
   const objectiveLabels = new Map<string, string>();
+  let fromUi = 0;
+  let fromCatalogue = 0;
   for (const rawPacket of envelope?.packets ?? []) {
     const packet = record(rawPacket);
     const scenario = record(packet?.scenario);
@@ -91,15 +100,19 @@ function catalogueLabels(
     const scenarioId = visibleText(scenario?.id, 64);
     const title = visibleText(content?.title, 120);
     if (packet?.studyTarget !== expectedTarget || !scenarioId || !title) continue;
-    scenarioTitles.set(scenarioId, title);
+    const ui = uiLang ? dialogueV2UiCopy(uiLang, scenarioId) : null;
+    const uiTitle = visibleText(ui?.title, 120);
+    scenarioTitles.set(scenarioId, uiTitle ?? title);
+    if (uiTitle) fromUi += 1; else fromCatalogue += 1;
     if (!Array.isArray(scenario?.objectives)) continue;
     for (const rawObjective of scenario.objectives.slice(0, 12)) {
       const objective = record(rawObjective);
       const objectiveId = visibleText(objective?.id, 64);
-      const label = visibleText(objective?.label, 240);
+      const label = visibleText(ui?.objectiveLabels?.[objectiveId ?? ''], 240) ?? visibleText(objective?.label, 240);
       if (objectiveId && label) objectiveLabels.set(objectiveId, label);
     }
   }
+  if (envelope) console.log(`[DIALOGUE-V2-MEMORY] labels uiLang=${String(uiLang ?? 'нет')} сцен: перевод=${fromUi} каталог=${fromCatalogue} задач=${objectiveLabels.size}`);
   return Object.freeze({ scenarioTitles, objectiveLabels });
 }
 
@@ -172,7 +185,7 @@ export default function DialogueV2MemoryRoute() {
   // зачем (правило «мгновенное открытие», 04.10): названия сцен — сразу из локального каталога (встроенный
   // снимок), а не английская заглушка с подменой после сети.
   const [labels, setLabels] = useState<CatalogueLabels>(() => (
-    supportedTarget(studyTarget) ? catalogueLabels(peekDialogueV2Catalogue(studyTarget), studyTarget) : catalogueLabels(null, 'en')
+    supportedTarget(studyTarget) ? catalogueLabels(peekDialogueV2Catalogue(studyTarget), studyTarget, lang) : catalogueLabels(null, 'en')
   ));
   const [clearing, setClearing] = useState(false);
   // зачем (чек-лист 2.0, нативные Alert → стекло): подтверждение — стеклянное окно, отказ — строка
@@ -209,7 +222,7 @@ export default function DialogueV2MemoryRoute() {
       fetchReleasedDialogueV2Catalogue(studyTarget),
     ]).then(([memory, envelope]) => {
       if (!active) return;
-      setLabels(catalogueLabels(envelope, studyTarget));
+      setLabels(catalogueLabels(envelope, studyTarget, lang));
       if (memory) {
         console.log('[DIALOG-MEMORY] source=network', JSON.stringify({ studyTarget, checkpoints: memory.scenarioCheckpoints.length, summary: Boolean(memory.sharedSummary) }));
         memoryCacheByTarget.set(memoryCacheKey(studyTarget), memory);

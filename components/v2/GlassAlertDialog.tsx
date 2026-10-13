@@ -10,8 +10,8 @@
 // модалки, где второй <Modal> на iOS ломает стек презентаций. GlassAlertDialog — карточка в
 // оболочке HybridAlertShell (по центру, затемнение .62 как `.or-dim`).
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { memo, useRef } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { memo, useEffect, useRef } from 'react';
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { hapticTap, hapticWarning } from '../../hooks/use-haptics';
@@ -44,6 +44,14 @@ export type GlassAlertCardProps = Readonly<{
 
 // `.or-actions.stack`: столбик, когда хоть одна подпись длиннее 18 знаков.
 const STACK_LABEL_CHARS = 18;
+// зачем (Макеты №30, координатор 13.10): «Не восстанавливать» (17 знаков) на 360 dp не влезает в половину ряда уже при обычном
+// шрифте, при ×1,3 рвётся посреди слова — столбиком ещё и при крупном системном шрифте или длинном СЛОВЕ в любой подписи.
+const STACK_FONT_SCALE = 1.15;
+const STACK_WORD_CHARS = 10;
+
+function longestWordLength(labels: readonly string[]): number {
+  return labels.reduce((max, label) => Math.max(max, ...label.split(/\s+/u).map((word) => word.length)), 0);
+}
 
 export const GlassAlertCard = memo(function GlassAlertCard({ title, message, icon, actions, testID }: GlassAlertCardProps) {
   const { liquidGlassThemeId } = useTheme();
@@ -51,7 +59,15 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
   const lh = useLineScale();
   // зачем: защита от двойного тапа — обработчик кнопки срабатывает один раз на показ карточки.
   const settledRef = useRef(false);
-  const stack = actions.some((a) => a.label.length > STACK_LABEL_CHARS);
+  const { fontScale } = useWindowDimensions();
+  const labelTooLong = actions.some((a) => a.label.length > STACK_LABEL_CHARS);
+  const longestWord = longestWordLength(actions.map((a) => a.label));
+  const stackReason = labelTooLong ? 'label' : fontScale > STACK_FONT_SCALE ? 'font_scale' : longestWord > STACK_WORD_CHARS ? 'long_word' : 'none';
+  const stack = stackReason !== 'none';
+  useEffect(() => {
+    if (__DEV__ && actions.length > 1) console.log(`[GLASS-ALERT-LAYOUT] fontScale=${fontScale.toFixed(2)} longestWord=${longestWord} layout=${stack ? 'stack' : 'row'} reason=${stackReason} title=${title.slice(0, 40)}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stackReason, fontScale, longestWord]);
   return (
     <View testID={testID} style={[styles.card, { backgroundColor: glass.opaqueSheet, boxShadow: plateBoxShadow(glass) }]}>{/* стиль «Тень»: окно без кромки, с тенью */}
       <KitGlassLayer radius={25} />

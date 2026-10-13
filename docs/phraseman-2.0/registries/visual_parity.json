@@ -2723,9 +2723,9 @@
       "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T17:33:30.478Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "owner_by_code",
         "coverage_note": "в коде нет состояния: shouldGateCreator всегда false (creator_access.ts:31-36); закрыть: Дизайн/владелец — убрать кадр образца или вернуть гейт Plus (Ядро)",
@@ -2734,7 +2734,9 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр, cards-v2 №24 «Новая карточка — превью живое» против строки «Проверка Plus — скелет»): на кадре «Мои наборы» (загрузочные заглушки), образец — экран «Новая карточка» с живым превью.",
       "shot_at": "2026-10-12T17:22:26.351Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "состояния нет в R1-коде (решение координатора 13.10, D172); удаление функции решает только владелец — не removed_by_owner"
     },
     {
       "id": "cards-061",
@@ -16104,9 +16106,9 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T16:56:14.100Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -16129,7 +16131,9 @@
         "restitch_note": "Дизайн 13.10 (be49e4f5a): шторка правил приведена к community.html (заголовок 19/24, кружок 32/15, зазор 14, строки с отступом 10, «Закрыть» 48). Привязка: за шторкой в приложении главный экран Шпиля, а в community.html №4 экран сообщества «‹ Шпиль / Правила недели» — строка перепривязана на spire-gaps-states.html №18 («Правила — начало списка», Шпиль за шторкой); нужна пересъёмка/пересклейка."
       },
       "shot_at": "2026-10-12T16:53:38.589Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_status": "pending",
+      "removed_reason": "владелец 13.10 «справка не нужна»: окно «Правила Шпиля» удалено из кода (Темы 21e0e9348); снято сессией «Макеты» по поручению координатора (D173)"
     },
     {
       "id": "community-005",
@@ -16383,16 +16387,18 @@
       "diffs": [],
       "status": "blocked",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "core_switch",
         "coverage_note": "состояние недостижимо в коде (карточка скрывается в тот же тик, кадр совпадает с 017); закрыть: владелец/Дизайн — убрать кадр образца или Ядро — удержать карточку"
       },
       "prev_status": "pending",
       "blocked_reason": "делается по решению владельца п.81 (12.10): состояние добавляется в приложение, образец остаётся",
-      "prev_blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · подпись «Отправляем заявку…» мёртвая: карточка найденного скрывается в тот же тик, кадр совпадает с community-017"
+      "prev_blocked_reason": "состояние недостижимо в коде (Ядро 12.10), решение владельца: делать или убрать из макета · подпись «Отправляем заявку…» мёртвая: карточка найденного скрывается в тот же тик, кадр совпадает с community-017",
+      "prev_release": "r1",
+      "release_note": "состояния нет в R1-коде (решение координатора 13.10, D172); удаление функции решает только владелец — не removed_by_owner"
     },
     {
       "id": "community-011",
@@ -33028,12 +33034,11 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] Пилюля остатка: в образце «30/30 в месяц» (использовано), в приложении «0/30» (осталось) — какой смысл верный и какой текст (Макеты/Ядро); значок «копия» в обоих.",
-        "[вёрстка, мелко] Плитки наборов в приложении выше на ≈ 5 % — масштаб."
+        "[дефект кода, D174] пилюля остатка карточек показывает «0/30» (осталось); решение координатора 13.10 — «30/30» (использовано/лимит), единообразно с D166 «4/3»; образец №30 верен, правят владельцы кода Карточек"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T08:21:06.202Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -33407,18 +33412,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
       "sverka_verdict": "Состояние другое: в образце сборка до проверки (тряска и «−1»), в приложении экран после проверки с правильным ответом и «Разбором промаха».",
       "shot_at": "2026-10-13T10:10:38.648Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-003",
@@ -33455,18 +33462,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T03:45:17.306Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Режим Б · осталась 1 энергия: «Урок 1», пилюли энергии и монет, «Собери фразу:», поле, шесть слов, «N/50», панель «50/50 · Теория · Устно · Отменить» — состав, Аврора (свечение) совпали, энергия 1 теперь держится.",
       "shot_at": "2026-10-13T02:41:49.947Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-004",
@@ -33501,11 +33510,11 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:59:17.440Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1",
@@ -33514,7 +33523,9 @@
       },
       "sverka_verdict": "Окно «Энергия закончилась» совпадает: значок, заголовок, текст, «Продолжить с Plus», «Выйти из занятия»; счётчик энергии 0 красным.",
       "shot_at": "2026-10-13T10:10:38.648Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-005",
@@ -33546,18 +33557,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T18:34:25.004Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:32–7:33, energy-modes-states «Режим Б · шторка Plus на остановке»): сверка невозможна — на кадре главная «Главная» (серия 0 дней, монеты, Диалоги / Карточки / Шпиль, «Видео», «Сегодня», «Фраза дня»), занятие не открыто. У строки нет ссылки: нужно занятие с энергией 0 и шторкой Plus на остановке (подмена Ядра, партия после первых кадров).",
       "shot_at": "2026-10-12T18:18:56.534Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-006",
@@ -33591,11 +33604,11 @@
       ],
       "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T18:34:58.297Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1",
@@ -33603,7 +33616,9 @@
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:33, energy-modes-states №6 «Режим Б · после покупки занятие продолжается»): сверка невозможна — на кадре главная «Главная», занятие не открыто (как на energy-modes-002…005).",
       "shot_at": "2026-10-12T18:18:56.534Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-007",
@@ -33637,18 +33652,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T03:45:17.306Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Режим Б · вышел без энергии: на кадре урок «Урок 1» с «⚡ 0», а не список «Обучение» с тостом «Нужна энергия».",
       "shot_at": "2026-10-13T02:42:19.067Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-008",
@@ -33682,18 +33699,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T18:37:41.937Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:35, energy-modes-states №8 «Режим Б · энергия восстановилась»): сверка невозможна — на кадре главная «Главная»; образец — экран «Обучение» со списком уроков (1 «Местоимения и глагол To Be», 2 «Отрицание и вопросы (To Be)», 3 «Present Simple: Утверждение»), пилюлей «⚡ 0» и кнопкой «Начать занятие».",
       "shot_at": "2026-10-12T18:35:39.528Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-009",
@@ -33726,18 +33745,20 @@
       ],
       "status": "diff",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-13T03:45:17.306Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Режим Б · слова: «1. Словарь», «Узнавание · 0 / 37», пилюли энергии и монет, плашка вопроса, шесть вариантов, «Тренировка / Список слов» — состав совпал, Аврора теперь верная.",
       "triage": {
         "basis": "mockup_from_app",
         "restitch_note": "образец energy-modes-states №9: убрана строка «Нашёл ошибку?» — её видят только тестеры/разработка (владелец 05.10, 57da354da), в обычной сборке и на кадрах приложения её нет. Нужна пересклейка"
       },
       "shot_at": "2026-10-13T02:23:55.387Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-010",
@@ -33771,18 +33792,20 @@
       ],
       "status": "diff",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-13T03:45:17.306Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Режим Б · неправильные глаголы: шапка, «0 / 1 выучено», плашка «Сначала попробуй вспомнить», форма be → ? → been, четыре варианта, «Учить / Словарь» — состав совпал, Аврора верная.",
       "triage": {
         "basis": "mockup_from_app",
         "restitch_note": "образец energy-modes-states №12: убрана строка «Нашёл ошибку?» (тестерская кнопка, 57da354da). Нужна пересклейка"
       },
       "shot_at": "2026-10-13T02:24:29.437Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-011",
@@ -33814,18 +33837,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "link_missing",
         "coverage_note": "Learning V2 (зона Codex): нужны шаги занятия в V2-плеере; закрыть: Codex/Ядро — флаг для Learning V2 energy HUD"
       },
       "sverka_verdict": "Состояние не достигнуто: снята Главная вместо занятия Learning V2.",
       "shot_at": "2026-10-13T07:11:09.304Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-012",
@@ -33857,18 +33882,20 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:09:07.379Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
-      "release": "r1",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим Б · Карточки: тренировка — занятие: на кадре Главная.",
       "shot_at": "2026-10-12T18:35:39.528Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "energy-modes-013",
@@ -36528,7 +36555,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=off&overlays=off&next=/flashcards",
-        "restitch_note": "Темы/координатор 13.10: шторка режимов в образце cards-v2 №27 — нейтральный градиент #28282E→#1E1E24 (как .sheet shadow-skin.css) вместо плоского #1B1B1D. Перепривязка на cards-section.shadow №32 НЕ сделана: там старая раскладка (тексты «Минута на скорость», «Вспомни и напиши», пилюля «24/30» в шапке шторки, хаб «133 карточки · 3 набора»), не совпадающая с приложением; нужна пересклейка после правки Тем (окно 05:00/05:30)."
+        "restitch_note": "Темы/координатор 13.10: шторка режимов в образце cards-v2 №27 — нейтральный градиент #28282E→#1E1E24 (как .sheet shadow-skin.css) вместо плоского #1B1B1D. Перепривязка на cards-section.shadow №32 НЕ сделана: там старая раскладка (тексты «Минута на скорость», «Вспомни и напиши», пилюля «24/30» в шапке шторки, хаб «133 карточки · 3 набора»), не совпадающая с приложением; нужна пересклейка после правки Тем (окно 05:00/05:30).",
+        "coordinator_2026_10_13": "плитки режимов — образец к коду (тон плиток как в коде), D175; Макеты перерисуют"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки ddd6c199a, полный кадр, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Режим тренировки: шторка «Режим тренировки», четыре плитки (Блиц 60 секунд, Устно Вслух, Правда / ложь Да или нет, Напиши По памяти), фон хаба «Карточки», «Тренироваться · осталось 30 из 30» — состав и тексты совпали.",
       "shot_at": "2026-10-13T02:27:50.548Z",
@@ -39877,9 +39905,9 @@
       "diffs": [
         "[состояние не то] Тап по «i» не сработал/шторка не открыта; кроме того на кадре висит плашка итога недели (нужен чистый старт)."
       ],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "release": "r1",
       "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Правила — начало списка: на кадре главный экран с плашкой «Итог недели», шторка «Правила Шпиля» не открыта.",
       "triage": {
@@ -39895,7 +39923,9 @@
         "two_robots_window_note_2026_10_13": "окно двух роботов 13.10 (00:22–00:31 UTC по _runs, разбор Ядра CORE_ZONES_DIFF_ROWS_R1_2026-10-13.md), кадр недействителен: вердикт сброшен в pending, нужна пересъёмка (Сверка). Список от Сверки через координатора."
       },
       "shot_at": "2026-10-13T00:27:37.150Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_status": "pending",
+      "removed_reason": "владелец 13.10 «справка не нужна»: окно «Правила Шпиля» удалено из кода (Темы 21e0e9348); снято сессией «Макеты» по поручению координатора (D173)"
     },
     {
       "id": "spire-gap-019",
@@ -39924,9 +39954,9 @@
       "diffs": [
         "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:20:11.128Z",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -39937,7 +39967,9 @@
       },
       "sverka_verdict": "Шторка «Правила Шпиля» совпадает: восемь пунктов с номерами, «Закрыть». Кадр на украинском.",
       "shot_at": "2026-10-13T09:15:35.850Z",
-      "shot_at_source": "bare_run_dir"
+      "shot_at_source": "bare_run_dir",
+      "prev_status": "pending",
+      "removed_reason": "владелец 13.10 «справка не нужна»: окно «Правила Шпиля» удалено из кода (Темы 21e0e9348); снято сессией «Макеты» по поручению координатора (D173)"
     },
     {
       "id": "spire-gap-020",
@@ -40564,7 +40596,8 @@
         "final_group": "",
         "final_note": "",
         "final_at": "2026-10-12",
-        "restitch_note": "Темы DIFF_COLOR_TRIAGE гр. В + координатор 13.10: шторка режима в cards-gaps-states — нейтральный градиент #28282E→#1E1E24 («Тень»); нужна пересклейка."
+        "restitch_note": "Темы DIFF_COLOR_TRIAGE гр. В + координатор 13.10: шторка режима в cards-gaps-states — нейтральный градиент #28282E→#1E1E24 («Тень»); нужна пересклейка.",
+        "coordinator_2026_10_13": "плитки режимов — образец к коду (тон плиток как в коде), D175; Макеты перерисуют"
       },
       "sverka_verdict": "ВЕРДИКТ 13.10 (пересклеенный кадр Сверки 7d7f53140 с обновлённым образцом, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «Режим тренировки · Готовим тренировку…»: заголовок, подзаголовок, четыре приглушённые плитки, фон хаба — состав и тексты совпали, шторка теперь нейтральная, как в приложении.",
       "shot_at": "2026-10-13T02:26:57.390Z",
@@ -43973,15 +44006,17 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T08:21:06.202Z",
-      "release": "r1",
+      "reviewed_at": "2026-10-13T14:55:43.654Z",
+      "release": "post-r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       },
       "shot_at": "2026-10-13T05:26:30.147Z",
       "shot_at_source": "bare_run_dir",
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · под флагом energy_mistake_charge: на кадре скелет — энергия и текст «В выбранных наборах нет карточек с переводом» не показаны."
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · под флагом energy_mistake_charge: на кадре скелет — энергия и текст «В выбранных наборах нет карточек с переводом» не показаны.",
+      "prev_release": "r1",
+      "release_note": "режим Б выключен в R1 (energy_mistake_charge=false); запрет: не включать рубильник, пока режим Б не прошёл сверку с макетом — перед включением вернуть строки в гейт (D171, ранбук b9124d1b3)"
     },
     {
       "id": "home-001",

@@ -2,7 +2,7 @@
 
 Governance-ID: TG-39E3C41AA2CB
 Governance-ID: TG-ECCB7B62EE65
-Status: In progress
+Status: Done (код 95d30d485, образцы 8f88e0e97, решения f07de6d59)
 Owner: сессия «3 · Макеты» по поручению координатора (решение владельца 13.10)
 
 ## Outcome

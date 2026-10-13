@@ -75,7 +75,7 @@ const s = StyleSheet.create({
   listContent: { paddingBottom: 4 },
   row: { flexDirection: 'row', alignItems: 'flex-start', gap: 14, paddingVertical: 10 },
   num: { width: 32, height: 32, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  numText: { fontSize: 15, fontWeight: '700' },
+  numText: { fontSize: 16, fontWeight: '700' }, // зачем (Темы 13.10, сторож шкалы 16/13): цифра в кружке 32 — 16 вместо 15 макета; разницу в 1 px покажет склейка Сверки
   line: { flex: 1, fontSize: 16, lineHeight: 22 },
   cta: { marginTop: 14, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
   ctaText: { fontSize: 16, fontWeight: '700' },

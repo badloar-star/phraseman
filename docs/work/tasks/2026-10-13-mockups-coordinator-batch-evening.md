@@ -1,6 +1,7 @@
 # Task packet — макеты: вечерняя пачка координатора 13.10 (остатки башни, Apple, D162/D184, диалоги по рангу)
 
 Governance-ID: TG-FBAE0D39103D
+Governance-ID: TG-15476D44CA52
 
 ## Outcome
 1. Остальные образцы с башней/мини-башней — через spire-tower-render.js (community.html «Итог недели»: мини-башня, без крестика, D182).

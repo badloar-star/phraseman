@@ -359,6 +359,32 @@ const openCat = (o = {}) => phone(`
     <div class="cat-body${o.anim ? '' : ' on'}"><div class="stack" style="padding-top:18px">${dl('cupF', 'Закажи кофе', 'A1', 'done')}${dl('basket', 'В продуктовом', 'A1')}${dl('shirt', 'Магазин одежды', 'A2')}${dl('', 'В аптеке', 'A2', 'plus')}${dl('', 'В ресторане', 'A2', 'plus')}${dl('', 'У врача', 'B1', o.rank ? 'rank' : 'plus')}${dl('', 'Доставка', 'A2', 'plus')}</div></div>
   </div>`, { time: '13:00' });
 
+// ================= G. Каталог по рангу (D185) =================
+// зачем (правило владельца «диалоги по рангу», таблица Дизайна 13.10 — shared/dialogue_v2_catalogue_index.ts DIALOGUE_V2_UNLOCK_RANK_TABLE):
+// ранг 0 — только social_01 «Поздороваться после знакомства»; ранги 1…18 — по одному из «Дела», «Поездки», «Повседневное», «Общение»; ранг 19 — три.
+// Строка как DialogueV2CatalogueSection: замок, название вторичным, «Откроется на ранге N» + монета N (16), плашка уровня, стрелка; замков Plus нет (D124).
+const RK_TITLES = {"work": ["Представиться коллеге", "Спросить файл", "Подтвердить время созвона", "Написать, что опаздываешь", "Поблагодарить за инструкцию", "Уточнить простую задачу", "Попросить перенести дедлайн", "Сообщить короткий статус", "Запросить доступ", "Написать после первого рабочего дня", "Согласовать следующий шаг в команде", "Объяснить проблему и предложить решение", "Собрать доступность для встречи", "Защитить реалистичный срок", "Дать конструктивный отзыв", "Согласовать приоритеты", "Дипломатично возразить решению", "Снять риск между командами", "Провести сложные переговоры в треде"], "travel": ["Написать хозяину жилья: я приехал", "Спросить код от двери", "Уточнить время заселения", "Заказать трансфер", "Поблагодарить за подсказку", "Уточнить маршрут в чате", "Подтвердить бронь", "Написать о задержке", "Спросить, где оставить багаж", "Договориться о времени встречи", "Решить проблему с жильём", "Скоординировать группу в поездке", "Запросить изменение бронирования", "Объяснить претензию сервису", "Согласовать альтернативный маршрут", "Отстоять решение по бронированию", "Договориться о компенсации", "Разрешить ситуацию гость—хозяин—сервис", "Вести многосторонний тред при сбое поездки"], "everyday": ["Спросить совет", "Напомнить о вещи", "Поздравить с событием", "Спросить, свободен ли человек", "Написать короткое извинение", "Попросить небольшую помощь", "Договориться присмотреть за питомцем", "Выбрать подарок в групповом чате", "Уточнить детали доставки", "Поблагодарить после помощи", "Организовать общий план на выходные", "Сравнить варианты и принять решение", "Объяснить проблему соседу или сервису", "Обсудить общие правила", "Урегулировать неудобство без обвинений", "Убедить группу выбрать разумный вариант", "Провести чувствительный разговор о границах", "Разобрать противоречивую информацию", "Посредничать в личном групповом конфликте"], "social": ["Поздороваться после знакомства", "Перенести встречу", "Спросить, как добраться", "Поблагодарить за помощь", "Поздравить и задать простой вопрос", "Познакомиться в чате по интересу", "Договориться о времени и месте", "Позвать на событие", "Вежливо отменить планы", "Написать после встречи", "Собрать планы в группе", "Поддержать друга", "Снять лёгкое недопонимание", "Мягко отказать", "Обсудить ожидания в группе", "Дать деликатную обратную связь", "Обозначить личную границу", "Восстановить доверие", "Урегулировать тонкий конфликт в группе"]};
+const RK_CEFR = ['A1', 'A1', 'A1', 'A1', 'A1', 'A2', 'A2', 'A2', 'A2', 'A2', 'B1', 'B1', 'B1', 'B2', 'B2', 'B2', 'C1', 'C1', 'C2'];
+const RK_WORLDS = [['social', 'Общение', 'peopleF'], ['work', 'Дела', 'docF'], ['travel', 'Поездки', 'planeF'], ['everyday', 'Повседневное', 'cupF']];
+const rkUnlock = (w, i) => (w === 'social' ? i : i + 1); // i — номер в разделе с 0: social_01 → 0, social_k → k−1; work/travel/everyday_k → k
+const rkRow = (w, ic, i, my, doneUpTo) => {
+  const need = rkUnlock(w, i); const locked = need > my; const done = !locked && need <= doneUpTo;
+  return `<div class="t" style="min-height:60px;border-radius:14px;background:rgba(255,255,255,.05);padding:6px 14px 6px 10px;display:flex;align-items:center;gap:16px">
+    <div style="width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex:none;color:${locked ? 'var(--muted)' : 'var(--text)'}">${icon(locked ? 'lockF' : ic, 's20')}</div>
+    <div class="grow" style="min-width:0"><div style="font-size:16px;line-height:22px;font-weight:600;color:${locked ? 'var(--sec)' : 'var(--text)'}">${RK_TITLES[w][i]}</div>${locked ? `<div style="display:flex;align-items:center;gap:6px;margin-top:2px;font-size:13px;line-height:18px;color:var(--sec)">Откроется на ранге ${need}<img src="${K.coin(need)}" alt="" style="width:16px;height:16px;border-radius:50%"></div>` : ''}</div>
+    <span class="lvl" style="flex:none">${RK_CEFR[i]}</span><span style="color:${done ? 'var(--text)' : 'var(--sec)'};flex:none">${icon(done ? 'check' : 'fwd', 's20')}</span></div>`;
+};
+const rkWorld = (w, title, ic, my, doneUpTo, open) => {
+  const done = RK_TITLES[w].filter((_, i) => rkUnlock(w, i) <= Math.min(my, doneUpTo)).length; const total = RK_TITLES[w].length;
+  return `<div class="card c2" style="padding:16px 16px 18px;border-radius:24px"><div class="flex" style="gap:12px"><div class="tile t55" style="margin-right:4px">${icon(ic, 's26')}</div><div class="grow" style="font-size:19px;line-height:24px;font-weight:700">${title}</div><span class="frac"><b>${done}</b><span> /${total}</span></span><span style="color:var(--sec);margin-left:6px">${icon(open ? 'up' : 'fwd', 's20')}</span></div>
+    <div class="trk dot" style="margin:${open ? 16 : 18}px ${open ? 6 : 4}px 0"><i style="left:${Math.round(done / total * 100)}%;margin-left:${done ? -8 : 0}px"></i></div>
+    ${open ? `<div class="stack" style="--g:9px;margin-top:18px">${RK_TITLES[w].map((_, i) => rkRow(w, ic, i, my, doneUpTo)).join('')}</div>` : ''}</div>`;
+};
+const rankCat = (my, openW, doneUpTo = -1) => phone(`
+  <div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:34px;font-weight:700;letter-spacing:-.4px">Диалоги</div>${energy(5, { ol: true })}</div>
+  <div class="center" style="margin-top:10px"><span class="pill">${icon('chatDots', 's20')}30/30</span></div>
+  <div class="stack" style="--g:14px;margin-top:16px">${RK_WORLDS.map(([w, t, ic]) => rkWorld(w, t, ic, my, doneUpTo, w === openW)).join('')}</div>`, { time: '13:00' });
+
 // ================= B. Брифинг и вход =================
 const OBJ = ['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'];
 const objList = (met = 0, cls = '', noWho = 0) => OBJ.map((t, i) => `<div class="obj ${i < met ? 'dn' : ''} ${cls}"><span class="n ${i < met ? 'ok' : ''}">${i < met ? icon('check') : i + 1}</span><span class="grow0">${t}</span>${cls && !noWho ? `<span class="who">${i < met ? 'Выполнено' : 'Ещё не выполнено'}</span>` : ''}</div>`).join('');
@@ -554,6 +580,14 @@ document.getElementById('root').innerHTML = [
   block('comp', 'F. Свободный разговор (только Plus)', 'Экран `dialogue_v2_freeform`: без целей и сценария, без квоты — доступен только в Plus; ответы — стеклянный пузырь без аватара, микрофон «Зажми и говори». Состояния без доступа, загрузки и ошибки — в dialogs-gaps-states.html.', [
     pc(S('f1', 'F1 Свободный разговор — пустое состояние', 'Свободный разговор — пусто'), 'Пустое состояние — «Что можно спросить»', comp({ body: `<div class="tipc"><div class="tile t46">${li('bulb', 's22')}</div><div class="grow0"><div class="tt">Что можно спросить</div><div class="p">Спроси про фразу или просто поговори. Можно отвечать на изучаемом языке.</div></div></div>` })),
     pc(S('f2', 'F2 Свободный разговор — разговор идёт', 'Свободный разговор — разговор'), 'Разговор идёт', comp({ body: compMe('How do I say «сдаваться» in English?') + compMsg('Чаще всего — **give up**. «Don’t give up» — «не сдавайся». Хочешь пример из твоего урока про работу?') + compMe('Yes, please') + compMsg('**I won’t give up on this project.** — «Я не брошу этот проект». Сохраним в карточки?'), ib: {} })),
+  ]),
+  /* зачем (координатор 13.10, D185): каталог по рангу — ранг 0 (открыт один диалог) и ранг 6 (все четыре раздела); блок в конце, номера телефонов выше не сдвигаются */
+  block('rank', 'G. Каталог по рангу (D185)', 'Ранг 0 — открыт только «Поздороваться после знакомства» (A1, «Общение»). Каждый следующий ранг открывает по одному диалогу в «Делах», «Поездках», «Повседневном» и «Общении» (ранг 19 — три); уровни идут от A1 к C2. Закрытая строка: замок, «Откроется на ранге N» и монета этого ранга. Замков Plus нет.', [
+    pc(S('g1', 'G1 Ранг 0 — «Общение» раскрыто', 'Каталог — ранг 0'), 'Ранг 0 — открыт один диалог', rankCat(0, 'social')),
+    pc(S('g2', 'G2 Ранг 6 — «Общение»', 'Каталог — ранг 6, Общение'), 'Ранг 6 — «Общение»', rankCat(6, 'social', 3)),
+    pc(S('g3', 'G3 Ранг 6 — «Дела»', 'Каталог — ранг 6, Дела'), 'Ранг 6 — «Дела»', rankCat(6, 'work', 3)),
+    pc(S('g4', 'G4 Ранг 6 — «Поездки»', 'Каталог — ранг 6, Поездки'), 'Ранг 6 — «Поездки»', rankCat(6, 'travel', 3)),
+    pc(S('g5', 'G5 Ранг 6 — «Повседневное»', 'Каталог — ранг 6, Повседневное'), 'Ранг 6 — «Повседневное»', rankCat(6, 'everyday', 3)),
   ]),
 ].join('');
 

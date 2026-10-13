@@ -100,7 +100,8 @@ describe('report_queue (чистая логика)', () => {
     expect(spireShouldFlush(local, T0 + 1, 'screen_leave').flush).toBe(true);
   });
 
-  test('ответ сервера снимает только отвеченные строки и НЕ трогает маркер', () => {
+  // зачем (решение владельца 13.10, журнал п.86): прежнее правило «маркер не трогаем» заменено откатом отвергнутой ПРОЙДЕННОЙ ступени — подробности в tests/spire_reject_rollback.test.ts
+  test('ответ сервера снимает отвеченные строки; отвергнутая пройденная ступень откатывает маркер на одну', () => {
     let local = spireCreateWeekLocal({ lang: 'en', weekKey: WEEK, tier: 1, packHash: 'pack_hash_abc123' });
     local = spireApplyStepReport(local, reportAt(1)).local;
     local = spireApplyStepReport(local, reportAt(2)).local;
@@ -110,7 +111,8 @@ describe('report_queue (чистая логика)', () => {
       results: [{ reportId: a.reportId, verdict: 'rejected', reason: 'too_fast' }],
     }, T0);
     expect(applied.local.pending.map((r) => r.reportId)).toEqual([b.reportId]);
-    expect(applied.local.stepsCleared).toBe(2);
+    expect(applied.local.stepsCleared).toBe(1);
+    expect(applied.rollback?.steps).toBe(1);
     expect(applied.local.serverAck?.steps).toBe(0);
     expect(applied.local.rejectedTotal).toBe(1);
   });

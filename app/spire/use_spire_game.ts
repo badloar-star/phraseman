@@ -32,6 +32,7 @@ import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
 import { DebugLogger } from '../debug-logger';
 import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_store';
 import { spireFlushNow, spireRecordStepResult } from '../spire_report_client';
+import { useSpireRejectRollback } from './spire_screen_rollback';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { getStableId } from '../stable_id';
 import { getCanonicalUserId } from '../user_id_policy';
@@ -113,6 +114,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const lastReportRef = useRef<string | null>(null);
   const weekRef = useRef(week);
   weekRef.current = week;
+  // зачем (решение владельца 13.10, журнал п.86): сервер отверг пройденную ступень → откат маркера и одна спокойная строка (spire_screen_rollback.ts).
+  const { rejectNotice, setRejectNotice, applyRollback } = useSpireRejectRollback({ weekRef, setWeek, setOutcome });
 
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка без перезапуска на экране оставались комната, друзья, итог недели и шаг СТАРОГО языка.
   // Сброс по lang (кроме первого монтирования) идёт ДО загрузчиков ниже, поздние ответы старого языка отсекает их флаг alive. Идентичность и идущий старт не трогаем.
@@ -134,6 +137,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     prepIdRef.current = null;
     setOutcome(null);
     setStartBlock(null);
+    setRejectNotice(false);
     lastReportRef.current = null;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
@@ -192,13 +196,14 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
   const flush = useCallback((trigger: SpireFlushTrigger) => {
     if (!gate || !ids || !lang) return;
     void spireFlushNow({ uid: ids.uid, stableId: ids.stableId, lang, trigger }).then((out) => {
+      if (out) applyRollback(out);
       if (out?.local && out.status === 'sent') {
         // Сервер не трогает локальный маркер; берём свежую очередь, только если неделя та же.
         const cur = weekRef.current;
         if (cur && out.local.weekKey === cur.weekKey && out.local.stepsCleared >= cur.stepsCleared) setWeek(out.local);
       }
     });
-  }, [gate, ids, lang, setWeek]);
+  }, [gate, ids, lang, setWeek, applyRollback]);
 
   useEffect(() => {
     if (!gate || !ids) return undefined;
@@ -237,6 +242,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     startingRef.current = true;
     setStarting(true);
     setStartBlock(null);
+    setRejectNotice(false);
     setOutcome(null);
     const weekKey = spireCurrentWeekKey(Date.now());
     const cur = weekRef.current && weekRef.current.weekKey === weekKey ? weekRef.current : null;
@@ -377,7 +383,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     live: gate !== null,
     uid: ids?.uid ?? null,
     stableId: ids?.stableId ?? null,
-    roomLoad, rows, myPlace, tier, friends, weekResult, dismissWeekResult,
+    roomLoad, rows, myPlace, tier, friends, weekResult, dismissWeekResult, rejectNotice,
     session, pending, cancelPendingStep, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
   };
 }

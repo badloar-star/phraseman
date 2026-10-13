@@ -305,18 +305,84 @@ function backoffMs(attempts: number): number {
   return Math.min(BACKOFF_MAX_MS, BACKOFF_BASE_MS * 2 ** Math.max(0, Math.min(10, attempts - 1)));
 }
 
+/**
+ * Откат маркера из-за отказа сервера (решение владельца 13.10, журнал п.86): сколько ступеней вернули, сколько времени сняли, какие строки.
+ * null в SpireFlushApplied — откатывать было нечего (провал не двигал маркер, строка уже снята ранее, подтверждённый сервером счёт выше).
+ */
+export type SpireRollback = Readonly<{
+  steps: number;
+  durationMs: number;
+  reports: readonly SpireStepReport[];
+}>;
+
 export type SpireFlushApplied = Readonly<{
   local: SpireWeekLocal;
   removed: number;
   rejected: readonly SpireFlushVerdict[];
+  rollback: SpireRollback | null;
 }>;
+
+/** Лестница этажей: по числу пройденных ступеней → этаж и ступень внутри него (зеркало того, что делает spireApplyStepReport по одной ступени). */
+export function spireMarkerFromSteps(stepsCleared: number): Readonly<{ floor: number; stepInFloor: number }> {
+  let rest = Math.max(0, Math.trunc(Number.isFinite(stepsCleared) ? stepsCleared : 0));
+  let floor = 1;
+  while (rest >= spireStepsForFloorLocal(floor)) {
+    rest -= spireStepsForFloorLocal(floor);
+    floor += 1;
+  }
+  return { floor, stepInFloor: rest };
+}
+
+/**
+ * Вернуть маркер на `steps` ступеней назад и снять `durationMs` суммарного времени. Чистая функция: ничего не читает и не пишет.
+ * Ниже подтверждённого сервером числа (serverAck.steps) не опускаемся — «маркер уже ушёл дальше подтверждённым ответом» (поздний отказ не должен стирать принятое).
+ * reachedAtMs: если прежнего значения не знаем — остаётся как было (чуть позже = хуже в споре «кто раньше дошёл», но не врёт вверх).
+ */
+export function spireRollbackSteps(
+  local: SpireWeekLocal,
+  input: Readonly<{ steps: number; durationMs: number; reachedAtMs?: number | null }>,
+): SpireWeekLocal {
+  const ack = local.serverAck ? Math.max(0, local.serverAck.steps) : 0;
+  const target = Math.max(ack, Math.max(0, local.stepsCleared - Math.max(0, Math.trunc(input.steps))));
+  if (target >= local.stepsCleared) return local;
+  const marker = spireMarkerFromSteps(target);
+  const hint = typeof input.reachedAtMs === 'number' && input.reachedAtMs >= 0 ? input.reachedAtMs : null;
+  return {
+    ...local,
+    floor: marker.floor,
+    stepInFloor: marker.stepInFloor,
+    stepsCleared: target,
+    totalMs: Math.max(0, local.totalMs - Math.max(0, Math.trunc(input.durationMs))),
+    reachedAtMs: target === 0 ? 0 : (hint ?? local.reachedAtMs),
+  };
+}
+
+/** Отвергнутые пройденные ступени той же недели → новый маркер. Провалы маркер не двигали — откатывать нечего. */
+export function spireRollbackRejected(
+  local: SpireWeekLocal,
+  rejectedRows: readonly SpireStepReport[],
+): Readonly<{ local: SpireWeekLocal; steps: number; durationMs: number }> {
+  const seen = new Set<string>();
+  const rows = rejectedRows.filter((row) => {
+    if (row.outcome !== 'passed' || row.weekKey !== local.weekKey || seen.has(row.reportId)) return false;
+    seen.add(row.reportId);
+    return true;
+  });
+  if (rows.length === 0) return { local, steps: 0, durationMs: 0 };
+  const durationMs = rows.reduce((sum, row) => sum + row.durationMs, 0);
+  const stillPending = local.pending.filter((row) => row.outcome === 'passed' && !seen.has(row.reportId)).map((row) => row.completedAtMs);
+  const ackReached = local.serverAck && local.serverAck.steps === Math.max(0, local.stepsCleared - rows.length) ? local.serverAck.reachedAtMs : 0;
+  const reached = Math.max(0, ...stillPending, ackReached);
+  const next = spireRollbackSteps(local, { steps: rows.length, durationMs, reachedAtMs: reached > 0 ? reached : null });
+  return { local: next, steps: local.stepsCleared - next.stepsCleared, durationMs: next === local ? 0 : durationMs };
+}
 
 /**
  * Ответ сервера → очередь. Строки с любым окончательным вердиктом уходят из
  * очереди (принято / уже было / отвергнуто — повтор ничего не изменит).
- * ЛОКАЛЬНЫЙ МАРКЕР НЕ ТРОГАЕТСЯ (TOWER_CONTRACT §5): сервер мог не засчитать
- * ступень, но стирать человеку видимый подъём — не наше решение (открытый
- * вопрос владельцу — см. PM-275 notes). serverAck хранит правду сервера рядом.
+ * МАРКЕР (раньше «не трогаем», TOWER_CONTRACT §5; решение владельца 13.10, журнал п.86): отвергнутая ПРОЙДЕННАЯ
+ * ступень откатывается — см. `rollback` в результате и spireRollbackRejected. Провал и строки, которых
+ * уже нет в очереди, маркер не двигают. serverAck хранит правду сервера рядом.
  *
  * Применяется к СВЕЖЕ прочитанному состоянию: пока шёл запрос, могли добавиться
  * новые ступени — удаление по reportId их не заденет (last-write-guard).
@@ -333,6 +399,7 @@ export function spireApplyFlushResponse(
       local: { ...local, attempts, nextAttemptAtMs: nowMs + backoffMs(attempts) },
       removed: 0,
       rejected: [],
+      rollback: null,
     };
   }
   const results = response.results ?? [];
@@ -340,24 +407,38 @@ export function spireApplyFlushResponse(
   const rejected = results.filter((row) => row.verdict === 'rejected');
   const pending = local.pending.filter((row) => !final.has(row.reportId));
   const sameWeek = response.weekKey === undefined || response.weekKey === local.weekKey;
+  let next: SpireWeekLocal = {
+    ...local,
+    pending,
+    attempts: 0,
+    nextAttemptAtMs: 0,
+    rejectedTotal: local.rejectedTotal + rejected.length,
+    serverAck: sameWeek && typeof response.serverSteps === 'number'
+      ? {
+        steps: response.serverSteps,
+        reachedAtMs: response.reachedAtMs ?? 0,
+        totalMs: response.totalMs ?? 0,
+        atMs: nowMs,
+      }
+      : local.serverAck,
+  };
+  // зачем (владелец 13.10, журнал п.86): отвергнутая сервером ПРОЙДЕННАЯ ступень больше не держит маркер. Откатываем только строки, которые в момент ответа ещё лежали
+  // в очереди (`local.pending`): повторная досылка уже снятой строки ничего не откатит второй раз. Нижний предел — подтверждённое сервером число (serverAck).
+  const rejectedIds = new Set(rejected.map((row) => row.reportId));
+  const rolledRows = local.pending.filter((row) => rejectedIds.has(row.reportId) && row.outcome === 'passed' && row.weekKey === local.weekKey);
+  let rollback: SpireRollback | null = null;
+  if (rolledRows.length > 0) {
+    const res = spireRollbackRejected(next, rolledRows);
+    if (res.steps > 0) {
+      next = res.local;
+      rollback = { steps: res.steps, durationMs: res.durationMs, reports: rolledRows };
+    }
+  }
   return {
-    local: {
-      ...local,
-      pending,
-      attempts: 0,
-      nextAttemptAtMs: 0,
-      rejectedTotal: local.rejectedTotal + rejected.length,
-      serverAck: sameWeek && typeof response.serverSteps === 'number'
-        ? {
-          steps: response.serverSteps,
-          reachedAtMs: response.reachedAtMs ?? 0,
-          totalMs: response.totalMs ?? 0,
-          atMs: nowMs,
-        }
-        : local.serverAck,
-    },
+    local: next,
     removed: local.pending.length - pending.length,
     rejected,
+    rollback,
   };
 }
 
@@ -392,6 +473,7 @@ export function spireApplyFlushFailure(
       local: { ...local, pending, attempts: 0, nextAttemptAtMs: 0 },
       removed: local.pending.length - pending.length,
       rejected: [],
+      rollback: null,
     };
   }
   const attempts = local.attempts + 1;
@@ -401,6 +483,7 @@ export function spireApplyFlushFailure(
     local: { ...local, attempts, nextAttemptAtMs: nowMs + wait },
     removed: 0,
     rejected: [],
+    rollback: null,
   };
 }
 

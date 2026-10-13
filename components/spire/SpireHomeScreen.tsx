@@ -307,6 +307,14 @@ export default function SpireHomeScreen() {
             <Text style={[s.noteText, { color: p.textSecondary }]}>{spireGameText(lang, 'offline')}</Text>
           </View>
         ) : null}
+        {game.rejectNotice ? (
+          // зачем (решение владельца 13.10, журнал п.86): сервер не засчитал пройденную ступень, маркер откатился — человек должен понять, почему этаж ниже. Текст пока общий «не сохранилась. Попробуй ещё раз»
+          // (saveFailed на 9 языках); точная строка «Ступень не засчиталась» — у Ядра на тексты.
+          <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-reject-notice">
+            <Ionicons name="alert-circle-outline" size={20} color={p.textSecondary} />
+            <Text style={[s.noteText, { color: p.textSecondary }]}>{spireGameText(lang, 'saveFailed')}</Text>
+          </View>
+        ) : null}
         {game.weekResult ? (
           <SpireWeekResultCard lang={lang} result={game.weekResult} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
         ) : null}

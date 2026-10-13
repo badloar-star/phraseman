@@ -32,6 +32,7 @@ import {
   type SpireFlushApplied,
   type SpireFlushResponse,
   type SpireFlushTrigger,
+  type SpireRollback,
   type SpireLang,
   type SpireStepReport,
   type SpireWeekLocal,
@@ -208,6 +209,8 @@ export type SpireFlushOutcome = Readonly<{
   removed: number;
   rejected: number;
   local: SpireWeekLocal | null;
+  /** Откат маркера из-за отказа сервера (решение владельца 13.10): экран применяет тот же откат к своей неделе и показывает строку. null — откатывать нечего. */
+  rollback: SpireRollback | null;
 }>;
 
 export type SpireFlushInput = Readonly<{
@@ -255,7 +258,7 @@ async function runFlush(store: SpireKeyValueStore, key: string, input: SpireFlus
 
   if (prepared.skip) {
     logger.info(LOG, `flush: пропуск trigger=${input.trigger} причина=${prepared.skip}`);
-    return { status: 'skipped', reason: prepared.skip, sent: 0, removed: 0, rejected: 0, local: prepared.local };
+    return { status: 'skipped', reason: prepared.skip, sent: 0, removed: 0, rejected: 0, local: prepared.local, rollback: null };
   }
 
   const batch = prepared.batch;
@@ -277,7 +280,7 @@ async function runFlush(store: SpireKeyValueStore, key: string, input: SpireFlus
     const fresh = await spireLoadWeekLocal(store, input.uid, input.lang, logger) ?? prepared.local;
     if (!fresh) {
       logger.warn(LOG, 'flush: состояние пропало во время отправки — ответ некуда применить');
-      return { status: 'failed', reason: 'local_state_lost', sent: batch.length, removed: 0, rejected: 0, local: null };
+      return { status: 'failed', reason: 'local_state_lost', sent: batch.length, removed: 0, rejected: 0, local: null, rollback: null };
     }
     const nowMs = input.nowMs();
     let applied: SpireFlushApplied;
@@ -288,8 +291,16 @@ async function runFlush(store: SpireKeyValueStore, key: string, input: SpireFlus
       status = response.ok ? 'sent' : 'failed';
       reason = response.ok ? 'ok' : `server_not_ok:${response.reason ?? 'unknown'}`;
       logger.info(LOG, `flush: ответ ok=${response.ok} reason=${response.reason ?? '-'} serverSteps=${response.serverSteps ?? '-'} localSteps=${fresh.stepsCleared} снято=${applied.removed} отвергнуто=${applied.rejected.length} за ${tookMs}мс`);
+      // зачем (СПЕРВА ЛОГИ, координатор 13.10): весь путь отказа в одном месте — id ступени, причина, что это была за ступень, маркер ДО и ПОСЛЕ, откуда решение.
       for (const row of applied.rejected) {
-        logger.warn(LOG, `flush: сервер отверг ${row.reportId} причина=${row.reason ?? 'unknown'} (локальный маркер не трогаем)`);
+        const wasPending = fresh.pending.find((p) => p.reportId === row.reportId);
+        const rolled = applied.rollback?.reports.some((r) => r.reportId === row.reportId) === true;
+        logger.warn('[SPIRE-REJECT]', `flush: сервер отверг ${row.reportId} причина=${row.reason ?? 'unknown'}; в очереди=${wasPending ? `да (${wasPending.outcome} этаж=${wasPending.floor ?? '?'} ступень=${wasPending.stepInFloor ?? '?'} за ${wasPending.durationMs}мс)` : 'нет (строка уже снята ранее — откат не нужен)'}; откат=${rolled ? 'да' : 'нет'}`);
+      }
+      if (applied.rejected.length > 0) {
+        const b = fresh;
+        const a = applied.local;
+        logger.warn('[SPIRE-REJECT]', `flush: маркер до: этаж=${b.floor} ступень=${b.stepInFloor} пройдено=${b.stepsCleared} время=${b.totalMs}мс | после: этаж=${a.floor} ступень=${a.stepInFloor} пройдено=${a.stepsCleared} время=${a.totalMs}мс | сервер подтвердил=${response.serverSteps ?? '-'} | откатили ступеней=${applied.rollback?.steps ?? 0} | источник=ответ досылки trigger=${input.trigger}`);
       }
     } else {
       const kind = spireClassifyFlushError(failure);
@@ -312,6 +323,7 @@ async function runFlush(store: SpireKeyValueStore, key: string, input: SpireFlus
       removed: applied.removed,
       rejected: applied.rejected.length,
       local: applied.local,
+      rollback: applied.rollback,
     };
   });
 }

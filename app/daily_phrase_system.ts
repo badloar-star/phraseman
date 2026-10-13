@@ -462,7 +462,9 @@ async function readCachedRemotePhrase(date: string): Promise<DailyPhrase | null>
     const parsed = JSON.parse(raw) as { date?: string; phrase?: DailyPhrase };
     if (parsed.date !== date || !parsed.phrase?.english) return null;
     return parsed.phrase;
-  } catch {
+  } catch (error) {
+    // зачем (правило «немой catch запрещён»): битый кэш = идём дальше по цепочке, но причина видна.
+    console.warn(`[DAILY-PHRASE] day_cache read failed — ${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)}`);
     return null;
   }
 }
@@ -638,6 +640,14 @@ export function getTodayPhraseSyncForTarget(
 export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   const today = todayKey();
   try {
+    // зачем (смета Firebase R1, п.11): запрос daily_phrases (where+orderBy+limit 10) уходил на КАЖДОМ старте и в каждом планировании
+    // пушей, хотя сегодняшняя фраза с сервера уже лежала в дневном кэше. Есть фраза на сегодня — сеть не трогаем.
+    const dayCached = await readCachedRemotePhrase(today);
+    if (dayCached) {
+      console.log(`[DAILY-PHRASE] source=day_cache date=${today} — без сети`);
+      rememberPeekPhrases(dayCached);
+      return dayCached;
+    }
     const remote = await readRemoteTodayPhrase(today);
     if (remote) {
       await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(remote));

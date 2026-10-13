@@ -339,3 +339,5 @@ _STEPS_ROBOT.EXCLUDE_IDS |= {'community-004', 'spire-gap-018', 'spire-gap-019'}
 # packdraft=none (подмена Ядра «черновика нет», только память); «Нет сети» появляется после конца загрузки каталога — ждём сам текст, а не 3 с.
 set_param('cards-section-029', 'packdraft', 'none')
 set_steps('cards-section-029', ['await:#flashcards-community-empty-label', 'wait:300'])
+# dialogs-024 (Макеты f64c751fc): образец — «Готовлю микрофон…» в середине разговора, после ответа (ряд действий и лампа — только после хода).
+set_steps('dialogs-024', list(_DLG_START) + _DLG_SEND + ['wait:2500', 'long:#dialogue-v2-voice-input', 'wait:400'])

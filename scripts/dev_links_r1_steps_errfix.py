@@ -334,3 +334,8 @@ for _rid in [r for r in ENTRIES if r.startswith('dialogs-')]:
     set_param(_rid, 'level', '1')
 # «Правила Шпиля» удалены (Темы 21e0e9348: справка и кнопка «i») — строк в DEV_LINKS нет; в реестре статус ставит его владелец.
 _STEPS_ROBOT.EXCLUDE_IDS |= {'community-004', 'spire-gap-018', 'spire-gap-019'}
+
+# ── Разбор Ядра 13.10 ~15:45 (группа «ДЕВ» карточного среза). cards-section-029 «Нет сети»: на телефоне робота остался настоящий черновик набора —
+# packdraft=none (подмена Ядра «черновика нет», только память); «Нет сети» появляется после конца загрузки каталога — ждём сам текст, а не 3 с.
+set_param('cards-section-029', 'packdraft', 'none')
+set_steps('cards-section-029', ['await:#flashcards-community-empty-label', 'wait:300'])

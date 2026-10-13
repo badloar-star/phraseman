@@ -23,6 +23,7 @@ import {
 import { readVipSnapshotForGeneration, writeVipSnapshotForAccount } from './premium_vip_storage';
 import { readTesterFlags, resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { emitAppEvent } from './events';
+import { rememberPremiumPlan } from './premium_plan_peek';
 import { notePlusStoreAccessEvidence, plusTransferHoldGrantsAccess } from './plus_transfer_hold';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -394,6 +395,8 @@ function refreshRealPremiumInBackground(
           AsyncStorage.multiSet(persistencePairs)
         ));
         if (!persisted) return;
+        // зачем (PM-214): план для первого кадра экрана «Подписка Plus» — из памяти, без ожидания хранилища
+        rememberPremiumPlan(inferredPlan, productId || null, 'guard_refresh');
         cacheReal(true, generation);
         if (!snapshot.active) emitAppEvent('premium_activated');
         return;

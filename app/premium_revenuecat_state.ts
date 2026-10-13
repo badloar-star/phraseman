@@ -5,6 +5,7 @@ import { invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard
 import { withAccountTransitionLock } from './account_generation';
 import { activeRevenueCatPremiumEntitlement } from './revenuecat_premium_access';
 import { swallowError } from './debug-logger';
+import { rememberPremiumPlan } from './premium_plan_peek';
 
 export {
   customerInfoConfirmsProductAccess,
@@ -132,6 +133,8 @@ export async function persistStorePremiumLocally(
 
   if (!isCurrent()) return false;
   await AsyncStorage.multiSet(pairs);
+  // зачем (PM-214): экран «Подписка Plus» берёт план из памяти на первом кадре, не дожидаясь хранилища и RevenueCat
+  rememberPremiumPlan(plan, metadata.productId ?? null, 'rc_persist');
   if (!isCurrent()) return false;
   await markPremiumStoreSeenNow({ alreadyTransitionLocked: true, isCurrent });
   if (!isCurrent()) return false;

@@ -180,6 +180,8 @@ function createHarness({ lang = 'ru', themeId = 'graphite', platform = 'ios', ke
     './swallow_log': { noteSwallowedHandler: () => () => {} },
     // зачем (15.10, красные сторожи; тест устарел): экран спрашивает dev-подмену плана через './dev_vip_override' — в харнессе подмены нет, как в проде (getDevPlanOverride = () => null).
     './dev_vip_override': { getDevPlanOverride: () => null },
+    // зачем (PM-214, 13.10): первый кадр «Подписки» без ?plan= берёт план из памяти процесса — в харнессе памяти нет (скелет, как раньше)
+    './premium_plan_peek': { peekPremiumPlan: () => null, rememberPremiumPlan: () => undefined },
     './dev_save_offer_progress': { getDevSaveOfferProgress: () => null }, // зачем: dev-подмена прогресса оффера удержания — в харнессе выключена, как в проде
     './purchase_flow_activity': { withPurchaseFlow: (_source, operation) => operation() },
     './account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: () => true, subscribeAccountGeneration: () => ({ remove() {} }) },

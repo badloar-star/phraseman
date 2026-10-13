@@ -18,6 +18,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { getDevPlanOverride } from './dev_vip_override';
+import { peekPremiumPlan, rememberPremiumPlan } from './premium_plan_peek';
 import { isDevManageLoadingHold } from './dev_paywall_state';
 import {
   View, Text, ScrollView, StyleSheet, ActivityIndicator,
@@ -167,6 +168,14 @@ function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStore
   return fallback;
 }
 
+/** PM-214: план первого кадра — из маршрута, иначе из памяти процесса (premium_plan_peek); null → скелет до хранилища/RevenueCat. */
+function firstFramePremiumPlan(routeParamPlan: PremiumStorePlan | null): PremiumStorePlan | null {
+  const peeked = routeParamPlan ? null : peekPremiumPlan();
+  const plan = routeParamPlan ?? (peeked ? localPremiumPlan(peeked.productId ?? undefined, peeked.plan) : null);
+  console.log(`[SUB-PEEK] первый кадр источник=${routeParamPlan ? 'route' : peeked ? `peek:${peeked.source}` : 'none'} значение=${plan ?? 'нет'}`); // guard-ok: одна строка на открытие экрана
+  return plan;
+}
+
 type SubscriptionOverlayFrameProps = {
   bloomColor: string;
   children: React.ReactNode;
@@ -283,9 +292,12 @@ export default function ManageSubscription() {
     ? normalizeStoredPremiumPlan(Array.isArray(params.plan) ? params.plan[0] : params.plan)
     : null;
   const [info, setInfo] = useState<CustomerInfo | null>(null);
-  const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(routeParamPlan);
+  // зачем (PM-214 «мгновенное открытие», координатор 13.10): план не пришёл маршрутом (dev-хаб, manage=1 без плана, ранний тап до гидрации
+  // Настроек) — первый кадр берёт его из памяти процесса (premium_plan_peek), а не ждёт AsyncStorage + RevenueCat за скелетом. Пусто — прежний скелет.
+  // Без нового хука: порядок useState прежний (сторожа экрана сеют состояние по индексу).
+  const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(() => firstFramePremiumPlan(routeParamPlan));
   // зачем (Авторизация 12.10, paywalls-020): dev `manage=loading` держит скелетон с первого кадра, даже если план пришёл в маршруте.
-  const [loading, setLoading] = useState(() => routeParamPlan === null || isDevManageLoadingHold());
+  const [loading, setLoading] = useState(() => (routeParamPlan === null && peekPremiumPlan() === null) || isDevManageLoadingHold());
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
   // зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d): живая цена магазина → последняя настоящая из кэша → справочная
   // (с «≈»). Смена плана идёт по живому пакету магазина — справочная в покупку не уходит; это только подпись на карточке.
@@ -374,6 +386,7 @@ export default function ManageSubscription() {
         const storedPlan = devPlan ? devPlan.plan : localPairs.find(p => p[0] === 'premium_plan')?.[1];
         const storedProductId = devPlan ? '' : localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
         const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
+        if (!devPlan) rememberPremiumPlan(storedPlan, storedProductId ?? null, 'manage_local');
         if (isBootstrapCurrent() && nextFallbackPlan) {
           setFallbackPlan(nextFallbackPlan);
           setLoading(false);

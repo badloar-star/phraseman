@@ -53,7 +53,7 @@ const PROTECTED = {
     acceptSaveOffer: '062c49d78361a4a2714e55ae2809682429d2b092819e441cb2a7ab0eb41b48b0',
     declineSaveOffer: '2a951a60709478ff7a332b8508882b2c326fa185f89b232f736687aaa2ede883',
   },
-  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', '24651baf84ebb807d5a14a5628362a43a0d0c938bd98a8d936889eef9b7a6fd5' /* перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */],
+  effects: ['c1753c1d96cb8a6bb515eda888154f7dffeeca1eca00d0256620adad4a20dab0', 'b3091d0891fbae592d026f4372f11bca860a56a4dced41029055f47e9ccbb43c' /* перепин 13.10 (PM-214): +1 строка rememberPremiumPlan(storedPlan, …, 'manage_local') после локального чтения — память плана для первого кадра, покупка/RevenueCat не тронуты; ранее перепин 12.10: 7a79d3519 (Авторизация, paywalls-020) — ранний выход dev-подмены manage=loading до try в эффекте загрузки; в стор-сборке isDevManageLoadingHold() всегда false (заглушка), поведение не меняется */, '9950d2159f189eec89435a23188a6249c8a3fc94cc3c8ae512e608579cf9c931' /* перепин 13.10 (92c6d2206): dev-эффект saveOffer=progress|support открывает шаг удержания без тапов; в сторе takeDevSaveOfferOpen() = null — эффект пустой */],
 };
 
 function protectedSnapshot(candidate) {
@@ -228,6 +228,8 @@ function createHarness({ plan = 'yearly', themeId = 'graphite', lang = 'ru', sto
     './swallow_log': { noteSwallowedHandler: () => () => {} },
     // зачем (15.10, красные сторожи; тест устарел): dev-подмены плана и прогресса оффера удержания (eb716d9a0, 23a4eb6f7) — в харнессе выключены, как в проде.
     './dev_vip_override': { getDevPlanOverride: () => null },
+    // зачем (PM-214, 13.10): первый кадр «Подписки» без ?plan= берёт план из памяти процесса — в харнессе памяти нет (скелет, как раньше)
+    './premium_plan_peek': { peekPremiumPlan: () => null, rememberPremiumPlan: () => undefined },
     './dev_save_offer_progress': { getDevSaveOfferProgress: () => null, takeDevSaveOfferOpen: () => null, DEV_SAVE_OFFER_PROGRESS: { streak: 12, lessonsCompleted: 38 } }, // зачем (13.10, 92c6d2206): dev-эффект saveOffer — в харнессе выключен, как в сторе
   };
   const output = ts.transpileModule(source, { fileName: SOURCE_PATH, compilerOptions: { esModuleInterop: true, jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;

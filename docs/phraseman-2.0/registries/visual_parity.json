@@ -7543,19 +7543,18 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-019.png",
-      "evidence_at": "2026-10-12T23:29:37.796Z",
-      "evidence_sha256": "36deeddfffb24e1116cdd0bb5d173d47a5b760dcd23584f6f3f5e2f102ac21be",
+      "evidence_at": "2026-10-13T11:13:23.799Z",
+      "evidence_sha256": "92376e0969d5447477990f639d27007800a86e978d1af20476e92ca384919d37",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Нужна шторка «Задания» (тап по плашке цели) — открыта «Почему так» (тап не по той кнопке).",
-        "[тон темы — исправлено 13.10 по таблице Тем] dialogs.html — класс A (Аврора ＠1): тема кадра ВЕРНА. Реальное расхождение в самом образце: он нарисован без свечения Авроры и с белым базовым --cta (#F2F1F6), а в приложении Аврора — мятные кнопки (Включить / Остаться / Получить Plus / К урокам / Закрыть / Открыть Plus) и свечение фона; привести страницу к токенам класса A — решает Темы.",
-        "[данные] Реплики dev-заглушка «(dev)»."
+        "в шапке под названием «Диалог», в образце настроение «😊 Доволен»",
+        "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:42:37.931Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "_remap_note": "телефон макета 20 (\"«Почему так» — шторка\") — склейка снята с 19; переснять",
       "triage": {
         "action": "переснять",
@@ -7578,8 +7577,8 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «Задания — шторка»: на кадре шторка «Почему так» (разбор реплики, «Осталось бесплатных разборов сегодня: 2 из 3»), а не «Задания».",
-      "shot_at": "2026-10-12T23:26:45.469Z",
+      "sverka_verdict": "Шторка «Почему так» совпадает по составу: заголовок, плашка с репликой, «Разбор», «Перевод», счётчик бесплатных разборов внизу. Текст — dev-заглушка «(dev)».",
+      "shot_at": "2026-10-13T11:14:38.068Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -8683,17 +8682,19 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-041.png",
-      "evidence_at": "2026-10-13T00:49:23.918Z",
-      "evidence_sha256": "931cc7d06d5b6ffebde94a1b6813c2b5ed91164e746874c8ab6f75ec1b57a0fb",
+      "evidence_at": "2026-10-13T09:28:34.316Z",
+      "evidence_sha256": "bfa96f25e0aff2fdc32de3650ba497efec49073e3f76763717fc26f1d9605d1f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] В приложении сверху тост «День засчитан 🔥 2», под счётчиками список целей с галочкой и номерами, подпись «Ты справился с разговором… (dev)»; в образце «Очень доволен», «+0 монет» — образец привести к коду (Дизайн/Макеты): убрать «Очень доволен» и «+N монет», добавить список целей."
+        "[образец] перепривязать к образцу «с ошибками» или переснять «без ошибок»",
+        "лишняя строка-описание под названием и список целей с отметками — в образце №41 их нет",
+        "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:18:20.657Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "_remap_note": "телефон макета 42 (\"Диалог пройден — с ошибками\") — склейка снята с 41; переснять",
       "triage": {
         "action": "переснять",
@@ -8716,8 +8717,8 @@
         "notes": "Статические тексты макета найдены в коде; реплики/сценарии/имена — данные. Состав/порядок — по снимку."
       },
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 13.10 (кадр Сверки, полный кадр без обрезки, склейка PARITY_FIT=width, поэлементно): Диалог пройден: заголовок, подзаголовок, счётчики «целей / верно / ошибок / точность», «Диалог был полезен?», мятная «Готово →», «Ещё раз» — состав совпал.",
-      "shot_at": "2026-10-13T00:44:27.433Z",
+      "sverka_verdict": "Образец ≠ состояние: кадр подписан «с ошибками», привязан к образцу №41 «без ошибок»; в приложении 1/2 целей, 0 ошибок, +30 монет.",
+      "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -9072,18 +9073,18 @@
         "blink 1s steps(1) infinite"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-003.png",
-      "evidence_at": "2026-10-12T22:33:25.255Z",
-      "evidence_sha256": "33800a5a499c705e8ccc873d09ef97b8d2ae23e8f24d010f94f003dc555a9897",
+      "evidence_at": "2026-10-13T11:09:42.117Z",
+      "evidence_sha256": "9f8a34575d81fa6718dd828add1d081dd418a5eee3d9a903f09d097d429292dd",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] В образце запрос «Present» и 3 результата с блоками «A2 🔒» и «B1 🔒»; на кадре запрос не введён (type не сработал / клавиатурная панель ОС поверх), фильтра нет.",
-        "[кадр: экранная клавиатура] Всплывающая панель ввода ОС слева — снять после hidekb."
+        "[состояние] ссылка не открыла список уроков с поиском — нужна рабочая dev-ссылка",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:42:37.931Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -9098,8 +9099,8 @@
         "final_at": "2026-10-12",
         "reshoot_theme": "переснять: тема — отличие в цвете/тоне: образец нарисован в своей теме, робот снимал «Графит» на нуле; ссылка dev_state?theme=<id>&level=<0..1>[&appearance=light] (таблица тем — Темы, DEV_SWITCHES_R1_CORE.md)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «A3 — поиск открыт»: в приложении поиск пуст («Урок или тема»), список не отфильтрован.",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "Состояние не достигнуто: снята Главная вместо «Обучения» с поиском «Present».",
+      "shot_at": "2026-10-13T11:14:38.068Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -9125,18 +9126,18 @@
         "blink 1s steps(1) infinite"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-004.png",
-      "evidence_at": "2026-10-12T22:34:08.571Z",
-      "evidence_sha256": "5a1788dafa1d670c13d2b621f4b60739dfcb31402c2a6773d683947720ce4fad",
+      "evidence_at": "2026-10-13T11:10:25.864Z",
+      "evidence_sha256": "a1b1bc17bf4d85152cd4d35135540b331c2c0a2fff9dc7022706c704c1932259",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[кадр: экранная клавиатура] Всплывающая панель ввода ОС (в образце клавиатуры нет).",
-        "[данные] Запрос «zzqx» вместо «прошедшее время»; монеты «0» против «1 240»; нет вкладок «Уроки | V2» и энергии (см. learn-001)."
+        "[состояние] нужна рабочая dev-ссылка на пустой поиск",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:42:37.931Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -9150,8 +9151,8 @@
         "final_note": "кадр старше кода (Дизайн 016488a3c, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «A4 — поиск, ничего не нашлось»: «Ничего не нашлось · Попробуй короче — например «прош» вместо целой фразы.» совпало текстом.",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "Состояние не достигнуто: снята Главная вместо «Обучения» с пустым поиском «Ничего не нашлось».",
+      "shot_at": "2026-10-13T11:14:38.068Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -9449,18 +9450,18 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-012.png",
-      "evidence_at": "2026-10-12T22:58:18.777Z",
-      "evidence_sha256": "2111352c5ae4469cd23f6fec4accc52e67d53b5c8faafd8a5c3e607d00686281",
+      "evidence_at": "2026-10-13T09:21:56.202Z",
+      "evidence_sha256": "207a83b3ce02e650cb3f3ce7cae7a1d15a2b5781cbbbfebf7420c9dab43fe92d",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Образец — окно «Уровень пока закрыт · Чтобы открыть уровень A2, сначала сдай зачёт A1.»; ссылка ведёт на экран финальной проверки (другой путь: тап по заголовку уровня против тапа по замку). Нужен путь на модал либо новый образец по экрану.",
-        "[образец ≠ код] Если экран «Зачёт пока недоступен» — осознанное поведение для Free, образец A11 устарел (Макеты: нарисовать этот экран)."
+        "в шапке нет вкладок «Уроки | V2»",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:20:12.596Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "triage": {
         "action": "переснять",
         "to": "Дизайн",
@@ -9473,8 +9474,8 @@
         "final_note": "кадр старше кода (Дизайн 9f1c5bfa4, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (chain21, склейка PARITY_FIT=width, поэлементно): «A11 — Уровень пока закрыт»: в приложении открылся не модал поверх списка, а отдельный экран «Финальная проверка A2» с «Зачёт пока недоступен» и «К урокам».",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "Окно «Уровень пока закрыт» совпадает: замок, заголовок, текст про зачёт A1, белая «Закрыть».",
+      "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -9496,18 +9497,19 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-013.png",
-      "evidence_at": "2026-10-12T22:58:59.178Z",
-      "evidence_sha256": "00a18d38adf2294763a80b7fd2a9fdbcf9cfced1f99b12dde7f268a7da606bea",
+      "evidence_at": "2026-10-13T09:25:04.870Z",
+      "evidence_sha256": "5ae8167db7e592435649d0558cf2348c0f74a4cbebcab3a80a43fa2a6b7a9e5c",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Нужен путь в окно «Недоступно» (тап по «Экзамен A1» у Free при непройденных уроках) — сейчас открывается экран зачёта.",
-        "[образец ≠ код] Образец A12 — окно со значком выпускной шапочки; экран зачёта в образце не нарисован."
+        "условие в тексте другое: «пройди все уроки A1 с оценкой 4.5+», в образце «на 2★» — свести к одному правилу",
+        "в шапке нет вкладок «Уроки | V2»",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:20:12.596Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "triage": {
         "action": "переснять",
         "to": "Дизайн",
@@ -9520,8 +9522,8 @@
         "final_note": "кадр старше кода (Дизайн 016488a3c, координатор 12.10) — только пересъёмка",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (chain21, склейка PARITY_FIT=width, поэлементно): «A12 — Недоступно»: в приложении тот же экран «Финальная проверка A1» с «Зачёт пока недоступен» и «К урокам», а не окно «Недоступно · Чтобы открыть экзамен, пройди все уроки A1 на 2★.».",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "Окно «Недоступно» совпадает по форме: значок, заголовок, белая «Закрыть».",
+      "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -9542,18 +9544,19 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-014.png",
-      "evidence_at": "2026-10-12T22:34:48.379Z",
-      "evidence_sha256": "cc424d724856ff5efbef4a6c3c663554f43f87313d76a01d316425f57b83a201",
+      "evidence_at": "2026-10-13T09:21:12.574Z",
+      "evidence_sha256": "705f85417322884b5bfef5cde30beace66809f2c2f1758ff4c8e21767c04fe0f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] В образце шторка «Урок 4 входит в Plus»: «Первые три урока открыты бесплатно…», две плашки («Все 32 урока и зачёты», «Энергия не тратится»), «Открыть Plus →» и «Позже» — в приложении вместо неё пейвол с тарифами; свериться с git log пейвола (какой вид осознанный) — Дизайн/владелец.",
-        "[состояние не то] Закрытый урок в приложении «Урок 1 закрыт» (в списке урок 1 не пройден), в образце «Урок 4»."
+        "в шапке «Обучения» баланс монет пустой («—»)",
+        "бейдж «Выгоднее всего» стоит справа от «Год», в образце под ним",
+        "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:42:37.931Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "triage": {
         "action": "переснять",
         "to": "Дизайн",
@@ -9567,8 +9570,8 @@
         "final_at": "2026-10-12",
         "restitch_note": "образец learn.html A13 перерисован по контекстному пейволу «Дальше — в Plus» (осознанно с 20.06, 6a616b7a5; тексты утверждены владельцем 11.10, f7bdeb251): пилюля «Урок 4 закрыт», «Весь курс целиком», плитки Год/Месяц в € (справочные), «Оформить за ≈ €39,99 в год». Нужна пересклейка; номер урока в пилюле — по коду (Дизайн b831aed2a)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «A13 — урок закрыт»: в приложении поверх списка шторка «Дальше — в Plus» (полный пейвол: «Урок 1 закрыт», «Весь курс целиком», «Год / Месяц» с ценами, «Оформить за ≈ €39,99 в год»).",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "Шторка «Дальше — в Plus» совпадает: чип «Урок 4 закрыт», текст, «Весь курс целиком», Год/Месяц, цена, кнопка, ссылки.",
+      "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -10249,19 +10252,22 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/learn-032.png",
-      "evidence_at": "2026-10-12T22:35:56.908Z",
-      "evidence_sha256": "3a0b6a48b7eb96bd297f5a187898e4293ab842de5fc9582a15ec6b0981f1d29b",
+      "evidence_at": "2026-10-13T09:27:03.826Z",
+      "evidence_sha256": "f6bee56ca8309c3a5416f28dce5526f629b5196a09099b37529752016980e928",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] В образце ответ «She work every day» с подчёркнутым «work» и карточка «Разбор промаха · Разобрать мой ответ / Объяснить проще» — нужен неверный ответ в ссылке (answer=wrong) и открытие разбора.",
-        "[образец ≠ код] Нижняя панель 4 плитки («50/50, Теория, Устно, Отменить») — в образце «Дальше»."
+        "в шапке нет сердечек, в образце 3 сердечка",
+        "ответ показан зачёркнутым словом и плашкой правильного ответа, в образце фраза с подсвеченным словом",
+        "лишняя нижняя панель «Теория / Пояснить / Повтор»",
+        "«Объяснить проще» в образце заглавными — поправить образец",
+        "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "diff",
       "note": "блок разбора (AiMistakeCard) сверять по redesign-round-2, телефон 4 (A); остальной кадр — по learn.html",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:20:12.596Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -10277,8 +10283,8 @@
         "macets_note_2026_10_13": "то же, что learn-029; нужен неверный ответ (answer=wrong) и открытие разбора промаха",
         "restitch_note": "образец learn.html D приведён к текущему экрану урока (п.81(12) «как есть»): шапка «Урок N» без подписи уровня, 6 слов внизу над полосой «N/50», панель из 4 плиток «50/50 · Теория · Устно · Отменить»; прежний вид с 6 инструментами — концепт Z1 вне реестра. Для D5 нужен неверный ответ (answer=wrong) и открытие разбора промаха."
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (chain21, склейка PARITY_FIT=width, поэлементно): «D5 — разбор промаха»: в приложении исходное состояние сборки («She …» и слова were/was/am/been/is/are), не ошибка.",
-      "shot_at": "2026-10-12T22:32:20.159Z",
+      "sverka_verdict": "«Разбор промаха» после ошибки в сборке есть: две кнопки, «Дальше».",
+      "shot_at": "2026-10-13T09:29:05.869Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -10768,17 +10774,25 @@
         "starpop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1)",
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-048.png",
+      "evidence_at": "2026-10-13T08:10:51.304Z",
+      "evidence_sha256": "0540db651623abe4acee282e407f9e8da32612c57a3f17ff7966ec0088ab2bb8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] образец E2 — пользователь с Plus; нужна съёмка с Plus или отдельный образец для бесплатного",
+        "нет строки «Следующий урок открыт» под звёздами",
+        "нет кнопки «Повторить ошибки» и опроса «Всё было понятно?»",
+        "[язык] кадр на uk — переснять на ru"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
+      "shot_at": "2026-10-13T08:10:21.316Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Состояние другое: бесплатный пользователь, следующий урок в Plus — вместо «Следующий урок» показаны плашка «Следующий урок входит в Plus» и «Открыть Plus»."
     },
     {
       "id": "learn-049",
@@ -10801,17 +10815,24 @@
         "starpop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1)",
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-049.png",
+      "evidence_at": "2026-10-13T08:11:19.802Z",
+      "evidence_sha256": "ac11d972e87134d804fa1eef1e13e656cfee4ac476d1c1aaec3a6e993659af42",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние] нужна съёмка с Plus или отдельный образец",
+        "нет кнопки «Повторить ошибки», опроса «Всё было понятно?» и ссылки «К списку уроков»",
+        "[язык] кадр на uk — переснять на ru"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
+      "shot_at": "2026-10-13T08:10:52.031Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Состояние другое: бесплатный пользователь — плашка «Следующий урок входит в Plus» и «Открыть Plus» вместо «Повторить урок»."
     },
     {
       "id": "learn-050",
@@ -33322,18 +33343,19 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-002.png",
-      "evidence_at": "2026-10-12T23:57:48.898Z",
-      "evidence_sha256": "f7366e9ea1efff338b989430515befaddcba67733823e6cb2d96d06ce00db959",
+      "evidence_at": "2026-10-13T09:52:33.503Z",
+      "evidence_sha256": "a639ace9693873635a0aa2dac980f3458e9c59326432861cef59123edcbdfff5",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] Образец №2 показывает только заголовок с пилюлей ⚡4 (тряска и «−1») без экрана разбора; в приложении тот же момент уже с панелью разбора — дорисовать состояние «после ошибки» (Макеты) либо снимать до панели.",
-        "[анимация] Тряска/«−1» — анимация, match без anim_evidence невозможен."
+        "[состояние] нужна съёмка момента ошибки до раскрытия ответа",
+        "нижняя панель: «Теория / Пояснить / Повтор» + «Дальше», в образце «50/50 / Теория / Устно / Отменить»",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:09:07.379Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
@@ -33342,8 +33364,8 @@
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим Б · ошибка: в приложении после неверного ответа — перечёркнутое «him are okay», верная фраза «You are okay», карточка «Разбор промаха · AI», «Разобрать мой ответ / Объяснить проще» и мятная «Дальше».",
-      "shot_at": "2026-10-12T23:56:49.494Z",
+      "sverka_verdict": "Состояние другое: в образце сборка до проверки (тряска и «−1»), в приложении экран после проверки с правильным ответом и «Разбором промаха».",
+      "shot_at": "2026-10-13T10:10:38.648Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -33417,18 +33439,19 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-004.png",
-      "evidence_at": "2026-10-12T23:59:20.295Z",
-      "evidence_sha256": "880b8c531a9501706948ea77fcf5acceb19a08bcb2551936ff55c9340f7c4adb",
+      "evidence_at": "2026-10-13T09:53:38.562Z",
+      "evidence_sha256": "acb1bb850289a7dda813d92401c53a16d395cd8b518dea02e8fc1ce0b602cef4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] Образец №4 — урок без окна (окно выезжает анимацией); окно в образце есть отдельным кадром — привязку пересмотреть: этот кадр соответствует образцу «после остановки» (energy-modes-states №5/№6?).",
-        "[анимация] Появление окна — анимация."
+        "таймер «9 мин 41 с», в образце «9 минут» — выбрать формат",
+        "под окном нижняя панель урока другая (3 кнопки + «Дальше»), в образце 4 кнопки",
+        "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:09:07.379Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается. Выгода в шторке Plus — «Занятия без ожидания» (контекст no_energy), не «Вернёшься на тот же вопрос».",
@@ -33438,8 +33461,8 @@
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1",
         "macets_pending_2026_10_13": "перепривязано на статичный кадр №26 (образец Б4 №4 — анимация, окно выезжает на 2,7 с); код EnergyStopSheet.tsx = .gmod образца (карточка r26, плита 56, заголовок 23/29/800, кнопки 52 r26). Ожидается match после пересъёмки (данные: таймер «9м 42с» против «9 минут» — данные; нужен кадр после появления окна, ≥ 3 с после ошибки)."
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим Б · остановка: в приложении окно «Энергия закончилась · Занятие остановлено… · Продолжить с Plus · Выйти из занятия» поверх урока.",
-      "shot_at": "2026-10-12T23:58:15.519Z",
+      "sverka_verdict": "Окно «Энергия закончилась» совпадает: значок, заголовок, текст, «Продолжить с Plus», «Выйти из занятия»; счётчик энергии 0 красным.",
+      "shot_at": "2026-10-13T10:10:38.648Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -33730,17 +33753,17 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-011.png",
-      "evidence_at": "2026-10-12T18:36:35.671Z",
-      "evidence_sha256": "36b933df14e6dc48eeface370ff4af2a92e6c09a9dade11eaa5e27360d3a3c74",
+      "evidence_at": "2026-10-13T06:57:25.328Z",
+      "evidence_sha256": "f220e2b4fc7c9e7b77998796e82713e65318ea9910606ccff3fe201583dd5431",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Кадр не того экрана (Codex/V2): вход в занятие Learning V2 не выполнен."
+        "[состояние] ссылка не открыла занятие Learning V2 — нужна рабочая dev-ссылка"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:09:07.379Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим Б — ПОД ФЛАГОМ energy_mistake_charge (выкл. по умолчанию, energy_mode.ts); в первом выпуске не показывается.",
@@ -33749,8 +33772,8 @@
         "coverage": "link_missing",
         "coverage_note": "Learning V2 (зона Codex): нужны шаги занятия в V2-плеере; закрыть: Codex/Ядро — флаг для Learning V2 energy HUD"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим Б · Learning V2 — занятие: на кадре Главная («Диалоги / Карточки / Шпиль», «Видео», «Сегодня», «Фраза дня»), урока V2 нет.",
-      "shot_at": "2026-10-12T18:35:39.528Z",
+      "sverka_verdict": "Состояние не достигнуто: снята Главная вместо занятия Learning V2.",
+      "shot_at": "2026-10-13T07:11:09.304Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -33815,17 +33838,18 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-013.png",
-      "evidence_at": "2026-10-12T18:37:30.145Z",
-      "evidence_sha256": "e37f8575f81e9eeeb53e35d78dbe69ac0be455075526878d5987fbf0a9ff4e00",
+      "evidence_at": "2026-10-13T06:59:23.704Z",
+      "evidence_sha256": "65faaace60c2774b1bfad64d51cfa9e77822e717f112fed5d4cd6dfa60828f8a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Кадр снят до отрисовки/на пустом экране; в образце диалог «Закажи кофе» с репликами и плашкой «Ошибка в диалоге энергию не снимает ни в одном режиме»; плашка — анимация/тост (anim_evidence)."
+        "[образец] перерисовать фон по текущему dialogs.html или перепривязать",
+        "подсказки «Ошибка в диалоге энергию не снимает…» в приложении нет — в образце это пояснение, уточнить, нужна ли она в коде"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:04.134Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
@@ -33834,8 +33858,8 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Диалоги — энергия за ошибки не снимается: на кадре чёрный экран со статус-баром и нижним меню (экран не отрисован).",
-      "shot_at": "2026-10-12T18:35:39.528Z",
+      "sverka_verdict": "Поведение совпадает: после ошибочной реплики «I goed home» энергия осталась 4. Образец устарел: старый вид диалога без плашки цели и аватаров.",
+      "shot_at": "2026-10-13T07:11:09.304Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -33857,17 +33881,19 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-014.png",
-      "evidence_at": "2026-10-12T18:37:57.429Z",
-      "evidence_sha256": "56f5a84e404e7753ae91ab3c27764af5b009ca7c8cca374c70980e8ce1265116",
+      "evidence_at": "2026-10-13T07:00:03.289Z",
+      "evidence_sha256": "85d894e1b9a20a4c38e7824e6e1e38577b3dc999086b7f0cfd02ea21d41f0e92",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Не тот экран: квиз «Фраза дня» не открыт (в образце «Break a leg!» с тремя вариантами и плашкой); нужен тап по карточке «Фраза дня» и ответ."
+        "[образец] перерисовать по шторке «Фраза дня» или перепривязать",
+        "энергия на кадре не видна — проверить «не снимается» нельзя",
+        "состояние ошибки (красный вариант) не снято"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:04.134Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
@@ -33876,8 +33902,8 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Фраза дня — энергия за ошибки не снимается: на кадре Главная («Диалоги / Карточки», «Видео», «Сегодня», «Фраза дня»).",
-      "shot_at": "2026-10-12T18:35:39.528Z",
+      "sverka_verdict": "Образец ≠ код: «Фраза дня» в приложении — шторка на Главной с тремя вариантами, в образце отдельный экран «Квиз» с энергией в шапке.",
+      "shot_at": "2026-10-13T07:11:09.304Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -33947,18 +33973,20 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-016.png",
-      "evidence_at": "2026-10-13T00:00:28.156Z",
-      "evidence_sha256": "5a99e9b1d1ac93634a9cfcd8b5d94e17b8675151de76e4e82b7d94af77f08861",
+      "evidence_at": "2026-10-13T09:54:53.072Z",
+      "evidence_sha256": "fea7aa30fb9d5e52ea8ebf0c93a3c84a46f6668b43de9bdfc8a15f6809522202",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] Образец №24 показывает только шапку с красными сердцами и монетами до разбора; в приложении ошибка уже с панелью разбора (см. energy-modes-002) — дорисовать состояние после ошибки (Макеты).",
-        "[анимация] Сердечко и серия монет — анимация."
+        "сердечки белые, в образце розовые",
+        "[состояние] снят экран после проверки с «Разбором промаха», в образце сборка до проверки",
+        "нижняя панель другая (3 кнопки + «Дальше»)",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:04.134Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
@@ -33967,8 +33995,8 @@
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим А · ошибка: в приложении после неверного ответа — «them are together» с перечёркнутым «them», верная фраза, «Разбор промаха · AI», кнопки «Разобрать мой ответ / Объяснить проще» и мятная «Дальше».",
-      "shot_at": "2026-10-12T23:59:21.350Z",
+      "sverka_verdict": "Режим А: сердечки в шапке есть, одно потеряно после ошибки.",
+      "shot_at": "2026-10-13T10:10:38.648Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -38378,21 +38406,29 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-004.png",
+      "evidence_at": "2026-10-13T06:40:08.061Z",
+      "evidence_sha256": "41ad79aa169b31372469ddaceb5f61da44e6fedfb0306537e16bc1be0be19db4",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "окно с зелёным отливом, в образце нейтрально-серое",
+        "«Отмена» залита зелёным, в образце тёмная",
+        "кнопка удаления тёмно-красная с красным текстом в 3 строки, в образце белая пилюля с красным текстом (в образце текст тоже не влезает — поправить образец)",
+        "кнопка под списком с красным текстом, в образце серым"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Окно «Очистить память?» совпадает по тексту и составу (заголовок, текст, две кнопки)."
     },
     {
       "id": "dialogs-gap-005",
@@ -38412,21 +38448,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-005.png",
+      "evidence_at": "2026-10-13T06:40:47.501Z",
+      "evidence_sha256": "ed2c799fd01143c2b0b17d8441b03d9f9289ec522f73327bfb802ddca85b3d52",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "«Очищаем…» красным, в образце серым",
+        "в пунктах сводки «Сохранённая задача» вместо названий задач — проверить, фикстура или код не находит название",
+        "названия диалогов в списке на английском («Say hello after meeting someone») при русском интерфейсе — проверить в коде"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Экран «Память диалогов» в состоянии «Очищаем…» совпадает по составу."
     },
     {
       "id": "dialogs-gap-006",
@@ -38446,21 +38489,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-006.png",
+      "evidence_at": "2026-10-13T06:41:25.305Z",
+      "evidence_sha256": "597c847b4ebc3f49568fbfd0e88e8e24a5f9fa835225bc8ce484f0ea3dc12858",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "кнопка «Очистить память этого языка» с красным текстом, в образце белым",
+        "текст ошибки переносится на 2 строки, в образце в 1",
+        "в сводке «Сохранённая задача» вместо названий, названия диалогов на английском"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Состояние «Не удалось очистить» совпадает по составу и тексту ошибки."
     },
     {
       "id": "dialogs-gap-007",
@@ -38480,21 +38530,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-007.png",
+      "evidence_at": "2026-10-13T06:43:07.928Z",
+      "evidence_sha256": "ca01441bb6e0318c1a4343ab7a9f02c0b47d993523eed0c76635425d673f87b9",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "заголовок «Разговор завершён», в образце «Диалог пройден»",
+        "лишние строка «Твоих реплик: 1.», плашка счётчиков и скелет списка целей — в образце одна плашка с «Собеседник готовит итог…»",
+        "«Готово» зелёная внизу экрана, в образце белая сразу под плашкой"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Состояние «Собеседник готовит итог…» есть, но экран другой."
     },
     {
       "id": "dialogs-gap-008",
@@ -38514,21 +38571,29 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-008.png",
+      "evidence_at": "2026-10-13T06:44:46.971Z",
+      "evidence_sha256": "0ab9c3124beed5a096a4c1640390c04ae8613818fc48ef6bf5d66f39d1524ab5",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "заголовок «Разговор завершён», в образце «Диалог пройден»",
+        "«Повторить» зелёная, в образце белая",
+        "лишние «Твоих реплик: 1.» и плашка счётчиков",
+        "«Готово» зелёная внизу экрана, в образце белая под плашкой"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Состояние «Итог пока недоступен» с «Повторить» есть."
     },
     {
       "id": "dialogs-gap-009",
@@ -38549,25 +38614,26 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-009.png",
-      "evidence_at": "2026-10-12T18:08:47.764Z",
-      "evidence_sha256": "ea9a4a4ea4abfa2c3d415e3e630a56e87b594f77956d6c5db43964cb3f3d2338",
+      "evidence_at": "2026-10-13T06:45:18.839Z",
+      "evidence_sha256": "b57877a765c163ac6edbb5339b3af011f5f1adac2d0fa5aa26c1c9d7d9aa3abb",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец ≠ код] В коде загрузка свободного разговора — скелет (E2/E9, 63029e81a), а не круг + «Готовим разговор…»; образец привести к скелету (Макеты)."
+        "лишняя плашка цели с двумя строками и поле ввода внизу — в образце их нет",
+        "расклад пузырей другой (в образце широкий пузырь со вторым под ним)"
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "phraseman://dev_state?onboarding=done&intros=seen&plus=on&hold=freeform_loading&overlays=off&next=/dialogue_v2_freeform",
         "restitch_note": "образец dialogs-gaps-states №9: скелет загрузки сессии (серые заглушки реплик и поля), без «Готовим разговор…» (E2/E9, 63029e81a). Нужна пересклейка"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Свободный разговор — готовим разговор: на кадре скелет сессии (серые заглушки), текст «Готовим разговор…» отсутствует.",
-      "shot_at": "2026-10-12T17:58:55.823Z",
+      "sverka_verdict": "Скелет «готовим разговор» близок к образцу: кнопка назад, две строки заголовка, пузыри.",
+      "shot_at": "2026-10-13T06:51:21.774Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -38637,24 +38703,25 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-011.png",
-      "evidence_at": "2026-10-12T18:09:07.577Z",
-      "evidence_sha256": "26a93ff404c94e1b6a8d3e3b22843d491106c0a51cc357c63df4c9bd4bdaa1ad",
+      "evidence_at": "2026-10-13T10:09:52.483Z",
+      "evidence_sha256": "d387874ba4d3db3f6d8e02cfce2aa918084e331bb0dd20a9acbc2a88694d0152",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Нужен экран «Не удалось продолжить разговор» (облако с чертой, «Повторить»); кадр снят до появления ссылки (/dialogue_v2_freeform + dev_dialog_send=ok + dev_dialog_fail=service + реплика) — переснять."
+        "[состояние] нужна ссылка dev_state на ошибку продолжения",
+        "[язык] кадр на uk — переснять на ru"
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T18:13:18.774Z",
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 7:09, dialogs-gaps №11 «Свободный разговор — не удалось продолжить»): сверка невозможна — на кадре хаб «Диалоги» (Свободный разговор PLUS, четыре категории), а не экран ошибки свободного разговора.",
-      "shot_at": "2026-10-12T17:58:55.823Z",
+      "sverka_verdict": "Состояние не достигнуто: снят обычный свободный разговор с первой репликой, а не ошибка «Не удалось продолжить разговор».",
+      "shot_at": "2026-10-13T10:10:38.648Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -38773,21 +38840,30 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-gap-014.png",
+      "evidence_at": "2026-10-13T06:46:40.192Z",
+      "evidence_sha256": "1c35263a54277c1748d3b7ae7365f3021c7751254a35985b7bfe31b073997eff",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "значок ▶ без круга, в образце в круге",
+        "в шапке «Диалог» вместо настроения «😊 Доволен»",
+        "аватар собеседника — силуэт, в образце значок роли",
+        "под репликой нет кнопки 🔊 — только «Перевод» и «Почему так»",
+        "реплика собеседника — dev-заглушка «(dev)»"
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T12:19:02.119Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:51:21.774Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "Пузырь «Голосовое сообщение» в ленте совпадает: белая пилюля справа под «Ты»."
     },
     {
       "id": "dialogs-gap-015",

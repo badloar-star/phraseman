@@ -500,7 +500,10 @@ function RegistrationPromptModal({
   const rise5 = useRiseStyle(5);
 
   const showInlineError = useCallback((title: string, message: string) => {
-    setInlineError(`${title}\n${message}`);
+    // зачем (LANG_PASS_REVIEW_R1 п.4, auth-gap-003): заголовки отказов без точки, и «…another account / Your progress is safe…»
+    // читалось одним предложением. Точка ставится только если заголовок не кончается знаком конца фразы — одно правило на 9 языков.
+    const titleEnded = /[.!?…:]$/.test(title.trim()) ? title.trim() : `${title.trim()}.`;
+    setInlineError(`${titleEnded}\n${message}`);
   }, []);
 
   // Заголовок по утверждённому редизайну: «Всё в безопасности» (для всех контекстов).

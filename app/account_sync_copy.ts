@@ -33,7 +33,7 @@ export function localProgressNotUploadedCopy(lang: Lang): LocalProgressNotUpload
     body: triLang(lang, {
       ru: 'Не получилось сохранить его в облако перед входом, поэтому вход отменён. Попробуй ещё раз, когда интернет будет стабильнее.',
       uk: 'Не вдалося зберегти його в хмару перед входом, тому вхід скасовано. Спробуй ще раз, коли інтернет буде стабільнішим.',
-      en: 'We couldn’t save it to the cloud before signing in, so sign-in was cancelled. Try again when your connection is more stable.',
+      en: 'We couldn’t save it to the cloud before signing in, so sign-in was canceled. Try again when your connection is more stable.',
       es: 'No pudimos guardarlo en la nube antes de entrar, así que el acceso se canceló. Inténtalo de nuevo cuando la conexión sea más estable.',
       'pt-BR': 'Não conseguimos salvá-lo na nuvem antes de entrar, então o acesso foi cancelado. Tente de novo quando a conexão estiver mais estável.',
       vi: 'Chưa lưu được lên đám mây trước khi đăng nhập nên việc đăng nhập đã bị hủy. Hãy thử lại khi mạng ổn định hơn.',

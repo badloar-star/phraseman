@@ -68,7 +68,7 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
   const body = triLang(lang, {
         ru: 'Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.\n\nМожно выключить в настройках в любой момент.',
         uk: 'Практикуй листування з персонажами, виконуй завдання й отримуй зворотний зв’язок. Для цього твої повідомлення надсилаються в OpenAI.\n\nМожна вимкнути в налаштуваннях будь-коли.',
-        en: 'Practise chats with characters, complete goals and get feedback. To do this, your messages are sent to OpenAI.\n\nYou can turn this off in settings at any time.',
+        en: 'Practice chats with characters, complete goals and get feedback. To do this, your messages are sent to OpenAI.\n\nYou can turn this off in settings at any time.',
         es: 'Practica chats con personajes, completa objetivos y recibe comentarios. Para eso, tus mensajes se envían a OpenAI.\n\nPuedes desactivarlo en ajustes cuando quieras.',
         'pt-BR': 'Pratique conversas com personagens, cumpra objetivos e receba feedback. Para isso, suas mensagens são enviadas à OpenAI.\n\nVocê pode desativar isso nas configurações quando quiser.',
         vi: 'Luyện chat với các nhân vật, hoàn thành mục tiêu và nhận phản hồi. Để làm vậy, tin nhắn của bạn được gửi tới OpenAI.\n\nCó thể tắt trong cài đặt bất cứ lúc nào.',

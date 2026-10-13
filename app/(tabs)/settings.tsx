@@ -1532,7 +1532,7 @@ export default function SettingsMain() {
                         L(
                           'Смена аккаунта отменена',
                           'Зміну акаунта скасовано',
-                          'Account switch cancelled',
+                          'Account switch canceled',
                           'Cambio de cuenta cancelado',
                           'Troca de conta cancelada',
                           'Đã hủy đổi tài khoản',
@@ -1625,7 +1625,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
                         'Зміну акаунта скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-                        'Account switch cancelled: an unfinished coin charge cannot be carried over or skipped. Connect to the internet and try again.',
+                        'Account switch canceled: an unfinished coin charge cannot be carried over or skipped. Connect to the internet and try again.',
                         'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
                         'A troca de conta foi cancelada: um gasto de moedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
                         'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
@@ -1664,7 +1664,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
                         'Зміну акаунта скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
-                        'Account switch cancelled: the local coin queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
+                        'Account switch canceled: the local coin queue is corrupted or belongs to an unknown account. Data was kept for recovery.',
                         'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
                         'A troca de conta foi cancelada: a fila local de moedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
                         'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
@@ -1695,7 +1695,7 @@ export default function SettingsMain() {
                       L(
                         'Смена аккаунта отменена, всё на месте. Попробуй ещё раз.',
                         'Зміну акаунта скасовано, усе на місці. Спробуй ще раз.',
-                        'The account switch was cancelled, everything is in place. Try again.',
+                        'The account switch was canceled, everything is in place. Try again.',
                         'El cambio de cuenta se canceló, todo sigue en su sitio. Inténtalo de nuevo.',
                         'A troca de conta foi cancelada, tudo continua no lugar. Tente de novo.',
                         'Đã hủy đổi tài khoản, mọi thứ vẫn nguyên. Hãy thử lại.',

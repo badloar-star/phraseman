@@ -63,7 +63,7 @@
 <script src="kit.js"></script>
 <script>
 (() => {
-const { icon, phone, col, block, sheet } = K;
+const { icon, phone, col, block, sheet, energy } = K;
 const cta = (t, x = '') => `<div class="ac-cta t"${x}>${t}</div>`;
 const bot = (i) => `<div class="bot2">${i}</div>`;
 const back = (right = '') => `<div class="topbar"><span class="rb t">${icon('back', 's20')}</span><div class="flex">${right}</div></div>`;
@@ -76,7 +76,9 @@ const chips = (on = 0) => `<div class="fchips">${['Все 12', 'Значение
 const legend = `<div class="legend"><span><i style="background:var(--acc)"></i>38 исправлено</span><span><i style="background:rgba(255,255,255,.25)"></i>12 ждут</span></div>`;
 const hubHead = back() + `<div class="lt"><div class="ti">Мои ошибки</div></div>`;
 // зачем (владелец 04.10): кольцо-таймер на вопрос убрано; в шапке задания — крестик, счётчик «n / 12» и меню «⋯» (скрыть ошибку, сообщить об ошибке в задании).
-const runTop = (n) => `${barX(`<div class="flex" style="justify-content:flex-end;gap:12px"><div class="sec2" style="font-weight:600">${n} / 12</div><span class="rb t">${icon('dotsH', 's20')}</span></div>`)}`;
+// зачем (Темы + координатор 13.10; код SessionAttemptsHud, Ядро 12.10; кадр mistakes-panel-021): в режиме А слева от счётчика — три сердца (красные заливные, потерянное — контур); в режиме Б вместо сердец — пилюля энергии (EnergyAttemptsHud)
+const hrts = (lost = 0) => `<span style="display:inline-flex;gap:4px;color:#F0605D">${[0, 1, 2].map((i) => icon(i >= 3 - lost ? 'heart' : 'heartF', 's20')).join('')}</span>`;
+const runTop = (n, mode = 'a') => `${barX(`<div class="flex" style="justify-content:flex-end;gap:12px;align-items:center">${mode === 'b' ? energy(5) : hrts(0)}<div class="sec2" style="font-weight:600">${n} / 12</div><span class="rb t">${icon('dotsH', 's20')}</span></div>`)}`;
 const trayG = (opts, marks = {}) => `<div class="g">${opts.map((o) => `<div class="${marks[o] || ''}">${o}</div>`).join('')}</div>`;
 const Q = `<div class="q"><div class="k">Выберите перевод</div><div class="v">Grandchildren</div></div>`;
 const WHY = '<b>Grand-</b> добавляет поколение: grandmother — бабушка, grandchildren — внуки. Дети — это <b>children</b>.';
@@ -124,7 +126,8 @@ document.getElementById('root').innerHTML =
   block('card', 'Ошибка', '', [col('Ошибка', detail(false)), col('Ошибка — шаги и история', detail(true)), col('Меню ошибки', menu())]) +
   block('run', 'Отработка — типы заданий', 'Ответы — в «стакане» внизу экрана, под большим пальцем.', [col('Выбери перевод', runChoose()), col('Собери фразу', runBuild()), col('Напиши', runType()), col('Скажи вслух', runSay()), col('Меню задания', runMenu())]) +
   block('fb', 'Ответ и разбор', 'Результат и разбор выезжают в том же «стакане»; нижней шторки поверх экрана нет.', [col('Верно', fbOk()), col('Неверно', fbNo()), col('Почему', why())]) +
-  block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]);
+  block('end', 'Итог и пустые состояния', '', [col('Итог отработки', result()), col('Ошибок нет', empty()), col('На сегодня всё', allDone()), col('Нет сети и кэша', offline())]) +
+  block('modeb', 'Отработка — режим Б (энергия)', 'Вместо трёх сердец в шапке задания — пилюля энергии (EnergyAttemptsHud).', [col('Выбери перевод · режим Б', phone(`${runTop(3, 'b')}${Q}`, { fixed: `<div class="tray">${trayG(['Внуки', 'Дети', 'Родители', 'Племянники'])}</div>` }))]);
 K.init();
 const THEMES = [['Аврора', '#38E0AA', '#7C5CFF', '#7EF0C8', '#04261D'], ['Ирис', '#788CFF', '#FF78C8', '#C7C9FF', '#1B1C4A'], ['Магма', '#FF5A28', '#FFAA3C', '#FFB27A', '#3A1204'],
   ['Полночь', '#286EFF', '#00D2FF', '#8CC4FF', '#06224D'], ['Нефрит', '#14BEA0', '#1E78C8', '#7FE6D2', '#032A24'], ['Орхидея', '#D246FF', '#FF3C8C', '#EAA6FF', '#3A0A4A']];

@@ -752,7 +752,9 @@ export default function ManageSubscription() {
             </PressableHybrid>
 
             <Text testID="manage-subscription-title" style={[S.screenTitle, { color: glass.text, fontSize: scaled(34), lineHeight: scaled(40) }]}>
-              {LP('Подписка Plus', 'Керування підпискою', 'Manage subscription', 'Gestionar suscripción', 'Gerenciar assinatura', 'Quản lý gói đăng ký', 'Kelola langganan', 'Aboneliği yönet', 'Zarządzaj subskrypcją')}
+              {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): русский заголовок сменили на «Подписка Plus»
+                  по макету PRF-10, а 8 языков остались «Управление подпиской» — теперь та же строка, что у пункта в Настройках. */}
+              {LP('Подписка Plus', 'Підписка Plus', 'Plus subscription', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus')}
             </Text>
 
             <View testID="manage-subscription-status-card" style={[S.statusCard, { backgroundColor: glass.opaqueCard }]}>

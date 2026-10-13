@@ -937,7 +937,9 @@ export default function SettingsMain() {
           onLayout={(event) => { if (__DEV__) console.log(`[SETTINGS-LAYOUT] шапка «Настройки» y=${Math.round(event.nativeEvent.layout.y)} h=${Math.round(event.nativeEvent.layout.height)} | верхний отступ безопасной зоны=${Math.round(insets.top)} нижний=${Math.round(insets.bottom)} | шрифт заголовка 40/46`); }} // guard-ok: замер раскладки, образец profile.html
           style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginTop: 10 /* зачем: паритет profile.html (13.10): отступ шапки 10 */ }}>
           <Text accessibilityRole="header" style={{ flex: 1, minWidth: 0, color: glass.text, fontSize: 40, lineHeight: 46, fontWeight: '700', letterSpacing: -0.6 }}>
-            {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
+            {/* зачем (LANG_AUDIT_AUTH_R1, владелец 13.10 «интерфейс на других языках»): заголовок 40 пт рядом с монетой 44 — на телефоне
+                360 dp под слово остаётся ≈264 пт, «Configurações» (282) рвалось посреди слова. Те же слова, что у вкладки внизу ((tabs)/_layout.tsx). */}
+            {L('Настройки', 'Налаштування', 'Settings', 'Ajustes', 'Ajustes', 'Cài đặt', 'Setelan', 'Ayarlar', 'Ustawienia')}
           </Text>
           <View accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
             {renderRankCoin('settings-header-coin', 44)}

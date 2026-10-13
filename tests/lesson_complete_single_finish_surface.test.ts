@@ -31,10 +31,12 @@ describe('lesson completion single finish surface', () => {
       'RegistrationPromptModal',
       'CollectibleDropModal',
       'CoachToast',
-      'SoftContextualUpsellCard',
     ]) {
       expect(completionSurface).not.toContain(removedSurface);
     }
+    // зачем (решение владельца 14, 13.10, вариант А): мягкое предложение Plus (макет embedded-plus-states.html, paywalls-009/010) —
+    // единственная разрешённая вставка на итоге, и только через feedbackSlot экрана 2.0.
+    expect(completionSurface).toMatch(/feedbackSlot=\{lessonSoftUpsellVisible \|\|[\s\S]{0,400}<SoftContextualUpsellCard/);
   });
 
   it('exits to the lessons list on Android Back instead of revealing a blank completion state', () => {

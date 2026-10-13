@@ -25,13 +25,17 @@ describe('lesson completion soft upsell integration', () => {
     expect(source).toContain('hasPremiumAccess');
   });
 
-  it('renders only after the reward sequence and preserves existing controls', () => {
-    // зачем (Ядро 13.10): с 7a79d3519 боевое предложение идёт через upsellOpportunity = dev-подмена ?? softUpsell.opportunity.
-    expect(source).toMatch(/shouldRenderLessonSoftUpsell\(seqDone, (softUpsell\.opportunity|upsellOpportunity)\)/);
-    if (!source.includes('shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity)')) {
-      expect(source).toContain('const upsellOpportunity = devUpsellOpportunity ?? softUpsell.opportunity;');
-    }
-    expect(source).toContain('<SoftContextualUpsellCard');
+  // зачем (решение владельца 14, 13.10, вариант А «вернуть»): карточка жила только в выключенном старом варианте итога и ждала
+  // seqDone, который ставит лишь старая секвенция, — на экране 2.0 предложение Plus не показывалось никогда. Теперь она во вставке
+  // V2DoneScreen (макет embedded-plus-states 009/010: результат → карточка → «дальше»), показ по sequenceShowing с плавной вставкой.
+  it('renders on the 2.0 completion screen once it is showing and preserves existing controls', () => {
+    expect(source).toContain('shouldRenderLessonSoftUpsell(sequenceShowing, upsellOpportunity)');
+    expect(source).toContain('const upsellOpportunity = devUpsellOpportunity ?? softUpsell.opportunity;');
+    const v2Branch = source.slice(source.indexOf('<V2DoneScreen'), source.indexOf('</SafeAreaView>', source.indexOf('<V2DoneScreen')));
+    expect(v2Branch).toContain('<SoftContextualUpsellCard');
+    expect(v2Branch).toMatch(/feedbackSlot=\{lessonSoftUpsellVisible \|\|/);
+    expect(source).not.toContain('shouldRenderLessonSoftUpsell(seqDone');
+    expect(source).toMatch(/animateNextLayoutTransition\(\);\s*setLessonSoftUpsellVisible\(lessonSoftUpsellWanted\);/);
     expect(source).toContain('testID="lesson-complete-next-lesson"');
     expect(source).toContain('testID="lesson-complete-repeat"');
     expect(source).toContain('testID="lesson-complete-back-home"');

@@ -747,6 +747,18 @@ export default function LessonComplete() {
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
   const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
+  // зачем (координатор 13.10, paywalls-009/010, макет embedded-plus-states.html экраны 2–3 — приказ владельца 11.10): карточка
+  // «Первый урок — готово» / «Три урока — отличный старт» жила только в старом варианте итога (legacyCompletionSurfacesEnabled=false),
+  // а seqDone ставит лишь старая секвенция — на экране 2.0 предложение Plus не показывалось НИКОГДА. Экран итога 2.0 сам и есть
+  // «после секвенции наград», поэтому решение — по sequenceShowing. Вставка в уже показанный экран — через плавный переход.
+  const lessonSoftUpsellWanted = shouldRenderLessonSoftUpsell(sequenceShowing, upsellOpportunity);
+  const [lessonSoftUpsellVisible, setLessonSoftUpsellVisible] = useState(false);
+  useEffect(() => {
+    if (lessonSoftUpsellWanted === lessonSoftUpsellVisible) return;
+    console.warn(`[LESSON-SOFT-UPSELL] ${lessonSoftUpsellWanted ? 'показ' : 'скрыто'} lesson=${lessonId} trigger=${upsellOpportunity?.trigger ?? 'нет'} dev=${String(devUpsellOpportunity != null)} экранИтога=${String(sequenceShowing)}`); // guard-ok: решение показа видно в журнале
+    animateNextLayoutTransition();
+    setLessonSoftUpsellVisible(lessonSoftUpsellWanted);
+  }, [devUpsellOpportunity, lessonId, lessonSoftUpsellVisible, lessonSoftUpsellWanted, sequenceShowing, upsellOpportunity]);
   // зачем (аудит Optimistic UI Уроков, 13.10; сперва логи): «Сохраняю результат…» ждёт ТРИ готовности — по строке видно, какая пришла последней и сколько прошло с монтирования.
   const completeMountedAtRef = useRef(Date.now());
   useEffect(() => {
@@ -859,6 +871,7 @@ export default function LessonComplete() {
         accountGenerationCurrent: isCurrentAccountGeneration(grantAccountToken),
         freeLessonLimit: FREE_LESSON_LIMIT,
       });
+      console.warn(`[LESSON-SOFT-UPSELL] кандидат lesson=${lessonId} firstBonus=${firstBonus.status} → ${softUpsellCandidate ? softUpsellCandidate.trigger : 'нет'} scope=${capturedSoftUpsellIdentity.accountScope ? 'есть' : 'нет'}`); // guard-ok: ветка решения видна в журнале
       if (softUpsellCandidate) setSoftUpsellCandidates([softUpsellCandidate]);
 
       try {
@@ -1344,8 +1357,24 @@ export default function LessonComplete() {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
                 body: triLang(lang, { ru: 'Первые три урока открыты бесплатно. Дальше — с Plus.', en: 'The first three lessons are free. After that — with Plus.', uk: 'Перші три уроки відкриті безкоштовно. Далі — з Plus.', es: 'Las tres primeras lecciones son gratis. Después, con Plus.', 'pt-BR': 'As três primeiras lições são grátis. Depois, com Plus.', vi: 'Ba bài đầu miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran pertama gratis. Selanjutnya dengan Plus.', tr: 'İlk üç ders ücretsiz. Sonrası Plus ile.', pl: 'Pierwsze trzy lekcje są darmowe. Dalej — z Plus.' }),
               } : undefined}
-              feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
+              feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
                 <View style={{ width: '100%', gap: 12 }}>
+                {lessonSoftUpsellVisible && upsellOpportunity ? (
+                  <SoftContextualUpsellCard
+                    title={softUpsellCopy.title}
+                    body={softUpsellCopy.body}
+                    ctaLabel={softUpsellCopy.ctaLabel}
+                    dismissLabel={softUpsellCopy.dismissLabel}
+                    dismissAccessibilityLabel={softUpsellCopy.dismissAccessibilityLabel}
+                    dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
+                    ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
+                    ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
+                    opportunity={upsellOpportunity}
+                    onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}
+                    onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}
+                    onCta={devUpsellOpportunity ? devUpsellNoop : handleSoftUpsellCta}
+                  />
+                ) : null}
                 {isComboCompletion && comboBreakdown.length > 0 ? (
                   <CombinedLessonBreakdown
                     rows={comboBreakdown}
@@ -1574,25 +1603,6 @@ export default function LessonComplete() {
           </View>
 
           {/* Следующий урок — Duolingo-кнопка (вдавливается в кромку при нажатии) */}
-          {shouldRenderLessonSoftUpsell(seqDone, upsellOpportunity) && upsellOpportunity && (
-            <View style={{ width: '100%', marginBottom: 20 }}>
-              <SoftContextualUpsellCard
-                title={softUpsellCopy.title}
-                body={softUpsellCopy.body}
-                ctaLabel={softUpsellCopy.ctaLabel}
-                dismissLabel={softUpsellCopy.dismissLabel}
-                dismissAccessibilityLabel={softUpsellCopy.dismissAccessibilityLabel}
-                dismissAccessibilityHint={softUpsellCopy.dismissAccessibilityHint}
-                ctaAccessibilityLabel={softUpsellCopy.ctaAccessibilityLabel}
-                ctaAccessibilityHint={softUpsellCopy.ctaAccessibilityHint}
-                opportunity={upsellOpportunity}
-                onImpression={devUpsellOpportunity ? devUpsellNoop : softUpsell.onImpression}
-                onDismiss={devUpsellOpportunity ? devUpsellNoop : softUpsell.onDismiss}
-                onCta={devUpsellOpportunity ? devUpsellNoop : handleSoftUpsellCta}
-              />
-            </View>
-          )}
-
           {lessonId < 32 && !showPremiumBanner && (
             <DuoPressable
               testID="lesson-complete-next-lesson"

@@ -143,7 +143,8 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
     vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart',
   });
   /** Ролик не открылся — говорим об этом, а не молчим: набор при этом жив. */
-  const videoFailed = useMemo(() => actionToastTri('error', {
+  // зачем (Макеты cards-082, разбор 13.10): ролик не открылся — это сообщение, а не ошибка: заголовок «Сообщение» (тон info), а не «Что-то пошло не так»
+  const videoFailed = useMemo(() => actionToastTri('info', {
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.', en: 'This video isn\'t opening right now. The pack\'s cards are available as usual.',

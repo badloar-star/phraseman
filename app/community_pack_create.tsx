@@ -921,7 +921,8 @@ export default function CommunityPackCreateScreen() {
           return;
         }
         if (publishResult !== 'submitted') {
-          emitAppEvent('action_toast', actionToastTri('error', {
+          // зачем (Макеты cards-072, разбор 13.10): набор сохранён, не дошла только публикация — это сообщение (тон info), а не ошибка
+          emitAppEvent('action_toast', actionToastTri('info', {
             ru: 'Набор сохранён на устройстве. Публикация не завершена — нажми «Сохранить» ещё раз при подключении.',
             uk: 'Набір збережено на пристрої. Для публікації натисни «Зберегти» ще раз після підключення.',
             en: 'Saved on this device. Publication is pending — save again when connected.',

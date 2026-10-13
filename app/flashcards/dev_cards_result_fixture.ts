@@ -21,9 +21,23 @@ export type DevCardsResultFixture = Readonly<{
 
 const TOTAL = 20;
 const COINS_PER_CORRECT = 10;
+// зачем (Макеты 13.10, cards-v2-051/052): число в «Ошибки N» и список обязаны совпадать — у «Хорошего результата» 8 ошибок, у «Есть куда расти» 14, а не по две;
+// первые две — как в макете (Gate, Customs), остальные — слова той же темы «Путешествия»
 const MOCKUP_MISTAKES: readonly CardsResultMistake[] = [
   { id: 'dev_result_gate', en: 'Gate', translation: 'выход на посадку', packLanguage: 'en' },
   { id: 'dev_result_customs', en: 'Customs', translation: 'таможня', packLanguage: 'en' },
+  { id: 'dev_result_boarding_pass', en: 'Boarding pass', translation: 'посадочный талон', packLanguage: 'en' },
+  { id: 'dev_result_luggage', en: 'Luggage', translation: 'багаж', packLanguage: 'en' },
+  { id: 'dev_result_passport', en: 'Passport', translation: 'паспорт', packLanguage: 'en' },
+  { id: 'dev_result_departure', en: 'Departure', translation: 'вылет', packLanguage: 'en' },
+  { id: 'dev_result_arrival', en: 'Arrival', translation: 'прилёт', packLanguage: 'en' },
+  { id: 'dev_result_layover', en: 'Layover', translation: 'пересадка', packLanguage: 'en' },
+  { id: 'dev_result_visa', en: 'Visa', translation: 'виза', packLanguage: 'en' },
+  { id: 'dev_result_receipt', en: 'Receipt', translation: 'квитанция', packLanguage: 'en' },
+  { id: 'dev_result_souvenir', en: 'Souvenir', translation: 'сувенир', packLanguage: 'en' },
+  { id: 'dev_result_hostel', en: 'Hostel', translation: 'хостел', packLanguage: 'en' },
+  { id: 'dev_result_ticket', en: 'Ticket', translation: 'билет', packLanguage: 'en' },
+  { id: 'dev_result_delay', en: 'Delay', translation: 'задержка', packLanguage: 'en' },
 ];
 /** Верных ответов из 20 — как в макете: errors 18 («Почти идеально»), clean 20, good 12 («Хороший результат»), grow 6 («Есть куда расти»). */
 const CORRECT_BY_STATE: Readonly<Record<DevCardsResultState, number>> = { errors: 18, clean: 20, good: 12, grow: 6 };
@@ -40,6 +54,6 @@ export function devCardsResultFixture(state: DevCardsResultState): DevCardsResul
     wrong,
     coins: correct * COINS_PER_CORRECT,
     durationSec: 72,
-    mistakes: wrong > 0 ? MOCKUP_MISTAKES : [],
+    mistakes: MOCKUP_MISTAKES.slice(0, wrong),
   };
 }

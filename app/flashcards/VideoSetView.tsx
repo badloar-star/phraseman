@@ -111,7 +111,8 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
   const duration = formatDuration(pack.videoDurationSec);
   const progress = packVideoProgress(pack);
   const level = packDeckLevel(pack);
-  const failToast = useMemo(() => actionToastTri('error', {
+  // зачем (Макеты cards-082, разбор 13.10): ролик не открылся — это сообщение, а не ошибка: заголовок «Сообщение» (тон info), а не «Что-то пошло не так»
+  const failToast = useMemo(() => actionToastTri('info', {
     ru: 'Видео сейчас не открывается. Карточки набора доступны как обычно.',
     uk: 'Відео зараз не відкривається. Картки набору доступні як завжди.',
     es: 'El vídeo no se abre ahora. Las tarjetas del pack siguen disponibles.', en: 'This video isn\'t opening right now. The pack\'s cards are available as usual.',

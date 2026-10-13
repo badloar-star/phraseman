@@ -1,0 +1,241 @@
+diff --git a/app/release_notes_v2_gate.ts b/app/release_notes_v2_gate.ts
+index 0fd1a0a0e..97ef07dc1 100644
+--- a/app/release_notes_v2_gate.ts
++++ b/app/release_notes_v2_gate.ts
+@@ -8,10 +8,18 @@ export type ReleaseNotesV2Release = Readonly<{
+ }>;
+ 
+ const DISMISS_KEY = 'release_notes_v2_dismissed_v1';
++const LOG = '[RELEASE-NOTES-V2]';
++
++// зачем (координатор 13.10, вопрос владельцу 15): окно «Что нового» 2.0 видят только люди, у которых приложение стояло ДО выхода 2.0
++// и которые обновились на сборку 2.0. Новичок (установил после выхода) окна не видит — ему нечего сравнивать.
++// ВПИСАТЬ перед сборкой:
++//  - V2_RELEASE_MIN_BUILD_ID — номер сборки 2.0 (вопрос 8: 131, или 132, если 131 уже загружалась в магазин);
++//  - V2_RELEASE_NEW_USER_CUTOFF_MS — момент выхода 2.0 (называет владелец, вопрос 15). Установившие раньше — «старые».
++const V2_RELEASE_MIN_BUILD_ID = 131;
++const V2_RELEASE_NEW_USER_CUTOFF_MS = Date.UTC(2026, 9, 16, 0, 0, 0);
+ 
+-/** Release 2.0 is not live. Supply its real build and rollout day only at release. */
+ function configuredV2Release(): ReleaseNotesV2Release | null {
+-  return null;
++  return { minBuildId: V2_RELEASE_MIN_BUILD_ID, newUserCutoffMs: V2_RELEASE_NEW_USER_CUTOFF_MS };
+ }
+ 
+ export function isReleaseNotesV2ReleaseActive(): boolean {
+@@ -19,6 +27,32 @@ export function isReleaseNotesV2ReleaseActive(): boolean {
+   return !!release && !IS_EXPO_GO && getAppReleaseBuildId() >= release.minBuildId;
+ }
+ 
++export type ReleaseNotesV2Verdict =
++  | 'show'
++  | 'no_release'
++  | 'build_below_release'
++  | 'dismissed'
++  | 'onboarding_not_done'
++  | 'no_install_date'
++  | 'new_user_after_cutoff';
++
++/** Почему окно показывается или нет — одно значение на решение, чтобы журнал называл причину, а не голое true/false. */
++export function releaseNotesV2Verdict(
++  release: ReleaseNotesV2Release | null,
++  buildId: number,
++  dismissed: boolean,
++  onboardingDone: boolean,
++  installedAt: number,
++): ReleaseNotesV2Verdict {
++  if (!release) return 'no_release';
++  if (buildId < release.minBuildId) return 'build_below_release';
++  if (dismissed) return 'dismissed';
++  if (!onboardingDone) return 'onboarding_not_done';
++  if (!Number.isFinite(installedAt) || installedAt <= 0) return 'no_install_date';
++  if (installedAt >= release.newUserCutoffMs) return 'new_user_after_cutoff';
++  return 'show';
++}
++
+ export function isEligibleForReleaseNotesV2(
+   release: ReleaseNotesV2Release | null,
+   buildId: number,
+@@ -26,30 +60,25 @@ export function isEligibleForReleaseNotesV2(
+   onboardingDone: boolean,
+   installedAt: number,
+ ): boolean {
+-  return !!release
+-    && buildId >= release.minBuildId
+-    && !dismissed
+-    && onboardingDone
+-    && Number.isFinite(installedAt)
+-    && installedAt > 0
+-    && installedAt < release.newUserCutoffMs;
++  return releaseNotesV2Verdict(release, buildId, dismissed, onboardingDone, installedAt) === 'show';
+ }
+ 
+ export async function shouldOfferReleaseNotesV2Modal(): Promise<boolean> {
+   const release = configuredV2Release();
+-  if (!release || IS_EXPO_GO) return false;
++  if (!release || IS_EXPO_GO) {
++    console.log(`${LOG} не предлагаем: ${!release ? 'выпуск 2.0 не настроен' : 'Expo Go'}`); // guard-ok: ранний выход логируется
++    return false;
++  }
+   const [dismissed, installRaw, onboarding] = await AsyncStorage.multiGet([
+     DISMISS_KEY,
+     'install_date',
+     'onboarding_done',
+   ]);
+-  return isEligibleForReleaseNotesV2(
+-    release,
+-    getAppReleaseBuildId(),
+-    dismissed[1] === '1',
+-    onboarding[1] === '1',
+-    Number(installRaw[1]),
+-  );
++  const buildId = getAppReleaseBuildId();
++  const installedAt = Number(installRaw[1]);
++  const verdict = releaseNotesV2Verdict(release, buildId, dismissed[1] === '1', onboarding[1] === '1', installedAt);
++  console.log(`${LOG} решение=${verdict} сборка=${buildId}/${release.minBuildId} установка=${Number.isFinite(installedAt) ? installedAt : 'нет'} граница=${release.newUserCutoffMs} закрыто=${dismissed[1] ?? 'нет'} онбординг=${onboarding[1] ?? 'нет'}`); // guard-ok: одна строка на запуск
++  return verdict === 'show';
+ }
+ 
+ export async function dismissReleaseNotesV2ModalPermanently(): Promise<void> {
+diff --git a/components/ReleaseNotesV2Modal.tsx b/components/ReleaseNotesV2Modal.tsx
+index 32c79b0f8..f1b3b3355 100644
+--- a/components/ReleaseNotesV2Modal.tsx
++++ b/components/ReleaseNotesV2Modal.tsx
+@@ -9,6 +9,7 @@ import { LinearGradient } from './SafeLinearGradient';
+ import { useTheme } from './ThemeContext';
+ import HybridSheetShell from './modal_fx/HybridSheetShell';
+ import { pickReleaseNotesV2Texts } from './release_notes_v2_copy';
++import { useSpireTabEnabled } from '../app/spire_tab_flag';
+ 
+ type Props = Readonly<{
+   visible: boolean;
+@@ -21,6 +22,10 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
+   const { liquidGlassThemeId } = useTheme();
+   const glass = liquidGlassTokens(liquidGlassThemeId);
+   const copy = useMemo(() => pickReleaseNotesV2Texts(lang), [lang]);
++  // зачем (координатор 13.10, макет system.html экран 14 и черновик для магазинов 82d138944): «Шпиль вместо лиги» — только там,
++  // где Шпиль реально открыт (ru/uk и рубильник); иначе окно не обещает того, чего человек не увидит.
++  const spireVisible = useSpireTabEnabled();
++  const heroText = spireVisible && copy.spireHero ? copy.spireHero : copy.hero;
+ 
+   return (
+     <HybridSheetShell
+@@ -50,7 +55,7 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
+                 end={{ x: 0.1, y: 1 }}
+                 style={StyleSheet.absoluteFill}
+               />
+-              <Text style={[styles.heroTitle, { color: glass.text }]}>{copy.hero}</Text>
++              <Text style={[styles.heroTitle, { color: glass.text }]}>{heroText}</Text>
+             </View>
+ 
+             <View style={styles.items}>
+diff --git a/components/release_notes_v2_copy.ts b/components/release_notes_v2_copy.ts
+index 4bde0fdbb..bea646c1d 100644
+--- a/components/release_notes_v2_copy.ts
++++ b/components/release_notes_v2_copy.ts
+@@ -12,6 +12,8 @@ export type ReleaseNotesV2Texts = Readonly<{
+   eyebrow: string;
+   title: string;
+   hero: string;
++  /** Заголовок с макета (system.html, экран 14) — только ru/uk и только когда Шпиль виден (useSpireTabEnabled: рубильник + язык ru/uk). */
++  spireHero?: string;
+   items: readonly [ReleaseNotesV2Item, ReleaseNotesV2Item, ReleaseNotesV2Item];
+   cta: string;
+   close: string;
+@@ -22,7 +24,7 @@ export type ReleaseNotesV2Texts = Readonly<{
+ // Сторож: tests/release_notes_v2_store_surface_guard.test.mjs.
+ const TEXTS: Readonly<Record<Locale, ReleaseNotesV2Texts>> = {
+   ru: {
+-    eyebrow: 'Что нового · 2.0', title: 'Новый PhraseMan', hero: 'Новый дизайн и темы',
++    eyebrow: 'Что нового · 2.0', title: 'Новый PhraseMan', hero: 'Новый дизайн и темы', spireHero: 'Шпиль вместо лиги',
+     items: [
+       { icon: 'layers-outline', title: 'Карточки из видео', body: 'Фразы из роликов — одной кнопкой в свои наборы' },
+       { icon: 'flash-outline', title: 'Энергия проще', body: 'Пять делений, одно занятие — одно деление' },
+@@ -31,7 +33,7 @@ const TEXTS: Readonly<Record<Locale, ReleaseNotesV2Texts>> = {
+     cta: 'Понятно', close: 'Закрыть окно «Что нового»',
+   },
+   uk: {
+-    eyebrow: 'Що нового · 2.0', title: 'Новий PhraseMan', hero: 'Новий дизайн і теми',
++    eyebrow: 'Що нового · 2.0', title: 'Новий PhraseMan', hero: 'Новий дизайн і теми', spireHero: 'Шпиль замість ліги',
+     items: [
+       { icon: 'layers-outline', title: 'Картки з відео', body: 'Вислови з роликів — одним натисканням у свої набори' },
+       { icon: 'flash-outline', title: 'Енергія простіша', body: 'П’ять поділок, одне заняття — одна поділка' },
+diff --git a/tests/release_notes_v2_gate.test.ts b/tests/release_notes_v2_gate.test.ts
+index 841339447..5f03ba62b 100644
+--- a/tests/release_notes_v2_gate.test.ts
++++ b/tests/release_notes_v2_gate.test.ts
+@@ -20,8 +20,26 @@ describe('release 2.0 notes gate', () => {
+     mockBuildId.mockReturnValue(118);
+   });
+ 
+-  it('stays off before the separate release is configured', async () => {
++  // зачем (координатор 13.10, вопрос 15): выпуск настроен константами — окно у старых пользователей на сборке 2.0, новички его не видят.
++  it('is active only on the configured 2.0 build', () => {
++    mockBuildId.mockReturnValue(130);
+     expect(isReleaseNotesV2ReleaseActive()).toBe(false);
++    mockBuildId.mockReturnValue(131);
++    expect(isReleaseNotesV2ReleaseActive()).toBe(true);
++  });
++
++  it('new users never see the window: installed after the release moment, no install date, or onboarding not done', async () => {
++    mockBuildId.mockReturnValue(131);
++    const cutoff = Date.UTC(2026, 9, 16, 0, 0, 0);
++    await AsyncStorage.multiSet([['onboarding_done', '1'], ['install_date', String(cutoff + 60_000)]]);
++    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
++    await AsyncStorage.removeItem('install_date');
++    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
++    await AsyncStorage.multiSet([['install_date', String(cutoff - 86_400_000)], ['onboarding_done', '0']]);
++    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
++    await AsyncStorage.setItem('onboarding_done', '1');
++    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(true);
++    await dismissReleaseNotesV2ModalPermanently();
+     await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
+   });
+ 
+diff --git a/tests/release_notes_v2_source_contract.test.mjs b/tests/release_notes_v2_source_contract.test.mjs
+index 8a05010de..460f4aeef 100644
+--- a/tests/release_notes_v2_source_contract.test.mjs
++++ b/tests/release_notes_v2_source_contract.test.mjs
+@@ -43,7 +43,9 @@ test('release 2.0 is wired behind its own disabled release gate', () => {
+   assert.ok(existsSync(gatePath), 'separate 2.0 release gate must exist');
+   const gate = readFileSync(gatePath, 'utf8');
+   const layout = readFileSync(file('app/_layout.tsx'), 'utf8');
+-  assert.match(gate, /return null;/);
++  // зачем (координатор 13.10, вопрос 15): выпуск задан двумя константами — номер сборки и момент выхода.
++  assert.match(gate, /const V2_RELEASE_MIN_BUILD_ID = \d+;/);
++  assert.match(gate, /const V2_RELEASE_NEW_USER_CUTOFF_MS = /);
+   assert.match(gate, /release_notes_v2_dismissed/);
+   assert.match(layout, /shouldOfferReleaseNotesV2Modal/);
+   assert.match(layout, /isReleaseNotesV2ReleaseActive/);
+diff --git a/tests/release_notes_v2_store_surface_guard.test.mjs b/tests/release_notes_v2_store_surface_guard.test.mjs
+index cebb0427c..40ec24d4c 100644
+--- a/tests/release_notes_v2_store_surface_guard.test.mjs
++++ b/tests/release_notes_v2_store_surface_guard.test.mjs
+@@ -6,8 +6,11 @@ import { readFileSync } from 'node:fs';
+ // зачем (координатор 06:50, §CORE-0168): окно «Что нового» 2.0 видят люди со стор-сборкой. Оно не обещает того, чего
+ // в ней нет: Шпиль скрыт рубильником spire_tab_enabled, Learning V2 вырезан из стор-сборки, Арена и лиги удалены (D54/D78).
+ // И никаких служебных заглушек вроде «legacy reward» в тексте для людей.
+-const source = normalizeEol(readFileSync(new URL('../components/release_notes_v2_copy.ts', import.meta.url), 'utf8'))
++const rawSource = normalizeEol(readFileSync(new URL('../components/release_notes_v2_copy.ts', import.meta.url), 'utf8'))
+   .replace(/\/\/[^\n]*/g, '');
++// зачем (координатор 13.10, 4b5162622): Шпиль в R1 открыт только для ru/uk — разрешён ровно в поле spireHero, которое окно показывает
++// лишь при useSpireTabEnabled(). Остальной текст по-прежнему не упоминает Шпиль.
++const source = rawSource.replace(/spireHero: '[^']*',/g, '').replace(/spireHero\??/g, '').replace(/\/\*\*[^*]*\*\//g, '');
+ 
+ const NOT_IN_STORE = [
+   /Шпил|Spire|Aguja|\bTorre\b|Tháp|Menara|\bKule\b|Iglica/i,
+@@ -21,6 +24,14 @@ test('release notes 2.0 promise only what the store build has', () => {
+   }
+ });
+ 
++test('Spire is named only in the ru/uk spireHero, shown only when Spire is visible', () => {
++  const heroes = [...rawSource.matchAll(/spireHero: '([^']*)'/g)].map((m) => m[1]);
++  assert.deepEqual(heroes, ['Шпиль вместо лиги', 'Шпиль замість ліги']);
++  const modal = readFileSync(new URL('../components/ReleaseNotesV2Modal.tsx', import.meta.url), 'utf8');
++  assert.match(modal, /const heroText = spireVisible && copy\.spireHero \? copy\.spireHero : copy\.hero;/);
++  assert.match(modal, /useSpireTabEnabled\(\)/);
++});
++
+ test('release notes 2.0 carry no placeholder words', () => {
+   assert.doesNotMatch(source, /legacy reward|TODO|lorem/i);
+ });

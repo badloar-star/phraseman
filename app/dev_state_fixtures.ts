@@ -520,6 +520,26 @@ export function isDevStateAvailable(): boolean {
   return typeof __DEV__ !== 'undefined' && __DEV__ === true && !IS_STORE_RELEASE;
 }
 
+// зачем (бэклог №18, paywall-gap-011…013): тост, испущенный через фиксированные 900 мс после шага, гас раньше, чем открывался экран `next`
+// (переход ждёт перечитывание энергии ~4 с) — робот снимал пейвол без тоста. Действия «после перехода» копятся здесь и выполняются экраном
+// dev_state сразу после router.replace (или с причиной, если перехода нет), чтобы не копиться в памяти процесса.
+const afterRouteActions: { label: string; run: () => void }[] = [];
+export function queueAfterDevStateRoute(label: string, run: () => void): void {
+  afterRouteActions.push({ label, run });
+  console.log(`[DEV-STATE] after_route: в очереди ${label} (всего ${afterRouteActions.length})`); // guard-ok: dev-ветка
+}
+export function runAfterDevStateRouteActions(reason: string): void {
+  const actions = afterRouteActions.splice(0, afterRouteActions.length);
+  console.log(`[DEV-STATE] after_route: выполняю ${actions.length} причина=${reason}`); // guard-ok: dev-ветка
+  for (const action of actions) {
+    try {
+      action.run();
+    } catch (error) {
+      console.warn(`[DEV-STATE] after_route: ${action.label} упал`, String(error)); // guard-ok: catch пишет причину
+    }
+  }
+}
+
 /** Выставить состояния. Каждое — независимо: сбой одного не мешает остальным (и пишет причину). */
 /** Потолок одного шага фикстуры, мс: зависший шаг снимается и пишется в skipped, а не держит экран «DEV-STATE…» вечно. */
 const DEV_STATE_STEP_CEILING_MS = 15_000;
@@ -947,12 +967,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       // зачем (R1 paywall-gap-011…013): те же тексты, что у покупателя (paywallRestoreToast); задержка — чтобы маршрут `next` успел открыться.
       const { paywallRestoreToast } = await import('./paywall_purchase');
       const kind = request.toast!;
-      setTimeout(() => {
+      // зачем (№18): тост — после перехода на экран `next` (очередь after_route), а не через фиксированные 900 мс от шага.
+      queueAfterDevStateRoute(`toast=${kind}`, () => {
         const payload = paywallRestoreToast(kind);
         // зачем (координатор 12.10, «сперва логи»): что пришло, какой тост выбран и сколько хостов тостов подписано (0 = хост не смонтирован)
         console.log(`[DEV-STATE] toast: ${kind} → type=${payload.type} текст="${payload.messageRu.slice(0, 60)}" хостовПодписано=${DeviceEventEmitter.listenerCount('action_toast')}`); // guard-ok: dev-ветка
         emitAppEvent('action_toast', payload);
-      }, 900);
+      });
     });
   }
   // зачем (R1 «нет пути», Карточки): флаги в памяти процесса (app/dev_cards_state.ts); `off` снимает.

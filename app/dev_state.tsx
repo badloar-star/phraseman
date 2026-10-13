@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
-import { applyDevState, isDevStateAvailable, parseDevStateParams, type DevStateResult } from './dev_state_fixtures';
+import { applyDevState, isDevStateAvailable, parseDevStateParams, runAfterDevStateRouteActions, type DevStateResult } from './dev_state_fixtures';
 
 // зачем: потолок ожидания перечитывания энергии (см. комментарий в эффекте).
 const ENERGY_RELOAD_CEILING_MS = 3000;
@@ -64,11 +64,13 @@ export default function DevStateRoute() {
         console.warn('[DEV-STATE] route: перечитывание энергии →', reloadOutcome, since()); // guard-ok: трассировка
         if (!alive) {
           console.warn('[DEV-STATE] route: экран уже закрыт (alive=false) — переход не делаем', since()); // guard-ok: ранний выход логируется
+          runAfterDevStateRouteActions('screen_closed');
           return;
         }
         setResult({ ...applied, skipped: { ...applied.skipped, ...rejected } });
         if (!applied.next) {
           console.warn('[DEV-STATE] route: next не задан — остаёмся на экране', since()); // guard-ok: ранний выход логируется
+          runAfterDevStateRouteActions('no_next');
           return;
         }
         console.warn('[DEV-STATE] route: replace через 300 мс →', applied.next, since()); // guard-ok: трассировка
@@ -76,12 +78,16 @@ export default function DevStateRoute() {
           try {
             router.replace(applied.next as never);
             console.warn('[DEV-STATE] route: replace вызван →', applied.next); // guard-ok: трассировка
+            // зачем (№18, paywall-gap-011…013): действия «после перехода» (тост) — когда экран `next` уже открывается, а не по таймеру от шага
+            setTimeout(() => runAfterDevStateRouteActions('replaced'), 900);
           } catch (error) {
             console.warn('[DEV-STATE] route: replace УПАЛ', applied.next, String(error)); // guard-ok: catch логируется
+            runAfterDevStateRouteActions('replace_failed');
           }
         }, 300);
       } catch (error) {
         console.warn('[DEV-STATE] route: ОШИБКА до перехода', since(), String(error)); // guard-ok: catch логируется
+        runAfterDevStateRouteActions('route_error');
         if (alive) setResult({ applied: {}, skipped: { route_error: String(error) }, next: null });
       } finally {
         if (ceilingTimer) clearTimeout(ceilingTimer);

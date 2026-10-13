@@ -142,11 +142,21 @@ _redo = {
 for _rid, (_steps, _extra, _note) in _redo.items():
     ENTRIES.pop(_rid, None)
     add(_rid, _steps, PAYWALL_FREE_E, PWE + _extra, note=_note + ' (вход «Энергия закончилась», как в образце)')
+# зачем (бэклог №18, вердикт Макетов 13.10 «нужна dev-ссылка на вход из Настроек»): образец paywall-gaps-states №1–3 — «Вход «Plus» из Настроек»
+# (генерический вход без контекста, шапка и кнопка закреплены), а не «Энергия закончилась». Переопределение выше для 001–003 устарело — возвращаем
+# вход Настроек (context=generic, source=settings_premium — как router.push в app/(tabs)/settings.tsx).
+PWS = '/premium_modal?context=generic&source=settings_premium'
+for _rid, _steps, _note in (('paywall-gap-001', ['wait:800'], 'вход «Plus» из Настроек — верх («ЧТО ВХОДИТ»)'),
+                            ('paywall-gap-002', ['see:#paywall-compare-toggle'], 'вход из Настроек — «FREE И PLUS» свёрнуто'),
+                            ('paywall-gap-003', ['tap:#paywall-compare-toggle', 'wait:500'], 'вход из Настроек — «FREE И PLUS» развёрнуто')):
+    ENTRIES.pop(_rid, None)
+    add(_rid, _steps, PAYWALL_FREE_E, PWS, note=_note)
 for _rid, _toast, _note in (('paywall-gap-011', 'purchase_confirmed', 'тост «покупка подтверждена»'),
                             ('paywall-gap-012', 'restored', 'тост «покупки восстановлены»'),
                             ('paywall-gap-013', 'restore_failed', 'тост «не удалось восстановить покупки»')):
     ENTRIES.pop(_rid, None)
-    add(_rid, ['wait:300'], PAYWALL_FREE_E + '&toast=' + _toast, PWE, note=_note + ' поверх пейвола (снимать сразу — тост живёт ~3 с)')
+    # зачем (№18): тост теперь испускается через 900 мс после router.replace (очередь after_route в dev_state) — снимаем через 1,5 с, пока он на экране (~4 с)
+    add(_rid, ['wait:1500'], PAYWALL_FREE_E + '&toast=' + _toast, PWE, note=_note + ' поверх пейвола (тост через 0,9 с после перехода, живёт ~4 с)')
 
 # зачем: «Восстановить» уходил в настоящий магазин → «не удалось проверить»; restorepurchase=empty — «Покупок не нашлось» без магазина
 for _rid in ('paywalls-022', 'profile-024'):

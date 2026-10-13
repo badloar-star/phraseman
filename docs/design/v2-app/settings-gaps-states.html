@@ -262,14 +262,15 @@ const slotTopMsg = `<div class="gs-slot">${slotHead}<div class="gs-sbody">Мы �
 
 /* ---------- уведомления (settings_notifications.tsx) ---------- */
 const nrow = (n, label, on, o = {}) => pl2(n, label, { dim: o.dim, right: o.val ? `<span class="gs-nval">${o.val}</span><span class="gs-ch">${K.icon('fwd', 's18')}</span>` : sw(on) });
+// зачем (координатор 13.10, settings-gap-012; кадр приложения): при запрете системы переключатель «Разрешить уведомления» и все строки выключены и приглушены, «Время» — «19:00» неактивно (o.off)
 const notif = (o) => backRow(`<span class="gs-saved" style="opacity:${o.saved ? 1 : 0}">${I('okC', 's16')}Сохранено</span>`)
   + '<div class="gs-t34">Уведомления</div>'
   + (o.denied ? `<div class="gs-den t">${I('bellOff', 's18')}<span>Телефон не разрешает уведомления. Проверь разрешение в настройках телефона — переключателя в приложении недостаточно.</span></div>` : '')
   + `<div class="gs-pl gs-mc">${I('chat', 's20')}<div class="gs-tx"><div class="gs-tt">Разрешить уведомления</div><div class="gs-st">Системное разрешение телефона тоже должно быть включено.</div></div>${sw(o.master)}</div>`
   + `<div class="${o.master ? '' : 'gs-mute'}">`
-  + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', o.daily !== false)}${nrow('clock', 'Время', true, { val: '20:00', dim: o.daily === false })}${nrow('flame', 'Серия под угрозой', true)}${nrow('bookmark', 'Фраза дня', true)}${nrow('bolt', 'Энергия восстановилась', false)}</div>`
-  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', true)}${nrow('calendar', 'Итоги месяца', false)}${nrow('people', 'События Шпиля', true)}</div>`
-  + ey2('Ещё') + `<div class="gs-stk">${nrow('people', 'Друзья', true)}${nrow('tag', 'Скидки и предложения', false)}</div></div>`;
+  + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', o.daily !== false && !o.off)}${nrow('clock', 'Время', !o.off, { val: o.off ? '19:00' : '20:00', dim: o.daily === false || !!o.off })}${nrow('flame', 'Серия под угрозой', !o.off)}${nrow('bookmark', 'Фраза дня', !o.off)}${nrow('bolt', 'Энергия восстановилась', !o.off && false)}</div>`
+  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', !o.off)}${nrow('calendar', 'Итоги месяца', false)}${nrow('people', 'События Шпиля', !o.off)}</div>`
+  + ey2('Ещё') + `<div class="gs-stk">${nrow('people', 'Друзья', !o.off)}${nrow('tag', 'Скидки и предложения', false)}</div></div>`;
 
 /* ---------- окно выбора времени (settings_notifications.tsx: TimeModal / SimplePicker) ---------- */
 // барабан: три видимые строки — предыдущее, выбранное, следующее; сверху и снизу затемнение .65, рамка выбранной — две тонкие линии
@@ -361,7 +362,7 @@ document.getElementById('root').innerHTML =
   block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели, месяца и события Шпиля), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
     col('Уведомления: «Сохранено» после переключения; «Время» · 20:00', ph(notif({ master: true, saved: true }), { time: '12:40' })),
     col('Уведомления, низ списка: «Итоги месяца», блок «Ещё»', ph(notif({ master: true, saved: false }), { time: '12:40', anchor: 'end' })),
-    col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: true, saved: false, denied: true }), { time: '12:41' })),
+    col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: false, saved: false, denied: true, off: true }), { time: '12:41' })),
     col('Мастер выключен: все строки приглушены', ph(notif({ master: false, saved: true }), { time: '12:41' })),
   ]) +
   block('edu', 'Настройки обучения', 'Весь экран по коду: «Вибрация при ошибке», озвучка, ползунок скорости, выбор голоса.', [

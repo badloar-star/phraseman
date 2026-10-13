@@ -1,6 +1,7 @@
 // зачем (владелец 13.10): список «Ошибки» на итоге урока строится из промахов прохода — слово, что выбрал, что верно;
 // «Добить: Ещё учу (N)» берёт id записанных ошибок прохода; счёт приходит и из навигации урока.
 import {
+  beginLessonRunErrors,
   clearLessonRunErrors,
   collectLessonRunMistakeId,
   lessonRunErrorRows,
@@ -49,11 +50,23 @@ describe('lesson_run_errors_memory', () => {
     // следующий проход начинается с нуля
     rememberLessonRunErrors(3, []);
     expect(peekLessonRunMistakeIds(3)).toEqual([]);
-    // id чужого урока не попадает в проход этого
+    // id чужого урока не попадает в проход этого (новый проход — beginLessonRunErrors)
+    beginLessonRunErrors(3);
     collectLessonRunMistakeId(5, 'x');
     collectLessonRunMistakeId(3, 'y');
     rememberLessonRunErrors(3, []);
     expect(peekLessonRunMistakeIds(3)).toEqual(['y']);
+  });
+
+  it('запоздавший id после закрытия прохода отбрасывается, новый проход начинается с нуля (ревью Авторизации 13.10)', () => {
+    collectLessonRunMistakeId(3, 'a');
+    rememberLessonRunErrors(3, []);
+    collectLessonRunMistakeId(3, 'late'); // запись ошибки завершилась уже после перехода
+    expect(peekLessonRunMistakeIds(3)).toEqual(['a']);
+    beginLessonRunErrors(3);
+    collectLessonRunMistakeId(3, 'b');
+    rememberLessonRunErrors(3, []);
+    expect(peekLessonRunMistakeIds(3)).toEqual(['b']);
   });
 
   it('dev-ссылка devResult=верно:ошибок считает счёт как настоящий проход', () => {

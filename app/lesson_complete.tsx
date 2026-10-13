@@ -114,7 +114,7 @@ const EMPTY_MISTAKE_IDS: readonly string[] = [];
 const finishMistakesLabels = (n: number) => ({
   ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
   'pt-BR': `Finalizar: Ainda aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Masih belajar (${n})`,
-  tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dobij: Jeszcze się uczę (${n})`,
+  tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dokończ: Jeszcze się uczę (${n})`,
 });
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';

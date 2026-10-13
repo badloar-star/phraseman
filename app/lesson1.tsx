@@ -65,7 +65,7 @@ import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { lessonMistakeFacet } from './lesson_mistake_facet';
-import { collectLessonRunMistakeId, rememberLessonRunErrors } from './lesson_run_errors_memory';
+import { beginLessonRunErrors, collectLessonRunMistakeId, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -2125,6 +2125,9 @@ function LessonScreen() {
   // the previous pass id (which made every reward look like a duplicate).
   const serverAttemptIdRef = useRef<string>(routeServerAttemptId ?? '');
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
+  // зачем (ревью Авторизации 13.10): записи ошибок в «Мои ошибки» асинхронны — переход на итог ждёт их до 300 мс, чтобы ошибка последнего вопроса попала в «Добить (N)»; начало прохода сбрасывает сборщик id
+  const lessonMistakeWritesRef = useRef<Promise<unknown>[]>([]);
+  useEffect(() => { lessonMistakeWritesRef.current = []; beginLessonRunErrors(lessonId); }, [lessonId]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
   // зачем (владелец, 2026-09-17): переход на lesson_complete раньше был на
@@ -3152,7 +3155,7 @@ function LessonScreen() {
             const attemptScope = serverAttemptIdRef.current
               || lessonAnalyticsAttemptRef.current?.id
               || String(lessonStorageId);
-            void getStableId()
+            const captureWrite = getStableId()
               .then((accountScope) => captureObjectiveAttempt({
                 accountScope,
                 attemptId: [
@@ -3185,6 +3188,7 @@ function LessonScreen() {
               // зачем (владелец 13.10, «Добить: Ещё учу (N)»): id записанной ошибки нужен итогу урока, чтобы запустить повтор именно этих ошибок.
               .then((captured) => { if (captured.kind === 'captured') collectLessonRunMistakeId(lessonId, captured.mistakeId); })
               .catch(noteSwallowedHandler('lesson1:useCallback.getStableId'));
+            lessonMistakeWritesRef.current.push(captureWrite);
           }
         }
       }
@@ -3390,6 +3394,15 @@ function LessonScreen() {
 
         const navigate = async () => {
           resetShuffleForNextPass();
+          // зачем (ревью Авторизации 13.10): ждём записи ошибок прохода не дольше 300 мс — иначе ошибка последнего вопроса не попадёт в «Добить (N)»
+          {
+            const pending = lessonMistakeWritesRef.current;
+            if (pending.length > 0) {
+              const waitStartedAt = Date.now();
+              await Promise.race([Promise.allSettled(pending), new Promise((resolve) => setTimeout(resolve, 300))]);
+              console.log(`[LESSON-RESULT] переход: ждали записи ошибок ${pending.length} шт. ${Date.now() - waitStartedAt} мс`); // guard-ok: журнал ожидания
+            }
+          }
           // зачем (владелец 13.10, «почему на итоге нет всех элементов»): список «Ошибки» итога урока (макет practice.html#done) берёт промахи прохода отсюда — до обнуления.
           rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];

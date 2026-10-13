@@ -16,6 +16,17 @@ type Remembered = Readonly<{ lessonId: number; rows: readonly V2DoneError[]; mis
 
 let remembered: Remembered | null = null;
 let collecting: { lessonId: number; ids: string[] } | null = null;
+// зачем (ревью Авторизации 13.10): проход закрыт (rememberLessonRunErrors) — запоздавший id записи ошибки НЕ создаёт новый сборщик, иначе он всплыл бы в «Добить» следующего прохода этого урока.
+let sealedLessonId: number | null = null;
+
+/** Начало прохода урока: прошлый проход запечатан/забыт, сборщик id пуст (вызывает экран урока при монтировании и при повторе). */
+export function beginLessonRunErrors(lessonId: number): void {
+  if (sealedLessonId === lessonId || (collecting && collecting.lessonId === lessonId)) {
+    console.log(`[LESSON-RESULT] новый проход lesson=${lessonId}: сборщик id ошибок сброшен`); // guard-ok: журнал начала прохода
+  }
+  sealedLessonId = null;
+  collecting = null;
+}
 
 /** Строки «слово → было → стало» из промахов урока: без повторов по слову, только там, где известен выбранный ответ. */
 export function lessonRunErrorRows(signals: readonly PhraseMistakeInput[]): readonly V2DoneError[] {
@@ -39,6 +50,10 @@ export function lessonRunErrorRows(signals: readonly PhraseMistakeInput[]): read
 /** В «Моих ошибках» записалась ошибка этого прохода (id нужен кнопке «Добить»). Повтор того же id не считается дважды. */
 export function collectLessonRunMistakeId(lessonId: number, mistakeId: string): void {
   if (!mistakeId) return;
+  if (sealedLessonId === lessonId) {
+    console.warn(`[LESSON-RESULT] запоздавший id ошибки отброшен lesson=${lessonId} id=${mistakeId} — проход уже закрыт`); // guard-ok: ранний выход логируется
+    return;
+  }
   if (!collecting || collecting.lessonId !== lessonId) collecting = { lessonId, ids: [] };
   if (!collecting.ids.includes(mistakeId)) collecting.ids.push(mistakeId);
 }
@@ -47,6 +62,7 @@ export function collectLessonRunMistakeId(lessonId: number, mistakeId: string): 
 export function rememberLessonRunErrors(lessonId: number, signals: readonly PhraseMistakeInput[]): void {
   const mistakeIds = collecting && collecting.lessonId === lessonId ? [...collecting.ids] : [];
   collecting = null;
+  sealedLessonId = lessonId;
   remembered = { lessonId, rows: lessonRunErrorRows(signals), mistakeIds };
 }
 
@@ -63,6 +79,7 @@ export function peekLessonRunMistakeIds(lessonId: number): readonly string[] {
 export function clearLessonRunErrors(): void {
   remembered = null;
   collecting = null;
+  sealedLessonId = null;
 }
 
 export type LessonResultCounts = Readonly<{ correct: number; wrong: number; score: number }>;

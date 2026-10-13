@@ -29,6 +29,12 @@ describe('итог урока: паритет с learn.html E1–E4', () => {
     expect(complete).toContain('Добить: Ещё учу (${n})');
   });
 
+  it('ошибка последнего вопроса не теряется: переход ждёт записи ошибок до 300 мс, новый проход сбрасывает сборщик (ревью Авторизации 13.10)', () => {
+    expect(lesson).toContain('lessonMistakeWritesRef.current.push(captureWrite);');
+    expect(lesson).toContain('await Promise.race([Promise.allSettled(pending), new Promise((resolve) => setTimeout(resolve, 300))]);');
+    expect(lesson).toContain('beginLessonRunErrors(lessonId);');
+  });
+
   it('1★ остаётся «Повторить урок» + «К списку уроков», Plus — «Открыть Plus» + «Остаться на бесплатном»', () => {
     expect(complete).toContain('(completionRequiresPremium || resultStars === 1) ? goBackFromComplete');
     expect(complete).toContain("ru: 'Остаться на бесплатном'");

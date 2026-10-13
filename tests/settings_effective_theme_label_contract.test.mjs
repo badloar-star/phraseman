@@ -11,8 +11,10 @@ const source = fs.readFileSync(
 const require = createRequire(import.meta.url);
 const originalModuleLoad = Module._load;
 Module._load = function loadWithInterfaceConfig(request, parent, isMain) {
-  if (request === '../app/config') {
-    return { ENGLISH_UI_LOCALE_ENABLED: true, SPANISH_UI_LOCALE_ENABLED: true };
+  // зачем (Авторизация, предпроверка 16.10): constants/i18n тянет app/dev_ui_lang, а тот — './config' (с react-native, esbuild его не берёт). Подменяем оба пути на лёгкий конфиг;
+  // боевой код не меняется.
+  if (request === '../app/config' || (request === './config' && parent?.filename?.endsWith('dev_ui_lang.ts'))) {
+    return { ENGLISH_UI_LOCALE_ENABLED: true, SPANISH_UI_LOCALE_ENABLED: true, IS_STORE_RELEASE: false };
   }
   return originalModuleLoad.call(this, request, parent, isMain);
 };

@@ -278,3 +278,28 @@ for _rid in ('dialogs-032', 'dialogs-gap-012'):
         _entry(_rid)['steps'] = _entry(_rid)['steps'] + ['hidekb', 'wait:400']
 # dialogs-032: пилюля квоты «30/30» как в образце (как dialogs-012).
 set_param('dialogs-032', 'dquota', '30')
+
+# ── Партия «ссылка даёт бракованный кадр» (координатор 13.10, разбор Авторизации 78a47ad16; зона Темы). Вид приложения не меняется — только фикстуры, ожидания и ввод. ──
+# cards-021: кадр снят на служебной странице «DEV-STATE OK» — переход на редактор не успел сработать: ждём перехода.
+set_steps('cards-021', ['wait:2500'])
+# cards-061 / cards-022: полноэкранный редактор «Новая карточка» с живым превью (Layover/пересадка, без клавиатуры) — фикстура cardsdraft=filled (Дизайн 39548e8d9).
+set_param('cards-061', 'cardsdraft', 'filled')
+_e022 = _entry('cards-022')
+_e022['link'] = _e022['link'].replace('next=/community_pack_create', 'next=/flashcards_card_editor?create=1%26cat=custom', 1)
+set_param('cards-022', 'cardsdraft', 'filled')
+set_steps('cards-022', ['wait:2500'])
+# cards-066: «Новый набор» с выбранным «Только я» — фикстура packdraft=private; шторка «Новая карточка» не открывается.
+set_param('cards-066', 'packdraft', 'private')
+set_steps('cards-066', ['wait:2500'])
+# cards-071: окно лимита «Карточек уже 50» — перед тапом «+ Карточка» ждём экран создания набора.
+set_steps('cards-071', ['wait:2500', 'tap:#ugc-pack-add-card', 'wait:600'])
+# cards-section-020: шторка «Новая карточка» поверх «Нового набора» с введёнными данными (образец: «Путешествия», A2, «Карточки 2») — packdraft=few.
+set_param('cards-section-020', 'packdraft', 'few')
+set_steps('cards-section-020', ['wait:2500', 'tap:#ugc-pack-add-card', 'wait:600'])
+# cards-section-029: «Нет сети» с «Повторить» — кадр снимался на скелете загрузки: ждём, пока сработает fail=catalog_load.
+set_steps('cards-section-029', ['wait:3000'])
+# cards-v2-034: «Вспомни и напиши» — в образце набрано «dela», кнопка «Проверить» активна.
+set_steps('cards-v2-034', ['wait:4000', 'tap:#fc-recall-input', 'type:dela', 'hidekb', 'wait:400'])
+# profile-008: темы — в образце тёмный режим и ползунок в середине (снят был светлый, насыщенность 0).
+set_param('profile-008', 'appearance', 'dark')
+set_param('profile-008', 'level', '0.5')

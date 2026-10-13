@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { getVerifiedPremiumAccessStatus } from '../app/premium_guard';
 import {
   flashcardsSavedKey,
   storageStudyTarget,
@@ -506,6 +506,28 @@ function cacheTarget(studyTarget?: RuntimeStudyTarget): StudyTarget {
   return storageStudyTarget(studyTarget);
 }
 
+// зачем (аудит «пропала сеть», Авторизация 13.10): проверка Plus стояла ВНУТРИ замка записи и для Free без свежего кэша шла до облака (premium_guard → restoreFromCloud без потолка) —
+// на плохой сети сохранение и все другие записи карточек висели до ответа облака. Теперь: без облачного обновления (решает локальная лиза/кэш) и потолок 5 с;
+// при потолке считаем по лимиту Free, причина — в журнале [FLASHCARDS-SAVE].
+const PREMIUM_CHECK_CEILING_MS = 5_000;
+async function premiumForSave(): Promise<boolean> {
+  const startedAt = Date.now();
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<'timeout'>((resolve) => { timer = setTimeout(() => resolve('timeout'), PREMIUM_CHECK_CEILING_MS); });
+  try {
+    const result = await Promise.race([getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }), timeout]);
+    if (result === 'timeout') {
+      console.warn(`[FLASHCARDS-SAVE] проверка Plus внутри замка записи не ответила за ${PREMIUM_CHECK_CEILING_MS} мс — считаем по лимиту Free`);
+      return false;
+    }
+    const ms = Date.now() - startedAt;
+    if (ms > 1500) console.warn(`[FLASHCARDS-SAVE] проверка Plus внутри замка записи заняла ${ms} мс (решение: ${String(result)})`);
+    return result;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 export const addFlashcard = async (
   card: Omit<Flashcard, 'id' | 'addedAt'>,
   studyTarget?: RuntimeStudyTarget,
@@ -522,7 +544,7 @@ export const addFlashcard = async (
     if (duplicate) return 'duplicate';
 
     // «Пульт»: если карточки переведены в «Фри» — лимит снят, замок не показываем.
-    const isPremium = await getVerifiedPremiumStatus();
+    const isPremium = await premiumForSave();
     if (!isAccountOperationCurrent(accountToken)) return 'stale';
     const maxCards = isPremium ? PLUS_CUSTOM_CARD_LIMIT : FREE_FLASHCARD_LIMIT;
     if (cards.length >= maxCards) {

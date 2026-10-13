@@ -187,7 +187,9 @@ function parseDraft(raw: string | null): FlashcardsSwipeSessionDraft | null {
       stats,
       progress: parseProgress(parsed.progress),
     };
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит «пропала сеть» 13.10): немой catch — черновик сессии терялся без лога
+    console.warn(`[FLASHCARDS-SESSION] черновик «Свайпа» не разобран длина=${raw.length}: ${error instanceof Error ? error.message : String(error)} — черновик потерян`);
     return null;
   }
 }

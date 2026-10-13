@@ -81,7 +81,9 @@ export async function readCustomCards(studyTarget?: RuntimeStudyTarget): Promise
     const parsed = JSON.parse(raw);
     setCustomCardsCache(scopeKey, Array.isArray(parsed) ? parsed : []);
     return cloneList(customCardsInMemoryByScope.get(scopeKey) ?? []);
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит «пропала сеть» 13.10): немой catch — битый JSON давал пустой список без следа, а следующая запись его затирала
+    console.warn(`[FLASHCARDS-STORAGE] карточки: JSON не разобран key=${customFlashcardsKey(target)} длина=${raw.length}: ${error instanceof Error ? error.message : String(error)} — список пуст, следующая запись перезапишет ключ`);
     setCustomCardsCache(scopeKey, []);
     return [];
   }
@@ -115,9 +117,14 @@ export async function readFlashcardsProgress(
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as FlashcardsProgress;
-    if (!parsed || typeof parsed.cat !== 'string' || typeof parsed.idx !== 'number') return null;
+    if (!parsed || typeof parsed.cat !== 'string' || typeof parsed.idx !== 'number') {
+      console.warn(`[FLASHCARDS-STORAGE] прогресс: неверная форма key=${flashcardsProgressKey(studyTarget)} длина=${raw.length} — прогресс не восстановлен`);
+      return null;
+    }
     return parsed;
-  } catch {
+  } catch (error: unknown) {
+    // зачем (аудит «пропала сеть» 13.10): немой catch — битый прогресс терялся без следа
+    console.warn(`[FLASHCARDS-STORAGE] прогресс: JSON не разобран key=${flashcardsProgressKey(studyTarget)} длина=${raw.length}: ${error instanceof Error ? error.message : String(error)} — прогресс не восстановлен`);
     return null;
   }
 }

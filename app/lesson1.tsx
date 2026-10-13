@@ -3103,7 +3103,8 @@ function LessonScreen() {
       }
       np[progressCell] = isReplayRef.current ? 'replay_correct' : 'correct';
       const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
-      if (!wasLearned) void bumpStatsDaily('phrases_learned', 1);
+      // зачем (PM-190-A1, координатор 13.10): без языка учёт шёл в ключ по умолчанию (en) — фразы es/fr/de/it попадали в английскую статистику
+      if (!wasLearned) void bumpStatsDaily('phrases_learned', 1, studyTargetRef.current);
     } else {
       // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
       np[progressCell] = 'wrong';

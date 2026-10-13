@@ -15,7 +15,7 @@
 #                        лог [DEV-STATE] mistakes seeded N ready); практика читает этот журнал, `minFive` больше не срабатывает. Ссылка прежняя.
 import re
 
-from dev_links_r1_steps import ENTRIES
+from dev_links_r1_steps import ENTRIES, add
 
 
 def _entry(rid):
@@ -98,3 +98,7 @@ set_param('dialogs-041', 'dev_dialog_mood', 'happy')
 set_steps('onboarding-003', ['tap:#onboarding-existing-account', 'wait:1800', 'xy:540,1902', 'wait:9500'])
 set_steps('onboarding-004', ['tap:#onboarding-existing-account', 'wait:1800', 'xy:540,1902', 'wait:1200'])
 set_steps('onboarding-005', ['wait:1500', 'xy:540,2242', 'wait:1800', 'xy:540,1902', 'wait:1500'])
+
+# dialogs-010 (Ядро 91c80f60e): образец — экран «AI-диалоги выключены» (отказ согласия), а общее правило генератора вело на паузу диалогов
+# (dialogs_paused=1 → «Диалоги на паузе»). Подмена aiConsent=denied живёт только в памяти (запись согласия и облако не вызываются), энергию не трогаем.
+add('dialogs-010', [], 'aiConsent=denied', '/ai_dialog_home', note='экран «AI-диалоги выключены» (отказ согласия): aiConsent=denied, без паузы диалогов и без подмены энергии')

@@ -367,6 +367,8 @@ const openCat = (o = {}) => phone(`
 
 // ================= B. Брифинг и вход =================
 const OBJ = ['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'];
+// зачем (координатор 13.10, dialogs-gap-016, Ядро 5bdfd5b35): в V2 сценария «Закажи кофе» нет — на кадрах приложения «Поздороваться после знакомства», собеседница Мила, 6 заданий
+const OBJ_V2 = ['Начать с приветствия', 'Назвать себя', 'Сказать, где вы познакомились', 'Задать один простой вопрос', 'Ответить на встречный вопрос', 'Попрощаться'];
 const objList = (met = 0, cls = '') => OBJ.map((t, i) => `<div class="obj ${i < met ? 'dn' : ''} ${cls}"><span class="n ${i < met ? 'ok' : ''}">${i < met ? icon('check') : i + 1}</span><span class="grow0">${t}</span>${cls ? `<span class="who">${i < met ? 'Выполнено' : 'Ещё не выполнено'}</span>` : ''}</div>`).join('');
 const brief = (o = {}) => phone(`
   <div class="flex" style="justify-content:space-between"><span class="rb l t">${icon('back', 's20')}</span>${o.plus ? '' : energy(5, { ol: true })}</div>
@@ -392,10 +394,10 @@ const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div cla
 // Раскладка — ref_20: круглая «‹», «Диалог» + название, справа квота, «⋯»; карточка цели; реплики с кнопками под ними;
 // снизу микрофон · поле · отправить. Цвета нейтральные, пузырь «Ты» светло-серый.
 // зачем: у Free энергия видна на каждом экране занятия (владелец); у Plus — ни энергии, ни квоты.
-const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span>${o.noq ? '' : `<span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
-const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из 5</div><div class="v">${OBJ[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
+const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? (o.v2 ? 'Поздороваться после знакомства' : 'Закажи кофе')}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span>${o.noq ? '' : `<span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
+const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из ${o.v2 ? 6 : 5}</div><div class="v">${(o.v2 ? OBJ_V2 : OBJ)[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
 const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
-const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${li('cafe')}</span><div class="bw"><span class="who">Мия · бариста</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
+const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${o.v2 ? icon('user', 's20') : li('cafe')}</span><div class="bw"><span class="who">${o.v2 ? 'Мила' : 'Мия · бариста'}</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
 const me = (text, o = {}) => `<div class="msg u"><div class="bw"><span class="who">Ты</span><div class="bub">${text}</div>${o.unsent ? `<div class="unsn">${li('alert', 's16')}Не отправлено</div>` : ''}${o.fix === 'btn' ? `<span class="fixb t">${icon('edit')}Лучше так</span>` : o.fix ? `<div class="fixt">${icon('edit', 's16')} Лучше так: <b>${o.fix}</b></div>` : ''}</div></div>`;
 const typing = () => `<div class="msg b"><span class="av" style="margin-top:6px">${li('cafe')}</span><div class="typing" data-typing><i></i><i></i><i></i></div></div>`;
 const syserr = (text, retry = true) => `<div class="syserr"><div class="p">${li('alert', 's18')}<span>${text}</span></div>${retry ? `<span class="cta sm t">${li('refresh', 's18')}Повторить</span>` : ''}</div>`;
@@ -433,7 +435,7 @@ const T = {
 };
 const sess = (o = {}) => phone(`<div class="chat" data-autoscroll>${o.body}</div>`,
   { time: o.time ?? '13:02', inStyle: `padding:${o.goal === 0 ? 128 : 226}px 14px 200px`,
-    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1)}</div>` + (o.fixed ?? ibar(o.ib || {})),
+    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1, { v2: o.v2 })}</div>` + (o.fixed ?? ibar(o.ib || {})),
     overlay: (o.ov || '') + menuSheet(o.open === 'menu') + goalsSheet(o.met ?? (o.goal ?? 1) - 1, o.open === 'goals') + whySheet(o.why || {}, o.open === 'why') + hintModal(o.open === 'hint') + exitSheet(o.open === 'exit') });
 
 const S1 = bot(T.hi);
@@ -532,7 +534,7 @@ const DG_BLOCKS = [
     dgCol('Голосовое сообщение в ленте', sess({ body: S2 + voiceMsg('Голосовое сообщение'), goal: 2, mood: 'smile', q: '28/30' }), 'пузырь «Голосовое сообщение» (dialogue_voice_message.ts)'),
     dgCol('Меню «⋯» открыто', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', open: 'menu' }), 'DialogueGlassMenuSheet: «Задания», «Завершить диалог»'),
     // зачем (координатор 13.10, dialogs-gap-016; кадр приложения): после отказа сервера в ленте реплика пользователя, пузырь «Сервис диалогов временно недоступен…» с «Повторить», а тост тона «Сообщение» (значок «i») с текстом «Энергия возвращена»; в шапке «Диалог · ⚡ 5» без настроения и лимита ответов (в начале диалога)
-    dgCol('Энергия возвращена', sess({ body: S1 + me('Hello') + syserr('Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.', true), en: 5, noq: true, ov: dgToast('Энергия возвращена', 'info') }), 'тост после отказа сервера (dialogue_v2_session.tsx:150-157)'),
+    dgCol('Энергия возвращена', sess({ body: bot("Hi! Nice to meet you. I'm Mila. How are you today?", { v2: true }) + me('Hello') + syserr('Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.', true), en: 5, noq: true, v2: true, ov: dgToast('Энергия возвращена', 'info') }), 'тост после отказа сервера (dialogue_v2_session.tsx:150-157)'),
     dgCol('Не получилось начать диалог', brief({ overlay: dgToast('Не получилось начать диалог. Попробуй ещё раз', true) }), 'тост на брифинге (dialogue_v2_briefing.tsx:114-126)'),
   ]],
 ];

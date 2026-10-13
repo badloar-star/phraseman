@@ -547,8 +547,9 @@
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   // зачем (код, PackHeaderV2; кадр cards-040 12.10): строка мета своего набора — чип уровня, «N карточек», затем статус «Только ты» / «В сообществе»; у добавленного набора уровень не рисуется
   const OWN_STATUS = `<span style="display:inline-flex;align-items:center;gap:6px">${X.lock}Только ты</span>`;
+  // зачем (координатор 13.10, cards-041; код CollectionHeaderV2 + flashcards_collection.tsx:1106): «Править набор» есть только у УЖЕ опубликованного набора автора, у личного (local_only) — «Отправить в сообщество», «Новая карточка», «Удалить набор»
   // зачем (код, CollectionMenuSheet): шторка своего набора — название, «Отправить в сообщество» (пока не опубликован), «Править набор», «Новая карточка», «Удалить набор»; «Показать стопкой» — только у «Сохранённых»
-  const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('edit', 'Править набор')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
+  const packRows = `<div style="font-size:20px;font-weight:700;padding:0 6px 6px">Путешествия</div>${prow('upload', 'Отправить в сообщество')}${prow('plus', 'Новая карточка')}${prow('trash', 'Удалить набор', 1)}`;
   const setActions = sheet('sa', packRows);
   const setOwn = () => phone(`${setHead({ t: 'Путешествия', l: 'A2', n: 40, status: OWN_STATUS, btns: `<div class="cta t grow">${icon('play', 's18')}Тренировать</div><span class="rb l t">${icon('plus', 's20')}</span>` })}
       ${zoomBar()}${zgrid(1, W.slice(0, 13).concat(W.slice(28, 40)))}`, { time: '9:41', overlay: setActions + cardSheet });
@@ -608,11 +609,12 @@
       ${secHead('Карточки', 2)}
         <div class="stack g13" style="margin-top:0">${edRow(W[0])}${edRow(W[1])}${addRow}</div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t" data-shake>${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : 'Создать набор'}</div></div>` });
+  // зачем (координатор 13.10, cards-042; кадр приложения, flashcards_collection.tsx:1106): «Править набор» ведёт к редактору УЖЕ опубликованного набора («Мой опубликованный», 10 карточек, «Все» — видимость переключить нельзя, B1)
   const editSet = () => phone(`${edHead('Изменить набор', rbMenu())}
-      <div style="margin-top:26px"><div class="flab">Название</div><div class="field">Путешествия</div></div>
-      ${vis(false)}
-      <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('A2')}</div>
-      ${secHead('Карточки', 40)}
+      <div style="margin-top:26px"><div class="flab">Название</div><div class="field">Мой опубликованный</div></div>
+      <div style="margin-top:20px"><div class="flab">Кто видит</div><div class="vseg" style="opacity:.55"><span>${X.lock}Только я</span><span class="on">${X.globe}Все</span></div></div>
+      <div style="margin-top:20px"><div class="flab">Уровень</div>${lvls('B1')}</div>
+      ${secHead('Карточки', 10)}
         <div class="stack">${W.slice(0, 5).map((w) => edRow(w, { edit: 1 })).join('')}</div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">Сохранить</div></div>` });
   // зачем (код, flashcards_card_editor): заголовок 16/700 по центру; в живом превью озвучки нет, подсказок в полях нет; набор по умолчанию «Мои карточки» (значок albums); при лимите кнопка без замка
@@ -635,7 +637,8 @@
       <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 1 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;
   const catalog = () => phone(`${commHead('')}
       <div class="stack g14 rise" style="margin-top:20px">${COMM.map(([t, a, c, l, h, w]) => deck(t, `<span class="av">${icon('user', 's16')}</span>${a} · ${c} · ${l}`, [w, ...W.slice((c % 9) + 13, (c % 9) + 15).map((x) => x[0])], likes(h))).join('')}</div>`, { time: '9:41' });
-  const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', 'Сбросить поиск').replace('min-height:640px', '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
+  // зачем (координатор 13.10, cards-v2-026; код FlashcardsCategoryHub): при пустом поиске в каталоге только значок, «Ничего не нашли» и «Попробуй другое слово» — кнопки «Сбросить поиск» нет
+  const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', '').replace('min-height:640px', '').replace(/<span class="cta sm t"><\/span>/, '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
 
 
   // =====================================================================
@@ -766,9 +769,10 @@
         if (st === 'no') { c = i === 0 ? ' ok' : i === 2 ? ' no' : ' fade'; mk = i === 0 ? icon('check', 's20') : i === 2 ? icon('close', 's20') : ''; }
         return `<div class="opt t${c}">${o}${mk ? `<span class="mk">${mk}</span>` : ''}</div>`; }).join('')}</div>`, { time: '9:41' });
   // зачем (код, flashcards_speaking_session): в шапке «Устно» справа от названия счёт «N / M», затем сердца, монеты и флажок; в покое — подсказка, два типа задания (пилюли) и ряд «пропустить · микрофон · послушать»
+  // зачем (координатор 13.10, cards-v2-037/cards-section-046; кадр приложения): после верного ответа «Устно» — «Сказано: 1», панель «СКАЗАНО · фраза · ★★★ · Отлично! Совпало с фразой» над плашкой «Верно»; карточка с зелёной рамкой не рисуется (тонкая обводка состояния)
   const oral = (st) => phone(`${sessHdr('Устно', '4 / 20', sessTools())}<div class="trk" style="margin-top:18px;height:6px"><i style="width:20%"></i></div>
       <div style="margin-top:34px">${flip('пересадка', 'Layover', { fl: 'RU', bl: 'EN', novol: 1, on: st === 'ok', cls: st === 'ok' ? 'ok' : '', ex: '' })}</div>
-      <div class="center" style="margin-top:${st === 'ok' ? 40 : 22}px">${st === 'ok' ? '' : `<div style="color:var(--sec);font-size:15px;line-height:20px;max-width:300px;margin:0 auto">Вспомни фразу по переводу. Нажми на микрофон и отвечай.</div>
+      <div class="center" style="margin-top:${st === 'ok' ? 14 : 22}px">${st === 'ok' ? `<div class="flex" style="justify-content:center;align-items:center;gap:8px;color:var(--sec);font-size:16px">${icon('mic', 's16')}Сказано: 1</div><div class="t" style="margin-top:150px;border-radius:20px;padding:16px;background:#1C1C1F;text-align:center"><div style="letter-spacing:4px;color:var(--sec);font-size:13px;font-weight:700">СКАЗАНО</div><div style="font-size:20px;font-weight:600;margin-top:8px">layover</div><div style="color:#5FD28A;font-size:22px;letter-spacing:6px;margin-top:6px">★★★</div><div style="color:#5FD28A;font-weight:700;margin-top:6px">Отлично! Совпало с фразой</div></div>` : `<div style="color:var(--sec);font-size:15px;line-height:20px;max-width:300px;margin:0 auto">Вспомни фразу по переводу. Нажми на микрофон и отвечай.</div>
         <div class="flex" style="justify-content:center;gap:10px;margin-top:18px;width:100%"><span class="pill s t" style="flex:1;min-width:0;gap:6px;padding:0 10px;font-size:14px;white-space:nowrap;background:#2C2C2E">${icon('mic', 's18')}Скажи по-английски</span><span class="pill s t" style="flex:1;min-width:0;gap:6px;padding:0 10px;font-size:14px;white-space:nowrap;color:var(--sec)">${icon('vol', 's18')}Повтори за диктором</span></div>
         <div class="flex" style="justify-content:center;align-items:center;gap:30px;margin-top:26px"><span class="rb l t">${icon('arrowR', 's20')}</span><span class="mic t">${icon('mic', 's28')}</span><span class="rb l t">${icon('vol', 's20')}</span></div>`}</div>`, { time: '9:41',
     fixed: st === 'ok' ? `<div class="bot"><div class="ans ok"><span class="vk ok">${icon('check', 's20')}</span><div class="grow"><div class="k">Верно</div><div class="v">layover</div></div><span class="plus10">+10</span></div><div class="cta t">Дальше</div></div>` : '' });

@@ -3,192 +3,189 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Моменты вовлечения v3 · B — занятия, кольца дня, монета</title>
+<title>Моменты вовлечения v3 · B — занятия, «Сегодня», монета</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="engagement-moments.css">
 <link rel="stylesheet" href="engagement-moments-v2.css">
 <link rel="stylesheet" href="engagement-moments-v3.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
 <style>
-/* зачем (этап 3): комбо как живая петля с замедлением на пике и «остыванием» без наказания; идеальный урок — чекан со стоп-кадром; итог урока — цепная реакция
-   с точным тайм-листом; кольца — закрытие с «аккордом» (три разных хаптика на три кольца), персонаж внутри; полный день — корона и золотая рамка; ранг — персонаж
-   просит, затем чеканка; выход — персонаж удерживает. Под каждым телефоном — тайм-лист ударов. */
+/* зачем (чек-лист владельца MOCKUP_REQUIREMENTS_OWNER_2026-10-13.md): часть B — поверх настоящих экранов урока (шапка плеера learning_v2:
+   закрыть 44, прогресс 6/акцент, счётчик 13/700, сердца, EnergyBar 60×28), итога урока (V2DoneScreen: 3 звезды при 85 %, верно/ошибки/точность) и Главной
+   (HomeV2Header + блок «Сегодня» HomeV2TodayCard 1:1 с кольцами из лаборатории rings-flame-lab.html). Правила: без множителей и бустов (D07/D147),
+   без бонусов дня (D09), ранг — только покупкой за монеты (ранг 6 = 6 000, N×1000), монеты за урок ≈150 (первый проход), комбо — пороги 3/5/10 из
+   combo_engine, ошибка обнуляет серию (эффект снят 03.08 — возврат решает владелец → помечено «предложение»). Празднования — на своём экране, не поверх вопроса. */
 .em-page .diff { margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: #121214; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); max-width: 1100px; }
 .em-page .diff h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #8BE5B6; }
 .em-page .diff ol { margin: 0; padding-left: 20px; color: var(--sec); font-size: 14px; line-height: 1.6; }
 .em-page .diff li b { color: #E6E6E8; font-weight: 600; }
-.em-ph .q-under .opt { padding: 14px 16px; border-radius: 16px; font-size: 16px; font-weight: 600; margin-top: 8px; }
-.em-ph .q-under .opt.ok { background: color-mix(in srgb, var(--good) 20%, transparent); color: var(--good); }
-.em-ph .q-under .opt.no { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }
-.em-ph .lesson-under .q { padding: 26px 20px; text-align: center; border-radius: 22px; }
-.em-ph .stamp { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-12deg) scale(3); opacity: 0; padding: 8px 18px; border: 4px solid var(--gold); border-radius: 12px; color: var(--gold); font-size: 34px; font-weight: 900; letter-spacing: 6px; z-index: 56; }
+.em-ph .beat { opacity: 0; } .em-ph .beat.on { animation: emUp 500ms var(--em-ease) both; }
+.em-ph .stamp { position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%) rotate(-10deg) scale(3); opacity: 0; padding: 10px 20px; border-radius: 14px; font-size: 28px; font-weight: 800; letter-spacing: 3px; z-index: 56; }
 .em-ph .stamp.on { animation: emStamp 600ms var(--em-ease-in-out) both; }
-@keyframes emStamp { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-12deg) scale(3); } 60% { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(.95); } 75% { transform: translate(-50%, -50%) rotate(-12deg) scale(1.05); } 100% { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(1); } }
+@keyframes emStamp { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-10deg) scale(3); } 60% { opacity: 1; transform: translate(-50%, -50%) rotate(-10deg) scale(.95); } 75% { transform: translate(-50%, -50%) rotate(-10deg) scale(1.05); } 100% { opacity: 1; transform: translate(-50%, -50%) rotate(-10deg) scale(1); } }
 .em-ph .stars { display: flex; gap: 10px; justify-content: center; }
-.em-ph .stars .ic { width: 44px; height: 44px; color: var(--gold); animation: emPop 500ms var(--em-ease-pop) both; }
-.em-ph .stars .ic.off { color: var(--trk); }
-.em-ph .ringwrap { position: relative; display: inline-block; }
-.em-ph .ringwrap .c { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.em-ph .legend { display: flex; flex-direction: column; gap: 10px; }
-.em-ph .legend .l { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
-.em-ph .legend .l i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
-.em-ph .legend .l s { text-decoration: none; margin-left: auto; color: var(--sc); font-weight: 700; font-variant-numeric: tabular-nums; }
-.em-ph .legend .l.done s { color: var(--tx); }
-.em-ph .legend .l.done::after { content: "✓"; color: var(--acc); font-weight: 800; }
-.em-ph .home-card { padding: 16px; border-radius: 24px; }
-.em-ph .wk7 { display: flex; justify-content: space-between; }
-.em-ph .wk7 .d { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--mu); }
-.em-ph .wk7 .d.today { color: var(--tx); }
+.em-ph .stars .io { font-size: 44px; color: var(--control); }
+.em-ph .stars .io.on { color: var(--acc); animation: emPop 500ms var(--em-ease-pop) both; }
+/* блок «Сегодня» с кольцами — 1:1 лаборатория rings-flame-lab.html (HomeV2TodayCard) */
+.em-ph .today { border-radius: 18px; padding: 16px 6px 6px; margin-top: 14px; }
+.em-ph .today .k { font-size: 13px; line-height: 17px; letter-spacing: 1.6px; font-weight: 700; color: var(--sc); margin: 0 0 12px 12px; text-transform: uppercase; }
+.em-ph .today .list { display: flex; flex-direction: column; gap: 10px; }
+.em-ph .trow { min-height: 58px; padding: 10px 14px; border-radius: 14px; display: flex; align-items: center; gap: 12px; background: color-mix(in srgb, var(--raised1) 50%, transparent); box-shadow: var(--sho); }
+.em-ph .trow .ck { width: 20px; height: 20px; border-radius: 10px; box-sizing: border-box; border: 1.5px solid var(--mu); display: flex; align-items: center; justify-content: center; flex: none; transition: background 240ms, border-color 240ms; }
+.em-ph .trow .ck .io { font-size: 14px; color: var(--sheet); opacity: 0; transition: opacity 200ms; }
+.em-ph .trow.done .ck { background: var(--rc); border-color: var(--rc); } .em-ph .trow.done .ck .io { opacity: 1; }
+.em-ph .trow .tile { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: var(--ti); flex: none; box-shadow: none; }
+.em-ph .trow .cp { flex: 1; min-width: 0; } .em-ph .trow .tt { font-size: 16px; line-height: 20px; font-weight: 700; } .em-ph .trow .st { font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 1px; }
+.em-ph .trow .cn { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; } .em-ph .trow.done .cn { color: var(--tx); }
+.em-ph .rings { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 2px 0 14px; }
+.em-ph .rw { position: relative; width: 148px; height: 148px; }
+.em-ph .rw svg { position: absolute; inset: 0; transform: rotate(-90deg); overflow: visible; }
+.em-ph .rw .rg { fill: none; stroke-linecap: round; transition: stroke-dashoffset 900ms cubic-bezier(.23,1,.32,1); }
+.em-ph .rw .bgr { fill: none; opacity: .16; }
+.em-ph .rw .coin { position: absolute; left: 50%; top: 50%; width: 58px; height: 58px; margin: -29px; border-radius: 50%; display: block; }
+.em-ph .rw.closedall .coin { animation: coinjump 900ms cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes coinjump { 0% { transform: translateY(0) scale(1); } 20% { transform: translateY(3px) scale(1.08, .92); } 55% { transform: translateY(-16px) scale(.96, 1.06); } 80% { transform: translateY(2px) scale(1.04, .96); } 100% { transform: none; } }
+.em-ph .rw .flash { position: absolute; inset: -14px; border-radius: 50%; pointer-events: none; opacity: 0; }
+.em-ph .rw .flash.on { animation: rflash 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes rflash { 0% { opacity: 0; transform: scale(.85); box-shadow: 0 0 0 0 var(--fc); } 25% { opacity: .9; } 100% { opacity: 0; transform: scale(1.12); box-shadow: 0 0 60px 20px transparent; } }
+.em-ph .rw .spark { position: absolute; left: 50%; top: 50%; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: var(--fc); box-shadow: 0 0 8px var(--fc); animation: rspark 900ms cubic-bezier(.23,1,.32,1) both; pointer-events: none; }
+@keyframes rspark { 0% { transform: rotate(var(--a)) translateX(var(--r0)) scale(1); opacity: 1; } 100% { transform: rotate(var(--a)) translateX(var(--r1)) scale(.2); opacity: 0; } }
+.em-ph .dayok { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 16px; background: color-mix(in srgb, var(--raised1) 50%, transparent); box-shadow: var(--sh); font-size: 13px; font-weight: 700; opacity: 0; transform: translateY(6px); transition: opacity 320ms, transform 420ms cubic-bezier(.23,1,.32,1); }
+.em-ph .dayok .io { color: var(--acc); font-size: 16px; } .em-ph .dayok.on { opacity: 1; transform: none; }
 .em-ph .rank-shelf { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
 .em-ph .rank-shelf .r { aspect-ratio: 1; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: var(--ti); }
 .em-ph .rank-shelf .r img { width: 70%; height: 70%; }
-.em-ph .rank-shelf .r.lock img { filter: grayscale(1) brightness(.4); }
-.em-ph .rank-shelf .r.next img { filter: grayscale(1) brightness(.7); animation: emGlow 1.6s ease-in-out infinite; }
-.em-ph .rank-shelf .r.new { background: color-mix(in srgb, var(--gold) 25%, transparent); box-shadow: 0 0 0 2px var(--gold), 0 0 22px color-mix(in srgb, var(--gold) 50%, transparent); animation: emPulse 1.6s ease-in-out infinite; }
-.em-ph .fly { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE9A8, #E2A62A 60%, #9A6A14); z-index: 65; animation: emFlyTo 900ms var(--em-ease-in-out) both; }
+.em-ph .rank-shelf .r.lock img { filter: grayscale(1) brightness(.5); opacity: .7; }
+.em-ph .rank-shelf .r.next { background: var(--acc-soft); }
+.em-ph .fly { position: absolute; width: 18px; height: 18px; border-radius: 50%; z-index: 65; animation: emFlyTo 900ms var(--em-ease-in-out) both; }
 @keyframes emFlyTo { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.5); opacity: 0; } }
-.em-ph .beat { opacity: 0; }
-.em-ph .beat.on { animation: emUp 500ms var(--em-ease) both; }
-.em-ph .mint { position: absolute; left: 0; right: 0; top: 0; bottom: 0; z-index: 52; background: #07070A; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; transition: opacity 500ms; }
-.em-ph .mint.on { opacity: 1; }
-.em-ph .mint .press { width: 200px; height: 6px; border-radius: 3px; background: linear-gradient(90deg, transparent, #B9842A, transparent); margin-top: 20px; opacity: .6; }
-.em-ph .coinslot { position: relative; width: 160px; height: 160px; display: flex; align-items: center; justify-content: center; }
-.em-ph .coinslot .cur { position: absolute; transition: transform 700ms var(--em-ease-in-out), opacity 500ms; }
-.em-ph .coinslot .nxt { position: absolute; transform: scale(.2) rotateY(90deg); opacity: 0; transition: transform 800ms var(--em-ease-pop), opacity 300ms; }
-.em-ph .coinslot.go .cur { transform: scale(.6) translateY(60px); opacity: 0; }
-.em-ph .coinslot.go .nxt { transform: scale(1) rotateY(0); opacity: 1; }
 </style>
 </head>
 <body>
 <div class="em-page">
-  <div class="em-top"><div><span class="em-stage">Этап 3 · v3 · часть B</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v3 — занятия, кольца дня, монета</h1>
-  <p class="page-lead">Комбо как живая петля (нагрев → замедление на 10 → остывание без наказания), чекан ИДЕАЛ со стоп-кадром, цепная реакция итога с точным тайм-листом, «аккорд» закрытия колец (три разных хаптика), полный день с золотой рамкой, чеканка ранга из просьбы персонажа.</p></div>
-  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v2-b.html">v2 этой части</a><a class="em-btn" href="engagement-moments-v3-a.html">← Часть A</a><a class="em-btn" href="engagement-moments-v3-c.html">Часть C →</a></div></div>
-  <div class="diff"><h3>Что изменилось в v3 (часть B) и почему</h3><ol>
-    <li><b>Комбо — полная петля.</b> Один телефон показывает 3 → 5 → 10 → ошибка: на 10 — замедление 0,4 с (всё, кроме молнии, замирает) и молния; ошибка — холодная синяя виньетка, бар остывает на одну ступень, монета ёжится, но серия жива. Правила понятны без слов.</li>
-    <li><b>Чекан ИДЕАЛ со стоп-кадром:</b> удар штампа → 120 мс стоп-кадр (контраст) → дрожь с затуханием → золото. Тайминги под каждым телефоном.</li>
-    <li><b>«Аккорд» колец.</b> Каждое кольцо при закрытии даёт свой хаптик (light / medium / success) и свою ноту; «Полный день» = три ноты аккордом и корона + золотая вращающаяся рамка на монете. Это тактильная подпись приложения.</li>
-    <li><b>Персонаж внутри колец реагирует на каждое:</b> первое — кивок, второе — прыжок, третье — cheer с сердцами.</li>
-    <li><b>Ранг: от просьбы до чеканки.</b> «Я подрос?» → тап → затемнение «Монетного двора» → старая монета уходит в пресс, новая выпрыгивает с фейерверком. Склейка просьбы и существующей церемонии.</li>
-    <li><b>Выход из урока:</b> персонаж держит бар комбо «в руках» (говорит, сколько сгорит), кнопка «Доделать» с таймером «1:50» — реальная оценка.</li>
+  <div class="em-top"><div><span class="em-stage">Этап 3 · v3 · часть B · редакция по требованиям владельца</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v3 — занятия, «Сегодня», монета</h1>
+  <p class="page-lead">Поверх настоящих экранов урока, итога урока и Главной 2.0, всё из токенов темы «Аврора». Комбо без множителей (пороги 3/5/10 из combo_engine; ошибка обнуляет серию) — помечено как предложение: эффект снят 03.08, возврат решает владелец. Идеальный урок и итог — на экране итога, не поверх вопроса. Кольца = задачи блока «Сегодня» (по лаборатории). Ранг монеты — только покупкой за монеты (ранг 6 = 6 000).</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v3-a.html">← Часть A</a><a class="em-btn" href="engagement-moments-v3-c.html">Часть C →</a><a class="em-btn" href="rings-flame-lab.html">Лаборатория колец и огня</a></div></div>
+  <div class="diff"><h3>Отметка по чек-листу владельца (разделы 1–6)</h3><ol>
+    <li><b>1 · Вид 2.0:</b> шапка плеера урока (закрыть 44/22, прогресс 6 акцентом, «n / N» 13/700, сердца, EnergyBar 60×28); итог урока V2DoneScreen (звёзды, верно/ошибки/точность); Главная (HomeV2Header, блок «Сегодня» 1:1); окна GlassAlertDialog, шторки KitSheetModal; токены Аврора тёмная/светлая; кегли 34/24/20/16/13; минимум элементов.</li>
+    <li><b>2 · 1:1 из кода:</b> монеты coin_rank_*; задачи «Сегодня» — из modules/today-tasks (цели 1/3/10, названия today_tasks_view.ts); кольца — лаборатория rings-flame-lab.html (утверждённое направление); звуки каталога.</li>
+    <li><b>3 · Кнопки:</b> V2Button primary/secondary, зазор 12, без наложений (playwright: нарушений 0).</li>
+    <li><b>4 · Правила:</b> без ×1,5/×2/×3 и «+100 за полный день» (D07/D147/D09); 85 % = 3 звезды; монеты за урок ≈150; ранг 6 = 6 000 только покупкой; комбо — предложение; выход из урока по D67 (попытка не сохраняется, повторный вход −1 энергия).</li>
+    <li><b>5 · Анимация:</b> пружины/ease-out, тайм-лист со звуком каталога и хаптиком под каждым телефоном.</li>
+    <li><b>6 · Проверка:</b> playwright — в сообщении координатору.</li>
   </ol></div>
   <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v3-a.html">A · Пик</a><a class="file" href="engagement-moments-v3-b.html">B · Занятия</a><a class="file" href="engagement-moments-v3-c.html">C · Диалоги · Серия · Plus</a></nav>
   <div id="root"></div>
 </div>
+<script src="spire-tower-render.js"></script>
 <script src="engagement-moments.js"></script>
 <script src="engagement-moments-v2.js"></script>
 <script src="engagement-moments-v3.js"></script>
+<script src="engagement-moments-app.js"></script>
 <script>
 (() => {
-const { icon, coin, tower, rings, confetti, countUp, moment, render } = EM;
-const { coinChar, zap, fire, shareCard, sparks } = EM2;
+const { confetti, countUp, moment, render } = EM;
+const { coinChar, zap } = EM2;
 const { attachBeats, emo, firework, seq } = EM3;
-const RING3 = (v) => [{ v: v[0], color: 'var(--acc)' }, { v: v[1], color: 'var(--acc2)' }, { v: v[2], color: 'var(--gold)' }];
+const { io, coin, lessonUnder, doneUnder, homeUnder } = EMA;
+const prim = (t, ar = true) => `<div class="cta">${t}${ar ? `<span class="ar">${io('arrowR', 20)}</span>` : ''}</div>`;
+const sec = (t) => `<div class="cta ghost">${t}</div>`;
+const accOf = (ph) => getComputedStyle(ph).getPropertyValue('--acc').trim();
 
-const lessonUnder = (o = {}) => `<div class="lesson-under"><div class="top"><span class="chip">${icon('close', 's16')}</span><div class="heat grow ${o.heat || ''}" style="margin:0 10px" data-heat><i style="--w:${o.w || '62%'}"></i>${o.tip ? `<span class="tip" style="--w:${o.w || '62%'}">${o.tip}</span>` : ''}</div><span class="pill en">${icon('boltF', 's16')} 4</span></div>
-  <div class="small" style="margin-top:26px;text-align:center">Выбери перевод</div>
-  <div class="q sf" style="margin-top:10px"><div class="h-md" data-q>${o.q || 'Можно мне счёт, пожалуйста?'}</div></div>
-  <div class="q-under" style="margin-top:14px"><div class="opt sf ok ${o.burn ? 'burn' : ''}" data-opt>${o.a || 'Can I have the bill, please?'}</div><div class="opt sf" data-opt2>Could you call me back?</div><div class="opt sf">Where is the station?</div></div>
-  <div class="dock"><div class="cta white">Дальше</div></div></div>`;
-
-/* ---------- 08. Комбо — полная петля ---------- */
-const comboLoop = () => `${lessonUnder({ w: '30%', tip: '3 подряд' })}<div style="position:absolute;left:0;right:0;top:118px;z-index:60;display:flex;justify-content:center;pointer-events:none" data-cc hidden>${coinChar(5, 52, { mood: 'idle', shadow: false })}</div>`;
-const comboInit = (ph) => { const h = ph.querySelector('[data-heat]'); const tip = h.querySelector('.tip'); const set = (w, t) => { h.querySelector('i').style.setProperty('--w', w); tip.style.setProperty('--w', w); tip.textContent = t; tip.style.animation = 'none'; void tip.offsetWidth; tip.style.animation = 'emPop 400ms var(--em-ease-pop) both'; };
+/* ---------- 08. Комбо (предложение: эффект снят 03.08) ---------- */
+const comboUnder = () => `${lessonUnder({ w: '30%', tip: '3 подряд', heat: '', n: '6 / 20' })}<div style="position:absolute;left:0;right:0;top:118px;z-index:60;display:flex;justify-content:center;pointer-events:none" data-cc hidden>${coinChar(5, 52, { mood: 'idle', shadow: false })}</div>`;
+const comboInit = (ph) => { const h = ph.querySelector('[data-heat]'); const tip = h.querySelector('.tip'); const set = (w, t, cls) => { h.className = `heat ${cls}`; h.querySelector('i').style.setProperty('--w', w); tip.style.setProperty('--w', w); tip.textContent = t; tip.style.animation = 'none'; void tip.offsetWidth; tip.style.animation = 'emPop 400ms var(--em-ease-pop) both'; };
   return seq(ph, [
-    [1200, () => { h.classList.add('h2'); set('55%', '5 · ещё 5 до ×2'); const w = ph.querySelector('[data-cc]'); w.hidden = false; const cc = w.querySelector('.cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }],
-    [2600, () => { h.classList.add('h3'); set('85%', '10 · ×2 монет'); ph.querySelector('.lesson-under').classList.add('slowmo'); ph.querySelector('.full')?.classList.add('freeze'); ph.querySelector('[data-opt]').classList.add('burn'); zap(ph); ph.querySelector('.q').classList.add('shake'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'bang', 1); }],
-    [4600, () => { ph.querySelector('[data-q]').textContent = 'Где находится вокзал?'; ph.querySelector('[data-opt]').className = 'opt sf'; ph.querySelector('[data-opt]').textContent = 'Can I have the bill, please?'; ph.querySelector('[data-opt2]').className = 'opt sf no'; ph.querySelector('[data-opt2]').textContent = 'Could you call me back?'; }],
-    [5300, () => { const v = document.createElement('div'); v.className = 'vignette cold'; ph.appendChild(v); setTimeout(() => v.remove(), 1200); h.classList.remove('h3'); set('55%', '9 · остыло на ступень'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('cheer'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }],
+    [0, () => { h.classList.add('heat'); }],
+    [1200, () => { set('50%', '5 подряд', 'h2'); const w = ph.querySelector('[data-cc]'); w.hidden = false; const cc = w.querySelector('.cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }],
+    [2600, () => { set('100%', '10 подряд', 'h3'); ph.querySelector('.full')?.classList.add('freeze'); ph.querySelector('[data-opt]').classList.add('burn'); zap(ph); ph.querySelector('.q-under').previousElementSibling.classList.add('shake'); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'bang', 1); }],
+    [4600, () => { ph.querySelector('[data-q]').textContent = 'Где находится вокзал?'; ph.querySelector('[data-opt]').className = 'opt'; ph.querySelector('[data-opt]').textContent = 'Can I have the bill, please?'; ph.querySelector('[data-opt2]').className = 'opt no'; }],
+    [5300, () => { const v = document.createElement('div'); v.className = 'vignette cold'; ph.appendChild(v); setTimeout(() => v.remove(), 1200); set('0%', 'серия сброшена', ''); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('cheer'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }],
   ]); };
-moment({ id: 'm08', num: '08', short: 'Комбо · петля', title: '«Молния» v3 — полная петля с замедлением и остыванием', tag: 'new',
-  lead: 'Один телефон — вся механика: 3 → 5 (монета выглядывает из бара) → 10 (замедление 0,4 с, молния, золотая вспышка, «!») → ошибка (холодная виньетка, бар остыл на ступень, монета ёжится, серия жива).',
+moment({ id: 'm08', num: '08', short: 'Комбо (предложение)', title: '«Молния» — серия правильных ответов', tag: 'new', tag2: 'предложение, нужно решение владельца',
+  lead: 'Поверх настоящей шапки урока: прогресс-бар «греется» на 3 → 5 → 10 (пороги combo_engine), на 10 — молния и вспышка ответа; ошибка обнуляет серию (как в коде), без множителей монет. Эффект комбо снят 03.08 — показываем как предложение.',
   variants: [
-    { k: 'A', label: '3 → 5 → 10 → ошибка (остывание)', time: '~6,5 с', phone: { under: comboLoop() }, init: comboInit, total: 7,
-      beats: [{ t: 0.0, w: 'бар 30%, подсказка «3 подряд»', h: 'light', s: 'тик' }, { t: 1.2, w: 'бар 55% и теплеет (h2), монета выглядывает из-под бара (peek)', h: 'medium', s: 'тик-тик выше' }, { t: 2.6, w: '<b>замедление 400 мс</b> + молния через экран + золотая вспышка ответа + тряска вопроса; монета cheer «!»', h: 'heavy', s: 'разряд 300 мс', big: true }, { t: 4.6, w: 'следующий вопрос, неверный ответ', h: 'rigid', s: 'глухой тук' }, { t: 5.3, w: 'холодная синяя виньетка 600 мс, бар остыл на ступень (85 → 55%), монета ёжится 💧', h: 'light', s: 'короткий «фьють» вниз' }],
-      why: 'Замедление на пике — приём файтингов и Beat Saber: мозг успевает «пережить» удар. Остывание вместо обнуления: ошибка не разрушает, а чуть откатывает — азарт сохраняется до конца урока.', ref: 'Beat Saber, Street Fighter super freeze, Candy Crush, Duolingo combo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
-    { k: 'B', label: 'Экономика ×2 → ×3 (тост)', time: '~1 с', phone: { under: lessonUnder({ w: '70%', heat: 'h2' }), over: `<div class="toast" style="top:96px;gap:14px"><div style="display:flex;flex-direction:column;align-items:center"><span style="font-size:34px;line-height:34px;font-weight:900;color:var(--gold)">×2</span><span class="small">до ×3 — 3</span></div><div class="x" style="flex:1">Серия 7<s>монеты за ответ: 2 → <b style="color:var(--gold)">4</b></s><s>ошибка остудит на ступень</s></div>${coin(5, 36)}</div>` }, total: 1.2,
-      beats: [{ t: 0.0, w: 'тост пружиной, ×2 pop', h: 'light', s: 'звон' }], why: 'Прозрачная выгода комбо.', ref: 'Candy Crush множители.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'A', label: '3 → 5 → 10 → ошибка (сброс)', time: '~6,5 с', phone: { under: comboUnder() }, init: comboInit, total: 7,
+      beats: [{ t: 0.0, w: 'бар 30 %, «3 подряд»', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 1.2, w: 'бар 50 % и теплеет, монета выглядывает', h: 'medium', snd: 'correct', s: 'fc_correct' }, { t: 2.6, w: '<b>10 подряд</b>: стоп-кадр, молния, вспышка ответа, монета cheer', h: 'heavy', snd: 'star', s: 'fc_star', big: true }, { t: 4.6, w: 'неверный ответ', h: 'rigid', snd: 'wrong', s: 'fc_incorrect' }, { t: 5.3, w: 'холодная виньетка, «серия сброшена», бар пустой', h: 'light', snd: 'learn', s: 'fc_swipe_learn' }],
+      why: 'Серия ответов держит внимание до конца урока; правила честные — ошибка обнуляет.', ref: 'Beat Saber, Duolingo combo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
-/* ---------- 09. Идеальный урок — чекан ---------- */
-const perfect3 = () => `<div class="full"><div class="glowspot gold" style="top:36%"></div><div class="body"><div style="position:relative" data-cc>${coinChar(5, 128, { mood: 'idle', glints: true })}<div class="stamp" data-stamp>ИДЕАЛ</div></div>
-  <div class="h-xl beat" data-b style="margin-top:24px">20 из 20</div><div class="p beat" data-b style="margin-top:6px">Ни одной ошибки · Present Simple</div>
-  <div class="sf beat" data-b style="margin:20px 0 0;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span><span class="chip" style="color:var(--gold)">×1,5 за идеал</span></div></div>
-  <div class="foot beat" data-b><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
-moment({ id: 'm09', num: '09', short: 'Идеальный урок · чекан', title: 'Идеальный урок v3 — чекан со стоп-кадром', tag: 'new',
-  lead: 'Тайминг чекана: монета wow (0,0) → штамп падает (0,9) → стоп-кадр 120 мс (1,5) → дрожь с затуханием (1,5) → золотой дождь (1,7) → счётчик ×1,5 (2,0) → текст и кнопки (2,4+).',
-  variants: [{ k: 'A', label: 'Штамп → стоп-кадр → дрожь → золото', time: '~3,5 с', phone: { under: lessonUnder({ w: '100%', heat: 'h3' }), over: perfect3() }, total: 4,
-    init: (ph) => seq(ph, [[0, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('wow'); }], [900, () => ph.querySelector('[data-stamp]').classList.add('on')], [1500, () => { ph.querySelector('.full').classList.add('freeze'); ph.querySelector('.full').classList.add('rumble'); }], [1700, () => confetti(ph, { gold: true, n: 80 })], [2000, () => { ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 200)); setTimeout(() => countUp(ph.querySelector('[data-c]'), 0, 45, 900), 500); }]]),
-    beats: [{ t: 0.0, w: 'монета wow (scale .3 → 1.18 → 1), блики', s: 'вдох' }, { t: 0.9, w: 'штамп ИДЕАЛ падает (scale 3 → .95 → 1)', s: 'свист' }, { t: 1.5, w: '<b>удар: стоп-кадр 120 мс + дрожь 700 мс</b>', h: 'heavy', s: 'удар штампа (низкий)', big: true }, { t: 1.7, w: 'золотой дождь', s: 'россыпь' }, { t: 2.0, w: 'текст лесенкой по 200 мс, счётчик +45', h: 'light', s: 'звон монет' }],
-    why: 'Одна ударная точка с физикой (стоп-кадр + дрожь) делает редкий момент телесным и запоминающимся.', ref: 'LevelUpMintCeremony (чекан), Duolingo Legendary.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+/* ---------- 09. Идеальный урок — на экране итога ---------- */
+const perfect3 = () => `<div class="full"><div class="glowspot" style="top:36%"></div><div class="body"><div style="position:relative" data-cc>${coinChar(5, 128, { mood: 'idle', glints: true })}<div class="stamp" data-stamp>ИДЕАЛ</div></div>
+  <div class="h-xl beat" data-b style="margin-top:24px">20 из 20</div><div class="p beat" data-b style="margin-top:6px">Ни одной ошибки · +150 монет</div></div><div class="foot beat" data-b>${prim('Дальше')}</div></div>`;
+moment({ id: 'm09', num: '09', short: 'Идеальный урок', title: 'Идеальный урок — «чекан»', tag: 'new',
+  lead: 'На экране итога урока (не поверх вопроса): монета wow → штамп ИДЕАЛ (плашка темы, без рамки) → стоп-кадр и дрожь → конфетти цветов темы. Монеты — обычные за урок (≈150), без ×1,5.',
+  variants: [{ k: 'A', label: 'Штамп → стоп-кадр → дрожь', time: '~3 с', phone: { under: doneUnder({ stars: 3, right: 20, wrong: 0, pct: 100 }), over: perfect3() }, total: 3.5,
+    init: (ph) => seq(ph, [[0, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('wow'); }], [900, () => ph.querySelector('[data-stamp]').classList.add('on')], [1500, () => { ph.querySelector('.full').classList.add('freeze'); ph.querySelector('.full').classList.add('rumble'); }], [1700, () => confetti(ph, { n: 80, colors: [accOf(ph), getComputedStyle(ph).getPropertyValue('--acc2').trim(), getComputedStyle(ph).getPropertyValue('--tx').trim()] })], [2000, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 200))]]),
+    beats: [{ t: 0.0, w: 'монета wow, блики', snd: 'riser', s: 'fc_riser', gain: .7 }, { t: 0.9, w: 'штамп ИДЕАЛ падает', snd: 'flip', s: 'fc_flip' }, { t: 1.5, w: '<b>удар: стоп-кадр 120 мс + дрожь 700 мс</b>', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }, { t: 2.0, w: 'текст по 200 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
+    why: 'Редкий момент получает физику (удар + дрожь).', ref: 'LevelUpMintCeremony (чекан).', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
-/* ---------- 10. Итог урока — цепная реакция (v3 тайминг) ---------- */
+/* ---------- 10. Итог урока — цепная реакция ---------- */
 const result3 = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:6px">
-  <div class="stars beat" data-b>${icon('starF')}<span class="ic" style="animation-delay:.15s">${icon('starF')}</span><span class="ic off" style="animation-delay:.3s">${icon('starF')}</span></div>
-  <div class="h-lg beat" data-b style="margin-top:16px">Урок пройден</div>
-  <div class="stat3 beat" data-b style="margin-top:18px"><div class="st sf"><b style="color:var(--good)">17</b><span>верно</span></div><div class="st sf"><b style="color:var(--bad)">3</b><span>ошибки</span></div><div class="st sf"><b>85%</b><span>точность</span></div></div>
-  <div class="sf beat" data-b style="margin-top:12px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div class="grow" style="text-align:left"><div style="font-size:17px;font-weight:700">+<span data-c>0</span> монет</div><div class="small">лучшая серия — 9 подряд</div></div><span class="pill gold">${coin(5, 18)}<span data-bal>1 240</span></span></div>
-  <div class="sf beat" data-b style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px"><div data-fire>${fire(1, 44)}</div><div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">Серия — 6 дней</div><div class="small">сегодня засчитан</div></div></div>
-  <div class="sf beat" data-b style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px"><div class="ringwrap" data-rw>${rings(RING3([.7, .33, .2]), { size: 52, stroke: 6, gap: 3 })}</div><div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">Кольцо «Урок» — закрыто</div><div class="small">Пик 1/3 · Карточки 2/10</div></div><div data-cc>${coinChar(5, 36, { mood: 'idle', shadow: false })}</div></div>
-  </div><div class="foot beat" data-b><div class="cta white">Следующий урок ${icon('arrowR', 's18')}</div><div class="cta ghost">Разобрать 3 ошибки</div></div></div>`;
-moment({ id: 'm10', num: '10', short: 'Итог урока', title: 'Итог урока v3 — цепная реакция с тайм-листом', tag: 'old',
-  lead: 'Семь ударов за 4,5 с с паузами 620 мс. Каждый — своя нота по возрастанию и свой хаптик; монеты летят в баланс, огонь серии «дышит» сильнее на удар, кольцо докручивается с искрами, персонаж кивает.',
-  variants: [{ k: 'A', label: 'Семь ударов', time: '~4,5 с', phone: { under: lessonUnder({ w: '100%' }), over: result3() }, total: 5,
-    init: (ph) => { const beats = [...ph.querySelectorAll('[data-b]')]; return seq(ph, beats.map((b, i) => [300 + i * 620, () => { b.classList.add('on'); if (i === 3) { countUp(ph.querySelector('[data-c]'), 0, 35, 700); for (let k = 0; k < 6; k++) { const f = document.createElement('i'); f.className = 'fly'; f.style.left = '50px'; f.style.top = '372px'; f.style.setProperty('--dx', `${250 + (k % 3) * 6}px`); f.style.setProperty('--dy', '0px'); f.style.animationDelay = `${200 + k * 60}ms`; ph.appendChild(f); setTimeout(() => f.remove(), 1400); } setTimeout(() => countUp(ph.querySelector('[data-bal]'), 1240, 1275, 600), 900); } if (i === 4) { ph.querySelector('[data-fire] .fire').classList.add('morph'); } if (i === 5) { setTimeout(() => { const rw = ph.querySelector('[data-rw]'); rw.querySelector('.rg').style.strokeDashoffset = '0'; setTimeout(() => { rw.querySelector('.rg').classList.add('closed'); sparks(rw, 10, 24, 46); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('nod'); }, 900); }, 200); } }])); },
-    beats: [{ t: 0.3, w: 'звёзды по одной (0/150/300 мс)', h: 'light', s: 'нота 1' }, { t: 0.9, w: '«Урок пройден»', s: 'нота 2' }, { t: 1.5, w: 'цифры верно/ошибки/точность', h: 'light', s: 'нота 3' }, { t: 2.2, w: 'монеты: 6 штук летят в капсулу 0,9 с, баланс 1 240 → 1 275', h: 'light ×3', s: 'звон ×6' }, { t: 2.8, w: 'огонь серии «вспыхивает» (morph 900 мс)', h: 'medium', s: '«вуф»' }, { t: 3.4, w: 'кольцо «Урок» докручивается 0,9 с → вспышка, 10 искр, монета кивает', h: 'success', s: 'нота 6 («блим»)', big: true }, { t: 4.0, w: 'кнопки', s: '—' }],
-    why: 'Ритм «удар — пауза — удар» ведёт внимание; все счётчики приложения двигаются от одного урока.', ref: 'Наш «Световод + Чекан», Apple Fitness summary.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+  <div class="ov beat" data-b>Урок пройден</div><div class="stars beat" data-b style="margin-top:14px">${io('star', 44, '', )}</div>
+  <div class="h-lg beat" data-b style="margin-top:14px">Present Simple: Утверждение</div>
+  <div class="sf beat" data-b style="margin-top:18px;padding:14px 16px;width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center"><div><div style="font-size:20px;font-weight:800;color:var(--good)">17</div><div class="small">верно</div></div><div><div style="font-size:20px;font-weight:800;color:var(--bad)">3</div><div class="small">ошибки</div></div><div><div style="font-size:20px;font-weight:800">85%</div><div class="small">точность</div></div></div>
+  <div class="sf beat" data-b style="margin-top:12px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">+<span data-c>0</span> монет</div></div><span class="pill" style="height:34px">${coin(5, 18)}<span data-bal>6 854</span></span></div>
+  <div class="sf beat" data-b style="margin-top:10px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px"><span data-flame>${io('flameO', 24, 'color:var(--acc)')}</span><div class="grow" style="text-align:left"><div style="font-size:16px;font-weight:700">Серия — <span data-sd>5</span> дней</div><div class="small" data-st>сегодня ещё нет</div></div></div>
+  <div class="trow beat" data-b data-row style="width:100%;--rc:var(--acc)"><span class="ck">${io('check', 14)}</span><span class="tile">${io('book', 19)}</span><div class="cp"><div class="tt">Пройти урок</div></div><span class="cn" data-cn>0/1</span></div>
+  </div><div class="foot beat" data-b>${prim('Следующий урок')}${sec('Разобрать 3 ошибки')}</div></div>`;
+moment({ id: 'm10', num: '10', short: 'Итог урока', title: 'Итог урока — цепная реакция', tag: 'old',
+  lead: 'V2DoneScreen по правилам: 85 % = 3 звезды (LESSON_THREE_STARS_PERCENT), монеты ≈150 летят в баланс, серия дней засчитывается (флаг-огонь из outline в залитый, как в шапке Главной), задача «Сегодня» «Пройти урок 0/1 → 1/1» закрывается. Семь ударов по 620 мс.',
+  variants: [{ k: 'A', label: 'Семь ударов', time: '~5 с', phone: { under: doneUnder(), over: result3() }, total: 5.5,
+    init: (ph) => { const beats = [...ph.querySelectorAll('[data-b]')]; ph.querySelector('.stars').innerHTML = [1, 2, 3].map((i) => `<span class="io" style="animation-delay:${(i - 1) * 150}ms">${EMA.IO.star}</span>`).join(''); return seq(ph, beats.map((b, i) => [300 + i * 620, () => { b.classList.add('on'); if (i === 1) ph.querySelectorAll('.stars .io').forEach((s, k) => setTimeout(() => s.classList.add('on'), k * 150)); if (i === 4) { countUp(ph.querySelector('[data-c]'), 0, 150, 700); for (let k = 0; k < 6; k++) { const f = document.createElement('i'); f.className = 'fly'; f.style.left = '50px'; f.style.top = '470px'; f.style.setProperty('--dx', `${250 + (k % 3) * 6}px`); f.style.setProperty('--dy', '0px'); f.style.animationDelay = `${200 + k * 60}ms`; ph.appendChild(f); setTimeout(() => f.remove(), 1400); } setTimeout(() => countUp(ph.querySelector('[data-bal]'), 6854, 7004, 600), 900); } if (i === 5) setTimeout(() => { ph.querySelector('[data-flame]').innerHTML = io('flame', 24, 'color:var(--acc)'); ph.querySelector('[data-sd]').textContent = '6'; ph.querySelector('[data-st]').textContent = 'сегодня засчитан'; }, 300); if (i === 6) setTimeout(() => { ph.querySelector('[data-row]').classList.add('done'); ph.querySelector('[data-cn]').textContent = '1/1'; }, 300); }])); },
+    beats: [{ t: 0.3, w: '«Урок пройден»', snd: 'tick', s: 'fc_tick' }, { t: 0.9, w: 'три звезды по 150 мс (85 % = 3)', h: 'light', snd: 'star', s: 'fc_star' }, { t: 1.5, w: 'название урока', snd: 'tick', s: 'fc_tick' }, { t: 2.2, w: 'верно / ошибки / точность', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 2.8, w: '+150 монет летят в баланс, баланс бежит', h: 'light', snd: 'correctNew', s: 'correct_new' }, { t: 3.4, w: 'серия 5 → 6, огонь зажигается', h: 'medium', snd: 'know', s: 'fc_swipe_know' }, { t: 4.0, w: 'задача «Сегодня» «Пройти урок» 1/1 — отметка', h: 'success', snd: 'done', s: 'fc_session_complete', big: true }],
+    why: 'Одно занятие двигает все счётчики — и это видно за 5 секунд.', ref: 'Наш «Световод + Чекан», Apple Fitness summary.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
-/* ---------- 11–12. Кольца: образ + аккорд закрытия ---------- */
-const homeTop = () => `<div class="top"><span class="pill" style="color:var(--flame)">${icon('flameF', 's16')} 5</span><span class="pill gold" style="flex:1;justify-content:flex-start">${coin(5, 20)}1 240</span><span class="pill">${icon('bell', 's16')}</span></div>`;
-const ringsHome = (v = [.7, .33, .2]) => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl" style="gap:16px"><div class="ringwrap" data-rw>${rings(RING3(v), { size: 138, stroke: 11, gap: 4 })}<div class="c" data-cc>${coinChar(5, 58, { mood: 'idle', shadow: false })}</div></div>
-  <div class="legend grow"><div class="l" data-l="0"><i style="background:var(--acc)"></i>Урок<s>14/20</s></div><div class="l" data-l="1"><i style="background:var(--acc2)"></i>Пик<s>1/3</s></div><div class="l" data-l="2"><i style="background:var(--gold)"></i>Карточки<s>2/10</s></div></div></div></div>
-  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div><div class="bar" style="margin-top:10px"><i style="--w:70%"></i></div></div>`;
-const chordInit = (ph) => { const rw = ph.querySelector('[data-rw]'); const rg = [...rw.querySelectorAll('.rg')]; const cc = ph.querySelector('[data-cc] .cc'); const L = (i, t) => { ph.querySelector(`[data-l="${i}"]`).classList.add('done'); ph.querySelector(`[data-l="${i}"] s`).textContent = t; };
-  return seq(ph, [
-    [500, () => { rg[0].style.strokeDashoffset = '0'; }], [1400, () => { rg[0].classList.add('closed'); sparks(rw, 12, 62, 110); L(0, '20/20'); cc.classList.remove('idle'); cc.classList.add('nod'); }],
-    [2600, () => { rg[1].style.strokeDashoffset = '0'; }], [3500, () => { rg[1].classList.add('closed'); sparks(rw, 12, 48, 96); L(1, '3/3'); cc.classList.remove('nod'); cc.classList.add('jump'); }],
-    [4700, () => { rg[2].style.strokeDashoffset = '0'; }], [5600, () => { rg[2].classList.add('closed'); sparks(rw, 18, 34, 120); L(2, '10/10'); cc.classList.remove('jump'); cc.classList.add('cheer'); emo(cc, 'heart', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say gold" style="font-size:13px;padding:7px 10px">Полный день!</span>'); setTimeout(() => confetti(ph, { gold: true, n: 60, burst: [.27, .25] }), 200); }],
-  ]); };
-moment({ id: 'm11', num: '11–12', short: 'Кольца · аккорд закрытия', title: 'Кольца дня v3 — «аккорд» трёх закрытий', tag: 'new',
-  lead: 'Образ — кольца вокруг монеты (рекомендация v2 в силе). v3 — тактильная подпись: каждое кольцо закрывается своей нотой и своим хаптиком (light → medium → success), персонаж реагирует по нарастающей (кивок → прыжок → cheer с сердцами). Три подряд — «Полный день!» золотой репликой.',
-  variants: [{ k: 'A', label: 'Три закрытия подряд (демо аккорда)', time: '~6,5 с', phone: { under: ringsHome() }, init: chordInit, total: 7,
-    beats: [{ t: 0.5, w: 'кольцо «Урок» докручивается 0,9 с', s: 'нота C' }, { t: 1.4, w: 'вспышка толщины + 12 искр, монета кивает', h: 'light', s: '«блим» C', big: true }, { t: 2.6, w: 'кольцо «Пик» докручивается', s: 'нота E' }, { t: 3.5, w: 'вспышка + искры, монета прыгает', h: 'medium', s: '«блим» E', big: true }, { t: 4.7, w: 'кольцо «Карточки» докручивается', s: 'нота G' }, { t: 5.6, w: 'вспышка + 18 искр, cheer ♥, «Полный день!», мини-конфетти', h: 'success + heavy', s: 'аккорд C-E-G', big: true }],
-    why: 'Тактильная подпись (три разных хаптика + три ноты) — узнаваемый «звук приложения», как у Apple Watch. Нарастание делает третье кольцо желанным.', ref: 'Apple Watch rings (haptic signature), Duolingo quests, Headspace.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+/* ---------- 11–12. Кольца = задачи «Сегодня» (по лаборатории) ---------- */
+const TASKS = [{ title: 'Пройти урок', target: 1, icon: 'book' }, { title: 'Пройти ступени Пика', target: 3, icon: 'trend' }, { title: 'Повторить карточки', sub: 'Не менее 10 слов', target: 10, icon: 'copy' }];
+const RING = ['var(--acc)', 'var(--acc2)', 'var(--warn)'];
+const ringsSvg = (vals) => { const s = 148, c = 74, sw = 11, gap = 5; return `<svg viewBox="0 0 ${s} ${s}">${vals.map((v, i) => { const r = c - sw / 2 - i * (sw + gap); const len = 2 * Math.PI * r; return `<circle class="bgr" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}"/><circle class="rg" data-i="${i}" data-len="${len.toFixed(1)}" cx="${c}" cy="${c}" r="${r}" stroke="${RING[i]}" stroke-width="${sw}" stroke-dasharray="${len.toFixed(1)}" stroke-dashoffset="${(len * (1 - v)).toFixed(1)}"/>`; }).join('')}</svg>`; };
+const todayBlock = (prog) => `<div class="today"><div class="k">Сегодня</div><div class="rings"><div class="rw" data-rw><div class="flash"></div>${ringsSvg(prog.map((p, i) => p / TASKS[i].target))}${coin(5, 58, 'coin')}</div><div class="dayok" data-dayok><span class="io">${EMA.IO.check}</span>День выполнен</div></div>
+  <div class="list">${TASKS.map((t, i) => `<div class="trow ${prog[i] >= t.target ? 'done' : ''}" data-row="${i}" style="--rc:${RING[i]}"><span class="ck">${io('check', 14)}</span><span class="tile">${io(t.icon, 19)}</span><div class="cp"><div class="tt">${t.title}</div>${t.sub ? `<div class="st">${t.sub}</div>` : ''}</div><span class="cn" data-cn="${i}">${Math.min(prog[i], t.target)}/${t.target}</span></div>`).join('')}</div></div>`;
+const homeRings = (prog) => homeUnder({ today: false, top: todayBlock(prog) });
+const closeRing = (ph, i, finalCount) => { const rw = ph.querySelector('[data-rw]'); const c = rw.querySelector(`.rg[data-i="${i}"]`); c.style.transition = 'stroke-dashoffset 900ms cubic-bezier(.23,1.3,.32,1)'; c.style.strokeDashoffset = '0'; ph.querySelector(`[data-cn="${i}"]`).textContent = finalCount; setTimeout(() => { const fl = rw.querySelector('.flash'); fl.style.setProperty('--fc', RING[i]); fl.classList.remove('on'); void fl.offsetWidth; fl.classList.add('on'); for (let k = 0; k < 10; k++) { const s = document.createElement('i'); s.className = 'spark'; s.style.setProperty('--fc', RING[i]); s.style.setProperty('--a', `${k * 36}deg`); const r0 = 68 - i * 16; s.style.setProperty('--r0', `${r0}px`); s.style.setProperty('--r1', `${r0 + 28}px`); rw.appendChild(s); setTimeout(() => s.remove(), 1000); } ph.querySelector(`[data-row="${i}"]`).classList.add('done'); }, 650); };
+moment({ id: 'm11', num: '11–12', short: 'Кольца «Сегодня»', title: 'Кольца = задачи «Сегодня» — закрытие', tag: 'new',
+  lead: 'Блок «Сегодня» Главной 1:1 (HomeV2TodayCard) с тремя кольцами — три настоящие задачи дня (урок 1, ступени Пика 3, карточки 10), монета ранга в центре, цвет кольца = цвет отметки строки (токены темы). A: закрывается «Пройти урок» — докрутка с перехлёстом, вспышка, искры, отметка. B: все три — «День выполнен» (без бонусов, D09).',
+  variants: [
+    { k: 'A', label: 'Закрылось кольцо «Пройти урок»', time: '~2 с', phone: { under: homeRings([0, 1, 2]) }, total: 2.5,
+      init: (ph) => seq(ph, [[400, () => closeRing(ph, 0, '1/1')]]),
+      beats: [{ t: 0.4, w: 'кольцо докручивается 0,9 с с перехлёстом', snd: 'tick', s: 'fc_tick' }, { t: 1.05, w: '<b>вспышка + 10 искр</b>, отметка строки заливается', h: 'success', snd: 'star', s: 'fc_star', big: true }],
+      why: 'Ежедневный ритуал на самом экране Главной, 2 секунды, не блокирует.', ref: 'Apple Watch ring close, Duolingo quest.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Все три — «День выполнен»', time: '~3,5 с', phone: { under: homeRings([1, 3, 9]) }, total: 4,
+      init: (ph) => seq(ph, [[400, () => closeRing(ph, 2, '10/10')], [1700, () => { const rw = ph.querySelector('[data-rw]'); rw.classList.add('closedall'); ph.querySelector('[data-dayok]').classList.add('on'); }]]),
+      beats: [{ t: 0.4, w: 'кольцо «Карточки» докручивается', snd: 'tick', s: 'fc_tick' }, { t: 1.05, w: 'вспышка + искры, отметка', h: 'success', snd: 'star', s: 'fc_star' }, { t: 1.7, w: '<b>аккорд</b>: монета подпрыгивает, «День выполнен»', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }],
+      why: 'Три задачи закрыты — короткая плашка, без лишнего и без бонусов.', ref: 'Apple «all rings».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
 
-/* ---------- 13. Полный день — корона и рамка ---------- */
-const wk = (vals, o = {}) => `<div class="wk7">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d, i) => `<div class="d ${i === (o.today ?? 4) ? 'today' : ''}">${rings(RING3(vals[i] || [0, 0, 0]), { size: 40, stroke: 4, gap: 2 })}${d}</div>`).join('')}</div>`;
-const fullDay3 = () => `<div class="full"><div class="glowspot gold"></div><div class="body"><div class="ringwrap" data-rw>${rings(RING3([1, 1, 1]), { size: 220, stroke: 16, gap: 6, from0: true })}<div class="c" data-cc><span class="frame-gold" style="opacity:0;transition:opacity 500ms" data-frame>${coin(5, 84)}</span></div></div>
-  <div class="ov beat" data-b style="margin-top:24px;color:var(--gold)">Все кольца закрыты</div><div class="h-xl beat" data-b style="margin-top:6px">Полный день · 4-й подряд</div>
-  <div class="p beat" data-b style="margin-top:6px">+100 монет. Ещё 3 полных дня — «Полная неделя» и рамка навсегда.</div><div class="beat" data-b style="margin-top:16px;width:100%">${wk([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [0, 0, 0], [0, 0, 0]])}</div></div>
-  <div class="foot beat" data-b><div class="cta gold">Забрать 100</div><div class="small center">в Plus за полный день — 200</div></div></div>`;
-moment({ id: 'm13', num: '13', short: 'Полный день', title: '«Полный день» v3 — корона и золотая рамка', tag: 'new',
-  lead: 'Три кольца от нуля в унисон (1,1 с) → тройная вспышка → аккорд → монета получает вращающуюся золотую рамку (видна друзьям и в комнате Пика на сегодня) → золотой дождь → текст.',
-  variants: [{ k: 'A', label: 'Унисон → аккорд → рамка → золото', time: '~4 с', phone: { under: ringsHome([1, 1, 1]), over: fullDay3() }, total: 4.5,
-    init: (ph) => seq(ph, [[300, () => ph.querySelectorAll('.full .rg').forEach((c) => { c.style.strokeDashoffset = '0'; })], [1500, () => { const rw = ph.querySelector('.full [data-rw]'); rw.querySelectorAll('.rg').forEach((c) => c.classList.add('closed')); sparks(rw, 24, 100, 180); ph.querySelector('.full').classList.add('rumble'); }], [1900, () => { ph.querySelector('[data-frame]').style.opacity = '1'; firework(ph, 195, 290, { r: 90, colors: ['#FFE08A', '#fff', '#F0B33A'] }); }], [2300, () => { confetti(ph, { gold: true, n: 100 }); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 180)); }]]),
-    beats: [{ t: 0.3, w: 'три кольца докручиваются в унисон 1,1 с', s: 'крещендо' }, { t: 1.5, w: '<b>тройная вспышка + 24 искры + дрожь</b>', h: 'heavy', s: 'аккорд C-E-G', big: true }, { t: 1.9, w: 'золотая рамка на монете появляется + фейерверк', h: 'success', s: 'звон высокий' }, { t: 2.3, w: 'золотой дождь, текст лесенкой по 180 мс', s: 'россыпь' }],
-    why: 'Редкий момент = видимый статус (рамка) + вторая серия («4-й подряд») + честная Plus-строка.', ref: 'Apple «all three rings», Streak Society.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+/* ---------- 14. Ранг монеты — только за монеты ---------- */
+const rank3 = () => `<div class="dim"></div><div class="modal" style="text-align:center"><div style="display:flex;justify-content:center" data-cc>${coinChar(5, 96, { mood: 'idle', glints: true })}</div>
+  <div class="h-lg" style="margin-top:12px">Хватает на ранг 6</div><div class="p">7 004 монеты — ранг 6 стоит 6 000.</div>
+  <div class="fl" style="justify-content:center;gap:10px;margin-top:14px"><span style="opacity:.5">${coin(5, 36)}</span>${io('arrowR', 18)}<span style="animation:emPulse 1.6s ease-in-out infinite">${coin(6, 48)}</span></div>
+  <div class="acts" style="flex-direction:column">${prim('Повысить за 6 000', false)}${sec('Позже')}</div></div>`;
+const rankB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:8px"><div class="ov a-up">Ранг монеты</div><div class="h-lg a-up d1" style="margin-top:6px">5 из 20</div>
+  <div class="rank-shelf a-up d2" style="margin-top:18px;width:100%">${Array.from({ length: 20 }, (_, i) => `<div class="r ${i < 5 ? '' : i === 5 ? 'next' : 'lock'}">${coin(i, 40)}</div>`).join('')}</div>
+  <div class="sf a-up d4" style="margin-top:16px;padding:14px 16px;width:100%;text-align:left"><div style="font-size:16px;font-weight:700">Ранг 6 — 6 000 монет</div><div class="bar" style="margin-top:10px"><i style="--w:${Math.round(6854 / 6000 * 100) > 100 ? 100 : Math.round(6854 / 6000 * 100)}%"></i></div><div class="small" style="margin-top:6px">У тебя 6 854 — хватает</div></div></div><div class="foot a-up d5">${prim('Повысить за 6 000', false)}</div></div>`;
+moment({ id: 'm14', num: '14', short: 'Ранг монеты', title: 'Повышение ранга монеты — за монеты', tag: 'old',
+  lead: 'Ранг покупается только за монеты (N×1000: ранг 6 = 6 000). A: после итога урока — GlassAlertDialog «Хватает на ранг 6», тап ведёт в существующую церемонию чеканки. B: полка 20 рангов с ценой и полоской в монетах.',
+  variants: [
+    { k: 'A', label: '«Хватает на ранг 6» — окно', time: '~1,5 с', phone: { under: doneUnder(), over: rank3() }, total: 2,
+      init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('jump'); }]]),
+      beats: [{ t: 0.0, w: 'окно пружиной', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 0.4, w: 'монета прыгает, следующая пульсирует', h: 'medium', snd: 'star', s: 'fc_star' }],
+      why: 'Человек узнаёт, что накопил; покупка — на своём экране (церемония чеканки).', ref: 'Clash Royale upgrade available.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Полка 20 рангов + цена', time: '~1,5 с', phone: { under: doneUnder(), over: rankB() }, total: 1.5,
+      beats: [{ t: 0.0, w: 'сетка рангов, следующая подсвечена тоном акцента', h: 'light', snd: 'tick', s: 'fc_tick' }],
+      why: 'Коллекция + цена в монетах — прогресс к рангу показан в монетах.', ref: 'Brawl Stars grid.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
 
-/* ---------- 14. Ранг: просьба → чеканка ---------- */
-const rank3 = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:30px" data-ask><div style="display:flex;justify-content:center" data-cc>${coinChar(5, 100, { mood: 'idle', glints: true })}</div>
-  <div class="h-lg" style="margin-top:14px">1 500 — хватает на ранг 6</div><div class="p" style="margin-top:6px">Новую монету увидят друзья и комната Пика.</div>
-  <div class="cta gold" style="margin-top:18px" data-go>Повысить за 1 200 ${coin(5, 18)}</div><div class="cta ghost">Позже</div></div>
-  <div class="mint" data-mint><div class="ov" style="color:var(--gold)">Монетный двор</div><div class="coinslot" data-slot style="margin-top:20px"><span class="cur">${coin(5, 120)}</span><span class="nxt">${coin(6, 130)}</span></div><div class="press"></div><div class="h-xl" style="margin-top:26px;opacity:0" data-rt>Ранг 6</div><div class="p" style="margin-top:6px;opacity:0" data-rp>1 240 → 40 монет · новую монету видно всем</div></div>`;
-moment({ id: 'm14', num: '14', short: 'Ранг · просьба → чеканка', title: 'Ранг монеты v3 — от просьбы до чеканки', tag: 'old',
-  lead: 'Склейка: персонаж просит («Я подрос?»), тап — затемнение «Монетного двора» (существующая церемония), старая монета уходит в пресс, новая выпрыгивает с фейерверком и дрожью. Здесь — упрощённая репродукция церемонии для тайминга.',
-  variants: [{ k: 'A', label: '«Я подрос?» → пресс → новая монета', time: '~5 с', phone: { under: lessonUnder({ w: '100%' }), over: rank3() }, total: 5.5,
-    init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('jump'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Я подрос?</span>'); }], [1800, () => { ph.querySelector('[data-mint]').classList.add('on'); }], [2600, () => { ph.querySelector('[data-slot]').classList.add('go'); }], [3300, () => { ph.querySelector('.full, .mint').classList.add('rumble'); firework(ph, 195, 330, { r: 110, colors: ['#FFE08A', '#fff', '#F0B33A'] }); }], [3700, () => { ph.querySelector('[data-rt]').style.opacity = '1'; ph.querySelector('[data-rt]').style.animation = 'emUp 500ms var(--em-ease) both'; ph.querySelector('[data-rp]').style.opacity = '1'; ph.querySelector('[data-rp]').style.animation = 'emUp 500ms var(--em-ease) 150ms both'; }]]),
-    beats: [{ t: 0.4, w: 'монета прыгает «Я подрос?»', h: 'medium', s: 'звон' }, { t: 1.8, w: 'тап «Повысить» → затемнение, «Монетный двор»', h: 'light', s: 'низкий гул' }, { t: 2.6, w: 'старая монета уходит в пресс (scale .6, вниз)', s: 'шорох металла' }, { t: 3.3, w: '<b>удар пресса: дрожь 700 мс + фейерверк, новая монета выпрыгивает (rotateY 90 → 0)</b>', h: 'heavy', s: 'удар чекана', big: true }, { t: 3.7, w: '«Ранг 6», остаток монет', h: 'success', s: 'аккорд' }],
-    why: 'Просьба персонажа + существующая церемония — один бесшовный поток; трата монет становится событием, которого ждут (спрос на монеты → Plus ×2).', ref: 'Наш LevelUpMintCeremony, Pokémon evolution, Clash Royale upgrade.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
-
-/* ---------- 15. Выход — персонаж держит комбо ---------- */
-const exit3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:14px"><div data-cc>${coinChar(5, 60, { mood: 'idle' })}</div><div class="grow"><div class="h-md">Выйти из урока?</div><div class="p" style="margin-top:4px;font-size:15px">12 из 20 сохранится. Комбо 7 — сгорит.</div></div></div>
-  <div class="heat h2" style="margin-top:18px"><i style="--w:60%"></i><span class="tip" style="--w:60%">7 · сгорит</span></div>
-  <div class="cta white" style="margin-top:18px"><span class="two">Доделать<span class="sub">8 вопросов · ~<span data-t>1:50</span></span></span></div><div class="cta ghost" style="color:var(--bad)">Выйти</div></div>`;
-moment({ id: 'm15', num: '15', short: 'Выход', title: 'Выход из занятия v3 — персонаж держит комбо', tag: 'old',
-  lead: 'Персонаж дрожит и просит остаться, подсказка на баре «7 · сгорит», оценка времени «~1:50» считается из реального темпа ответов.',
-  variants: [{ k: 'A', label: '«Ещё 2 минуты?» + горячий бар', time: '~1,5 с', phone: { under: lessonUnder({ w: '60%', heat: 'h2' }), over: exit3() }, total: 2,
+/* ---------- 15. Выход из урока (D67) ---------- */
+const exit3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:14px"><div data-cc>${coinChar(5, 60, { mood: 'idle' })}</div><div class="grow"><div class="h-md">Выйти из урока?</div><div class="p" style="margin-top:4px">Попытка не сохранится, повторный вход — −1 энергия.</div></div></div>
+  <div style="margin-top:18px">${prim('Продолжить', false)}${sec('Выйти')}</div></div>`;
+moment({ id: 'm15', num: '15', short: 'Выход', title: 'Выход из урока', tag: 'old',
+  lead: 'KitSheetModal по D67: попытка не сохраняется, повторный вход — минус энергия. Монета просит остаться. Главное действие — «Продолжить», вторичное — «Выйти».',
+  variants: [{ k: 'A', label: '«Ещё 2 минуты?»', time: '~1,5 с', phone: { under: lessonUnder({ w: '60%', n: '12 / 20' }), over: exit3() }, total: 2,
     init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }], [1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ещё 2 минуты?</span>'); }]]),
-    beats: [{ t: 0.0, w: 'шторка', h: 'light' }, { t: 0.4, w: 'монета дрожит 💧', h: 'rigid' }, { t: 1.0, w: 'кивок «Ещё 2 минуты?»', s: '—' }],
-    why: 'Конкретика (8 вопросов, 1:50, комбо 7) + эмоция персонажа возвращают в урок.', ref: 'Duolingo quit screen.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+    beats: [{ t: 0.0, w: 'шторка', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 0.4, w: 'монета дрожит', h: 'rigid', snd: 'tick', s: 'fc_tick' }, { t: 1.0, w: 'кивок «Ещё 2 минуты?»', snd: 'msg', s: 'message_received', gain: .6 }],
+    why: 'Честная цена выхода + эмоция персонажа возвращают в урок.', ref: 'Duolingo quit screen.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 render(document.getElementById('root'), document.getElementById('toc'));
 attachBeats(document.getElementById('root'));

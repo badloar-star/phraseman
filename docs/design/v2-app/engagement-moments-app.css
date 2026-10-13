@@ -217,4 +217,4 @@
 /* v2.css «.ghost» (сравнение «до/после») гасил вторичные кнопки — вторичная кнопка всегда читаемая */
 .em-ph .cta.ghost { opacity: 1; filter: none; }
 /* kit.css красит .cta градиентом background-image (#FFF→var(--cta)) — в оболочке 2.0 кнопки плоские, как V2Button */
-.em-ph .cta, .em-ph .cta.ghost, .em-ph .cta.tone, .em-ph .cta.dis, .em-ph .cta.white, .em-ph .cta.gold { background-image: none; }
+.em-ph .cta:not(.gh):not(.dis):not(.red), .em-ph .cta.dis, .em-ph .cta.gh { background-image: none; }

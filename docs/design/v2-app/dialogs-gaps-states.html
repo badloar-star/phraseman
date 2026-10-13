@@ -284,6 +284,8 @@
   .dg-b { font-size: 15px; line-height: 21px; color: var(--sec); }
   .dg-cap { font-size: 13px; line-height: 18px; color: var(--muted); }
   .dg-clear { color: #FF9A98; }
+  .dg-clear-bare { min-height: 56px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 18px; color: var(--bad); font-size: 17px; line-height: 22px; font-weight: 600; } /* зачем: красный текст без плашки, как p.wrong + V2_TYPE.headline в коде */
+  .modal .btns .cta.dg-danger { background: #3A1E1C; color: #FF8C82; box-shadow: none; height: auto; min-height: 52px; padding: 8px 12px; text-align: center; line-height: 20px; } /* ThemedConfirmModal destructive */
   .dg-fail { color: #FF9A98; text-align: center; font-size: 15px; line-height: 21px; margin-top: 12px; }
   .dg-note { max-width: 430px; text-align: center; font-size: 13px; line-height: 18px; color: var(--sec); margin-top: -4px; }
   /* зачем (координатор 12.10, dialogs-gap-017): в коде тост — общий ActionToast (рейка, плитка со значком, подпись тона, текст), а не строка-пилюля с «×»; образец приведён к коду, как paywall-gaps-states */
@@ -396,9 +398,9 @@ const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div cla
 // снизу микрофон · поле · отправить. Цвета нейтральные, пузырь «Ты» светло-серый.
 // зачем: у Free энергия видна на каждом экране занятия (владелец); у Plus — ни энергии, ни квоты.
 const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? (o.v2 ? 'Поздороваться после знакомства' : 'Закажи кофе')}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span>${o.noq ? '' : `<span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
-const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из ${o.v2 ? 6 : 5}</div><div class="v">${(o.v2 ? OBJ_V2 : OBJ)[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
+const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из ${o.v2 ? 6 : 5}</div><div class="v">${(o.v2 ? OBJ_V2 : OBJ)[i - 1]}</div></div>${o.nohint ? '' : `<span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>`}${ch}</div>`;
 const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
-const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${o.v2 ? icon('user', 's20') : li('cafe')}</span><div class="bw"><span class="who">${o.v2 ? 'Мила' : 'Мия · бариста'}</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
+const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${o.v2 ? icon('user', 's20') : li('cafe')}</span><div class="bw"><span class="who">${o.v2 ? 'Мила' : 'Мия · бариста'}</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div>${o.opening ? '' : `<div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div>`}</div></div>`; /* зачем: o.opening — приветствие до первого хода, у него нет перевода/разбора/озвучки (dialogue_v2_session.tsx:429-436) */
 const me = (text, o = {}) => `<div class="msg u"><div class="bw"><span class="who">Ты</span><div class="bub">${text}</div>${o.unsent ? `<div class="unsn">${li('alert', 's16')}Не отправлено</div>` : ''}${o.fix === 'btn' ? `<span class="fixb t">${icon('edit')}Лучше так</span>` : o.fix ? `<div class="fixt">${icon('edit', 's16')} Лучше так: <b>${o.fix}</b></div>` : ''}</div></div>`;
 const typing = () => `<div class="msg b"><span class="av" style="margin-top:6px">${li('cafe')}</span><div class="typing" data-typing><i></i><i></i><i></i></div></div>`;
 const syserr = (text, retry = true) => `<div class="syserr"><div class="p">${li('alert', 's18')}<span>${text}</span></div>${retry ? `<span class="cta sm t">${li('refresh', 's18')}Повторить</span>` : ''}</div>`;
@@ -436,14 +438,14 @@ const T = {
 };
 const sess = (o = {}) => phone(`<div class="chat" data-autoscroll>${o.body}</div>`,
   { time: o.time ?? '13:02', inStyle: `padding:${o.goal === 0 ? 128 : 226}px 14px 200px`,
-    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1, { v2: o.v2 })}</div>` + (o.fixed ?? ibar(o.ib || {})),
+    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1, { v2: o.v2, nohint: o.nohint ?? o.body === S1 })}</div>` + (o.fixed ?? ibar(o.ib || {})),
     overlay: (o.ov || '') + menuSheet(o.open === 'menu') + goalsSheet(o.met ?? (o.goal ?? 1) - 1, o.open === 'goals') + whySheet(o.why || {}, o.open === 'why') + hintModal(o.open === 'hint') + exitSheet(o.open === 'exit') });
 
-const S1 = bot(T.hi);
-const S2 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size);
-const S3 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size, { tr: 'Какой размер вы хотите — маленький, средний или большой?' });
-const S4 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size, { speaking: true });
-const S9 = bot(T.hi) + me('I want cappuccino.', { fix: 'btn' }) + bot(T.size) + me('Medium please', { fix: "I'd like a medium, please." });
+const S1 = bot(T.hi, { opening: true });
+const S2 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size);
+const S3 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size, { tr: 'Какой размер вы хотите — маленький, средний или большой?' });
+const S4 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size, { speaking: true });
+const S9 = bot(T.hi, { opening: true }) + me('I want cappuccino.', { fix: 'btn' }) + bot(T.size) + me('Medium please', { fix: "I'd like a medium, please." });
 
 // ================= D. Итог — единый экран завершения (practice.html 1:1) =================
 const statsRow = (c, w, goals) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b>${goals}<small>/5</small></b><span>целей</span></div><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
@@ -485,7 +487,7 @@ const dgCol = (label, html, note) => `<article class="col"><div class="lbl">${la
 // ---- Память диалогов (app/dialogue_v2_memory.tsx) ----
 const memHead = `<div class="flex" style="gap:18px;margin-top:10px;align-items:center"><span class="rb l t">${icon('back', 's20')}</span><div style="font-size:22px;line-height:28px;font-weight:700">Память диалогов</div></div>`;
 const memIntro = `<div class="dg-intro">Здесь хранится только краткая учебная сводка и место продолжения для выбранного языка. Сообщения и голосовые записи здесь не сохраняются.</div>`;
-const memClear = (busy) => `<div class="cta gh t dg-clear" style="${busy ? 'opacity:.65' : ''}">${busy ? 'Очищаем…' : 'Очистить память этого языка'}</div>`;
+const memClear = (busy) => `<div class="dg-clear-bare t" style="${busy ? 'opacity:.65' : ''}">${busy ? 'Очищаем…' : 'Очистить память этого языка'}</div>`;
 const memBody = `<div class="card c2" style="padding:14px;display:flex;flex-direction:column;gap:8px"><div class="dg-sec">Учебная сводка</div><div class="dg-b">Выполнено задач: 7</div>
     <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">Получается хорошо</div><div class="dg-b">• Заказать капучино</div><div class="dg-b">• Выбрать размер</div></div>
     <div style="display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">На чём сосредоточиться</div><div class="dg-b">• Уточнить: с собой или здесь</div></div></div>
@@ -493,7 +495,7 @@ const memBody = `<div class="card c2" style="padding:14px;display:flex;flex-dire
   <div class="card c2" style="padding:14px;display:flex;flex-direction:column;gap:4px"><div style="font-size:16px;font-weight:700">Закажи кофе</div><div class="dg-b">Выполнено задач: 3</div><div class="dg-cap">Следующая задача: 4</div></div>`;
 const memPhone = (inner, o = {}) => phone(`${memHead}<div style="display:flex;flex-direction:column;gap:14px;margin-top:20px">${inner}</div>`, { time: '13:20', overlay: o.overlay || '' });
 const memFull = (busy, fail) => memPhone(`${memIntro}${memBody}${memClear(busy)}${fail ? '<div class="dg-fail">Не удалось очистить память. Попробуй ещё раз.</div>' : ''}`);
-const memConfirm = `<div class="dim on"></div><div class="modal on"><div class="h center">Очистить память?</div><div class="p center">Удалятся учебная сводка и прогресс всех диалогов только для выбранного языка. Это действие нельзя отменить.</div><div class="btns"><div class="cta gh t">Отмена</div><div class="cta t dg-clear">Очистить память этого языка</div></div></div>`;
+const memConfirm = `<div class="dim on"></div><div class="modal on"><div class="h center">Очистить память?</div><div class="p center">Удалятся учебная сводка и прогресс всех диалогов только для выбранного языка. Это действие нельзя отменить.</div><div class="btns"><div class="cta gh t">Отмена</div><div class="cta t dg-danger">Очистить память этого языка</div></div></div>`;
 const memFree = phone(`${memHead}<div style="display:flex;flex-direction:column;justify-content:center;gap:16px;min-height:640px"><div style="font-size:22px;line-height:28px;font-weight:700;text-align:center">Память диалогов доступна в Plus</div><div class="cta t">Посмотреть Plus</div>
   <div class="dg-intro" style="text-align:center;margin-top:12px">Даже без Plus ты можешь удалить всю сохранённую память выбранного языка. Просмотр сводки и точек продолжения останется недоступен.</div>${memClear(false)}</div>`, { time: '13:20' });
 
@@ -536,7 +538,7 @@ const DG_BLOCKS = [
     dgCol('Голосовое сообщение в ленте', sess({ body: S2 + voiceMsg('Голосовое сообщение'), goal: 2, mood: 'smile', q: '28/30' }), 'пузырь «Голосовое сообщение» (dialogue_voice_message.ts)'),
     dgCol('Меню «⋯» открыто', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', open: 'menu' }), 'DialogueGlassMenuSheet: «Задания», «Завершить диалог»'),
     // зачем (координатор 13.10, dialogs-gap-016; кадр приложения): после отказа сервера в ленте реплика пользователя, пузырь «Сервис диалогов временно недоступен…» с «Повторить», а тост тона «Сообщение» (значок «i») с текстом «Энергия возвращена»; в шапке «Диалог · ⚡ 5» без настроения и лимита ответов (в начале диалога)
-    dgCol('Энергия возвращена', sess({ body: bot("Hi! Nice to meet you. I'm Mila. How are you today?", { v2: true }) + me('Hello') + syserr('Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.', true), en: 5, noq: true, v2: true, ov: dgToast('Энергия возвращена', 'info') }), 'тост после отказа сервера (dialogue_v2_session.tsx:150-157)'),
+    dgCol('Энергия возвращена', sess({ nohint: true, body: bot("Hi! Nice to meet you. I'm Mila. How are you today?", { v2: true, opening: true }) + me('Hello') + syserr('Сервис диалогов временно недоступен. Сообщение не отправлено. Попробуй ещё раз.', true), en: 5, noq: true, v2: true, ov: dgToast('Энергия возвращена', 'info') }), 'тост после отказа сервера (dialogue_v2_session.tsx:150-157)'),
     dgCol('Не получилось начать диалог', brief({ overlay: dgToast('Не получилось начать диалог. Попробуй ещё раз', true) }), 'тост на брифинге (dialogue_v2_briefing.tsx:114-126)'),
   ]],
 ];

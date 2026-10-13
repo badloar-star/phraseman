@@ -377,7 +377,7 @@ const consentSheet = () => sheet('c', `
   <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:14px">Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</div>
   <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:10px">Можно выключить в настройках в любой момент.</div>
   <div class="cta t" style="margin-top:24px" data-close>Включить</div>
-  <div class="cta gh t" style="margin-top:10px;border-color:transparent" data-close>Не сейчас</div>`, true);
+  <div class="cta t" style="margin-top:10px;background:none;box-shadow:none;color:var(--sec)" data-close>Не сейчас</div><!-- зачем (dialogs-009): в коде «Не сейчас» — текстовая кнопка без подложки -->`, true);
 const gateOff = () => phone(`
   <div class="flex"><span class="rb l t">${icon('back', 's20')}</span></div>
   <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">AI-диалоги выключены</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>
@@ -389,9 +389,9 @@ const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div cla
 // снизу микрофон · поле · отправить. Цвета нейтральные, пузырь «Ты» светло-серый.
 // зачем: у Free энергия видна на каждом экране занятия (владелец); у Plus — ни энергии, ни квоты.
 const dhead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti">${o.title ?? o.sub ?? 'Закажи кофе'}</div><div class="su"><span class="dmood">${o.mood ? `${face(o.mood)} ${MOOD[o.mood][1]}` : 'Диалог'}</span>${o.plus ? '' : `<span class="pill s" data-energy="${o.en ?? 4}">${icon('boltF', 's16')}<span class="num">${o.en ?? 4}</span></span><span class="pill s">${icon('chatDots', 's16')}${o.q ?? '30/30'}</span>`}</div></div><span class="rb sq t" data-open="menu">${icon('dotsH', 's18')}</span></div>`;
-const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из 5</div><div class="v">${OBJ[i - 1]}</div></div><span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>${ch}</div>`;
+const goalRow = (i = 1, o = {}) => `<div class="goal t" data-open="goals"><div class="tile">${icon('flag', 's20')}</div><div class="tx"><div class="k">Цель ${i} из 5</div><div class="v">${OBJ[i - 1]}</div></div>${o.nohint ? '' : `<span class="hintb ic t" data-open="hint" aria-label="Подсказка">${li('bulb', 's20')}</span>`}${ch}</div>`;
 const keyify = (s) => s.replace(/\*\*(.+?)\*\*/g, '<span class="key">$1</span>');
-const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${li('cafe')}</span><div class="bw"><span class="who">Мия · бариста</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div><div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div></div></div>`;
+const bot = (text, o = {}) => `<div class="msg b${o.anim ? ' in' : ''}"><span class="av">${li('cafe')}</span><div class="bw"><span class="who">Мия · бариста</span><div class="bub${o.tr ? ' tr' : ''}">${o.tr ? o.tr : keyify(text)}</div>${o.opening ? '' : `<div class="acts"><span class="ab ic t${o.speaking ? ' live' : ''}">${icon('vol')}</span><span class="ab t${o.tr ? ' on' : ''}">${li('trans')}${o.tr ? 'Скрыть перевод' : 'Перевод'}</span><span class="ab t" data-open="why">${li('bulb')}Почему так</span></div>`}</div></div>`; /* зачем: o.opening — приветствие до первого хода, у него нет перевода/разбора/озвучки (dialogue_v2_session.tsx:429-436) */
 const me = (text, o = {}) => `<div class="msg u"><div class="bw"><span class="who">Ты</span><div class="bub">${text}</div>${o.unsent ? `<div class="unsn">${li('alert', 's16')}Не отправлено</div>` : ''}${o.fix === 'btn' ? `<span class="fixb t">${icon('edit')}Лучше так</span>` : o.fix ? `<div class="fixt">${icon('edit', 's16')} Лучше так: <b>${o.fix}</b></div>` : ''}</div></div>`;
 const typing = () => `<div class="msg b"><span class="av" style="margin-top:6px">${li('cafe')}</span><div class="typing" data-typing><i></i><i></i><i></i></div></div>`;
 const syserr = (text, retry = true) => `<div class="syserr"><div class="p">${li('alert', 's18')}<span>${text}</span></div>${retry ? `<span class="cta sm t">${li('refresh', 's18')}Повторить</span>` : ''}</div>`;
@@ -429,14 +429,14 @@ const T = {
 };
 const sess = (o = {}) => phone(`<div class="chat" data-autoscroll>${o.body}</div>`,
   { time: o.time ?? '13:02', inStyle: `padding:${o.goal === 0 ? 128 : 226}px 14px 200px`,
-    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1)}</div>` + (o.fixed ?? ibar(o.ib || {})),
+    fixed: `<div class="dtop">${dhead(o)}${o.goal === 0 ? '' : goalRow(o.goal ?? 1, { nohint: o.nohint ?? o.body === S1 })}</div>` + (o.fixed ?? ibar(o.ib || {})),
     overlay: (o.ov || '') + menuSheet(o.open === 'menu') + goalsSheet(o.met ?? (o.goal ?? 1) - 1, o.open === 'goals') + whySheet(o.why || {}, o.open === 'why') + hintModal(o.open === 'hint') + exitSheet(o.open === 'exit') });
 
-const S1 = bot(T.hi);
-const S2 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size);
-const S3 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size, { tr: 'Какой размер вы хотите — маленький, средний или большой?' });
-const S4 = bot(T.hi) + me("I'd like a cappuccino, please.") + bot(T.size, { speaking: true });
-const S9 = bot(T.hi) + me('I want cappuccino.', { fix: 'btn' }) + bot(T.size) + me('Medium please', { fix: "I'd like a medium, please." });
+const S1 = bot(T.hi, { opening: true });
+const S2 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size);
+const S3 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size, { tr: 'Какой размер вы хотите — маленький, средний или большой?' });
+const S4 = bot(T.hi, { opening: true }) + me("I'd like a cappuccino, please.") + bot(T.size, { speaking: true });
+const S9 = bot(T.hi, { opening: true }) + me('I want cappuccino.', { fix: 'btn' }) + bot(T.size) + me('Medium please', { fix: "I'd like a medium, please." });
 
 // ================= D. Итог — единый экран завершения (practice.html 1:1) =================
 const statsRow = (c, w, goals) => { const t = c + w, p = t ? Math.round(c / t * 100) : 0; return `<div class="stats"><div><b>${goals}<small>/5</small></b><span>целей</span></div><div><b class="g">${c}</b><span>верно</span></div><div><b class="r">${w}</b><span>ошибок</span></div><div><b>${p}%</b><span>точность</span></div></div>`; };
@@ -469,7 +469,8 @@ const topicPick = () => `<div class="msg b"><span class="av" style="margin-top:6
 
 // ================= F. Компаньон =================
 const chead = (o = {}) => `<div class="dh"><span class="rb l t">${icon('back', 's20')}</span><div class="tx"><div class="ti" style="font-size:22px;line-height:26px">Свободный разговор</div><div class="su">Помнит контекст этого языка</div></div></div>`;
-const compMsg = (text) => `<div class="msg b"><div class="bw"><div class="bub">${keyify(text)}</div><div class="acts"><span class="ab ic t">${icon('vol')}</span><span class="ab t">${li('trans')}Перевод</span></div></div></div>`;
+const compMsg = (text) => `<div class="msg b"><div class="bw"><div class="bub">${keyify(text)}</div></div></div>`; /* зачем (dialogs-046): в коде свободного разговора у пузыря нет подписи, аватара и действий */
+const compMe = (text) => `<div class="msg u"><div class="bw"><div class="bub">${text}</div></div></div>`;
 const cibar = (o = {}) => `<div class="ibar"><div class="row-i"><span class="rbtn t"><span class="mi">${icon('mic')}</span></span><div class="fld t"><span class="${o.typed ? 'tv' : 'plc'}">${o.typed || 'Напиши сообщение…'}</span></div><span class="rbtn send${o.typed ? '' : ' off'} t">${li('arrowUp')}</span></div></div>`;
 const comp = (o = {}) => phone(`<div class="chat" data-autoscroll>${o.body || ''}</div>`, { time: '13:15', inStyle: 'padding:118px 14px 150px', fixed: `<div class="dtop">${chead(o)}</div>` + cibar(o.ib || {}) });
 
@@ -510,7 +511,7 @@ document.getElementById('root').innerHTML = [
     pc(S('c8', 'C8 «Почему так» — разборы закончились', '«Почему так» — лимит'), '«Почему так» — разборы на сегодня закончились', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', open: 'why', why: { exhausted: true } }), '3 бесплатных в день; руны убраны'),
     pc(S('c9', 'C9 «Лучше так» — кнопка и раскрытый вариант', '«Лучше так»'), '«Лучше так» — кнопка и раскрытый вариант', sess({ body: S9, goal: 3, mood: 'smile', q: '28/30' })),
     pc(S('c10', 'C10 Ввод текстом с клавиатурой', 'Ввод с клавиатурой'), 'Ввод текстом с клавиатурой', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { typed: "I'd like a medium", typing: true, kb: true } })),
-    pc(S('c22', 'C22 Настроение упало', 'Настроение упало'), 'Настроение собеседника упало', sess({ body: bot(T.hi) + me('Coffee. Now.') + bot(T.angry), goal: 1, mood: 'angry', q: '29/30' }), 'значок лица в шапке; цель не сдвинулась'),
+    pc(S('c22', 'C22 Настроение упало', 'Настроение упало'), 'Настроение собеседника упало', sess({ body: bot(T.hi, { opening: true }) + me('Coffee. Now.') + bot(T.angry), goal: 1, mood: 'angry', q: '29/30' }), 'значок лица в шапке; цель не сдвинулась'),
   ]),
   block('voice', 'C. Голосовой ввод', 'Микрофон слева (решение владельца 14.09), зажать и говорить. Внутри круга — точки остатка голосовых попыток. Подсказка состояния — под строкой ввода.', [
     pc(S('c11', 'C11 Голос — ожидание микрофона', 'Голос — ожидание'), 'Ожидание — «Готовлю микрофон…»', sess({ body: S2, goal: 2, mood: 'smile', q: '29/30', ib: { voice: 'req' } })),
@@ -552,7 +553,7 @@ document.getElementById('root').innerHTML = [
   ]),
   block('comp', 'F. Свободный разговор (только Plus)', 'Экран `dialogue_v2_freeform`: без целей и сценария, без квоты — доступен только в Plus; ответы — стеклянный пузырь без аватара, микрофон «Зажми и говори». Состояния без доступа, загрузки и ошибки — в dialogs-gaps-states.html.', [
     pc(S('f1', 'F1 Свободный разговор — пустое состояние', 'Свободный разговор — пусто'), 'Пустое состояние — «Что можно спросить»', comp({ body: `<div class="tipc"><div class="tile t46">${li('bulb', 's22')}</div><div class="grow0"><div class="tt">Что можно спросить</div><div class="p">Спроси про фразу или просто поговори. Можно отвечать на изучаемом языке.</div></div></div>` })),
-    pc(S('f2', 'F2 Свободный разговор — разговор идёт', 'Свободный разговор — разговор'), 'Разговор идёт', comp({ body: me('How do I say «сдаваться» in English?') + compMsg('Чаще всего — **give up**. «Don’t give up» — «не сдавайся». Хочешь пример из твоего урока про работу?') + me('Yes, please') + compMsg('**I won’t give up on this project.** — «Я не брошу этот проект». Сохраним в карточки?'), ib: {} })),
+    pc(S('f2', 'F2 Свободный разговор — разговор идёт', 'Свободный разговор — разговор'), 'Разговор идёт', comp({ body: compMe('How do I say «сдаваться» in English?') + compMsg('Чаще всего — **give up**. «Don’t give up» — «не сдавайся». Хочешь пример из твоего урока про работу?') + compMe('Yes, please') + compMsg('**I won’t give up on this project.** — «Я не брошу этот проект». Сохраним в карточки?'), ib: {} })),
   ]),
 ].join('');
 

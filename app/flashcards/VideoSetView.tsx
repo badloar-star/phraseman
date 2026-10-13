@@ -252,7 +252,7 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   rows: { gap: 13 },
   // `.pill` раскрытой фразы (cards-v2 videoSet): высота 38, поля 14/18, шрифт 15, зазор 8, сверху 14
   jumpRow: { marginTop: 14, flexDirection: 'row' },
-  jump: { height: 38, borderRadius: 19, paddingLeft: 14, paddingRight: 18, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  jump: { minHeight: 38, borderRadius: 19, paddingLeft: 14, paddingRight: 18, flexDirection: 'row', alignItems: 'center', gap: 8 },
   jumpText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   // `phrase()` макета: карточка r16 от 118 высотой, поля 14/18/16; таймкод-чип и озвучка в верхней строке.
   phraseCard: { minHeight: 118, borderRadius: 16, paddingTop: 14, paddingHorizontal: 18, paddingBottom: 16 },

@@ -438,7 +438,7 @@ const S = StyleSheet.create({
   promo: { padding: 14, borderRadius: 18, marginBottom: 12, alignItems: 'center' },
   promoKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' },
   promoRow: { flexDirection: 'row', alignItems: 'baseline', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 8 },
-  promoPill: { height: 35, borderRadius: 18, paddingHorizontal: 17, justifyContent: 'center', alignSelf: 'center' },
+  promoPill: { minHeight: 35, borderRadius: 18, paddingHorizontal: 17, justifyContent: 'center', alignSelf: 'center' },
   promoPct: { fontSize: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
   promoPrice: { fontSize: 21, fontWeight: '800', fontVariant: ['tabular-nums'] },
   promoStandard: { fontSize: 13, fontWeight: '700', textDecorationLine: 'line-through', fontVariant: ['tabular-nums'] },

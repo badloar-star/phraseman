@@ -214,7 +214,9 @@ async function launchAndWait(device, row, opts) {
 
 /** Строки журнала приложения, важные для разбора кадра, → _runs/<метка>/<id>.log (logcat чистится перед каждым id, поэтому иначе они теряются). */
 // зачем (координатор 12.10, cards-028/009/034, dialogs-003/030): в журнал кадра попадают и метки разбора экранов — [THUMB] превью роликов, [CARDS-EMPTY]/[CARDS-HINT] карточки, [DIALOG-DONE]/[DIALOG-GOAL] диалоги, клавиатура и поле ввода
-export const FRAME_LOG_RX = /\[(?:OVERLAY-QUEUE|APP-MESSAGE|DEV-STATE|PURCHASE-PENDING|PAYWALL[A-Z-]*|THUMB|CARDS-[A-Z-]+|DIALOG-[A-Z]+|DIALOGUE-KEYBOARD|DLG-INPUT-LAYOUT|HOME-CONTINUE|SPIRE-[A-Z]+)\]/; // зачем (spire-010, 15.10): теги Шпиля ([SPIRE-SCROLL], [SPIRE-DOCK], [SPIRE-LAYOUT], [SPIRE-TARGET]) должны попадать в журнал кадра
+// зачем (координатор 13.10, «эмулятор роняет Настройки»): без меток экранов Авторизации и [NAV-PAINT] журнал кадра молчал о том,
+// открылся ли экран и куда ушёл маршрут — отсутствие строки ничего не доказывало.
+export const FRAME_LOG_RX = /\[(?:OVERLAY-QUEUE|APP-MESSAGE|DEV-STATE|PURCHASE-PENDING|PAYWALL[A-Z-]*|THUMB|CARDS-[A-Z-]+|DIALOG-[A-Z]+|DIALOGUE-KEYBOARD|DLG-INPUT-LAYOUT|HOME-CONTINUE|SPIRE-[A-Z]+|SUPPORT-[A-Z]+|NAV-PAINT|SMART-REMINDER|ACCOUNT-[A-Z]+|ACC-MUT|SETTINGS-[A-Z]+|NOTIF-[A-Z]+)\]/; // зачем (spire-010, 15.10): теги Шпиля ([SPIRE-SCROLL], [SPIRE-DOCK], [SPIRE-LAYOUT], [SPIRE-TARGET]) должны попадать в журнал кадра
 function saveFrameLog(device, id, runDir) {
   try {
     const text = adb(device, ['logcat', '-d', '-s', 'ReactNativeJS:V'], { timeout: 15_000 });

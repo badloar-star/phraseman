@@ -57,6 +57,17 @@ export default function SupportReportScreen() {
 
   // зачем (координатор 12.10, R1): интерфейс не обещает того, чего не делает — пока журнал выключен (remote_flags), «прикрепятся действия» не пишем
   const diagnosticsEnabled = isSupportDiagnosticsEnabled();
+  // зачем (координатор 13.10, «эмулятор роняет Настройки»): прогон settings-gap-023 закончился на Главной без единой строки
+  // экрана поддержки — неизвестно, открылся ли он и почему закрылся. Открытие и закрытие экрана пишем всегда (warn — виден и в релизе).
+  useEffect(() => {
+    const openedAt = Date.now();
+    console.warn(`[SUPPORT-SCREEN] открыт lang=${lang} журнал=${diagnosticsEnabled ? 'вкл' : 'выкл'}`); // guard-ok: одна строка на открытие экрана
+    return () => {
+      console.warn(`[SUPPORT-SCREEN] закрыт через ${Date.now() - openedAt} мс`); // guard-ok: одна строка на закрытие экрана
+    };
+    // Только открытие и закрытие экрана.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     console.log(`[SUPPORT-DIAG] карточка: журнал ${diagnosticsEnabled ? 'включён → обещание и список' : 'выключен → нейтральный текст без обещания'}`); // guard-ok: ветвление логируется
   }, [diagnosticsEnabled]);

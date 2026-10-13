@@ -16402,9 +16402,10 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 9,
-        "label": "поиск · отдельные исходы",
-        "mapping": "label_mismatch"
+        "phone": 25,
+        "label": "добавление · нет связи",
+        "mapping": "manual_rebind",
+        "prev_phone": 9
       },
       "screen": "Друзья",
       "state": "заявку не удалось отправить",
@@ -16422,17 +16423,17 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние] ошибка «Связь пропала» после «Добавить в друзья» не показана",
-        "[образец] перепривязать к шторке поиска с ошибкой"
+        "[образец дорисован по коду 13.10] community.html №25 «добавление · нет связи»: карточка найденного остаётся, красная строка «Связь пропала» с подсказкой (friends.tsx 1799); карточка найденного как FriendsFoundCard (монета, имя, ×, «Добавить в друзья»); переснять на ru (dev-провал add_already_friends / add_already_sent / сеть)"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:20:11.128Z",
+      "reviewed_at": "2026-10-13T14:35:33.125Z",
       "mockup_pinned": "Дизайн 10.10: исходы поиска друга — один телефон макета (9 «поиск · отдельные исходы»); конкретный исход внутри телефона не подтверждён",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
       },
       "shot_at": "2026-10-13T07:19:30.207Z",
       "shot_at_source": "bare_run_dir",
@@ -16662,9 +16663,10 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 17,
-        "label": "поиск · найден",
-        "mapping": "redrawn_makety_2026-10-12"
+        "phone": 23,
+        "label": "добавление · уже друзья",
+        "mapping": "manual_rebind",
+        "prev_phone": 17
       },
       "screen": "Друзья",
       "state": "уже друзья",
@@ -16682,16 +16684,16 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние] исход «Уже друзья» не показан",
-        "карточка результата другая: в образце строка с монетой-аватаром, «Найдена» и маленькой «Добавить», в приложении буква, × и широкая кнопка"
+        "[образец дорисован по коду 13.10] community.html №23 «добавление · уже друзья»: карточка скрыта, ввод остаётся, зелёная строка «Уже друзья / Профиль уже есть в твоём списке.» (friends.tsx 1790); карточка найденного как FriendsFoundCard (монета, имя, ×, «Добавить в друзья»); переснять на ru (dev-провал add_already_friends / add_already_sent / сеть)"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:20:11.128Z",
+      "reviewed_at": "2026-10-13T14:35:33.125Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами",
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
       },
       "shot_at": "2026-10-13T07:19:30.207Z",
       "shot_at_source": "bare_run_dir",
@@ -16702,9 +16704,10 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/community.html",
-        "phone": 17,
-        "label": "поиск · найден",
-        "mapping": "redrawn_makety_2026-10-12"
+        "phone": 24,
+        "label": "добавление · заявка уже отправлена",
+        "mapping": "manual_rebind",
+        "prev_phone": 17
       },
       "screen": "Друзья",
       "state": "заявка уже отправлена",
@@ -16722,16 +16725,16 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние] исход «Заявка уже отправлена» не показан",
-        "карточка результата другая, как в community-018"
+        "[образец дорисован по коду 13.10] community.html №24 «добавление · заявка уже отправлена»: карточка скрыта, зелёная строка «Заявка уже отправлена / Она остаётся в ожидании ответа.» (friends.tsx 1793); карточка найденного как FriendsFoundCard (монета, имя, ×, «Добавить в друзья»); переснять на ru (dev-провал add_already_friends / add_already_sent / сеть)"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:20:11.128Z",
+      "reviewed_at": "2026-10-13T14:35:33.125Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1; кадр неоднозначен с соседней строкой — сверять глазами",
+        "macets_cards_slice_2026_10_13": "CARDS_SLICE_TRIAGE_R1_2026-10-13.md"
       },
       "shot_at": "2026-10-13T07:19:30.207Z",
       "shot_at_source": "bare_run_dir",

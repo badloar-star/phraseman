@@ -99,11 +99,14 @@ function week(baseFloor: number, stepInFloor: number, stepsCleared: number, tier
   };
 }
 
-const NAMES = ['Алиса', 'Марк', 'Дарья', 'Ян', 'Соня', 'Артём', 'Лиза', 'Глеб', 'Вера', 'Тимур', 'Ника', 'Руслан', 'Мира', 'Лев'];
+const NAMES = ['Алиса', 'Марк', 'Дарья', 'Ян', 'Соня', 'Артём', 'Лиза', 'Глеб', 'Вера', 'Тимур', 'Ника', 'Руслан', 'Мира', 'Лев', 'Полина', 'Егор', 'Ася', 'Богдан', 'Алёна', 'Роман', 'Злата', 'Фёдор', 'Кира', 'Илья', 'Тая', 'Макар', 'Эля', 'Платон', 'Нина'];
+
+// зачем (владелец 13.10, «должно показывать аватары ников — монеты рангов»): у участников превью разные ранги монет (0…19), как у живой комнаты в 30 человек; у части ранга нет (null → базовая монета)
+const PREVIEW_COIN_LEVELS = [3, 7, 0, 12, 5, null, 9, 1, 15, 4, 2, 8, null, 6, 11, 0, 3, 18, 5, 2, 7, 10, null, 1, 4, 13, 6, 0, 9] as const;
 
 // зачем (приоритет владельца 13.10, «кто с тобой на этаже, кто выше и кто ниже», spire.html mainScreen): соперники расставлены ВОКРУГ этажа игрока — выше, на нём и ниже, а не все выше.
 // Раньше шли от 62 ступеней вниз (этажи 4…8), и при моём этаже 4 никого ниже не было. Смещения — в этажах относительно моего; ниже 1 и выше 15 прижимаются.
-const RIVAL_FLOOR_OFFSETS = [4, 3, 3, 2, 2, 1, 1, 0, 0, -1, -2, -3] as const;
+const RIVAL_FLOOR_OFFSETS = [4, 3, 3, 2, 2, 1, 1, 0, 0, -1, -2, -3, 6, 5, 4, 3, 2, 1, 0, 0, -1, -1, -2, -3, 7, 5, 2, 0, -2] as const;
 
 function rows(mySteps: number, count = 12, aroundFloor?: number): readonly SpireRoomRow[] {
   const now = Date.now();
@@ -111,7 +114,7 @@ function rows(mySteps: number, count = 12, aroundFloor?: number): readonly Spire
   const list: SpireRoomRow[] = NAMES.slice(0, count - 1).map((name, i) => {
     const floor = Math.min(PREVIEW_SUMMIT_FLOOR, Math.max(1, myFloor + RIVAL_FLOOR_OFFSETS[i % RIVAL_FLOOR_OFFSETS.length]));
     const steps = spireCumulativeSteps(floor - 1) + 1 + (i % 2); // начало этажа + 0…1 ступень
-    return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false };
+    return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false, coinRank: PREVIEW_COIN_LEVELS[i % PREVIEW_COIN_LEVELS.length] };
   });
   list.push({ uid: 'preview-me', name: 'Ты', steps: mySteps, reachedAtMs: now - 120_000, isMe: true });
   return list.sort((a, b) => b.steps - a.steps || a.reachedAtMs - b.reachedAtMs);
@@ -176,7 +179,8 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
     }
     case 'room': {
       const w = week(7, 2, 31);
-      return { ...base, week: w, game: game({ rows: rows(31, 12, w.floor), myPlace: 5, friends: FRIENDS }) };
+      const room = rows(31, 30, w.floor); // комната в 30 человек, как на макете: соседи выше и ниже по этажам
+      return { ...base, week: w, game: game({ rows: room, myPlace: room.findIndex((r) => r.isMe) + 1, friends: FRIENDS }) };
     }
     case 'win': {
       const w = week(8, 0, 36);

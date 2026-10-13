@@ -18,7 +18,8 @@ describe('превью Шпиля: соперники ниже, на и выше
       expect(same).toBeGreaterThan(0);
       expect(above).toBeGreaterThan(0);
       if (myFloor >= 3) expect(below).toBeGreaterThan(0);
-      expect(below + same + above).toBe(11); // все 11 чужих строк разложены по этажам
+      expect(below + same + above).toBe(29); // все 29 чужих строк комнаты в 30 человек разложены по этажам
+      expect([...map.values()].flat().every((r) => r.coinRank === null || (r.coinRank >= 0 && r.coinRank <= 19))).toBe(true); // ранг монеты едет вместе с соперником
     });
   }
 });

@@ -12,6 +12,7 @@ import { V2_TYPE } from '../../constants/v2Style';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
+import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
@@ -22,16 +23,6 @@ type Props = Readonly<{
   members: readonly SpireMemberRow[] | null;
   onOpenAll: () => void;
 }>;
-
-/** Кружок-заглушка с инициалом: ранга монеты у участника комнаты в данных нет. */
-export function SpireInitial({ name, size }: Readonly<{ name: string; size: number }>) {
-  const p = useSpirePalette(); const sh = useSpireShadow();
-  return (
-    <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: p.control, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ color: p.text, fontSize: size * 0.42, fontWeight: '700' }}>{name.trim().slice(0, 1).toUpperCase() || '—'}</Text>
-    </View>
-  );
-}
 
 function SpirePodium({ lang, members, onOpenAll }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
@@ -55,7 +46,7 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
             const blk = place === 1 ? 88 : place === 2 ? 66 : 50;
             return (
               <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireStepsCount(lang, m.steps)}`}>
-                <SpireInitial name={m.name} size={place === 1 ? 56 : 46} />
+                <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
                 <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
                 <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>

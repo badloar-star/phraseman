@@ -14,7 +14,7 @@ import { V2_TYPE } from '../../constants/v2Style';
 import type { SpireCoinsConfig } from '../../modules/spire/config_contract';
 import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
-import { SpireInitial } from './SpirePodium';
+import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsWordAfterOf } from './spire_plurals';
 import { spireFloorCoinsOf, spireIsGuard, spireIsSummit, spireStepsIn, type SpireRival } from './spire_tower_model';
@@ -73,7 +73,7 @@ function SpireFloorInfo({ lang, floor, myFloor, stepInFloor, coins, others = [] 
       {others.length > 0 ? (
         <View style={s.who} testID="spire-floor-who">
           {others.slice(0, WHO_MAX).map((m, k) => (
-            <View key={m.uid} style={k === 0 ? null : s.whoOverlap}><SpireInitial name={m.name} size={28} /></View>
+            <View key={m.uid} style={k === 0 ? null : s.whoOverlap}><SpireRankCoin rank={m.coinRank} size={28} /></View>
           ))}
         </View>
       ) : null}

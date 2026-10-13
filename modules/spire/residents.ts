@@ -71,6 +71,8 @@ export type SpireRosterEntry = Readonly<{
   aura: string | null;
   isPremium: boolean;
   streak: number;
+  /** Ранг монеты 0..19 лица бота (13.10); нет — базовая монета. */
+  coinRank?: number | null;
 }>;
 
 export type SpireResidentState = Readonly<{

@@ -242,8 +242,8 @@ export default function SpireHomeScreen() {
 
   // Комната недели: живые из кэша комнаты + боты формулой + свои локальные ступени.
   const members: readonly SpireMemberRow[] | null = useMemo(
-    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe })) : null),
-    [game.rows],
+    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null) })) : null),
+    [game.rows, myCoinRank],
   );
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
@@ -303,7 +303,7 @@ export default function SpireHomeScreen() {
         ) : null}
         {/* зачем (координатор 13.10): dev_state?spireWeek=… подставляет готовый исход для кадров Сверки; в стор-сборке всегда null */}
         {(devWeekResult ?? game.weekResult) ? (
-          <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
+          <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} />
         ) : null}
         <View style={s.towerWrap}>
           <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={game.tier ?? week?.tier ?? null} />

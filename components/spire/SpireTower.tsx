@@ -16,7 +16,7 @@ import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { getDevSpireTierOverride } from '../../app/dev_spire_tier';
-import { SpireInitial } from './SpirePodium';
+import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
@@ -45,8 +45,7 @@ const RIVAL_SHOWN = 2;
 
 /**
  * Соперники слева от этажа (floorSvg макета): до двух кружков внахлёст и «+N».
- * зачем: ранга монеты у участников комнаты в данных нет — кружок с инициалом, как
- * на пьедестале. Слой RN поверх SVG, без касаний (тап по этажу проходит насквозь).
+ * зачем: монета ранга участника (владелец 13.10), неизвестный ранг — базовая монета, не буква. Слой RN поверх SVG, без касаний (тап по этажу проходит насквозь).
  */
 const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim }: Readonly<{ rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean }>) {
   const p = useSpirePalette();
@@ -62,7 +61,7 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim }: Readonly<{
       <View key={`rivals-${fl.f}`} style={[s.rivals, { left: ax * scale, top, opacity: dim ? 0.55 : 1 }]}>
         {list.slice(0, shown).map((m, k) => (
           <View key={m.uid} style={{ marginLeft: k === 0 ? 0 : (RIVAL_STEP - RIVAL) * scale }}>
-            <SpireInitial name={m.name} size={RIVAL * scale} />
+            <SpireRankCoin rank={m.coinRank} size={RIVAL * scale} />
           </View>
         ))}
         {extra > 0 ? <Text style={[s.rivalExtra, { color: p.textSecondary }]}>{`+${extra}`}</Text> : null}

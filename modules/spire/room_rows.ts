@@ -14,6 +14,7 @@ import {
   type SpireResidentTuning,
   type SpireRosterEntry,
 } from './residents';
+import { spireBotCoinRank } from './bot_coin_rank';
 
 /** Живой участник комнаты — поля документа, которые нужны экрану. */
 export type SpireRoomMember = Readonly<{
@@ -22,6 +23,8 @@ export type SpireRoomMember = Readonly<{
   steps: number;
   reachedAtMs: number;
   totalMs: number;
+  /** зачем (владелец 13.10, «аватары ников — монеты рангов»): ранг монеты 0..19 из того же документа комнаты; нет поля — null (рисуется базовая монета). */
+  coinRank?: number | null;
 }>;
 
 /** Кэш комнаты недели на устройстве (форма app/spire/spire_room_client.ts). */
@@ -45,6 +48,7 @@ export type SpireRoomRow = Readonly<{
   steps: number;
   reachedAtMs: number;
   isMe: boolean;
+  coinRank?: number | null;
 }>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -56,6 +60,11 @@ function num(value: unknown): number {
   return Number.isFinite(n) ? Math.max(0, Math.trunc(n)) : 0;
 }
 
+/** Ранг монеты из документа: целое 0..19, иначе null (чужое значение не угадываем). */
+export function spireDecodeCoinRank(value: unknown): number | null {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 19 ? value : null;
+}
+
 /** members документа (карта uid → запись) → массив. Мусорные записи отбрасываются. */
 export function spireDecodeRoomMembers(raw: unknown): SpireRoomMember[] {
   if (!isRecord(raw)) return [];
@@ -64,7 +73,7 @@ export function spireDecodeRoomMembers(raw: unknown): SpireRoomMember[] {
     if (!isRecord(value)) continue;
     const uid = typeof value.uid === 'string' && value.uid ? value.uid : key;
     const name = typeof value.name === 'string' ? value.name.trim().slice(0, 48) : '';
-    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs) });
+    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank) });
   }
   return out;
 }
@@ -83,6 +92,7 @@ export function spireDecodeRoster(raw: unknown): SpireRosterEntry[] {
       aura: null,
       isPremium: value.isPremium === true,
       streak: num(value.streak),
+      coinRank: spireDecodeCoinRank(value.coinRank),
     });
   }
   return out;
@@ -115,8 +125,8 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
   const myReached = input.mySteps >= serverSteps ? input.myReachedAtMs : (serverMe?.reachedAtMs ?? 0);
   const live: SpireRoomRow[] = room.members
     .filter((m) => m.uid !== myUid)
-    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false }));
-  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true });
+    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null }));
+  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null });
 
   const states = spireRoomResidents({
     groupId: room.groupId,
@@ -127,7 +137,7 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
     tuning: input.tuning,
   });
   const bots: SpireRoomRow[] = spireResidentRows(room.roster, states)
-    .map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, reachedAtMs: r.reachedAtMs, isMe: false }));
+    .map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, reachedAtMs: r.reachedAtMs, isMe: false, coinRank: r.coinRank ?? spireBotCoinRank(r.uid, room.groupId) })); // зачем (Ядро 13.10): у ботов старых комнат ранга в roster нет — детерминированная формула, как на сервере
   return [...live, ...bots].sort(spireCompareRows);
 }
 

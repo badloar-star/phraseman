@@ -17,7 +17,7 @@ import { SPIRE_ZONE_RATIO } from '../../modules/spire/residents';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
-import { SpireInitial } from './SpirePodium';
+import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
@@ -60,7 +60,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
             accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${spireStepsCount(lang, m.steps)}`}
           >
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
-            <SpireInitial name={m.name} size={40} />
+            <SpireRankCoin rank={m.coinRank} size={40} />
             <View style={s.nameWrap}>
               <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
               {m.isMe ? <View style={[s.you, { backgroundColor: p.cta }]}><Text style={[s.youText, { color: p.ctaText }]}>{spireText(lang, 'you')}</Text></View> : null}

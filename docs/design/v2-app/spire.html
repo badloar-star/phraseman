@@ -297,15 +297,16 @@ const floorInfo = (f, o = {}) => {
 };
 
 /* ===================== ОБЩИЕ КУСКИ ЭКРАНА ШПИЛЯ ===================== */
-const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Пик</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energyBare(e)}</div>`;
+const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Пик</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div>${energyBare(e)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti" style="font-size:18px">Друзья на этой неделе</div></div><div class="friends">${FRIENDS.map((f) => `<div class="fr t">${coinImg(f.rank, 30)}${f.name}<span class="fl-n">${f.floor} этаж</span></div>`).join('')}</div>`;
 const podium = (dim = false) => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
   const pd = (m, p) => `<div class="pd p${p} t"${dim ? ' style="opacity:.55"' : ''}>${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${m.steps} ступ.</div><div class="blk">${p}</div></div>`;
-  return `<div class="sec" style="margin:26px 2px 0"><div class="ti" style="font-size:18px">Комната недели</div><div class="ac">30 человек</div></div><div class="podium">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div>
-  <div class="cta gh t" style="margin-top:16px">Все участники · ты 7-й</div>`;
+  return `<div class="sec" style="margin:26px 2px 0"><div class="ti" style="font-size:18px">Комната недели</div><div class="ac">30</div></div><div class="podium">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div>
+  <div class="cta gh t" style="margin-top:16px">Все участники · 7</div>`;
 };
-const spireBody = (o = {}) => `${spireHeader(o.energy ?? 3)}${o.top || ''}<div style="margin-top:18px">${towerView(o.tower || {})}</div>${floorInfo((o.tower && o.tower.sel) || floorOf(ME.steps), { mySteps: o.tower && o.tower.mySteps, myFloor: o.tower && o.tower.myFloor })}${friendsRow()}${podium(o.dim)}`;
+/* зачем (D181, владелец 13.10, код ab3408bdd): «Комната недели» (пьедестал + «Все участники · N») — сразу под заголовком, выше башни; кнопки правил нет (D173) */
+const spireBody = (o = {}) => `${spireHeader(o.energy ?? 3)}${podium(o.dim)}${o.top || ''}<div style="margin-top:18px">${towerView(o.tower || {})}</div>${floorInfo((o.tower && o.tower.sel) || floorOf(ME.steps), { mySteps: o.tower && o.tower.mySteps, myFloor: o.tower && o.tower.myFloor })}${friendsRow()}`;
 const climbCta = `<div class="bp scrim"><div class="cta t">Играть<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
 
 /* ===================== 1. ТУР ===================== */
@@ -371,7 +372,7 @@ document.getElementById('root').innerHTML = [
     col('Тур 2 — как устроена ступень', tourPhone(2, '10 заданий, общее время, 3 сердца', 'Один таймер на всю ступень. Ошибка — минус сердце и сразу правильный ответ. Провалил — остаёшься на месте.', tourRing)),
     col('Тур 3 — повышение', tourPhone(3, 'Верхние 15% переходят на пик выше', 'Гранит, Базальт, Мрамор… до Алмаза. Нижние 15% и все без ступеней спускаются. В понедельник все снова с 1 этажа.', tourTop, true))]),
   block('main', '2. Пик — главный экран', 'Башня интерактивна: тап по этажу подсвечивает его и показывает ступени, монеты и соперников. Свой этаж — свет в окнах и монета ранга. «Проиграть подъём» — маркер уходит на этаж выше (этаж 4 → Страж 5).', [
-    col('Пик — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Пик — ниже: друзья, пьедестал', mainScrolled())]),
+    col('Пик — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Пик — ниже: этаж и друзья', mainScrolled())]),
   block('all', '3. Все участники', 'Комната недели: место по ступеням, монета = аватар. Верхние 15% — повышение, нижние 15% и все с нулём — понижение.', [col('Все участники', allMembers())]),
   block('step', '4–6. Ступень', 'Кольцевой таймер на всю ступень, 3 сердца, энергия. При ошибке таймер стоит и показан правильный ответ. «Назад» — шторка с подтверждением.', [
     col('Ступень — задание', stepScreen()), col('Ошибка — правильный ответ', stepError()), col('Выход — подтверждение', stepExit())]),

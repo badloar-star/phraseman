@@ -334,7 +334,7 @@ const floorInfo = (f, o = {}) => {
 const INFO = `<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg>`;
 /* зачем: шапка как в коде (SpireHomeScreen:220-244): название + «бета» + подзаголовок «камень · до конца недели», кнопка правил (i) и энергия;
    в spire.html кнопки правил нет — её рисуем здесь */
-const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Пик</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energyBare(o.energy ?? 3)}</div>`;
+const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Пик</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div>${energyBare(o.energy ?? 3)}</div>`; /* D173: кнопки правил «i» нет */
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
 const podium = () => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
@@ -347,7 +347,7 @@ const podiumDash = () => `<div class="sec" style="margin:26px 2px 0"><div class=
 const homeScr = (o = {}) => {
   const t = o.tower || {};
   const fin = o.finfo !== undefined ? o.finfo : floorInfo(t.sel ?? floorOf(ME.steps), { mySteps: t.mySteps, myFloor: t.myFloor });
-  return `${homeHead(o)}${o.top || ''}<div style="margin-top:18px">${towerView(t)}</div>${fin}${o.friends === false ? '' : friendsRow()}${o.podium !== undefined ? o.podium : podium()}`;
+  return `${homeHead(o)}${o.podium !== undefined ? o.podium : podium()}${o.top || ''}<div style="margin-top:18px">${towerView(t)}</div>${fin}${o.friends === false ? '' : friendsRow()}`; /* D181: комната недели — под заголовком, выше башни (ab3408bdd) */
 };
 const dock = (o = {}) => `<div class="sg-bp sc">${o.note ? `<div class="sg-dnote">${o.note}</div>` : ''}<div class="cta t"${o.dim ? ' style="opacity:.4"' : ''}>${o.label ?? 'Играть'}<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
 const homePhone = (o = {}, dockHtml = dock(), extra = {}) => phone(homeScr(o), { fixed: dockHtml, inStyle: `padding-bottom:${o.pb ?? 120}px`, ...extra });

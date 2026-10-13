@@ -46,3 +46,34 @@ describe('purchase pending alert: one show per purchase', () => {
     expect(src).not.toMatch(/showPurchasePendingAlert\(lang\);/);
   });
 });
+
+// зачем (владелец 13.10: «такого не должно быть ни при каких обстоятельствах, покупка сразу, никаких родителей или банков»):
+// ожидание оплаты — короткий тост, пейвол закрывается, кнопка не висит; доступ до подтверждения магазином не выдаётся.
+describe('purchase pending: no blocking window about parents or bank', () => {
+  const src = read('app/paywall_purchase.ts').replace(/\r\n/g, '\n');
+  const fn = src.slice(src.indexOf('export function showPurchasePendingAlert('), src.indexOf('export function purchasePendingToast()'));
+
+  it('the pending notice is a toast, not a blocking alert, and never mentions parents or a bank', () => {
+    expect(fn).toContain("emitAppEvent('action_toast', purchasePendingToast());");
+    expect(fn).not.toContain('enqueueThemedBlockingInfoAlert');
+    // строки (не комментарии): ни в одном тексте нет родителей/банка
+    expect(src).not.toMatch(/['"`][^'"`\n]*(родител|батьк|parent|banco|bank)[^'"`\n]*['"`]/i);
+    expect(src).toContain("ru: 'Оплата обрабатывается — Plus включится сам'");
+  });
+
+  it('both real pending branches log [PURCHASE] pending and close the paywall; access is not granted there', () => {
+    expect(src).toContain("closePaywallAfterPendingPurchase('no_entitlement');");
+    expect(src).toContain("closePaywallAfterPendingPurchase('pending_error');");
+    expect(src).toContain('[PURCHASE] pending reason=no_entitlement');
+    expect(src).toContain('[PURCHASE] pending reason=pending_error');
+    const branch = src.slice(src.indexOf('[PURCHASE] pending reason=no_entitlement'), src.indexOf("closePaywallAfterPendingPurchase('no_entitlement');"));
+    expect(branch).not.toContain('persistStorePremiumLocally');
+  });
+
+  it('dev state «pending» does not spin the purchase button', () => {
+    const dev = read('app/dev_paywall_state.ts').replace(/\r\n/g, '\n');
+    const pendingCase = dev.slice(dev.indexOf("    case 'pending':"), dev.indexOf("    case 'unknown_outcome':"));
+    expect(pendingCase).toContain('return { ...view, ...LIVE_PRICES, ...SETTLED };');
+    expect(pendingCase).not.toContain('purchasing: true');
+  });
+});

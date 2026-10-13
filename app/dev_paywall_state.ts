@@ -310,6 +310,8 @@ export function applyDevPaywallView<T extends PaywallDevView>(state: DevPaywallS
     case 'restoring':
       return { ...view, ...LIVE_PRICES, ...SETTLED, restoring: true };
     case 'pending':
+      // зачем (владелец 13.10): ожидание оплаты — тост, кнопка НЕ висит со спиннером, окна нет.
+      return { ...view, ...LIVE_PRICES, ...SETTLED };
     case 'unknown_outcome':
       // Как на макете: под диалогом тарифы и кнопка неактивны (идёт/шла оплата).
       return { ...view, ...LIVE_PRICES, ...SETTLED, purchasing: true, payStarted: true };

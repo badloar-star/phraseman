@@ -182,36 +182,31 @@ export function showPurchasePendingAlert(lang: Lang, key: string = 'purchase'): 
   const now = Date.now();
   const last = pendingAlertShownAt.get(key);
   if (last !== undefined && now - last < PENDING_ALERT_REPEAT_MS) {
-    console.log(`[PURCHASE-PENDING] skip key=${key} уже показывали ${Math.round((now - last) / 1000)}с назад (повтор не раньше ${Math.round(PENDING_ALERT_REPEAT_MS / 60000)} мин)`); // guard-ok: ранний выход называет причину
+    console.log(`[PURCHASE-PENDING] skip key=${key} уже показывали ${Math.round((now - last) / 1000)}с назад (повтор не раньше ${Math.round(PENDING_ALERT_REPEAT_MS / 60000)} мин)`); // guard-ok: ранний выход логируется
     return;
   }
   pendingAlertShownAt.set(key, now);
-  console.log(`[PURCHASE-PENDING] show key=${key} lang=${lang} окно ставится в очередь блокирующих окон`); // guard-ok: единичный лог показа
-  void enqueueThemedBlockingInfoAlert(
-    triLang(lang, {
-      ru: 'Покупка ждёт подтверждения',
-      uk: 'Покупка чекає підтвердження',
-      en: 'Purchase pending approval',
-      es: 'Compra pendiente de aprobación',
-      'pt-BR': 'Compra aguardando aprovação',
-      vi: 'Giao dịch đang chờ xác nhận',
-      id: 'Pembelian menunggu persetujuan',
-      tr: 'Satın alma onay bekliyor',
-      pl: 'Zakup czeka na zatwierdzenie',
-    }),
-    triLang(lang, {
-      ru: 'Оплата ожидает подтверждения — например, родителя или банка. Как только её подтвердят, доступ включится сам. Покупать повторно не нужно.',
-      uk: 'Оплата очікує підтвердження — наприклад, батьків або банку. Щойно її підтвердять, доступ увімкнеться сам. Купувати повторно не потрібно.',
-      en: "Payment is waiting for approval — from a parent or your bank, for example. Access turns on by itself once it's approved. No need to buy again.",
-      es: 'El pago espera aprobación, por ejemplo de tus padres o del banco. En cuanto lo aprueben, el acceso se activará solo. No necesitas comprar de nuevo.',
-      'pt-BR': 'O pagamento aguarda aprovação — por exemplo, dos pais ou do banco. Assim que for aprovado, o acesso será ativado sozinho. Não é preciso comprar de novo.',
-      vi: 'Thanh toán đang chờ xác nhận — ví dụ từ phụ huynh hoặc ngân hàng. Ngay khi được xác nhận, quyền truy cập sẽ tự bật. Không cần mua lại.',
-      id: 'Pembayaran menunggu persetujuan — misalnya dari orang tua atau bank. Begitu disetujui, akses akan aktif otomatis. Tidak perlu membeli lagi.',
-      tr: 'Ödeme onay bekliyor — örneğin ebeveyn veya banka onayı. Onaylanır onaylanmaz erişim kendiliğinden açılacak. Tekrar satın almana gerek yok.',
-      pl: 'Płatność czeka na zatwierdzenie — np. przez rodzica lub bank. Gdy tylko zostanie zatwierdzona, dostęp włączy się sam. Nie musisz kupować ponownie.',
-    }),
-    'OK',
-  );
+  // зачем (владелец 13.10: «такого не должно быть ни при каких обстоятельствах, покупка осуществляется сразу, никаких родителей
+  // или банков»): блокирующее окно «Покупка ждёт подтверждения — например, родителя или банка» убрано. Магазин сам ещё не
+  // подтвердил оплату — доступ до подтверждения не даём (правила Google), его включит слушатель customerInfo. Человеку —
+  // короткий тост без пугающих подробностей; пейвол закрывает вызывающий код.
+  console.log(`[PURCHASE-PENDING] show key=${key} lang=${lang} тост «оплата обрабатывается» (окна нет)`); // guard-ok: единичный лог показа
+  emitAppEvent('action_toast', purchasePendingToast());
+}
+
+/** Тост «оплата обрабатывается» — без родителей и банка (владелец 13.10). */
+export function purchasePendingToast() {
+  return actionToastTri('info', {
+    ru: 'Оплата обрабатывается — Plus включится сам',
+    uk: 'Оплата обробляється — Plus увімкнеться сам',
+    en: 'Payment is processing — Plus will turn on by itself',
+    es: 'El pago se está procesando: Plus se activará solo',
+    'pt-BR': 'O pagamento está sendo processado — o Plus será ativado sozinho',
+    vi: 'Đang xử lý thanh toán — Plus sẽ tự bật',
+    id: 'Pembayaran sedang diproses — Plus akan aktif otomatis',
+    tr: 'Ödeme işleniyor — Plus kendiliğinden açılacak',
+    pl: 'Płatność jest przetwarzana — Plus włączy się sam',
+  });
 }
 
 /** A thrown store call does not prove that the charge failed. Outside onboarding,
@@ -1048,6 +1043,18 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   }, [refillToMax]);
 
   const handlePurchase = useCallback(async () => {
+    // зачем (владелец 13.10): ожидание оплаты — не ошибка и не повод держать человека на пейволе с крутящейся кнопкой. Закрываем
+    // по тем же правилам, что после сбоя пост-шага: обычный пейвол — закрыть, онбординг — выйти дальше, onboarding_plan — сам.
+    const closePaywallAfterPendingPurchase = (reason: 'pending_error' | 'no_entitlement') => {
+      const action = postAccessFailureAction({ source, accountCurrent: isOperationAccountCurrent(), dead: lifeRef.current.dead });
+      console.log(`[PURCHASE] pending:close reason=${reason} действие=${action} source=${source}`); // guard-ok: ветка закрытия
+      try {
+        if (action === 'close') dismissPaywallModal(router, source.startsWith('settings') ? '/(tabs)/settings' : undefined);
+        else if (action === 'exit_onboarding') emitAppEvent('onboarding_paywall_completed');
+      } catch (closeError: unknown) {
+        console.warn(`[PURCHASE] pending:close не удалось reason=${reason}`, closeError instanceof Error ? closeError.message : String(closeError)); // guard-ok: catch пишет причину
+      }
+    };
     if (operationRef.current) {
       // зачем (ревью 12.10 (г)): повторный тап во время идущей операции — не немой выход
       DebugLogger.info('[PAYWALL]', `покупка: тап проигнорирован — уже идёт операция «${operationRef.current}»`);
@@ -1311,8 +1318,10 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           ...paywallImpressionParams(impression),
         });
         releaseReason('purchase', 'no_entitlement', 'blocked');
-        DebugLogger.warn('[PAYWALL]', `purchase:no_entitlement plan=${selected} product=${pkg.product.identifier} source=${source} — окно «ожидает подтверждения»`);
+        DebugLogger.warn('[PAYWALL]', `purchase:no_entitlement plan=${selected} product=${pkg.product.identifier} source=${source} — тост «оплата обрабатывается», пейвол закрывается`);
+        console.log(`[PURCHASE] pending reason=no_entitlement product=${pkg.product.identifier} source=${source} доступ НЕ выдан — ждём подтверждения магазина (слушатель customerInfo)`); // guard-ok: ветка ожидания
         showPurchasePendingAlert(lang, `product:${pkg.product.identifier}`);
+        closePaywallAfterPendingPurchase('no_entitlement');
         return;
       }
       const metadata = revenueCatPremiumMetadata(customerInfo, pkg.product.identifier);
@@ -1497,7 +1506,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           context, source, plan: selected, product_id: pkgOrNull?.product.identifier, paywall: variant,
           ...paywallImpressionParams(impression),
         });
+        console.log(`[PURCHASE] pending reason=pending_error code=${errCode} product=${pkgOrNull?.product.identifier ?? 'unknown'} source=${source} доступ НЕ выдан — ждём подтверждения магазина`); // guard-ok: ветка ожидания
         showPurchasePendingAlert(lang, `product:${pkgOrNull?.product.identifier ?? 'unknown'}`);
+        closePaywallAfterPendingPurchase('pending_error');
       } else {
         void trackEvent('purchase_failed', {
           context, plan: selected, paywall: variant,
@@ -1918,7 +1929,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         console.log('[DEV-STATE] paywall: тост «не удалось связаться с магазином» + «Попробуй через минуту» под кнопкой'); // guard-ok: единичный лог на открытие
         emitAppEvent('action_toast', storeUnreachableToast());
       } else if (devState === 'pending') {
-        console.log('[DEV-STATE] paywall: диалог «ожидание банка или родителя»'); // guard-ok: единичный лог на открытие
+        console.log('[DEV-STATE] paywall: тост «оплата обрабатывается» (окна ожидания нет, владелец 13.10)'); // guard-ok: единичный лог на открытие
         showPurchasePendingAlert(lang, `dev:${Date.now()}`); // dev: каждый показ — отдельное окно для съёмки
       } else if (devState === 'unknown_outcome') {
         console.log('[DEV-STATE] paywall: диалог «статус покупки не подтверждён»'); // guard-ok: единичный лог на открытие

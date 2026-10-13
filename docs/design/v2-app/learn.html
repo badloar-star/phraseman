@@ -146,6 +146,17 @@
 .tool .bd { position: absolute; top: -6px; right: 6px; min-width: 17px; height: 17px; border-radius: 9px; background: #E9E9EB; color: #0B0C0E; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; padding: 0 4px; }
 .wrongbox { border-radius: 16px; background: rgba(242,118,107,.10); border: 1px solid rgba(242,118,107,.35); padding: 14px 16px; margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 18px; font-weight: 500; }
 .wrongbox .bad { color: var(--bad); font-weight: 700; }
+/* зачем (D5 по коду lesson1, 13.10): зачёркнутое неверное слово, плашка правильного ответа, разбор промаха без карточки */
+.ansl .badw { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 2px; }
+.corr { margin-top: 22px; min-height: 76px; border-radius: 20px; background: rgba(242,118,107,.10); display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px 16px; font-size: 26px; line-height: 32px; font-weight: 500; color: var(--good); }
+.aic2 { margin-top: 22px; }
+.aic2 .hd { display: flex; align-items: center; gap: 12px; }
+.aic2 .lt { width: 36px; height: 36px; border-radius: 10px; background: #1C1C1E; display: inline-flex; align-items: center; justify-content: center; color: var(--sec); }
+.aic2 .k { font-size: 17px; font-weight: 700; }
+.aic2 .ai { font-size: 13px; font-weight: 800; padding: 3px 7px; border-radius: 7px; background: #262628; }
+.aic2 .p { font-size: 16px; line-height: 22px; margin-top: 12px; }
+.aic2 .bt { display: flex; gap: 12px; margin-top: 16px; }
+.aic2 .bt .t { flex: 1; min-height: 60px; border-radius: 22px; background: #262628; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px 12px; font-size: 16px; line-height: 21px; font-weight: 700; }
 .aic { border-radius: 16px; background: #131315; border: 1px solid var(--line); padding: 16px; margin-top: 12px; }
 .aic .k { font-size: 16px; font-weight: 700; }
 .aic .p { font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 6px; }
@@ -576,13 +587,14 @@ const taskTop = (o = {}) => `<div class="task" data-task><div class="k">${o.hard
 const lesson = (o = {}) => phone(`${lhead(o)}${taskTop(o)}
   ${o.result === 'ok' ? `<div class="ansl ok">She works every day<span class="save t">${icon('bookmark', 's16')}</span></div>`
     : o.hard ? `<div class="inp" style="margin-top:22px">${o.typed ? `<span>${o.typed}</span>` : '<span class="plc">Введи фразу</span>'}<span class="cur"></span></div>`
+    : o.result === 'no' ? `<div class="ansl"><span>She</span><s class="badw">work</s><span>every day</span><span class="save t">${icon('bookmark', 's16')}</span></div>`
     : `<div class="ansl">${o.partial ? `<span>${o.partial}</span><span class="el">…</span>` : '<span class="cur"></span>'}</div>`}
-  ${o.result === 'no' ? `<div class="wrongbox"><span>She</span><span class="bad">work</span><span>every</span><span>day</span></div>
-    <div class="aic"><div class="k">Разбор промаха</div><div class="p">Разбираю именно твой ответ: где сбилось и как сказать правильно.</div><div class="bt"><span class="cta sm t" style="background:#262628;color:#fff">Разобрать мой ответ</span><span class="cta sm t gh">Объяснить проще</span></div></div>` : ''}
+  ${o.result === 'no' ? `<div class="corr" data-why="testID lesson1-correct-answer-on-wrong">She works every day</div>
+    <div class="aic2"><div class="hd"><span class="lt">${li('bulb', 's20')}</span><span class="k">Разбор промаха</span><span class="ai">AI</span></div><div class="p">Разбираю именно твой ответ: где сбилось и как сказать правильно.</div><div class="bt"><span class="t">Разобрать мой ответ</span><span class="t">Объяснить проще</span></div></div>` : ''}
   ${o.ghint ? `<div class="ghint">${li('bulb', 's18')}С he / she / it глагол получает окончание -s: she work<b>s</b>, he live<b>s</b>. Это правило одно на весь урок.</div>` : ''}
   `,
   // зачем: панель инструментов урока прижата к низу экрана, как футер в lesson1.
-  { time: '9:45', fixed: !o.result && !o.hard ? `<div class="fx lvfx">${tiles(o)}${cellRow(o.cell ?? 0, o.okc ?? [], o.noc ?? [])}${toolsRow(o)}</div>` : o.result ? `<div class="fx"><div class="cta t">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.hard ? `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div><div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k ret">Проверить</span></div></div>` : '', overlay: o.overlay || '' });
+  { time: '9:45', fixed: !o.result && !o.hard ? `<div class="fx lvfx">${tiles(o)}${cellRow(o.cell ?? 0, o.okc ?? [], o.noc ?? [])}${toolsRow(o)}</div>` : o.result === 'no' ? `<div class="fx lvfx">${cellRow(o.cell ?? 0, o.okc ?? [], o.noc ?? [])}<div class="tools lv"><span class="tool t">${li('book')}Теория</span><span class="tool t">${li('bulb')}Пояснить</span><span class="tool t">${icon('vol')}Повтор</span></div><div class="cta t" style="margin-top:12px">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.result ? `<div class="fx"><div class="cta t">Дальше<span class="ar">${icon('arrowR', 's20')}</span></div></div>` : o.hard ? `<div class="kb"><div class="r">${'QWERTYUIOP'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r">${'ASDFGHJKL'.split('').map((k) => `<span class="k">${k}</span>`).join('')}</div><div class="r"><span class="k w">⇧</span>${'ZXCVBNM'.split('').map((k) => `<span class="k">${k}</span>`).join('')}<span class="k w">⌫</span></div><div class="r"><span class="k w">123</span><span class="k sp">space</span><span class="k ret">Проверить</span></div></div>` : '', overlay: o.overlay || '' });
 const wave = (live) => `<div class="wave${live ? '' : ' still'}">${Array.from({ length: 21 }, (_, i) => `<i style="--h:${8 + Math.round(26 * Math.abs(Math.sin(i * .9 + 1)))}px"></i>`).join('')}</div>`;
 // концепт-кадр (вне реестра, координатор 13.10): прежний целевой вид урока — слова под ответом, панель из 6 инструментов; в приложении по п.81(12) «как есть» (4 плитки).
 const lessonConcept = () => phone(`${lhead({ en: 4 })}${taskTop()}<div class="ansl"><span>She works</span><span class="el">…</span></div>${tiles({ used: [1, 0] })}${cellRow(11, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10], [4])}`, { time: '9:45', fixed: `<div class="fx" style="padding-bottom:34px">${toolsRowConcept({})}</div>` });

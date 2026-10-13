@@ -212,7 +212,7 @@ function floorSvg(fl, myFloor, o) {
     ${avs}
     ${o.clean ? '' : `<text class="fn" x="14" y="${y + h / 2 + (label ? 0 : 5)}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? SC(o).numMine : SC(o).num}" text-anchor="middle">${f}</text>`}
     ${label ? `<text x="20" y="${y + h / 2 + 14}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="${SC(o).label}" text-anchor="middle">${label}</text>` : ''}
-    <rect class="selr" x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>
+    <rect class="selr" x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="${SC(o).ring}" stroke-width="1.4"/>
     <rect x="0" y="${y - 4}" width="${TW}" height="${h + 4}" fill="transparent"/>
   </g>`;
 }
@@ -235,8 +235,8 @@ function spireSvg(o) {
 }
 /* зачем (D178, код useSpireScene 80b07bdaa): цвета сцены вокруг башни из темы; o.light — светлая тема (звёзд нет) */
 const SC = (o = {}) => o.light
-  ? { star: null, cloud: '0,0,0', cloudK: 0.78, gc: '#000000', ga: 0.1, shadow: 'rgba(0,0,0,.16)', num: '#6C6C72', numMine: '#0B0C0E', label: '#6C6C72', id: 'L' }
-  : { star: '255,255,255', cloud: '255,255,255', cloudK: 1, gc: '#FFFFFF', ga: 0.14, shadow: 'rgba(0,0,0,.55)', num: '#A6A6A8', numMine: '#FFFFFF', label: '#A6A6A8', id: 'D' };
+  ? { star: null, cloud: '0,0,0', cloudK: 0.78, gc: '#000000', ga: 0.1, shadow: 'rgba(0,0,0,.16)', num: '#6C6C72', numMine: '#0B0C0E', label: '#6C6C72', id: 'L', ring: 'rgba(11,12,14,.78)', mk: '#0B0C0E', dash: 'rgba(11,12,14,.5)' }
+  : { star: '255,255,255', cloud: '255,255,255', cloudK: 1, gc: '#FFFFFF', ga: 0.14, shadow: 'rgba(0,0,0,.55)', num: '#A6A6A8', numMine: '#FFFFFF', label: '#A6A6A8', id: 'D', ring: 'rgba(255,255,255,.8)', mk: '#F2F1F6', dash: 'rgba(255,255,255,.6)' };
 function skySvg(o = {}) {
   const sc = SC(o);
   const y = G.top - 250; let stars = '';
@@ -248,9 +248,9 @@ function skySvg(o = {}) {
 function markerSvg(o) {
   const fl = G.floors[Math.min(o.myFloor, FLOORS) - 1]; const p = markerXY(fl);
   return `<g class="mk" data-mk style="transform:translate(${p.x}px,${p.y}px)">
-    <line x1="-24" y1="0" x2="-13" y2="0" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-dasharray="2 3"/>
+    <line x1="-24" y1="0" x2="-13" y2="0" stroke="${SC(o).dash}" stroke-width="1.4" stroke-dasharray="2 3"/>
     <circle r="28" fill="url(#glow)"/>
-    <circle r="20" fill="#0C0D10" stroke="#F2F1F6" stroke-width="1.6"/>
+    <circle r="20" fill="#0C0D10" stroke="${SC(o).mk}" stroke-width="1.6"/> <!-- D183: рамка этажа и кольцо монеты — цвет текста темы (в светлой тёмные) -->
     <image href="${K.coin(ME.rank)}" x="-17" y="-17" width="34" height="34"/>
   </g>`;
 }

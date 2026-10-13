@@ -29,6 +29,12 @@ describe('итог диалога: пилюля баланса и «+N моне�
     expect(screen).toContain('<CoinAward amount={dialogCoinReward.coins} lang={lang} g={lv2Glass} animate={!reduceMotion} />');
   });
 
+  it('исход неизвестен (итог недоступен, разбора ходов нет) — минимальная награда как за ручное завершение, а не +30 (ревью 13.10)', () => {
+    expect(screen).toContain("const mistakesKnown = outcome !== null || state.kind === 'ready';");
+    expect(screen).toContain("endedBy: mistakesKnown ? endedBy : 'manual',");
+    expect(screen).toContain('ошибки неизвестны → минимальная сумма');
+  });
+
   it('вставка блока в поток плавная, а не скачком', () => {
     expect(screen).toContain('animateNextLayoutTransition();');
     expect(screen).toContain('coinAwardShownRef');

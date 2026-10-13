@@ -85,7 +85,7 @@ function completionLabels(lang: Lang) {
     finishMistakes: (n: number) => triLang(lang, {
       ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
       'pt-BR': `Finalizar: Ainda aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Masih belajar (${n})`,
-      tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dobij: Jeszcze się uczę (${n})`, fr: `Finir : encore à apprendre (${n})`, de: `Abschließen: Noch am Lernen (${n})`,
+      tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dokończ: Jeszcze się uczę (${n})`, fr: `Finir : encore à apprendre (${n})`, de: `Abschließen: Noch am Lernen (${n})`,
     }),
     repeatMistakes: triLang(lang, {
       ru: 'Повторить ошибки', uk: 'Повторити помилки', en: 'Practise mistakes', es: 'Repasar errores', 'pt-BR': 'Revisar erros', vi: 'Ôn lại lỗi',
@@ -242,10 +242,15 @@ export default function DialogueV2CompletionRoute() {
   // зачем (владелец 13.10 «Да, как в макете», dialogs.html D1–D4): монеты за диалог — +30 без ошибок, +25 с ошибками, +10 при
   // ручном завершении; один раз на сессию, тем же путём, что за уроки. Начисляем, когда итог решён (готов или недоступен) и
   // была хотя бы одна реплика. Блок «+N монет» рисует Дизайн по dialogCoinReward.coins.
+  // зачем (ревью Авторизации/Ядра 13.10, решение координатора): итог недоступен и разбора ходов нет — исход НЕИЗВЕСТЕН, «без ошибок» (+30) не считаем: минимальная сумма как за ручное завершение (+10)
+  const mistakesKnown = outcome !== null || state.kind === 'ready';
+  if (!mistakesKnown && state.kind !== 'loading') {
+    console.warn('[COINS-EARN] dialog: ошибки неизвестны → минимальная сумма'); // guard-ok: ветка расчёта награды
+  }
   const dialogCoinReward = useDialogueV2CoinReward({
     sessionId: sessionId ?? null,
     ready: state.kind !== 'loading' && turns > 0,
-    endedBy,
+    endedBy: mistakesKnown ? endedBy : 'manual',
     mistakes,
   });
   // зачем (владелец 13.10 «Да, пусть попадают в Мои ошибки»): поправки «было → стало» уходят в журнал ошибок (вид 'dialogue');

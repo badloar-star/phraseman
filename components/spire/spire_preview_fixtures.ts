@@ -238,7 +238,11 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
     }
     case 'guard': {
       // макет «Этаж 4 → Страж»: этаж 5 (spireIsGuard каждые 5), поднялись с 4-го.
-      const w = week(5, 0, 20);
+      // зачем (R1 spire-012): previewFloor сдвигает этаж от базового 7, и при floor=4 Страж уезжал на этаж 2 (не Страж).
+      // С floor= берём ближайший этаж Стража выше заданного (5 или 10), без параметра — прежний этаж 5.
+      const f = activeOverrides.floor;
+      const guardFloor = f === undefined ? 5 : Math.min(10, Math.max(5, Math.ceil((f + 1) / 5) * 5));
+      const w = week(f === undefined ? 5 : guardFloor - (f - PREVIEW_BASE_FLOOR), 0, 20);
       return { ...base, week: w, game: game({ rows: rows(20), myPlace: 8, friends: FRIENDS, outcome: outcome('floor', w) }) };
     }
     case 'block_missing':

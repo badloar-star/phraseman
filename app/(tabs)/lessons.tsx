@@ -6366,9 +6366,10 @@ export default function LessonsTab({
                           // дубль ЗАГОЛОВКА вместо требования. Человек видел дважды
                           // одну и ту же фразу и НЕ знал, что именно нужно сделать.
                           // Остальные 8 языков всё это время были написаны верно.
-                          ru: `Пройди урок ${gateModal.prevNum} на 2★, чтобы открыть этот`,
+                          // зачем (R1 learn-011, образец learn.html gateLesson): прежняя строка обрывалась на «этот» без слова «урок».
+                          ru: `Чтобы открыть этот урок, пройди урок ${gateModal.prevNum} на 2★.`,
                       en: `Complete lesson ${gateModal.prevNum} with 2★ to unlock`,
-                      uk: `Пройди урок ${gateModal.prevNum} на 2★, щоб відкрити`,
+                      uk: `Щоб відкрити цей урок, пройди урок ${gateModal.prevNum} на 2★.`,
                       es: `Completa la lección ${gateModal.prevNum} con 2★ para desbloquear`,
                       "pt-BR": `Conclua a lição ${gateModal.prevNum} com 2★ para desbloquear`,
                       vi: `Hoàn thành bài học ${gateModal.prevNum} với 2★ để mở khóa`,

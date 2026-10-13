@@ -50,6 +50,16 @@ describe('новые состояния превью Шпиля', () => {
     expect(guard.game.outcome!.floorBefore).toBe(4);
   });
 
+  // зачем (R1 spire-012): ссылка Макетов floor=4 уводила Стража на этаж 2 (сдвиг от базового 7) — «Этаж 1 → 2» вместо «Этаж 4 → Страж».
+  it('страж с floor= — ближайший этаж Стража выше заданного', () => {
+    const at4 = spirePreviewModel('guard', { tier: 0, floor: 4 });
+    expect(at4.week!.floor).toBe(5);
+    expect(at4.game.outcome!.floorBefore).toBe(4);
+    const at7 = spirePreviewModel('guard', { floor: 7 });
+    expect(at7.week!.floor).toBe(10);
+    expect(spireIsGuard(at7.week!.floor)).toBe(true);
+  });
+
   it('плашки у «Подняться»: задания готовятся / нет сети', () => {
     expect(spirePreviewModel('block_missing').game.startBlock).toBe('pack_missing');
     expect(spirePreviewModel('block_offline').game.startBlock).toBe('pack_offline');

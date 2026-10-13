@@ -330,7 +330,7 @@ const savedTop = back(`<span class="gs-rb t">${ic('search', 's20')}</span><span 
   const swipeNoCards = () => phone(backC(), { time: '9:41', fixed: stage({ top: 35, btnBig: 1, icon: X.layers26, title: 'Нет карточек для тренировки', msg: 'Сохрани карточки или добавь набор, и тренировка запустится отсюда в один тап.', btn: 'Обновить', btnIcon: X.refreshCw }) });
   // 5–7. Правда / ложь — экран выбора наборов с красной строкой под подписью «Наборы»
   const srcRow = (iconHtml, t, s, on) => `<div class="gs-src gs-pl${on ? ' on' : ''}"><span class="gs-tl">${iconHtml}</span><div class="grow"><div class="t1">${t}</div><div class="t2">${s}</div></div><span class="gs-chk${on ? ' on' : ''}">${on ? ic('check', 's16') : ''}</span></div>`;
-  const swipeSelect = (err) => phone(`${backC('arrowL')}<div class="gs-ttl" style="margin-top:20px;font-size:37px;line-height:43px">Тренировка карточек</div>
+  const swipeSelect = (err) => phone(`${backC('arrowL')}<div class="gs-ttl" style="margin-top:20px;font-size:34px;line-height:40px">Тренировка карточек</div><!-- cards-gap-005/006: в приложении заголовок в одну строку (≈34) -->
       <div class="gs-flab" style="margin-top:34px">Наборы</div><div class="gs-err">${err}</div>
       ${srcRow(ic('bookmark', 's22'), 'Сохранённые карточки', 'Личный список · 64 карточек', true)}`, { time: '9:41',
     fixed: `<div class="gs-bot" style="padding-bottom:50px"><div class="cta t" style="height:54px;border-radius:20px">${ic('play', 's18')}Начать</div></div>` });

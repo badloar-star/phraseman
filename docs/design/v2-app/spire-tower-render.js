@@ -27,6 +27,8 @@
  *       width     ширина в px (по умолчанию 390, высота = H·width/390); variant 'tower' | 'weekTop' (мини-башня «Итога недели»)
  *   SpireTowerRender.windowHtml(o) → строка окна башни (как SpireTower): o.+ { height=400, coin: (rank)=>url, myRank, rivals: {floor:[rank…]}, scrollTop }
  *       окно прокручено к своему этажу по правилам кода (spireWindowScrollY); scrollTop: 'top' | число — вручную
+ *   SpireTowerRender.tourHtml(o)   → башня тура первого входа (SpireTour): Оникс, 240 × 340, верхушка
+ *   SpireTowerRender.weekTowerHtml(o) → мини-башня «Итога недели» 58 × 103 + монета 26: o { tier, promoted, myRank, coin, card }
  *   renderTower(el, o)             → вставляет windowHtml в el и выставляет прокрутку
  *   SpireTowerRender.GEOM / skinFor(tier) / SKINS / scene(theme) / scrollYFor(o)
  * ═══════════════════════════════════════════════════════════════════════════ */
@@ -475,6 +477,24 @@
       + `<div style="position:relative;width:${o.width}px;height:${f1(GEOM.height * scale)}px">${tower}${layer}</div></div></div>`;
   }
 
+  /** Тур первого входа (SpireTour.TourTower): Оникс без лиги, ни один этаж не горит, ширина 240, сдвиг −32, окно 240×340 — видна верхушка. */
+  function tourHtml(o) {
+    o = o || {};
+    return `<div style="height:340px;width:240px;overflow:hidden;margin:0 auto;pointer-events:none"><div style="margin-top:-32px;width:240px">${svg({ tier: null, myFloor: null, selected: 0, width: 240, theme: o.theme, scene: o.scene })}</div></div>`;
+  }
+
+  /**
+   * Мини-башня карточки «Итог недели» (SpireWeekResultCard): верхушка лиги НОВОЙ недели 58×103; повышение — окна горят (вершина недели),
+   * иначе тёмные; монета ранга 26 справа снизу на кольце 3 цвета карточки. o: { tier, promoted, myRank, coin, card }
+   */
+  function weekTowerHtml(o) {
+    o = o || {};
+    const coin = typeof o.coin === 'function' && o.myRank != null
+      ? `<span style="position:absolute;right:-9px;bottom:-5px;padding:3px;border-radius:50%;background:${o.card || '#1C1C1E'};display:block"><img src="${o.coin(o.myRank)}" alt="" style="width:26px;height:26px;border-radius:50%;display:block"/></span>`
+      : '';
+    return `<span style="position:relative;width:58px;height:103px;flex:none;display:block">${svg({ tier: o.tier, myFloor: o.promoted ? FLOORS : 1, selected: 0, width: 58, variant: 'weekTop', theme: o.theme })}${coin}</span>`;
+  }
+
   /** Выставить прокрутку всем окнам башни внутри root (вставленным строкой). */
   function applyScroll(rootEl) {
     (rootEl || document).querySelectorAll('[data-st-scroll]').forEach((el) => { el.scrollTop = Number(el.getAttribute('data-st-scroll')) || 0; });
@@ -497,7 +517,7 @@
     }
   }
 
-  const API = Object.freeze({ svg, windowHtml, renderTower, applyScroll, scrollYFor, skinFor, scene: (theme) => sceneFor({ theme }), SKINS, LEAGUES: LEAGUE_SPECS, DEFAULT_SKIN, GEOM, TW, CX, FLOORS, isGuard, markerXY, mixHex });
+  const API = Object.freeze({ svg, windowHtml, tourHtml, weekTowerHtml, renderTower, applyScroll, scrollYFor, skinFor, scene: (theme) => sceneFor({ theme }), SKINS, LEAGUES: LEAGUE_SPECS, DEFAULT_SKIN, GEOM, TW, CX, FLOORS, isGuard, markerXY, mixHex });
   root.SpireTowerRender = API;
   root.renderTower = renderTower;
 }(typeof window !== 'undefined' ? window : globalThis));

@@ -245,20 +245,21 @@ const secPlus = (p, details = [], noInvite = false) => ey('PHRASEMAN PLUS', 'plu
 const secHelp = (cache) => ey('ПОМОЩЬ') + grp([row('chatbox', 'Написать в поддержку'), row('shield', 'Приватность и данные'), row('trash', 'Очистить кеш', { value: cache }), row('star', 'Оценить в Google Play')]);
 const PLUS_OFF = { title: 'Подписка Plus', value: 'Не активна', filled: false };
 const PLUS_ON = { title: 'Подписка Plus', value: 'Активна', filled: true };
-// зачем (кадры settings-gap-020/021, 12.10): гость — «Профиль · Стажёр · прогресс привязан к этому телефону» + «Войти», «Аккаунт · Не привязан», сверху слот «Важное от Phraseman»; привязанный аккаунт без подмены Авторизации не снять
+// зачем (кадры settings-gap-020/021, 12.10): гость — «Профиль · Стажёр · прогресс привязан к этому телефону» + «Войти», «Аккаунт · Не привязан», сверху слот «Новое в Phraseman»; привязанный аккаунт без подмены Авторизации не снять
 const pcardGuest = `<div class="gs-pc t">${K.coinImg(5, 52)}<div class="gs-tx"><div class="gs-pn">Профиль</div><div class="gs-ps">Стажёр · прогресс привязан к этому телефону</div></div><span class="t" style="flex:none;display:inline-flex;align-items:center;height:30px;padding:0 14px;border-radius:15px;background:rgba(255,255,255,.1);font-size:13px;font-weight:700">Войти</span></div>`;
 const mainScreen = (o = {}) => hMain + (o.guest ? pcardGuest : pcard('Лектор · аккаунт привязан')) + secProfile(o.guest ? 'Не привязан' : (o.acc || 'Google'), o.study || 'English') + (o.guest ? slotTopMsg : (o.slotTop || '')) + secLearn()
   + secPlus(o.plus || PLUS_OFF, o.details || [], !!o.noInvite) + secHelp(o.cache) + (o.slotBottom || '') + '<div class="gs-ver">Версия 2.0.0 (118)</div>';
 
 /* ---------- слот сообщений (SettingsMessageSlotCard.tsx) ---------- */
 const POLL = [['Больше уроков', 41], ['Больше диалогов', 27], ['Больше карточек', 21], ['Другое', 11]];
-const slotHead = '<div class="gs-sh"><span class="gs-sm">' + I('megaphone', 's18') + '</span><span class="gs-sti">Важное от Phraseman</span></div>';
+/* зачем (settings-gap-029, 13.10): текст слота — кампания «Что нового» из app_messages (DEV_MESSAGE_TITLE/BODY), с «Пиком» (D176) */
+const slotHead = '<div class="gs-sh"><span class="gs-sm">' + I('megaphone', 's18') + '</span><span class="gs-sti">Новое в Phraseman</span></div>';
 const slotPoll = (voted) => `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Расскажи, чего тебе не хватает в приложении — мы читаем каждый ответ.</div><div class="gs-poll" role="radiogroup"><div class="gs-q">Что добавить в первую очередь?</div>`
   + POLL.map(([t, p], i) => `<div class="gs-op t${voted === i ? ' on' : ''}">${I(voted === i ? 'radioOn' : 'radio', 's22')}<span>${t}</span><em${voted === null ? ' style="visibility:hidden"' : ''}>${p}%</em></div>`).join('')
   + (voted !== null ? '<div class="gs-lk">Твой выбор сохранён</div>' : '') + '</div></div>';
-const slotMsg = `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Мы обновили приложение: тему оформления теперь можно сменить в настройках.</div></div>`;
+const slotMsg = `<div class="gs-slot bt">${slotHead}<div class="gs-sbody">Мы добавили Пик и обновили Карточки. Загляни и расскажи, как тебе.</div></div>`;
 // зачем (settings.tsx): верхний слот — сразу под группой «Профиль», отступ сверху 12 (нижний — 20)
-const slotTopMsg = `<div class="gs-slot">${slotHead}<div class="gs-sbody">Мы обновили приложение: тему оформления теперь можно сменить в настройках.</div></div>`;
+const slotTopMsg = `<div class="gs-slot">${slotHead}<div class="gs-sbody">Мы добавили Пик и обновили Карточки. Загляни и расскажи, как тебе.</div></div>`;
 
 /* ---------- уведомления (settings_notifications.tsx) ---------- */
 const nrow = (n, label, on, o = {}) => pl2(n, label, { dim: o.dim, right: o.val ? `<span class="gs-nval">${o.val}</span><span class="gs-ch">${K.icon('fwd', 's18')}</span>` : sw(on) });
@@ -355,7 +356,7 @@ document.getElementById('root').innerHTML =
     col('Plus за приглашения + пробный доступ: две плашки — «Plus за приглашения» и «Полный доступ на 3 дня»', ph(mainScreen({ plus: PLUS_ON, details: [DET_REF, DET_INTRO] }), { ...withNav, anchor: 'plus' })),
     col('Pro без срока (выдан из админки): «Подписка Pro · Активна», плашка «Выданный Pro» · «Pro без срока окончания»', ph(mainScreen({ plus: { title: 'Подписка Pro', value: 'Активна', filled: true }, details: [DET_PRO] }), { ...withNav, anchor: 'plus' })),
   ]) +
-  block('slot', 'Низ настроек: «Очистить кеш» и слот сообщений', 'Статус чистки живёт значением в строке, без окна. Нижний слот «Важное от Phraseman» — текст приходит с сервера (здесь условный пример): опрос до ответа, опрос после ответа, обычное сообщение.', [
+  block('slot', 'Низ настроек: «Очистить кеш» и слот сообщений', 'Статус чистки живёт значением в строке, без окна. Нижний слот «Новое в Phraseman» — текст приходит с сервера (здесь условный пример): опрос до ответа, опрос после ответа, обычное сообщение.', [
     col('«Очистить кеш · Чистим…» + слот-опрос до голосования (проценты скрыты, кружки пустые)', ph(mainScreen({ plus: PLUS_ON, cache: 'Чистим…', slotBottom: slotPoll(null) }), { ...withNav, anchor: 'end' })),
     col('«Очистить кеш · Готово» + слот-опрос после голосования: проценты, выбранный вариант, «Твой выбор сохранён»', ph(mainScreen({ plus: PLUS_ON, cache: 'Готово', slotBottom: slotPoll(0) }), { ...withNav, anchor: 'end' })),
     col('«Очистить кеш · Не удалось» + слот без опроса (только заголовок и текст)', ph(mainScreen({ plus: PLUS_ON, cache: 'Не удалось', slotBottom: slotMsg }), { ...withNav, anchor: 'end' })),
@@ -392,7 +393,7 @@ document.getElementById('root').innerHTML =
   block('more', 'Дополнено по коду Настроек (67382e72b)', 'Состояния, которых образец не знал: «Время» при выключенном ежедневном напоминании и окно выбора времени, верхний слот сообщений, скрытая «Пригласить друга», проверка имени не удалась и окно «Введи имя», выбранный голос озвучки, неактивная «Отправить». Тумблеры — без обводки дорожки (стиль «Тень»).', [
     col('Уведомления: мастер включён, ежедневное напоминание выключено — «Время» приглушено и не нажимается', ph(notif({ master: true, saved: false, daily: false }), { time: '12:43' })),
     col('Окно выбора времени: «Время», два барабана (часы · минуты), «Отмена» и «OK»', ph(notif({ master: true, saved: false }), { time: '12:44', overlay: timeDialog() })),
-    col('Верхний слот сообщений: «Важное от Phraseman» сразу под группой «Профиль»', ph(mainScreen({ plus: PLUS_ON, slotTop: slotTopMsg }), { ...withNav, anchor: 'top' })),
+    col('Верхний слот сообщений: «Новое в Phraseman» сразу под группой «Профиль»', ph(mainScreen({ plus: PLUS_ON, slotTop: slotTopMsg }), { ...withNav, anchor: 'top' })),
     col('«Пригласить друга» скрыта: раздел приглашений выключен — в группе Plus две строки', ph(mainScreen({ noInvite: true }), { ...withNav, anchor: 'plus' })),
     col('Имя: проверка не удалась — «Проверим при сохранении», «Сохранить» доступна', ph(acctGhost(), { time: '13:22', overlay: nickSheet('error') })),
     col('Имя: пустое поле — «Сохранить» → окно «Сообщение · Введи имя»', ph(acctGhost(), { time: '13:23', overlay: nickSheet('idle', { val: '', alert: 'Введи имя' }) })),

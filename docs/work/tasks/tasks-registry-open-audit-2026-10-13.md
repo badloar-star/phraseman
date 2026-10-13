@@ -1,6 +1,6 @@
 # Task packet: сверка открытых задач реестра tasks.json с фактом (вопрос владельца «все выполнены?»)
 
-Governance-ID: TG-E8171B85A870
+Governance-ID: TG-FF6358E02D17
 Status: In progress
 Owner: Ядро (сессия 1) — все эпики, кроме E03, E09, E11, E12, E18, E20 (их берут Темы)
 Related: вопрос владельца через координатора 13.10; docs/phraseman-2.0/registries/tasks.json (≈278 задач, 72 открытых)

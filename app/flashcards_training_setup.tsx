@@ -747,7 +747,8 @@ export default function FlashcardsTrainingSetupScreen() {
   }, [prepModeParam, mode, loadState, loadErrorKind, decks.length, computedSetupStatus, setupStatus, startLabel, canStart, quotaPreview.status]);
   // зачем (решение координатора 12.10, макет «Лимит Free»): исчерпанный лимит — обычная настройка с пилюлей и «Безлимит с Plus», а не тупик
   const limitReached = quotaPreview.status === 'exhausted';
-  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
+  // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
+  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
   const openUpgrade = useCallback(() => {
     console.log('[FC-TRAIN-ENTRY] setup:upgrade-tap', JSON.stringify({ mode: mode ?? null, quotaStatus: quotaPreview.status, used: quotaPreview.used, limit: quotaPreview.limit }));
     router.push({ pathname: '/premium_modal', params: { context: 'flashcard_training', source: 'flashcards_training_setup' } } as never);

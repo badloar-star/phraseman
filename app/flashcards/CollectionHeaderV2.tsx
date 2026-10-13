@@ -133,7 +133,8 @@ export const CollectionTopBar = memo(function CollectionTopBar({ lang, onBack, o
 /** Остаток тренировок для пилюли (тот же источник, что на хабе). */
 export function useCollectionLimitLabel(): string | null {
   const quota = useFlashcardTrainingQuotaPreview();
-  return quota.status === 'waiting' ? null : `${Math.max(0, quota.limit - quota.used)}/${quota.limit}`;
+  // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
+  return quota.status === 'waiting' ? null : `${Math.min(quota.limit, Math.max(0, quota.used))}/${quota.limit}`;
 }
 
 /** Капсула поиска (макет `.srch`): лупа, ввод, крестик. Живёт в полосе масштаба над сеткой (кадр «Поиск») или под заголовком (пустой результат). */

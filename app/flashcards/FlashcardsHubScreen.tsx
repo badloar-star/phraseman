@@ -694,7 +694,8 @@ export default function FlashcardsHubScreen() {
   const topDictIpa = useMemo(() => (topCardEn && !topStoredIpa ? getTranscription(topCardEn) : ''), [topCardEn, topStoredIpa]);
   const topIpaText = topStoredIpa || topDictIpa;
   logHubTopCardOutcome(topCard?.en ?? null, trainingLocked, topStoredIpa ? 'stored' : topDictIpa ? 'dictionary' : 'none');
-  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.max(0, quotaPreview.limit - quotaPreview.used)}/${quotaPreview.limit}`;
+  // зачем (D174, cards-section-056): пилюля = «использовано/лимит» (30/30), как D166 «4/3» у энергии, а не «осталось/лимит» (0/30)
+  const limitLabel = quotaPreview.status === 'waiting' ? null : `${Math.min(quotaPreview.limit, Math.max(0, quotaPreview.used))}/${quotaPreview.limit}`;
   // зачем (макет: «Осталось 0 из 30 · до 1 ноября»): дата сброса — первое число следующего месяца на языке интерфейса.
   // зачем (аудит скорости R1, 12.10): toLocaleDateString создаёт Intl-форматтер на каждый вызов (десятки мс на Hermes/Android при первом использовании языка),
   // а хаб рендерится часто (квота, фокус, сеть). Дата сброса зависит только от языка и месяца — считаем один раз на язык.

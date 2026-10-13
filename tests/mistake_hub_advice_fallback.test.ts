@@ -45,7 +45,7 @@ describe('mistake hub advice fallback', () => {
       insights: insights({ frequentFacets: [], frequentSources: [], topMistakes: [] }),
       readyCount: 0, studyTarget: 'en', lang: 'en',
     }));
-    expect(none.hub).toBe('Nothing is ready to practise right now.');
+    expect(none.hub).toBe('Nothing is ready to practice right now.');
     expect(none.map).toBe('');
 
     const tiny = buildMistakeHubAdviceFallback(buildMistakeHubAdviceSummary({

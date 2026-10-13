@@ -12,7 +12,7 @@ export const TRAINING_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   body: lang => triLang(lang, {
     ru: 'Здесь фраза звучит, а ты учишься узнавать её на слух. Выбери наборы, слушай столько раз, сколько нужно, и двигайся в своём темпе — это не экзамен, а тренировка слуха.',
     uk: 'Тут вислів звучить, а ти вчишся впізнавати його на слух. Вибери набори, слухай стільки разів, скільки потрібно, і рухайся у своєму темпі — це не іспит, а тренування слуху.',
-    en: 'Here, a phrase plays and you learn to recognise it by ear. Choose your packs, listen as many times as you need, and move at your own pace — this is listening practice, not an exam.',
+    en: 'Here, a phrase plays and you learn to recognize it by ear. Choose your packs, listen as many times as you need, and move at your own pace — this is listening practice, not an exam.',
     es: 'Aquí suena una frase y aprendes a reconocerla de oído. Elige tus packs, escucha las veces que necesites y avanza a tu ritmo: es práctica de escucha, no un examen.',
     'pt-BR': 'Aqui uma frase toca e você aprende a reconhecê-la de ouvido. Escolha seus pacotes, ouça quantas vezes precisar e siga no seu ritmo — é prática de escuta, não uma prova.',
     vi: 'Ở đây bạn nghe một câu và học cách nhận ra câu đó bằng tai. Hãy chọn bộ thẻ, nghe lại bao nhiêu lần tùy cần và đi theo nhịp của mình — đây là luyện nghe, không phải bài kiểm tra.',

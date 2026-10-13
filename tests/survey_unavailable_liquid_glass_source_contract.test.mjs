@@ -12,7 +12,7 @@ const THEMES = ['graphite', 'polar', 'slate', 'ink', 'lavender', 'iris', 'rose',
 const MESSAGES = {
   ru: 'Сейчас опрос недоступен. Можно вернуться в приложение и продолжить занятия.',
   uk: 'Зараз опитування недоступне. Можна повернутися в застосунок і продовжити заняття.',
-  en: 'The survey is unavailable right now. You can return to the app and keep practising.',
+  en: 'The survey is unavailable right now. You can return to the app and keep practicing.',
   es: 'La encuesta no está disponible ahora. Puedes volver a la aplicación y seguir practicando.',
   'pt-BR': 'A pesquisa está indisponível agora. Você pode voltar ao aplicativo e continuar praticando.',
   vi: 'Khảo sát hiện không khả dụng. Bạn có thể quay lại ứng dụng và tiếp tục học.',
@@ -46,7 +46,7 @@ const PROTECTED_AST = {
   requestRouteDismiss: '596fd2e28a6749d5e87869261215edf33bea573c5c77d9c8e1ddbdf3b3d34b6f',
   identityPending: '981a6704e0b1c66e6175bcd1d37fbecb0dc6a3aed7f0d14f197116b3dda23f21',
   // зачем (30.09): чистка типов 05573985e — testID на подписи и снятое явное allowFontScaling; тексты сообщений прежние.
-  fallbackMessages: '355cb191c96b3131f5abab06afbeb6603260fcae4ad6c5b8b3062d80f842d8cc',
+  fallbackMessages: '1e8bfa42c09d6ba908cf1511dfbc04cdccee9aa83072bf3fd51608d21e9a93a2',
   fallbackClose: '51e89556dce9ce90627bb8a14cceb9a6f6a475cc5d6dd1eb15d40c1fb247d4c7',
   sharedSheet: '2bf422a86200e6edc2338c714f533c6f28bbe9063e13cbc8442406df2fe0a30c',
   effects: [

@@ -630,7 +630,7 @@ export default function FlashcardsTrainingSetupScreen() {
 
   const emptyLabel = triLang(lang, {
     ru: 'Пока нет карточек для тренировки. Сохрани карточки или добавь набор из сообщества.', uk: 'Поки немає карток для тренування. Збережи картки або додай набір зі спільноти.',
-    en: 'No cards to practise yet. Save cards or add a community pack.', es: 'Aún no hay tarjetas para practicar. Guarda tarjetas o añade un pack de la comunidad.',
+    en: 'No cards to practice yet. Save cards or add a community pack.', es: 'Aún no hay tarjetas para practicar. Guarda tarjetas o añade un pack de la comunidad.',
     'pt-BR': 'Ainda não há cartões para praticar. Salve cartões ou adicione um pacote da comunidade.', vi: 'Chưa có thẻ để luyện tập. Hãy lưu thẻ hoặc thêm bộ thẻ cộng đồng.',
     id: 'Belum ada kartu untuk latihan. Simpan kartu atau tambahkan paket komunitas.', tr: 'Henüz çalışacak kart yok. Kart kaydet veya topluluktan bir paket ekle.',
     pl: 'Nie ma jeszcze kart do ćwiczeń. Zapisz karty lub dodaj zestaw społeczności.',
@@ -640,7 +640,7 @@ export default function FlashcardsTrainingSetupScreen() {
     // зачем (владелец 01.10): без подписи о загрузке — пока грузится, подпись та же, что и в ошибке: «Выбор наборов».
     loading: triLang(lang, { ru: 'Выбор наборов', uk: 'Вибір наборів', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybór zestawów' }),
     error: triLang(lang, { ru: 'Выбор наборов', uk: 'Вибір наборів', en: 'Choose packs', es: 'Elegir packs', 'pt-BR': 'Escolher pacotes', vi: 'Chọn bộ thẻ', id: 'Pilih paket', tr: 'Paket seç', pl: 'Wybór zestawów' }),
-    unselected: triLang(lang, { ru: 'Отметь один или несколько наборов для тренировки.', uk: 'Вибери один або кілька наборів для тренування.', en: 'Select one or more packs to practise.', es: 'Selecciona uno o más packs para practicar.', 'pt-BR': 'Selecione um ou mais pacotes para praticar.', vi: 'Chọn một hoặc nhiều bộ thẻ để luyện tập.', id: 'Pilih satu atau beberapa paket untuk latihan.', tr: 'Çalışmak için bir veya daha fazla paket seç.', pl: 'Zaznacz jeden lub kilka zestawów do ćwiczeń.' }),
+    unselected: triLang(lang, { ru: 'Отметь один или несколько наборов для тренировки.', uk: 'Вибери один або кілька наборів для тренування.', en: 'Select one or more packs to practice.', es: 'Selecciona uno o más packs para practicar.', 'pt-BR': 'Selecione um ou mais pacotes para praticar.', vi: 'Chọn một hoặc nhiều bộ thẻ để luyện tập.', id: 'Pilih satu atau beberapa paket untuk latihan.', tr: 'Çalışmak için bir veya daha fazla paket seç.', pl: 'Zaznacz jeden lub kilka zestawów do ćwiczeń.' }),
   });
   /** Витрина на пустом экране: приглашение добавить первый набор. */
   const suggestHeading = triLang(lang, {

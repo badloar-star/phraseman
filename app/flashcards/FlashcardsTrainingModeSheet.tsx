@@ -197,7 +197,7 @@ export default function FlashcardsTrainingModeSheet({
   });
   const chooseSubtitle = triLang(lang, {
     ru: 'Выбери формат тренировки', uk: 'Обери формат тренування',
-    en: 'Choose how to practise', es: 'Elige el formato de práctica',
+    en: 'Choose how to practice', es: 'Elige el formato de práctica',
     'pt-BR': 'Escolha o formato do treino', vi: 'Chọn hình thức luyện tập',
     id: 'Pilih format latihan', tr: 'Çalışma biçimini seç',
     pl: 'Wybierz formę ćwiczeń',

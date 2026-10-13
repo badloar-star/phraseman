@@ -349,7 +349,7 @@ export default function FlashcardsHubScreen() {
       pl: 'Otwórz katalog',
     }),
     train: triLang(lang, {
-      ru: 'Тренироваться с карточками', uk: 'Тренуватися з картками', en: 'Practise with cards',
+      ru: 'Тренироваться с карточками', uk: 'Тренуватися з картками', en: 'Practice with cards',
       es: 'Entrenar con tarjetas', 'pt-BR': 'Treinar com cartões', vi: 'Luyện tập với thẻ',
       id: 'Latihan dengan kartu', tr: 'Kartlarla çalış', pl: 'Ćwicz z kartami',
     }),
@@ -705,7 +705,7 @@ export default function FlashcardsHubScreen() {
   const trainLabel = trainingLocked
     ? triLang(lang, { ru: `Осталось 0 из ${quotaPreview.limit} · до ${resetDate}`, uk: `Залишилось 0 з ${quotaPreview.limit} · до ${resetDate}`, en: `0 of ${quotaPreview.limit} left · until ${resetDate}`, es: `Quedan 0 de ${quotaPreview.limit} · hasta el ${resetDate}`, 'pt-BR': `Restam 0 de ${quotaPreview.limit} · até ${resetDate}`, vi: `Còn 0 trong ${quotaPreview.limit} · đến ${resetDate}`, id: `Sisa 0 dari ${quotaPreview.limit} · sampai ${resetDate}`, tr: `${quotaPreview.limit} çalışmadan 0 kaldı · ${resetDate} tarihine kadar`, pl: `Zostało 0 z ${quotaPreview.limit} · do ${resetDate}` })
     : quotaPreview.status === 'allowed'
-      ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practise · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
+      ? triLang(lang, { ru: `Тренироваться · осталось ${trainingRemaining} из ${quotaPreview.limit}`, uk: `Тренуватися · залишилось ${trainingRemaining} з ${quotaPreview.limit}`, en: `Practice · ${trainingRemaining} of ${quotaPreview.limit} left`, es: `Entrenar · quedan ${trainingRemaining} de ${quotaPreview.limit}`, 'pt-BR': `Treinar · restam ${trainingRemaining} de ${quotaPreview.limit}`, vi: `Luyện tập · còn ${trainingRemaining} trong ${quotaPreview.limit}`, id: `Latihan · sisa ${trainingRemaining} dari ${quotaPreview.limit}`, tr: `Çalış · ${quotaPreview.limit} içinden ${trainingRemaining} kaldı`, pl: `Ćwicz · zostało ${trainingRemaining} z ${quotaPreview.limit}` })
       : copy.train;
   // зачем (макет: «64», «4», «3 набора», «1 240»): число целиком с разделителем тысяч, без «1,2K»; у «Из видео» — число со словом «наборов» в нужной форме.
   // зачем (аудит скорости R1, 12.10): `new Intl.NumberFormat(lang)` стоял в КАЖДОМ вызове fmt (четыре плитки + «из видео» на каждый рендер); форматтер один на язык

@@ -15,7 +15,7 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
   body: lang => triLang(lang, {
     ru: 'Выбирай готовые наборы или собирай свои, а затем переходи к тренировке. Набор — это просто коллекция карточек по теме. Собирать приятно, вспоминать без подсказки — ещё приятнее.',
     uk: 'Обирай готові набори або збирай власні, а потім переходь до тренування. Набір — це колекція карток за темою. Збирати приємно, згадувати без підказки — ще приємніше.',
-    en: 'Choose ready-made packs or build your own, then start practising. A pack is just a collection of cards on a topic. Collecting feels good; remembering without a hint feels even better.',
+    en: 'Choose ready-made packs or build your own, then start practicing. A pack is just a collection of cards on a topic. Collecting feels good; remembering without a hint feels even better.',
     es: 'Elige conjuntos preparados o crea los tuyos y empieza a practicar. Un conjunto es una colección de tarjetas sobre un tema. Coleccionar gusta; recordar sin pistas, aún más.',
     'pt-BR': 'Escolha conjuntos prontos ou crie os seus e comece a praticar. Um conjunto é uma coleção de cartões sobre um tema. Colecionar é bom; lembrar sem dicas é melhor ainda.',
     vi: 'Chọn bộ thẻ có sẵn hoặc tự tạo, rồi bắt đầu luyện tập. Mỗi bộ là các thẻ cùng chủ đề. Sưu tầm đã vui, nhớ được mà không cần gợi ý còn vui hơn.',
@@ -94,7 +94,7 @@ export const SECTION_FEATURE_INTROS: readonly FeatureIntroDef[] = [{
 }, {
   id: 'legacy_lessons_first_visit', trigger: 'first_visit', screenRoute: '/(tabs)/lessons', icon: 'library-outline', family: 'orbit', art: 'legacy_lessons',
   title: lang => triLang(lang, {
-    ru: 'Знакомый путь — в новом порядке', uk: 'Знайомий шлях — у новому порядку', en: 'A familiar path, newly organised', es: 'Un camino conocido, ahora más claro',
+    ru: 'Знакомый путь — в новом порядке', uk: 'Знайомий шлях — у новому порядку', en: 'A familiar path, newly organized', es: 'Un camino conocido, ahora más claro',
     'pt-BR': 'Um caminho conhecido, agora mais claro', vi: 'Lộ trình quen thuộc, nay gọn gàng hơn', id: 'Jalur lama, kini lebih rapi', tr: 'Tanıdık yol, şimdi daha düzenli', pl: 'Znana droga, teraz lepiej uporządkowana',
   }),
   // зачем (30.09, «1 в 1 с макета» overlays.html OV-INTRO-LEGACY): текст ровно как в макете.

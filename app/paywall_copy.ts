@@ -484,7 +484,7 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   streak: {
     title: { en: 'Keep your streak going', 'pt-BR': 'Mantenha sua sequência', vi: 'Giữ chuỗi ngày của bạn', id: 'Jaga streak-mu tetap jalan', tr: 'Serini her gün sürdür', pl: 'Utrzymuj swoją serię' },
     subtitle: {
-      en: 'Study without waiting for energy — practising every day is easier when nothing stops you. The whole course, speaking practice and training open up with it.',
+      en: 'Study without waiting for energy — practicing every day is easier when nothing stops you. The whole course, speaking practice and training open up with it.',
       'pt-BR': 'Estude sem esperar energia: praticar todo dia é mais fácil quando nada te trava. Junto com isso abrem o curso inteiro, a prática de fala e os treinos.',
       vi: 'Học mà không phải chờ năng lượng — luyện mỗi ngày dễ hơn khi không có gì cản bạn. Cùng lúc đó mở ra trọn khóa học, luyện nói và luyện tập.',
       id: 'Belajar tanpa menunggu energi — berlatih tiap hari lebih mudah saat tidak ada yang menghambat. Bersamaan dengan itu terbuka seluruh kursus, latihan bicara, dan latihan kartu.',

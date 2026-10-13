@@ -11,7 +11,7 @@ type WorldSubtitleCopy = Readonly<{ ru: string; uk: string; en: string; es: stri
 
 const WORLD_SUBTITLES: Readonly<Record<string, WorldSubtitleCopy>> = {
   everyday: {
-    ru: 'Просьбы, советы и мелочи дня', uk: 'Прохання, поради й дрібниці дня', en: 'Favours, advice and little things', es: 'Favores, consejos y pequeñas cosas',
+    ru: 'Просьбы, советы и мелочи дня', uk: 'Прохання, поради й дрібниці дня', en: 'Favors, advice and little things', es: 'Favores, consejos y pequeñas cosas',
     'pt-BR': 'Pedidos, conselhos e coisas do dia', vi: 'Nhờ vả, lời khuyên và chuyện thường ngày', id: 'Permintaan, saran, dan hal kecil', tr: 'Rica, tavsiye ve günlük işler', pl: 'Prośby, rady i drobiazgi dnia',
   },
   travel: {

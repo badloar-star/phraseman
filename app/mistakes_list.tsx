@@ -36,7 +36,7 @@ type Tab = 'waiting' | 'corrected';
 const copyFor = (lang: Lang) => triLang(lang, {
   ru: { title: 'Все ошибки', back: 'Назад', waiting: 'Ждут', corrected: 'Исправлены', all: 'Все', empty: 'Здесь пока пусто', practice: 'Отработать', repeatFixed: 'Повторить исправленные', search: 'Поиск', clear: 'Очистить' },
   uk: { title: 'Усі помилки', back: 'Назад', waiting: 'Чекають', corrected: 'Виправлені', all: 'Усі', empty: 'Тут поки порожньо', practice: 'Відпрацювати', repeatFixed: 'Повторити виправлені', search: 'Пошук', clear: 'Очистити' },
-  en: { title: 'All mistakes', back: 'Back', waiting: 'Waiting', corrected: 'Fixed', all: 'All', empty: 'Nothing here yet', practice: 'Practise', repeatFixed: 'Review fixed mistakes', search: 'Search', clear: 'Clear' },
+  en: { title: 'All mistakes', back: 'Back', waiting: 'Waiting', corrected: 'Fixed', all: 'All', empty: 'Nothing here yet', practice: 'Practice', repeatFixed: 'Review fixed mistakes', search: 'Search', clear: 'Clear' },
   es: { title: 'Todos los errores', back: 'Atrás', waiting: 'Esperan', corrected: 'Corregidos', all: 'Todos', empty: 'Aún no hay nada', practice: 'Practicar', repeatFixed: 'Repasar los corregidos', search: 'Buscar', clear: 'Borrar' },
   'pt-BR': { title: 'Todos os erros', back: 'Voltar', waiting: 'Esperam', corrected: 'Corrigidos', all: 'Todos', empty: 'Ainda não há nada', practice: 'Praticar', repeatFixed: 'Revisar os corrigidos', search: 'Buscar', clear: 'Limpar' },
   vi: { title: 'Tất cả lỗi', back: 'Quay lại', waiting: 'Đang chờ', corrected: 'Đã sửa', all: 'Tất cả', empty: 'Chưa có gì ở đây', practice: 'Luyện', repeatFixed: 'Ôn lại lỗi đã sửa', search: 'Tìm', clear: 'Xóa' },

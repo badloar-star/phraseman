@@ -158,7 +158,7 @@ export function buildMistakeHubAdviceFallback(summary: MistakeHubAdviceSummary):
       ? triLang(lang, {
         ru: `Ждут разбора: ${summary.ready}. Разберём сейчас, пока свежие?`,
         uk: `Чекають на розбір: ${summary.ready}. Розберемо зараз, поки свіжі?`,
-        en: `Waiting to be practised: ${summary.ready}. Shall we do them while they are fresh?`,
+        en: `Waiting to be practiced: ${summary.ready}. Shall we do them while they are fresh?`,
         es: `Pendientes de repasar: ${summary.ready}. ¿Los vemos ahora que están frescos?`,
         'pt-BR': `Aguardando prática: ${summary.ready}. Vamos ver agora, enquanto estão frescos?`,
         vi: `Đang chờ luyện: ${summary.ready}. Làm ngay khi còn mới nhé?`,
@@ -169,7 +169,7 @@ export function buildMistakeHubAdviceFallback(summary: MistakeHubAdviceSummary):
       : triLang(lang, {
         ru: 'Готовых к разбору ошибок сейчас нет.',
         uk: 'Готових до розбору помилок зараз немає.',
-        en: 'Nothing is ready to practise right now.',
+        en: 'Nothing is ready to practice right now.',
         es: 'Ahora mismo no hay nada listo para practicar.',
         'pt-BR': 'No momento não há nada pronto para praticar.',
         vi: 'Hiện chưa có gì sẵn sàng để luyện.',

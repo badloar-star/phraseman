@@ -146,7 +146,7 @@ export default function LingmanVideoWatchScreen() {
   }) : undefined;
   // зачем (координатор 11.10): после «Добавить набор себе» кнопка внизу становится «Тренировать» и ведёт к карточкам ролика —
   // тот же путь, что раньше шёл из встроенного плеера ленты.
-  const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати вислови ролика', en: 'Practise this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
+  const trainLabel = triLang(lang, { ru: 'Тренировать фразы ролика', uk: 'Тренувати вислови ролика', en: 'Practice this video’s phrases', es: 'Practicar las frases del vídeo', 'pt-BR': 'Treinar as frases do vídeo', vi: 'Luyện cụm từ của video', id: 'Latih frasa video ini', tr: 'Videonun ifadelerini çalış', pl: 'Ćwicz zwroty z filmu' });
   const trainVideo = useCallback(() => {
     console.log(LOG, 'train', JSON.stringify({ videoId })); // guard-ok: вход в тренировку логируется
     router.push({ pathname: '/flashcards_collection', params: { pack: `video_${videoId}`, preview: '1' } } as never);

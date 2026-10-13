@@ -16,6 +16,15 @@ jest.mock('react-native', () => ({
     },
   },
 }));
+// зачем (координатор 13.10, auth-gap-007): окно «Восстановить аккаунт?» идёт через тёмную очередь, не через Alert.
+jest.mock('../app/themed_blocking_alert_queue', () => ({
+  THEMED_ALERT_DISMISSED: 'dismiss',
+  enqueueThemedBlockingInfoAlert: () => Promise.resolve(),
+  enqueueThemedBlockingChoiceAlert: (title: string, _message: string, actions: Array<{ label: string; value: string }>) =>
+    new Promise<string>((resolve) => {
+      alerts.push({ title, buttons: actions.map((action) => ({ text: action.label, onPress: () => resolve(action.value) })) });
+    }),
+}));
 const statusMock = jest.fn();
 const restoreMock = jest.fn();
 jest.mock('../app/account_delete_restore_client', () => ({

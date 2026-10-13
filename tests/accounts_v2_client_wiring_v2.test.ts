@@ -264,7 +264,10 @@ describe('accounts v2 client wiring v2', () => {
     expect(body.slice(guard, detach)).not.toContain('await');
     // Флаг выключен → вызов enqueue прежний, с двумя аргументами (третий — только с ключом V2).
     expect(body).toContain('const accountsV2EnqueueArgs: [] | [AccountDeleteCredentialProof] = accountsV2Deletion ? [accountsV2Deletion] : [];');
-    expect(body).toContain('...accountsV2EnqueueArgs,');
+    // зачем (52429d419, 12.10): связанные — прежний вызов; гость передаёт свой дедлайн четвёртым аргументом,
+    // поэтому ключ V2 у него явно (`?? null` → без ключа запрос байт-в-байт прежний, см. тест ниже).
+    expect(body).toContain(': startCloudDeletionEnqueue(pendingDeleteStableId, enqueueProof, ...accountsV2EnqueueArgs);');
+    expect(body).toContain('? startCloudDeletionEnqueue(pendingDeleteStableId, enqueueProof, accountsV2Deletion ?? null, {');
   });
 
   test('retry after restart resends the stored V2 key; fast phase waits at most 250 ms', () => {
@@ -289,7 +292,8 @@ describe('accounts v2 client wiring v2', () => {
   });
 
   test('enqueue request carries accountsV2Deletion only when a V2 key exists', () => {
-    const body = functionBody(read('app/cloud_sync.ts'), 'export function startCloudDeletionEnqueue(');
+    // зачем (52429d419): в подписи появились комментарий со скобкой и `options?: Readonly<{ … }>` — тело ищем от типа возврата.
+    const body = functionBody(read('app/cloud_sync.ts'), '): AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck> {');
     expect(body).toContain('accountsV2Deletion: { operationId: accountsV2Deletion.operationId, capability: accountsV2Deletion.capability }');
     expect(body).toContain(': { stableId, ...proof });');
   });

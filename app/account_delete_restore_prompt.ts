@@ -10,12 +10,11 @@
  * политика обещает предложить восстановление. Текст и кнопки — те же, что в
  * онбординге (утверждённый поток), новое — только место показа.
  */
-import { Alert } from 'react-native';
 import { triLang, type Lang } from '../constants/i18n';
 import { pluralWord } from '../constants/plural';
 import { fetchAccountDeleteStatus, restoreDeletedAccount } from './account_delete_restore_client';
 import { getDevAccountRestoreMode } from './dev_account_state';
-import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert, enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 
 /**
  * Текст окна «Восстановить аккаунт?»: сколько дней до удаления — с правильной формой слова «день».
@@ -111,44 +110,45 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     return 'not_restorable';
   }
   const days = Math.max(1, Number(status.daysLeft ?? 1));
-  const agreed = await new Promise<boolean>((resolve) => {
-    Alert.alert(
-      triLang(lang, {
-        ru: 'Восстановить аккаунт?',
-        uk: 'Відновити акаунт?',
-        en: 'Restore your account?',
-        es: '¿Restaurar la cuenta?',
-        'pt-BR': 'Restaurar a conta?',
-        vi: 'Khôi phục tài khoản?',
-        id: 'Pulihkan akun?',
-        tr: 'Hesap geri yüklensin mi?',
-        pl: 'Przywrócić konto?',
-      }),
-      accountRestorePromptMessage(lang, days),
-      [
-        {
-          text: triLang(lang, {
-            ru: 'Не восстанавливать', uk: 'Не відновлювати', en: "Don't restore",
-            es: 'No restaurar', 'pt-BR': 'Não restaurar', vi: 'Không khôi phục',
-            id: 'Jangan pulihkan', tr: 'Geri yükleme', pl: 'Nie przywracaj',
-          }),
-          style: 'cancel',
-          onPress: () => resolve(false),
-        },
-        {
-          text: triLang(lang, {
-            ru: 'Восстановить', uk: 'Відновити', en: 'Restore',
-            es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục',
-            id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć',
-          }),
-          onPress: () => resolve(true),
-        },
-      ],
-      { cancelable: false },
-    );
-  });
-  if (!agreed) {
-    console.log('[ACCOUNT-RESTORE] declined');
+  // зачем (координатор 13.10, auth-gap-007): в образце тёмная карточка, а нативный Alert Android рисовал светлое
+  // системное окно поверх тёмного приложения. Та же очередь, что у подтверждения смены аккаунта
+  // (onboarding_account_switch_confirm.ts); тексты, кнопки и исходы прежние. Системная «назад» = «Не восстанавливать».
+  const choice = await enqueueThemedBlockingChoiceAlert<'decline' | 'restore'>(
+    triLang(lang, {
+      ru: 'Восстановить аккаунт?',
+      uk: 'Відновити акаунт?',
+      en: 'Restore your account?',
+      es: '¿Restaurar la cuenta?',
+      'pt-BR': 'Restaurar a conta?',
+      vi: 'Khôi phục tài khoản?',
+      id: 'Pulihkan akun?',
+      tr: 'Hesap geri yüklensin mi?',
+      pl: 'Przywrócić konto?',
+    }),
+    accountRestorePromptMessage(lang, days),
+    [
+      {
+        label: triLang(lang, {
+          ru: 'Не восстанавливать', uk: 'Не відновлювати', en: "Don't restore",
+          es: 'No restaurar', 'pt-BR': 'Não restaurar', vi: 'Không khôi phục',
+          id: 'Jangan pulihkan', tr: 'Geri yükleme', pl: 'Nie przywracaj',
+        }),
+        value: 'decline',
+        ghost: true,
+      },
+      {
+        label: triLang(lang, {
+          ru: 'Восстановить', uk: 'Відновити', en: 'Restore',
+          es: 'Restaurar', 'pt-BR': 'Restaurar', vi: 'Khôi phục',
+          id: 'Pulihkan', tr: 'Geri yükle', pl: 'Przywróć',
+        }),
+        value: 'restore',
+      },
+    ],
+  );
+  console.log(`[ACCOUNT-RESTORE] choice=${String(choice)} daysLeft=${days}`);
+  if (choice !== 'restore') {
+    console.log(`[ACCOUNT-RESTORE] declined via=${choice === THEMED_ALERT_DISMISSED ? 'back' : 'button'}`);
     return 'declined';
   }
   if (devRestoreMode) {

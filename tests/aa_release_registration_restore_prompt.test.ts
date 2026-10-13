@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const alerts: Array<{ title: string; buttons: Array<{ text: string; onPress?: () => void }> }> = [];
+const alerts: Array<{ title: string; buttons: Array<{ text: string; ghost?: boolean; onPress?: () => void }> }> = [];
 jest.mock('react-native', () => ({
   Platform: { OS: 'android', select: (options: Record<string, unknown>) => options.android ?? options.default },
   Alert: {
@@ -13,6 +13,18 @@ jest.mock('react-native', () => ({
       alerts.push({ title, buttons });
     },
   },
+}));
+// зачем (координатор 13.10, auth-gap-007): окно «Восстановить аккаунт?» идёт через тёмную очередь, не через Alert.
+// Кнопка очереди → та же запись { text, onPress }; dismissLast — системная «назад».
+let lastChoiceResolve: ((value: string) => void) | null = null;
+jest.mock('../app/themed_blocking_alert_queue', () => ({
+  THEMED_ALERT_DISMISSED: 'dismiss',
+  enqueueThemedBlockingInfoAlert: () => Promise.resolve(),
+  enqueueThemedBlockingChoiceAlert: (title: string, _message: string, actions: Array<{ label: string; value: string; ghost?: boolean }>) =>
+    new Promise<string>((resolve) => {
+      lastChoiceResolve = resolve;
+      alerts.push({ title, buttons: actions.map((action) => ({ text: action.label, ghost: action.ghost, onPress: () => resolve(action.value) })) });
+    }),
 }));
 const statusMock = jest.fn();
 const restoreMock = jest.fn();
@@ -76,6 +88,17 @@ describe('промпт восстановления удалённого акк�
     await answer(0);
     await expect(pending).resolves.toBe('declined');
     expect(restoreMock).not.toHaveBeenCalled();
+  });
+
+  it('тёмное окно: «Не восстанавливать» — прозрачная, «Восстановить» — основная; «назад» = отказ', async () => {
+    statusMock.mockResolvedValue({ pending: true, restorable: true, daysLeft: 5 });
+    const pending = promptAccountRestoreAfterSignInRefusal('ru');
+    for (let i = 0; i < 20 && alerts.length === 0; i += 1) await Promise.resolve();
+    expect(alerts[0].buttons.map((b) => [b.text, b.ghost === true])).toEqual([['Не восстанавливать', true], ['Восстановить', false]]);
+    lastChoiceResolve?.('dismiss');
+    await expect(pending).resolves.toBe('declined');
+    expect(restoreMock).not.toHaveBeenCalled();
+    expect(read('app/account_delete_restore_prompt.ts')).not.toMatch(/Alert\.alert\(|from 'react-native'/);
   });
 
   it('срок вышел / восстановить нельзя — без окна → not_restorable', async () => {

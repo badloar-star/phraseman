@@ -39,9 +39,40 @@ export interface MistakePracticeSessionEntry {
   readonly exercise: MistakeExercise;
 }
 
+/**
+ * Под какой запрос собрана сессия (длина и группы ошибок).
+ * зачем (координатор 13.10, mistakes-panel-017): сессия группы «Грамматика 1» сохранялась без запроса, и «Все 12» её
+ * продолжало — 1 задание вместо 12. Поле необязательное: сохранённые раньше сессии читаются как прежде.
+ */
+export interface MistakePracticeRequest {
+  readonly length: MistakePracticeLength;
+  readonly facets: readonly MistakeFacet[];
+}
+
+/** Отпечаток запроса: группы без повторов и по порядку — «Значение+Грамматика» и «Грамматика+Значение» один запрос. */
+export function mistakePracticeRequestOf(length: MistakePracticeLength, facets?: readonly MistakeFacet[]): MistakePracticeRequest {
+  return Object.freeze({ length, facets: Object.freeze([...new Set(facets ?? [])].sort()) });
+}
+
+/** Чем запрос отличается от сохранённого; null — тот же запрос (или у сохранённой сессии запроса нет — старая запись). */
+export function mistakePracticeRequestMismatch(
+  stored: MistakePracticeRequest | undefined,
+  requested: MistakePracticeRequest,
+): string | null {
+  if (!stored) return null;
+  const diffs: string[] = [];
+  if (stored.length !== requested.length) diffs.push(`length:${stored.length}->${requested.length}`);
+  const storedFacets = [...stored.facets].sort().join('+') || 'all';
+  const requestedFacets = [...requested.facets].sort().join('+') || 'all';
+  if (storedFacets !== requestedFacets) diffs.push(`facets:${storedFacets}->${requestedFacets}`);
+  return diffs.length > 0 ? diffs.join(',') : null;
+}
+
 export interface MistakePracticeSession {
   readonly version: 1;
   readonly sessionId: string;
+  /** Запрос, под который собрана сессия (см. MistakePracticeRequest). У сессий до 13.10 поля нет. */
+  readonly request?: MistakePracticeRequest;
   /** Есть только у повтора исправленных; у обычной сессии поля нет (сохранённые сессии читаются как раньше). */
   readonly pool?: 'corrected';
   readonly startedAtMs: number;
@@ -240,6 +271,7 @@ export function buildMistakePracticeSession(input: {
   return Object.freeze({
     version: 1,
     sessionId,
+    request: mistakePracticeRequestOf(input.requestedLength, input.facets),
     ...(pool === 'corrected' ? { pool } : {}),
     startedAtMs: input.nowMs,
     initialCount: count,

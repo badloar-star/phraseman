@@ -2,6 +2,8 @@ import type { MistakeFacet, MistakeStudyTarget } from '../modules/mistake-practi
 import { projectMistakes } from '../modules/mistake-practice/projection';
 import {
   buildMistakePracticeSession,
+  mistakePracticeRequestMismatch,
+  mistakePracticeRequestOf,
   type MistakePracticeLength,
   type MistakePracticePool,
   type MistakePracticeSession,
@@ -71,8 +73,12 @@ export async function prepareMistakePracticeSession(input: Readonly<{
   // зачем (повтор исправленных, 04.10): в повторе очередь из исправленных, а ошибка в повторе
   // возвращает ошибку в активные и её переспрашивают — обе стадии законны. Обычная сессия — только активные.
   const retryRequested = (input.mistakeIds?.length ?? 0) > 0;
+  // зачем (координатор 13.10, mistakes-panel-017): продолжать только сессию ТОГО ЖЕ запроса — иначе «Все 12» продолжало
+  // сохранённую сессию группы из одной ошибки. У старых сессий запроса нет — продолжаются как раньше.
+  const requested = mistakePracticeRequestOf(input.requestedLength, input.facets);
+  const requestMismatch = restored ? mistakePracticeRequestMismatch(restored.request, requested) : null;
   // зачем: «Ещё N» просит НОВУЮ сессию из конкретных ошибок — продолжать прежнюю вместо неё нельзя.
-  const restoredStillAvailable = !retryRequested && restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
+  const restoredStillAvailable = !retryRequested && requestMismatch === null && restoredPool === requestedPool && restored?.queue.slice(restored.cursor).every((entry) => {
     const item = projection.items.get(entry.mistakeId);
     if (item?.cycleId !== entry.cycleId) return false;
     return restoredPool === 'corrected'
@@ -98,6 +104,9 @@ export async function prepareMistakePracticeSession(input: Readonly<{
     restoredCursor: restored?.cursor ?? null,
     restoredQueueLength: restored?.queue.length ?? null,
     restoredInitialCount: restored?.initialCount ?? null,
+    restoredRequest: restored ? (restored.request ?? 'нет (сессия до 13.10)') : null,
+    requested,
+    requestMismatch,
     restoredStillAvailable,
   }));
   if (restored && restored.cursor < restored.queue.length && restoredStillAvailable) {
@@ -121,7 +130,11 @@ export async function prepareMistakePracticeSession(input: Readonly<{
         ? 'already_finished'
         : restoredPool !== requestedPool
           ? `pool_mismatch:${restoredPool}->${requestedPool}`
-          : 'queue_items_no_longer_active',
+          : requestMismatch !== null
+            ? `request_mismatch:${requestMismatch}`
+            : retryRequested
+              ? 'retry_requested'
+              : 'queue_items_no_longer_active',
       cursor: restored.cursor,
       queueLength: restored.queue.length,
     }));

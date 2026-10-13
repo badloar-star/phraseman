@@ -73,7 +73,7 @@ add('spire-gap-014', [], '', preview('save_failed', 'tier=0&floor=4'), note='с�
 # ── Итог недели
 add(['spire-014', 'community-005'], [], '', preview('weekresult'), note='поднимаешься (Нефрит)')
 add('spire-gap-015', [], '', preview('weekresult', 'tier=1&floor=1&steps=39'), note='итог недели — поднимаешься (данные образца: Базальт, этаж 1)')
-add(['spire-015', 'spire-gap-016'], [], '', preview('weekresult_stay'), note='остаёшься')
+add(['spire-015', 'spire-gap-016'], [], '', preview('weekresult_stay', 'tier=0&floor=4'), note='остаёшься (данные образца: Гранит, этаж 4)')
 add('spire-gap-017', [], '', preview('weekresult_down', 'tier=0&floor=1&steps=5'), note='спускаешься (данные образца №17: в Гранит, 5 ступеней, новая неделя с 1 этажа)')
 
 # ── Энергия и сеть

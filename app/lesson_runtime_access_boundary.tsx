@@ -2,7 +2,9 @@ import React, { useEffect, useState, type ComponentType } from 'react';
 import { View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
+import LessonFirstFrame from '../modules/lesson_first_frame';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { useTheme } from '../components/ThemeContext';
 import {
   openLessonAccessGate,
   openLessonPremiumPaywall,
@@ -25,9 +27,13 @@ export function useLessonRuntimeAccessAuthorization(
   useEffect(() => {
     let cancelled = false;
     setAuthorizedRouteKey(null);
+    // зачем (координатор 13.10; сперва логи): сколько мс шлюз держит экран на скелете и чем кончил. Только журнал — решение ниже не менялось.
+    const startedAt = Date.now();
+    console.log(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка доступа идёт — рисуем скелет урока`); // guard-ok: одна строка на начало проверки
 
     void resolveLessonRuntimeGate(lessonId, studyTarget)
       .then(gate => {
+        console.log(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка заняла ${Date.now() - startedAt} мс → ${gate}${cancelled ? ' (экран уже ушёл)' : ''}`); // guard-ok: одна строка на конец проверки
         if (cancelled) return;
         if (gate === 'available') {
           setAuthorizedRouteKey(routeKey);
@@ -39,7 +45,8 @@ export function useLessonRuntimeAccessAuthorization(
         }
         openLessonAccessGate(router, lessonId);
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        console.warn(`[LESSON-GATE-FIRSTFRAME] boundary ${routeKey}: проверка упала за ${Date.now() - startedAt} мс (${error instanceof Error ? error.message : String(error)}) → закрыто`); // guard-ok: catch пишет причину
         // Defense in depth: resolver is fail-closed, but an unexpected rejection
         // must still route to a lock surface and must never mount lesson content.
         if (!cancelled) openLessonAccessGate(router, lessonId);
@@ -72,14 +79,15 @@ export function withLessonRuntimeAccessBoundary<P extends object>(
       : (options.defaultLessonId ?? 1);
     const { studyTarget } = useStudyTarget();
     const authorized = useLessonRuntimeAccessAuthorization(router, lessonId, studyTarget);
+    const { theme: t } = useTheme();
 
     if (!authorized) {
+      // зачем (координатор 13.10): раньше здесь был пустой `View` без фона (вспышка между списком и уроком). Теперь тот же скелет, что урок рисует сразу после шлюза (LessonFirstFrame), — фон и геометрия
+      // совпадают с готовым экраном. Скелет ничего не разрешает: содержимое урока не монтируется, пока шлюз не ответил `available`.
       return (
-        <View
-          testID="lesson-runtime-access-pending"
-          pointerEvents="none"
-          style={{ flex: 1 }}
-        />
+        <View testID="lesson-runtime-access-pending" pointerEvents="none" style={{ flex: 1 }}>
+          <LessonFirstFrame theme={t} />
+        </View>
       );
     }
 

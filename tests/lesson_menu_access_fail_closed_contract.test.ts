@@ -35,7 +35,8 @@ describe('lesson menu access check is fail-closed', () => {
       const start = source.indexOf(`const ${handler} = useCallback`);
       const end = source.indexOf('\n  }, [', start);
       expect(start).toBeGreaterThan(-1);
-      expect(source.slice(start, end)).toContain('if (lessonLaunchBlocked) return;');
+      // зачем (8853258b2, трассировка [LESSON-MENU]): ранний выход теперь с строкой журнала — `if (lessonLaunchBlocked) { lessonMenuTrace(…); return; }`; требование прежнее: обработчик ОБЯЗАН выйти до запуска урока.
+      expect(source.slice(start, end)).toMatch(/if \(lessonLaunchBlocked\) (return;|\{[\s\S]{0,160}?\breturn;\s*\})/);
     }
   });
 });

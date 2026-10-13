@@ -94,6 +94,18 @@ describe('экран итога: контракт по строкам файло
     expect(lc).toContain('[LESSON-NEXT]');
   });
 
+  it('«Следующий урок»: сбой проверок или перехода не остаётся необработанным отказом — журнал, тост, остаёмся на итоге (ревью Ядра 2dba22af6)', () => {
+    const goNext = lc.slice(lc.indexOf('const goNext = () => {'), lc.indexOf('const goBackFromComplete = useCallback'));
+    // try → catch → finally в таком порядке; кнопка разблокируется в finally
+    expect(goNext.indexOf('} catch (error: unknown) {')).toBeGreaterThan(goNext.indexOf('router.replace({ pathname: \'/lessons_list\''));
+    expect(goNext.indexOf('} finally {')).toBeGreaterThan(goNext.indexOf('} catch (error: unknown) {'));
+    expect(goNext).toMatch(/DebugLogger\.warn\('\[LESSON-NEXT\]', `lesson=\$\{lessonId\}→\$\{next\}: «Следующий урок» не открылся/);
+    expect(goNext).toMatch(/emitAppEvent\('action_toast', actionToastTri\('error', \{/);
+    // тост — на всех девяти языках
+    for (const lang of ['ru', 'uk', 'en', 'es', "'pt-BR'", 'vi', 'id', 'tr', 'pl']) expect(goNext).toContain(`${lang}: '`);
+    expect(goNext).toMatch(/nextOpeningRef\.current = false;\n\s*setNextOpening\(false\);/);
+  });
+
   it('V2DoneScreen: primaryBusy держит нажатый вид и не пускает повторный тап (без спиннера)', () => {
     expect(done).toMatch(/primaryBusy\?: boolean;/);
     expect(done).toMatch(/onPress=\{\(\) => \{ if \(props\.primaryBusy\) return; hapticTap\(\); props\.onPrimary\(\); \}\}/);

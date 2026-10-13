@@ -84,6 +84,7 @@ import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
 import { animateNextLayoutTransition } from './smooth_layout'; // зачем (аудит Optimistic UI Уроков, 13.10): карточка «Всё было понятно?» встаёт в уже показанный экран
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
+import { actionToastTri, emitAppEvent } from './events'; // зачем (ревью Ядра 2dba22af6): тост об ошибке «Следующий урок»
 import { scanLessonProgress } from './lesson_progress_scan'; // зачем (аудит Optimistic UI Уроков, 13.10): 32 последовательных getItem → один multiGet
 import { navOnce } from './nav_once'; // зачем: замок двойного тапа «Следующий урок»
 import { frenchStudyActive } from './spanish_content_gate';
@@ -1152,6 +1153,21 @@ export default function LessonComplete() {
           markNextNavigationAsReplace();
           DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}→${next}: проверки заняли ${Date.now() - tapAt}мс, уходим на список`);
           router.replace({ pathname: '/lessons_list', params: { id: next } });
+        } catch (error: unknown) {
+          // зачем (ревью Ядра 2dba22af6, координатор 13.10): падение readLegacyFreeLessonCap / router.replace было необработанным отказом — без строки в журнале, а кнопка разблокировалась молча.
+          // Теперь причина в [LESSON-NEXT], человеку понятный тост (та же строка ошибки на 9 языках, что в DialogWhySheet), остаёмся на итоге; кнопку разблокирует finally ниже.
+          DebugLogger.warn('[LESSON-NEXT]', `lesson=${lessonId}→${next}: «Следующий урок» не открылся за ${Date.now() - tapAt}мс (${error instanceof Error ? error.message : String(error)}) — остаёмся на итоге`);
+          emitAppEvent('action_toast', actionToastTri('error', {
+            ru: 'Не получилось. Попробуй ещё раз.',
+            uk: 'Не вийшло. Спробуй ще раз.',
+            en: 'That did not work. Try again.',
+            es: 'No funcionó. Inténtalo de nuevo.',
+            'pt-BR': 'Não deu certo. Tente de novo.',
+            vi: 'Không thành công. Thử lại nhé.',
+            id: 'Gagal. Coba lagi.',
+            tr: 'Olmadı. Tekrar dene.',
+            pl: 'Nie udało się. Spróbuj ponownie.',
+          }));
         } finally {
           // Экран уходит по replace в любой ветке — сброс не нужен для повторного
           // тапа НА ЭТОМ экране, но снимаем гейт на случай, если навигация не

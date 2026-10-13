@@ -85,6 +85,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useLineScale } from '../hooks/useLineScale';
@@ -413,6 +414,8 @@ function LessonMenu() {
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(true);
   const [lockStateLoaded, setLockStateLoaded] = useState(false);
+  // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
+  const lockCheckStartedAtRef = useRef(Date.now());
   const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   // showLockModal удалён вместе со своим модалом: при закрытом уроке этот экран
@@ -557,6 +560,7 @@ function LessonMenu() {
   const loadLockState = useCallback(() => {
     // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
     setLockStateLoaded(false);
+    lockCheckStartedAtRef.current = Date.now();
     // Ревалидация тоже fail-closed: прежний успешный результат не даёт короткого
     // окна запуска, пока новый lessonId/аккаунт ещё не проверен.
     setIsLessonLocked(true);
@@ -660,6 +664,15 @@ function LessonMenu() {
       }
     })();
   }, [lessonId, studyTarget]);
+
+  // зачем (координатор 13.10; сперва логи): начало и конец ожидания проверки доступа — пока `lockStateLoaded` ложно, на экране скелет, а не пустой фон. Итог проверки (закрыто/открыто, причина) читается из состояния, решение не принимается здесь.
+  useEffect(() => {
+    if (!lockStateLoaded) {
+      console.log(`[LESSON-GATE-FIRSTFRAME] menu lesson=${lessonId} target=${String(studyTarget)}: проверка доступа идёт — рисуем скелет меню`); // guard-ok: одна строка на начало проверки
+      return;
+    }
+    console.log(`[LESSON-GATE-FIRSTFRAME] menu lesson=${lessonId} target=${String(studyTarget)}: проверка заняла ${Date.now() - lockCheckStartedAtRef.current} мс → ${isLessonLocked ? `закрыто (${lockReason})` : 'открыто'}`); // guard-ok: одна строка на конец проверки
+  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, studyTarget]);
 
   const loadProgress = useCallback(() => {
     const progressKey = lessonProgressKey(lessonId, studyTarget);
@@ -1216,6 +1229,31 @@ function LessonMenu() {
   // фри». Заглушка удалена вместе со своими текстами; причину замка называет
   // модал в списке уроков, у него же лежит покупка за жемчужины.
   if (isLessonLocked) {
+    // зачем (координатор 13.10): РЕШЕНИЯ ещё нет (`lockStateLoaded` ложно) — вместо пустого фона скелет меню: шапка урока (назад работает) и строки пунктов тех же размеров.
+    // Решение «закрыто» (lockStateLoaded && isLessonLocked) по-прежнему рисует только фон — меню закрытого урока не показывается ни в каком виде. Скелет ничего не включает и не разрешает.
+    if (!lockStateLoaded) {
+      return (
+        <ScreenGradient forceFullBleed>
+          <LinearGradient pointerEvents="none" colors={[lessonMenuGlass.bgTop, lessonMenuGlass.bg, lessonMenuGlass.bgBottom]} style={StyleSheet.absoluteFill} />
+          <SafeAreaView style={{ flex: 1, backgroundColor: 'transparent' }} edges={['top', 'left', 'right']} testID="lesson-menu-gate-pending">
+            <ContentWrap>
+              <View style={{ paddingHorizontal: V2.screenPad, paddingTop: 6, paddingBottom: 8 }}>
+                <LessonMenuHeader
+                  glass={lessonMenuGlass}
+                  testID="lesson-menu-pending"
+                  title={`${triLang(lang, { ru: 'Урок', uk: 'Урок', en: 'Lesson', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} ${lessonId}`}
+                  subtitle={lessonCefrLabel}
+                  onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/home' as never); }}
+                  backLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+                  right={<View style={{ width: 112, height: 30 }} />}
+                />
+              </View>
+              <LessonMenuGateSkeleton glass={lessonMenuGlass} bottomInset={insets.bottom} />
+            </ContentWrap>
+          </SafeAreaView>
+        </ScreenGradient>
+      );
+    }
     return (
       <ScreenGradient>
         <LessonArtBackdrop variant="menu" />

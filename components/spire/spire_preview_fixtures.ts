@@ -12,7 +12,7 @@ import type { SpirePackTask } from '../../modules/spire/pack_plan';
 import type { SpireStepSession } from '../../app/spire/use_spire_game';
 import type { SpireClock, SpireFeedback } from '../../app/spire/use_spire_step_runner';
 import type { SpireFriendChip } from './spire_room_types';
-import { spireCurrentWeekKey } from './spire_tower_model';
+import { spireCumulativeSteps, spireCurrentWeekKey, spireFloorOfSteps } from './spire_tower_model';
 import type { SpirePreviewGame, SpirePreviewModel } from './spire_preview_context';
 
 export const SPIRE_PREVIEW_STATES = [
@@ -101,11 +101,18 @@ function week(baseFloor: number, stepInFloor: number, stepsCleared: number, tier
 
 const NAMES = ['Алиса', 'Марк', 'Дарья', 'Ян', 'Соня', 'Артём', 'Лиза', 'Глеб', 'Вера', 'Тимур', 'Ника', 'Руслан', 'Мира', 'Лев'];
 
-function rows(mySteps: number, count = 12): readonly SpireRoomRow[] {
+// зачем (приоритет владельца 13.10, «кто с тобой на этаже, кто выше и кто ниже», spire.html mainScreen): соперники расставлены ВОКРУГ этажа игрока — выше, на нём и ниже, а не все выше.
+// Раньше шли от 62 ступеней вниз (этажи 4…8), и при моём этаже 4 никого ниже не было. Смещения — в этажах относительно моего; ниже 1 и выше 15 прижимаются.
+const RIVAL_FLOOR_OFFSETS = [4, 3, 3, 2, 2, 1, 1, 0, 0, -1, -2, -3] as const;
+
+function rows(mySteps: number, count = 12, aroundFloor?: number): readonly SpireRoomRow[] {
   const now = Date.now();
-  const list: SpireRoomRow[] = NAMES.slice(0, count - 1).map((name, i) => ({
-    uid: `preview-${i}`, name, steps: Math.max(0, 62 - i * 4), reachedAtMs: now - (i + 1) * 900_000, isMe: false,
-  }));
+  const myFloor = aroundFloor ?? Math.min(spireFloorOfSteps(mySteps), PREVIEW_SUMMIT_FLOOR);
+  const list: SpireRoomRow[] = NAMES.slice(0, count - 1).map((name, i) => {
+    const floor = Math.min(PREVIEW_SUMMIT_FLOOR, Math.max(1, myFloor + RIVAL_FLOOR_OFFSETS[i % RIVAL_FLOOR_OFFSETS.length]));
+    const steps = spireCumulativeSteps(floor - 1) + 1 + (i % 2); // начало этажа + 0…1 ступень
+    return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false };
+  });
   list.push({ uid: 'preview-me', name: 'Ты', steps: mySteps, reachedAtMs: now - 120_000, isMe: true });
   return list.sort((a, b) => b.steps - a.steps || a.reachedAtMs - b.reachedAtMs);
 }
@@ -169,7 +176,7 @@ function buildPreviewModel(state: SpirePreviewState): SpirePreviewModel {
     }
     case 'room': {
       const w = week(7, 2, 31);
-      return { ...base, week: w, game: game({ rows: rows(31), myPlace: 5, friends: FRIENDS }) };
+      return { ...base, week: w, game: game({ rows: rows(31, 12, w.floor), myPlace: 5, friends: FRIENDS }) };
     }
     case 'win': {
       const w = week(8, 0, 36);

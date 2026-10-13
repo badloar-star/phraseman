@@ -72,6 +72,31 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim }: Readonly<{
   return <>{items}</>;
 });
 
+type ScrollGuard = Readonly<{
+  scroll: React.RefObject<ScrollView | null>;
+  last: React.MutableRefObject<Readonly<{ y: number; why: string }> | null>;
+  offset: React.MutableRefObject<number>;
+  dragged: React.MutableRefObject<boolean>;
+}>;
+
+/**
+ * зачем (владелец 13.10, «кто выше и ниже»; журнал Ядра: scroll-req этаж 4, requestedY 628, ready=да — а на кадре башня стоит на вершине 14–15, соседей не видно):
+ * scrollTo, выданный сразу после измерения содержимого, нативная часть могла срезать до 0 или сбросить следующей раскладкой, и «первый-показ» молча терялся.
+ * Через 120 мс сверяем РЕАЛЬНОЕ смещение окна с запросом; если окно не там (и человек сам не тянул) — повторяем, до 3 раз. Каждый шаг пишет [SPIRE-SCROLL].
+ */
+function verifyScroll(g: ScrollGuard, attempt: number): void {
+  setTimeout(() => {
+    const req = g.last.current;
+    if (!req || g.dragged.current) return;
+    const gotY = g.offset.current;
+    if (Math.abs(gotY - req.y) <= 40) { console.log('[SPIRE-SCROLL] проверка ok', JSON.stringify({ why: req.why, requestedY: roundLayout(req.y), gotY: roundLayout(gotY), attempt })); return; } // guard-ok: итог проверки
+    if (attempt >= 3) { console.warn('[SPIRE-SCROLL] проверка: окно не на месте после 3 повторов', JSON.stringify({ why: req.why, requestedY: roundLayout(req.y), gotY: roundLayout(gotY) })); return; } // guard-ok: отказ логируется
+    console.warn('[SPIRE-SCROLL] проверка: окно не на месте — повтор', JSON.stringify({ why: req.why, requestedY: roundLayout(req.y), gotY: roundLayout(gotY), attempt: attempt + 1 })); // guard-ok: повтор логируется
+    g.scroll.current?.scrollTo({ y: req.y, animated: false });
+    verifyScroll(g, attempt + 1);
+  }, 120);
+}
+
 function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: number }> {
   const fl = SPIRE_TOWER_GEOM.floors[Math.min(Math.max(floor, 1), SPIRE_FLOOR_COUNT) - 1];
   const p = spireMarkerXY(fl);
@@ -93,6 +118,12 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const contentHRef = useRef(0);
   const pendingRef = useRef<Readonly<{ floor: number | null }> | null>(null);
   const echoRef = useRef<string | null>(null);
+  const lastReqRef = useRef<Readonly<{ y: number; why: string }> | null>(null);
+  const offsetRef = useRef(0);
+  const draggedRef = useRef(false);
+  // зачем (приоритет владельца 13.10): журнал [SPIRE-RIVALS] — сколько соперников попадает в окно башни при прокрутке (кто выше/ниже виден или нет)
+  const rivalsRef = useRef<ReadonlyMap<number, readonly SpireRival[]> | undefined>(rivalsByFloor);
+  rivalsRef.current = rivalsByFloor;
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
@@ -113,8 +144,19 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     logSpireLayout(`scroll-req#${why}`, { floor, scale: roundLayout(scale), cy: roundLayout(cy), requestedY: roundLayout(y), contentH: roundLayout(contentHRef.current), needH: roundLayout(needH), ready: ready ? 'да' : 'нет → отложено', animated: animated ? 'да' : 'нет' });
     if (!ready) { pendingRef.current = { floor }; return; }
     pendingRef.current = null;
+    let inWindow = 0;
+    let floorsInWindow = 0;
+    for (const f of SPIRE_TOWER_GEOM.floors) {
+      const mid = (f.y + f.h / 2) * scale;
+      const list = rivalsRef.current?.get(f.f);
+      if (mid >= y && mid <= y + WINDOW_HEIGHT && list && list.length > 0) { inWindow += list.length; floorsInWindow += 1; }
+    }
+    console.log('[SPIRE-RIVALS] window', JSON.stringify({ why, floor, requestedY: roundLayout(y), rivalsInWindow: inWindow, floorsWithRivals: floorsInWindow, total: rivalsRef.current?.size ?? 0 })); // guard-ok: журнал окна башни
     echoRef.current = why;
+    draggedRef.current = false; // новый запрос — прежняя ручная прокрутка не мешает
+    lastReqRef.current = { y: Math.min(y, Math.max(0, needH - WINDOW_HEIGHT)), why }; // ожидаемое смещение — не дальше низа содержимого
     scrollRef.current?.scrollTo({ y, animated });
+    if (!animated) verifyScroll({ scroll: scrollRef, last: lastReqRef, offset: offsetRef, dragged: draggedRef }, 0); // анимированный подъём догоняет сам; сверяем только мгновенные показы
   }, [scale, width]);
 
   const onContentSizeChange = useCallback((_w: number, h: number) => {
@@ -125,6 +167,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   }, [scrollToFloor]);
 
   const onScrollEcho = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    offsetRef.current = e.nativeEvent.contentOffset.y;
     const why = echoRef.current;
     if (!why) return;
     echoRef.current = null;
@@ -189,6 +232,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         decelerationRate="fast"
         onContentSizeChange={onContentSizeChange}
         onScroll={onScrollEcho}
+        onScrollBeginDrag={() => { draggedRef.current = true; }}
         scrollEventThrottle={32}
       >
         {width > 0 ? (

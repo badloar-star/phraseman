@@ -18,21 +18,18 @@ describe('cards-027 / п.83: чип языка на настройке трен�
     expect(screen).toContain('const viewLang: LearningLanguageTarget = pickedLang ?? studyTarget;');
   });
 
-  it('один язык: чип — обычный текстовый элемент, не кнопка: нет onPress, меню, стрелки', () => {
-    const start = view.indexOf(') : languageLabel ? (');
-    expect(start).toBeGreaterThan(-1);
-    const chip = view.slice(start, view.indexOf('testID="fc-training-setup-monthly-limit"', start));
-    expect(chip).toContain('testID="fc-training-setup-language-chip"');
-    expect(chip).toContain('accessibilityRole="text"');
-    expect(chip).not.toContain('onPress');
-    expect(chip).not.toContain('chevron');
-    expect(chip).not.toContain('Pressable');
+  it('один язык: чипа нет вовсе (вердикты Макетов 7c831a193: в образце cards-v2 индикатора языка нет), у языков — только кнопка фильтра', () => {
+    expect(view).not.toContain(') : languageLabel ? (');
+    expect(view).not.toMatch(/accessibilityRole="text"[\s\S]{0,200}fc-training-setup-language-chip|fc-training-setup-language-chip"[\s\S]{0,120}accessibilityRole="text"/);
+    // единственный чип — кнопка внутри ветки «несколько языков»
+    expect(view.split('testID="fc-training-setup-language-chip"').length - 1).toBe(1);
+    expect(view).toContain('{languageLabel && languageSwitchable && onLanguageChange ? (');
   });
 
   it('несколько языков: чип — кнопка с шевроном, меню — общий PackLanguagePicker только с языками, где есть наборы, и числом наборов', () => {
     const start = view.indexOf('<PackLanguagePicker');
     expect(start).toBeGreaterThan(-1);
-    const block = view.slice(start, view.indexOf(') : languageLabel ? (', start));
+    const block = view.slice(start, view.indexOf('testID="fc-training-setup-monthly-limit"', start));
     expect(block).toContain('languages={languageCodes}');
     expect(block).toContain('counts={languageCounts}');
     expect(block).toContain('onChange={onLanguageChange}');

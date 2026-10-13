@@ -316,6 +316,7 @@ export default function CoinRankScreen() {
   // зачем: макет PAY-01 «недостаточно монет» — только когда баланс известен и реально меньше цены.
   const short = !pending && missing !== null && missing > 0;
   const ready = !pending && !short && canUpgrade;
+  const ctaInFlow = pending || short; // зачем: см. комментарий у кнопки в прокрутке (coins-004)
   const ctaLabel = pending
     ? copy.pendingCta
     : rank === null || balance === null
@@ -444,6 +445,19 @@ export default function CoinRankScreen() {
           </View>
         )}
 
+        {/* зачем (вердикты Макетов 7c831a193, coins-004; coins.html `upgrade()`): «Все ранги ›» идёт сразу за карточкой стоимости, плашки «Не хватает» / «Проверяем повышение» — ПОСЛЕ неё. */}
+        {/* зачем (владелец 11.10, журнал 35): каталог рангов — отдельный экран, вход ИЗ «Повысить ранг» ссылкой «Все ранги». */}
+        <V2Pressable
+          testID="coin-rank-all-ranks"
+          accessibilityRole="button"
+          accessibilityLabel={copy.allRanks}
+          onPress={() => router.push('/coin_rank_catalog' as never)}
+          scaleTo={0.97}
+          style={styles.allRanks}
+        >
+          <Text style={[styles.allRanksText, { color: p.text }]}>{copy.allRanks}</Text>
+          <Ionicons name="chevron-forward" size={18} color={p.textSecondary} />
+        </V2Pressable>
         {short ? (
           <View style={[styles.card, styles.statusCard, glass]}>
             <V2GlassSheen seed={3} />
@@ -468,37 +482,41 @@ export default function CoinRankScreen() {
             </View>
           </View>
         ) : null}
+        {/* зачем (там же, coins.html: `<button class="cta dis" style="margin-top:16px">` сразу после плашки): в состояниях «не хватает» и «проверяем» кнопка стоит в потоке под плашкой,
+            а не прижата к низу экрана; у готового повышения она по-прежнему внизу с подписью про церемонию (`fixed`). 12 — промежуток прокрутки, +4 до образцовых 16. */}
+        {ctaInFlow ? (
+          <V2Pressable
+            testID="coin-rank-upgrade"
+            accessibilityLabel={ctaLabel}
+            disabled={!canUpgrade}
+            onPress={handleUpgrade}
+            scaleTo={0.97}
+            style={[styles.cta, { marginTop: 4, backgroundColor: canUpgrade ? g.cta : g.opaqueControl }]}
+          >
+            <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>
+          </V2Pressable>
+        ) : null}
 
-        {/* зачем (владелец 11.10, журнал 35): каталог рангов — отдельный экран, вход ИЗ «Повысить ранг» ссылкой «Все ранги». */}
-        <V2Pressable
-          testID="coin-rank-all-ranks"
-          accessibilityRole="button"
-          accessibilityLabel={copy.allRanks}
-          onPress={() => router.push('/coin_rank_catalog' as never)}
-          scaleTo={0.97}
-          style={styles.allRanks}
-        >
-          <Text style={[styles.allRanksText, { color: p.text }]}>{copy.allRanks}</Text>
-          <Ionicons name="chevron-forward" size={18} color={p.textSecondary} />
-        </V2Pressable>
       </ScrollView>
 
-      <View style={[styles.footer, { paddingBottom: insets.bottom + 18, backgroundColor: g.bgBottom }]}>
-        <V2Pressable
-          testID="coin-rank-upgrade"
-          accessibilityLabel={ctaLabel}
-          disabled={!canUpgrade}
-          onPress={handleUpgrade}
-          scaleTo={0.97}
-          style={[
-            styles.cta,
-            { backgroundColor: canUpgrade ? g.cta : g.opaqueControl },
-          ]}
-        >
-          <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>
-        </V2Pressable>
-        {ready ? <Text style={[styles.footNote, { color: p.textSecondary }]}>{copy.ceremonyNote}</Text> : null}
-      </View>
+      {ctaInFlow ? null : (
+        <View style={[styles.footer, { paddingBottom: insets.bottom + 18, backgroundColor: g.bgBottom }]}>
+          <V2Pressable
+            testID="coin-rank-upgrade"
+            accessibilityLabel={ctaLabel}
+            disabled={!canUpgrade}
+            onPress={handleUpgrade}
+            scaleTo={0.97}
+            style={[
+              styles.cta,
+              { backgroundColor: canUpgrade ? g.cta : g.opaqueControl },
+            ]}
+          >
+            <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>
+          </V2Pressable>
+          {ready ? <Text style={[styles.footNote, { color: p.textSecondary }]}>{copy.ceremonyNote}</Text> : null}
+        </View>
+      )}
 
       <CoinRankUpgradeCeremony ceremony={visibleCeremony} onDone={dismissCeremony} />
     </View>

@@ -90,7 +90,9 @@ function EnergyAttemptsHud({ attempts, testID, onStoppedExit }: Props) {
           textColor={g.text}
           bad={t.wrong}
           plate={g.opaqueControl}
-          edge={g.glassEdge}
+          // зачем (вердикты Макетов 7c831a193, energy-modes-003/009/010; координатор 13.10): кромка пилюли нейтральная, как `--g-edge` образца energy-modes-states (белый 13 % / чёрный 12 %), а не цвет темы
+          // (на «Авроре» она шла мятной, на красной энергии — красной). Красный пульс последней энергии — отдельная анимация образца (`gwarn`), он остаётся.
+          edge={g.isLight ? 'rgba(0,0,0,0.12)' /* theme-exempt: нейтральная кромка образца */ : 'rgba(255,255,255,0.13)' /* theme-exempt: нейтральная кромка образца */}
           accessibilityLabel={label}
           testID={testID}
         />

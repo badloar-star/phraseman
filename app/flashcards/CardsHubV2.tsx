@@ -145,7 +145,8 @@ function CardsHubV2Inner({
         <View style={styles.topRight}>
           {limitLabel ? (
             <View testID="fc-cards-hub-limit" style={[styles.pill, fs > 1 && { height: undefined, minHeight: 30, paddingVertical: 2 }, { backgroundColor: g.plateFillFrom, boxShadow: plateBoxShadow(g) }]}>
-              <Ionicons name="albums-outline" size={16} color={g.text} />
+              {/* зачем (координатор 13.10, пилюля «30/30» хаба Карточек): в образце cards-v2 `limPill('copy', '30/30')` — значок «копии», как у настройки тренировки (copy-outline), а не «стопка» albums-outline */}
+              <Ionicons name="copy-outline" size={16} color={g.text} />
               <Text style={[styles.pillText, { color: g.text, lineHeight: lh(20) }]}>{limitLabel}</Text>
             </View>
           ) : null}

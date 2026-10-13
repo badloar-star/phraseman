@@ -175,16 +175,8 @@ function TrainingSetupV2Inner(props: Props) {
                     </Pressable>
                   )}
                 />
-              ) : languageLabel ? (
-                <View
-                  testID="fc-training-setup-language-chip"
-                  accessible
-                  accessibilityRole="text"
-                  accessibilityLabel={`${copy.language}: ${languageLabel}`}
-                  style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}
-                >
-                  <Text style={[styles2.pillText, { color: g.text }]}>{languageLabel}</Text>
-                </View>
+              // зачем (вердикты Макетов 7c831a193, cards-076 / cards-section-034…036; координатор 13.10): в образце cards-v2 чипа языка нет. Наборы ОДНОГО языка — чип был только индикатором, убран;
+              // с наборами нескольких языков он остаётся кнопкой фильтра (единственный способ сменить язык тренировки) — Макеты дорисуют.
               ) : null}
               {limitLabel ? (
                 <View testID="fc-training-setup-monthly-limit" style={[styles2.pill, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}>

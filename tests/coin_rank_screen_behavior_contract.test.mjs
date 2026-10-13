@@ -45,7 +45,8 @@ test('insufficient balance blocks immediately and requires a durable reconciliat
 
 test('async UI results stay bound to the owner, generation and rank that produced the display', () => {
   const handler = screen.slice(screen.indexOf('const handleUpgrade'), screen.indexOf('const handleUpgrade') + 4200);
-  assert.match(handler, /if \(!rankBinding\) return;/);
+  // раньше ранний выход был немым `return;`; с журналом (сверка chain21) — блок с причиной и тем же `return;`
+  assert.match(handler, /if \(!rankBinding\) (return;|\{[^}]*return;\s*\})/);
   assert.match(handler, /const operationBinding = Object\.freeze\(\{/);
   assert.match(handler, /ownerStableId: rankBinding\.ownerStableId/);
   assert.match(handler, /accountGeneration: rankBinding\.accountGeneration/);

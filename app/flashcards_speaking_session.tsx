@@ -56,6 +56,7 @@ import SpeakingInlineResultStars from '../components/SpeakingInlineResultStars';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { mixHex } from '../constants/v2Style';
 import { plateBoxShadow } from '../components/v2/ShadowSurface';
 import { mixDark } from '../components/mistakes-panel/panelPaint'; // theme-exempt: ложное срабатывание — hex только в комментарии. зачем (10.10): заливка полосы = цвет текста темы чуть темнее (на Авроре ≈ #E9E9EB макета practice.html, PM-130; на светлой теме остаётся читаемой)
 import { PracticeBackButton, PracticeHeaderTitle } from '../components/practice/PracticeChrome';
@@ -1618,7 +1619,8 @@ RU: ${card.translation}`}
               flipped={flipped}
               onFlip={setFlipped}
               disabled={holdActive}
-              outcome={phase === 'scored' && attempt ? (attempt.passed ? 'ok' : null) : null}
+              // зачем (вердикты Макетов 7c831a193, cards-section-046 / cards-v2-037; координатор 13.10): в образце `oral('ok')` у карточки НЕТ зелёной рамки состояния — верный ответ показывает плашка «Верно» внизу.
+              outcome={null}
               testID="fc-speak-card"
             />
             <View style={styles.spokenRow}>
@@ -1732,7 +1734,8 @@ RU: ${card.translation}`}
               </View>
               <View style={styles.verdictCopy}>
                 <Text style={[styles.verdictKicker, { color: speakingGlass.secondary }]}>{labels.verdictOk}</Text>
-                <Text style={[styles.verdictValue, { color: speakingGlass.good }]}>{card?.en ?? ''}</Text>
+                {/* зачем (там же): слово в плашке — светло-зелёное как `.ans.ok .v { color: #A6E8B9 }` образца, а не насыщенный токен good; в светлых темах токен прежний (читаемость на светлой плашке) */}
+                <Text style={[styles.verdictValue, { color: speakingGlass.isLight ? speakingGlass.good : mixHex(speakingGlass.good, '#FFFFFF' /* theme-exempt: осветление токена good к образцу #A6E8B9 */, 0.42) }]}>{card?.en ?? ''}</Text>
               </View>
               {lastAward > 0 ? (
                 <View testID="fc-speak-award" style={[styles.verdictAward, { backgroundColor: speakingGlass.goodSoft }]}>

@@ -14,6 +14,7 @@ import {
   ScrollView,
   StyleSheet,
   Text, TouchableOpacity,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import ContentWrap from '../components/ContentWrap';
@@ -261,6 +262,10 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
+  // зачем (реестр energy-modes-010, вердикты Макетов 7c831a193; координатор 13.10): образец energy-modes-states `verbs` — плашка идёт сразу под полосой (`.gqc` margin-top 20), варианты через 100 (`.g4`), а не по центру свободного места.
+  // На экранах от 800 dp встаём по образцу; ниже — прежняя раскладка по центру (иначе четыре варианта и переключатель не помещаются).
+  const { height: verbsWindowH } = useWindowDimensions();
+  const verbsRoomy = verbsWindowH >= 800;
   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
   // зачем (владелец 2026-09-30): «Неправильные глаголы» 1:1 по макету learn.html (H1–H5, Liquid Glass); только вид.
   const glass = liquidGlassTokens(liquidGlassThemeId);
@@ -760,7 +765,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
     <View style={{ flex: 1 }}>
 
       {/* ── Top card area ── */}
-      <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
+      <View style={verbsRoomy ? { paddingHorizontal: 16, paddingTop: 10 } : { flex: 1, paddingHorizontal: 16, paddingTop: 10 }}>
 
         {/* Progress counter */}
         <View style={{ marginBottom: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
@@ -797,7 +802,7 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
         <PracticeProgressRow glass={glass} progress={portionVerbs.length > 0 ? learnedCnt / portionVerbs.length : 0} flush />
 
         {/* Card ── источник полёта рун (владелец, 2026-08-27) */}
-        <View ref={runeFlight.originRef} collapsable={false} style={{ flex: 1, justifyContent: 'center' }}>
+        <View ref={runeFlight.originRef} collapsable={false} style={verbsRoomy ? { marginTop: 20 } : { flex: 1, justifyContent: 'center' }}>
           <PracticeQuestionCard glass={glass} minHeight={200} kicker={hintText} style={{ paddingBottom: 26 }}>
             {/* Translation */}
             <Text style={{ color: glass.secondary, fontSize: 22, lineHeight: 28, fontWeight: '600', textAlign: 'center', marginTop: 10 }}>
@@ -841,6 +846,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
           </PracticeQuestionCard>
         </View>
       </View>
+      {/* зачем: `.g4 { margin-top: 100px }` образца (88 + верхний отступ нижнего блока 12); на невысоком экране сжимается, но не меньше 8 */}
+      {verbsRoomy ? <View style={{ height: 88, minHeight: 8, flexShrink: 1 }} /> : null}
 
       {/* ── Bottom: либо сборка из букв (recall), либо 4 кнопки (recognition) ── */}
       <View style={{

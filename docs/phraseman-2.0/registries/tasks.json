@@ -15960,5 +15960,102 @@
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
+  },
+  {
+    "id": "PM-291",
+    "epic": "E07",
+    "title": "Сервер сверяет сумму монет за Диалог с исходом сессии",
+    "requirement_ids": [
+      "R080"
+    ],
+    "basis": "SAFETY",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S2",
+    "model": "gpt-6-sol",
+    "reasoning": "high",
+    "spec": "docs/BACKEND.md",
+    "acceptance": [
+      {
+        "id": "PM-291-A1",
+        "text": "practiceRuneGrant для ключа dialogue_<id> принимает сумму только из {30,25,10} и только для сессии Диалогов V2 этого аккаунта с исходом, подтверждённым сервером",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-291-A2",
+        "text": "Отказ пишет причину в журнал [COINS-EARN] на сервере; клиент 2.0 и 1.x не ломаются",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-13 PM-252 ревью Ядра (35458ea11), замечание 3; координатор 13.10: после R1. Сейчас сумму задаёт клиент (b022a7b5f) — общая модель копилки, как у уроков; расписка идемпотентна по сессии, повтор не начисляет."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-292",
+    "epic": "E19",
+    "title": "Вид ошибки «Шпиль» в контракте «Моих ошибок» вместо приведения типа",
+    "requirement_ids": [
+      "R193",
+      "R270"
+    ],
+    "basis": "SAFETY",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/BACKEND.md",
+    "acceptance": [
+      {
+        "id": "PM-292-A1",
+        "text": "'spire_step' входит в MistakeSourceKind (modules/mistake-practice/contracts.ts); в app/spire/spire_mistake_capture.ts нет `as MistakeSourceKind`",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-292-A2",
+        "text": "Группа «Шпиль» в разборе ошибок (mistake_practice_insights) с текстами на 9 языках — по решению владельца",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-13 PM-252 ревью Ядра (35458ea11), замечание 4; координатор 13.10: после R1. TODO в app/spire/spire_mistake_capture.ts:20."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

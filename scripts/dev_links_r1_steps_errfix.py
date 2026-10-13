@@ -64,3 +64,16 @@ set_steps('spire-gap-022', ['wait:2500', 'see:#spire-beta-pill'])
 # mistakes-panel-021: ссылка обязана включать mistakes=demo (засев журнала); шаги прежние — хаб → «Начать» → шторка → практика → меню.
 if 'mistakes=demo' not in _entry('mistakes-panel-021')['link']:
     set_param('mistakes-panel-021', 'mistakes', 'demo')
+
+# spire-gap-016: «Итог недели» снимался на данных не образца («Нефрит · этаж 7»), ссылка не несла tier/floor. Образец — «Гранит, этаж 4».
+_week = _entry('spire-gap-016')
+if 'tier=' not in _week['link']:
+    _week['link'] = _week['link'] + '%26tier=0%26floor=4'
+
+# cards-v2-037 / cards-section-046: в образце сердца в шапке (SessionAttemptsHud), а кадр снят в режиме Б энергии (EnergyAttemptsHud) — mode=a.
+for _rid in ('cards-v2-037', 'cards-section-046'):
+    set_param(_rid, 'mode', 'a')
+
+# Проверено и НЕ менялось (ссылка и шаги уже верны, кадр в пересклейке «старый»): cards-041 (#fc-pack-menu на экране набора), cards-gap-011 и cards-v2-027
+# (тап #fc-cards-hub-train + пауза), cards-v2-046 (ввод Layover), cards-v2-026 (cards=empty + hidekb), dialogs-gap-016 (hidekb), cards-v2-044 (fail=catalog_load).
+# spire-gap-019 — шторка правил на кадре закрыта; причина без журнала [SPIRE-RULES] не установлена, нужна пересъёмка с журналом.

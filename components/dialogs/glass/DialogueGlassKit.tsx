@@ -283,7 +283,8 @@ const styles = StyleSheet.create({
   sysErrCta: { marginTop: 12 },
   gateTop: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row' },
   // зачем (R1_DIFF_ONE_FIX, dialogs-gap-010 / dialogs-gap-003: блок на ≈100 dp ниже образца): макет `.gate { margin-top: 150px }` — блок стоит сверху на фиксированном отступе, а не по центру высоты; 194 = 150 макета + шапка со статус-баром
-  gateBody: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 194, paddingHorizontal: 24, paddingBottom: 40 },
+  // зачем (разбор размеров реестра 13.10, dialogs-033; замер кадра: значок на 296 dp при 246 css px в образце): `.gate { margin-top: 150px }` считается ПОСЛЕ строки шапки с «назад», а здесь шапка (`gateTop`) уже отдельный блок над телом — 194 (= 150 + шапка 44) считали шапку второй раз. Верно 150.
+  gateBody: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 150, paddingHorizontal: 24, paddingBottom: 40 },
   gateBig: { width: 84, height: 84, borderRadius: 42, alignItems: 'center', justifyContent: 'center' },
   gateTitle: { marginTop: 22, fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.3, textAlign: 'center' },
   gateText: { marginTop: 10, fontSize: 16, lineHeight: 22, textAlign: 'center', paddingHorizontal: 8 },

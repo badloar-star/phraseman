@@ -367,10 +367,25 @@ async function stitchOnlyMain(argv, ids) {
       else if (size.width !== bareW || size.height !== bareH) { result = 'skipped'; detail = `уже_не_голый_${size.width}x${size.height}`; }
       else {
         const bare = path.join(runDir, `${id}.bare.png`);
+        // зачем (координатор 13.10, дыра cards-070): пересклейка ставила склейке СВЕЖЕЕ время, и реестр принимал match по кадру 12.10 как по свежему.
+        // Время съёмки голого кадра = mtime исходного файла (копируем с cp -p/utimes) — пишем в журнал, в «[RESTITCH]» и возвращаем склейке.
+        const rawStat = fs.statSync(target);
         fs.copyFileSync(target, bare);
+        fs.utimesSync(bare, rawStat.atime, rawStat.mtime);
+        let codeChangedAt = 'неизвестно';
+        try {
+          codeChangedAt = spawnSync('git', ['log', '-1', '--format=%cI', '--', 'app', 'components', 'modules'], { cwd: ROOT, encoding: 'utf8' }).stdout.trim() || 'неизвестно';
+        } catch (error) {
+          console.warn(`${LOG} restitch ${id}: время кода не получено: ${String(error).slice(0, 120)}`); // зачем: причина пустого code_changed_at
+        }
+        const rawIso = rawStat.mtime.toISOString();
+        const staleVsCode = codeChangedAt !== 'неизвестно' && new Date(codeChangedAt).getTime() > rawStat.mtimeMs ? 'КАДР_СТАРШЕ_КОДА' : 'кадр_не_старше_кода';
+        console.log(`[RESTITCH] ${id} raw_shot_at=${rawIso} code_changed_at=${codeChangedAt} ${staleVsCode}`); // guard-ok: время голого кадра для проверки свежести
+        detail = `raw_shot_at=${rawIso} code_changed_at=${codeChangedAt} ${staleVsCode}`;
         const stitched = stitchEvidence(id, bare, outDir);
+        if (stitched.ok) fs.utimesSync(target, rawStat.atime, rawStat.mtime); // склейка наследует время голого кадра, а не «сейчас»
         const after = pngSize(fs.readFileSync(target));
-        if (stitched.ok && after && !(after.width === bareW && after.height === bareH)) { result = 'stitched'; detail = `склейка_${after.width}x${after.height}`; }
+        if (stitched.ok && after && !(after.width === bareW && after.height === bareH)) { result = 'stitched'; detail = `склейка_${after.width}x${after.height} ${detail}`; }
         else { result = 'failed'; detail = `склейка_не_удалась: ${stitched.reason || 'размер не изменился'} — исходный голый кадр оставлен на месте`; }
       }
     }

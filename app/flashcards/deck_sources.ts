@@ -360,17 +360,72 @@ async function persistCommunityPackCards(packId: string, cards: CardItem[]): Pro
   }
 }
 
+// зачем (координатор 13.10, смета Firebase №6): копия набора освежалась фоном на КАЖДОМ фокусе хаба и старте тренировки
+// (защита только 3 с) — K чтений Firestore за заход. Человек всё равно видит сохранённую копию сразу; правки автора набора
+// редки. Освежаем не чаще раза в 6 ч на набор; одновременные обновления склеиваются; неудача не запоминается.
+const COMMUNITY_PACK_REFRESH_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
+const COMMUNITY_PACK_REFRESHED_KEY_PREFIX = 'fc_community_pack_cards_refreshed_v1:';
+const communityPackRefreshedAt = new Map<string, number>();
+const communityPackRefreshInFlight = new Map<string, Promise<void>>();
+
+/** Только для тестов. */
+export function __resetCommunityPackRefreshThrottleForTests(): void {
+  communityPackRefreshedAt.clear();
+  communityPackRefreshInFlight.clear();
+}
+
+async function readCommunityPackRefreshedAt(packId: string): Promise<number | null> {
+  const inMemory = communityPackRefreshedAt.get(packId);
+  if (inMemory !== undefined) return inMemory;
+  try {
+    const raw = await AsyncStorage.getItem(`${COMMUNITY_PACK_REFRESHED_KEY_PREFIX}${packId}`);
+    const at = raw ? Number(raw) : NaN;
+    return Number.isFinite(at) && at > 0 ? at : null;
+  } catch (error: unknown) {
+    console.warn(`[FC-DECKS] pack:${packId} метка обновления не прочиталась — освежаем`, error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
 /** Фоновое обновление копии: экран его не ждёт, следующий заход получит свежие карточки. */
 async function refreshPersistedCommunityPackCards(
   packId: string,
   fetch: (id: string) => Promise<CardItem[]>,
+  nowMs: () => number = Date.now,
 ): Promise<void> {
-  try {
-    const fresh = await fetch(packId);
-    if (fresh.length > 0) await persistCommunityPackCards(packId, fresh);
-  } catch (error: unknown) {
-    console.warn(`[FC-DECKS] pack:${packId} фоновое обновление копии не удалось —`, error instanceof Error ? error.message : String(error));
+  const running = communityPackRefreshInFlight.get(packId);
+  if (running) {
+    console.log(`[FC-DECKS] pack:${packId} фоновое обновление уже идёт — присоединяемся`);
+    return running;
   }
+  const run = (async () => {
+    const now = nowMs();
+    const refreshedAt = await readCommunityPackRefreshedAt(packId);
+    const ageMs = refreshedAt === null ? null : now - refreshedAt;
+    if (ageMs !== null && ageMs >= 0 && ageMs < COMMUNITY_PACK_REFRESH_MIN_INTERVAL_MS) {
+      communityPackRefreshedAt.set(packId, refreshedAt as number);
+      console.log(`[FC-DECKS] pack:${packId} копия свежая (${Math.round(ageMs / 60000)} мин) — без сети`);
+      return;
+    }
+    try {
+      const fresh = await fetch(packId);
+      if (fresh.length > 0) {
+        await persistCommunityPackCards(packId, fresh);
+        communityPackRefreshedAt.set(packId, now);
+        await AsyncStorage.setItem(`${COMMUNITY_PACK_REFRESHED_KEY_PREFIX}${packId}`, String(now)).catch((error: unknown) => {
+          console.warn(`[FC-DECKS] pack:${packId} метка обновления не записалась —`, error instanceof Error ? error.message : String(error));
+        });
+      } else {
+        console.log(`[FC-DECKS] pack:${packId} фоновое обновление вернуло 0 карточек — копию не трогаем, метку не ставим`);
+      }
+    } catch (error: unknown) {
+      console.warn(`[FC-DECKS] pack:${packId} фоновое обновление копии не удалось —`, error instanceof Error ? error.message : String(error));
+    }
+  })().finally(() => {
+    communityPackRefreshInFlight.delete(packId);
+  });
+  communityPackRefreshInFlight.set(packId, run);
+  return run;
 }
 
 /**

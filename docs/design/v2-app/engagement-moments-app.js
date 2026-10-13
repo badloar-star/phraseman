@@ -78,7 +78,7 @@
   const plusSheet = (o = {}) => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:12px"><span class="tile" style="width:52px;height:52px;border-radius:16px;background:var(--control);display:inline-flex;align-items:center;justify-content:center;box-shadow:var(--sh2)">${io(o.icon || 'flash', 24)}</span><span class="chip lvl">${o.ctx || 'Энергия'}</span></div>
     <div class="h-md" style="margin-top:16px;font-size:27px;line-height:32px">${o.title || 'Энергия закончилась'}</div><div class="p" style="margin-top:8px">${o.sub || 'Plus — занятия без ожидания энергии.'}</div>
     <div class="sf" style="margin-top:16px;padding:12px 14px;display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600">${io('check', 18, 'color:var(--acc)')}${o.benefit || 'Энергия не кончается'}</div>
-    <div class="cta" style="margin-top:16px"><span class="two">${o.cta || 'Попробовать Plus'}<span class="sub">${o.fine || 'пробный период — как даёт магазин · потом ≈ €4,99/мес'}</span></span></div>${o.secondary ? `<div class="cta ghost">${o.secondary}</div>` : ''}</div>`;
+    <div class="cta" style="margin-top:16px"><span class="two">${o.cta || 'Попробовать Plus'}<span class="sub">${o.fine || 'пробный период из магазина · ≈ €4,99/мес'}</span></span></div>${o.secondary ? `<div class="cta ghost">${o.secondary}</div>` : ''}</div>`;
 
   window.EMA = { IO, io, coin, coinUrl, play, hap, playBeats, soundToggle, tabbar, energy, coinsPill, homeUnder, spireUnder, stepUnder, lessonUnder, doneUnder, dialogsUnder, briefUnder, plusSheet, towerWindow, towerSvg, LEAGUES_RU };
   // замена кнопки «тема» на реальные названия и подключение звука/тайм-листа к ▶ Повторить

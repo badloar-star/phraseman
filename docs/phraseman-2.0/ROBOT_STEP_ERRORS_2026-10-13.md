@@ -1,6 +1,6 @@
 # Ошибки шагов робота (step_target_not_found) — Сверка, обновляется после каждой пачки
 
-Сформировано 13.10 01:28. Дерево экрана при ошибке робот не сохраняет; путь к журналу пачки — в колонке «пачка». «Снято позже» — id потом снялся ok (ошибку исправили).
+Сформировано 13.10 01:45. Дерево экрана при ошибке робот не сохраняет; путь к журналу пачки — в колонке «пачка». «Снято позже» — id потом снялся ok (ошибку исправили).
 
 | id | шаг / селектор | пачка (журнал) | статус |
 |---|---|---|---|
@@ -8,7 +8,7 @@
 | dialogs-006 | `#dialogue-v2-world-toggle-*` | C:/Temp/claude/sv/ROBOT_N10.txt | ОТКРЫТО |
 | dialogs-015 | `#dialogue-v2-translate-*` | C:/Temp/claude/sv/ROBOT_BIG2.txt | ОТКРЫТО |
 | dialogs-016 | `#dialogue-v2-prepared-bot-voice-*` | C:/Temp/claude/sv/ROBOT_BIG2.txt | ОТКРЫТО |
-| dialogs-017 | `#dialogue-v2-session-hint` | C:/Temp/claude/sv/ROBOT_N5.txt | снято позже (ROBOT_BIG2.txt) |
+| dialogs-017 | `#dialogue-v2-session-hint` | C:/Temp/claude/sv/ROBOT_N5.txt | снято позже (ROBOT_N12.txt) |
 | dialogs-018 | `#dialogue-v2-session-goals` | C:/Temp/claude/sv/ROBOT_N5.txt | снято позже (ROBOT_BIG2.txt) |
 | dialogs-019 | `#dialogue-v2-why-*` | C:/Temp/claude/sv/ROBOT_BIG2.txt | ОТКРЫТО |
 | dialogs-020 | `#dialogue-v2-why-*` | C:/Temp/claude/sv/ROBOT_BIG2.txt | ОТКРЫТО |

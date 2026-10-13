@@ -366,13 +366,15 @@ const brief = (o = {}) => phone(`
   <div class="bcard" style="padding:6px 18px 8px;margin-top:13px"><div class="k" style="padding:12px 0 4px">Задания</div>${objList(0)}</div>`,
   { time: '13:01', fixed: `<div class="fx">${o.rank ? `<div class="cta dis">${icon('lockF', 's20')}Откроется на ранге 3</div><div class="sub flex" style="justify-content:center;gap:8px">Сейчас ранг 1 ${coinImg(1, 18)}</div>` : `<div class="cta t">Начать диалог<span class="ar">${icon('arrowR', 's20')}</span></div>`}</div>`, ...(o.overlay ? { overlay: o.overlay } : {}) });
 const consentSheet = () => sheet('c', `
-  <div class="scene"><span class="bb">Hi! What can I get you?</span><span class="bb me">A cappuccino, please</span></div>
-  <div style="font-size:16px;line-height:22px;color:var(--sec);margin-top:18px">Попробуй ответить собеседнику в выбранной ситуации. Здесь можно искать слова и начинать фразу заново — это практика, а не собеседование.</div>
-  <div style="font-size:24px;line-height:30px;font-weight:700;margin-top:18px">Включить AI-диалоги?</div>
-  <div style="font-size:17px;line-height:24px;margin-top:10px">Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</div>
-  <div style="font-size:17px;line-height:24px;margin-top:10px">Можно выключить в настройках в любой момент.</div>
+  <!-- зачем (координатор 13.10, dialogs-009; код DialogueConsentChatReplay): вместо иллюстрации — подготовленный «реплей» диалога из трёх реплик (повторяется по кругу, запросов не шлёт), метка «AI», абзацы: первый яркий, остальные приглушены -->
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="bb t" style="align-self:flex-start;padding:12px 16px;border-radius:16px;background:#2C2C2E;font-size:18px">Ты уже выбрал место?</span><span class="bb t" style="align-self:flex-end;padding:12px 16px;border-radius:16px;background:var(--acc);color:var(--on);font-size:18px">Давай сравним два варианта.</span><span class="bb t" style="align-self:flex-start;padding:12px 16px;border-radius:16px;background:#2C2C2E;font-size:18px">Хорошо, пришлю детали.</span></div>
+  <div style="margin-top:14px"><span class="pill s" style="height:24px;padding:0 8px;font-size:12px;font-weight:800;background:color-mix(in srgb, var(--acc) 30%, #1D1D1F);color:var(--acc)">AI</span></div>
+  <div style="font-size:24px;line-height:30px;font-weight:700;margin-top:8px">Включить AI-диалоги?</div>
+  <div style="font-size:17px;line-height:24px;margin-top:10px">Попробуй ответить собеседнику в выбранной ситуации. Здесь можно искать слова и начинать фразу заново — это практика, а не собеседование.</div>
+  <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:14px">Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</div>
+  <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:10px">Можно выключить в настройках в любой момент.</div>
   <div class="cta t" style="margin-top:24px" data-close>Включить</div>
-  <div class="cta gh t" style="margin-top:10px" data-close>Не сейчас</div>`, true);
+  <div class="cta gh t" style="margin-top:10px;border-color:transparent" data-close>Не сейчас</div>`, true);
 const gateOff = () => phone(`
   <div class="flex"><span class="rb l t">${icon('back', 's20')}</span></div>
   <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">AI-диалоги выключены</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>

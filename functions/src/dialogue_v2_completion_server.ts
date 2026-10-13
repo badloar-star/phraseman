@@ -13,6 +13,7 @@ import {
   authorizeDialogueV2ServerPacket,
   type DialogueV2ServerRelease,
 } from './dialogue_v2_server_authorization';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 const MAX_HISTORY_TURNS = 40;
 const MAX_TURN_CHARS = 600;
@@ -261,7 +262,8 @@ export async function executeDialogueV2CompletionReview(
   let release: DialogueV2ServerRelease | null;
   try {
     release = await dependencies.resolveRelease();
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_completion_server:resolve_release', cause);
     throw new DialogueV2CompletionServerError('release_unavailable');
   }
   const packet = authorizeDialogueV2ServerPacket({
@@ -289,7 +291,8 @@ export async function executeDialogueV2CompletionReview(
       systemPrompt: completionSystemPrompt(packet, safeInterfaceLanguage),
       transcriptJson: JSON.stringify(ledger.transcript),
     });
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_completion_server:provider', cause);
     throw new DialogueV2CompletionServerError('provider_failed');
   }
   const parsed = parseFeedback(generated);

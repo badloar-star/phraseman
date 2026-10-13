@@ -15,6 +15,7 @@
  * чистые функции покрыты unit-тестами без сети и Firestore.
  */
 import * as admin from 'firebase-admin';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 // ── Константы политики ────────────────────────────────────────────────────────
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -399,7 +400,8 @@ export async function fetchExpiredTokenUids(
       }
     }
     return expiredUids;
-  } catch {
+  } catch (cause) {
+    reportCauseServer('re_engage_push:expired_receipts', cause);
     return [];
   }
 }

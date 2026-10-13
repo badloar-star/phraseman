@@ -8,6 +8,7 @@ import {
 import { DIALOGUE_V2_CATALOGUE_INDEX } from '../../shared/dialogue_v2_catalogue_index';
 import { validateDialogueV2ReleaseCoverage } from '../../shared/dialogue_v2_release_coverage_contract';
 import { verifyDialogueV2PackSha256 } from './dialogue_v2_pack_integrity';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 /**
  * Immutable, server-owned V2 release data. Request fields select a packet;
@@ -257,7 +258,8 @@ export function authorizeDialogueV2ServerLanguagePacks(
     return packets.length === DIALOGUE_V2_CATALOGUE_INDEX.length
       ? Object.freeze(packets)
       : null;
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_authorization:release_packets', cause);
     return null;
   }
 }
@@ -295,7 +297,8 @@ export function authorizeDialogueV2ServerCatalogue(
     return Object.freeze({
       packets: Object.freeze(packets),
     });
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_authorization:release_snapshot', cause);
     return null;
   }
 }
@@ -327,7 +330,8 @@ export function authorizeDialogueV2ServerPacket(
     const packet = candidate as DialogueV2LanguagePack;
     if (packet.studyTarget !== studyTarget || packet.scenario.id !== scenarioId) return null;
     return cloneAuthorizedPacket(packet);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_authorization:packet', cause);
     // Runtime release data is an authorization boundary. Malformed objects,
     // authoring ledgers and hostile accessors must fail closed, never crash.
     return null;

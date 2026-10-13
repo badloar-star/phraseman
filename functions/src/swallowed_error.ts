@@ -43,3 +43,30 @@ export function swallowed<T>(tag: string, fallback: T): (error: unknown) => T {
     return fallback;
   };
 }
+
+// зачем (координатор 13.10, SERVER_SILENT_CATCH_R1): в Диалогах и пушах catch подменял исходную ошибку кодом категории
+// (release_unavailable, provider_failed, session_not_found…) — в журнале было «что», но не «почему» (ответ Firestore/OpenAI).
+// Пишем причину одной строкой, БЕЗ изменения поведения. Без личных данных: куски 20+ букв/цифр (uid, id документов, токены)
+// маскируются; для разбора текста модели (omitMessage) сообщение не пишется вовсе — в нём фрагмент реплики.
+export const SERVER_CAUSE_PREFIX = '[SERVER-CAUSE]';
+
+export function maskServerCauseText(text: string): string {
+  return text.replace(/[A-Za-z0-9_-]{20,}/g, '…').slice(0, MAX_MESSAGE_CHARS);
+}
+
+export function reportCauseServer(
+  tag: string,
+  error: unknown,
+  opts: Readonly<{ omitMessage?: boolean; extra?: Readonly<Record<string, string | number | boolean>> }> = {},
+): void {
+  try {
+    const { code } = describe(error);
+    const name = error instanceof Error ? error.name.slice(0, 64) : typeof error;
+    const fields: Record<string, unknown> = { tag, code, name, ...(opts.extra ?? {}) };
+    if (!opts.omitMessage) fields.message = maskServerCauseText(describe(error).message);
+    logger.warn(`${SERVER_CAUSE_PREFIX} ${tag}`, fields);
+  } catch (loggerError) {
+    // eslint-disable-next-line no-console
+    console.warn(`${SERVER_CAUSE_PREFIX} logger_failed ${tag}`, String(loggerError).slice(0, 120));
+  }
+}

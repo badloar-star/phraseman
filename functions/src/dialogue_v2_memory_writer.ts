@@ -20,6 +20,7 @@ import {
   authorizeDialogueV2ServerPacket,
   type DialogueV2ServerRelease,
 } from './dialogue_v2_server_authorization';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 /**
  * Pure boundary for a future server persistence adapter.
@@ -983,7 +984,8 @@ export async function prepareDialogueV2CompletionMemory(
         studyTarget as DialogueV2MemoryStudyTarget,
         scenarioId,
       );
-    } catch {
+    } catch (cause) {
+      reportCauseServer('dialogue_v2_memory_writer:release', cause);
       throw new HttpsError('failed-precondition', 'dialogue_v2_memory_release_unavailable');
     }
   }
@@ -1016,7 +1018,8 @@ export async function prepareDialogueV2CompletionMemory(
     stableAccountId = await dependencies.resolveStableAccountId(authUid);
     if (!safeDocumentSegment(stableAccountId, 256)) throw new Error('identity_invalid');
     isPremium = await dependencies.resolvePremiumAccess(stableAccountId, authUid);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_writer:identity_or_premium', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_identity_unavailable');
   }
   if (typeof isPremium !== 'boolean') {
@@ -1121,7 +1124,8 @@ export async function executeDialogueV2MemoryWrite(
         scenarioId,
       ),
     ]);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_writer:identity_bundle', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_identity_unavailable');
   }
   if (typeof isPremium !== 'boolean') {
@@ -1219,14 +1223,16 @@ export async function executeDialogueV2MemoryRead(
   try {
     stableAccountId = await dependencies.resolveStableAccountId(authUid);
     if (!safeDocumentSegment(stableAccountId, 256)) throw new Error('identity_invalid');
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_writer:identity', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_identity_unavailable');
   }
 
   let isPremium: boolean;
   try {
     isPremium = await dependencies.resolvePremiumAccess(stableAccountId, authUid);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_writer:entitlement', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_entitlement_unavailable');
   }
   if (typeof isPremium !== 'boolean') {
@@ -1239,7 +1245,8 @@ export async function executeDialogueV2MemoryRead(
   let release: DialogueV2ServerRelease | null;
   try {
     release = await dependencies.resolveRelease();
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_writer:resolve_release', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_release_unavailable');
   }
   if (!release) {

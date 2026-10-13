@@ -8,6 +8,7 @@ import {
 import type {
   DialogueV2StudyTarget,
 } from '../../shared/dialogue_v2_language_pack_contract';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 const SESSION_ID_RE = /^d2s_[A-Za-z0-9_-]{32,96}$/;
 const TURN_ID_RE = /^d2t_[A-Za-z0-9_-]{16,80}$/;
@@ -438,7 +439,8 @@ function parseGeneratedAssessment(
   let parsed: unknown;
   try {
     parsed = JSON.parse(raw.trim().replace(/^```(?:json)?\s*/iu, '').replace(/\s*```$/u, ''));
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_completion:feedback_not_json', cause, { omitMessage: true, extra: { length: raw.length } });
     return null;
   }
   const assessment = exactRecord(parsed);
@@ -600,7 +602,8 @@ export async function executeDialogueV2SessionCompletion(
     release = createDialogueV2SessionCompletionReleaseSnapshot(
       await dependencies.resolveReleasedPacket(input.studyTarget, input.scenarioId),
     );
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_completion:resolve_release', cause);
     release = null;
   }
   if (!release || release.studyTarget !== input.studyTarget || release.scenarioId !== input.scenarioId) {
@@ -609,7 +612,8 @@ export async function executeDialogueV2SessionCompletion(
   let stored: unknown | null;
   try {
     stored = await dependencies.readSession(input.sessionId);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_completion:read_session', cause);
     throw new DialogueV2SessionCompletionError('session_not_found');
   }
   if (stored === null) throw new DialogueV2SessionCompletionError('session_not_found');

@@ -20,6 +20,7 @@ import {
   type DialogueV2MemorySummary,
   type DialogueV2MemoryWriteTrustedContext,
 } from './dialogue_v2_memory_writer';
+import { reportCauseServer } from './swallowed_error'; // зачем (координатор 13.10): причина сбоя в журнале, поведение прежнее
 
 const STUDY_TARGETS: ReadonlySet<string> = new Set(['en', 'es', 'fr', 'de']);
 const EMPTY_SUMMARY = Object.freeze({
@@ -367,14 +368,16 @@ async function authorizeManagementRequest(
   try {
     stableAccountId = await dependencies.resolveStableAccountId(authUid);
     if (!safeDocumentSegment(stableAccountId, 256)) throw new Error('identity_invalid');
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_management:identity', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_identity_unavailable');
   }
 
   let isPremium: boolean;
   try {
     isPremium = await dependencies.resolvePremiumAccess(stableAccountId, authUid);
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_management:entitlement', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_entitlement_unavailable');
   }
   if (isPremium !== true) {
@@ -388,7 +391,8 @@ async function authorizeManagementRequest(
       stableAccountId,
       dependencies.identifierSecret,
     );
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_management:release', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_release_unavailable');
   }
   const languageAuthorization = canonicalLanguageAuthorization(unresolvedAuthorization, studyTarget);
@@ -421,7 +425,8 @@ async function authorizeClearRequest(
   try {
     stableAccountId = await dependencies.resolveStableAccountId(authUid);
     if (!safeDocumentSegment(stableAccountId, 256)) throw new Error('identity_invalid');
-  } catch {
+  } catch (cause) {
+    reportCauseServer('dialogue_v2_memory_management:identity_clear', cause);
     throw new HttpsError('failed-precondition', 'dialogue_v2_memory_identity_unavailable');
   }
 

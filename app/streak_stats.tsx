@@ -2216,6 +2216,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 ru: 'Не удалось включить заморозку. Попробуй ещё раз.',
                 uk: 'Не вдалося увімкнути заморозку. Спробуй ще раз.',
                 es: 'No se pudo activar la congelación. Inténtalo de nuevo.', en: 'Couldn\'t turn on the freeze. Try again.',
+                'pt-BR': 'Não foi possível ativar o congelamento. Tente de novo.', vi: 'Không bật được đóng băng chuỗi. Hãy thử lại.', id: 'Pembekuan streak tidak bisa diaktifkan. Coba lagi.', tr: 'Seri dondurma açılamadı. Tekrar dene.', pl: 'Nie udało się włączyć zamrożenia serii. Spróbuj ponownie.',
             }));
         } finally {
             freezeInFlightRef.current = false;

@@ -1,7 +1,7 @@
 {
   "totals": {
     "literals": 1318,
-    "incomplete": 9
+    "incomplete": 0
   },
   "files": {
     "app/(tabs)/friends.tsx": {
@@ -300,10 +300,6 @@
       "literals": 6,
       "incomplete": 0
     },
-    "app/mistake_practice_session.tsx": {
-      "literals": 0,
-      "incomplete": 2
-    },
     "app/nickname_change_helpers.ts": {
       "literals": 26,
       "incomplete": 0
@@ -380,10 +376,6 @@
       "literals": 26,
       "incomplete": 0
     },
-    "app/settings_edu.tsx": {
-      "literals": 0,
-      "incomplete": 2
-    },
     "app/settings_notifications.tsx": {
       "literals": 2,
       "incomplete": 0
@@ -394,7 +386,7 @@
     },
     "app/streak_stats.tsx": {
       "literals": 4,
-      "incomplete": 1
+      "incomplete": 0
     },
     "app/tap_latency_trace.ts": {
       "literals": 5,
@@ -451,10 +443,6 @@
     "app/youtube_seek_controller.ts": {
       "literals": 2,
       "incomplete": 0
-    },
-    "components/AddToFlashcard.tsx": {
-      "literals": 0,
-      "incomplete": 4
     },
     "components/DailyPhraseCard.tsx": {
       "literals": 1,

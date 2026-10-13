@@ -1156,6 +1156,7 @@ function MistakePracticeSessionScreen() {
         ru: 'Не удалось скрыть ошибку. Попробуй ещё раз.',
         uk: 'Не вдалося приховати помилку. Спробуй ще раз.',
         es: 'No se pudo ocultar el error. Inténtalo de nuevo.', en: 'Couldn\'t hide the mistake. Try again.',
+        'pt-BR': 'Não foi possível ocultar o erro. Tente de novo.', vi: 'Không ẩn được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa disembunyikan. Coba lagi.', tr: 'Hata gizlenemedi. Tekrar dene.', pl: 'Nie udało się ukryć błędu. Spróbuj ponownie.',
       }));
     } finally {
       submissionLatchRef.current = false;
@@ -1204,6 +1205,7 @@ function MistakePracticeSessionScreen() {
         ru: 'Не удалось вернуть ошибку. Попробуй ещё раз.',
         uk: 'Не вдалося повернути помилку. Спробуй ще раз.',
         es: 'No se pudo restaurar el error. Inténtalo de nuevo.', en: 'Couldn\'t restore the mistake. Try again.',
+        'pt-BR': 'Não foi possível restaurar o erro. Tente de novo.', vi: 'Không khôi phục được lỗi. Hãy thử lại.', id: 'Kesalahan tidak bisa dikembalikan. Coba lagi.', tr: 'Hata geri getirilemedi. Tekrar dene.', pl: 'Nie udało się przywrócić błędu. Spróbuj ponownie.',
       }));
     } finally {
       submissionLatchRef.current = false;

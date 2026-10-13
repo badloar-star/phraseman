@@ -188,6 +188,7 @@ function AddToFlashcard({
               setSaved(true);
               emitAppEvent('action_toast', actionToastTri('error', {
                 ru: 'Не удалось убрать карточку. Попробуй ещё раз.', uk: 'Не вдалося прибрати картку. Спробуй ще раз.', en: "Couldn't remove the card. Try again.", es: 'No se pudo quitar la tarjeta. Inténtalo de nuevo.',
+                'pt-BR': 'Não foi possível remover o cartão. Tente de novo.', vi: 'Không bỏ được thẻ. Hãy thử lại.', id: 'Kartu tidak bisa dihapus. Coba lagi.', tr: 'Kart kaldırılamadı. Tekrar dene.', pl: 'Nie udało się usunąć fiszki. Spróbuj ponownie.',
               }));
             } else if (source === 'daily_phrase') {
               void setDailyPhraseSavedOnServerForTarget(sourceId, false, activeStudyTarget);
@@ -197,6 +198,7 @@ function AddToFlashcard({
             setSaved(true);
             emitAppEvent('action_toast', actionToastTri('error', {
                 ru: 'Не удалось убрать карточку. Попробуй ещё раз.', uk: 'Не вдалося прибрати картку. Спробуй ще раз.', en: "Couldn't remove the card. Try again.", es: 'No se pudo quitar la tarjeta. Inténtalo de nuevo.',
+                'pt-BR': 'Não foi possível remover o cartão. Tente de novo.', vi: 'Không bỏ được thẻ. Hãy thử lại.', id: 'Kartu tidak bisa dihapus. Coba lagi.', tr: 'Kart kaldırılamadı. Tekrar dene.', pl: 'Nie udało się usunąć fiszki. Spróbuj ponownie.',
               }));
           } finally {
             inFlightRef.current = false;
@@ -248,6 +250,7 @@ function AddToFlashcard({
               setSaved(false);
               emitAppEvent('action_toast', actionToastTri('error', {
                 ru: 'Не удалось сохранить карточку. Попробуй ещё раз.', uk: 'Не вдалося зберегти картку. Спробуй ще раз.', en: "Couldn't save the card. Try again.", es: 'No se pudo guardar la tarjeta. Inténtalo de nuevo.',
+                'pt-BR': 'Não foi possível salvar o cartão. Tente de novo.', vi: 'Không lưu được thẻ. Hãy thử lại.', id: 'Kartu tidak bisa disimpan. Coba lagi.', tr: 'Kart kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać fiszki. Spróbuj ponownie.',
               }));
             }
           } catch (error: unknown) {
@@ -255,6 +258,7 @@ function AddToFlashcard({
             setSaved(false);
             emitAppEvent('action_toast', actionToastTri('error', {
                 ru: 'Не удалось сохранить карточку. Попробуй ещё раз.', uk: 'Не вдалося зберегти картку. Спробуй ще раз.', en: "Couldn't save the card. Try again.", es: 'No se pudo guardar la tarjeta. Inténtalo de nuevo.',
+                'pt-BR': 'Não foi possível salvar o cartão. Tente de novo.', vi: 'Không lưu được thẻ. Hãy thử lại.', id: 'Kartu tidak bisa disimpan. Coba lagi.', tr: 'Kart kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać fiszki. Spróbuj ponownie.',
               }));
           } finally {
             inFlightRef.current = false;

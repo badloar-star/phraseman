@@ -207,6 +207,7 @@ export default function SettingsEdu() {
       void applyUserSettingsNow(reverted);
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.', id: 'Pengaturan tidak bisa disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
       }));
     });
   };
@@ -330,6 +331,7 @@ export default function SettingsEdu() {
       revert();
       emitAppEvent('action_toast', actionToastTri('error', {
         ru: 'Не удалось сохранить настройку. Попробуй ещё раз.', uk: 'Не вдалося зберегти налаштування. Спробуй ще раз.', en: "Couldn't save the setting. Try again.", es: 'No se pudo guardar el ajuste. Inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível salvar a configuração. Tente de novo.', vi: 'Không lưu được cài đặt. Hãy thử lại.', id: 'Pengaturan tidak bisa disimpan. Coba lagi.', tr: 'Ayar kaydedilemedi. Tekrar dene.', pl: 'Nie udało się zapisać ustawienia. Spróbuj ponownie.',
       }));
     }
   };

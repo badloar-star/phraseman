@@ -26,5 +26,16 @@ paywalls-019, paywalls-023. Во всех журналах `[I18N-FALLBACK]` —
 | profile-006 (Уведомления) | Заголовки разделов «Study» / «Recaps» строчными 13 px, в Настройках — «PHRASEMAN PLUS» / «HELP» прописными. Макет: `.eyebrow` — 11 px, letter-spacing 1.7, **uppercase** (`docs/design/v2-app/extension.css:38`, группы `profile.html:34`) → расхождение с макетом и в русском («Учёба», «Итоги») | `app/settings_notifications.tsx:428` (`sectionTitleStyle`: fontSize 13, нет textTransform) | Авторизация — правка вида, гейт паритета: не трогал без слова Сверки/координатора (2 свойства: fontSize 11, textTransform uppercase) |
 | profile-004 | Кадр — шторка «Learning language» поверх «Interface language», а в EN_PASS_ORDER у строки написано «профиль: карточка, ранги» | описание строки в EN_PASS_ORDER_R1 | моя неточность описания — языковых дыр на кадре нет |
 
-Ещё не сняты (жду кадров): profile-011/003, settings-gap-024, settings-gap-028, system-015,
-auth-gap-001/003/008/009/010, settings-gap-016, profile-012, en-d164-lang-choice-001.
+**Дополнение 04:45** — profile-011 (политика, английский текст October 12), profile-003 и settings-gap-024 (имя, «Checking the
+name…»), settings-gap-028, system-015, en-d164-lang-choice-001: `[I18N-FALLBACK]` 0.
+
+| Кадр | Что не так | Где | Чьё / статус |
+|---|---|---|---|
+| system-015 | 🔴 Строка опроса в «Today» по-русски на английском интерфейсе: «Успехи друзей мотивируют …» / «Экран друзей показывает уровни …». Текст приходит с сервера (`getActiveShardSurvey`), клиент просит `lang=en`; боевой сервер подставляет русский, если английского нет | клиент: `hooks/use_home_survey_entry.ts:142`, `app/home_survey_entry.ts:113`; сервер: `functions/src/shard_survey.ts:160–192` | **уже исправлено в коде e4f45f8e3** (12.10: без текста на языке человека опрос не предлагается, `[SHARD-SURVEY] reason=no_locale`), но `shard_survey.ts` по плану выкладывается только в день релиза (DEPLOY_MORNING) — до выкладки на английском будет русская строка |
+| system-015 | Кадр — Главная (низ «Today»), а не «входящие (пусто)», как в описании строки | ссылка/шаги system-015 | Сверка/робот — шаги |
+| system-015 | «Phrase of the day: Chew the fat — Жевать жир.» — перевод фразы по-русски | — | так задумано: перевод на родной язык (ru), интерфейс en — подмена только интерфейса; не дыра |
+| settings-gap-028 | Кадр — экран «Notifications» без окна выбора времени — шаг открытия окна не сработал | шаги settings-gap-028 | Сверка/робот |
+| settings-gap-028, profile-006 | Заголовки «Study/Recaps» — исправлено по слову координатора: `SettingsGlassEyebrow` + прописные на 9 языках (13 px по D145 вместо 11 макета) | `app/settings_notifications.tsx` | коммит в окно 05:00; profile-006 переснять |
+| en-d164-lang-choice-001 | Шторка «Learning language» поверх «Interface language» — это и есть переход D164; текст чистый | — | ок |
+
+Ещё не сняты (жду кадров): auth-gap-001/003/008/009/010, settings-gap-016, profile-012.

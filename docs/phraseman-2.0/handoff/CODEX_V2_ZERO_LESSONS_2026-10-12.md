@@ -102,3 +102,4 @@ seed бандла зависит только от `interfaceLocale`. Зачем
 - **(в) `cacheDirectory`** на каждый вызов создаёт `Directory`/`File` (`__native_constructor__` 50–80 мс в окне). Вынести в модульную константу или ленивый кэш.
 
 Проверка после ваших правок — тот же профиль через Сверку: в окне +5…+15 с не должно остаться стэков `resolvePreparedLearningV2VoiceAudioOfflineFileV1` / `hashCanonicalBody` при готовом кэше.
+- (координатор 13.10 01:1x) Обновление: в `modules/learning-v2/modes/mode_feedback_v1.tsx` литералов цвета уже **11** (было 5) и **1** новая обводка контейнера (`tests/shadow_style_no_container_borders`). Оба храповика красные только из-за этого файла — остальной код чист. Цвета — токены темы (`g.text`/`g.opaqueCard`/`g.hairlineSoft`/`g.mediaInk`) или `// theme-exempt: причина`; обводку — тоном/тенью («Тень»).

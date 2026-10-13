@@ -269,6 +269,18 @@ const baseMenuStyles = StyleSheet.create({
   found: { fontSize: 16, lineHeight: 21, fontWeight: '600', marginTop: 10 },
 });
 
+const packDeckRowLogged = new Set<string>();
+const PACK_DECK_ROW_LOG_CAP = 60;
+/** [PACK-DECK] row: что пришло в строку набора (поле previewWords, его длина и слова) и сколько чипов будет нарисовано; один раз на набор и длину, потолок строк за запуск. */
+function logPackDeckRowOnce(pack: FlashcardMarketPack, drawn: readonly string[]): void {
+  const raw = (pack as { previewWords?: unknown }).previewWords;
+  const rawLen = Array.isArray(raw) ? raw.length : -1;
+  const key = `${pack.id}:${rawLen}:${drawn.length}`;
+  if (packDeckRowLogged.has(key) || packDeckRowLogged.size >= PACK_DECK_ROW_LOG_CAP) return;
+  packDeckRowLogged.add(key);
+  console.log('[PACK-DECK] row', JSON.stringify({ id: pack.id, cardCount: pack.cardCount, hasPreviewField: Array.isArray(raw), previewLen: rawLen, drawn: drawn.length, words: drawn })); // guard-ok: диагностика cards-v2-025, один раз на набор и длину
+}
+
 /**
  * Плашка набора сообщества (community-redesign.html #c1, общий PackRow): плитка-счётчик, название и «Топ»,
  * автор и ♥ · 👥 · 💬, справа «+». Открывается и БЕЗ добавления — в режиме просмотра;
@@ -281,6 +293,9 @@ function CommunityPackRowBase({
   // зачем (журнал 4–5): официальный набор ролика → «Professor Lingman» без чтения public_profiles; иначе ник и монета ранга.
   const author = useCommunityAuthor(pack, uiLang);
   const title = packTitleForInterface(pack, titleLang) || packHubCodeName(pack);
+  // зачем (cards-v2-025, координатор 13.10: «в строке 1 слово, у демо-наборов по 3» — сначала лог, что приходит в строку): сколько слов превью пришло в строку и сколько чипов будет нарисовано. Один раз на набор и длину.
+  const deckWords = packDeckWords(pack);
+  logPackDeckRowOnce(pack, deckWords);
   const addLabel = triLang(uiLang, {
     ru: 'Добавить себе', uk: 'Додати собі', en: 'Add to mine', es: 'Añadir',
     'pt-BR': 'Adicionar', vi: 'Thêm vào của tôi', id: 'Tambahkan', tr: 'Bana ekle', pl: 'Dodaj do siebie',
@@ -300,7 +315,7 @@ function CommunityPackRowBase({
       accessibilityLabel={`${title}, ${author.name}, ${pack.cardCount} ${packCardsWord(uiLang, pack.cardCount)}`}
       count={pack.cardCount}
       level={packDeckLevel(pack)}
-      words={packDeckWords(pack)}
+      words={deckWords}
       author={{ name: author.name, coinRank: author.coinRank }}
       highlight={highlight}
       emphasis={emphasis}

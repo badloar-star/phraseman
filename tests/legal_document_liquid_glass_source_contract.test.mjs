@@ -41,8 +41,10 @@ const LEGAL_FILES = [
   // 12.10 (поздно ночью, решение владельца п.81(14)): абзац «Support diagnostics» — журнал поддержки включён, срок и удаление названы.
   // 12.10 (поздно ночью, решение владельца п.81(5)): наложен handoff/legal_r1_policy_additions.patch — пункты 1–3 (Ядро/Дизайн) и 4 (удаление аккаунта: кэш при следующем запуске, автоповтор гостя, доска идей).
   // 12.10 (ночью, решения советника по PRIVACY_R1_GAP): §3/§4/§5/§6/§10/§11/§12 — аварийная копия, вход по коду, Шпиль и компьютерные участники, ИИ-проверка наборов и черновики ответов, состав обращения, язык и пояс при push, свободный чат; дата 12 октября.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '0fb36b81b68ababa0864b49b71f6c5b5f021f3aa84d7a5c67fa4f1201264ba4c'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '0f6aaed0c3616ff195994f8d971994402afd04e6478544e4635c4dc3cbdf241d'],
+  // 13.10 (решение владельца, вопрос 13 «Да, все 3 правки»): PRIVACY_R1_PATCH — §10 «most recent entries», §13 голос в Диалогах
+  // остаётся на телефоне, уходит только текст (Android — системный распознаватель), §19/§20 запись о выполненном удалении + заявка 14 дней.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '250f189143e89c873a5bc3ffd7e1dc73626026b96848f8efd6e67fa40404c29c'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '9136b8851068b7672dced7a92fa612b724f5dd701f7cae6e760ea578dc983ad9'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'f863b642c155a27f95a2b1b02f01d1032d27f6f247d0e1c5bb83cf90cb875d5c'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'ab826ddfd649854a51a4228b7423b0cc6ab984b4067b98b3ebb9fc5c9c71c4df'],

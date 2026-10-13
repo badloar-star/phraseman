@@ -31,6 +31,25 @@ function log(message: string, payload?: unknown): void {
   console.log(`[SURVEY-HOME] ${message}${payload === undefined ? '' : ` ${JSON.stringify(payload)}`}`); // guard-ok: ветки обязаны логироваться и в проде
 }
 
+/**
+ * зачем (координатор 13.10, кадр 08:48Z: в uk-интерфейсе строка опроса по-русски): выложенный сервер при нехватке перевода
+ * отдаёт ru (resolveLocalized → str.ru), а кэш строки живёт 6 ч — русский текст мог прийти до записи переводов и держаться.
+ * Журнал [SURVEY-ROW] показывает язык интерфейса, источник (кэш/сеть), возраст и на каком письме реально пришёл заголовок.
+ */
+function surveyTitleScript(title: string | undefined): 'ru' | 'uk' | 'cyrillic' | 'latin' | 'none' {
+  if (!title) return 'none';
+  if (/[іїєґ]/i.test(title)) return 'uk';
+  if (/[ыэъё]/i.test(title)) return 'ru';
+  if (/[а-я]/i.test(title)) return 'cyrillic';
+  return 'latin';
+}
+
+function logSurveyRow(lang: Lang, source: 'cache' | 'network', survey: ActiveSurvey | null, ageMs: number): void {
+  const script = surveyTitleScript(survey?.title);
+  const mismatch = Boolean(survey) && ((lang !== 'ru' && script === 'ru') || (lang !== 'uk' && script === 'uk') || (!['ru', 'uk'].includes(lang) && script === 'cyrillic'));
+  console.log('[SURVEY-ROW]', JSON.stringify({ lang, source, ageMin: Math.round(ageMs / 60_000), surveyId: survey?.surveyId ?? null, titleScript: script, mismatch }));
+}
+
 function scopeKey(stableId: string, lang: Lang): string {
   return `${stableId}|${lang}`;
 }
@@ -96,6 +115,7 @@ export async function loadHomeSurvey(input: {
   if (isFresh(memory, input.stableId, input.lang, nowMs)) {
     settledThisProcess.add(key);
     log('cache:fresh → без сети', { ageMs: nowMs - memory.fetchedAtMs, hasSurvey: Boolean(memory.survey) });
+    logSurveyRow(input.lang, 'cache', memory.survey, nowMs - memory.fetchedAtMs);
     return memory.survey;
   }
   if (settledThisProcess.has(key)) {
@@ -122,6 +142,7 @@ export async function loadHomeSurvey(input: {
         completed: Boolean(result.completion),
         shown: Boolean(survey),
       });
+      logSurveyRow(input.lang, 'network', survey, 0);
       return survey;
     } catch (error) {
       // Ошибку сети НЕ кэшируем как «опроса нет»: следующий вход в приложение спросит заново.

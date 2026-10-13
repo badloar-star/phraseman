@@ -641,13 +641,19 @@
   // =====================================================================
   // ТРЕНИРОВКА: режим, настройка, лимит
   // =====================================================================
-  const modePick = () => phone(`<div style="opacity:.35"><div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span class="flex" style="gap:10px">${limPill('copy', '30/30')}<span class="rb t">${icon('plus', 's20')}</span></span></div><div class="lt"><div class="ti">Карточки</div><div class="su">Слова и фразы</div></div>${hero()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
+  // зачем (координатор 13.10, cards-v2-027): в приложении хаб «Карточки» — без начатой тренировки: стопка «Layover», кнопка «Тренироваться · осталось 30 из 30 →» и четыре плитки (Сохранённые, Мои наборы, Из видео, Сообщество); образец «Продолжить · Путешествия 12 из 40» ссылкой не воспроизводится
+  const hubTile = (ic, t, n) => `<div class="t" style="border-radius:22px;padding:14px;background:#18181A;min-height:128px;display:flex;flex-direction:column;justify-content:space-between"><div class="tile t46" style="width:46px;height:46px">${icon(ic, 's22')}</div><div><div style="font-size:19px;font-weight:700">${t}</div><div style="font-size:15px;color:var(--sec)">${n}</div></div></div>`;
+  const hubBgA = () => `<div class="topbar"><span class="rb t">${icon('arrowL', 's20')}</span><span class="flex" style="gap:10px">${limPill('copy', '30/30')}<span class="rb t">${icon('plus', 's20')}</span></span></div><div class="lt"><div class="ti">Карточки</div><div class="su">Слова и фразы</div></div>
+      <div class="hstk" style="margin-top:22px"><i class="sl a"></i><i class="sl b"></i><div class="hc t" style="height:210px;display:flex;align-items:center;justify-content:center"><div class="hw" style="position:static;font-size:40px">Layover</div></div></div>
+      <div class="cta t" style="margin-top:16px">Тренироваться · осталось 30 из 30<span class="ar">${icon('arrowR', 's20')}</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">${hubTile('bookmark', 'Сохранённые', '64')}${hubTile('layers', 'Мои наборы', '4')}${hubTile('play', 'Из видео', '5 наборов')}${hubTile('globe', 'Сообщество', '5')}</div>`;
+  const modePick = () => phone(`<div style="opacity:.35">${hubBgA()}</div>`, { time: '9:41', overlay: sheet('m2', modeSheetInner, true) });
   const pk = (t, n, on) => `<div class="pk${on ? ' on' : ''}" data-pk><div class="t1">${t}</div><div class="t2">${n}</div><span class="chk">${icon('check', 's16')}</span></div>`;
   // зачем (код, TrainingSetupV2 / flashcards_training_setup): справа вверху пилюля остатка тренировок (copy-outline, «24/30»); у Блица вместо «Сколько» и «Показывать» — «Время» (30 с / 60 с / 90 с); колоды: «Все сохранённые», «Мои карточки», наборы; под названием — «N карточек»
   const setup = (o = {}) => phone(`<div class="topbar"><span class="rb bare t">${icon('back', 's24')}</span>${limPill('copy', o.limit || '24/30')}</div>
       <div class="flex" style="gap:14px;margin-top:14px"><div class="tile t55">${icon('bolt', 's26')}</div><div style="font-size:30px;font-weight:700;letter-spacing:-.4px">Блиц</div></div>
       <div class="sec" style="margin-top:28px"><div class="ti" style="font-size:17px">Что повторяем</div></div>
-      <div class="pick">${pk('Все сохранённые', '64 карточки', 1)}${pk('Мои карточки', '12 карточек')}${pk('Путешествия', '40 карточек', 1)}${pk('B2 глаголы', '49 карточек')}</div>
+      <div class="pick">${pk('Все сохранённые', '64 карточки', 1)}${pk('Путешествия', '40 карточек')}${pk('B2 глаголы', '49 карточек')}${pk('Работа', '22 карточки')}${pk('Фразовые глаголы', '31 карточка')}</div>
       <div class="sec"><div class="ti" style="font-size:17px">Время</div></div>
       <div class="seg3" data-seg><span>30 с</span><span class="on">60 с</span><span>90 с</span></div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">${o.limit ? `${icon('unlock', 's18')}Безлимит с Plus` : `${icon('play', 's18')}Начать`}</div></div>` });
@@ -859,7 +865,8 @@
       <div class="seg3" data-seg><span>30 с</span><span class="on">60 с</span><span>90 с</span></div>`, { time: '9:41',
     fixed: `<div class="bot"><div class="cta t">${icon('play', 's18')}Начать</div></div>` }), langMenu);
   const videoSearchNone = () => phone(`${back(rbMenu())}${ttl('Из видео', 12)}<div style="margin-top:16px">${srch('zzzqq', { caret: 1 })}</div><div class="empty" style="min-height:380px"><div class="tile t61">${icon('search', 's28')}</div><div class="et">Ничего не нашли</div><div class="es">Попробуй другое слово.</div><span class="cta sm t">Показать все</span></div>`, { time: '9:41' });
-  const offlineCatalog = () => phone(`${back()}${ttl('Сообщество')}${empty('wifiOff', 'Сейчас недоступно', 'Проверь интернет', `${X.retry}Попробовать снова`)}`, { time: '9:41' });
+  // зачем (координатор 13.10, cards-v2-044; код FlashcardsCategoryHub, сверка e4e4149d0): пустой каталог без сети — шапка и поиск как у каталога, плитка 61 «облако с чертой», «Нет сети» 22/700 и кнопка «Повторить»; «Сейчас недоступно» — другое состояние (сохранённые, SavedCollectionUnavailable)
+  const offlineCatalog = () => phone(`${commHead('', { chips: false })}${comm2chips}<div class="empty" style="min-height:420px"><div class="tile t61"><svg class="i s28" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 18.5h9.2a3.8 3.8 0 00.6-7.55A5.6 5.6 0 006.8 9.6a4.5 4.5 0 00.7 8.9z"/><path d="M3.5 3.5l17 17"/></svg></div><div class="et">Нет сети</div><span class="cta sm t" style="margin-top:26px">Повторить</span></div>`, { time: '9:41' });
 
   // =====================================================================
   // СБОРКА СТРАНИЦЫ
@@ -880,7 +887,7 @@
     ['sess', 'Сессии', '«Правда / ложь» — смахни карточку вправо или влево.', [col('Блиц', blitz()), col('Устно', oral()), col('Правда / ложь', tf()), col('Вспомни и напиши', write())]],
     ['answ', 'Ответы', '', [col('Блиц — верно', blitz('ok')), col('Блиц — неверно', blitz('no')), col('Устно — верно', oral('ok')), col('Правда / ложь — неверно', tf('no')), col('Напиши — верно', write('ok')), col('Напиши — неверно', write('no'))]],
     ['res', 'Итог', '', [col('Итог с ошибками', result(false)), col('Без ошибок', result(true))]],
-    ['net', 'Нет сети', '', [col('Хаб без сети — заменено вариантом А', offlineHub()), col('Недоступно — D158: «Сейчас недоступно» · «Проверь интернет» · «Попробовать снова» (SavedCollectionUnavailable, тихий повтор 1/3/8 с)', offlineCatalog())]],
+    ['net', 'Нет сети', '', [col('Хаб без сети — заменено вариантом А', offlineHub()), col('Каталог без сети — «Нет сети» · «Повторить» (пустой каталог, FlashcardsCategoryHub)', offlineCatalog())]],
     ['add', 'Дорисовано по приложению', 'Решения 12.10: лимиты Free по местам (сохранённые 50, свои карточки 50, свои наборы 3, тренировки 30 в месяц), меню «⋯» с «Показать стопкой», «Подсказка» и «Показать ответ» в «Вспомни и напиши», итог с вердиктами «Хороший результат» / «Есть куда расти».', [
       col('Лимит — сохранённые 50/50', savedLimit()), col('Лимит — свои карточки 50/50', newCard({ limit: '50/50' })), col('Лимит — свои наборы 3/3', newSet({ limit: '3/3' })),
       col('Сохранённые — меню «⋯»', savedMenuOpen()), col('Вспомни и напиши — подсказка', writeHint()), col('Вспомни и напиши — ответ показан', writeReveal()),

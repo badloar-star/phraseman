@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import type { MistakeEvent, MistakeStudyTarget } from '../modules/mistake-practice/contracts';
@@ -43,11 +44,54 @@ const restoreSucceededAtMs = new Map<string, number>();
 const restoreInFlight = new Map<string, Promise<number>>();
 const uploadConfirmedEventIds = new Map<string, ReadonlySet<string>>();
 
+// зачем (координатор 13.10, смета Firebase №4): пауза жила только в памяти — каждый холодный старт заново листал облачный журнал
+// по всем языкам (~300 серверных чтений в день при E = 50). На диске — отметка «восстановлено в T, в локальном журнале было N».
+// Действует ТОЛЬКО на первое восстановление аккаунта+языка в запуске (дальше — прежняя пауза в памяти с поколением аккаунта)
+// и только если локально событий не меньше N: стёртый журнал (смена аккаунта, сброс) всегда идёт на сервер.
+const RESTORE_MARK_KEY_PREFIX = 'mistake_practice_restore_mark_v1';
+const THROTTLE_LOG = '[ERROR-JOURNAL-THROTTLE]';
+const diskMarkConsulted = new Set<string>();
+
+type RestoreDiskMark = Readonly<{ atMs: number; localCount: number }>;
+
+const restoreMarkKey = (accountScope: string, studyTarget: MistakeStudyTarget): string =>
+  `${RESTORE_MARK_KEY_PREFIX}:${accountScope}:${studyTarget}`;
+
+async function readRestoreDiskMark(accountScope: string, studyTarget: MistakeStudyTarget): Promise<RestoreDiskMark | null> {
+  try {
+    const raw = await AsyncStorage.getItem(restoreMarkKey(accountScope, studyTarget));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { atMs?: unknown; localCount?: unknown };
+    if (typeof parsed.atMs !== 'number' || typeof parsed.localCount !== 'number') {
+      console.warn(`${THROTTLE_LOG} target=${studyTarget} отметка на диске чужой формы — игнорируем`);
+      return null;
+    }
+    return { atMs: parsed.atMs, localCount: parsed.localCount };
+  } catch (error) {
+    console.warn(`${THROTTLE_LOG} target=${studyTarget} отметка не прочиталась — идём на сервер`, error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
+async function writeRestoreDiskMark(accountScope: string, studyTarget: MistakeStudyTarget, mark: RestoreDiskMark): Promise<void> {
+  try {
+    await AsyncStorage.setItem(restoreMarkKey(accountScope, studyTarget), JSON.stringify(mark));
+  } catch (error) {
+    console.warn(`${THROTTLE_LOG} target=${studyTarget} отметка не записалась — следующий холодный старт восстановит заново`, error instanceof Error ? error.message : String(error));
+  }
+}
+
+const journalEventCount = (journal: unknown): number => {
+  const events = (journal as { events?: unknown } | null | undefined)?.events;
+  return Array.isArray(events) ? events.length : 0;
+};
+
 /** Только для тестов. */
 export function resetMistakePracticeRestoreThrottleForTests(): void {
   restoreSucceededAtMs.clear();
   restoreInFlight.clear();
   uploadConfirmedEventIds.clear();
+  diskMarkConsulted.clear();
 }
 
 const invokeDefault = async (request: AppendRequest | ListRequest): Promise<Response> => {
@@ -128,10 +172,33 @@ export function restoreMistakePracticeEvents(input: Readonly<{
     console.log(`[MISTAKE-SYNC] restore:joined_in_flight target=${input.studyTarget}`);
     return running;
   }
-  const promise = walkAndMergeRemoteEvents(input, dependencies, generation).then((appended) => {
+  const scopeKey = `${input.accountScope}|${input.studyTarget}`;
+  const firstInLaunch = !diskMarkConsulted.has(scopeKey);
+  diskMarkConsulted.add(scopeKey); // guard-ok: Set в памяти процесса, не Firestore
+  const promise = (async (): Promise<number> => {
+    if (firstInLaunch) {
+      const mark = await readRestoreDiskMark(input.accountScope, input.studyTarget);
+      const ageMs = mark ? now - mark.atMs : null;
+      if (!mark) {
+        console.log(`${THROTTLE_LOG} target=${input.studyTarget} источник=нет отметки → сервер`);
+      } else if (ageMs === null || ageMs < 0 || ageMs >= RESTORE_MIN_INTERVAL_MS) {
+        console.log(`${THROTTLE_LOG} target=${input.studyTarget} источник=диск ageMs=${ageMs} ${ageMs !== null && ageMs < 0 ? '(часы назад)' : '(протухла)'} → сервер`);
+      } else {
+        const localCount = journalEventCount(await loadMistakeEventJournal(input));
+        if (!isCurrentAccountGeneration(generation)) throw new Error('mistake_practice_cloud_owner_stale');
+        if (localCount >= mark.localCount) {
+          restoreSucceededAtMs.set(key, mark.atMs); // guard-ok: Map в памяти процесса, не Firestore
+          console.log(`${THROTTLE_LOG} target=${input.studyTarget} источник=диск пропуск: осталось ${RESTORE_MIN_INTERVAL_MS - ageMs}мс, локально ${localCount} ≥ ${mark.localCount}`);
+          return 0;
+        }
+        console.log(`${THROTTLE_LOG} target=${input.studyTarget} источник=диск, но локально ${localCount} < ${mark.localCount} (журнал стёрт) → сервер`);
+      }
+    }
+    const { appended, localCount } = await walkAndMergeRemoteEvents(input, dependencies, generation);
     restoreSucceededAtMs.set(key, now); // guard-ok: Map в памяти процесса, не Firestore
+    await writeRestoreDiskMark(input.accountScope, input.studyTarget, { atMs: now, localCount });
     return appended;
-  }).finally(() => {
+  })().finally(() => {
     if (restoreInFlight.get(key) === promise) restoreInFlight.delete(key);
   });
   restoreInFlight.set(key, promise); // guard-ok: Map в памяти процесса, не Firestore
@@ -141,7 +208,7 @@ export function restoreMistakePracticeEvents(input: Readonly<{
 async function walkAndMergeRemoteEvents(input: Readonly<{
   accountScope: string;
   studyTarget: MistakeStudyTarget;
-}>, dependencies: MistakePracticeCloudTransportDependencies, generation: ReturnType<typeof captureAccountGeneration>): Promise<number> {
+}>, dependencies: MistakePracticeCloudTransportDependencies, generation: ReturnType<typeof captureAccountGeneration>): Promise<Readonly<{ appended: number; localCount: number }>> {
   const invoke = dependencies.invoke ?? invokeDefault;
   let cursor: string | null = null;
   const seenCursors = new Set<string>();
@@ -173,5 +240,5 @@ async function walkAndMergeRemoteEvents(input: Readonly<{
   if (!isCurrentAccountGeneration(generation)) throw new Error('mistake_practice_cloud_owner_stale');
   const result = await mergeMistakeEvents({ ...input, events: remoteEvents });
   if (!isCurrentAccountGeneration(generation)) throw new Error('mistake_practice_cloud_owner_stale');
-  return result.appendedCount;
+  return { appended: result.appendedCount, localCount: journalEventCount(result.journal) };
 }

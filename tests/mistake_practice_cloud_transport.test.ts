@@ -14,6 +14,8 @@ jest.mock('../app/account_generation', () => ({
 
 // Jest mocks must be installed before this runtime import.
 // eslint-disable-next-line import/first
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// eslint-disable-next-line import/first
 import {
   resetMistakePracticeRestoreThrottleForTests,
   restoreMistakePracticeEvents,
@@ -35,6 +37,7 @@ describe('mistake practice cloud owner fence', () => {
     mockCurrent = true;
     mockToken = Object.freeze({ generation: 1, stableId: 'owner-a', phase: 'active' });
     resetMistakePracticeRestoreThrottleForTests();
+    (AsyncStorage as unknown as { __reset?: () => void }).__reset?.();
     mockLoadJournal.mockReset();
     mockMergeEvents.mockReset();
     mockMergeEvents.mockResolvedValue({ appendedCount: 0, journal: { events: [] } });
@@ -155,6 +158,35 @@ describe('mistake practice cloud owner fence', () => {
       const failing = jest.fn(async () => ({ ok: true as const, events: [], cursor: 'bad' }));
       await expect(restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'fr' }, { invoke: failing, nowMs })).rejects.toThrow();
       await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'fr' }, { invoke, nowMs });
+      expect(invoke).toHaveBeenCalledTimes(4);
+    });
+
+    // зачем (координатор 13.10, смета Firebase №4): отметка на диске переживает холодный старт — ~300 серверных чтений в день.
+    test('a cold start within 6 hours skips the server walk when the local journal is intact', async () => {
+      const invoke = okInvoke();
+      mockMergeEvents.mockResolvedValue({ appendedCount: 2, journal: { events: [makeEvent('a', 1), makeEvent('b', 2)] } });
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 1_000_000 });
+      expect(invoke).toHaveBeenCalledTimes(1);
+      resetMistakePracticeRestoreThrottleForTests(); // холодный старт: память пуста, диск остался
+      mockLoadJournal.mockResolvedValue({ events: [makeEvent('a', 1), makeEvent('b', 2)] });
+      await expect(restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 1_000_000 + 60 * 60 * 1000 })).resolves.toBe(0);
+      expect(invoke).toHaveBeenCalledTimes(1);
+    });
+
+    test('a wiped local journal, a stale mark or a clock moved back always go to the server', async () => {
+      const invoke = okInvoke();
+      mockMergeEvents.mockResolvedValue({ appendedCount: 2, journal: { events: [makeEvent('a', 1), makeEvent('b', 2)] } });
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 10_000_000 });
+      resetMistakePracticeRestoreThrottleForTests();
+      mockLoadJournal.mockResolvedValue({ events: [] }); // журнал стёрт сменой аккаунта
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 10_000_000 + 1000 });
+      expect(invoke).toHaveBeenCalledTimes(2);
+      resetMistakePracticeRestoreThrottleForTests();
+      mockLoadJournal.mockResolvedValue({ events: [makeEvent('a', 1), makeEvent('b', 2)] });
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 10_000_000 + 7 * 60 * 60 * 1000 });
+      expect(invoke).toHaveBeenCalledTimes(3);
+      resetMistakePracticeRestoreThrottleForTests();
+      await restoreMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => 5_000_000 });
       expect(invoke).toHaveBeenCalledTimes(4);
     });
 

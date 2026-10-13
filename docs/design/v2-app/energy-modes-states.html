@@ -19,7 +19,7 @@
   .ph.lite { --g-ctl: #ECECF1; --g-card: #F6F6FA; --g-sel: rgba(0,0,0,.07); --g-tx: #0C0C10; --g-sc: #55555D; --g-mu: #86868E; --g-edge: rgba(0,0,0,.12); --g-ink: #fff; --g-dim: rgba(20,20,30,.4); --g-sheet: #FBFBFD; --g-bad: #C23B3B; --g-badbg: rgba(194,59,59,.12); --g-ok: #1E8F5E; background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .gp { position: absolute; inset: 0; padding-top: 52px; overflow: hidden; }
-  .gbody { transition: filter 520ms ease, opacity 520ms ease; } .frozen .gbody { filter: saturate(.25); opacity: .5; }
+  .gbody > * { transition: filter 520ms ease, opacity 520ms ease; } .frozen .gbody > * { filter: saturate(.25); opacity: .5; } /* зачем (energy-modes-004): filter на самом .gbody делал его контейнером для абсолютных потомков (ответы уезжали вверх при заморозке) — фильтр на детях, раскладка не меняется */
   /* шапка занятия */
   .gh { display: flex; align-items: center; gap: 6px; padding: 10px 16px 0; }
   .grb { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--g-ctl); box-shadow: inset 0 0 0 1px var(--g-edge); flex: none; margin-right: 4px; } .grb .i { width: 20px; height: 20px; }
@@ -170,6 +170,8 @@ KINDS.forEach(([k, nm]) => {
   add('o', `${nm} · ошибка`, 'Та же анимация: тряска, «−1», 4 → 3.', lessonScr({ kind: k, en: 4 }), 'err', { to: 3 });
   add('o', `${nm} · остановка`, 'Ошибка на последней энергии: занятие останавливается, шторка Plus «продолжить сейчас».', lessonScr({ kind: k, en: 1, layers: stopCard }), 'stop');
 });
+// зачем (координатор 13.10, energy-modes-004): у Б4 в образце окно выезжает анимацией (на старте кадра его нет) — сверка получала урок без окна. Статичный итог: энергия 0, занятие заморожено, окно «Энергия закончилась» (EnergyStopSheet.tsx) на экране. Блок z стоит последним — нумерация кадров 1–25 не сдвигается.
+add('z', 'Б4 · итог: окно остановки на экране', 'Конечное состояние остановки: энергия 0, занятие заморожено (цвет уходит, ответы недоступны), карточка «Энергия закончилась» — «Продолжить с Plus» и «Выйти из занятия». Закрыть жестом нельзя.', lessonScr({ kind: 'lesson', en: 0, frozen: true, layers: stopCard.replace('class="gdim"', 'class="gdim on"').replace('class="gmod"', 'class="gmod on"') }), null);
 // Г. Без изменений
 add('n', 'Диалоги — энергия не меняется', 'Ошибка в диалоге энергию не снимает ни в одном режиме (у диалогов свои лимиты реплик).', dlgScr, null);
 add('n', 'Фраза дня — энергия не меняется', 'Ошибка квиза не снимает энергию ни в одном режиме. Вариант выделен как неверный, цифра 4 на месте.', qotdScr, null);
@@ -203,8 +205,9 @@ const play = (col) => { const ph = col.querySelector('.ph'); const a = ph.datase
 const BLK = { b: ['Под флагом energy_mistake_charge (выкл.): режим Б — «энергия за ошибки», урок, все состояния', 'Восемь кадров по порядку ТЗ: занятие, ошибка, последняя энергия, остановка, шторка Plus, покупка, выход без энергии, восстановление. «Повторить анимацию» перезапускает каждый кадр.'],
   o: ['Под флагом energy_mistake_charge (выкл.): режим Б — слова, неправильные глаголы, Learning V2, «Карточки: тренировка»', 'Тот же набор в каждом виде занятий: занятие (без сердечек), ошибка (тряска и «−1»), остановка с шторкой Plus. Экран шторки и сценарий восстановления — как в уроке (Б5–Б8).'],
   n: ['Энергию за ошибки не снимают', 'Диалоги и «Фраза дня» не меняются ни в одном режиме — показано как «без изменений».'],
-  a: ['Режим А — ПЕРВЫЙ ВЫПУСК (флаг energy_mistake_charge выключен по умолчанию): за старт −1 энергия, сердечки', 'За начало занятия −1 энергия, за ошибку гаснет сердечко. Серии монет «×N» в коде уроков нет — не рисуется.'] };
-const renderGrid = (lite) => ['b', 'o', 'n', 'a'].map((b) => `<section class="block" id="${lite ? 'l' : 'd'}-${b}"><h2>${BLK[b][0]}</h2><p>${BLK[b][1]}</p><div class="phones">${S.filter((x) => x.blk === b).map((x) => { const p = phone(x.html, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}" data-anim="${x.anim || ''}" data-args='${JSON.stringify(x.args || {})}'`); return `<div class="col gcol"><div class="lbl">${x.title}</div>${p}${x.anim ? '<div class="grpl t" data-replay>Повторить анимацию</div>' : ''}<div class="gnote">${x.note}</div></div>`; }).join('')}</div></section>`).join('');
+  a: ['Режим А — ПЕРВЫЙ ВЫПУСК (флаг energy_mistake_charge выключен по умолчанию): за старт −1 энергия, сердечки', 'За начало занятия −1 энергия, за ошибку гаснет сердечко. Серии монет «×N» в коде уроков нет — не рисуется.'],
+  z: ['Итоговые кадры (статично, для сверки с приложением)', 'Анимированные кадры выше стартуют с начала; здесь — конечное состояние, как его снимает робот: окно «Энергия закончилась» уже на экране. Добавлено в конец страницы, чтобы не сдвигать нумерацию кадров.'] };
+const renderGrid = (lite) => ['b', 'o', 'n', 'a', 'z'].map((b) => `<section class="block" id="${lite ? 'l' : 'd'}-${b}"><h2>${BLK[b][0]}</h2><p>${BLK[b][1]}</p><div class="phones">${S.filter((x) => x.blk === b).map((x) => { const p = phone(x.html, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}" data-anim="${x.anim || ''}" data-args='${JSON.stringify(x.args || {})}'`); return `<div class="col gcol"><div class="lbl">${x.title}</div>${p}${x.anim ? '<div class="grpl t" data-replay>Повторить анимацию</div>' : ''}<div class="gnote">${x.note}</div></div>`; }).join('')}</div></section>`).join('');
 document.getElementById('root').innerHTML = `<h2 id="dark" style="font-size:22px;margin:28px 0 0">Тёмная «Аврора»</h2>${renderGrid(false)}<h2 id="light" style="font-size:22px;margin:40px 0 0">Светлая тема</h2>${renderGrid(true)}`;
 K.init();
 document.querySelectorAll('.ph').forEach((ph) => { ph._init = ph.innerHTML; });

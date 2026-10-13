@@ -27,7 +27,8 @@ import {
   SettingsGlassTile,
 } from '../../components/settings/SettingsGlassRows';
 import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
-import { nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
@@ -88,7 +89,7 @@ import {
 } from '../feedback/feedback_i18n';
 
 const EXEMPT_COLOR_2 = 'rgba(0,0,0,0.75)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
-const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.7)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
+const EXEMPT_COLOR_3 = 'rgba(0,0,0,0.62)'; // theme-exempt: затемнение под окном «Сменить аккаунт?» — `.or-dim` .62 образца, тёмный скрим в любой теме
 import { noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
@@ -1382,24 +1383,28 @@ export default function SettingsMain() {
             </View>
           </View>
         ) : (
-        <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_3, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+        // зачем (auth-gap-012, образец accounts-gaps-states.html switch = общее окно `.or-alert`): карточка в виде GlassAlertCard —
+        // поля 24, r25, поля 20, заголовок 23/29 по центру, текст --sec по центру, кнопки-пилюли 44 в ряд. Модал остаётся ОДИН на обе
+        // стадии (второй <Modal> ломает стек презентаций iOS, см. шапку блока), поэтому стили повторены здесь, а не взят GlassAlertDialog.
+        <View style={{ flex: 1, backgroundColor: EXEMPT_COLOR_3, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
           <View
-            style={[
-              {
-                width: '100%',
-                maxWidth: 380,
-                backgroundColor: t.bgCard,
-                borderRadius: 16,
-                padding: 20,
-                // Карточка отделена тоном (bgCard на скриме), без обводки — правило владельца.
-                overflow: 'hidden',
-              },
-            ]}
+            testID="settings-switch-confirm-card"
+            style={{
+              width: '100%',
+              maxWidth: 380,
+              backgroundColor: glass.opaqueSheet,
+              boxShadow: plateBoxShadow(glass),
+              borderRadius: 25,
+              padding: 20,
+              // стиль «Тень»: окно без кромки, с тенью — как GlassAlertCard.
+              overflow: 'hidden',
+            }}
           >
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
+            <KitGlassLayer radius={25} />
+            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 23, lineHeight: 29, fontWeight: '800', textAlign: 'center' }}>
               {L('Сменить аккаунт?', 'Змінити акаунт?', 'Switch account?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
-            <Text style={{ color: t.accentText, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
+            <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 9 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                 "Поточний прогрес залишиться прив\'язаним до акаунта, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
@@ -1414,11 +1419,12 @@ export default function SettingsMain() {
             </Text>
             {showPlusTransferNotice ? (
               // зачем (§127): при активном Plus — что с ним будет (Transfer в RevenueCat); только вместе с переносом AccountV2.
-              <Text testID="settings-switch-plus-notice" style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 22, fontWeight: '600', marginBottom: 8 }}>
+              // абзацы — `.or-body` + `.or-next` образца: один цвет --sec, по центру, следующий через 9.
+              <Text testID="settings-switch-plus-notice" style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 9 }}>
                 {plusTransferSwitchNotice(lang)}
               </Text>
             ) : null}
-            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
+            <Text style={{ color: glass.secondary, fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 9 }}>
               {L(
                 'Перед выходом надёжно сохраним прогресс. Если соединение не ответит — отменим смену аккаунта, чтобы ничего не потерялось.',
                 'Перед виходом надійно збережемо прогрес. Якщо з’єднання не відповість — скасуємо зміну акаунта, щоб нічого не загубилося.',
@@ -1432,14 +1438,16 @@ export default function SettingsMain() {
               )}
             </Text>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', gap: 12, marginTop: 22 }}>
+            {/* `.or-actions`: две пилюли 44 в ряд через 9, отступ 18; ghost — плашка с малой тенью, главная — акцент (как GlassAlertCard). */}
+            <View style={{ flexDirection: 'row', gap: 9, marginTop: 18 }}>
               <TouchableOpacity
                 testID="settings-switch-cancel"
-                activeOpacity={0.8}
-                onPress={() => setSwitchAccountStage('idle')}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
+                accessibilityRole="button"
+                activeOpacity={0.88}
+                onPress={() => { doHaptic(); setSwitchAccountStage('idle'); }}
+                style={{ flex: 1, minHeight: 44, borderRadius: 22, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
               >
-                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
+                <Text numberOfLines={2} style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
                   {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                 </Text>
               </TouchableOpacity>
@@ -1777,10 +1785,12 @@ export default function SettingsMain() {
                     );
                   }
                 }}
-                style={{ paddingHorizontal: 10, paddingVertical: 8 }}
+                accessibilityRole="button"
+                style={{ flex: 1, minHeight: 44, borderRadius: 22, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass) }}
               >
+                <ThemeAccentFill glass={glass} radius={22} />
                 {/* зачем (координатор 10.10): главное действие окна — цветом акцента темы; зелёный t.correct только для «успех» */}
-                <Text style={{ color: t.accentText, fontSize: f.body, fontWeight: '800' }}>
+                <Text numberOfLines={2} style={{ color: glass.accentInk, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
                   {L('Продолжить', 'Продовжити', 'Continue', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
                 </Text>
               </TouchableOpacity>

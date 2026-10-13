@@ -8,6 +8,7 @@ import {
 import {
   getTodayPhraseForTarget,
   getTodayPhraseSyncForTarget,
+  hydrateDailyPhrasePeekFromStorage,
   setDailyPhraseSavedOnServerForTarget,
 } from '../app/daily_phrase_system';
 import {
@@ -114,6 +115,9 @@ describe('Gustav French daily phrase target gate', () => {
   });
 
   it('keeps English legacy behavior and reserves scoped French storage keys for future approved packets', async () => {
+    // зачем (52c135c72, 11.10): пока снимок фразы читается, синхронный путь честно отдаёт null — приложение гидрирует снимок
+    // на старте (bootstrap _layout.tsx), тест делает то же самое перед синхронным вызовом.
+    await hydrateDailyPhrasePeekFromStorage();
     const phrase = getTodayPhraseSyncForTarget('en');
     expect(phrase?.english).toBeTruthy();
     await expect(getTodayPhraseForTarget('en')).resolves.toMatchObject({ allowSave: true });

@@ -6,6 +6,7 @@
 <title>Моменты вовлечения v2 · A — Пик и лиги</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
 <link rel="stylesheet" href="engagement-moments-v2.css">
 <style>
 /* зачем (этап 2 — пересмотр v1 глазами Duolingo/Apple/игр): v1 в Пике был «текст по центру + башня». Слабо: нет движения ВВЕРХ (а повышение — это подъём),
@@ -48,11 +49,14 @@
     <li><b>Деньги точнее.</b> Воскресный «последний шанс» (зона вылета + отсчёт + энергия 0) — самая конверсионная точка Plus в Пике, в v1 отсутствовала.</li>
     <li><b>Тайминги.</b> Линейные появления заменены на пружины (overshoot), главный акцент — одна «ударная» точка на экран (Чекан), остальное тише.</li>
   </ol></div>
+  <div class="diff" style="margin-top:14px"><h3>Редакция по требованиям владельца (14.10)</h3><ol><li>Этап заменён редакцией v3 (engagement-moments-v3-*.html); здесь — исторический этап, приведённый к правилам: убраны механики, которых нет в решениях владельца (защита лиги, восстановление серии, награды на рубежах, умножение монет, косметика монеты, цены в рублях, выдуманная статистика); место в Пике — в монетах недели; ранг — только за монеты; оболочка 2.0 (токены темы, кнопки V2Button) подключена.</li></ol></div>
   <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v2-a.html">A · Пик</a><a class="file" href="engagement-moments-v2-b.html">B · Занятия</a><a class="file" href="engagement-moments-v2-c.html">C · Диалоги · Серия · Plus</a></nav>
   <div id="root"></div>
 </div>
+<script src="spire-tower-render.js"></script>
 <script src="engagement-moments.js"></script>
 <script src="engagement-moments-v2.js"></script>
+<script src="engagement-moments-app.js"></script>
 <script>
 (() => {
 const { icon, coin, tower, league, LEAGUES, confetti, countUp, moment, render } = EM;
@@ -70,18 +74,18 @@ const spireUnder = (o = {}) => { const L = league(o.li ?? 0); return `<div class
 /* ---------- 01. Повышение лиги v2 ---------- */
 const promoA = () => `<div class="full" style="padding:0">${climb(0, 1, { dist: 540, ms: 2600, delay: 500, base: 190, reveal: true, lit: 15, noTag: true })}
   <div style="position:absolute;left:0;right:0;top:64px;text-align:center;animation:emUp 500ms var(--em-ease) both, emFade 400ms 3000ms reverse both"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Ты поднимаешься…</div></div>
-  <div style="position:absolute;left:24px;right:24px;bottom:36px;text-align:center;animation:emUp 600ms var(--em-ease) 3300ms both"><div class="h-xl">Базальт</div><div class="p" style="margin-top:6px">6 место · 47 ступеней · <b>+150 монет</b></div><div class="cta white" style="margin-top:16px">Играть в Базальте</div></div>
+  <div style="position:absolute;left:24px;right:24px;bottom:36px;text-align:center;animation:emUp 600ms var(--em-ease) 3300ms both"><div class="h-xl">Базальт</div><div class="p" style="margin-top:6px">6 место · 470 монет · <b>+150 монет</b></div><div class="cta white" style="margin-top:16px">Играть в Базальте</div></div>
   <div style="position:absolute;left:50%;bottom:150px;transform:translateX(-50%);animation:emUp 500ms var(--em-ease-pop) 3400ms both">${coinChar(5, 72, { mood: 'jump', say: 'Выше!', sayStyle: 'animation-delay:3600ms' })}</div></div>`;
 const promoB = () => `<div class="full"><div class="glowspot" style="top:30%"></div><div class="body" style="justify-content:flex-start;padding-top:6px">
   <div class="ov a-up">Лестница лиг</div><div class="h-lg a-up d1" style="margin-top:6px">Ещё на ступень выше</div>
   <div class="lgs a-up d2" style="margin-top:16px;width:100%">${[...LEAGUES].reverse().map((L) => `<div class="lg ${L.i === 1 ? 'me' : L.i === 0 ? 'was' : ''}"><i style="background:${L.stone};box-shadow:inset 0 0 0 1px ${L.edge}66"></i>${L.ru}${L.i === 1 ? `<span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px">${coin(5, 20)}ты</span>` : L.i === 0 ? '<span style="margin-left:auto;font-size:11px">была</span>' : L.i === 11 ? '<span style="margin-left:auto;font-size:11px">цель сезона</span>' : ''}</div>`).join('')}</div>
-  </div><div class="foot a-up d7"><div class="p center" style="margin-bottom:4px">2 из 12. До Мрамора — ещё одна неделя в топ-15%.</div><div class="cta white">Играть</div></div></div>`;
+  </div><div class="foot a-up d7"><div class="p center" style="margin-bottom:4px">2 из 12. До Мрамора — ещё одна неделя в топ-5.</div><div class="cta white">Играть</div></div></div>`;
 const promoC = () => `<div class="full"><div class="glowspot gold" style="top:34%"></div><div class="body">
   <div style="position:relative">${coinChar(5, 120, { mood: 'wow', crown: true, glints: true, say: 'Третье место — моё!', sayStyle: 'animation-delay:1.2s' })}</div>
   <div class="ov a-up d4" style="margin-top:20px;color:var(--gold)">Топ-3 комнаты</div>
   <div class="h-xl a-up d5" style="margin-top:6px">Выход в Базальт</div>
-  <div class="a-up d6" style="margin-top:20px">${shareCard({ k: 'ПИК · НЕДЕЛЯ 41', big: '3 место', sub: 'Гранит → Базальт · 47 ступеней', bg: 'linear-gradient(160deg,#384352,#0E1217)', inner: `<div class="fl" style="gap:8px">${coin(5, 34)}<span style="font-size:13px;font-weight:700">+150 монет</span></div>` })}</div>
-  </div><div class="foot a-up d7"><div class="cta gold">Забрать 150 и играть</div><div class="cta ghost">${icon('share', 's18')} Отправить карточку</div></div></div>`;
+  <div class="a-up d6" style="margin-top:20px">${shareCard({ k: 'ПИК · НЕДЕЛЯ 41', big: '3 место', sub: 'Гранит → Базальт · 470 монет', bg: 'linear-gradient(160deg,#384352,#0E1217)', inner: `<div class="fl" style="gap:8px">${coin(5, 34)}<span style="font-size:13px;font-weight:700">+150 монет</span></div>` })}</div>
+  </div><div class="foot a-up d7"><div class="cta gold">Играть</div><div class="cta ghost">${icon('share', 's18')} Отправить карточку</div></div></div>`;
 moment({ id: 'm01', num: '01', short: 'Повышение лиги', title: 'Повышение лиги — церемония v2', tag: 'new',
   lead: 'v1: башня вырастала на месте. v2: <b>подъём</b> — камера едет вверх от Гранита к Базальту; лестница 12 лиг показывает «где я»; монета-персонаж с короной и share-карточка для топ-3.',
   variants: [
@@ -95,49 +99,46 @@ moment({ id: 'm01', num: '01', short: 'Повышение лиги', title: 'П�
 
 /* ---------- 02. Удержался ---------- */
 const stayA = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
-  <div class="fl" style="gap:16px">${coinChar(5, 64, { mood: 'nod', say: 'Держимся.', sayPos: '', sayStyle: 'animation-delay:.5s' })}<div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Гранит, 12 место</div><div class="p" style="margin-top:2px;font-size:15px">25 ступеней · середина комнаты</div></div></div>
-  <div class="sf" style="padding:14px 16px;margin-top:18px"><div class="fl" style="gap:12px"><div class="grow"><div style="font-size:16px;font-weight:700">До топ-15% не хватило 22 ступеней</div><div class="small">3 ступени в день — и ты наверху</div></div><div class="stat3" style="width:auto;grid-template-columns:1fr"><div class="st tone"><b>3</b><span>в день</span></div></div></div></div>
+  <div class="fl" style="gap:16px">${coinChar(5, 64, { mood: 'nod', say: 'Держимся.', sayPos: '', sayStyle: 'animation-delay:.5s' })}<div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Гранит, 12 место</div><div class="p" style="margin-top:2px;font-size:15px">250 монет · середина комнаты</div></div></div>
+  <div class="sf" style="padding:14px 16px;margin-top:18px"><div class="fl" style="gap:12px"><div class="grow"><div style="font-size:16px;font-weight:700">До топ-5 не хватило 220 монет</div><div class="small">30 монет в день — и ты наверху</div></div><div class="stat3" style="width:auto;grid-template-columns:1fr"><div class="st tone"><b>3</b><span>в день</span></div></div></div></div>
   <div class="cta white" style="margin-top:16px">Начать неделю — Играть</div></div>`;
 const stayB = () => `<div class="dim"></div><div class="modal"><div style="display:flex;justify-content:center">${coinChar(5, 72, { mood: 'wow', say: 'Фух…', sayStyle: 'animation-delay:1.6s' })}</div>
   <div class="h-lg center" style="margin-top:12px">На волоске</div><div class="p center" style="margin-top:6px">Два человека ниже — и ты в зоне вылета. Удержался.</div>
   <div style="margin:22px 4px 8px"><div class="zone"><span class="me" data-me style="left:96%">${coin(5, 26)}</span></div><div class="fl" style="justify-content:space-between;margin-top:10px;font-size:12px;font-weight:700;color:var(--sc)"><span style="color:var(--good)">▲ подъём</span><span style="color:var(--bad)">вылет ▼</span></div></div>
-  <div class="loss" style="margin-top:12px">${icon('shield', 's20')}<div>В Plus такой недели не было бы: <b>Щит лиги</b> гасит одно понижение в месяц.</div></div>
+  
   <div class="cta white" style="margin-top:14px">Новая неделя</div></div>`;
 moment({ id: 'm02', num: '02', short: 'Удержался', title: 'Удержался в лиге v2', tag: 'new',
-  lead: 'v1 — сухая цифра. v2: персонаж реагирует («Держимся», «Фух»), цель переведена в «3 в день», в драме «на волоске» — Щит лиги как Plus-выгода в момент страха.',
+  lead: 'v1 — сухая цифра. v2: персонаж реагирует («Держимся», «Фух»), цель переведена в «3 в день», в драме «на волоске»',
   variants: [
     { k: 'A', label: 'Персонаж кивает + «3 в день»', time: '~1,5 с', phone: { under: spireUnder({ pos: 12 }), over: stayA() }, why: 'Спокойный итог с планом; реплика персонажа снимает ощущение «ничего не произошло».', ref: 'Duolingo «You stayed in Silver», Strava weekly goal.', fx: 'кивок монеты 1,2 с, реплика через 0,5 с.', snd: 'haptic light.' },
-    { k: 'B', label: '«На волоске» + Щит лиги', time: '~2,5 с', phone: { under: spireUnder({ pos: 24 }), over: stayB() }, init: (ph) => { const me = ph.querySelector('[data-me]'); const t = setTimeout(() => { me.style.left = '84%'; }, 500); return () => clearTimeout(t); },
-      why: 'Loss aversion: монета отъезжает от красной зоны, персонаж выдыхает. Щит лиги — конкретная защита от боли, которую только что почувствовал.', ref: 'Duolingo Demotion Zone, Clash Royale trophy gates.', fx: 'монета по шкале 1,4 с, wow-появление персонажа, «Фух…» через 1,6 с.', snd: 'rigid → success.' },
   ] });
 
 /* ---------- 03. Понижение ---------- */
 const downA = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
-  <div class="fl" style="gap:16px">${coinChar(5, 64, { mood: 'sleep', zz: true })}<div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Тихая неделя</div><div class="p" style="margin-top:2px;font-size:15px">6 ступеней · спускаемся в Гранит</div></div></div>
+  <div class="fl" style="gap:16px">${coinChar(5, 64, { mood: 'sleep', zz: true })}<div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Тихая неделя</div><div class="p" style="margin-top:2px;font-size:15px">60 монет · спускаемся в Гранит</div></div></div>
   <div class="p" style="margin-top:14px">Бывает. Монеты, ранг и фразы на месте. В Граните легче разогнаться: возвращаемся за неделю?</div>
-  <div class="sf" style="margin-top:14px;padding:12px 14px;display:flex;align-items:center;gap:12px">${icon('target', 's20')}<div class="grow" style="font-size:14px;line-height:19px"><b>План:</b> по 2 ступени в день — это топ-15% Гранита.</div></div>
+  <div class="sf" style="margin-top:14px;padding:12px 14px;display:flex;align-items:center;gap:12px">${icon('target', 's20')}<div class="grow" style="font-size:14px;line-height:19px"><b>План:</b> по 20 монет в день — это топ-5 Гранита.</div></div>
   <div class="cta white" style="margin-top:14px">Разбудить монету — Играть</div><div class="cta ghost">Напомнить вечером</div></div>`;
 const downB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:6px">
   <div class="ov a-up">Итог недели</div><div class="h-lg a-up d1" style="margin-top:6px">Реванш через неделю</div>
   <div class="lgs a-up d2" style="margin-top:16px;width:100%">${[...LEAGUES].reverse().slice(8).map((L) => `<div class="lg ${L.i === 0 ? 'me' : L.i === 1 ? 'was' : ''}" style="${L.i === 0 ? 'animation-name:emLgDown' : ''}"><i style="background:${L.stone};box-shadow:inset 0 0 0 1px ${L.edge}66"></i>${L.ru}${L.i === 0 ? `<span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px">${coin(5, 20)}ты</span>` : L.i === 1 ? '<span style="margin-left:auto;font-size:11px">была · вернёмся</span>' : ''}</div>`).join('')}</div>
-  <div class="gain a-up d4" style="margin-top:16px;width:100%">${icon('shield', 's20')}<div><b>Щит лиги</b> в Plus — это понижение не засчиталось бы. Первый щит — бесплатно в пробных 7 днях.</div></div>
-  </div><div class="foot a-up d5"><div class="cta white">Играть на реванш</div><div class="cta ghost">Попробовать Plus · 7 дней</div></div></div>`;
+  
+  </div><div class="foot a-up d5"><div class="cta white">Играть на реванш</div><div class="cta ghost">Попробовать Plus</div></div></div>`;
 moment({ id: 'm03', num: '03', short: 'Понижение', title: 'Понижение лиги — мягко v2', tag: 'new',
-  lead: 'v1 — вежливый текст. v2: персонаж «уснул» (понижение = монета задремала, а не «ты плохой»), кнопка «Разбудить монету»; вариант «Реванш» показывает лестницу и даёт первый Щит лиги бесплатно в пробных 7 днях — самая честная точка входа в Plus после боли.',
+  lead: 'v1 — вежливый текст. v2: персонаж «уснул» (понижение = монета задремала, а не «ты плохой»), кнопка «Разбудить монету»; вариант «Реванш»',
   variants: [
     { k: 'A', label: '«Монета задремала» — разбудить', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0 }), over: downA() }, why: 'Переносим вину с человека на персонажа: не «ты упал», а «монета задремала — разбуди». Снижает отток после понижения.', ref: 'Duolingo Duo sad (без стыда), Tamagotchi, Drops.', fx: 'монета спит (наклон, z-z-z), шторка.', snd: 'тихое «сопение»; без хаптика.' },
-    { k: 'B', label: '«Реванш» + первый Щит бесплатно', time: '~2 с', phone: { under: spireUnder({ li: 0, lit: 0 }), over: downB() }, why: 'Лестница показывает, что откат — одна ступень. Щит лиги в пробном периоде: Plus пробуют в момент максимальной мотивации не повторить.', ref: 'Duolingo League Repair, Clash Royale, Brawl Stars rank shield.', fx: 'моя строка съезжает на ступень вниз (обратная анимация), «была · вернёмся».', snd: 'глухой «тук»; haptic rigid.' },
   ] });
 
 /* ---------- 04. Итог недели — «Комната недели» и сторис ---------- */
-const weekCard = () => `<div class="sf on a-up" style="margin-top:12px;padding:14px 16px;position:relative;overflow:hidden" data-autoclose><div class="glowspot" style="top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;opacity:.5"></div><div class="fl" style="gap:12px;position:relative"><div style="flex:none">${tower(1, { w: 50, lit: 15, floors: 8 })}</div><div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:2px">Базальт — твой</div><div class="small" style="margin-top:2px">3 место · 47 ступеней · +150</div></div>${coinChar(5, 44, { mood: 'jump', shadow: false })}</div><div class="bar" style="margin-top:12px;height:3px"><i style="--w:100%;transition:width 6s linear" data-life></i></div></div>`;
+const weekCard = () => `<div class="sf on a-up" style="margin-top:12px;padding:14px 16px;position:relative;overflow:hidden" data-autoclose><div class="glowspot" style="top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;opacity:.5"></div><div class="fl" style="gap:12px;position:relative"><div style="flex:none">${tower(1, { w: 50, lit: 15, floors: 8 })}</div><div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:2px">Базальт — твой</div><div class="small" style="margin-top:2px">3 место · 470 монет · +150</div></div>${coinChar(5, 44, { mood: 'jump', shadow: false })}</div><div class="bar" style="margin-top:12px;height:3px"><i style="--w:100%;transition:width 6s linear" data-life></i></div></div>`;
 const weekA = () => spireUnder({ li: 1, lit: 0, pos: 3, when: 'через 7 дней', top: weekCard() });
 const weekB = () => `<div class="full" style="padding:0"><div style="position:absolute;inset:0;background:linear-gradient(180deg, color-mix(in srgb, ${league(0).stone} 45%, var(--bg)), var(--bg) 70%)"></div>
   <div style="position:relative;padding:62px 24px 36px;height:100%;display:flex;flex-direction:column">
   <div class="fl" style="gap:4px"><i style="flex:1;height:3px;border-radius:2px;background:#fff"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i></div>
   <div class="ov a-up" style="margin-top:22px">Неделя 41 · Гранит</div>
   <div class="h-xl a-up d1" style="margin-top:8px;font-size:42px;line-height:46px"><span data-n>0</span> ступеней</div>
-  <div class="p a-up d2" style="margin-top:6px">Больше, чем у 84% комнаты. Рекорд этажа — 7.</div>
+  <div class="p a-up d2" style="margin-top:6px">Твоя неделя в цифрах.</div>
   <div class="a-up d3" style="margin-top:22px;display:flex;justify-content:center">${shareCard({ k: 'МОЯ НЕДЕЛЯ', big: '47', sub: 'ступеней · 7 этаж · 3 место', bg: 'linear-gradient(160deg,#55575E,#15161A)', inner: `<div class="faces">${[5, 7, 4].map((r) => coin(r, 28)).join('')}<span class="small" style="margin-left:8px;color:#fff">+2 друга в комнате</span></div>` })}</div>
   <div style="flex:1"></div>
   <div class="p a-up d5 center">Смахни → подиум комнаты и лига</div>
@@ -148,31 +149,31 @@ moment({ id: 'm04', num: '04', short: 'Итог недели', title: '«Ито�
     { k: 'A', label: 'Карточка наверху Пика, без крестика', time: '6 с → сама закрывается', phone: { under: weekA() }, init: (ph) => { const life = ph.querySelector('[data-life]'); const card = ph.querySelector('[data-autoclose]'); const t1 = setTimeout(() => { life.style.width = '0%'; }, 300); const t2 = setTimeout(() => { card.style.transition = 'opacity 400ms, transform 400ms, max-height 500ms, margin 500ms, padding 500ms'; card.style.opacity = '0'; card.style.transform = 'translateY(-10px)'; card.style.maxHeight = '0'; card.style.margin = '0'; card.style.padding = '0 16px'; }, 6400); return () => { clearTimeout(t1); clearTimeout(t2); }; },
       why: 'Не блокирует экран, не требует крестика; башня новой лиги + персонаж прыгает; тонкая полоска показывает, что карточка уйдёт сама.', ref: 'iOS Live Activity, Duolingo weekly recap card, Spotify «now playing».', fx: 'карточка приподнята (sf.on), полоска 6 с, затем сворачивается с анимацией высоты.', snd: 'haptic success при появлении.' },
     { k: 'B', label: 'Сторис + share-карточка', time: '~3 с', phone: { under: spireUnder({}), over: weekB() }, init: (ph) => { const t = setTimeout(() => countUp(ph.querySelector('[data-n]'), 0, 47, 1100), 400); return () => clearTimeout(t); },
-      why: 'Личный рекорд + «больше, чем у 84%» + друзья в кадре → гордость → шеринг. Карточка готова до тапа.', ref: 'Spotify Wrapped, Duolingo Year in Review, Strava.', fx: 'счётчик 0→47, карточка под углом.', snd: 'мягкий «вуш».' },
+      why: 'Личный рекорд + «твоя неделя в цифрах» + друзья в кадре → гордость → шеринг. Карточка готова до тапа.', ref: 'Spotify Wrapped, Duolingo Year in Review, Strava.', fx: 'счётчик 0→47, карточка под углом.', snd: 'мягкий «вуш».' },
   ] });
 
 /* ---------- 05. Позиция выросла / обогнали / последний шанс ---------- */
 const riseA = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:4px">
   <div class="ov a-up">Ступень пройдена</div><div class="h-lg a-up d1" style="margin-top:6px">Ты поднялся на 3 позиции</div>
   <div class="a-up d2" style="margin-top:16px;width:100%">${ladder(ROOM, { from: 5, to: 2, delta: '+3' })}</div>
-  <div class="p a-up d4 center" style="margin-top:14px">До Иры — <b>2 ступени</b>. Это 4 минуты.</div>
-  </div><div class="foot a-up d5"><div class="cta white">Ещё ступень ${icon('arrowR', 's18')}</div><div class="cta ghost">К башне</div></div></div>`;
-const overtakeB = () => `<div class="toast"><div class="faces">${coin(7, 36)}${coin(5, 36)}</div><div class="x">Ира обошла тебя<s>3 ступени — 6 минут. Монета обиделась.</s></div><span class="pill acc" style="height:34px">Догнать</span></div>
+  <div class="p a-up d4 center" style="margin-top:14px">До Иры — <b>20 монет</b>. Это 4 минуты.</div>
+  </div><div class="foot a-up d5"><div class="cta white">Играть ещё ${icon('arrowR', 's18')}</div><div class="cta ghost">К башне</div></div></div>`;
+const overtakeB = () => `<div class="toast"><div class="faces">${coin(7, 36)}${coin(5, 36)}</div><div class="x">Ира обошла тебя<s>30 монет — 6 минут. Монета обиделась.</s></div><span class="pill acc" style="height:34px">Догнать</span></div>
   <div style="position:absolute;left:50%;top:300px;transform:translateX(-50%);z-index:46">${coinChar(5, 96, { mood: 'nod', say: 'Ну неееет', sayStyle: 'animation-delay:.6s' })}</div>`;
 const lastChance = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
   <div class="fl" style="gap:14px"><div class="grow"><div class="ov" style="color:var(--bad)">Воскресенье · до итога</div><div class="cd" data-cd>03:12:40</div></div>${coinChar(5, 56, { mood: 'wow', shadow: false })}</div>
-  <div class="p" style="margin-top:8px">Ты на границе зоны повышения: <b>2 ступени</b> — и ты в Базальте. Энергии — 0, восстановится через 42 минуты.</div>
+  <div class="p" style="margin-top:8px">Ты на границе зоны повышения: <b>20 монет</b> — и ты в Базальте. Энергии — 0, восстановится через 10 минут.</div>
   <div class="zone" style="margin:18px 4px 0"><span class="me" style="left:17%">${coin(5, 26)}</span></div>
-  <div class="loss" style="margin-top:18px">${icon('clock', 's20')}<div>Ждать 42 минуты — <b>рискованно</b>: Олег играет прямо сейчас.</div></div>
-  <div class="cta gold" style="margin-top:12px">Играть сейчас — Plus 7 дней бесплатно</div><div class="cta ghost">+1 энергия за 100 монет</div></div>`;
+  
+  <div class="cta gold" style="margin-top:12px">Играть сейчас с Plus</div><div class="cta ghost">Подожду 10 минут</div></div>`;
 moment({ id: 'm05', num: '05', short: 'Позиция · обгон · последний шанс', title: 'Позиция выросла / обогнали / последний шанс', tag: 'new',
   lead: 'В v1 обгон был только тостом. v2 добавляет главный социальный момент лиг — <b>моя строка едет вверх</b> после ступени, и воскресный «последний шанс» на границе зоны повышения с энергией 0 — самая конверсионная точка Plus в Пике (пуш описан в TOWER.md, экрана не было).',
   variants: [
     { k: 'A', label: '«+3 позиции» — строка едет вверх', time: '~2,5 с', phone: { under: spireUnder({ lit: 5 }), over: riseA() }, init: (ph) => ladderPlay(ph, 900),
       why: 'Каждая ступень видна в таблице сразу: конкретный соперник, конкретная дистанция в минутах → «ещё одну».', ref: 'Duolingo после урока (строка поднимается), Strava сегменты.', fx: 'строка «Ты» едет на 3 ряда вверх 1,1 с, соседи сдвигаются вниз, свечение акцентом, +3 pop.', snd: '«вжик» подъёма + щелчок посадки; haptic medium.' },
     { k: 'B', label: 'Тост «Ира обошла» + монета обиделась', time: '~1,5 с', phone: { under: spireUnder({ lit: 4 }), over: overtakeB() }, why: 'Персонаж делает социальный толчок игрой, а не упрёком. Две монеты в тосте — «кто кого».', ref: 'Duolingo «X passed you», Duo widget mood.', fx: 'тост пружиной, монета кивает, реплика через 0,6 с.', snd: 'лёгкий «тук».' },
-    { k: 'C', label: 'Воскресный «последний шанс» — 2 ступени, энергия 0', time: '~1,5 с', phone: { under: spireUnder({ en: 0, when: 'через 3 ч', lit: 6 }), over: lastChance() }, init: (ph) => { let s = 3 * 3600 + 12 * 60 + 40; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000); return () => clearInterval(iv); },
-      why: 'Совпадение трёх факторов (граница зоны + отсчёт + энергия 0 + «Олег играет сейчас») — пиковая готовность платить. Два выхода: Plus (пробный) или монеты — без тупика.', ref: 'Duolingo «Last chance to get promoted!», Candy Crush lives-out, Clash Royale timers.', fx: 'отсчёт тикает, монета на шкале у границы зоны, персонаж wow.', snd: 'тик каждые 10 с; haptic light.' },
+    { k: 'C', label: 'Воскресный «последний шанс» — 20 монет, энергия 0', time: '~1,5 с', phone: { under: spireUnder({ en: 0, when: 'через 3 ч', lit: 6 }), over: lastChance() }, init: (ph) => { let s = 3 * 3600 + 12 * 60 + 40; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000); return () => clearInterval(iv); },
+      why: 'Совпадение трёх факторов (граница зоны + отсчёт + энергия 0 + « Два выхода: Plus (пробный) или монеты — без тупика.', ref: 'Duolingo «Last chance to get promoted!», Candy Crush lives-out, Clash Royale timers.', fx: 'отсчёт тикает, монета на шкале у границы зоны, персонаж wow.', snd: 'тик каждые 10 с; haptic light.' },
   ] });
 
 /* ---------- 06. Ступень ---------- */
@@ -207,15 +208,15 @@ const floorA = () => `<div class="full"><div class="body">
   <div class="tower a-up d1" style="margin-top:10px;position:relative"><div class="glowspot" style="top:60%"></div>${tower(0, { w: 160, lit: 5, floors: 12 })}<div style="position:absolute;left:50%;bottom:118px;transform:translateX(-50%)"><span class="floor-mates" style="background:var(--sheet);padding:4px 8px;border-radius:14px;box-shadow:var(--sho)">${[7, 4, 9, 12].map((r) => coin(r, 22)).join('')}<span class="more">на 5-м</span></span></div></div>
   <div class="fl a-up d3" style="margin-top:8px;gap:12px"><div class="sf" style="padding:10px 14px;display:inline-flex;align-items:center;gap:8px">${coin(5, 24)}<span class="h-md">+<span data-c>0</span></span></div>${coinChar(5, 56, { mood: 'jump', shadow: false })}</div>
   <div class="h-lg a-up d4" style="margin-top:12px">5 этаж — Страж</div>
-  <div class="p a-up d5" style="margin-top:6px">Смешанный набор, монеты ×2. Там уже Ира, Олег, Лена и Марк.</div>
+  <div class="p a-up d5" style="margin-top:6px">Смешанный набор, монеты . Там уже Ира, Олег, Лена и Марк.</div>
   </div><div class="foot a-up d6"><div class="cta white">На 5 этаж</div><div class="cta ghost">Передохнуть</div></div></div>`;
 const summitA = () => `<div class="full"><div class="glowspot gold" style="top:30%"></div><div class="body">
   <div class="ov a-up" style="color:var(--gold)">Вершина</div>
   <div style="margin-top:10px">${coinChar(5, 120, { mood: 'wow', crown: true, glints: true, say: 'Выше некуда!', sayStyle: 'animation-delay:1.2s' })}</div>
   <div class="h-xl a-up d4" style="margin-top:14px">15 этаж</div>
-  <div class="p a-up d5" style="margin-top:6px">135 ступеней за неделю — выше никого в комнате. <b>+200 монет.</b></div>
-  <div class="a-up d6" style="margin-top:16px">${shareCard({ k: 'ПИК · ВЕРШИНА', big: '15/15', sub: '135 ступеней · 1 место', bg: 'linear-gradient(160deg,#B9842A,#2A1A05)', inner: `<div class="fl" style="gap:8px">${coin(5, 30)}<span style="font-size:13px;font-weight:700">первый в комнате</span></div>` })}</div>
-  </div><div class="foot a-up d7"><div class="cta gold">Забрать 200</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+  <div class="p a-up d5" style="margin-top:6px">1350 монет за неделю — выше никого в комнате. <b>+200 монет.</b></div>
+  <div class="a-up d6" style="margin-top:16px">${shareCard({ k: 'ПИК · ВЕРШИНА', big: '15/15', sub: '1350 монет · 1 место', bg: 'linear-gradient(160deg,#B9842A,#2A1A05)', inner: `<div class="fl" style="gap:8px">${coin(5, 30)}<span style="font-size:13px;font-weight:700">первый в комнате</span></div>` })}</div>
+  </div><div class="foot a-up d7"><div class="cta gold">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
 moment({ id: 'm07', num: '07', short: 'Этаж · Вершина', title: 'Этаж пройден / Вершина v2', tag: 'old',
   lead: 'v2: соседи на следующем этаже — монетами рангов прямо на башне (социальная планка), персонаж прыгает; вершина — корона и share-карточка.',
   variants: [

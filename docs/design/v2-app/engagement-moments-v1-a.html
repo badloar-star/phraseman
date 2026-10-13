@@ -6,6 +6,7 @@
 <title>Моменты вовлечения v1 · A — Пик и лиги</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
 <style>
 /* зачем (владелец 13.10: «нарисуй модалы/моменты для всех состояний, которые реально поднимут актив, вовлечение и деньги; по несколько вариантов каждого»):
    часть A — всё, что происходит в «Пике»: повышение/удержание/понижение лиги, «Итог недели» с подиумом, обгоны друзей, итоги ступени, этажа и вершины.
@@ -56,10 +57,13 @@
   <div class="em-top"><div><span class="em-stage">Этап 1 · v1 · часть A</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения — Пик и лиги</h1>
   <p class="page-lead">Повышение, удержание и понижение лиги, «Итог недели» с подиумом, обгоны друзей, итоги ступени, этажа и вершины. У каждого момента 2–3 варианта подачи: минимализм / праздник / игровой. Под телефоном — «зачем» (что даёт удержанию, вовлечению, деньгам) и «у кого подсмотрено». ▶ Повторить — проиграть анимацию заново, ☾/☼ — тема «Океан» / «Сумерки».</p></div>
   <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v1-b.html">Часть B: занятия, кольца, монета →</a><a class="em-btn" href="engagement-moments-v1-c.html">Часть C: диалоги, серия, Plus →</a></div></div>
+  <div class="diff" style="margin-top:14px"><h3>Редакция по требованиям владельца (14.10)</h3><ol><li>Этап заменён редакцией v3 (engagement-moments-v3-*.html); здесь — исторический этап, приведённый к правилам: убраны механики, которых нет в решениях владельца (защита лиги, восстановление серии, награды на рубежах, умножение монет, косметика монеты, цены в рублях, выдуманная статистика); место в Пике — в монетах недели; ранг — только за монеты; оболочка 2.0 (токены темы, кнопки V2Button) подключена.</li></ol></div>
   <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v1-a.html">A · Пик</a><a class="file" href="engagement-moments-v1-b.html">B · Занятия</a><a class="file" href="engagement-moments-v1-c.html">C · Диалоги · Серия · Plus</a></nav>
   <div id="root"></div>
 </div>
+<script src="spire-tower-render.js"></script>
 <script src="engagement-moments.js"></script>
+<script src="engagement-moments-app.js"></script>
 <script>
 (() => {
 const { icon, coin, tower, league, rings, confetti, countUp, moment, render } = EM;
@@ -80,7 +84,7 @@ const promoA = () => `<div class="full" style="padding-top:64px"><span class="xb
   <div class="tower a-up d1" style="margin-top:14px;position:relative"><div class="glowspot" style="top:50%"></div>${tower(1, { w: 190, lit: 15, reveal: true, revealMs: 1600, revealDelay: 300 })}</div>
   <div class="lg-name a-up d5" style="margin-top:14px;color:${league(1).edge}">Базальт</div>
   <div class="h-xl a-up d6" style="margin-top:6px">Ты поднялся</div>
-  <div class="p a-up d7" style="margin-top:8px">3 место · 47 ступеней · <b>+150 монет</b></div>
+  <div class="p a-up d7" style="margin-top:8px">3 место · 470 монет · <b>+150 монет</b></div>
   </div><div class="foot a-up d8"><div class="cta white">Открыть башню</div><div class="cta ghost">Поделиться</div></div></div>`;
 const promoB = () => `<div class="full"><div class="glowspot gold"></div><div class="body">
   <div class="drum a-up" data-drum>Подводим итоги…</div>
@@ -90,14 +94,14 @@ const promoB = () => `<div class="full"><div class="glowspot gold"></div><div cl
     <div class="pl p3"><div style="position:relative">${coin(5, 40)}<span class="ring"></span></div><div class="nm">Ты</div><div class="blk">3</div></div></div>
   <div data-after hidden style="width:100%;text-align:center">
   <div class="h-xl a-up" style="margin-top:18px">Выход в Базальт!</div>
-  <div class="p a-up d1" style="margin-top:6px">Топ-15% комнаты поднимается. Ты в них.</div>
+  <div class="p a-up d1" style="margin-top:6px">Топ-5 комнаты поднимается. Ты в них.</div>
   <div class="sf a-up d2" style="margin:18px auto 0;padding:14px 18px;display:inline-flex;align-items:center;gap:12px">${coin(5, 30)}<span class="h-md num" data-count>1 240</span><span class="chip" style="color:var(--gold)">+150</span></div></div>
-  </div><div class="foot" data-after2 hidden><div class="cta gold a-up">Забрать и играть дальше</div><div class="cta ghost a-up d1">Поделиться с друзьями</div></div></div>`;
+  </div><div class="foot" data-after2 hidden><div class="cta gold a-up">Играть дальше</div><div class="cta ghost a-up d1">Поделиться с друзьями</div></div></div>`;
 const promoC = () => `<div class="full" style="--lc:${league(1).stone}"><div class="body">
   <div class="ov a-up">Новая лига открыта</div>
   <div class="card-reveal a-up d1" style="margin-top:22px"><div class="cd"><div class="face b"><span class="q">?</span><span class="small">Итог недели</span></div><div class="face f">${tower(1, { w: 120, lit: 15 })}<div class="lg-name" style="color:${league(1).edge}">Базальт</div><div class="small" style="color:rgba(255,255,255,.7)">лига 2 из 12</div></div></div></div>
   <div class="h-lg a-up d7" style="margin-top:22px">Базальт — твой</div>
-  <div class="p a-up d8" style="margin-top:6px">Новая башня, новые 30 соперников, все с 1 этажа. Монеты за этаж здесь ×1,2.</div>
+  <div class="p a-up d8" style="margin-top:6px">Новая башня, новые 30 соперников, все с 1 этажа.</div>
   </div><div class="foot a-up d8"><div class="cta white">Играть в Базальте</div></div></div>`;
 moment({ id: 'm01', num: '01', short: 'Повышение лиги', title: 'Повышение лиги — церемония', tag: 'new',
   lead: 'Сейчас в макете — только плашка «Ты поднимаешься в Базальт» на экране Пика. Нет отдельного экрана-события: без него повышение не чувствуется как награда. Три подачи: тихое восхождение, подиум-праздник, «открытие» башни как карты.',
@@ -107,7 +111,7 @@ moment({ id: 'm01', num: '01', short: 'Повышение лиги', title: 'П�
     { k: 'B', label: '«Подиум» — праздник', time: '~5 с', phone: { under: spireUnder({ li: 1, lit: 0, pos: 3 }), over: promoB() },
       init: (ph) => { const drum = ph.querySelector('[data-drum]'); const pod = ph.querySelector('[data-podium]'); const af = ph.querySelector('[data-after]'); const af2 = ph.querySelector('[data-after2]'); const stop = [];
         stop.push(setTimeout(() => { drum.hidden = true; pod.hidden = false; }, 1300)); stop.push(setTimeout(() => { af.hidden = false; af2.hidden = false; confetti(ph, { gold: true, n: 120 }); const c = ph.querySelector('[data-count]'); if (c) countUp(c, 1240, 1390, 1200); }, 2400)); return () => stop.forEach(clearTimeout); },
-      why: 'Соревновательный азарт: «барабанная дробь» → подиум растёт → имя и место. Монеты начисляются на глазах (счётчик бежит). Деньги: экран можно повторно использовать как точку входа Plus (×2 монет в Пике).', ref: 'Duolingo (подиум топ-3 и конфетти), Brawl Stars rank-up, Candy Crush «Sugar Crush» каскад.', fx: 'пульс «подводим итоги» 1,3 с → подиум поднимается с задержками 0/120/240 мс → золотые монетки → счётчик монет.', snd: 'дробь (низкий тихий), удар на 1 место, звон монет; haptic heavy на подиум.' },
+      why: 'Соревновательный азарт: «барабанная дробь» → подиум растёт → имя и место. Монеты начисляются на глазах (счётчик бежит). Деньги: экран можно повторно использовать как точку входа Plus ( в Пике).', ref: 'Duolingo (подиум топ-3 и конфетти), Brawl Stars rank-up, Candy Crush «Sugar Crush» каскад.', fx: 'пульс «подводим итоги» 1,3 с → подиум поднимается с задержками 0/120/240 мс → золотые монетки → счётчик монет.', snd: 'дробь (низкий тихий), удар на 1 место, звон монет; haptic heavy на подиум.' },
     { k: 'C', label: '«Карта лиги» — игровой', time: '~3 с', phone: { under: spireUnder({ li: 1, lit: 0, pos: 3 }), over: promoC() },
       init: (ph) => { const t = setTimeout(() => confetti(ph, { n: 70, burst: [.5, .42] }), 2000); return () => clearTimeout(t); },
       why: 'Эффект «сундука»: карта с «?» переворачивается и показывает новую башню. Любопытство + коллекционирование 12 лиг. Подводит к мысли «а какая следующая?» — цель на неделю.', ref: 'Clash Royale (открытие сундука), Hearthstone (переворот карты), Brawl Stars Star Drop.', fx: 'flip 3D 1,5 с с задержкой 0,6 с (сначала карта «вздрагивает»), взрыв конфетти из центра в момент раскрытия.', snd: 'шорох карты → «дзинь» на раскрытии; haptic medium.' },
@@ -115,42 +119,37 @@ moment({ id: 'm01', num: '01', short: 'Повышение лиги', title: 'П�
 
 /* ---------- 02. Удержался в лиге ---------- */
 const stayA = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
-  <div class="fl"><div style="position:relative;flex:none">${tower(0, { w: 70, lit: 15 })}</div><div class="grow" style="margin-left:6px"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Остаёшься в Граните</div><div class="p" style="margin-top:4px;font-size:15px">12 место · 25 ступеней</div></div></div>
-  <div class="sf" style="padding:14px 16px;margin-top:18px"><div class="small" style="margin-bottom:10px">Чтобы подняться на следующей неделе</div><div class="fl" style="gap:14px"><span class="arrow-up">${icon('up', 's20')}</span><div class="grow"><div style="font-size:16px;font-weight:700">Ещё 22 ступени — и ты в топ-15%</div><div class="small">это 3 ступени в день</div></div></div></div>
+  <div class="fl"><div style="position:relative;flex:none">${tower(0, { w: 70, lit: 15 })}</div><div class="grow" style="margin-left:6px"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Остаёшься в Граните</div><div class="p" style="margin-top:4px;font-size:15px">12 место · 250 монет</div></div></div>
+  <div class="sf" style="padding:14px 16px;margin-top:18px"><div class="small" style="margin-bottom:10px">Чтобы подняться на следующей неделе</div><div class="fl" style="gap:14px"><span class="arrow-up">${icon('up', 's20')}</span><div class="grow"><div style="font-size:16px;font-weight:700">Ещё 220 монет — и ты в топ-5</div><div class="small">это 30 монет в день</div></div></div></div>
   <div class="cta white" style="margin-top:18px">Новая неделя — Играть</div></div>`;
 const stayB = () => `<div class="dim"></div><div class="modal"><div class="ov center">Итог недели</div><div class="h-lg center" style="margin-top:8px">Удержался!</div>
-  <div class="p center" style="margin-top:6px">На волоске: от зоны вылета тебя отделяли <b>2 ступени</b>.</div>
-  <div style="margin:24px 4px 8px"><div class="zone"><span class="me" data-me style="left:84%">${coin(5, 22)}</span></div><div class="fl" style="justify-content:space-between;margin-top:10px;font-size:12px;font-weight:700;color:var(--sc)"><span style="color:var(--good)">▲ топ-15%</span><span>Гранит</span><span style="color:var(--bad)">вылет ▼</span></div></div>
-  <div class="sf" style="padding:12px 14px;margin-top:14px;display:flex;gap:12px;align-items:center">${icon('shield', 's20')}<div class="grow" style="font-size:14px;line-height:19px">Хочешь без нервов? В Plus монеты за этажи ×2 — подниматься проще.</div></div>
+  <div class="p center" style="margin-top:6px">На волоске: от зоны вылета тебя отделяли <b>20 монет</b>.</div>
+  <div style="margin:24px 4px 8px"><div class="zone"><span class="me" data-me style="left:84%">${coin(5, 22)}</span></div><div class="fl" style="justify-content:space-between;margin-top:10px;font-size:12px;font-weight:700;color:var(--sc)"><span style="color:var(--good)">▲ топ-5</span><span>Гранит</span><span style="color:var(--bad)">вылет ▼</span></div></div>
+  
   <div class="cta white" style="margin-top:16px">Начать новую неделю</div></div>`;
 moment({ id: 'm02', num: '02', short: 'Удержался в лиге', title: 'Удержался в лиге', tag: 'new',
   lead: 'Середина таблицы — самый частый исход и самый скучный экран. Делаем из него цель на следующую неделю (сколько не хватило) — так «ничья» превращается в план.',
   variants: [
-    { k: 'A', label: '«Ещё 22 ступени» — цель', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0, pos: 12, steps: 25 }), over: stayA() },
-      why: 'Вместо «остаёшься» — конкретная цифра до повышения и пересчёт в «3 ступени в день». Удержание: понятная дневная норма.', ref: 'Duolingo «ещё N XP до повышения», Strava цели.', fx: 'шторка снизу, стрелка-вверх пульсирует один раз.', snd: 'без звука; haptic light.' },
-    { k: 'B', label: '«На волоске» — драма', time: '~2 с', phone: { under: spireUnder({ li: 0, lit: 0, pos: 24, steps: 20 }), over: stayB() },
-      init: (ph) => { const me = ph.querySelector('[data-me]'); me.style.left = '96%'; const t = setTimeout(() => { me.style.left = '82%'; }, 500); return () => clearTimeout(t); },
-      why: 'Чуть не вылетел — лучшая эмоция для «в следующий раз не повторю». Шкала зон (повышение/середина/вылет) с монетой, которая отъезжает от красной зоны. Деньги: мягкая строка про Plus ×2 без ценника.', ref: 'Duolingo Demotion Zone, Clash Royale trophy gates.', fx: 'монета скользит от красной зоны 1,4 с.', snd: 'выдох-облегчение; haptic rigid → success.' },
+    { k: 'A', label: '«Ещё 220 монет» — цель', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0, pos: 12, steps: 25 }), over: stayA() },
+      why: 'Вместо «остаёшься» — конкретная цифра до повышения и пересчёт в «30 монет в день». Удержание: понятная дневная норма.', ref: 'Duolingo «ещё N XP до повышения», Strava цели.', fx: 'шторка снизу, стрелка-вверх пульсирует один раз.', snd: 'без звука; haptic light.' },
   ] });
 
 /* ---------- 03. Понижение — мягко ---------- */
 const downA = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
   <div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Передышка в Граните</div>
-  <div class="p" style="margin-top:8px">Неделя вышла тихой — 6 ступеней. Бывает. В Граните проще взять разгон и вернуться.</div>
+  <div class="p" style="margin-top:8px">Неделя вышла тихой — 60 монет. Бывает. В Граните проще взять разгон и вернуться.</div>
   <div class="fl" style="margin-top:16px;gap:8px"><div class="sf" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800">6</div><div class="small">ступеней</div></div><div class="sf" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800">2</div><div class="small">дня в игре</div></div><div class="sf" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--acc)">+40</div><div class="small">монет</div></div></div>
   <div class="cta white" style="margin-top:18px">Вернуться в Базальт — Играть</div><div class="cta ghost">Напомнить вечером</div></div>`;
 const downB = () => `<div class="dim"></div><div class="modal"><div class="ov center">Итог недели</div><div class="h-lg center" style="margin-top:8px">Реванш?</div>
   <div class="vs" style="margin-top:18px"><div class="side sf">${tower(1, { w: 56, lit: 0 })}<b style="color:var(--sc)">Базальт</b><span>была</span></div><div class="mid">→</div><div class="side sf on">${tower(0, { w: 56, lit: 15 })}<b>Гранит</b><span>новая неделя</span></div></div>
-  <div class="p center" style="margin-top:16px">Топ-15% Гранита возвращает тебя в Базальт уже в понедельник.</div>
-  <div class="sf" style="padding:12px 14px;margin-top:14px;display:flex;gap:12px;align-items:center">${icon('shield', 's20')}<div class="grow" style="font-size:14px;line-height:19px"><b>Щит лиги</b> в Plus: одно понижение в месяц не считается.</div><span class="pill plus">PLUS</span></div>
+  <div class="p center" style="margin-top:16px">Топ-5 Гранита возвращает тебя в Базальт уже в понедельник.</div>
+  
   <div class="cta white" style="margin-top:16px">Играть на реванш</div></div>`;
 moment({ id: 'm03', num: '03', short: 'Понижение (мягко)', title: 'Понижение лиги — мягко', tag: 'new',
-  lead: 'Понижение — главный момент оттока. Нельзя стыдить; нужно оставить достоинство («передышка») и дать быстрый путь назад. Предложение «Щит лиги» — новая Plus-выгода, предложение дизайна (в продукте пока нет).',
+  lead: 'Понижение — главный момент оттока. Нельзя стыдить; нужно оставить достоинство («передышка») и дать быстрый путь назад. ',
   variants: [
     { k: 'A', label: '«Передышка» — поддержка', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0, pos: 1, steps: 0 }), over: downA() },
       why: 'Тон без осуждения, цифры недели как факт, кнопка «Вернуться». «Напомнить вечером» — ловим тех, кому сейчас не до игры. Удержание: снижает отток после понижения.', ref: 'Drops (мягкие пропуски), Duolingo demotion без стыда, Headspace tone.', fx: 'шторка, цифры появляются лесенкой.', snd: 'без звука; haptic light.' },
-    { k: 'B', label: '«Реванш» — вызов + Щит', time: '~2 с', phone: { under: spireUnder({ li: 0, lit: 0, pos: 1, steps: 0 }), over: downB() },
-      why: 'Для соревновательных: «была → новая» башни рядом, цель — вернуться за неделю. Деньги: «Щит лиги» как ощутимая Plus-выгода в момент боли (самая высокая готовность платить).', ref: 'Duolingo League Repair, Clash Royale «защита трофеев», Brawl Stars rank shield.', fx: 'правая башня приподнята (sf.on), стрелка.', snd: 'короткий «удар» на «Реванш?»; haptic medium.' },
   ] });
 
 /* ---------- 04. Итог недели — подиум / история ---------- */
@@ -158,14 +157,14 @@ const weekA = () => `<div class="full"><span class="xbtn">${icon('close', 's18')
   <div class="ov a-up">Итог недели · Гранит</div>
   <div class="podium a-up d1" style="margin-top:22px;width:100%"><div class="pl p2">${coin(7, 40)}<div class="nm">Ира</div><div class="blk">2</div></div><div class="pl p1">${coin(12, 46)}<div class="nm">Марк</div><div class="blk">1</div></div><div class="pl p3">${coin(8, 40)}<div class="nm">Соня</div><div class="blk">3</div></div></div>
   <div style="width:100%;margin-top:18px">${ROOM.slice(2, 5).map(([n, r, s], i) => `<div class="lrow a-up d${i + 3}${n === 'Ты' ? ' me' : ''}"><span class="pos">${i + 3 + (i >= 1 ? 1 : 0)}</span>${coin(r, 30)}<span class="nm">${n}</span><span class="pt">${s}</span></div>`).join('')}</div>
-  <div class="p a-up d6" style="margin-top:14px;text-align:center">До подиума не хватило <b>1 ступени</b>. Всё ещё топ-15% — поднимаешься.</div>
+  <div class="p a-up d6" style="margin-top:14px;text-align:center">До подиума не хватило <b>10 монет</b>. Всё ещё топ-5 — поднимаешься.</div>
   </div><div class="foot a-up d7"><div class="cta white">Дальше</div></div></div>`;
 const weekB = () => `<div class="full" style="padding:0"><div style="position:absolute;inset:0;background:linear-gradient(180deg, color-mix(in srgb, ${league(0).stone} 40%, var(--bg)), var(--bg) 70%)"></div>
   <div style="position:relative;padding:62px 24px 36px;height:100%;display:flex;flex-direction:column">
   <div class="fl" style="gap:4px"><i style="flex:1;height:3px;border-radius:2px;background:#fff"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i><i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.35)"></i></div>
   <div class="ov a-up" style="margin-top:22px">Твоя неделя</div>
-  <div class="h-xl a-up d1" style="margin-top:8px;font-size:40px;line-height:44px">47 ступеней</div>
-  <div class="p a-up d2" style="margin-top:6px">Это больше, чем у 84% комнаты</div>
+  <div class="h-xl a-up d1" style="margin-top:8px;font-size:40px;line-height:44px">470 монет</div>
+  <div class="p a-up d2" style="margin-top:6px">Твоя неделя в цифрах</div>
   <div class="stat3 a-up d3" style="margin-top:24px"><div class="st sf"><b>7</b><span>этаж — рекорд</span></div><div class="st sf"><b>1:04</b><span>лучшая ступень</span></div><div class="st sf"><b>5</b><span>дней подряд</span></div></div>
   <div class="sf a-up d4" style="margin-top:14px;padding:14px 16px"><div class="small" style="margin-bottom:8px">Друзья</div><div class="friend-strip">${FRIENDS.map((f) => `<div class="f tone">${coin(f.r, 24)}${f.n}<span>${f.f} эт.</span></div>`).join('')}</div></div>
   <div style="flex:1"></div>
@@ -177,11 +176,11 @@ moment({ id: 'm04', num: '04', short: 'Итог недели · подиум', t
     { k: 'A', label: 'Подиум комнаты', time: '~2,5 с', phone: { under: spireUnder({}), over: weekA() },
       why: 'Видно соперников и «чуть-чуть не хватило до подиума» — мотивация на следующую неделю. Строка «Ты» приподнята.', ref: 'Duolingo League Results, Strava сегменты.', fx: 'подиум растёт, строки лесенкой.', snd: 'короткая фанфара на подиум; haptic success.' },
     { k: 'B', label: '«Твоя неделя» — сторис', time: '~3 с', phone: { under: spireUnder({}), over: weekB() },
-      why: 'Личные рекорды + «больше, чем у 84%» = гордость и повод поделиться. Шер-карточки у Duolingo дали рост органики в 5–10×. Вовлечение: 4 слайда, пролистывание.', ref: 'Spotify Wrapped, Duolingo Year in Review, Strava.', fx: 'градиент камня лиги сверху, цифры и статы лесенкой 0–800 мс.', snd: 'мягкий «вуш» на каждый слайд.' },
+      why: 'Личные рекорды + «твоя неделя в цифрах» = гордость и повод поделиться. Шер-карточки у Duolingo дали рост органики в 5–10×. Вовлечение: 4 слайда, пролистывание.', ref: 'Spotify Wrapped, Duolingo Year in Review, Strava.', fx: 'градиент камня лиги сверху, цифры и статы лесенкой 0–800 мс.', snd: 'мягкий «вуш» на каждый слайд.' },
   ] });
 
 /* ---------- 05. Тебя обогнали / обогнал друга ---------- */
-const overtakeToast = () => `<div class="toast"><span class="tile">${coin(7, 28)}</span><div class="x">Ира обошла тебя<s>Она на 5 этаже, ты на 4. Разница — 3 ступени</s></div><span class="pill acc" style="height:34px">Играть</span></div>`;
+const overtakeToast = () => `<div class="toast"><span class="tile">${coin(7, 28)}</span><div class="x">Ира обошла тебя<s>Она на 5 этаже, ты на 4. Разница — 30 монет</s></div><span class="pill acc" style="height:34px">Играть</span></div>`;
 const overtakeModal = () => `<div class="dim"></div><div class="modal"><div class="vs"><div class="side sf">${coin(7, 44)}<b>5</b><span>Ира · этаж</span></div><div class="mid">VS</div><div class="side sf on">${coin(5, 44)}<b>4</b><span>Ты · этаж</span></div></div>
   <div class="h-lg center" style="margin-top:18px">Ира вышла вперёд</div><div class="p center" style="margin-top:6px">Три ступени — и ты снова выше. Это 6 минут.</div>
   <div class="cta white" style="margin-top:18px">Догнать — Играть</div><div class="cta ghost">Потом</div></div>`;
@@ -233,15 +232,15 @@ const floorA = () => `<div class="full"><div class="body">
   <div class="tower a-up d1" style="margin-top:12px;position:relative"><div class="glowspot" style="top:60%"></div>${tower(0, { w: 170, lit: 5, reveal: false })}</div>
   <div class="sf a-up d3" style="margin-top:10px;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span><span class="small">за этаж</span></div>
   <div class="h-lg a-up d4" style="margin-top:14px">Впереди Страж</div>
-  <div class="p a-up d5" style="margin-top:6px">5 этаж — смешанный набор, монет ×2. Дальше тебя уже только 4 человека в комнате.</div>
+  <div class="p a-up d5" style="margin-top:6px">5 этаж — смешанный набор, монет . Дальше тебя уже только 4 человека в комнате.</div>
   </div><div class="foot a-up d6"><div class="cta white">На 5 этаж</div><div class="cta ghost">Передохнуть</div></div></div>`;
 const summitA = () => `<div class="full"><div class="glowspot gold" style="top:28%"></div><div class="body">
   <div class="ov a-up" style="color:var(--gold)">Вершина</div>
   <div class="tower a-up d1" style="margin-top:8px;position:relative">${tower(0, { w: 150, lit: 15 })}<svg class="flag" style="left:50%;top:-6px;margin-left:-2px" width="40" height="40" viewBox="0 0 40 40"><path d="M2 2v38" stroke="#fff" stroke-width="2"/><path d="M3 3h26l-6 7 6 7H3z" fill="var(--gold)"/></svg></div>
   <div class="h-xl a-up d4" style="margin-top:10px">15 этаж. Ты наверху</div>
-  <div class="p a-up d5" style="margin-top:6px">135 ступеней за неделю — выше никого. <b>+200 монет</b> за вершину.</div>
-  <div class="stat3 a-up d6" style="margin-top:20px"><div class="st sf"><b>1</b><span>место</span></div><div class="st sf"><b>135</b><span>ступеней</span></div><div class="st sf"><b>×2</b><span>монеты до итога</span></div></div>
-  </div><div class="foot a-up d7"><div class="cta gold">Забрать 200</div><div class="cta ghost">Поделиться</div></div></div>`;
+  <div class="p a-up d5" style="margin-top:6px">1350 монет за неделю — выше никого. <b>+200 монет</b> за вершину.</div>
+  <div class="stat3 a-up d6" style="margin-top:20px"><div class="st sf"><b>1</b><span>место</span></div><div class="st sf"><b>135</b><span>ступеней</span></div><div class="st sf"><b></b><span>монеты до итога</span></div></div>
+  </div><div class="foot a-up d7"><div class="cta gold">Дальше</div><div class="cta ghost">Поделиться</div></div></div>`;
 moment({ id: 'm07', num: '07', short: 'Этаж · Вершина', title: 'Этаж пройден / Вершина', tag: 'old',
   lead: 'Есть в макете. Усиливаем «вертикаль»: башня в кадре, зажигается следующий этаж, монеты за этаж начисляются счётчиком; вершина — флаг, золото, статистика и шеринг.',
   variants: [

@@ -6,6 +6,7 @@
 <title>Моменты вовлечения v1 · B — занятия, кольца дня, монета</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
 <style>
 /* зачем: часть B — всё внутри занятий и на Главной: комбо правильных ответов, идеальный урок, итог урока (есть — улучшаем),
    «кольца дня» (3 образа + закрытие + неделя + «все закрыты», по просьбе владельца 13.10), повышение ранга монеты (есть — делаем автоматическим моментом), тосты, выход из занятия. */
@@ -61,10 +62,13 @@
   <div class="em-top"><div><span class="em-stage">Этап 1 · v1 · часть B</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения — занятия, кольца дня, монета</h1>
   <p class="page-lead">Комбо правильных ответов (3/5/10), идеальный урок, итог урока, «кольца дня» в трёх образах с закрытием, неделей и «все кольца закрыты», автоматический момент повышения ранга монеты, тосты и выход из занятия.</p></div>
   <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v1-a.html">← Часть A: Пик</a><a class="em-btn" href="engagement-moments-v1-c.html">Часть C: диалоги, серия, Plus →</a></div></div>
+  <div class="diff" style="margin-top:14px"><h3>Редакция по требованиям владельца (14.10)</h3><ol><li>Этап заменён редакцией v3 (engagement-moments-v3-*.html); здесь — исторический этап, приведённый к правилам: убраны механики, которых нет в решениях владельца (защита лиги, восстановление серии, награды на рубежах, умножение монет, косметика монеты, цены в рублях, выдуманная статистика); место в Пике — в монетах недели; ранг — только за монеты; оболочка 2.0 (токены темы, кнопки V2Button) подключена.</li></ol></div>
   <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v1-a.html">A · Пик</a><a class="file" href="engagement-moments-v1-b.html">B · Занятия</a><a class="file" href="engagement-moments-v1-c.html">C · Диалоги · Серия · Plus</a></nav>
   <div id="root"></div>
 </div>
+<script src="spire-tower-render.js"></script>
 <script src="engagement-moments.js"></script>
+<script src="engagement-moments-app.js"></script>
 <script>
 (() => {
 const { icon, coin, tower, rings, confetti, countUp, moment, render } = EM;
@@ -80,7 +84,7 @@ const lessonUnder = (o = {}) => `<div class="lesson-under"><div class="top"><spa
 /* ---------- 08. Комбо ---------- */
 const comboA = (n) => { const lvl = n >= 10 ? 'l3' : n >= 5 ? 'l2' : ''; return `<div style="position:absolute;left:0;right:0;top:106px;z-index:60;display:flex;justify-content:center"><span class="combo-badge ${lvl}">${icon('boltF', 's16')}${n} подряд${n >= 10 ? ' · огонь' : ''}</span></div>`; };
 const comboB = (n) => `<div class="edge"></div><div class="bigcombo"><b>${n}</b><span>подряд</span></div>`;
-const comboC = (n) => `<div class="dim" style="background:transparent;backdrop-filter:none"></div><div class="toast" style="top:96px;justify-content:center;gap:16px"><div class="mult"><span class="x">×${n >= 10 ? 3 : 2}</span><div class="seg">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= Math.min(5, n - 5) ? 'on' : ''}"></i>`).join('')}</div></div><div class="x" style="flex:none"><div style="font-size:16px">Серия ${n}</div><s>монеты за ответ ×${n >= 10 ? 3 : 2}</s><s style="color:var(--gold)">ещё ${10 - n > 0 ? 10 - n : 0} до ×3</s></div></div>`;
+const comboC = (n) => `<div class="dim" style="background:transparent;backdrop-filter:none"></div><div class="toast" style="top:96px;justify-content:center;gap:16px"><div class="mult"><span class="x">×${n >= 10 ? 3 : 2}</span><div class="seg">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= Math.min(5, n - 5) ? 'on' : ''}"></i>`).join('')}</div></div><div class="x" style="flex:none"><div style="font-size:16px">Серия ${n}</div><s>монеты за ответ ×${n >= 10 ? 3 : 2}</s><s style="color:var(--gold)">ещё ${10 - n > 0 ? 10 - n : 0} до </s></div></div>`;
 moment({ id: 'm08', num: '08', short: 'Комбо · молния', title: '«Молния» — серия правильных ответов подряд', tag: 'new',
   lead: 'В уроке, тренировке и ступени Пика — ничего нет (эффект комбо удалён 03.08, остался мини-ComboRing в старых уроках). Нарастание 3 → 5 → 10: бейдж растёт и теплеет, на 10 — вспышка по краям экрана. Три подачи: бейдж, «разряд» на весь экран, множитель монет (деньги/азарт).',
   variants: [
@@ -89,8 +93,6 @@ moment({ id: 'm08', num: '08', short: 'Комбо · молния', title: '«М
       why: 'Не мешает отвечать: бейдж под прогресс-баром, растёт только на вехах. Вовлечение: «не хочу терять серию» удерживает внимание до конца урока.', ref: 'Duolingo «N in a row» (combo bonus), Quizlet Match, Guitar Hero.', fx: 'pop 500 мс; на 10 — тёплая вспышка по краям 1,4 с.', snd: '3: «тик», 5: «тик-тик», 10: «вжух» + haptic medium. На ошибке — бейдж растворяется без звука (не наказываем).' },
     { k: 'B', label: '«Разряд» — цифра во весь экран', time: '1,8 с', phone: { under: lessonUnder(), over: comboB(10) },
       why: 'Для 10 подряд — редкое событие, заслуживает экрана. Цифра «вылетает» на 0,7 с и тает, урок не останавливается.', ref: 'Candy Crush «Sweet / Divine», Beat Saber combo, Brawl Stars kill streak.', fx: 'bolt-in с перелётом (translateY −40 → +4 → 0), gradient-text, затухание через 1,6 с.', snd: 'громкий «разряд» 300 мс; haptic heavy.' },
-    { k: 'C', label: 'Множитель монет ×2 → ×3', time: '1 с', phone: { under: lessonUnder(), over: comboC(7) },
-      why: 'Деньги/экономика: серия даёт больше монет за ответ (×2 с 5-го, ×3 с 10-го). Сегменты показывают «ещё 3 до ×3». Азарт Candy Crush + понятная выгода.', ref: 'Candy Crush множители, Clash Royale crown bonus, Duolingo XP boost.', fx: 'множитель pop, сегменты зажигаются по одному.', snd: 'звон на каждый сегмент; haptic light.' },
   ] });
 
 /* ---------- 09. Идеальный урок ---------- */
@@ -99,7 +101,7 @@ const perfectA = () => `<div class="full"><div class="halo"></div><div class="bo
   <div class="ov a-up d3" style="margin-top:22px;color:var(--gold)">Идеальный урок</div>
   <div class="h-xl a-up d4" style="margin-top:8px">Ни одной ошибки</div>
   <div class="p a-up d5" style="margin-top:6px">20 из 20 · Present Simple: Утверждение</div>
-  <div class="sf a-up d6" style="margin:22px 0 0;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span><span class="chip" style="color:var(--gold)">×1,5 за идеал</span></div>
+  <div class="sf a-up d6" style="margin:22px 0 0;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span></div>
   </div><div class="foot a-up d7"><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
 const perfectB = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:30px">
   <div style="position:relative;display:inline-block">${coin(5, 88, 'coin-flip')}<span class="ring"></span></div>
@@ -109,11 +111,11 @@ const perfectB = () => `<div class="dim"></div><div class="modal" style="text-al
   <div class="bar gold" style="margin:18px 10px 0"><i style="--w:60%"></i></div><div class="small" style="margin-top:8px">1 380 из 1 500 монет до ранга 6</div>
   <div class="cta white" style="margin-top:20px">Следующий урок</div></div>`;
 moment({ id: 'm09', num: '09', short: 'Идеальный урок', title: 'Идеальный урок — без единой ошибки', tag: 'new',
-  lead: 'Сейчас отличие от обычного итога — только звук третьей звезды. Делаем отдельный момент: золотой ореол, 3 звезды по очереди, бонус ×1,5 к монетам; вариант с «серией идеалов» даёт бонус монет и показывает прогресс к рангу в монетах (ранг покупается за монеты — правило владельца).',
+  lead: 'Сейчас отличие от обычного итога — только звук третьей звезды. Делаем отдельный момент: золотой ореол, 3 звезды по очереди, бонус  к монетам; вариант с «серией идеалов» даёт бонус монет и показывает прогресс к рангу в монетах (ранг покупается за монеты — правило владельца).',
   variants: [
-    { k: 'A', label: 'Золотой ореол + ×1,5', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectA() },
+    { k: 'A', label: 'Золотой ореол + ', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectA() },
       init: (ph) => { const c = ph.querySelector('[data-c]'); const t = setTimeout(() => { countUp(c, 0, 45, 900); confetti(ph, { gold: true, n: 70 }); }, 1100); return () => clearTimeout(t); },
-      why: 'Редкий (≈15% уроков) и заслуженный — повышает ценность ошибок-нет. Шеринг даёт органику.', ref: 'Duolingo Legendary (золото), Candy Crush 3 звезды.', fx: 'звёзды pop 0/200/400 мс, медленно вращающийся золотой ореол, счётчик монет.', snd: 'три «дзинь» по возрастанию + финал; haptic success ×3.' },
+      why: 'Редкий (≈15% уроков) и заслуженный — повышает ценность ошибок-нет. Шеринг даёт органику.', ref: 'Duolingo Legendary (золото), Candy Crush 3 звезды.', fx: 'звёзды pop 0/200/400 мс, медленно вращающийся золотой ореол, счётчик монет.', snd: 'три «дзинь» по возрастанию + финал; haptic success .' },
     { k: 'B', label: 'Серия идеалов → монеты к рангу', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectB() },
       why: 'Связывает идеальный урок с рангом монеты: серия идеалов даёт бонус монет, а полоска показывает «ещё 120 монет до ранга 6». Ранг — только покупкой за монеты.', ref: 'Duolingo Legendary → trophy, Clash Royale crown chest (10 корон).', fx: 'монета-флип 1,6 с, золотой бар.', snd: 'флип-шорох + звон; haptic medium.' },
   ] });
@@ -208,9 +210,9 @@ const allClosedB = () => `<div class="full"><div class="glowspot gold"></div><di
   <div class="ringwrap a-pop" data-r>${rings(RING3([1, 1, 1]), { size: 210, stroke: 16, gap: 6, from0: true })}<div class="c">${coin(5, 80)}</div></div>
   <div class="ov a-up d4" style="margin-top:24px;color:var(--gold)">Все кольца закрыты</div>
   <div class="h-xl a-up d5" style="margin-top:6px">Полный день</div>
-  <div class="p a-up d6" style="margin-top:6px">Урок, Пик и карточки — всё. <b>+100 монет</b> за полный день. Это 4-й подряд.</div>
+  <div class="p a-up d6" style="margin-top:6px">Урок, Пик и карточки — всё. Это 4-й полный день подряд.</div>
   <div class="a-up d7" style="margin-top:18px">${wk([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [0, 0, 0], [0, 0, 0]], { today: 4 })}</div>
-  </div><div class="foot a-up d8"><div class="cta gold">Забрать 100</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+  </div><div class="foot a-up d8"><div class="cta gold">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
 moment({ id: 'm13', num: '13', short: 'Неделя колец · все закрыты', title: 'Неделя колец и «все кольца закрыты»', tag: 'new',
   lead: 'Недельный вид — семь мини-колец, виден «дырявый» день (мотивация не повторять). «Все кольца закрыты» — отдельное празднование с бонусом за полный день и счётчиком полных дней подряд (вторая серия поверх серии дней — престиж для вовлечённых).',
   variants: [
@@ -218,7 +220,7 @@ moment({ id: 'm13', num: '13', short: 'Неделя колец · все зак�
       why: 'Паттерн недели виден сразу; «среда без Пика» — мягкий укол. Удержание: стремление к «5 из 5».', ref: 'Apple Fitness week view, Duolingo Perfect Week.', fx: 'мини-кольца докручиваются по дням.', snd: '—' },
     { k: 'B', label: '«Полный день» — все три', time: '~3 с', phone: { under: weekRingsA(), over: allClosedB() },
       init: (ph) => { const t1 = setTimeout(() => ph.querySelectorAll('.full .rg').forEach((c) => { c.style.strokeDashoffset = '0'; }), 300); const t2 = setTimeout(() => confetti(ph, { gold: true, n: 110 }), 1500); return () => { clearTimeout(t1); clearTimeout(t2); }; },
-      why: 'Редкий момент (полный день) → золото, бонус и серия полных дней. Деньги: это место для «Plus: ×2 за полный день» без давления (в v2).', ref: 'Apple «All three rings», Duolingo Perfect Week, Streak Society.', fx: 'три кольца от нуля в унисон, золотой дождь.', snd: 'аккорд из трёх нот; haptic heavy.' },
+      why: 'Редкий момент (полный день) → золото, бонус и серия полных дней. ', ref: 'Apple «All three rings», Duolingo Perfect Week, Streak Society.', fx: 'три кольца от нуля в унисон, золотой дождь.', snd: 'аккорд из трёх нот; haptic heavy.' },
   ] });
 
 /* ---------- 14. Повышение ранга монеты (есть — улучшаем) ---------- */
@@ -231,14 +233,14 @@ const rankA = () => `<div class="dim"></div><div class="modal" style="text-align
 const rankB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:10px">
   <div class="ov a-up">Коллекция монет</div><div class="h-lg a-up d1" style="margin-top:6px">Ранг 6 из 20</div>
   <div class="rank-shelf a-up d2" style="margin-top:20px;width:100%">${Array.from({ length: 20 }, (_, i) => `<div class="r ${i < 6 ? '' : 'lock'} ${i === 5 ? 'new' : ''}">${coin(i, 40)}</div>`).join('')}</div>
-  <div class="p a-up d4" style="margin-top:18px">Следующая — ранг 7, цена 2 400 монет. Идеальные уроки и комбо ускоряют: ×1,5 и ×2 к монетам.</div>
+  <div class="p a-up d4" style="margin-top:18px">Следующая — ранг 7, цена 2 400 монет. Копится из обычных монет за занятия.</div>
   <div class="bar gold a-up d5" style="width:100%;margin-top:12px"><i style="--w:12%"></i></div><div class="small a-up d5" style="margin-top:6px">300 из 2 400</div>
   </div><div class="foot a-up d6"><div class="cta white">Продолжить</div></div></div>`;
 moment({ id: 'm14', num: '14', short: 'Ранг монеты', title: 'Повышение ранга монеты', tag: 'old',
-  lead: 'Церемония «Монетный двор» (LevelUpMintCeremony) — лучшее в приложении, но запускается только когда пользователь сам зашёл и заплатил. Добавляем момент-приглашение после урока («ранг доступен») и «полку» коллекции 20 рангов с подсветкой новой — это мотивация копить (экономика монет) и повод для ×2 монет в Plus.',
+  lead: 'Церемония «Монетный двор» (LevelUpMintCeremony) — лучшее в приложении, но запускается только когда пользователь сам зашёл и заплатил. Добавляем момент-приглашение после урока («ранг доступен») и «полку» коллекции 20 рангов с подсветкой новой — это мотивация копить (экономика монет) и повод для  в Plus.',
   variants: [
     { k: 'A', label: 'Приглашение после урока: «Ранг 6 доступен»', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankA() },
-      why: 'Пользователь не знает, что накопил на ранг. Момент предложения → тап → существующая церемония чеканки. Деньги: монеты тратятся → спрос на монеты → Plus ×2.', ref: 'Clash Royale «upgrade available» (зелёная стрелка), Pokémon evolution prompt.', fx: 'новая монета pop + расходящееся кольцо, золотое свечение.', snd: 'звон; haptic medium.' },
+      why: 'Пользователь не знает, что накопил на ранг. Момент предложения → тап → существующая церемония чеканки. Деньги: монеты тратятся → спрос на монеты → Plus .', ref: 'Clash Royale «upgrade available» (зелёная стрелка), Pokémon evolution prompt.', fx: 'новая монета pop + расходящееся кольцо, золотое свечение.', snd: 'звон; haptic medium.' },
     { k: 'B', label: 'Полка коллекции 20 рангов', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankB() },
       why: 'Коллекционирование: видно, сколько впереди; новый ранг пульсирует; два пути к следующему (монеты или идеалы). Долгосрочная цель.', ref: 'Brawl Stars brawler grid, Pokémon dex, Duolingo achievements shelf.', fx: 'сетка появляется, новая монета пульсирует с золотым ободом.', snd: '—' },
   ] });

@@ -50,6 +50,8 @@
   // o.w — ширина; o.lit — мой этаж (окна ниже — пройдены); o.crop 'top'|'mid'|'mini'|'full'; o.reveal — раскрытие снизу вверх.
   // Окна зажжённого этажа — цветом темы (решение владельца 13.10): подменяем fill="<L.lit>" на var(--acc).
   const tower = (li, o = {}) => {
+    // этап 4: если подключена оболочка 2.0 — башня только из spire-tower-render.js (перенос SpireTowerSvg 1:1)
+    if (window.EMA && window.SpireTowerRender) { const w0 = o.w || 150; const mini = o.crop === 'mini' || w0 <= 70 || (o.floors && o.floors <= 6); return `<div class="twr" style="width:${w0}px;${o.reveal ? `clip-path:inset(100% 0 0 0);animation:emTowerReveal ${o.revealMs || 1400}ms var(--em-ease) both ${o.revealDelay || 0}ms` : ''}">${EMA.towerSvg({ tier: li, myFloor: (o.lit ?? 15) || null, width: mini ? w0 : Math.max(w0, 220), variant: mini ? 'weekTop' : 'tower', h: mini ? undefined : (o.h || Math.round(w0 * 1.5)) })}</div>`; }
     const T = window.EMT; const w = o.w || 150; const Lx = T ? T.LEAGUES[Math.max(0, Math.min(11, li))] : null;
     if (!Lx) return `<div class="twr" style="width:${w}px;height:${Math.round(w * 1.1)}px;border-radius:12px;background:var(--ti)"></div>`;
     const mini = o.crop === 'mini' || w <= 70 || (o.floors && o.floors <= 6);

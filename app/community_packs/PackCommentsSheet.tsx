@@ -739,9 +739,12 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
             </Text>
             {packAuthorStableId && item.authorId === packAuthorStableId ? badge(authorBadge) : null}
             {item.pinned ? badge(pinnedBadge) : null}
-            {item.status === 'published' ? (
-              <Text style={{ color: glass.mutedText, fontSize: f.caption }}>{timeAgoLabel(item.createdAtMs, lang)}</Text>
-            ) : null}
+            {/* зачем (cards-056, образец cards-states №50, Авторизация 13.10): на месте времени — «отправляется…» у отправляемого отклика и «не отправлено» у неотправленного; раньше подписи не было совсем */}
+            <Text style={{ color: glass.mutedText, fontSize: f.caption }}>
+              {item.status === 'published' ? timeAgoLabel(item.createdAtMs, lang) : item.status === 'sending'
+                ? triLang(lang, { ru: 'отправляется…', uk: 'надсилається…', en: 'sending…', es: 'enviando…', 'pt-BR': 'enviando…', vi: 'đang gửi…', id: 'mengirim…', tr: 'gönderiliyor…', pl: 'wysyłanie…' })
+                : triLang(lang, { ru: 'не отправлено', uk: 'не надіслано', en: 'not sent', es: 'no enviado', 'pt-BR': 'não enviado', vi: 'chưa gửi được', id: 'belum terkirim', tr: 'gönderilemedi', pl: 'nie wysłano' })}
+            </Text>
           </View>
           <Text style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.4), marginTop: 4 }}>{item.text}</Text>
 

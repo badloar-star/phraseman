@@ -187,7 +187,7 @@ const G = {
   bell: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/>',
   bellOff: '<path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 004 0"/><path d="M3.5 3.5l17 17"/>',
   phone: '<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M11 18h2"/>',
-  text: '<path d="M5 6V5h14v1M12 5v14M9.5 19h5"/>',
+  text: '<path d="M3 19 8.5 6 14 19M5.2 14.3h6.6"/><path d="M19 13.4a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8zM21.4 13.4V19"/>', /* зачем (settings-gap-004/005, Авторизация 13.10): в приложении значок «Размер шрифта» — Ionicons «text» = «Aa», в образце был «T» */
   diamond: '<path d="M7 4h10l4 5.5L12 21 3 9.5z"/><path d="M3 9.5h18M9.5 4L8 9.5 12 21M14.5 4L16 9.5 12 21"/>',
   diamondF: '<path d="M7 4h10l4 5.5L12 21 3 9.5z" fill="currentColor"/><path d="M3 9.5h18" stroke="#1A1A1C"/>',
   tag: '<path d="M3.5 12.5V4.5h8l9 9-8 8z"/><circle cx="8" cy="9" r="1.4"/>',
@@ -315,7 +315,7 @@ const support = (o = {}) => backRow() + '<div class="gs-t34">Поддержка<
   + `<div class="gs-ta">${o.text ? o.text : `<span class="ph0">${PLACEHOLDER}</span>`}</div>`
   // зачем (app/support_report.tsx, 9376e4e7f, журнал выключен решением 30.09): по умолчанию карточка честная — значок «i» и «Журнал … выключен — вместе с обращением он не отправляется»; вариант с «Посмотреть / Скрыть» и списком (o.log) — только если владелец включит журнал
   + (o.log
-    ? `<div class="gs-diag">${K.icon('check')}<div class="gs-tx"><div class="gs-dt">Техническая диагностика</div><div class="gs-dd">Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.</div><div class="gs-dl t">${o.open ? 'Скрыть' : 'Посмотреть'}</div>${o.open ? `<div class="gs-evs">${EVS.map(([t, e, r]) => `<div class="gs-ev">${t} · ${e} · ${r}</div>`).join('')}</div>` : ''}</div></div>`
+    ? `<div class="gs-diag">${K.icon('check')}<div class="gs-tx"><div style="display:flex;align-items:center;gap:12px"><div class="gs-dt" style="flex:1;min-width:0">Техническая диагностика</div>${sw(true)}</div><div class="gs-dd">Прикрепятся только недавние технические действия — без сообщений, паролей и платёжных данных.</div><div class="gs-dl t">${o.open ? 'Скрыть' : 'Посмотреть'}</div>${o.open ? `<div class="gs-evs">${EVS.map(([t, e, r]) => `<div class="gs-ev">${t} · ${e} · ${r}</div>`).join('')}</div>` : ''}</div></div>`
     : `<div class="gs-diag">${I('infoCirc', 's20')}<div class="gs-tx"><div class="gs-dt">Техническая диагностика</div><div class="gs-dd">Журнал технических действий сейчас выключен — вместе с обращением он не отправляется.</div></div></div>`)
   + (o.fail ? `<div class="gs-den t" style="margin-top:18px">${I('alertCirc', 's18')}<span>Не отправилось. Попробуй ещё раз</span></div>` : '')
   + `<div class="gs-btn t${o.off ? ' off' : ''}"${o.fail ? ' style="margin-top:10px"' : ''}>${o.fail ? 'Повторить' : 'Отправить'}</div>`;
@@ -363,7 +363,7 @@ document.getElementById('root').innerHTML =
     col('Уведомления: «Сохранено» после переключения; «Время» · 20:00', ph(notif({ master: true, saved: true }), { time: '12:40' })),
     col('Уведомления, низ списка: «Итоги месяца», блок «Ещё»', ph(notif({ master: true, saved: false }), { time: '12:40', anchor: 'end' })),
     col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: false, saved: false, denied: true, off: true }), { time: '12:41' })),
-    col('Мастер выключен: все строки приглушены', ph(notif({ master: false, saved: true }), { time: '12:41' })),
+    col('Мастер выключен: все строки приглушены', ph(notif({ master: false, saved: false }), { time: '12:41' })),
   ]) +
   block('edu', 'Настройки обучения', 'Весь экран по коду: «Вибрация при ошибке», озвучка, ползунок скорости, выбор голоса.', [
     col('Настройки обучения: ответ и звук', ph(edu(), { time: '13:02' })),

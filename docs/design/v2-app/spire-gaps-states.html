@@ -119,7 +119,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 
 /* ---------- шторка правил ---------- */
 .sg-sht-t { font-size: 22px; line-height: 28px; font-weight: 700; }
-.sg-rl { max-height: 440px; overflow-y: auto; scrollbar-width: none; margin-top: 14px; }
+.sg-rl { max-height: 500px; overflow-y: auto; scrollbar-width: none; margin-top: 14px; }
 .sg-rl::-webkit-scrollbar { display: none; }
 .sg-rl .r { display: flex; align-items: flex-start; gap: 12px; }
 .sg-rl .r + .r { margin-top: 14px; }
@@ -456,7 +456,7 @@ document.getElementById('root').innerHTML = [
     col('Ты поднимаешься в …', weekUp()),
     col('Остаёшься в шпиле …', weekStay()),
     col('Ты спускаешься в …', weekDown())]),
-  block('rules', '6. Правила Шпиля', 'Шторка по кнопке (i) в шапке. Восемь правил, список прокручивается (высота до 440). Монеты в правилах 6 и 7 — из настроек сервера.', [
+  block('rules', '6. Правила Шпиля', 'Шторка по кнопке (i) в шапке. Восемь правил видны целиком (на узком экране список прокручивается). Монеты в правилах 6 и 7 — из настроек сервера.', [
     col('Правила — начало списка', rulesTop()),
     col('Правила — список прокручен до конца', rulesEnd())]),
   block('misc', '7. Мелочи', '«Готовим ступень…» во время списания энергии, флажок жалобы и пилюля «бета» у испанского, немецкого, французского и итальянского.', [

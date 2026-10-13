@@ -303,7 +303,7 @@ const podium = (dim = false) => {
   <div class="cta gh t" style="margin-top:16px">Все участники · ты 7-й</div>`;
 };
 const spireBody = (o = {}) => `${spireHeader(o.energy ?? 3)}${o.top || ''}<div style="margin-top:18px">${towerView(o.tower || {})}</div>${floorInfo((o.tower && o.tower.sel) || floorOf(ME.steps), { mySteps: o.tower && o.tower.mySteps, myFloor: o.tower && o.tower.myFloor })}${friendsRow()}${podium(o.dim)}`;
-const climbCta = `<div class="bp scrim"><div class="cta t">Подняться<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
+const climbCta = `<div class="bp scrim"><div class="cta t">Играть<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
 
 /* ===================== 1. ТУР ===================== */
 const tourPhone = (n, title, text, img, last) => phone(`
@@ -355,7 +355,7 @@ const allMembers = () => {
 const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься на пике Гранит'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 · +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
 const weekUp = () => phone(spireBody({ top: weekCard(true), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const weekStay = () => phone(spireBody({ top: weekCard(false), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
-const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Поднимайся без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
+const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Играй без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
 const noNet = () => phone(spireBody({ dim: true, top: `<div class="note">${icon('wifiOff', 's20')}<span>Нет сети. Свой прогресс сохраняется, чужие цифры обновим при связи.</span></div>` }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 
 /* ===================== 2. ГЛАВНЫЙ ЭКРАН ===================== */

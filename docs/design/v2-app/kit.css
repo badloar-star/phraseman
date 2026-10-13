@@ -219,3 +219,5 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
    заливкой: глубокий красный тон #6A2A25 (яркость выше шторки #28282E и карточки ≥ 1,25×), текст #FFC2BB — 6,5:1. Двойной класс — сильнее локальных !important страниц. */
 .ph .cta.cta.red, .ph .cta.cta.or-danger, .ph .cta.cta.dg-danger,
 .ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: #6A2A25 !important; background-image: none !important; color: #FFC2BB !important; }
+/* «Войти через Apple» на тёмной теме — БЕЛАЯ кнопка с чёрным яблоком (Apple HIG; решение координатора 13.10 — чёрная на тёмной плите сливалась). Код — Авторизация (AuthProviderButtons.tsx). */
+.ph .ov-provider.dark { background: #FFFFFF !important; background-image: none !important; color: #000000 !important; }

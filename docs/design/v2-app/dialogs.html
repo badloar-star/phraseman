@@ -442,11 +442,11 @@ const errs = (rows) => `<div class="errc"><div class="h">Ошибки<span class
 const rate = (o = {}) => o.sent ? `<div class="rate"><div class="h">Диалог был полезен?</div><div class="thx">${icon('check', 's20')}Спасибо! Отзыв отправлен</div></div>`
   : o.open ? `<div class="rate"><div class="h">Диалог был полезен?</div><div class="stars">${[1, 2, 3, 4, 5].map((i) => `<span class="t">${li('starF', i <= (o.stars || 0) ? '' : 'off')}</span>`).join('')}</div><div class="fld${o.text ? ' on' : ''}">${o.text || 'Где собеседник звучал странно?'}</div><span class="cta sm t${o.text || o.stars ? '' : ' dis'}">Отправить ${li('send', 's16')}</span></div>`
   : `<div class="rate t"><div class="h">Диалог был полезен?<span class="ch">${icon('down', 's20')}</span></div></div>`;
+// зачем (координатор 13.10, dialogs-041/043; Ядро): на итоге диалога в коде нет ни «+N монет», ни пилюли монет (app/dialogue_v2_completion.tsx, DialogVerdictScreen) — убраны из общей done() для D1–D5/E5; настроение «Очень доволен» остаётся (приходит по dev_dialog_mood)
 const done = (o) => phone(`
-  <div class="done-h"><span class="rb t">${icon('close', 's20')}</span>${coins(o.balance ?? 1240, { rank: 5 })}</div>
+  <div class="done-h"><span class="rb t">${icon('close', 's20')}</span></div>
   <div class="done-t"><div class="ti">${o.title}</div><div class="su">${o.sub}</div>${o.neutral ? `<div class="su" style="margin-top:10px;line-height:22px">${o.neutral}</div>` : ''}${o.mood ? `<span class="mood">${face(o.mood)}${MOOD[o.mood][1]}</span>` : ''}</div>
   ${statsRow(o.c, o.w, o.goals)}
-  ${award(o.gain)}
   ${o.errs ? errs(o.errs) : ''}
   ${rate(o.rate || {})}
   <div class="next"><div class="cta t">${o.next || 'Готово'}<span class="ar">${icon('arrowR', 's20')}</span></div><span class="quiet t">${o.errs ? `Добить: Ещё учу (${o.errs.length})` : 'Ещё раз'}</span></div>`, { time: '13:09' });

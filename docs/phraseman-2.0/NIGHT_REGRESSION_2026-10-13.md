@@ -51,6 +51,33 @@ survey_sheet_modal) по основной настройке «не запуск
 (первое `node_modules/` идёт перед `.pnpm`). Значит, ВСЕ RNTL-тесты сейчас ничего не охраняют. То же у
 `jest.sunday-sheet.config.cjs`. Правка — инфраструктура тестов, решение координатора (вариант: допускать `\.pnpm/` в паттерне).
 
+**Починено 28bb00e93** (по слову координатора): приставка `(\.pnpm/[^/]+/node_modules/)?` + `@react-native(-[a-z-]+)?`
+(ESM `@react-native-masked-view`). Раннер исполняет тесты; sunday-sheet наследует.
+
+### RNTL после починки — все 31 файл по одному (одна нить, память ≥ 2 ГБ)
+
+Зелёные 23: nickname_edit_modal_availability 7, friend_list_row 41, friend_together_sheet 8, hybrid_sheet_shell_observer_runtime 2,
+survey_offer_render 6, survey_sheet_modal 29, session_attempts_hud 2, text_integrity_primitives 47, kit_touchable 4,
+survey_flow_controller 9, survey_screen_submission_behavior 20, registration_prompt_modal_lifecycle 7, friends_together_dev_bots_sheet 2,
+ai_dialog_energy_target_remount 3, avatar_view_v2_fallback 3, home_rune_balance_render 4, fc_blitz_attempts_integration 3,
+learning_v2_practice_viewport 3, learning_v2_mode_feedback_lane 5, mistake_practice_attempts_integration 3, theme_selection_runtime 3,
+use_session_attempts 5, flashcard_grant_boot_maintenance_schedule 3.
+
+Красные 8 (не чинил — чужие зоны):
+
+| Файл | Суть | Вероятный коммит | Зона |
+|---|---|---|---|
+| fc_speaking_attempts_integration | исходник-контракт ждёт `attemptEffect === 'attempts_exhausted'`; экран теперь проверяет через `isAttemptsStopEffect(…)` | 750314a24 (11.10, энергия «режим Б»: общий `session_attempts_stop`) | Энергия / попытки |
+| fc_swipe_attempts_integration | то же | 750314a24 | Энергия / попытки |
+| irregular_verbs_attempts_integration | то же | 750314a24 | Энергия / попытки |
+| lesson_session_attempts_integration | то же | 750314a24 | Энергия / попытки |
+| lesson_words_attempts_integration | то же | 750314a24 | Энергия / попытки |
+| learning_v2_horizons_native | 15/17: `HORIZON_ROUTES[chapter - 1][i]` = undefined — строк главы в данных теста больше, чем точек маршрута | давно (model.ts 24.09, Horizons 10.10) — пряталось за мёртвым раннером | Learning V2 (Codex) |
+| learning_v2_intro_reader_a | 2/3: «Am here» найден дважды; цвет маркера `#73CB87` вместо LV2_GOOD `#6FD08C` | смена палитры (Темы a9415916f / c62e8fc70) или незакоммиченное Learning V2 | Learning V2 + Темы (координатор передаёт Codex) |
+| learning_v2_new_word_encounter_overlay | набор не запускается: мок react-native в тесте без `StyleSheet.create`, цепочка FlashcardListItem → FlashcardDetailsBody → ReportErrorButton | новая зависимость в цепочке Карточек | Learning V2 (мок теста; координатор передаёт Codex) |
+
+Пять тестов попыток красные с 11.10, вероятно с самого коммита, — раннер в это время уже не исполнял тесты, поэтому никто не заметил.
+
 ## Файлы без тестов (26)
 
 app/_motion_showcase.tsx, app/community_packs/communityModerationAlerts.ts, app/flashcards/FlashcardsCategoryTiles.tsx,

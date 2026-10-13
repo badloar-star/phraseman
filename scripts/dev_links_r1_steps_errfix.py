@@ -125,3 +125,9 @@ set_steps('energy-modes-007', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:15
 # нужен dev-вариант cardslangs от Ядра («два языка»: English 6 + Español 3).
 add('cards-v2-088', ['wait:1800', 'tap:#fc-training-setup-language-chip', 'wait:400'], 'cards=demo&plus=off&free=on&studyTarget=es&cardslangs=on', '/flashcards_training_setup?mode=blitz', unique=False,
     note='меню языка наборов открыто: чип «ES ⌄» (studyTarget=es), cardslangs=on — списки других языков в памяти; образец №88 — два языка (English 6 / Español 3)')
+
+# cards-v2-089 (Макеты d6c3edde9): каталог сообщества, есть недоделанный черновик — строка «Продолжить создание набора» (FlashcardsCategoryHub, testID flashcards-packs-continue-draft).
+# Новый флаг не нужен: packdraft=on (app/dev_cards_state.ts) кормит и экран создания, и hasMeaningfulCommunityPackCreateDraft в каталоге (подмена в памяти, хранилище не пишется);
+# cards=demo чистит только настоящий черновик. catalog=demo — демо-каталог без сети. Пауза под асинхронную проверку черновика.
+add('cards-v2-089', ['wait:1500'], 'cards=demo&catalog=demo&packdraft=on', '/flashcards_packs', unique=False,
+    note='каталог сообщества с черновиком: строка «Продолжить создание набора» (packdraft=on — черновик из памяти, catalog=demo — демо-каталог)')

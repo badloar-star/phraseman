@@ -1,0 +1,159 @@
+=== C:/Temp/claude/sfxb1.cpuprofile: окно +5.0…+12.0 с, всего 7001 мс
+ включительное время (топ-35):
+    7001  [root]
+    3493  runWithFiberInDEV:20300
+    2943  performWorkOnRoot:25627
+    2550  [Native] functionPrototypeApply
+    2504  renderRootSync:25879
+    2504  workLoopSync:25895
+    2408  performWorkOnRootViaSchedulerTask:21641
+    1865  performUnitOfWork:26002
+    1760  (anon)
+    1747  tryCallOne
+    1713  [Native] generatorPrototypeNext
+    1541  _next:15053
+    1541  asyncGeneratorStep:15039
+    1203  updateFunctionComponent:23766
+    1190  renderWithHooks:22132
+    1150  Promise
+    1150  doResolve
+    1119  tryCallTwo
+    1079  performUnitOfWork:26004
+    1060  (anon):98384
+    1057  completeUnitOfWork:26066
+    1025  beginWork:24274
+     990  processRootScheduleInMicrotask:21588
+     990  (anon):21660
+     990  flushSyncWorkAcrossRoots_impl:21569
+     953  [Native] hermesBuiltinApply
+     927  performSyncWorkOnRoot:21649
+     809  react-stack-bottom-frame:28440
+     808  [GC Young Gen]
+     739  asyncGeneratorStep:98373
+     739  _next:98387
+     739  (anon):98392
+     719  (anon):57036
+     519  react-stack-bottom-frame:28503
+     519  commitHookEffectListMount:24707
+ стэки листьев (топ-15):
+     813  [root]
+     375  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     345  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     283  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+     256  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+     254  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194270 < (anon):57035
+     115  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopConcurrentByScheduler:25998
+     104  completeWork:24451 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879 < performWorkOnRoot:25627
+      97  [Host Function] warn < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply < (anon):57036
+      87  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+      85  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply
+      67  [Host Function] promiseFn < tryCallTwo < doResolve < Promise < [Host Function] prepareAsync < ?anon_0_:387854 < [Native] generatorPrototypeNext
+      61  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < getIdiomsSync:339949 < rememberPeekPhrases:338343 < ?anon_0_:338395 < [Native] generatorPrototypeNext
+      61  [Host Function] multiGet < patchedNativeMultiGet:4404 < flushGetRequests:4649 < (anon):4701 < [Native] functionPrototypeApply < (anon):32646 < [root]
+      52  [GC Young Gen] < renderWithHooks:22120 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+=== C:/Temp/claude/sfxb2.cpuprofile: окно +5.0…+12.0 с, всего 7002 мс
+ включительное время (топ-35):
+    7002  [root]
+    3474  runWithFiberInDEV:20300
+    2822  [Native] functionPrototypeApply
+    2286  performWorkOnRoot:25627
+    2031  performWorkOnRootViaSchedulerTask:21641
+    1934  (anon)
+    1914  tryCallOne
+    1907  _next:98387
+    1884  [Native] generatorPrototypeNext
+    1877  asyncGeneratorStep:98373
+    1482  workLoopSync:25895
+    1482  renderRootSync:25879
+    1446  performUnitOfWork:26002
+    1346  [Native] hermesBuiltinApply
+    1271  Promise
+    1271  tryCallTwo
+    1271  doResolve
+    1115  flushSyncWorkAcrossRoots_impl:21569
+    1091  renderWithHooks:22132
+    1052  (anon):98384
+    1003  updateFunctionComponent:23766
+     986  react-stack-bottom-frame:28503
+     986  commitHookEffectListMount:24707
+     949  flushPassiveEffects:26306
+     907  commitPassiveMountOnFiber:25331
+     907  recursivelyTraversePassiveMountEffects:25315
+     907  commitPassiveMountOnFiber:25364
+     907  commitPassiveMountOnFiber:25323
+     879  commitHookPassiveMountEffects:24744
+     865  commitPassiveMountOnFiber:25349
+     865  commitPassiveMountOnFiber:25327
+     865  commitPassiveMountOnFiber:25356
+     865  commitPassiveMountOnFiber:25338
+     840  performUnitOfWork:26004
+     838  processRootScheduleInMicrotask:21588
+ стэки листьев (топ-15):
+     658  [root]
+     442  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194270 < (anon):57035
+     423  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     278  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     252  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopConcurrentByScheduler:25998
+     213  [Host Function] warn < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply < (anon):57036
+     193  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+     175  ?anon_0_:112704 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373 < _next:98387 < tryCallOne < (anon) < [root]
+     122  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+     105  [GC Young Gen] < deepDiffer:17130 < deepDiffer:17166 < defaultDiffer:20576 < diffProperties:20631 < completeWork:24482 < runWithFiberInDEV:20300
+      84  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < updateSimpleMemoComponent:23707 < updateMemoComponent:23683 < beginWork:24316 < runWithFiberInDEV:20300
+      79  [Host Function] log < [Native] hermesBuiltinApply < (anon):1161 < [Native] functionPrototypeApply < (anon):57036 < onProfileRender:1686442 < commitProfiler:24851
+      72  [Host Function] isReduceMotionEnabled < (anon):93536 < tryCallTwo < doResolve < Promise < isReduceMotionEnabled:93533 < (anon):293352
+      69  [Native] functionPrototypeApply < loadMistakeEventJournalFresh:367140 < loadMistakeEventJournal:367261 < ?anon_0_:1173118 < [Native] generatorPrototypeNext < asyncGeneratorStep:98373 < _next:98387
+      60  [Host Function] updateGestureHandler < (anon):269806 < [Native] functionPrototypeApply < (anon):32646 < [root]
+=== C:/Temp/claude/sfxb3.cpuprofile: окно +5.0…+12.0 с, всего 6989 мс
+ включительное время (топ-35):
+    6989  [root]
+    3382  runWithFiberInDEV:20300
+    2825  [Native] functionPrototypeApply
+    2388  performWorkOnRoot:25627
+    1882  renderRootSync:25879
+    1882  workLoopSync:25895
+    1846  performWorkOnRootViaSchedulerTask:21641
+    1575  performUnitOfWork:26002
+    1382  [Native] hermesBuiltinApply
+    1359  (anon)
+    1352  tryCallOne
+    1319  _next:98387
+    1304  [Native] generatorPrototypeNext
+    1304  asyncGeneratorStep:98373
+    1170  renderWithHooks:22132
+    1163  processRootScheduleInMicrotask:21588
+    1163  (anon):21660
+    1163  flushSyncWorkAcrossRoots_impl:21569
+    1108  updateFunctionComponent:23766
+    1079  performSyncWorkOnRoot:21649
+     885  beginWork:24274
+     885  Promise
+     885  doResolve
+     873  tryCallTwo
+     872  react-stack-bottom-frame:28503
+     872  commitHookEffectListMount:24707
+     849  react-stack-bottom-frame:28440
+     773  (anon):98384
+     757  performUnitOfWork:26004
+     741  commitPassiveMountOnFiber:25331
+     741  commitPassiveMountOnFiber:25323
+     741  commitHookPassiveMountEffects:24744
+     741  commitPassiveMountOnFiber:25327
+     741  flushPassiveEffects:26306
+     741  commitPassiveMountOnFiber:25349
+ стэки листьев (топ-15):
+    1332  [root]
+     635  [Host Function] send < send:50815 < send:56328 < log:55945 < [Native] functionPrototypeApply < (anon):194270 < (anon):57035
+     240  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < beginWork:24274 < runWithFiberInDEV:20300 < performUnitOfWork:26002 < workLoopSync:25895
+     212  [Host Function] multiGet < patchedNativeMultiGet:4404 < (anon):4520 < tryCallTwo < doResolve < Promise < getItem:4518
+     208  [Host Function] __native_constructor__ < [Native] hermesBuiltinApply < AudioPlayer < createAudioPlayer:866559 < (anon):873545 < ensure:873861 < prewarm:873811
+     206  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895
+     168  [Native] functionPrototypeApply < (anon):98385 < tryCallTwo < doResolve < Promise < (anon):98384 < [Native] functionPrototypeApply
+     132  [Host Function] createNode < completeWork:24511 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879
+     127  [Host Function] completeRoot < updateHostContainer:24411 < completeWork:24469 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopConcurrentByScheduler:25998
+      96  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < overrideMethod:49530 < [Native] functionPrototypeApply
+      81  react-stack-bottom-frame:28436 < renderWithHooks:22132 < updateFunctionComponent:23766 < updateSimpleMemoComponent:23707 < updateMemoComponent:23683 < beginWork:24316 < runWithFiberInDEV:20300
+      74  [Host Function] nativeLoggingHook < (anon):950 < [Native] functionPrototypeApply < (anon):1162 < [Native] functionPrototypeApply < (anon):57036 < info:98333
+      60  [GC Young Gen] < [Native] objectEntries < cloneObjectProperties:225668 < clonePlainJSObject:225788 < createSerializableNative:225597 < cloneObjectProperties:225678 < cloneWorklet:225729
+      52  loadModuleImplementation:206 < guardedLoadModule:158 < metroRequire:78 < getIdiomsSync:339949 < rememberPeekPhrases:338343 < ?anon_0_:338395 < [Native] generatorPrototypeNext
+      52  completeWork:24451 < runWithFiberInDEV:20300 < completeUnitOfWork:26066 < performUnitOfWork:26004 < workLoopSync:25895 < renderRootSync:25879 < performWorkOnRoot:25627

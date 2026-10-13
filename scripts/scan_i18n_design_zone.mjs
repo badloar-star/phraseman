@@ -31,16 +31,19 @@ const ZONE = [
   /^app\/flashcards/, /^app\/(community_pack_create|community_packs\/)/, /^app\/dialogue_v2/, /^components\/dialogs\//, /^components\/packs\//, /^components\/youtube\//,
   /^app\/lingman_/, /^app\/youtube_/, /^app\/\(tabs\)\/home\.tsx$/, /^components\/home\//, /^components\/paywall\//, /^app\/(paywall|premium_modal)/, /^components\/cards/, /^app\/video/,
 ];
-/** Не интерфейс игрока: тесты, dev-инструменты, лаборатории, зонд анимации, словарные данные, пока не переведённые целиком Ядром. */
-const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$/;
+/** Не интерфейс игрока: тесты, учебный контент уроков (lesson_data*, intro, theory, error_traps — тексты курса на русском, не строки интерфейса), словарь переводов LangContext, dev-инструменты, лаборатории, зонд анимации, словарные данные, пока не переведённые целиком Ядром. */
+const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru/;
 /** Вызовы журнала/служебные — кириллица в них не видна игроку. */
 const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog)\s*\(/;
 /** Позиционные переводчики: все строковые аргументы — разные языки. */
 const POSITIONAL = /\b(L|T|tri|tl|pickTri\w*|triLang|actionToastTri|pickTriLang)\s*\(/;
 
+const isZone = (f) => ZONE.some((re) => re.test(f));
+
+/** зачем (координатор 13.10): храповик считаем по ВСЕМУ app/ и components/ (чужие зоны тоже не должны расти), а ЧИНИТ каждая сессия только свою зону — поэтому в отчёте файлы делятся на «зона Дизайна» и «чужие». */
 function zoneFiles() {
   const all = execFileSync('git', ['ls-files', 'app', 'components'], { cwd: ROOT, encoding: 'utf8' }).split('\n').filter((f) => /\.tsx?$/.test(f));
-  return all.filter((f) => ZONE.some((re) => re.test(f)) && !SKIP.test(f));
+  return all.filter((f) => !SKIP.test(f));
 }
 
 /** Заменяет комментарии пробелами (номера строк сохраняются). */
@@ -277,9 +280,11 @@ function main() {
   const cur = counts(res);
   if (args.has('--json')) { console.log(JSON.stringify(res, null, 1)); return; }
   if (args.has('--report')) {
-    console.log(`Зона Дизайна: литералов вне переводов ${res.totals.literals}, неполных языковых объектов ${res.totals.incomplete}, файлов ${Object.keys(res.files).length}`);
-    for (const [f, v] of Object.entries(res.files).sort((a, b) => (b[1].literals.length + b[1].incomplete.length) - (a[1].literals.length + a[1].incomplete.length))) {
-      console.log(`\n${f}  (литералов ${v.literals.length}, неполных ${v.incomplete.length})`);
+    const mine = args.has('--all') ? Object.entries(res.files) : Object.entries(res.files).filter(([f]) => isZone(f));
+    const sum = (k) => mine.reduce((n, [, v]) => n + v[k].length, 0);
+    console.log(`${args.has('--all') ? 'Всё приложение' : 'Зона Дизайна'}: литералов вне переводов ${sum('literals')}, неполных языковых объектов ${sum('incomplete')}, файлов ${mine.length} (всего по app/components: ${res.totals.literals}/${res.totals.incomplete}, файлов ${Object.keys(res.files).length})`);
+    for (const [f, v] of mine.sort((a, b) => (b[1].literals.length + b[1].incomplete.length) - (a[1].literals.length + a[1].incomplete.length))) {
+      console.log(`\n${isZone(f) ? '' : '[чужая зона] '}${f}  (литералов ${v.literals.length}, неполных ${v.incomplete.length})`);
       for (const l of v.literals) console.log(`  L${l.line}: LITERAL ${l.text}`);
       for (const o of v.incomplete) console.log(`  L${o.line}: INCOMPLETE нет ${o.missing.join(',')} — ru: «${o.ru}»`);
     }
@@ -298,7 +303,7 @@ function main() {
     if (v.incomplete > b.incomplete) grew.push(`${f}: неполных объектов ${v.incomplete} > ${b.incomplete}`);
   }
   if (grew.length > 0) {
-    console.error(`FAIL: в зоне Дизайна выросло число текстов вне переводов / неполных переводов:\n  ${grew.join('\n  ')}\nПереведите на все 9 языков (ru, uk, en, es, pt-BR, vi, id, tr, pl) или, если это dev/лог, не выводите игроку.`);
+    console.error(`FAIL: в app/components выросло число текстов вне переводов / неполных переводов:\n  ${grew.join('\n  ')}\nПереведите на все 9 языков (ru, uk, en, es, pt-BR, vi, id, tr, pl) или, если это dev/лог, не выводите игроку.`);
     process.exit(1);
   }
   if (cur.totals.literals < base.totals.literals || cur.totals.incomplete < base.totals.incomplete) {

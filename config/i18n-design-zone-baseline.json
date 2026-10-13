@@ -1,9 +1,81 @@
 {
   "totals": {
-    "literals": 106,
-    "incomplete": 47
+    "literals": 1321,
+    "incomplete": 56
   },
   "files": {
+    "app/(tabs)/friends.tsx": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/(tabs)/lessons.tsx": {
+      "literals": 9,
+      "incomplete": 0
+    },
+    "app/(tabs)/settings.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/_dev_cancel_flow_preview.tsx": {
+      "literals": 31,
+      "incomplete": 0
+    },
+    "app/_layout.tsx": {
+      "literals": 7,
+      "incomplete": 0
+    },
+    "app/_learning_v2_authoring_preview.tsx": {
+      "literals": 10,
+      "incomplete": 0
+    },
+    "app/achievement_catalog_v2.ts": {
+      "literals": 9,
+      "incomplete": 0
+    },
+    "app/achievement_share.ts": {
+      "literals": 22,
+      "incomplete": 0
+    },
+    "app/achievements_screen.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/activity_365_analytics.ts": {
+      "literals": 16,
+      "incomplete": 0
+    },
+    "app/ai_dialog_briefing_copy.ts": {
+      "literals": 53,
+      "incomplete": 0
+    },
+    "app/ai_dialog_coach.ts": {
+      "literals": 9,
+      "incomplete": 0
+    },
+    "app/ai_dialog_scenarios.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "app/ai_dialog_session.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/celebration_share_messages.ts": {
+      "literals": 72,
+      "incomplete": 0
+    },
+    "app/cloud_sync.ts": {
+      "literals": 14,
+      "incomplete": 0
+    },
+    "app/coin_rank_table_v1.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/coin_rank_upgrade_v1.ts": {
+      "literals": 12,
+      "incomplete": 0
+    },
     "app/community_pack_create.tsx": {
       "literals": 0,
       "incomplete": 1
@@ -14,6 +86,18 @@
     },
     "app/community_packs/packCommentsFirestore.ts": {
       "literals": 2,
+      "incomplete": 0
+    },
+    "app/daily_phrase_target_gate.ts": {
+      "literals": 10,
+      "incomplete": 0
+    },
+    "app/diagnostic_target_gate.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "app/diagnostic_test.tsx": {
+      "literals": 176,
       "incomplete": 0
     },
     "app/dialogue_v2_authorized_catalogue_projection.ts": {
@@ -34,6 +118,18 @@
     },
     "app/dialogue_v2_turn_coaching_client.ts": {
       "literals": 3,
+      "incomplete": 0
+    },
+    "app/exam.tsx": {
+      "literals": 5,
+      "incomplete": 0
+    },
+    "app/exam_share.ts": {
+      "literals": 30,
+      "incomplete": 0
+    },
+    "app/exam_target_gate.ts": {
+      "literals": 12,
       "incomplete": 0
     },
     "app/flashcards/CollectionGalleryView.tsx": {
@@ -116,8 +212,108 @@
       "literals": 1,
       "incomplete": 0
     },
+    "app/friends_together/together_days.ts": {
+      "literals": 5,
+      "incomplete": 0
+    },
+    "app/global_broadcast_modal.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "app/hint.tsx": {
+      "literals": 10,
+      "incomplete": 0
+    },
+    "app/home_feature_tips.ts": {
+      "literals": 56,
+      "incomplete": 0
+    },
+    "app/home_survey_entry.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/hub_lifecycle_probe.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/learning_v2_direct_session_player_v1.tsx": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/learning_v2_session_copy.ts": {
+      "literals": 9,
+      "incomplete": 0
+    },
+    "app/learning_v2_session_intro_check.tsx": {
+      "literals": 16,
+      "incomplete": 0
+    },
+    "app/lesson1.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lesson1_energy.ts": {
+      "literals": 10,
+      "incomplete": 0
+    },
+    "app/lesson_complete.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lesson_irregular_verbs.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lesson_menu.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lesson_share.ts": {
+      "literals": 18,
+      "incomplete": 0
+    },
+    "app/lesson_support_target_gate.ts": {
+      "literals": 14,
+      "incomplete": 0
+    },
+    "app/lesson_teaching_notes.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/lesson_words.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/lesson_words_spanish_gloss.ts": {
+      "literals": 7,
+      "incomplete": 0
+    },
     "app/lingman_youtube.ts": {
       "literals": 14,
+      "incomplete": 0
+    },
+    "app/manage_subscription.tsx": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "app/medal_utils.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "app/mistake_practice_session.tsx": {
+      "literals": 0,
+      "incomplete": 2
+    },
+    "app/nickname_change_helpers.ts": {
+      "literals": 26,
+      "incomplete": 0
+    },
+    "app/notifications.ts": {
+      "literals": 17,
+      "incomplete": 0
+    },
+    "app/onboarding_flow.ts": {
+      "literals": 24,
       "incomplete": 0
     },
     "app/paywall_personalization.ts": {
@@ -136,16 +332,172 @@
       "literals": 3,
       "incomplete": 0
     },
+    "app/phone_state_recovery.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/pos_micro_diagnosis.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/practice_rune_settlement.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
     "app/premium_modal.tsx": {
       "literals": 1,
+      "incomplete": 0
+    },
+    "app/privacy_settings.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/profile_card_pro_v1.ts": {
+      "literals": 16,
+      "incomplete": 0
+    },
+    "app/pronunciation_scoring_core.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/revenuecat_init.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/review_utils.ts": {
+      "literals": 12,
+      "incomplete": 0
+    },
+    "app/roulette_prizes.ts": {
+      "literals": 12,
+      "incomplete": 0
+    },
+    "app/session_attempts/session_attempt_recovery.ts": {
+      "literals": 11,
+      "incomplete": 0
+    },
+    "app/settings/profile_name_service.ts": {
+      "literals": 26,
+      "incomplete": 0
+    },
+    "app/settings_edu.tsx": {
+      "literals": 0,
+      "incomplete": 2
+    },
+    "app/settings_notifications.tsx": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/spire/use_spire_game.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/streak_stats.tsx": {
+      "literals": 4,
+      "incomplete": 1
+    },
+    "app/tap_latency_trace.ts": {
+      "literals": 5,
+      "incomplete": 0
+    },
+    "app/theme_persist.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson12.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson13.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson14.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson18.ts": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson20.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson31.ts": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "app/theory_content_lesson8.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/theory_topic_accents.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/thumb_trace.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "app/v2_kit_preview.tsx": {
+      "literals": 46,
+      "incomplete": 0
+    },
+    "app/vocabulary_target_gate.ts": {
+      "literals": 18,
       "incomplete": 0
     },
     "app/youtube_seek_controller.ts": {
       "literals": 2,
       "incomplete": 0
     },
+    "components/AddToFlashcard.tsx": {
+      "literals": 0,
+      "incomplete": 4
+    },
+    "components/DailyPhraseCard.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/ExamResultPreviewAdminModal.tsx": {
+      "literals": 9,
+      "incomplete": 0
+    },
+    "components/LearningV2SessionOutcomeSheet.tsx": {
+      "literals": 16,
+      "incomplete": 0
+    },
+    "components/MedalToast.tsx": {
+      "literals": 24,
+      "incomplete": 0
+    },
+    "components/NotificationCenterButton.tsx": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "components/RegistrationPromptModal.tsx": {
+      "literals": 3,
+      "incomplete": 0
+    },
+    "components/TapLatencyNavProbe.tsx": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/account/NicknameEditModal.tsx": {
+      "literals": 8,
+      "incomplete": 0
+    },
+    "components/action_toast_copy.ts": {
+      "literals": 10,
+      "incomplete": 0
+    },
     "components/cards-grid/useCardsScale.ts": {
       "literals": 4,
+      "incomplete": 0
+    },
+    "components/dev/paywallDevContexts.ts": {
+      "literals": 38,
       "incomplete": 0
     },
     "components/dialogs/DialogueV2CatalogueContainer.tsx": {
@@ -160,6 +512,18 @@
       "literals": 2,
       "incomplete": 0
     },
+    "components/friends_together/DevBotsSheet.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/learning-v2/LearningV2ChaptersCourse.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/level_up/LevelUpMintCeremony.tsx": {
+      "literals": 7,
+      "incomplete": 0
+    },
     "components/paywall/PaywallBenefitComparison.tsx": {
       "literals": 2,
       "incomplete": 0
@@ -170,6 +534,66 @@
     },
     "components/paywall/PaywallProofCards.tsx": {
       "literals": 12,
+      "incomplete": 0
+    },
+    "components/premium_celebration/CelebrationSceneViews.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/profile-card/usePlayerProfileSocial.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "components/release_notes_copy.ts": {
+      "literals": 32,
+      "incomplete": 0
+    },
+    "components/settings/themesMemLog.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/spire/SpireEnergyPill.tsx": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/spire/SpireHomeScreen.tsx": {
+      "literals": 5,
+      "incomplete": 0
+    },
+    "components/spire/SpireTower.tsx": {
+      "literals": 8,
+      "incomplete": 0
+    },
+    "components/spire/spire_game_strings.ts": {
+      "literals": 6,
+      "incomplete": 0
+    },
+    "components/spire/spire_oddity_prompt.ts": {
+      "literals": 2,
+      "incomplete": 0
+    },
+    "components/spire/spire_preview_fixtures.ts": {
+      "literals": 37,
+      "incomplete": 0
+    },
+    "components/spire/spire_strings.ts": {
+      "literals": 10,
+      "incomplete": 0
+    },
+    "components/survey/SurveySheetModal.tsx": {
+      "literals": 4,
+      "incomplete": 0
+    },
+    "components/theory/WordBankBuilder.tsx": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/ui/v2_theme.ts": {
+      "literals": 1,
+      "incomplete": 0
+    },
+    "components/video/formatRelativeVideoDate.ts": {
+      "literals": 24,
       "incomplete": 0
     }
   }

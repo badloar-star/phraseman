@@ -106,7 +106,7 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
     no_energy: {
       ru: t('Энергия закончилась', 'С Plus она не тратится — занимайся дальше сразу.', 'Занятия без ожидания'),
       uk: t('Енергія закінчилася', 'З Plus вона не витрачається — займайся далі одразу.', 'Заняття без очікування'),
-      en: t('You’re out of energy', 'With Plus it never runs out — keep going right away.', 'Study without waiting'),
+      en: t('You’re out of energy', 'With Plus it never runs out — keep going right away.', 'Study without waiting'),
       es: t('Te quedaste sin energía', 'Con Plus no se gasta: sigue estudiando ahora mismo.', 'Estudia sin esperas'),
       'pt-BR': t('Sua energia acabou', 'Com o Plus ela não se gasta — continue agora mesmo.', 'Estude sem esperar'),
       vi: t('Bạn đã hết năng lượng', 'Với Plus, năng lượng không bị tiêu hao — học tiếp ngay.', 'Học không cần chờ'),

@@ -33061,18 +33061,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-013.png",
+      "evidence_at": "2026-10-12T18:37:30.145Z",
+      "evidence_sha256": "e37f8575f81e9eeeb53e35d78dbe69ac0be455075526878d5987fbf0a9ff4e00",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+        "[состояние не то] Кадр снят до отрисовки/на пустом экране; в образце диалог «Закажи кофе» с репликами и плашкой «Ошибка в диалоге энергию не снимает ни в одном режиме»; плашка — анимация/тост (anim_evidence)."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: метка игрока в диалоге — «Ты» (dialogue_v2_session.tsx), энергия за ошибку не снимается ни в одном режиме.",
@@ -33080,7 +33080,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Диалоги — энергия за ошибки не снимается: на кадре чёрный экран со статус-баром и нижним меню (экран не отрисован)."
     },
     {
       "id": "energy-modes-014",
@@ -33100,18 +33101,18 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-014.png",
+      "evidence_at": "2026-10-12T18:37:57.429Z",
+      "evidence_sha256": "56f5a84e404e7753ae91ab3c27764af5b009ca7c8cca374c70980e8ce1265116",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "Новое ТЗ владельца 11.10: режим Б в приложении ещё не реализован (Ядро); режим А — как сейчас"
+        "[состояние не то] Не тот экран: квиз «Фраза дня» не открыт (в образце «Break a leg!» с тремя вариантами и плашкой); нужен тап по карточке «Фраза дня» и ответ."
       ],
-      "status": "pending",
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: энергия за ошибку квиза не снимается ни в одном режиме.",
@@ -33119,7 +33120,8 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Фраза дня — энергия за ошибки не снимается: на кадре Главная («Диалоги / Карточки», «Видео», «Сегодня», «Фраза дня»)."
     },
     {
       "id": "energy-modes-015",
@@ -33186,20 +33188,18 @@
         "replay-control"
       ],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-016.png",
-      "evidence_at": "2026-10-12T19:20:17.029Z",
-      "evidence_sha256": "fdca421442039847ac7522b17af0721f0e3f7046fabe56be2905c2b238fd65f9",
+      "evidence_at": "2026-10-13T00:00:28.156Z",
+      "evidence_sha256": "5a99e9b1d1ac93634a9cfcd8b5d94e17b8675151de76e4e82b7d94af77f08861",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Ошибка не совершена: сердца белые целые (в образце розовые, одно потеряно), ⚡ 5 вместо 4 — тап по неверному слову не дошёл; шаг lesson1-word-option-wrong на этом типе задания не срабатывает (Ядро: id неверного варианта).",
-        "[вёрстка, мелко — пересчитано 13.10] Подпись плиток панели в коде 14 dp (по подсчёту Дизайна), в образце 13 px — разница ≈1 px; прежние «17 против 13» были замером в пикселях масштабированного кадра, а не в dp (склейка ширина кадра / ширина телефона образца ≈ 1,2).",
-        "[тон темы] Свечение фона образца (зелёное/фиолетовое) — тон темы; в приложении графит без свечения.",
-        "[данные] Фраза/слова другие."
+        "[образец ≠ код] Образец №24 показывает только шапку с красными сердцами и монетами до разбора; в приложении ошибка уже с панелью разбора (см. energy-modes-002) — дорисовать состояние после ошибки (Макеты).",
+        "[анимация] Сердечко и серия монет — анимация."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:29:12.754Z",
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
@@ -33208,7 +33208,7 @@
         "coverage": "ready",
         "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «Режим А · ошибка: сердечко и серия монет»: урок открыт, шапка с ⚡, ♥♥♥ и монетами."
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим А · ошибка: в приложении после неверного ответа — «them are together» с перечёркнутым «them», верная фраза, «Разбор промаха · AI», кнопки «Разобрать мой ответ / Объяснить проще» и мятная «Дальше»."
     },
     {
       "id": "energy-modes-017",
@@ -33229,18 +33229,17 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/energy-modes-017.png",
-      "evidence_at": "2026-10-12T19:32:43.517Z",
-      "evidence_sha256": "cdea957a4bfee1466368eda4fc5b39843746ab1ba05f71616402bf6107d90377",
+      "evidence_at": "2026-10-12T23:56:17.364Z",
+      "evidence_sha256": "0b5e4b3dfdc9a8d276558ce8052e444ecdebf40de55facb62caf15ae348d6f23",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] В ссылке energy=0 не применилась (⚡ 5 в шапке): окно энергии на списке «Обучение» не достигнуто — Ядро: энергия 0 до открытия урока (energy_stop/energy=0).",
-        "[образец ≠ код] Текст окна в образце «Дай знаниям немного уложиться. +1 ⚡ вернётся через 7 минут…» — свериться после состояния с кодом (NoEnergyModal, 592a049e0)."
+        "[состояние не то] Ссылка energy=0 применилась (⚡ 0), но допуск в урок есть и окно не показано; образец №25 — список «Обучение» с окном «Энергия закончилась · Дай знаниям немного уложиться… · Открыть Plus · Позже» — кандидат в дефект кода (допуск при нулевой энергии) — Ядро/Дизайн."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:29:12.754Z",
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). Текст окна — одна из фраз lesson1_energy.ts (случайно), «+1 ⚡ вернётся через {время}»; кнопки «Открыть Plus» и «Позже» (NoEnergyModal.tsx). Серии монет «×N» в коде уроков нет — из кадров убрана (12.10).",
@@ -33255,7 +33254,7 @@
         "final_note": "состояние/прокрутка/шаг робота — только пересъёмка (по разбору Темы 15.10)",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (устаревший хэш, кадр пересъёмки Сверки, склейка PARITY_FIT=width, поэлементно): «Режим А · нет энергии при старте»: в приложении открыт урок «Собери фразу: Ты в порядке» с ⚡ 5, окна «Энергия закончилась» нет."
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Режим А · нет энергии при старте: на кадре урок «Ты в порядке» с ⚡ 0 и сердцами, окна «Энергия закончилась» нет."
     },
     {
       "id": "onboarding-paywall-001",
@@ -35810,17 +35809,17 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-033.png",
-      "evidence_at": "2026-10-12T15:55:50.129Z",
-      "evidence_sha256": "dffeb48f541b9f565ec2d96bd8e9f289e29138f174e950028b90d0ae646f9af7",
+      "evidence_at": "2026-10-12T23:24:47.427Z",
+      "evidence_sha256": "3891e89e3f473199b774659a5d77214c63027e70cb40c27f9bd054231b745a87",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Вместо вопроса «Gate / таможня» с кнопками «Ложь / Правда», сердцами, монетами «40» и прогрессом «7 / 20» (образец) в приложении экран ожидания «Готовим тренировку…»: кадр снят до появления первой карточки либо подготовка висит. В шаги добавлена пауза wait:4000; если и после неё «Готовим…» — это висящая подготовка, нужен журнал [FLASHCARDS-SESSION] (вход, размер набора, ветки, ранние выходы)."
+        "[данные] Слово Refund / присматривать, монеты 0, «1 … 64» против Gate / таможня, «40», «7 … 20»; кнопки в приложении крупнее на ≈ 8 px."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T15:57:22.266Z",
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
@@ -35833,7 +35832,7 @@
         "final_note": "",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (составной кадр 4:55, русский интерфейс, cards-v2 №33 «Правда / ложь»): снят экран подготовки «Тренировка карточек / Готовим тренировку…» (значок-искры, заголовок, подпись) — сама карточка с вопросом «Gate / таможня» и кнопками «Ложь / Правда» не показана; прежний кадр (6:58) показывал ошибку подготовки, теперь подготовка ещё идёт."
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Правда / ложь: «×», название, сердца, монеты, полоса, «1 / 64» (в образце счёт «7 … 20» под полосой), карточка слова с переводом, кнопки «Ложь» и «Правда» — состав совпал."
     },
     {
       "id": "cards-v2-034",
@@ -36569,21 +36568,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-001.png",
+      "evidence_at": "2026-10-12T18:40:47.635Z",
+      "evidence_sha256": "e3f248df527431d3c01f3a88ae151995a642b7325218f2b8c6f3ba999c733708",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[данные] Дата «12.10.2026» против «12.08.2025»; монета аватара бронзовая против серебряной (ранг)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Аккаунт — гость: «‹», «Аккаунт», аватар, «Не задано», «Изменить имя», «ДАННЫЕ» (Имя, «Привязать аккаунт», «С нами с»), «АККАУНТ · Удалить аккаунт» — состав и порядок совпали."
     },
     {
       "id": "auth-gap-002",
@@ -36638,21 +36640,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-003.png",
+      "evidence_at": "2026-10-12T18:41:54.320Z",
+      "evidence_sha256": "99a96583b03793ca3e8548bb87fb626b67aebb1d16d9c2273b8035519b53fede",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В коде значок-перо и подпись «Твой путь сохранится и дождётся тебя» под заголовком, кнопка Apple чёрная, сообщение об ошибке красным текстом без «заголовка» полужирным и значок замка у строки «Данные на устройстве…»; в образце значок замка в плитке и серая «Apple» — образец привести к коду (Макеты, accounts-gaps-states).",
+        "[вёрстка, мелко] Блок ссылок «Политика / Условия» в приложении — в две строки по центру."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Окно входа — телефон уже связан с другим аккаунтом: шторка «Всё в безопасности», Google и Apple, красный блок «Телефон уже связан с другим аккаунтом. Твой прогресс на месте… сначала смени аккаунт», «Сменить аккаунт», «Данные на устройстве сохранятся», «Позже», «Политика», «Условия»."
     },
     {
       "id": "auth-gap-004",
@@ -36673,21 +36679,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-004.png",
+      "evidence_at": "2026-10-12T18:42:23.933Z",
+      "evidence_sha256": "9e94775253e79908f6dec15b2f686b0a3c53d7ee6a4d55ad8378f36479722638",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Те же расхождения шторки, что у auth-gap-003 (значок-перо, подпись, чёрная Apple, красный текст)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Окно входа — прогресс на месте, вход отменён: та же шторка, красный блок «Прогресс на месте. Не получилось сохранить его в облако перед входом… Попробуй ещё раз», «Повторить», «Позже»."
     },
     {
       "id": "auth-gap-005",
@@ -36708,21 +36717,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-005.png",
+      "evidence_at": "2026-10-12T18:42:53.612Z",
+      "evidence_sha256": "1c0580b4cdec67217c623c7b5d4938422275355d1d4fdaf6e71560b2d6e4a158",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Те же расхождения шторки (перо, подпись, чёрная Apple), см. auth-gap-003."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Окно входа — ждёт прогресс другого аккаунта: красный блок «На телефоне ждёт прогресс другого аккаунта. Сначала переключись на него в Настройках…», «Сменить аккаунт», «Позже»."
     },
     {
       "id": "auth-gap-006",
@@ -36743,21 +36755,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-006.png",
+      "evidence_at": "2026-10-12T18:51:14.877Z",
+      "evidence_sha256": "ac27604ccc74364490c2d5a025b7de6c0436214094c9cd5effddeb1ca48ebaac",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Те же расхождения шторки (перо, подпись, чёрная Apple), см. auth-gap-003.",
+        "[вёрстка, мелко] Сообщение в приложении красным (в образце бело-серый заголовок и подзаголовок)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Окно входа — аккаунт восстановлен: красный блок «Аккаунт восстановлен. Войди ещё раз — весь прогресс на месте.», «Повторить», «Позже»."
     },
     {
       "id": "auth-gap-007",
@@ -36777,21 +36793,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-007.png",
+      "evidence_at": "2026-10-12T18:51:46.658Z",
+      "evidence_sha256": "a188e320066e791ec498dce0a5b02eb125afd85f464ddcbac728bfdb10973ff1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В образце тёмное окно-карточка в стиле приложения с двумя кнопками-пилюлями; в приложении нативный Alert Android (светлый, кнопки текстом) — решение Авторизации/Дизайна: заменить на ThemedConfirmModal или рисовать образец как системное окно.",
+        "[данные] «через 13 дней» против «через 12 дней»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Восстановить аккаунт?: в приложении системное окно Android (белое) «Восстановить аккаунт? Этот аккаунт удалится через 13 дней — весь прогресс ещё на месте и вернётся полностью.» с кнопками «НЕ ВОССТАНАВЛИВАТЬ / ВОССТАНОВИТЬ»."
     },
     {
       "id": "auth-gap-008",
@@ -36811,21 +36831,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/auth-gap-008.png",
+      "evidence_at": "2026-10-12T18:43:23.106Z",
+      "evidence_sha256": "40e09a402acaf9c2880099a37f90dfa57c423b24412b3a3d59e36724b1b412b1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] Окно в приложении выше и шире, значок в плитке; фон — экран «Аккаунт» (в образце «Вход»)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T01:11:04.134Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Ядро 1–5, Авторизация e96b0d647); перепроверено 12.10"
-      }
+      },
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Аккаунт удалён: окно с замком, «Аккаунт удалён», «Этот аккаунт удалён безвозвратно. Войди другим способом или начни заново.», белая «Понятно» — состав совпал."
     },
     {
       "id": "auth-gap-009",

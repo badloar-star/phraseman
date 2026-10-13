@@ -40,9 +40,16 @@ async function readVotes(owner: string): Promise<SettingsPollVoteState[]> {
       && Number.isFinite(Number(item.updatedAtMs))
       && (item.status === 'pending' || Number(item.updatedAtMs) >= syncedCutoffMs)
     )).slice(-CAP) : [];
-  } catch {
+  } catch (error) {
+    // зачем (правило владельца: немой catch запрещён): битое/недоступное хранилище голосов = карточка опроса без голоса — причина должна быть в журнале.
+    console.warn(`[SETTINGS-POLL] readVotes: хранилище голосов не прочитано owner=${ownerTail(owner)} — считаем «голосов нет»: ${error instanceof Error ? error.message : String(error)}`);
     return [];
   }
+}
+
+/** Хвост владельца для журнала: длина и 4 последних знака — сравнить сид и экран, не печатая id целиком. */
+export function ownerTail(owner: string): string {
+  return owner ? `…${owner.slice(-4)}(${owner.length})` : 'пусто';
 }
 
 async function writeVotes(owner: string, votes: SettingsPollVoteState[]): Promise<void> {
@@ -128,7 +135,7 @@ export async function devSetSettingsPollVote(owner: string, messageId: string, o
     ? rest
     : [...rest, { messageId, optionId, requestId: `dev-${Date.now().toString(36)}`, status: 'synced' as const, updatedAtMs: Date.now() }];
   await writeVotes(owner, next);
-  console.log(`[DEV-STATE] settings_poll_vote: ${messageId} → ${optionId === null ? 'голос снят' : `голос ${optionId} (synced, локально)`}; всего записей ${next.length}`);
+  console.log(`[DEV-STATE] settings_poll_vote: ${messageId} → ${optionId === null ? 'голос снят' : `голос ${optionId} (synced, локально)`}; всего записей ${next.length} owner=${ownerTail(owner)}`);
   return true;
 }
 

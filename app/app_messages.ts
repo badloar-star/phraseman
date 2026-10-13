@@ -2155,9 +2155,11 @@ export async function devSeedSettingsMessageSlot(kind: DevSettingsSlotKind, stab
   const snapshot: AppMessagesSnapshot = { messages: [...cached.messages.filter((message) => !isDev(message.id)), ...withState], unreadCount: cached.unreadCount };
   await writeCachedSnapshot(snapshot, ownerUid);
 
-  const { devSetSettingsPollVote } = await import('./settings_poll_vote');
+  const { devSetSettingsPollVote, ownerTail } = await import('./settings_poll_vote');
   const voteOk = await devSetSettingsPollVote(stableId, `${DEV_SETTINGS_CAMPAIGN_PREFIX}poll`, kind === 'poll_voted' ? DEV_POLL_OPTIONS[0]!.id : null);
   emitAppEvent('app_messages_local_changed');
+  // зачем (settings-gap-008, логи до починки): голос пишется под stableId сида, экран читает под stableId поколения аккаунта — сравнить хвосты.
+  console.log(`[SETTINGS-POLL] сид голоса kind=${kind} voteOwner=${ownerTail(stableId)} messagesOwner=${ownerTail(ownerUid)}`);
   console.log(`${tag} итог kind=${kind} кампаний=${devMessages.length} (id: ${devMessages.map((message) => message.id).join(',') || 'нет'}) голос=${kind === 'poll_voted' ? 'отдан локально' : 'снят'} voteStoreOk=${String(voteOk)} кэш=${snapshot.messages.length} сообщений`);
   return { ok: true, reason: kind };
 }

@@ -10,6 +10,7 @@ import {
   type AppMessageWithState,
 } from '../../app/app_messages';
 import {
+  ownerTail,
   readSettingsPollVote,
   submitSettingsPollVoteOptimistically,
   type SettingsPollVoteState,
@@ -67,10 +68,16 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
     let active = true;
     setVote(null);
     setCastHereOptionId(null);
+    // зачем (settings-gap-008, логи до починки): сид poll_voted пишет голос, а кадр без голоса — видеть владельца, момент чтения и результат.
+    if (__DEV__) console.log(`[SETTINGS-POLL] гидрация вход campaign=${campaign.id} kind=${campaign.kind} owner=${ownerTail(ownerStableId)}`);
     if (campaign.kind === 'poll' && ownerStableId) {
+      const startedAt = Date.now();
       void readSettingsPollVote(ownerStableId, campaign.id).then((stored) => {
+        if (__DEV__) console.log(`[SETTINGS-POLL] гидрация итог campaign=${campaign.id} owner=${ownerTail(ownerStableId)} голос=${stored ? `${stored.optionId}/${stored.status}` : 'нет'} active=${String(active)} за ${Date.now() - startedAt} мс`);
         if (active) setVote(stored);
       });
+    } else {
+      if (__DEV__) console.log(`[SETTINGS-POLL] гидрация пропущена: kind=${campaign.kind} owner=${ownerTail(ownerStableId)}`);
     }
     return () => { active = false; };
   }, [campaign.id, campaign.kind, ownerStableId]);

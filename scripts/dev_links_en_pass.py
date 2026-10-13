@@ -6,7 +6,7 @@ import re, sys
 SRC = sys.argv[1] if len(sys.argv) > 1 else 'docs/phraseman-2.0/DEV_LINKS_R1.md'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'docs/phraseman-2.0/DEV_LINKS_EN_PASS.md'
 
-BASE = 'phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en'
+BASE = 'phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en&enStudyPrompt=off'
 
 # (раздел, [id строк DEV_LINKS_R1.md])
 GROUPS = [
@@ -38,6 +38,10 @@ EXTRA = [
     ('Диалоги — итог', [
         ('en-dialog-completion-001', 'Итог диалога (завершён вручную)', 'FROM:dialogs-043', '', 'нет'),
     ]),
+    # зачем (координатор 13.10): один кадр самого выбора языка изучения D164 — ссылка хаба Диалогов БЕЗ enStudyPrompt=off.
+    ('Выбор языка изучения (D164)', [
+        ('en-d164-lang-choice-001', 'Хаб «Диалоги» — выбор языка изучения (интерфейс en + изучаю en)', 'FROM_PROMPT:dialogs-001', '', 'да'),
+    ]),
 ]
 
 rows = {}
@@ -47,7 +51,7 @@ for line in open(SRC, encoding='utf-8'):
         c = line.rstrip('\n').split('|')
         rows[c[1].strip()] = {'title': c[2].strip(), 'link': c[3].strip().strip('`'), 'before': c[4].strip(), 'taps': c[6].strip().strip('`'), 'unique': c[7].strip() if len(c) > 7 else 'нет'}
 
-def to_en(link: str) -> str | None:
+def to_en(link: str, prompt_off: bool = True) -> str | None:
     if not link.startswith('phraseman://dev_state?'):
         return None
     head, sep, nxt = link.partition('&next=')
@@ -55,6 +59,10 @@ def to_en(link: str) -> str | None:
         head += '&uiLang=en'
     if 'overlays=' not in head:
         head += '&overlays=off'
+    # зачем (координатор 13.10, D164): при паре «интерфейс en + изучаю en» выбор языка изучения перекрывает кадр (хаб Диалогов);
+    # dev-переключатель enStudyPrompt=off (3740a8eee, только память) его убирает. Изучаемый язык не меняем. Сам выбор — отдельной строкой.
+    if prompt_off and 'enStudyPrompt=' not in head:
+        head += '&enStudyPrompt=off'
     return head + sep + nxt
 
 out = ['# DEV_LINKS_EN_PASS — ссылки «en-проход» (Дизайн, 12.10)', '',
@@ -80,9 +88,11 @@ for title, ids in GROUPS:
 for title, items in EXTRA:
     out += [f'## {title}', '', '| id | экран · состояние | ссылка | перед кадром | shot list | тапы | уникальна | образец |', '|---|---|---|---|---|---|---|---|']
     for rid, name, link, taps, uniq in items:
-        if link.startswith('FROM:'):
+        if link.startswith('FROM:') or link.startswith('FROM_PROMPT:'):
+            keep_prompt = link.startswith('FROM_PROMPT:')
+            link = 'FROM:' + link.split(':', 1)[1]
             src = rows.get(link[5:])
-            en_link = to_en(src['link']) if src else None
+            en_link = to_en(src['link'], prompt_off=not keep_prompt) if src else None
             if not en_link:
                 out.append(f"| {rid} | {name} | ручной путь (см. DEV_LINKS_R1.md, {link[5:]}) |  |  |  | нет |  |")
                 used += 1

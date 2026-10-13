@@ -117,6 +117,37 @@ describe('safe_commit.sh', () => {
     }
   });
 
+  // зачем (координатор 13.10, опыт Дизайна 3956faba6): брошенный пустой index.lock (обрыв git diff опроса Codex) снимается через 60 с,
+  // иначе синхронизация общего индекса выходила с WARN. Проверка живых git.exe здесь отключена — на ПК идут чужие git.
+  it('брошенный пустой index.lock старше 60 с снимается, общий индекс синхронизируется', () => {
+    write('f.txt', 'a\nb\nc\nd\n');
+    const indexLock = path.join(repo, '.git', 'index.lock');
+    fs.writeFileSync(indexLock, '');
+    const past = new Date(Date.now() - 90_000);
+    fs.utimesSync(indexLock, past, past);
+    const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt'], { SAFE_COMMIT_OLD_GIT_CHECK: 'skip' });
+    expect(r.code).toBe(0);
+    expect(r.out).toContain('снят брошенный пустой замок .git/index.lock');
+    expect(r.out).toContain('общий индекс синхронизирован');
+    expect(fs.existsSync(indexLock)).toBe(false);
+  });
+
+  // зачем (координатор 13.10, данные Сверки): commit падал rc=128 «Unable to create …lock: File exists». Скрипт пишет текст ошибки
+  // и путь замка, брошенный пустой замок старше 60 с снимает и повторяет коммит; три попытки по 3 с было мало.
+  it('коммит, упавший на брошенном замке (rc=128), — журнал, снятие замка, повтор', () => {
+    write('f.txt', 'a\nb\nc\nd\n');
+    const branch = git('symbolic-ref', '--short', 'HEAD');
+    const refLock = path.join(repo, '.git', 'refs', 'heads', `${branch}.lock`);
+    fs.writeFileSync(refLock, '');
+    const past = new Date(Date.now() - 90_000);
+    fs.utimesSync(refLock, past, past);
+    const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt'], { SAFE_COMMIT_OLD_GIT_CHECK: 'skip' });
+    expect(r.code).toBe(0);
+    expect(r.out).toContain('коммит не создан: rc=128, занят замок');
+    expect(r.out).toContain('снят брошенный пустой замок');
+    expect(commits()).toBe(2);
+  });
+
   it('после коммита замок освобождён, общий индекс по своим путям совпадает с HEAD', () => {
     write('f.txt', 'a\nb\nc\nd\n');
     const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt']);

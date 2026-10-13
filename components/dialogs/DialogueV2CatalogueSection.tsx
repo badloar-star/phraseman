@@ -69,7 +69,8 @@ export type DialogueV2CatalogueSectionProps = Readonly<{
 function worldIcon(worldId: string): React.ComponentProps<typeof Ionicons>['name'] {
   if (worldId === 'travel') return 'airplane';
   if (worldId === 'social') return 'people';
-  if (worldId === 'work') return 'briefcase';
+  // зачем (Макеты 7c831a193, dialogs-004): в образце «Дела» — заливной документ с строками (`docF`), а не портфель; ближайший значок набора — document-text
+  if (worldId === 'work') return 'document-text';
   return 'cafe';
 }
 

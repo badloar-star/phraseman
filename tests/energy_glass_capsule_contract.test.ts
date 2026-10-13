@@ -22,6 +22,6 @@ describe('EnergyBar: капсула в стеклянной шапке', () => {
   });
 
   it('вызов в шапке Диалогов остаётся glass (капсула придёт именно туда)', () => {
-    expect(fs.readFileSync(path.join(__dirname, '..', 'app/ai_dialog_home.tsx'), 'utf8')).toContain('<EnergyBar size={30} glass />');
+    expect(fs.readFileSync(path.join(__dirname, '..', 'app/ai_dialog_home.tsx'), 'utf8')).toContain('<EnergyBar size={30} glass solidBolt />');
   });
 });

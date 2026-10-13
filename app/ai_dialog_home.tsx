@@ -56,7 +56,7 @@ export default function AiDialogHome() {
   const headerRight = (
     <View style={{ alignItems: 'flex-end', gap: 14 }}>
       {/* зачем (эмулятор 30.09): без glass тут жила старая тёмная капсула — в светлой теме чёрное пятно. */}
-      <EnergyBar size={30} glass />
+      <EnergyBar size={30} glass solidBolt />
       {quota ? (
         <DialogueGlassQuotaPill
           glass={dialogueGlass}

@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import EnergyBar from '../EnergyBar';
+import V2Backdrop from '../v2/V2Backdrop';
 import { nestedBoxShadow } from '../v2/ShadowSurface';
 import {
   DialogueGlassBackButton,
@@ -71,11 +72,13 @@ export function DialogueV2BriefingScreen({
 
   return (
     <View style={[styles.fill, { backgroundColor: glass.bg }]} testID="dialogue-v2-briefing-screen">
+      {/* зачем (Макеты d7cf7113d, dialogs-007/008, тон темы): в образце B1/B2 за брифингом — пятна Авроры (зелёное слева, фиолетовое справа), у экрана был ровный чёрный. Тот же статичный слой, что у хаба Карточек, кошелька и рангов; у тем без пятен слоя нет */}
+      <V2Backdrop />
       <SafeAreaView edges={['top']} style={styles.fill}>
         <View style={styles.top}>
           <DialogueGlassBackButton glass={glass} onPress={onBack} accessibilityLabel={labels.back} />
           {/* зачем (Сверка dialogs-007/008, координатор 12.10): в образце B1/B2 справа в шапке пилюля энергии «⚡ N» (диалог тратит энергию) — как в шапке сессии */}
-          {showEnergy ? <EnergyBar glass /> : null}
+          {showEnergy ? <EnergyBar glass solidBolt /> : null}
         </View>
 
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">

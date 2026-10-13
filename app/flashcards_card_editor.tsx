@@ -214,6 +214,14 @@ export default function FlashcardsCardEditorScreen() {
   // зачем (Карточки 2.0, макет «Новая карточка — превью живое»): превью-разворот сверху показывает лицо, пока вводят слово, и оборот, пока вводят перевод или пример
   const [previewBack, setPreviewBack] = useState(false);
   useEffect(() => { setPreviewBack(focusedField !== 'front'); }, [focusedField]);
+  // зачем (координатор 13.10, cards-062: метка «RU» у английского слова «Test» на превью новой карточки — кандидат в дефект; СПЕРВА ЛОГИ): одна строка на смену фокуса/стороны превью — какая сторона показана,
+  // какие метки и откуда (front-метка в FlipCard зашита как «EN», back-метка = язык интерфейса), что набрано. Решение по фактам из журнала; префикс [CARD-PREVIEW].
+  const previewLogDraftsRef = useRef({ en: '', tr: '', desc: '' });
+  previewLogDraftsRef.current = { en: draftEN.trim(), tr: draftTR.trim(), desc: draftDescription.trim() };
+  useEffect(() => {
+    const d = previewLogDraftsRef.current;
+    DebugLogger.info('[CARD-PREVIEW]', `фокус=${focusedField} превью=${previewBack ? 'оборот' : 'лицо'} метки: лицо=EN(зашито в FlipCard) оборот=${lang.slice(0, 2).toUpperCase()}(язык интерфейса ${lang}) studyTarget=${studyTarget} слово=«${d.en.slice(0, 24)}» перевод=«${d.tr.slice(0, 24)}» пример=${d.desc.length} зн`);
+  }, [focusedField, previewBack, lang, studyTarget]);
   // зачем (макет: строка выбора набора): новая карточка всегда попадает в «Мои карточки» и, если выбран свой неопубликованный набор, ещё и в него
   const [packPickerOpen, setPackPickerOpen] = useState(false);
   const [addablePacks, setAddablePacks] = useState<readonly LocalAuthorPack[]>([]);

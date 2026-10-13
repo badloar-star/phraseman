@@ -34,6 +34,11 @@ interface Props {
    * (карта, карточки, диалоги) не передают флаг и остаются как были.
    */
   glass?: boolean;
+  /**
+   * зачем (Макеты 7c831a193 / d7cf7113d, dialogs-003/007/008): в образце диалогов `energy()` рисует ЗАЛИВНУЮ молнию (`boltF`), а по умолчанию значок — контурный (flash-outline).
+   * Флаг включают только экраны Диалогов; остальные (Learning V2, уроки) остаются как были.
+   */
+  solidBolt?: boolean;
 }
 
 const ENERGY_PILL_WIDTH = 60;
@@ -56,7 +61,7 @@ const COLORS = Object.freeze({
   value: '#FFFFFF', // theme-exempt: значение на собственном тёмном фоне капсулы
 });
 
-function EnergyBar({ ownerActive = true, glass = false }: Props) {
+function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Props) {
   const lg = useLv2Glass();
   const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -185,6 +190,7 @@ function EnergyBar({ ownerActive = true, glass = false }: Props) {
         >
           <EnergyIcon
             filled
+            solid={solidBolt}
             themeColor={accent}
             tintColor={accent}
             size={iconSize}

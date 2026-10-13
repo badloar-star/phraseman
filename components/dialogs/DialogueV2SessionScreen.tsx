@@ -350,7 +350,7 @@ export function DialogueV2SessionScreen({
                     {headerMood?.label ?? labels.subtitle}
                   </Text>
                 </View>
-                {showEnergy ? <EnergyBar glass /> : null}
+                {showEnergy ? <EnergyBar glass solidBolt /> : null}
                 {quotaPill ? (
                   <DialogueGlassQuotaPill
                     glass={glass}

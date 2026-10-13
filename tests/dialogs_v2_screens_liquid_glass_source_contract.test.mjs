@@ -59,7 +59,7 @@ test('session C*: header .dh with «⋯» menu, no divider line, bubbles/typing/
   // D111/D112 (владелец 2026-09-30): настроение и месячный остаток теперь приходят с сервера и
   // рисуются; энергии в V2-диалогах решения нет — её по-прежнему не рисуем.
   // 30.09 (владелец: энергия как урок; макет B6): пилюля энергии в шапке, только по флагу showEnergy.
-  assert.ok(session.includes('{showEnergy ? <EnergyBar glass /> : null}'), 'пилюля энергии по флагу');
+  assert.ok(session.includes('{showEnergy ? <EnergyBar glass solidBolt /> : null}'), 'пилюля энергии по флагу');
   assert.match(session, /headerMood/);
   assert.match(session, /quotaPill/);
 });

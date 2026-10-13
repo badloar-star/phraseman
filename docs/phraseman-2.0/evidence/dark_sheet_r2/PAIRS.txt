@@ -1,0 +1,11 @@
+auth-gap-009: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+auth-gap-010: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+profile-003: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+cards-v2-027: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+mistakes-panel-021: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+paywall-gap-001: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+paywalls-023: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+paywalls-024: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+profile-020: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+profile-021: пара собрана (слева «до» = r1 after, справа «после» b7fa6eacf)
+profile-022: нет пары

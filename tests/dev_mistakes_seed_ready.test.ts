@@ -58,6 +58,18 @@ describe('dev: засев журнала ошибок готовыми (mistakes
     expect(second).toBe(first);
   });
 
+  it('пишет в журнал признак cloud: pushed|local_only', async () => {
+    globalWithDev.__DEV__ = true;
+    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    try {
+      await seedDevMistakesReady({ ...deps(memoryStorage()), cloudState: async () => 'pushed' });
+      const lines = log.mock.calls.map((call) => String(call[0]));
+      expect(lines.some((line) => line.includes('mistakes seeded') && line.includes('cloud: pushed'))).toBe(true);
+    } finally {
+      log.mockRestore();
+    }
+  });
+
   it('в не-dev отказывает и журнал не трогает', async () => {
     globalWithDev.__DEV__ = false;
     const storage = memoryStorage();

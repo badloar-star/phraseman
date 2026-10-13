@@ -86,12 +86,53 @@ const journalEventCount = (journal: unknown): number => {
   return Array.isArray(events) ? events.length : 0;
 };
 
+// зачем (координатор 13.10, смета Firebase №4, вторая половина): подтверждённые сервером id жили только в памяти — первая
+// выгрузка КАЖДОГО холодного старта слала весь журнал языка, и сервер читал каждое событие в транзакции (≈ E чтений на старт).
+// На диске — «какие id сервер уже принял» и когда была последняя ПОЛНАЯ выгрузка. Первая выгрузка в запуске шлёт только
+// неподтверждённое; полная (лечит потерю на сервере) — не чаще раза в сутки. Диск читается только на первой выгрузке
+// аккаунта+языка в запуске: смена аккаунта/поколения внутри запуска — по-прежнему полная.
+const UPLOAD_MARK_KEY_PREFIX = 'mistake_practice_upload_mark_v1';
+const FULL_UPLOAD_MIN_INTERVAL_MS = 24 * 60 * 60 * 1000;
+const uploadDiskConsulted = new Set<string>();
+const uploadFullAtMs = new Map<string, number>();
+
+type UploadDiskMark = Readonly<{ fullAtMs: number; ids: readonly string[] }>;
+
+const uploadMarkKey = (accountScope: string, studyTarget: MistakeStudyTarget): string =>
+  `${UPLOAD_MARK_KEY_PREFIX}:${accountScope}:${studyTarget}`;
+
+async function readUploadDiskMark(accountScope: string, studyTarget: MistakeStudyTarget): Promise<UploadDiskMark | null> {
+  try {
+    const raw = await AsyncStorage.getItem(uploadMarkKey(accountScope, studyTarget));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { fullAtMs?: unknown; ids?: unknown };
+    if (typeof parsed.fullAtMs !== 'number' || !Array.isArray(parsed.ids) || !parsed.ids.every((id) => typeof id === 'string')) {
+      console.warn(`${THROTTLE_LOG} upload target=${studyTarget} отметка выгрузки чужой формы — полная выгрузка`);
+      return null;
+    }
+    return { fullAtMs: parsed.fullAtMs, ids: parsed.ids as string[] };
+  } catch (error) {
+    console.warn(`${THROTTLE_LOG} upload target=${studyTarget} отметка выгрузки не прочиталась — полная выгрузка`, error instanceof Error ? error.message : String(error));
+    return null;
+  }
+}
+
+async function writeUploadDiskMark(accountScope: string, studyTarget: MistakeStudyTarget, mark: UploadDiskMark): Promise<void> {
+  try {
+    await AsyncStorage.setItem(uploadMarkKey(accountScope, studyTarget), JSON.stringify(mark));
+  } catch (error) {
+    console.warn(`${THROTTLE_LOG} upload target=${studyTarget} отметка выгрузки не записалась — следующий старт выгрузит всё`, error instanceof Error ? error.message : String(error));
+  }
+}
+
 /** Только для тестов. */
 export function resetMistakePracticeRestoreThrottleForTests(): void {
   restoreSucceededAtMs.clear();
   restoreInFlight.clear();
   uploadConfirmedEventIds.clear();
   diskMarkConsulted.clear();
+  uploadDiskConsulted.clear();
+  uploadFullAtMs.clear();
 }
 
 const invokeDefault = async (request: AppendRequest | ListRequest): Promise<Response> => {
@@ -121,7 +162,26 @@ export async function uploadMistakePracticeEvents(input: Readonly<{
   // (лечит потерю на сервере); дальше в пределах запуска уходят только события, которых сервер ещё не подтвердил,
   // — по id, не по времени, поэтому событие «задним числом» не пропадает. Смена аккаунта — новое поколение, полная.
   const uploadKey = `${generation.generation}|${input.accountScope}|${input.studyTarget}`;
-  const confirmed = uploadConfirmedEventIds.get(uploadKey);
+  const now = (dependencies.nowMs ?? Date.now)();
+  let confirmed = uploadConfirmedEventIds.get(uploadKey);
+  const scopeKey = `${input.accountScope}|${input.studyTarget}`;
+  if (!confirmed && !uploadDiskConsulted.has(scopeKey)) {
+    uploadDiskConsulted.add(scopeKey); // guard-ok: Set в памяти процесса, не Firestore
+    const mark = await readUploadDiskMark(input.accountScope, input.studyTarget);
+    if (!isCurrentAccountGeneration(generation)) throw new Error('mistake_practice_cloud_owner_stale');
+    const ageMs = mark ? now - mark.fullAtMs : null;
+    if (!mark) {
+      console.log(`${THROTTLE_LOG} upload target=${input.studyTarget} источник=нет отметки → полная`);
+    } else if (ageMs === null || ageMs < 0 || ageMs >= FULL_UPLOAD_MIN_INTERVAL_MS) {
+      console.log(`${THROTTLE_LOG} upload target=${input.studyTarget} источник=диск ageMs=${ageMs} ${ageMs !== null && ageMs < 0 ? '(часы назад)' : '(сутки прошли)'} → полная`);
+    } else {
+      confirmed = new Set(mark.ids);
+      uploadConfirmedEventIds.set(uploadKey, confirmed); // guard-ok: Map в памяти процесса, не Firestore
+      uploadFullAtMs.set(uploadKey, mark.fullAtMs); // guard-ok: Map в памяти процесса, не Firestore
+      console.log(`${THROTTLE_LOG} upload target=${input.studyTarget} источник=диск подтверждено=${mark.ids.length} до полной ${FULL_UPLOAD_MIN_INTERVAL_MS - ageMs}мс`);
+    }
+  }
+  const fullAtMs = confirmed ? uploadFullAtMs.get(uploadKey) ?? now : now;
   const events = [...journal.events]
     .filter((event) => !confirmed || !confirmed.has(event.eventId))
     .sort(eventOrder);
@@ -149,6 +209,11 @@ export async function uploadMistakePracticeEvents(input: Readonly<{
     // Подтверждённое запоминаем после каждой страницы: обрыв на середине не заставит пересылать уже принятое.
     uploadConfirmedEventIds.set(uploadKey, confirmedNow); // guard-ok: Map в памяти процесса, не Firestore
   }
+  uploadFullAtMs.set(uploadKey, fullAtMs); // guard-ok: Map в памяти процесса, не Firestore
+  // На диск — только id, что ещё есть в журнале: отметка не растёт быстрее самого журнала.
+  const ids = journal.events.map((event) => event.eventId).filter((id) => confirmedNow.has(id));
+  await writeUploadDiskMark(input.accountScope, input.studyTarget, { fullAtMs, ids });
+  console.log(`${THROTTLE_LOG} upload target=${input.studyTarget} ушло=${uploaded} ${confirmed ? 'неполная' : 'полная'} подтверждено=${ids.length}`);
   return uploaded;
 }
 

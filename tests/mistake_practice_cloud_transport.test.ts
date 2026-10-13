@@ -51,7 +51,8 @@ describe('mistake practice cloud owner fence', () => {
       { accountScope: 'owner-a', studyTarget: 'en' },
       { invoke },
     );
-    await Promise.resolve();
+    // Выгрузка сперва читает отметку на диске (смета №4) — ждём, пока запрос действительно ушёл в сеть.
+    for (let i = 0; i < 50 && invoke.mock.calls.length === 0; i += 1) await new Promise((resolve) => setTimeout(resolve, 0));
     mockCurrent = false;
     resolveInvoke({ ok: true, appended: 1 });
     await expect(pending).rejects.toThrow('mistake_practice_cloud_owner_stale');
@@ -78,9 +79,41 @@ describe('mistake practice cloud owner fence', () => {
     await expect(uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke })).resolves.toBe(0);
     expect(invoke).toHaveBeenCalledTimes(2);
 
+    // зачем (смета Firebase №4, 13.10): подтверждённое помнится на диске — новый запуск в пределах суток не шлёт принятое.
+    resetMistakePracticeRestoreThrottleForTests(); // новый запуск
+    await expect(uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke })).resolves.toBe(0);
+    expect(invoke).toHaveBeenCalledTimes(2);
+
+    // Через сутки после полной — снова полная (лечит потерю на сервере).
+    resetMistakePracticeRestoreThrottleForTests();
+    mockLoadJournal.mockResolvedValueOnce(journalWith([first, late]));
+    const dayLater = Date.now() + 25 * 60 * 60 * 1000;
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke, nowMs: () => dayLater });
+    expect(invoke.mock.calls[2][0].events).toEqual([late, first]);
+  });
+
+  test('new launch sends only events the server has not confirmed yet', async () => {
+    const first = makeEvent('first', 100);
+    const fresh = makeEvent('fresh', 200);
+    const journalWith = (events: unknown[]) => ({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events });
+    mockLoadJournal
+      .mockResolvedValueOnce(journalWith([first]))
+      .mockResolvedValueOnce(journalWith([first, fresh]));
+    const invoke = jest.fn(async (request: any) => ({ ok: true as const, appended: request.events.length }));
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
     resetMistakePracticeRestoreThrottleForTests(); // новый запуск
     await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
-    expect(invoke.mock.calls[2][0].events).toEqual([late, first]);
+    expect(invoke).toHaveBeenCalledTimes(2);
+    expect(invoke.mock.calls[1][0].events).toEqual([fresh]);
+  });
+
+  test('a broken upload mark on disk falls back to a full upload', async () => {
+    const first = makeEvent('first', 100);
+    mockLoadJournal.mockResolvedValue({ version: 1, accountScope: 'owner-a', studyTarget: 'en', events: [first] });
+    await AsyncStorage.setItem('mistake_practice_upload_mark_v1:owner-a:en', '{oops');
+    const invoke = jest.fn(async (request: any) => ({ ok: true as const, appended: request.events.length }));
+    await uploadMistakePracticeEvents({ accountScope: 'owner-a', studyTarget: 'en' }, { invoke });
+    expect(invoke.mock.calls[0][0].events).toEqual([first]);
   });
 
   test('an account switch replays the full journal again', async () => {

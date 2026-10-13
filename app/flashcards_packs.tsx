@@ -75,7 +75,11 @@ import {
 import PackLanguagePicker from './flashcards/PackLanguagePicker';
 import {
   defaultPackLanguageForStudyTarget,
+  isStudyPackLanguage,
+  normalizePackLanguage,
+  PACK_LANGUAGES,
   type PackLanguage,
+  type StudyPackLanguage,
 } from './flashcards/pack_languages';
 import { getStoredPackLanguage, setStoredPackLanguage, subscribePackLanguage } from './flashcards/pack_language_preferences';
 import { useCatalogOffline } from './flashcards/useCatalogOffline';
@@ -408,17 +412,31 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   }, [embedded, leavePacks]);
 
   // зачем (cards-v2 catalog()): лупа в шапке больше не нужна — поиск стоит капсулой под заголовком; в шапке остаётся выбор языка наборов.
-  const headerActions = (
+  // зачем (координатор 13.10, cards-section-022/023, cards-gap-034; то же правило, что в настройке тренировки): чип «EN ⌄» нужен, только когда в каталоге наборы больше чем на одном языке.
+  // Считаем языки загруженных облачных наборов плюс текущий выбор: если выбран язык без наборов, чип остаётся, иначе человека не вернуть к языку, где наборы есть. «Без языка» не считается.
+  const catalogLanguages = useMemo(() => {
+    const present = new Set<StudyPackLanguage>();
+    if (isStudyPackLanguage(packLanguage)) present.add(packLanguage);
+    for (const pack of communityPacks) {
+      if (isLocalAuthorPackId(pack.id)) continue;
+      const code = normalizePackLanguage(pack.packLanguage);
+      if (isStudyPackLanguage(code)) present.add(code);
+    }
+    return PACK_LANGUAGES.filter((code) => present.has(code));
+  }, [communityPacks, packLanguage]);
+  const languageChipVisible = catalogLanguages.length >= 2;
+  const headerActions = languageChipVisible ? (
           <View style={styles.headerActions}>
             <PackLanguagePicker
               pill={embedded}
               lang={lang}
               t={t}
               value={packLanguage}
+              languages={catalogLanguages}
               onChange={handlePackLanguageChange}
             />
           </View>
-  );
+  ) : null;
 
   // зачем: во вкладке «Сообщество» кнопки раздела живут в общей шапке. Слот пересобирается только при
   // смене того, что в нём видно, — иначе шапка ловила бы новый объект на каждый рендер раздела.
@@ -426,7 +444,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
   const headerSlot = useMemo(
     () => (embedded ? { right: headerActions, overlay: null } : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- JSX выше выводится ровно из этих значений
-    [embedded, packLanguage, lang, liquidGlassThemeId, t, handlePackLanguageChange],
+    [embedded, packLanguage, lang, liquidGlassThemeId, t, handlePackLanguageChange, languageChipVisible, catalogLanguages],
   );
   useEffect(() => {
     if (!setHeaderSlot) return;

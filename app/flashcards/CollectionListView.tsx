@@ -843,7 +843,8 @@ export default function CollectionListView({
       {selectionMode ? (
         <Reanimated.View entering={reduceMotion ? undefined : FadeInDown.duration(LUM.contentMs)} testID="fc-selection-action-bar" style={{ position: 'absolute', left: 0, right: 0, bottom: 0, backgroundColor: g.sheet, paddingHorizontal: 20, paddingTop: 12, paddingBottom: insets.bottom > 0 ? 12 : 20 }}>
           <SavedListGlass g={g} radius={0} />
-          {!canCreatePack ? (
+          {/* зачем (координатор 13.10, cards-007): при пустом выборе подсказки нет, как в образце */}
+          {!canCreatePack && selectedIds.size > 0 ? (
             <Text style={{ color: g.secondary, fontSize: 13, lineHeight: 17, textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, {
                 ru: `Выбери ещё ${pluralWithCount('ru', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'карточку', few: 'карточки', many: 'карточек' })}, чтобы создать набор`, uk: `Познач ще ${pluralWithCount('uk', selectionRemaining ?? remainingCardsToMinimum(Array.from(selectedIds)), { one: 'картку', few: 'картки', many: 'карток' })}, щоб створити набір`,

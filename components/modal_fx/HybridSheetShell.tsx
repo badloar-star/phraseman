@@ -51,6 +51,7 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { LinearGradient } from '../SafeLinearGradient';
 import TonalSurface from '../TonalSurface';
+import { shadowSheetGradient } from '../v2/shadow_sheet_paint';
 import {
   createNativeModalDismissState,
   reduceNativeModalDismiss,
@@ -110,6 +111,9 @@ export default function HybridSheetShell({
 }: HybridSheetShellProps) {
   const { theme: t, liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Темы, DIFF_COLOR_TRIAGE 249bad18d, Г3; координатор 13.10; как 4863c136d): в стиле «Тень» верх тёмной шторки — НЕЙТРАЛЬНЫЙ градиент при любой теме, а не тон темы (`glass.selected` + акцентная вуаль сверху).
+  // Светлое оформление не меняется (null → прежняя заливка). Явный `glowColor` (смысловое свечение вызывающего) остаётся.
+  const neutralSheet = shadowSheetGradient(glass.isLight);
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const keyboardBottomInset = useKeyboardBottomInset(visible);
@@ -371,22 +375,28 @@ export default function HybridSheetShell({
                     experimentalBlurMethod={Platform.OS === 'android' ? 'dimezisBlurView' : 'none'}
                     tint="systemUltraThinMaterialDark" style={StyleSheet.absoluteFill} />
                   <View style={[StyleSheet.absoluteFill, { backgroundColor: glass.sheet }]} />
-                  <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <LinearGradient colors={neutralSheet ? ['rgba(255,255,255,0.07)' /* theme-exempt: нейтральная вуаль «Тени» */, 'transparent'] : [glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
                   <View style={{ height: 1, backgroundColor: glass.glassEdge }} />
                 </View>
               ) : material === 'liquid-glass-opaque' ? (
                 <View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: glass.opaqueSheet }]}>
-                  <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  {neutralSheet ? (
+                    <LinearGradient colors={neutralSheet} locations={[0, 1]} start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 1 }} style={StyleSheet.absoluteFill} />
+                  ) : (
+                    <LinearGradient colors={[glass.selected, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 0.8, y: 1 }} style={StyleSheet.absoluteFill} />
+                  )}
                   <View style={{ height: 1, backgroundColor: glass.glassEdge }} />
                 </View>
               ) : <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />}
-              <LinearGradient
-                colors={[`${glowColor || t.accent}1F`, 'transparent']} // light-accent-ok: 1F вуаль свечения
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 0.5 }}
-                style={styles.sheetGlow}
-                pointerEvents="none"
-              />
+              {neutralSheet && !glowColor ? null : (
+                <LinearGradient
+                  colors={[`${glowColor || t.accent}1F`, 'transparent']} // light-accent-ok: 1F вуаль свечения
+                  start={{ x: 0.5, y: 0 }}
+                  end={{ x: 0.5, y: 0.5 }}
+                  style={styles.sheetGlow}
+                  pointerEvents="none"
+                />
+              )}
               <View style={styles.grabber} pointerEvents="none">
                 <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
               </View>

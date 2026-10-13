@@ -180,7 +180,8 @@ const Tile = memo(function Tile({ card, index, step, morph, width, g, onOpen, on
               <View style={styles.col1}>
                 <Text style={[styles.lg, { color: g.secondary, fontSize: f.lg, lineHeight: f.lgLine }]}>EN</Text>
                 {wordEl}
-                {showTranslation ? <Text numberOfLines={1} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
+                {/* зачем (координатор 13.10, cards-007): в двух колонках перевод «стоимость проезда» резался кнопкой звука («стоимость прое…»). Две строки вместо одной: полная подпись читается, высота плитки (96) вмещает 14+4+25+2+2×18; кнопка звука внизу справа второй строки не достаёт */}
+                {showTranslation ? <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.tr, { color: g.secondary, fontSize: f.tr, lineHeight: f.trLine, marginTop: f.trTop }]}>{card.back}</Text> : null}
                 {speakEl}
               </View>
             ) : (

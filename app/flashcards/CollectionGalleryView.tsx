@@ -304,7 +304,8 @@ export default function CollectionGalleryView({
         <PanelDock>
           {/* зачем (Макеты e68b81502, cards-007: подсказка «Выбери ещё 10 карточек…» лежала на нижнем ряду без подложки, текст наезжал на карточки): плашка по тону
               «Тени» (opaqueControl, как у подсказки удаления) + запас внизу списка (contentSelHint), чтобы последний ряд не прятался за панелью */}
-          {!canCreatePack ? (
+          {/* зачем (координатор 13.10, cards-007): при пустом выборе подсказки нет, как в образце; она появляется, когда выбрана хотя бы одна карточка, и считает, сколько осталось */}
+          {!canCreatePack && selectedCount > 0 ? (
             <View testID="fc-selection-hint" style={[styles.selHintPlate, { backgroundColor: g.opaqueControl }]}>
               <Text style={[styles.selHint, { color: g.text }]}>{copy.more(selectionRemaining ?? 0)}</Text>
             </View>

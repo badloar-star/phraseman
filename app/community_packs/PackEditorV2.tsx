@@ -14,6 +14,7 @@ import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown, runOnJS, 
 import { KitCard, KitIconTile, KitSurface } from '../../components/cards-grid/CardsKit';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { PlateFill, actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
+import { shadowSheetGradient } from '../../components/v2/shadow_sheet_paint';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 
@@ -295,6 +296,8 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
   }, [onClose, visible]);
   if (!visible) return null;
   const [a] = themePair(g);
+  // зачем (Темы, DIFF_COLOR_TRIAGE 249bad18d, Г4; координатор 13.10; как 4863c136d): в тёмном оформлении заливка шторки — нейтральный градиент «Тени», а не 17 % тона темы; светлое — прежняя заливка.
+  const neutralFill = shadowSheetGradient(g.isLight);
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="box-none" testID="ugc-pack-card-sheet">
       <Animated.View entering={FadeIn.duration(260)} exiting={FadeOut.duration(200)} style={styles.dimLayer}>
@@ -304,7 +307,7 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
         entering={SlideInDown.duration(260).easing(Easing.bezier(0.23, 1, 0.32, 1))}
         exiting={SlideOutDown.duration(200)}
         style={[styles.sheet, { bottom: bottomInset, paddingBottom: bottomInset > 0 ? 18 : 28 }]}>
-        <LinearGradient pointerEvents="none" colors={[`${mixDark(a, g.opaqueSheet, 0.17)}FF`, `${g.opaqueSheet}FF`]} /* зачем (R1, cards-024; правило «стекло 2.0 непрозрачное»): заливка шторки плотная — через неё не должны читаться строки списка под ней (раньше альфа 0,92/0,90) */ locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+        <LinearGradient pointerEvents="none" colors={neutralFill ? [neutralFill[0], neutralFill[1]] : [`${mixDark(a, g.opaqueSheet, 0.17)}FF`, `${g.opaqueSheet}FF`]} /* зачем (R1, cards-024; правило «стекло 2.0 непрозрачное»): заливка шторки плотная — через неё не должны читаться строки списка под ней (раньше альфа 0,92/0,90) */ locations={[0, 0.55]} start={{ x: 0.42, y: 0.01 }} end={{ x: 0.58, y: 0.99 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         <View style={styles.sheetHead}>
           <Text accessibilityRole="header" style={[styles.sheetTitle, { color: g.text }]}>{title}</Text>

@@ -62,19 +62,17 @@ function TourRing() {
 }
 
 // зачем (владелец 13.10, spire-003): арт «повышение» — три игрока с монетами ранга, стрелка вверх и число ступеней, как в макете spire.html (tourTop:
-// ранги 12/9/7, Аня 47, Марк 39, Ольга 33). Это иллюстрация правила «верхние 15% переходят выше», а не данные комнаты; имена — образец макета.
+// ранги 12/9/7, 47/39/33 ступеней). Это иллюстрация правила «верхние 15% переходят выше», а не данные комнаты; имён людей нет (сторож spire_tab_gate) — нейтральное «Игрок N».
 const TOUR_PLAYERS: ReadonlyArray<Readonly<{ rank: number; steps: number }>> = [
   { rank: 12, steps: 47 }, { rank: 9, steps: 39 }, { rank: 7, steps: 33 },
 ];
-const tourNames = (lang: Lang): readonly [string, string, string] => [
-  triLang(lang, { ru: 'Аня', uk: 'Аня', en: 'Anna', es: 'Ana', 'pt-BR': 'Ana', vi: 'Anh', id: 'Ani', tr: 'Ayşe', pl: 'Ania' }),
-  triLang(lang, { ru: 'Марк', uk: 'Марк', en: 'Mark', es: 'Marcos', 'pt-BR': 'Marcos', vi: 'Mark', id: 'Marko', tr: 'Mark', pl: 'Marek' }),
-  triLang(lang, { ru: 'Ольга', uk: 'Ольга', en: 'Olga', es: 'Olga', 'pt-BR': 'Olga', vi: 'Olga', id: 'Olga', tr: 'Olga', pl: 'Olga' }),
-];
+const tourPlayerLabel = (lang: Lang, n: number): string => triLang(lang, {
+  ru: `Игрок ${n}`, uk: `Гравець ${n}`, en: `Player ${n}`, es: `Jugador ${n}`, 'pt-BR': `Jogador ${n}`,
+  vi: `Người chơi ${n}`, id: `Pemain ${n}`, tr: `Oyuncu ${n}`, pl: `Gracz ${n}`,
+});
 
 function TourTop({ lang }: Readonly<{ lang: Lang }>) {
   const p = useSpirePalette(); const sh = useSpireShadow();
-  const names = tourNames(lang);
   return (
     <View style={s.stones}>
       {TOUR_PLAYERS.map((player, i) => {
@@ -83,7 +81,7 @@ function TourTop({ lang }: Readonly<{ lang: Lang }>) {
           <View key={`top-${player.rank}`} style={[s.player, { backgroundColor: p.cardRaised }, sh.nested]}>
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
             {coin ? <Image source={coin.source} contentFit="contain" style={s.coin} accessible={false} /> : null}
-            <Text style={[s.playerName, { color: p.text }]}>{names[i]}</Text>
+            <Text style={[s.playerName, { color: p.text }]}>{tourPlayerLabel(lang, i + 1)}</Text>
             <Ionicons name="arrow-up" size={18} color={p.correct} />
             <Text style={[s.steps, { color: p.text }]}>{player.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {spireStepsShort(lang, player.steps)}</Text></Text>
           </View>

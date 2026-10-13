@@ -28,6 +28,36 @@ async function readAppLang(): Promise<Lang> {
 }
 
 /**
+ * зачем (смета Firebase R1, п.8): `communityListSellerInbox` звался на КАЖДОМ старте у ВСЕХ, хотя наборы присылает малая доля людей.
+ * Пустой ответ (нет непрочитанных результатов модерации) помним 6 ч для автора — значение сверяет stableId. Есть письма — запись
+ * снимается. Результат модерации доходит не позже чем через 6 ч. Ключ device_only (config/phone-state-legacy-inventory.v1.json).
+ */
+export const SELLER_INBOX_EMPTY_TTL_MS = 6 * 60 * 60 * 1000;
+
+async function readSellerInboxEmptyAgeMs(authorStableId: string, nowMs: number): Promise<number | null> {
+  try {
+    const raw = await AsyncStorage.getItem('community_seller_inbox_empty_v1');
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { authorStableId?: unknown; at?: unknown };
+    if (parsed?.authorStableId !== authorStableId || typeof parsed.at !== 'number') return null;
+    const age = nowMs - parsed.at;
+    return age >= 0 && age < SELLER_INBOX_EMPTY_TTL_MS ? age : null;
+  } catch (error) {
+    console.warn('[MOD-ALERT] empty_cache read failed — иду в сеть:', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
+    return null;
+  }
+}
+
+function writeSellerInboxEmptyCache(authorStableId: string | null): void {
+  const op = authorStableId
+    ? AsyncStorage.setItem('community_seller_inbox_empty_v1', JSON.stringify({ authorStableId, at: Date.now() }))
+    : AsyncStorage.removeItem('community_seller_inbox_empty_v1');
+  void op.catch((error: unknown) => {
+    console.warn('[MOD-ALERT] empty_cache write failed:', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
+  });
+}
+
+/**
  * Непрочитанные moderation_result из community_seller_inbox — themed modal (очередь), затем mark seen.
  */
 export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
@@ -37,6 +67,11 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
   try {
     const authorStableId = await getCanonicalUserId();
     if (!authorStableId) return;
+    const emptyAgeMs = await readSellerInboxEmptyAgeMs(authorStableId, Date.now());
+    if (emptyAgeMs !== null) {
+      console.log(`[MOD-ALERT] skip reason=empty_cached age=${Math.round(emptyAgeMs / 60_000)}m ttl=${SELLER_INBOX_EMPTY_TTL_MS / 60_000}m`);
+      return;
+    }
     const lang = await readAppLang();
     let events: Awaited<ReturnType<typeof callCommunityListSellerInbox>>['events'];
     try {
@@ -50,7 +85,11 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
     const mod = events
       .filter((e) => e && e.type === 'moderation_result' && e.seen === false)
       .sort((a, b) => Number(a.createdAt ?? 0) - Number(b.createdAt ?? 0));
-    if (!mod.length) return;
+    if (!mod.length) {
+      writeSellerInboxEmptyCache(authorStableId);
+      return;
+    }
+    writeSellerInboxEmptyCache(null);
     const seenIds: string[] = [];
     for (const ev of mod) {
       const rec: Record<string, unknown> = { ...(ev as Record<string, unknown>) };

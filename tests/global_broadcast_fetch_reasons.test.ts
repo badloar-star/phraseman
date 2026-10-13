@@ -30,4 +30,13 @@ describe('fetchPendingGlobalBroadcastModal — выходы с причиной'
       expect(body).toContain(reason);
     }
   });
+
+  // зачем (смета Firebase п.8, 13.10): «рассылок нет» помним 3 ч на uid — на старте без сети; есть рассылки — запись снимается.
+  it('ответ «рассылок нет» кэшируется на 3 ч, выход из кэша называет причину', () => {
+    const body = fetchBody();
+    expect(source).toContain('export const GLOBAL_BROADCAST_EMPTY_TTL_MS = 3 * 60 * 60 * 1000;');
+    expect(body).toContain('return skip(`empty_cached age=');
+    expect(body).toMatch(/if \(listData\.items\.length === 0\) \{\s*writeBroadcastEmptyCache\(uid\);\s*return skip\('no_active_broadcasts'\);\s*\}\s*writeBroadcastEmptyCache\(null\);/);
+    expect(source).toContain("if (parsed?.uid !== uid || typeof parsed.at !== 'number') return null;");
+  });
 });

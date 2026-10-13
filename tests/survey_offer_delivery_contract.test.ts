@@ -50,11 +50,22 @@ describe('standalone survey delivery', () => {
     expect(controller).toContain('dayKey,');
   });
 
-  it('defaults to three attempts and does not wait after the final attempt', async () => {
+  // зачем (смета Firebase п.8, 13.10): «опроса нет» — честный ответ ротации, без повтора; повтор — только при ошибке вызова.
+  it('an honest «no survey» answer is not retried', async () => {
     mockCallable.mockResolvedValue({ data: { survey: null, completion: null } });
     const wait = jest.fn(async () => {});
 
     await expect(fetchActiveSurveyWithRetry(lookup, { wait })).resolves.toEqual({ survey: null, completion: null });
+
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+    expect(wait).not.toHaveBeenCalled();
+  });
+
+  it('defaults to three attempts on errors and does not wait after the final attempt', async () => {
+    mockCallable.mockRejectedValue(new Error('unavailable'));
+    const wait = jest.fn(async () => {});
+
+    await expect(fetchActiveSurveyWithRetry(lookup, { wait })).rejects.toThrow('unavailable');
 
     expect(mockCallable).toHaveBeenCalledTimes(3);
     expect(wait).toHaveBeenCalledTimes(2);
@@ -63,11 +74,11 @@ describe('standalone survey delivery', () => {
   });
 
   it('defaults non-finite attempts and caps delay', async () => {
-    mockCallable.mockResolvedValue({ data: { survey: null, completion: null } });
+    mockCallable.mockRejectedValue(new Error('unavailable'));
     const wait = jest.fn(async () => {});
 
     await expect(fetchActiveSurveyWithRetry(lookup, { attempts: Infinity, delayMs: Infinity, wait }))
-      .resolves.toEqual({ survey: null, completion: null });
+      .rejects.toThrow('unavailable');
 
     expect(mockCallable).toHaveBeenCalledTimes(3);
     expect(wait).toHaveBeenCalledTimes(2);
@@ -76,16 +87,16 @@ describe('standalone survey delivery', () => {
 
   it('caps a large finite attempt count at five', async () => {
     mockCallable
-      .mockResolvedValueOnce({ data: { survey: null, completion: null } })
-      .mockResolvedValueOnce({ data: { survey: null, completion: null } })
-      .mockResolvedValueOnce({ data: { survey: null, completion: null } })
-      .mockResolvedValueOnce({ data: { survey: null, completion: null } })
-      .mockResolvedValueOnce({ data: { survey: null, completion: null } })
+      .mockRejectedValueOnce(new Error('e1'))
+      .mockRejectedValueOnce(new Error('e2'))
+      .mockRejectedValueOnce(new Error('e3'))
+      .mockRejectedValueOnce(new Error('e4'))
+      .mockRejectedValueOnce(new Error('e5'))
       .mockResolvedValueOnce({ data: { survey: { surveyId: 'too-late' } } });
     const wait = jest.fn(async () => {});
 
     await expect(fetchActiveSurveyWithRetry(lookup, { attempts: 1000, wait }))
-      .resolves.toEqual({ survey: null, completion: null });
+      .rejects.toThrow('e5');
 
     expect(mockCallable).toHaveBeenCalledTimes(5);
     expect(wait).toHaveBeenCalledTimes(4);

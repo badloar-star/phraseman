@@ -96,9 +96,8 @@ export async function fetchActiveSurvey(data: {
 }
 
 /**
- * Auth linking and Firebase App Check can finish just after a focused screen
- * starts its first request. Retry the read briefly so a newly enabled survey
- * does not disappear until the user leaves and re-enters the screen.
+ * Короткий повтор чтения опроса — ТОЛЬКО при ошибке вызова (вход и связка аккаунта могут закончиться сразу после того, как экран
+ * отправил первый запрос; холодный старт функции). Ответ «опроса нет» честный (детерминированная ротация) и не повторяется.
  */
 export async function fetchActiveSurveyWithRetry(
   data: { stableId: string; platform: string; lang: string },
@@ -115,9 +114,16 @@ export async function fetchActiveSurveyWithRetry(
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     try {
       lastResult = await fetchActiveSurvey(data);
-      if (lastResult.survey || lastResult.completion) return lastResult;
+      // зачем (смета Firebase R1, п.8): честный ответ «опроса нет» больше не повторяется 3 раза — опрос дня выбирается детерминированной
+      // UTC-ротацией сервера, повтор через 350 мс вернёт то же самое. Повторяем только при ОШИБКЕ (сеть, холодный старт функции).
+      lastError = undefined;
+      if (!lastResult.survey && !lastResult.completion) {
+        console.log(`[SURVEY] fetch: опроса нет (attempt=${attempt + 1}/${attempts}) — без повтора`);
+      }
+      return lastResult;
     } catch (error) {
       lastError = error;
+      console.warn(`[SURVEY] fetch: ошибка attempt=${attempt + 1}/${attempts} — ${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)}`);
     }
     if (attempt < attempts - 1 && delayMs > 0) {
       await wait(delayMs);

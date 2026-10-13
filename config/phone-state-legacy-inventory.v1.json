@@ -2642,6 +2642,24 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "personal"
+    },
+    {
+      "key": "community_seller_inbox_empty_v1",
+      "domain": "cards",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "global_broadcast_empty_v1",
+      "domain": "notifications",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
     }
   ],
   "prefixRules": [

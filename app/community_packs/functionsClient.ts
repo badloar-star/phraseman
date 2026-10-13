@@ -1,4 +1,5 @@
 import { getApp } from '@react-native-firebase/app';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../debug-logger';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
@@ -46,6 +47,11 @@ export async function callCommunitySubmitPackForReview(data: {
   replacePending?: boolean;
 }): Promise<{ submissionId: string }> {
   const result = await callFunction<typeof data, { submissionId: string }>('communitySubmitPackForReview', data);
+  // зачем (смета Firebase п.8): после отправки набора ящик модерации снова проверяется на следующем старте — кэш «пусто» (6 ч,
+  // communityModerationAlerts.ts) не должен задержать результат модерации свежего набора.
+  void AsyncStorage.removeItem('community_seller_inbox_empty_v1').catch((error: unknown) => {
+    console.warn('[MOD-ALERT] empty_cache reset after submit failed:', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
+  });
   return result;
 }
 

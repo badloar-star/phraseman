@@ -362,6 +362,36 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
   return mentionsLeague && (mentionsSystemUpdate || mentionsCompensation);
 }
 
+/**
+ * зачем (смета Firebase R1, п.8): `globalBroadcastListActive` звался на КАЖДОМ старте у всех, хотя рассылок почти всегда нет.
+ * Ответ «активных нет» помним 3 ч для этого uid (значение сверяет uid — чужой аккаунт кэш не использует). Есть рассылки — запись
+ * снимается. Новая рассылка доходит не позже чем через 3 ч. Ключ device_only (config/phone-state-legacy-inventory.v1.json).
+ */
+export const GLOBAL_BROADCAST_EMPTY_TTL_MS = 3 * 60 * 60 * 1000;
+
+async function readBroadcastEmptyAgeMs(uid: string, nowMs: number): Promise<number | null> {
+  try {
+    const raw = await AsyncStorage.getItem('global_broadcast_empty_v1');
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as { uid?: unknown; at?: unknown };
+    if (parsed?.uid !== uid || typeof parsed.at !== 'number') return null;
+    const age = nowMs - parsed.at;
+    return age >= 0 && age < GLOBAL_BROADCAST_EMPTY_TTL_MS ? age : null;
+  } catch (error) {
+    console.warn(`[OVERLAY-QUEUE] broadcast:empty_cache read failed — иду в сеть: ${error instanceof Error ? error.message : String(error)}`);
+    return null;
+  }
+}
+
+function writeBroadcastEmptyCache(uid: string | null): void {
+  const op = uid
+    ? AsyncStorage.setItem('global_broadcast_empty_v1', JSON.stringify({ uid, at: Date.now() }))
+    : AsyncStorage.removeItem('global_broadcast_empty_v1');
+  void op.catch((error: unknown) => {
+    console.warn(`[OVERLAY-QUEUE] broadcast:empty_cache write failed: ${error instanceof Error ? error.message : String(error)}`);
+  });
+}
+
 export async function fetchPendingGlobalBroadcastModal(
   studyTarget?: RuntimeStudyTarget,
   options: Readonly<{ premiumAudienceAccess?: boolean | null }> = {},
@@ -377,6 +407,8 @@ export async function fetchPendingGlobalBroadcastModal(
   if (!uid) return skip('no_uid');
   const accountToken = captureAccountGeneration();
   if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_before_list');
+  const emptyAgeMs = await readBroadcastEmptyAgeMs(uid, Date.now());
+  if (emptyAgeMs !== null) return skip(`empty_cached age=${Math.round(emptyAgeMs / 60_000)}m ttl=${GLOBAL_BROADCAST_EMPTY_TTL_MS / 60_000}m`);
 
   try {
     const listActive = httpsCallable<{ limit: number }, GlobalBroadcastPublicListResponse>(
@@ -390,7 +422,11 @@ export async function fetchPendingGlobalBroadcastModal(
       throw new Error('broadcast_public_source_incomplete');
     }
     if (!isCurrentAccountGeneration(accountToken, uid)) return skip('account_changed_after_list');
-    if (listData.items.length === 0) return skip('no_active_broadcasts');
+    if (listData.items.length === 0) {
+      writeBroadcastEmptyCache(uid);
+      return skip('no_active_broadcasts');
+    }
+    writeBroadcastEmptyCache(null);
     const activeDocs = listData.items.map((row) => ({ id:String(row.id || ''), data:row }));
 
     const firestoreModule = await import('@react-native-firebase/firestore');

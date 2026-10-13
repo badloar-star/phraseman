@@ -5,6 +5,7 @@
  * the caller, which can open a briefing.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { dialogueScenarioIcon } from './dialogue_scenario_icons';
 import React, { useRef, useState } from 'react';
 import { Image, Text, View } from 'react-native';
 
@@ -200,7 +201,8 @@ export function DialogueV2CatalogueSection({
                         {locked ? (
                           <Ionicons name="lock-closed" size={20} color={glass.mutedText} />
                         ) : (
-                          <Ionicons name={worldIcon(item.worldId)} size={20} color={glass.text} />
+                          // зачем (владелец 13.10): у каждой сценки свой значок по смыслу; неизвестная — значок мира, как раньше.
+                          <Ionicons name={dialogueScenarioIcon(item.id, worldIcon(item.worldId))} size={20} color={glass.text} />
                         )}
                       </View>
                       <View style={{ flex: 1, minWidth: 0 }}>

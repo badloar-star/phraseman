@@ -78,6 +78,7 @@ import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
 import V2DoneScreen from '../components/completion/V2DoneScreen';
+import { parseDevLessonResult, peekLessonRunErrors, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import { lessonNamesForLang } from '../constants/lessons';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
@@ -530,6 +531,8 @@ export default function LessonComplete() {
     passed?: string | string[];
     runeCompletionOrdinal?: string | string[];
     devRunesSeed?: string | string[];
+    /** Только dev: «верно:ошибок», напр. "15:5" — итог без настоящего прогресса урока рисуется с цифрами и примером ошибок. */
+    devResult?: string | string[];
     /** Комбинированный урок: id тем через запятую. Пусто — обычный урок. */
     combo?: string | string[];
     /** Разбивка «тема:верно:всего» через запятую, напр. "3:16:17,10:10:16". */
@@ -746,6 +749,12 @@ export default function LessonComplete() {
   // Оценка урока (владелец 2026-08-25): троттлинг раз в неделю на раздел,
   // гейт решается один раз при монтировании — не зависит от очереди модалок.
   const [showLessonFeedback, setShowLessonFeedback] = useState(false);
+  // зачем (владелец 13.10, «почему тут нет всех элементов»; сперва логи): в момент показа итога — какие блоки V2DoneScreen получили данные и какое значение это решило; «нет» у блока = он не нарисован.
+  useEffect(() => {
+    if (!sequenceShowing) return;
+    DebugLogger.info('[LESSON-RESULT]', `показ итога lesson=${lessonId} комбо=${String(isComboCompletion)}: звёзды=${isComboCompletion ? 'нет(комбо)' : String(RESULTS_STARS_BY_TIER[medalTier])} (tier=${medalTier}, score=${lessonScore}) | верно/ошибок=${lessonCounts ? `${lessonCounts.correct}/${lessonCounts.wrong}` : 'нет(lessonCounts=null)'} | монеты=+${practiceRunes.runes} (hydrating=${String(practiceRunes.hydrating)}) | заметкаPlus=${String(completionRequiresPremium)} | списокОшибок=${isComboCompletion ? "нет(комбо)" : peekLessonRunErrors(lessonId).length} | оценка=${String(showLessonFeedback)} | следующийОткрыт=${String(Boolean(nextLessonUnlockHint))}`);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sequenceShowing]);
   useEffect(() => {
     let cancelled = false;
     void shouldPromptFeedback('lesson').then((allowed) => {
@@ -974,6 +983,7 @@ export default function LessonComplete() {
             topics: comboTopics, okTotal, allTotal, comboScore,
           }));
         }
+        DebugLogger.info('[LESSON-RESULT]', `ветка=КОМБО lesson=${lessonId} тем=${comboTopics.length} верно=${okTotal} из ${allTotal} score=${comboScore}; звёзд и счёта верно/ошибок у комбо нет`);
         if (cancelled) return;
         setLessonScore(comboScore);
         setMedalTier('none');
@@ -987,6 +997,19 @@ export default function LessonComplete() {
         // Fallback: если прогресс не найден (например, очищен до открытия экрана),
         // показываем уже сохранённую медаль по best_score, чтобы не было "?".
         const info = await loadMedalInfo(lessonId, studyTarget);
+        // зачем (владелец 13.10, «почему тут нет всех элементов»; сперва логи): эта ветка рисует итог БЕЗ счёта «верно/ошибок» (lessonCounts=null), без ошибок и начисления — ровно «заголовок, серые звёзды, +0».
+        const devDemo = __DEV__ ? parseDevLessonResult(params.devResult) : null;
+        DebugLogger.warn('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НЕ_НАЙДЕН lesson=${lessonId} target=${studyTarget} ключ=${lessonProgressKey(lessonId, studyTarget)} → из памяти: bestScore=${String(info.bestScore)} tier=${info.tier}; devResult=${devDemo ? `${devDemo.correct}:${devDemo.wrong} → score=${devDemo.score} tier=${devDemo.tier}` : 'нет'}${devDemo ? '' : '; счёт верно/ошибок не будет показан'}`);
+        if (devDemo) {
+          // зачем (владелец 13.10): dev-ссылка с devResult рисует итог урока с цифрами и примером ошибок — как после настоящего прохода (для сверки с макетом).
+          setLessonCounts({ correct: devDemo.correct, wrong: devDemo.wrong });
+          setLessonScore(devDemo.score);
+          setMedalTier(devDemo.tier);
+          setMedalImproved(false);
+          rememberLessonRunErrors(lessonId, [{ phrase: 'Does she work here?', tokenText: 'Does', picked: 'Do', expected: 'Does' }]);
+          setResultsReady(true);
+          return;
+        }
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
@@ -1001,6 +1024,7 @@ export default function LessonComplete() {
         setLessonScore(score);
         setLessonCounts({ correct: Math.min(correct, totalAnswers), wrong: p.filter(x => x === 'wrong').length });
         const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p, studyTarget);
+        DebugLogger.info('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НАЙДЕН lesson=${lessonId} target=${studyTarget} ответов=${p.length} верно=${correct} ошибок=${p.filter(x => x === 'wrong').length} из ${totalAnswers} score=${score} → tier ${prevTier}→${newTier} новыйРекорд=${String(isNewBest)} проходов=${newPassCount}`);
         submitProgressEvent({
           eventId: [
             'lesson',
@@ -1071,6 +1095,7 @@ export default function LessonComplete() {
       } catch (error: unknown) {
         console.warn(`[LESSON-COMPLETE] медаль/разблокировка не посчитаны lessonId=${lessonId}: ${error instanceof Error ? error.message : String(error)} — показываю последнюю сохранённую`); // guard-ok: catch пишет причину
         const info = await loadMedalInfo(lessonId, studyTarget);
+        DebugLogger.warn('[LESSON-RESULT]', `ветка=ОШИБКА_РАЗБОРА lesson=${lessonId} target=${studyTarget}: ${error instanceof Error ? error.message : String(error)} → из памяти bestScore=${String(info.bestScore)} tier=${info.tier}; счёт верно/ошибок не показан`);
         setLessonScore(info.bestScore || 0);
         setMedalTier(info.tier);
         setMedalImproved(false);
@@ -1083,7 +1108,7 @@ export default function LessonComplete() {
       cancelled = true;
       clearLessonCompleteNotifTimer();
     };
-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.unlocked, router, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.devResult, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -1286,6 +1311,8 @@ export default function LessonComplete() {
                   : undefined}
               correct={lessonCounts?.correct ?? null}
               wrong={lessonCounts?.wrong ?? null}
+              // зачем (владелец 13.10): список «Ошибки» из макета practice.html#done — промахи только что пройденного урока (память процесса, см. lesson_run_errors_memory); у комбо и без промахов блока нет.
+              errors={isComboCompletion ? undefined : peekLessonRunErrors(lessonId)}
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),

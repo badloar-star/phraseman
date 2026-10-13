@@ -65,6 +65,7 @@ import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { lessonMistakeFacet } from './lesson_mistake_facet';
+import { rememberLessonRunErrors } from './lesson_run_errors_memory';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -3387,6 +3388,8 @@ function LessonScreen() {
 
         const navigate = async () => {
           resetShuffleForNextPass();
+          // зачем (владелец 13.10, «почему на итоге нет всех элементов»): список «Ошибки» итога урока (макет practice.html#done) берёт промахи прохода отсюда — до обнуления.
+          rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];
           markNextNavigationAsReplace();
           router.replace({
@@ -3415,6 +3418,7 @@ function LessonScreen() {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
           resetShuffleForNextPass();
+          rememberLessonRunErrors(lessonId, lessonWrongMistakesRef.current);
           lessonWrongMistakesRef.current = [];
           markNextNavigationAsReplace();
           router.replace({

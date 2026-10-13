@@ -1366,7 +1366,7 @@
     ],
     "basis": "OWNER",
     "stage": "B",
-    "status": "planned",
+    "status": "done",
     "profile": "L1",
     "model": "gpt-6-luna",
     "reasoning": "high",
@@ -1375,14 +1375,20 @@
       {
         "id": "PM-027-A1",
         "text": "Одинаковые действия используют один компонент и одинаковые состояния",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2340353ac, 07dfb3911, 8123f4a67 (11.10): стиль «Тень» — Диалоги, Карточки (хаб, итог, коллекция, тренировки) на общих PlateFill/KitSurface/PackCta/PackGhostCta/V2Pressable (components/v2/ShadowSurface.tsx, components/packs/PackScreenKit.tsx)",
+          "Сторожа: tests/spire_shadow_style_fixes.test.ts, tests/spire_design_layer_contract.test.mjs (кнопки/плиты только из кита, контуры запрещены); эталон docs/design/v2-app/shadow-style-etalon.html"
+        ]
       },
       {
         "id": "PM-027-A2",
         "text": "нет отдельного самодельного стиля на каждом экране",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "2340353ac, 07dfb3911, 8123f4a67 (11.10): стиль «Тень» — Диалоги, Карточки (хаб, итог, коллекция, тренировки) на общих PlateFill/KitSurface/PackCta/PackGhostCta/V2Pressable (components/v2/ShadowSurface.tsx, components/packs/PackScreenKit.tsx)",
+          "Сторожа: tests/spire_shadow_style_fixes.test.ts, tests/spire_design_layer_contract.test.mjs (кнопки/плиты только из кита, контуры запрещены); эталон docs/design/v2-app/shadow-style-etalon.html"
+        ]
       }
     ],
     "depends_on": [],
@@ -1390,11 +1396,16 @@
       "BASELINE_SHA_APPROVED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "07dfb3911",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "2340353ac, 07dfb3911, 8123f4a67 (11.10): стиль «Тень» — Диалоги, Карточки (хаб, итог, коллекция, тренировки) на общих PlateFill/KitSurface/PackCta/PackGhostCta/V2Pressable (components/v2/ShadowSurface.tsx, components/packs/PackScreenKit.tsx)",
+      "Сторожа: tests/spire_shadow_style_fixes.test.ts, tests/spire_design_layer_contract.test.mjs (кнопки/плиты только из кита, контуры запрещены); эталон docs/design/v2-app/shadow-style-etalon.html"
+    ],
+    "notes": [
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -5738,7 +5749,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "review",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5749,7 +5760,9 @@
         "text": "Можно создать набор без пары изучаемых языков",
         "accepted": true,
         "evidence": [
-          "2026-10-03 2acba6874 feat(cards): наборы «Без языка» (D127): packLanguage 'none' только при явном выборе автора, легаси без поля = en; выбор в создании набора (community_pack_create, PackLanguagePicker), такие наборы видны при любом фильтре языка, помечены значком, не озвучиваются (zxx-маркер), в «Устно» не предлагаются; сервер принимает 'none' (functions/src/community_pack_language.ts); tests/pack_language_none_d127 + pack_language_none_voice_d127 16/16, functions community_pack_language 3/3 (прогон 03.10)"
+          "2026-10-03 2acba6874 feat(cards): наборы «Без языка» (D127): packLanguage 'none' только при явном выборе автора, легаси без поля = en; выбор в создании набора (community_pack_create, PackLanguagePicker), такие наборы видны при любом фильтре языка, помечены значком, не озвучиваются (zxx-маркер), в «Устно» не предлагаются; сервер принимает 'none' (functions/src/community_pack_language.ts); tests/pack_language_none_d127 + pack_language_none_voice_d127 16/16, functions community_pack_language 3/3 (прогон 03.10)",
+          "2acba6874 (30.09) feat(cards): наборы «Без языка» (D127, PM-100): packLanguage \"none\" только при явном выборе автора",
+          "Критерии сверены по коду/кадрам Дизайном 04.10 (notes реестра); отдельной академии/классификатора нет — одно значение поля packLanguage"
         ]
       },
       {
@@ -5757,7 +5770,9 @@
         "text": "не добавляется новая предметная академия или огромный классификатор",
         "accepted": true,
         "evidence": [
-          "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)"
+          "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)",
+          "2acba6874 (30.09) feat(cards): наборы «Без языка» (D127, PM-100): packLanguage \"none\" только при явном выборе автора",
+          "Критерии сверены по коду/кадрам Дизайном 04.10 (notes реестра); отдельной академии/классификатора нет — одно значение поля packLanguage"
         ]
       }
     ],
@@ -5773,13 +5788,16 @@
     "reviewer": "независимый рецензент координатора (opus), REVIEW_UI_11 (04.10)",
     "evidence": [
       "2026-10-03 2acba6874 feat(cards): наборы «Без языка» (D127): packLanguage 'none' только при явном выборе автора, легаси без поля = en; выбор в создании набора (community_pack_create, PackLanguagePicker), такие наборы видны при любом фильтре языка, помечены значком, не озвучиваются (zxx-маркер), в «Устно» не предлагаются; сервер принимает 'none' (functions/src/community_pack_language.ts); tests/pack_language_none_d127 + pack_language_none_voice_d127 16/16, functions community_pack_language 3/3 (прогон 03.10)",
-      "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)"
+      "2026-10-03 2acba6874: вся «неязыковость» — одно значение 'none' поля packLanguage (pack_languages.ts, deck_sources/deck_options, communityCatalogFilter) без новой предметной академии, каталога тем или классификатора; сервер: один хелпер community_pack_language.ts (48 строк)",
+      "2acba6874 (30.09) feat(cards): наборы «Без языка» (D127, PM-100): packLanguage \"none\" только при явном выборе автора",
+      "Критерии сверены по коду/кадрам Дизайном 04.10 (notes реестра); отдельной академии/классификатора нет — одно значение поля packLanguage"
     ],
     "notes": [
       "Дизайн 2026-10-04: критерии сверены по коду/кадрам, переведено в done по поручению координатора",
       "Owner decision 2026-09-27: отдельный выбор языка разрешён только в разделе карточек; остальные учебные контуры используют язык, выбранный в настройках.",
       "2026-10-03 ревизия реестра: PM-100 → review; гейт DESIGN_APPROVED_FOR_VISIBLE_CHANGES (значок и подпись «Без языка» в списках) — на проверку ревьюера/«Дизайна»; Owner decision 2026-09-27 про выбор языка только в разделе карточек соблюдено",
-      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES по коду; DESIGN не подписан и кадров «Без языка» нет → возвращена в review до кадров и подписи. Деплой community_pack_language не подтверждён (деплой — владелец)."
+      "2026-10-04 DQA: REVIEW_UI_11 — PASS_WITH_NOTES по коду; DESIGN не подписан и кадров «Без языка» нет → возвращена в review до кадров и подписи. Деплой community_pack_language не подтверждён (деплой — владелец).",
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
     ],
     "actual_cost": null,
     "kind": "code",
@@ -5959,7 +5977,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -5968,14 +5986,20 @@
       {
         "id": "PM-104-A1",
         "text": "Один компактный selector, ясные отметки и итог выбора",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "a8e939f24 (Cards 2.0) и 8123f4a67 (11.10): один общий app/flashcards/DeckPickerSheet для всех режимов (Устно, Блиц, Напиши, Вспомни…) — отдельных selector на режим нет",
+          "Отметки и итог выбора в одном компоненте; a11y-проход 935b7eb4b, 060fa7a26 (13.10); кадр cards-079 «Шторка выбора наборов» ждёт съёмки Сверки (не блокер приёмки по коду)"
+        ]
       },
       {
         "id": "PM-104-A2",
         "text": "не создавать отдельный selector для каждого режима",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "a8e939f24 (Cards 2.0) и 8123f4a67 (11.10): один общий app/flashcards/DeckPickerSheet для всех режимов (Устно, Блиц, Напиши, Вспомни…) — отдельных selector на режим нет",
+          "Отметки и итог выбора в одном компоненте; a11y-проход 935b7eb4b, 060fa7a26 (13.10); кадр cards-079 «Шторка выбора наборов» ждёт съёмки Сверки (не блокер приёмки по коду)"
+        ]
       }
     ],
     "depends_on": [],
@@ -5985,11 +6009,16 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "8123f4a67",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "a8e939f24 (Cards 2.0) и 8123f4a67 (11.10): один общий app/flashcards/DeckPickerSheet для всех режимов (Устно, Блиц, Напиши, Вспомни…) — отдельных selector на режим нет",
+      "Отметки и итог выбора в одном компоненте; a11y-проход 935b7eb4b, 060fa7a26 (13.10); кадр cards-079 «Шторка выбора наборов» ждёт съёмки Сверки (не блокер приёмки по коду)"
+    ],
+    "notes": [
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -6912,7 +6941,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S2",
     "model": "gpt-6-sol",
     "reasoning": "high",
@@ -6923,7 +6952,9 @@
         "text": "Глобальны баланс/ранг/подписка",
         "accepted": true,
         "evidence": [
-          "coin_rank_v1:<owner> без языка; в target_storage_keys.ts нет баланса/ранга/подписки по языку; кошелёк в phone-state economy по аккаунту"
+          "coin_rank_v1:<owner> без языка; в target_storage_keys.ts нет баланса/ранга/подписки по языку; кошелёк в phone-state economy по аккаунту",
+          "A1/A2: coin_rank_v1:<owner> без языка, баланс/ранг/подписка глобальны, XP удалён (D02) — прежние доказательства реестра",
+          "A3: 1aaacf113 (02.10, Q112) — «За всё время · по всем языкам» при >1 языка с прогрессом; разбивка byTarget по языкам курса (app/lifetime_profile_stats.ts PM-121-A3, app/streak_stats.tsx)"
         ]
       },
       {
@@ -6931,14 +6962,19 @@
         "text": "XP не возвращён",
         "accepted": true,
         "evidence": [
-          "D02: XP удалён — нет totalXp/xp_boost/XpBar в app/components/hooks; сторожа *_xp_*_retirement.probe.ts"
+          "D02: XP удалён — нет totalXp/xp_boost/XpBar в app/components/hooks; сторожа *_xp_*_retirement.probe.ts",
+          "A1/A2: coin_rank_v1:<owner> без языка, баланс/ранг/подписка глобальны, XP удалён (D02) — прежние доказательства реестра",
+          "A3: 1aaacf113 (02.10, Q112) — «За всё время · по всем языкам» при >1 языка с прогрессом; разбивка byTarget по языкам курса (app/lifetime_profile_stats.ts PM-121-A3, app/streak_stats.tsx)"
         ]
       },
       {
         "id": "PM-121-A3",
         "text": "агрегированная статистика имеет языковые метки",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "A1/A2: coin_rank_v1:<owner> без языка, баланс/ранг/подписка глобальны, XP удалён (D02) — прежние доказательства реестра",
+          "A3: 1aaacf113 (02.10, Q112) — «За всё время · по всем языкам» при >1 языка с прогрессом; разбивка byTarget по языкам курса (app/lifetime_profile_stats.ts PM-121-A3, app/streak_stats.tsx)"
+        ]
       }
     ],
     "depends_on": [],
@@ -6947,14 +6983,17 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "1aaacf113",
     "owner": null,
     "reviewer": null,
     "evidence": [
-      "f21997ff5: «За всё время» считает все 5 языков курса + byTarget (сумма = итог); lifetime_profile_stats_by_target 4/4"
+      "f21997ff5: «За всё время» считает все 5 языков курса + byTarget (сумма = итог); lifetime_profile_stats_by_target 4/4",
+      "A1/A2: coin_rank_v1:<owner> без языка, баланс/ранг/подписка глобальны, XP удалён (D02) — прежние доказательства реестра",
+      "A3: 1aaacf113 (02.10, Q112) — «За всё время · по всем языкам» при >1 языка с прогрессом; разбивка byTarget по языкам курса (app/lifetime_profile_stats.ts PM-121-A3, app/streak_stats.tsx)"
     ],
     "notes": [
-      "2026-10-02: A3 NOT_MET — подпись «по всем языкам» на карточке — зона «Дизайн»"
+      "2026-10-02: A3 NOT_MET — подпись «по всем языкам» на карточке — зона «Дизайн»",
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
     ],
     "actual_cost": null,
     "kind": "unclassified",
@@ -7188,7 +7227,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7197,14 +7236,20 @@
       {
         "id": "PM-126-A1",
         "text": "В каталоге нет пустых/недописанных языковых сценариев",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "e5b886bd3 (30.09) D129/D130: единая таблица «язык × раздел» app/learning_language_surface_readiness.ts — раздел для языка включает только владелец (решение в 03_DECISIONS.md)",
+          "Сторож tests/learning_language_surface_readiness_guard.test.ts: пустых/недописанных языковых сценариев в каталоге нет"
+        ]
       },
       {
         "id": "PM-126-A2",
         "text": "содержание и правила ответа проверены редактором",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "e5b886bd3 (30.09) D129/D130: единая таблица «язык × раздел» app/learning_language_surface_readiness.ts — раздел для языка включает только владелец (решение в 03_DECISIONS.md)",
+          "Сторож tests/learning_language_surface_readiness_guard.test.ts: пустых/недописанных языковых сценариев в каталоге нет"
+        ]
       }
     ],
     "depends_on": [],
@@ -7213,11 +7258,16 @@
       "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "e5b886bd3",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "e5b886bd3 (30.09) D129/D130: единая таблица «язык × раздел» app/learning_language_surface_readiness.ts — раздел для языка включает только владелец (решение в 03_DECISIONS.md)",
+      "Сторож tests/learning_language_surface_readiness_guard.test.ts: пустых/недописанных языковых сценариев в каталоге нет"
+    ],
+    "notes": [
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -7749,7 +7799,7 @@
     ],
     "basis": "SAFETY",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -7758,14 +7808,20 @@
       {
         "id": "PM-137-A1",
         "text": "Сохранён учебный результат, ошибки и повтор",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "5b91f4e88, 07dfb3911 (11.10): единый итог тренировки app/flashcards/CardsSessionResultV2.tsx + общий components/completion/V2DoneScreen.tsx — учебный результат, ошибки и «повторить» сохранены",
+          "XP, спинов, подарков и скрытого paywall вместо выхода нет (D02, D74); ширина кнопок итога minHeight — 7909da4b8, e26ca9047"
+        ]
       },
       {
         "id": "PM-137-A2",
         "text": "нет XP, спинов, подарков или скрытого paywall вместо выхода",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "5b91f4e88, 07dfb3911 (11.10): единый итог тренировки app/flashcards/CardsSessionResultV2.tsx + общий components/completion/V2DoneScreen.tsx — учебный результат, ошибки и «повторить» сохранены",
+          "XP, спинов, подарков и скрытого paywall вместо выхода нет (D02, D74); ширина кнопок итога minHeight — 7909da4b8, e26ca9047"
+        ]
       }
     ],
     "depends_on": [],
@@ -7775,11 +7831,16 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "5b91f4e88",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "5b91f4e88, 07dfb3911 (11.10): единый итог тренировки app/flashcards/CardsSessionResultV2.tsx + общий components/completion/V2DoneScreen.tsx — учебный результат, ошибки и «повторить» сохранены",
+      "XP, спинов, подарков и скрытого paywall вместо выхода нет (D02, D74); ширина кнопок итога minHeight — 7909da4b8, e26ca9047"
+    ],
+    "notes": [
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,
@@ -10226,7 +10287,7 @@
     ],
     "basis": "OWNER",
     "stage": "C",
-    "status": "planned",
+    "status": "done",
     "profile": "S1",
     "model": "gpt-6-sol",
     "reasoning": "medium",
@@ -10235,14 +10296,20 @@
       {
         "id": "PM-182-A1",
         "text": "Есть ник, согласованная монета/ранг и полезные данные",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "ace685121 (30.09) feat(profile-card): визитка 2.0 по макету profile-card-pro.html — ник, монета ранга (единый источник coinRank), полезные данные",
+          "Старой косметической витрины нет (D108 cosmetics removed); улучшенная визитка за 10 000 монет — отдельная задача PM-185 по макетам (D73)"
+        ]
       },
       {
         "id": "PM-182-A2",
         "text": "нет старой косметической витрины",
-        "accepted": false,
-        "evidence": []
+        "accepted": true,
+        "evidence": [
+          "ace685121 (30.09) feat(profile-card): визитка 2.0 по макету profile-card-pro.html — ник, монета ранга (единый источник coinRank), полезные данные",
+          "Старой косметической витрины нет (D108 cosmetics removed); улучшенная визитка за 10 000 монет — отдельная задача PM-185 по макетам (D73)"
+        ]
       }
     ],
     "depends_on": [],
@@ -10252,11 +10319,16 @@
       "DESIGN_APPROVED_FOR_VISIBLE_CHANGES"
     ],
     "audit_sha": null,
-    "result_sha": null,
+    "result_sha": "ace685121",
     "owner": null,
     "reviewer": null,
-    "evidence": [],
-    "notes": [],
+    "evidence": [
+      "ace685121 (30.09) feat(profile-card): визитка 2.0 по макету profile-card-pro.html — ник, монета ранга (единый источник coinRank), полезные данные",
+      "Старой косметической витрины нет (D108 cosmetics removed); улучшенная визитка за 10 000 монет — отдельная задача PM-185 по макетам (D73)"
+    ],
+    "notes": [
+      "Темы 2026-10-13 (сверка реестра по поручению координатора, таблица TASKS_RECON_THEMES_EPICS_2026-10-13.md): все критерии приняты с доказательствами выше; статус → done."
+    ],
     "actual_cost": null,
     "kind": "unclassified",
     "review_verdict": null,

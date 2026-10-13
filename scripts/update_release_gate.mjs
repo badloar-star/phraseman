@@ -17,19 +17,34 @@ const mode = args.has('--full') || args.has('--update') ? 'full' : 'fast';
 const dryRun = args.has('--dry-run');
 const isPrePush = args.has('--hook=pre-push');
 
-function run(label, command, commandArgs) {
+// зачем (координатор 13.10, push по слову владельца отклонён «FAILED: TypeScript» со стеком v8): tsc этого репозитория
+// не помещается в куче Node по умолчанию (4 ГБ) — тот же лимит, что у `npm run typecheck`. Уже заданный NODE_OPTIONS сохраняем.
+const TSC_HEAP_MB = 12288;
+
+function withHeap(env, megabytes) {
+  const current = String(env.NODE_OPTIONS ?? '');
+  if (/--max-old-space-size=/.test(current)) return env;
+  return { ...env, NODE_OPTIONS: `${current} --max-old-space-size=${megabytes}`.trim() };
+}
+
+function run(label, command, commandArgs, env = process.env) {
   console.log(`\n[release-gate] ${label}`);
+  if (env.NODE_OPTIONS !== process.env.NODE_OPTIONS) {
+    console.log(`[release-gate] ${label} NODE_OPTIONS=${env.NODE_OPTIONS}`);
+  }
   if (dryRun) {
     console.log(`[release-gate] dry-run: ${command} ${commandArgs.join(' ')}`);
     return true;
   }
+  const startedAt = Date.now();
   const result = spawnSync(command, commandArgs, {
     cwd: ROOT,
     stdio: 'inherit',
     shell: process.platform === 'win32',
+    env,
   });
   if (result.status !== 0) {
-    console.error(`[release-gate] FAILED: ${label}`);
+    console.error(`[release-gate] FAILED: ${label} status=${result.status} signal=${result.signal ?? 'none'} ms=${Date.now() - startedAt}${result.error ? ` error=${result.error.message}` : ''}`);
     return false;
   }
   return true;
@@ -157,19 +172,19 @@ function main() {
 
   const checks = mode === 'fast'
     ? [
-        ['TypeScript', 'npx', ['tsc', '--noEmit', '--pretty', 'false']],
+        ['TypeScript', 'npx', ['tsc', '--noEmit', '--pretty', 'false'], withHeap(process.env, TSC_HEAP_MB)],
         ['Lint', 'npm', ['run', 'lint']],
       ]
     : [
-        ['TypeScript', 'npx', ['tsc', '--noEmit', '--pretty', 'false']],
+        ['TypeScript', 'npx', ['tsc', '--noEmit', '--pretty', 'false'], withHeap(process.env, TSC_HEAP_MB)],
         ['Lint', 'npm', ['run', 'lint']],
         ['Unit and integration tests', 'npm', ['run', 'test:all', '--', '--runInBand']],
         ['Release key/config gate', 'npm', ['run', 'release:keys']],
         ['Learning V2 release parity', 'npm', ['run', 'learning-v2:release-parity-gate']],
       ];
 
-  for (const [label, command, commandArgs] of checks) {
-    if (!run(label, command, commandArgs)) process.exit(1);
+  for (const [label, command, commandArgs, env] of checks) {
+    if (!run(label, command, commandArgs, env)) process.exit(1);
   }
 
   console.log('\n[release-gate] Automated checks passed.');

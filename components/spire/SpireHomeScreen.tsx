@@ -66,6 +66,11 @@ import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireRivalsByFloor, spireTimeLe
 
 const LOG = '[SPIRE]';
 const DASH = '—';
+// зачем (координатор 13.10, [SPIRE-LAYOUT] floor 7): запас под списком 120/150/300 — из макета (pb), но док растёт (подпись причины, панель итога, крупный системный шрифт), и константа
+// перестаёт его покрывать. Док стоит на `bottomPad - DOCK_LIFT` (стиль дока ниже, значение то же), поэтому последнему блоку нужно `dockH + DOCK_GAP - DOCK_LIFT` сверх bottomPad
+// (safe area и панель вкладок уже внутри bottomPad). Макетные значения остаются ПОЛОМ — вид в обычных состояниях не меняется.
+const DOCK_LIFT = 24;
+const DOCK_GAP = 16;
 const SPIRE_LANGS: readonly SpireLang[] = ['en', 'es', 'de', 'fr', 'it'];
 
 function asSpireLang(value: unknown): SpireLang | null {
@@ -118,6 +123,8 @@ export default function SpireHomeScreen() {
   const [showAll, setShowAll] = useState(preview?.showAll ?? false);
   const [rulesOpen, setRulesOpen] = useState(preview?.rulesOpen ?? false);
   const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
+  // Измеренная высота дока (кнопка «Подняться» / панель итога): от неё считается нижний запас списка. 0 — ещё не измерен.
+  const [dockH, setDockH] = useState(0);
 
   useEffect(() => {
     if (preview) {
@@ -209,6 +216,8 @@ export default function SpireHomeScreen() {
   // зачем (Макеты spire-gap-008: подпись «Задания этой недели ещё готовятся» наезжала на ряд друзей): в макете запас под нижней панелью 120 dp, а с подписью
   // над кнопкой (причина блокировки старта) — 150 dp (подпись 18 + отступ 10 + запас); без этого низ списка на конце прокрутки уходит под подпись.
   const scrollTailPad = game.outcome ? 300 : game.startBlock ? 150 : 120;
+  const tailNeeded = dockH > 0 ? Math.ceil(dockH + DOCK_GAP - DOCK_LIFT) : 0;
+  const tailPad = Math.max(scrollTailPad, tailNeeded);
 
   const myFloor = week ? Math.min(week.floor, SPIRE_FLOOR_COUNT) : null;
   // Маркер поднялся на новый этаж — карточка этажа следует за ним.
@@ -229,6 +238,15 @@ export default function SpireHomeScreen() {
       towerWillScrollTo: myFloor !== null ? `свой этаж ${myFloor}` : `низ башни (этажа нет; выбран ${shownFloor})`,
     });
   }, [preview, week, myFloor, selected, shownFloor, game.rows, game.tier, game.live, game.startBlock, game.session, game.pending, hasPremiumAccess]);
+  // зачем (координатор 13.10, сперва логи): ОДНА строка отвечает «перекрывает ли док последний блок на конце прокрутки»: endClearance = зазор между низом списка и верхом дока при полной прокрутке
+  // (paddingBottom − отступ дока снизу − высота дока); ≥ DOCK_GAP — чисто. Видны оба слагаемых запаса (макетный пол и вычисленный от дока), этаж и откуда значения.
+  useEffect(() => {
+    logSpireLayout('clearance', {
+      floor: shownFloor, myFloor, dockH: roundLayout(dockH), bottomPad: roundLayout(bottomPad), tailFloor: scrollTailPad, tailFromDock: tailNeeded, tailUsed: tailPad,
+      endClearance: roundLayout(tailPad + DOCK_LIFT - dockH), minClearance: DOCK_GAP,
+      source: preview ? 'DEV-превью' : 'живые данные', outcome: game.outcome ? game.outcome.kind : 'none', startBlock: game.startBlock ?? 'none',
+    });
+  }, [shownFloor, myFloor, dockH, bottomPad, scrollTailPad, tailNeeded, tailPad, preview, game.outcome, game.startBlock]);
   const onSelect = useCallback((floor: number) => setSelected(floor), []);
   const openAll = useCallback(() => setShowAll(true), []);
   const closeAll = useCallback(() => setShowAll(false), []);
@@ -270,10 +288,10 @@ export default function SpireHomeScreen() {
   return (
     <View style={s.root} testID="spire-home">
       <ScrollView
-        contentContainerStyle={[s.content, { paddingBottom: bottomPad + scrollTailPad }]}
+        contentContainerStyle={[s.content, { paddingBottom: bottomPad + tailPad }]}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
-        onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + scrollTailPad) })}
+        onLayout={(e) => logSpireLayout('scroll', { viewportH: roundLayout(e.nativeEvent.layout.height), bottomPad: roundLayout(bottomPad), paddingBottom: roundLayout(bottomPad + tailPad) })}
         onContentSizeChange={(_w, ch) => logSpireLayout('scroll.content', { contentH: roundLayout(ch) })}
       >
         <View style={s.head}>
@@ -334,7 +352,11 @@ export default function SpireHomeScreen() {
       <View
         pointerEvents="box-none"
         style={[s.dock, { bottom: bottomPad - 24 }]}
-        onLayout={(e) => logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottomOffset: roundLayout(bottomPad - 24) })}
+        onLayout={(e) => {
+          const h = e.nativeEvent.layout.height;
+          setDockH((prev) => (Math.abs(prev - h) < 0.5 ? prev : h)); // зачем: порог 0,5 dp — дрожь округления не гоняет перерисовку; док на запас списка не влияет (absolute), цикла нет
+          logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(bottomPad - DOCK_LIFT) });
+        }}
       >
         <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, bottomPad - 24) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
         {game.outcome ? (

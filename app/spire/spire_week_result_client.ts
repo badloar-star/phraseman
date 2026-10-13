@@ -111,37 +111,51 @@ export async function spireLoadWeekResult(
   const nowMs = Date.now();
   const prevWeek = spirePreviousWeekKey(nowMs);
   const row = await readRow(input.uid, input.lang);
+  // зачем (владелец 13.10, «ЗАЧЕМ ТУТ КРЕСТИК?»): карточка показывается при ПЕРВОМ входе в Пик на новой неделе и при следующем входе уже нет. Отметка «показано»
+  // — локально по weekId+uid+язык (state 'dismissed'), без записей в Firestore; ставится сразу, как только решили показать (markShown). Лог [SPIRE-WEEK-CARD].
+  const logCard = (decision: 'shown' | 'skip', why: string): void => DebugLogger.info(LOG, `[SPIRE-WEEK-CARD] weekId=${prevWeek} lang=${input.lang} ${decision}: ${why}`);
+  const markShown = async (): Promise<void> => {
+    await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'dismissed', checkedAtMs: Date.now(), result: null });
+    logCard('shown', 'отметка «показано» записана локально — при следующем входе карточки не будет');
+  };
   if (row && row.weekId === prevWeek) {
     if (row.state === 'dismissed') {
-      DebugLogger.info(LOG, `week result: ${prevWeek} уже закрыт человеком — не показываем`);
+      logCard('skip', 'уже показывалась при прошлом входе');
       return null;
     }
     if (row.state === 'found') {
-      DebugLogger.info(LOG, `week result: ${prevWeek} из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
+      logCard('shown', `из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
+      await markShown();
       return row.result;
     }
     const giveUp = row.checkedAtMs - spireWeekStartMs(nowMs) > GIVE_UP_AFTER_WEEK_START_MS;
     if (giveUp || nowMs - row.checkedAtMs < RECHECK_MS) {
-      DebugLogger.info(LOG, `week result: ${prevWeek} не найден ранее (giveUp=${String(giveUp)} возраст=${nowMs - row.checkedAtMs}мс) — не читаем`);
+      logCard('skip', `итог не найден ранее (giveUp=${String(giveUp)} возраст=${nowMs - row.checkedAtMs}мс) — не читаем`);
       return null;
     }
   }
   const weeks = await spireReadParticipation(input.uid, input.lang);
   if (!weeks.includes(prevWeek)) {
-    DebugLogger.info(LOG, `week result: в комнате ${prevWeek} (${input.lang}) не сидел (недели=${weeks.join(',') || '—'}) — 0 чтений`);
+    logCard('skip', `в комнате не сидел (недели=${weeks.join(',') || '—'}) — 0 чтений`);
     return null;
   }
   const db = spireFirestore(gate, 'week_result:get');
-  if (!db) return null;
+  if (!db) { logCard('skip', 'нет доступа к базе (gate)'); return null; }
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const snap = await (db as any).collection('users').doc(input.uid).collection('spire_week_results').doc(`${prevWeek}_${input.lang}`).get(); // guard-ok: один документ по id
     const result = snap?.exists ? spireDecodeWeekResult(snap.data(), prevWeek, input.lang) : null;
     DebugLogger.info(LOG, `week result: сеть ${prevWeek}_${input.lang} exists=${String(Boolean(snap?.exists))} разобран=${String(result !== null)}`);
-    await writeRow(input.uid, input.lang, { weekId: prevWeek, state: result ? 'found' : 'absent', checkedAtMs: nowMs, result });
+    if (result) {
+      logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
+      await markShown();
+    } else {
+      logCard('skip', 'документа итога нет — повторим позже');
+      await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'absent', checkedAtMs: nowMs, result: null });
+    }
     return result;
   } catch (error) {
-    DebugLogger.warn(LOG, `week result: чтение упало (${spireErrorText(error)}) — карточки нет, повторим при следующем заходе`);
+    logCard('skip', `чтение упало (${spireErrorText(error)}) — повторим при следующем заходе`);
     return null;
   }
 }

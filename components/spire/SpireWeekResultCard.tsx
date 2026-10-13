@@ -3,19 +3,17 @@
 //
 // зачем (владелец: «при первом заходе новой недели — карточка фактом, не модалка»):
 // данные — документ spire_week_results, который записал крон (решения о повышении
-// и понижении принимает только сервер). Крестик закрывает карточку навсегда для
-// этой недели. Глаголы в настоящем времени — род игрока не угадываем.
+// и понижении принимает только сервер). Крестика нет (владелец 13.10): карточка показывается один раз — при первом входе на новой неделе,
+// отметку ставит spire_week_result_client. Глаголы в настоящем времени — род игрока не угадываем.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { SpireWeekResultView } from '../../app/spire/spire_week_result_client';
 import { spireTierName } from '../../modules/spire/tier_names';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import AvatarView from '../AvatarView';
-import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireTowerSvg from './SpireTowerSvg';
@@ -24,7 +22,7 @@ import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 
-type Props = Readonly<{ lang: Lang; result: SpireWeekResultView; myCoinRank: number | null; onClose: () => void }>;
+type Props = Readonly<{ lang: Lang; result: SpireWeekResultView; myCoinRank: number | null }>;
 
 const noop = (): void => undefined;
 
@@ -48,7 +46,7 @@ const TOWER_H = 103;
 const COIN = 26;
 const COIN_RING = 3;
 
-function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
+function SpireWeekResultCard({ lang, result, myCoinRank }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const { title, sub } = spireWeekResultLines(lang, result);
   // зачем: наряд по newTier, состояние окон — по решению сервера: повышение = «вершина недели» (окна горят, свечение ×2.6), остаёшься и понижение = окна тёмные
@@ -81,16 +79,6 @@ function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
         <Text style={[s.title, { color: p.text }]}>{title}</Text>
         <Text style={[s.sub, { color: p.textSecondary }]}>{sub}</Text>
       </View>
-      <V2Pressable
-        onPress={onClose}
-        accessibilityRole="button"
-        accessibilityLabel={spireGameText(lang, 'close')}
-        style={[s.close, { backgroundColor: p.control }, sh.nested]}
-        hitSlop={8}
-        testID="spire-week-result-close"
-      >
-        <Ionicons name="close" size={16} color={p.text} />
-      </V2Pressable>
     </View>
   );
 }
@@ -104,7 +92,6 @@ const s = StyleSheet.create({
   over: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },
   title: { fontSize: 19, lineHeight: 24, fontWeight: '700', marginTop: 6 },
   sub: { fontSize: 16, lineHeight: 21, marginTop: 4 },
-  close: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 });
 
 export default memo(SpireWeekResultCard);

@@ -24,3 +24,25 @@ test('release notes 2.0 promise only what the store build has', () => {
 test('release notes 2.0 carry no placeholder words', () => {
   assert.doesNotMatch(source, /legacy reward|TODO|lorem/i);
 });
+
+// зачем (координатор 13.10, №34): «Пик» допустим в окне «Что нового» ТОЛЬКО как необязательная строка `peak` у ru/uk, а показывает её окно лишь
+// при включённом рубильнике и интерфейсе ru/uk (isSpireTabEnabled). Остальным семи языкам — ни слова, иначе обещаем то, чего у человека нет.
+const rawCopy = normalizeEol(readFileSync(new URL('../components/release_notes_v2_copy.ts', import.meta.url), 'utf8'));
+const PEAK_WORDS = /Пик|Пік|\bPeak\b|\bPico\b|\bZirve\b|Đỉnh|Puncak|Szczyt/;
+
+test('Peak is mentioned only in the optional peak line of ru and uk', () => {
+  const body = rawCopy.replace(/\/\/[^\n]*/g, '');
+  const peakLines = body.split('\n').filter((l) => PEAK_WORDS.test(l));
+  assert.equal(peakLines.length, 2, `expected exactly the ru and uk peak lines, got: ${peakLines.join(' | ')}`);
+  for (const line of peakLines) assert.match(line, /^\s*peak: \{ icon: 'trophy-outline'/);
+  const ruBlock = body.slice(body.indexOf('  ru: {'), body.indexOf('  uk: {'));
+  const ukBlock = body.slice(body.indexOf('  uk: {'), body.indexOf('  en: {'));
+  assert.match(ruBlock, /peak: \{/);
+  assert.match(ukBlock, /peak: \{/);
+});
+
+test('the modal shows the peak line only under the spire tab lock (flag + ru/uk)', () => {
+  const modal = normalizeEol(readFileSync(new URL('../components/ReleaseNotesV2Modal.tsx', import.meta.url), 'utf8'));
+  assert.match(modal, /import \{ isSpireTabEnabled \} from '\.\.\/app\/spire_tab_flag';/);
+  assert.match(modal, /visible && copy\.peak && isSpireTabEnabled\(\)/);
+});

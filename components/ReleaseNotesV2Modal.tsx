@@ -8,6 +8,7 @@ import { useLang } from './LangContext';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import HybridSheetShell from './modal_fx/HybridSheetShell';
+import { isSpireTabEnabled } from '../app/spire_tab_flag';
 import { pickReleaseNotesV2Texts } from './release_notes_v2_copy';
 
 type Props = Readonly<{
@@ -21,6 +22,9 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const copy = useMemo(() => pickReleaseNotesV2Texts(lang), [lang]);
+  // зачем (координатор 13.10, №34): строка про Пик — только когда раздел виден (рубильник spire_tab_enabled + интерфейс ru/uk, тот же замок, что у вкладки);
+  // считаем при каждом показе окна, а не при монтировании: флаг мог прогреться позже.
+  const items = useMemo(() => (visible && copy.peak && isSpireTabEnabled() ? [...copy.items, copy.peak] : copy.items), [visible, copy]);
 
   return (
     <HybridSheetShell
@@ -54,7 +58,7 @@ function ReleaseNotesV2Modal({ visible, onClose }: Props) {
             </View>
 
             <View style={styles.items}>
-              {copy.items.map((item) => (
+              {items.map((item) => (
                 <View key={item.title} style={styles.item}>
                   <View style={[styles.itemIcon, { backgroundColor: glass.opaqueControl }]} accessible={false}>
                     <Ionicons name={item.icon} size={20} color={glass.lightTint} />

@@ -5,6 +5,7 @@ jest.mock('../app/app_build_id', () => ({ getAppReleaseBuildId: () => mockBuildI
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
+  RELEASE_2_0,
   dismissReleaseNotesV2ModalPermanently,
   isEligibleForReleaseNotesV2,
   isReleaseNotesV2ReleaseActive,
@@ -20,8 +21,24 @@ describe('release 2.0 notes gate', () => {
     mockBuildId.mockReturnValue(118);
   });
 
-  it('stays off before the separate release is configured', async () => {
+  it('is off on builds older than the 16.10 release (118 = 1.6.12 keeps the legacy campaign)', async () => {
     expect(isReleaseNotesV2ReleaseActive()).toBe(false);
+    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
+  });
+
+  // зачем (№34): окно показывается один раз обновившимся и не показывается новым установкам
+  it('16.10 build: offers once to an onboarded user who installed before the rollout day, never to a new install, never again after dismissal', async () => {
+    mockBuildId.mockReturnValue(132);
+    expect(isReleaseNotesV2ReleaseActive()).toBe(true);
+    await AsyncStorage.multiSet([['onboarding_done', '1'], ['install_date', String(Date.UTC(2026, 8, 1))]]);
+    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(true);
+    await dismissReleaseNotesV2ModalPermanently();
+    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
+    storage.__reset();
+    await AsyncStorage.multiSet([['onboarding_done', '1'], ['install_date', String(Date.UTC(2026, 9, 16, 8))]]);
+    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
+    storage.__reset();
+    await AsyncStorage.multiSet([['onboarding_done', '1']]);
     await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
   });
 
@@ -37,5 +54,13 @@ describe('release 2.0 notes gate', () => {
     await dismissReleaseNotesV2ModalPermanently();
     await expect(AsyncStorage.getItem('release_notes_v2_dismissed_v1')).resolves.toBe('1');
     await expect(AsyncStorage.getItem('release_notes_dismissed_2026_08_28_v1612')).resolves.toBeNull();
+  });
+
+  // зачем (координатор 13.10, №34): порог окна не должен уйти выше собираемой сборки — иначе окно молча не покажется на 16.10
+  it('the release threshold never exceeds the build declared in app.json (Android versionCode and iOS buildNumber)', () => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const cfg = require('../app.json').expo;
+    expect(RELEASE_2_0.minBuildId).toBeLessThanOrEqual(cfg.android.versionCode);
+    expect(RELEASE_2_0.minBuildId).toBeLessThanOrEqual(parseInt(cfg.ios.buildNumber, 10));
   });
 });

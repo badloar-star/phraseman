@@ -13,6 +13,8 @@ export type ReleaseNotesV2Texts = Readonly<{
   title: string;
   hero: string;
   items: readonly [ReleaseNotesV2Item, ReleaseNotesV2Item, ReleaseNotesV2Item];
+  // Строка про Пик: есть только у ru/uk и показывается окном лишь при включённом рубильнике (isSpireTabEnabled).
+  peak?: ReleaseNotesV2Item;
   cta: string;
   close: string;
 }>;
@@ -28,6 +30,8 @@ const TEXTS: Readonly<Record<Locale, ReleaseNotesV2Texts>> = {
       { icon: 'flash-outline', title: 'Энергия проще', body: 'Пять делений, одно занятие — одно деление' },
       { icon: 'checkmark-outline', title: 'Только монеты', body: 'Опыт ушёл, награда одна — монеты' },
     ],
+    // зачем (координатор 13.10, №34): Пик упоминаем ТОЛЬКО когда он виден человеку — флаг + интерфейс ru/uk; к обновлению из стора (~20.10) флаг уже включён.
+    peak: { icon: 'trophy-outline', title: 'Пик', body: 'Недельная башня: поднимайся по этажам вместе с соперниками' },
     cta: 'Понятно', close: 'Закрыть окно «Что нового»',
   },
   uk: {
@@ -37,6 +41,7 @@ const TEXTS: Readonly<Record<Locale, ReleaseNotesV2Texts>> = {
       { icon: 'flash-outline', title: 'Енергія простіша', body: 'П’ять поділок, одне заняття — одна поділка' },
       { icon: 'checkmark-outline', title: 'Лише монети', body: 'Досвід пішов, нагорода одна — монети' },
     ],
+    peak: { icon: 'trophy-outline', title: 'Пік', body: 'Тижнева вежа: піднімайся поверхами разом із суперниками' },
     cta: 'Зрозуміло', close: 'Закрити вікно «Що нового»',
   },
   en: {

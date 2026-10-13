@@ -9,9 +9,13 @@ export type ReleaseNotesV2Release = Readonly<{
 
 const DISMISS_KEY = 'release_notes_v2_dismissed_v1';
 
-/** Release 2.0 is not live. Supply its real build and rollout day only at release. */
+// зачем (координатор 13.10, №34, сборка 16.10): окно «Что нового · 2.0» должно показаться ОДИН раз тем, кто обновился со старой версии (1.6.x), и не показаться новым
+// установкам. minBuildId — versionCode/buildNumber сборки 16.10 (app.json = 132, appVersionSource local, автоинкремента нет: бамп только вверх, условие >= остаётся верным);
+// newUserCutoffMs — начало дня выкладки 16.10 (UTC): install_date до него = «старый» пользователь, после — новичок. Ключ закрытия отдельный от кампании build-118.
+export const RELEASE_2_0: ReleaseNotesV2Release = { minBuildId: 132, newUserCutoffMs: Date.UTC(2026, 9, 16) };
+
 function configuredV2Release(): ReleaseNotesV2Release | null {
-  return null;
+  return RELEASE_2_0;
 }
 
 export function isReleaseNotesV2ReleaseActive(): boolean {

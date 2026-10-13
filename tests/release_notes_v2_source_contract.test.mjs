@@ -38,12 +38,13 @@ test('release 2.0 uses a separate bottom Liquid Glass sheet with safe scrolling'
   assert.match(modal, /requestDismiss/);
 });
 
-test('release 2.0 is wired behind its own disabled release gate', () => {
+// зачем (координатор 13.10, №34): ворота больше не «выключены» (return null) — релиз 16.10 настроен константой RELEASE_2_0 (сборка >=132, порог по install_date).
+test('release 2.0 is wired behind its own release gate', () => {
   const gatePath = file('app/release_notes_v2_gate.ts');
   assert.ok(existsSync(gatePath), 'separate 2.0 release gate must exist');
   const gate = readFileSync(gatePath, 'utf8');
   const layout = readFileSync(file('app/_layout.tsx'), 'utf8');
-  assert.match(gate, /return null;/);
+  assert.match(gate, /export const RELEASE_2_0: ReleaseNotesV2Release = \{ minBuildId: \d+, newUserCutoffMs: Date\.UTC\(2026, 9, 16\) \};/);
   assert.match(gate, /release_notes_v2_dismissed/);
   assert.match(layout, /shouldOfferReleaseNotesV2Modal/);
   assert.match(layout, /isReleaseNotesV2ReleaseActive/);

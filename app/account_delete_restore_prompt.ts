@@ -20,6 +20,7 @@ import {
   enqueueThemedBlockingInfoAlert,
   type ThemedBlockingAlertSlotWait,
 } from './themed_blocking_alert_queue';
+import { releaseReason } from './release_reason';
 
 /** Потолок ожидания слота арбитра для «Восстановить аккаунт?»: лог через 2 с, окно поверх через 8 с. */
 export const ACCOUNT_RESTORE_SLOT_WAIT: ThemedBlockingAlertSlotWait = { logPrefix: '[ACCOUNT-RESTORE]', warnAfterMs: 2_000, forceAfterMs: 8_000 };
@@ -111,6 +112,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
     if (devRestoreMode) console.log(`[ACCOUNT-RESTORE] dev restore=${devRestoreMode}: статус подставлен (13 дней), сервер не вызван`); // guard-ok: dev-ветка
   } catch (error) {
     console.warn(`[ACCOUNT-RESTORE] status_failed reason=${error instanceof Error ? error.message.slice(0, 80) : typeof error}`);
+    releaseReason('account_restore', 'status_failed', 'error');
     return 'not_restorable';
   }
   if (!status?.pending || !status.restorable) {
@@ -160,6 +162,7 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
   console.log(`[ACCOUNT-RESTORE] choice=${String(choice)} daysLeft=${days}`);
   if (choice !== 'restore') {
     console.log(`[ACCOUNT-RESTORE] declined via=${choice === THEMED_ALERT_DISMISSED ? 'back' : 'button'}`);
+    releaseReason('account_restore', choice === THEMED_ALERT_DISMISSED ? 'declined_back' : 'declined_button', 'blocked');
     return 'declined';
   }
   if (devRestoreMode) {
@@ -169,5 +172,6 @@ export async function promptAccountRestoreAfterSignInRefusal(lang: Lang): Promis
   }
   const outcome = await restoreDeletedAccount();
   console.log(`[ACCOUNT-RESTORE] restore ok=${outcome.ok ? 'yes' : 'no'}`);
+  releaseReason('account_restore', outcome.ok ? 'restored' : 'failed', outcome.ok ? 'info' : 'error');
   return outcome.ok ? 'restored' : 'restore_failed';
 }

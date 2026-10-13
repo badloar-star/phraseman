@@ -135,6 +135,7 @@ import {
   isOnboardingAuthAttemptCurrent,
 } from './onboarding_auth_leave';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reasons';
 
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 // Иконка приложения — плитка слева в карточке пуша макета телефона (Bevel, кадры 7/10).
@@ -2773,6 +2774,7 @@ function CleanOnboarding({
         signInWithProvider(provider, { captureAccountSwitchResume: true }),
         () => setAuthSlow(true),
       );
+      reportSignInOutcome(provider, result);
       // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
       // повисшем входе — ни go, ни текста ошибки поверх другого шага; успех, сменивший
       // личность, засчитывается (онбординг закрывается один раз), остальное отбрасывается.
@@ -2891,6 +2893,7 @@ function CleanOnboarding({
       const detail = error instanceof Error ? error.message : String(error);
       // зачем (аудит двойного тапа 11.10): catch только показывал текст — причина в логе, кодом без текста.
       console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=existing_account code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      reportSignInThrew();
       // зачем (ревью L-4): обработчик упал (в т.ч. вокруг смены) — пропуск не переживает попытку.
       discardAccountSwitchResumeCredential('handler_threw');
       if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {
@@ -2927,6 +2930,7 @@ function CleanOnboarding({
         signInWithProvider(provider, { captureAccountSwitchResume: true }),
         () => setAuthSlow(true),
       );
+      reportSignInOutcome(provider, result);
       // зачем (ревью TG-A3996AF645F1 + TG-C8E5C56B2F02): человек ушёл «Позже»/«Назад» при
       // повисшем входе — ни go, ни текста ошибки поверх другого шага; успех, сменивший
       // личность, засчитывается (онбординг закрывается один раз), остальное отбрасывается.
@@ -3035,6 +3039,7 @@ function CleanOnboarding({
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error);
       console.warn(`[ONBOARDING-AUTH] sign_in threw provider=${provider} source=privacy code=${identityErrorCode(error)}`); // guard-ok: catch пишет причину (правило владельца)
+      reportSignInThrew();
       // зачем (ревью L-4): обработчик упал (в т.ч. вокруг смены) — пропуск не переживает попытку.
       discardAccountSwitchResumeCredential('handler_threw');
       if (!isOnboardingAuthAttemptCurrent(authAttemptRef, attempt)) {

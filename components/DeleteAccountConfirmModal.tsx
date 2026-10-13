@@ -39,6 +39,7 @@ import { nestedBoxShadow } from './v2/ShadowSurface';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { TOAST } from '../constants/motionHybrid';
 import { isDevDeleteConfirmBypass } from '../app/dev_account_state';
+import { reportAccountDeleteHandoffFailed, reportAccountDeleteHandoffThrew } from '../app/auth_release_reasons';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — чёрные в любой теме
 // зачем (аудит 11.10): запасной toUpperCase в рендере — причину пишем один раз за процесс, а не на каждую букву.
@@ -258,6 +259,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       const res = await beginAccountDeletion();
       if (!res.ok) {
         traceAccountDeleteUi(`local_delete_rejected:${res.reason}`);
+        reportAccountDeleteHandoffFailed(res.reason);
         finishAccountDeleteUiTrace('handoff_failed');
         showInfoAlert(
           L({
@@ -329,6 +331,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
       traceAccountDeleteUi('root_event_dispatch_complete');
     } catch (error: unknown) {
       traceAccountDeleteUi('local_delete_threw');
+      reportAccountDeleteHandoffThrew();
       // зачем (Дизайн 05.10, 041: в макете три разных окна отказа, у нас одно): причина отказа — чтобы выбрать окно.
       // Без uid и данных аккаунта.
       console.warn('[ACCOUNT-DELETE-UI] local_delete_threw', JSON.stringify({

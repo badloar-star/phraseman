@@ -16,6 +16,7 @@ import { signOutAndWipeForAccountSwitch } from './auth_provider';
 import { prewarmAccountWipeModules } from './cloud_sync';
 import { identityErrorCode } from './identity_trace';
 import { THEMED_ALERT_DISMISSED, enqueueThemedBlockingChoiceAlert } from './themed_blocking_alert_queue';
+import { releaseReason } from './release_reason';
 
 export type OnboardingAccountSwitchOutcome =
   | Readonly<{ kind: 'switched' }>
@@ -129,6 +130,7 @@ export async function confirmAndSwitchAccountInOnboarding(
   hooks?.onDecisionMade?.(String(choice));
   if (choice !== 'switch') {
     console.log(`[AUTH-SWITCH-OFFER] onboarding cancelled choice=${choice === THEMED_ALERT_DISMISSED ? 'dismiss' : choice}`);
+    releaseReason('account_switch', 'declined', 'blocked');
     return { kind: 'cancelled' };
   }
   const attemptStartedAtMs = Date.now();
@@ -139,9 +141,11 @@ export async function confirmAndSwitchAccountInOnboarding(
     const result = await signOutAndWipeForAccountSwitch({ syncDeadlineMs: ONBOARDING_SWITCH_SYNC_DEADLINE_MS, allowWipeWithoutSync: true });
     if (result.ok) {
       console.log(`[AUTH-SWITCH-OFFER] onboarding switched synced=${result.synced ? 'yes' : 'no'} tookMs=${Date.now() - attemptStartedAtMs}`);
+      releaseReason('account_switch', 'confirmed', 'info');
       return { kind: 'switched' };
     }
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_failed reason=${result.reason}`);
+    releaseReason('account_switch', 'switch_failed', 'error');
     if (FORCEABLE_SWITCH_REASONS.has(result.reason)) {
       // зачем (ревью LOW-1): await — чтобы сбой развилки попал в catch с логом ниже.
       return await offerSwitchWithoutSaving(lang, result.reason, attemptStartedAtMs);
@@ -151,6 +155,7 @@ export async function confirmAndSwitchAccountInOnboarding(
     // зачем (TG-0AE4918142EE): в логе только код — в тексте ошибки бывает почта.
     const reason = identityErrorCode(error);
     console.warn(`[AUTH-SWITCH-OFFER] onboarding switch_threw reason=${reason}`);
+    releaseReason('account_switch', 'switch_threw', 'error');
     return { kind: 'failed', reason };
   }
 }
@@ -207,6 +212,7 @@ async function offerSwitchWithoutSaving(lang: Lang, reason: string, attemptStart
   const body = [onboardingAccountSwitchFailureText(lang, reason), forcedSwitchConsequence(lang)].join('\n\n');
   if (!(await askStayOrForce(forcedSwitchTitle(lang, reason), body, lang))) {
     console.log(`[AUTH-SWITCH-OFFER] onboarding force_offer stay reason=${reason}`);
+    releaseReason('account_switch', 'force_offer_declined', 'blocked');
     return { kind: 'cancelled' };
   }
   const cards = await readAccountSwitchUnsavedCardsDecision(attemptStartedAtMs);
@@ -215,14 +221,17 @@ async function offerSwitchWithoutSaving(lang: Lang, reason: string, attemptStart
     const title = triLang(lang, { ru: 'Несохранённые карточки будут удалены с этого телефона', uk: 'Незбережені картки буде видалено з цього телефона', en: 'Unsaved cards will be deleted from this phone', es: 'Las tarjetas sin guardar se eliminarán de este teléfono', 'pt-BR': 'Os cartões não salvos serão apagados deste telefone', vi: 'Các thẻ chưa lưu sẽ bị xóa khỏi điện thoại này', id: 'Kartu yang belum disimpan akan dihapus dari ponsel ini', tr: 'Kaydedilmemiş kartlar bu telefondan silinecek', pl: 'Niezapisane fiszki zostaną usunięte z tego telefonu' });
     if (!(await askStayOrForce(title, '', lang))) {
       console.log('[AUTH-SWITCH-OFFER] onboarding unsaved_cards_confirm stay');
+      releaseReason('account_switch', 'unsaved_cards_declined', 'blocked');
       return { kind: 'cancelled' };
     }
   }
   const forced = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true });
   if (forced.ok) {
     console.log(`[AUTH-SWITCH-OFFER] onboarding forced_switched synced=${forced.synced ? 'yes' : 'no'}`);
+    releaseReason('account_switch', 'forced_confirmed', 'info');
     return { kind: 'switched' };
   }
   console.warn(`[AUTH-SWITCH-OFFER] onboarding forced_switch_failed reason=${forced.reason}`);
+  releaseReason('account_switch', 'forced_switch_failed', 'error');
   return { kind: 'failed', reason: forced.reason };
 }

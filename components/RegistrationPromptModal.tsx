@@ -102,6 +102,7 @@ import { signInRefusalCopyFor } from '../app/account_sync_copy';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { identityErrorCode } from '../app/identity_trace';
+import { reportSignInOutcome, reportSignInThrew } from '../app/auth_release_reasons';
 
 // зачем: владелец 2026-08-22 — было 45 с: почти минута на занятой кнопке без
 // обратной связи и без выхода. После ускорения входа (тёплый authEnsureStableLink,
@@ -1164,6 +1165,7 @@ function RegistrationPromptModal({
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
         console.log(`[SIGNIN] ui:returned provider=${provider} result=${result.result} in=${Date.now() - signInStartedAt}ms`);
+        reportSignInOutcome(provider, result);
 
         if (result.result === 'cancelled') {
           // Отмена picker'а — retryable: даём «Повторить» под сообщением.
@@ -1354,6 +1356,7 @@ function RegistrationPromptModal({
         // зачем (аудит двойного тапа 11.10): причина под __DEV__ в релизе пропадала, а при
         // закрытом окне catch выходил вовсе немо — пишем всегда, без текста ошибки (там может быть почта).
         console.warn(`[AUTH-MODAL] sign_in threw provider=${provider} code=${identityErrorCode(e)} current=${isAttemptCurrent(attemptToken) ? 1 : 0}`); // guard-ok: catch пишет причину
+        reportSignInThrew();
         if (!isAttemptCurrent(attemptToken)) return;
         clearSlowTimer();
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.

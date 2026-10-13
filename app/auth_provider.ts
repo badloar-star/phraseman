@@ -178,6 +178,7 @@ import {
   accountAuthorityProviderErrorCode,
   safeAccountAuthorityLogger,
 } from '../modules/account-authority-v2/account_authority_logger';
+import { releaseReasonForAuthEvent } from './auth_release_reasons';
 
 // зачем (AA S2b, пункт 11): ветки входа AA и nonce M-1 пишут через логгер S1 —
 // только коды и виды, без uid, stableId, nonce и токенов.
@@ -5191,6 +5192,8 @@ export const AUTH_ONBOARDING_DONE_KEY = 'auth_onboarding_done_v1';
 
 /** Sanity check + telemetry. */
 export function logAuthEvent(name: string, params?: Record<string, string | number>) {
+  // зачем (RELEASE_LOGGING_R1, 13.10): исходы входа/выхода/удаления — кодом причины в журнал обращения (релиз вырезает console.log).
+  releaseReasonForAuthEvent(name, params);
   try {
     logEvent(name, params);
   } catch (e) {

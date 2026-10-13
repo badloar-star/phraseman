@@ -640,7 +640,7 @@
       "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:30:45.581Z",
+      "reviewed_at": "2026-10-12T23:31:02.733Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 22) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
@@ -777,7 +777,7 @@
       "status": "diff",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:30:45.581Z",
+      "reviewed_at": "2026-10-12T23:31:02.733Z",
       "mockup_pinned": "Дизайн 10.10: дубль состояния утверждённого cards-section.html (фаза 23) — одна съёмка закрывает обе строки",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "prev_mockup": {
@@ -8629,7 +8629,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -8728,7 +8728,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -8779,7 +8779,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
       "triage": {
         "action": "переснять",
@@ -15541,7 +15541,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "prev_release_surface_proof": {
         "kind": "flag_off",
         "flag": "spire_tab_enabled",
@@ -17708,7 +17708,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "mockup_pinned": "Макеты 11.10: строки были привязаны к кадрам «проект UX» в profile.html (не те экраны); перепривязано на нарисованный макет manage-subscription-states.html",
       "precheck": {
         "date": "2026-10-11",
@@ -20139,7 +20139,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "mockup_pinned": "Макеты 11.10: приказ владельца «экраны релиза без макета рисуешь ты» — макет нарисован (группа 8, управление Plus), эталон сразу",
       "precheck": {
         "date": "2026-10-11",
@@ -29960,7 +29960,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:30:45.581Z",
+      "reviewed_at": "2026-10-12T23:31:02.733Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -40832,7 +40832,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -40996,7 +40996,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -41040,7 +41040,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -41365,7 +41365,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -42102,7 +42102,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -42193,7 +42193,7 @@
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-12T23:41:25.424Z",
+      "reviewed_at": "2026-10-12T23:42:37.931Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",

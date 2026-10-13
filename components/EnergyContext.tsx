@@ -49,6 +49,7 @@ import {
   type EnergySessionProjection,
 } from '../app/energy_session_operation_ledger';
 import { DebugLogger } from '../app/debug-logger';
+import { releaseReason } from '../app/release_reason'; // зачем (координатор 13.10): причина отказа списания видна в релизе
 import { useFlashcardTrainingGrantBootMaintenance } from './use_flashcard_training_grant_boot_maintenance';
 import {
   activityEnergyCost,
@@ -942,6 +943,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     });
     const gateDecision = (decision: string, reason: string, extra?: Record<string, unknown>): void => {
       console.log('[ENERGY-GATE] start decision', JSON.stringify({ decision, reason, ...gateSnapshot(), ...extra })); // guard-ok: каждый выход старта называет причину
+      // зачем (координатор 13.10, RELEASE_LOGGING_R1): console.log вырезается в релизе — отказ старта пишем кодом причины в журнал обращения.
+      if (decision === 'insufficient' || decision === 'cancelled') releaseReason('energy', reason, decision === 'insufficient' ? 'blocked' : 'error');
     };
     console.log('[ENERGY-GATE] start enter', JSON.stringify({ ...gateSnapshot(), mistakeCharge: options?.mistakeCharge === true })); // guard-ok: вход старта
     try {

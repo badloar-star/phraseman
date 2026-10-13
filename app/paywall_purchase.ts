@@ -83,6 +83,7 @@ import {
   runRevenueCatOperationForGeneration,
 } from './revenuecat_account_identity';
 import { DebugLogger, swallowError } from './debug-logger';
+import { releaseReason } from './release_reason'; // зачем (координатор 13.10): DebugLogger.warn в релизе молчит — код причины уходит в журнал обращения
 import { withPurchaseFlow } from './purchase_flow_activity';
 import { LOAD_GATE_ATTEMPTS, LOAD_GATE_TOTAL_MS, loadGateBackoffMs } from './load_gate_config';
 import {
@@ -1093,6 +1094,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     if (!pkgOrNull && !resilientCheckout) {
       // зачем (владелец 11.10, цены видны всегда): на плитке теперь справочная/кэш-цена, поэтому тап без магазина не может
       // быть немым — тихое «Попробуй через минуту» и фоновая догрузка цен (покупка — следующим тапом по живой цене).
+      releaseReason('purchase', 'no_package', 'blocked');
       DebugLogger.info('[PAYWALL]', `тап: пакета для плана=${selected} нет, resilientCheckout=false — тихая подсказка и догрузка (цена=${priceSource})`);
       setTapNotice(true);
       void loadOfferings(lifeRef.current);
@@ -1106,6 +1108,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     // зачем (координатор 12.10, Optimistic UI R1): у пейвола онбординга (не resilientCheckout) старт магазина и синхронизация личности ждались без потолка — кнопка могла крутиться вечно, оплата ещё не начата.
     // Тот же потолок, что в окне Plus. По истечении: кнопка свободна (finally), «Магазин не отвечает. Попробуй ещё раз» + подсказка под кнопкой. Сама оплата не затрагивается.
     const stopBeforePayment = (step: 'initRevenueCat' | 'syncRevenueCatIdentity', ms: number): void => {
+      releaseReason('purchase', 'load_timeout', 'error');
       DebugLogger.warn('[PAYWALL]', `покупка: ${step} не ответил за ${ms} мс (потолок ${LOAD_GATE_TOTAL_MS}) — оплата не начата, кнопка свободна`);
       void trackEvent('purchase_failed', {
         context, plan: selected, paywall: variant, error: `${step}_timeout`, ...paywallImpressionParams(impression),
@@ -1135,6 +1138,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const presentUnverifiedDialog = (why: string, certainty: PurchaseCertainty): void => {
       // зачем (ревью 12.10 (а)): аккаунт уже не тот — «Проверить статус / Восстановить» на новом аккаунте не помогут; отдельный текст без этих кнопок.
       const ui = purchaseUnverifiedUi(isOperationAccountCurrent());
+      releaseReason('purchase', 'unverified_dialog', 'error');
       DebugLogger.warn('[PAYWALL]', `purchase:unverified_dialog причина=${why} plan=${selected} source=${source} аккаунтТот=${String(isOperationAccountCurrent())} ui=${ui} оплата=${certainty}`);
       if (ui === 'previous_account_alert') {
         // зачем (ревью fa6648f02 п.1): текст честный про деньги — confirmed (магазин подтвердил) утверждает, unknown (stale / сбой после окна) — только «если оплата прошла»
@@ -1166,6 +1170,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         }
         pkgOrNull = lookupPkg();
         if (!pkgOrNull) {
+          releaseReason('purchase', 'offering_missing', 'blocked');
           DebugLogger.warn('[PAYWALL]', `тап без offerings: пакета нет после ${Date.now() - tapStartedAt} мс — тихое «Попробуй через минуту»`);
           void trackEvent('purchase_failed', {
             context, plan: selected, paywall: variant, error: 'offerings_unavailable_on_tap', ...paywallImpressionParams(impression),
@@ -1209,6 +1214,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         try {
           await withLoadTimeout(initRevenueCat(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, 'initRevenueCat');
         } catch (e) {
+          releaseReason('purchase', 'store_init_failed', 'error');
           DebugLogger.warn('[PAYWALL]', `покупка: старт магазина не удался до оплаты (${e instanceof Error ? e.message : String(e)}) — тихое «Попробуй через минуту»`);
           void trackEvent('purchase_failed', {
             context, plan: selected, paywall: variant, error: 'store_init_timeout', ...paywallImpressionParams(impression),
@@ -1227,6 +1233,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         try {
           identityReady = await withLoadTimeout(syncRevenueCatIdentity(isOperationAccountCurrent), LOAD_GATE_TOTAL_MS, 'syncRevenueCatIdentity');
         } catch (e) {
+          releaseReason('purchase', 'identity_sync_failed', 'error');
           DebugLogger.warn('[PAYWALL]', `покупка: синхронизация личности не удалась до оплаты (${e instanceof Error ? e.message : String(e)}) — тихое «Попробуй через минуту»`);
           void trackEvent('purchase_failed', {
             context, plan: selected, paywall: variant, error: 'identity_sync_timeout', ...paywallImpressionParams(impression),
@@ -1245,6 +1252,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // попросил заменить на тост-механизм (тот же, что в shards_shop/coin_exchange).
         // Ошибка обязана остаться видимой, а не молча уйти в тишину.
         emitAppEvent('action_toast', storeUnreachableToast());
+        releaseReason('purchase', 'identity_not_ready', 'blocked');
         DebugLogger.warn('[PAYWALL]', `покупка: личность не синхронизирована (identityReady=false) plan=${selected} source=${source} — оплату не начинаем, показан тост магазина`);
         void trackEvent('purchase_failed', { context, plan: selected, paywall: variant, error: 'identity_sync', ...paywallImpressionParams(impression) });
         return;
@@ -1268,6 +1276,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем (ревью 12.10 п.1): stale приходит и ДО, и ПОСЛЕ purchasePackage. Вызывался — оплата могла пройти (на другом аккаунте): диалог «статус не подтверждён»,
         // а не тихий возврат с живой кнопкой (повторная оплата). Не вызывался — деньги не тронуты: тихая подсказка.
         const staleUi = purchaseStaleUi(purchaseInvoked);
+        releaseReason('purchase', 'stale_account', 'blocked');
         DebugLogger.warn('[PAYWALL]', `purchase:stale plan=${selected} source=${source} статус=${purchaseResult.status} purchaseInvoked=${String(purchaseInvoked)} `
           + `аккаунтТот=${String(isOperationAccountCurrent())} ui=${staleUi}`);
         if (staleUi === 'unverified_dialog') presentUnverifiedDialog('stale после вызова purchasePackage', 'unknown');
@@ -1300,6 +1309,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           error: 'no_active_entitlement_after_purchase',
           ...paywallImpressionParams(impression),
         });
+        releaseReason('purchase', 'no_entitlement', 'blocked');
         DebugLogger.warn('[PAYWALL]', `purchase:no_entitlement plan=${selected} product=${pkg.product.identifier} source=${source} — окно «ожидает подтверждения»`);
         showPurchasePendingAlert(lang, `product:${pkg.product.identifier}`);
         return;
@@ -1330,6 +1340,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       if (applied.status !== 'ok' || !applied.value) {
         // зачем (ревью 12.10 п.2): магазин подтвердил доступ (деньги возможно списаны), а локально он не записан (блокировка не взята за срок, смена аккаунта, сбой записи).
         // Тихий возврат оставлял бы живую кнопку «Купить» — человек заплатил бы второй раз. Диалог «статус не подтверждён» ведёт к «Проверить статус / Восстановить».
+        releaseReason('purchase', 'not_applied', 'error');
         DebugLogger.warn('[PAYWALL]', `purchase:not_applied plan=${selected} source=${source} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} `
           + `аккаунтТот=${String(isOperationAccountCurrent())} ui=unverified_dialog`);
         presentUnverifiedDialog('доступ подтверждён магазином, но не записан локально', 'confirmed');
@@ -1471,6 +1482,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           ? 'pending'
           : purchaseFailureUi(failurePhase, ONBOARDING_PURCHASE_SOURCES.has(source));
       // зачем (СПЕРВА ЛОГИ): одна строка на любой сбой покупки — по ней видно, что решило между тостом и диалогом.
+      releaseReason('purchase', failureUi === 'cancel' ? 'cancelled' : failureUi === 'pending' ? 'pending' : `failed_${purchaseErrorCategory(err)}`, failureUi === 'cancel' ? 'blocked' : failureUi === 'pending' ? 'info' : 'error');
       DebugLogger.warn('[PAYWALL]', `purchase:fail category=${purchaseErrorCategory(err)} phase=${PURCHASE_FAILURE_PHASE_LABEL[failurePhase]} code=${errCode || '-'} `
         + `cancelled=${String(wasCancelled)} plan=${selected} source=${source} ui=${failureUi}`);
       if ((err as { userCancelled?: boolean })?.userCancelled) {
@@ -1599,6 +1611,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем: тот же фирменный тост вместо системного Alert, что и в purchase —
         // ошибка подключения к стору при восстановлении обязана остаться видимой.
         emitAppEvent('action_toast', storeUnreachableToast());
+        releaseReason('restore_purchase', 'identity_not_ready', 'blocked');
         DebugLogger.warn('[PAYWALL]', `restore: личность не синхронизирована mode=${mode} — показан тост магазина`);
         return;
       }
@@ -1610,6 +1623,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // зачем (R1_PAYWALL_UX п.3): аккаунт сменился вокруг запроса к магазину — результат чужой, применять нельзя, но человек должен узнать, что произошло.
         // зачем (ревью 12.10 п.4): stale бывает и БЕЗ смены аккаунта (личность не подтянулась, блокировка не взята) — «Аккаунт сменился» тогда ложь; текст по факту.
         const staleUi = restoreStaleUi(isOperationAccountCurrent());
+        releaseReason('restore_purchase', 'stale_account', 'blocked');
         DebugLogger.warn('[PAYWALL]', `restore:stale mode=${mode} статус=${restoreResult.status} аккаунтТот=${String(isOperationAccountCurrent())} ui=${staleUi} — результат отброшен`);
         emitAppEvent('action_toast', staleUi === 'account_changed_toast' ? restoreAccountChangedToast() : restoreRetryToast());
         return;
@@ -1651,6 +1665,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         });
         if (applied.status !== 'ok' || !applied.value) {
           // зачем (R1_PAYWALL_UX п.3): stale — аккаунт сменился; ok+false — запись доступа не удалась на текущем аккаунте (реальный сбой, а не тишина).
+          releaseReason('restore_purchase', 'not_applied', 'error');
           DebugLogger.warn('[PAYWALL]', `restore:not_applied mode=${mode} статус=${applied.status} значение=${applied.status === 'ok' ? String(applied.value) : '-'} план=${plan}`);
           // зачем (ревью 12.10 п.4): «Аккаунт сменился» — только если он действительно сменился; иначе (stale без смены / ok+false) — «не удалось, попробуй ещё раз».
           emitAppEvent('action_toast', applied.status !== 'ok' && restoreStaleUi(isOperationAccountCurrent()) === 'account_changed_toast'
@@ -1698,12 +1713,14 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         // обязана остаться видимой пользователю. Системный Alert → фирменный тост.
         // зачем (65а, ревью): после «Проверить статус» фраза «подписок нет» толкает к повторной покупке, когда списание
         // могло пройти, — в режиме проверки направляем к восстановлению.
+        releaseReason('restore_purchase', 'no_access', 'blocked');
         console.warn('[PAYWALL] entitlement_sync:no_access', JSON.stringify({ mode })); // guard-ok: ранний исход логируется
         emitAppEvent('action_toast', paywallRestoreToast(mode === 'check' ? 'status_not_found' : 'no_active_subscriptions'));
       }
     } catch (syncError: unknown) {
       // зачем: сбой самого восстановления (сеть/стор) — тот же тост-механизм,
       // ошибка не должна тонуть молча.
+      releaseReason('restore_purchase', 'sync_threw', 'error');
       console.warn('[PAYWALL] entitlement_sync:threw', JSON.stringify({
         mode,
         name: syncError instanceof Error ? syncError.name : typeof syncError,

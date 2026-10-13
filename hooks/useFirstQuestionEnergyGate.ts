@@ -35,6 +35,7 @@ import {
   readEnergySessionStartStatus,
   type EnergySessionIntent,
 } from '../app/energy_session_operation_ledger';
+import { releaseReason } from '../app/release_reason'; // зачем (координатор 13.10): причина отказа ворот видна в релизе
 
 export type FirstQuestionEnergyGateOptions = Readonly<{
   intent: EnergySessionIntent;
@@ -88,7 +89,12 @@ export function useFirstQuestionEnergyGate(options: FirstQuestionEnergyGateOptio
 
   const charge = useCallback((): Promise<FirstQuestionChargeResult> => {
     const deps = depsRef.current;
-    if (!deps) return Promise.resolve('cancelled');
+    if (!deps) {
+      // зачем (координатор 13.10): ворота без зависимостей энергии — сбой, а не «нет энергии»; причина видна в релизе.
+      console.log(`[ENERGY-GATE] charge: нет зависимостей энергии screen=${screen} → cancelled`); // guard-ok: ранний выход называет причину
+      releaseReason('energy', 'gate_not_mounted', 'error');
+      return Promise.resolve('cancelled');
+    }
     return chargeFirstQuestion(deps, { activity, intent, screen, finalizeOn });
   }, [activity, intent, screen, finalizeOn]);
 

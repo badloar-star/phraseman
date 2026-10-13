@@ -1,0 +1,12 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] practice-002: шаг wait:4000
+[BATCH-SHOOT] practice-002: шаг await:#fc-blitz-opt-target
+[BATCH-SHOOT] practice-002: шаг tap:#fc-blitz-opt-target
+[BATCH-SHOOT] practice-002: элемент #fc-blitz-opt-target не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] practice-002: элемент #fc-blitz-opt-target не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] practice-002: элемент #fc-blitz-opt-target не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] practice-002: элемент #fc-blitz-opt-target не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] practice-002: шаг не выполнен: Error: step_target_not_found:#fc-blitz-opt-target
+[BATCH-SHOOT] practice-002: журнал приложения → 55 строк в _runs
+[BATCH-SHOOT] practice-002: error 18062мс step_target_not_found:#fc-blitz-opt-target+ждали_metro_26мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-32-00-015Z/practice-002.error.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=1 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-32-00-015Z.tsv

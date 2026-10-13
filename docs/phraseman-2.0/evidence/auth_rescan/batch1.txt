@@ -1,0 +1,47 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=6 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] system-015: шаг wait:1500
+[BATCH-SHOOT] system-015: шаг tap:#home-notification-center-button
+[BATCH-SHOOT] system-015: шаг не выполнен: Error: step_target_not_found:#home-notification-center-button
+[BATCH-SHOOT] system-015: журнал приложения → 0 строк в _runs
+[BATCH-SHOOT] system-015: error 14697мс step_target_not_found:#home-notification-center-button+ждали_metro_25мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/system-015.error.png
+[BATCH-SHOOT] results-009: шаг wait:1500
+[BATCH-SHOOT] results-009: шаг tap:#stats-primary-metric-year
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (5/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (6/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (7/8)
+[BATCH-SHOOT] results-009: элемент #stats-primary-metric-year не виден — ищем прокруткой вниз (8/8)
+[BATCH-SHOOT] results-009: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] results-009: шаг не выполнен: Error: step_target_not_found:#stats-primary-metric-year
+[BATCH-SHOOT] results-009: журнал приложения → 45 строк в _runs
+[BATCH-SHOOT] results-009: error 16596мс step_target_not_found:#stats-primary-metric-year+ждали_metro_3мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/results-009.error.png
+[BATCH-SHOOT] mistakes-panel-021: шаг wait:1500
+[BATCH-SHOOT] mistakes-panel-021: шаг tap:#mistakes-hub-start
+[BATCH-SHOOT] mistakes-panel-021: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (5/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (6/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (7/8)
+[BATCH-SHOOT] mistakes-panel-021: элемент #mistakes-hub-start не виден — ищем прокруткой вниз (8/8)
+[BATCH-SHOOT] mistakes-panel-021: шаг не выполнен: Error: step_target_not_found:#mistakes-hub-start
+[BATCH-SHOOT] mistakes-panel-021: журнал приложения → 0 строк в _runs
+[BATCH-SHOOT] mistakes-panel-021: error 15072мс step_target_not_found:#mistakes-hub-start+ждали_metro_3мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/mistakes-panel-021.error.png
+[BATCH-SHOOT] cards-section-034: журнал приложения → 48 строк в _runs
+[BATCH-SHOOT] cards-section-034: экран не классифицирован (дамп не снялся): Error: adb_failed args=shell uiautomator dump /sdcard/phm_health.xml status=137 error= stderr=
+[BATCH-SHOOT] cards-section-034: пустой кадр (доминанта 96.0%, цветов 582) — ждём и снимаем снова
+[BATCH-SHOOT] cards-section-034: blank_too_long 24639мс marker+пусто_3736мс+ждали_metro_2мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/cards-section-034.blank_too_long.png
+[BATCH-SHOOT] cards-section-035: журнал приложения → 34 строк в _runs
+[BATCH-SHOOT] cards-section-035: экран не классифицирован (дамп не снялся): Error: adb_failed args=shell uiautomator dump /sdcard/phm_health.xml status=137 error= stderr=
+[BATCH-SHOOT] cards-section-035: пустой кадр (доминанта 95.8%, цветов 73) — ждём и снимаем снова
+[BATCH-SHOOT] cards-section-035: blank_too_long 29120мс marker+пусто_6_повторов+ждали_metro_4мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-57-099Z/cards-section-035.blank_too_long.png
+[BATCH-SHOOT] cards-section-036: журнал приложения → 29 строк в _runs
+[BATCH-SHOOT] cards-section-036: пустой кадр (доминанта 96.2%, цветов 565) — ждём и снимаем снова
+[BATCH-SHOOT] cards-section-036: ok 15837мс marker+пусто_1318мс+склейка+ждали_metro_14мс → docs/phraseman-2.0/evidence/parity/cards-section-036.png
+[BATCH-SHOOT] готово (все попытки): ok=1 timeout=0 error=3 blank_too_long=2 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":3,"blank_too_long":2,"ok":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-34-57-099Z.tsv
+[BATCH-SHOOT] пустой экран дольше порога (находки для координатора, не кадры): см. журнал, файлы в _runs

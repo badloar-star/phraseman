@@ -21,7 +21,7 @@ describe('кандидаты Макетов 12.10', () => {
   it('settings-gap-008: dev-сид опроса не кладёт вопрос в заголовок и абзац (трижды одно и то же)', () => {
     const src = read('app/app_messages.ts');
     expect(src).toContain("...texts('title', kind === 'poll' ? DEV_POLL_TITLE : DEV_MESSAGE_TITLE),");
-    expect(src).toContain("...texts('message', kind === 'poll' ? DEV_POLL_EMPTY_BODY : DEV_MESSAGE_BODY),");
+    expect(src).toContain("...texts('message', kind === 'poll' ? DEV_POLL_BODY : DEV_MESSAGE_BODY),");
     expect(src).toContain("ru: 'Важное от Phraseman'");
   });
 

@@ -31,6 +31,6 @@ describe('R1 кандидаты Макетов: шапка набора, «Ус�
     expect(parse('await:Набор ещё не скачан')).toBe(JSON.stringify([{ op: 'await', value: 'Набор ещё не скачан' }]));
     expect(parse('await')).toBe('ERR:step_no_target:await');
     const py = read('scripts/dev_links_r1_steps.py');
-    expect(py).toContain("add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2', 'wait:3500', 'await:Набор ещё не скачан']");
+    expect(py).toContain("add('cards-gap-034', ['tap:#flashcards-pack-card-dev_demo_community_2', 'wait:5500', 'await:Набор ещё не скачан']");
   });
 });

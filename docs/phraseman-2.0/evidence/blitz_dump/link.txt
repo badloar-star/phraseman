@@ -1,0 +1,1 @@
+phraseman://dev_state?onboarding=done&intros=seen&cards=demo&plus=on&studyTarget=en&blitz_answer=correct&overlays=off&next=/flashcards_blitz_session?deck=saved%26sec=60

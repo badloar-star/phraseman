@@ -52,6 +52,7 @@ import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
+import SpireHomeSkeleton from './SpireHomeSkeleton';
 import SpireRulesSheet from './SpireRulesSheet';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
@@ -132,11 +133,13 @@ export default function SpireHomeScreen() {
       return undefined;
     }
     let alive = true;
+    const enteredAtMs = Date.now();
     DebugLogger.info(LOG, `home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: ${config === null ? 'нет (первый заход)' : `да (enabled=${String(config.enabled)})`}`);
     loadSpireConfig()
       .then((next) => {
         if (!alive) return;
         DebugLogger.info(LOG, `home: config.enabled=${String(next.enabled)}`);
+        DebugLogger.info('[SPIRE-FIRSTFRAME]', `первый кадр: ${config === null ? 'скелет SpireHomeSkeleton' : 'экран из памяти'}, конфиг пришёл через ${Date.now() - enteredAtMs} мс`);
         setConfig(next);
         if (next.enabled !== true) {
           // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): «выключен» может быть старым кэшем (6 ч) — один принудительный
@@ -283,7 +286,8 @@ export default function SpireHomeScreen() {
   const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, 'rankedBySteps')}`;
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
-  if (config === null) return <View style={s.root} testID="spire-loading" />;
+  // зачем (правило 10г, координатор 13.10): пока конфиг не прочитан (холодный старт, память пуста) — не пустой View, а скелет по форме экрана (SpireHomeSkeleton, testID spire-loading).
+  if (config === null) return <SpireHomeSkeleton lang={lang} />;
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (showAll && members) {

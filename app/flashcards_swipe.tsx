@@ -4359,7 +4359,16 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
   // Entitlement hydration and resolved denial render no paid activity content.
   // The paywall effect above owns navigation; this branch owns data exposure.
-  if (!accessResolved) return null;
+  // зачем (правило 10г «нет пустого экрана», координатор 13.10): пока решение по доступу не пришло (на холодном старте у бесплатного аккаунта оно бывало долгим),
+  // вместо пустого `null` — та же панель состояния, что и при старте тренировки (иконка, заголовок, «Готовим тренировку…»). Контента платной активности в ней нет,
+  // fail-closed не тронут: источники, карточки и кнопки по-прежнему появляются только после accessResolved.
+  if (!accessResolved) {
+    return (
+      <View testID="flashcards-swipe-access-pending" style={[styles.quickStartWrap, { paddingHorizontal: ds.spacing.lg }]}>
+        <PracticeStatePanel glass={swipeGlass} icon="sparkles-outline" title={text.settingsTitle} message={text.startStarting} />
+      </View>
+    );
+  }
 
   if (done) {
     const resultCorrect = devRunesFake ? devRunesFake.secondary : stats.correctSwipes;

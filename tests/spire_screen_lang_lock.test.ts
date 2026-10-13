@@ -31,7 +31,7 @@ describe('Шпиль: экран и язык интерфейса', () => {
     expect(home).toMatch(/const unlocked = config !== null && config\.enabled === true && !langLock\.locked;/);
     const locked = home.indexOf('if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>;');
     expect(locked).toBeGreaterThan(0);
-    expect(locked).toBeLessThan(home.indexOf('if (config === null) return <View style={s.root} testID="spire-loading" />;'));
+    expect(locked).toBeLessThan(home.indexOf('if (config === null) return <SpireHomeSkeleton lang={lang} />;'));
   });
 
   it('журнал [SPIRE-GATE] screen: решение, язык, причина, итог — одна строка на смену', () => {

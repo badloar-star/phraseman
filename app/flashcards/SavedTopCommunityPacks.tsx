@@ -216,7 +216,7 @@ export default function SavedTopCommunityPacks({
       </View>
 
       {top.length > 0 ? (
-        <ScrollView testID="saved-top-community-rail" horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.rail} decelerationRate="fast">
+        <ScrollView testID="saved-top-community-rail" horizontal showsHorizontalScrollIndicator={false} style={styles.railClip} /* зачем (13.10): тень не режется рельсой на Android, см. railClip */ contentContainerStyle={styles.rail} decelerationRate="fast">
           {top.map((pack) => (
             <CommunityHighlightRow
               key={`saved_top_${pack.id}`}
@@ -277,7 +277,8 @@ const styles = StyleSheet.create({
   sectionTitle: { flex: 1, minWidth: 0, flexShrink: 1, fontSize: 16, lineHeight: 21, fontWeight: '800' },
   seeAll: { minHeight: 44, maxWidth: '42%', minWidth: 44, flexShrink: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 3 },
   seeAllText: { minWidth: 0, flexShrink: 1, fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'right' },
-  rail: { flexDirection: 'row', gap: 10, paddingBottom: 4 },
+  railClip: { marginTop: -8, marginBottom: -4 }, // сверху +8 запаса, снизу +8 вместо прежних 4 → место в раскладке то же
+  rail: { flexDirection: 'row', gap: 10, paddingTop: 8, paddingBottom: 8 },
   // D158: та же высота, что у скелетона секции (обложка 112 + две строки) — экран не прыгает.
   unavailable: { minHeight: 144, alignItems: 'center', justifyContent: 'center', gap: 12, paddingBottom: 4 },
   unavailableTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },

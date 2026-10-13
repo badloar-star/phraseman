@@ -23,7 +23,8 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
   return (
     <View testID="spire-friends">
       <Text accessibilityRole="header" style={[s.head, { color: p.text }]}>{spireText(lang, 'friendsWeek')}</Text>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.list} decelerationRate="fast">
+      {/* зачем (владелец 13.10, обрезанные круглые кнопки на Android): горизонтальный ScrollView режет тень (boxShadow) по своей высоте — вертикальный запас внутри + такой же отрицательный margin снаружи, раскладка прежняя. */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} style={s.rail} contentContainerStyle={s.list} decelerationRate="fast">
         {friends.map((f) => {
           const stone = f.tier === null ? '—' : spireTierName(f.tier, lang);
           return (
@@ -41,7 +42,8 @@ function SpireFriendsRow({ lang, friends }: Readonly<{ lang: Lang; friends: read
 
 const s = StyleSheet.create({
   head: { marginTop: 26, marginBottom: 12, marginHorizontal: 2, fontSize: 16, lineHeight: 21, fontWeight: '700' },
-  list: { gap: 10, paddingRight: V2.screenPad },
+  rail: { marginVertical: -8 },
+  list: { gap: 10, paddingRight: V2.screenPad, paddingVertical: 8 },
   chip: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 46, paddingLeft: 8, paddingRight: 14, borderRadius: 23 },
   dot: { width: 30, height: 30, borderRadius: 15 },
   name: { fontSize: 16, fontWeight: '700', maxWidth: 140 },

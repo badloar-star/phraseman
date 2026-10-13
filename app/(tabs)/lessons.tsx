@@ -5725,7 +5725,10 @@ export default function LessonsTab({
                   showsHorizontalScrollIndicator={false}
                   // зачем: рельса обязана иметь свою высоту ДО замера контента —
                   // иначе первый кадр прыгает (правило стабильности раскладки).
-                  style={{ flexGrow: 0 }}
+                  // зачем (владелец 13.10, скрин «Обучение»: «обрезаны иконки внизу — комбо и новые v2»): горизонтальный ScrollView на Android
+                  // режет всё, что выходит за его высоту, — низ круга 40×40 и его тень (nestedBoxShadow). Вертикальный запас внутри контента
+                  // (paddingVertical 8) + такой же отрицательный margin на самом ScrollView: видимая область шире, а место в раскладке прежнее.
+                  style={{ flexGrow: 0, marginVertical: -8 }}
                   onLayout={(e) => setLegacyRailWidth(e.nativeEvent.layout.width)}
                   onContentSizeChange={(w) => setLegacyRailContentWidth(w)}
                   contentContainerStyle={{
@@ -5733,6 +5736,7 @@ export default function LessonsTab({
                     alignItems: "center",
                     gap: 10,
                     paddingRight: 18,
+                    paddingVertical: 8,
                   }} decelerationRate="fast"
                 >
                   {/* зачем (владелец 2026-09-17): «комбинированный урок» — несколько тем

@@ -40,6 +40,18 @@
 .spec td:first-child { border-radius: 12px 0 0 12px; } .spec td:last-child { border-radius: 0 12px 12px 0; }
 .spec code { font-size: 12px; color: #C6C6CA; }
 .spec-wrap { overflow-x: auto; }
+/* зачем (координатор 13.10): «Итог недели» — мини-башня новой лиги вместо одной монеты; монета игрока — значок в углу башни */
+.wk-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-top: 12px; }
+.wk { position: relative; display: flex; gap: 14px; align-items: center; padding: 14px 16px 14px 12px; border-radius: 24px; background: #1B1B1F; box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 14px 30px rgba(0,0,0,.4); }
+.wk .mt { position: relative; width: 58px; height: 103px; flex: none; }
+.wk .mt svg { display: block; width: 58px; height: auto; -webkit-mask-image: radial-gradient(ellipse 72% 62% at 50% 42%, #000 66%, transparent 100%); mask-image: radial-gradient(ellipse 72% 62% at 50% 42%, #000 66%, transparent 100%); }
+.wk .mt .coin { position: absolute; right: -6px; bottom: -2px; border-radius: 50%; box-shadow: 0 0 0 3px #1B1B1F; }
+.wk .ov { font-size: 12px; line-height: 16px; letter-spacing: 2px; font-weight: 700; color: #8E8E94; text-transform: uppercase; }
+.wk .ti { margin-top: 4px; font-size: 19px; line-height: 23px; font-weight: 700; letter-spacing: -.2px; }
+.wk .su { margin-top: 4px; font-size: 14px; line-height: 19px; color: #A6A6A8; }
+.wk .x { position: absolute; top: 12px; right: 12px; width: 30px; height: 30px; border-radius: 50%; background: #26262B; display: flex; align-items: center; justify-content: center; color: #A6A6A8; }
+.wk .grow { flex: 1; min-width: 0; padding-right: 30px; }
+.wk-cap { font-size: 13px; color: var(--sec); margin: 0 0 6px 4px; }
 </style>
 </head>
 <body>
@@ -61,6 +73,9 @@
       <div class="spec-wrap"><table class="spec" id="spec"></table></div>
     </div>
   </div>
+  <h2 class="sec-h">Итог недели — мини-башня новой лиги</h2>
+  <p class="sec-p">Карточка «Итог недели» на экране Шпиля (SpireWeekResultCard): слева вместо одной монеты — верхушка башни лиги, в которой игрок проведёт новую неделю (навершие, конус, барабан, Страж и этаж под ним, тот же наряд), монета ранга игрока — значок в углу. Повышение: окна горят и навершие светится. Остаёшься и понижение — окна тёмные, без свечения. Тексты карточки — из кода.</p>
+  <div class="wk-row" id="weekRow"></div>
 </div>
 <script src="kit.js"></script>
 <script>
@@ -283,8 +298,10 @@ function towerSvg(L, o = {}) {
   body += cornRims(p, L) + G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map((fl) => parapet(fl, p, L)).join('') + spireSvg(oo, p, L, P);
   const mfl = G.floors[(oo.summit ? FLOORS : my) - 1];
   const mk = oo.noMarker ? '' : markerSvg(p, mfl.x0 + mfl.w + 34, mfl.y + mfl.h / 2 + 2, L.lit);
-  const vb = oo.crop === 'top' ? [G.top - 300, G.top + 120] : oo.crop === 'mid' ? [G.floors[9].y - 40, G.floors[5].y + 70] : [0, G.H];
-  return `<svg viewBox="0 ${f1(vb[0])} ${TW} ${f1(vb[1] - vb[0])}" width="${TW}" height="${f1(vb[1] - vb[0])}" xmlns="http://www.w3.org/2000/svg" data-tower data-league="${L.id}" data-center="${f1(mfl.y + mfl.h / 2)}"><defs>${defs(p, L, P)}</defs>${oo.clean ? '' : `<rect width="${TW}" height="${G.H}" fill="url(#${p}sky)"/>`}${sceneSvg(oo, p, L)}${body}${mk}</svg>`;
+  // зачем (координатор 13.10, «Итог недели»): crop 'mini' — верхушка башни (навершие, конус, барабан, Страж-15 и этаж 14) для карточки итога; узкая по x
+  const vb = oo.crop === 'mini' ? [G.top - 236, G.top + 106] : oo.crop === 'top' ? [G.top - 300, G.top + 120] : oo.crop === 'mid' ? [G.floors[9].y - 40, G.floors[5].y + 70] : [0, G.H];
+  const vx = oo.crop === 'mini' ? [CX - 96, 192] : [0, TW];
+  return `<svg viewBox="${vx[0]} ${f1(vb[0])} ${vx[1]} ${f1(vb[1] - vb[0])}" width="${vx[1]}" height="${f1(vb[1] - vb[0])}" xmlns="http://www.w3.org/2000/svg" data-tower data-league="${L.id}" data-center="${f1(mfl.y + mfl.h / 2)}"><defs>${defs(p, L, P)}</defs>${oo.clean ? '' : `<rect width="${TW}" height="${G.H}" fill="url(#${p}sky)"/>`}${oo.crop === 'mini' ? '' : sceneSvg(oo, p, L)}${body}${mk}</svg>`;
 }
 
 /* ===================== СТРАНИЦА ===================== */
@@ -326,6 +343,31 @@ if (PV === 'all') {
   document.getElementById('sm').addEventListener('click', () => { S.summit = !S.summit; S.sel = S.summit ? FLOORS : S.my; renderMain(); });
   document.getElementById('phoneMain').addEventListener('click', (e) => { const g = e.target.closest('.fl'); if (!g) return; S.sel = Number(g.dataset.f); renderMain(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') { S.li = (S.li + 11) % 12; renderMain(); } else if (e.key === 'ArrowRight') { S.li = (S.li + 1) % 12; renderMain(); } });
+}
+
+/* ===================== ИТОГ НЕДЕЛИ — МИНИ-БАШНЯ ===================== */
+// зачем (координатор 13.10, пакет Дизайна spire-league-tower-skins): в карточке итога недели башни нет — мини-макет для переноса.
+// Источник текстов — spire_game_strings (weekUp / weekStay / weekDown) и spireWeekResultLines: место · ступени · монеты либо «новая неделя, все с 1 этажа».
+function weekCardHtml(L, kind, sub) {
+  const title = kind === 'up' ? `Ты поднимаешься в ${L.ru}` : kind === 'down' ? `Ты спускаешься в ${L.ru}` : `Остаёшься в шпиле ${L.ru}`;
+  const mini = towerSvg(L, kind === 'up' ? { summit: true, noMarker: true, noSelect: true, clean: true, crop: 'mini' } : { myFloor: 1, noMarker: true, noSelect: true, clean: true, crop: 'mini' });
+  return `<div class="wk"><div class="mt">${mini}${K.coinImg(5, 26)}</div><div class="grow"><div class="ov">Итог недели</div><div class="ti">${title}</div><div class="su">${sub}</div></div><span class="x">${K.icon('close', 's16')}</span></div>`;
+}
+function weekRowHtml() {
+  const by = (id) => LEAGUES.find((L) => L.id === id);
+  return [
+    ['Повышение', weekCardHtml(by('basalt'), 'up', '3 место · 47 ступеней · +150 · +100 монет')],
+    ['Остаёшься', weekCardHtml(by('granite'), 'stay', '12 место · 25 ступеней · новая неделя, все с 1 этажа')],
+    ['Понижение', weekCardHtml(by('basalt'), 'down', '27 место · 5 ступеней · новая неделя, все с 1 этажа')],
+    ['Повышение в высшую лигу', weekCardHtml(by('diamond'), 'up', '1 место · 112 ступеней · +300 · +100 монет')],
+    ['Повышение — Мрамор', weekCardHtml(by('marble'), 'up', '2 место · 64 ступени · +200 · +100 монет')],
+    ['Остаёшься — Обсидиан', weekCardHtml(by('obsidian'), 'stay', '9 место · 31 ступень · новая неделя, все с 1 этажа')],
+  ].map(([cap, h]) => `<div><div class="wk-cap">${cap}</div>${h}</div>`).join('');
+}
+if (PV === 'week') {
+  document.body.innerHTML = `<div style="padding:16px;background:#0C0D10;width:760px"><div class="wk-row" style="grid-template-columns:repeat(2,1fr)">${weekRowHtml()}</div></div>`;
+} else if (!PV) {
+  document.getElementById('weekRow').innerHTML = weekRowHtml();
 }
 
 </script>

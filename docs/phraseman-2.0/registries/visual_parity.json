@@ -3083,9 +3083,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 22,
-        "label": "Новый набор",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 92,
+        "label": "Новый набор — «Минимум 10 карточек»",
+        "mapping": "manual_rebind"
       },
       "screen": "Создание набора — все состояния",
       "state": "Минимум 10 карточек",
@@ -3103,20 +3103,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] у №22 нет состояния «минимум 10 карточек» — дорисовать тост или перепривязать",
-        "выбрано «Все», в образце «Только я»",
-        "кнопка «Создать набор» скрыта под тостом",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец дорисован по коду community_pack_create.tsx — cards-v2 №92; переснять на ru (для 072 — после коммита Дизайна: тон info «Сообщение»)"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T13:02:23.133Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_triage_b_2026_10_13": "cards-v2 №92 «Новый набор — «Минимум 10 карточек»» дорисован 13.10 по коду"
       },
       "sverka_verdict": "Экран «Новый набор» совпадает по составу (название, кто видит, уровень, список карточек), тост в общем стиле.",
       "shot_at": "2026-10-13T10:42:59.580Z",
@@ -3216,9 +3214,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 22,
-        "label": "Новый набор",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 93,
+        "label": "Новый набор — сохранён на устройстве (нет сети)",
+        "mapping": "manual_rebind"
       },
       "screen": "Создание набора — все состояния",
       "state": "Офлайн — сохранено на устройстве",
@@ -3238,20 +3236,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] у №22 нет офлайн-состояния — дорисовать",
-        "информационный тост озаглавлен «Что-то пошло не так» — тон ошибки для сообщения о сохранении; предложение: заголовок «Сообщение», как у тоста «Из видео»",
-        "кнопка «Создать набор» скрыта под тостом",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец дорисован по коду community_pack_create.tsx — cards-v2 №93; переснять на ru (для 072 — после коммита Дизайна: тон info «Сообщение»)"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T13:02:23.133Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_triage_b_2026_10_13": "cards-v2 №93 «Новый набор — сохранён на устройстве (нет сети)» дорисован 13.10 по коду"
       },
       "sverka_verdict": "Экран «Новый набор» совпадает по составу, показан тост сохранения без сети.",
       "shot_at": "2026-10-13T10:18:17.111Z",
@@ -3262,9 +3258,9 @@
       "source": "STATE_CHECKLIST",
       "mockup": {
         "file": "docs/design/v2-app/cards-v2.html",
-        "phone": 22,
-        "label": "Новый набор",
-        "mapping": "rebind_coordinator_2026-10-12"
+        "phone": 94,
+        "label": "Набор сохранён — хаб Карточек, «Готово»",
+        "mapping": "manual_rebind"
       },
       "screen": "Создание набора — все состояния",
       "state": "Набор сохранён",
@@ -3282,18 +3278,18 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[образец] перепривязать к хабу «Карточки» с тостом успеха или дорисовать",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] образец дорисован по коду community_pack_create.tsx — cards-v2 №94; переснять на ru (для 072 — после коммита Дизайна: тон info «Сообщение»)"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-13T13:02:23.133Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
+        "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
+        "macets_triage_b_2026_10_13": "cards-v2 №94 «Набор сохранён — хаб Карточек, «Готово»» дорисован 13.10 по коду"
       },
       "sverka_verdict": "Образец ≠ состояние: после сохранения приложение возвращает на хаб «Карточки» с тостом «готово», образец №22 — форма нового набора.",
       "shot_at": "2026-10-13T10:18:17.111Z",

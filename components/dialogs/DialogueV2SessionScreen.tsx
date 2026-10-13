@@ -330,7 +330,8 @@ export function DialogueV2SessionScreen({
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <DialogueGlassBackButton glass={glass} onPress={requestBack} accessibilityLabel={labels.back} />
             <View style={{ flex: 1, minWidth: 0, marginLeft: 4 }}>
-              <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
+              {/* зачем (разбор зон 13.10, dialogs-013 / dialogs-036 / dialogs-gap-016; образец dialogs.html `.dh .ti { white-space: nowrap; text-overflow: ellipsis }`): название сцены — одна строка с «…», а не перенос на две; полное название читает озвучка (header) и показывает брифинг */}
+              <Text accessibilityRole="header" numberOfLines={1} ellipsizeMode="tail" maxFontSizeMultiplier={1.3} style={{ color: glass.text, fontSize: 20, lineHeight: 24, fontWeight: '700', letterSpacing: -0.2 }}>
                 {title}
               </Text>
               {/* зачем (эмулятор 02.10): энергия и плашка лимита стояли в строке заголовка и

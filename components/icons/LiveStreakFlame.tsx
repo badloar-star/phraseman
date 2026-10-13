@@ -42,7 +42,7 @@ interface LiveStreakFlameProps {
 function LiveStreakFlameBase({ themeMode, streakDays, size, burstToken, style }: LiveStreakFlameProps) {
   const reduceMotion = useReduceMotion();
   const { theme: glassTheme } = useTheme();
-  const themeAccent = glassTheme.accent;
+  const themeAccent = glassTheme.accent; // light-accent-ok: только цвет свечения (22–40 % альфа), не график
   const variant = useMemo(() => getStreakFireIconVariant(themeMode, streakDays), [themeMode, streakDays]);
   // зачем: не пересчитывать цвет свечения на каждом тике анимации — зависит только от акцента и ступени серии
   const glowColor = useMemo(() => glassTone(themeAccent, 0.22 + variant.intensity * 0.18), [themeAccent, variant.intensity]);

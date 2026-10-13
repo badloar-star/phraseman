@@ -70,7 +70,7 @@ function themePair(g: GlassTokens): readonly [string, string] {
   }
   const gr = g.accentGradient;
   if (gr && gr.length >= 2) return [gr[0]!, gr[gr.length - 1]!];
-  return [g.accent, g.accentBorder];
+  return [g.accentGraphic, g.accentBorder]; // зачем (светлый акцент): запасной градиент — графика
 }
 
 // зачем (владелец 12.10, стиль «Тень»): внутренних кромок-фасок (bevel) и колец больше нет — плитки и «Свежий» блок это плашки

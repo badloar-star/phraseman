@@ -121,7 +121,7 @@ export function SaveToCardsButton({
           style={[
             styles.glow,
             glowStyle,
-            { backgroundColor: colors.accent },
+            { backgroundColor: colors.accent }, // light-accent-ok: цвет приходит пропом, вызывающие передают text; вуаль свечения
           ]}
         />
       ) : null}
@@ -145,7 +145,7 @@ export function SaveToCardsButton({
         <Ionicons
           name={saved ? 'bookmark' : 'bookmark-outline'}
           size={20}
-          color={saved ? colors.accent : colors.text}
+          color={saved ? colors.accent : colors.text} // light-accent-ok: цвет приходит пропом (вызывающие передают text)
         />
       </AnimatedPressable>
     </View>

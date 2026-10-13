@@ -330,7 +330,7 @@ export const V2Counter = memo(React.forwardRef<View, {
   const inner = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
   const bg = tone === 'stars' ? P.goldSoft : tone === 'gems' ? P.accentSoft : tone === 'miss' ? P.dangerSoft : P.card;
-  const fg = tone === 'stars' ? P.gold : tone === 'gems' ? P.accent : tone === 'miss' ? P.danger : P.text;
+  const fg = tone === 'stars' ? P.gold : tone === 'gems' ? P.accentTextSafe : tone === 'miss' ? P.danger : P.text;
 
   return (
     <View

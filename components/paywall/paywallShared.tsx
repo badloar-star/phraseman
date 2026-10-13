@@ -81,7 +81,7 @@ export function usePaywallChrome(overrideThemeMode?: ThemeMode): PaywallChrome {
     // palette so variants A–G and subscription management cannot drift apart.
     const tc: ThemePaywallConfig = {
       ...base,
-      heroAccent: theme.accent,
+      heroAccent: accentGraphicOf(theme), // зачем (светлый акцент): иконки и вуали пейвола — графика; в тёмном равен accent
       selectedCardBorder: accentGraphicOf(theme), // зачем (светлый акцент): контур выбранного тарифа
       selectedCardBg: glassAlpha(theme.accent, '26'),
       unselectedCardBg: glassAlpha(theme.bgSurface, 'E8'),

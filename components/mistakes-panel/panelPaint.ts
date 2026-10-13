@@ -24,7 +24,7 @@ export function themePair(g: GlassTokens): readonly [string, string] {
   }
   const gr = g.accentGradient;
   if (gr && gr.length >= 2) return [gr[0]!, gr[gr.length - 1]!];
-  return [g.accent, g.accentBorder];
+  return [g.accentGraphic, g.accentBorder]; // зачем (светлый акцент): запасной градиент кольца — графика
 }
 
 // зачем (владелец 12.10, «второй вариант делаем», стиль «Тень»): контейнеры БЕЗ обводок и внутренних кромок. Прежние `ringShadow`/`bevelShadow`

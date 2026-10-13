@@ -191,7 +191,7 @@ export const Pill = memo(function Pill({
   const bg = tone === 'accent' ? P.accentSoft
     : tone === 'gold' ? P.goldSoft
       : tone === 'danger' ? P.dangerSoft : P.card;
-  const fg = color ?? (tone === 'accent' ? P.accent
+  const fg = color ?? (tone === 'accent' ? P.accentTextSafe // зачем (светлый акцент): текст/значок цвета темы на плашке
     : tone === 'gold' ? P.gold
       : tone === 'danger' ? P.danger : P.text);
   return (

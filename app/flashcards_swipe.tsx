@@ -3668,7 +3668,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         <View style={styles.sourceList}>
           {sources.map((source) => {
             const selected = selectedIds.has(source.id);
-            const selectedAccent = t.accent;
+            const selectedAccent = t.accentGraphic ?? t.accent; // зачем (светлый акцент): круг выбора набора — графика
             return (
               <TouchableOpacity
                 key={source.id}

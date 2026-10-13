@@ -1,6 +1,6 @@
 {
   "_comment": "Базовая линия числа мест, где графика/текст/значок красится сырым accent (scripts/light_accent_graphics_scan.mjs). Может только УМЕНЬШАТЬСЯ: починили место — уменьшите число; новое место — используйте accentBorder/progressGradient/accentText или пометьте строку `light-accent-ok: причина`.",
-  "total": 56,
+  "total": 47,
   "counts": {
     "app/(tabs)/home.tsx": 1,
     "app/(tabs)/lessons.tsx": 4,
@@ -8,9 +8,8 @@
     "app/ai_companion_session.tsx": 2,
     "app/ai_dialog_briefing.tsx": 1,
     "app/ai_dialog_session.tsx": 6,
-    "app/flashcards/CardsHubV2.tsx": 1,
     "app/flashcards/CollectionListView.tsx": 1,
-    "app/flashcards_swipe.tsx": 2,
+    "app/flashcards_swipe.tsx": 1,
     "app/flashcards_voice_picker.tsx": 1,
     "app/lesson_complete.tsx": 2,
     "app/streak_stats.tsx": 7,
@@ -18,17 +17,14 @@
     "components/DialogsTabContent.tsx": 2,
     "components/NotificationPermissionModal.tsx": 1,
     "components/ReviewPromptModal.tsx": 1,
-    "components/SaveToCardsButton.tsx": 2,
     "components/SpeakingPanel.tsx": 1,
     "components/StatsPremiumBlur.tsx": 1,
     "components/friends/FriendsGlassKit.tsx": 1,
-    "components/icons/LiveStreakFlame.tsx": 1,
     "components/lesson_help_theory_ui.tsx": 1,
-    "components/mistakes-panel/panelPaint.ts": 1,
     "components/paywall/PaywallPlus.tsx": 1,
-    "components/paywall/paywallShared.tsx": 8,
-    "components/ui/v2_sheet.tsx": 2,
-    "components/ui/v2_ui.tsx": 3
+    "components/paywall/paywallShared.tsx": 7,
+    "components/ui/v2_sheet.tsx": 1,
+    "components/ui/v2_ui.tsx": 2
   },
   "deepTotal": 322,
   "deepCounts": {

@@ -11,6 +11,7 @@ import { Redirect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useMemo } from 'react';
 
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
+import { safeRouterBack } from './navigation_back';
 import SessionResultScreen from './flashcards/SessionResultScreen';
 import { devCardsResultFixture, isDevCardsResultState } from './flashcards/dev_cards_result_fixture';
 
@@ -39,7 +40,8 @@ export default function DevCardsResultPreview() {
       mistakes={fixture.mistakes}
       retryLabel="Ещё раз"
       onRetryWrong={() => console.log(`${LOG} cards_result_preview: «Ещё раз» — в превью ничего не запускается`)} // guard-ok: действие превью
-      onDone={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+      // зачем (сторож navigation_back_underlay_contract, Темы 13.10): единый безопасный возврат, без нативного router.back()
+      onDone={() => safeRouterBack(router)}
       testID="fc-blitz-result"
     />
   );

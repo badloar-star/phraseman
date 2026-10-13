@@ -172,3 +172,10 @@ set_steps('onboarding-018', ['wait:3500'])
 # settings-gap-002/003/004/030 (Авторизация AUTH_ZONES_DIFF_ROWS_R1): главная Настроек снималась сверху, образцы — низ страницы («PHRASEMAN PLUS»). 002/003/030 уже несут прокрутку (chain7 _SET_BOTTOM);
 # 004 («Plus по коду»: see:#settings-plus-access-details) шёл без прокрутки — цель ниже края экрана (правило Сверки y>2150): явная прокрутка вниз, затем see: и пауза.
 set_steps('settings-gap-004', ['wait:1200', 'scroll:down', 'scroll:down', 'see:#settings-plus-access-details', 'wait:500'])
+
+# paywalls-024/025, profile-022/023 (координатор 13.10): тап #manage-subscription-reasons-continue → submitCancel → при отсутствии шага удержания openStoreCancel →
+# Linking.openURL(getStoreManageUrl()) — выход в магазин управления подпиской; с аккаунтов владельца НЕ трогаем. Тап убран; состояния «оверлей удержания»
+# (024/022) шагами недостижимы — нужна dev-подмена шага удержания у Ядра (например saveOffer=progress), пока кадр показывает список причин.
+for _rid in ('paywalls-024', 'paywalls-025', 'profile-022', 'profile-023'):
+    if _rid in ENTRIES:
+        ENTRIES[_rid]['steps'] = [x for x in ENTRIES[_rid]['steps'] if x != 'tap:#manage-subscription-reasons-continue']

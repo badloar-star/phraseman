@@ -34,6 +34,8 @@ import { LinearGradient } from '../SafeLinearGradient';
 import type { CelebrationPalette } from './celebrationContent';
 import type { CelebrationSceneId } from './celebrationScenes';
 import { CELEBRATION_SCENE_COLORS as C } from '../../constants/celebrationSceneColors';
+import { triLang } from '../../constants/i18n';
+import { useLang } from '../LangContext';
 
 const AnimatedCircle = Reanimated.createAnimatedComponent(Circle);
 
@@ -359,6 +361,8 @@ const CoachScene = memo(function CoachScene({ palette, animate }: SceneViewProps
 // ═══════════ 7 · РАЗБОР ОШИБОК ═══════════
 // Карта ударов: 320 вычёркивание · 560 верная фраза · 800 объяснение
 const ErrorsScene = memo(function ErrorsScene({ palette, animate }: SceneViewProps) {
+  // зачем (13.10, сторож JSX-текста): пояснение под примером было только по-русски — теперь на языке интерфейса
+  const { lang } = useLang();
   const strike = useCue(animate, 320, 300);
   const badOut = useCue(animate, 320, 480);
   const good = useCue(animate, 560, 460);
@@ -379,15 +383,15 @@ const ErrorsScene = memo(function ErrorsScene({ palette, animate }: SceneViewPro
     <View style={styles.center}>
       <View style={styles.fixRow}>
         <Reanimated.View style={badStyle}>
-          <Text style={styles.badText}>I am go to work</Text>
+          <Text style={styles.badText}>I am go to work</Text>{/* i18n-ok: учебный пример ошибки на английском, не перевод */}
           <Reanimated.View style={[styles.strikeLine, strikeStyle]} />
         </Reanimated.View>
         <Reanimated.View style={[styles.goodWrap, goodStyle]}>
-          <Text style={[styles.goodText, { color: palette.bright }]}>I go to work</Text>
+          <Text style={[styles.goodText, { color: palette.bright }]}>I go to work</Text>{/* i18n-ok: учебный пример на английском, не перевод */}
         </Reanimated.View>
       </View>
       <Reanimated.View style={whyStyle}>
-        <Text style={[styles.whyText, { color: palette.rowSub }]}>после «I» — простая форма, без «am»</Text>
+        <Text style={[styles.whyText, { color: palette.rowSub }]}>{triLang(lang, { ru: 'после «I» — простая форма, без «am»', uk: 'після «I» — проста форма, без «am»', en: 'after “I” — the plain form, no “am”', es: 'tras «I», forma simple, sin «am»', 'pt-BR': 'depois de “I”, forma simples, sem “am”', vi: 'sau “I” dùng dạng đơn, không có “am”', id: 'setelah “I” pakai bentuk dasar, tanpa “am”', tr: '“I”dan sonra yalın hâl, “am” yok', pl: 'po „I” — forma prosta, bez „am”' })}</Text>
       </Reanimated.View>
     </View>
   );

@@ -916,7 +916,7 @@ function DailyPhraseCard({
                   onPress={closeDetails}
                   hitSlop={8}
                   accessibilityRole="button"
-                  accessibilityLabel="Close"
+                  accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                   style={({ pressed }) => [
                     styles.closeButton,
                     { backgroundColor: t.bgSurface2 },

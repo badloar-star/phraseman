@@ -2179,6 +2179,7 @@ function RegistrationPromptModal({
             >
               <Text style={[styles.laterText, { color: t.wrong, fontSize: f.caption }]}>
                 DEBUG: Сбросить identity и войти заново
+                {/* i18n-ok: отладочная кнопка, только ENABLE_AUTH_IDENTITY_DEBUG */}
               </Text>
             </Pressable>
           )}

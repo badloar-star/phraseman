@@ -464,7 +464,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText }: P
             />
           </View>
           <ExamFooter bottomInset={0}>
-            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel="Back" />
+            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/lessons_list' as never)} accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
           </ExamFooter>
         </SafeAreaView>
       </ScreenGradient>

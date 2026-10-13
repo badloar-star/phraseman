@@ -5341,7 +5341,7 @@ export default function LessonsTab({
                 >
                   <View
                     accessibilityRole="button"
-                    accessibilityLabel="Dev: switch study target language"
+                    accessibilityLabel="Dev: switch study target language" /* i18n-ok: dev-кнопка смены языка обучения, только __DEV__ */
                     style={{
                       flexDirection: "row",
                       alignItems: "center",

@@ -2329,6 +2329,7 @@ export default function LearningV2DirectSessionPlayerV1() {
         <Ionicons name="mic" size={18} color={g.ctaInk} />
         <Text style={[styles.devJumpToVoiceText, { color: g.accentInk }]}>
           DEV · К УСТНО
+          {/* i18n-ok: dev-кнопка перехода к Устно, только тестовая сессия */}
         </Text>
       </Pressable>
     </View>
@@ -3167,7 +3168,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                         color={g.secondary}
                       />
                       <Text style={[styles.undoText, { color: g.secondary }]}>
-                        Назад
+                        {triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
                       </Text>
                     </Pressable>
                   )}

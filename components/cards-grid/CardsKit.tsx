@@ -212,7 +212,7 @@ export const KitSegment = memo(function KitSegment({ g, options, value, onChange
 /** Круглый индикатор выбора 26: выбран — светлый круг с галочкой, не выбран — кольцо (индикатор состояния, не обводка контейнера). */
 export const KitCheck = memo(function KitCheck({ g, on }: Readonly<{ g: GlassTokens; on: boolean }>) {
   return (
-    <View style={[styles.check, on ? { backgroundColor: g.cta } : { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${g.text}4D` }] }]}> // shadow-ok: кольцо индикатора выбора (радио), а не обводка контейнера
+    <View style={[styles.check, on ? { backgroundColor: g.cta } : { boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1.5, color: `${g.text}4D` }] /* shadow-ok: кольцо индикатора выбора (радио), а не обводка контейнера */ }]}>
       {on ? <Ionicons name="checkmark" size={16} color={g.ctaInk} /> : null}
     </View>
   );

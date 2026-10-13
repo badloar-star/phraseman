@@ -430,7 +430,7 @@ function LessonHelp() {
             <Warn
               t={tg}
               f={f}
-              text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
+              text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español." /* i18n-ok: подсказка показывается только при испанском интерфейсе (showSpanishTheoryNotice) */
             />
           ) : null}
           {isFrenchTarget && frenchTheoryGateCopy ? (

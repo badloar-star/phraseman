@@ -2537,7 +2537,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     {titleModalSubtitle}
                   </Text>
                 </View>
-                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, boxShadow: nestedBoxShadow(shadowGlass) }}>
+                <TouchableOpacity activeOpacity={0.75} onPress={() => setTitleModalVisible(false)} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? 'rgba(246,227,161,0.10)' : t.bgSurface2, boxShadow: nestedBoxShadow(shadowGlass) }}>
                   <Ionicons name="close" size={22} color={t.textPrimary}/>
                 </TouchableOpacity>
               </View>

@@ -1349,7 +1349,7 @@ export default function SettingsMain() {
                 onPressIn={() => doHaptic()}
                 onPress={() => requestOpenDevHub('settings_top')}
               >
-                <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, textDecorationLine: 'underline' }}>Dev Hub</Text>
+                <Text style={{ color: glass.mutedText, fontSize: 13, lineHeight: 18, textDecorationLine: 'underline' }}>Dev Hub</Text>{/* i18n-ok: ссылка в Dev Hub, только dev-сборка */}
               </TouchableOpacity>
             </>
           ) : null}

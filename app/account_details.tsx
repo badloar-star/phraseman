@@ -290,7 +290,7 @@ export default function AccountDetailsScreen() {
                   glass={glass}
                   testID="account-email-row"
                   icon="mail-outline"
-                  title="Email"
+                  title={triLang(lang, { ru: 'Почта', uk: 'Пошта', en: 'Email', es: 'Correo', 'pt-BR': 'E-mail', vi: 'Email', id: 'Email', tr: 'E-posta', pl: 'E-mail' })}
                   sub={linkedAuth.email || '—'}
                   right={linkedAuth.email ? (
                     <PressableHybrid

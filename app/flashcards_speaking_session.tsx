@@ -1727,7 +1727,7 @@ RU: ${card.translation}`}
             // зачем (`oral('ok')` макета, `.bot`): после зачёта внизу панель «Верно» с эталоном и «Дальше» — переход только по нажатию
             <View style={styles.okBot} testID="fc-speak-ok-bar">
               <LinearGradient pointerEvents="none" colors={[`${speakingGlass.bgBottom}00`, speakingGlass.bgBottom]} locations={[0, 0.3]} style={StyleSheet.absoluteFill} />
-                            // макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N»
+            {/* макет `.ans.ok`: значок 40 · «Верно» · эталонная фраза · «+N» */}
             <View testID="fc-speak-verdict" accessibilityRole="alert" accessibilityLabel={`${labels.verdictOk}: ${card?.en ?? ''}`} style={[styles.verdictPanel, { backgroundColor: speakingGlass.goodSoft, boxShadow: [{ inset: true, offsetX: 0, offsetY: 0, blurRadius: 0, spreadDistance: 1, color: `${speakingGlass.good}52` }] /* shadow-ok: кольцо исхода ответа (состояние) */ }]}>
               <View style={[styles.verdictVk, { backgroundColor: speakingGlass.goodSoft }]}>
                 <Ionicons name="checkmark" size={20} color={speakingGlass.good} />

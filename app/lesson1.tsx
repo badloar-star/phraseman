@@ -1831,7 +1831,7 @@ const LessonContent = React.memo(function LessonContent({
               void triggerGrammarHint('the', true);
             }}
           >
-            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700' }}>DEV: grammar hint</Text>{/* theme-exempt: DEV-подсказка и нативная рябь касания — вне темы */}
+            <Text style={{ color: '#fff', fontSize: 13, fontWeight: '700' }}>DEV: grammar hint</Text>{/* i18n-ok: dev-кнопка только __DEV__ */}{/* theme-exempt: DEV-подсказка и нативная рябь касания — вне темы */}
           </TapScale>
         )}
 

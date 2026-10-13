@@ -32,7 +32,7 @@ export default function PrivacyScreen() {
 
   return (
     <LegalDocumentSheet
-      title="Privacy Policy"
+      title={triLang(lang, { ru: 'Политика конфиденциальности', uk: 'Політика конфіденційності', en: 'Privacy Policy', es: 'Política de privacidad', 'pt-BR': 'Política de Privacidade', vi: 'Chính sách quyền riêng tư', id: 'Kebijakan Privasi', tr: 'Gizlilik Politikası', pl: 'Polityka prywatności' })}
       closeAccessibilityLabel={triLang(lang, {
         ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar',
         vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij',

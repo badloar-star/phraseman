@@ -134,7 +134,7 @@ function NotificationPermissionModalHybrid({
           </View>
           <ScrollView testID="notification-permission-scroll-content-hybrid" style={styles.scrollContent} contentContainerStyle={styles.scrollContentInner} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast">
             <CascadeItem index={0} style={styles.iconRow}>
-              // зачем: паритет с макетом system.html system_19 — плашка 55pt/r14 на графите, белый колокольчик, без цвета темы.
+              {/* зачем: паритет с макетом system.html system_19 — плашка 55pt/r14 на графите, белый колокольчик, без цвета темы. */}
               <View style={[styles.iconWrap, { backgroundColor: glass.opaqueControl }]}>
                 <Ionicons name="notifications-outline" size={24} color={glass.text} />
               </View>

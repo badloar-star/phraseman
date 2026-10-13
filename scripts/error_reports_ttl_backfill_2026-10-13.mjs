@@ -28,6 +28,20 @@ const OWNER_YES = args.has('--owner-yes');
 
 const log = (event, extra = {}) => console.log(`${TAG} ${event} ${JSON.stringify(extra)}`);
 
+// зачем (координатор 13.10, Q2): после записи владельцем 09:48 повторные запуски печатали только «start» и молча выходили — ни
+// «done», ни «failed». Немой выход: обещание get() не резолвилось, event loop пустел, catch не срабатывал. Теперь любой исход
+// виден: незавершённый выход (beforeExit/exit без done), отклонение вне цепочки, а каждая страница — до/после чтения.
+let finished = false;
+process.on('unhandledRejection', (reason) => {
+  log('unhandled_rejection', { message: String(reason?.message ?? reason).slice(0, 200), code: reason?.code ?? 'unknown' });
+});
+process.on('beforeExit', (code) => {
+  if (!finished) log('silent_exit_detected', { code, reason: 'event loop опустел до done/failed — ожидание чтения оборвалось' });
+});
+process.on('exit', (code) => {
+  if (!finished) log('exit_without_result', { code });
+});
+
 if (APPLY && !OWNER_YES) {
   log('refused', { reason: '--apply без --owner-yes: запись только по слову владельца' });
   process.exit(2);
@@ -64,8 +78,12 @@ async function main() {
   for (;;) {
     let query = db.collection(COLLECTION).orderBy(admin.firestore.FieldPath.documentId()).limit(PAGE);
     if (cursor) query = query.startAfter(cursor);
+    const pageNo = Math.floor(counts.scanned / PAGE) + 1;
+    const fetchStartedAt = Date.now();
+    log('page_fetch_start', { page: pageNo, afterCursor: cursor ? 'yes' : 'no' });
     const snap = await query.get();
-    if (snap.empty) break;
+    log('page_fetch_done', { page: pageNo, size: snap.size, ms: Date.now() - fetchStartedAt });
+    if (snap.empty) { log('page_empty_stop', { page: pageNo }); break; }
     const batch = APPLY ? db.batch() : null;
     let inBatch = 0;
     for (const doc of snap.docs) {
@@ -92,6 +110,7 @@ async function main() {
     cursor = snap.docs[snap.docs.length - 1];
     if (snap.size < PAGE) break;
   }
+  finished = true;
   log('done', {
     mode: APPLY ? 'apply' : 'dry-run',
     ...counts,
@@ -102,6 +121,7 @@ async function main() {
 }
 
 main().catch((error) => {
+  finished = true;
   log('failed', { code: error?.code ?? 'unknown', message: String(error?.message ?? error).slice(0, 200) });
   process.exit(1);
 });

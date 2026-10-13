@@ -110,6 +110,10 @@ export type DialogueV2CatalogueContainerProps = Readonly<{
  * is revalidated before rendering and no legacy dialog surface is involved.
  */
 function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true }: DialogueV2CatalogueContainerProps) {
+  // ВРЕМЕННО (координатор 13.10, RUN hub_collapse после R12; убрать после проверки Сверкой): счётчик рендеров — при раскрытии/закрытии категории Container не должен перерисовываться (n не растёт). Только dev.
+  const hubRenderCountRef = useRef(0);
+  hubRenderCountRef.current += 1;
+  if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) console.log(`[HUB-COLLAPSE] render Container n=${hubRenderCountRef.current}`); // guard-ok: временный счётчик рендеров, dev
   const router = useRouter();
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();

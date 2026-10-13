@@ -71,3 +71,21 @@ describe('проводка: каталог не знает о состоянии
     expect(hub).toContain('scrollY=${Math.round(scrollYRef.current)} reduceMotion=');
   });
 });
+
+describe('ВРЕМЕННО: счётчики рендеров для проверки Сверкой (RUN hub_collapse)', () => {
+  const container = read('components/dialogs/DialogueV2CatalogueContainer.tsx');
+  const section = read('components/dialogs/DialogueV2CatalogueSection.tsx');
+  it('Container и Section пишут «[HUB-COLLAPSE] render … n=…» только в dev; пометка «ВРЕМЕННО» напоминает снять после проверки', () => {
+    for (const [src, name] of [[container, 'Container'], [section, 'Section']] as const) {
+      expect(src).toContain('// ВРЕМЕННО (координатор 13.10, RUN hub_collapse');
+      expect(src).toContain('hubRenderCountRef.current += 1;');
+      expect(src).toContain(`[HUB-COLLAPSE] render ${name} n=\${hubRenderCountRef.current}`);
+      expect(src).toContain("(globalThis as { __DEV__?: boolean }).__DEV__ === true");
+    }
+  });
+  it('лог решения decideHubCollapse остаётся навсегда (он не помечен временным)', () => {
+    const hub = read('components/dialogs/hub_header_collapse.tsx');
+    expect(hub).toContain('DebugLogger.info(LOG, `категория ${open ?');
+    expect(hub).not.toContain('ВРЕМЕННО');
+  });
+});

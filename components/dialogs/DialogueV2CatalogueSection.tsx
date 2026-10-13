@@ -5,7 +5,7 @@
  * the caller, which can open a briefing.
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Image, Text, View } from 'react-native';
 
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
@@ -85,6 +85,10 @@ export function DialogueV2CatalogueSection({
   labels,
   onPressItem,
 }: DialogueV2CatalogueSectionProps) {
+  // ВРЕМЕННО (координатор 13.10, RUN hub_collapse после R12; убрать после проверки Сверкой): счётчик рендеров Section — рендер ожидаем только от собственного раскрытия категории. Только dev.
+  const hubRenderCountRef = useRef(0);
+  hubRenderCountRef.current += 1;
+  if ((globalThis as { __DEV__?: boolean }).__DEV__ === true) console.log(`[HUB-COLLAPSE] render Section n=${hubRenderCountRef.current}`); // guard-ok: временный счётчик рендеров, dev
   const glass = useDialogueGlass();
   const groups = groupDialogueV2CatalogueItemsByWorld(items, worlds);
   // The catalogue intentionally enters collapsed. It keeps the released data

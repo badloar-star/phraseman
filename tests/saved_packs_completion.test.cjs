@@ -10,7 +10,7 @@ function run(source, deps = {}, bindings = {}) {
   vm.runInNewContext(js, { module, exports: module.exports, require: id => {
     if (!(id in deps)) throw Error(`Unmocked dependency: ${id}`);
     return deps[id];
-  }, ...bindings });
+  }, setTimeout, clearTimeout, ...bindings }); // зачем (13.10, №11): addFlashcard ждёт проверку Plus с потолком (61a8248b1) — таймеры нужны в песочнице
   return module.exports;
 }
 function file(path, deps) { return run(fs.readFileSync(path, 'utf8'), deps); }
@@ -53,7 +53,8 @@ function device() {
     '@react-native-async-storage/async-storage': asyncStorage,
     '../app/flashcards/card_deletion_journal': deletionJournal,
     '../app/swallow_log': { noteSwallowed: () => {}, noteSwallowedAs: (_tag, fallback) => () => fallback },
-    '../app/premium_guard': { getVerifiedPremiumStatus: async () => true },
+    // зачем (13.10, №11; 61a8248b1): addFlashcard проверяет Plus через getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }) с потолком 5 с
+    '../app/premium_guard': { getVerifiedPremiumStatus: async () => true, getVerifiedPremiumAccessStatus: async () => true },
     '../app/feature_gates': { isFeatureFreeForEveryone: () => true },
     '../app/target_storage_keys': { flashcardsSavedKey: t => t === 'fr' ? 'fr' : 'en', storageStudyTarget: t => t === 'fr' ? 'fr' : 'en' },
     '../app/account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() },
@@ -114,6 +115,9 @@ test('drafts follow the requested pack language without losing another language'
     '@react-native-async-storage/async-storage': { default: { getItem: async k => disk.get(k) ?? null, setItem: async (k,v) => disk.set(k,v), removeItem: async k => disk.delete(k) } },
     './schema': { COMMUNITY_PACK_CARD_COUNT_MAX: 50 }, './ugcCardThemePresets': { UGC_CARD_THEME_IDS: ['a'] },
     '../target_storage_keys': { communityPackCreateDraftKey: (target,locale) => `${target}:${locale}` },
+    // зачем (13.10, №11; 5b1caa8ee): dev-черновик packdraft — выключен, как в сторе
+    '../dev_cards_state': { getDevPackDraft: () => null },
+    '../flashcards/pack_deck_meta': file('app/flashcards/pack_deck_meta.ts', { './pack_languages': languages }), // зачем (13.10, №11; ee01d089a): уровень набора в черновике
     '../debug-logger': { DebugLogger: { error: () => {} } }, '../flashcards/pack_languages': languages,
     '../account_generation': { captureAccountGeneration: () => ({}), isCurrentAccountGeneration: () => true, withAccountTransitionLock: fn => fn() },
     '../swallow_log': { noteSwallowed: () => {}, noteSwallowedAs: (_tag, fallback) => () => fallback },
@@ -211,6 +215,8 @@ test('local saves serialize, preserve other contours and persist publication ide
     '../target_storage_keys': { flashcardsLocalAuthorPacksKey: t => t || 'en', storageStudyTarget: t => t || 'en' },
     '../flashcards/marketplace': { derivePackCodeName: id => id }, './communityFirestore': { communityPackCardsToCardItems: () => [] },
     '../flashcards/pack_languages': languages,
+    // зачем (13.10, №11; ee01d089a): уровень и слова превью набора — настоящий чистый модуль
+    '../flashcards/pack_deck_meta': file('app/flashcards/pack_deck_meta.ts', { './pack_languages': languages }),
     '../account_generation': { captureAccountGeneration: () => token, isCurrentAccountGeneration: t => t === token, withAccountTransitionLock: fn => fn() },
     '../learning_language_contour': { LEARNING_LANGUAGE_TARGETS: ['en', 'es', 'fr', 'de', 'it'] },
     '../flashcards/myPacksDataIntegrity': myPacksDataIntegrity,

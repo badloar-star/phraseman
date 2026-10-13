@@ -34006,10 +34006,12 @@
       "id": "energy-modes-016",
       "source": "OWNER_BRIEF_2026-10-11",
       "mockup": {
-        "file": "docs/design/v2-app/energy-modes-states.html",
-        "phone": 24,
-        "label": "Режим А · ошибка: сердечко и серия монет",
-        "mapping": "manual_pin"
+        "file": "docs/design/v2-app/learn.html",
+        "phone": 32,
+        "label": "D5 · Неверно — сердце потеряно",
+        "mapping": "manual_rebind",
+        "prev_file": "docs/design/v2-app/energy-modes-states.html",
+        "prev_phone": 24
       },
       "screen": "Два режима энергии · Режим А",
       "state": "Режим А · ошибка: сердечко и серия монет",
@@ -34029,21 +34031,19 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "сердечки белые, в образце розовые",
-        "[состояние] снят экран после проверки с «Разбором промаха», в образце сборка до проверки",
-        "нижняя панель другая (3 кнопки + «Дальше»)",
-        "[язык] кадр на uk — переснять на ru"
+        "[перепривязка] learn.html №32 D5 «Неверно — сердце потеряно» вместо energy-modes-states №24: в коде после «Проверить» сразу разбор ответа, сборки с потерянным сердцем нет; сердца нейтральные (energy-modes-states приведён к коду 13.10); открытые расхождения самого D5 — в строке learn-032; переснять на ru"
       ],
-      "status": "diff",
+      "status": "pending",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:19:02.119Z",
+      "reviewed_at": "2026-10-13T14:07:17.732Z",
       "prev_release_surface_proof": null,
       "blocked_reason": null,
       "mockup_pinned": "Макеты 12.10: режим А — ПЕРВЫЙ ВЫПУСК (поведение кода по умолчанию). | Макеты 12.10: серия монет «×N» убрана, остались сердечки и энергия.",
       "release": "r1",
       "triage": {
         "coverage": "ready",
-        "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1"
+        "coverage_note": "партия 5 Ядра: lessonintro=skip / energy_stop=plus_granted / energy=restoring — ссылка и шаги в DEV_LINKS_R1",
+        "macets_rebind_2026_10_13": "разбор Ядра 13.10: образец к коду; А2 в energy-modes-states оставлен как анимация со ссылкой на D5"
       },
       "sverka_verdict": "Режим А: сердечки в шапке есть, одно потеряно после ошибки.",
       "shot_at": "2026-10-13T10:10:38.648Z",

@@ -7631,16 +7631,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-021.png",
+      "evidence_at": "2026-10-13T06:23:30.022Z",
+      "evidence_sha256": "76cd3522d3a329ce7f6a13ddc6fe79e1281b82a9b18dfa8bf1f9aff4e23709f2",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[тон темы] У образца за экраном свечение Авроры (зелёное и фиолетовое пятна), у приложения ровный тёмный фон (кадр снят не в Авроре ＠1) — снимать с theme=grad_aurora&level=1 (Сверка/Темы).",
+        "[состояние не то] Раскрытого варианта «Лучше так: I'd like a medium, please.» на кадре нет — только кнопка (Сверка: тап по «Лучше так»).",
+        "[вёрстка, мелко] Название сцены в шапке приложения обрезается «Поздороваться после зна..» (в образце «Закажи кофе» короткое) — данные; под репликой собеседника нет значка динамика."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -7651,7 +7655,10 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (12.10, Макеты)",
         "restitch_note": "пересклейка после правки образца 51c85e364 (dialogs.html — класс A «Аврора ＠1»: мятные основные кнопки, свечение фона; ghost/disabled прежние; добавлено закрытие комментария в CSS, без него новые правила не применялись)"
-      }
+      },
+      "shot_at": "2026-10-13T06:39:33.963Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Диалог · «Лучше так»: шапка со сценой, плашка цели с лампочкой, реплика Милы, пузырь «Hello», кнопка «Лучше так», реплика-ответ и ряд «Перевод / Почему так», ввод «Напиши или говори», «Или зажми и говори» — состав совпал."
     },
     {
       "id": "dialogs-022",
@@ -7793,16 +7800,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-024.png",
+      "evidence_at": "2026-10-13T06:24:48.457Z",
+      "evidence_sha256": "7dcec156af003ad1f02899f2a426dab176220b7adaf0320c0e1f09baa7d047b1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[тон темы] У образца за экраном свечение Авроры (зелёное и фиолетовое пятна), у приложения ровный тёмный фон (кадр снят не в Авроре ＠1) — снимать с theme=grad_aurora&level=1 (Сверка/Темы).",
+        "[образец ≠ код] В плашке цели приложения нет лампочки справа (в образце есть); под репликой собеседника нет ряда «динамик · Перевод · Почему так» (в приложении он только у отвеченных реплик).",
+        "[данные] Реплики «Hi! Nice to meet you…» вместо беседы в кафе."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -7813,7 +7824,10 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "restitch_note": "пересклейка после правки образца 51c85e364 (dialogs.html — класс A «Аврора ＠1»: мятные основные кнопки, свечение фона; ghost/disabled прежние; добавлено закрытие комментария в CSS, без него новые правила не применялись)"
-      }
+      },
+      "shot_at": "2026-10-13T06:39:33.963Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Голосовой ввод · ожидание: слева у поля индикатор загрузки, подпись «Готовлю микрофон… удерживай кнопку», поле «Напиши или говори», стрелка — состояние совпало."
     },
     {
       "id": "dialogs-025",
@@ -8440,16 +8454,20 @@
       "matrix_status": "🟠",
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/dialogs-037.png",
+      "evidence_at": "2026-10-13T06:27:33.604Z",
+      "evidence_sha256": "d665ef26e9d604e90b94770407d46b11e493c466c33bef81c7cf36379cd89726",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[тон темы] У образца за экраном свечение Авроры (зелёное и фиолетовое пятна), у приложения ровный тёмный фон (кадр снят не в Авроре ＠1) — снимать с theme=grad_aurora&level=1 (Сверка/Темы).",
+        "[данные] В приложении беседа из двух реплик (dev-ответ «Great talking to you — see you soon! (dev)») вместо четырёх реплик в кафе; название сцены обрезается «зна..».",
+        "[вёрстка, мелко] В шапке приложения нет строки настроения («Очень доволен»), вместо неё «Диалог»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "ok",
@@ -8461,7 +8479,10 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "restitch_note": "пересклейка после правки образца 51c85e364 (dialogs.html — класс A «Аврора ＠1»: мятные основные кнопки, свечение фона; ghost/disabled прежние; добавлено закрытие комментария в CSS, без него новые правила не применялись)"
-      }
+      },
+      "shot_at": "2026-10-13T06:39:33.963Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Диалог завершён · финальная реплика: ввод скрыт, внизу «Нажми, чтобы перейти к итогу» — состояние совпало."
     },
     {
       "id": "dialogs-038",
@@ -10682,17 +10703,24 @@
         "starpop 0.7s cubic-bezier(0.3, 1.5, 0.5, 1)",
         "replay-control"
       ],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/learn-047.png",
+      "evidence_at": "2026-10-13T08:10:20.779Z",
+      "evidence_sha256": "aa7f0f2ec0ff390be05ad1ab3827e644e250aa4e7c7edc2fd18ab23743f3e662",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Кадр снят в украинском интерфейсе («Урок пройдено», «Відкрити Plus →») — образец русский; плюс аккаунт Free после третьего урока: блок «Наступний урок входить у Plus» и кнопка «Відкрити Plus →» вместо «Следующий урок →» (Сверка: Plus или ru, фикстура lessonsDone).",
+        "[образец ≠ код] В образце E1 есть кнопка «ПОВТОРИТЬ ОШИБКИ» и блок «Всё было понятно?» с раскрытием, ссылка «Пройти ещё раз»; в приложении их нет — выяснить по коду, что верно (Макеты/Дизайн).",
+        "[данные] Монеты 50 против 1 240; звёзды в образце серые (анимация не начата), в приложении белые."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
-      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)"
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
+      "mockup_pinned": "Дизайн 10.10: привязка к телефону макета проверена по названию состояния (visual-parity rebind)",
+      "shot_at": "2026-10-13T08:09:51.970Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Итог урока E1: «✕», монеты, «Урок пройден», подзаголовок «Урок 3 · …», три звезды, «48 верно / 2 ошибок / 96 % точность», «+0 монет», блок «Ошибки», основная кнопка — каркас экрана итога совпал."
     },
     {
       "id": "learn-048",
@@ -31954,16 +31982,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-038.png",
+      "evidence_at": "2026-10-13T05:28:22.071Z",
+      "evidence_sha256": "bb2ad5e2b43261369d10b4d0e692b7f990e4443399d4dcef7c9587019399c62a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] В шапке приложения слева от пилюли остатка чип языка «ES ⌄» (фильтр языка карточек, п.83); в образце его нет — дорисовать (Макеты, решение по чипу в OWNER_MORNING).",
+        "[данные] Остаток «29/30» против «24/30»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -31981,7 +32012,10 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (двойник или служебный маршрут, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:05:09.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Блиц · пусто: «‹», пилюля остатка, плитка «⚡ Блиц», плитка со стопкой, «Нет карточек», «Сохрани пару слов», белая «Открыть каталог» — состав и тексты совпали."
     },
     {
       "id": "cards-section-039",
@@ -32654,16 +32688,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-052.png",
+      "evidence_at": "2026-10-13T05:30:15.595Z",
+      "evidence_sha256": "2fd7bc45d098aa2cf3512bdbde0b0642382b97d5bd26f33fb50f39cd49cbd338",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В приложении на кадре идёт набор текста «zzzzv» с экранной клавиатурой, ответ ещё не проверен; в образце уже показана красная плашка «Правильно · Delay» и «Дальше» (Сверка: после ввода нажать «Проверить»; перед кадром скрыть клавиатуру).",
+        "[данные] «расписание» против «задержка», «0 / 64» против «9 / 20», монеты 0 против 40."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -32682,7 +32719,10 @@
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами",
         "restitch_note": "кадра приложения ещё нет (голого кадра нет в _runs) — это СЪЁМКА, а не пересклейка; образец без флажка-жалобы (57da354da)"
-      }
+      },
+      "shot_at": "2026-10-13T06:05:09.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · неверно: «✕», «Напиши», сердца, значок набора, полоса, карточка «Напиши на изучаемом языке», поле ввода — каркас совпал."
     },
     {
       "id": "cards-section-053",
@@ -32853,16 +32893,19 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-section-056.png",
+      "evidence_at": "2026-10-13T05:39:21.185Z",
+      "evidence_sha256": "c9ff4d1dc9befb05d1a734bf20a6f07bca91f95a2230d0d9645ee5ed3687b0a3",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Пилюля остатка: в образце «30/30 в месяц» (использовано), в приложении «0/30» (осталось) — какой смысл верный и какой текст (Макеты/Ядро); значок «копия» в обоих.",
+        "[вёрстка, мелко] Плитки наборов в приложении выше на ≈ 5 % — масштаб."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "precheck": {
         "date": "2026-10-11",
         "verdict": "diff",
@@ -32880,7 +32923,10 @@
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами"
-      }
+      },
+      "shot_at": "2026-10-13T06:05:09.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Блиц · лимит исчерпан (Free): «‹», пилюля остатка, «⚡ Блиц», «Что повторяем» с плитками наборов (Все сохранённые ✓, Путешествия, B2 глаголы, Работа, Фразовые глаголы), «Время 30 с / 60 с / 90 с», белая «🔓 Безлимит с Plus» — состав совпал."
     },
     {
       "id": "cards-section-057",
@@ -36689,22 +36735,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-035.png",
+      "evidence_at": "2026-10-13T06:14:21.659Z",
+      "evidence_sha256": "4992a238d24a5ea917464c48d16e7b7f4015485769972bef280dae258de79251",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В приложении на кадре вопрос без выбранного ответа (четыре плашки «отклонить / бюджет / регистрация / посадка» одинаковые), в образце верный вариант подсвечен зелёным с галочкой и «+10» (Сверка: шаг — тап по верному варианту, ≥ 1 с).",
+        "[данные] «Boarding» против «Layover», монеты 3 против 40, таймер 1:00 против 0:42."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (двойник или служебный маршрут, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:22:37.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Блиц · верно: «✕», «Блиц», сердца, монеты, таймер «1:00», карточка «Выбери перевод», слово — каркас совпал."
     },
     {
       "id": "cards-v2-036",
@@ -36724,22 +36776,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-036.png",
+      "evidence_at": "2026-10-13T06:18:37.090Z",
+      "evidence_sha256": "a05255fb2553ba9d571289a23ab9797dcf6c701aaa617387c6f8d86cf45b9bcf",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В приложении четыре плашки без подсветки: нет зелёной «верной» и красной «ошибочной» — подсветка не снята (Сверка: кадр сразу после тапа по неверному варианту).",
+        "[данные] «Fare» против «Layover»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (двойник или служебный маршрут, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T06:22:37.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Блиц · неверно: «✕», «Блиц», два красных сердца и одно пустое, монеты, «1:00», «Выбери перевод», слово — каркас совпал, сердце списано."
     },
     {
       "id": "cards-v2-037",
@@ -36874,23 +36932,29 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-040.png",
+      "evidence_at": "2026-10-13T06:19:13.329Z",
+      "evidence_sha256": "718f01862c67e9e6b14d48c9b24e3023b857d9686b2a0b1169b71f995ba671b8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] Как cards-section-052: в приложении набор текста «zzzzv» с клавиатурой, плашки «Правильно · …» и «Дальше» нет (Сверка).",
+        "[данные] «регистрация» против «задержка»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "code_mapping_note": "уточнено Сверкой 11.10 по состояниям",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами",
         "restitch_note": "кадра приложения ещё нет (голого кадра нет в _runs) — это СЪЁМКА, а не пересклейка; образец без флажка-жалобы (57da354da)"
-      }
+      },
+      "shot_at": "2026-10-13T06:22:37.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · неверно: «✕», «Напиши», сердца, карточка слова, поле ввода — каркас совпал."
     },
     {
       "id": "cards-v2-041",
@@ -37233,22 +37297,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-049.png",
+      "evidence_at": "2026-10-13T06:19:59.955Z",
+      "evidence_sha256": "4fe7dbeb20eaf7471414e946f4a97122e07e26fcd322af4a8cdab874dbfeea6f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В поле приложения пусто («Введи фразу целиком»), кнопка «Проверить» неактивна; в образце набрано «lay» и «Проверить» активна — шаг: ввести первые буквы (Сверка).",
+        "[данные] «моя ошибка / My bad» против «пересадка / layove…»."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами",
         "restitch_note": "кадра приложения ещё нет (голого кадра нет в _runs) — это СЪЁМКА, а не пересклейка; образец без флажка-жалобы (57da354da)"
-      }
+      },
+      "shot_at": "2026-10-13T06:22:37.086Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Вспомни и напиши · подсказка: «Напиши», сердца, карточка слова, поле, «Подсказка», «Проверить», «Показать ответ» — раскладка совпала."
     },
     {
       "id": "cards-v2-050",
@@ -37268,22 +37338,25 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-v2-050.png",
+      "evidence_at": "2026-10-13T06:20:29.425Z",
+      "evidence_sha256": "15a0c19be35b194b7f858a83078abba32675bf88f74d85aa423f6af90a3ba703",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (круг «по кадру» 12.10); шаги не проверены на кадре — сверять глазами",
         "restitch_note": "кадра приложения ещё нет (голого кадра нет в _runs) — это СЪЁМКА, а не пересклейка; образец без флажка-жалобы (57da354da)"
-      }
+      },
+      "shot_at": "2026-10-13T06:39:33.963Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Вспомни и напиши · ответ показан: «Напиши», сердца, монеты, «0 / 64», карточка слова, карточка «Ответ» со словом и кнопками «Не знал» (красная) и «Знал» (зелёная) — совпали. Приняты: «отзыв / Feedback» против «задержка / Delay», счёт 0/64 против 9/20, монеты; масштаб."
     },
     {
       "id": "cards-v2-051",
@@ -40071,8 +40144,8 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-007.png",
-      "evidence_at": "2026-10-12T21:25:57.064Z",
-      "evidence_sha256": "1d2a7dd9758dbfbdfd543438adb766df4766ee9284e5968e402d3f7769d78f0a",
+      "evidence_at": "2026-10-13T05:13:37.335Z",
+      "evidence_sha256": "bd376f5f8d62d1e00f771fb101b2e09bb56fcfb0e76f99ea115a797cebfe3131",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
@@ -40092,7 +40165,7 @@
         "final_at": "2026-10-12"
       },
       "sverka_verdict": "ВЕРДИКТ 12.10 (пересклейка, PARITY_FIT=width): «Правда / ложь — нет карточек с переводом» совпало: «Тренировка карточек», «Наборы», красная строка «В выбранных наборах нет карточек с переводом.», список наборов, «Начать». Приняты: другие наборы и отметки (данные демо).",
-      "shot_at": "2026-10-12T02:05:18.001Z",
+      "shot_at": "2026-10-13T05:22:00.584Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -40161,15 +40234,15 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-009.png",
-      "evidence_at": "2026-10-12T21:35:04.797Z",
-      "evidence_sha256": "21eee6cadc4aadf9608e4fe9e1900627365d4b264c8e52155fb3002ca645a3f6",
+      "evidence_at": "2026-10-13T05:13:57.146Z",
+      "evidence_sha256": "26d069d460640fecb5af7105378318ddf35af598da724b35060d116d30299e73",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
       "status": "match",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-12T21:41:21.249Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
@@ -40181,8 +40254,8 @@
         "final_note": "",
         "final_at": "2026-10-12"
       },
-      "sverka_verdict": "ВЕРДИКТ 12.10 (пересклейка, PARITY_FIT=width): «Напиши — Сейчас недоступно» совпало: «×», «Напиши», сердечки, значок наборов (стопка слоёв после п.81), «Сейчас недоступно», «Попробовать снова». Принято: монеты «0» вместо «1 240» (данные).",
-      "shot_at": "2026-10-12T03:07:54.839Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · «Сейчас недоступно»: «✕», «Напиши», сердца, значок набора, полоса прогресса, плитка со стопкой, «Сейчас недоступно», белая «Попробовать снова» — совпали. Приняты: монеты 0 против 1 240 — данные; масштаб.",
+      "shot_at": "2026-10-13T05:22:00.584Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -40569,21 +40642,24 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-019.png",
+      "evidence_at": "2026-10-13T05:18:38.728Z",
+      "evidence_sha256": "c5106e9b431ee2e734adbe6859e66ed7852215038c4c074f5b6246ec57adf1c8",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
-      "reviewed_by": null,
-      "reviewed_at": null,
+      "status": "match",
+      "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
-      }
+      },
+      "shot_at": "2026-10-13T05:22:00.584Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «В какой набор?» — своих наборов пока нет: ручка, «В какой набор?», «Своих наборов пока нет», «+ Создать набор» поверх затемнённого списка «Сохранённые 64» — совпали. Принят тон шторки (30–39, 30–39, 36–45 в приложении против 19–45, 19–45, 21–47 в образце): разница ≤ 8 ступеней — токен темы; масштаб."
     },
     {
       "id": "cards-gap-020",
@@ -40730,21 +40806,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-023.png",
+      "evidence_at": "2026-10-13T05:20:35.685Z",
+      "evidence_sha256": "2c150af42fc738cafbd31a2ce6415bba082665202a7dd5fb108c13034c153d84",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка] Меню в приложении поднято на уровень шапки и перекрывает кнопки «поиск / + / ⋮» (верх меню у верхнего края), в образце оно под шапкой справа от заголовка — привести (Дизайн или образец, Макеты).",
+        "[данные] В приложении в «Прочее» нет «Глаголы» и «Слова», уроков «Урок 1 / 3 / 12» — набор данных."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T05:22:00.584Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Фильтр · «Все»: меню со строкой «Все ✓», разделами «УРОКИ» и «ПРОЧЕЕ» — тексты и состав разделов совпали."
     },
     {
       "id": "cards-gap-024",
@@ -40765,25 +40847,25 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-024.png",
-      "evidence_at": "2026-10-12T05:04:50.860Z",
-      "evidence_sha256": "b2689ea8f361682499be8394d55851c6ed00ec4b6774ec4de4f3447d7913356c",
+      "evidence_at": "2026-10-13T05:21:22.815Z",
+      "evidence_sha256": "5fac597be2f599ea64744e627ab4d09ae04c139ec073b10f805fd187323e453e",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Выпадающее меню фильтра («Все / УРОКИ / ПРОЧЕЕ») не открыто и не выбран «Урок 3».",
-        "[образец ≠ код] Строка «Нашёл ошибку?» — тестерская кнопка (57da354da), в обычной сборке её нет (кадр снят в dev-сборке)."
+        "[состояние не то] В приложении на кадре меню фильтра закрыто, список уже отфильтрован; в образце меню раскрыто с галочкой у «Урок 3» (Сверка: снять до закрытия меню).",
+        "[вёрстка, мелко] Список в приложении в две колонки с карточками четырёх слов, в образце три."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмена Ядра, партия 1, 12.10)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Фильтр — выбран «Урок 3»: на кадре «Сохранённые 64» без открытого меню фильтра; внизу «Нашёл ошибку?» и «Тренировать».",
-      "shot_at": "2026-10-12T03:46:29.858Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Фильтр · выбран «Урок 3»: список из четырёх слов, «Тренировать» — основа совпала.",
+      "shot_at": "2026-10-13T05:22:00.584Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -40889,22 +40971,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-027.png",
+      "evidence_at": "2026-10-13T05:21:56.110Z",
+      "evidence_sha256": "3f8e21d1fa0cae12d2553d5def2672637c370195c6b08c7f64cdb5ad34ec0998",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Образец рисует тост поверх списка «Мои наборы»; в приложении ошибка появляется на экране самого набора «Работа» (кнопка «Тренировать», сетка слов) — привести фон образца (Макеты).",
+        "[вёрстка, мелко] Значок тоста: в образце залитый «!», в приложении «!» в кольце (общий тост приложения, решение D158) — образец привести к тосту приложения (Макеты)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "restitch_note": "образец приведён к приложению (Макеты 13.10): cards-gaps-states: «Мои наборы» с кнопкой «⋮». Нужна пересклейка"
-      }
+      },
+      "shot_at": "2026-10-13T05:22:00.584Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Публикация · не хватает данных: тост «ЧТО-ТО ПОШЛО НЕ ТАК · Для публикации нужны название, описание и достаточное число карточек.» — тексты совпали."
     },
     {
       "id": "cards-gap-028",
@@ -40924,22 +41012,28 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-028.png",
+      "evidence_at": "2026-10-13T05:22:34.724Z",
+      "evidence_sha256": "93d419a9e55976a0c6d54f367f85fd95202634a66565ee06ff53ab3bd9840466",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[образец ≠ код] Фон: список «Мои наборы» у образца против экрана набора «Работа» в приложении (как cards-gap-027).",
+        "[вёрстка, мелко] Значок тоста: в образце залитый «!», в приложении «!» в кольце (общий тост приложения, решение D158) — образец привести к тосту приложения (Макеты)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)",
         "restitch_note": "образец приведён к приложению (Макеты 13.10): cards-gaps-states: «Мои наборы» с кнопкой «⋮». Нужна пересклейка"
-      }
+      },
+      "shot_at": "2026-10-13T05:26:30.147Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Публикация · не удалось отправить: тост «ЧТО-ТО ПОШЛО НЕ ТАК · Не удалось отправить набор на публикацию.» — тексты совпали."
     },
     {
       "id": "cards-gap-029",
@@ -41087,24 +41181,25 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-032.png",
-      "evidence_at": "2026-10-12T17:52:20.359Z",
-      "evidence_sha256": "35972dde4689dbd7c52ba7c7427e346d6ec35a31f7f684b1fac6d1786f1e6217",
+      "evidence_at": "2026-10-13T05:23:07.094Z",
+      "evidence_sha256": "306534421a23144e6b5310990be4dfa2fdee493914ad980d3b48c8adcf3dd92b",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Открыт «Мои наборы» в момент загрузки, а не экран чужого набора с тостом «Сначала добавь набор себе — потом можно поставить лайк.»"
+        "[образец ≠ код] В строке «B2 · 49 карточек · ♡ 3» в приложении добавлен счётчик «💬 3» (комментарии) — дорисовать в образец (Макеты).",
+        "[вёрстка, мелко] Список слов в приложении плотнее: четыре ряда видно против трёх; значок тоста — см. cards-gap-027."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Чужой набор — лайк до добавления: на кадре скелет списка «Мои наборы» (серые плитки).",
-      "shot_at": "2026-10-12T17:42:32.593Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Чужой набор · лайк до добавления: тост «СООБЩЕНИЕ · Сначала добавь набор себе — потом можно поставить лайк.», шапка набора, «Добавить себе +», сердце — состав совпал.",
+      "shot_at": "2026-10-13T05:26:30.147Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -41126,24 +41221,26 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-033.png",
-      "evidence_at": "2026-10-12T17:52:41.523Z",
-      "evidence_sha256": "199d4c539dfb552ef9b1c4543358e454665f00507662a6f8e34b0fba2889f6ff",
+      "evidence_at": "2026-10-13T05:23:45.360Z",
+      "evidence_sha256": "b4fc424274855ea7d2fd1e4497ba5297ff3153933b61786b0cd74908cf66b2b1",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Нужен pack=… и тап по сердцу."
+        "[образец ≠ код] Счётчик «💬 3» в шапке набора есть в приложении, в образце нет.",
+        "[вёрстка, кандидат на дефект кода] «В моих наборах» в приложении переносится на две строки в узкой кнопке (в образце одна) — проверить ширины (Дизайн).",
+        "[вёрстка, мелко] Значок тоста: в образце залитый «!», в приложении «!» в кольце (общий тост приложения, решение D158) — образец привести к тосту приложения (Макеты)."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Чужой набор — лайк не прошёл: открыт список «Мои наборы 5», а не экран чужого набора с тостом «Не удалось поставить лайк».",
-      "shot_at": "2026-10-12T17:42:32.593Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Чужой набор · лайк не прошёл: тост «ЧТО-ТО ПОШЛО НЕ ТАК · Не удалось поставить лайк. Попробуй ещё раз.», «В моих наборах» + «Тренировать» — состав совпал.",
+      "shot_at": "2026-10-13T05:26:30.147Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -41257,21 +41354,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-036.png",
+      "evidence_at": "2026-10-13T05:24:10.314Z",
+      "evidence_sha256": "87fb6a364e2e7ac32588fda4c7bc7b8e0fc1f8bb58c84a3913b857d93c8ccc33",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[вёрстка, мелко] Выбранный голос в приложении отмечен сплошным белым кругом, в образце кольцо с точкой — приложение рисует radio-button-on (Дизайн/Макеты: привести).",
+        "[данные] Порядок голосов: в приложении Daniel выше Samantha (сортировка по качеству), в образце наоборот."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
-      }
+      },
+      "shot_at": "2026-10-13T05:26:30.147Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Голос озвучки · выбор: «СКОРОСТЬ РЕЧИ» с тремя плитками (Медленно 0.7x, Норма 0.9x, Быстро 1.0x), «ГОЛОС», «Системный (авто)», Samantha, Daniel, Karen, Moira, «▶ Прослушать пример» и подпись — состав и тексты совпали."
     },
     {
       "id": "cards-gap-037",
@@ -41292,22 +41395,22 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-037.png",
-      "evidence_at": "2026-10-11T23:42:15.069Z",
-      "evidence_sha256": "50e89a8bd3f645079f50b396ca6b7cc1b9a2a619dc445c09d3064709e209b83a",
+      "evidence_at": "2026-10-13T05:24:38.622Z",
+      "evidence_sha256": "dbe22182df3ef3a9f2431cf1bc42fea0467b0ba41e25e4b46cf77ab464c45711",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
       "status": "match",
       "reviewed_by": "coordinator-delegated-2026-10-12: сверка кадра с образцом выполнена сессией «Макеты» по поручению координатора (непрерывная сверка)",
-      "reviewed_at": "2026-10-11T23:55:48.300Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
-      "sverka_verdict": "ВЕРДИКТ 12.10 (кадр 23:42Z): загрузка экрана «Голос озвучки · EN» совпала — «‹», заголовок по центру, полоска-подпись, три плашки-заглушки в ряд, полоска-подпись, пять плашек-заглушек на всю ширину. Принято: плашки у приложения светлее и с бликом слева (кадр снят в момент шиммера), у образца размытая тёмная заглушка — тон темы и фаза мерцания; системная строка статуса. [образец нарисован с приложения, ждёт подтверждения владельца]",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Голос озвучки · загрузка: «‹», «Голос озвучки · EN», серые плашки-скелеты (заголовок, три чипа, пять строк) — совпали. Приняты: блик шиммера в приложении ярче (момент анимации); масштаб.",
       "triage": {
         "basis": "mockup_from_app"
       },
-      "shot_at": null,
-      "shot_at_source": null
+      "shot_at": "2026-10-13T05:26:30.147Z",
+      "shot_at_source": "bare_run_dir"
     },
     {
       "id": "cards-gap-038",
@@ -41328,24 +41431,24 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-038.png",
-      "evidence_at": "2026-10-12T17:53:00.464Z",
-      "evidence_sha256": "b9d9471676a2a851bc676a32a32b8851eb829e45d55108a986fa95c931bcbf73",
+      "evidence_at": "2026-10-13T05:24:57.022Z",
+      "evidence_sha256": "515ea654a448b521d81c9b3b7366cd9cd93570bbfc3cd00a4d49593d96b4690f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Экран «Голос озвучки · EN» не открыт (в образце «Скорость речи / Голос / Прослушать пример»)."
+        "[состояние не то] В образце «Системный (авто)» выбран (радио с точкой), в приложении пустое кольцо — у тестового аккаунта выбран другой голос (Сверка: сбросить выбор)."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): Голос озвучки — список пуст: на кадре «Сохранённые 0» со скелетом загрузки.",
-      "shot_at": "2026-10-12T17:42:32.593Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Голос озвучки · список пуст: «СКОРОСТЬ РЕЧИ», «ГОЛОС», «Системный (авто)», «▶ Прослушать пример», подпись — состав совпал.",
+      "shot_at": "2026-10-13T05:26:30.147Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -43110,24 +43213,25 @@
       "has_animation": false,
       "anim_notes": [],
       "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-039.png",
-      "evidence_at": "2026-10-12T17:53:18.514Z",
-      "evidence_sha256": "1474e8b0ac741ac1cf38e0ba759d4b564df67e15fb6c437743a0f184401c7a19",
+      "evidence_at": "2026-10-13T05:25:27.747Z",
+      "evidence_sha256": "1d1947db770e6ba52aa6a0296fcc2445100645a066d3beac24c2b6a8a5e8137a",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние не то] Не тот экран: открыт режим «Правда / ложь» с ошибкой; нужна шторка «В какой набор?» поверх «Сохранённые» с «Нет наборов…» и «Создать набор»."
+        "[состояние не то] В приложении у аккаунта есть наборы (Путешествия, B2 глаголы, Работа, Фразовые глаголы) — нужен аккаунт без наборов, куда можно добавить (Сверка), образец «Нет наборов, куда можно добавить» не показан.",
+        "[образец ≠ код] Фон: экран набора «Мой опубликованный» (приложение) против «Сохранённые 64» (образец)."
       ],
       "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T01:11:55.558Z",
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (подмены Ядра, партии 1–2, 12.10, Макеты)"
       },
-      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий кадр Сверки, склейка PARITY_FIT=width, поэлементно): В какой набор? — нет наборов: на кадре «Правда / ложь … Этот режим недоступен, выбери другой» и «Назад», шторка «В какой набор?» не открыта.",
-      "shot_at": "2026-10-12T17:42:32.593Z",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Шторка «В какой набор?» — нет наборов, куда можно добавить: на кадре шторка со списком четырёх наборов.",
+      "shot_at": "2026-10-13T05:26:30.147Z",
       "shot_at_source": "bare_run_dir"
     },
     {
@@ -43628,21 +43732,27 @@
       "matrix_status": null,
       "has_animation": false,
       "anim_notes": [],
-      "evidence": null,
-      "evidence_at": null,
-      "evidence_sha256": null,
+      "evidence": "docs/phraseman-2.0/evidence/parity/cards-gap-040.png",
+      "evidence_at": "2026-10-13T05:25:45.595Z",
+      "evidence_sha256": "0dfbed3da4981e6cfc6d7c7cbd328646987f9ee43cf1aac479de7a976952eb9f",
       "anim_evidence": null,
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
-      "diffs": [],
-      "status": "pending",
+      "diffs": [
+        "[состояние не то] В приложении на кадре скелет загрузки (серые плашки вместо данных) — кадр снят до отрисовки; снимать после паузы ≥ 3 с (Сверка).",
+        "[данные] В приложении сердца (режим А) — флаг energy_mistake_charge выключен, образец показывает вариант Б с пилюлей «⚡ 5» (образец под выключенный флаг, снимать нечем)."
+      ],
+      "status": "diff",
       "reviewed_by": null,
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-13T08:21:06.202Z",
       "release": "r1",
       "triage": {
         "coverage": "ready",
         "coverage_note": "ссылка и шаги в DEV_LINKS_R1 (Авторизация 82b9dbb94 / партия 4 Ядра d0c04fbfd)"
-      }
+      },
+      "shot_at": "2026-10-13T05:26:30.147Z",
+      "shot_at_source": "bare_run_dir",
+      "sverka_verdict": "ВЕРДИКТ 13.10 (свежий закоммиченный кадр Сверки R1 evpart, склейка PARITY_FIT=width, масштаб 411/390 = 1,054 учтён, поэлементно): Напиши · под флагом energy_mistake_charge: на кадре скелет — энергия и текст «В выбранных наборах нет карточек с переводом» не показаны."
     },
     {
       "id": "home-001",

@@ -503,7 +503,12 @@ const memFree = phone(`${memHead}<div style="display:flex;flex-direction:column;
 const cmpHead = `<div class="flex" style="margin-top:6px"><span class="rb t">${icon('close', 's20')}</span></div>`;
 const cmpTitle = `<div class="done-t"><div class="ti">Диалог пройден</div><div class="su">Закажи кофе</div></div>`;
 const cmpNext = `<div class="next"><div class="cta t">Готово<span class="ar">${icon('arrowR', 's20')}</span></div><span class="quiet t">Ещё раз</span></div>`;
-const cmpLoading = phone(`${cmpHead}${cmpTitle}<div class="card c2" style="margin-top:28px;padding:26px 18px;display:flex;flex-direction:column;align-items:center;gap:14px"><span class="spin" style="width:26px;height:26px"></span><div class="dg-b">Собеседник готовит итог…</div></div>${cmpNext}`, { time: '13:09' });
+const skB = (w, h, r) => `<span style="display:block;width:${w};height:${h}px;border-radius:${r}px;background:rgba(255,255,255,.08)"></span>`;
+const cmpLoadTitle = `<div class="done-t"><div class="ti">Диалог пройден</div><div class="su">Закажи кофе</div><span class="mood">${face('smile')}${MOOD.smile[1]}</span></div>`;
+const cmpLoadStats = `<div class="stats"><div><b style="display:flex;justify-content:center;align-items:center;height:34px">${skB('46px', 24, 8)}</b><span>целей</span></div><div><b class="g">1</b><span>верно</span></div><div><b class="r">0</b><span>ошибок</span></div><div><b>100%</b><span>точность</span></div></div>`;
+const cmpLoadGoals = `<div class="goalsc">${[78, 62, 78, 62, 78].map((w, i) => `<div style="display:flex;align-items:center;gap:12px;padding:12px 0;${i ? 'box-shadow:inset 0 1px 0 var(--line)' : ''}">${skB('26px', 26, 13)}${skB(w + '%', 16, 8)}</div>`).join('')}</div>`;
+/* зачем (кадр dialogs-gap-007): загрузка итога как в коде — счётчики с телефона сразу, цели скелетом до ответа сервера, строка «готовит итог» без спиннера (dialogue_v2_completion.tsx:313-379) */
+const cmpLoading = phone(`${cmpHead}${cmpLoadTitle}<div class="dg-b" style="text-align:center;margin-top:18px;color:var(--sec)">Собеседник готовит итог…</div>${cmpLoadStats}${cmpLoadGoals}${cmpNext}`, { time: '13:09' });
 const cmpUnavail = phone(`${cmpHead}${cmpTitle}<div class="card c2" style="margin-top:28px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;gap:16px"><div class="dg-b">Итог пока недоступен</div><div class="cta sm t">${li('refresh', 's18')}Повторить</div></div>${cmpNext}`, { time: '13:09' });
 
 // ---- Свободный разговор без доступа / загрузка / ошибка (DialogueGlassGate; dialogue_v2_freeform.tsx:262-300) ----
@@ -523,7 +528,7 @@ const DG_BLOCKS = [
     dgCol('Не удалось очистить', memFull(false, true), 'строка-ошибка под кнопкой'),
   ]],
   ['cmp', 'Итог диалога — загрузка и сбой', 'Итог собирает собеседник: пока он готов — карточка с индикатором; если не получилось — «Итог пока недоступен» и «Повторить». Монет за диалог в приложении нет (решения о награде нет).', [
-    dgCol('Собеседник готовит итог…', cmpLoading, 'dialogue_v2_completion.tsx:208-213'),
+    dgCol('Собеседник готовит итог…', cmpLoading, 'dialogue_v2_completion.tsx:313-379'),
     dgCol('Итог пока недоступен', cmpUnavail, 'dialogue_v2_completion.tsx:214-219'),
   ]],
   ['free', 'Свободный разговор — без доступа, загрузка, ошибка', 'Свободный разговор — только Plus. С хаба Free ведёт сразу в окно Plus; этот экран виден при прямом входе или потере доступа.', [

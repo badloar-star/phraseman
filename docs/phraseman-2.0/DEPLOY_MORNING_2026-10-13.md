@@ -250,3 +250,18 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 
 Срез удалён правильно: сначала `rmdir` переходов, потом папка. Если утром HEAD снова сдвинется — повторять ничего не нужно, кроме
 `git status --short functions/` (пусто) и, при новых серверных коммитах, сборки по разделу «Команда».
+
+## Повторная предполётная проверка 04:35 (Ядро, после 007da73fa) — НИЧЕГО НЕ ВЫКЛАДЫВАЛОСЬ
+
+Повод: в функции блока **А** добавлены строки причин сбоев (007da73fa: `[SERVER-CAUSE]` в Диалогах V2 и `reEngagePushCron`;
+поведение и коды ответов прежние). Проверено тем же способом, что в 03:05.
+
+| Проверка | Результат |
+|---|---|
+| Сборка функций — чистый срез HEAD **437edbd1d** (включает 007da73fa и d3dda10da), без `functions/.env*`, при свободных 3,55 ГБ, под слотом светофора | **rc=0 за 39 с.** Все шаги: support-context, gate:spire-multilingual, tsc, ассеты Шпиля 4/4, functions-runtime-parity |
+| Экспорт 11 функций выкладки в `functions/lib/functions/src/index.js` | **11/11** (А: dialogueV2TextTurn, dialogueV2SessionComplete, reEngagePushCron · Б · В ×4 · Д · Е ×2) |
+| Тесты функций, одна нить | **25 наборов, 403/403:** те же 19, что в 03:05, плюс dialogue_v2_session_completion_core, dialogue_v2_completion_server, dialogue_v2_memory_writer, dialogue_v2_memory_management, dialogue_v2_server_authorization и тест помощника swallowed_error_cause |
+| Срез | удалён: сначала сняты переходы на `node_modules`, проверено, что их нет, потом удалена папка; `node_modules` репозитория на месте |
+
+**Для выкладки:** команда из раздела «Команда» берёт текущий HEAD — новый срез соберётся сам. После выкладки в журнале функций искать
+`[SERVER-CAUSE]` рядом с `[DIALOGUE-V2-COMPLETE] failed` / `[DIALOGUE-V2-TURN] failed`, чтобы видеть исходную причину.

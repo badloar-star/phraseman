@@ -22,6 +22,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { iconTileColors, mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { shadowSheetGradient } from '../../components/v2/shadow_sheet_paint';
 import { nestedBoxShadow, PlateFill, plateBoxShadow, sheetPlateTokens } from '../../components/v2/ShadowSurface';
 import KitTouchable from '../../components/KitTouchable';
 import { triLang, type Lang } from '../../constants/i18n';
@@ -229,7 +230,9 @@ export default function FlashcardsTrainingModeSheet({
           {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
               Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → подложка шторки темы (opaqueSheet) на 55 % → второй цвет темы 14 %, без альфы.
               Замечание владельца 10.10: подложка и блики — токены выбранной темы, не литералы под «Аврору». */}
-          <LinearGradient pointerEvents="none" colors={[mixDark(ga, g.opaqueSheet, 0.16), g.opaqueSheet, mixDark(gb, g.opaqueSheet, 0.14)]} locations={[0, 0.55, 1]} start={{ x: 0.33, y: 0.03 }} end={{ x: 0.67, y: 0.97 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
+          {/* зачем (Макеты 7c831a193, cards-v2-027 «шторка светлее образца»): в стиле «Тень» тёмная шторка — нейтральный градиент сверху вниз при любой теме
+              (shadow-skin.css `.ph .sheet`); тон темы остаётся на значках и кнопках. Светлое оформление — прежняя заливка по токенам темы. */}
+          <LinearGradient pointerEvents="none" colors={shadowSheetGradient(g.isLight) ?? [mixDark(ga, g.opaqueSheet, 0.16), g.opaqueSheet, mixDark(gb, g.opaqueSheet, 0.14)]} locations={g.isLight ? [0, 0.55, 1] : [0, 1]} start={g.isLight ? { x: 0.33, y: 0.03 } : { x: 0.5, y: 0 }} end={g.isLight ? { x: 0.67, y: 0.97 } : { x: 0.5, y: 1 }} style={[StyleSheet.absoluteFill, styles.sheetFill]} />
           <View style={[styles.grabber, { backgroundColor: `${g.text}40` }]} />
           <View style={styles.headRow}>
             <View style={styles.headCopy}>

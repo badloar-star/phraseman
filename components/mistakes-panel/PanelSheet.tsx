@@ -11,7 +11,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import Animated, { Easing, FadeIn, FadeOut, SlideInDown, SlideOutDown } from 'react-native-reanimated';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { KIT_MOTION } from '../../constants/motionHybrid';
-import { mixSurfaceHex } from '../../constants/liquidGlassSurfaceRoles';
+import { shadowSheetGradient } from '../v2/shadow_sheet_paint';
 import { LinearGradient } from '../SafeLinearGradient';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
@@ -26,16 +26,11 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
   const g = useLv2Glass();
   // зачем (Сверка mistakes-panel-004, замер по пикселям кадра): в макете под шторкой хаб почти не виден — эффективный скрим ≈ .78 (в коде был .6),
   // а фон шторки — тёмный градиент в тоне темы (слева зелёный, справа глубже), у приложения — плоская серо-зелёная плита. В тёмном оформлении
-  // берём скрим .78 и градиент из токенов темы (opaqueSheet, затемнённый, + свечения фона bgGlow); светлое оформление не меняется.
+  // берём скрим .78; заливка шторки — см. sheetGradient ниже (стиль «Тень»); светлое оформление не меняется.
   const dimColor = g.isLight ? 'rgba(0,0,0,0.6)' : 'rgba(0,0,0,0.78)'; // theme-exempt: затемнение под шторкой — чёрный скрим в любой теме
-  const sheetGradient = useMemo(() => {
-    if (g.isLight) return null;
-    const base = mixSurfaceHex(g.opaqueSheet, '#000000', 0.42); // theme-exempt: затемнение токена шторки к чёрному
-    // доля свечения = его собственная альфа (в «Спокойно» свечений нет — градиент почти плоский, как в макете «Спокойно»)
-    const alphaOf = (c: string) => (/^#[0-9A-Fa-f]{8}$/.test(c) ? Number.parseInt(c.slice(7, 9), 16) / 255 : 0);
-    const tint = (c: string, k: number) => (/^#[0-9A-Fa-f]{6}/.test(c) ? mixSurfaceHex(base, c.slice(0, 7), k * alphaOf(c)) : base);
-    return [tint(g.bgGlow[0], 0.42), base, tint(g.bgGlow[1], 0.32)] as const;
-  }, [g.isLight, g.opaqueSheet, g.bgGlow]);
+  // зачем (Макеты 7c831a193, mistakes-panel-021): в стиле «Тень» шторка — нейтральный градиент при любой теме (shadow-skin.css `.ph .sheet`), а не тон «Авроры»;
+  // прежний градиент из bgGlow (Сверка mistakes-panel-004) относился к образцу до стиля «Тень». Светлое оформление не меняется (null).
+  const sheetGradient = useMemo(() => shadowSheetGradient(g.isLight), [g.isLight]);
   // зачем: Reduce Motion = один финальный кадр (AGENTS.md Motion п.6)
   const reduceMotion = useReduceMotion();
   const dimMs = reduceMotion ? 0 : KIT_MOTION.dimMs;
@@ -72,9 +67,9 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
           <LinearGradient
             pointerEvents="none"
             colors={sheetGradient}
-            locations={[0, 0.5, 1]}
-            start={{ x: 0.1, y: 0 }}
-            end={{ x: 0.9, y: 1 }}
+            locations={[0, 1]}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
             style={[StyleSheet.absoluteFill, styles.edge]}
           />
         ) : null}

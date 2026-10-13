@@ -269,7 +269,7 @@ const notif = (o) => backRow(`<span class="gs-saved" style="opacity:${o.saved ? 
   + `<div class="gs-pl gs-mc">${I('chat', 's20')}<div class="gs-tx"><div class="gs-tt">Разрешить уведомления</div><div class="gs-st">Системное разрешение телефона тоже должно быть включено.</div></div>${sw(o.master)}</div>`
   + `<div class="${o.master ? '' : 'gs-mute'}">`
   + ey2('Занятия') + `<div class="gs-stk">${nrow('flame', 'Ежедневное напоминание', o.daily !== false && !o.off)}${nrow('clock', 'Время', !o.off, { val: o.off ? '19:00' : '20:00', dim: o.daily === false || !!o.off })}${nrow('flame', 'Серия под угрозой', !o.off)}${nrow('bookmark', 'Фраза дня', !o.off)}${nrow('bolt', 'Энергия восстановилась', !o.off && false)}</div>`
-  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', !o.off)}${nrow('calendar', 'Итоги месяца', false)}${nrow('people', 'События Шпиля', !o.off)}</div>`
+  + ey2('Итоги') + `<div class="gs-stk">${nrow('trend', 'Итоги недели', !o.off)}${nrow('calendar', 'Итоги месяца', false)}${nrow('people', 'События Пика', !o.off)}</div>`
   + ey2('Ещё') + `<div class="gs-stk">${nrow('people', 'Друзья', !o.off)}${nrow('tag', 'Скидки и предложения', false)}</div></div>`;
 
 /* ---------- окно выбора времени (settings_notifications.tsx: TimeModal / SimplePicker) ---------- */
@@ -360,7 +360,7 @@ document.getElementById('root').innerHTML =
     col('«Очистить кеш · Готово» + слот-опрос после голосования: проценты, выбранный вариант, «Твой выбор сохранён»', ph(mainScreen({ plus: PLUS_ON, cache: 'Готово', slotBottom: slotPoll(0) }), { ...withNav, anchor: 'end' })),
     col('«Очистить кеш · Не удалось» + слот без опроса (только заголовок и текст)', ph(mainScreen({ plus: PLUS_ON, cache: 'Не удалось', slotBottom: slotMsg }), { ...withNav, anchor: 'end' })),
   ]) +
-  block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели, месяца и события Шпиля), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
+  block('notif', 'Уведомления', 'Актуальный список по коду: «Занятия», «Итоги» (недели, месяца и события Пика), «Ещё» (друзья, скидки и предложения). Мастер-тумблер приглушает все строки.', [
     col('Уведомления: «Сохранено» после переключения; «Время» · 20:00', ph(notif({ master: true, saved: true }), { time: '12:40' })),
     col('Уведомления, низ списка: «Итоги месяца», блок «Ещё»', ph(notif({ master: true, saved: false }), { time: '12:40', anchor: 'end' })),
     col('Красная плашка: телефон не разрешает уведомления', ph(notif({ master: false, saved: false, denied: true, off: true }), { time: '12:41' })),

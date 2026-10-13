@@ -208,7 +208,7 @@ const WORDS = ['Lay', 'Claim', 'Convince'];
 const EMPTY = 'Здесь появятся наборы после публикации.';
 
 // ================= 1. ПОЛОСЫ =================
-const tabs1 = `<div class="t1"><span class="tb t">Шпиль</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
+const tabs1 = `<div class="t1"><span class="tb t">Пик</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
 const head1 = `${tabs1}<div class="h1c">Наборы сообщества</div>`;
 const band = (p, i, dm = false) => `<div class="bd t${dm ? ' dm' : ''}" style="${tune(i)}"><div class="bx"><div class="tt">${p[0]}</div><div class="au">${p[2]}</div>${mx(p)}</div><div class="rt"><div class="tg">${badges(p)}</div><div class="nm">${p[1]}</div><div class="un">карточек</div></div></div>`;
 const bar1 = (on) => `<div class="nb1"><span class="b t${on === 0 ? ' on' : ''}">Новые</span><span class="pl t">${icon('plus', 's24')}</span><span class="b t${on === 1 ? ' on' : ''}">Топ</span></div>`;
@@ -227,7 +227,7 @@ const a4 = () => phone(`<div class="pv1"><div class="topbar">${ib('back', ' bare
   ${WORDS.map((w, i) => `<div class="wd1 t">${ib('vol', ' bare')}<div class="w">${w}</div><div class="n">${i + 1}</div></div>`).join('')}<div style="height:110px"></div>`, { fixed: bot(cta('Добавить себе')) });
 
 // ================= 2. МОЗАИКА =================
-const head2 = `<div class="sg2" style="margin-top:4px"><span>Шпиль</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h2c">Наборы сообщества</div>
+const head2 = `<div class="sg2" style="margin-top:4px"><span>Пик</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h2c">Наборы сообщества</div>
   <div class="tr2"><div class="sf" style="padding-right:16px">${icon('search', 's20')}<span class="q ph0">Поиск набора</span></div>${lang}</div>`;
 const tile = (p, i, k, o = {}) => {
   const tr = k === 'sm' ? `<div class="tr"><span class="cp">${icon('layers', 's16')}${p[1]}</span><div class="tg">${badges(p)}</div></div>` : `<div class="tr"><div class="nb"><b>${p[1]}</b><span>карточек</span></div><div class="tg">${badges(p)}</div></div>`;
@@ -248,7 +248,7 @@ const b4 = () => phone(`<div class="topbar" style="margin-top:4px">${ib('back', 
   { fixed: `<div class="fl2" style="bottom:30px"><div class="ac-cta t">Добавить себе${icon('plus', 's20')}</div></div>` });
 
 // ================= 3. ТАБЛИЦА =================
-const head3 = `<div class="sq3"><span>Шпиль</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h3t">Наборы сообщества</div>
+const head3 = `<div class="sq3"><span>Пик</span><span>Друзья</span><span class="on">Наборы</span></div><div class="h3t">Наборы сообщества</div>
   <div class="sf3">${icon('search', 's20')}<span class="q">Поиск набора</span>${lang}</div>`;
 const th3 = `<div class="th3"><span class="g">Набор</span><span class="c">${icon('heart', 's18')}</span><span class="c">${icon('people', 's18')}</span><span class="c">${icon('chat', 's18')}</span></div>`;
 const nu = (v) => `<span class="nu">${v ? v : '<span class="sec2">–</span>'}</span>`;

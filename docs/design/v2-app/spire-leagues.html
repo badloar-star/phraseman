@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Башни лиг Шпиля</title>
+<title>Башни лиг Пика</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-/* зачем (решение владельца 13.10 12:2x): все 12 лиг — одна базовая башня Шпиля (SpireTowerSvg) в разных облачениях: палитра камня, свет окон и 1–2 мелкие детали. Архив архетипов v2 — spire-leagues-archetypes.html. */
+/* зачем (решение владельца 13.10 12:2x): все 12 лиг — одна базовая башня Пика (SpireTowerSvg) в разных облачениях: палитра камня, свет окон и 1–2 мелкие детали. Архив архетипов v2 — spire-leagues-archetypes.html. */
 .ph { --bg: #0C0D10; --bg-top: #181A1F; }
 .lg-wrap { display: grid; grid-template-columns: 430px 1fr; gap: 36px; align-items: start; margin-top: 22px; }
 .lg-wrap > div { min-width: 0; }
@@ -56,8 +56,8 @@
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Башни лиг Шпиля</h1>
-  <p class="page-lead">Решение владельца 13.10: все двенадцать лиг — одна и та же башня Шпиля из приложения (силуэт, кладка, окна, зубцы, конус и состояния этажей одинаковые). Лига — это премиальный материал: глубокий цвет камня с зеркальным бликом и подсветкой края, лёгкая текстура поверх кладки (крошка, прожилки, полосы, грани, радужная игра), ободки из металла лиги и своё навершие — от металлического шара до бриллианта в короне. Всё переносимо в react-native-svg: градиенты и один паттерн на лигу, без фильтров на кладке. Архив прежних вариантов — <a href="spire-leagues-archetypes.html" style="color:#fff">spire-leagues-archetypes.html</a>.</p>
+  <h1 class="page-h1">Башни лиг Пика</h1>
+  <p class="page-lead">Решение владельца 13.10: все двенадцать лиг — одна и та же башня Пика из приложения (силуэт, кладка, окна, зубцы, конус и состояния этажей одинаковые). Лига — это премиальный материал: глубокий цвет камня с зеркальным бликом и подсветкой края, лёгкая текстура поверх кладки (крошка, прожилки, полосы, грани, радужная игра), ободки из металла лиги и своё навершие — от металлического шара до бриллианта в короне. Всё переносимо в react-native-svg: градиенты и один паттерн на лигу, без фильтров на кладке. Архив прежних вариантов — <a href="spire-leagues-archetypes.html" style="color:#fff">spire-leagues-archetypes.html</a>.</p>
   <h2 class="sec-h">Все лиги</h2>
   <p class="sec-p">Тап по башне — открыть лигу в телефоне.</p>
   <div class="row" id="row"></div>
@@ -74,7 +74,7 @@
     </div>
   </div>
   <h2 class="sec-h">Итог недели — мини-башня новой лиги</h2>
-  <p class="sec-p">Карточка «Итог недели» на экране Шпиля (SpireWeekResultCard): слева вместо одной монеты — верхушка башни лиги, в которой игрок проведёт новую неделю (навершие, конус, барабан, Страж и этаж под ним, тот же наряд), монета ранга игрока — значок в углу. Повышение: окна горят и навершие светится. Остаёшься и понижение — окна тёмные, без свечения. Тексты карточки — из кода.</p>
+  <p class="sec-p">Карточка «Итог недели» на экране Пика (SpireWeekResultCard): слева вместо одной монеты — верхушка башни лиги, в которой игрок проведёт новую неделю (навершие, конус, барабан, Страж и этаж под ним, тот же наряд), монета ранга игрока — значок в углу. Повышение: окна горят и навершие светится. Остаёшься и понижение — окна тёмные, без свечения. Тексты карточки — из кода.</p>
   <div class="wk-row" id="weekRow"></div>
 </div>
 <script src="kit.js"></script>
@@ -310,7 +310,7 @@ const S = { li: 6, my: 7, summit: false, sel: 7 };
 const sw = (c) => `<span style="display:inline-block;width:14px;height:14px;border-radius:4px;background:${c};vertical-align:-2px;margin-right:6px"></span>`;
 const skinOf = (L) => ({ stone: L.stone, spec: L.spec, edge: L.edge, tex: L.tex, metal: L.metal, rim: L.rim, finial: L.finial, gem: L.gem, pennant: L.pennant, lit: L.lit, sky: L.sky, glow: L.glow });
 function phoneSpire(L) {
-  const head = `<div class="hd"><div class="grow"><div class="lg-title">Шпиль</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div></div>`;
+  const head = `<div class="hd"><div class="grow"><div class="lg-title">Пик</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div></div>`;
   const tv = `<div class="tv" style="margin-top:14px" data-tv>${towerSvg(L, { myFloor: S.my, summit: S.summit, selected: S.sel })}</div>`;
   const dock = `<div class="dockb"><div class="cta">${icon('fwd', 's20')}Подняться · 1 ⚡</div></div>`;
   return phone(head + tv + '<div style="height:110px"></div>', { fixed: dock });
@@ -349,7 +349,7 @@ if (PV === 'all') {
 // зачем (координатор 13.10, пакет Дизайна spire-league-tower-skins): в карточке итога недели башни нет — мини-макет для переноса.
 // Источник текстов — spire_game_strings (weekUp / weekStay / weekDown) и spireWeekResultLines: место · ступени · монеты либо «новая неделя, все с 1 этажа».
 function weekCardHtml(L, kind, sub) {
-  const title = kind === 'up' ? `Ты поднимаешься в ${L.ru}` : kind === 'down' ? `Ты спускаешься в ${L.ru}` : `Остаёшься в шпиле ${L.ru}`;
+  const title = kind === 'up' ? `Ты поднимаешься в ${L.ru}` : kind === 'down' ? `Ты спускаешься в ${L.ru}` : `Остаёшься на пике ${L.ru}`;
   const mini = towerSvg(L, kind === 'up' ? { summit: true, noMarker: true, noSelect: true, clean: true, crop: 'mini' } : { myFloor: 1, noMarker: true, noSelect: true, clean: true, crop: 'mini' });
   return `<div class="wk"><div class="mt">${mini}${K.coinImg(5, 26)}</div><div class="grow"><div class="ov">Итог недели</div><div class="ti">${title}</div><div class="su">${sub}</div></div><span class="x">${K.icon('close', 's16')}</span></div>`;
 }

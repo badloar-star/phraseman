@@ -99,7 +99,7 @@ const PK = [
 const EN = (p) => `<span>${icon('heart', 's16')}${p.l}</span><span>${icon('people', 's16')}${p.p}</span>${p.c ? `<span>${icon('chat', 's16')}${p.c}</span>` : ''}`;
 const tp = (p) => (p.top ? '<span class="tp">Топ</span>' : '');
 const hl = (t, q) => (q ? t.replace(new RegExp(q, 'i'), (m) => `<span class="hl">${m}</span>`) : t);
-const top = `<div class="t1"><span class="tb t">Шпиль</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
+const top = `<div class="t1"><span class="tb t">Пик</span><span class="tb t">Друзья</span><span class="tb on t">Наборы</span><span class="grow"></span>${ib('search')}${lang}</div>`;
 const back = (r = '') => `<div class="topbar"><span class="ib bare t">${icon('back', 's22')}</span><div class="flex">${r}</div></div>`;
 const searchBar = (q) => `<div class="flex" style="margin-top:4px;gap:8px"><span class="ib bare t">${icon('back', 's22')}</span><div class="sf">${icon('search', 's20')}<span class="q">${q}</span><span class="ib bare t">${icon('close', 's18')}</span></div></div>`;
 const sgm = (on, st = '') => `<div class="sg" style="${st}"><span class="t${on === 0 ? ' on' : ''}">Новые</span><span class="t${on === 1 ? ' on' : ''}">Топ</span></div>`;

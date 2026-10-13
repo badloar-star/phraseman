@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Шпиль 2.0</title>
+<title>Пик 2.0</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-/* зачем (D170): у энергии в шапке Шпиля нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+/* зачем (D170): у энергии в шапке Пика нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
 .pill.encap.bare::after { display: none; }
-/* Локальные детали Шпиля. Ничего из kit.* не переопределяем — только добавляем. */
+/* Локальные детали Пика. Ничего из kit.* не переопределяем — только добавляем. */
 .tview { position: relative; height: 400px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; background: #131315; border: 1px solid var(--line); scrollbar-width: none; }
 .tview::-webkit-scrollbar { display: none; }
 .tview.tall { height: 470px; }
@@ -91,21 +91,21 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 .note svg { color: var(--text); }
 .pgbtn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 19px; border: 1px solid var(--line-2); background: #161618; color: var(--text); font: 600 14px Inter, sans-serif; cursor: pointer; margin-top: 4px; }
 .demo { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 17px; border: 1px dashed var(--outline); color: var(--sec); font-size: 14px; font-weight: 600; margin-top: 12px; }
-/* зачем (координатор 12.10): Шпиль берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
+/* зачем (координатор 12.10): Пик берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
 .ph { --bg: #0C0D10; --bg-top: #181A1F; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Шпиль — раздел вместо Лиги</h1>
-  <p class="page-lead">Вкладка «Сообщество». Каждую неделю новый шпиль-камень, 15 этажей, ступень = 10 заданий на общее время с тремя сердцами. Башня нарисована кодом (SVG) и интерактивна: этаж тапается, свой этаж подсвечен, маркер поднимается после ступени.</p>
-  <nav class="page-nav"><a href="#tour">Тур</a><a href="#main" class="on">Шпиль</a><a href="#all">Все участники</a><a href="#step">Ступень</a><a href="#result">Итог ступени</a><a href="#floor">Этаж и вершина</a><a href="#week">Итог недели</a><a href="#edge">Нет энергии / сети</a></nav>
+  <h1 class="page-h1">Пик — раздел вместо Лиги</h1>
+  <p class="page-lead">Вкладка «Сообщество». Каждую неделю новый пик-камень, 15 этажей, ступень = 10 заданий на общее время с тремя сердцами. Башня нарисована кодом (SVG) и интерактивна: этаж тапается, свой этаж подсвечен, маркер поднимается после ступени.</p>
+  <nav class="page-nav"><a href="#tour">Тур</a><a href="#main" class="on">Пик</a><a href="#all">Все участники</a><a href="#step">Ступень</a><a href="#result">Итог ступени</a><a href="#floor">Этаж и вершина</a><a href="#week">Итог недели</a><a href="#edge">Нет энергии / сети</a></nav>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Пика — только значок и число, без капсулы (SpireEnergyPill)
 const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
 
 /* ===================== ДАННЫЕ КОМНАТЫ (30 человек, боты не раскрываются) ===================== */
@@ -294,7 +294,7 @@ const floorInfo = (f, o = {}) => {
 };
 
 /* ===================== ОБЩИЕ КУСКИ ЭКРАНА ШПИЛЯ ===================== */
-const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energyBare(e)}</div>`;
+const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Пик</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energyBare(e)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti" style="font-size:18px">Друзья на этой неделе</div></div><div class="friends">${FRIENDS.map((f) => `<div class="fr t">${coinImg(f.rank, 30)}${f.name}<span class="fl-n">${f.floor} этаж</span></div>`).join('')}</div>`;
 const podium = (dim = false) => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
@@ -352,7 +352,7 @@ const allMembers = () => {
 };
 
 /* ===================== 9–11. ИТОГ НЕДЕЛИ, НЕТ ЭНЕРГИИ, НЕТ СЕТИ ===================== */
-const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься в шпиле Гранит'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 · +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
+const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься на пике Гранит'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 · +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
 const weekUp = () => phone(spireBody({ top: weekCard(true), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const weekStay = () => phone(spireBody({ top: weekCard(false), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Поднимайся без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
@@ -364,11 +364,11 @@ const mainScrolled = () => phone(spireBody({}), { fixed: climbCta, inStyle: 'pad
 
 document.getElementById('root').innerHTML = [
   block('tour', '1. Тур первого входа', 'Три экрана, «Пропустить» на каждом. Показывается один раз.', [
-    col('Тур 1 — за неделю выше всех', tourPhone(1, 'Поднимайся выше всех за неделю', 'Каждую неделю — новый шпиль. 15 этажей из ступеней, комната на 30 человек, место считается по ступеням.', tourTower)),
+    col('Тур 1 — за неделю выше всех', tourPhone(1, 'Поднимайся выше всех за неделю', 'Каждую неделю — новый пик. 15 этажей из ступеней, комната на 30 человек, место считается по ступеням.', tourTower)),
     col('Тур 2 — как устроена ступень', tourPhone(2, '10 заданий, общее время, 3 сердца', 'Один таймер на всю ступень. Ошибка — минус сердце и сразу правильный ответ. Провалил — остаёшься на месте.', tourRing)),
-    col('Тур 3 — повышение', tourPhone(3, 'Верхние 15% переходят в следующий шпиль', 'Гранит, Базальт, Мрамор… до Алмаза. Нижние 15% и все без ступеней спускаются. В понедельник все снова с 1 этажа.', tourTop, true))]),
-  block('main', '2. Шпиль — главный экран', 'Башня интерактивна: тап по этажу подсвечивает его и показывает ступени, монеты и соперников. Свой этаж — свет в окнах и монета ранга. «Проиграть подъём» — маркер уходит на этаж выше (этаж 4 → Страж 5).', [
-    col('Шпиль — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Шпиль — ниже: друзья, пьедестал', mainScrolled())]),
+    col('Тур 3 — повышение', tourPhone(3, 'Верхние 15% переходят на пик выше', 'Гранит, Базальт, Мрамор… до Алмаза. Нижние 15% и все без ступеней спускаются. В понедельник все снова с 1 этажа.', tourTop, true))]),
+  block('main', '2. Пик — главный экран', 'Башня интерактивна: тап по этажу подсвечивает его и показывает ступени, монеты и соперников. Свой этаж — свет в окнах и монета ранга. «Проиграть подъём» — маркер уходит на этаж выше (этаж 4 → Страж 5).', [
+    col('Пик — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Пик — ниже: друзья, пьедестал', mainScrolled())]),
   block('all', '3. Все участники', 'Комната недели: место по ступеням, монета = аватар. Верхние 15% — повышение, нижние 15% и все с нулём — понижение.', [col('Все участники', allMembers())]),
   block('step', '4–6. Ступень', 'Кольцевой таймер на всю ступень, 3 сердца, энергия. При ошибке таймер стоит и показан правильный ответ. «Назад» — шторка с подтверждением.', [
     col('Ступень — задание', stepScreen()), col('Ошибка — правильный ответ', stepError()), col('Выход — подтверждение', stepExit())]),
@@ -377,7 +377,7 @@ document.getElementById('root').innerHTML = [
   block('floor', '8. Этаж пройден и Вершина', 'Празднование на экране башни фактом. Этаж N даёт 10×N (Страж ×2), вершина +200 и дальше «над облаками».', [
     col('Этаж 4 пройден — впереди Страж', floorPassed()), col('Вершина — 15 этаж', summit())]),
   block('week', '9. Итог недели', 'При первом заходе новой недели — карточка фактом, не модалка. Все снова на 1 этаже.', [
-    col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься в шпиле Гранит', weekStay())]),
+    col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься на пике Гранит', weekStay())]),
   block('edge', '10–11. Нет энергии · Нет сети', 'Без блокирующих модалок: таймер до энергии и мягкий Plus; при отсутствии сети свой маркер живой, чужие цифры приглушены.', [
     col('Нет энергии', noEnergy()), col('Нет сети', noNet())]),
 ].join('');

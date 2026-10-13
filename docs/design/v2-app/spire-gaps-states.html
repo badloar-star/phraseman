@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Шпиль — недостающие состояния</title>
+<title>Пик — недостающие состояния</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-/* зачем (D170): у энергии в шапке Шпиля нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+/* зачем (D170): у энергии в шапке Пика нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
 .pill.encap.bare::after { display: none; }
 /* зачем (координатор 12.10, аудит покрытия): в spire.html нет 22 состояний, которые есть в коде components/spire/**.
    Раскладка, шапки, башня, пьедестал и стиль — из spire.html, но в стиле «Тень» (SHADOW_STYLE_SPEC.md):
@@ -110,7 +110,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 /* зачем: флажок жалобы (SpireStepScreen:172) — только красный значок справа под заданием, текст есть лишь для скринридера */
 .sg-rep { min-height: 44px; margin-top: 10px; display: flex; align-items: center; justify-content: flex-end; color: var(--bad); padding-right: 6px; }
 .sg-foot { margin-top: 22px; text-align: center; color: var(--sec); font-size: 16px; font-weight: 700; }
-/* зачем (код SpireStepScreen.tsx, Ядро c323a5e7f): плашка ответа — «Правильно: …», ниже тихая строка (тем же серым тоном, без красного и значков), кнопка «Дальше →»; общий тост — поверх любого экрана Шпиля */
+/* зачем (код SpireStepScreen.tsx, Ядро c323a5e7f): плашка ответа — «Правильно: …», ниже тихая строка (тем же серым тоном, без красного и значков), кнопка «Дальше →»; общий тост — поверх любого экрана Пика */
 .sg-hint { margin-top: 14px; padding: 14px 16px; border-radius: 16px; background: rgba(255,90,90,.14); text-align: center; font-size: 15px; line-height: 20px; } .sg-hint b { font-weight: 700; } .sg-hint .sub { margin-top: 6px; color: var(--sec); font-size: 13px; line-height: 18px; }
 .sg-next { margin-top: 12px; height: 46px; border-radius: 23px; background: #F2F2F4; color: #111114; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; }
 /* зачем (код components/ActionToast.tsx, тост без layout = «гибридная карточка»): низ экрана, поля 14, высота от 76, радиус 20, зазор 12; слева планка 3, плитка значка 44 (радиус 12), капсом тон «СООБЩЕНИЕ» 13/17 800 и текст 16/22; низ = нижняя зона жестов + 8 (на экране ступени таб-бара нет — useGlobalBottomOverlayOffset). Спокойный тон «info» (D158): значок «i» */
@@ -130,13 +130,13 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 
 /* ---------- экран «откроется позже» ---------- */
 .sg-lock { font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.3px; text-align: center; }
-/* зачем (координатор 12.10): Шпиль берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
+/* зачем (координатор 12.10): Пик берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
 .ph { --bg: #0C0D10; --bg-top: #181A1F; }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Шпиль — недостающие состояния</h1>
+  <h1 class="page-h1">Пик — недостающие состояния</h1>
   <p class="page-lead">В приложении снизу панель вкладок: нижняя плашка («Подняться», результат, ошибка) поднята над ней на 78 dp, на образцах панели нет. Что есть в коде components/spire/**, но не нарисовано в spire.html: шесть видов заданий ступени, сбой старта, экран «откроется позже», три провала, три исхода недели, правила, «Готовим ступень…», флажок жалобы и «бета». Раскладка и башня — из spire.html, подача — в стиле «Тень». Тексты — русская ветка кода, примеры заданий и цифры условные.</p>
   <nav class="page-nav"><a href="#tasks">Задания</a><a href="#start">Старт не удался</a><a href="#locked">Откроется позже</a><a href="#fails">Провалы</a><a href="#week">Итог недели</a><a href="#rules">Правила</a><a href="#misc">Мелочи</a></nav>
   <div id="root"></div>
@@ -144,7 +144,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coinImg } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Пика — только значок и число, без капсулы (SpireEnergyPill)
 
 /* ===================== ДАННЫЕ КОМНАТЫ (как в spire.html, 30 человек) ===================== */
 const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
@@ -166,7 +166,7 @@ const doneIn = (steps, f) => steps - cum(f - 1);
 const onFloor = (f) => ROOM.filter((m) => !m.me && floorOf(m.steps) === f);
 
 /* ===================== БАШНЯ (копия из spire.html + флаг noRivals) ===================== */
-// зачем: нужны кадры «комнаты ещё нет» (Шпиль без маркера и без соперников: SpireTower — «если локальной недели нет, маркера нет вовсе»),
+// зачем: нужны кадры «комнаты ещё нет» (Пик без маркера и без соперников: SpireTower — «если локальной недели нет, маркера нет вовсе»),
 // поэтому к башне из spire.html добавлены флаг o.noRivals и защита от этажа 0. Остальное — как было.
 const TW = 390, CX = 195;
 const FH = (f) => (isGuard(f) ? 60 : 46);
@@ -331,7 +331,7 @@ const floorInfo = (f, o = {}) => {
 const INFO = `<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg>`;
 /* зачем: шапка как в коде (SpireHomeScreen:220-244): название + «бета» + подзаголовок «камень · до конца недели», кнопка правил (i) и энергия;
    в spire.html кнопки правил нет — её рисуем здесь */
-const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Шпиль</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energyBare(o.energy ?? 3)}</div>`;
+const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Пик</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energyBare(o.energy ?? 3)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
 const podium = () => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
@@ -354,7 +354,7 @@ const homePhone = (o = {}, dockHtml = dock(), extra = {}) => phone(homeScr(o), {
 const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin-top:6px"><span class="rb l t" style="margin-right:8px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;line-height:25px;font-weight:700">Ступень 8</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:2px;white-space:nowrap">Этаж 4 · Гранит</div></div>
   <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span>${energyBare(e)}</div>`;
 const ringHtml = (left = '1:12', frac = .72, paused = false) => `<div class="sg-ring"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="${paused ? '#8E8E92' : '#E9E9EB'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="${(370.7 * (1 - frac)).toFixed(1)}"/></svg><div class="tm">${left}</div>${paused ? '<div class="pz">таймер на паузе</div>' : ''}</div>`;
-const FLAG = `<div class="sg-rep" aria-label="Сообщить об ошибке в задании Шпиля">${icon('flag', 's18')}</div>`; // зачем (координатор 13.10): красный флажок в Шпиле — рабочая функция «убрать плохое задание из забега» (submitOverride, ReportErrorButton.tsx:573-585), есть в сборке магазина, overlays=off её не прячет
+const FLAG = `<div class="sg-rep" aria-label="Сообщить об ошибке в задании Пика">${icon('flag', 's18')}</div>`; // зачем (координатор 13.10): красный флажок на Пике — рабочая функция «убрать плохое задание из забега» (submitOverride, ReportErrorButton.tsx:573-585), есть в сборке магазина, overlays=off её не прячет
 const qCard = (main, sub) => `<div class="sg-qc"><div class="q">${main}</div>${sub ? `<div class="q2">${sub}</div>` : ''}</div>`;
 /* зачем: «на слух» (SpireTaskView:203-212) — до ответа фраза скрыта, вместо неё серое «Прослушать» и кнопка озвучки справа */
 const listenCard = () => `<div class="sg-qc sp"><div class="q mute">Прослушать</div><span class="sg-snd t">${icon('vol', 's20')}</span></div>`;
@@ -381,10 +381,10 @@ const noRoomTop = () => homePhone({ ...noRoomOpts(), podium: podiumDash() }, doc
 const noRoomLow = () => homePhone({ ...noRoomOpts(), podium: podiumDash() }, dock({ dim: true })).replace('<div class="scr">', '<div class="scr" data-scroll="bottom">');
 
 /* ===================== 3. ОТКРОЕТСЯ ПОЗЖЕ ===================== */
-const locked = () => phone(`<div class="sg-lock">Шпиль откроется чуть позже</div>`, { inStyle: 'min-height:100%;display:flex;align-items:center;justify-content:center;padding:0 40px' });
+const locked = () => phone(`<div class="sg-lock">Пик откроется чуть позже</div>`, { inStyle: 'min-height:100%;display:flex;align-items:center;justify-content:center;padding:0 40px' });
 
 /* ===================== 4. ПРОВАЛЫ ===================== */
-/* зачем (решение Дизайна 12.10): итог ступени — панель SpireResultPanel ПОВЕРХ главного экрана Шпиля (SpireHomeScreen: док «Подняться» заменяется панелью), а не отдельная «сцена башни» */
+/* зачем (решение Дизайна 12.10): итог ступени — панель SpireResultPanel ПОВЕРХ главного экрана Пика (SpireHomeScreen: док «Подняться» заменяется панелью), а не отдельная «сцена башни» */
 const failPhone = (panel) => homePhone({ tower: { mySteps: 25, sel: 4 }, pb: 300 }, `<div class="sg-bp sc"><div class="sg-panel">${panel}</div></div>`);
 /* провал по сердцам/времени/выходу: красная «Ступень не пройдена», заголовок по причине, «Остаёшься на N этаже. Новый набор из 10 заданий», «Ещё раз», «Позже» */
 const failPanel = (title) => `<div class="sg-over bad">Ступень не пройдена</div><div class="ti">${title}</div><div class="su">Остаёшься на 4 этаже. Новый набор из 10 заданий</div><div class="cta t">Ещё раз</div><div class="sg-ghost t">Позже</div>`;
@@ -400,25 +400,25 @@ const failSave = () => failPhone(savePanel());
 const weekCard = (title, sub) => `<div class="sg-week">${coinImg(ME.rank, 52)}<div class="grow"><div class="sg-over">Итог недели</div><div class="sg-wt">${title}</div><div class="sg-ws">${sub}</div></div><span class="sg-x t">${icon('close', 's16')}</span></div>`;
 const newWeek = (title, sub, stone) => homePhone({ stone, left: '6 д 22 ч', top: weekCard(title, sub), tower: { myFloor: 0, noMarker: true, noRivals: true, sel: 1 }, finfo: floorInfo(1, { noWeek: true }) });
 const weekUp = () => newWeek('Ты поднимаешься в Базальт', '2 место · 39 ступеней · +200 · +100 монет', 'Базальт');
-const weekStay = () => newWeek('Остаёшься в шпиле Гранит', '12 место · 25 ступеней · новая неделя, все с 1 этажа', 'Гранит');
+const weekStay = () => newWeek('Остаёшься на пике Гранит', '12 место · 25 ступеней · новая неделя, все с 1 этажа', 'Гранит');
 /* зачем (код spireWeekResultLines, 12.10): у итога две строки — «N место · K ступеней · +монеты монет» (результат показан сразу, неделя ещё старая: маркер и соперники на башне, «Ты здесь» на карточке этажа) и «новая неделя, все с 1 этажа» (после старта новой недели). Здесь первая — «остаёшься» с наградой +60 монет */
-const weekStayReward = () => homePhone({ stone: 'Гранит', left: '0 д 1 ч', top: weekCard('Остаёшься в шпиле Гранит', '12 место · 25 ступеней · +60 монет'), tower: { mySteps: 25, sel: 4 }, pb: 150 });
+const weekStayReward = () => homePhone({ stone: 'Гранит', left: '0 д 1 ч', top: weekCard('Остаёшься на пике Гранит', '12 место · 25 ступеней · +60 монет'), tower: { mySteps: 25, sel: 4 }, pb: 150 });
 const weekDown = () => newWeek('Ты спускаешься в Гранит', '27 место · 5 ступеней · новая неделя, все с 1 этажа', 'Гранит');
 
 /* ===================== 6. ПРАВИЛА ===================== */
 /* зачем: восемь правил — spire_game_strings rule1…rule8; числа правил 6 и 7 подставляются из config/spire_v1 (значения по умолчанию:
    10 за ступень, 10×N за этаж, Страж ×2, вершина +200; места 300 / 200 / 150, повышение +100) */
 const RULES = [
-  'Каждую неделю — новый шпиль: 15 этажей и комната на 30 человек.',
+  'Каждую неделю — новый пик: 15 этажей и комната на 30 человек.',
   'Ступень — 10 заданий, общий таймер и 3 сердца. Ошибка снимает сердце.',
   'Энергия списывается, когда появляется первое задание ступени.',
   'Место в комнате — по пройденным ступеням. При равенстве выше тот, кто дошёл раньше.',
-  'Верхние 15% переходят в шпиль выше, нижние 15% и все без ступеней спускаются.',
+  'Верхние 15% переходят на пик выше, нижние 15% и все без ступеней спускаются.',
   'Монеты: 10 за ступень, за этаж N — 10×N, у Стража ×2, за вершину +200.',
   'За места недели: 300 / 200 / 150 монет, за повышение +100.',
   'В понедельник все начинают с 1 этажа.',
 ];
-const rulesSheet = (end) => sheet('rules', `<div class="sg-sht-t">Правила Шпиля</div><div class="sg-rl"${end ? ' data-end' : ''}>${RULES.map((t, i) => `<div class="r"><span class="n">${i + 1}</span><div class="l">${t}</div></div>`).join('')}</div><div class="cta t" style="height:56px;border-radius:28px;margin-top:20px" data-close>Закрыть</div>`, true);
+const rulesSheet = (end) => sheet('rules', `<div class="sg-sht-t">Правила Пика</div><div class="sg-rl"${end ? ' data-end' : ''}>${RULES.map((t, i) => `<div class="r"><span class="n">${i + 1}</span><div class="l">${t}</div></div>`).join('')}</div><div class="cta t" style="height:56px;border-radius:28px;margin-top:20px" data-close>Закрыть</div>`, true);
 const rulesTop = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { overlay: rulesSheet(false) });
 const rulesEnd = () => homePhone({ tower: { mySteps: 25, sel: 4 } }, dock(), { overlay: rulesSheet(true) });
 
@@ -429,7 +429,7 @@ const preparing = () => phone(`${stepHead(3, 3)}${ringHtml('1:40', 1, true)}<div
 /* зачем: то же «Выбери перевод», что в spire.html, но с флажком жалобы справа под вариантами (SpireStepScreen:172: виден, пока можно отвечать) */
 /* зачем (Ядро c323a5e7f, обзор R1 п.4): верный текст ответа и «запись в «Мои ошибки» не удалась» — тихая строка только при сбое записи, штатный пропуск (пары, «найди лишнее», язык без журнала) её не показывает */
 const stepMistakeNotSaved = () => stepPhone({ prompt: 'Выбери перевод', n: 3, hearts: 2, body: qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность']) + `<div class="sg-hint">Правильно: <b>Нанимать, увольнять, уходить с работы</b><div class="sub">Не удалось сохранить в «Мои ошибки»</div></div><div class="sg-next">Дальше${icon('arrowR', 's18')}</div>`, flag: false });
-/* зачем (Ядро c323a5e7f): жалоба легла в очередь, а сервер отказал — общий тост (ActionToast, тон info, SPIRE_REPORT_QUEUED_TOAST) виден и без кнопки жалобы, на любом экране Шпиля; положение и размеры — по ActionToast.tsx */
+/* зачем (Ядро c323a5e7f): жалоба легла в очередь, а сервер отказал — общий тост (ActionToast, тон info, SPIRE_REPORT_QUEUED_TOAST) виден и без кнопки жалобы, на любом экране Пика; положение и размеры — по ActionToast.tsx */
 const stepReportQueued = () => phone(`${stepHead(3, 2)}${ringHtml('1:12', .72)}<div class="sg-ovl"><span>Выбери перевод</span></div>${qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность'])}${FLAG}<div class="sg-foot">3 / 10</div><div class="sg-toast" role="status"><span class="rail"></span><span class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01" stroke-width="2.4"/></svg></span><span class="cp"><span class="lb">Сообщение</span><span class="ms">Жалоба сохранена — отправим, когда будет связь</span></span></div>`);
 const stepWithFlag = () => stepPhone({ prompt: 'Выбери перевод', n: 3, body: qCard('Hire, fire, quit') + opts(['Нанимать, увольнять, уходить с работы', 'Складывать, сгибать одежду', 'Обманывать, изменять', 'Иметь склонность']) });
 const betaMain = () => homePhone({ beta: true, tower: { mySteps: 25, sel: 4 } });
@@ -448,26 +448,26 @@ document.getElementById('root').innerHTML = [
     col('Задания этой недели ещё готовятся', startMissing()),
     col('Комнаты ещё нет: «Подняться» неактивна', noRoomTop()),
     col('Там же ниже: «Комната недели —» и «Все участники · —»', noRoomLow())]),
-  block('locked', '3. Шпиль откроется чуть позже', 'Выключена функция (config/spire_v1) или пауза комнаты без данных: одна фраза по центру, ничего живого и никаких запросов.', [
-    col('Шпиль откроется чуть позже', locked())]),
-  block('fails', '4. Провалы ступени', 'Панель итога поверх главного экрана Шпиля (док «Подняться» заменяется панелью). У «не сохранилась» нет красной строки и подписи про новый набор — попытка та же, кнопка «Повторить».', [
+  block('locked', '3. Пик откроется чуть позже', 'Выключена функция (config/spire_v1) или пауза комнаты без данных: одна фраза по центру, ничего живого и никаких запросов.', [
+    col('Пик откроется чуть позже', locked())]),
+  block('fails', '4. Провалы ступени', 'Панель итога поверх главного экрана Пика (док «Подняться» заменяется панелью). У «не сохранилась» нет красной строки и подписи про новый набор — попытка та же, кнопка «Повторить».', [
     col('Время вышло', failTimeout()),
     col('Ступень прервана (вышел из ступени)', failBack()),
     col('Ступень не сохранилась', failSave())]),
   block('week', '5. Итог недели — три исхода', 'Карточка при первом заходе новой недели, закрывается крестиком. Заголовок по решению сервера; вторая строка — место, ступени, монеты. Прежние кадры «Ты поднялся в Базальт» из spire.html устарели.', [
     col('Ты поднимаешься в …', weekUp()),
-    col('Остаёшься в шпиле …', weekStay()),
+    col('Остаёшься на пике …', weekStay()),
     col('Ты спускаешься в …', weekDown())]),
-  block('rules', '6. Правила Шпиля', 'Шторка по кнопке (i) в шапке. Восемь правил видны целиком (на узком экране список прокручивается). Монеты в правилах 6 и 7 — из настроек сервера.', [
+  block('rules', '6. Правила Пика', 'Шторка по кнопке (i) в шапке. Восемь правил видны целиком (на узком экране список прокручивается). Монеты в правилах 6 и 7 — из настроек сервера.', [
     col('Правила — начало списка', rulesTop()),
     col('Правила — список прокручен до конца', rulesEnd())]),
   block('misc', '7. Мелочи', '«Готовим ступень…» во время списания энергии, флажок жалобы и пилюля «бета» у испанского, немецкого, французского и итальянского.', [
     col('Готовим ступень… (списывается энергия — и до загрузки пакета недели, «Подняться» открывает ступень в тот же тап)', preparing()),
-    col('Ступень с флажком «Сообщить об ошибке в задании Шпиля»', stepWithFlag()),
+    col('Ступень с флажком «Сообщить об ошибке в задании Пика»', stepWithFlag()),
     col('Главный экран: пилюля «бета» (es / de / fr / it)', betaMain()),
     col('Ответ неверный — запись в «Мои ошибки» не удалась (тихая строка)', stepMistakeNotSaved()),
     col('Жалоба сохранена в очереди — общий тост', stepReportQueued()),
-    col('Остаёшься в шпиле — с наградой (+монеты), неделя ещё старая', weekStayReward())]),
+    col('Остаёшься на пике — с наградой (+монеты), неделя ещё старая', weekStayReward())]),
 ].join('');
 
 /* ===================== ПОВЕДЕНИЕ ===================== */

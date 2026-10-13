@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Башни лиг Шпиля — архив архетипов v2</title>
+<title>Башни лиг Пика — архив архетипов v2</title>
 <link rel="stylesheet" href="kit.css">
 <style>
 /* зачем (владелец 13.10, «ужасно, переделывай»; координатор): v2 — у каждой лиги СВОЙ силуэт и архитектура со своей геометрией, объём и материал на уровне эталонной чёрной башни (SpireTowerSvg.tsx). Стиль «Тень» — без обводок контейнеров. */
@@ -72,7 +72,7 @@
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Башни лиг Шпиля · архив архетипов v2</h1><p class="page-lead" style="color:#FFB45E"><b>Архив.</b> Решением владельца 13.10 (12:2x) все варианты «своя архитектура на лигу» отменены: боевой образец — <a href="spire-leagues.html" style="color:#fff">spire-leagues.html</a> (одна базовая башня в 12 облачениях). Эта страница сохранена для истории и не является источником для кода.</p>
+  <h1 class="page-h1">Башни лиг Пика · архив архетипов v2</h1><p class="page-lead" style="color:#FFB45E"><b>Архив.</b> Решением владельца 13.10 (12:2x) все варианты «своя архитектура на лигу» отменены: боевой образец — <a href="spire-leagues.html" style="color:#fff">spire-leagues.html</a> (одна базовая башня в 12 облачениях). Эта страница сохранена для истории и не является источником для кода.</p>
   <p class="page-lead">Двенадцать лиг-камней (Гранит … Алмаз). У каждой лиги — своя архитектура со своей геометрией: силуэт, материал, свет, атмосфера. Эталон качества — чёрная башня приложения, она закреплена за лигой «Оникс». Приняты владельцем: Гранит (крепостной донжон) и Оникс (эталон); Алмаз переделан в хрустальную башню (огранённая кладка, стрельчатые окна со светом изнутри, кристаллический венец и шпиль). Остальные девять показываются партиями по три: Базальт · Мрамор · Нефрит, Кварц · Агат · Аметист, Опал · Топаз · Обсидиан. Всё — SVG кодом, без картинок; каждая башня — параметры и набор форм поверх модели этажей (15 этажей, Страж каждые 5).</p>
   <div class="lg-bar">
     <div class="lg-arrow" id="prev" aria-label="Предыдущая лига">‹</div>
@@ -1586,7 +1586,7 @@ function floorInfo(L, f, my, summit) {
   return `<div class="fi"><div class="bdg">${badgeSvg(L, 44)}</div><div class="grow"><div class="tt">${tt}</div><div class="st">${st} · ${c}</div></div></div>`;
 }
 function phoneSpire(L, S) {
-  const head = `<div class="hd"><div class="grow"><div class="lg-title">Шпиль</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div><div class="bd">${badgeSvg(L, 54)}</div></div>`;
+  const head = `<div class="hd"><div class="grow"><div class="lg-title">Пик</div><div class="lg-sub">${L.ru} · до конца недели 2 д 14 ч</div></div><div class="bd">${badgeSvg(L, 54)}</div></div>`;
   const tv = `<div class="tv" style="margin-top:14px" data-tv="main">${towerSvg(L, { myFloor: S.my, summit: S.summit, selected: S.sel })}</div>`;
   const dock = `<div class="dockb"><div class="cta">${icon('fwd', 's20')}Подняться · 1 ${energy ? '⚡' : ''}</div></div>`;
   return phone(head + tv + floorInfo(L, S.sel, S.my, S.summit) + '<div style="height:110px"></div>', { fixed: dock });

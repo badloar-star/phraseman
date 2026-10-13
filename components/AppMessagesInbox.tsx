@@ -59,6 +59,10 @@ const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
 // The unified notification center refreshes at app entry only when its cache is stale.
 const BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS = 12 * 60 * 60_000;
+// зачем (смета Ядра e72a5417b №2, координатор 13.10): открытая шторка читала сеть ВСЕГДА (minIntervalMs: 0) —
+// до 240 чтений Firestore (3 запроса × 80) на каждое открытие колокольчика. Кэш показывается сразу, как и раньше;
+// свежее чтение — если прошлое старше минуты.
+const INBOX_OPEN_REFRESH_MIN_INTERVAL_MS = 60_000;
 
 function inboxText(lang: Lang) {
   return {
@@ -358,8 +362,12 @@ function AppMessagesInbox({
       try {
         const cached = await readCachedAppMessagesSnapshot();
         if (!cancelled) applyAppMessagesSnapshot(cached);
+        const minIntervalMs = effectiveVisible ? INBOX_OPEN_REFRESH_MIN_INTERVAL_MS : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS;
         const refreshed = await refreshAppMessagesSnapshotOnce({
-          minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS,
+          minIntervalMs,
+          onOutcome: (outcome) => {
+            console.log(`[INBOX-REFRESH] open=${effectiveVisible ? 'yes' : 'no'} minIntervalMs=${minIntervalMs} outcome=${JSON.stringify(outcome)}`);
+          },
         });
         if (!cancelled) applyAppMessagesSnapshot(refreshed);
       } finally {

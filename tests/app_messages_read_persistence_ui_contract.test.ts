@@ -34,7 +34,7 @@ describe('app messages read persistence UI contract', () => {
   // чтение при открытии центра (minIntervalMs: 0). «Центр без подписки» закреплён и в background_refresh_contract.
   it('opening either surface reads cache first, then a fresh one-shot read without a live subscription', () => {
     expect(inboxSource).not.toContain('subscribeUserAppMessages');
-    expect(inboxSource).toContain('minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
+    expect(inboxSource).toContain('const minIntervalMs = effectiveVisible ? INBOX_OPEN_REFRESH_MIN_INTERVAL_MS : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS;');
     expect(inboxSource).toContain('}, [applyAppMessagesSnapshot, effectiveVisible, runtimeActive]);');
   });
 

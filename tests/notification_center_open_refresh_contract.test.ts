@@ -9,6 +9,6 @@ describe('notification center open refresh', () => {
     const inbox = fs.readFileSync(path.join(ROOT, 'components', 'AppMessagesInbox.tsx'), 'utf8');
 
     expect(center).toContain('refreshUserNotificationsOnce({ force: true })');
-    expect(inbox).toContain('minIntervalMs: effectiveVisible ? 0 : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS');
+    expect(inbox).toContain('const minIntervalMs = effectiveVisible ? INBOX_OPEN_REFRESH_MIN_INTERVAL_MS : BADGE_FOREGROUND_REFRESH_MIN_INTERVAL_MS;');
   });
 });

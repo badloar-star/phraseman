@@ -1581,10 +1581,21 @@ async function writeLastBackgroundRefreshMs(ms: number, expectedOwnerUid?: strin
     }
 }
 
+/**
+ * зачем (смета Ядра e72a5417b №2, координатор 13.10): колокольчик пишет [INBOX-REFRESH] — было ли чтение Firestore и сколько
+ * документов; без этого стоимость открытия не видна. Необязателен — прочие вызовы без изменений.
+ */
+export type AppMessagesRefreshOutcome =
+  | Readonly<{ source: 'cache_interval'; ageMs: number; minIntervalMs: number }>
+  | Readonly<{ source: 'unavailable'; firestore: boolean; uid: boolean }>
+  | Readonly<{ source: 'network'; messages: number; userMessages: number; states: number }>
+  | Readonly<{ source: 'error' }>;
+
 export async function refreshAppMessagesSnapshotOnce(options: {
   force?: boolean;
   minIntervalMs?: number;
   nowMs?: number;
+  onOutcome?: (outcome: AppMessagesRefreshOutcome) => void;
 } = {}): Promise<AppMessagesSnapshot> {
   const rawNowMs = Math.floor(Number(options.nowMs ?? Date.now()));
   const nowMs = Number.isFinite(rawNowMs) ? rawNowMs : Date.now();
@@ -1605,12 +1616,14 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     const lastRefreshMs = await readLastBackgroundRefreshMs();
     if (lastRefreshMs > 0 && nowMs - lastRefreshMs < minIntervalMs) {
       DebugLogger.info('[STARTUP-READS]', `app_messages: cache (ageMs=${nowMs - lastRefreshMs} < minIntervalMs=${minIntervalMs}) -> network skipped`);
+      options.onOutcome?.({ source: 'cache_interval', ageMs: nowMs - lastRefreshMs, minIntervalMs });
       return cached;
     }
   }
 
   if (!firestoreFactory || !uid) {
     DebugLogger.info('[STARTUP-READS]', `app_messages: network unavailable (firestore=${firestoreFactory ? 'yes' : 'no'}, uid=${uid ? 'yes' : 'no'}) -> cache`);
+    options.onOutcome?.({ source: 'unavailable', firestore: !!firestoreFactory, uid: !!uid });
     return cached;
   }
 
@@ -1670,9 +1683,11 @@ export async function refreshAppMessagesSnapshotOnce(options: {
     await writeCachedSnapshot(snapshot, uid);
     await writeLastBackgroundRefreshMs(nowMs, uid);
     DebugLogger.info('[STARTUP-READS]', `app_messages: network read messages=${messages.length} userMessages=${userMessages.length} states=${states.length}`);
+    options.onOutcome?.({ source: 'network', messages: messages.length, userMessages: userMessages.length, states: states.length });
     return snapshot;
   } catch (error) {
     reportSwallowed('app_messages:refreshAppMessagesSnapshotOnce', error);
+    options.onOutcome?.({ source: 'error' });
     return cached;
   }
 }

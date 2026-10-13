@@ -12,7 +12,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
 import Svg, {
-  Circle, ClipPath, Defs, Ellipse, G, Line, LinearGradient, Path, Polygon, RadialGradient, Rect, Stop, Text as SvgText,
+  Circle, ClipPath, Defs, Ellipse, G, Line, LinearGradient, Mask, Path, Polygon, RadialGradient, Rect, Stop, Text as SvgText,
 } from 'react-native-svg';
 import type { Lang } from '../../constants/i18n';
 import { SPIRE_DEFAULT_SKIN, mixHex, type SpireTowerSkin } from '../../modules/spire/tower_skins';
@@ -83,9 +83,11 @@ type FloorProps = Readonly<{
   selected: boolean;
   label: string;
   onSelect: (floor: number) => void;
+  /** Мини-башня «Итога недели»: без номера этажа, подписи, рамки выбора и зоны нажатия (их всё равно не видно в кадре). */
+  bare?: boolean;
 }>;
 
-const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect }: FloorProps) {
+const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect, bare = false }: FloorProps) {
   const { f, y, h, w, x0 } = fl;
   const guard = spireIsGuard(f);
   const stones = useMemo(() => stonesPath(fl), [fl]);
@@ -107,10 +109,10 @@ const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSel
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill="rgba(255,255,255,.28)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
-      <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#6E6E72'} textAnchor="middle">{String(f)}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {label ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill="#8E8E92" textAnchor="middle">{label}</SvgText> : null}
+      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#6E6E72'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill="#8E8E92" textAnchor="middle">{label}</SvgText> : null}
       {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke="rgba(255,255,255,.8)" strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа на ночной сцене (небо всегда тёмное) */}
-      <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />
+      {bare ? null : <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />}
     </G>
   );
 });
@@ -278,9 +280,18 @@ type Props = Readonly<{
   width: number;
   /** Наряд лиги (modules/spire/tower_skins.ts). Нет пропа = Оникс прежнего вида. */
   skin?: SpireTowerSkin;
+  /**
+   * 'weekTop' — верхушка башни для карточки «Итог недели» (макет spire-leagues.html, раздел «Итог недели»): навершие, конус, барабан, Страж-15 и этаж 14,
+   * viewBox узкий (x CX−96…+192, y top−236…top+106), без неба, облаков, земли и маркера, края — мягкая радиальная маска. Высота = width·342/192.
+   * Состояние окон — по myFloor: 15 («вершина недели», окна горят, свечение ×2.6) или 1 (окна тёмные).
+   */
+  variant?: 'tower' | 'weekTop';
 }>;
 
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN }: Props) {
+const WEEK_TOP_W = 192;
+const WEEK_TOP_H = 342;
+
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower' }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   const guardLabel = useMemo(() => spireText(lang, 'guard').toUpperCase(), [lang]);
@@ -290,6 +301,34 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
   const b = geom.floors[0];
   const skyY = geom.top - 250;
   const summit = myFloor === SPIRE_FLOOR_COUNT;
+  if (variant === 'weekTop') {
+    const vx = SPIRE_CX - WEEK_TOP_W / 2;
+    const vy = geom.top - 236;
+    const topFloors = geom.floors.slice(SPIRE_FLOOR_COUNT - 2); // этаж 14 и Страж-15
+    return (
+      <Svg width={width} height={(width * WEEK_TOP_H) / WEEK_TOP_W} viewBox={`${vx} ${vy} ${WEEK_TOP_W} ${WEEK_TOP_H}`}>
+        <Defs>
+          {defs}
+          {/* зачем (макет «Итог недели»): края мини-башни растворяются — mask-image radial-gradient(ellipse 72% 62% at 50% 42%, #000 66%, transparent) образца */}
+          <RadialGradient id="spireWeekFadeG" cx="0.5" cy="0.42" rx="0.72" ry="0.62">
+            <Stop offset="0" stopColor="#FFFFFF" /><Stop offset="0.66" stopColor="#FFFFFF" /><Stop offset="1" stopColor="#000000" />
+          </RadialGradient>
+          <Mask id="spireWeekFade" x={vx} y={vy} width={WEEK_TOP_W} height={WEEK_TOP_H} maskUnits="userSpaceOnUse">
+            <Rect x={vx} y={vy} width={WEEK_TOP_W} height={WEEK_TOP_H} fill="url(#spireWeekFadeG)" />
+          </Mask>
+        </Defs>
+        <G mask="url(#spireWeekFade)">
+          {topFloors.map((fl) => {
+            const state = spireFloorState(fl.f, myFloor);
+            const tone: WindowTone = state === 'mine' ? 'lit' : state === 'passed' ? 'past' : 'dark';
+            return <Floor key={fl.f} fl={fl} tone={tone} skin={skin} mine={state === 'mine'} selected={false} label="" onSelect={onSelect} bare />;
+          })}
+          {skin.rim === 'full' ? <CornRims /> : null}
+          <Crown skin={skin} summit={summit} />
+        </G>
+      </Svg>
+    );
+  }
   return (
     <Svg width={width} height={geom.height * scale} viewBox={`0 0 ${SPIRE_TW} ${geom.height}`}>
       <Defs>{defs}</Defs>

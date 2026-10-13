@@ -6,22 +6,27 @@
 // и понижении принимает только сервер). Крестик закрывает карточку навсегда для
 // этой недели. Глаголы в настоящем времени — род игрока не угадываем.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../constants/i18n';
 import type { SpireWeekResultView } from '../../app/spire/spire_week_result_client';
 import { spireTierName } from '../../modules/spire/tier_names';
+import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import AvatarView from '../AvatarView';
 import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
+import SpireTowerSvg from './SpireTowerSvg';
+import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
 import { spireStepsCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 
 type Props = Readonly<{ lang: Lang; result: SpireWeekResultView; myCoinRank: number | null; onClose: () => void }>;
+
+const noop = (): void => undefined;
 
 export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readonly<{ title: string; sub: string }> {
   const stone = spireTierName(r.newTier, lang);
@@ -37,10 +42,19 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
   return { title, sub: parts.join(' · ') };
 }
 
+// зачем (макет «Итог недели», Макеты 13.10): слева вместо монеты 52 — верхушка башни лиги НОВОЙ недели 58×103; монета ранга 26 — значок справа снизу с кольцом цвета карточки
+const TOWER_W = 58;
+const TOWER_H = 103;
+const COIN = 26;
+const COIN_RING = 3;
+
 function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const { title, sub } = spireWeekResultLines(lang, result);
-  // зачем (макет community.html COM-SPIRE-WEEK, anim-pop): монета «выпрыгивает» один раз
+  // зачем: наряд по newTier, состояние окон — по решению сервера: повышение = «вершина недели» (окна горят, свечение ×2.6), остаёшься и понижение = окна тёмные
+  const skin = useMemo(() => spireSkinForTier(result.newTier), [result.newTier]);
+  const towerFloor = result.promoted ? SPIRE_FLOOR_COUNT : 1;
+  // зачем (макет community.html COM-SPIRE-WEEK, anim-pop): блок башни с монетой «выпрыгивает» один раз
   // при появлении карточки. Нативный драйвер, без цикла; «уменьшить движение» — сразу на месте.
   const reduceMotion = useReduceMotion();
   const pop = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
@@ -54,8 +68,13 @@ function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
   };
   return (
     <View style={[s.card, { backgroundColor: p.cardRaised }, sh.plate]} accessible={false} testID="spire-week-result">
-      <Animated.View style={popStyle} testID="spire-week-result-pop">
-        {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={52} /> : <View style={[s.dot, { backgroundColor: p.control }]} />}
+      <Animated.View style={[s.tower, popStyle]} testID="spire-week-result-pop" pointerEvents="none">
+        <SpireTowerSvg variant="weekTop" lang={lang} myFloor={towerFloor} selected={0} onSelect={noop} width={TOWER_W} skin={skin} />
+        {myCoinRank !== null ? (
+          <View style={[s.coin, { backgroundColor: p.cardRaised }]}>
+            <AvatarView avatar="" coinRank={myCoinRank} size={COIN} />
+          </View>
+        ) : null}
       </Animated.View>
       <View style={s.text} accessible accessibilityLabel={`${spireGameText(lang, 'weekResult')}. ${title}. ${sub}`}>
         <Text style={[s.over, { color: p.textSecondary }]}>{spireGameText(lang, 'weekResult').toUpperCase()}</Text>
@@ -77,8 +96,10 @@ function SpireWeekResultCard({ lang, result, myCoinRank, onClose }: Props) {
 }
 
 const s = StyleSheet.create({
-  card: { marginTop: 16, borderRadius: 20, padding: 16, flexDirection: 'row', alignItems: 'flex-start', gap: 14 },
-  dot: { width: 52, height: 52, borderRadius: 26 },
+  card: { marginTop: 16, borderRadius: 20, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 },
+  tower: { width: TOWER_W, height: TOWER_H },
+  // кольцо цветом карточки вокруг монеты: плотный круг-подложка, а не рамка
+  coin: { position: 'absolute', right: -6 - COIN_RING, bottom: -2 - COIN_RING, padding: COIN_RING, borderRadius: (COIN + COIN_RING * 2) / 2 },
   text: { flex: 1, minWidth: 0 },
   over: { fontSize: 13, fontWeight: '700', letterSpacing: 2 },
   title: { fontSize: 19, lineHeight: 24, fontWeight: '700', marginTop: 6 },

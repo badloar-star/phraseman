@@ -15,6 +15,7 @@ const textures = read('components/spire/SpireTowerTextures.tsx');
 const tower = read('components/spire/SpireTower.tsx');
 const home = read('components/spire/SpireHomeScreen.tsx');
 const fixtures = read('app/dev_state_fixtures.ts');
+const weekCard = read('components/spire/SpireWeekResultCard.tsx');
 const devTier = read('app/dev_spire_tier.ts');
 const bundlerConfig = read(['metro', 'config.js'].join('.'));
 const HEX = /^#[0-9A-Fa-f]{6}$/;
@@ -120,5 +121,24 @@ describe('наряды башни Шпиля', () => {
     const stub = read('store_release_stubs/dev_state/dev_spire_tier_stub.ts');
     expect(stub).toContain('export function setDevSpireTierOverride(): boolean { return false; }');
     expect(stub).toContain('export function getDevSpireTierOverride(): null { return null; }');
+  });
+
+  it('«Итог недели»: слева верхушка башни лиги НОВОЙ недели, монета ранга — значок 26 с кольцом цвета карточки (макет Макетов 13.10)', () => {
+    expect(weekCard).toContain('variant="weekTop"');
+    expect(weekCard).toContain('spireSkinForTier(result.newTier)');
+    expect(weekCard).toContain('result.promoted ? SPIRE_FLOOR_COUNT : 1'); // повышение — вершина недели, иначе окна тёмные
+    for (const piece of ['const TOWER_W = 58;', 'const TOWER_H = 103;', 'const COIN = 26;', 'const COIN_RING = 3;', 'size={COIN}', 'backgroundColor: p.cardRaised']) {
+      expect(weekCard).toContain(piece);
+    }
+    expect(weekCard).not.toContain('size={52}'); // прежней монеты 52 нет
+    expect(weekCard).toContain('testID="spire-week-result-pop"'); // выпрыгивание переехало на блок башни, а не пропало
+    expect(weekCard).toContain('useMemo(() => spireSkinForTier(result.newTier), [result.newTier])');
+    // мини-башня: узкий viewBox образца, без неба, земли и маркера, края — маска внутри SVG
+    expect(svg).toContain("variant === 'weekTop'");
+    expect(svg).toContain('geom.top - 236');
+    expect(svg).toContain('WEEK_TOP_W = 192');
+    expect(svg).toContain('WEEK_TOP_H = 342');
+    expect(svg).toContain('<Mask id="spireWeekFade"');
+    expect(svg).toContain('rx="0.72" ry="0.62"');
   });
 });

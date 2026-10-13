@@ -16,7 +16,7 @@ jest.mock('react-native-svg', () => {
   };
   // Text без строки-ребёнка: тестовый рендерер запрещает текст вне <Text>
   const mod: Record<string, unknown> = { __esModule: true, default: make('Svg'), Svg: make('Svg'), Text: () => ReactModule.createElement('SvgText'), Defs: () => null };
-  for (const n of ['Circle', 'ClipPath', 'Ellipse', 'G', 'Line', 'LinearGradient', 'Path', 'Pattern', 'Polygon', 'RadialGradient', 'Rect', 'Stop']) mod[n] = make(n);
+  for (const n of ['Circle', 'ClipPath', 'Ellipse', 'G', 'Line', 'LinearGradient', 'Mask', 'Path', 'Pattern', 'Polygon', 'RadialGradient', 'Rect', 'Stop']) mod[n] = make(n);
   return mod;
 });
 
@@ -30,6 +30,9 @@ function countNodes(node: JsonNode | JsonNode[] | null): number {
 
 const tower = (myFloor: number, skin?: SpireTowerSkin) => (
   <SpireTowerSvg lang="ru" myFloor={myFloor} selected={myFloor} onSelect={() => undefined} width={390} skin={skin} />
+);
+const weekTop = (myFloor: number, skin: SpireTowerSkin) => (
+  <SpireTowerSvg variant="weekTop" lang="ru" myFloor={myFloor} selected={0} onSelect={() => undefined} width={58} skin={skin} />
 );
 
 describe('наряды башни: бюджет узлов', () => {
@@ -52,6 +55,22 @@ describe('наряды башни: бюджет узлов', () => {
         console.log(`[SPIRE-SKIN-NODES] ${skin.id} floor=${floor} +${delta}`); // guard-ok: замер бюджета узлов
         expect(delta).toBeGreaterThan(30);
         expect(delta).toBeLessThanOrEqual(55);
+      }
+    }
+  });
+
+  // зачем (макет «Итог недели»): мини-башня карточки — 2 этажа + барабан + конус, около 60 узлов вместо ≈450 полной башни
+  it('мини-башня «Итога недели» рисует не больше 90 узлов у каждой из 12 лиг (повышение и остаёшься)', async () => {
+    const full = countNodes((await render(tower(7, SPIRE_DEFAULT_SKIN))).toJSON() as unknown as JsonNode | JsonNode[] | null);
+    const view = await render(weekTop(15, SPIRE_LEAGUE_SKINS[0]));
+    for (const floor of [15, 1]) {
+      for (const skin of SPIRE_LEAGUE_SKINS) {
+        await view.rerender(weekTop(floor, skin));
+        const n = countNodes(view.toJSON() as unknown as JsonNode | JsonNode[] | null);
+        console.log(`[SPIRE-SKIN-NODES] weekTop ${skin.id} floor=${floor} nodes=${n}`); // guard-ok: замер бюджета узлов
+        expect(n).toBeGreaterThan(40);
+        expect(n).toBeLessThanOrEqual(90);
+        expect(n).toBeLessThan(full / 3);
       }
     }
   });

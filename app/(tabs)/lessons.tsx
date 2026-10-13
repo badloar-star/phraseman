@@ -1433,6 +1433,12 @@ function rememberLessonsPage(page: "lessons" | "dialogs" | "v2"): void {
   });
 }
 function startLessonsPage(initial: "lessons" | "v2"): "lessons" | "dialogs" | "v2" {
+  // зачем (координатор 13.10, план Б R1): маршрут learning-v2/course в стор-сборке не вырезан и передаёт initialPage="v2" — без
+  // выпущенных занятий (потолок бандла 0) раздел V2 не открывается и по прямой ссылке: человек попадает в список уроков.
+  if (initial === "v2" && !LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY) {
+    console.warn("[V2-ROUTE] reason=ceiling0 — курс V2 без выпущенных занятий, открываю список уроков"); // guard-ok: ранний выход
+    return "lessons";
+  }
   const start = initial === "lessons" && rememberedLessonsPage === "v2" && LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? "v2" : initial;
   console.log(`[LESSONS-TABS] вход: initialPage=${initial} память=${String(rememberedLessonsPage)} v2Доступен=${String(LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY)} → старт=${start}`); // guard-ok: итог выбора стартовой вкладки
   return start;

@@ -172,7 +172,8 @@ add('onboarding-029', ['wait:600'], '', LW + '&devStep=done', note='«Новый
 # зачем (координатор 13.10, overlays-campaigns-013): промокод «Неверный формат» — состояние в приложении есть с 93c22d44c (п.81(13)): кнопка активна при любом
 # непустом коде, формат проверяется по нажатию ДО сети. `AB` — 2 знака < 3 (PROMO_CODE_FORMAT) → плашка «Проверь код», сеть не вызывается.
 # Строка попадёт в DEV_LINKS_R1, когда реестр переведёт её из blocked в pending (генератор берёт только pending/diff/match).
-add('overlays-campaigns-013', ['tap:#promo-code-input', 'type:AB', 'hidekb', 'tap:#promo-code-submit', 'wait:600'], 'plus=off&energy=3', '/promo_code_entry',
+add('overlays-campaigns-013', ['tap:#promo-code-input', 'type:AB', 'hidekb', 'tap:#promo-code-submit', 'wait:600'], 'plus=off&energy=3&promo=not_found', '/promo_code_entry',  # promo=: сторож prod_write — подмена исхода обязательна у любой кнопки активации (сюда сеть и так не доходит)
+   
     note='промокод: неверный формат (2 знака) — «Проверь код», без сети')
 
 # ── Бэклог №18 (координатор 13.10): состояния, до которых робот не доходил — по вердиктам Макетов «[состояние] не достигнуто».

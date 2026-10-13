@@ -247,3 +247,15 @@ set_steps('dialogs-gap-011', ['wait:1500', 'tap:#dialogue-v2-freeform-input', 't
 # (исправлено в manage_subscription.tsx). planUntil=2027-01-14 — дата образца («14 января 2027»), только память dev-сборки.
 for _rid in ('profile-024', 'paywalls-022'):
     set_param(_rid, 'planUntil', '2027-01-14')
+
+# ── Проход по реестру R1 (координатор 13.10 ~14:35, продолжение №18): строки с бракованным кадром по ссылке.
+# «Следующее списание · 14 января 2027» нужно во всех кадрах экрана подписки с годовым планом — та же дата образца, что у profile-024.
+for _rid, _entry_ in list(ENTRIES.items()):
+    if 'next=/manage_subscription' in _entry_['link'] and 'plan=yearly' in _entry_['link'] and 'planUntil=' not in _entry_['link']:
+        set_param(_rid, 'planUntil', '2027-01-14')
+# settings-gap-004: образец прокручен до «Версия 2.0.0» — кадр был сверху («ПОМОЩЬ» под панелью вкладок).
+set_steps('settings-gap-004', ['wait:1200', 'see:#settings-plus-access-details', 'scroll:down', 'scroll:down', 'scroll:down', 'wait:500'])
+# settings-gap-022: в образце набран текст ≥ 10 символов и «Отправить» активна; adb не печатает кириллицу — английский текст (отправку не жмём).
+set_steps('settings-gap-022', ['tap:#support-report-input', 'type:Cards_audio_does_not_play', 'hidekb', 'wait:300', 'tap:#support-diagnostics-disclosure', 'wait:400'])
+# settings-gap-035: в образце журнал диагностики ВЫКЛЮЧЕН («журнал выключен») и клавиатуры нет.
+set_steps('settings-gap-035', ['tap:#support-diagnostics-attach-switch', 'wait:300', 'tap:#support-report-input', 'type:short', 'hidekb', 'wait:400'])

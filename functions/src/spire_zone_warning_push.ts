@@ -197,16 +197,31 @@ type Copy = { title: string; body: string };
 
 /** Текст без обещаний исхода — до конца недели ещё есть время (§4.7 «фактом», не заранее). */
 export function buildSpireZoneWarningCopy(c: SpireZoneWarningCandidate): Copy {
+  // зачем (решение владельца 13.10, сборка 16.10): «Шпиль» → «Пик» во всех видимых текстах; шлём только ru/uk (SPIRE_PUSH_UI_LANGS).
   if (c.status === 'promotion_edge') {
     const byLang: Record<string, Copy> = {
-      ru: { title: '⏳ Шпиль: неделя почти кончилась', body: 'Ты у самой границы повышения. Ещё немного — и получится.' },
-      uk: { title: '⏳ Шпиль: тиждень майже закінчився', body: 'Ти біля самої межі підвищення. Ще трохи — і вийде.' },
+      ru: { title: '⏳ Пик: неделя почти кончилась', body: 'Ты у самой границы повышения. Ещё немного — и получится.' },
+      uk: { title: '⏳ Пік: тиждень майже закінчився', body: 'Ти біля самої межі підвищення. Ще трохи — і вийде.' },
+      en: { title: '⏳ Peak: the week is almost over', body: "You're right at the promotion line. A little more and you'll make it." },
+      es: { title: '⏳ Pico: la semana casi termina', body: 'Estás justo en el límite del ascenso. Un poco más y lo logras.' },
+      'pt-BR': { title: '⏳ Pico: a semana está acabando', body: 'Você está bem no limite da promoção. Só mais um pouco.' },
+      vi: { title: '⏳ Đỉnh: tuần sắp kết thúc', body: 'Bạn đang sát ngưỡng thăng hạng. Cố thêm chút nữa là được.' },
+      id: { title: '⏳ Puncak: minggu hampir berakhir', body: 'Kamu tepat di batas naik level. Sedikit lagi saja.' },
+      tr: { title: '⏳ Zirve: hafta bitmek üzere', body: 'Terfi sınırının tam üzerindesin. Biraz daha gayret.' },
+      pl: { title: '⏳ Szczyt: tydzień prawie się skończył', body: 'Jesteś tuż przy granicy awansu. Jeszcze trochę.' },
     };
     return byLang[c.uiLang] || byLang.ru;
   }
   const byLang: Record<string, Copy> = {
-    ru: { title: '⏳ Шпиль: неделя почти кончилась', body: 'Ты у края зоны понижения. Ещё есть время удержаться.' },
-    uk: { title: '⏳ Шпиль: тиждень майже закінчився', body: 'Ти на межі зниження. Ще є час втриматись.' },
+    ru: { title: '⏳ Пик: неделя почти кончилась', body: 'Ты у края зоны понижения. Ещё есть время удержаться.' },
+    uk: { title: '⏳ Пік: тиждень майже закінчився', body: 'Ти на межі зниження. Ще є час втриматись.' },
+    en: { title: '⏳ Peak: the week is almost over', body: "You're at the edge of the drop zone. There's still time to hold on." },
+    es: { title: '⏳ Pico: la semana casi termina', body: 'Estás al borde de la zona de descenso. Aún hay tiempo para mantenerte.' },
+    'pt-BR': { title: '⏳ Pico: a semana está acabando', body: 'Você está na beira da zona de rebaixamento. Ainda dá tempo de se segurar.' },
+    vi: { title: '⏳ Đỉnh: tuần sắp kết thúc', body: 'Bạn đang ở mép vùng rớt hạng. Vẫn còn thời gian để trụ lại.' },
+    id: { title: '⏳ Puncak: minggu hampir berakhir', body: 'Kamu di tepi zona turun level. Masih ada waktu untuk bertahan.' },
+    tr: { title: '⏳ Zirve: hafta bitmek üzere', body: 'Düşme bölgesinin kıyısındasın. Tutunmak için hâlâ vaktin var.' },
+    pl: { title: '⏳ Szczyt: tydzień prawie się skończył', body: 'Jesteś na skraju strefy spadku. Wciąż jest czas, by się utrzymać.' },
   };
   return byLang[c.uiLang] || byLang.ru;
 }

@@ -131,24 +131,47 @@ type Copy = { title: string; body: string };
 export function buildSpireWeekResultCopy(
   c: SpireWeekResultPushCandidate,
 ): Copy {
-  const newTierName = spirePushTierName(c.newTier, c.uiLang);
+  const t = spirePushTierName(c.newTier, c.uiLang);
+  // зачем (решение владельца 13.10, сборка 16.10): «Шпиль» → «Пик» во всех видимых текстах; по-русски «на пике», «пик Гранит».
+  // 9 языков готовы, но шлём только ru/uk (SPIRE_PUSH_UI_LANGS) — остальные ждут расширения списка.
   if (c.promoted) {
     const byLang: Record<string, Copy> = {
-      ru: { title: '🏔️ Шпиль подвёл итог недели', body: `Ты поднялся в ${newTierName}! Новый шпиль уже ждёт.` },
-      uk: { title: '🏔️ Шпиль підбив підсумок тижня', body: `Ти піднявся в ${newTierName}! Новий шпиль вже чекає.` },
+      ru: { title: '🏔️ Пик подвёл итог недели', body: `Ты поднялся в ${t}! Новый пик уже ждёт.` },
+      uk: { title: '🏔️ Пік підбив підсумок тижня', body: `Ти піднявся в ${t}! Новий пік уже чекає.` },
+      en: { title: '🏔️ Peak: your week is in', body: `You climbed to ${t}! A new peak is waiting.` },
+      es: { title: '🏔️ Pico: resultado de la semana', body: `¡Subiste a ${t}! Un nuevo pico te espera.` },
+      'pt-BR': { title: '🏔️ Pico: resultado da semana', body: `Você subiu para ${t}! Um novo pico te espera.` },
+      vi: { title: '🏔️ Đỉnh: kết quả tuần', body: `Bạn đã lên ${t}! Một đỉnh mới đang chờ.` },
+      id: { title: '🏔️ Puncak: hasil minggu ini', body: `Kamu naik ke ${t}! Puncak baru sudah menunggu.` },
+      tr: { title: '🏔️ Zirve: haftanın sonucu', body: `${t} seviyesine yükseldin! Yeni bir zirve seni bekliyor.` },
+      pl: { title: '🏔️ Szczyt: wynik tygodnia', body: `Awans: ${t}! Nowy szczyt już czeka.` },
     };
     return byLang[c.uiLang] || byLang.ru;
   }
   if (c.demoted) {
     const byLang: Record<string, Copy> = {
-      ru: { title: '🏔️ Новая неделя в Шпиле', body: `Ты в шпиле ${newTierName}. Новый шпиль недели уже открыт — поднимайся заново.` },
-      uk: { title: '🏔️ Новий тиждень у Шпилі', body: `Ти в шпилі ${newTierName}. Новий шпиль тижня вже відкрито — піднімайся знову.` },
+      ru: { title: '🏔️ Новая неделя на Пике', body: `Ты на пике ${t}. Новый пик недели уже открыт — поднимайся заново.` },
+      uk: { title: '🏔️ Новий тиждень на Піку', body: `Ти на піку ${t}. Новий пік тижня вже відкрито — піднімайся знову.` },
+      en: { title: '🏔️ A new week on Peak', body: `You're on the ${t} peak. This week's new peak is open — climb again.` },
+      es: { title: '🏔️ Nueva semana en Pico', body: `Estás en el pico ${t}. El nuevo pico de la semana ya está abierto: vuelve a subir.` },
+      'pt-BR': { title: '🏔️ Nova semana no Pico', body: `Você está no pico ${t}. O novo pico da semana já está aberto — suba de novo.` },
+      vi: { title: '🏔️ Tuần mới trên Đỉnh', body: `Bạn đang ở đỉnh ${t}. Đỉnh mới của tuần đã mở — leo lại nào.` },
+      id: { title: '🏔️ Minggu baru di Puncak', body: `Kamu di puncak ${t}. Puncak baru minggu ini sudah dibuka — mulai mendaki lagi.` },
+      tr: { title: "🏔️ Zirve'de yeni hafta", body: `${t} zirvesindesin. Haftanın yeni zirvesi açıldı — yeniden tırman.` },
+      pl: { title: '🏔️ Nowy tydzień na Szczycie', body: `Jesteś na szczycie ${t}. Nowy szczyt tygodnia już otwarty — wspinaj się od nowa.` },
     };
     return byLang[c.uiLang] || byLang.ru;
   }
   const byLang: Record<string, Copy> = {
-    ru: { title: '🏔️ Новый шпиль недели', body: `Твой шпиль — ${newTierName}. Новая неделя, новый вид — поднимайся.` },
-    uk: { title: '🏔️ Новий шпиль тижня', body: `Твій шпиль — ${newTierName}. Новий тиждень, новий вигляд — піднімайся.` },
+    ru: { title: '🏔️ Новый пик недели', body: `Твой пик — ${t}. Новая неделя, новый вид — поднимайся.` },
+    uk: { title: '🏔️ Новий пік тижня', body: `Твій пік — ${t}. Новий тиждень, новий вигляд — піднімайся.` },
+    en: { title: "🏔️ This week's new peak", body: `Your peak: ${t}. New week, new view — start climbing.` },
+    es: { title: '🏔️ Nuevo pico de la semana', body: `Tu pico: ${t}. Nueva semana, nueva vista: a subir.` },
+    'pt-BR': { title: '🏔️ Novo pico da semana', body: `Seu pico: ${t}. Nova semana, nova vista — bora subir.` },
+    vi: { title: '🏔️ Đỉnh mới của tuần', body: `Đỉnh của bạn: ${t}. Tuần mới, cảnh mới — leo thôi.` },
+    id: { title: '🏔️ Puncak baru minggu ini', body: `Puncakmu: ${t}. Minggu baru, pemandangan baru — ayo mendaki.` },
+    tr: { title: '🏔️ Haftanın yeni zirvesi', body: `Zirven: ${t}. Yeni hafta, yeni manzara — tırmanmaya başla.` },
+    pl: { title: '🏔️ Nowy szczyt tygodnia', body: `Twój szczyt: ${t}. Nowy tydzień, nowy widok — wspinaj się.` },
   };
   return byLang[c.uiLang] || byLang.ru;
 }

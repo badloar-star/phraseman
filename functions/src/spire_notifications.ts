@@ -23,7 +23,7 @@
 export const SPIRE_PUSH_TIER_COUNT = 12;
 
 /** Языки интерфейса, для которых есть готовый текст пушей (как у остальных серверных пушей). */
-const SUPPORTED_PUSH_LANGS = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
+const SUPPORTED_PUSH_LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const;
 export type SpirePushLang = (typeof SUPPORTED_PUSH_LANGS)[number];
 
 /**
@@ -46,6 +46,7 @@ export function normalizeSpirePushLang(lang: string | null | undefined): SpirePu
 export const SPIRE_PUSH_TIER_NAMES: Readonly<Record<SpirePushLang, readonly string[]>> = Object.freeze({
   ru: Object.freeze(['Гранит', 'Базальт', 'Мрамор', 'Нефрит', 'Кварц', 'Агат', 'Оникс', 'Аметист', 'Опал', 'Топаз', 'Обсидиан', 'Алмаз']),
   uk: Object.freeze(['Граніт', 'Базальт', 'Мармур', 'Нефрит', 'Кварц', 'Агат', 'Онікс', 'Аметист', 'Опал', 'Топаз', 'Обсидіан', 'Алмаз']),
+  en: Object.freeze(['Granite', 'Basalt', 'Marble', 'Jade', 'Quartz', 'Agate', 'Onyx', 'Amethyst', 'Opal', 'Topaz', 'Obsidian', 'Diamond']),
   es: Object.freeze(['Granito', 'Basalto', 'Mármol', 'Jade', 'Cuarzo', 'Ágata', 'Ónix', 'Amatista', 'Ópalo', 'Topacio', 'Obsidiana', 'Diamante']),
   'pt-BR': Object.freeze(['Granito', 'Basalto', 'Mármore', 'Jade', 'Quartzo', 'Ágata', 'Ônix', 'Ametista', 'Opala', 'Topázio', 'Obsidiana', 'Diamante']),
   vi: Object.freeze(['Đá granit', 'Đá bazan', 'Cẩm thạch', 'Ngọc bích', 'Thạch anh', 'Mã não', 'Mã não đen', 'Thạch anh tím', 'Đá opal', 'Hoàng ngọc', 'Đá vỏ chai', 'Kim cương']),

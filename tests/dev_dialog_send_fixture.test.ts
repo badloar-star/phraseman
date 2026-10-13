@@ -99,7 +99,7 @@ describe('клиент хода с флагом dev_dialog_send', () => {
       await jest.advanceTimersByTimeAsync(DEV_DIALOG_SEND_DELAY_MS);
       const res = await pending;
       // зачем (координатор 12.10, dialogs-017): подставной ход всегда отдаёт разбор с подсказкой — иначе кнопка «Подсказка» в карточке цели не рисуется и кадр недостижим
-      expect(res).toMatchObject({ kind: 'reply', replayed: false, coaching: { hint: DEV_DIALOG_HINT_TEXT, mood: null, dialogueEnded: false, betterPhrasing: null }, quota: { remaining: 6, resetAtMs: 999, quotaVersion: 1 } });
+      expect(res).toMatchObject({ kind: 'reply', replayed: false, coaching: { hint: DEV_DIALOG_HINT_TEXT, mood: 'smile', dialogueEnded: false, betterPhrasing: null }, quota: { remaining: 6, resetAtMs: 999, quotaVersion: 1 } });
       expect(mockCallable).not.toHaveBeenCalled();
       // зачем (chain21 13.10, dialogs-015/019/020): кнопки «Перевод» и «Почему так» рисуются только при переводе/объяснении реплики
       expect(res.kind === 'reply' ? res.coaching : null).toMatchObject({

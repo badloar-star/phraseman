@@ -299,7 +299,9 @@ export async function sendDialogueV2CoachedTextTurn(
         replyTranslations: [devEnd ? DEV_DIALOG_REPLY_TRANSLATION_END : DEV_DIALOG_REPLY_TRANSLATION],
         replyExplanations: [DEV_DIALOG_REPLY_EXPLANATION],
         betterPhrasing: devBetter ? 'I would like a table for two, please.' : null, hint: DEV_DIALOG_HINT_TEXT,
-        mood: devMood, activeObjectiveId: null, dialogueEnded: devEnd,
+        // зачем (Макеты dialogs-019, разбор 13.10): у настоящего ответа сервера настроение собеседника есть всегда и в шапке стоит «😊 Доволен», а подставной ход
+        // оставлял mood пустым — шапка рисовала запасное «Диалог». Без явного dev_dialog_mood подставной ход отдаёт 'smile' («Доволен»), как в образце.
+        mood: devMood ?? 'smile', activeObjectiveId: null, dialogueEnded: devEnd,
       },
     };
   }

@@ -20,6 +20,7 @@ import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { triLang } from '../constants/i18n';
 import { loadActivity365Analytics, peekActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
 import { safeRouterBack } from './navigation_back';
+import { peekDevYearActivityDays } from './dev_year_activity';
 import { buildYearActivityModel, formatPracticeTime, YEAR_ACTIVITY_COLS } from './year_activity_model';
 
 const LOG = '[YEAR-ACTIVITY]';
@@ -69,7 +70,9 @@ function YearActivityScreen() {
     return () => { cancelled = true; };
   }, [studyTarget]);
 
-  const days = analytics?.days ?? [];
+  // зачем (координатор 13.10, results-009): dev_state?yearActivity=demo — заполненная сетка образца, только __DEV__ и память.
+  const devDays = useMemo(() => peekDevYearActivityDays(), []);
+  const days = devDays ?? analytics?.days ?? [];
   const model = useMemo(() => buildYearActivityModel(days), [days]);
   const canonical = useMemo(() => buildCanonicalYear(days), [days]);
   const palette = useMemo(() => heatPalette(themeMode, accentGraphicOf(t)), [themeMode, t]);

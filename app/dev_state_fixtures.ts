@@ -243,6 +243,8 @@ export type DevStateRequest = Readonly<{
   inbox?: 'empty' | 'off';
   /** settings-gap-028: HH:MM — время напоминания на экране настроек уведомлений (только показ); off — снять. */
   reminderTime?: string;
+  /** results-009: demo — «Активность за год» с заполненной сеткой и итогами образца (только память, dev_year_activity.ts); off — снять. */
+  yearActivity?: 'demo' | 'off';
   /** Окна рассылок/объявлений/личных сообщений корневого экрана (dev_overlays_off.ts): off — погасить (только память), on — как обычно. */
   overlays?: 'on' | 'off';
   /** Бесконечные декоративные анимации (dev_animations_off.ts): off — не запускать «парение» стопки хаба (только память), on — как в продукте. Нужно роботу: uiautomator не доходит до покоя на вечной анимации. */
@@ -372,6 +374,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
       else rejected.reminderTime = `ожидалось HH:MM или off, пришло ${rawTime}`;
     }
   }
+  request.yearActivity = pick('yearActivity', ['demo', 'off'] as const);
   request.overlays = pick('overlays', ['on', 'off'] as const);
   request.animations = pick('animations', ['on', 'off'] as const);
   request.robotNoCloud = pick('robot_no_cloud', ['1', '0'] as const);
@@ -841,6 +844,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('reminderTime', request.reminderTime, async () => {
       const { parseDevReminderTime, setDevReminderTime } = await import('./dev_robot_display');
       return setDevReminderTime(request.reminderTime === 'off' ? null : parseDevReminderTime(request.reminderTime!));
+    });
+  }
+  if (request.yearActivity !== undefined) {
+    // зачем (координатор 13.10): у тестового аккаунта нет статистики за год — Сверке нужна заполненная сетка как в results.html#9
+    await step('yearActivity', request.yearActivity, async () => {
+      const { setDevYearActivityDemo } = await import('./dev_year_activity');
+      return setDevYearActivityDemo(request.yearActivity === 'demo');
     });
   }
   if (request.coinRank !== undefined) {

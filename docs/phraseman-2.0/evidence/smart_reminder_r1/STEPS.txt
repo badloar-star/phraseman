@@ -1,0 +1,6 @@
+pm revoke POST_NOTIFICATIONS
+тап «включить»: None
+тап «Разрешить»: None
+строк [SMART-REMINDER]: 0
+после холодного перезапуска строк [SMART-REMINDER]: 0
+вернуть разрешение: pm grant POST_NOTIFICATIONS

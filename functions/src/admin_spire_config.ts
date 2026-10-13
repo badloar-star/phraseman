@@ -83,6 +83,10 @@ export const adminSpireConfigSet = onCall(
         coins: data.coins,
         residents: data.residents,
         integrity: data.integrity,
+        // зачем (D162, Ядро 13.10): документ пишется целиком (tx.set) — без переноса рубильник rankBy и потолок недели
+        // стирались бы любым переключением «Включить/Выключить Пик» в админке. Не прислали — оставляем прежние.
+        rankBy: data.rankBy ?? beforeStatus.config.rankBy,
+        weekCoinsCap: data.weekCoinsCap ?? beforeStatus.config.weekCoinsCap,
       });
       tx.set(ref, { ...next, updatedAtMs: nowMs, updatedByUid: actor.actorUid });
       tx.set(auditRef, createAuditRecord({
@@ -91,8 +95,8 @@ export const adminSpireConfigSet = onCall(
         role: actor.role,
         entity: { collection: SPIRE_CONFIG_COLLECTION, id: SPIRE_CONFIG_DOC_ID },
         reason,
-        before: { enabled: beforeStatus.config.enabled },
-        after: { enabled: next.enabled },
+        before: { enabled: beforeStatus.config.enabled, rankBy: beforeStatus.config.rankBy, weekCoinsCap: beforeStatus.config.weekCoinsCap },
+        after: { enabled: next.enabled, rankBy: next.rankBy, weekCoinsCap: next.weekCoinsCap },
         requestId: auditRef.id,
         timestamp: new Date(nowMs).toISOString(),
       }));

@@ -50,6 +50,27 @@ export type SpireIntegrityConfig = Readonly<{
   maxStepsPerHour: number;
 }>;
 
+/**
+ * Чем решается место в комнате, места 1–3, повышение и понижение (D162, OWNER_FINAL 10.10).
+ * 'steps' — ступени Пика (как было до D162); 'coins' — монеты, заработанные за неделю во ВСЕХ режимах
+ * (users.stars.weekEarned журнала монет). Рубильник ставит владелец своим словом; нет поля — 'steps'.
+ */
+export type SpireRankBy = 'steps' | 'coins';
+/** Неделя, с которой 'coins' вообще действует: правило не меняется посреди начатой недели (координатор 13.10). */
+export const SPIRE_RANK_BY_COINS_FROM_WEEK = '2026-W43';
+/** Потолок монет недели при ранжировании — против накрутки суммы практики клиентом (PM-291). Замер 13.10: максимум честной недели ≈ 8 500. */
+export const SPIRE_WEEK_COINS_CAP_DEFAULT = 20_000;
+
+/**
+ * D162: монеты недели бота — ТОЛЬКО для показа места в комнате (повышение/понижение и места 1–3 считаются по живым).
+ * Бот «играет» лишь в Пике; множитель изображает, что живой игрок зарабатывает и в других режимах. Не деньги и не журнал.
+ */
+export const SPIRE_BOT_WEEK_COINS_PER_STEP = 30;
+export function spireBotWeekCoins(steps: number): number {
+  const n = Math.trunc(Number(steps));
+  return Number.isFinite(n) && n > 0 ? n * SPIRE_BOT_WEEK_COINS_PER_STEP : 0;
+}
+
 export type SpireConfigDoc = Readonly<{
   schemaVersion: typeof SPIRE_CONFIG_SCHEMA_VERSION;
   enabled: boolean;
@@ -57,6 +78,10 @@ export type SpireConfigDoc = Readonly<{
   coins: SpireCoinsConfig;
   residents: SpireResidentConfig;
   integrity: SpireIntegrityConfig;
+  /** D162: чем решается место в комнате; нет поля — 'steps'. */
+  rankBy: SpireRankBy;
+  /** D162: потолок монет недели участника при ранжировании по монетам. */
+  weekCoinsCap: number;
 }>;
 
 /** Синхронизировано вручную с SPIRE_CONFIG_DEFAULTS в functions/src/spire_config_contract.ts. */
@@ -94,7 +119,22 @@ export const SPIRE_CONFIG_DEFAULTS: SpireConfigDoc = Object.freeze({
     minStepMs: 45_000,
     maxStepsPerHour: 30,
   }),
+  rankBy: 'steps',
+  weekCoinsCap: SPIRE_WEEK_COINS_CAP_DEFAULT,
 });
+
+/** Разбор рубильника: только явное 'coins' включает монеты, всё остальное — 'steps' (безопасный дефолт). */
+export function spireRankByOr(value: unknown): SpireRankBy {
+  return value === 'coins' ? 'coins' : 'steps';
+}
+
+/**
+ * Чем ранжировать комнату недели weekId: 'coins' только при рубильнике 'coins' И неделе не раньше
+ * SPIRE_RANK_BY_COINS_FROM_WEEK (формат 'YYYY-Www' сравнивается как строка).
+ */
+export function spireEffectiveRankBy(config: Readonly<{ rankBy: SpireRankBy }>, weekId: string): SpireRankBy {
+  return config.rankBy === 'coins' && String(weekId) >= SPIRE_RANK_BY_COINS_FROM_WEEK ? 'coins' : 'steps';
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -167,6 +207,8 @@ export function parseSpireConfigDoc(raw: unknown): SpireConfigDoc {
     coins,
     residents,
     integrity,
+    rankBy: spireRankByOr(doc.rankBy),
+    weekCoinsCap: positiveOr(doc.weekCoinsCap, d.weekCoinsCap),
   };
 }
 

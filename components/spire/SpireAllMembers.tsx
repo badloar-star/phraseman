@@ -19,29 +19,31 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
-import { spireStepsCount, spireStepsShort } from './spire_plurals';
-import type { SpireMemberRow } from './spire_room_types';
+import { spireCoinsCount, spireStepsCount, spireStepsShort } from './spire_plurals';
+import { spireMemberScored, spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
+import { runeWord } from '../../constants/runes';
 
 type Zone = 'up' | 'stay' | 'down';
 
 /** Раскладывает отсортированных участников по зонам (чистая функция — удобно тестировать). */
-export function spireZonesFor(sorted: readonly SpireMemberRow[]): readonly Zone[] {
+export function spireZonesFor(sorted: readonly SpireMemberRow[], rankBy: SpireRankByView = 'steps'): readonly Zone[] {
   const size = Math.max(1, Math.round(sorted.length * SPIRE_ZONE_RATIO));
   return sorted.map((m, i) => {
-    if (i < size && m.steps > 0) return 'up';
-    if (i >= sorted.length - size || m.steps === 0) return 'down';
+    const scored = spireMemberScored(m, rankBy);
+    if (i < size && scored) return 'up';
+    if (i >= sorted.length - size || !scored) return 'down';
     return 'stay';
   });
 }
 
-type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void }>;
+type Props = Readonly<{ lang: Lang; members: readonly SpireMemberRow[]; subtitle?: string; onBack: () => void; rankBy?: SpireRankByView }>;
 
-function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
+function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const { rows, zones } = useMemo(() => {
-    const sorted = [...members].sort((a, b) => b.steps - a.steps);
-    return { rows: sorted, zones: spireZonesFor(sorted) };
-  }, [members]);
+    const sorted = spireSortMembers(members, rankBy);
+    return { rows: sorted, zones: spireZonesFor(sorted, rankBy) };
+  }, [members, rankBy]);
 
   const renderZone = (zone: Zone, label: string, color: string) => {
     const items = rows.map((m, i) => ({ m, i })).filter(({ i }) => zones[i] === zone);
@@ -57,7 +59,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
             key={m.uid}
             style={[s.row, m.isMe ? { backgroundColor: p.cardRaised } : null]}
             accessible
-            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${spireStepsCount(lang, m.steps)}`}
+            accessibilityLabel={`${i + 1}. ${m.name}${m.isMe ? `, ${spireText(lang, 'you')}` : ''}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}
           >
             <Text style={[s.place, { color: p.textSecondary }]}>{i + 1}</Text>
             <SpireRankCoin rank={m.coinRank} size={40} />
@@ -67,7 +69,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack }: Props) {
             </View>
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
             {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
-            <Text style={[s.steps, { color: p.text }]}>{m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {spireStepsShort(lang, m.steps)}</Text></Text>
+            <Text style={[s.steps, { color: p.text }]}>{rankBy === 'coins' ? (m.weekCoins ?? 0) : m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {rankBy === 'coins' ? runeWord(lang, m.weekCoins ?? 0) : spireStepsShort(lang, m.steps)}</Text></Text>
           </View>
         ))}
       </View>

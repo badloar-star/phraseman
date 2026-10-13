@@ -8,6 +8,7 @@
 // ═════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../constants/i18n';
 import { pluralFormFor, pluralWord, type PluralForms } from '../../constants/plural';
+import { runeWord } from '../../constants/runes';
 
 const forms = (one: string, few: string, many: string): PluralForms => ({ one, few, many });
 const same = (word: string): PluralForms => forms(word, word, word);
@@ -66,6 +67,12 @@ export function spireStepsWordAfterOf(lang: Lang, total: number): string {
 /** Короткая подпись рядом с числом в тесной строке: «12 ступ.», «1 step». */
 export function spireStepsShort(lang: Lang, n: number): string {
   return lang === 'en' ? (pluralFormFor(lang, n) === 'one' ? 'step' : 'steps') : STEP_SHORT[lang];
+}
+
+/** D162: «1 240 монет» — монеты недели в комнате Пика; слово — общая валюта приложения (runeWord = «монета» на 9 языках). */
+export function spireCoinsCount(lang: Lang, n: number): string {
+  const value = Math.max(0, Math.trunc(Number(n)) || 0);
+  return `${value} ${runeWord(lang, value)}`;
 }
 
 /** «30 человек». */

@@ -41,12 +41,14 @@ import {
   SPIRE_CONFIG_COLLECTION,
   SPIRE_CONFIG_DOC_ID,
   spireConfigStatus,
+  spireEffectiveRankBy,
   type SpireConfigDoc,
 } from './spire_config_contract';
+import { normalizeStars, starsWeekEarned } from './stars_ledger';
 import { computeSpireRoomResults } from './spire_finalize_core';
 import { payoutSpireWeekReward } from './spire_week_payout';
 import { SPIRE_GROUPS_COLLECTION, spireWeekId } from './spire_groups';
-import { spireWeekStartMs } from './spire_residents';
+import { isSpireResidentMember, spireWeekStartMs } from './spire_residents';
 import { runSpireWeekResultPush, type SpireWeekResultPushInput } from './spire_week_result_push';
 
 const LOG = '[SPIRE-FINALIZE]';
@@ -81,6 +83,36 @@ async function loadSpireConfig(db: admin.firestore.Firestore): Promise<SpireConf
   }
 }
 
+/** getAll за раз — с запасом под лимит запроса; комната ≤ 30 мест, живых меньше. */
+const WEEK_COINS_READ_CHUNK = 100;
+
+/**
+ * D162: монеты недели живых участников комнаты — сумма всех режимов из журнала (users.stars), ДО потолка.
+ * зачем getAll с маской 'stars' (Firebase-экономия): одно чтение на живого в неделю и только поле журнала, без профиля.
+ * starsWeekEarned читает и прошлую неделю (prevWeekEarned) — в понедельник неделя у многих уже перенесена.
+ * Ошибка чтения не глотается: прогон падает и повторяется (retryCount), подведённые комнаты пропускаются.
+ */
+export async function spireReadWeekCoins(
+  db: admin.firestore.Firestore,
+  members: Readonly<Record<string, unknown>>,
+  weekId: string,
+): Promise<Record<string, number>> {
+  const uids = Object.entries(members)
+    .filter(([uid, raw]) => raw && typeof raw === 'object' && !isSpireResidentMember(uid, raw as Record<string, unknown>))
+    .map(([uid]) => uid);
+  const out: Record<string, number> = {};
+  for (let i = 0; i < uids.length; i += WEEK_COINS_READ_CHUNK) {
+    const refs = uids.slice(i, i + WEEK_COINS_READ_CHUNK).map((uid) => db.collection('users').doc(uid));
+    if (refs.length === 0) continue;
+    // guard-ok: точечные документы по id (участники комнаты), не листинг коллекции.
+    const snaps = await db.getAll(...refs, { fieldMask: ['stars'] });
+    for (const snap of snaps) {
+      out[snap.id] = snap.exists ? starsWeekEarned(normalizeStars(snap.get('stars')), weekId) : 0;
+    }
+  }
+  return out;
+}
+
 function membersOf(data: Record<string, unknown>): Record<string, unknown> {
   const m = data.members;
   return m && typeof m === 'object' && !Array.isArray(m) ? m as Record<string, unknown> : {};
@@ -106,7 +138,11 @@ export const spireFinalizeCron = onSchedule(
     const startedAt = Date.now();
     const { weekId, weekStartMs } = spirePreviousWeek(startedAt);
     const config = await loadSpireConfig(db);
-    console.log(LOG, JSON.stringify({ event: 'start', weekId, weekStartMs }));
+    // зачем (D162, координатор 13.10): один рубильник config/spire_v1.rankBy; 'coins' действует только с недели
+    // SPIRE_RANK_BY_COINS_FROM_WEEK — правило не меняется посреди начатой недели.
+    const rankBy = spireEffectiveRankBy(config, weekId);
+    console.log(LOG, JSON.stringify({ event: 'start', weekId, weekStartMs, rankByConfig: config.rankBy, rankBy, weekCoinsCap: config.weekCoinsCap }));
+    let capHitsTotal = 0;
 
     let rooms = 0;
     let skipped = 0;
@@ -165,6 +201,7 @@ export const spireFinalizeCron = onSchedule(
           continue;
         }
         const roomWeekStart = Number(data.weekStartMs);
+        const weekCoinsByUid = rankBy === 'coins' ? await spireReadWeekCoins(db, membersOf(data), weekId) : undefined;
         const out = computeSpireRoomResults({
           groupId: doc.id,
           tier: Number(data.tier),
@@ -173,7 +210,11 @@ export const spireFinalizeCron = onSchedule(
           members: membersOf(data),
           coins: config.coins,
           tuning: config.residents,
+          rankBy,
+          weekCoinsByUid,
+          weekCoinsCap: config.weekCoinsCap,
         });
+        capHitsTotal += out.capHits;
 
         let roomPromoted = 0;
         let roomDemoted = 0;
@@ -259,6 +300,7 @@ export const spireFinalizeCron = onSchedule(
           event: 'room', groupId: doc.id, lang, tier: data.tier ?? null,
           live: out.liveTotal, roomTotal: out.roomTotal, zone: out.zoneSize,
           hasAnyScorer: out.hasAnyScorer, promoted: roomPromoted, demoted: roomDemoted,
+          rankBy: out.rankBy, capHit: out.capHits,
         }));
       }
     }
@@ -281,7 +323,7 @@ export const spireFinalizeCron = onSchedule(
 
     const summary = {
       weekId, rooms, skipped, results, tierWrites, promoted, demoted,
-      payoutsPaid, payoutsFailed, coinsPaid, pushSent, tookMs: Date.now() - startedAt,
+      payoutsPaid, payoutsFailed, coinsPaid, pushSent, rankBy, capHits: capHitsTotal, tookMs: Date.now() - startedAt,
     };
     console.log(LOG, JSON.stringify({ event: 'done', ...summary }));
     if (payoutsFailed > 0) {

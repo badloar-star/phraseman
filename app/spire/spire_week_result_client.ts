@@ -43,6 +43,10 @@ export type SpireWeekResultView = Readonly<{
   newTier: number;
   placeCoins: number;
   promotionCoins: number;
+  /** D162: чем решалось место (итог сервера); старые итоги — 'steps'. */
+  rankBy?: 'steps' | 'coins';
+  /** D162: монеты недели по журналу (с потолком); старые итоги — 0. */
+  weekCoins?: number;
 }>;
 
 type CacheRow = Readonly<{
@@ -77,6 +81,8 @@ export function spireDecodeWeekResult(raw: unknown, weekId: string, lang: SpireL
     newTier: Math.max(0, n(d.newTier)), // guard-ok: чтение для карточки, клиент ничего не пишет
     placeCoins: Math.max(0, n(coins.place)),
     promotionCoins: Math.max(0, n(coins.promotion)),
+    rankBy: d.rankBy === 'coins' ? 'coins' : 'steps', // guard-ok: показ решения сервера (D162)
+    weekCoins: Math.max(0, n(d.weekCoins)),
   };
 }
 

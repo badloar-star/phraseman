@@ -15,6 +15,7 @@ import {
   type SpireRosterEntry,
 } from './residents';
 import { spireBotCoinRank } from './bot_coin_rank';
+import { spireBotWeekCoins, type SpireRankBy } from './config_contract';
 
 /** Живой участник комнаты — поля документа, которые нужны экрану. */
 export type SpireRoomMember = Readonly<{
@@ -25,6 +26,8 @@ export type SpireRoomMember = Readonly<{
   totalMs: number;
   /** зачем (владелец 13.10, «аватары ников — монеты рангов»): ранг монеты 0..19 из того же документа комнаты; нет поля — null (рисуется базовая монета). */
   coinRank?: number | null;
+  /** D162: монеты недели всех режимов — снимок сервера при последнем входе/отчёте участника; нет поля — 0. */
+  weekCoins?: number;
 }>;
 
 /** Кэш комнаты недели на устройстве (форма app/spire/spire_room_client.ts). */
@@ -49,6 +52,8 @@ export type SpireRoomRow = Readonly<{
   reachedAtMs: number;
   isMe: boolean;
   coinRank?: number | null;
+  /** D162: монеты недели (у ботов — формула от ступеней, только для показа). */
+  weekCoins: number;
 }>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -73,7 +78,7 @@ export function spireDecodeRoomMembers(raw: unknown): SpireRoomMember[] {
     if (!isRecord(value)) continue;
     const uid = typeof value.uid === 'string' && value.uid ? value.uid : key;
     const name = typeof value.name === 'string' ? value.name.trim().slice(0, 48) : '';
-    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank) });
+    out.push({ uid, name: name || '—', steps: num(value.steps), reachedAtMs: num(value.reachedAtMs), totalMs: num(value.totalMs), coinRank: spireDecodeCoinRank(value.coinRank), weekCoins: num(value.weekCoins) });
   }
   return out;
 }
@@ -106,6 +111,15 @@ export function spireCompareRows(a: SpireRoomRow, b: SpireRoomRow): number {
   return ar - br;
 }
 
+/**
+ * D162 (OWNER_FINAL 10.10): при rankBy='coins' порядок комнаты — монеты недели всех режимов, ничья — прежний порядок по ступеням.
+ * Тот же порядок, что у сервера в итоге недели (compareSpireStandingBy), иначе человек видел бы одно место, а получал другое.
+ */
+export function spireCompareRowsBy(rankBy: SpireRankBy): (a: SpireRoomRow, b: SpireRoomRow) => number {
+  if (rankBy !== 'coins') return spireCompareRows;
+  return (a, b) => (b.weekCoins !== a.weekCoins ? b.weekCoins - a.weekCoins : spireCompareRows(a, b));
+}
+
 export type SpireRoomRowsInput = Readonly<{
   room: SpireRoomSnapshot;
   myUid: string;
@@ -114,6 +128,8 @@ export type SpireRoomRowsInput = Readonly<{
   myReachedAtMs: number;
   nowMs: number;
   tuning: SpireResidentTuning;
+  /** D162: чем ранжировать (spireEffectiveRankBy из уже кэшируемого конфига); нет — ступени. */
+  rankBy?: SpireRankBy;
 }>;
 
 /** Все строки комнаты (живые + боты), уже отсортированные. */
@@ -125,8 +141,8 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
   const myReached = input.mySteps >= serverSteps ? input.myReachedAtMs : (serverMe?.reachedAtMs ?? 0);
   const live: SpireRoomRow[] = room.members
     .filter((m) => m.uid !== myUid)
-    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null }));
-  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null });
+    .map((m) => ({ uid: m.uid, name: m.name, steps: m.steps, reachedAtMs: m.reachedAtMs, isMe: false, coinRank: m.coinRank ?? null, weekCoins: m.weekCoins ?? 0 }));
+  live.push({ uid: myUid, name: serverMe?.name ?? '—', steps: mySteps, reachedAtMs: myReached, isMe: true, coinRank: serverMe?.coinRank ?? null, weekCoins: serverMe?.weekCoins ?? 0 });
 
   const states = spireRoomResidents({
     groupId: room.groupId,
@@ -137,8 +153,8 @@ export function spireBuildRoomRows(input: SpireRoomRowsInput): SpireRoomRow[] {
     tuning: input.tuning,
   });
   const bots: SpireRoomRow[] = spireResidentRows(room.roster, states)
-    .map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, reachedAtMs: r.reachedAtMs, isMe: false, coinRank: r.coinRank ?? spireBotCoinRank(r.uid, room.groupId) })); // зачем (Ядро 13.10): у ботов старых комнат ранга в roster нет — детерминированная формула, как на сервере
-  return [...live, ...bots].sort(spireCompareRows);
+    .map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, reachedAtMs: r.reachedAtMs, isMe: false, coinRank: r.coinRank ?? spireBotCoinRank(r.uid, room.groupId), weekCoins: spireBotWeekCoins(r.steps) })); // зачем (Ядро 13.10): у ботов старых комнат ранга в roster нет — детерминированная формула, как на сервере
+  return [...live, ...bots].sort(spireCompareRowsBy(input.rankBy ?? 'steps'));
 }
 
 /** Моё место (1-based) или null. */

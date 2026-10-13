@@ -249,13 +249,13 @@ export default function SpireHomeScreen() {
 
   // Комната недели: живые из кэша комнаты + боты формулой + свои локальные ступени.
   const members: readonly SpireMemberRow[] | null = useMemo(
-    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null) })) : null),
+    () => (game.rows ? game.rows.map((r) => ({ uid: r.uid, name: r.name, steps: r.steps, isMe: r.isMe, coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null), weekCoins: r.weekCoins })) : null),
     [game.rows, myCoinRank],
   );
   const offline = game.roomLoad?.status === 'offline';
   // Соперники по этажам — из уже закэшированной комнаты (0 новых чтений).
   const rivals = useMemo(() => spireRivalsByFloor(game.rows), [game.rows]);
-  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, 'rankedBySteps')}`;
+  const allSubtitle = `${game.tier !== null ? spireTierName(game.tier, lang) : DASH} · ${spirePeopleCount(lang, members?.length ?? 0)} · ${spireGameText(lang, game.rankBy === 'coins' ? 'rankedByCoins' : 'rankedBySteps')}`;
 
   if (langLock.locked) return <View style={s.root}><SpireLockedState lang={lang} /></View>; // зачем: язык интерфейса не ru/uk — замок раньше экрана загрузки, чтобы чужой язык не мелькнул
   // зачем (правило 10г, координатор 13.10): пока конфиг не прочитан (холодный старт, память пуста) — не пустой View, а скелет по форме экрана (SpireHomeSkeleton, testID spire-loading).
@@ -263,7 +263,7 @@ export default function SpireHomeScreen() {
   if (!unlocked) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (game.roomLoad?.status === 'paused' && !game.roomLoad.room) return <View style={s.root}><SpireLockedState lang={lang} /></View>;
   if (showAll && members) {
-    return <View style={s.root}><SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} /></View>;
+    return <View style={s.root}><SpireAllMembers lang={lang} members={members} subtitle={allSubtitle} onBack={closeAll} rankBy={game.rankBy} /></View>;
   }
 
   const climbReady = game.live && game.tier !== null && game.session === null && game.pending === null;
@@ -296,7 +296,7 @@ export default function SpireHomeScreen() {
         </View>
         {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
         <View style={offline ? s.dim : null} testID="spire-room-top">
-          <SpirePodium lang={lang} members={members} onOpenAll={openAll} />
+          <SpirePodium lang={lang} members={members} onOpenAll={openAll} rankBy={game.rankBy} />
         </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">

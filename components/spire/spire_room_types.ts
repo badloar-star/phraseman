@@ -11,7 +11,25 @@ export type SpireMemberRow = Readonly<{
   steps: number;
   isMe: boolean;
   coinRank?: number | null;
+  /** D162: монеты недели (показ при rankBy='coins'); нет — 0. */
+  weekCoins?: number;
 }>;
+
+/** D162: чем ранжирована комната на экране — тот же рубильник, что у итога недели. */
+export type SpireRankByView = 'steps' | 'coins';
+
+/** D162: порядок пьедестала и «Всех участников» — монеты недели при 'coins' (ничья — ступени), иначе ступени. */
+export function spireSortMembers(members: readonly SpireMemberRow[], rankBy: SpireRankByView = 'steps'): SpireMemberRow[] {
+  return [...members].sort((a, b) => {
+    if (rankBy === 'coins' && (b.weekCoins ?? 0) !== (a.weekCoins ?? 0)) return (b.weekCoins ?? 0) - (a.weekCoins ?? 0);
+    return b.steps - a.steps;
+  });
+}
+
+/** D162: «играл на неделе» для зон — монеты > 0 при 'coins', ступени > 0 при 'steps' (как у сервера). */
+export function spireMemberScored(m: SpireMemberRow, rankBy: SpireRankByView = 'steps'): boolean {
+  return rankBy === 'coins' ? (m.weekCoins ?? 0) > 0 : m.steps > 0;
+}
 
 /**
  * Друг с неделей Шпиля. tier — индекс камня 0..11. ВАЖНО: friends_profiles.spireFloor

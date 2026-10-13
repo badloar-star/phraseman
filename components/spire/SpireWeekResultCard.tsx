@@ -19,7 +19,7 @@ import { useSpireShadow } from './useSpireShadow';
 import SpireTowerSvg from './SpireTowerSvg';
 import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
-import { spireStepsCount } from './spire_plurals';
+import { spireCoinsCount, spireStepsCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 
 type Props = Readonly<{ lang: Lang; result: SpireWeekResultView; myCoinRank: number | null }>;
@@ -32,7 +32,8 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
     : r.demoted ? spireGameText(lang, 'weekDown', { stone }) : spireGameText(lang, 'weekStay', { stone }); // guard-ok: показ решения сервера
   const parts = [
     r.roomRank > 0 ? spireGameText(lang, 'placeN', { n: r.roomRank }) : '—',
-    spireStepsCount(lang, r.steps),
+    // зачем (D162): итог по монетам недели — показываем монеты, иначе ступени (как решал сервер)
+    r.rankBy === 'coins' ? spireCoinsCount(lang, r.weekCoins ?? 0) : spireStepsCount(lang, r.steps),
   ];
   const coins = [r.placeCoins, r.promotionCoins].filter((c) => c > 0);
   if (coins.length > 0) parts.push(`${coins.map((c) => `+${c}`).join(' · ')} ${spireGameText(lang, 'coins')}`);

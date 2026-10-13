@@ -15,19 +15,22 @@ import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireNickWrap } from './spire_nick_wrap';
 import { spireText } from './spire_strings';
-import { spireStepsCount, spireStepsShort } from './spire_plurals';
-import type { SpireMemberRow } from './spire_room_types';
+import { spireCoinsCount, spireStepsCount, spireStepsShort } from './spire_plurals';
+import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
 
 type Props = Readonly<{
   lang: Lang;
   /** null = комната недели недоступна (нет источника данных). */
   members: readonly SpireMemberRow[] | null;
   onOpenAll: () => void;
+  /** D162: 'coins' — место и подпись по монетам недели; нет — ступени, как раньше. */
+  rankBy?: SpireRankByView;
 }>;
 
-function SpirePodium({ lang, members, onOpenAll }: Props) {
+function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps' }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
-  const ranked = members ? [...members].sort((a, b) => b.steps - a.steps) : [];
+  const ranked = members ? spireSortMembers(members, rankBy) : [];
+  const score = (m: SpireMemberRow): string => (rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : `${m.steps} ${spireStepsShort(lang, m.steps)}`);
   const top = ranked.slice(0, 3);
   const meIndex = ranked.findIndex((m) => m.isMe);
   const order = top.length === 3 ? [1, 0, 2] : top.map((_, i) => i);
@@ -46,11 +49,11 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
             const place = idx + 1;
             const blk = place === 1 ? 88 : place === 2 ? 66 : 50;
             return (
-              <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireStepsCount(lang, m.steps)}`}>
+              <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : spireStepsCount(lang, m.steps)}`}>
                 <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
                 {/* зачем (координатор 13.10): на 360 dp колонка ≈ 101 dp, при шрифте ×1,3 длинное имя без пробела рвалось посреди слова. До 2 строк, перенос по слогам (Android hyphenationFrequency=full, iOS переносит сам), потолок роста шрифта 1,15 только у имени — это не ужатие шрифта под ширину */}
                 <Text style={[s.name, { color: p.text }]} numberOfLines={2} maxFontSizeMultiplier={1.15} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
-                <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
+                <Text style={[s.steps, { color: p.textSecondary }]}>{score(m)}</Text>
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>
                 </View>

@@ -31,7 +31,8 @@
 // повышения, поэтому лидер Алмаза не понижается.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import type { SpireCoinsConfig } from './spire_config_contract';
+import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
+import { spireBotWeekCoins } from './spire_config_contract';
 import {
   isSpireResidentMember,
   spireLiveZoneSize,
@@ -51,6 +52,8 @@ export type SpireStanding = Readonly<{
   totalMs: number;
   /** Когда вошёл в комнату (spire_groups.members[uid].joinedAtMs); 0 — неизвестно (боты, старые строки). */
   joinedAtMs?: number;
+  /** D162: монеты, заработанные за неделю во всех режимах (журнал), уже с потолком недели. 0 — нет/не считаем. */
+  weekCoins?: number;
 }>;
 
 /**
@@ -87,6 +90,12 @@ export type SpireMemberWeekResult = Readonly<{
   prevTier: number;
   newTier: number;
   rewardCoins: SpireRewardCoins;
+  /** D162: чем решалось место ('steps' | 'coins'). */
+  rankBy: SpireRankBy;
+  /** D162: монеты недели по журналу с потолком (0 в режиме ступеней, если не передали). */
+  weekCoins: number;
+  /** D162: сумма недели упёрлась в потолок weekCoinsCap. */
+  weekCoinsCapped: boolean;
 }>;
 
 export type SpireRoomFinalizeInput = Readonly<{
@@ -98,6 +107,12 @@ export type SpireRoomFinalizeInput = Readonly<{
   members: Readonly<Record<string, unknown>>;
   coins: Pick<SpireCoinsConfig, 'weekPlace1' | 'weekPlace2' | 'weekPlace3' | 'promotionBonus'>;
   tuning: SpireResidentTuning;
+  /** D162: чем ранжировать (уже с учётом недели — spireEffectiveRankBy). Нет — 'steps'. */
+  rankBy?: SpireRankBy;
+  /** D162: монеты недели живых по журналу (starsWeekEarned), ДО потолка. */
+  weekCoinsByUid?: Readonly<Record<string, number>>;
+  /** D162: потолок суммы недели (config/spire_v1.weekCoinsCap). */
+  weekCoinsCap?: number;
 }>;
 
 export type SpireRoomFinalizeOutput = Readonly<{
@@ -106,6 +121,9 @@ export type SpireRoomFinalizeOutput = Readonly<{
   roomTotal: number;
   hasAnyScorer: boolean;
   results: Readonly<Record<string, SpireMemberWeekResult>>;
+  /** D162: чем решалось место и сколько живых упёрлись в потолок недели (для журнала [SPIRE-FINALIZE]). */
+  rankBy: SpireRankBy;
+  capHits: number;
 }>;
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
@@ -137,6 +155,25 @@ export function compareSpireStanding(a: SpireStanding, b: SpireStanding): number
   const aTotal = a.totalMs > 0 ? a.totalMs : Number.MAX_SAFE_INTEGER;
   const bTotal = b.totalMs > 0 ? b.totalMs : Number.MAX_SAFE_INTEGER;
   return aTotal - bTotal;
+}
+
+/**
+ * D162 (OWNER_FINAL 10.10): при rankBy='coins' место решают монеты недели всех режимов; ничья — прежний порядок по
+ * ступеням и времени (compareSpireStanding). При 'steps' — как до D162.
+ */
+export function compareSpireStandingBy(rankBy: SpireRankBy): (a: SpireStanding, b: SpireStanding) => number {
+  if (rankBy !== 'coins') return compareSpireStanding;
+  return (a, b) => {
+    const ac = a.weekCoins ?? 0;
+    const bc = b.weekCoins ?? 0;
+    if (ac !== bc) return bc - ac;
+    return compareSpireStanding(a, b);
+  };
+}
+
+/** «Играл на неделе»: монеты > 0 при 'coins', ступени > 0 при 'steps' — от этого зоны и места 1–3. */
+export function spireStandingScored(s: SpireStanding, rankBy: SpireRankBy): boolean {
+  return rankBy === 'coins' ? (s.weekCoins ?? 0) > 0 : s.steps > 0;
 }
 
 /** Живые строки комнаты: без ботов и без скрытых дублей (как countLiveMembers лиги). */
@@ -172,10 +209,19 @@ function placeCoins(rank: number, coins: SpireRoomFinalizeInput['coins']): numbe
  */
 export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoomFinalizeOutput {
   const tier = clampSpireFinalTier(input.tier);
-  const live = spireLiveStandings(input.members);
+  const rankBy: SpireRankBy = input.rankBy === 'coins' ? 'coins' : 'steps';
+  const cap = Number.isFinite(Number(input.weekCoinsCap)) && Number(input.weekCoinsCap) > 0 ? Math.trunc(Number(input.weekCoinsCap)) : Number.MAX_SAFE_INTEGER;
+  const cappedUids = new Set<string>();
+  // зачем потолок (координатор 13.10, PM-291): сумму практики присылает клиент — накрутка не должна покупать место выше потолка.
+  const live = spireLiveStandings(input.members).map((m) => {
+    const raw = Math.max(0, Math.trunc(Number(input.weekCoinsByUid?.[m.uid] ?? 0)) || 0);
+    if (raw > cap) cappedUids.add(m.uid);
+    return { ...m, weekCoins: Math.min(raw, cap) };
+  });
+  const compare = compareSpireStandingBy(rankBy);
   const liveTotal = live.length;
   const zoneSize = spireLiveZoneSize(liveTotal);
-  const hasAnyScorer = live.some((m) => m.steps > 0);
+  const hasAnyScorer = live.some((m) => spireStandingScored(m, rankBy));
 
   // Боты на конец недели — та же формула, что на экране (0 чтений/записей).
   const bots = spireRoomResidents({
@@ -186,16 +232,17 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     live: live.map((m) => ({ uid: m.uid, steps: m.steps })),
     tuning: input.tuning,
   });
-  const room: SpireStanding[] = [...live, ...bots];
+  // D162: у ботов в режиме монет — монеты по формуле от их ступеней (только для показанного «места X из N»).
+  const room: SpireStanding[] = [...live, ...bots.map((b) => ({ ...b, weekCoins: spireBotWeekCoins(b.steps) }))];
   const roomTotal = room.length;
 
   const results: Record<string, SpireMemberWeekResult> = {};
   const lateJoinCutoffMs = input.weekStartMs + WEEK_MS - SPIRE_LATE_JOIN_GRACE_MS;
   for (const me of live) {
-    const liveRank = 1 + live.filter((o) => compareSpireStanding(o, me) < 0).length;
-    const bottomRank = 1 + live.filter((o) => compareSpireStanding(o, me) > 0).length;
-    const roomRank = 1 + room.filter((o) => compareSpireStanding(o, me) < 0).length;
-    const scored = me.steps > 0;
+    const liveRank = 1 + live.filter((o) => compare(o, me) < 0).length;
+    const bottomRank = 1 + live.filter((o) => compare(o, me) > 0).length;
+    const roomRank = 1 + room.filter((o) => compare(o, me) < 0).length;
+    const scored = spireStandingScored(me, rankBy);
     // Зона повышения требует ≥1 ступени: иначе нули в тихой комнате (строго
     // выше них — только игравшие) попадали бы в «топ» и гасили себе понижение
     // — ровно баг лиги 2026-08-17.
@@ -226,7 +273,10 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
       prevTier: tier,
       newTier: promoted ? tier + 1 : demoted ? tier - 1 : tier,
       rewardCoins: { place, promotion, total: place + promotion },
+      rankBy,
+      weekCoins: me.weekCoins,
+      weekCoinsCapped: cappedUids.has(me.uid),
     };
   }
-  return { zoneSize, liveTotal, roomTotal, hasAnyScorer, results };
+  return { zoneSize, liveTotal, roomTotal, hasAnyScorer, results, rankBy, capHits: cappedUids.size };
 }

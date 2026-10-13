@@ -35,6 +35,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { resolveArenaStudyTarget, type ArenaStudyTarget } from './arena_target_registry';
+import { normalizeStars, starsWeekEarned } from './stars_ledger';
 import {
   SPIRE_ROOM_SIZE,
   buildSpireRoster,
@@ -64,7 +65,17 @@ type SpireMember = {
   joinedAtMs: number;
   /** Ранг монеты 0…19 — аватар-монета соперника (владелец 13.10); присылает клиент, иначе null. */
   coinRank: number | null;
+  /**
+   * D162: монеты недели всех режимов из журнала (users.stars) на момент последнего входа/отчёта — только для показа соседям.
+   * Итог недели берёт свежее значение из журнала, а не этот снимок.
+   */
+  weekCoins: number;
 };
+
+/** D162: монеты недели игрока по уже прочитанному users/{uid} — 0 лишних чтений. */
+export function spireWeekCoinsOf(userData: Record<string, unknown> | undefined, weekId: string): number {
+  return starsWeekEarned(normalizeStars(userData?.stars), weekId);
+}
 
 /** Ранг монеты от клиента: только целое 0…19, иначе null (как public_profiles.coinRank). */
 export function spireCoinRankOrNull(value: unknown): number | null {
@@ -148,6 +159,7 @@ function buildMember(
   userData: Record<string, unknown> | undefined,
   raw: Record<string, unknown>,
   nowMs: number,
+  weekId: string,
 ): SpireMember {
   return {
     uid: stableUid,
@@ -161,6 +173,7 @@ function buildMember(
     totalMs: 0,
     joinedAtMs: nowMs,
     coinRank: spireCoinRankOrNull(raw.coinRank),
+    weekCoins: spireWeekCoinsOf(userData, weekId),
   };
 }
 
@@ -174,22 +187,26 @@ function buildMember(
  */
 export function spireMemberStepsUpdate(
   stableUid: string,
-  current: Readonly<{ steps?: unknown; coinRank?: unknown }> | undefined,
+  current: Readonly<{ steps?: unknown; coinRank?: unknown; weekCoins?: unknown }> | undefined,
   next: Readonly<{ steps: number; reachedAtMs: number; totalMs: number }>,
   nowMs: number,
   coinRank: number | null = null,
+  weekCoins: number | null = null,
 ): Record<string, number> | null {
   const prev = Math.max(0, Math.trunc(Number(current?.steps)) || 0);
   const steps = Math.max(0, Math.trunc(next.steps) || 0);
   // зачем (владелец 13.10, аватар-монета): ранг едет той же записью, что ступени; отдельная запись — только если ранг сменился
   // без новых ступеней (повышение ранга — редкость), иначе null: лишних записей нет.
   const rank = coinRank !== null && current?.coinRank !== coinRank ? { [`members.${stableUid}.coinRank`]: coinRank } : {};
-  if (steps <= prev) return Object.keys(rank).length > 0 ? { ...rank, updatedAt: nowMs } : null;
+  // зачем (D162): монеты недели едут той же записью; отдельная запись без новых ступеней — только если сумма изменилась.
+  const coins = weekCoins !== null && Number(current?.weekCoins) !== weekCoins ? { [`members.${stableUid}.weekCoins`]: weekCoins } : {};
+  const extra = { ...rank, ...coins };
+  if (steps <= prev) return Object.keys(extra).length > 0 ? { ...extra, updatedAt: nowMs } : null;
   return {
     [`members.${stableUid}.steps`]: steps,
     [`members.${stableUid}.reachedAtMs`]: Math.max(0, Math.trunc(next.reachedAtMs) || 0),
     [`members.${stableUid}.totalMs`]: Math.max(0, Math.trunc(next.totalMs) || 0),
-    ...rank,
+    ...extra,
     updatedAt: nowMs,
   };
 }
@@ -248,13 +265,24 @@ export const spireJoinRoom = onCall(HOT_CALLABLE_OPTIONS, async (request): Promi
     const saved = savedSnap.data();
     if (savedSnap.exists && saved?.weekId === weekId && saved?.lang === lang && saved?.members?.[stableUid]) {
       console.log(LOG, JSON.stringify({ event: 'existing', groupId: savedId, lang, tier: saved.tier, cohortDay: saved.cohortDay }));
+      // зачем (D162): соседи видят монеты недели из снимка; обновляем его при входе, только если сумма изменилась
+      // (0 чтений — users уже прочитан выше; запись — лишь при изменении). Сбой записи не мешает входу — причина в журнале.
+      const weekCoins = spireWeekCoinsOf(userData, weekId);
+      if (Number(saved.members[stableUid]?.weekCoins) !== weekCoins) {
+        try {
+          await savedSnap.ref.update({ [`members.${stableUid}.weekCoins`]: weekCoins, updatedAt: nowMs });
+          console.log(LOG, JSON.stringify({ event: 'week_coins_snapshot', groupId: savedId, weekCoins }));
+        } catch (error) {
+          console.warn(LOG, JSON.stringify({ event: 'week_coins_snapshot_failed', groupId: savedId, reason: String((error as Error)?.message ?? error).slice(0, 160) }));
+        }
+      }
       return { ok: true, groupId: savedId, weekId, lang, tier: clampSpireTier(saved.tier), cohortDay: Number(saved.cohortDay) || 0, status: 'existing' };
     }
     console.warn(LOG, JSON.stringify({ event: 'saved_room_invalid', groupId: savedId, exists: savedSnap.exists, weekId: saved?.weekId ?? null, lang: saved?.lang ?? null }));
   }
 
   const cohortDay = spireCohortDay(nowMs);
-  const member = buildMember(stableUid, userData, (request.data?.member || {}) as Record<string, unknown>, nowMs);
+  const member = buildMember(stableUid, userData, (request.data?.member || {}) as Record<string, unknown>, nowMs, weekId);
   const leaderboardPatch = (groupId: string) => ({
     spireGroups: { [lang]: { groupId, weekId, tier, cohortDay } },
   });

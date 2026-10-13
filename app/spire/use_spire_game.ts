@@ -15,7 +15,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AppState, InteractionManager } from 'react-native';
 
-import { spireStepBudgetMs, type SpireConfigDoc } from '../../modules/spire/config_contract';
+import { spireEffectiveRankBy, spireStepBudgetMs, type SpireConfigDoc, type SpireRankBy } from '../../modules/spire/config_contract';
 import { spirePickStepPlan, type SpireStepPick } from '../../modules/spire/pack_plan';
 import {
   SPIRE_REPORT_FLUSH_INTERVAL_MS,
@@ -210,14 +210,16 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
 
   // ── Строки комнаты: чужие из кэша, свои — локальные (мгновенно после ступени) ──
   const room = roomLoad?.room ?? null;
+  // зачем (D162, координатор 13.10): один рубильник config/spire_v1.rankBy — из уже кэшируемого конфига (0 чтений); монеты — с недели W43.
+  const rankBy: SpireRankBy = config && room ? spireEffectiveRankBy(config, room.weekId) : 'steps';
   const rows: readonly SpireRoomRow[] | null = useMemo(() => {
     if (!room || !ids || !config) return null;
     const mine = week && week.weekKey === room.weekId ? week : null;
     return spireBuildRoomRows({
       room, myUid: ids.uid, mySteps: mine?.stepsCleared ?? 0, myReachedAtMs: mine?.reachedAtMs ?? 0,
-      nowMs: Date.now(), tuning: config.residents,
+      nowMs: Date.now(), tuning: config.residents, rankBy,
     });
-  }, [room, ids, config, week]);
+  }, [room, ids, config, week, rankBy]);
   const myPlace = rows ? spireMyPlace(rows) : null;
   // зачем (владелец через координатора 13.10, «сперва логи»): на кадре у этажей нет соперников — что реально пришло: откуда комната,
   // сколько живых/ботов, строки и соперники по этажам (без себя). console — журналы кадров Сверки снимают logcat, DebugLogger туда не идёт.
@@ -389,7 +391,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     live: gate !== null,
     uid: ids?.uid ?? null,
     stableId: ids?.stableId ?? null,
-    roomLoad, rows, myPlace, tier, friends, refreshFriends, weekResult, dismissWeekResult, rejectNotice,
+    roomLoad, rows, rankBy, myPlace, tier, friends, refreshFriends, weekResult, dismissWeekResult, rejectNotice,
     session, pending, cancelPendingStep, starting, startBlock, startStep, onStepFinish, onStepAbort, outcome, dismissOutcome,
   };
 }

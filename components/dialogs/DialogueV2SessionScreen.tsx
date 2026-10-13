@@ -36,6 +36,7 @@ import {
   DialogueGlassReplyAction,
   DialogueGlassSummaryPill,
 } from './glass/DialogueGlassSessionParts';
+import { glassTone } from './glass/glassTone';
 import { DialogueGlassMenuSheet } from './glass/DialogueGlassMenuSheet';
 import DialogGoalsSheet from './DialogGoalsSheet';
 import DialogHintModal from './DialogHintModal';
@@ -488,9 +489,12 @@ export function DialogueV2SessionScreen({
                       accessibilityRole="button"
                       accessibilityLabel={voiceCopy.action}
                       testID={`dialogue-v2-voice-message-${message.id}`}
-                      style={{ minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+                      style={{ minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 10 }}
                     >
-                      <Ionicons name={playingVoiceUri === voiceUri ? 'pause' : 'play'} size={18} color={ink} />
+                      {/* зачем (Макеты dialogs-gap-014, образец .dg-vm .pl): ▶ голосового сообщения стоит в круге 30 с тёмной подложкой 14 %, а не голым значком; цвет круга — от чернил пузыря (в светлой теме не пропадает) */}
+                      <View testID={`dialogue-v2-voice-message-disc-${message.id}`} style={{ width: 30, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: glassTone(ink, 0.14) }}>
+                        <Ionicons name={playingVoiceUri === voiceUri ? 'pause' : 'play'} size={16} color={ink} />
+                      </View>
                       <DialogueGlassBubbleText glass={glass} author={author}>{voiceCopy.label}</DialogueGlassBubbleText>
                     </PressableScale>
                   ) : translated ? (

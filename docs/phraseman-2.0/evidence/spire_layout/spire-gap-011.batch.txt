@@ -1,0 +1,7 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-gap-011: журнал приложения → 34 строк в _runs
+[BATCH-SHOOT] spire-gap-011: экран не классифицирован (дамп не снялся): Error: adb_failed args=shell uiautomator dump /sdcard/phm_health.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-gap-011: склейка не удалась (status=1, свежий файл=false): wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-011.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=63451 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230
+[BATCH-SHOOT] spire-gap-011: stitch_failed 27831мс marker+склейка_не_удалась: wn error, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\spire-gap-011.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=63451 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230+ждали_metro_27мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-34-44-240Z/spire-gap-011.bare.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=0 blank_too_long=0 stitch_failed=1 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"stitch_failed":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-34-44-240Z.tsv
+[BATCH-SHOOT] склейка не удалась у 1 кадров (сервер макетов http://127.0.0.1:8765 запущен? у строки есть mockup?): голые кадры в _runs, evidence не тронуты

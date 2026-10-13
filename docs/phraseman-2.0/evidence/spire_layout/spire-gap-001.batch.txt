@@ -1,0 +1,8 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-gap-001: шаг see:#spire-task-report-0
+[BATCH-SHOOT] spire-gap-001: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-gap-001: журнал приложения → 0 строк в _runs
+[BATCH-SHOOT] spire-gap-001: пустой кадр (доминанта 99.7%, цветов 20) — ждём и снимаем снова
+[BATCH-SHOOT] spire-gap-001: blank_too_long 13765мс marker+шагов_1+пусто_6_повторов+ждали_metro_26мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-29-40-006Z/spire-gap-001.blank_too_long.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=0 blank_too_long=1 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"blank_too_long":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-29-40-006Z.tsv
+[BATCH-SHOOT] пустой экран дольше порога (находки для координатора, не кадры): см. журнал, файлы в _runs

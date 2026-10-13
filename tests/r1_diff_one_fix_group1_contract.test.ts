@@ -13,7 +13,9 @@ describe('R1_DIFF_ONE_FIX, группа 1', () => {
 
   it('cards-v2-006 / cards-section-008: перевод в плитке — одна строка с многоточием (макет nowrap + ellipsis)', () => {
     const gallery = read('components/cards-grid/CardsGallery.tsx');
-    expect(gallery.match(/numberOfLines=\{1\} ellipsizeMode="tail" style=\{\[styles\.tr,/g)?.length).toBe(2);
+    // зачем (координатор 13.10, cards-007; коммит 2fb610b52): в двух колонках перевод режется кнопкой звука — там до двух строк; в остальных плитках — одна строка с многоточием
+    expect(gallery.match(/numberOfLines=\{1\} ellipsizeMode="tail" style=\{\[styles\.tr,/g)?.length).toBe(1);
+    expect(gallery.match(/numberOfLines=\{2\} ellipsizeMode="tail" style=\{\[styles\.tr,/g)?.length).toBe(1);
   });
 
   it('overlays-campaigns-016…026: «✕» шторки кода друга справа (row), заголовок с запасом под крестик слева', () => {

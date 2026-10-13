@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { BlurView } from 'expo-blur';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useTheme } from '../../components/ThemeContext';
@@ -12,6 +12,8 @@ import { triLang } from '../../constants/i18n';
 import { FilterGroup } from './selectors';
 
 import { noAndroidOutline } from '../../constants/androidGlow';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { DebugLogger } from '../debug-logger';
 type Props = {
   visible: boolean;
   lang: Lang;
@@ -37,12 +39,27 @@ export default function FlashcardsFilterDropdown({
 }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (Макеты, кандидат cards-gap-023: «меню фильтра перекрывает шапку»; сперва логи): где меню оказалось в окне при заданном top=56 и какой верхний отступ у экрана —
+  // по строке [FILTER-MENU] видно, лежит ли меню поверх шапки (y < insets.top + высота шапки) и надо ли сдвигать на insets.top.
+  const insets = useStableSafeAreaInsets();
+  const menuRef = useRef<View>(null);
+  useEffect(() => {
+    if (!visible) return undefined;
+    const timer = setTimeout(() => {
+      menuRef.current?.measureInWindow((x, y, w, h) => {
+        DebugLogger.info('[FILTER-MENU]', `открыто: меню в окне x=${Math.round(x)} y=${Math.round(y)} ${Math.round(w)}×${Math.round(h)}; top прописан=56, insets.top=${Math.round(insets.top)}, savedGlass=${String(savedGlass)}`);
+      });
+    }, 60);
+    return () => clearTimeout(timer);
+  }, [visible, insets.top, savedGlass]);
   if (!visible) return null;
 
   return (
     <>
       <TouchableOpacity style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} activeOpacity={1} onPress={onClose} />
       <View
+        ref={menuRef}
+        collapsable={false}
         style={{
           position: 'absolute',
           top: 56,

@@ -181,7 +181,8 @@ const styles = StyleSheet.create({
   titleCount: { fontSize: 22, fontWeight: '600', letterSpacing: 0 },
   cta: { minHeight: 48, borderRadius: 24, paddingHorizontal: 20, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10 },
   ctaSmall: { minHeight: 42, borderRadius: 21, paddingHorizontal: 18 },
-  grow: { flex: 1, minWidth: 0 },
+  // зачем (кандидат Макетов cards-section-031 / v2-053, 13.10): «✓ В моих наборах» в половинной кнопке (≈180 dp) переносилась на 2 строки — поля 20 и зазор 10 не оставляли места тексту; в растущей кнопке поля 12 и зазор 8 (надпись по-прежнему переносится по словам, не сжимается)
+  grow: { flex: 1, minWidth: 0, paddingHorizontal: 12, gap: 8 },
   ctaText: { fontSize: 16, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   chipsScroll: { marginHorizontal: -20, flexGrow: 0 },
   chips: { paddingHorizontal: 20, paddingVertical: 8, gap: 8 },

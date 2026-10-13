@@ -628,7 +628,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // TG-20707BD701DC (удаление гостя, 2026-10-10): +3 — прямой accountDeleteMine гостя без
         // замка, дожатие гостевого замка после перезапуска (startCloudDeletionEnqueue) и
         // квитанция по ключу перед запасным прямым вызовом (waitForAccountDeletionCredentialSafe).
-        occurrences: 119,
+        // 52429d419 (2026-10-12): +1 — гость ставит удаление своим вызовом startCloudDeletionEnqueue с дедлайном 25 с в фоне
+        // (холодный старт accountDeleteEnqueue ≈9 с), связанные — прежним; та же постановка, другой потолок ожидания.
+        occurrences: 120,
         imports: 3,
         census: {
           'call:acceptAnonMergeStampResponse': 1,
@@ -662,7 +664,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:shelveAccountSwitchEmergencyBackupOf': 1,
           'call:stampAnonOwnershipBeforeSignIn': 2,
           'call:startCloudDeletionDirect': 1,
-          'call:startCloudDeletionEnqueue': 3,
+          'call:startCloudDeletionEnqueue': 4,
           'call:syncToCloud': 2,
           'call:waitForAccountDeletionCredentialSafe': 4,
           'call:waitForRestoreApplicationIdleWithDeadline': 4,

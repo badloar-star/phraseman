@@ -20,20 +20,18 @@ import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { peekSpireWeekLocal, spireReadWeekLocal } from '../../app/spire_report_client';
 import { getDevSpireWeekResultOverride } from '../../app/dev_spire_tier';
 import { loadSpireConfig, peekSpireConfig } from '../../app/spire_config_client';
 import { refreshSpireConfigIfLocked } from '../../app/spire_gate_refresh';
 import { useSpireGame } from '../../app/spire/use_spire_game';
 import { peekSpireTourSeen, spireMarkTourSeen, spireReadTourSeen } from '../../app/spire/spire_local_store';
 import { DebugLogger } from '../../app/debug-logger';
-import { getCanonicalUserId } from '../../app/user_id_policy';
 import { useTabNav } from '../../app/TabContext';
 import { V2, V2_TYPE } from '../../constants/v2Style';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { SPIRE_CONFIG_DEFAULTS, type SpireConfigDoc } from '../../modules/spire/config_contract';
-import type { SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
+import type { SpireWeekLocal } from '../../modules/spire/report_queue';
 import { spireWeekStartMs } from '../../modules/spire/residents';
 import { spireTierName } from '../../modules/spire/tier_names';
 import EnergyBar from '../EnergyBar';
@@ -64,7 +62,8 @@ import type { SpireMemberRow } from './spire_room_types';
 import { spireText, spireTimeLeftText } from './spire_strings';
 import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
-import { SPIRE_FLOOR_COUNT, spireCurrentWeekKey, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
+import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
+import { SPIRE_BETA_LANGS, asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
 
 const LOG = '[SPIRE]';
 const DASH = '—';
@@ -73,46 +72,6 @@ const DASH = '—';
 // (safe area и панель вкладок уже внутри bottomPad). Макетные значения остаются ПОЛОМ — вид в обычных состояниях не меняется.
 const DOCK_LIFT = 24;
 const DOCK_GAP = 16;
-const SPIRE_LANGS: readonly SpireLang[] = ['en', 'es', 'de', 'fr', 'it'];
-
-function asSpireLang(value: unknown): SpireLang | null {
-  return SPIRE_LANGS.includes(value as SpireLang) ? (value as SpireLang) : null;
-}
-
-/**
- * Неделя для ПЕРВОГО кадра из памяти процесса (peek), без чтения диска.
- * зачем (аудит скорости Авторизации 13.10, п.1): без неё маркер «ты здесь» и блок этажа дорисовывались после асинхронного чтения, а выбранный этаж
- * прыгал с 1 на настоящий — экран дёргался. Настоящее чтение ниже подтверждает или заменяет значение.
- */
-function peekFirstFrameWeek(studyTarget: unknown): SpireWeekLocal | null {
-  const lang = asSpireLang(studyTarget);
-  return lang ? peekSpireWeekLocal(lang) : null;
-}
-
-/** Локальная неделя текущей ISO-недели или null (чужая/старая неделя — не показываем как свою). */
-async function readCurrentLocalWeek(lang: SpireLang): Promise<SpireWeekLocal | null> {
-  const uid = await getCanonicalUserId();
-  if (!uid) {
-    DebugLogger.info(LOG, 'home: локальная неделя не читается — нет канонического uid (облако выключено)');
-    return null;
-  }
-  const local = await spireReadWeekLocal(uid, lang);
-  if (!local) {
-    DebugLogger.info(LOG, `home: локальной недели нет (lang=${lang}) — маркер не рисуем`);
-    return null;
-  }
-  const expected = spireCurrentWeekKey(Date.now());
-  if (local.weekKey !== expected) {
-    DebugLogger.info(LOG, `home: локальная неделя устарела (local=${local.weekKey} сейчас=${expected}) — маркер не рисуем`);
-    return null;
-  }
-  DebugLogger.info(LOG, `home: локальная неделя ok (tier=${local.tier} floor=${local.floor} stepInFloor=${local.stepInFloor} steps=${local.stepsCleared}) из AsyncStorage`);
-  return local;
-}
-
-/** D77: языки Шпиля с пометкой «бета» (первые 2–4 недели после 30.09). */
-const SPIRE_BETA_LANGS: readonly string[] = ['es', 'de', 'fr', 'it'];
-
 export default function SpireHomeScreen() {
   const { lang } = useLang();
   const p = useSpirePalette(); const sh = useSpireShadow();

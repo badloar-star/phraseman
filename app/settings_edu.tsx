@@ -470,9 +470,11 @@ export default function SettingsEdu() {
             >
             <PlateFill g={glass} radius={14} />
             <RowIcon name="person-outline" />
-            {/* зачем (settings-gap-034): название строки не сжимается и не переносится — место уступает значение справа (оно переносится, без обрезки). */}
-            <View style={{ flexGrow: 1, flexShrink: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
-            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 1, marginLeft: 8, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится, без обрезки */ }}>
+            {/* зачем (settings-gap-034, кадр 13.10 02:25Z): как в образце (.gs-tx flex:1 min-width:0 / .gs-vv flex:none max-width:120) — место
+                уступает колонка названия (подпись под ним уходит на 2-ю строку), а значение держит одну строку до 120. Раньше колонка не
+                сжималась, её ширину задавала подпись, и «Австралия · 2» складывалась в три строки. */}
+            <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 0, maxWidth: 120, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится внутри 120, без обрезки; отступ — только gap строки 14, как в образце */ }}>
               {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
             </Text>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />

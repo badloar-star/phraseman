@@ -21,6 +21,13 @@ import {
   capCandidates,
   summarizeQuietSkipped,
   reEngageUtcOffsetLabel,
+  resolveReEngageTimezone,
+  decideReEngageUser,
+  summarizeReEngageTzSkips,
+  logReEngageTzSkips,
+  isInQuietHours,
+  REENGAGE_TZ_LOG_MAX_GROUPS,
+  type ReEngageTzSkipGroup,
   type ReEngageUser,
   type ReEngageCandidate,
 } from './re_engage_push';
@@ -366,5 +373,127 @@ describe('summarizeQuietSkipped', () => {
     const u = user({ pushTokenTimezone: 'America/New_York', lastActiveAt: inactive });
     expect(classifyReEngageUser(u, AT_10_UTC)).toBeNull();
     expect(classifyReEngageUser(u, AT_10_UTC, { ignoreQuietHours: true })).toBe('inactive_return');
+  });
+});
+
+// зачем (координатор 13.10, «Америка — крупный рынок»): второй прогон 22:00 UTC + пояс по языку, если устройство пояс не прислало.
+describe('пуши «вернись» доходят до каждого пояса', () => {
+  const RUN_HOURS_UTC = [10, 22];
+  // Etc/GMT+N — это UTC−N (знак в именах Etc обратный).
+  const WHOLE_OFFSETS = Array.from({ length: 27 }, (_, i) => i - 12).map((offset) => (
+    offset === 0 ? 'Europe/London' : `Etc/GMT${offset > 0 ? '-' : '+'}${Math.abs(offset)}`
+  ));
+  const HALF_OFFSETS = ['America/St_Johns', 'Asia/Kolkata', 'Asia/Kathmandu', 'Australia/Adelaide', 'Pacific/Chatham', 'Pacific/Marquesas'];
+  const DAYS = [Date.UTC(2026, 9, 13), Date.UTC(2026, 0, 15), Date.UTC(2026, 6, 1)];
+
+  it('каждый пояс UTC−12…+14 (и получасовые) хотя бы в одном прогоне днём по местному времени', () => {
+    const notCovered: string[] = [];
+    for (const day of DAYS) {
+      for (const tz of [...WHOLE_OFFSETS, ...HALF_OFFSETS]) {
+        const covered = RUN_HOURS_UTC.some((h) => !isInQuietHours(day + h * HOUR, tz));
+        if (!covered) notCovered.push(`${new Date(day).toISOString().slice(0, 10)} ${tz}`);
+      }
+    }
+    expect(notCovered).toEqual([]);
+  });
+
+  it('расписание крона — 10:00 и 22:00 UTC', () => {
+    const index = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
+    expect(index).toMatch(/reEngagePushCron = functions\.scheduler\.onSchedule\(\s*\{ schedule: "0 10,22 \* \* \*", timeZone: "UTC" \}/);
+  });
+
+  it('Нью-Йорк: ночью в 10:00 UTC пропуск по тихим часам, в 22:00 UTC — пуш', () => {
+    const at10 = Date.UTC(2026, 9, 13, 10);
+    const at22 = Date.UTC(2026, 9, 13, 22);
+    const ny = user({ pushTokenTimezone: 'America/New_York', pushTokenLang: 'en', lastActiveAt: at10 - 5 * DAY });
+    expect(decideReEngageUser(ny, at10)).toEqual({ reason: null, skip: 'quiet_hours' });
+    expect(decideReEngageUser(ny, at22)).toEqual({ reason: 'inactive_return', skip: null });
+  });
+
+  it('пересечение двух прогонов не даёт второго пуша в те же сутки (cooldown)', () => {
+    const at10 = Date.UTC(2026, 9, 13, 10);
+    const at22 = Date.UTC(2026, 9, 13, 22);
+    const bangkok = user({ pushTokenTimezone: 'Asia/Bangkok', lastActiveAt: at10 - 5 * DAY });
+    expect(decideReEngageUser(bangkok, at10).reason).toBe('inactive_return');
+    expect(decideReEngageUser({ ...bangkok, lastReEngagePushAt: at10 }, at22).skip).toBe('quiet_hours');
+    const magadan = user({ pushTokenTimezone: 'Etc/GMT-11', lastActiveAt: at10 - 5 * DAY });
+    expect(decideReEngageUser(magadan, at10).reason).toBe('inactive_return');
+    expect(decideReEngageUser({ ...magadan, lastReEngagePushAt: at10 }, at22)).toEqual({ reason: null, skip: 'cooldown' });
+  });
+
+  it('пояс: устройство → язык → UTC', () => {
+    expect(resolveReEngageTimezone({ pushTokenTimezone: 'America/Chicago', pushTokenLang: 'ru' })).toEqual({ timezone: 'America/Chicago', source: 'device' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: 'UTC', pushTokenLang: 'ru' })).toEqual({ timezone: 'Europe/Moscow', source: 'lang_default' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: 'Etc/UTC', pushTokenLang: 'pt-BR' })).toEqual({ timezone: 'America/Sao_Paulo', source: 'lang_default' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: null, pushTokenLang: 'vi' })).toEqual({ timezone: 'Asia/Ho_Chi_Minh', source: 'lang_default' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: 'Mars/Olympus', pushTokenLang: 'uk' })).toEqual({ timezone: 'Europe/Kyiv', source: 'lang_default' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: null, pushTokenLang: 'en' })).toEqual({ timezone: 'UTC', source: 'utc_fallback' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: 'UTC', pushTokenLang: 'es' })).toEqual({ timezone: 'UTC', source: 'utc_fallback' });
+    expect(resolveReEngageTimezone({ pushTokenTimezone: undefined, pushTokenLang: null })).toEqual({ timezone: 'UTC', source: 'utc_fallback' });
+  });
+
+  it('пояс по языку решает тихие часы, когда устройство прислало UTC', () => {
+    const at22 = Date.UTC(2026, 9, 13, 22); // Москва 01:00 — ночь; UTC 22:00 — тоже ночь
+    const at10 = Date.UTC(2026, 9, 13, 10);
+    const saoPauloNoTz = user({ pushTokenTimezone: 'UTC', pushTokenLang: 'pt-BR', lastActiveAt: at10 - 5 * DAY });
+    // 10:00 UTC = 07:00 в Сан-Паулу — ночь (по UTC было бы 10:00 — день, и пуш ушёл бы в 7 утра).
+    expect(decideReEngageUser(saoPauloNoTz, at10).skip).toBe('quiet_hours');
+    // 22:00 UTC = 19:00 в Сан-Паулу — день.
+    expect(decideReEngageUser(saoPauloNoTz, at22).reason).toBe('inactive_return');
+  });
+
+  it('причины пропуска: нет токена, нет активности, cooldown, отписка, рано', () => {
+    const at = Date.UTC(2026, 9, 13, 10);
+    const base = { pushTokenTimezone: 'Europe/Moscow', lastActiveAt: at - 5 * DAY };
+    expect(decideReEngageUser(user({ ...base, expoPushToken: 'bad' }), at).skip).toBe('no_token');
+    expect(decideReEngageUser(user({ ...base, lastActiveAt: null }), at).skip).toBe('no_activity');
+    expect(decideReEngageUser(user({ ...base, lastReEngagePushAt: at - DAY }), at).skip).toBe('cooldown');
+    expect(decideReEngageUser(user({ ...base, pushPrefs: { streak: false } }), at).skip).toBe('opted_out');
+    expect(decideReEngageUser(user({ ...base, lastActiveAt: at - HOUR }), at).skip).toBe('not_due');
+  });
+
+  it('[REENGAGE-TZ]: группы (причина, источник пояса, пояс, местный час) с числом, без uid', () => {
+    const at10 = Date.UTC(2026, 9, 13, 10);
+    const users = [
+      user({ uid: 'secret_ny_1', pushTokenTimezone: 'America/New_York', lastActiveAt: at10 - 5 * DAY }),
+      user({ uid: 'secret_ny_2', pushTokenTimezone: 'America/New_York', lastActiveAt: at10 - 6 * DAY }),
+      user({ uid: 'secret_msk', pushTokenTimezone: 'Europe/Moscow', lastActiveAt: at10 - HOUR }),
+      user({ uid: 'secret_sent', pushTokenTimezone: 'Europe/Moscow', lastActiveAt: at10 - 5 * DAY }),
+    ];
+    const groups = summarizeReEngageTzSkips(users, at10);
+    expect(groups).toEqual([
+      { reason: 'quiet_hours', tzSource: 'device', timezone: 'America/New_York', localHour: 6, count: 2 },
+      { reason: 'not_due', tzSource: 'device', timezone: 'Europe/Moscow', localHour: 13, count: 1 },
+    ]);
+    const lines: string[] = [];
+    const spy = jest.spyOn(console, 'log').mockImplementation((...args: unknown[]) => { lines.push(args.map(String).join(' ')); });
+    try {
+      logReEngageTzSkips(groups, at10);
+    } finally {
+      spy.mockRestore();
+    }
+    expect(lines.filter((l) => l.startsWith('[REENGAGE-TZ] skip'))).toHaveLength(2);
+    expect(lines.some((l) => l.startsWith('[REENGAGE-TZ] summary'))).toBe(true);
+    expect(lines.join('\n')).not.toMatch(/secret_/);
+    expect(lines[0]).toContain('"tz":"America/New_York"');
+    expect(lines[0]).toContain('"localHour":6');
+    expect(lines[0]).toContain('"reason":"quiet_hours"');
+  });
+
+  it('[REENGAGE-TZ]: строк не больше потолка, остальное — в итоге', () => {
+    const groups: ReEngageTzSkipGroup[] = Array.from({ length: REENGAGE_TZ_LOG_MAX_GROUPS + 5 }, (_, i) => ({
+      reason: 'not_due', tzSource: 'device', timezone: `Zone/${i}`, localHour: 12, count: 1,
+    }));
+    const lines: string[] = [];
+    const spy = jest.spyOn(console, 'log').mockImplementation((...args: unknown[]) => { lines.push(args.map(String).join(' ')); });
+    try {
+      logReEngageTzSkips(groups, Date.UTC(2026, 9, 13, 22));
+    } finally {
+      spy.mockRestore();
+    }
+    expect(lines.filter((l) => l.startsWith('[REENGAGE-TZ] skip'))).toHaveLength(REENGAGE_TZ_LOG_MAX_GROUPS);
+    const summary = lines.find((l) => l.startsWith('[REENGAGE-TZ] summary')) ?? '';
+    expect(summary).toContain('"groupsNotShown":5');
+    expect(summary).toContain('"runUtcHour":22');
   });
 });

@@ -5,7 +5,7 @@
  * когда юзер открывает приложение. Если он пропал на 3+ дня — телефон молчит,
  * сервер не может достучаться. Это дыра в дне воронки удержания.
  *
- * Решение: ежедневный cron сканирует users/, находит тех, кто давно не заходил
+ * Решение: cron два раза в сутки (10:00 и 22:00 UTC — днём для каждого пояса) сканирует users/, находит тех, кто давно не заходил
  * или у кого вот-вот сгорит стрик, и шлёт им push через Expo Push API
  * (тот же канал, что уже используется в арене). Expo доставляет через FCM/APNs
  * даже в закрытое приложение.
@@ -142,6 +142,47 @@ export function isInQuietHours(nowMs: number, timezone: string | null | undefine
   return h >= 22 || h < 9;
 }
 
+/**
+ * Пояс по языку пушей — запасной вариант, когда устройство пояс не прислало.
+ * зачем (координатор 13.10, «Америка — крупный рынок»): клиент пишет `Intl…timeZone || 'UTC'`, поэтому «UTC» чаще значит
+ * «пояс не определился», чем Лондон зимой. Язык однозначно указывает страну только у части языков; en и es — весь мир
+ * (США/Великобритания/Индия, Испания/Мексика/Аргентина), для них остаётся UTC, как было.
+ */
+export const REENGAGE_LANG_DEFAULT_TIMEZONE: Readonly<Record<string, string>> = Object.freeze({
+  ru: 'Europe/Moscow',
+  uk: 'Europe/Kyiv',
+  pl: 'Europe/Warsaw',
+  tr: 'Europe/Istanbul',
+  vi: 'Asia/Ho_Chi_Minh',
+  id: 'Asia/Jakarta',
+  'pt-BR': 'America/Sao_Paulo',
+});
+const UTC_ALIASES = new Set(['UTC', 'ETC/UTC', 'GMT', 'ETC/GMT', 'UCT', 'ETC/UCT', 'ETC/UNIVERSAL', 'UNIVERSAL', 'ZULU', 'ETC/ZULU']);
+
+export type ReEngageTimezoneSource = 'device' | 'lang_default' | 'utc_fallback';
+export type ReEngageResolvedTimezone = Readonly<{ timezone: string; source: ReEngageTimezoneSource }>;
+
+function isKnownIanaTimezone(timezone: string): boolean {
+  try {
+    new Intl.DateTimeFormat('en-US', { timeZone: timezone });
+    return true;
+  } catch {
+    // Неизвестное имя пояса — не ошибка прогона: человек уходит на запасной пояс (источник виден в [REENGAGE-TZ]).
+    return false;
+  }
+}
+
+/** Пояс для тихих часов: пояс устройства → пояс по языку → UTC. */
+export function resolveReEngageTimezone(u: Pick<ReEngageUser, 'pushTokenTimezone' | 'pushTokenLang'>): ReEngageResolvedTimezone {
+  const device = typeof u.pushTokenTimezone === 'string' ? u.pushTokenTimezone.trim() : '';
+  if (device && !UTC_ALIASES.has(device.toUpperCase()) && isKnownIanaTimezone(device)) {
+    return { timezone: device, source: 'device' };
+  }
+  const byLang = u.pushTokenLang ? REENGAGE_LANG_DEFAULT_TIMEZONE[u.pushTokenLang] : undefined;
+  if (byLang) return { timezone: byLang, source: 'lang_default' };
+  return { timezone: 'UTC', source: 'utc_fallback' };
+}
+
 /** Валиден ли Expo push token (формат ExponentPushToken[...] или ExpoPushToken[...]). */
 export function isValidExpoPushToken(token: unknown): token is string {
   return typeof token === 'string' && /^Expo(nent)?PushToken\[.+\]$/.test(token.trim());
@@ -168,21 +209,39 @@ export function isReEngageOptedOut(u: ReEngageUser): boolean {
   return u.pushPrefs?.streak === false;
 }
 
+/** Почему человеку НЕ ушёл пуш в этот прогон (для журнала [REENGAGE-TZ]). */
+export type ReEngageSkipReason = 'no_token' | 'no_activity' | 'quiet_hours' | 'cooldown' | 'opted_out' | 'not_due';
+
+export type ReEngageDecision = Readonly<{ reason: ReEngageReason | null; skip: ReEngageSkipReason | null }>;
+
+const sendAs = (reason: ReEngageReason): ReEngageDecision => ({ reason, skip: null });
+const skipAs = (skip: ReEngageSkipReason): ReEngageDecision => ({ reason: null, skip });
+
 export function classifyReEngageUser(
   u: ReEngageUser,
   now: number,
   options: Readonly<{ ignoreQuietHours?: boolean }> = {},
 ): ReEngageReason | null {
-  if (!isValidExpoPushToken(u.expoPushToken)) return null;
-  if (u.lastActiveAt == null) return null;
+  return decideReEngageUser(u, now, options).reason;
+}
+
+/** Решение по человеку: причина пуша или причина пропуска (ровно одно из двух не null). */
+export function decideReEngageUser(
+  u: ReEngageUser,
+  now: number,
+  options: Readonly<{ ignoreQuietHours?: boolean }> = {},
+): ReEngageDecision {
+  if (!isValidExpoPushToken(u.expoPushToken)) return skipAs('no_token');
+  if (u.lastActiveAt == null) return skipAs('no_activity');
 
   // Тихие часы: не будим пользователя ночью (22:00–09:00 по его локальному времени).
+  // зачем resolveReEngageTimezone (координатор 13.10): без пояса устройства берём пояс по языку, иначе UTC.
   // ignoreQuietHours — ТОЛЬКО для подсчёта «кого тихие часы не пустили» (summarizeQuietSkipped), отбор его не передаёт.
-  if (!options.ignoreQuietHours && isInQuietHours(now, u.pushTokenTimezone)) return null;
+  if (!options.ignoreQuietHours && isInQuietHours(now, resolveReEngageTimezone(u).timezone)) return skipAs('quiet_hours');
 
   // Анти-спам: недавно уже слали — пропускаем.
   if (u.lastReEngagePushAt != null && now - u.lastReEngagePushAt < REENGAGE_COOLDOWN_DAYS * DAY_MS) {
-    return null;
+    return skipAs('cooldown');
   }
 
   const msInactive = now - u.lastActiveAt;
@@ -194,26 +253,26 @@ export function classifyReEngageUser(
   // зачем: юзер может выключить «Серия под угрозой» в разделе уведомлений —
   // клиент зеркалит выбор в pushPrefs.streak. Отсутствие поля = старый клиент = слать.
   if (streak >= STREAK_AT_RISK_MIN && hoursInactive >= STREAK_RISK_INACTIVE_HOURS && hoursInactive < 24) {
-    if (isReEngageOptedOut(u)) return null;
-    return 'streak_at_risk';
+    if (isReEngageOptedOut(u)) return skipAs('opted_out');
+    return sendAs('streak_at_risk');
   }
 
   // PM-200: тот же opt-out для «давно не заходил» (см. isReEngageOptedOut).
-  if (isReEngageOptedOut(u)) return null;
+  if (isReEngageOptedOut(u)) return skipAs('opted_out');
 
   const daysInactive = msInactive / DAY_MS;
 
   // 2) Давно не заходил: основное окно [3, 14 дней].
   if (daysInactive >= INACTIVE_MIN_DAYS && daysInactive <= INACTIVE_MAX_DAYS) {
-    return 'inactive_return';
+    return sendAs('inactive_return');
   }
 
   // 3) Расширенный возврат: [15, 30 дней] — повторная попытка с другим текстом.
   if (daysInactive > INACTIVE_EXTENDED_MIN_DAYS && daysInactive <= INACTIVE_EXTENDED_MAX_DAYS) {
-    return 'inactive_long';
+    return sendAs('inactive_long');
   }
 
-  return null;
+  return skipAs('not_due');
 }
 
 /** Отбирает всех кандидатов на push из списка юзеров (чистая функция). */
@@ -243,9 +302,9 @@ export type ReEngageQuietSkipped = Readonly<{
 }>;
 
 /**
- * зачем (владелец 13.10 «сначала посчитать»): крон идёт раз в сутки в 10:00 UTC, а тихие часы 22:00–09:00 местного — поэтому
- * UTC−2 и западнее (вся Америка) и UTC+12+ не получают пушей никогда. Только счётчик: логика отбора не меняется; по цифрам
- * решим, переводить ли крон на почасовой.
+ * зачем (владелец 13.10 «сначала посчитать»): при одном прогоне в 10:00 UTC тихие часы 22:00–09:00 местного не пускали
+ * UTC−2 и западнее (вся Америка) и UTC+12+. Починено вторым прогоном в 22:00 UTC (координатор 13.10); счётчик оставлен —
+ * он показывает, кого тихие часы держат в КАЖДОМ прогоне (в норме это те, до кого дойдёт другой прогон).
  */
 export function summarizeQuietSkipped(users: readonly ReEngageUser[], now: number): ReEngageQuietSkipped {
   const byOffset: Record<string, { skipped: number; wouldBe: number }> = {};
@@ -253,8 +312,9 @@ export function summarizeQuietSkipped(users: readonly ReEngageUser[], now: numbe
   let quietWouldBeCandidates = 0;
   for (const u of users) {
     if (!isValidExpoPushToken(u.expoPushToken) || u.lastActiveAt == null) continue;
-    if (!isInQuietHours(now, u.pushTokenTimezone)) continue;
-    const label = reEngageUtcOffsetLabel(now, u.pushTokenTimezone);
+    const { timezone } = resolveReEngageTimezone(u);
+    if (!isInQuietHours(now, timezone)) continue;
+    const label = reEngageUtcOffsetLabel(now, timezone);
     const bucket = byOffset[label] ?? { skipped: 0, wouldBe: 0 };
     bucket.skipped += 1;
     quietSkipped += 1;
@@ -266,6 +326,47 @@ export function summarizeQuietSkipped(users: readonly ReEngageUser[], now: numbe
   }
   return { quietSkipped, quietWouldBeCandidates, quietByOffset: byOffset };
 }
+
+/** Одна строка журнала [REENGAGE-TZ]: сколько людей пропущено по одной причине в одном поясе в один местный час. */
+export type ReEngageTzSkipGroup = Readonly<{
+  reason: ReEngageSkipReason;
+  tzSource: ReEngageTimezoneSource;
+  timezone: string;
+  localHour: number;
+  count: number;
+}>;
+
+/**
+ * Пропуски прогона, сгруппированные по (причина, источник пояса, пояс, местный час).
+ * зачем (координатор 13.10: «лог [REENGAGE-TZ] на каждом пропуске — пояс, местный час, причина»): строка на человека — тысячи
+ * строк за прогон и uid в журнале; группа несёт те же три поля и число людей, без uid/токенов/имён.
+ */
+export function summarizeReEngageTzSkips(users: readonly ReEngageUser[], now: number): ReEngageTzSkipGroup[] {
+  const groups = new Map<string, { reason: ReEngageSkipReason; tzSource: ReEngageTimezoneSource; timezone: string; localHour: number; count: number }>();
+  for (const u of users) {
+    const decision = decideReEngageUser(u, now);
+    if (!decision.skip) continue;
+    const { timezone, source } = resolveReEngageTimezone(u);
+    const localHour = getLocalHour(now, timezone);
+    const key = `${decision.skip}|${source}|${timezone}|${localHour}`;
+    const group = groups.get(key) ?? { reason: decision.skip, tzSource: source, timezone, localHour, count: 0 };
+    group.count += 1;
+    groups.set(key, group);
+  }
+  return [...groups.values()].sort((a, b) => b.count - a.count);
+}
+
+/** Слить группы страниц прогона в общий список (по тому же ключу). */
+export function mergeReEngageTzSkipGroups(target: Map<string, ReEngageTzSkipGroup>, page: readonly ReEngageTzSkipGroup[]): void {
+  for (const g of page) {
+    const key = `${g.reason}|${g.tzSource}|${g.timezone}|${g.localHour}`;
+    const prev = target.get(key);
+    target.set(key, prev ? { ...prev, count: prev.count + g.count } : g);
+  }
+}
+
+/** Потолок строк [REENGAGE-TZ] за прогон: остальное — одной строкой «прочее». */
+export const REENGAGE_TZ_LOG_MAX_GROUPS = 200;
 
 export function selectReEngageCandidates(users: ReEngageUser[], now: number): ReEngageCandidate[] {
   const out: ReEngageCandidate[] = [];
@@ -493,6 +594,25 @@ export async function pruneExpiredPushTokens(expiredUids: string[]): Promise<voi
   * (чтобы не слать повторно в пределах cooldown). Использует cursor-pagination
   * и возвращает сводку для логов.
  */
+/** [REENGAGE-TZ]: строка на группу пропусков (пояс, местный час, причина, число) + итог по источникам пояса. Без uid. */
+export function logReEngageTzSkips(groups: readonly ReEngageTzSkipGroup[], now: number): void {
+  const sorted = [...groups].sort((a, b) => b.count - a.count);
+  const shown = sorted.slice(0, REENGAGE_TZ_LOG_MAX_GROUPS);
+  for (const g of shown) {
+    console.log('[REENGAGE-TZ] skip', JSON.stringify({ reason: g.reason, tz: g.timezone, tzSource: g.tzSource, localHour: g.localHour, count: g.count }));
+  }
+  const rest = sorted.slice(REENGAGE_TZ_LOG_MAX_GROUPS);
+  const bySource: Record<string, number> = {};
+  for (const g of sorted) bySource[g.tzSource] = (bySource[g.tzSource] ?? 0) + g.count;
+  console.log('[REENGAGE-TZ] summary', JSON.stringify({
+    runUtcHour: new Date(now).getUTCHours(),
+    groups: sorted.length,
+    groupsNotShown: rest.length,
+    skippedNotShown: rest.reduce((sum, g) => sum + g.count, 0),
+    skippedByTzSource: bySource,
+  }));
+}
+
 export async function runReEngagePush(now: number = Date.now()): Promise<{
   scanned: number;
   candidates: number;
@@ -510,6 +630,7 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   let quietSkipped = 0;
   let quietWouldBeCandidates = 0;
   const quietByOffset: Record<string, { skipped: number; wouldBe: number }> = {};
+  const tzSkipGroups = new Map<string, ReEngageTzSkipGroup>();
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   // 1) Scan + отбор кандидатов.
@@ -551,6 +672,7 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     scanned += pageUsers.length;
     optedOut += pageUsers.filter(isReEngageOptedOut).length;
     allCandidates.push(...selectReEngageCandidates(pageUsers, now));
+    mergeReEngageTzSkipGroups(tzSkipGroups, summarizeReEngageTzSkips(pageUsers, now));
     const quiet = summarizeQuietSkipped(pageUsers, now);
     quietSkipped += quiet.quietSkipped;
     quietWouldBeCandidates += quiet.quietWouldBeCandidates;
@@ -568,6 +690,7 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   }
   // Только счётчики по поясам — без uid и токенов (владелец 13.10: «сначала посчитать»).
   console.log('[RE-ENGAGE] quiet_skipped', JSON.stringify({ quietSkipped, quietWouldBeCandidates, quietByOffset }));
+  logReEngageTzSkips([...tzSkipGroups.values()], now);
   const quietSummary: ReEngageQuietSkipped = { quietSkipped, quietWouldBeCandidates, quietByOffset };
   if (allCandidates.length === 0) {
     return { scanned, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0, ...quietSummary };

@@ -452,8 +452,11 @@ export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
  * а не обходом коллекции users.
  */
 
+// зачем 10:00 И 22:00 UTC (координатор 13.10, «Америка — крупный рынок»): при одном прогоне в 10:00 тихие часы 22:00–09:00
+// местного навсегда закрывали UTC−2 и западнее и UTC+12+. Днём (09–22 местного) в 10:00 UTC — пояса UTC−1…+11, в 22:00 UTC —
+// UTC−13…−1 и UTC+11…+14: вместе покрыт каждый пояс. Повтор в пересечении не уходит — cooldown 2 дня (re_engage_push.ts).
 export const reEngagePushCron = functions.scheduler.onSchedule(
-  { schedule: "0 10 * * *", timeZone: "UTC" },
+  { schedule: "0 10,22 * * *", timeZone: "UTC" },
   withCronHeartbeat('reEngagePushCron', async () => {
     const summary = await runReEngagePush();
     console.log("reEngagePushCron", JSON.stringify(summary));

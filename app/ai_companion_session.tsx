@@ -417,7 +417,7 @@ function AiCompanionSession() {
               {triLang(lang, {
                 ru: 'Свободный разговор',
                 uk: 'Вільна розмова',
-                en: 'Free conversation',
+                en: 'Open conversation',
                 es: 'Conversación libre',
                 'pt-BR': 'Conversa livre',
                 vi: 'Trò chuyện tự do',
@@ -435,7 +435,7 @@ function AiCompanionSession() {
               dataText={triLang(lang, {
                 ru: 'Свободный разговор',
                 uk: 'Вільна розмова',
-                en: 'Free conversation',
+                en: 'Open conversation',
                 es: 'Conversación libre',
                 'pt-BR': 'Conversa livre',
                 vi: 'Trò chuyện tự do',

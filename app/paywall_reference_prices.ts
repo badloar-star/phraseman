@@ -66,7 +66,14 @@ export function parsePaywallReferencePrices(raw: string | null | undefined): Pay
   }
 }
 
-export function resolvePaywallReferencePrices(): PaywallReferencePrices {
+// зачем (координатор 13.10, EN-проход Авторизации ac166bf42): страховка хранится как в магазине у нас — «€39,99» с запятой.
+// В английском интерфейсе десятичный разделитель — точка; остальные 8 языков интерфейса пишут запятую, их не трогаем.
+export function localizeReferencePrice(price: string, lang?: string): string {
+  if (lang !== 'en') return price;
+  return price.replace(/(\d),(\d{2})(?!\d)/g, '$1.$2');
+}
+
+export function resolvePaywallReferencePrices(lang?: string): PaywallReferencePrices {
   let raw: string | null = null;
   try {
     raw = getRemoteText(PAYWALL_REFERENCE_PRICES_TEXT_KEY);
@@ -78,7 +85,13 @@ export function resolvePaywallReferencePrices(): PaywallReferencePrices {
     lastLoggedSource = prices.source;
     console.log('[PAYWALL-PRICE] справочные цены', JSON.stringify(prices));
   }
-  return prices;
+  if (lang !== 'en') return prices;
+  return Object.freeze({
+    ...prices,
+    yearly: localizeReferencePrice(prices.yearly, lang),
+    monthly: localizeReferencePrice(prices.monthly, lang),
+    yearlyPerMonth: localizeReferencePrice(prices.yearlyPerMonth, lang),
+  });
 }
 
 export type PaywallPriceSource = 'store' | 'cache' | 'reference' | 'dev_preview' | 'none';

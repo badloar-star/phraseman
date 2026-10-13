@@ -172,7 +172,8 @@ describe('Plus-окно: тап без offerings грузит; цены на к�
     await advance(0);
     // зачем (владелец 11.10: «ЦЕНЫ ДОЛЖНЫ ПОКАЗЫВАТЬСЯ ВСЕ РАВНО!!! ВЕЗДЕ»): без магазина и кэша — справочная цена с «≈»,
     // а не пустая плитка; покупка по ней всё равно не начинается (второй тап — по живой цене, проверено ниже).
-    expect(result.current.yearlyPrice).toBe('€39,99');
+    // 13.10: интерфейс en — справочная цена с десятичной точкой (EN-проход Авторизации ac166bf42).
+    expect(result.current.yearlyPrice).toBe('€39.99');
     expect(result.current.yearlyPriceSource).toBe('reference');
     expect(result.current.selectedAvailable).toBe(false);
 

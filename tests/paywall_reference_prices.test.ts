@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {
   PAYWALL_REFERENCE_PRICES_BUILTIN,
+  localizeReferencePrice,
   parsePaywallReferencePrices,
   pickPaywallPrice,
   resolvePaywallReferencePrices,
@@ -74,5 +75,24 @@ describe('хук пейвола: цепочка во всех пейволах',
   });
   test('хук отдаёт источник цены пейволам', () => {
     expect(source).toMatch(/priceSource, pricesApproximate,/);
+  });
+});
+
+// зачем (координатор 13.10, EN-проход): страховка «€39,99» в английском интерфейсе — с точкой; остальные языки — запятая.
+describe('справочные цены по языку интерфейса', () => {
+  test('en: десятичная точка, прочие языки — как хранится', () => {
+    expect(localizeReferencePrice('€39,99', 'en')).toBe('€39.99');
+    expect(localizeReferencePrice('≈ €3,33 / мес', 'en')).toBe('≈ €3.33 / мес');
+    expect(localizeReferencePrice('€39,99', 'ru')).toBe('€39,99');
+    expect(localizeReferencePrice('€39,99', 'pl')).toBe('€39,99');
+    expect(localizeReferencePrice('€1,999', 'en')).toBe('€1,999');
+  });
+  test('resolvePaywallReferencePrices(en) отдаёт все три цены с точкой', () => {
+    const en = resolvePaywallReferencePrices('en');
+    const ru = resolvePaywallReferencePrices('ru');
+    expect(en.yearly).toBe(localizeReferencePrice(ru.yearly, 'en'));
+    expect(en.monthly).toBe(localizeReferencePrice(ru.monthly, 'en'));
+    expect(en.yearlyPerMonth).toBe(localizeReferencePrice(ru.yearlyPerMonth, 'en'));
+    expect(`${en.yearly}${en.monthly}${en.yearlyPerMonth}`).not.toMatch(/\d,\d{2}(?!\d)/);
   });
 });

@@ -54,7 +54,7 @@ describe('Dialogue V2 Plus tools discovery', () => {
       'utf8',
     );
     expect(companionSource).toContain("ru: 'Свободный разговор'");
-    expect(companionSource).toContain("en: 'Free conversation'");
+    expect(companionSource).toContain("en: 'Open conversation'"); // зачем (13.10): «Free» по-английски читалось как «бесплатный»
     expect(companionSource).not.toContain("ru: 'Компас'");
     expect(companionSource).not.toContain("ru: 'Свободный разговор с ИИ-компаньоном'");
     expect(subscriptionSource).not.toContain('Собеседник «Компас»');

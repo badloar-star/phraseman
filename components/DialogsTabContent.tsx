@@ -754,7 +754,7 @@ function DialogsTabContentBody({
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}>
                 {triLang(lang, {
-                  ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation', es: 'Conversación libre',
+                  ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Open conversation', es: 'Conversación libre',
                   'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa',
                 })}
               </Text>

@@ -863,7 +863,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     const sub = onAppEvent('remote_config_changed', () => setReferenceConfigTick((tick) => tick + 1));
     return () => sub.remove();
   }, []);
-  const referencePricesResolved = useMemo(() => resolvePaywallReferencePrices(), [referenceConfigTick]);
+  // зачем (координатор 13.10, EN-проход): справочные цены «€39,99» в английском интерфейсе — с точкой.
+  const referencePricesResolved = useMemo(() => resolvePaywallReferencePrices(lang), [referenceConfigTick, lang]);
   const referencePrices = allowReferencePrice && !offeringsEverLoaded && !cacheYearly && !cacheMonthly
     ? referencePricesResolved
     : null;

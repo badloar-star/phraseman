@@ -105,8 +105,8 @@ type ManageSubscriptionBenefit = ManageSubscriptionCopy & {
 // зачем (склейка profile-016/017, 12.10): в макете manage-subscription-states.html значки — контурные (bolt, chat, mic, bookmark,
 // snow, trend, layers), 22 px; в приложении были залитые и другие глифы (chatbubbles, stats-chart, albums). Цвет — оттенок темы, как в макете.
 const INCLUDED: ManageSubscriptionBenefit[] = [
-  { benefitId: 'energy', icon: 'flash-outline', ru: 'Энергия не расходуется', uk: 'Енергія не витрачається', en: 'Energy is not consumed', es: 'La energía no se consume', 'pt-BR': 'A energia não é consumida', vi: 'Không tiêu hao năng lượng', id: 'Energi tidak berkurang', tr: 'Enerji harcanmaz', pl: 'Energia nie jest zużywana' },
-  { benefitId: 'free_conversation', icon: 'chatbubble-outline', ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa' },
+  { benefitId: 'energy', icon: 'flash-outline', ru: 'Энергия не расходуется', uk: 'Енергія не витрачається', en: 'Unlimited energy', es: 'La energía no se consume', 'pt-BR': 'A energia não é consumida', vi: 'Không tiêu hao năng lượng', id: 'Energi tidak berkurang', tr: 'Enerji harcanmaz', pl: 'Energia nie jest zużywana' },
+  { benefitId: 'free_conversation', icon: 'chatbubble-outline', ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Open conversation', es: 'Conversación libre', 'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa' },
   { benefitId: 'pronunciation', icon: 'mic-outline', ru: 'Произношение без дневного лимита', uk: 'Вимова без денного ліміту', en: 'Pronunciation without a daily limit', es: 'Pronunciación sin límite diario', 'pt-BR': 'Pronúncia sem limite diário', vi: 'Luyện phát âm không giới hạn hằng ngày', id: 'Latihan pengucapan tanpa batas harian', tr: 'Günlük limitsiz telaffuz', pl: 'Wymowa bez dziennego limitu' },
   { benefitId: 'saved_phrases', icon: 'bookmark-outline', ru: 'Сохранённые фразы без ограничения', uk: 'Збережені вислови без обмеження', en: 'Unlimited saved phrases', es: 'Frases guardadas sin límite', 'pt-BR': 'Frases salvas sem limite', vi: 'Lưu cụm từ không giới hạn', id: 'Frasa tersimpan tanpa batas', tr: 'Sınırsız kayıtlı ifadeler', pl: 'Zapisane zwroty bez limitu' },
   { benefitId: 'streak_freezes', icon: 'snow-outline', ru: '3 заморозки серии в месяц', uk: '3 заморозки серії на місяць', en: '3 streak freezes per month', es: '3 protecciones de racha al mes', 'pt-BR': '3 congelamentos de sequência por mês', vi: '3 lần đóng băng chuỗi mỗi tháng', id: '3 pembekuan rentetan per bulan', tr: 'Ayda 3 seri dondurma', pl: '3 zamrożenia serii miesięcznie' },
@@ -291,7 +291,7 @@ export default function ManageSubscription() {
   // зачем (владелец 11.10: «цены должны показываться все равно, везде»; Ядро a0a910e9d): живая цена магазина → последняя настоящая из кэша → справочная
   // (с «≈»). Смена плана идёт по живому пакету магазина — справочная в покупку не уходит; это только подпись на карточке.
   const yearlyCachedPrice = peekPaywallPriceCache()?.yearly?.price ?? '';
-  const yearlyShown = yearlyPriceStr || yearlyCachedPrice || `≈ ${resolvePaywallReferencePrices().yearly}`;
+  const yearlyShown = yearlyPriceStr || yearlyCachedPrice || `≈ ${resolvePaywallReferencePrices(lang).yearly}`;
   const [yearlyPkg, setYearlyPkg] = useState<import('react-native-purchases').PurchasesPackage | null>(null);
   const [changing, setChanging] = useState(false);
   // зачем: восстановление покупок — отдельное состояние от смены плана, иначе

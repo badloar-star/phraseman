@@ -32,7 +32,7 @@ export function DialogueV2PlusTools({
       id: 'freeform',
       icon: 'chatbubbles-outline' as const,
       title: triLang(lang, {
-        ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Free conversation',
+        ru: 'Свободный разговор', uk: 'Вільна розмова', en: 'Open conversation',
         es: 'Conversación libre', fr: 'Conversation libre', de: 'Freies Gespräch',
         'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Obrolan bebas', tr: 'Serbest sohbet', pl: 'Swobodna rozmowa',
       }),

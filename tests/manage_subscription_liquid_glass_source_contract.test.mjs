@@ -246,7 +246,7 @@ test('requires English for benefits while keeping cancellation reasons type-safe
   assert.match(source, /type ManageSubscriptionReasonCopy = Omit<ManageSubscriptionCopy, 'en'>;/);
   assert.equal(initializerHash(source, 'CANCEL_REASONS'), '8e013629a7677c4b84a2c047632ce3cae4c33141ba7d72247da07fc9fb545d52');
   assert.deepEqual(reasonCopyDiagnostics(source), []);
-  const missingBenefitEnglish = source.replace(", en: 'Energy is not consumed'", '');
+  const missingBenefitEnglish = source.replace(", en: 'Unlimited energy'", '');
   assert.notEqual(missingBenefitEnglish, source);
   assert.ok(reasonCopyDiagnostics(missingBenefitEnglish).some(message => message.includes("Property 'en' is missing")));
 });

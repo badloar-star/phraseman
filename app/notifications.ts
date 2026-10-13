@@ -3,8 +3,9 @@
 // ВАЖНО: expo-notifications НЕ работает в Expo Go
 // Используем lazy import с try/catch — приложение не падает без нативного модуля
 
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import type { SourceLocale } from './source_locales';
+import { resolveNotificationLang } from './notification_lang';
 
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -104,8 +105,15 @@ const getNotifications = async () => {
     });
     if (Platform.OS === 'android') {
       try {
+        // зачем (I18N_GAPS_AUTH_R1, 13.10): имя канала видно в системных настройках Android и было только по-русски. Канал
+        // пересоздаётся при каждом запуске с тем же id — Android обновляет имя, остальные настройки человека сохраняются.
+        const channelLangRaw = await AsyncStorage.getItem('app_lang').catch((error: unknown) => {
+          console.warn('[notifications] channel_lang:read_failed', error instanceof Error ? error.message : String(error));
+          return null;
+        });
+        const channelLang = resolveNotificationLang(channelLangRaw, 'android_channel');
         await Notifications.setNotificationChannelAsync(ANDROID_NOTIF_CHANNEL_ID, {
-          name: 'Напоминания',
+          name: triLang(channelLang, { ru: 'Напоминания', uk: 'Нагадування', en: 'Reminders', es: 'Recordatorios', 'pt-BR': 'Lembretes', vi: 'Lời nhắc', id: 'Pengingat', tr: 'Hatırlatıcılar', pl: 'Przypomnienia' }),
           importance: Notifications.AndroidImportance.HIGH,
           vibrationPattern: [0, 250, 250, 250],
           lightColor: '#06141B',

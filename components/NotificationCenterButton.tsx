@@ -90,6 +90,9 @@ function centerCopy(lang: Lang) {
       pl: 'Tu pojawią się wiadomości od zespołu.',
     }),
     close: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }),
+    // зачем (I18N_GAPS_AUTH_R1, 13.10): плашка отмены удаления была только по-русски на всех 9 языках интерфейса.
+    deletedUndo: triLang(lang, { ru: 'Уведомление удалено', uk: 'Сповіщення видалено', en: 'Notification deleted', es: 'Notificación eliminada', 'pt-BR': 'Notificação excluída', vi: 'Đã xóa thông báo', id: 'Notifikasi dihapus', tr: 'Bildirim silindi', pl: 'Powiadomienie usunięte' }),
+    undo: triLang(lang, { ru: 'Вернуть', uk: 'Повернути', en: 'Undo', es: 'Deshacer', 'pt-BR': 'Desfazer', vi: 'Hoàn tác', id: 'Urungkan', tr: 'Geri al', pl: 'Cofnij' }),
   };
 }
 
@@ -741,9 +744,9 @@ function NotificationCenterButton({
           )}
           {pendingDeletion ? (
             <View style={[styles.notificationUndo, { bottom: 0, backgroundColor: t.bgSurface }]}>
-              <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>Уведомление удалено</Text>
+              <Text style={[styles.notificationUndoText, { color: t.textPrimary }]}>{copy.deletedUndo}</Text>
               <TouchableOpacity accessibilityRole="button" onPress={undoDelete} style={styles.notificationUndoButton}>
-                <Text style={[styles.notificationUndoAction, { color: t.accentText }]}>Вернуть</Text>
+                <Text style={[styles.notificationUndoAction, { color: t.accentText }]}>{copy.undo}</Text>
               </TouchableOpacity>
             </View>
           ) : null}

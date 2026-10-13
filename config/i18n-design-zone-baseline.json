@@ -1,6 +1,6 @@
 {
   "totals": {
-    "literals": 1321,
+    "literals": 1318,
     "incomplete": 9
   },
   "files": {
@@ -309,7 +309,7 @@
       "incomplete": 0
     },
     "app/notifications.ts": {
-      "literals": 17,
+      "literals": 16,
       "incomplete": 0
     },
     "app/onboarding_flow.ts": {
@@ -473,7 +473,7 @@
       "incomplete": 0
     },
     "components/NotificationCenterButton.tsx": {
-      "literals": 3,
+      "literals": 1,
       "incomplete": 0
     },
     "components/RegistrationPromptModal.tsx": {

@@ -74,7 +74,7 @@ import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
 import { APP_MESSAGES_SCREEN_MIN_INTERVAL_MS, hasAppMessageCopyForLang, peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
 import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
-import { flushSettingsPollVotes } from '../settings_poll_vote';
+import { flushSettingsPollVotes, ownerTail } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
 import { normalizePaywallAttributionValue } from '../paywall_entry_contract';
@@ -360,13 +360,16 @@ export default function SettingsMain() {
   const { isPremium, isVip, isPro, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
   const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
-  const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => (
-    selectSettingsMessageSlots(peekAppMessagesSnapshot(), {
+  const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => {
+    const initial = selectSettingsMessageSlots(peekAppMessagesSnapshot(), {
       stableId: initialSettingsMessageOwnerRef.current,
       hasPremiumAccess,
       appVersion: Constants.expoConfig?.version ?? '',
-    })
-  ));
+    });
+    // зачем (settings-gap-008, логи до починки): слот опроса при монтировании — из снимка в памяти; видеть, был ли он до сида dev-ссылки.
+    if (__DEV__) console.log(`[SETTINGS-POLL] экран: выбор при монтировании (peek) top=${initial.top?.id ?? 'нет'} bottom=${initial.bottom?.id ?? 'нет'} owner=${ownerTail(initialSettingsMessageOwnerRef.current)}`);
+    return initial;
+  });
 
   useEffect(() => {
     if (!settingsRuntimeActive) return;
@@ -374,8 +377,12 @@ export default function SettingsMain() {
     const account = captureAccountGeneration();
     // зачем (п.70 №1): было 30 с — каждый заход в «Настройки» тянул 3 запроса до 80 документов; слоты сообщений
     // рисуются из снимка сразу, сеть — не чаще раза в 6 ч (тот же срок, что у корня).
+    // Источник снимка (кэш 6 ч или сеть) пишет сам refreshAppMessagesSnapshotOnce: [STARTUP-READS] app_messages: cache (ageMs=…) / сеть.
     void refreshAppMessagesSnapshotOnce({ minIntervalMs: APP_MESSAGES_SCREEN_MIN_INTERVAL_MS }).then((snapshot) => {
-      if (cancelled || !account.stableId || !isCurrentAccountGeneration(account, account.stableId)) return;
+      if (cancelled || !account.stableId || !isCurrentAccountGeneration(account, account.stableId)) {
+        console.log(`[SETTINGS-POLL] экран: итог обновления не применён — cancelled=${String(cancelled)} owner=${ownerTail(account.stableId ?? '')} поколение=${account.stableId ? String(isCurrentAccountGeneration(account, account.stableId)) : 'нет stableId'}`);
+        return;
+      }
       const next = selectSettingsMessageSlots(snapshot, {
         stableId: account.stableId,
         hasPremiumAccess,
@@ -385,6 +392,7 @@ export default function SettingsMain() {
       setSettingsMessageSelection((current) => {
         const currentKey = `${current.top?.id ?? ''}:${current.bottom?.id ?? ''}:${JSON.stringify(current.assignments)}`;
         const nextKey = `${next.top?.id ?? ''}:${next.bottom?.id ?? ''}:${JSON.stringify(next.assignments)}`;
+        if (__DEV__) console.log(`[SETTINGS-POLL] экран: итог обновления (источник — строка [STARTUP-READS] app_messages выше) owner=${ownerTail(account.stableId ?? '')} bottom ${current.bottom?.id ?? 'нет'} → ${next.bottom?.id ?? 'нет'} выбор=${currentKey === nextKey ? 'прежний (голос не перечитывается)' : 'заменён'}`);
         if (currentKey === nextKey) return current;
         if (current.top?.id !== next.top?.id || current.bottom?.id !== next.bottom?.id) {
           animateNextLayoutTransition();

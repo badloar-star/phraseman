@@ -11626,7 +11626,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   <div class="tab" onclick="switchTab('youtube-catalog')" title="Каналы, плейлисты и премьеры YouTube" style="background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.35);color:#fca5a5;font-weight:700">▶ YouTube-каталог</div>
   <div class="tab" onclick="switchTab('video-phrases')" title="Видео: каталог, AI-импорт фраз, проверка и публикация">▶ Видео</div>
   <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
-  <div class="tab" onclick="switchTab('arena-content')" title="Проверка EN, ES, FR, DE и IT пулов, ручная сборка недельных пакетов и снятие заданий Spire">Контент Spire</div>
+  <div class="tab" onclick="switchTab('arena-content')" title="Проверка EN, ES, FR, DE и IT пулов, ручная сборка недельных пакетов и снятие заданий Пика">Контент Пика</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -15551,8 +15551,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   </style>
   <div class="pm-v4-section-header" data-pm-v4-header="arena-content">
     <div class="pm-v4-section-heading">
-      <h2 class="pm-v4-section-title">Контент Spire</h2>
-      <div class="pm-v4-section-sub">Задания для игроков в «Шпиле» на английском, испанском, французском, немецком и итальянском.</div>
+      <h2 class="pm-v4-section-title">Контент Пика</h2>
+      <div class="pm-v4-section-sub">Задания для игроков в «Пике» на английском, испанском, французском, немецком и итальянском.</div>
     </div>
   </div>
   <div class="arena-content-shell">
@@ -15578,10 +15578,10 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
          целиком и со схемой; переключатель сохраняет таймер/монеты/ботов как есть и меняет только «включено». -->
     <section class="spire-admin-section" aria-labelledby="spire-live-title">
       <div class="spire-admin-section-head">
-        <div><h3 id="spire-live-title" class="spire-admin-section-title">Шпиль для игроков</h3><p class="spire-admin-section-copy">Включает игру на сервере сразу для всех языков.</p></div>
+        <div><h3 id="spire-live-title" class="spire-admin-section-title">Пик для игроков</h3><p class="spire-admin-section-copy">Включает игру на сервере сразу для всех языков.</p></div>
         <div class="arena-content-actions"><button type="button" id="spire-live-toggle" class="spire-admin-primary" onclick="toggleSpireLive()" disabled>Загружаем…</button></div>
       </div>
-      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>вкладка «Шпиль» появится только вместе с рубильником spire_tab_enabled в remote_config/app.</span></div>
+      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>вкладка «Пик» появится только вместе с рубильником spire_tab_enabled в remote_config/app.</span></div>
       <div id="spire-live-status" class="spire-admin-status" role="status" aria-live="polite">Состояние ещё не загружено.</div>
       <div class="arena-content-actions"><button type="button" id="spire-tab-toggle" class="spire-admin-primary" onclick="toggleSpireTab()" disabled>Загружаем…</button></div>
       <div id="spire-tab-status" class="spire-admin-status" role="status" aria-live="polite">Рубильник вкладки ещё не загружен.</div>
@@ -15591,14 +15591,14 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div><h3 id="spire-review-title" class="spire-admin-section-title">На проверке</h3><p class="spire-admin-section-copy">Жалобы игроков на задания выбранного языка. Задание уже убрано из следующих наборов.</p></div>
         <div class="arena-content-actions"><button type="button" id="spire-review-reload" onclick="loadSpireTaskReports(true)" title="Обновить список жалоб и состояние карантина">Обновить список</button></div>
       </div>
-      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>после подтверждённого исправления задание вернётся только в новые наборы Spire; уже скачанный офлайн-набор не переписывается.</span></div>
+      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>после подтверждённого исправления задание вернётся только в новые наборы Пика; уже скачанный офлайн-набор не переписывается.</span></div>
       <div id="spire-review-status" class="spire-admin-status" role="status" aria-live="polite">Список ещё не загружен.</div>
       <div id="spire-review-list" class="spire-review-list" aria-live="polite"><div class="spire-admin-empty">Загружаем задания, на которые пожаловались игроки…</div></div>
     </section>
     <section class="spire-admin-section" aria-labelledby="spire-admin-build-title">
-      <div class="spire-admin-section-head"><div><h3 id="spire-admin-build-title" class="spire-admin-section-title">Подготовить задания для Шпиля</h3><p class="spire-admin-section-copy">Соберёт недельный набор для выбранного языка.</p></div></div>
-      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>будет готов набор для всех 15 этажей Шпиля. Сам язык не включится.</span></div>
-      <div class="arena-content-actions"><button type="button" id="spire-admin-build" class="spire-admin-primary" onclick="buildSpireLanguagePack()">Подготовить задания для Шпиля</button></div>
+      <div class="spire-admin-section-head"><div><h3 id="spire-admin-build-title" class="spire-admin-section-title">Подготовить задания для Пика</h3><p class="spire-admin-section-copy">Соберёт недельный набор для выбранного языка.</p></div></div>
+      <div class="spire-admin-app-effect"><strong>В приложении:</strong><span>будет готов набор для всех 15 этажей Пика. Сам язык не включится.</span></div>
+      <div class="arena-content-actions"><button type="button" id="spire-admin-build" class="spire-admin-primary" onclick="buildSpireLanguagePack()">Подготовить задания для Пика</button></div>
       <div id="spire-admin-build-status" class="spire-admin-status" role="status" aria-live="polite">Пока ничего не запускалось.</div>
     </section>
 
@@ -21709,7 +21709,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const complete = required > 0 && prepared >= required;
     const released = row.releaseEligible === true && row.reviewReadiness === 'PASS' && row.publicationDecision === 'PASS';
     arenaContentSetText('arena-content-status', released
-      ? `${ARENA_CONTENT_TARGET_LABELS[target]}: ${prepared} заданий проверены и готовы для новых наборов Шпиля.`
+      ? `${ARENA_CONTENT_TARGET_LABELS[target]}: ${prepared} заданий проверены и готовы для новых наборов Пика.`
       : complete
       ? `${ARENA_CONTENT_TARGET_LABELS[target]}: подготовлено ${prepared} заданий. Нужна проверка качества перед выпуском.`
       : `${ARENA_CONTENT_TARGET_LABELS[target]}: подготовлено ${prepared} из ${required} заданий. Набор ещё не полон.`);
@@ -21810,7 +21810,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
         <div class="spire-review-reason">${spireAdminEscape(report.reason || 'Пользователь не добавил пояснение.')}</div>
         <div class="spire-review-meta">Жалоба: ${spireAdminEscape(when)} · жалоб: ${group.reportCount} · неделя ${spireAdminEscape(report.weekId || '—')} · уровень ${spireAdminEscape(report.tier)} · ${spireAdminEscape(report.mode || 'тип не указан')}</div>
         <div class="arena-content-actions">
-          <button type="button" class="spire-admin-primary" data-spire-resolve-report="${spireAdminEscape(report.id)}" data-spire-resolve-task="${spireAdminEscape(report.taskId)}" data-spire-revision="${spireAdminEscape(report.revision)}" data-spire-owner="${spireAdminEscape(report.quarantineOwner || '')}" title="${report.quarantineOwner === 'manual' ? 'Закрыть жалобу; ручная блокировка останется' : 'После подтверждения исправления вернуть задание в будущие наборы'}">${report.quarantineOwner === 'manual' ? 'Исправлено — закрыть жалобу' : 'Исправлено — вернуть в Spire'}</button>
+          <button type="button" class="spire-admin-primary" data-spire-resolve-report="${spireAdminEscape(report.id)}" data-spire-resolve-task="${spireAdminEscape(report.taskId)}" data-spire-revision="${spireAdminEscape(report.revision)}" data-spire-owner="${spireAdminEscape(report.quarantineOwner || '')}" title="${report.quarantineOwner === 'manual' ? 'Закрыть жалобу; ручная блокировка останется' : 'После подтверждения исправления вернуть задание в будущие наборы'}">${report.quarantineOwner === 'manual' ? 'Исправлено — закрыть жалобу' : 'Исправлено — вернуть в Пик'}</button>
           <button type="button" data-spire-copy-task="${spireAdminEscape(report.taskId)}" title="Скопировать точный номер задания">Скопировать номер задания</button>
           <button type="button" data-spire-open-report="${spireAdminEscape(report.id)}" title="Перейти в общий раздел ошибок контента">Открыть жалобу</button>
         </div>
@@ -21885,8 +21885,8 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!reason) return null;
     const manualHold = input?.quarantineOwner === 'manual';
     if (nextState === 'restored' && input?.skipConfirm !== true && !confirm(manualHold
-      ? `Закрыть жалобу ${taskId}? Ручная блокировка останется, поэтому задание НЕ вернётся в Spire.`
-      : `Вернуть ${taskId} в будущие наборы Spire? Все открытые жалобы на это задание будут отмечены исправленными.`)) return null;
+      ? `Закрыть жалобу ${taskId}? Ручная блокировка останется, поэтому задание НЕ вернётся в Пик.`
+      : `Вернуть ${taskId} в будущие наборы Пика? Все открытые жалобы на это задание будут отмечены исправленными.`)) return null;
     spireAdminSetBusy('review', true);
     arenaContentSetText('spire-review-status', manualHold
       ? `Сохраняем решение по ${taskId}…`
@@ -21910,7 +21910,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       await Promise.all([window.loadSpireTaskReports(true), window.loadSpireTaskFlags(true)]);
       if (typeof window.filterReports === 'function') window.filterReports();
       showToast(nextState === 'restored'
-        ? (response?.data?.manualHoldRemains ? 'Жалоба закрыта. Ручная блокировка задания остаётся.' : 'Задание исправлено и возвращено в будущие наборы Spire.')
+        ? (response?.data?.manualHoldRemains ? 'Жалоба закрыта. Ручная блокировка задания остаётся.' : 'Задание исправлено и возвращено в будущие наборы Пика.')
         : (response?.data?.quarantineOwner === 'manual'
           ? 'Жалоба снова открыта. Ручная блокировка задания остаётся.'
           : 'Жалоба снова открыта, задание убрано.'), 'ok');
@@ -22075,7 +22075,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
 
   window.removeSpireTaskFlag = async function(target, taskId) {
     if (window._spireAdminBusy.flags || target !== spireAdminSelectedTarget() || !target || !taskId) return;
-    if (!confirm(`Вернуть задание ${taskId} в следующие сборки Spire для ${ARENA_CONTENT_TARGET_LABELS[target]}?`)) return;
+    if (!confirm(`Вернуть задание ${taskId} в следующие сборки Пика для ${ARENA_CONTENT_TARGET_LABELS[target]}?`)) return;
     spireAdminSetBusy('flags', true);
     arenaContentSetText('spire-admin-flags-status', `Возвращаем ${taskId}…`);
     try {
@@ -22110,13 +22110,13 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (!status) return;
     const enabled = status.config?.enabled === true;
     if (button) {
-      button.textContent = enabled ? 'Выключить Шпиль' : 'Включить Шпиль';
+      button.textContent = enabled ? 'Выключить Пик' : 'Включить Пик';
       button.className = enabled ? 'spire-admin-danger' : 'spire-admin-primary';
       button.disabled = window._spireAdminBusy.live === true;
     }
     arenaContentSetText('spire-live-status', !status.valid
       ? 'Документ настроек повреждён — сохранение перезапишет его правильной версией.'
-      : enabled ? 'Шпиль включён на сервере.' : status.exists ? 'Шпиль выключен.' : 'Шпиль ещё ни разу не включали.');
+      : enabled ? 'Пик включён на сервере.' : status.exists ? 'Пик выключен.' : 'Пик ещё ни разу не включали.');
   }
 
   window.loadSpireLiveStatus = async function(force) {
@@ -22130,7 +22130,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     } catch (error) {
       console.warn('[SPIRE-LIVE] чтение состояния не удалось', error?.code || '', error?.message || String(error));
       spireAdminRecordTechnicalError('spire_live_status', error);
-      arenaContentSetText('spire-live-status', 'Не удалось узнать состояние Шпиля. Повторите чуть позже.');
+      arenaContentSetText('spire-live-status', 'Не удалось узнать состояние Пика. Повторите чуть позже.');
       return null;
     }
   };
@@ -22139,7 +22139,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const status = window._spireLiveStatus;
     if (window._spireAdminBusy.live || !status) return;
     const next = status.config?.enabled !== true;
-    if (!confirm(next ? 'Включить Шпиль для игроков на сервере?' : 'Выключить Шпиль для игроков?')) return;
+    if (!confirm(next ? 'Включить Пик для игроков на сервере?' : 'Выключить Пик для игроков?')) return;
     spireAdminSetBusy('live', true);
     const button = document.getElementById('spire-live-toggle');
     if (button) button.disabled = true;
@@ -22153,11 +22153,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       });
       window._spireLiveStatus = response?.data?.status || null;
       console.log('[SPIRE-LIVE] сохранено', JSON.stringify({ requested: next, enabled: window._spireLiveStatus?.config?.enabled ?? null }));
-      showToast(next ? 'Шпиль включён на сервере.' : 'Шпиль выключен.', 'ok');
+      showToast(next ? 'Пик включён на сервере.' : 'Пик выключен.', 'ok');
     } catch (error) {
       console.warn('[SPIRE-LIVE] сохранение не удалось', error?.code || '', error?.message || String(error));
       spireAdminRecordTechnicalError('spire_live_toggle', error);
-      showToast('Не удалось изменить состояние Шпиля. Повторите чуть позже.', 'err');
+      showToast('Не удалось изменить состояние Пика. Повторите чуть позже.', 'err');
     } finally {
       spireAdminSetBusy('live', false);
       renderSpireLiveStatus();
@@ -22174,11 +22174,11 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const enabled = window._spireTabEnabled;
     if (enabled === null) return;
     if (button) {
-      button.textContent = enabled ? 'Скрыть вкладку «Шпиль»' : 'Показать вкладку «Шпиль» игрокам';
+      button.textContent = enabled ? 'Скрыть вкладку «Пик»' : 'Показать вкладку «Пик» игрокам';
       button.className = enabled ? 'spire-admin-danger' : 'spire-admin-primary';
       button.disabled = window._spireAdminBusy.live === true;
     }
-    arenaContentSetText('spire-tab-status', enabled ? 'Вкладка «Шпиль» видна игрокам.' : 'Вкладка «Шпиль» скрыта от игроков.');
+    arenaContentSetText('spire-tab-status', enabled ? 'Вкладка «Пик» видна игрокам.' : 'Вкладка «Пик» скрыта от игроков.');
   }
 
   window.loadSpireTabStatus = async function(force) {
@@ -22200,20 +22200,20 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     if (window._spireAdminBusy.live || window._spireTabEnabled === null) return;
     const next = window._spireTabEnabled !== true;
     if (next && window._spireLiveStatus?.config?.enabled !== true
-      && !confirm('Шпиль на сервере ещё выключен — игроки увидят вкладку с замком. Всё равно показать?')) return;
-    if (!confirm(next ? 'Показать вкладку «Шпиль» всем игрокам?' : 'Скрыть вкладку «Шпиль» от игроков?')) return;
+      && !confirm('Пик на сервере ещё выключен — игроки увидят вкладку с замком. Всё равно показать?')) return;
+    if (!confirm(next ? 'Показать вкладку «Пик» всем игрокам?' : 'Скрыть вкладку «Пик» от игроков?')) return;
     spireAdminSetBusy('live', true);
     arenaContentSetText('spire-tab-status', next ? 'Показываем вкладку…' : 'Скрываем вкладку…');
     try {
       await publishAdminRemoteConfigPatch({ bools: { spire_tab_enabled: next } },
-        next ? 'Шпиль: показать вкладку игрокам' : 'Шпиль: скрыть вкладку');
+        next ? 'Пик: показать вкладку игрокам' : 'Пик: скрыть вкладку');
       window._spireTabEnabled = next;
       console.log('[SPIRE-LIVE] рубильник вкладки сохранён', JSON.stringify({ spire_tab_enabled: next }));
-      showToast(next ? 'Вкладка «Шпиль» видна игрокам.' : 'Вкладка «Шпиль» скрыта.', 'ok');
+      showToast(next ? 'Вкладка «Пик» видна игрокам.' : 'Вкладка «Пик» скрыта.', 'ok');
     } catch (error) {
       console.warn('[SPIRE-LIVE] рубильник вкладки не сохранён', error?.code || '', error?.message || String(error));
       spireAdminRecordTechnicalError('spire_tab_toggle', error);
-      showToast('Не удалось изменить вкладку «Шпиль». Повторите чуть позже.', 'err');
+      showToast('Не удалось изменить вкладку «Пик». Повторите чуть позже.', 'err');
     } finally {
       spireAdminSetBusy('live', false);
       renderSpireTabStatus();
@@ -23480,7 +23480,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'community-packs': 'Сообщество',
     'daily-phrases': 'Фразы дня',
     'daily-polls': 'Опрос дня',
-    'arena-content': 'Контент Spire',
+    'arena-content': 'Контент Пика',
     referrals: 'Рефералы',
     'app-health': 'Состояние приложения',
     'max-feedback': 'Оценки',
@@ -25658,12 +25658,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           <div class="rc-right">
             ${catBadge(cat)}
             ${severityLabel(cat)}
-            ${isSpireReport ? `<span class="sev-badge ${r.spireQuarantineState === 'restored' ? 'sev-low' : 'sev-medium'}">${r.spireManualHoldRemains ? 'Жалоба закрыта · ручная блокировка остаётся' : (r.spireQuarantineState === 'restored' ? 'Возвращено в Spire' : (r.spireQuarantineOwner === 'manual' ? 'Ручная блокировка · жалоба открыта' : 'Убрано из Spire'))}</span>` : ''}
+            ${isSpireReport ? `<span class="sev-badge ${r.spireQuarantineState === 'restored' ? 'sev-low' : 'sev-medium'}">${r.spireManualHoldRemains ? 'Жалоба закрыта · ручная блокировка остаётся' : (r.spireQuarantineState === 'restored' ? 'Возвращено в Пик' : (r.spireQuarantineOwner === 'manual' ? 'Ручная блокировка · жалоба открыта' : 'Убрано из Пика'))}</span>` : ''}
             <div class="report-date">🕐 ${formatReportDate(r.createdAt)}</div>
             ${isFixed && r.fixedAt ? `<div style="font-size:10px;color:#4ade80;margin-top:2px">✅ ${formatReportDate(r.fixedAt)}</div>` : ''}
             <div style="font-size:10px;color:#444;margin-top:4px">${r.deviceModel ? '🆕 full meta' : r.dataId ? '🆕 new' : '📦 legacy'}</div>
             <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:flex-end">
-              ${!isSpireReport || Number.isSafeInteger(Number(r.spireIncidentRevision)) ? `<button type="button" class="btn-fixed${isFixed ? ' active' : ''}" data-report-id="${encodeURIComponent(String(r.id))}" title="${isSpireReport ? (isFixed ? (r.spireManualHoldRemains ? 'Снова открыть жалобу; ручная блокировка останется' : 'Снова убрать задание из будущих наборов Spire') : (r.spireQuarantineOwner === 'manual' ? 'Закрыть жалобу; ручная блокировка останется' : 'Вернуть исправленное задание в будущие наборы Spire')) : (isFixed ? 'Снова открыть репорт' : 'Отметить репорт исправленным')}">${isSpireReport ? (isFixed ? (r.spireManualHoldRemains ? 'Снова открыть жалобу' : 'Снова убрать из Spire') : (r.spireQuarantineOwner === 'manual' ? 'Исправлено — закрыть жалобу' : 'Исправлено — вернуть в Spire')) : (isFixed ? '↩ Открыть' : '✅ Пофикшено')}</button>` : '<span class="sev-badge sev-medium">Состояние Spire недоступно — обновите</span>'}
+              ${!isSpireReport || Number.isSafeInteger(Number(r.spireIncidentRevision)) ? `<button type="button" class="btn-fixed${isFixed ? ' active' : ''}" data-report-id="${encodeURIComponent(String(r.id))}" title="${isSpireReport ? (isFixed ? (r.spireManualHoldRemains ? 'Снова открыть жалобу; ручная блокировка останется' : 'Снова убрать задание из будущих наборов Пика') : (r.spireQuarantineOwner === 'manual' ? 'Закрыть жалобу; ручная блокировка останется' : 'Вернуть исправленное задание в будущие наборы Пика')) : (isFixed ? 'Снова открыть репорт' : 'Отметить репорт исправленным')}">${isSpireReport ? (isFixed ? (r.spireManualHoldRemains ? 'Снова открыть жалобу' : 'Снова убрать из Пика') : (r.spireQuarantineOwner === 'manual' ? 'Исправлено — закрыть жалобу' : 'Исправлено — вернуть в Пик')) : (isFixed ? '↩ Открыть' : '✅ Пофикшено')}</button>` : '<span class="sev-badge sev-medium">Состояние Пик недоступно — обновите</span>'}
               ${isSpireReport ? '' : `<button type="button" class="btn-delete" data-report-id="${encodeURIComponent(String(r.id))}">🗑 Удалить</button>`}
               ${uidRaw && uidRaw !== '—' ? `<button type="button" data-grant-uid="${escapeHtml(String(uidRaw))}" data-grant-name="${escapeHtml(r.userName || '')}" aria-label="Grant shards to reporter" title="Grant shards" style="background:#1a2a3a;border:1px solid #1e3a5f;color:#60a5fa;border-radius:6px;padding:5px 9px;font-size:11px;cursor:pointer;font-weight:700">💎</button>` : ''}
               ${r.replyMessageId
@@ -25902,9 +25902,9 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
       '   КРУПНЫЕ/спорные/рискованные фиксы, а также то, что требует пересборки приложения или',
       '   новых ассетов, — НЕ чини наспех ради галочки. Опиши в итоге и ответь юзеру честно',
       '   («разбираемся»), БЕЗ ложного «исправлено».',
-      '   Для quarantined-задания Spire: сначала исправь источник и прогони связанные проверки; после подтверждённого',
-      '   исправления верни задание в пул только через защищённое действие «Исправлено — вернуть в Spire» в админке.',
-      '   После действия проверь, что карточка исчезла из «Контент Spire → На проверке», а задание больше не в карантине.',
+      '   Для quarantined-задания Пика: сначала исправь источник и прогони связанные проверки; после подтверждённого',
+      '   исправления верни задание в пул только через защищённое действие «Исправлено — вернуть в Пик» в админке.',
+      '   После действия проверь, что карточка исчезла из «Контент Пика → На проверке», а задание больше не в карантине.',
       '   Никогда не изменяй config/spire_task_flags_ напрямую и не считай удаление репорта доказательством исправления.',
       '',
       '3. ТОН ответов. Пиши от лица команды («мы») и пиши как живой сотрудник поддержки:',
@@ -26065,7 +26065,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
   window.deleteReport = async function(id, btn) {
     const report = _allReports.find(r => String(r.id) === String(id));
     if (report?.contentScope === 'spire') {
-      showToast('Жалобу Spire нельзя удалить: исправьте задание и используйте защищённую кнопку возврата.', 'warn');
+      showToast('Жалобу Пика нельзя удалить: исправьте задание и используйте защищённую кнопку возврата.', 'warn');
       return;
     }
     const ok = await showConfirmModal({ title: 'Удалить репорт?', desc: 'Это действие необратимо.', confirmLabel: 'Удалить', danger: true });
@@ -26126,12 +26126,12 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     const regularOpen = openList.filter(r => r.contentScope !== 'spire');
     const protectedSpireCount = openList.length - regularOpen.length;
     if (!regularOpen.length) {
-      showToast('Жалобы Spire возвращаются по одной кнопкой «Исправлено — вернуть в Spire».', 'warn');
+      showToast('Жалобы Пика возвращаются по одной кнопкой «Исправлено — вернуть в Пик».', 'warn');
       return;
     }
     const ok = await showConfirmModal({
       title: `Пофиксить ${regularOpen.length} репорт(ов)?`,
-      desc: `Меняется только статус. ${protectedSpireCount ? `${protectedSpireCount} жалоб Spire пропущено: их нужно вернуть отдельной защищённой кнопкой после проверки.` : ''}`,
+      desc: `Меняется только статус. ${protectedSpireCount ? `${protectedSpireCount} жалоб Пика пропущено: их нужно вернуть отдельной защищённой кнопкой после проверки.` : ''}`,
       confirmLabel: 'Пофиксить',
     });
     if (!ok) return;
@@ -41824,7 +41824,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           "label": "Новые темы и фразы"
         },
         {
-          "label": "Друзья и Шпиль"
+          "label": "Друзья и Пик"
         },
         {
           "label": "Напоминания"
@@ -42201,7 +42201,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
           "label": "Карточки и голосовую практику"
         },
         {
-          "label": "Шпиль и друзей"
+          "label": "Пик и друзей"
         },
         {
           "label": "Скорость, стабильность и навигацию"
@@ -48788,7 +48788,7 @@ html[data-pm-theme="light"] body.pm-v9-ready #tab-ideas .idea-admin-row-likes{co
     'cancel-surveys':'Причины отмены','surveys':'Опросы','review-promo':'Опрос Plus',
     'referrals':'Рефералы','app-messages':'Сообщения пользователям',
     'ugc-purchases':'Покупки наборов','refunds':'Центр возвратов','community-packs':'Наборы сообщества',
-    'daily-phrases':'Фразы дня','daily-polls':'Опрос дня','arena-content':'Контент Spire','push-notify':'Push-уведомления',
+    'daily-phrases':'Фразы дня','daily-polls':'Опрос дня','arena-content':'Контент Пика','push-notify':'Push-уведомления',
     'archive':'Архив','audit':'Журнал аудита',
     'ops-log':'Журнал операций','remote-config':'Remote Config','youtube-catalog':'YouTube-каталог',
     'paywall-ab':'A/B paywall','v2-generator':'Генератор Learning V2',

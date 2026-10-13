@@ -19,7 +19,7 @@
 // юзера и через animateNextLayoutTransition.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { DeviceEventEmitter, Text, View } from 'react-native';
+import { DeviceEventEmitter, InteractionManager, Text, View } from 'react-native';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
@@ -146,6 +146,13 @@ export default function AccountDetailsScreen() {
   const [logoutStage, setLogoutStage] = useState<LogoutStage>('idle');
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
+  // зачем (PM-214 «мгновенное открытие», №16): окно входа (2507 строк, 86 хуков, без раннего выхода при visible=false) входило в первый
+  // кадр экрана аккаунта. Монтируем его скрытым после кадра и взаимодействий; «Войти» / выход раньше этого монтируют его сразу по visible.
+  const [authPromptMounted, setAuthPromptMounted] = useState(false);
+  useEffect(() => {
+    const task = InteractionManager.runAfterInteractions(() => setAuthPromptMounted(true));
+    return () => task.cancel();
+  }, []);
   const [copied, setCopied] = useState(false);
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
@@ -390,6 +397,7 @@ export default function AccountDetailsScreen() {
         onRequestClose={() => setDeleteVisible(false)}
       />
 
+      {authPromptMounted || authPromptVisible ? (
       <RegistrationPromptModal
         visible={authPromptVisible}
         context="settings"
@@ -399,6 +407,7 @@ export default function AccountDetailsScreen() {
           void refreshLinkedAuth();
         }}
       />
+      ) : null}
     </ScreenGradient>
   );
 }

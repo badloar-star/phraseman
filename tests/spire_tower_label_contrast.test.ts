@@ -15,7 +15,7 @@ describe('подписи этажей башни на небе наряда', ()
   for (const skin of [SPIRE_DEFAULT_SKIN, ...SPIRE_LEAGUE_SKINS]) {
     for (const [k, sky] of skin.sky.entries()) {
       if (ratio('#8E8E92', sky) < 4.5) lowLabel.push(`${skin.id} sky${k}`);
-      if (ratio('#6E6E72', sky) < 3) lowFloor.push(`${skin.id} sky${k}`);
+      if (ratio('#8E8E92', sky) < 4.5) lowFloor.push(`${skin.id} sky${k}`);
     }
   }
   it('мелкая метка #8E8E92 ≥ 4,5 на небе всех 12 нарядов и умолчания', () => {

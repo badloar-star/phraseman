@@ -109,7 +109,7 @@ const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSel
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill="rgba(255,255,255,.28)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
-      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#6E6E72'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#8E8E92'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill="#8E8E92" textAnchor="middle">{label}</SvgText> : null}
       {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke="rgba(255,255,255,.8)" strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа на ночной сцене (небо всегда тёмное) */}
       {bare ? null : <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />}

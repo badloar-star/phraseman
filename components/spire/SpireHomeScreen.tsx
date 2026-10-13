@@ -234,11 +234,11 @@ export default function SpireHomeScreen() {
   const climb = useCallback(() => { void game.startStep(); }, [game]);
 
   const subtitle = useMemo(() => {
-    const tier = game.tier ?? week?.tier ?? null;
+    const tier = devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null; // зачем (координатор 13.10): в кадре spireWeek= шапка говорит о новой лиге, как карточка
     const stone = tier !== null ? spireTierName(tier, lang) : DASH;
     const left = spireTimeLeft(Date.now(), spireWeekStartMs(Date.now()));
     return `${stone} · ${spireTimeLeftText(lang, left.days, left.hours)}`;
-  }, [game.tier, week, lang]);
+  }, [game.tier, week, lang, devWeekResult]);
 
   // Комната недели: живые из кэша комнаты + боты формулой + свои локальные ступени.
   const members: readonly SpireMemberRow[] | null = useMemo(
@@ -287,6 +287,10 @@ export default function SpireHomeScreen() {
           </View>
           <SpireEnergyPill ownerActive={runtimeOwnerId === 'spire'} />
         </View>
+        {/* зачем (решение владельца 13.10): блок «Комната недели» (пьедестал 1-2-3 + «Все участники · N») — самый верх экрана, сразу под заголовком, выше башни */}
+        <View style={offline ? s.dim : null} testID="spire-room-top">
+          <SpirePodium lang={lang} members={members} onOpenAll={openAll} />
+        </View>
         {offline ? (
           <View style={[s.note, { backgroundColor: p.cardRaised }]} accessibilityLiveRegion="polite" testID="spire-offline">
             <Ionicons name="cloud-offline-outline" size={20} color={p.textSecondary} />
@@ -306,7 +310,7 @@ export default function SpireHomeScreen() {
           <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} />
         ) : null}
         <View style={s.towerWrap}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={game.tier ?? week?.tier ?? null} />
+          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} />
         </View>
         <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
@@ -315,7 +319,6 @@ export default function SpireHomeScreen() {
           onLayout={(e) => logSpireLayout('friends+podium', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(e.nativeEvent.layout.height), bottom: roundLayout(e.nativeEvent.layout.y + e.nativeEvent.layout.height), friends: game.friends.length, startBlock: game.startBlock ?? 'none' })}
         >
           <SpireFriendsRow lang={lang} friends={game.friends} />
-          <SpirePodium lang={lang} members={members} onOpenAll={openAll} />
         </View>
       </ScrollView>
       <View

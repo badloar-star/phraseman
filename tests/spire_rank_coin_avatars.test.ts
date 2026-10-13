@@ -72,6 +72,30 @@ describe('Шпиль: монеты рангов вместо букв', () => {
     for (const bot of bots) expect(bot.coinRank).toEqual(expect.any(Number)); // формула, не null
   });
 
+  it('«Комната недели» (пьедестал + «Все участники») — сразу под заголовком, выше башни (владелец 13.10)', () => {
+    const home = read('components/spire/SpireHomeScreen.tsx');
+    const head = home.indexOf('<SpireEnergyPill');
+    const podium = home.indexOf('<SpirePodium');
+    const tower = home.indexOf('<SpireTower ');
+    expect(head).toBeGreaterThan(0);
+    expect(podium).toBeGreaterThan(head);
+    expect(tower).toBeGreaterThan(podium);
+    expect(home.match(/<SpirePodium/g)?.length).toBe(1); // блок один, внизу его больше нет
+    expect(home).toContain('testID="spire-room-top"');
+  });
+
+  it('кадр «Итог недели»: шапка и башня берут новую лигу карточки; боевой путь (без dev-подмены) не меняется', () => {
+    const home = read('components/spire/SpireHomeScreen.tsx');
+    expect(home).toContain('devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null');
+    expect(home).toContain('getDevSpireWeekResultOverride()');
+  });
+
+  it('номер этажа на башне #8E8E92 (≥ 4,5 на небе всех лиг), у своего этажа белый', () => {
+    const svg = read('components/spire/SpireTowerSvg.tsx');
+    expect(svg).toContain("fill={mine ? '#FFFFFF' : '#8E8E92'} textAnchor=\"middle\">{String(f)}");
+    expect(svg).not.toContain('#6E6E72');
+  });
+
   it('свой ранг в списках — из useMyCoinRank, а не из комнаты', () => {
     expect(read('components/spire/SpireHomeScreen.tsx')).toContain('coinRank: r.isMe ? myCoinRank : (r.coinRank ?? null)');
   });

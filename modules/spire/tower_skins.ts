@@ -98,7 +98,7 @@ const darken = (c: string, t: number) => mixHex(c, '#000000', t);
 
 // ───────────────────────── наряд по умолчанию ─────────────────────────
 /** Оникс без деталей — ровно прежний вид башни (значения перенесены из SpireTowerSvg без изменений). */
-export const SPIRE_DEFAULT_SKIN: SpireTowerSkin = Object.freeze({
+export const SPIRE_DEFAULT_SKIN: SpireTowerSkin = Object.freeze<SpireTowerSkin>({
   id: 'default',
   premium: false,
   cyl: ['#1F1F23', '#3D3D44', '#5A5A62', '#46464D', '#2C2C31', '#18181B'],
@@ -150,7 +150,7 @@ export function skinFromLeague(L: SpireLeagueSpec): SpireTowerSkin {
   const b = L.stone;
   const light = hex2rgb(b).reduce((s, v) => s + v, 0) / 3 > 140;
   const k = light ? 0.75 : 1; // светлый камень затемняем мягче, иначе мрамор уходит в серое
-  return Object.freeze({
+  return Object.freeze<SpireTowerSkin>({
     id: L.id,
     premium: true,
     cyl: [darken(b, 0.7 * k), darken(b, 0.38 * k), b, darken(b, 0.24 * k), darken(b, 0.55 * k), darken(b, 0.78 * k)],

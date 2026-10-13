@@ -73,5 +73,5 @@ export function setDevSpireWeekResultOverride(kind: DevSpireWeekKind | null): bo
 /** Подменённый итог недели для карточки или null. В стор-сборке всегда null. */
 export function getDevSpireWeekResultOverride(): SpireWeekResultView | null {
   if (!devAvailable() || weekOverride === null) return null;
-  return { weekId: 'dev-week', lang: 'ru', ...WEEK_FIXTURES[weekOverride] };
+  return { weekId: 'dev-week', lang: 'en', ...WEEK_FIXTURES[weekOverride] }; // зачем (типы, Ядро 13.10): lang — язык ИЗУЧЕНИЯ (en|es|de|fr|it), не язык интерфейса «ru»
 }

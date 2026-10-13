@@ -16,6 +16,16 @@ describe('жизненный цикл видеоплеера (PM-118)', () => {
     expect(player).toContain('if (!active) return null;');
   });
 
+  it('закрытие плеера возвращает режим звука приложения (озвучка и звуки не молчат) и снимает аренду звука и экран (PM-118-A2)', () => {
+    // размонтирование: эффект с cleanup, который ставит режим приложения UI_SFX_AUDIO_MODE через координатор аудиосессии
+    expect(player).toContain("import { setManagedAudioMode } from '../../app/audio_session_coordinator';");
+    expect(player).toMatch(/useEffect\(\(\) => \(\) => \{\s*console\.log\('\[VIDEO-PLAYER\] закрыт — возвращаю режим звука приложения'/);
+    expect(player).toContain('setManagedAudioMode(UI_SFX_AUDIO_MODE)');
+    expect(player).toContain("console.warn('[VIDEO-PLAYER] режим звука не вернулся'"); // отказ не молчит
+    expect(player).toContain("useEffect(() => () => releaseAudioClaim('unmount'), [releaseAudioClaim]);");
+    expect(player).toContain('deactivateKeepAwake(`video:${videoId}`)');
+  });
+
   it('воспроизведение только после действия человека: плеер монтируется по тапу', () => {
     expect(player).toContain('mediaPlaybackRequiresUserAction={!autoPlay}');
     // Экран «Видео»: плеер только у выбранного тапом ролика, один на экран.

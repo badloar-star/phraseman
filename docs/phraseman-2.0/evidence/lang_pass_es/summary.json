@@ -1,0 +1,85 @@
+[
+ {
+  "id": "en-home-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "en-lessons-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "learn-028",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "paywalls-009",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-v2-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-005",
+  "notes": [
+   "нет tap:#fc-zoom-larger"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-v2-033",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "dialogs-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "dialogs-013",
+  "notes": [
+   "нет tap:#dialogue-v2-world-toggle-*",
+   "нет tap:#dialogue-v2-catalogue-row-*",
+   "нет tap:#dialogue-v2-briefing-start"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "spire-004",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "auth-gap-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "settings-gap-002",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "paywall-gap-001",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "energy-modes-017",
+  "notes": [
+   "нет tap:#lesson-menu-primary"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "mistakes-panel-002",
+  "notes": [],
+  "fallback_lines": 0
+ }
+]

@@ -216,7 +216,11 @@ async function commandShot(id) {
     await writeEvidenceFile(target, output);
     console.log(`${LOG} wrote ${rel(target)} bytes=${output.length} mockup_phone=${phone} animation_in_mockup=${row.has_animation}`);
     if (!has('--no-registry') && !has('--mockup-only')) {
-      await updateRow(id, { evidence: rel(target), evidence_at: new Date().toISOString(), evidence_sha256: sha256(output) });
+      // зачем (Макеты 13.10): гейт читает явное shot_at, а не mtime/evidence_at; источник — shoot_log (момент снимка) или restitch_log (raw_shot_at пересклейки)
+      const shotAt = process.env.PARITY_SHOT_AT || new Date().toISOString();
+      const shotAtSource = process.env.PARITY_SHOT_AT_SOURCE || 'shoot_log';
+      console.log(`[SHOT-AT] ${id} shot_at=${shotAt} source=${shotAtSource}`);
+      await updateRow(id, { evidence: rel(target), evidence_at: new Date().toISOString(), evidence_sha256: sha256(output), shot_at: shotAt, shot_at_source: shotAtSource });
       console.log(`${LOG} registry updated id=${id} (status не менялся: match ставит координатор)`);
     }
     if (row.has_animation !== false) console.log(`${LOG} В макете есть анимация/неизвестно (${(row.anim_notes ?? []).join('; ') || '—'}): запишите её командой anim ${id}`);

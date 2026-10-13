@@ -146,13 +146,17 @@ function classifyScreenOnDevice(device, id) {
   }
 }
 
-function stitchEvidence(id, barePath, outDir) {
+function stitchEvidence(id, barePath, outDir, meta = {}) {
   const target = path.join(outDir, `${id}.png`);
+  // зачем (Макеты через координатора 13.10): гейт с 06:00 смотрит на явное поле shot_at строки реестра — пишем его в журнал и передаём parity_shot (shoot_log | restitch_log)
+  const shotAt = meta.shotAt || new Date().toISOString();
+  const shotSource = meta.source || 'shoot_log';
+  console.log(`[SHOT-AT] ${id} shot_at=${shotAt} source=${shotSource}`); // guard-ok: время съёмки для гейта Макетов
   const startedAt = Date.now();
   const result = spawnSync(process.execPath, [PARITY_SHOT, 'shot', id, '--no-registry', '--wait-ms=300'], {
     encoding: 'utf8',
     timeout: 180_000,
-    env: { ...process.env, PARITY_FAKE_DEVICE_PNG: barePath, PARITY_EVIDENCE_DIR: outDir },
+    env: { ...process.env, PARITY_FAKE_DEVICE_PNG: barePath, PARITY_EVIDENCE_DIR: outDir, PARITY_SHOT_AT: shotAt, PARITY_SHOT_AT_SOURCE: shotSource },
   });
   const fresh = fs.existsSync(target) && fs.statSync(target).mtimeMs >= startedAt - 1000;
   if (result.status === 0 && fresh) return { ok: true, reason: '' };
@@ -303,12 +307,14 @@ async function shootOne(device, row, opts, runDir) {
   if (outcome === 'ok') {
     const target = path.join(opts.outDir, `${row.id}.png`);
     const bare = path.join(runDir, `${row.id}.bare.png`);
+    const shotAtIso = new Date().toISOString(); // момент снимка (кадр уже получен)
     save(bare, finalPng); // голый кадр всегда остаётся в _runs
     if (!opts.stitch) {
       save(target, finalPng); // --no-stitch: прежнее поведение, ТОЛЬКО для отладки — Макеты голый кадр сверять не могут
+      console.log(`[SHOT-AT] ${row.id} shot_at=${shotAtIso} source=shoot_log`); // guard-ok: время съёмки (без склейки)
       return { ...result, outcome, detail: `${detail}+голый_кадр`, file: rel(target), bytes: finalPng.length, msToNonblank };
     }
-    const stitched = stitchEvidence(row.id, bare, opts.outDir);
+    const stitched = stitchEvidence(row.id, bare, opts.outDir, { shotAt: shotAtIso, source: 'shoot_log' });
     if (stitched.ok) return { ...result, outcome, detail: `${detail}+склейка`, file: rel(target), bytes: finalPng.length, msToNonblank };
     // склейки нет → evidence НЕ пишем (не подменяем составной кадр голым), старый <id>.png остаётся; голый кадр лежит в _runs
     return { ...result, outcome: 'stitch_failed', detail: `${detail}+склейка_не_удалась: ${stitched.reason}`, file: rel(bare), bytes: finalPng.length, msToNonblank };
@@ -382,7 +388,7 @@ async function stitchOnlyMain(argv, ids) {
         const staleVsCode = codeChangedAt !== 'неизвестно' && new Date(codeChangedAt).getTime() > rawStat.mtimeMs ? 'КАДР_СТАРШЕ_КОДА' : 'кадр_не_старше_кода';
         console.log(`[RESTITCH] ${id} raw_shot_at=${rawIso} code_changed_at=${codeChangedAt} ${staleVsCode}`); // guard-ok: время голого кадра для проверки свежести
         detail = `raw_shot_at=${rawIso} code_changed_at=${codeChangedAt} ${staleVsCode}`;
-        const stitched = stitchEvidence(id, bare, outDir);
+        const stitched = stitchEvidence(id, bare, outDir, { shotAt: rawIso, source: 'restitch_log' });
         if (stitched.ok) fs.utimesSync(target, rawStat.atime, rawStat.mtime); // склейка наследует время голого кадра, а не «сейчас»
         const after = pngSize(fs.readFileSync(target));
         if (stitched.ok && after && !(after.width === bareW && after.height === bareH)) { result = 'stitched'; detail = `склейка_${after.width}x${after.height} ${detail}`; }

@@ -103,6 +103,7 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
 const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
 
 /* ===================== ДАННЫЕ КОМНАТЫ (30 человек, боты не раскрываются) ===================== */
@@ -291,7 +292,7 @@ const floorInfo = (f, o = {}) => {
 };
 
 /* ===================== ОБЩИЕ КУСКИ ЭКРАНА ШПИЛЯ ===================== */
-const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energy(e)}</div>`;
+const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energyBare(e)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti" style="font-size:18px">Друзья на этой неделе</div></div><div class="friends">${FRIENDS.map((f) => `<div class="fr t">${coinImg(f.rank, 30)}${f.name}<span class="fl-n">${f.floor} этаж</span></div>`).join('')}</div>`;
 const podium = (dim = false) => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
@@ -331,7 +332,7 @@ const stepExit = () => phone(`${stepHead()}${ring()}${question()}${options()}${s
     <div class="cta t" style="margin-top:26px" data-close>Продолжить ступень</div><div class="cta gh t" style="margin-top:12px;border-color:transparent;color:var(--bad)" data-close>Выйти</div>`, true) });
 
 /* ===================== 7–8. ИТОГИ ВНУТРИ СЦЕНЫ БАШНИ ===================== */
-const scenePhone = (towerOpts, panel, time) => phone(`<div class="flex" style="gap:14px;margin-top:6px"><div class="grow"><div style="font-size:20px;font-weight:700">Гранит</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Этаж ${Math.min(towerOpts.myFloor ?? floorOf(towerOpts.mySteps ?? ME.steps), FLOORS)} · до конца недели 2 д 14 ч</div></div>${energy(2)}</div><div style="margin-top:16px">${towerView(towerOpts, 'tall')}</div>`,
+const scenePhone = (towerOpts, panel, time) => phone(`<div class="flex" style="gap:14px;margin-top:6px"><div class="grow"><div style="font-size:20px;font-weight:700">Гранит</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Этаж ${Math.min(towerOpts.myFloor ?? floorOf(towerOpts.mySteps ?? ME.steps), FLOORS)} · до конца недели 2 д 14 ч</div></div>${energyBare(2)}</div><div style="margin-top:16px">${towerView(towerOpts, 'tall')}</div>`,
   { time, fixed: `<div class="bp"><div class="panel">${panel}</div></div>` });
 const stepPassed = () => scenePhone({ mySteps: 25, sel: 4 }, `<div class="ov center" style="letter-spacing:2px">Ступень пройдена</div><div class="ti" style="margin-top:8px">Ещё одна выше</div><div class="su">1:12 из 2:00 · без ошибок · 7 из 8 на этаже</div><div class="pills">${coins(10, { rank: ME.rank })}</div><div class="cta t" style="margin-top:18px" data-climb>Выше<span class="ar">${icon('up', 's20')}</span></div>`, '9:41');
 const stepFailed = () => scenePhone({ mySteps: 25, sel: 4 }, `<div class="ov center" style="letter-spacing:2px;color:var(--bad)">Ступень не пройдена</div><div class="ti" style="margin-top:8px">Сердца закончились</div><div class="su">Остаёшься на 4 этаже. Новый набор из 10 заданий</div><div class="cta t" style="margin-top:20px">Ещё раз</div><div class="cta gh t" style="margin-top:10px;border-color:transparent">Позже</div>`, '9:41');

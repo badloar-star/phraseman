@@ -142,6 +142,7 @@ svg[data-tower] .fl:not(.mine) .halo2 { opacity: 0; }
 <script src="kit.js"></script>
 <script>
 const { icon, phone, col, block, sheet, energy, coinImg } = K;
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
 
 /* ===================== ДАННЫЕ КОМНАТЫ (как в spire.html, 30 человек) ===================== */
 const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
@@ -328,7 +329,7 @@ const floorInfo = (f, o = {}) => {
 const INFO = `<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg>`;
 /* зачем: шапка как в коде (SpireHomeScreen:220-244): название + «бета» + подзаголовок «камень · до конца недели», кнопка правил (i) и энергия;
    в spire.html кнопки правил нет — её рисуем здесь */
-const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Шпиль</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energy(o.energy ?? 3)}</div>`;
+const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Шпиль</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div><span class="sg-rb t">${INFO}</span>${energyBare(o.energy ?? 3)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
 const podium = () => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
@@ -349,7 +350,7 @@ const homePhone = (o = {}, dockHtml = dock(), extra = {}) => phone(homeScr(o), {
 /* ===================== 1. ЗАДАНИЯ СТУПЕНИ ===================== */
 /* зачем: шапка ступени — как stepHead в spire.html (назад · «Ступень N» · «Этаж · камень» · сердца · энергия) */
 const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin-top:6px"><span class="rb l t" style="margin-right:8px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;line-height:25px;font-weight:700">Ступень 8</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:2px;white-space:nowrap">Этаж 4 · Гранит</div></div>
-  <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span>${energy(e, { s: true })}</div>`;
+  <span class="pill" style="height:37px;gap:8px;padding:0 13px">${[0, 1, 2].map((i) => `<span style="color:${i < hearts ? '#fff' : '#48484C'}">${icon('heartF', 's18')}</span>`).join('')}</span>${energyBare(e)}</div>`;
 const ringHtml = (left = '1:12', frac = .72, paused = false) => `<div class="sg-ring"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="${paused ? '#8E8E92' : '#E9E9EB'}" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="${(370.7 * (1 - frac)).toFixed(1)}"/></svg><div class="tm">${left}</div>${paused ? '<div class="pz">таймер на паузе</div>' : ''}</div>`;
 const FLAG = `<div class="sg-rep" aria-label="Сообщить об ошибке в задании Шпиля">${icon('flag', 's18')}</div>`; // зачем (координатор 13.10): красный флажок в Шпиле — рабочая функция «убрать плохое задание из забега» (submitOverride, ReportErrorButton.tsx:573-585), есть в сборке магазина, overlays=off её не прячет
 const qCard = (main, sub) => `<div class="sg-qc"><div class="q">${main}</div>${sub ? `<div class="q2">${sub}</div>` : ''}</div>`;

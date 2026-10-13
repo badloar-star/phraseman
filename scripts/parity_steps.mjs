@@ -180,8 +180,8 @@ export async function runSteps(run, steps, opts = {}) {
       const bottom = screen ? screen.bottom : 2400;
       const centreY = (node.top + node.bottom) / 2;
       // зачем: прокручиваем только если ЦЕНТР за краем экрана — кнопки у нижней кромки («Начать», «Купить») трогать прокруткой нельзя
-      if (centreY > bottom - bottomMargin) swipeScreen(screen, 'down');
-      else if (centreY < top + 60) swipeScreen(screen, 'up');
+      if (centreY > bottom - bottomMargin) { log(`bringIntoView ${selector}: центр y=${centreY} ниже границы ${bottom - bottomMargin} — прокрутка вниз (попытка ${attempt + 1})`); swipeScreen(screen, 'down'); }
+      else if (centreY < top + 60) { log(`bringIntoView ${selector}: центр y=${centreY} выше границы ${top + 60} — прокрутка вверх (попытка ${attempt + 1})`); swipeScreen(screen, 'up'); }
       else return node;
       await sleep(600);
       found = await waitNode(selector);
@@ -225,6 +225,7 @@ export async function runSteps(run, steps, opts = {}) {
       const found = await bringIntoView(step.value, step.op === 'see' ? 320 : 130);
       const node = step.op === 'see' ? found : await settleNode(step.value, found);
       const [cx, cy] = centre(node);
+      log(`${step.op} ${step.value} → x=${cx} y=${cy} bounds=[${node.left},${node.top}][${node.right},${node.bottom}] после_bringIntoView=да`); // зачем (координатор 13.10): координаты тапа в журнал — чтобы вопросы «тап ушёл за экран?» решались по журналу
       if (step.op === 'see') { /* только прокрутка до видимости */ }
       else if (step.op === 'tap') run(['shell', 'input', 'tap', String(cx), String(cy)]);
       else if (step.op === 'long') run(['shell', 'input', 'swipe', String(cx), String(cy), String(cx), String(cy), String(LONG_PRESS_MS)]); // зачем (координатор 12.10, cards-034): удержание 1500 мс

@@ -165,6 +165,26 @@ async function composeSideBySide(page, mockupPng, devicePng, labels, heights = {
   return page.screenshot({ fullPage: true, type: 'png' });
 }
 
+// зачем: см. вызов в commandShot — запись склейки с повтором и подробным логом ошибки открытия файла
+async function writeEvidenceFile(target, data) {
+  const temporary = `${target}.tmp-${process.pid}`;
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    try {
+      fs.writeFileSync(temporary, data);
+      fs.renameSync(temporary, target);
+      if (attempt > 1) console.warn(`${LOG} write_ok_after_retry path=${target} attempt=${attempt}`);
+      return;
+    } catch (error) {
+      let existing = 'нет файла';
+      try { existing = `size=${fs.statSync(target).size}`; } catch (statError) { existing = `stat_failed:${statError.code}`; }
+      console.warn(`${LOG} write_failed attempt=${attempt}/4 path=${target} bytes=${data.length} code=${error.code} errno=${error.errno} syscall=${error.syscall} existing=${existing} message=${error.message}`);
+      try { fs.rmSync(temporary, { force: true }); } catch (cleanError) { console.warn(`${LOG} tmp_cleanup_failed path=${temporary} code=${cleanError.code}`); }
+      if (attempt === 4) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 600 * attempt));
+    }
+  }
+}
+
 async function commandShot(id) {
   const row = findRow(id);
   const { chromium } = await import('playwright');
@@ -191,7 +211,9 @@ async function commandShot(id) {
     }, heights);
     fs.mkdirSync(EVIDENCE_DIR, { recursive: true });
     const target = path.join(EVIDENCE_DIR, `${row.id}.png`);
-    fs.writeFileSync(target, output);
+    // зачем (Сверка/координатор 13.10): на 4 кадрах запись склейки падала «UNKNOWN: unknown error, open …png» без причины (cards-gap-011, cards-v2-044/046,
+    // dialogs-gap-016); пишем во временный файл рядом + переименование, повторяем до 4 раз и логируем полный путь, размер и код — чтобы по журналу было видно, занят файл или нет.
+    await writeEvidenceFile(target, output);
     console.log(`${LOG} wrote ${rel(target)} bytes=${output.length} mockup_phone=${phone} animation_in_mockup=${row.has_animation}`);
     if (!has('--no-registry') && !has('--mockup-only')) {
       await updateRow(id, { evidence: rel(target), evidence_at: new Date().toISOString(), evidence_sha256: sha256(output) });

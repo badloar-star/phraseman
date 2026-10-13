@@ -1,0 +1,34 @@
+10-13 08:45:26.200 W/ReactNativeJS(19823): '[DEV-STATE] энергия в контексте =', 5, 'ready=false', { [Stack] name: 'Stack' }
+10-13 08:45:26.216 W/ReactNativeJS(19823): '[DEV-STATE] route: старт', '{"request":{"plus":"off","appearance":"clear","theme":"graphite","level":0,"onboarding":"done","intros":"seen","overlays":"off","next":"/lesson_complete?id=1&devResult=15:5"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-13 08:45:26.231 I/ReactNativeJS(19823): [DEV-STATE] step plus=off: старт
+10-13 08:45:26.399 I/ReactNativeJS(19823): [DEV-STATE] toast: хост смонтирован lang=ru
+10-13 08:45:26.400 I/ReactNativeJS(19823): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-13 08:45:26.759 I/ReactNativeJS(19823): [DEV-STATE] step plus=off: ок за 531 мс
+10-13 08:45:26.760 I/ReactNativeJS(19823): [DEV-STATE] step appearance=clear: старт
+10-13 08:45:26.762 I/ReactNativeJS(19823): [DEV-STATE] step appearance=clear: ок за 2 мс
+10-13 08:45:26.764 I/ReactNativeJS(19823): [DEV-STATE] step theme=graphite/0: старт
+10-13 08:45:26.766 I/ReactNativeJS(19823): [DEV-STATE] theme override null → {"themeId":"graphite","intensity":0} (только память, хранилище не тронуто)
+10-13 08:45:26.766 I/ReactNativeJS(19823): [DEV-STATE] step theme=graphite/0: ок за 4 мс
+10-13 08:45:26.767 I/ReactNativeJS(19823): [DEV-STATE] step onboarding=done: старт
+10-13 08:45:26.883 I/ReactNativeJS(19823): [DEV-STATE] overlays: повторная сверка окон запрошена tick=1 reason=onboarding_done
+10-13 08:45:26.886 I/ReactNativeJS(19823): [DEV-STATE] onboarding overlay closed by onboarding=done wasVisible=no
+10-13 08:45:26.905 I/ReactNativeJS(19823): [DEV-STATE] step onboarding=done: ок за 138 мс
+10-13 08:45:26.906 I/ReactNativeJS(19823): [DEV-STATE] step overlays=off: старт
+10-13 08:45:26.907 I/ReactNativeJS(19823): [DEV-STATE] overlays=off (окна рассылок/объявлений/сообщений гасятся, только память)
+10-13 08:45:26.952 I/ReactNativeJS(19823): [DEV-STATE] step overlays=off: ок за 46 мс
+10-13 08:45:26.952 I/ReactNativeJS(19823): [DEV-STATE] step intros=seen: старт
+10-13 08:45:26.997 I/ReactNativeJS(19823): [DEV-STATE] intros: помечено показанными 12 окон знакомства
+10-13 08:45:27.064 I/ReactNativeJS(19823): [DEV-STATE] intros: тур Шпиля помечен показанным
+10-13 08:45:27.064 I/ReactNativeJS(19823): [DEV-STATE] step intros=seen: ок за 112 мс
+10-13 08:45:27.065 I/ReactNativeJS(19823): '[DEV-STATE] applied', '{"applied":{"plus":"off","appearance":"clear","theme":"graphite/0","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/lesson_complete?id=1&devResult=15:5"}'
+10-13 08:45:27.065 W/ReactNativeJS(19823): '[DEV-STATE] route: фикстуры применены', '859мс', '{"applied":{"plus":"off","appearance":"clear","theme":"graphite/0","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/lesson_complete?id=1&devResult=15:5"}'
+10-13 08:45:29.613 W/ReactNativeJS(19823): '[DEV-STATE] энергия в контексте =', 5, 'ready=true', { [Stack] name: 'Stack' }
+10-13 08:45:29.677 W/ReactNativeJS(19823): '[DEV-STATE] route: перечитывание энергии →', 'ok', '3471мс'
+10-13 08:45:29.678 W/ReactNativeJS(19823): '[DEV-STATE] route: replace через 300 мс →', '/lesson_complete?id=1&devResult=15:5', '3471мс'
+10-13 08:45:30.012 W/ReactNativeJS(19823): '[DEV-STATE] route: replace вызван →', '/lesson_complete?id=1&devResult=15:5'
+10-13 08:45:30.079 I/ReactNativeJS(19823): [INFO] [LESSON-RESULT-SAVE]: gates +35мс lesson=1: results=false access=false xp=false → ждём «Сохраняю результат…»
+10-13 08:45:30.146 W/ReactNativeJS(19823): [WARN] [LESSON-RESULT]: ветка=ПРОГРЕСС_НЕ_НАЙДЕН lesson=1 target=en ключ=lesson1_progress → из памяти: bestScore=0 tier=none; devResult=15:5 → score=3.8 tier=bronze
+10-13 08:45:30.155 I/ReactNativeJS(19823): [INFO] [LESSON-RESULT-SAVE]: gates +108мс lesson=1: results=false access=false xp=true → ждём «Сохраняю результат…»
+10-13 08:45:30.157 I/ReactNativeJS(19823): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=lessonResultsSequence
+10-13 08:45:30.287 I/ReactNativeJS(19823): [INFO] [LESSON-RESULT-SAVE]: gates +242мс lesson=1: results=true access=true xp=true → экран итога открыт
+10-13 08:45:30.288 I/ReactNativeJS(19823): [INFO] [LESSON-RESULT]: показ итога lesson=1 комбо=false: звёзды=1 (tier=bronze, score=3.8) | верно/ошибок=15/5 | монеты=+0 (hydrating=false) | заметкаPlus=false | списокОшибок=1 | оценка=false 

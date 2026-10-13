@@ -162,12 +162,20 @@ const UTC_ALIASES = new Set(['UTC', 'ETC/UTC', 'GMT', 'ETC/GMT', 'UCT', 'ETC/UCT
 export type ReEngageTimezoneSource = 'device' | 'lang_default' | 'utc_fallback';
 export type ReEngageResolvedTimezone = Readonly<{ timezone: string; source: ReEngageTimezoneSource }>;
 
+/** Неизвестные имена поясов, уже записанные в журнал в этом процессе (не повторяем строку на каждого человека). */
+const loggedUnknownTimezones = new Set<string>();
+
 function isKnownIanaTimezone(timezone: string): boolean {
   try {
     new Intl.DateTimeFormat('en-US', { timeZone: timezone });
     return true;
-  } catch {
+  } catch (error) {
     // Неизвестное имя пояса — не ошибка прогона: человек уходит на запасной пояс (источник виден в [REENGAGE-TZ]).
+    // зачем журнал (ревью PM-252 13.10, «немой catch запрещён»): одна строка на имя пояса за процесс, без uid.
+    if (!loggedUnknownTimezones.has(timezone)) {
+      loggedUnknownTimezones.add(timezone);
+      console.warn('[REENGAGE-TZ] unknown_timezone', JSON.stringify({ tz: timezone.slice(0, 64), reason: error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120) }));
+    }
     return false;
   }
 }

@@ -41,11 +41,14 @@ type State = {
   voiceSpent: boolean;
   // зачем (координатор 12.10, dialogs-020): бесплатные «Почему так» на сегодня исчерпаны (dev_dialog_why=spent), без записи в хранилище
   whySpent: boolean;
+  // зачем (координатор 13.10, кадр итога D1): итог диалога показывает «+N монет» без настоящего начисления (dev_dialog_coins=award) — только память.
+  coinsAward: boolean;
 };
 const EMPTY: State = {
   fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null, memory: null,
   voiceSpent: false,
   whySpent: false,
+  coinsAward: false,
 };
 let state: State = EMPTY;
 
@@ -66,6 +69,11 @@ export function setDevDialogState(patch: Partial<State>): boolean {
 
 export function getDevDialogFail(): DevDialogFail | null {
   return devDialogAvailable() ? state.fail : null;
+}
+
+/** Итог диалога рисует награду как начисленную, ничего не начисляя (`dev_dialog_coins=award`). В стор-сборке всегда false. */
+export function isDevDialogCoinsAward(): boolean {
+  return devDialogAvailable() && state.coinsAward;
 }
 
 export function getDevDialogMood(): DevDialogMood | null {

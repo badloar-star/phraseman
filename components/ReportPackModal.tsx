@@ -25,6 +25,7 @@ import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import type { RuntimeStudyTarget } from '../app/target_storage_keys';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
+import { isDevCommunityPackId } from '../app/dev_cards_state';
 import { actionToastTri, emitAppEvent } from '../app/events';
 import { DebugLogger } from '../app/debug-logger';
 import { triLang, type Lang } from '../constants/i18n';
@@ -116,7 +117,9 @@ function ReportPackModal({
     sendInFlightRef.current = true;
     const payload = { packId, packTitle, authorStableId, studyTarget, reason: selected, comment: comment.trim() };
     const startedAt = Date.now();
-    DebugLogger.info(LOG, `отправка: pack=${packId} причина=${selected} комментарий=${payload.comment.length} знаков target=${String(studyTarget)}`);
+    // зачем (координатор 13.10, кадр cards-059): на демо-наборе (packcards=on) submitPackReport не ходит в сеть — сразу путь успеха; журнал называет это прямо
+    const devSkipNetwork = isDevCommunityPackId(packId);
+    DebugLogger.info(LOG, `отправка: pack=${packId} причина=${selected} комментарий=${payload.comment.length} знаков target=${String(studyTarget)}${devSkipNetwork ? ' dev=skip_network' : ''}`);
     hapticSuccess();
     emitAppEvent('action_toast', actionToastTri('success', {
       ru: 'Жалоба отправлена', uk: 'Скаргу надіслано', en: 'Report sent', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada',

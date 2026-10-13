@@ -209,6 +209,8 @@ export type DevStateRequest = Readonly<{
   legacyCap?: number | 'off';
   /** dialogs-020 (Ядро 12.10): бесплатные «Почему так» на сегодня исчерпаны — только память. */
   dialogWhy?: 'spent' | 'off';
+  /** Итог диалога: награда «начислена» без настоящего начисления (координатор 13.10) — только память. */
+  dialogCoins?: 'award' | 'off';
   /** «Не удалось» при очистке кеша (settings-gap-009). */
   cache?: 'failed' | 'ok' | 'hold';
   /** Друзья: удержание «отправки заявки» (add_request) или off. */
@@ -480,6 +482,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
     else rejected.legacyCap = `ожидалось 1..32 или off, пришло ${legacyCapRaw}`;
   }
   request.dialogWhy = pick('dev_dialog_why', ['spent', 'off'] as const);
+  request.dialogCoins = pick('dev_dialog_coins', ['award', 'off'] as const);
   request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
   request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
   request.notifPerm = pick('notifperm', ['denied', 'off'] as const);
@@ -1091,6 +1094,10 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const legacyCap = typeof request.legacyCap === 'number' ? request.legacyCap : null;
       return setDevLessonGates(!real && legacyCap === null ? null : { real, legacyCap });
     });
+  }
+  if (request.dialogCoins !== undefined) {
+    // зачем (координатор 13.10, итог D1): экран итога рисует «+N монет» и пилюлю баланса без начисления и без сети
+    await step('dialogCoins', request.dialogCoins, async () => setDevDialogState({ coinsAward: request.dialogCoins === 'award' }));
   }
   if (request.dialogWhy !== undefined) {
     // зачем (dialogs-020): «Почему так» — разборы на сегодня закончились, без трёх настоящих раскрытий

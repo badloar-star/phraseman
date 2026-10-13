@@ -10,6 +10,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { usePracticeRunes } from './usePracticeRunes';
+import { isDevDialogCoinsAward } from '../app/dev_dialog_state';
 import { getStableId } from '../app/stable_id';
 import {
   clearDialogueV2CoinsAwarded,
@@ -60,6 +61,12 @@ export function useDialogueV2CoinReward(input: Readonly<{
     if (!ready || practiceRunes.hydrating) return;
     startedRef.current = true;
     const amount = dialogueV2CoinAward({ endedBy, mistakes });
+    // зачем (координатор 13.10, кадр итога D1): dev_dialog_coins=award — награда «начислена» для кадра без копилки, отметки и сети; в стор-сборке флаг всегда выключен.
+    if (isDevDialogCoinsAward()) {
+      console.warn(`[COINS-EARN] dialog: dev=skip_award сумма=${amount} — копилка и сервер не тронуты`); // guard-ok: dev-ветка
+      setReward({ coins: amount, status: 'awarded' });
+      return;
+    }
     console.log(`[COINS-EARN] dialog: вход session=${sessionId.slice(0, 12)} endedBy=${endedBy} ошибок=${mistakes} сумма=${amount} ключ=${sessionKey.slice(0, 40)}`); // guard-ok: вход
     void (async () => {
       let owner = '';

@@ -15,6 +15,7 @@ export function getDevDialogSend(): null { return null; }
 export const DEV_DIALOG_COMPLETIONS = [] as const;
 export function isDevDialogEnd(): boolean { return false; }
 export function isDevDialogBetter(): boolean { return false; }
+export function isDevDialogCoinsAward(): boolean { return false; }
 export function getDevDialogCompletion(): null { return null; }
 export const DEV_DIALOG_MEMORY = [] as const;
 export function getDevDialogMemory(): null { return null; }

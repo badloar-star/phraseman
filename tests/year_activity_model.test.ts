@@ -60,6 +60,8 @@ describe('маршрут «Активность за год»', () => {
     const screen = read('app/year_activity.tsx');
     expect(screen).toContain('peekActivity365Analytics');
     expect(screen).toContain('loadActivity365Analytics');
+    expect(screen).toContain('?? NO_DAYS'); // зачем (ревью 13.10): стабильная ссылка на пустой список
+    expect(screen).not.toContain('?? []');
     expect(screen).toContain('[YEAR-ACTIVITY]');
     expect(screen).not.toMatch(/borderWidth|ActivityIndicator|adjustsFontSizeToFit/);
   });

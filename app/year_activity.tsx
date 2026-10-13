@@ -18,12 +18,14 @@ import { PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { accentGraphicOf } from '../constants/themeAccentRoles';
 import { triLang } from '../constants/i18n';
-import { loadActivity365Analytics, peekActivity365Analytics, type Activity365Analytics } from './activity_365_analytics';
+import { loadActivity365Analytics, peekActivity365Analytics, type Activity365Analytics, type Activity365Day } from './activity_365_analytics';
 import { safeRouterBack } from './navigation_back';
 import { peekDevYearActivityDays } from './dev_year_activity';
 import { buildYearActivityModel, formatPracticeTime, YEAR_ACTIVITY_COLS } from './year_activity_model';
 
 const LOG = '[YEAR-ACTIVITY]';
+// зачем (ревью Авторизации 13.10): общий пустой список — при пустом кэше ссылка не меняется, и модель сетки (365 клеток) не пересчитывается каждый рендер.
+const NO_DAYS: readonly Activity365Day[] = Object.freeze([]);
 const CELL_GAP = 4; // макет `.heatmap { gap: 4px }`
 const CARD_PADDING = 18; // макет: padding 18
 const SCREEN_PADDING = 16;
@@ -72,7 +74,7 @@ function YearActivityScreen() {
 
   // зачем (координатор 13.10, results-009): dev_state?yearActivity=demo — заполненная сетка образца, только __DEV__ и память.
   const devDays = useMemo(() => peekDevYearActivityDays(), []);
-  const days = devDays ?? analytics?.days ?? [];
+  const days = devDays ?? analytics?.days ?? NO_DAYS;
   const model = useMemo(() => buildYearActivityModel(days), [days]);
   const canonical = useMemo(() => buildCanonicalYear(days), [days]);
   const palette = useMemo(() => heatPalette(themeMode, accentGraphicOf(t)), [themeMode, t]);

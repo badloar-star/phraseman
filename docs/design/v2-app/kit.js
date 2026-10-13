@@ -90,5 +90,7 @@
 
   // зачем (12.10, стиль «Тень»): обводки контейнеров в макетах снимает nobord.js — подключаем из kit.js, чтобы все страницы с kit.js получили его сами
   if (!window.__nobord) { const sc = document.createElement('script'); sc.src = (document.currentScript && document.currentScript.src ? document.currentScript.src.replace(/kit\.js.*$/, '') : '') + 'nobord.js'; document.head.appendChild(sc); }
+  // зачем (владелец 13.10 «НИКАКИЕ КНОПКИ НЕ СЛИВАЮТСЯ»): зазор между соседними кнопками ≥ 12 px доводит btngap.js — так же из kit.js на все страницы
+  if (!window.__btngap) { const sc = document.createElement('script'); sc.src = (document.currentScript && document.currentScript.src ? document.currentScript.src.replace(/kit\.js.*$/, '') : '') + 'btngap.js'; document.head.appendChild(sc); }
   window.K = { icon, coin, coinImg, phone, col, block, sheet, energy, coins, init };
 })();

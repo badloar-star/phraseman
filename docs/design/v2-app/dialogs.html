@@ -377,12 +377,12 @@ const consentSheet = () => sheet('c', `
   <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:14px">Практикуй переписки с персонажами, выполняй задачи и получай обратную связь. Для этого твои сообщения отправляются в OpenAI.</div>
   <div style="font-size:17px;line-height:24px;color:var(--sec);margin-top:10px">Можно выключить в настройках в любой момент.</div>
   <div class="cta t" style="margin-top:24px" data-close>Включить</div>
-  <div class="cta t" style="margin-top:10px;background:none;box-shadow:none;color:var(--sec)" data-close>Не сейчас</div><!-- зачем (dialogs-009): в коде «Не сейчас» — текстовая кнопка без подложки -->`, true);
+  <div class="quiet t" data-close>Не сейчас</div><!-- зачем (владелец 13.10 «кнопки не сливаются»): вторичная «Не сейчас» — пилюля-поверхность слоя kit.css; в коде пока текст без подложки (dialogs-009) — догоняют Темы, №35 -->`, true);
 const gateOff = () => phone(`
   <div class="flex"><span class="rb l t">${icon('back', 's20')}</span></div>
   <div class="gate"><div class="big">${li('sparkOff')}</div><div class="ti">AI-диалоги выключены</div><div class="p">AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.</div>
     <div class="cta t">Включить</div><div class="cta gh t">Настройки приватности</div><div class="quiet t" style="margin-top:18px">Назад</div></div>`, { time: '13:01' });
-const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div class="h center"><span class="big">${icon('boltF')}</span>Недостаточно энергии</div><div class="p center">Для разговора нужно 1 ${icon('boltF', 's16')}. У тебя: 0. Plus и Pro открывают безлимит.</div><div class="btns"><div class="cta gh t">Позже</div><div class="cta t">Получить Plus</div></div></div>`;
+const noEnergy = () => `<div class="dim on"></div><div class="modal on"><div class="h center"><span class="big">${icon('boltF')}</span>Недостаточно энергии</div><div class="p center">Для разговора нужно 1 <span style="display:inline-flex;vertical-align:-2px">${icon('boltF', 's16')}</span>. У тебя: 0. Plus и Pro открывают безлимит.</div><div class="btns"><div class="cta gh t">Позже</div><div class="cta t">Получить Plus</div></div></div>`;
 
 // ================= C. Сессия =================
 // Раскладка — ref_20: круглая «‹», «Диалог» + название, справа квота, «⋯»; карточка цели; реплики с кнопками под ними;

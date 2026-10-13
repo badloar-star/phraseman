@@ -207,3 +207,15 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
   radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); }
 /* голые элементы без подложки (стрелка «‹» в наборе) — без стекла */
 .rb.bare::after { display: none; }
+
+/* ===================== ПРАВИЛО ВЛАДЕЛЬЦА 13.10: «НИКАКИЕ КНОПКИ НЕ СЛИВАЮТСЯ» (MOCKUP_REQUIREMENTS §3) =====================
+   зачем: у вторичной кнопки — своя заметная поверхность, текст ≥ 4,5:1, зазор между кнопками ≥ 12 px, отключённая отличима и читается.
+   Слой в конце kit.css перекрывает локальные стили страниц только по этим свойствам. Проверка — C:/Temp/claude/btn/audit.cjs. Код догоняют Темы (№35). */
+/* текстовые ссылки «Ещё раз» / «Назад» / «Пройти ещё раз» — пилюля-поверхность вместо голого текста */
+.ph .quiet.t, .ph .bot2 .quiet { display: flex !important; align-items: center; justify-content: center; width: max-content; min-width: 148px; max-width: 100%; height: 46px !important; margin: 12px auto 0 !important; padding: 0 22px; border-radius: 23px; background: #2C2C2F !important; color: var(--text) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+/* отключённая главная: тёмная плита, текст #8E8E93 — 5,1:1 на #1E1E20 (было var(--muted) 3,3:1) */
+.ph .cta.dis { color: #8E8E93 !important; }
+/* опасные действия («Удалить», «Убрать», «Очистить», «Сменить без сохранения»): кромку снимает nobord.js (стиль «Тень»), поэтому различимость —
+   заливкой: глубокий красный тон #6A2A25 (яркость выше шторки #28282E и карточки ≥ 1,25×), текст #FFC2BB — 6,5:1. Двойной класс — сильнее локальных !important страниц. */
+.ph .cta.cta.red, .ph .cta.cta.or-danger, .ph .cta.cta.dg-danger,
+.ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: #6A2A25 !important; background-image: none !important; color: #FFC2BB !important; }

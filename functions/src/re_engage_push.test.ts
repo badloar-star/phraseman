@@ -19,6 +19,8 @@ import {
   REENGAGE_COOLDOWN_DAYS,
   MAX_PUSHES_PER_RUN,
   capCandidates,
+  summarizeQuietSkipped,
+  reEngageUtcOffsetLabel,
   type ReEngageUser,
   type ReEngageCandidate,
 } from './re_engage_push';
@@ -327,5 +329,42 @@ describe('потолок рассылки за один прогон', () => {
       streakCount: 3,
     }));
     expect(capCandidates(few).length).toBe(5);
+  });
+});
+
+// зачем (владелец 13.10 «сначала посчитать»): крон в 10:00 UTC — тихие часы не пускают Америку (UTC−2 и западнее) и UTC+12+.
+// Счётчик по поясам; отбор не меняется.
+describe('summarizeQuietSkipped', () => {
+  const AT_10_UTC = Date.UTC(2026, 9, 13, 10, 0, 0);
+  const inactive = AT_10_UTC - 5 * DAY;
+
+  it('метка смещения пояса', () => {
+    expect(reEngageUtcOffsetLabel(AT_10_UTC, 'America/New_York')).toBe('UTC-4');
+    expect(reEngageUtcOffsetLabel(AT_10_UTC, 'Europe/Moscow')).toBe('UTC+3');
+    expect(reEngageUtcOffsetLabel(AT_10_UTC, 'Asia/Kolkata')).toBe('UTC+5:30');
+    expect(reEngageUtcOffsetLabel(AT_10_UTC, null)).toBe('no_tz');
+    expect(reEngageUtcOffsetLabel(AT_10_UTC, 'Mars/Olympus')).toBe('bad_tz');
+  });
+
+  it('считает пропущенных тихими часами по поясам и тех, кто прошёл бы отбор; дневные пояса не считаются', () => {
+    const users = [
+      user({ uid: 'ny', pushTokenTimezone: 'America/New_York', lastActiveAt: inactive }),
+      user({ uid: 'ny_cooldown', pushTokenTimezone: 'America/New_York', lastActiveAt: inactive, lastReEngagePushAt: AT_10_UTC - DAY }),
+      user({ uid: 'akl', pushTokenTimezone: 'Pacific/Auckland', lastActiveAt: inactive }),
+      user({ uid: 'msk', pushTokenTimezone: 'Europe/Moscow', lastActiveAt: inactive }),
+      user({ uid: 'notz', pushTokenTimezone: null, lastActiveAt: inactive }),
+    ];
+    const res = summarizeQuietSkipped(users, AT_10_UTC);
+    expect(res.quietSkipped).toBe(3);
+    expect(res.quietWouldBeCandidates).toBe(2);
+    expect(res.quietByOffset['UTC-4']).toEqual({ skipped: 2, wouldBe: 1 });
+    expect(res.quietByOffset['UTC+13']).toEqual({ skipped: 1, wouldBe: 1 });
+    expect(res.quietByOffset['UTC+3']).toBeUndefined();
+  });
+
+  it('отбор не изменился: тихие часы по-прежнему не пускают', () => {
+    const u = user({ pushTokenTimezone: 'America/New_York', lastActiveAt: inactive });
+    expect(classifyReEngageUser(u, AT_10_UTC)).toBeNull();
+    expect(classifyReEngageUser(u, AT_10_UTC, { ignoreQuietHours: true })).toBe('inactive_return');
   });
 });

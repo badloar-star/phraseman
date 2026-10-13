@@ -168,12 +168,17 @@ export function isReEngageOptedOut(u: ReEngageUser): boolean {
   return u.pushPrefs?.streak === false;
 }
 
-export function classifyReEngageUser(u: ReEngageUser, now: number): ReEngageReason | null {
+export function classifyReEngageUser(
+  u: ReEngageUser,
+  now: number,
+  options: Readonly<{ ignoreQuietHours?: boolean }> = {},
+): ReEngageReason | null {
   if (!isValidExpoPushToken(u.expoPushToken)) return null;
   if (u.lastActiveAt == null) return null;
 
   // Тихие часы: не будим пользователя ночью (22:00–09:00 по его локальному времени).
-  if (isInQuietHours(now, u.pushTokenTimezone)) return null;
+  // ignoreQuietHours — ТОЛЬКО для подсчёта «кого тихие часы не пустили» (summarizeQuietSkipped), отбор его не передаёт.
+  if (!options.ignoreQuietHours && isInQuietHours(now, u.pushTokenTimezone)) return null;
 
   // Анти-спам: недавно уже слали — пропускаем.
   if (u.lastReEngagePushAt != null && now - u.lastReEngagePushAt < REENGAGE_COOLDOWN_DAYS * DAY_MS) {
@@ -212,6 +217,56 @@ export function classifyReEngageUser(u: ReEngageUser, now: number): ReEngageReas
 }
 
 /** Отбирает всех кандидатов на push из списка юзеров (чистая функция). */
+/** Смещение пояса человека в момент now как «UTC+3», «UTC-5», «UTC+5:30»; без пояса — «no_tz» (считается по UTC). */
+export function reEngageUtcOffsetLabel(nowMs: number, timezone: string | null | undefined): string {
+  if (!timezone) return 'no_tz';
+  try {
+    const part = new Intl.DateTimeFormat('en-US', { timeZone: timezone, timeZoneName: 'shortOffset' })
+      .formatToParts(new Date(nowMs))
+      .find((item) => item.type === 'timeZoneName')?.value ?? '';
+    const match = /GMT([+-]\d{1,2}(?::\d{2})?)?/.exec(part);
+    if (!match) return 'bad_tz';
+    return `UTC${match[1] ?? '+0'}`;
+  } catch {
+    // Неизвестный пояс: getLocalHour тоже падает в UTC — считаем отдельно, чтобы было видно.
+    return 'bad_tz';
+  }
+}
+
+export type ReEngageQuietSkipped = Readonly<{
+  /** Сколько людей с токеном пропущено ТОЛЬКО из-за тихих часов в момент запуска. */
+  quietSkipped: number;
+  /** Сколько из них прошли бы отбор, если бы не тихие часы (cooldown, opt-out, причина — как обычно). */
+  quietWouldBeCandidates: number;
+  /** Разбивка по смещению пояса: { 'UTC-5': { skipped, wouldBe } }. */
+  quietByOffset: Readonly<Record<string, Readonly<{ skipped: number; wouldBe: number }>>>;
+}>;
+
+/**
+ * зачем (владелец 13.10 «сначала посчитать»): крон идёт раз в сутки в 10:00 UTC, а тихие часы 22:00–09:00 местного — поэтому
+ * UTC−2 и западнее (вся Америка) и UTC+12+ не получают пушей никогда. Только счётчик: логика отбора не меняется; по цифрам
+ * решим, переводить ли крон на почасовой.
+ */
+export function summarizeQuietSkipped(users: readonly ReEngageUser[], now: number): ReEngageQuietSkipped {
+  const byOffset: Record<string, { skipped: number; wouldBe: number }> = {};
+  let quietSkipped = 0;
+  let quietWouldBeCandidates = 0;
+  for (const u of users) {
+    if (!isValidExpoPushToken(u.expoPushToken) || u.lastActiveAt == null) continue;
+    if (!isInQuietHours(now, u.pushTokenTimezone)) continue;
+    const label = reEngageUtcOffsetLabel(now, u.pushTokenTimezone);
+    const bucket = byOffset[label] ?? { skipped: 0, wouldBe: 0 };
+    bucket.skipped += 1;
+    quietSkipped += 1;
+    if (classifyReEngageUser(u, now, { ignoreQuietHours: true })) {
+      bucket.wouldBe += 1;
+      quietWouldBeCandidates += 1;
+    }
+    byOffset[label] = bucket;
+  }
+  return { quietSkipped, quietWouldBeCandidates, quietByOffset: byOffset };
+}
+
 export function selectReEngageCandidates(users: ReEngageUser[], now: number): ReEngageCandidate[] {
   const out: ReEngageCandidate[] = [];
   for (const u of users) {
@@ -444,7 +499,7 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   sent: number;
   failedChunks: number;
   ticketCount: number;
-}> {
+} & ReEngageQuietSkipped> {
   const db = admin.firestore();
   const PAGE_SIZE = 300;
   const STAMP_BATCH = 400;
@@ -452,6 +507,9 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
   let scanned = 0;
   let optedOut = 0;
   const allCandidates: ReEngageCandidate[] = [];
+  let quietSkipped = 0;
+  let quietWouldBeCandidates = 0;
+  const quietByOffset: Record<string, { skipped: number; wouldBe: number }> = {};
   let lastDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
 
   // 1) Scan + отбор кандидатов.
@@ -493,6 +551,13 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     scanned += pageUsers.length;
     optedOut += pageUsers.filter(isReEngageOptedOut).length;
     allCandidates.push(...selectReEngageCandidates(pageUsers, now));
+    const quiet = summarizeQuietSkipped(pageUsers, now);
+    quietSkipped += quiet.quietSkipped;
+    quietWouldBeCandidates += quiet.quietWouldBeCandidates;
+    for (const [label, bucket] of Object.entries(quiet.quietByOffset)) {
+      const total = quietByOffset[label] ?? { skipped: 0, wouldBe: 0 };
+      quietByOffset[label] = { skipped: total.skipped + bucket.skipped, wouldBe: total.wouldBe + bucket.wouldBe };
+    }
 
     if (snap.size < PAGE_SIZE) break;
   }
@@ -501,8 +566,11 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     // Только счётчик: без uid/токенов и без строки на каждого человека.
     console.log('[PUSH-PREFS] re_engage skip: pushPrefs.streak=false', { optedOut, scanned });
   }
+  // Только счётчики по поясам — без uid и токенов (владелец 13.10: «сначала посчитать»).
+  console.log('[RE-ENGAGE] quiet_skipped', JSON.stringify({ quietSkipped, quietWouldBeCandidates, quietByOffset }));
+  const quietSummary: ReEngageQuietSkipped = { quietSkipped, quietWouldBeCandidates, quietByOffset };
   if (allCandidates.length === 0) {
-    return { scanned, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0 };
+    return { scanned, candidates: 0, sent: 0, failedChunks: 0, ticketCount: 0, ...quietSummary };
   }
 
   // зачем потолок здесь (аудит 2026-08-15): выше цикл идёт по ВСЕЙ коллекции
@@ -580,5 +648,5 @@ export async function runReEngagePush(now: number = Date.now()): Promise<{
     );
   }
 
-  return { scanned, candidates: allCandidates.length, sent, failedChunks, ticketCount: allTicketIds.length };
+  return { scanned, candidates: allCandidates.length, sent, failedChunks, ticketCount: allTicketIds.length, ...quietSummary };
 }

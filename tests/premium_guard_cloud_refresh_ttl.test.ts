@@ -62,6 +62,26 @@ test('охранный restore у бесплатного — не чаще ра�
   expect(restoreFromCloud).toHaveBeenCalledTimes(2);
 });
 
+test('неудачный restore повторяется через 2 минуты, а не через 30', async () => {
+  let now = 1_800_000_000_000;
+  jest.spyOn(Date, 'now').mockImplementation(() => now);
+  restoreFromCloud.mockImplementation(async () => { throw new Error('network'); });
+  const guard = require('../app/premium_guard');
+
+  await expect(guard.getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(restoreFromCloud).toHaveBeenCalledTimes(1);
+
+  now += 1 * MIN;
+  guard.invalidatePremiumCache();
+  await guard.getVerifiedPremiumStatus();
+  expect(restoreFromCloud).toHaveBeenCalledTimes(1);
+
+  now += 1.5 * MIN;
+  guard.invalidatePremiumCache();
+  await guard.getVerifiedPremiumStatus();
+  expect(restoreFromCloud).toHaveBeenCalledTimes(2);
+});
+
 test('зависший restore не держит проверку дольше потолка 5 с — решение по локальным данным', async () => {
   jest.useFakeTimers();
   restoreFromCloud.mockImplementation(() => new Promise<boolean>(() => undefined));

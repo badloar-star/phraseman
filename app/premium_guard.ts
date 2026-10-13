@@ -37,6 +37,8 @@ export const CLOUD_ACCESS_REFRESH_TTL_MS = 30 * 60 * 1000;
 // зачем (аудит «пропала сеть» 13.10): addFlashcard ждёт проверку Plus внутри замка записи карточек — на плохой сети restoreFromCloud
 // без потолка держал сохранение карточки. Ждём облако не дольше 5 с; дальше решаем по локальным данным, обновление доезжает фоном.
 export const CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS = 5_000;
+/** Неудачный охранный restore (сеть/ошибка) повторяем через 2 мин, а не через весь срок 30 мин. */
+export const CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS = 2 * 60 * 1000;
 // Зеркало functions/src/premium_status.ts SERVER_RC_GRACE_MS (72ч): покрывает billing retry
 // и сетевые лаги вебхука RC. Раньше клиент стоял на 24ч → между 24ч и 72ч клиент показывал
 // «нет премиума» и открывал пейвол, в то время как сервер ещё пропускал ИИ-функции. Аудит 2026-06-27.
@@ -917,6 +919,11 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
     } catch (error) {
       // Немой catch запрещён: облако не ответило — доступ остаётся по локальному решению, причина в журнале.
       console.warn('[PREMIUM-CLOUD] restoreFromCloud failed', error instanceof Error ? error.message : String(error));
+      // зачем (ревью Ядра 88f20e7b7): метка ставится в начале попытки — неудача закрывала повтор на все 30 мин. Неудачу повторяем через 2 мин.
+      if (accountGenerationIsCurrent(generation)) {
+        _lastCloudAccessRefreshTime = Date.now() - CLOUD_ACCESS_REFRESH_TTL_MS + CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS;
+        console.warn(`[PREMIUM-CLOUD] retry_after_failure inMs=${CLOUD_ACCESS_REFRESH_FAILED_RETRY_MS}`); // guard-ok: ветка повтора
+      }
       return false;
     } finally {
       _cloudAccessRefreshInFlight = null;

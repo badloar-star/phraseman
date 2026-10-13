@@ -2634,6 +2634,9 @@ function LessonScreen() {
     isShowingEnergyFeedbackRef.current = false;
   }, []);
 
+  // Закрытие окна (фон, «назад»): если списание не прошло — выход из урока, а не бесплатное продолжение.
+  const closeNoEnergyModalImplRef = useRef<() => void>(() => {});
+  const closeNoEnergyModal = useCallback(() => closeNoEnergyModalImplRef.current(), []);
   const dismissEnergyModal = useCallback(() => {
     if (lessonExitInFlightRef.current) {
       traceLessonExit('energyModal:ignored', { lessonId, exitInFlight: true });
@@ -2647,6 +2650,11 @@ function LessonScreen() {
     resetNoEnergyModal();
     navigateUpFromLessonScreen();
   }, [beginLessonExit, navigateUpFromLessonScreen, resetNoEnergyModal, lessonId, cellIndex]);
+  closeNoEnergyModalImplRef.current = () => {
+    console.warn(`[ENERGY-GATE] lesson1 modal closed blocked=${String(energyGateBlockedRef.current)} → ${energyGateBlockedRef.current ? 'exit' : 'stay'}`);
+    if (energyGateBlockedRef.current) dismissEnergyModal();
+    else resetNoEnergyModal();
+  };
 
   // зачем (§126): размонтирование урока без парной записи headerBack/energyModal/navigateUp = выход по внешней причине
   // (router.replace из корневого лейаута, сброс навигации). Состояние держим в ref, чтобы запись на размонтировании была свежей.
@@ -2724,15 +2732,46 @@ function LessonScreen() {
   }, [lessonFirstQuestionVisible, energyReady, lessonHydrated, introGateReady, showIntroScreens, hasPlayableLessonRows, remoteFrenchLessonLoadState, lessonId]);
   // зачем (D159, владелец 04.10): энергия окончательно списывается после ПЕРВОГО ОТВЕТА; вышел без ответа — возврат;
   // повторный вход в тот же раздел урока в течение 10 мин — бесплатно.
+  // зачем (energy-modes-017, координатор 13.10, деньги): при ⚡0 окно «Энергия закончилась» закрывалось тапом по фону / «назад» /
+  // переходом в Plus через onClose = resetNoEnergyModal — окно пряталось, урок оставался, энергия НЕ списана, слова нажимались →
+  // урок бесплатно. Пока списание не прошло, ответы заблокированы; закрытие окна без энергии — выход из урока.
+  const energyGateBlockedRef = useRef(false);
+  const [energyGateBlocked, setEnergyGateBlocked] = useState(false);
+  const energyGateRetryInFlightRef = useRef(false);
   const lessonEnergyGate = useFirstQuestionEnergyGate({
     intent: lessonEnergyIntent,
     screen: 'lesson1',
     finalizeOn: 'first_answer',
     firstQuestionVisible: lessonFirstQuestionVisible,
     onResult: (result) => endEnergySpendTrace(`spend:${String(lessonId)}`, String(result)),
-    onInsufficient: () => showEnergyEmptyFeedback(),
+    onInsufficient: () => {
+      energyGateBlockedRef.current = true;
+      setEnergyGateBlocked(true);
+      console.warn(`[ENERGY-GATE] lesson1 blocked: insufficient lessonId=${lessonId} energy=${currentEnergy} bonus=${bonusEnergy} unlimited=${String(testerEnergyDisabled)}`);
+      showEnergyEmptyFeedback();
+    },
     onCancelled: () => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any),
   });
+  useEffect(() => {
+    if (!energyGateBlocked || energyGateRetryInFlightRef.current) return;
+    if (!testerEnergyDisabled && currentEnergy + bonusEnergy <= 0) return;
+    energyGateRetryInFlightRef.current = true;
+    console.warn(`[ENERGY-GATE] lesson1 retry: энергия появилась energy=${currentEnergy} bonus=${bonusEnergy} unlimited=${String(testerEnergyDisabled)}`);
+    void lessonEnergyGate.charge().then((result) => {
+      energyGateRetryInFlightRef.current = false;
+      console.warn(`[ENERGY-GATE] lesson1 retry: result=${result}`);
+      if (result === 'spent' || result === 'unlimited') {
+        energyGateBlockedRef.current = false;
+        setEnergyGateBlocked(false);
+        lessonEnergyGate.markShown();
+        setShowNoEnergyModal(false);
+        isShowingEnergyFeedbackRef.current = false;
+      }
+    }).catch((error: unknown) => {
+      energyGateRetryInFlightRef.current = false;
+      console.warn('[ENERGY-GATE] lesson1 retry: failed', error instanceof Error ? error.message : String(error));
+    });
+  }, [energyGateBlocked, currentEnergy, bonusEnergy, testerEnergyDisabled, lessonEnergyGate]);
 
   const loadData = async () => {
     if (!isLessonScreenPrimedThisSession(lessonStorageId, LESSON_DATA.length, effectiveTotal)) {
@@ -2981,6 +3020,11 @@ function LessonScreen() {
 
   const checkAnswer = useCallback(async (answer: string) => {
     if (!phrase) return;
+    if (energyGateBlockedRef.current) {
+      console.warn('[ENERGY-GATE] lesson1 check blocked — энергия не списана, урок не начат');
+      showEnergyEmptyFeedbackRef.current();
+      return;
+    }
     // зачем: guard СИНХРОННЫЙ и стоит до первого await — иначе два быстрых тапа успевают
     // войти оба (setStatus('result') отрабатывает только после await, и кнопка, завязанная
     // на status === 'playing', ещё не успела перерисоваться). Тот же приём, что
@@ -3102,6 +3146,8 @@ function LessonScreen() {
           // зачем (22.09): узкий список языков не пускал запись ошибки для
           // испанского и немецкого — урок не пополнял «Мои ошибки».
           if (isMistakeStudyTargetValue(stRm)) {
+            const mistakeFacetKind = lessonMistakeFacet({ expectedPhrase: canonKey, answeredPhrase: answer });
+            console.log('[MISTAKE-CAPTURE] facet', JSON.stringify({ phraseId: phrase.id, answer, answerSource: 'checkAnswer.arg', staleSelectedWords: selectedWords.join(' '), facet: mistakeFacetKind, tokenIndex, errWord })); // guard-ok: одна строка на неверный ответ, видно по какому ответу считан тип ошибки
             const attemptScope = serverAttemptIdRef.current
               || lessonAnalyticsAttemptRef.current?.id
               || String(lessonStorageId);
@@ -3143,8 +3189,6 @@ function LessonScreen() {
 
     // Серия правильных ответов — используется для комбо-достижений.
     if (isRight) {
-            const mistakeFacetKind = lessonMistakeFacet({ expectedPhrase: canonKey, answeredPhrase: answer });
-            console.log('[MISTAKE-CAPTURE] facet', JSON.stringify({ phraseId: phrase.id, answer, answerSource: 'checkAnswer.arg', staleSelectedWords: selectedWords.join(' '), facet: mistakeFacetKind, tokenIndex, errWord })); // guard-ok: одна строка на неверный ответ, видно по какому ответу считан тип ошибки
       correctStreakRef.current += 1;
       setComboCount(correctStreakRef.current);
       // Проверка combo читает/пишет состояние всех достижений. Она нужна только
@@ -3525,6 +3569,11 @@ function LessonScreen() {
   const handleWordPress = useCallback((word: string) => {
     if (status === 'result') return;
     if (showNoEnergyModal) return;
+    if (energyGateBlockedRef.current) {
+      console.warn('[ENERGY-GATE] lesson1 tap blocked — энергия не списана, урок не начат');
+      showEnergyEmptyFeedbackRef.current();
+      return;
+    }
 
     const phraseWords = getPhraseTokens(phrase, studyTargetRef.current);
     const totalPhraseWords = phraseWords.length;
@@ -4054,7 +4103,8 @@ function LessonScreen() {
     <NoEnergyModal variant="learn"
       visible={showNoEnergyModal}
       activity="classic_lesson"
-      onClose={resetNoEnergyModal}
+      onClose={closeNoEnergyModal}
+      onBeforeOpenPremium={resetNoEnergyModal}
       onGotIt={dismissEnergyModal}
       paywallContext="no_energy"
     />

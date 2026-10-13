@@ -15,7 +15,10 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   // зачем (Ядро 12.10, energy-modes-006): energy_stop=plus_granted — Plus в памяти на шторке остановки; в стор-бандле заглушка
   'dev_energy_stop_flag',
   // зачем (Авторизация 12.10): показ ранга и баланса монет для съёмки — в стор-бандле заглушка
-  'dev_coin_rank', 'dev_spire_tier'] as const;
+  'dev_coin_rank', 'dev_spire_tier',
+  // зачем (PM-216 пункт В, координатор 13.10): dev-модули, найденные в первом стор-экспорте
+  'dev_ai_consent', 'dev_as_free_flag', 'dev_dialog_send', 'dev_fc_lang_state', 'dev_hub_bus', 'dev_overlays_off',
+  'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_year_activity', 'dev_youtube_demo'] as const;
 
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 const runtimeExports = (source: string): string[] => {
@@ -62,6 +65,33 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     expect(typeof appearance.subscribeDevThemeChoice()).toBe('function');
     const probe = require('../store_release_stubs/dev_state/hub_lifecycle_probe_stub');
     expect(() => { probe.registerHubCacheProbe(); probe.logHubSnapshot(); probe.useHubLifecycle(); probe.noteHubSubscription(); }).not.toThrow();
+    // зачем (PM-216 В): devRunesSeed из ссылки не даёт поддельный счётчик; доступ к урокам и снимок окон — как у настоящего модуля в сторе
+    const runes = require('../store_release_stubs/dev_state/dev_practice_runes_seed_stub');
+    expect([runes.readDevPracticeRunesFakeState('seed123'), runes.DEV_RUNES_SEED_PARAM]).toEqual([null, 'devRunesSeed']);
+    const asFree = require('../store_release_stubs/dev_state/dev_as_free_flag_stub');
+    const access = { isPremium: true, devMode: false };
+    expect([asFree.isDevAsFreeActive(), asFree.applyDevAsFreeToLessonAccess(access, 'lessons')]).toEqual([false, access]);
+    expect(asFree.applyDevAsFreeToLessonAccess(access, 'lessons')).toBe(access);
+    const overlays = require('../store_release_stubs/dev_state/dev_overlays_off_stub');
+    expect([overlays.isDevOverlaysOff(), overlays.getDevOverlaysSnapshot(), overlays.getDevOverlaysSnapshot(), overlays.setDevOverlaysOff(true)]).toEqual([false, '0:0', '0:0', false]);
+    expect(typeof overlays.subscribeDevOverlays(() => undefined)).toBe('function');
+    const hub = require('../store_release_stubs/dev_state/dev_hub_bus_stub');
+    expect(() => hub.requestOpenDevHub('settings_top')).not.toThrow();
+    expect(typeof hub.subscribeOpenDevHub(() => undefined)).toBe('function');
+    const consent = require('../store_release_stubs/dev_state/dev_ai_consent_stub');
+    expect([consent.getDevAiConsentOverride(), consent.getDevAiConsentGranted(), consent.setDevAiConsentOverride('granted')]).toEqual([null, false, false]);
+    const youtube = require('../store_release_stubs/dev_state/dev_youtube_demo_stub');
+    expect([youtube.getDevYoutubeCatalogReader(), youtube.getDevVideoPhrases('x'), youtube.setDevYoutubeDemo('catalog')]).toEqual([null, null, false]);
+    const today = require('../store_release_stubs/dev_state/dev_today_tasks_stub');
+    expect([today.getDevTodayTaskSpire(), today.setDevTodayTaskSpire(true)]).toEqual([false, false]);
+    const year = require('../store_release_stubs/dev_state/dev_year_activity_stub');
+    expect([year.peekDevYearActivityDays(), year.setDevYearActivityDemo(true)]).toEqual([null, false]);
+    const robot = require('../store_release_stubs/dev_state/dev_robot_display_stub');
+    expect([robot.isDevInboxEmpty(), robot.getDevReminderTime(), robot.setDevInboxEmpty(true)]).toEqual([false, null, false]);
+    const fcLang = require('../store_release_stubs/dev_state/dev_fc_lang_state_stub');
+    expect([fcLang.getDevOtherLanguageDecks('en'), fcLang.setDevFcLangs(true)]).toEqual([null, false]);
+    const send = require('../store_release_stubs/dev_state/dev_dialog_send_stub');
+    expect(send.devDialogNextMonthStartMs(Date.UTC(2026, 9, 13))).toBe(Date.UTC(2026, 10, 1));
     /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
   });
 

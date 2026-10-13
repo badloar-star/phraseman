@@ -255,6 +255,9 @@ const storeReleaseDevModules = new Set([
   // тот же класс дыры, что у _admin_*-лаб. Исключены в паре с router.ctx.js.
   './_motion_showcase',
   './_phone_state_sqlcipher_smoke',
+  // зачем (PM-216 пункт В, 13.10): DevHubSheetGate в сторе возвращает null, но require('./DevHubSheet') сборщик всё равно кладёт в бандл
+  // вместе с devToolRegistry и всем, что DEV-хаб тянет (~70 КБ исходника). В стор-сборке — пустой компонент.
+  './DevHubSheet',
 ]);
 
 // зачем (координатор 12.10, ревью безопасности dev-хуков аккаунта): dev-переключатели R1 (аккаунт, VIP/план, промокод/друзья, Карточки, Диалоги, пейвол) импортируются
@@ -286,6 +289,21 @@ const storeReleaseDevStateStubs = new Map(
     'dev_coin_rank',
     // зачем (координатор 13.10): spireTier — лига башни Шпиля для съёмки; в стор-сборке заглушка
     'dev_spire_tier',
+    // зачем (PM-216 пункт В, координатор 13.10 «ДА, делай сейчас»): dev-модули, которые первый стор-экспорт нашёл в бандле — закрыты
+    // только рантайм-проверкой. Заглушки повторяют их ответ в стор-сборке; dev_practice_runes_seed закрывает devRunesSeed из ссылки.
+    // НЕ здесь намеренно: dev_plus_controls (выдача Plus), dev_energy_tools (энергия), dev_fixture_upload_guard (выгрузка синка) —
+    // их чистые функции работают на боевом пути; подмена за 3 дня до сборки = риск денег/данных ради ~30 КБ. После R1.
+    'dev_ai_consent',
+    'dev_as_free_flag',
+    'dev_dialog_send',
+    'dev_fc_lang_state',
+    'dev_hub_bus',
+    'dev_overlays_off',
+    'dev_practice_runes_seed',
+    'dev_robot_display',
+    'dev_today_tasks',
+    'dev_year_activity',
+    'dev_youtube_demo',
   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
 );
 

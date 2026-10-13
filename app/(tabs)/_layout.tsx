@@ -392,7 +392,13 @@ const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 400;
 // зачем (13.10): пауза после коммита вкладки, прежде чем начнётся следующая, — окно для касаний и анимаций; охранный потолок шага — цепочка не зависает, если кадр не пришёл.
 const BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS = 150;
-const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = 4000;
+// зачем (координатор 13.10, замер Сверки f0d559796: коммиты премаунта ≈2,2–2,9 с блоками ≥1 с в окне +5…+12 с): шаг ждёт «тихое окно» — нет касаний ≥ QUIET_TOUCH_MS и нет лага цикла событий > QUIET_LAG_MAX_MS (чужая работа: звуки, deferred-задачи);
+// потолок QUIET_MAX_WAIT_MS гарантирует, что премаунт всё равно случится. Охранный потолок шага = ожидание тишины + 4 с на сам коммит.
+const BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS = 1200;
+const BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS = 80;
+const BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS = 200;
+const BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS = 8000;
+const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS + 4000;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 2, 3, 4] as const;
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп).
@@ -828,6 +834,8 @@ function ReleasedTabLayout() {
   // Четыре таймера (0/180/360/540 мс) ставили независимые idle-задачи с потолком 400 мс: пока первая вкладка держала JS-поток, остальные «выходили по потолку» и коммитились ПОДРЯД, без окна для касаний и анимаций.
   // Теперь работа шагов выстроена в одну цепочку: следующая вкладка начинается только после коммита предыдущей и паузы BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS; каждый шаг пишет замеры в [TABS-PREMOUNT] step.
   const premountChainRef = useRef<Promise<void>>(Promise.resolve());
+  // время последнего касания экрана (для «тихого окна» премаунта); запись — обёрткой вокруг табов, она касания НЕ перехватывает
+  const lastTouchAtRef = useRef(0);
 
   const scheduleMount = useCallback((idx: number) => {
     if (idx < 0 || mountedTabsRef.current.has(idx) || scheduledMountsRef.current.has(idx)) return;
@@ -843,7 +851,7 @@ function ReleasedTabLayout() {
       const startedAt = Date.now();
       let done = false;
       let guard: ReturnType<typeof setTimeout> | null = null;
-      const finish = (outcome: string, extra?: Record<string, number>) => {
+      const finish = (outcome: string, extra?: Record<string, number | string>) => {
         if (done) return;
         done = true;
         if (guard) clearTimeout(guard);
@@ -858,10 +866,15 @@ function ReleasedTabLayout() {
         finish(cancelled ? 'cancelled' : 'already_mounted');
         return;
       }
-      inner = scheduleIdleTask(() => {
+      const quietStartedAt = Date.now();
+      let lastTickAt = quietStartedAt;
+      const startWork = (quiet: Record<string, number | string>) => {
+        if (done) return;
+        const workStartedAt = Date.now();
+        inner = scheduleIdleTask(() => {
         scheduledMountsRef.current.delete(idx);
-        if (AppState.currentState !== 'active') { finish('app_inactive'); return; }
-        const idleWaitMs = Date.now() - startedAt;
+        if (AppState.currentState !== 'active') { finish('app_inactive', quiet); return; }
+        const idleWaitMs = Date.now() - workStartedAt;
         // зачем: та же мина, что была в mountNow — прогрев стоял УСЛОВИЕМ премаунта.
         // Аудит показал: это главный путь при старте (BACKGROUND_TAB_PREMOUNT_ORDER),
         // и он срабатывает раньше тапа. Одна неудача require — mountedTabs не
@@ -872,17 +885,39 @@ function ReleasedTabLayout() {
         if (idx !== 0) prewarmDeferredTabScreen(idx);
         const prewarmMs = Date.now() - prewarmAt;
         requestAnimationFrame(() => {
-          if (AppState.currentState !== 'active') { finish('app_inactive', { idleWaitMs, prewarmMs }); return; }
+          if (AppState.currentState !== 'active') { finish('app_inactive', { ...quiet, idleWaitMs, prewarmMs }); return; }
           const commitAt = Date.now();
           setVisitedTabs((prev) => addVisitedTab(prev, idx));
           setMountedTabs((prev) => addVisitedTab(prev, idx));
           // два кадра = коммит и первый кадр вкладки позади; затем пауза, в которой JS-поток свободен
           requestAnimationFrame(() => requestAnimationFrame(() => {
             const commitMs = Date.now() - commitAt;
-            setTimeout(() => finish('mounted', { idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS);
+            setTimeout(() => finish('mounted', { ...quiet, idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS);
           }));
         });
-      }, BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS);
+        }, BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS);
+      };
+      // «тихое окно»: опрос каждые 200 мс — касание ≥ 1,2 с назад И лаг таймера ≤ 80 мс; иначе ждём до потолка 8 с
+      const pollQuiet = () => {
+        if (done) return;
+        if (cancelled || mountedTabsRef.current.has(idx)) {
+          scheduledMountsRef.current.delete(idx);
+          finish(cancelled ? 'cancelled' : 'already_mounted', { quietWaitMs: Date.now() - quietStartedAt });
+          return;
+        }
+        const now = Date.now();
+        const lastLagMs = Math.max(0, now - lastTickAt - (now === quietStartedAt ? 0 : BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS));
+        lastTickAt = now;
+        const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : now - lastTouchAtRef.current;
+        const quietWaitMs = now - quietStartedAt;
+        const isQuiet = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
+        if (isQuiet || quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS) {
+          startWork({ quietReason: isQuiet ? 'quiet' : 'ceiling', quietWaitMs, lastLagMs, sinceTouchMs: Math.min(sinceTouchMs, 99999) });
+          return;
+        }
+        setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);
+      };
+      pollQuiet();
     }));
   }, []);
 
@@ -1104,6 +1139,10 @@ function ReleasedTabLayout() {
   // держать перехват дальше значило бы ломать штатный выход из приложения.
 
   const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
+  const markTouchForPremount = useCallback(() => {
+    lastTouchAtRef.current = Date.now();
+    return false;
+  }, []);
 
   const tabScreens = useMemo(() => {
     // Главная всегда в дереве; остальные табы получают слот сразу, а реальные экраны
@@ -1160,16 +1199,19 @@ function ReleasedTabLayout() {
       focusTick={focusTick}
     >
       <TopFadeScrollProvider>
-        <TabScaffold
-          tabScreens={tabScreens}
-          currentRouteIsTab={currentRouteIsTab}
-          visualIdx={visualIdx}
-          physicalPageIdx={renderPhysicalIdx}
-          pageLayout={pageLayout}
-          devHubVisible={devHubVisible}
-          onCloseDevHub={closeDevHub}
-          onOpenDevHub={openDevHub}
-        />
+        {/* зачем (13.10, «тихое окно» премаунта): отметка времени касаний без перехвата — onStartShouldSetResponderCapture всегда false; flex:1 — вида не меняет */}
+        <View style={{ flex: 1 }} onStartShouldSetResponderCapture={markTouchForPremount}>
+          <TabScaffold
+            tabScreens={tabScreens}
+            currentRouteIsTab={currentRouteIsTab}
+            visualIdx={visualIdx}
+            physicalPageIdx={renderPhysicalIdx}
+            pageLayout={pageLayout}
+            devHubVisible={devHubVisible}
+            onCloseDevHub={closeDevHub}
+            onOpenDevHub={openDevHub}
+          />
+        </View>
       </TopFadeScrollProvider>
     </TabProvider>
   );

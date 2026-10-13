@@ -28,13 +28,33 @@ describe('background tab pre-mount contract', () => {
     const source = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8').replace(/\r\n/g, '\n');
 
     expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS = 150;');
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = 4000;');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS + 4000;');
     expect(source).toContain('const premountChainRef = useRef<Promise<void>>(Promise.resolve());');
     expect(source).toContain('premountChainRef.current = premountChainRef.current.then(() => new Promise<void>((resolve) => {');
-    expect(source).toContain("setTimeout(() => finish('mounted', { idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS)");
+    expect(source).toContain("setTimeout(() => finish('mounted', { ...quiet, idleWaitMs, prewarmMs, commitMs }), BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS)");
     expect(source).toContain("guard = setTimeout(() => finish('guard_timeout'), BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS)");
     expect(source).toContain("console.log('[TABS-PREMOUNT] step'");
     // отмена тапом (mountNow) и дедупликация сохранены: запись о шаге ставится сразу
     expect(source).toContain('scheduledMountsRef.current.set(idx, { cancel: () => { cancelled = true; inner?.cancel?.(); finishStep?.(); } });');
+  });
+
+  // зачем (координатор 13.10, замер Сверки f0d559796): коммиты премаунта идут блоками ≥1 с в окне +5…+12 с; шаг ждёт «тихое окно» (нет касаний, нет лага цикла событий), потолок 8 с — премаунт всё равно случится.
+  it('waits for a quiet window before each pre-mount step: no recent touch, no event-loop lag, with a ceiling', () => {
+    const source = fs.readFileSync(path.join(root, 'app', '(tabs)', '_layout.tsx'), 'utf8').replace(/\r\n/g, '\n');
+
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS = 1200;');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS = 80;');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS = 200;');
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS = 8000;');
+    expect(source).toContain('const lastTouchAtRef = useRef(0);');
+    expect(source).toContain('const isQuiet = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;');
+    expect(source).toContain("quietReason: isQuiet ? 'quiet' : 'ceiling'");
+    expect(source).toContain('if (isQuiet || quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS) {');
+    // обёртка отмечает касания, но их НЕ перехватывает (всегда false) и вида не меняет (flex: 1)
+    expect(source).toContain('onStartShouldSetResponderCapture={markTouchForPremount}');
+    const markAt = source.indexOf('const markTouchForPremount = useCallback(() => {');
+    expect(source.slice(markAt, markAt + 160)).toContain('return false;');
+    // лог шага несёт замеры тишины
+    expect(source).toContain("{ ...quiet, idleWaitMs, prewarmMs, commitMs }");
   });
 });

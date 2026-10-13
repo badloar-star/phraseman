@@ -155,6 +155,7 @@ export function mistakeSourceGroupFor(sourceKind: string | null | undefined): Mi
       return 'exams';
     case 'voice_review':
     case 'diagnosis_coach':
+    case 'dialogue':
       return 'other';
     default:
       // зачем: PM-192-A2 — Арена удалена (D83), группы 'arena' больше нет;

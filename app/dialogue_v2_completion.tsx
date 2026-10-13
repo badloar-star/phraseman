@@ -15,6 +15,7 @@ import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useDialogueV2CoinReward } from '../hooks/useDialogueV2CoinReward';
+import { useDialogueV2MistakeCapture } from '../hooks/useDialogueV2MistakeCapture';
 import {
   DialogueGlassBackButton,
   DialogueGlassCta,
@@ -236,6 +237,14 @@ export default function DialogueV2CompletionRoute() {
     ready: state.kind !== 'loading' && turns > 0,
     endedBy,
     mistakes,
+  });
+  // зачем (владелец 13.10 «Да, пусть попадают в Мои ошибки»): поправки «было → стало» уходят в журнал ошибок (вид 'dialogue');
+  // dialogMistakes.mistakeIds — N для «Добить: Ещё учу (N)», dialogMistakes.openPractice — её нажатие. Кнопку рисует Дизайн.
+  const dialogMistakes = useDialogueV2MistakeCapture({
+    sessionId: sessionId ?? null,
+    studyTarget,
+    rows: errorRows,
+    ready: state.kind !== 'loading',
   });
   // зачем (решение владельца 13.10, practice.html#done / dialogs.html D1–D4): пилюля баланса справа в шапке и «+N монет» с монетой под цифрами.
   // Блок появляется, когда монеты легли в копилку (status='awarded'); повторный заход на экран ('already', coins=0) его не рисует — поздравляем фактом, а не записью.

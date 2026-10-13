@@ -54,7 +54,9 @@ export type MistakeSourceKind =
   | 'exam'
   | 'learning_v2'
   | 'diagnosis_coach'
-  | 'voice_review';
+  | 'voice_review'
+  // зачем (владелец 13.10): поправки «было → стало» из итога диалога (app/dialogue_v2_mistake_capture.ts).
+  | 'dialogue';
 
 export interface MistakeContentRef {
   readonly sourceKind: MistakeSourceKind;

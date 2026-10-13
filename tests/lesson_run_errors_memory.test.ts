@@ -1,5 +1,16 @@
-// зачем (владелец 13.10): список «Ошибки» на итоге урока строится из промахов прохода — слово, что выбрал, что верно.
-import { clearLessonRunErrors, lessonRunErrorRows, LESSON_RUN_ERRORS_LIMIT, parseDevLessonResult, peekLessonRunErrors, rememberLessonRunErrors } from '../app/lesson_run_errors_memory';
+// зачем (владелец 13.10): список «Ошибки» на итоге урока строится из промахов прохода — слово, что выбрал, что верно;
+// «Добить: Ещё учу (N)» берёт id записанных ошибок прохода; счёт приходит и из навигации урока.
+import {
+  clearLessonRunErrors,
+  collectLessonRunMistakeId,
+  lessonRunErrorRows,
+  LESSON_RUN_ERRORS_LIMIT,
+  parseDevLessonResult,
+  parseRouteLessonResult,
+  peekLessonRunErrors,
+  peekLessonRunMistakeIds,
+  rememberLessonRunErrors,
+} from '../app/lesson_run_errors_memory';
 
 describe('lesson_run_errors_memory', () => {
   afterEach(() => clearLessonRunErrors());
@@ -20,21 +31,45 @@ describe('lesson_run_errors_memory', () => {
     expect(lessonRunErrorRows(many)).toHaveLength(LESSON_RUN_ERRORS_LIMIT);
   });
 
-  it('dev-ссылка devResult=верно:ошибок считает счёт и медаль теми же порогами', () => {
-    expect(parseDevLessonResult('15:5')).toEqual({ correct: 15, wrong: 5, score: 3.8, tier: 'bronze' });
-    expect(parseDevLessonResult(['20:0'])).toEqual({ correct: 20, wrong: 0, score: 5, tier: 'gold' });
-    expect(parseDevLessonResult('9:1')?.tier).toBe('silver');
-    expect(parseDevLessonResult('1:9')?.tier).toBe('none');
-    expect(parseDevLessonResult('0:0')).toBeNull();
-    expect(parseDevLessonResult('abc')).toBeNull();
-    expect(parseDevLessonResult(undefined)).toBeNull();
-  });
-
   it('помнит только последний проход и только для своего урока', () => {
     rememberLessonRunErrors(3, [{ phrase: 'p', tokenText: 'Do', picked: 'Does', expected: 'Do' }]);
     expect(peekLessonRunErrors(3)).toHaveLength(1);
     expect(peekLessonRunErrors(4)).toEqual([]);
     clearLessonRunErrors();
     expect(peekLessonRunErrors(3)).toEqual([]);
+  });
+
+  it('id ошибок прохода: без повторов, обнуляются после запоминания, чужой урок не примешивается', () => {
+    collectLessonRunMistakeId(3, 'm1');
+    collectLessonRunMistakeId(3, 'm2');
+    collectLessonRunMistakeId(3, 'm1');
+    rememberLessonRunErrors(3, []);
+    expect(peekLessonRunMistakeIds(3)).toEqual(['m1', 'm2']);
+    expect(peekLessonRunMistakeIds(4)).toEqual([]);
+    // следующий проход начинается с нуля
+    rememberLessonRunErrors(3, []);
+    expect(peekLessonRunMistakeIds(3)).toEqual([]);
+    // id чужого урока не попадает в проход этого
+    collectLessonRunMistakeId(5, 'x');
+    collectLessonRunMistakeId(3, 'y');
+    rememberLessonRunErrors(3, []);
+    expect(peekLessonRunMistakeIds(3)).toEqual(['y']);
+  });
+
+  it('dev-ссылка devResult=верно:ошибок считает счёт как настоящий проход', () => {
+    expect(parseDevLessonResult('15:5')).toEqual({ correct: 15, wrong: 5, score: 3.8 });
+    expect(parseDevLessonResult(['20:0'])).toEqual({ correct: 20, wrong: 0, score: 5 });
+    expect(parseDevLessonResult('0:0')).toBeNull();
+    expect(parseDevLessonResult('abc')).toBeNull();
+    expect(parseDevLessonResult(undefined)).toBeNull();
+  });
+
+  it('счёт из навигации урока: верно и всего → верно/ошибок/оценка; мусор отбрасывается', () => {
+    expect(parseRouteLessonResult('45', '50')).toEqual({ correct: 45, wrong: 5, score: 4.5 });
+    expect(parseRouteLessonResult(['10'], ['10'])).toEqual({ correct: 10, wrong: 0, score: 5 });
+    expect(parseRouteLessonResult('11', '10')).toBeNull();
+    expect(parseRouteLessonResult('5', '0')).toBeNull();
+    expect(parseRouteLessonResult('x', '10')).toBeNull();
+    expect(parseRouteLessonResult(undefined, '10')).toBeNull();
   });
 });

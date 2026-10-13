@@ -65,7 +65,7 @@ import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts
 import { getStableId } from './stable_id';
 import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { lessonMistakeFacet } from './lesson_mistake_facet';
-import { rememberLessonRunErrors } from './lesson_run_errors_memory';
+import { collectLessonRunMistakeId, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import {
@@ -3182,6 +3182,8 @@ function LessonScreen() {
                   expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
                 },
               }))
+              // зачем (владелец 13.10, «Добить: Ещё учу (N)»): id записанной ошибки нужен итогу урока, чтобы запустить повтор именно этих ошибок.
+              .then((captured) => { if (captured.kind === 'captured') collectLessonRunMistakeId(lessonId, captured.mistakeId); })
               .catch(noteSwallowedHandler('lesson1:useCallback.getStableId'));
           }
         }
@@ -3405,6 +3407,9 @@ function LessonScreen() {
               // копилку по (lessonId, studyTarget, completionOrdinal) и сам
               // зовёт settle() при монтировании.
               runeCompletionOrdinal: String(passCount + 1),
+              // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
+              resultCorrect: String(correct),
+              resultTotal: String(effectiveTotal),
               ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
               ...comboRouteParams,
               ...coachRouteParams,
@@ -3430,6 +3435,9 @@ function LessonScreen() {
               repeatAttemptId: nextAttemptId,
               passed: finalScore >= 2.5 ? '1' : '0',
               runeCompletionOrdinal: String(passCount + 1),
+              // зачем (координатор 13.10): счёт прохода едет в маршруте — итог не зависит от хранилища прогресса и не рисуется пустым.
+              resultCorrect: String(correct),
+              resultTotal: String(effectiveTotal),
               ...(devRunesSeedParam ? { devRunesSeed: devRunesSeedParam } : {}),
               ...comboRouteParams,
             },

@@ -10,7 +10,7 @@ describe('lesson completion single finish surface', () => {
   // зачем (владелец 01.10): итог урока = общий экран 2.0 по макету learn.html E.
   it('renders the shared 2.0 done screen with the earned stars', () => {
     expect(completionSurface).toContain('<V2DoneScreen');
-    expect(completionSurface).toContain('stars={isComboCompletion ? null : RESULTS_STARS_BY_TIER[medalTier]}');
+    expect(completionSurface).toContain('stars={isComboCompletion ? null : resultStars}');
     expect(completionSurface).toContain('goNext();');
   });
 

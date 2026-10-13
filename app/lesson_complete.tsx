@@ -34,7 +34,8 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useSoftUpsellOpportunity } from '../hooks/use_soft_upsell_opportunity';
 import { checkAchievements } from './achievements';
 import { STORE_URL } from './config';
-import { checkGemAchievements, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
+import { checkGemAchievements, getMedalTier, loadMedalInfo, saveMedalProgress, type MedalTier } from './medal_utils';
+import { lessonScoreToPercent, lessonStarCountFromPercent } from './lesson_star_scale';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { scheduleD1PersonalizedReminder } from './notifications';
 import { resolveNotificationLang } from './notification_lang';
@@ -78,7 +79,7 @@ import { getLessonData } from './lesson_data_all';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ResultsSequence from '../components/feedback/ResultsSequence';
 import V2DoneScreen from '../components/completion/V2DoneScreen';
-import { parseDevLessonResult, peekLessonRunErrors, rememberLessonRunErrors } from './lesson_run_errors_memory';
+import { parseDevLessonResult, parseRouteLessonResult, peekLessonRunErrors, peekLessonRunMistakeIds, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import { lessonNamesForLang } from '../constants/lessons';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
@@ -105,15 +106,16 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   gold: require('../assets/images/levels/zoloto.webp'),
 };
 
-// ── ResultsSequence (FeedbackKit, спек §2/§2.1) ──────────────────────────────
-// Маппинг медали в 0-3 звезды секвенции. Лестница медалей строгая (getMedalTier:
-// bronze ≥ 2.5, silver ≥ 4.5, gold = 5.0), поэтому соответствие однозначно.
-const RESULTS_STARS_BY_TIER: Record<MedalTier, number> = {
-  none: 0,
-  bronze: 1,
-  silver: 2,
-  gold: 3,
-};
+// зачем (координатор 13.10, learn.html E1–E3 + D121): звёзды итога считаются по ПРОЦЕНТУ верных (≥85 — 3★, 60–84 — 2★, ниже — 1★,
+// см. lesson_star_scale.ts), а не по медали (бронза ≥ 50 %, серебро ≥ 90 %, золото = 100 %): иначе 75 % показывали 1★ и «Повторить урок»,
+// хотя следующий урок открыт с 60 %. Медаль остаётся для достижений и уведомлений.
+const EMPTY_MISTAKE_IDS: readonly string[] = [];
+// «Добить: Ещё учу (N)» — подпись под главной кнопкой итога урока (learn.html E; 9 языков, число — в скобках).
+const finishMistakesLabels = (n: number) => ({
+  ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
+  'pt-BR': `Finalizar: Ainda aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Masih belajar (${n})`,
+  tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dobij: Jeszcze się uczę (${n})`,
+});
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';
 
@@ -533,6 +535,9 @@ export default function LessonComplete() {
     devRunesSeed?: string | string[];
     /** Только dev: «верно:ошибок», напр. "15:5" — итог без настоящего прогресса урока рисуется с цифрами и примером ошибок. */
     devResult?: string | string[];
+    /** Счёт прохода от экрана урока: верно и всего ответов — запасной источник, когда ключа прогресса в хранилище нет. */
+    resultCorrect?: string | string[];
+    resultTotal?: string | string[];
     /** Комбинированный урок: id тем через запятую. Пусто — обычный урок. */
     combo?: string | string[];
     /** Разбивка «тема:верно:всего» через запятую, напр. "3:16:17,10:10:16". */
@@ -628,6 +633,8 @@ export default function LessonComplete() {
   const [reviewContext, setReviewContext] = useState<ReviewContext>('perfect_lesson');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
   const [lessonScore, setLessonScore] = useState<number>(0);
+  // зачем (D121 / learn.html E1–E3): звёзды итога — по проценту верных, не по медали; нет оценки — 0 звёзд.
+  const resultStars = lessonScore > 0 ? lessonStarCountFromPercent(lessonScoreToPercent(lessonScore)) : 0;
   // зачем (макет E, 01.10): общий итог показывает «верно / ошибок / точность» — считаем из того же
   // прогресса, что и балл; null, пока прогресс не прочитан (блок не рисуется, ничего не выдумываем).
   const [lessonCounts, setLessonCounts] = useState<{ correct: number; wrong: number } | null>(null);
@@ -752,7 +759,7 @@ export default function LessonComplete() {
   // зачем (владелец 13.10, «почему тут нет всех элементов»; сперва логи): в момент показа итога — какие блоки V2DoneScreen получили данные и какое значение это решило; «нет» у блока = он не нарисован.
   useEffect(() => {
     if (!sequenceShowing) return;
-    DebugLogger.info('[LESSON-RESULT]', `показ итога lesson=${lessonId} комбо=${String(isComboCompletion)}: звёзды=${isComboCompletion ? 'нет(комбо)' : String(RESULTS_STARS_BY_TIER[medalTier])} (tier=${medalTier}, score=${lessonScore}) | верно/ошибок=${lessonCounts ? `${lessonCounts.correct}/${lessonCounts.wrong}` : 'нет(lessonCounts=null)'} | монеты=+${practiceRunes.runes} (hydrating=${String(practiceRunes.hydrating)}) | заметкаPlus=${String(completionRequiresPremium)} | списокОшибок=${isComboCompletion ? "нет(комбо)" : peekLessonRunErrors(lessonId).length} | оценка=${String(showLessonFeedback)} | следующийОткрыт=${String(Boolean(nextLessonUnlockHint))}`);
+    DebugLogger.info('[LESSON-RESULT]', `показ итога lesson=${lessonId} комбо=${String(isComboCompletion)}: звёзды=${isComboCompletion ? 'нет(комбо)' : String(resultStars)} (по проценту: score=${lessonScore}; медаль=${medalTier}) | верно/ошибок=${lessonCounts ? `${lessonCounts.correct}/${lessonCounts.wrong}` : 'нет(lessonCounts=null)'} | монеты=+${practiceRunes.runes} (hydrating=${String(practiceRunes.hydrating)}) | заметкаPlus=${String(completionRequiresPremium)} | списокОшибок=${isComboCompletion ? "нет(комбо)" : peekLessonRunErrors(lessonId).length} | оценка=${String(showLessonFeedback)} | следующийОткрыт=${String(Boolean(nextLessonUnlockHint))}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sequenceShowing]);
   useEffect(() => {
@@ -999,14 +1006,17 @@ export default function LessonComplete() {
         const info = await loadMedalInfo(lessonId, studyTarget);
         // зачем (владелец 13.10, «почему тут нет всех элементов»; сперва логи): эта ветка рисует итог БЕЗ счёта «верно/ошибок» (lessonCounts=null), без ошибок и начисления — ровно «заголовок, серые звёзды, +0».
         const devDemo = __DEV__ ? parseDevLessonResult(params.devResult) : null;
-        DebugLogger.warn('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НЕ_НАЙДЕН lesson=${lessonId} target=${studyTarget} ключ=${lessonProgressKey(lessonId, studyTarget)} → из памяти: bestScore=${String(info.bestScore)} tier=${info.tier}; devResult=${devDemo ? `${devDemo.correct}:${devDemo.wrong} → score=${devDemo.score} tier=${devDemo.tier}` : 'нет'}${devDemo ? '' : '; счёт верно/ошибок не будет показан'}`);
-        if (devDemo) {
-          // зачем (владелец 13.10): dev-ссылка с devResult рисует итог урока с цифрами и примером ошибок — как после настоящего прохода (для сверки с макетом).
-          setLessonCounts({ correct: devDemo.correct, wrong: devDemo.wrong });
-          setLessonScore(devDemo.score);
-          setMedalTier(devDemo.tier);
+        // зачем (координатор 13.10): без ключа прогресса счёт берём из маршрута — его кладёт экран урока (resultCorrect/resultTotal), итог не рисуется пустым.
+        const routeResult = parseRouteLessonResult(params.resultCorrect, params.resultTotal);
+        const fallbackCounts = devDemo ?? routeResult;
+        DebugLogger.warn('[LESSON-RESULT]', `ветка=ПРОГРЕСС_НЕ_НАЙДЕН lesson=${lessonId} target=${studyTarget} ключ=${lessonProgressKey(lessonId, studyTarget)} → из памяти: bestScore=${String(info.bestScore)} tier=${info.tier}; источник счёта=${devDemo ? 'devResult' : routeResult ? 'маршрут' : 'нет'}${fallbackCounts ? ` верно=${fallbackCounts.correct} ошибок=${fallbackCounts.wrong} score=${fallbackCounts.score}` : '; счёт верно/ошибок не будет показан'}`);
+        if (fallbackCounts) {
+          // зачем (владелец 13.10): итог без прогресса в хранилище всё равно рисуется с цифрами; dev-ссылка с devResult добавляет пример ошибки — для сверки с макетом.
+          setLessonCounts({ correct: fallbackCounts.correct, wrong: fallbackCounts.wrong });
+          setLessonScore(fallbackCounts.score);
+          setMedalTier(getMedalTier(fallbackCounts.score));
           setMedalImproved(false);
-          rememberLessonRunErrors(lessonId, [{ phrase: 'Does she work here?', tokenText: 'Does', picked: 'Do', expected: 'Does' }]);
+          if (devDemo) rememberLessonRunErrors(lessonId, [{ phrase: 'Does she work here?', tokenText: 'Does', picked: 'Do', expected: 'Does' }]);
           setResultsReady(true);
           return;
         }
@@ -1108,7 +1118,7 @@ export default function LessonComplete() {
       cancelled = true;
       clearLessonCompleteNotifTimer();
     };
-  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.devResult, params.unlocked, router, scheduleActiveNotif, studyTarget]);
+  }, [canApplyCompletionRewards, clearLessonCompleteNotifTimer, completionAttemptId, grantBonus, lessonId, params.devResult, params.resultCorrect, params.resultTotal, params.unlocked, router, scheduleActiveNotif, studyTarget]);
 
   // ── Триггер регистрационной модалки после первого урока ────────────────────
   // Показывается ровно один раз: только для урока 1, только если юзер ещё не залогинен
@@ -1213,6 +1223,19 @@ export default function LessonComplete() {
     router.replace({ pathname: '/lessons_list', params: { id: lessonId } });
   }, [router, lessonId]);
 
+  // зачем (решение владельца 13.10, макет learn.html E: «Добить: Ещё учу (N)» и «Повторить ошибки»): повтор ошибок ЭТОГО прохода в «Моих ошибках» по id записанных ошибок.
+  const finishMistakes = useCallback(() => {
+    const ids = peekLessonRunMistakeIds(lessonId);
+    if (ids.length < 1) {
+      DebugLogger.warn('[LESSON-RESULT]', `«Добить» нажато без id ошибок lesson=${lessonId} — ничего не запущено`);
+      return;
+    }
+    hapticTap();
+    DebugLogger.info('[LESSON-RESULT]', `«Добить» lesson=${lessonId}: ошибок=${ids.length} → /mistake_practice_session`);
+    markNextNavigationAsReplace();
+    router.replace({ pathname: '/mistake_practice_session', params: { mistakeIds: ids.join(','), length: 'all' } } as never);
+  }, [router, lessonId]);
+
   const handleRepeatLesson = useCallback(() => {
     if (repeatOpeningRef.current) return;
     repeatOpeningRef.current = true;
@@ -1289,6 +1312,8 @@ export default function LessonComplete() {
   // проверенную поочерёдную анимацию трёх звёзд; здесь не создаём ни карточек,
   // ни модалок, ни промежуточного экрана после неё.
   const legacyCompletionSurfacesEnabled = false;
+  // зачем (решение владельца 13.10): id ошибок этого прохода из «Моих ошибок» — основа кнопки «Добить: Ещё учу (N)» и «Повторить ошибки» в карточке; у комбо ошибок темы нет.
+  const runMistakeIds = isComboCompletion ? EMPTY_MISTAKE_IDS : peekLessonRunMistakeIds(lessonId);
   if (!legacyCompletionSurfacesEnabled) {
     if (sequenceShowing) {
       return (
@@ -1303,8 +1328,8 @@ export default function LessonComplete() {
                 triLang(lang, { ru: `Урок ${lessonId}`, en: `Lesson ${lessonId}`, uk: `Урок ${lessonId}`, es: `Lección ${lessonId}`, 'pt-BR': `Lição ${lessonId}`, vi: `Bài ${lessonId}`, id: `Pelajaran ${lessonId}`, tr: `Ders ${lessonId}`, pl: `Lekcja ${lessonId}` }),
                 lessonNamesForLang(lang)[lessonId - 1],
               ].filter(Boolean).join(' · ')}
-              stars={isComboCompletion ? null : RESULTS_STARS_BY_TIER[medalTier]}
-              starsNote={!isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1
+              stars={isComboCompletion ? null : resultStars}
+              starsNote={!isComboCompletion && resultStars === 1
                 ? triLang(lang, { ru: 'Для следующего урока нужно 2★', en: 'You need 2★ for the next lesson', uk: 'Для наступного уроку потрібно 2★', es: 'Necesitas 2★ para la siguiente lección', 'pt-BR': 'Você precisa de 2★ para a próxima lição', vi: 'Cần 2★ để mở bài tiếp theo', id: 'Butuh 2★ untuk pelajaran berikutnya', tr: 'Sonraki ders için 2★ gerekir', pl: 'Do następnej lekcji potrzeba 2★' })
                 : nextLessonUnlockHint
                   ? triLang(lang, { ru: 'Следующий урок открыт', en: 'The next lesson is open', uk: 'Наступний урок відкрито', es: 'La siguiente lección está abierta', 'pt-BR': 'A próxima lição está aberta', vi: 'Bài tiếp theo đã mở', id: 'Pelajaran berikutnya terbuka', tr: 'Sonraki ders açıldı', pl: 'Następna lekcja jest otwarta' })
@@ -1313,6 +1338,7 @@ export default function LessonComplete() {
               wrong={lessonCounts?.wrong ?? null}
               // зачем (владелец 13.10): список «Ошибки» из макета practice.html#done — промахи только что пройденного урока (память процесса, см. lesson_run_errors_memory); у комбо и без промахов блока нет.
               errors={isComboCompletion ? undefined : peekLessonRunErrors(lessonId)}
+              onRepeatErrors={runMistakeIds.length > 0 ? finishMistakes : undefined}
               coinsGained={practiceRunes.runes}
               plusNote={completionRequiresPremium ? {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
@@ -1369,14 +1395,14 @@ export default function LessonComplete() {
               // зачем (макет learn.html E1–E4): у каждого исхода свои кнопки.
               primaryLabel={completionRequiresPremium
                 ? triLang(lang, { ru: 'Открыть Plus', en: 'Open Plus', uk: 'Відкрити Plus', es: 'Abrir Plus', 'pt-BR': 'Abrir Plus', vi: 'Mở Plus', id: 'Buka Plus', tr: 'Plus’ı aç', pl: 'Otwórz Plus' })
-                : !isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1
+                : !isComboCompletion && resultStars === 1
                   ? triLang(lang, { ru: 'Повторить урок', en: 'Repeat the lesson', uk: 'Повторити урок', es: 'Repetir la lección', 'pt-BR': 'Repetir a lição', vi: 'Học lại bài', id: 'Ulangi pelajaran', tr: 'Dersi tekrarla', pl: 'Powtórz lekcję' })
                   : isComboCompletion
                     ? triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
                     : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
               primaryBusy={nextOpening}
               onPrimary={() => {
-                if (!completionRequiresPremium && !isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1) {
+                if (!completionRequiresPremium && !isComboCompletion && resultStars === 1) {
                   handleRepeatLesson();
                   return;
                 }
@@ -1389,10 +1415,13 @@ export default function LessonComplete() {
               }}
               secondaryLabel={isComboCompletion ? undefined : completionRequiresPremium
                 ? triLang(lang, { ru: 'Остаться на бесплатном', en: 'Stay on Free', uk: 'Залишитися на безкоштовному', es: 'Seguir en gratis', 'pt-BR': 'Ficar no grátis', vi: 'Tiếp tục bản miễn phí', id: 'Tetap gratis', tr: 'Ücretsiz devam et', pl: 'Zostań przy darmowym' })
-                : RESULTS_STARS_BY_TIER[medalTier] === 1
+                : resultStars === 1
                   ? triLang(lang, { ru: 'К списку уроков', en: 'To the lesson list', uk: 'До списку уроків', es: 'A la lista de lecciones', 'pt-BR': 'Para a lista de lições', vi: 'Về danh sách bài', id: 'Ke daftar pelajaran', tr: 'Ders listesine', pl: 'Do listy lekcji' })
-                  : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
-              onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || RESULTS_STARS_BY_TIER[medalTier] === 1) ? goBackFromComplete : handleRepeatLesson}
+                  : runMistakeIds.length > 0
+                    // зачем (решение владельца 13.10, learn.html E): под «Следующий урок» — «Добить: Ещё учу (N)», N = ошибки прохода, записанные в «Мои ошибки»; без ошибок остаётся «Пройти ещё раз».
+                    ? triLang(lang, finishMistakesLabels(runMistakeIds.length))
+                    : triLang(lang, { ru: 'Пройти ещё раз', en: 'Try again', uk: 'Пройти ще раз', es: 'Repetir', 'pt-BR': 'Fazer de novo', vi: 'Làm lại', id: 'Ulangi', tr: 'Tekrar yap', pl: 'Jeszcze raz' })}
+              onSecondary={isComboCompletion ? undefined : (completionRequiresPremium || resultStars === 1) ? goBackFromComplete : runMistakeIds.length > 0 ? finishMistakes : handleRepeatLesson}
               onClose={goBackFromComplete}
             />
             <ReviewPromptModal
@@ -1725,7 +1754,7 @@ export default function LessonComplete() {
       {sequenceShowing && (
         <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999 }}>
           <ResultsSequence
-            stars={RESULTS_STARS_BY_TIER[medalTier]}
+            stars={resultStars}
             runes={practiceRunes.runes}
             title={c.title}
             subtitle={c.subtitle(lessonId)}

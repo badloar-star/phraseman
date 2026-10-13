@@ -2,8 +2,8 @@ import type { V2DoneError } from '../components/completion/V2DoneScreen';
 import type { PhraseMistakeInput } from './phrase_analytics';
 
 /**
- * Ошибки только что пройденного урока для списка «Ошибки» на итоге (макет practice.html#done, урок V1:
- * «слово → было → стало»).
+ * Ошибки только что пройденного урока для итога (макет learn.html E1–E4 / practice.html#done):
+ * список «Ошибки» («слово → было → стало») и кнопка «Добить: Ещё учу (N)» — повтор этих ошибок в «Моих ошибках».
  *
  * зачем (владелец 13.10, «почему тут нет всех элементов»): итог урока не получал список ошибок вообще — в массиве прогресса
  * лежат только `correct`/`wrong` без фраз, а сами промахи жили в `lessonWrongMistakesRef` экрана урока и обнулялись перед
@@ -12,7 +12,10 @@ import type { PhraseMistakeInput } from './phrase_analytics';
  */
 export const LESSON_RUN_ERRORS_LIMIT = 5;
 
-let remembered: Readonly<{ lessonId: number; rows: readonly V2DoneError[] }> | null = null;
+type Remembered = Readonly<{ lessonId: number; rows: readonly V2DoneError[]; mistakeIds: readonly string[] }>;
+
+let remembered: Remembered | null = null;
+let collecting: { lessonId: number; ids: string[] } | null = null;
 
 /** Строки «слово → было → стало» из промахов урока: без повторов по слову, только там, где известен выбранный ответ. */
 export function lessonRunErrorRows(signals: readonly PhraseMistakeInput[]): readonly V2DoneError[] {
@@ -33,8 +36,18 @@ export function lessonRunErrorRows(signals: readonly PhraseMistakeInput[]): read
   return rows;
 }
 
+/** В «Моих ошибках» записалась ошибка этого прохода (id нужен кнопке «Добить»). Повтор того же id не считается дважды. */
+export function collectLessonRunMistakeId(lessonId: number, mistakeId: string): void {
+  if (!mistakeId) return;
+  if (!collecting || collecting.lessonId !== lessonId) collecting = { lessonId, ids: [] };
+  if (!collecting.ids.includes(mistakeId)) collecting.ids.push(mistakeId);
+}
+
+/** Проход закончен: запоминаем строки списка и id собранных ошибок; сборщик обнуляется — следующий проход начнётся с нуля. */
 export function rememberLessonRunErrors(lessonId: number, signals: readonly PhraseMistakeInput[]): void {
-  remembered = { lessonId, rows: lessonRunErrorRows(signals) };
+  const mistakeIds = collecting && collecting.lessonId === lessonId ? [...collecting.ids] : [];
+  collecting = null;
+  remembered = { lessonId, rows: lessonRunErrorRows(signals), mistakeIds };
 }
 
 /** Ошибки последнего прохода именно этого урока; чужой урок или пусто — пустой список. */
@@ -42,26 +55,54 @@ export function peekLessonRunErrors(lessonId: number): readonly V2DoneError[] {
   return remembered && remembered.lessonId === lessonId ? remembered.rows : [];
 }
 
-export function clearLessonRunErrors(): void {
-  remembered = null;
+/** id ошибок последнего прохода этого урока из «Моих ошибок» — для «Добить: Ещё учу (N)». */
+export function peekLessonRunMistakeIds(lessonId: number): readonly string[] {
+  return remembered && remembered.lessonId === lessonId ? remembered.mistakeIds : [];
 }
 
-export type DevLessonResultDemo = Readonly<{ correct: number; wrong: number; score: number; tier: 'none' | 'bronze' | 'silver' | 'gold' }>;
+export function clearLessonRunErrors(): void {
+  remembered = null;
+  collecting = null;
+}
+
+export type LessonResultCounts = Readonly<{ correct: number; wrong: number; score: number }>;
+
+/** Счёт урока по числам верно/ошибок: оценка 0…5 как у настоящего прохода (верно / всего × 5, один знак). */
+export function lessonResultFromCounts(correct: number, wrong: number): LessonResultCounts | null {
+  if (!Number.isFinite(correct) || !Number.isFinite(wrong) || correct < 0 || wrong < 0) return null;
+  const total = correct + wrong;
+  if (total <= 0) return null;
+  return { correct, wrong, score: parseFloat(((correct / total) * 5).toFixed(1)) };
+}
+
+function firstParam(raw: string | readonly string[] | undefined): string | undefined {
+  return Array.isArray(raw) ? raw[0] : (raw as string | undefined);
+}
 
 /**
  * Только dev: ссылка `/lesson_complete?id=1&devResult=15:5` открывает итог с цифрами, как после настоящего прохода.
  * зачем (владелец 13.10): без прогресса урока итог по dev-ссылке рисовал «заголовок + серые звёзды + +0» без счёта и ошибок —
- * робот-съёмка Сверки снимала пустой экран. Медаль считается теми же порогами, что и настоящая (5 баллов за 100 %: бронза ≥ 2,5, серебро ≥ 4,5, золото = 5,0).
+ * робот-съёмка Сверки снимала пустой экран.
  */
-export function parseDevLessonResult(raw: string | readonly string[] | undefined): DevLessonResultDemo | null {
-  const text = Array.isArray(raw) ? raw[0] : raw;
+export function parseDevLessonResult(raw: string | readonly string[] | undefined): LessonResultCounts | null {
+  const text = firstParam(raw);
   const match = typeof text === 'string' ? /^(\d{1,2}):(\d{1,2})$/.exec(text) : null;
-  if (!match) return null;
-  const correct = Number(match[1]);
-  const wrong = Number(match[2]);
-  const total = correct + wrong;
-  if (total <= 0) return null;
-  const score = parseFloat(((correct / total) * 5).toFixed(1));
-  const tier = score >= 5 ? 'gold' : score >= 4.5 ? 'silver' : score >= 2.5 ? 'bronze' : 'none';
-  return { correct, wrong, score, tier };
+  return match ? lessonResultFromCounts(Number(match[1]), Number(match[2])) : null;
+}
+
+/**
+ * Итог урока, пришедший В МАРШРУТЕ от экрана урока (`resultCorrect`, `resultTotal`), — запасной источник, когда ключа прогресса
+ * в хранилище нет (очищен, не успел записаться): координатор 13.10 — «показывать полный вид с данными сессии из навигации».
+ */
+export function parseRouteLessonResult(
+  correctRaw: string | readonly string[] | undefined,
+  totalRaw: string | readonly string[] | undefined,
+): LessonResultCounts | null {
+  const correctText = firstParam(correctRaw);
+  const totalText = firstParam(totalRaw);
+  if (!correctText || !totalText || !/^\d{1,3}$/.test(correctText) || !/^\d{1,3}$/.test(totalText)) return null;
+  const correct = Number(correctText);
+  const total = Number(totalText);
+  if (total <= 0 || correct > total) return null;
+  return lessonResultFromCounts(correct, total - correct);
 }

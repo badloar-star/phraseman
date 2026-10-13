@@ -1,0 +1,251 @@
+/* PhraseMan 2.0 — «Моменты вовлечения»: общий каркас галереи модалов/церемоний (v1, 13.10.2026).
+   зачем: владелец просит нарисовать ВСЕ моменты приложения (существующие — улучшенные, и недостающие) по 2–3 варианта
+   с живой анимацией. Этот файл — базовые токены, телефон 390×844, поверхности в стиле «Тень» (без обводок, тон + тень),
+   примитивы анимаций. Темы: тёмная «Океан» (.em-ph) и светлая «Сумерки» (.em-ph.lite). Шрифт — Inter из kit.css. */
+
+:root {
+  --em-ease: cubic-bezier(.2, 1, .3, 1);
+  --em-ease-pop: cubic-bezier(.3, 1.6, .5, 1);
+  --em-ease-in-out: cubic-bezier(.77, 0, .175, 1);
+}
+
+/* ---------- страница-галерея ---------- */
+.em-page { max-width: 1560px; margin: 0 auto; padding: 28px 18px 120px; }
+.em-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 14px; }
+.em-top .page-lead { max-width: 980px; }
+.em-stage { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: #1A1A1E; color: #D6D6D8; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.em-toc { position: sticky; top: 0; z-index: 100; margin: 20px -18px 0; padding: 10px 18px; background: rgba(5,5,6,.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); display: flex; flex-wrap: wrap; gap: 6px; }
+.em-toc a { font-size: 13px; padding: 7px 12px; border-radius: 999px; background: #161618; color: var(--sec); white-space: nowrap; }
+.em-toc a:hover { color: #fff; background: #222224; }
+.em-toc a.file { color: #fff; background: #26262A; }
+.em-moment { margin-top: 64px; scroll-margin-top: 70px; }
+.em-moment > .hd { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 16px; }
+.em-moment > .hd h2 { font-size: 24px; font-weight: 800; letter-spacing: -.3px; margin: 0; }
+.em-moment > .hd .num { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: var(--muted); }
+.em-moment > .hd .tag { font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 999px; background: #1E1E22; color: #BDBDC2; letter-spacing: .5px; }
+.em-moment > .hd .tag.new { background: #163A2C; color: #8BE5B6; }
+.em-moment > .hd .tag.old { background: #33261A; color: #F2C48B; }
+.em-moment > .lead { color: var(--sec); font-size: 15px; line-height: 1.55; margin: 8px 0 0; max-width: 980px; }
+.em-moment > .lead b { color: #E6E6E8; font-weight: 600; }
+.em-vars { display: flex; flex-wrap: wrap; gap: 36px 30px; margin-top: 24px; align-items: flex-start; }
+.em-var { display: flex; flex-direction: column; gap: 12px; width: 390px; }
+.em-var .lbl { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #ECECEE; }
+.em-var .lbl .k { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; padding: 3px 7px; border-radius: 6px; background: #2A2A2E; color: #D6D6D8; }
+.em-var .lbl .tm { margin-left: auto; font-size: 12px; font-weight: 600; color: var(--muted); }
+.em-var .note { font-size: 13px; line-height: 1.5; color: var(--sec); }
+.em-var .note b { color: #D6D6D8; font-weight: 600; }
+.em-var .note .why { display: block; }
+.em-var .note .why::before { content: "зачем: "; color: #8BE5B6; font-weight: 700; }
+.em-var .note .ref { display: block; margin-top: 3px; }
+.em-var .note .ref::before { content: "у кого: "; color: #F2C48B; font-weight: 700; }
+.em-var .note .fx { display: block; margin-top: 3px; }
+.em-var .note .fx::before { content: "анимация: "; color: #8CC4FF; font-weight: 700; }
+.em-var .note .snd { display: block; margin-top: 3px; }
+.em-var .note .snd::before { content: "звук/хаптик: "; color: #D6B4FF; font-weight: 700; }
+.em-tools { display: flex; gap: 8px; }
+.em-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: #1C1C20; color: #E6E6E8; font: 600 13px Inter, sans-serif; cursor: pointer; user-select: none; box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+.em-btn:hover { background: #26262B; }
+.em-btn:active { transform: scale(.96); }
+.em-btn.pri { background: #F2F1F6; color: #0B0C0E; }
+
+/* ---------- телефон 390 × 844 ---------- */
+.em-ph { position: relative; width: 390px; height: 844px; border-radius: 50px; overflow: hidden; flex: none; isolation: isolate;
+  font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; color: var(--tx);
+  --bg: #070B12; --bg2: #101A2B; --tx: #FFFFFF; --sc: #A8AEBD; --mu: #6C7384;
+  --s1: rgba(255,255,255,.085); --s2: rgba(255,255,255,.04); --so1: rgba(255,255,255,.15); --so2: rgba(255,255,255,.07);
+  --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9);
+  --ti: rgba(255,255,255,.07); --trk: rgba(255,255,255,.12); --dim: rgba(2,4,10,.66);
+  --acc: #5FE3C0; --on: #04261D; --acc2: #7C9BFF; --gold: #F5C451; --gold2: #B9842A; --bad: #F2766B; --good: #6FD08C; --bolt: #FFD166; --flame: #FF7A45;
+  --sheet: #121B2B;
+  background: radial-gradient(70% 36% at 50% 0%, var(--bg2), var(--bg) 60%);
+  box-shadow: 0 0 0 8px #121216, 0 0 0 9px #2A2A2E, 0 30px 80px rgba(0,0,0,.6); }
+.em-ph.lite { --bg: #E8E4F2; --bg2: #F6F2FA; --tx: #14121C; --sc: #5D5A6E; --mu: #8E8A9E;
+  --s1: #FFFFFF; --s2: #F3F1F8; --so1: #FFFFFF; --so2: #F8F6FC;
+  --sh: 0 14px 26px -14px rgba(50,40,90,.34), 0 1px 3px rgba(50,40,90,.06); --sh2: 0 5px 10px -5px rgba(50,40,90,.28); --sho: 0 26px 40px -14px rgba(50,40,90,.46), 0 2px 4px rgba(50,40,90,.08);
+  --ti: rgba(30,20,60,.06); --trk: rgba(30,20,60,.1); --dim: rgba(40,30,70,.5);
+  --acc: #5B49D6; --on: #FFFFFF; --acc2: #D5567F; --gold: #D9A12C; --gold2: #9A6A14; --bad: #D9534F; --good: #2F9E63; --bolt: #E0A400; --flame: #F26A2E;
+  --sheet: #FFFFFF; }
+.em-ph .sb { position: absolute; top: 0; left: 0; right: 0; height: 48px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 8px 28px 0 36px; font-weight: 600; font-size: 16px; pointer-events: none; }
+.em-ph .sb .sys { display: flex; gap: 6px; align-items: center; }
+.em-ph .sb .bat { width: 25px; height: 12px; border-radius: 4px; border: 1.5px solid currentColor; position: relative; opacity: .95; }
+.em-ph .sb .bat::after { content: ""; position: absolute; inset: 1.5px; right: 3px; background: currentColor; border-radius: 2px; }
+.em-ph.lite .sb svg { fill: #14121C; }
+.em-ph .scr { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.em-ph .scr > .in { padding: 56px 20px 40px; height: 100%; display: flex; flex-direction: column; }
+.em-ph .hi { position: absolute; bottom: 8px; left: 50%; width: 134px; height: 5px; margin-left: -67px; border-radius: 3px; background: currentColor; opacity: .9; z-index: 80; pointer-events: none; }
+.em-ph.lite .hi { background: #14121C; }
+
+/* ---------- поверхности «Тень» ---------- */
+.em-ph .sf { background: linear-gradient(180deg, var(--s1), var(--s2)); box-shadow: var(--sh); border-radius: 22px; }
+.em-ph .sf .sf { box-shadow: var(--sh2); }
+.em-ph .sf.on { background: linear-gradient(180deg, var(--so1), var(--so2)); box-shadow: var(--sho); transform: translateY(-3px); }
+.em-ph .tone { background: var(--ti); border-radius: 16px; }
+
+/* ---------- типографика ---------- */
+.em-ph .ov { font-size: 12px; line-height: 16px; letter-spacing: 2.6px; font-weight: 700; text-transform: uppercase; color: var(--sc); }
+.em-ph .h-xl { font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.6px; }
+.em-ph .h-lg { font-size: 27px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; }
+.em-ph .h-md { font-size: 21px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
+.em-ph .p { font-size: 16px; line-height: 22px; color: var(--sc); }
+.em-ph .p b { color: var(--tx); font-weight: 600; }
+.em-ph .small { font-size: 13px; line-height: 17px; color: var(--mu); }
+.em-ph .center { text-align: center; }
+.em-ph .num { font-variant-numeric: tabular-nums; }
+
+/* ---------- кнопки ---------- */
+.em-ph .cta { display: flex; align-items: center; justify-content: center; gap: 10px; height: 54px; border-radius: 27px; background: var(--acc); color: var(--on); font-size: 17px; font-weight: 700; width: 100%; cursor: pointer; user-select: none; position: relative;
+  box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--acc) 60%, #000), inset 0 1px 0 rgba(255,255,255,.35); transition: transform 240ms var(--em-ease-pop), opacity 160ms; }
+.em-ph .cta:active { transform: scale(.97); }
+.em-ph .cta.white { background: linear-gradient(180deg, #FFFFFF, #ECEBF2); color: #0B0C0E; box-shadow: inset 0 1px 0 #fff, inset 0 -1.5px 0 rgba(0,0,0,.1), 0 12px 26px -10px rgba(0,0,0,.75); }
+.em-ph .cta.gold { background: linear-gradient(180deg, #FFE08A, #F0B33A 55%, #D08E17); color: #3A2400; box-shadow: 0 14px 26px -10px rgba(240,179,58,.55), inset 0 1px 0 rgba(255,255,255,.6); }
+.em-ph .cta.tone { background: var(--ti); color: var(--tx); box-shadow: none; }
+.em-ph .cta.ghost { background: transparent; color: var(--sc); box-shadow: none; height: 46px; font-weight: 600; }
+.em-ph .cta .sub { display: block; font-size: 12px; font-weight: 600; opacity: .7; margin-top: 1px; }
+.em-ph .cta .two { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.em-ph .cta .pr { position: absolute; right: 18px; font-size: 13px; opacity: .75; font-weight: 600; }
+.em-ph .pill { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px; border-radius: 16px; background: var(--ti); font-size: 15px; font-weight: 700; white-space: nowrap; }
+.em-ph .pill img { width: 20px; height: 20px; border-radius: 50%; }
+.em-ph .pill.gold { color: var(--gold); }
+.em-ph .pill.acc { color: var(--acc); }
+.em-ph .pill.plus { background: linear-gradient(135deg, #FFE08A, #F0B33A); color: #3A2400; font-size: 12px; height: 22px; padding: 0 8px; letter-spacing: 1px; font-weight: 800; }
+.em-ph .chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 13px; background: var(--ti); font-size: 13px; font-weight: 700; color: var(--sc); }
+.em-ph .ic { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex: none; display: block; }
+.em-ph .ic.f { fill: currentColor; stroke: none; }
+.em-ph .ic.s16 { width: 16px; height: 16px; } .em-ph .ic.s18 { width: 18px; height: 18px; } .em-ph .ic.s20 { width: 20px; height: 20px; } .em-ph .ic.s28 { width: 28px; height: 28px; } .em-ph .ic.s36 { width: 36px; height: 36px; }
+.em-ph .xbtn { position: absolute; top: 58px; right: 18px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--ti); color: var(--sc); z-index: 60; }
+.em-ph .xbtn.lo { top: auto; bottom: 36px; left: 50%; right: auto; transform: translateX(-50%); width: auto; height: 40px; padding: 0 16px; border-radius: 20px; font-size: 15px; font-weight: 600; }
+
+/* ---------- шапка экрана-подложки ---------- */
+.em-ph .top { display: flex; align-items: center; gap: 10px; }
+.em-ph .top .ttl { flex: 1; min-width: 0; font-size: 28px; line-height: 32px; font-weight: 700; letter-spacing: -.4px; }
+.em-ph .row { display: flex; align-items: center; gap: 12px; min-height: 62px; padding: 8px 14px; border-radius: 18px; margin-top: 8px; }
+.em-ph .row .tile { width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex: none; background: var(--ti); color: var(--acc); }
+.em-ph .row .x { flex: 1; min-width: 0; font-size: 17px; line-height: 21px; font-weight: 700; }
+.em-ph .row .x s { display: block; text-decoration: none; font-size: 13px; line-height: 17px; color: var(--sc); font-weight: 500; margin-top: 1px; }
+.em-ph .row .c { font-size: 15px; font-weight: 700; color: var(--sc); }
+
+/* ---------- слои: затемнение, модал, шторка, полноэкран, тост ---------- */
+.em-ph .dim { position: absolute; inset: 0; z-index: 40; background: var(--dim); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: emFade 320ms both; }
+.em-ph .modal { position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-50%); z-index: 50; border-radius: 28px; padding: 26px 22px 22px; background: var(--sheet); box-shadow: var(--sho); animation: emModalIn 520ms var(--em-ease-pop) both; }
+.em-ph.lite .modal { background: #fff; }
+.em-ph .sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 50; border-radius: 30px 30px 0 0; padding: 12px 20px 42px; background: var(--sheet); box-shadow: 0 -20px 50px rgba(0,0,0,.45); animation: emSheetIn 560ms var(--em-ease) both; }
+.em-ph.lite .sheet { background: #fff; box-shadow: 0 -20px 50px rgba(50,40,90,.25); }
+.em-ph .sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--trk); margin: 0 auto 20px; }
+.em-ph .full { position: absolute; inset: 0; z-index: 45; display: flex; flex-direction: column; padding: 76px 24px 36px; animation: emFade 420ms both; background: radial-gradient(70% 36% at 50% 0%, var(--bg2), var(--bg) 60%); }
+.em-ph .full.clear { background: transparent; }
+.em-ph .full .body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 0; }
+.em-ph .full .foot { flex: none; display: flex; flex-direction: column; gap: 10px; }
+.em-ph .toast { position: absolute; left: 20px; right: 20px; top: 60px; z-index: 70; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: var(--sheet); box-shadow: var(--sho); animation: emToastIn 600ms var(--em-ease-pop) both; }
+.em-ph .toast.bot { top: auto; bottom: 90px; }
+.em-ph .toast .x { flex: 1; min-width: 0; font-size: 15px; line-height: 19px; font-weight: 700; }
+.em-ph .toast .x s { display: block; text-decoration: none; font-size: 13px; color: var(--sc); font-weight: 500; }
+.em-ph .toast .tile { width: 40px; height: 40px; border-radius: 13px; background: var(--ti); display: flex; align-items: center; justify-content: center; flex: none; }
+.em-ph .dock { position: absolute; left: 20px; right: 20px; bottom: 36px; z-index: 20; }
+.em-ph .dock::before { content: ""; position: absolute; left: -20px; right: -20px; bottom: -36px; height: 150px; background: linear-gradient(180deg, transparent, var(--bg) 60%); z-index: -1; pointer-events: none; }
+
+/* ---------- элементы продукта ---------- */
+.em-ph .coinimg { display: block; border-radius: 50%; }
+.em-ph .hearts { display: inline-flex; gap: 4px; color: var(--bad); }
+.em-ph .bar { height: 8px; border-radius: 4px; background: var(--trk); overflow: hidden; position: relative; }
+.em-ph .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; background: var(--acc); width: var(--w, 40%); transition: width 900ms var(--em-ease); }
+.em-ph .bar.gold i { background: linear-gradient(90deg, var(--gold2), var(--gold)); }
+.em-ph .stat3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; }
+.em-ph .stat3 .st { padding: 12px 8px; border-radius: 16px; text-align: center; }
+.em-ph .stat3 .st b { display: block; font-size: 22px; line-height: 26px; font-weight: 800; }
+.em-ph .stat3 .st span { display: block; font-size: 12px; color: var(--sc); margin-top: 2px; font-weight: 600; }
+.em-ph .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex: none; background: linear-gradient(135deg, var(--acc2), var(--acc)); }
+.em-ph .lrow { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 16px; font-size: 16px; font-weight: 600; }
+.em-ph .lrow .pos { width: 26px; text-align: center; font-weight: 800; color: var(--sc); flex: none; }
+.em-ph .lrow .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.em-ph .lrow .pt { font-weight: 700; color: var(--sc); font-variant-numeric: tabular-nums; }
+.em-ph .lrow.me { background: linear-gradient(180deg, var(--so1), var(--so2)); box-shadow: var(--sh); }
+.em-ph .lrow.me .pt { color: var(--tx); }
+
+/* ---------- анимации ---------- */
+@keyframes emFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes emModalIn { from { opacity: 0; transform: translateY(-50%) scale(.9); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+@keyframes emSheetIn { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes emToastIn { from { opacity: 0; transform: translateY(-24px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes emUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes emPop { 0% { opacity: 0; transform: scale(.4); } 70% { opacity: 1; transform: scale(1.12); } 100% { transform: scale(1); } }
+@keyframes emPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes emGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@keyframes emRing { from { transform: scale(.6); opacity: .9; } to { transform: scale(2.2); opacity: 0; } }
+@keyframes emFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes emShimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes emSpinY { from { transform: rotateY(0); } to { transform: rotateY(720deg); } }
+@keyframes emShake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+@keyframes emDots { 0%, 80%, 100% { transform: translateY(0); opacity: .4; } 40% { transform: translateY(-5px); opacity: 1; } }
+@keyframes emCursor { 50% { opacity: 0; } }
+@keyframes emRise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes emFlash { 0% { opacity: 0; } 15% { opacity: .9; } 100% { opacity: 0; } }
+@keyframes emBoltIn { 0% { opacity: 0; transform: translateY(-40px) scale(.6) rotate(-8deg); } 55% { opacity: 1; transform: translateY(4px) scale(1.15) rotate(3deg); } 100% { transform: none; } }
+@keyframes emCoinDrop { 0% { opacity: 0; transform: translateY(-60px) scale(.5); } 60% { opacity: 1; transform: translateY(6px) scale(1.05); } 100% { transform: none; } }
+@keyframes emSway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes emFlame { 0%, 100% { transform: scaleY(1) scaleX(1); } 50% { transform: scaleY(1.08) scaleX(.96); } }
+@keyframes emSweep { from { transform: translateX(-120%) skewX(-18deg); } to { transform: translateX(220%) skewX(-18deg); } }
+
+.em-ph .a-up { animation: emUp 560ms var(--em-ease) both; }
+.em-ph .a-pop { animation: emPop 640ms var(--em-ease-pop) both; }
+.em-ph .a-float { animation: emFloat 3.2s ease-in-out infinite; }
+.em-ph .a-pulse { animation: emPulse 1.8s ease-in-out infinite; }
+.em-ph .d1 { animation-delay: 120ms; } .em-ph .d2 { animation-delay: 260ms; } .em-ph .d3 { animation-delay: 420ms; } .em-ph .d4 { animation-delay: 600ms; } .em-ph .d5 { animation-delay: 800ms; } .em-ph .d6 { animation-delay: 1050ms; } .em-ph .d7 { animation-delay: 1350ms; } .em-ph .d8 { animation-delay: 1700ms; }
+.em-ph .ring { position: absolute; inset: 0; border-radius: 50%; box-shadow: 0 0 0 2px var(--acc); animation: emRing 1.6s ease-out infinite; }
+.em-ph .ring.r2 { animation-delay: .55s; }
+.em-ph .glowspot { position: absolute; left: 50%; top: 38%; width: 320px; height: 320px; margin: -160px 0 0 -160px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--acc) 38%, transparent), transparent 65%); filter: blur(10px); pointer-events: none; animation: emGlow 2.6s ease-in-out infinite; }
+.em-ph .glowspot.gold { background: radial-gradient(circle, rgba(245,196,81,.45), transparent 65%); }
+.em-ph .glowspot.violet { background: radial-gradient(circle, rgba(181,140,255,.42), transparent 65%); }
+.em-ph .glowspot.red { background: radial-gradient(circle, rgba(242,118,107,.35), transparent 65%); }
+.em-ph .shine { position: relative; overflow: hidden; }
+.em-ph .shine::after { content: ""; position: absolute; top: -20%; bottom: -20%; width: 40%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); animation: emSweep 2.4s ease-in-out .6s infinite; }
+.em-ph canvas.fx { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 55; pointer-events: none; }
+.em-ph .flash { position: absolute; inset: 0; z-index: 52; background: #fff; pointer-events: none; animation: emFlash 900ms ease-out both; }
+
+/* ---------- чат-пузыри брифинга ---------- */
+.em-ph .chat { display: flex; flex-direction: column; gap: 8px; }
+.em-ph .bub { max-width: 82%; padding: 11px 14px; border-radius: 20px; font-size: 16px; line-height: 21px; animation: emUp 420ms var(--em-ease) both; position: relative; }
+.em-ph .bub.them { align-self: flex-start; background: var(--ti); border-bottom-left-radius: 8px; }
+.em-ph .bub.me { align-self: flex-end; background: var(--acc); color: var(--on); border-bottom-right-radius: 8px; }
+.em-ph .bub.sys { align-self: center; background: transparent; color: var(--mu); font-size: 13px; padding: 2px 0; }
+.em-ph .bub .tr { display: block; font-size: 13px; color: var(--sc); margin-top: 3px; }
+.em-ph .bub.me .tr { color: color-mix(in srgb, var(--on) 70%, transparent); }
+.em-ph .typing { display: inline-flex; gap: 4px; align-items: center; height: 18px; }
+.em-ph .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--sc); animation: emDots 1.1s infinite; }
+.em-ph .typing i:nth-child(2) { animation-delay: .15s; } .em-ph .typing i:nth-child(3) { animation-delay: .3s; }
+.em-ph .cursor { display: inline-block; width: 2px; height: 1em; background: currentColor; vertical-align: -2px; margin-left: 1px; animation: emCursor 900ms steps(1) infinite; }
+.em-ph .who { display: flex; align-items: center; gap: 10px; }
+.em-ph .who .av { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; background: var(--ti); flex: none; }
+.em-ph .who .nm { font-size: 16px; font-weight: 700; }
+.em-ph .who .nm s { display: block; text-decoration: none; font-size: 13px; color: var(--sc); font-weight: 500; }
+.em-ph .goal { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 16px; font-size: 15px; line-height: 20px; font-weight: 600; }
+.em-ph .goal .n { width: 26px; height: 26px; border-radius: 50%; background: var(--ti); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex: none; }
+.em-ph .goal .n.ok { background: var(--acc); color: var(--on); }
+
+/* ---------- башня (мини) ---------- */
+.em-ph .tower { position: relative; display: flex; justify-content: center; }
+.em-ph .tower svg { display: block; overflow: visible; }
+
+/* ---------- комбо ---------- */
+.em-ph .combo { position: absolute; left: 50%; transform: translateX(-50%); z-index: 60; display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 12px; border-radius: 22px; font-weight: 800; font-size: 18px; white-space: nowrap; }
+.em-ph .combo .b { color: var(--bolt); }
+
+/* ---------- подиум ---------- */
+.em-ph .podium { display: flex; align-items: flex-end; justify-content: center; gap: 10px; height: 190px; }
+.em-ph .podium .pl { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 92px; }
+.em-ph .podium .pl .nm { font-size: 13px; font-weight: 700; max-width: 92px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.em-ph .podium .pl .blk { width: 100%; border-radius: 14px 14px 6px 6px; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; font-size: 20px; font-weight: 800; transform-origin: bottom; animation: emRise 700ms var(--em-ease) both; background: linear-gradient(180deg, var(--so1), var(--s2)); box-shadow: var(--sh); }
+.em-ph .podium .pl.p1 .blk { height: 96px; background: linear-gradient(180deg, #FFE08A, #D29A2A); color: #3A2400; }
+.em-ph .podium .pl.p2 .blk { height: 72px; animation-delay: 120ms; }
+.em-ph .podium .pl.p3 .blk { height: 56px; animation-delay: 240ms; }
+
+/* ---------- стрик ---------- */
+.em-ph .week { display: flex; justify-content: space-between; gap: 6px; }
+.em-ph .week .d { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--mu); }
+.em-ph .week .d i { width: 30px; height: 30px; border-radius: 50%; background: var(--ti); display: flex; align-items: center; justify-content: center; }
+.em-ph .week .d.on i { background: var(--flame); color: #fff; }
+.em-ph .week .d.on { color: var(--tx); }
+.em-ph .week .d.frz i { background: #7EC8FF; color: #0A2740; }
+.em-ph .week .d.today i { box-shadow: 0 0 0 2px var(--acc); }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) { .em-ph *, .em-ph *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; } }

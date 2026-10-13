@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения v1 · C — диалоги, серия дней, Plus</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<style>
+/* зачем: часть C — брифинг диалога как живая переписка (3 сценария + 2 альтернативных стиля), первый диалог пройден, итог диалога (есть — улучшаем),
+   рубежи серии дней 7/30/100, «серия под угрозой» с заморозкой, возвращение после перерыва, моменты Plus без давления: энергия кончилась, «без ожидания» после идеальной серии, пробный период. */
+.em-ph .brief-head { display: flex; align-items: center; gap: 12px; }
+.em-ph .scene { width: 64px; height: 64px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 30px; flex: none; }
+.em-ph .chatbox { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 6px 0; }
+.em-ph .chatbox .bub { animation: emUp 380ms var(--em-ease) both; }
+.em-ph .goalline { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; padding: 10px 12px; border-radius: 14px; }
+.em-ph .goalline .n { width: 24px; height: 24px; border-radius: 50%; background: var(--ti); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex: none; }
+.em-ph .poster { position: absolute; inset: 0; background: linear-gradient(180deg, var(--pc), var(--bg) 62%); }
+.em-ph .ticket { border-radius: 24px; padding: 18px; position: relative; overflow: hidden; }
+.em-ph .ticket::before { content: ""; position: absolute; left: -12px; top: 50%; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); } .em-ph .ticket::after { content: ""; position: absolute; right: -12px; top: 50%; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); }
+.em-ph .flame-big { position: relative; width: 150px; height: 170px; display: flex; align-items: flex-end; justify-content: center; }
+.em-ph .flame-big svg { width: 150px; height: 170px; animation: emFlame 1.6s ease-in-out infinite; transform-origin: bottom; }
+.em-ph .flame-big .n { position: absolute; bottom: 36px; left: 0; right: 0; text-align: center; font-size: 54px; font-weight: 900; color: #fff; text-shadow: 0 4px 20px rgba(255,100,40,.7); letter-spacing: -2px; }
+.em-ph .milestones { display: flex; align-items: center; gap: 0; width: 100%; }
+.em-ph .milestones .m { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--mu); flex: 1; }
+.em-ph .milestones .m i { width: 34px; height: 34px; border-radius: 50%; background: var(--ti); display: flex; align-items: center; justify-content: center; }
+.em-ph .milestones .m.on i { background: var(--flame); color: #fff; }
+.em-ph .milestones .m.on { color: var(--tx); }
+.em-ph .milestones .m.now i { box-shadow: 0 0 0 3px var(--flame), 0 0 24px var(--flame); animation: emPulse 1.4s ease-in-out infinite; }
+.em-ph .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.em-ph .calendar i { aspect-ratio: 1; border-radius: 8px; background: var(--ti); display: block; }
+.em-ph .calendar i.on { background: var(--flame); }
+.em-ph .calendar i.fz { background: #7EC8FF; }
+.em-ph .calendar i.tod { box-shadow: 0 0 0 2px var(--acc); }
+.em-ph .countdown { font-size: 44px; font-weight: 900; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.em-ph .ice { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 60% at 50% 100%, rgba(126,200,255,.35), transparent 60%); animation: emFade 800ms both; }
+.em-ph .energy-cells { display: flex; gap: 6px; }
+.em-ph .energy-cells i { flex: 1; height: 14px; border-radius: 7px; background: var(--trk); }
+.em-ph .energy-cells i.on { background: var(--bolt); box-shadow: 0 0 10px color-mix(in srgb, var(--bolt) 60%, transparent); }
+.em-ph .energy-cells i.fill { animation: emCellFill 600ms var(--em-ease) both; background: var(--bolt); }
+@keyframes emCellFill { from { transform: scaleX(0); transform-origin: left; } to { transform: scaleX(1); } }
+.em-ph .plus-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; font-size: 15px; font-weight: 600; }
+.em-ph .plus-row .ic { color: var(--gold); }
+.em-ph .plus-row + .plus-row { box-shadow: inset 0 1px 0 var(--ti); }
+.em-ph .price { display: flex; align-items: baseline; gap: 6px; justify-content: center; }
+.em-ph .price b { font-size: 30px; font-weight: 800; }
+.em-ph .price span { font-size: 14px; color: var(--sc); font-weight: 600; }
+.em-ph .inf { font-size: 64px; line-height: 64px; font-weight: 900; color: var(--bolt); animation: emPop 700ms var(--em-ease-pop) both; }
+.em-ph .trial-days { display: flex; gap: 5px; }
+.em-ph .trial-days i { flex: 1; height: 8px; border-radius: 4px; background: var(--trk); }
+.em-ph .trial-days i.on { background: var(--gold); }
+.em-ph .recap-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; }
+.em-ph .recap-row + .recap-row { box-shadow: inset 0 1px 0 var(--ti); }
+.em-ph .recap-row b { margin-left: auto; font-weight: 800; font-variant-numeric: tabular-nums; }
+.em-ph .mood { font-size: 56px; line-height: 1; animation: emPop 600ms var(--em-ease-pop) both; }
+.em-ph .dusk { position: absolute; inset: 0; background: linear-gradient(180deg, #2A1A3A, #0B0A14 60%); }
+.em-ph.lite .dusk { background: linear-gradient(180deg, #F2D7C8, #E8E4F2 60%); }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Этап 1 · v1 · часть C</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения — диалоги, серия дней, Plus</h1>
+  <p class="page-lead">Брифинг диалога как живая переписка (три разных сценария), первый пройденный диалог, итог диалога, рубежи серии 7/30/100, «серия под угрозой» и заморозка, возвращение после перерыва, Plus-моменты без давления: энергия кончилась, «без ожидания» после идеальной серии, пробный период.</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v1-a.html">← Часть A: Пик</a><a class="em-btn" href="engagement-moments-v1-b.html">← Часть B: занятия</a></div></div>
+  <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v1-a.html">A · Пик</a><a class="file" href="engagement-moments-v1-b.html">B · Занятия</a><a class="file" href="engagement-moments-v1-c.html">C · Диалоги · Серия · Plus</a></nav>
+  <div id="root"></div>
+</div>
+<script src="engagement-moments.js"></script>
+<script>
+(() => {
+const { icon, coin, rings, confetti, countUp, chatPlay, typeText, moment, render } = EM;
+
+/* ---------- подложка: хаб диалогов ---------- */
+const dialogsUnder = () => `<div class="top"><div class="ttl">Диалоги</div><span class="pill">${icon('boltF', 's16')} 4</span></div><div class="small" style="margin-top:4px">Практикуй язык в жизненных ситуациях</div>
+  ${[['☕', 'Закажи кофе', 'A1 · пройден'], ['💊', 'В аптеке', 'A2'], ['🩺', 'У врача', 'B1'], ['🛒', 'В продуктовом', 'A1']].map(([e, t, s], i) => `<div class="row sf${i === 1 ? ' on' : ''}" style="margin-top:${i ? 10 : 18}px"><span class="tile" style="font-size:22px">${e}</span><div class="x">${t}<s>${s}</s></div>${icon('fwd', 's18')}</div>`).join('')}`;
+
+/* ---------- 16. Брифинг как живая переписка — 3 сценария ---------- */
+const SCEN = {
+  cafe: { e: '☕', who: 'Бариста Эмма', sub: 'Кофейня «Corner» · утро', t: 'Закажи кофе', lvl: 'A1', color: '#4A2A14',
+    steps: [{ who: 'sys', text: 'Ты заходишь в кофейню. Очередь — два человека.', delay: 300 }, { who: 'them', text: 'Hi there! What can I get for you?', tr: 'Привет! Что вам принести?', delay: 500, typingMs: 1100 }, { who: 'sys', text: 'Твоя цель: капучино, размер, цена.', delay: 900 }, { who: 'them', text: 'Take your time — the oat milk is great today.', tr: 'Не торопитесь — овсяное молоко сегодня отличное.', delay: 700, typingMs: 1300 }],
+    goals: ['Заказать капучино', 'Выбрать размер', 'Спросить цену'] },
+  pharmacy: { e: '💊', who: 'Фармацевт Том', sub: 'Аптека · вечер', t: 'В аптеке', lvl: 'A2', color: '#143A2E',
+    steps: [{ who: 'sys', text: 'У тебя болит голова второй день. Ты в аптеке.', delay: 300 }, { who: 'them', text: 'Good evening. How can I help you?', tr: 'Добрый вечер. Чем могу помочь?', delay: 500, typingMs: 1000 }, { who: 'sys', text: 'Цель: описать симптом, спросить дозировку, уточнить про аллергию.', delay: 900 }, { who: 'them', text: 'Any allergies I should know about?', tr: 'Есть аллергии, о которых мне стоит знать?', delay: 700, typingMs: 1400 }],
+    goals: ['Описать, что болит', 'Спросить, как принимать', 'Сказать про аллергию'] },
+  doctor: { e: '🩺', who: 'Доктор Рэй', sub: 'Клиника · приём 10:30', t: 'У врача', lvl: 'B1', color: '#1A2A4A',
+    steps: [{ who: 'sys', text: 'Ты записан на приём. Медсестра уже вызвала тебя.', delay: 300 }, { who: 'them', text: 'Come in, have a seat. What brings you in today?', tr: 'Заходите, присаживайтесь. Что вас привело?', delay: 500, typingMs: 1300 }, { who: 'sys', text: 'Цель: рассказать историю болезни, понять рекомендации, записаться повторно.', delay: 900 }, { who: 'them', text: 'How long has this been going on?', tr: 'Как давно это началось?', delay: 700, typingMs: 1200 }],
+    goals: ['Рассказать, что и как давно', 'Понять, что принимать', 'Договориться о следующем визите'] },
+};
+const briefChat = (s) => `<div class="full" style="padding-top:60px;--pc:${s.color}"><div class="poster"></div><div style="position:relative;display:flex;flex-direction:column;height:100%">
+  <div class="brief-head"><span class="chip">${icon('close', 's16')}</span><div class="who grow" style="margin-left:4px"><span class="av">${s.e}</span><div class="nm">${s.who}<s>${s.sub}</s></div></div><span class="chip">${s.lvl}</span></div>
+  <div class="chatbox" data-chat></div>
+  <div class="sf" style="padding:12px 14px;margin-top:8px"><div class="ov" style="margin-bottom:6px">Цель</div>${s.goals.map((g, i) => `<div class="goalline"><span class="n">${i + 1}</span>${g}</div>`).join('')}</div>
+  <div class="cta white" style="margin-top:14px">Начать разговор ${icon('mic', 's18')}</div><div class="small" style="margin-top:8px;display:flex;justify-content:center;align-items:center;gap:4px">−1 ${icon("boltF", "s16")} · около 6 минут</div></div></div>`;
+const briefTicket = (s) => `<div class="full" style="padding-top:70px;--pc:${s.color}"><div class="poster"></div><div class="body" style="position:relative">
+  <div class="scene sf a-pop" style="width:96px;height:96px;font-size:44px;border-radius:32px">${s.e}</div>
+  <div class="chip a-up d2" style="margin-top:16px">${s.lvl}</div>
+  <div class="h-xl a-up d3" style="margin-top:8px">${s.t}</div>
+  <div class="p a-up d4" style="margin-top:8px;min-height:44px"><span data-type></span><span class="cursor"></span></div>
+  <div class="ticket sf a-up d6" style="margin-top:22px;width:100%;text-align:left"><div class="ov">Собеседник</div><div class="who" style="margin-top:8px"><span class="av">${s.e}</span><div class="nm">${s.who}<s>${s.sub}</s></div></div><div class="ov" style="margin-top:14px">Цель</div><div style="margin-top:6px;font-size:15px;font-weight:600;line-height:21px">${s.goals.join(' · ')}</div></div>
+  </div><div class="foot a-up d8"><div class="cta white">Начать разговор ${icon('mic', 's18')}</div></div></div>`;
+const briefLive = (s) => `<div class="dim"></div><div class="sheet" style="padding-bottom:36px"><div class="grab"></div>
+  <div class="who"><span class="av">${s.e}</span><div class="nm">${s.who}<s>печатает…</s></div><span class="chip" style="margin-left:auto">${s.lvl}</span></div>
+  <div class="chat" data-chat style="margin-top:16px;min-height:150px"></div>
+  <div class="tone" style="margin-top:14px;padding:12px 14px;font-size:15px;line-height:20px"><b>Цель:</b> ${s.goals.join(', ').toLowerCase()}.</div>
+  <div class="cta white" style="margin-top:14px">Ответить ${icon('mic', 's18')}</div></div>`;
+const playChat = (s) => (ph) => { const box = ph.querySelector('[data-chat]'); return chatPlay(box, s.steps); };
+moment({ id: 'm16', num: '16', short: 'Брифинг · живая переписка', title: 'Брифинг диалога — живая переписка', tag: 'new',
+  lead: 'Сейчас брифинг — статичный экран с описанием. Делаем «сцену»: собеседник печатает первые реплики (превью сценария), между ними — закадровый текст с целью. Один шаблон — уникальное наполнение под каждый сценарий (цвет сцены, персонаж, реплики). Три сценария в стиле «переписка» + два альтернативных стиля.',
+  variants: [
+    { k: 'A1', label: 'Переписка · «Закажи кофе»', time: '~5 с', phone: { under: dialogsUnder(), over: briefChat(SCEN.cafe) }, init: playChat(SCEN.cafe),
+      why: 'Пользователь видит «живого» собеседника до того, как нажал — снимается страх говорить. Превью реплик показывает уровень сложности честно. Вовлечение: вход в диалог ощущается как ответ на сообщение.', ref: 'Praktika/Speak (аватар сразу говорит), iMessage typing, Duolingo stories.', fx: 'три точки 1–1,3 с → пузырь всплывает; закадровый текст серым между репликами; постер-градиент сцены.', snd: 'тихий «клик» печати, «бум» пузыря; haptic light на каждую реплику.' },
+    { k: 'A2', label: 'Переписка · «В аптеке»', time: '~5 с', phone: { under: dialogsUnder(), over: briefChat(SCEN.pharmacy) }, init: playChat(SCEN.pharmacy),
+      why: 'Тот же шаблон, другой тон: зелёная сцена, вопрос про аллергию — сразу понятно, что спросят. Цели — три строки.', ref: '—', fx: 'как A1.', snd: 'как A1.' },
+    { k: 'A3', label: 'Переписка · «У врача»', time: '~5 с', phone: { under: dialogsUnder(), over: briefChat(SCEN.doctor) }, init: playChat(SCEN.doctor),
+      why: 'B1: реплики длиннее, собеседник печатает дольше — сложность чувствуется до старта.', ref: '—', fx: 'как A1, typing 1,3 с.', snd: 'как A1.' },
+    { k: 'B', label: '«Афиша» — постер + печатающаяся цель', time: '~4 с', phone: { under: dialogsUnder(), over: briefTicket(SCEN.cafe) },
+      init: (ph) => typeText(ph.querySelector('[data-type]'), 'Закажи капучино, выбери размер и спроси цену. Бариста не читает мысли — зато понимает вежливый английский.', 28, 900),
+      why: 'Кинематографично: сцена-медальон, крупный заголовок, цель печатается как титр. Меньше «чата», больше «кино» — для тех, кому переписка кажется игрушечной.', ref: 'Старый AiDialogBriefingScreen («киноафиша»), Netflix title card, Monument Valley level intro.', fx: 'медальон pop, титр печатается 28 мс/символ, «билет» с вырезами.', snd: 'тихий «тик» печатной машинки.' },
+    { k: 'C', label: 'Шторка «печатает…» поверх хаба', time: '~4 с', phone: { under: dialogsUnder(), over: briefLive(SCEN.pharmacy) }, init: playChat(SCEN.pharmacy),
+      why: 'Самый быстрый вход: тап по сценарию → шторка, собеседник уже пишет, кнопка «Ответить». Минимум экранов между желанием и речью.', ref: 'WhatsApp quick reply, Telegram.', fx: 'шторка + чат.', snd: 'как A1.' },
+  ] });
+
+/* ---------- 17. Первый диалог пройден ---------- */
+const firstDialogA = () => `<div class="full"><div class="glowspot"></div><div class="body">
+  <div class="mood">🎉</div>
+  <div class="ov a-up d1" style="margin-top:18px">Первый диалог</div>
+  <div class="h-xl a-up d2" style="margin-top:6px">Ты говорил<br>по-английски</div>
+  <div class="p a-up d3" style="margin-top:8px">6 реплик, 3 цели из 3. Эмма поняла всё с первого раза.</div>
+  <div class="sf a-up d4" style="margin-top:22px;padding:14px 16px;width:100%;text-align:left"><div class="small">Твоя лучшая фраза</div><div style="font-size:17px;font-weight:700;margin-top:6px">“Could I get a large cappuccino, please?”</div><div class="small" style="margin-top:4px">Так говорят носители. Запомни интонацию.</div></div>
+  </div><div class="foot a-up d5"><div class="cta white">Следующий диалог — «В продуктовом»</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const firstDialogB = () => `<div class="dim"></div><div class="modal" style="text-align:center"><div class="who" style="justify-content:center"><span class="av" style="width:56px;height:56px;font-size:28px">☕</span></div>
+  <div class="chat" style="margin-top:14px"><div class="bub them" style="align-self:center;max-width:100%">Thanks for stopping by! Come again 😊<span class="tr">Спасибо, что заглянул! Приходи ещё</span></div></div>
+  <div class="h-lg" style="margin-top:16px">Первый диалог — есть</div><div class="p" style="margin-top:6px">Теперь открыты все сценарии категории «Каждый день». <b>+30 монет.</b></div>
+  <div class="cta white" style="margin-top:18px">Дальше</div></div>`;
+moment({ id: 'm17', num: '17', short: 'Первый диалог', title: 'Первый диалог пройден', tag: 'new',
+  lead: 'Самый важный «ага-момент» диалогов — человек впервые говорил. Нет отдельного экрана. Отмечаем именно «ты говорил», а не «задание выполнено», даём лучшую фразу и следующий сценарий.',
+  variants: [
+    { k: 'A', label: '«Ты говорил по-английски»', time: '~2,5 с', phone: { under: dialogsUnder(), over: firstDialogA() }, init: (ph) => { const t = setTimeout(() => confetti(ph, { n: 90 }), 500); return () => clearTimeout(t); },
+      why: 'Эмоция «я смог» — ядро удержания в разговорных приложениях. Лучшая фраза = ощутимый результат, который можно показать.', ref: 'Speak «first conversation», Praktika, Duolingo first lesson celebration.', fx: 'эмодзи pop, конфетти, лесенка текстов.', snd: 'фанфара; haptic success.' },
+    { k: 'B', label: 'Прощальная реплика персонажа', time: '~1,5 с', phone: { under: dialogsUnder(), over: firstDialogB() },
+      why: 'Персонаж «закрывает сцену» — связь с собеседником, желание вернуться к нему. Плюс разблокировка категории — конкретный бонус.', ref: 'Praktika аватары, Replika, Animal Crossing.', fx: 'модал, пузырь всплывает.', snd: '«бум» пузыря; haptic light.' },
+  ] });
+
+/* ---------- 18. Итог диалога (есть — улучшаем) ---------- */
+const dialogDone = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:8px">
+  <div class="who a-up" style="flex-direction:column;gap:8px"><span class="av" style="width:64px;height:64px;font-size:30px">☕</span><div class="mood" style="font-size:32px">😊</div></div>
+  <div class="h-lg a-up d1" style="margin-top:8px">Эмма довольна</div>
+  <div class="p a-up d2" style="margin-top:4px">Закажи кофе · 3 цели из 3</div>
+  <div style="width:100%;margin-top:18px">${['Заказать капучино', 'Выбрать размер', 'Спросить цену'].map((g, i) => `<div class="goalline sf a-up d${i + 3}" style="margin-top:8px"><span class="n" style="background:var(--acc);color:var(--on)">${icon('check', 's16')}</span>${g}</div>`).join('')}</div>
+  <div class="sf a-up d6" style="margin-top:14px;padding:14px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div class="grow" style="text-align:left"><div style="font-size:17px;font-weight:700">+<span data-c>0</span> монет</div><div class="small">без ошибок · ×1,5</div></div><span class="chip">${icon('flameF', 's16')} 5</span></div>
+  </div><div class="foot a-up d7"><div class="cta white">Следующий сценарий</div><div class="cta ghost">Разобрать 2 фразы</div></div></div>`;
+moment({ id: 'm18', num: '18', short: 'Итог диалога', title: 'Итог диалога', tag: 'old',
+  lead: 'dialogue_v2_completion — спокойный и плоский. Усиливаем через персонажа: его реакция (лицо/настроение) — главный элемент, цели закрываются каскадом, монеты бегут.',
+  variants: [
+    { k: 'A', label: 'Реакция персонажа + каскад целей', time: '~2,5 с', phone: { under: dialogsUnder(), over: dialogDone() }, init: (ph) => { const t = setTimeout(() => countUp(ph.querySelector('[data-c]'), 0, 45, 800), 1400); return () => clearTimeout(t); },
+      why: '«Эмма довольна» — эмоциональная награда сильнее числа. Каскад целей = ощущение полноты. Монеты ×1,5 за чистый диалог.', ref: 'Старый DialogVerdictScreen (реакция персонажа), Praktika feedback.', fx: 'аватар pop, цели лесенкой 420/600/800 мс, счётчик.', snd: 'три «тика» целей + звон; haptic success.' },
+  ] });
+
+/* ---------- 19. Рубеж серии 7 / 30 / 100 ---------- */
+const FLAME_SVG = `<svg viewBox="0 0 150 170"><defs><radialGradient id="fg" cx=".5" cy=".8"><stop offset="0" stop-color="#FFF3C4"/><stop offset=".35" stop-color="#FFB347"/><stop offset=".75" stop-color="#FF6A3D"/><stop offset="1" stop-color="#C62B1E" stop-opacity=".6"/></radialGradient></defs><path d="M75 10c6 28 38 42 38 86 0 28-18 54-38 64-20-10-38-36-38-64 0-26 16-34 20-54 6 10 12 14 16 16C75 44 68 28 75 10z" fill="url(#fg)"/><path d="M75 70c4 14 18 20 18 40 0 14-9 26-18 32-9-6-18-18-18-32 0-14 8-18 10-28 3 5 6 7 8 8-2-8-4-12 0-20z" fill="#FFF3C4" opacity=".85"/></svg>`;
+const streak7 = () => `<div class="full"><div class="dusk"></div><div class="body" style="position:relative">
+  <div class="flame-big a-pop">${FLAME_SVG}<div class="n"><span data-n>6</span></div></div>
+  <div class="ov a-up d3" style="margin-top:18px;color:var(--flame)">Неделя подряд</div>
+  <div class="h-xl a-up d4" style="margin-top:6px">7 дней. Это привычка</div>
+  <div class="p a-up d5" style="margin-top:8px">Те, кто дошёл до 7, возвращаются в 2,4 раза чаще. Ты уже тут.</div>
+  <div class="milestones a-up d6" style="margin-top:22px">${[[7, 'now'], [14, ''], [30, ''], [100, '']].map(([n, c]) => `<div class="m ${c} ${n <= 7 ? 'on' : ''}"><i>${n <= 7 ? icon('flameF', 's16') : ''}</i>${n}</div>`).join('')}</div>
+  <div class="sf a-up d7" style="margin-top:18px;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${icon('snow', 's20')}<span style="font-size:15px;font-weight:600">+1 заморозка в подарок</span></div>
+  </div><div class="foot a-up d8"><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const streak30 = () => `<div class="full"><div class="dusk"></div><div class="body" style="position:relative;justify-content:flex-start;padding-top:10px">
+  <div class="ov a-up" style="color:var(--flame)">30 дней подряд</div>
+  <div class="h-xl a-up d1" style="margin-top:6px">Месяц. Каждый день</div>
+  <div class="calendar a-up d2" style="margin-top:20px;width:100%">${Array.from({ length: 35 }, (_, i) => `<i class="${i < 30 ? 'on' : ''} ${i === 29 ? 'tod' : ''} ${i === 12 ? 'fz' : ''}" style="animation:emPop 300ms var(--em-ease-pop) both;animation-delay:${i * 28}ms"></i>`).join('')}</div>
+  <div class="small a-up d4" style="margin-top:10px">голубой — заморозка спасла 13-й день</div>
+  <div class="stat3 a-up d5" style="margin-top:20px"><div class="st sf"><b>412</b><span>фраз</span></div><div class="st sf"><b>9</b><span>диалогов</span></div><div class="st sf"><b>+1 240</b><span>монет</span></div></div>
+  <div class="sf a-up d6" style="margin-top:14px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(7, 36)}<div class="grow" style="text-align:left;font-size:15px;font-weight:600">Ранг 7 — за месяц серии, бесплатно</div><span class="chip" style="color:var(--gold)">подарок</span></div>
+  </div><div class="foot a-up d7"><div class="cta gold">Забрать ранг 7</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const streak100 = () => `<div class="full"><div class="dusk"></div><div class="glowspot gold" style="top:36%"></div><div class="body" style="position:relative">
+  <div class="h-xl a-pop" style="font-size:120px;line-height:110px;font-weight:900;letter-spacing:-6px;background:linear-gradient(180deg,#FFF3C4,#FF8A3D);-webkit-background-clip:text;background-clip:text;color:transparent"><span data-n>0</span></div>
+  <div class="ov a-up d3" style="margin-top:8px;color:var(--flame)">дней подряд</div>
+  <div class="h-lg a-up d4" style="margin-top:14px">Сто. Ты — один из 3%</div>
+  <div class="p a-up d5" style="margin-top:8px">100 дней — это уже не приложение, это ты. Спасибо, что с нами.</div>
+  <div class="sf a-up d6" style="margin-top:22px;padding:14px 16px;width:100%;text-align:left"><div class="ov">Подарок</div><div style="font-size:16px;font-weight:700;margin-top:6px">Plus на 7 дней + золотая рамка монеты «100»</div><div class="small" style="margin-top:4px">Рамку видят друзья и комната Пика</div></div>
+  </div><div class="foot a-up d7"><div class="cta gold">Забрать</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+moment({ id: 'm19', num: '19', short: 'Рубеж серии 7/30/100', title: 'Рубеж серии дней — 7 / 30 / 100', tag: 'new',
+  lead: 'Ачивки streak_7/30/100 есть в каталоге, но открываются молча. У Duolingo новая анимация «7 дней» дала +1,7% к удержанию D7. Три рубежа — три разных экрана по нарастающей: 7 — привычка + заморозка, 30 — календарь + ранг монеты в подарок, 100 — «ты один из 3%» + Plus на неделю (деньги: пробуют Plus те, кто точно останется).',
+  variants: [
+    { k: 'A', label: '7 дней — «Это привычка»', time: '~3 с', phone: { under: dialogsUnder(), over: streak7() }, init: (ph) => { const t = setTimeout(() => { ph.querySelector('[data-n]').textContent = '7'; ph.querySelector('[data-n]').parentElement.style.animation = 'emPop 500ms var(--em-ease-pop) both'; }, 700); return () => clearTimeout(t); },
+      why: 'Первый рубеж, на котором решается удержание. Подарок — заморозка (защита от срыва, Duolingo даёт их автоматом). Шкала 7→14→30→100 ставит следующую цель.', ref: 'Duolingo streak milestone (огонь + подарок), Streak Society.', fx: 'огонь дышит, число 6 → 7 pop, шкала рубежей.', snd: 'тёплый «вуф» огня; haptic success.' },
+    { k: 'B', label: '30 дней — календарь и ранг в подарок', time: '~3 с', phone: { under: dialogsUnder(), over: streak30() },
+      why: 'Календарь с 30 клетками зажигается по одной — ощущение объёма проделанного. Подарок — ранг монеты (бесплатно): экономика монет и статус в Пике.', ref: 'Duolingo 30-day, GitHub contributions, Apple monthly challenge.', fx: 'клетки pop по 28 мс = 0,85 с, статы лесенкой.', snd: 'россыпь «тиков» + аккорд; haptic medium.' },
+    { k: 'C', label: '100 дней — «один из 3%» + Plus 7 дней', time: '~3 с', phone: { under: dialogsUnder(), over: streak100() }, init: (ph) => { const t = setTimeout(() => { countUp(ph.querySelector('[data-n]'), 0, 100, 1400); confetti(ph, { gold: true, n: 120 }); }, 400); return () => clearTimeout(t); },
+      why: 'Статус («3%») + редкий видимый атрибут (рамка монеты) + бесплатная неделя Plus — деньги без давления: пробуют самые лояльные.', ref: 'Duolingo 100-day badge, Strava «top 3%», Clash Royale season reward.', fx: 'число бежит 0→100 за 1,4 с, золотой дождь.', snd: 'фанфара 1,5 с; haptic heavy.' },
+  ] });
+
+/* ---------- 20. Серия под угрозой + заморозка ---------- */
+const homeEvening = () => `<div class="top"><span class="pill" style="color:var(--flame)">${icon('flameF', 's16')} 12 дней</span><span class="pill gold" style="flex:1;justify-content:flex-start">${coin(5, 20)}1 240</span><span class="pill">${icon('moon', 's16')}</span></div>
+  <div class="sf" style="margin-top:14px;padding:16px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Отрицание</div><div class="bar" style="margin-top:10px"><i style="--w:30%"></i></div></div>
+  <div class="fl" style="gap:10px;margin-top:12px">${['Уроки', 'Диалоги', 'Карточки'].map((t) => `<div class="sf" style="flex:1;aspect-ratio:1;padding:12px;display:flex;align-items:flex-end;font-weight:800;font-size:16px">${t}</div>`).join('')}</div>`;
+const riskA = () => `<div class="toast"><span class="tile" style="color:var(--flame)">${icon('flameF', 's20')}</span><div class="x">Серия 12 дней сгорит в полночь<s>Хватит одной ступени Пика — 2 минуты</s></div><span class="pill acc" style="height:34px">Играть</span></div>`;
+const riskB = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
+  <div class="fl" style="gap:14px"><div class="flame-big" style="width:70px;height:80px;flex:none">${FLAME_SVG}</div><div class="grow"><div class="ov" style="color:var(--flame)">Серия под угрозой</div><div class="h-md" style="margin-top:4px">12 дней — до полуночи</div><div class="countdown" style="margin-top:4px" data-cd>02:14:09</div></div></div>
+  <div class="p" style="margin-top:12px">Любое занятие сохранит серию. Самое короткое — одна ступень Пика.</div>
+  <div class="cta white" style="margin-top:16px">Ступень Пика · 2 мин</div>
+  <div class="fl" style="margin-top:12px;gap:10px"><div class="cta tone" style="flex:1;height:48px;font-size:15px">${icon('snow', 's18')} Заморозить · 200 ${coin(5, 16)}</div><div class="cta tone" style="flex:1;height:48px;font-size:15px">${icon('bell', 's18')} Через час</div></div></div>`;
+const riskC = () => `<div class="dim"></div><div class="ice"></div><div class="modal" style="text-align:center"><div style="font-size:48px;line-height:1;animation:emPop 600ms var(--em-ease-pop) both">🧊</div>
+  <div class="h-lg" style="margin-top:12px">Заморозка спасла серию</div><div class="p" style="margin-top:6px">Вчера ты пропустил — 12 дней целы. Осталась <b>1 заморозка</b>.</div>
+  <div class="week" style="margin:18px 6px 0">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d, i) => `<div class="d ${i < 5 ? 'on' : ''} ${i === 3 ? 'frz' : ''} ${i === 4 ? 'today' : ''}"><i>${i === 3 ? icon('snow', 's16') : i < 5 ? icon('flameF', 's16') : ''}</i>${d}</div>`).join('')}</div>
+  <div class="sf" style="margin-top:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;text-align:left"><span class="pill plus">PLUS</span><div class="grow" style="font-size:14px;line-height:19px">В Plus заморозка восстанавливается каждую неделю сама</div></div>
+  <div class="cta white" style="margin-top:16px">Заниматься сегодня</div></div>`;
+moment({ id: 'm20', num: '20', short: 'Серия под угрозой · заморозка', title: '«Серия под угрозой» и заморозка', tag: 'old',
+  lead: 'Есть вечерний тост (StreakRiskToastHost) и заморозка в глубине streak_stats. Улучшаем: тост с самым коротким действием («одна ступень — 2 минуты»), шторка с обратным отсчётом и заморозкой за монеты, «заморозка спасла» как тихое спасибо + Plus-строка.',
+  variants: [
+    { k: 'A', label: 'Тост: «сгорит в полночь — 2 минуты»', time: '0,6 с', phone: { under: homeEvening(), over: riskA() },
+      why: 'Конкретика снимает сопротивление: не «позанимайся», а «одна ступень, 2 минуты». Пуш-формулировка «от цели» дала +5% DAU у Duolingo.', ref: 'Duolingo streak saver toast + виджет.', fx: 'тост пружинит.', snd: 'haptic light.' },
+    { k: 'B', label: 'Шторка: отсчёт + заморозка за монеты', time: '~1 с', phone: { under: homeEvening(), over: riskB() }, init: (ph) => { let s = 2 * 3600 + 14 * 60 + 9; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; }, 1000); return () => clearInterval(iv); },
+      why: 'Живой отсчёт + три выхода: заняться, заморозить за монеты (экономика), напомнить через час. Деньги: заморозка — трата монет → спрос на монеты.', ref: 'Duolingo streak freeze purchase, Clash Royale timers.', fx: 'отсчёт тикает каждую секунду, огонь дышит.', snd: 'без звука (вечер); haptic light.' },
+    { k: 'C', label: '«Заморозка спасла» — тихое спасибо', time: '~1,5 с', phone: { under: homeEvening(), over: riskC() },
+      why: 'Пользователь должен узнать, что его спасли — иначе заморозка невидима и не ценится. Строка про Plus (авто-восстановление) — без давления.', ref: 'Duolingo «Streak freeze used», Streak Society perks.', fx: 'ледяное свечение снизу, эмодзи pop, неделя с голубым днём.', snd: 'ледяной «кристалл»; haptic light.' },
+  ] });
+
+/* ---------- 21. Возвращение после перерыва ---------- */
+const backA = () => `<div class="full"><div class="body">
+  <div class="scene sf a-pop" style="width:88px;height:88px;font-size:40px;border-radius:30px">👋</div>
+  <div class="h-xl a-up d2" style="margin-top:22px">С возвращением</div>
+  <div class="p a-up d3" style="margin-top:8px">Тебя не было 9 дней. Ничего не сгорело: 412 фраз на месте, ранг 5 с тобой.</div>
+  <div class="sf a-up d4" style="margin-top:22px;padding:14px 16px;width:100%;text-align:left"><div class="ov">Пока тебя не было</div><div class="recap-row">${icon('people', 's18')} Ира поднялась в Базальт<b></b></div><div class="recap-row">${icon('layers', 's18')} 14 карточек ждут повторения<b>14</b></div><div class="recap-row">${icon('boltF', 's18')} Энергия полная<b>5/5</b></div></div>
+  <div class="small a-up d5" style="margin-top:12px">Начни с лёгкого — 5 карточек, 1 минута</div>
+  </div><div class="foot a-up d6"><div class="cta white">5 карточек — 1 минута</div><div class="cta ghost">На Главную</div></div></div>`;
+const backB = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="h-md">Разминка после паузы</div><div class="p" style="margin-top:6px">9 дней без практики — память чуть остыла. Вернём форму за три шага, без штрафов.</div>
+  ${[['1', '5 знакомых фраз', '1 мин'], ['2', 'Одна ступень Пика', '2 мин'], ['3', 'Короткий диалог «Закажи кофе»', '4 мин']].map(([n, t, s], i) => `<div class="row sf" style="margin-top:${i ? 8 : 16}px"><span class="tile" style="font-weight:800;font-size:16px">${n}</span><div class="x">${t}<s>${s}</s></div>${i === 0 ? `<span class="chip" style="color:var(--acc)">начать</span>` : ''}</div>`).join('')}
+  <div class="sf" style="margin-top:14px;padding:12px 14px;display:flex;align-items:center;gap:12px">${coin(5, 26)}<div class="grow" style="font-size:14px;line-height:19px">За разминку — <b>+150 монет</b> и новая серия с бонусом ×2 на 3 дня</div></div>
+  <div class="cta white" style="margin-top:16px">Начать разминку</div></div>`;
+moment({ id: 'm21', num: '21', short: 'Возвращение', title: 'Возвращение после перерыва', tag: 'new',
+  lead: 'Сейчас после 7+ дней — только winback-пейвол со скидкой. Это вторая попытка удержания, а первой («добро пожаловать обратно») нет. Главное: ничего не потеряно, что изменилось, самый лёгкий первый шаг.',
+  variants: [
+    { k: 'A', label: '«Ничего не сгорело» + что изменилось', time: '~2,5 с', phone: { under: homeEvening(), over: backA() },
+      why: 'Снимает страх «я всё потерял» (главная причина не возвращаться). Социальная новость (Ира поднялась) — мягкий толчок. Лёгкий первый шаг — 1 минута.', ref: 'Duolingo «Welcome back» (без вины), Headspace, Strava.', fx: 'эмодзи pop, рекап лесенкой.', snd: 'мягкий «привет»; haptic light.' },
+    { k: 'B', label: 'Разминка в 3 шага + бонус', time: '~1 с', phone: { under: homeEvening(), over: backB() },
+      why: 'Структурированный возврат: три коротких шага, бонус монет и ×2 на 3 дня — восстанавливает ритм. Деньги: бонус ×2 показывает, как ощущается Plus.', ref: 'Duolingo comeback quest, Clash Royale «Welcome back» rewards, Nike Run Club.', fx: 'шторка, шаги.', snd: '—' },
+  ] });
+
+/* ---------- 22. Энергия кончилась → Plus ---------- */
+const energyUnder = () => `<div class="top"><span class="chip">${icon('close', 's16')}</span><div class="grow" style="text-align:center;font-size:15px;font-weight:700">Ступень 3 · 2 этаж</div><span class="pill" style="color:var(--bad)">${icon('boltF', 's16')} 0</span></div>
+  <div class="bar" style="margin-top:14px"><i style="--w:100%"></i></div>
+  <div class="sf" style="margin-top:22px;padding:28px 22px;text-align:center"><div class="small">Переведи</div><div class="h-md" style="margin-top:12px">Сколько это стоит?</div></div>
+  <div class="tone" style="margin-top:12px;padding:16px;text-align:center;font-weight:600;background:color-mix(in srgb, var(--good) 18%, transparent);color:var(--good)">How much is it?</div>`;
+const energyA = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div>
+  <div class="fl"><div class="grow"><div class="ov">Энергия</div><div class="h-md" style="margin-top:4px">Кончилась. Ступень пройдена, сохранили</div></div><span class="pill" style="color:var(--bolt)">${icon('boltF', 's16')} 0 / 5</span></div>
+  <div class="energy-cells" style="margin-top:16px"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="fl" style="margin-top:10px;justify-content:space-between"><span class="small">Следующая через</span><span class="small num" style="color:var(--tx);font-weight:700" data-cd>23:40</span></div>
+  <div class="sf" style="margin-top:18px;padding:14px 16px"><div class="fl"><span class="inf" style="font-size:34px;line-height:34px">∞</span><div class="grow" style="margin-left:8px"><div style="font-size:16px;font-weight:700">Plus — без ожидания</div><div class="small">энергия не кончается, монеты ×2 в Пике</div></div><span class="pill plus">PLUS</span></div></div>
+  <div class="cta gold" style="margin-top:14px">Продолжить сейчас <span class="pr">7 дней бесплатно</span></div><div class="cta ghost">Подожду</div></div>`;
+const energyB = () => `<div class="full"><div class="glowspot" style="top:30%"></div><div class="body">
+  <div class="ov a-up">Серия 10 подряд без ошибок</div>
+  <div class="h-xl a-up d1" style="margin-top:8px">Ты в ударе.<br>Энергия — нет</div>
+  <div class="energy-cells a-up d2" style="margin-top:22px;width:200px"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="p a-up d3" style="margin-top:18px">Жаль останавливаться на такой серии. В Plus энергия не кончается — играй, пока идёт.</div>
+  <div class="sf a-up d4" style="margin-top:22px;padding:4px 16px;width:100%;text-align:left"><div class="plus-row">${icon('infinity', 's20')} Энергия без ограничений</div><div class="plus-row">${coin(5, 20)} Монеты ×2 в Пике</div><div class="plus-row">${icon('chat', 's20')} Свободный разговор с ИИ</div></div>
+  </div><div class="foot a-up d5"><div class="cta gold">Продолжить серию — 7 дней бесплатно</div><div class="small center">потом 399 ₽/мес · отмена в любой момент</div><div class="cta ghost">Вернусь через 24 минуты</div></div></div>`;
+const energyC = () => `<div class="dim"></div><div class="modal" style="text-align:center"><div class="ov">Энергия 0 / 5</div><div class="h-lg" style="margin-top:6px">Пауза 24 минуты</div>
+  <div class="energy-cells" style="margin:18px 20px 0" data-cells><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="p" style="margin-top:14px">Или не ждать: одна энергия — <b>100 монет</b>, у тебя 1 240.</div>
+  <div class="cta white" style="margin-top:18px">+1 энергия за 100 ${coin(5, 18)}</div>
+  <div class="fl" style="justify-content:center;gap:6px;margin-top:12px;font-size:14px;color:var(--sc);font-weight:600">Или всё и сразу — <span style="color:var(--gold);font-weight:700">Plus</span> ${icon('fwd', 's16')}</div></div>`;
+moment({ id: 'm22', num: '22', short: 'Энергия → Plus', title: 'Энергия кончилась → предложение Plus', tag: 'old',
+  lead: 'EnergyNeededSheet/EnergyStopSheet есть, но это «плоская» шторка. Три подачи без давления: честный таймер + «∞» (A); после идеальной серии — эмоциональный момент «жаль останавливаться» (B, самая высокая конверсия в контексте); микро-покупка энергии за монеты (C — экономика монет, второй путь к Plus).',
+  variants: [
+    { k: 'A', label: 'Шторка: таймер + «∞ без ожидания»', time: '~1 с', phone: { under: energyUnder(), over: energyA() }, init: (ph) => { let s = 23 * 60 + 40; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; el.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }, 1000); return () => clearInterval(iv); },
+      why: 'Первая строка выгоды подстроена под контекст (Duolingo так делает с пейволом). Честный таймер + «Подожду» без стыда. Пробный период в кнопке снимает риск.', ref: 'Duolingo hearts-out sheet, Candy Crush lives-out.', fx: 'шторка, ячейки энергии пустые, отсчёт.', snd: 'haptic light.' },
+    { k: 'B', label: 'После идеальной серии: «Ты в ударе»', time: '~2 с', phone: { under: energyUnder(), over: energyB() },
+      why: 'Пиковая мотивация: серия 10 без ошибок и обрыв. Самый сильный момент продажи «без ожидания» — пользователь хочет продолжить прямо сейчас.', ref: 'Candy Crush «continue?» на последнем ходу, Duolingo streak-contextual paywall, Speak4Me (+27% многошаговый пейвол).', fx: 'лесенка, ячейки пустые, список выгод.', snd: 'haptic medium на заголовок.' },
+    { k: 'C', label: 'Микро-покупка: +1 энергия за монеты', time: '~1,5 с', phone: { under: energyUnder(), over: energyC() }, init: (ph) => { const t = setTimeout(() => { ph.querySelector('[data-cells] i').classList.add('fill'); }, 1200); return () => clearTimeout(t); },
+      why: 'Даёт потратить монеты (создаёт спрос на них и на ×2 в Plus), сохраняет сессию без подписки. Для тех, кто не готов к Plus сегодня.', ref: 'Candy Crush gold bars → lives, Clash Royale gems → chest timer.', fx: 'первая ячейка заполняется при наведении/тапе.', snd: 'звон монет; haptic light.' },
+  ] });
+
+/* ---------- 23. Пробный период Plus ---------- */
+const trialA = () => `<div class="full"><div class="glowspot gold" style="top:30%"></div><div class="body">
+  <div class="scene sf a-pop" style="width:96px;height:96px;border-radius:32px;background:linear-gradient(135deg,#FFE08A,#F0B33A);color:#3A2400">${icon('boltF', 's36')}</div>
+  <div class="ov a-up d2" style="margin-top:22px;color:var(--gold)">Plus включён</div>
+  <div class="h-xl a-up d3" style="margin-top:6px">7 дней — всё открыто</div>
+  <div class="trial-days a-up d4" style="margin-top:18px;width:220px"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="p a-up d5" style="margin-top:14px">Энергия ∞, монеты ×2, свободный разговор. Напомним за день до конца — без сюрпризов.</div>
+  <div class="sf a-up d6" style="margin-top:22px;padding:14px 16px;width:100%;text-align:left"><div class="ov">Попробуй первым</div><div class="row" style="padding:8px 0 0;min-height:0"><span class="tile">${icon('chat', 's20')}</span><div class="x">Свободный разговор<s>без сценария, 2 минуты</s></div>${icon('fwd', 's18')}</div></div>
+  </div><div class="foot a-up d7"><div class="cta gold">Поехали</div></div></div>`;
+const trialB = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="ov" style="color:var(--gold)">Plus · день 5 из 7</div><div class="h-md" style="margin-top:4px">Что дал Plus за 5 дней</div>
+  <div class="sf" style="margin-top:14px;padding:4px 16px"><div class="recap-row">${icon('boltF', 's18')} Занятий без ожидания<b>23</b></div><div class="recap-row">${coin(5, 18)} Монет сверху (×2)<b>+640</b></div><div class="recap-row">${icon('chat', 's18')} Свободных разговоров<b>4</b></div><div class="recap-row">${icon('trend', 's18')} Этажей в Пике<b>9 — рекорд</b></div></div>
+  <div class="p" style="margin-top:14px">Через 2 дня пробный закончится. Оставить всё как есть?</div>
+  <div class="cta gold" style="margin-top:14px">Оставить Plus <span class="pr">399 ₽/мес</span></div><div class="cta ghost">Напомнить за день</div></div>`;
+moment({ id: 'm23', num: '23', short: 'Пробный период Plus', title: 'Пробный период Plus', tag: 'old',
+  lead: 'Есть лента «честный пробный» на пейволе и напоминание о конце. Нет момента «пробный включён» (что попробовать первым) и рекапа «что дал Plus» в середине — он и конвертирует в оплату.',
+  variants: [
+    { k: 'A', label: '«7 дней — всё открыто» + что попробовать', time: '~2,5 с', phone: { under: homeEvening(), over: trialA() }, init: (ph) => { const t = setTimeout(() => confetti(ph, { gold: true, n: 60 }), 600); return () => clearTimeout(t); },
+      why: 'Пробный без «первого действия» забывается. Подсказываем самое ценное (свободный разговор) и обещаем напоминание — доверие.', ref: 'Duolingo Super welcome, Spotify Premium onboarding, Notion.', fx: 'значок pop, 7 делений, золото.', snd: 'аккорд; haptic success.' },
+    { k: 'B', label: 'Рекап «что дал Plus» на 5-й день', time: '~1 с', phone: { under: homeEvening(), over: trialB() },
+      why: 'Доказательство ценности своими цифрами перед окончанием — лучший момент для подтверждения оплаты. Без давления: есть «напомнить за день».', ref: 'Superwall multi-step paywalls (+27%), Headspace trial recap, Duolingo «Super gave you…».', fx: 'шторка, строки лесенкой.', snd: '—' },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+})();
+</script>
+</body>
+</html>

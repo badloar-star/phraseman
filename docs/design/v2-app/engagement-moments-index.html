@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения — индекс (v1 / v2 / v3)</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (координатор 13.10): индекс трёх этапов галереи «моменты вовлечения»; каждый этап — отдельные файлы, ничего не перезаписывается. */
+.ix { max-width: 1100px; margin: 0 auto; padding: 36px 18px 100px; }
+.ix h1 { font-size: 32px; font-weight: 800; letter-spacing: -.5px; margin: 0; }
+.ix .lead { color: var(--sec); font-size: 15px; line-height: 1.55; margin: 10px 0 0; max-width: 860px; }
+.stages { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; margin-top: 30px; }
+.stg { border-radius: 24px; padding: 22px; background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04)); box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); }
+.stg.off { opacity: .45; }
+.stg .k { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 800; color: #8BE5B6; }
+.stg.off .k { color: var(--muted); }
+.stg h2 { font-size: 22px; font-weight: 800; margin: 8px 0 6px; }
+.stg p { color: var(--sec); font-size: 14px; line-height: 1.5; margin: 0 0 14px; }
+.stg a.f { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.06); margin-top: 8px; font-size: 15px; font-weight: 600; }
+.stg a.f:hover { background: rgba(255,255,255,.1); }
+.stg a.f span { color: var(--muted); font-size: 13px; font-weight: 500; }
+.docs { margin-top: 36px; }
+.docs h3 { font-size: 18px; margin: 0 0 10px; }
+.docs a { display: inline-block; margin: 0 10px 8px 0; padding: 8px 14px; border-radius: 999px; background: #161618; color: #D6D6D8; font-size: 14px; }
+.list { margin-top: 36px; }
+.list h3 { font-size: 18px; margin: 0 0 10px; }
+.list ol { margin: 0; padding-left: 22px; color: var(--sec); font-size: 14px; line-height: 1.7; columns: 2; column-gap: 40px; }
+.list li b { color: #E6E6E8; font-weight: 600; }
+.list li .n { color: #8BE5B6; font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-left: 6px; }
+.list li .o { color: #F2C48B; font-size: 11px; font-weight: 800; letter-spacing: 1px; margin-left: 6px; }
+@media (max-width: 760px) { .list ol { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="ix">
+  <h1>Моменты вовлечения — модалы, церемонии, анимации</h1>
+  <p class="lead">Заказ владельца 13.10.2026: все моменты приложения (существующие — улучшенные, недостающие — новые), по 2–3 варианта каждого, с живой анимацией, в стиле «Тень», темы «Океан»/«Сумерки». Три этапа, каждый — отдельный набор файлов: v1 — исследование и первая версия; v2 — критический пересмотр и радикальное усиление; v3 — ещё раз: микро-анимации, тайминги, звук/хаптик, персонаж, драма.</p>
+
+  <div class="stages">
+    <div class="stg"><div class="k">Этап 1 · v1</div><h2>Исследование + первая версия</h2><p>23 момента, 58 вариантов. Повышение/удержание/понижение лиги, подиум недели, обгоны, итоги ступени и этажа; комбо, идеальный урок, итог урока, кольца дня (3 образа + закрытие + неделя + «все закрыты»), ранг монеты, тосты, выход; брифинг-переписка (3 сценария + 2 стиля), первый диалог, итог диалога, рубежи серии 7/30/100, серия под угрозой и заморозка, возвращение, энергия→Plus, пробный Plus.</p>
+      <a class="f" href="engagement-moments-v1-a.html">A · Пик и лиги <span>01–07</span></a>
+      <a class="f" href="engagement-moments-v1-b.html">B · Занятия, кольца дня, монета <span>08–15</span></a>
+      <a class="f" href="engagement-moments-v1-c.html">C · Диалоги, серия дней, Plus <span>16–23</span></a></div>
+    <div class="stg off" id="v2"><div class="k">Этап 2 · v2</div><h2>Критический пересмотр</h2><p>Глазами Duolingo / Apple / игр: что скучно, шаблонно, слабо по эмоции и деньгам — и радикальное улучшение. Файлы появятся после коммита этапа 2.</p></div>
+    <div class="stg off" id="v3"><div class="k">Этап 3 · v3</div><h2>Ещё раз радикально</h2><p>Микро-анимации, тайминги, звук/хаптик-пометки, персонаж/маскот-моменты, драма повышения, азарт комбо, живые переписки брифингов. Файлы появятся после коммита этапа 3.</p></div>
+  </div>
+
+  <div class="docs"><h3>Документы</h3>
+    <a href="../../phraseman-2.0/ENGAGEMENT_MOMENTS_RESEARCH_2026-10-13.md">Исследование конкурентов и аудит приложения (MD)</a>
+    <a href="previews/">Превью-картинки</a>
+    <a href="spire.html">Макет «Пик»</a> <a href="spire-leagues.html">Башни 12 лиг</a> <a href="dialogs.html">Макет «Диалоги»</a> <a href="coin-rank-up-animation.html">Церемония ранга монеты</a> <a href="shadow-style-etalon.html">Эталон «Тень»</a></div>
+
+  <div class="list"><h3>Список моментов v1 (<span style="color:#8BE5B6">NEW</span> — нет в приложении, <span style="color:#F2C48B">OLD</span> — есть, улучшаем)</h3>
+    <ol>
+      <li><b>Повышение лиги</b> — восхождение / подиум / карта лиги<span class="n">NEW</span></li>
+      <li><b>Удержался в лиге</b> — цель на неделю / «на волоске»<span class="n">NEW</span></li>
+      <li><b>Понижение мягко</b> — передышка / реванш + Щит лиги<span class="n">NEW</span></li>
+      <li><b>Итог недели</b> — подиум комнаты / сторис «Твоя неделя»<span class="o">OLD</span></li>
+      <li><b>Обгон друга</b> — тост / VS-модал / «ты обогнал»<span class="n">NEW</span></li>
+      <li><b>Итог ступени</b> — «Чисто!» / «Ещё раз»<span class="o">OLD</span></li>
+      <li><b>Этаж · Вершина</b> — следующий зажёгся / флаг и золото<span class="o">OLD</span></li>
+      <li><b>Комбо-молния</b> — бейдж 3/5/10 / разряд / множитель ×2→×3<span class="n">NEW</span></li>
+      <li><b>Идеальный урок</b> — золотой ореол / серия идеалов → ранг<span class="n">NEW</span></li>
+      <li><b>Итог урока</b> — собранный / шаг к дню<span class="o">OLD</span></li>
+      <li><b>Кольца дня · образы</b> — вокруг монеты / орбиты башни / одно кольцо + контур<span class="n">NEW</span></li>
+      <li><b>Закрытие кольца</b> — на Главной / полноэкранно<span class="n">NEW</span></li>
+      <li><b>Неделя колец · все закрыты</b> — 7 мини-колец / «Полный день»<span class="n">NEW</span></li>
+      <li><b>Ранг монеты</b> — приглашение после урока / полка коллекции<span class="o">OLD</span></li>
+      <li><b>Тосты · выход</b> — тост с балансом / «что сгорит»<span class="o">OLD</span></li>
+      <li><b>Брифинг-переписка</b> — кофе / аптека / врач / афиша / шторка<span class="n">NEW</span></li>
+      <li><b>Первый диалог</b> — «ты говорил» / прощание персонажа<span class="n">NEW</span></li>
+      <li><b>Итог диалога</b> — реакция персонажа + каскад целей<span class="o">OLD</span></li>
+      <li><b>Рубеж серии</b> — 7 / 30 / 100<span class="n">NEW</span></li>
+      <li><b>Серия под угрозой</b> — тост / отсчёт + заморозка / «заморозка спасла»<span class="o">OLD</span></li>
+      <li><b>Возвращение</b> — «ничего не сгорело» / разминка в 3 шага<span class="n">NEW</span></li>
+      <li><b>Энергия → Plus</b> — таймер + ∞ / «ты в ударе» / +1 за монеты<span class="o">OLD</span></li>
+      <li><b>Пробный Plus</b> — включён / рекап на 5-й день<span class="o">OLD</span></li>
+    </ol></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения v1 · B — занятия, кольца дня, монета</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<style>
+/* зачем: часть B — всё внутри занятий и на Главной: комбо правильных ответов, идеальный урок, итог урока (есть — улучшаем),
+   «кольца дня» (3 образа + закрытие + неделя + «все закрыты», по просьбе владельца 13.10), повышение ранга монеты (есть — делаем автоматическим моментом), тосты, выход из занятия. */
+.em-ph .q-under .opt { padding: 14px 16px; border-radius: 16px; font-size: 16px; font-weight: 600; margin-top: 8px; }
+.em-ph .q-under .opt.ok { background: color-mix(in srgb, var(--good) 20%, transparent); color: var(--good); }
+.em-ph .combo-badge { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px 0 8px; border-radius: 15px; font-size: 14px; font-weight: 800; background: color-mix(in srgb, var(--bolt) 20%, transparent); color: var(--bolt); animation: emPop 500ms var(--em-ease-pop) both; }
+.em-ph .combo-badge.l2 { height: 34px; font-size: 16px; background: color-mix(in srgb, var(--bolt) 30%, transparent); box-shadow: 0 0 18px color-mix(in srgb, var(--bolt) 40%, transparent); }
+.em-ph .combo-badge.l3 { height: 38px; font-size: 18px; background: linear-gradient(90deg, #FFD166, #FF7A45); color: #2A1500; box-shadow: 0 0 26px rgba(255,160,60,.55); }
+.em-ph .edge { position: absolute; inset: 0; pointer-events: none; z-index: 44; box-shadow: inset 0 0 0 0 transparent; animation: emEdge 1400ms ease-out both; border-radius: 50px; }
+@keyframes emEdge { 0% { box-shadow: inset 0 0 0 0 transparent; } 25% { box-shadow: inset 0 0 90px -20px var(--bolt); } 100% { box-shadow: inset 0 0 0 0 transparent; } }
+.em-ph .bigcombo { position: absolute; left: 0; right: 0; top: 40%; text-align: center; z-index: 46; pointer-events: none; }
+.em-ph .bigcombo b { display: block; font-size: 96px; line-height: 90px; font-weight: 900; letter-spacing: -4px; background: linear-gradient(180deg, #FFF3C4, #FFB347); -webkit-background-clip: text; background-clip: text; color: transparent; animation: emBoltIn 700ms var(--em-ease-pop) both, emFade 500ms 1600ms reverse both; filter: drop-shadow(0 10px 30px rgba(255,160,60,.45)); }
+.em-ph .bigcombo span { display: block; font-size: 16px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--bolt); animation: emUp 500ms 200ms both, emFade 400ms 1600ms reverse both; }
+.em-ph .boltsvg { width: 40px; height: 60px; animation: emBoltIn 600ms var(--em-ease-pop) both; }
+.em-ph .mult { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; }
+.em-ph .mult .x { font-size: 40px; line-height: 40px; font-weight: 900; color: var(--gold); animation: emPop 600ms var(--em-ease-pop) both; }
+.em-ph .mult .trk { width: 160px; height: 10px; border-radius: 5px; background: var(--trk); overflow: hidden; }
+.em-ph .mult .trk i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--gold2), var(--gold)); transition: width 700ms var(--em-ease); }
+.em-ph .mult .seg { display: flex; gap: 4px; width: 160px; }
+.em-ph .mult .seg i { flex: 1; height: 8px; border-radius: 4px; background: var(--trk); }
+.em-ph .mult .seg i.on { background: var(--gold); box-shadow: 0 0 8px var(--gold); }
+.em-ph .stars { display: flex; gap: 10px; justify-content: center; }
+.em-ph .stars .ic { width: 44px; height: 44px; color: var(--gold); animation: emPop 500ms var(--em-ease-pop) both; }
+.em-ph .stars .ic.off { color: var(--trk); }
+.em-ph .halo { position: absolute; left: 50%; top: 50%; width: 260px; height: 260px; margin: -130px; border-radius: 50%; background: conic-gradient(from 0deg, transparent, rgba(245,196,81,.45), transparent 30%, transparent 60%, rgba(245,196,81,.35), transparent); animation: emSpin 6s linear infinite; filter: blur(14px); }
+@keyframes emSpin { to { transform: rotate(360deg); } }
+.em-ph .ringwrap { position: relative; display: inline-block; }
+.em-ph .ringwrap .c { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.em-ph .legend { display: flex; flex-direction: column; gap: 10px; }
+.em-ph .legend .l { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
+.em-ph .legend .l i { width: 12px; height: 12px; border-radius: 50%; flex: none; }
+.em-ph .legend .l s { text-decoration: none; margin-left: auto; color: var(--sc); font-weight: 700; font-variant-numeric: tabular-nums; }
+.em-ph .legend .l.done s { color: var(--tx); }
+.em-ph .orbit { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 2px solid transparent; }
+.em-ph .orbit .dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; left: 50%; top: -7px; margin-left: -7px; box-shadow: 0 0 12px currentColor; background: currentColor; }
+.em-ph .wk7 { display: flex; justify-content: space-between; }
+.em-ph .wk7 .d { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--mu); }
+.em-ph .wk7 .d.today { color: var(--tx); }
+.em-ph .home-card { padding: 16px; border-radius: 24px; }
+.em-ph .rank-shelf { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.em-ph .rank-shelf .r { aspect-ratio: 1; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: var(--ti); }
+.em-ph .rank-shelf .r img { width: 70%; height: 70%; }
+.em-ph .rank-shelf .r.lock img { filter: grayscale(1) brightness(.4); }
+.em-ph .rank-shelf .r.new { background: color-mix(in srgb, var(--gold) 25%, transparent); box-shadow: 0 0 0 2px var(--gold), 0 0 22px color-mix(in srgb, var(--gold) 50%, transparent); animation: emPulse 1.6s ease-in-out infinite; }
+.em-ph .coin-flip { animation: emSpinY 1.6s var(--em-ease-in-out) .4s both; }
+.em-ph .fly { position: absolute; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE9A8, #E2A62A 60%, #9A6A14); z-index: 65; animation: emFlyTo 900ms var(--em-ease-in-out) both; }
+@keyframes emFlyTo { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.5); opacity: 0; } }
+.em-ph .lesson-under .q { padding: 26px 20px; text-align: center; border-radius: 22px; }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Этап 1 · v1 · часть B</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения — занятия, кольца дня, монета</h1>
+  <p class="page-lead">Комбо правильных ответов (3/5/10), идеальный урок, итог урока, «кольца дня» в трёх образах с закрытием, неделей и «все кольца закрыты», автоматический момент повышения ранга монеты, тосты и выход из занятия.</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v1-a.html">← Часть A: Пик</a><a class="em-btn" href="engagement-moments-v1-c.html">Часть C: диалоги, серия, Plus →</a></div></div>
+  <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v1-a.html">A · Пик</a><a class="file" href="engagement-moments-v1-b.html">B · Занятия</a><a class="file" href="engagement-moments-v1-c.html">C · Диалоги · Серия · Plus</a></nav>
+  <div id="root"></div>
+</div>
+<script src="engagement-moments.js"></script>
+<script>
+(() => {
+const { icon, coin, tower, rings, confetti, countUp, moment, render } = EM;
+const BOLT = `<svg class="boltsvg" viewBox="0 0 40 60"><defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3C4"/><stop offset="1" stop-color="#FFB347"/></linearGradient></defs><path d="M24 2L4 34h14L12 58l24-32H22z" fill="url(#bg1)" stroke="#FFD166" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+
+/* ---------- подложка: вопрос урока ---------- */
+const lessonUnder = (o = {}) => `<div class="lesson-under"><div class="top"><span class="chip">${icon('close', 's16')}</span><div class="bar grow" style="margin:0 8px"><i style="--w:${o.w || '62%'}"></i></div><span class="pill">${icon('boltF', 's16')} 4</span></div>
+  <div class="small" style="margin-top:22px;text-align:center">Выбери перевод</div>
+  <div class="q sf" style="margin-top:10px"><div class="h-md">${o.q || 'Можно мне счёт, пожалуйста?'}</div></div>
+  <div class="q-under" style="margin-top:14px"><div class="opt sf ok">${o.a || 'Can I have the bill, please?'}</div><div class="opt sf">Could you call me back?</div><div class="opt sf">Where is the station?</div></div>
+  <div class="dock"><div class="cta white">Дальше</div></div></div>`;
+
+/* ---------- 08. Комбо ---------- */
+const comboA = (n) => { const lvl = n >= 10 ? 'l3' : n >= 5 ? 'l2' : ''; return `<div style="position:absolute;left:0;right:0;top:106px;z-index:60;display:flex;justify-content:center"><span class="combo-badge ${lvl}">${icon('boltF', 's16')}${n} подряд${n >= 10 ? ' · огонь' : ''}</span></div>`; };
+const comboB = (n) => `<div class="edge"></div><div class="bigcombo"><b>${n}</b><span>подряд</span></div>`;
+const comboC = (n) => `<div class="dim" style="background:transparent;backdrop-filter:none"></div><div class="toast" style="top:96px;justify-content:center;gap:16px"><div class="mult"><span class="x">×${n >= 10 ? 3 : 2}</span><div class="seg">${[1, 2, 3, 4, 5].map((i) => `<i class="${i <= Math.min(5, n - 5) ? 'on' : ''}"></i>`).join('')}</div></div><div class="x" style="flex:none"><div style="font-size:16px">Серия ${n}</div><s>монеты за ответ ×${n >= 10 ? 3 : 2}</s><s style="color:var(--gold)">ещё ${10 - n > 0 ? 10 - n : 0} до ×3</s></div></div>`;
+moment({ id: 'm08', num: '08', short: 'Комбо · молния', title: '«Молния» — серия правильных ответов подряд', tag: 'new',
+  lead: 'В уроке, тренировке и ступени Пика — ничего нет (эффект комбо удалён 03.08, остался мини-ComboRing в старых уроках). Нарастание 3 → 5 → 10: бейдж растёт и теплеет, на 10 — вспышка по краям экрана. Три подачи: бейдж, «разряд» на весь экран, множитель монет (деньги/азарт).',
+  variants: [
+    { k: 'A', label: 'Бейдж-молния 3 → 5 → 10', time: '0,5 с', phone: { under: lessonUnder(), over: comboA(3) },
+      init: (ph) => { const seq = [[1200, 5], [2600, 10]]; const t = seq.map(([ms, n]) => setTimeout(() => { ph.querySelector('.combo-badge')?.parentElement.remove(); ph.insertAdjacentHTML('beforeend', comboA(n)); if (n === 10) ph.insertAdjacentHTML('beforeend', '<div class="edge"></div>'); }, ms)); return () => t.forEach(clearTimeout); },
+      why: 'Не мешает отвечать: бейдж под прогресс-баром, растёт только на вехах. Вовлечение: «не хочу терять серию» удерживает внимание до конца урока.', ref: 'Duolingo «N in a row» (combo bonus), Quizlet Match, Guitar Hero.', fx: 'pop 500 мс; на 10 — тёплая вспышка по краям 1,4 с.', snd: '3: «тик», 5: «тик-тик», 10: «вжух» + haptic medium. На ошибке — бейдж растворяется без звука (не наказываем).' },
+    { k: 'B', label: '«Разряд» — цифра во весь экран', time: '1,8 с', phone: { under: lessonUnder(), over: comboB(10) },
+      why: 'Для 10 подряд — редкое событие, заслуживает экрана. Цифра «вылетает» на 0,7 с и тает, урок не останавливается.', ref: 'Candy Crush «Sweet / Divine», Beat Saber combo, Brawl Stars kill streak.', fx: 'bolt-in с перелётом (translateY −40 → +4 → 0), gradient-text, затухание через 1,6 с.', snd: 'громкий «разряд» 300 мс; haptic heavy.' },
+    { k: 'C', label: 'Множитель монет ×2 → ×3', time: '1 с', phone: { under: lessonUnder(), over: comboC(7) },
+      why: 'Деньги/экономика: серия даёт больше монет за ответ (×2 с 5-го, ×3 с 10-го). Сегменты показывают «ещё 3 до ×3». Азарт Candy Crush + понятная выгода.', ref: 'Candy Crush множители, Clash Royale crown bonus, Duolingo XP boost.', fx: 'множитель pop, сегменты зажигаются по одному.', snd: 'звон на каждый сегмент; haptic light.' },
+  ] });
+
+/* ---------- 09. Идеальный урок ---------- */
+const perfectA = () => `<div class="full"><div class="halo"></div><div class="body">
+  <div class="stars a-up">${icon('starF')}<span class="ic" style="animation-delay:.2s">${icon('starF')}</span><span class="ic" style="animation-delay:.4s">${icon('starF')}</span></div>
+  <div class="ov a-up d3" style="margin-top:22px;color:var(--gold)">Идеальный урок</div>
+  <div class="h-xl a-up d4" style="margin-top:8px">Ни одной ошибки</div>
+  <div class="p a-up d5" style="margin-top:6px">20 из 20 · Present Simple: Утверждение</div>
+  <div class="sf a-up d6" style="margin:22px 0 0;padding:12px 16px;display:inline-flex;align-items:center;gap:10px">${coin(5, 26)}<span class="h-md">+<span data-c>0</span></span><span class="chip" style="color:var(--gold)">×1,5 за идеал</span></div>
+  </div><div class="foot a-up d7"><div class="cta white">Дальше</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+const perfectB = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:30px">
+  <div style="position:relative;display:inline-block">${coin(5, 88, 'coin-flip')}<span class="ring"></span></div>
+  <div class="ov" style="margin-top:16px;color:var(--gold)">Идеальный урок</div>
+  <div class="h-lg" style="margin-top:6px">Это 3-й подряд</div>
+  <div class="p" style="margin-top:6px">Ещё два без ошибок — и ранг 6 твой бесплатно.</div>
+  <div class="bar gold" style="margin:18px 10px 0"><i style="--w:60%"></i></div><div class="small" style="margin-top:8px">3 из 5 идеальных</div>
+  <div class="cta white" style="margin-top:20px">Следующий урок</div></div>`;
+moment({ id: 'm09', num: '09', short: 'Идеальный урок', title: 'Идеальный урок — без единой ошибки', tag: 'new',
+  lead: 'Сейчас отличие от обычного итога — только звук третьей звезды. Делаем отдельный момент: золотой ореол, 3 звезды по очереди, бонус ×1,5 к монетам; вариант с «серией идеалов» ведёт к рангу монеты (цель на несколько уроков).',
+  variants: [
+    { k: 'A', label: 'Золотой ореол + ×1,5', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectA() },
+      init: (ph) => { const c = ph.querySelector('[data-c]'); const t = setTimeout(() => { countUp(c, 0, 45, 900); confetti(ph, { gold: true, n: 70 }); }, 1100); return () => clearTimeout(t); },
+      why: 'Редкий (≈15% уроков) и заслуженный — повышает ценность ошибок-нет. Шеринг даёт органику.', ref: 'Duolingo Legendary (золото), Candy Crush 3 звезды.', fx: 'звёзды pop 0/200/400 мс, медленно вращающийся золотой ореол, счётчик монет.', snd: 'три «дзинь» по возрастанию + финал; haptic success ×3.' },
+    { k: 'B', label: 'Серия идеалов → ранг монеты', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: perfectB() },
+      why: 'Связывает идеальный урок с рангом монеты (бесплатное повышение за 5 идеалов подряд) — длинная цель, удержание на неделю. Предложение механики.', ref: 'Duolingo Legendary → trophy, Clash Royale crown chest (10 корон).', fx: 'монета-флип 1,6 с, золотой бар.', snd: 'флип-шорох + звон; haptic medium.' },
+  ] });
+
+/* ---------- 10. Итог урока (есть — улучшаем) ---------- */
+const resultA = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:10px">
+  <div class="stars a-up">${icon('starF')}<span class="ic" style="animation-delay:.2s">${icon('starF')}</span><span class="ic off" style="animation-delay:.4s">${icon('starF')}</span></div>
+  <div class="h-lg a-up d3" style="margin-top:18px">Урок пройден</div>
+  <div class="p a-up d4" style="margin-top:4px">Present Simple: Утверждение</div>
+  <div class="stat3 a-up d5" style="margin-top:22px"><div class="st sf"><b style="color:var(--good)">17</b><span>верно</span></div><div class="st sf"><b style="color:var(--bad)">3</b><span>ошибки</span></div><div class="st sf"><b>85%</b><span>точность</span></div></div>
+  <div class="sf a-up d6" style="margin-top:12px;padding:14px 16px;width:100%;display:flex;align-items:center;gap:12px"><span data-coin-src>${coin(5, 30)}</span><div class="grow" style="text-align:left"><div style="font-size:17px;font-weight:700">+<span data-c>0</span> монет</div><div class="small">1 240 → 1 275</div></div><span class="chip">${icon('flameF', 's16')} 5 дней</span></div>
+  <div class="sf a-up d7" style="margin-top:10px;padding:14px 16px;width:100%;text-align:left"><div class="small">Теперь ты можешь</div><div style="font-size:15px;font-weight:600;margin-top:6px;line-height:21px">Сказать, чем занимаешься каждый день · Спросить, где работает собеседник</div></div>
+  </div><div class="foot a-up d8"><div class="cta white">Следующий урок ${icon('arrowR', 's18')}</div><div class="cta ghost">Разобрать 3 ошибки</div></div></div>`;
+const resultB = () => `<div class="full" style="padding:0"><div style="position:absolute;inset:0;background:linear-gradient(180deg, color-mix(in srgb, var(--acc) 22%, var(--bg)), var(--bg) 55%)"></div>
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;padding:70px 24px 36px">
+  <div class="ov a-up">Урок 3 · готово</div>
+  <div class="h-xl a-up d1" style="margin-top:8px;font-size:38px;line-height:42px">+35 монет<br>и 2 новых фразы в копилке</div>
+  <div class="week a-up d2" style="margin-top:22px">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d, i) => `<div class="d ${i < 5 ? 'on' : ''} ${i === 4 ? 'today' : ''}"><i>${i < 5 ? icon('flameF', 's16') : ''}</i>${d}</div>`).join('')}</div>
+  <div class="small a-up d3 center" style="margin-top:10px">Серия 5 дней · завтра — 6</div>
+  <div class="sf a-up d4" style="margin-top:22px;padding:14px 16px"><div class="fl"><div class="grow"><div style="font-size:16px;font-weight:700">Кольцо «Урок» закрыто</div><div class="small">Осталось: Пик 1 из 3 · Карточки 2 из 10</div></div>${rings([{ v: 1, color: 'var(--acc)' }, { v: .33, color: 'var(--acc2)' }, { v: .2, color: 'var(--gold)' }], { size: 56, stroke: 6, gap: 3 })}</div></div>
+  <div style="flex:1"></div>
+  <div class="cta white a-up d5">Дальше</div><div class="cta ghost a-up d5">Разобрать ошибки · 3</div></div></div>`;
+moment({ id: 'm10', num: '10', short: 'Итог урока', title: 'Итог урока', tag: 'old',
+  lead: 'В приложении есть ResultsSequence/V2DoneScreen (звёзды, конфетти на любой результат). Улучшаем: конфетти — только за идеал; монеты «подлетают» в баланс; строка «Теперь ты можешь»; вариант B связывает итог с серией дней и кольцами дня (мост к Главной).',
+  variants: [
+    { k: 'A', label: 'Собранный итог: звёзды, монеты, «теперь умеешь»', time: '~2,5 с', phone: { under: lessonUnder({ w: '100%' }), over: resultA() },
+      init: (ph) => { const c = ph.querySelector('[data-c]'); const t = setTimeout(() => { countUp(c, 0, 35, 800); for (let i = 0; i < 6; i++) { const f = document.createElement('i'); f.className = 'fly'; f.style.left = '52px'; f.style.top = '470px'; f.style.setProperty('--dx', `${260 + (i % 3) * 8}px`); f.style.setProperty('--dy', `-${380 + i * 6}px`); f.style.animationDelay = `${i * 70}ms`; ph.appendChild(f); setTimeout(() => f.remove(), 1400); } }, 1500); return () => clearTimeout(t); },
+      why: 'Без шума на обычном уроке (праздник бережём для идеала), но с ощущением накопления: монеты летят, серия дней в кадре. «Теперь ты можешь» — смысл, а не очки.', ref: 'Duolingo lesson complete (XP + streak), Babbel «Now you can», Headway.', fx: 'звёзды по очереди, монеты летят в чип 0,9 с, счётчик.', snd: 'звон монет; haptic light.' },
+    { k: 'B', label: 'Итог как шаг к дню: серия + кольцо', time: '~2 с', phone: { under: lessonUnder({ w: '100%' }), over: resultB() },
+      why: 'Урок сразу «закрывает кольцо» и продвигает серию — одно действие двигает три счётчика. Удержание: видно, что осталось на день (Пик, карточки) → вторая сессия.', ref: 'Apple Fitness summary, Duolingo daily quest progress после урока.', fx: 'неделя-точки, мини-кольца докручиваются.', snd: 'без звука; haptic light.' },
+  ] });
+
+/* ---------- 11. Кольца дня — три образа ---------- */
+const RING3 = (v) => [{ v: v[0], color: 'var(--acc)' }, { v: v[1], color: 'var(--acc2)' }, { v: v[2], color: 'var(--gold)' }];
+const homeTop = () => `<div class="top"><span class="pill">${icon('flameF', 's16')} 5 дней</span><span class="pill gold" style="flex:1;justify-content:flex-start">${coin(5, 20)}1 240</span><span class="pill">${icon('bell', 's16')}</span></div>`;
+const ringsA = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl" style="gap:16px"><div class="ringwrap">${rings(RING3([.7, .33, .2]), { size: 132, stroke: 11, gap: 4, from0: true })}<div class="c">${coin(5, 54)}</div></div>
+  <div class="legend grow"><div class="l"><i style="background:var(--acc)"></i>Урок<s>14/20 фраз</s></div><div class="l"><i style="background:var(--acc2)"></i>Пик<s>1/3 ступени</s></div><div class="l"><i style="background:var(--gold)"></i>Карточки<s>2/10</s></div></div></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div><div class="bar" style="margin-top:10px"><i style="--w:70%"></i></div></div>
+  <div class="fl" style="gap:10px;margin-top:12px">${['Уроки', 'Диалоги', 'Карточки'].map((t) => `<div class="sf" style="flex:1;aspect-ratio:1;padding:12px;display:flex;align-items:flex-end;font-weight:800;font-size:16px">${t}</div>`).join('')}</div>`;
+const ringsB = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px;padding:10px 16px 14px"><div class="fl" style="gap:8px"><div style="position:relative;width:170px;height:170px;flex:none;display:flex;align-items:center;justify-content:center">${tower(1, { w: 70, floors: 5, lit: 3 })}
+  <div class="orbit" style="width:120px;height:120px;margin:-60px;border-color:color-mix(in srgb, var(--acc) 30%, transparent);color:var(--acc);transform:rotate(-90deg)"><span class="dot"></span><svg width="120" height="120" style="position:absolute;inset:-2px;transform:none" viewBox="0 0 120 120"><circle cx="60" cy="60" r="59" fill="none" stroke="var(--acc)" stroke-width="3" stroke-linecap="round" stroke-dasharray="371" stroke-dashoffset="111" class="rg" data-len="371" data-to="111" style="stroke-dashoffset:371;transition:stroke-dashoffset 1200ms var(--em-ease)"/></svg></div>
+  <div class="orbit" style="width:146px;height:146px;margin:-73px;border-color:color-mix(in srgb, var(--acc2) 30%, transparent);color:var(--acc2);transform:rotate(-90deg)"><svg width="146" height="146" style="position:absolute;inset:-2px" viewBox="0 0 146 146"><circle cx="73" cy="73" r="72" fill="none" stroke="var(--acc2)" stroke-width="3" stroke-linecap="round" stroke-dasharray="452" stroke-dashoffset="300" class="rg" data-len="452" data-to="300" style="stroke-dashoffset:452;transition:stroke-dashoffset 1200ms var(--em-ease) 150ms"/></svg></div>
+  <div class="orbit" style="width:170px;height:170px;margin:-85px;border-color:color-mix(in srgb, var(--gold) 30%, transparent);color:var(--gold);transform:rotate(-90deg)"><svg width="170" height="170" style="position:absolute;inset:-2px" viewBox="0 0 170 170"><circle cx="85" cy="85" r="84" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" stroke-dasharray="527" stroke-dashoffset="420" class="rg" data-len="527" data-to="420" style="stroke-dashoffset:527;transition:stroke-dashoffset 1200ms var(--em-ease) 300ms"/></svg></div></div>
+  <div class="legend grow"><div class="l"><i style="background:var(--acc)"></i>Урок<s>70%</s></div><div class="l"><i style="background:var(--acc2)"></i>Пик<s>1/3</s></div><div class="l"><i style="background:var(--gold)"></i>Карточки<s>2/10</s></div><div class="small" style="margin-top:6px">Орбиты вокруг твоей башни. Замкни все три — день засчитан.</div></div></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const ringsC = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px;position:relative;overflow:hidden"><div class="fl" style="gap:14px"><div class="ringwrap">${rings([{ v: .42, color: 'var(--acc)' }], { size: 92, stroke: 12, from0: true })}<div class="c" style="flex-direction:column"><b style="font-size:22px;line-height:22px" data-pct>0</b><span class="small">%</span></div></div>
+  <div class="grow"><div class="ov">Сегодня</div><div style="font-size:20px;font-weight:700;margin-top:4px">Одно кольцо дня</div><div class="small" style="margin-top:4px">Урок ✓ · Пик 1/3 · Карточки 2/10</div></div></div>
+  <div class="small" style="margin-top:12px">Кольцо = сумма трёх дел. Светящийся контур плашки — заполняется вместе с кольцом.</div>
+  <svg style="position:absolute;inset:0;pointer-events:none" width="350" height="100%" viewBox="0 0 350 150" preserveAspectRatio="none"><rect x="1.5" y="1.5" width="347" height="147" rx="22" fill="none" stroke="var(--acc)" stroke-width="3" stroke-dasharray="1000" stroke-dashoffset="580" class="rg" data-len="1000" data-to="580" style="stroke-dashoffset:1000;transition:stroke-dashoffset 1400ms var(--em-ease)"/></svg></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const fillRings = (ph) => { const t = setTimeout(() => ph.querySelectorAll('.rg').forEach((c) => { c.style.strokeDashoffset = c.dataset.to; }), 150); return () => clearTimeout(t); };
+moment({ id: 'm11', num: '11', short: 'Кольца дня · образы', title: '«Кольца дня» — три образа на Главной', tag: 'new',
+  lead: 'Просьба владельца: дневные цели как кольца Apple Watch, но в нашем стиле. В коде есть неподключённый DayRings.tsx и «Сегодня» без момента завершения. <b>Что сильнее для удержания:</b> три кольца, где первое («Урок») закрывается за 3–5 минут — лёгкая победа каждый день, а два других тянут на вторую сессию; одно кольцо проще понять, но теряет эффект «почти закрыл ещё одно». Рекомендуем образ A (кольца вокруг монеты ранга): монета-аватар уже «я», кольца — «мой день». Живёт в шапке Главной, над «Продолжить».',
+  variants: [
+    { k: 'A', label: 'Три кольца вокруг монеты ранга', time: '1,2 с', phone: { under: ringsA() }, init: fillRings,
+      why: 'Монета ранга = личность игрока; кольца — его день. Лёгкое первое кольцо (урок) даёт ежедневную победу, остальные тянут обратно. Самый понятный образ.', ref: 'Apple Activity rings, Duolingo daily quests, Oura.', fx: 'дуги докручиваются от нуля 1,1 с с шагом 120 мс.', snd: 'без звука на открытии.' },
+    { k: 'B', label: 'Орбиты вокруг башни', time: '1,2 с', phone: { under: ringsB() }, init: fillRings,
+      why: 'Связь с Пиком: башня лиги в центре, вокруг — три орбиты. Сильнее для соревновательных, слабее для тех, кто не играет в Пик.', ref: 'Clash Royale trophy road, Monument Valley.', fx: 'три орбиты с задержкой 0/150/300 мс, точка-спутник светится.', snd: '—' },
+    { k: 'C', label: 'Одно кольцо + светящийся контур', time: '1,4 с', phone: { under: ringsC() }, init: (ph) => { const s = fillRings(ph); const p = ph.querySelector('[data-pct]'); const t = setTimeout(() => countUp(p, 0, 42, 1100), 150); return () => { s(); clearTimeout(t); }; },
+      why: 'Минимализм: одно кольцо-процент и контур плашки «Сегодня», который дорисовывается. Проще, но нет «трёх маленьких побед».', ref: 'Oura readiness, Headspace, iOS Focus.', fx: 'кольцо + обводка плашки через stroke-dashoffset.', snd: '—' },
+  ] });
+
+/* ---------- 12. Закрытие кольца ---------- */
+const closeA = () => `${homeTop()}<div class="home-card sf on" style="margin-top:14px;position:relative"><div class="glowspot" style="top:50%;width:220px;height:220px;margin:-110px 0 0 -110px"></div><div class="fl" style="gap:16px;position:relative"><div class="ringwrap"><div data-r>${rings(RING3([.7, .33, .2]), { size: 132, stroke: 11, gap: 4 })}</div><div class="c">${coin(5, 54)}</div></div>
+  <div class="legend grow"><div class="l done"><i style="background:var(--acc)"></i>Урок<s data-l1>14/20</s></div><div class="l"><i style="background:var(--acc2)"></i>Пик<s>1/3</s></div><div class="l"><i style="background:var(--gold)"></i>Карточки<s>2/10</s></div></div></div></div>
+  <div class="toast bot" data-t hidden><span class="tile" style="color:var(--acc)">${icon('check', 's20')}</span><div class="x">Кольцо «Урок» закрыто<s>+50 монет · осталось два</s></div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const closeB = () => `<div class="full"><div class="glowspot"></div><div class="body">
+  <div class="ringwrap a-pop" data-r>${rings(RING3([1, .33, .2]), { size: 200, stroke: 16, gap: 6, from0: true })}<div class="c">${coin(5, 76)}</div></div>
+  <div class="ov a-up d4" style="margin-top:24px">Кольцо закрыто</div>
+  <div class="h-xl a-up d5" style="margin-top:6px">Урок — есть</div>
+  <div class="p a-up d6" style="margin-top:6px">+50 монет. Осталось два кольца: Пик (2 ступени) и карточки (8).</div>
+  </div><div class="foot a-up d7"><div class="cta white">Закрыть ещё одно — Пик</div><div class="cta ghost">На Главную</div></div></div>`;
+moment({ id: 'm12', num: '12', short: 'Закрытие кольца', title: 'Закрытие кольца — момент', tag: 'new',
+  lead: 'Самый частый праздник в приложении (каждый день) — значит, короткий и «вкусный», но не на весь экран по умолчанию. Вариант A — прямо на Главной: кольцо дотягивается, вспышка, тост. Вариант B — полноэкранный для первого закрытия дня.',
+  variants: [
+    { k: 'A', label: 'На Главной: кольцо дотягивается + тост', time: '1,8 с', phone: { under: closeA() },
+      init: (ph) => { const t1 = setTimeout(() => { const c = ph.querySelector('[data-r] .rg'); c.style.strokeDashoffset = '0'; ph.querySelector('[data-l1]').textContent = '20/20'; }, 400); const t2 = setTimeout(() => { ph.querySelector('[data-t]').hidden = false; confetti(ph, { n: 40, burst: [.27, .25], colors: ['#5FE3C0', '#fff', '#7C9BFF'] }); }, 1300); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Ежедневный момент — экономим внимание: 1,8 с, не блокирует экран, но заметен (вспышка + хаптик). Удержание: ритуал «закрыть кольцо» сильнее абстрактной «цели».', ref: 'Apple Watch ring close (вспышка + haptic), Duolingo quest chest.', fx: 'дуга докручивает последние 30% 0,9 с → кольцо «вспыхивает», маленький взрыв частиц из кольца, тост снизу.', snd: 'короткий «блим»; haptic success (две лёгкие ноты) — главный хаптик момента.' },
+    { k: 'B', label: 'Полноэкранно: «Урок — есть»', time: '~2,5 с', phone: { under: closeA().replace('data-t hidden', 'data-t hidden'), over: closeB() },
+      init: (ph) => { const t1 = setTimeout(() => ph.querySelectorAll('.full .rg').forEach((c) => { c.style.strokeDashoffset = c.dataset.to; }), 300); const t2 = setTimeout(() => confetti(ph, { n: 60, burst: [.5, .33] }), 1500); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Для первого закрытия дня и новичков первой недели — экран с ясным «что дальше» (кнопка ведёт ко второму кольцу). Вторая сессия в день — главный рычаг удержания.', ref: 'Apple Fitness «Move goal reached», Duolingo quest complete.', fx: 'кольца от нуля, pop, конфетти из центра.', snd: '«блим» + haptic success.' },
+  ] });
+
+/* ---------- 13. Неделя колец + «все закрыты» ---------- */
+const wk = (vals, o = {}) => `<div class="wk7">${['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'].map((d, i) => `<div class="d ${i === (o.today ?? 4) ? 'today' : ''}">${rings(RING3(vals[i] || [0, 0, 0]), { size: 40, stroke: 4, gap: 2 })}${d}</div>`).join('')}</div>`;
+const weekRingsA = () => `${homeTop()}<div class="home-card sf" style="margin-top:14px"><div class="fl"><div class="grow"><div class="ov">Неделя</div><div style="font-size:19px;font-weight:700;margin-top:4px">4 полных дня из 5</div></div><span class="chip" style="color:var(--acc)">${icon('flameF', 's16')} 5</span></div>
+  <div style="margin-top:14px">${wk([[1, 1, 1], [1, 1, 1], [1, .6, 1], [1, 1, 1], [1, .33, .2], [0, 0, 0], [0, 0, 0]])}</div>
+  <div class="small" style="margin-top:12px">Среда — без Пика. Закрой сегодня все три — будет 5 из 5.</div></div>
+  <div class="home-card sf" style="margin-top:12px"><div class="small">ПРОДОЛЖИТЬ</div><div style="font-size:19px;font-weight:700;margin-top:6px">Present Simple: Утверждение</div></div>`;
+const allClosedB = () => `<div class="full"><div class="glowspot gold"></div><div class="body">
+  <div class="ringwrap a-pop" data-r>${rings(RING3([1, 1, 1]), { size: 210, stroke: 16, gap: 6, from0: true })}<div class="c">${coin(5, 80)}</div></div>
+  <div class="ov a-up d4" style="margin-top:24px;color:var(--gold)">Все кольца закрыты</div>
+  <div class="h-xl a-up d5" style="margin-top:6px">Полный день</div>
+  <div class="p a-up d6" style="margin-top:6px">Урок, Пик и карточки — всё. <b>+100 монет</b> за полный день. Это 4-й подряд.</div>
+  <div class="a-up d7" style="margin-top:18px">${wk([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1], [0, 0, 0], [0, 0, 0]], { today: 4 })}</div>
+  </div><div class="foot a-up d8"><div class="cta gold">Забрать 100</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+moment({ id: 'm13', num: '13', short: 'Неделя колец · все закрыты', title: 'Неделя колец и «все кольца закрыты»', tag: 'new',
+  lead: 'Недельный вид — семь мини-колец, виден «дырявый» день (мотивация не повторять). «Все кольца закрыты» — отдельное празднование с бонусом за полный день и счётчиком полных дней подряд (вторая серия поверх серии дней — престиж для вовлечённых).',
+  variants: [
+    { k: 'A', label: 'Неделя: 7 мини-колец', time: '1 с', phone: { under: weekRingsA() },
+      why: 'Паттерн недели виден сразу; «среда без Пика» — мягкий укол. Удержание: стремление к «5 из 5».', ref: 'Apple Fitness week view, Duolingo Perfect Week.', fx: 'мини-кольца докручиваются по дням.', snd: '—' },
+    { k: 'B', label: '«Полный день» — все три', time: '~3 с', phone: { under: weekRingsA(), over: allClosedB() },
+      init: (ph) => { const t1 = setTimeout(() => ph.querySelectorAll('.full .rg').forEach((c) => { c.style.strokeDashoffset = '0'; }), 300); const t2 = setTimeout(() => confetti(ph, { gold: true, n: 110 }), 1500); return () => { clearTimeout(t1); clearTimeout(t2); }; },
+      why: 'Редкий момент (полный день) → золото, бонус и серия полных дней. Деньги: это место для «Plus: ×2 за полный день» без давления (в v2).', ref: 'Apple «All three rings», Duolingo Perfect Week, Streak Society.', fx: 'три кольца от нуля в унисон, золотой дождь.', snd: 'аккорд из трёх нот; haptic heavy.' },
+  ] });
+
+/* ---------- 14. Повышение ранга монеты (есть — улучшаем) ---------- */
+const rankA = () => `<div class="dim"></div><div class="modal" style="text-align:center;padding-top:28px"><div class="glowspot gold" style="top:30%;width:240px;height:240px;margin:-120px 0 0 -120px"></div>
+  <div style="position:relative;display:inline-flex;align-items:center;gap:14px"><span style="opacity:.5">${coin(5, 56)}</span>${icon('arrowR', 's20')}<span class="a-pop" style="position:relative">${coin(6, 92)}<span class="ring"></span></span></div>
+  <div class="ov" style="margin-top:18px;color:var(--gold)">Ранг 6 доступен</div>
+  <div class="h-lg" style="margin-top:6px">Монета хочет расти</div>
+  <div class="p" style="margin-top:6px">Ты накопил 1 500 — хватает на ранг 6. Новую монету увидят друзья и комната Пика.</div>
+  <div class="cta gold" style="margin-top:20px">Повысить за 1 200 ${coin(5, 18)}</div><div class="cta ghost">Позже</div></div>`;
+const rankB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:10px">
+  <div class="ov a-up">Коллекция монет</div><div class="h-lg a-up d1" style="margin-top:6px">Ранг 6 из 20</div>
+  <div class="rank-shelf a-up d2" style="margin-top:20px;width:100%">${Array.from({ length: 20 }, (_, i) => `<div class="r ${i < 6 ? '' : 'lock'} ${i === 5 ? 'new' : ''}">${coin(i, 40)}</div>`).join('')}</div>
+  <div class="p a-up d4" style="margin-top:18px">Следующая — ранг 7, нужно 2 400. Или 5 идеальных уроков подряд — бесплатно.</div>
+  <div class="bar gold a-up d5" style="width:100%;margin-top:12px"><i style="--w:12%"></i></div><div class="small a-up d5" style="margin-top:6px">300 из 2 400</div>
+  </div><div class="foot a-up d6"><div class="cta white">Продолжить</div></div></div>`;
+moment({ id: 'm14', num: '14', short: 'Ранг монеты', title: 'Повышение ранга монеты', tag: 'old',
+  lead: 'Церемония «Монетный двор» (LevelUpMintCeremony) — лучшее в приложении, но запускается только когда пользователь сам зашёл и заплатил. Добавляем момент-приглашение после урока («ранг доступен») и «полку» коллекции 20 рангов с подсветкой новой — это мотивация копить (экономика монет) и повод для ×2 монет в Plus.',
+  variants: [
+    { k: 'A', label: 'Приглашение после урока: «Ранг 6 доступен»', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankA() },
+      why: 'Пользователь не знает, что накопил на ранг. Момент предложения → тап → существующая церемония чеканки. Деньги: монеты тратятся → спрос на монеты → Plus ×2.', ref: 'Clash Royale «upgrade available» (зелёная стрелка), Pokémon evolution prompt.', fx: 'новая монета pop + расходящееся кольцо, золотое свечение.', snd: 'звон; haptic medium.' },
+    { k: 'B', label: 'Полка коллекции 20 рангов', time: '~1,5 с', phone: { under: lessonUnder({ w: '100%' }), over: rankB() },
+      why: 'Коллекционирование: видно, сколько впереди; новый ранг пульсирует; два пути к следующему (монеты или идеалы). Долгосрочная цель.', ref: 'Brawl Stars brawler grid, Pokémon dex, Duolingo achievements shelf.', fx: 'сетка появляется, новая монета пульсирует с золотым ободом.', snd: '—' },
+  ] });
+
+/* ---------- 15. Тосты и выход ---------- */
+const toastCoins = () => `<div class="toast"><span class="tile">${coin(5, 26)}</span><div class="x">+50 монет<s>Задание «Повторить карточки» выполнено</s></div><span class="chip" style="color:var(--gold)">1 290</span></div>`;
+const exitSheet = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="h-md">Выйти из урока?</div><div class="p" style="margin-top:6px">Прошёл 12 из 20 — это сохранится. Комбо 7 подряд сгорит.</div>
+  <div class="bar" style="margin-top:16px"><i style="--w:60%"></i></div>
+  <div class="cta white" style="margin-top:18px">Доделать — осталось 2 минуты</div><div class="cta ghost" style="color:var(--bad)">Выйти</div></div>`;
+moment({ id: 'm15', num: '15', short: 'Тосты · выход', title: 'Тосты монет и выход из занятия', tag: 'old',
+  lead: 'ActionToast есть. Улучшаем: баланс в тосте, причина начисления; шторка выхода — с цифрами «что сохранится / что сгорит» и честным «осталось 2 минуты».',
+  variants: [
+    { k: 'A', label: 'Тост «+50 монет» с балансом', time: '0,6 с', phone: { under: ringsA(), over: toastCoins() }, init: fillRings,
+      why: 'Тост отвечает на «за что» и «сколько теперь». Мелочь, из которой складывается доверие к экономике.', ref: 'Duolingo reward toast, Revolut.', fx: 'пружина сверху.', snd: 'звон; haptic light.' },
+    { k: 'B', label: 'Выход: что сохранится, что сгорит', time: '0,6 с', phone: { under: lessonUnder(), over: exitSheet() },
+      why: '«Осталось 2 минуты» и «комбо сгорит» возвращают в урок чаще, чем «Вы уверены?». Удержание сессии.', ref: 'Duolingo quit screen («Wait, don’t go!»), Headspace.', fx: 'шторка.', snd: 'haptic light.' },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+})();
+</script>
+</body>
+</html>

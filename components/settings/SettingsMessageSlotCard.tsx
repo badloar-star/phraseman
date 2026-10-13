@@ -11,6 +11,7 @@ import {
 } from '../../app/app_messages';
 import {
   ownerTail,
+  peekSettingsPollVote,
   readSettingsPollVote,
   submitSettingsPollVoteOptimistically,
   type SettingsPollVoteState,
@@ -56,7 +57,11 @@ function percent(count: number, total: number): string {
 export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginTop = 12 }: Props) {
   const { theme: t, f } = useTheme();
   const g = useShadowGlass();
-  const [vote, setVote] = useState<SettingsPollVoteState | null>(null);
+  // зачем (settings-gap-008, журнал Сверки 13.10 15:58: голос приходил из хранилища через 754 мс — кадр «не голосовал», затем прыжок высоты):
+  // первый кадр берёт голос из памяти процесса (peek), хранилище только догоняет и сверяет.
+  const [vote, setVote] = useState<SettingsPollVoteState | null>(() => (
+    campaign.kind === 'poll' && ownerStableId ? peekSettingsPollVote(ownerStableId, campaign.id) ?? null : null
+  ));
   // зачем (settings-gaps-states): голос, отданный на этом экране, ещё не в серверных счётчиках кампании — прибавляем его локально, чтобы проценты считались с учётом выбора
   const [castHereOptionId, setCastHereOptionId] = useState<string | null>(null);
   const copy = useMemo(() => pickAppMessageText(campaign, lang), [campaign, lang]);
@@ -66,15 +71,16 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
 
   useEffect(() => {
     let active = true;
-    setVote(null);
+    const peeked = campaign.kind === 'poll' && ownerStableId ? peekSettingsPollVote(ownerStableId, campaign.id) : null;
+    setVote(peeked ?? null);
     setCastHereOptionId(null);
-    // зачем (settings-gap-008, логи до починки): сид poll_voted пишет голос, а кадр без голоса — видеть владельца, момент чтения и результат.
-    if (__DEV__) console.log(`[SETTINGS-POLL] гидрация вход campaign=${campaign.id} kind=${campaign.kind} owner=${ownerTail(ownerStableId)}`);
+    if (__DEV__) console.log(`[SETTINGS-POLL] гидрация вход campaign=${campaign.id} kind=${campaign.kind} owner=${ownerTail(ownerStableId)} память=${peeked === undefined ? 'не читалась' : peeked ? `${peeked.optionId}/${peeked.status}` : 'нет голоса'}`);
     if (campaign.kind === 'poll' && ownerStableId) {
       const startedAt = Date.now();
       void readSettingsPollVote(ownerStableId, campaign.id).then((stored) => {
-        if (__DEV__) console.log(`[SETTINGS-POLL] гидрация итог campaign=${campaign.id} owner=${ownerTail(ownerStableId)} голос=${stored ? `${stored.optionId}/${stored.status}` : 'нет'} active=${String(active)} за ${Date.now() - startedAt} мс`);
-        if (active) setVote(stored);
+        if (__DEV__) console.log(`[SETTINGS-POLL] гидрация итог campaign=${campaign.id} owner=${ownerTail(ownerStableId)} хранилище=${stored ? `${stored.optionId}/${stored.status}` : 'нет'} active=${String(active)} за ${Date.now() - startedAt} мс`);
+        // last-write-guard: голос, отданный на этом экране, пока шло чтение, не затираем поздним «нет» из хранилища.
+        if (active) setVote((prev) => stored ?? prev);
       });
     } else {
       if (__DEV__) console.log(`[SETTINGS-POLL] гидрация пропущена: kind=${campaign.kind} owner=${ownerTail(ownerStableId)}`);

@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   readSettingsPollVote,
+  peekSettingsPollVote,
   flushSettingsPollVotes,
   submitSettingsPollVoteOptimistically,
   type SettingsPollVoteTransport,
@@ -56,5 +57,16 @@ describe('settings poll vote outbox', () => {
     await expect(readSettingsPollVote('owner-a', 'poll-1')).resolves.toMatchObject({
       optionId: 'option_2', status: 'synced',
     });
+  });
+
+  // зачем (settings-gap-008, журнал Сверки 13.10 15:58): карточка получала голос через 754 мс — первый кадр «не голосовал».
+  // Голос, записанный или прочитанный в этом процессе, доступен синхронно для первого кадра.
+  it('exposes a known vote synchronously for the first frame (no IO)', async () => {
+    const pendingTransport: SettingsPollVoteTransport = async () => new Promise(() => {});
+    expect(peekSettingsPollVote('owner-peek', 'poll-1')).toBeUndefined();
+    await submitSettingsPollVoteOptimistically('owner-peek', 'poll-1', 'option_1', pendingTransport);
+    expect(peekSettingsPollVote('owner-peek', 'poll-1')).toMatchObject({ optionId: 'option_1', status: 'pending' });
+    expect(peekSettingsPollVote('owner-peek', 'poll-2')).toBeNull();
+    expect(peekSettingsPollVote('', 'poll-1')).toBeNull();
   });
 });

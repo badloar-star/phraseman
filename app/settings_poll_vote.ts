@@ -25,6 +25,10 @@ const PREFIX = 'settings_poll_votes_v1';
 const CAP = 100;
 const SYNCED_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 const voteSubmissionQueue = new Map<string, Promise<SettingsPollVoteState>>();
+// зачем (settings-gap-008, журнал Сверки 13.10 15:58): карточка читала голос из хранилища через 754 мс после монтирования —
+// первый кадр «не голосовал», потом прыжок в «Твой выбор сохранён» (другая высота). Память процесса пополняют каждое чтение
+// и каждая запись; peekSettingsPollVote отдаёт голос синхронно для первого кадра, хранилище по-прежнему источник правды.
+const votesMemo = new Map<string, readonly SettingsPollVoteState[]>();
 
 const storageKey = (owner: string) => `${PREFIX}:${encodeURIComponent(owner)}`;
 
@@ -33,13 +37,15 @@ async function readVotes(owner: string): Promise<SettingsPollVoteState[]> {
   try {
     const parsed = JSON.parse(await AsyncStorage.getItem(storageKey(owner)) || '[]');
     const syncedCutoffMs = Date.now() - SYNCED_TTL_MS;
-    return Array.isArray(parsed) ? parsed.filter((item) => (
+    const votes: SettingsPollVoteState[] = Array.isArray(parsed) ? parsed.filter((item) => (
       item && typeof item.messageId === 'string' && typeof item.optionId === 'string'
       && typeof item.requestId === 'string'
       && (item.status === 'pending' || item.status === 'synced')
       && Number.isFinite(Number(item.updatedAtMs))
       && (item.status === 'pending' || Number(item.updatedAtMs) >= syncedCutoffMs)
     )).slice(-CAP) : [];
+    votesMemo.set(owner, votes);
+    return votes;
   } catch (error) {
     // зачем (правило владельца: немой catch запрещён): битое/недоступное хранилище голосов = карточка опроса без голоса — причина должна быть в журнале.
     console.warn(`[SETTINGS-POLL] readVotes: хранилище голосов не прочитано owner=${ownerTail(owner)} — считаем «голосов нет»: ${error instanceof Error ? error.message : String(error)}`);
@@ -53,7 +59,18 @@ export function ownerTail(owner: string): string {
 }
 
 async function writeVotes(owner: string, votes: SettingsPollVoteState[]): Promise<void> {
-  await AsyncStorage.setItem(storageKey(owner), JSON.stringify(votes.slice(-CAP)));
+  const capped = votes.slice(-CAP);
+  // Память — сразу (оптимистично): экран, открытый следующим, увидит голос в первом кадре, не дожидаясь записи на диск.
+  votesMemo.set(owner, capped);
+  await AsyncStorage.setItem(storageKey(owner), JSON.stringify(capped));
+}
+
+/** Голос из памяти процесса без IO: `undefined` — голоса этого владельца ещё не читались (карточка дочитает хранилище), `null` — голоса нет. */
+export function peekSettingsPollVote(owner: string, messageId: string): SettingsPollVoteState | null | undefined {
+  if (!owner) return null;
+  const votes = votesMemo.get(owner);
+  if (!votes) return undefined;
+  return votes.find((vote) => vote.messageId === messageId) ?? null;
 }
 
 export async function readSettingsPollVote(owner: string, messageId: string): Promise<SettingsPollVoteState | null> {
@@ -148,7 +165,9 @@ export async function flushSettingsPollVotes(owner: string, transport: SettingsP
       await writeVotes(owner, current.map((item) => item.messageId === vote.messageId ? {
         ...item, optionId: response.optionId, status: 'synced', updatedAtMs: Date.now(),
       } : item));
-    } catch {
+    } catch (error) {
+      // зачем (правило владельца: немой catch запрещён): голос остаётся «pending» до следующего входа в Настройки — причина в журнал.
+      console.warn(`[SETTINGS-POLL] flush: голос ${vote.messageId} не отправлен, остался pending до следующего захода owner=${ownerTail(owner)}: ${error instanceof Error ? error.message : String(error)}`);
       return;
     }
   }

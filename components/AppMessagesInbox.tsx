@@ -89,7 +89,7 @@ function inboxText(lang: Lang) {
     }),
     like: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
     dislike: triLang(lang, { ru: 'Не нравится', uk: 'Не подобається', en: 'Dislike', es: 'No me gusta', 'pt-BR': 'Não gostei', vi: 'Không thích', id: 'Tidak suka', tr: 'Beğenme', pl: 'Nie lubię' }),
-    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
+    poll: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Survei', tr: 'Anket', pl: 'Ankieta' }), // зачем (Сверка 13.10): «Jajak pendapat» в 2,3× длиннее ru в бейдже; «Survei» — как в остальных строках опроса
     vipSurvey: triLang(lang, { ru: 'Plus-опрос', uk: 'Plus-опитування', en: 'Plus survey', es: 'Encuesta Plus', 'pt-BR': 'Pesquisa Plus', vi: 'Khảo sát Plus', id: 'Survei Plus', tr: 'Plus anketi', pl: 'Ankieta Plus' }),
     vipSurveyCta: triLang(lang, { ru: 'Пройти опрос', uk: 'Пройти опитування', en: 'Take survey', es: 'Responder encuesta', 'pt-BR': 'Responder pesquisa', vi: 'Làm khảo sát', id: 'Ikuti survei', tr: 'Ankete katıl', pl: 'Wypełnij ankietę' }),
     vipSurveyHint: triLang(lang, {

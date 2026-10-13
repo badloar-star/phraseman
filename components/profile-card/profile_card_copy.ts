@@ -78,6 +78,7 @@ export const PC = {
   bioFailed: { ru: 'Текст не сохранён. Попробуй ещё раз', uk: 'Текст не збережено. Спробуй ще раз', en: 'Text not saved. Try again', es: 'Texto no guardado. Inténtalo de nuevo' },
   shareText: { ru: 'Моя визитка в PhraseMan', uk: 'Моя візитка в PhraseMan', en: 'My PhraseMan card', es: 'Mi tarjeta de PhraseMan' },
   rankUnknown: { ru: 'Ранг игрока пока недоступен', uk: 'Ранг гравця поки недоступний', en: 'Player rank is not available yet', es: 'Rango aún no disponible' },
+  activityLiked: { ru: 'Активность отмечена', uk: 'Активність відзначено', en: 'Activity liked', es: 'Actividad marcada' },
 } as const satisfies Record<string, Four>;
 
 // Сопоставление «объект текста → переводы» по ключу PC (ленивое, без копий строк).

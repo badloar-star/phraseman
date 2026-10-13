@@ -387,7 +387,8 @@ export function usePlayerProfileSocial(
       case 'add-busy': return t4(L, { ru: 'Отправляем заявку…', uk: 'Надсилаємо заявку…', en: 'Sending request…', es: 'Enviando solicitud…' });
       case 'request-sent': return t4(L, PC.requestSent);
       case 'friend': return t4(L, PC.friends);
-      case 'liked': return t4(L, { ru: 'Активность отмечена', uk: 'Активність відзначено', en: 'Activity liked', es: 'Actividad marcada' });
+      // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): строка жила вне таблицы PC — на pt-BR/vi/id/tr/pl падала на английский.
+      case 'liked': return t4(L, PC.activityLiked);
       default: return t4(L, PC.addFriend);
     }
   })();

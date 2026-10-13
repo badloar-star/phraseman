@@ -58,4 +58,5 @@ export const PC_MORE: Readonly<Record<string, Five>> = {
   bioFailed: { 'pt-BR': 'Texto não salvo. Tente de novo', vi: 'Chưa lưu chữ. Thử lại', id: 'Teks tidak tersimpan. Coba lagi', tr: 'Yazı kaydedilmedi. Tekrar dene', pl: 'Tekst nie zapisany. Spróbuj ponownie' },
   shareText: { 'pt-BR': 'Meu cartão no PhraseMan', vi: 'Thẻ PhraseMan của tôi', id: 'Kartu PhraseMan-ku', tr: 'PhraseMan kartım', pl: 'Moja wizytówka w PhraseMan' },
   rankUnknown: { 'pt-BR': 'Nível do jogador ainda indisponível', vi: 'Chưa có hạng của người chơi', id: 'Peringkat pemain belum tersedia', tr: 'Oyuncu rütbesi henüz yok', pl: 'Ranga gracza jeszcze niedostępna' },
+  activityLiked: { 'pt-BR': 'Atividade curtida', vi: 'Đã thích hoạt động', id: 'Aktivitas disukai', tr: 'Etkinlik beğenildi', pl: 'Aktywność polubiona' },
 };

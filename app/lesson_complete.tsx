@@ -113,8 +113,9 @@ const EMPTY_MISTAKE_IDS: readonly string[] = [];
 // «Добить: Ещё учу (N)» — подпись под главной кнопкой итога урока (learn.html E; 9 языков, число — в скобках).
 const finishMistakesLabels = (n: number) => ({
   ru: `Добить: Ещё учу (${n})`, uk: `Доучити: Ще вчу (${n})`, en: `Finish: Still learning (${n})`, es: `Terminar: Aún aprendo (${n})`,
-  'pt-BR': `Finalizar: Ainda aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Masih belajar (${n})`,
-  tr: `Bitir: Hâlâ öğreniyorum (${n})`, pl: `Dokończ: Jeszcze się uczę (${n})`,
+  'pt-BR': `Finalizar: Aprendendo (${n})`, vi: `Hoàn tất: Đang học (${n})`, id: `Tuntaskan: Belajar (${n})`,
+  // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
+  tr: `Bitir: Öğreniyorum (${n})`, pl: `Dokończ: Uczę się (${n})`,
 });
 const safeLessonCompleteEventPart = (value: unknown, max = 60): string =>
   String(value ?? 'na').trim().replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, max) || 'na';

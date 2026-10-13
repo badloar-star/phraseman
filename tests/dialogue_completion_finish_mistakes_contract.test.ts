@@ -24,7 +24,7 @@ describe('итог диалога: «Добить: Ещё учу (N)» и «По
   });
 
   it('подпись «Добить: Ещё учу (N)» с числом в скобках на всех языках', () => {
-    for (const piece of ["ru: `Добить: Ещё учу (${n})`", 'uk: `Доучити: Ще вчу (${n})`', 'en: `Finish: Still learning (${n})`', "'pt-BR': `Finalizar: Ainda aprendendo (${n})`", 'pl: `Dokończ: Jeszcze się uczę (${n})`']) {
+    for (const piece of ["ru: `Добить: Ещё учу (${n})`", 'uk: `Доучити: Ще вчу (${n})`', 'en: `Finish: Still learning (${n})`', "'pt-BR': `Finalizar: Aprendendo (${n})`", 'pl: `Dokończ: Uczę się (${n})`']) {
       expect(src).toContain(piece);
     }
   });

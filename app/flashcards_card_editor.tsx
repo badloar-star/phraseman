@@ -731,7 +731,7 @@ export default function FlashcardsCardEditorScreen() {
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <TextInput
                         testID="fc-editor-en"
-                        accessibilityLabel="qa-fc-editor-en"
+                        accessibilityLabel={fieldCopy.word}
                         style={[inputStyle, { flex: 1 }]}
                         value={draftEN}
                         onChangeText={setDraftEN}
@@ -747,7 +747,7 @@ export default function FlashcardsCardEditorScreen() {
                       {draftEN.trim() ? (
                         <TouchableOpacity
                           testID="fc-editor-tts"
-                          accessibilityLabel="qa-fc-editor-tts"
+                          accessibilityLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' })}
                           accessible
                           onPress={previewEn}
                           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
@@ -780,7 +780,6 @@ export default function FlashcardsCardEditorScreen() {
                 {duplicateOfEn ? (
                   <View
                     testID="fc-editor-duplicate"
-                    accessibilityLabel="qa-fc-editor-duplicate"
                     accessible
                     style={{
                       marginTop: 12,
@@ -816,7 +815,7 @@ export default function FlashcardsCardEditorScreen() {
                     <TextInput
                       ref={backInputRef}
                       testID="fc-editor-tr"
-                      accessibilityLabel="qa-fc-editor-tr"
+                      accessibilityLabel={fieldCopy.translation}
                       style={inputStyle}
                       value={draftTR}
                       onChangeText={setDraftTR}
@@ -833,7 +832,6 @@ export default function FlashcardsCardEditorScreen() {
                 {assistSuggestion && assistSuggestion !== trVal ? (
                   <TouchableOpacity
                     testID="fc-editor-suggest"
-                    accessibilityLabel="qa-fc-editor-suggest"
                     accessible
                     activeOpacity={0.8}
                     onPress={applySuggestion}
@@ -862,7 +860,7 @@ export default function FlashcardsCardEditorScreen() {
                     <TextInput
                       ref={descriptionInputRef}
                       testID="fc-editor-description"
-                      accessibilityLabel="qa-fc-editor-description"
+                      accessibilityLabel={fieldCopy.example}
                       style={inputStyle}
                       value={draftDescription}
                       onChangeText={setDraftDescription}

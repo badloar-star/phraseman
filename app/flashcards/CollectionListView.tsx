@@ -610,7 +610,6 @@ export default function CollectionListView({
         {!selectionMode && activeCat === 'custom' && allowAddCustomCard && (
           <TouchableOpacity
             testID="fc-create-card"
-            accessibilityLabel="qa-fc-create-card"
             accessible
             onPress={onCreateCard}
             activeOpacity={0.8}
@@ -758,7 +757,6 @@ export default function CollectionListView({
                 {!selectionMode && hiddenByLimitCount > 0 && (
                   <TouchableOpacity
                     testID="flashcards-free-limit-section"
-                    accessibilityLabel="qa-flashcards-free-limit-section"
                     accessible
                     activeOpacity={0.85}
                     onPress={onOpenPremiumLimit}
@@ -957,7 +955,6 @@ export function UndoDeleteSnackbar({
         </FlowText>
         <TouchableOpacity
           testID="fc-undo-delete"
-          accessibilityLabel="qa-fc-undo-delete"
           accessible
           onPress={onUndo}
           hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}

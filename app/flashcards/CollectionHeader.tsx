@@ -470,7 +470,6 @@ export default function CollectionHeader({
           <Ionicons name="person-circle-outline" size={15} color={t.textMuted} />
           <FlowText provenance="user"
             testID="fc-pack-author"
-            accessibilityLabel="qa-fc-pack-author"
             style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}
           >
             {authorName}
@@ -482,7 +481,6 @@ export default function CollectionHeader({
       {showPublish ? (
         <TouchableOpacity
           testID="fc-pack-publish"
-          accessibilityLabel="qa-fc-pack-publish"
           accessibilityRole="button"
           accessible
           disabled={publishBusy}
@@ -520,7 +518,6 @@ export default function CollectionHeader({
       {showEdit ? (
         <TouchableOpacity
           testID="fc-pack-edit"
-          accessibilityLabel="qa-fc-pack-edit"
           accessibilityRole="button"
           accessible
           onPress={onEdit}
@@ -574,7 +571,7 @@ export default function CollectionHeader({
           <Ionicons name="search-outline" size={20} color={savedSurface ? g.secondary : searchActive ? t.accentText : t.textMuted} />
           <TextInput
             testID="fc-search-input"
-            accessibilityLabel="qa-fc-search-input"
+            accessibilityLabel={triLang(lang, { ru: 'Поиск по карточкам', uk: 'Пошук по картках', en: 'Search cards', es: 'Buscar tarjetas', 'pt-BR': 'Buscar cartões', vi: 'Tìm thẻ', id: 'Cari kartu', tr: 'Kart ara', pl: 'Szukaj kart' })}
             value={searchInput}
             onChangeText={onSearchInput}
             placeholder={triLang(lang, {
@@ -606,7 +603,7 @@ export default function CollectionHeader({
           {searchInput.length > 0 && (
             <TouchableOpacity
               testID="fc-search-clear"
-              accessibilityLabel="qa-fc-search-clear"
+              accessibilityLabel={triLang(lang, { ru: 'Очистить поиск', uk: 'Очистити пошук', en: 'Clear search', es: 'Borrar la búsqueda', 'pt-BR': 'Limpar a busca', vi: 'Xóa tìm kiếm', id: 'Hapus pencarian', tr: 'Aramayı temizle', pl: 'Wyczyść wyszukiwanie' })}
               accessible
               onPress={() => onSearchInput('')}
               hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}

@@ -465,7 +465,7 @@ export default function CommunityPackSocialBar({
       <TouchableOpacity
         testID={`pack-comments-${pack.id}`}
         accessibilityRole="button"
-        accessibilityLabel="qa-pack-comments"
+        accessibilityLabel={triLang(lang, { ru: 'Отклики', uk: 'Відгуки', en: 'Comments', es: 'Comentarios', 'pt-BR': 'Comentários', vi: 'Bình luận', id: 'Komentar', tr: 'Yorumlar', pl: 'Komentarze' })}
         onPress={() => onOpenComments(pack.id)}
         activeOpacity={0.85}
         hitSlop={isScreen ? undefined : { top: 10, bottom: 10, left: 8, right: 8 }}
@@ -786,7 +786,6 @@ export default function CommunityPackSocialBar({
       <TouchableOpacity
         testID={`pack-add-${pack.id}`}
         accessibilityRole="button"
-        accessibilityLabel="qa-pack-add"
         disabled={isAdded}
         onPress={onAddPress}
         style={{

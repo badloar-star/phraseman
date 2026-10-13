@@ -346,7 +346,6 @@ export default function DeckPickerSheet({
                 </Text>
                 <Text
                   testID="fc-deck-selection-summary"
-                  accessibilityLabel="qa-fc-deck-selection-summary"
                   accessible
                   style={{
                     color: summary.deckCount > 0 ? glass.secondary : glass.mutedText,
@@ -459,7 +458,6 @@ export default function DeckPickerSheet({
 
             <PressableHybrid
               testID="fc-deck-start"
-              accessibilityLabel="qa-fc-deck-start"
               variant="primary"
               disabled={!canStart}
               onPress={handleStart}

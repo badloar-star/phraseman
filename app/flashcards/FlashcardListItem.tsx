@@ -622,7 +622,6 @@ function FlashcardListItemImpl({
           {onEditCard && (
             <TouchableOpacity
               testID="fc-details-edit"
-              accessibilityLabel="qa-fc-details-edit"
               accessible
               onPress={() => onEditCard(item)}
               activeOpacity={0.8}
@@ -647,7 +646,6 @@ function FlashcardListItemImpl({
           {onDeleteFromDetails && (
             <TouchableOpacity
               testID="fc-details-delete"
-              accessibilityLabel="qa-fc-details-delete"
               accessible
               onPress={() => onDeleteFromDetails(item, itemIdx)}
               activeOpacity={0.8}

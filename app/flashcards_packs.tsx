@@ -472,7 +472,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
             g={g}
             icon="arrow-back"
             testID="flashcards-header-back"
-            label="qa-flashcards-header-back"
+            label={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
             onPress={leavePacks}
           />
           )}

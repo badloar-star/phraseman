@@ -300,10 +300,10 @@
   const packHead = (o) => `${back(`<span class="gs-rb s t">${ic('dotsV', 's18')}</span>`)}
       <div style="font-size:34px;line-height:40px;font-weight:700;margin-top:14px;letter-spacing:-.5px">${o.t}</div>
       ${o.author ? `<div class="flex" style="margin-top:10px;color:var(--sec);font-size:16px"><span class="gs-av" style="width:23px;height:23px">${ic('user', 's16')}</span>${o.author}</div>` : ''}
-      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px"><span class="gs-lvl">${o.l}</span><span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}</div>
+      <div class="flex" style="margin-top:12px;gap:18px;color:var(--sec);font-size:15px"><span class="gs-lvl">${o.l}</span><span>${o.n} карточек</span>${o.likes != null ? likes(o.likes, o.liked) : ''}${o.comments != null ? `<span class="likes">${K.icon('chat', 's18')}${o.comments}</span>` : ''}</div>
       <div class="flex" style="gap:10px;margin-top:20px">${o.btns}</div>`;
   const bgPackOwn = () => `${packHead({ t: 'Путешествия', l: 'A2', n: 40, btns: `<div class="cta t grow">${ic('play', 's18')}Тренировать</div><span class="gs-rb l t">${ic('plus', 's20')}</span>` })}${zoomBar()}${grid2(W.slice(0, 10))}`;
-  const bgPackOther = (added) => `${packHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: 3, liked: false,
+  const bgPackOther = (added) => `${packHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: 3, comments: 3 /* зачем (кадры cards-gap-032/033, Макеты 13.10): в приложении рядом с ♥ счётчик откликов */, liked: false,
       btns: added ? `<div class="cta gh t grow">${ic('check', 's18')}В моих наборах</div><div class="cta t grow">${ic('play', 's18')}Тренировать</div>`
         : `<div class="cta t grow">Добавить себе ${ic('plus', 's18')}</div><span class="gs-rb l t">${ic('heart', 's20')}</span>` })}${zoomBar()}${grid2(W.slice(10, 16))}`;
   // зачем (Дизайн CARDS_LAYOUT_ROWS_R1 п.5 + координатор 13.10, cards-gap-018/022): шапка «Сохранённых» как в утверждённом cards-v2 №5 и в приложении — «‹», поиск, «+», «⋮» (было «…» и «+»)

@@ -1,6 +1,6 @@
 {
   "totals": {
-    "literals": 1318,
+    "literals": 1291,
     "incomplete": 0
   },
   "files": {
@@ -9,7 +9,7 @@
       "incomplete": 0
     },
     "app/(tabs)/lessons.tsx": {
-      "literals": 9,
+      "literals": 8,
       "incomplete": 0
     },
     "app/(tabs)/settings.tsx": {
@@ -65,7 +65,7 @@
       "incomplete": 0
     },
     "app/cloud_sync.ts": {
-      "literals": 14,
+      "literals": 7,
       "incomplete": 0
     },
     "app/coin_rank_table_v1.ts": {
@@ -74,18 +74,6 @@
     },
     "app/coin_rank_upgrade_v1.ts": {
       "literals": 12,
-      "incomplete": 0
-    },
-    "app/community_pack_create.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "app/community_packs/PackCommentsSheet.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "app/community_packs/packCommentsFirestore.ts": {
-      "literals": 2,
       "incomplete": 0
     },
     "app/daily_phrase_target_gate.ts": {
@@ -106,10 +94,6 @@
     },
     "app/dialogue_v2_completion_client.ts": {
       "literals": 3,
-      "incomplete": 0
-    },
-    "app/dialogue_v2_memory.tsx": {
-      "literals": 0,
       "incomplete": 0
     },
     "app/dialogue_v2_memory_client.ts": {
@@ -144,22 +128,6 @@
       "literals": 1,
       "incomplete": 0
     },
-    "app/flashcards/FlashcardsHubScreen.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "app/flashcards/PackVideoHero.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "app/flashcards/VideoPackRow.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "app/flashcards/VideoSetView.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
     "app/flashcards/VideoThumb.tsx": {
       "literals": 1,
       "incomplete": 0
@@ -188,16 +156,8 @@
       "literals": 1,
       "incomplete": 0
     },
-    "app/flashcards/useCollectionData.ts": {
-      "literals": 0,
-      "incomplete": 0
-    },
     "app/flashcards/voice_display_name.ts": {
       "literals": 4,
-      "incomplete": 0
-    },
-    "app/flashcards_card_editor.tsx": {
-      "literals": 0,
       "incomplete": 0
     },
     "app/flashcards_collection.tsx": {
@@ -336,10 +296,6 @@
       "literals": 3,
       "incomplete": 0
     },
-    "app/practice_rune_settlement.ts": {
-      "literals": 1,
-      "incomplete": 0
-    },
     "app/premium_modal.tsx": {
       "literals": 1,
       "incomplete": 0
@@ -353,10 +309,6 @@
       "incomplete": 0
     },
     "app/pronunciation_scoring_core.ts": {
-      "literals": 1,
-      "incomplete": 0
-    },
-    "app/revenuecat_init.ts": {
       "literals": 1,
       "incomplete": 0
     },
@@ -389,7 +341,7 @@
       "incomplete": 0
     },
     "app/tap_latency_trace.ts": {
-      "literals": 5,
+      "literals": 3,
       "incomplete": 0
     },
     "app/theme_persist.ts": {
@@ -488,14 +440,6 @@
       "literals": 38,
       "incomplete": 0
     },
-    "components/dialogs/DialogueV2CatalogueContainer.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
-    "components/dialogs/DialogueV2PlusTools.tsx": {
-      "literals": 0,
-      "incomplete": 0
-    },
     "components/dialogs/glass/useDialogInputLayoutTrace.ts": {
       "literals": 2,
       "incomplete": 0
@@ -529,7 +473,7 @@
       "incomplete": 0
     },
     "components/profile-card/usePlayerProfileSocial.ts": {
-      "literals": 6,
+      "literals": 4,
       "incomplete": 0
     },
     "components/release_notes_copy.ts": {
@@ -540,16 +484,8 @@
       "literals": 2,
       "incomplete": 0
     },
-    "components/spire/SpireEnergyPill.tsx": {
-      "literals": 2,
-      "incomplete": 0
-    },
-    "components/spire/SpireHomeScreen.tsx": {
-      "literals": 5,
-      "incomplete": 0
-    },
     "components/spire/SpireTower.tsx": {
-      "literals": 8,
+      "literals": 4,
       "incomplete": 0
     },
     "components/spire/spire_game_strings.ts": {

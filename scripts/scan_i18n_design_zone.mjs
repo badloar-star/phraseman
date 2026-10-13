@@ -34,7 +34,7 @@ const ZONE = [
 /** Не интерфейс игрока: тесты, учебный контент уроков (lesson_data*, intro, theory, error_traps — тексты курса на русском, не строки интерфейса), словарь переводов LangContext, dev-инструменты, лаборатории, зонд анимации, словарные данные, пока не переведённые целиком Ядром. */
 const SKIP = /\.test\.|(^|\/)dev[_-]|_dev\b|DevHub|motion_showcase|learning-v2-lab|CardsHubAnimProbe|\/system-cards\.ts$|paywall_copy\.ts$|starter_pack_first_50\.ts$|dialogue_v2_visual_fixture\.tsx$|\/lesson_data_|lesson_help_theory_data|lesson_intro_screens|\/error_traps\/|\/LangContext\.tsx$|\/bot_names\.ts$|devToolRegistry|achievement_copy_ru/;
 /** Вызовы журнала/служебные — кириллица в них не видна игроку. */
-const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog)\s*\(/;
+const LOG_CALL = /(console\.\w+|DebugLogger\.\w+|logPublish|noteSwallowed\w*|fsLog|tfPrep|cardsPerfCount|logPackDeck\w*|formatLangFilterLog|logSpire\w+)\s*\(/;
 /** Позиционные переводчики: все строковые аргументы — разные языки. */
 const POSITIONAL = /\b(L|T|tri|tl|pickTri\w*|triLang|actionToastTri|pickTriLang)\s*\(/;
 
@@ -173,6 +173,14 @@ export function scanSource(rawText) {
     const pclose = pairs.get(popen);
     if (pclose) positionalSpans.push([popen, pclose]);
   }
+  // зачем (координатор 13.10; тот же приём, что у scripts/untranslated_ui_positional.mjs): вызов журнала маскируется ЦЕЛИКОМ вместе с аргументами на следующих строках
+  // (многострочный `logSpireDock('home', { source: 'DEV-превью', … })`) — это строки для разработчика, игроку они не видны. Потолок не поднимаем: такие литералы просто не считаются.
+  const logSpans = [];
+  for (const m of src.matchAll(new RegExp(LOG_CALL.source, 'g'))) {
+    const lopen = m.index + m[0].length - 1;
+    const lclose = pairs.get(lopen);
+    if (lclose) logSpans.push([lopen, lclose]);
+  }
   const langSpans = [];
   const incomplete = [];
   for (const [open, close] of pairs) {
@@ -231,7 +239,7 @@ export function scanSource(rawText) {
   const lines = src.split('\n');
   for (const lit of literals) {
     if (!CYR.test(lit.text)) continue;
-    if (inSpans(lit.start, langSpans) || inSpans(lit.start, positionalSpans)) continue;
+    if (inSpans(lit.start, langSpans) || inSpans(lit.start, positionalSpans) || inSpans(lit.start, logSpans)) continue;
     const ln = lineOf(src, lit.start);
     const lineText = lines[ln - 1] ?? '';
     if (LOG_CALL.test(lineText) || /guard-ok|\[DEV-STATE\]|__DEV__/.test(lineText)) continue;

@@ -180,7 +180,7 @@ describe('смена аккаунта в онбординге — с кнопк�
       expect(continued).toBeGreaterThan(0);
       expect(onboarding.indexOf("result.error === 'identity_retired'", continued)).toBeGreaterThan(continued);
       // аудит Optimistic UI 12.10: онбординг получает исход восстановления (restore_failed — свой текст).
-      expect(onboarding.indexOf("const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;", continued)).toBeGreaterThan(continued);
+      expect(onboarding.indexOf("const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang, switchDecisionHooks) : null;", continued)).toBeGreaterThan(continued); // №23 (13.10): окно восстановления прячет спиннер/плашку теми же крючками, что окно смены
     }
 
     const auth = read('app/auth_provider.ts');

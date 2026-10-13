@@ -371,7 +371,12 @@ function firstNameOf(displayName: string | null | undefined): string | null {
  * Возвращает исход: restored — удаление отменено и вход можно повторить; restore_failed — человек согласился, но сервер не
  * ответил (свой текст ошибки); declined / not_restorable — общая ошибка входа.
  */
-async function offerAccountRestore(lang: Lang): Promise<AccountRestorePromptOutcome> {
+// зачем (№23, Макеты 13.10): пока открыто окно восстановления, ждём человека, а не провайдера — те же крючки, что у окна смены аккаунта,
+// прячут спиннер Google и плашку «Вход всё ещё выполняется» (awaitingSwitchDecision); после ответа индикатор возвращается.
+async function offerAccountRestore(
+  lang: Lang,
+  decisionHooks?: Readonly<{ onDecisionPending: () => void; onDecisionMade: (choice: string) => void }>,
+): Promise<AccountRestorePromptOutcome> {
   // зачем (аудит Optimistic UI 12.10): прежде здесь не было ни логов, ни защиты от сбоя запроса статуса — исключение уходило
   // в общий catch входа, а неудачное восстановление показывалось как «аккаунт ещё удаляется».
   let status: Awaited<ReturnType<typeof fetchAccountDeleteStatus>>;
@@ -390,6 +395,7 @@ async function offerAccountRestore(lang: Lang): Promise<AccountRestorePromptOutc
   // поверх тёмного онбординга; в образце — тёмная карточка с пилюлями. Та же очередь и окно GlassAlertDialog, что у окна входа
   // (account_delete_restore_prompt.ts) и подтверждения смены аккаунта в онбординге; двойной тап гасит settledRef окна.
   // Тексты и исходы прежние; системная «назад» = «Не восстанавливать» (раньше cancelable: false — «назад» окно не закрывала).
+  decisionHooks?.onDecisionPending();
   const choice = await enqueueThemedBlockingChoiceAlert<'decline' | 'restore'>(
     triLang(lang, {
       ru: 'Восстановить аккаунт?',
@@ -424,6 +430,7 @@ async function offerAccountRestore(lang: Lang): Promise<AccountRestorePromptOutc
     ],
     { slotWait: ACCOUNT_RESTORE_SLOT_WAIT },
   );
+  decisionHooks?.onDecisionMade(String(choice));
   console.log(`[ACCOUNT-RESTORE] onboarding choice=${String(choice)} via=${choice === THEMED_ALERT_DISMISSED ? 'back' : 'button'} daysLeft=${days}`);
   if (choice !== 'restore') {
     console.log('[ACCOUNT-RESTORE] onboarding declined');
@@ -2839,7 +2846,7 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
+        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang, switchDecisionHooks) : null;
         if (restoreOutcome === 'restore_failed') {
           setAuthError((uiLang) => {
             const failedCopy = accountRestoreFailedCopy(uiLang);
@@ -2997,7 +3004,7 @@ function CleanOnboarding({
         // зачем (владелец, 2026-08-31): аккаунт на удалении — не тупик.
         // Пока идут 14 дней, предлагаем вернуть его прямо здесь; согласие
         // снимает заявку, и человек повторяет вход обычным тапом.
-        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang) : null;
+        const restoreOutcome = result.error === 'account_delete_pending' ? await offerAccountRestore(lang, switchDecisionHooks) : null;
         if (restoreOutcome === 'restore_failed') {
           setAuthError((uiLang) => {
             const failedCopy = accountRestoreFailedCopy(uiLang);

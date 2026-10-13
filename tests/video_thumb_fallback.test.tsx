@@ -1,4 +1,4 @@
-// зачем (координатор 12.10, cards-028): (1) dev-фикстура роликов (devDemoVid0…4) берёт локальные картинки — без сети; (2) при ошибке загрузки превью плитка не остаётся серой пустой:
+// зачем (координатор 12.10, cards-028; 13.10 вариант «а», d2127130e): (1) dev-фикстура роликов (devDemoVid0…4) показывает превью настоящих роликов канала, а не несуществующий devDemoVid-адрес; (2) при ошибке загрузки превью плитка не остаётся серой пустой:
 // запасной вид (тон темы, ▶, на крупной плитке — название), лог [THUMB] fallback reason=…, без повторных запросов.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -33,7 +33,7 @@ describe('VideoThumb', () => {
   });
   afterEach(() => jest.restoreAllMocks());
 
-  it('dev fixture ids use local art, real ids and store builds do not', () => {
+  it('dev fixture ids map to real channel previews, real ids and store builds do not', () => {
     expect(devDemoThumbSource('devDemoVid0')).not.toBeNull();
     expect(devDemoThumbSource('devDemoVid4')).not.toBeNull();
     expect(devDemoThumbSource('dQw4w9WgXcQ')).toBeNull();
@@ -41,10 +41,12 @@ describe('VideoThumb', () => {
     expect(devDemoThumbSource('devDemoVid0')).toBeNull();
   });
 
-  it('fixture id renders the local image, never the network url', async () => {
+  it('fixture id renders a real channel video preview, never the fake devDemoVid url', async () => {
     await render(<VideoThumb surface="video_pack_card" id="video:devDemoVid1" videoId="devDemoVid1" thumbUrl="https://i.ytimg.com/vi/devDemoVid1/hqdefault.jpg" title="T" g={g} showTitle />);
     const image = screen.getByTestId('thumb-image');
-    expect(typeof image.props.source).toBe('number');
+    const uri = (image.props.source as { uri?: string }).uri ?? '';
+    expect(uri).toMatch(/^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]{11}\/hqdefault\.jpg$/);
+    expect(uri).not.toContain('devDemoVid');
     expect(screen.queryByTestId('video-thumb-fallback-video:devDemoVid1')).toBeNull();
   });
 

@@ -291,7 +291,7 @@ const floorInfo = (f, o = {}) => {
 };
 
 /* ===================== ОБЩИЕ КУСКИ ЭКРАНА ШПИЛЯ ===================== */
-const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div>${energy(e)}</div>`;
+const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energy(e)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti" style="font-size:18px">Друзья на этой неделе</div></div><div class="friends">${FRIENDS.map((f) => `<div class="fr t">${coinImg(f.rank, 30)}${f.name}<span class="fl-n">${f.floor} этаж</span></div>`).join('')}</div>`;
 const podium = (dim = false) => {
   const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);

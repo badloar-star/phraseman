@@ -406,7 +406,7 @@ const ibar = (o = {}) => {
   const mic = o.voice === 'live' ? `<span class="rbtn live">${icon('mic')}</span>`
     : o.voice === 'req' || o.voice === 'fin' ? `<span class="rbtn"><span class="spin"></span></span>`
     : `<span class="rbtn t${o.voice === 'none' ? ' mnone' : ''}"><span class="mi" style="transform:none">${icon('mic')}</span></span>`;
-  const fld = o.typed ? `<span class="tv">${o.typed}</span>${o.typing ? '<span class="cur"></span>' : ''}` : `<span class="plc">Напиши или зажми микрофон</span>`;
+  const fld = o.typed ? `<span class="tv">${o.typed}</span>${o.typing ? '<span class="cur"></span>' : ''}` : `<span class="plc">Напиши или говори</span>`;
   const hint = {
     req: ['Готовлю микрофон… удерживай кнопку', '', true], live: ['Говори… отпусти, когда закончишь', '', true], fin: ['Обрабатываю сказанное…', '', true],
     err: ['Не удалось расслышать. Попробуй ещё раз', 'Повторить'], denied: ['Нужен доступ к микрофону', 'Открыть настройки'], none: ['Распознавание речи не работает на этом устройстве', ''],

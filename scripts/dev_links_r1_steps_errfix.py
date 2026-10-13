@@ -131,3 +131,8 @@ add('cards-v2-088', ['wait:1800', 'tap:#fc-training-setup-language-chip', 'wait:
 # cards=demo чистит только настоящий черновик. catalog=demo — демо-каталог без сети. Пауза под асинхронную проверку черновика.
 add('cards-v2-089', ['wait:1500'], 'cards=demo&catalog=demo&packdraft=on', '/flashcards_packs', unique=False,
     note='каталог сообщества с черновиком: строка «Продолжить создание набора» (packdraft=on — черновик из памяти, catalog=demo — демо-каталог)')
+
+# system-015 / settings-gap-028 (Ядро 4ca9997fd): подмены только для показа — inbox=empty скрывает закреплённое серверное сообщение (образец «Сообщений нет»),
+# reminderTime=20:00 показывает время напоминания как в образце (расписание и хранилище не меняются). Шаги этих строк верны (см. выше).
+set_param('system-015', 'inbox', 'empty')
+set_param('settings-gap-028', 'reminderTime', '20:00')

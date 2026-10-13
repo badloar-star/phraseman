@@ -24,3 +24,6 @@ Owner: сессия «4 · ТЕМЫ 2.0» (поручение координат
 
 ## Rollback
 git revert коммита.
+
+## Дополнение 13.10 (тот же модуль)
+В `scripts/dev_links_r1_steps_errfix.py` дописаны параметры подмен Ядра (4ca9997fd): `inbox=empty` для `system-015` и `reminderTime=20:00` для `settings-gap-028`; шаги этих строк не менялись.

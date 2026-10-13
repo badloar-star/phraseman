@@ -17,7 +17,8 @@ describe('Blitz shared session attempts integration', () => {
 
   test('third pedagogical wrong pauses instead of auto-finishing', () => {
     expect(SOURCE).toContain("verdict: isOk ? 'correct' : 'pedagogical_wrong'");
-    expect(SOURCE).toContain("attemptEffect === 'attempts_exhausted'");
+    // 13.10 (750314a24, режим Б энергии): прямое сравнение с 'attempts_exhausted' заменил общий предикат isAttemptsStopEffect (attempts_exhausted ИЛИ energy_exhausted) — остановка та же, плюс остановка без энергии.
+    expect(SOURCE).toContain('isAttemptsStopEffect(attemptEffect)');
     expect(SOURCE).toContain('pauseBlitzCountdown');
     expect(SOURCE).not.toContain('setTimeout(finish, 600)');
     expect(SOURCE).not.toContain('heartsShake');

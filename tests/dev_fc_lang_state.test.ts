@@ -66,6 +66,9 @@ describe('dev_state: cardslangs / videopacks разбираются', () => {
     expect(parseDevStateParams({ cardslangs: 'x' }).rejected.cardslangs).toBeTruthy();
     expect(parseDevStateParams({ videopacks: 'empty' }).request.videoPacks).toBe('empty');
     expect(parseDevStateParams({ videopacks: 'demo' }).request.videoPacks).toBe('demo');
+    // зачем (228448bfe): catalog / catalog_upcoming добавил демо-каталог YouTube («Видео») — парсер обязан их принимать
+    expect(parseDevStateParams({ videopacks: 'catalog' }).request.videoPacks).toBe('catalog');
+    expect(parseDevStateParams({ videopacks: 'catalog_upcoming' }).request.videoPacks).toBe('catalog_upcoming');
     expect(parseDevStateParams({ videopacks: 'zzz' }).rejected.videopacks).toBeTruthy();
   });
 
@@ -112,6 +115,7 @@ describe('DEV_LINKS_P83 / DEV_LINKS_R1: кадры п.83 и «Из видео» 
   it('переключатели описаны в DEV_SWITCHES_R1_CORE', () => {
     const sw = read('docs/phraseman-2.0/DEV_SWITCHES_R1_CORE.md');
     expect(sw).toContain('`cardslangs=on\\|off`');
-    expect(sw).toContain('`videopacks=empty\\|demo`');
+    // зачем (228448bfe): строка videopacks расширена значениями catalog / catalog_upcoming; сторож требует ВСЕ четыре значения парсера, а не префикс
+    expect(sw).toContain('`videopacks=empty\\|demo\\|catalog\\|catalog_upcoming`');
   });
 });

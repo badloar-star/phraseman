@@ -55,6 +55,8 @@ jest.mock('react-native', () => ({
   // зачем: 17fbb3d32 — шапка тренировок по practice.html (PracticeChrome) собрана на Pressable.
   Pressable: 'Pressable',
   View: 'View',
+  // зачем (ночная регрессия 13.10, 4e74715d4): экран берёт dev-флаг «анимации выключены» из app/dev_animations_off.ts → app/config.ts, а тот читает Platform.OS при загрузке модуля.
+  Platform: { OS: 'android', select: (options: Record<string, unknown>) => options.android ?? options.default },
 }));
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));

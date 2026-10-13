@@ -153,17 +153,18 @@ function defaultBody(lang: string, mode: GateMode = 'force'): string {
       pl: 'Jest nowa wersja — szybsza i wygodniejsza.',
     });
   }
-  if (lang === 'ru') return 'Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.';
+  // зачем (D168, владелец 13.10): окно обязательного обновления — простой понятный текст на всех 9 языках, без голоса маскота;
+  // раньше у ru был отдельный простой текст, а у остальных языков — «Я заметно подрос…».
   return triLang(lang as Lang, {
-    ru: 'Я заметно подрос, и старая версия меня уже не тянет. Обнови — и продолжим путь там же, где остановились.',
-    uk: 'Я помітно підріс, і стара версія мене вже не тягне. Онови — і продовжимо шлях там само, де спинилися.',
-    en: "I've grown a lot, and the old version can't keep up anymore. Update, and we'll pick up right where we left off.",
-    es: 'Crecí bastante y la versión vieja ya no me sostiene. Actualiza y seguimos justo donde lo dejamos.',
-    'pt-BR': 'Cresci bastante e a versão antiga já não me aguenta. Atualiza e seguimos de onde paramos.',
-    vi: 'Mình lớn lên nhiều, bản cũ không kham nổi nữa. Cập nhật đi, rồi mình đi tiếp ngay chỗ đã dừng.',
-    id: 'Aku tumbuh cukup besar, versi lama tak sanggup lagi. Perbarui, lalu kita lanjut dari tempat tadi.',
-    tr: 'Epey büyüdüm, eski sürüm beni artık taşımıyor. Güncelle, kaldığımız yerden devam edelim.',
-    pl: 'Sporo urosłem i stara wersja już mnie nie udźwignie. Zaktualizuj — ruszymy stamtąd, gdzie staniliśmy.',
+    ru: 'Вышла новая версия PhraseMan. Обнови приложение, чтобы продолжить.',
+    uk: 'Вийшла нова версія PhraseMan. Онови застосунок, щоб продовжити.',
+    en: 'A new version of PhraseMan is out. Update the app to continue.',
+    es: 'Hay una nueva versión de PhraseMan. Actualiza la app para continuar.',
+    'pt-BR': 'Saiu uma nova versão do PhraseMan. Atualize o app para continuar.',
+    vi: 'Đã có phiên bản PhraseMan mới. Hãy cập nhật ứng dụng để tiếp tục.',
+    id: 'Versi baru PhraseMan sudah tersedia. Perbarui aplikasi untuk melanjutkan.',
+    tr: 'PhraseMan’in yeni sürümü çıktı. Devam etmek için uygulamayı güncelle.',
+    pl: 'Jest nowa wersja PhraseMan. Zaktualizuj aplikację, aby kontynuować.',
   });
 }
 

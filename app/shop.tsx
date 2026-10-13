@@ -122,7 +122,7 @@ const CURRENCY_GENITIVE = {
 } as const;
 
 const YOU_HAVE = {
-  ru: (n: number, c: string) => `У тебя ${n} ${c}`,
+  ru: (n: number, c: string) => `У тебя ${n} ${c}`, // i18n-ok: словарь функций «У тебя N монет» по 9 языкам, перевод рядом
   uk: (n: number, c: string) => `У тебе ${n} ${c}`,
   es: (n: number, c: string) => `Tienes ${n} ${c}`,
   en: (n: number, c: string) => `You have ${n} ${c}`,

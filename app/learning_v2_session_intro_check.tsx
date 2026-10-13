@@ -18,6 +18,7 @@ import { projectRequiredTaskStars } from '../modules/learning-v2/contracts/cours
 import type { LearningV2IntroQuestionTaskBinding } from '../modules/learning-v2/content/generator_session_contract';
 import type { RequiredSessionTaskCompletionInputV3 } from '../modules/learning-v2/progress/required_session_completion_envelope';
 import { useLang } from '../components/LangContext';
+import { triLang, type Lang } from '../constants/i18n';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { isShortScreen } from '../constants/layout-scale';
 import type { BoxShadowValue } from 'react-native';
@@ -36,7 +37,39 @@ export type LearningV2SessionIntroCheckProps = Readonly<{
   onBack: () => void;
 }>;
 
-const starWord = (value: number) => value === 1 ? 'звезда' : value >= 2 && value <= 4 ? 'звезды' : 'звёзд';
+// зачем (координатор 13.10, владелец «перевести всё»): проверка интро была только по-русски — подписи и тексты для
+// экранного диктора теперь на 9 языках интерфейса; «звезда» склоняется по правилам языка.
+const slavic = (n: number, one: string, few: string, many: string) => {
+  const a = Math.abs(n) % 100; const b = a % 10;
+  if (b === 1 && a !== 11) return one;
+  if (b >= 2 && b <= 4 && (a < 12 || a > 14)) return few;
+  return many;
+};
+const starsText = (n: number, lang: Lang): string => {
+  const word = lang === 'ru' ? slavic(n, 'звезда', 'звезды', 'звёзд') // i18n-ok: формы «звезда» для ru, остальные языки ниже
+    : lang === 'uk' ? slavic(n, 'зірка', 'зірки', 'зірок') // i18n-ok: формы «зірка» для uk, остальные языки ниже
+    : lang === 'pl' ? slavic(n, 'gwiazdka', 'gwiazdki', 'gwiazdek')
+    : triLang(lang, { ru: 'звёзд', uk: 'зірок', en: n === 1 ? 'star' : 'stars', es: n === 1 ? 'estrella' : 'estrellas', 'pt-BR': n === 1 ? 'estrela' : 'estrelas', vi: 'sao', id: 'bintang', tr: 'yıldız', pl: 'gwiazdek' });
+  return `${n} ${word}`;
+};
+const introCopy = (lang: Lang) => ({
+  close: triLang(lang, { ru: 'Закрыть проверку интро', uk: 'Закрити перевірку інтро', en: 'Close intro check', es: 'Cerrar la prueba inicial', 'pt-BR': 'Fechar a verificação inicial', vi: 'Đóng phần kiểm tra mở đầu', id: 'Tutup cek pembuka', tr: 'Giriş kontrolünü kapat', pl: 'Zamknij sprawdzian wstępny' }),
+  counter: (n: number) => triLang(lang, { ru: `Вопрос ${n} из 3`, uk: `Питання ${n} з 3`, en: `Question ${n} of 3`, es: `Pregunta ${n} de 3`, 'pt-BR': `Pergunta ${n} de 3`, vi: `Câu ${n}/3`, id: `Pertanyaan ${n} dari 3`, tr: `Soru ${n}/3`, pl: `Pytanie ${n} z 3` }),
+  collected: (n: number) => { const st = starsText(n, lang); return triLang(lang, { ru: `Собрано ${st} в этой сессии`, uk: `Зібрано ${st} у цій сесії`, en: `${st} collected this session`, es: `${st} en esta sesión`, 'pt-BR': `${st} nesta sessão`, vi: `Đã nhận ${st} trong phiên này`, id: `${st} terkumpul di sesi ini`, tr: `Bu oturumda ${st} toplandı`, pl: `Zebrano ${st} w tej sesji` }); },
+  eyebrow: triLang(lang, { ru: 'ПРОВЕРКА ИНТРО', uk: 'ПЕРЕВІРКА ІНТРО', en: 'INTRO CHECK', es: 'PRUEBA INICIAL', 'pt-BR': 'VERIFICAÇÃO INICIAL', vi: 'KIỂM TRA MỞ ĐẦU', id: 'CEK PEMBUKA', tr: 'GİRİŞ KONTROLÜ', pl: 'SPRAWDZIAN WSTĘPNY' }),
+  eyebrowDetail: triLang(lang, { ru: '3 вопроса · до 9 звёзд', uk: '3 питання · до 9 зірок', en: '3 questions · up to 9 stars', es: '3 preguntas · hasta 9 estrellas', 'pt-BR': '3 perguntas · até 9 estrelas', vi: '3 câu hỏi · tối đa 9 sao', id: '3 pertanyaan · hingga 9 bintang', tr: '3 soru · en fazla 9 yıldız', pl: '3 pytania · do 9 gwiazdek' }),
+  questionNumber: (n: number) => triLang(lang, { ru: `ВОПРОС ${n}`, uk: `ПИТАННЯ ${n}`, en: `QUESTION ${n}`, es: `PREGUNTA ${n}`, 'pt-BR': `PERGUNTA ${n}`, vi: `CÂU ${n}`, id: `PERTANYAAN ${n}`, tr: `SORU ${n}`, pl: `PYTANIE ${n}` }),
+  answer: (letter: string, choice: string) => triLang(lang, { ru: `Ответ ${letter}: ${choice}`, uk: `Відповідь ${letter}: ${choice}`, en: `Answer ${letter}: ${choice}`, es: `Respuesta ${letter}: ${choice}`, 'pt-BR': `Resposta ${letter}: ${choice}`, vi: `Đáp án ${letter}: ${choice}`, id: `Jawaban ${letter}: ${choice}`, tr: `Cevap ${letter}: ${choice}`, pl: `Odpowiedź ${letter}: ${choice}` }),
+  wrong: triLang(lang, { ru: 'Почти. Перечитай формулу и попробуй ещё раз.', uk: 'Майже. Перечитай формулу й спробуй ще раз.', en: 'Almost. Reread the pattern and try again.', es: 'Casi. Vuelve a leer la fórmula e inténtalo otra vez.', 'pt-BR': 'Quase. Releia a fórmula e tente de novo.', vi: 'Gần đúng rồi. Đọc lại công thức và thử lần nữa.', id: 'Hampir. Baca lagi polanya dan coba sekali lagi.', tr: 'Neredeyse. Kalıbı yeniden oku ve tekrar dene.', pl: 'Prawie. Przeczytaj wzór jeszcze raz i spróbuj ponownie.' }),
+  correctA11y: (n: number, explanation: string) => { const st = starsText(n, lang); return triLang(lang, { ru: `Верно. Плюс ${st}. ${explanation}`, uk: `Правильно. Плюс ${st}. ${explanation}`, en: `Correct. Plus ${st}. ${explanation}`, es: `Correcto. Más ${st}. ${explanation}`, 'pt-BR': `Correto. Mais ${st}. ${explanation}`, vi: `Đúng. Cộng ${st}. ${explanation}`, id: `Benar. Tambah ${st}. ${explanation}`, tr: `Doğru. Artı ${st}. ${explanation}`, pl: `Dobrze. Plus ${st}. ${explanation}` }); },
+  correct: (n: number) => { const st = starsText(n, lang); return triLang(lang, { ru: `Верно! +${st}`, uk: `Правильно! +${st}`, en: `Correct! +${st}`, es: `¡Correcto! +${st}`, 'pt-BR': `Correto! +${st}`, vi: `Đúng rồi! +${st}`, id: `Benar! +${st}`, tr: `Doğru! +${st}`, pl: `Dobrze! +${st}` }); },
+  attempt: (n: number) => triLang(lang, { ru: `Попытка ${n}`, uk: `Спроба ${n}`, en: `Attempt ${n}`, es: `Intento ${n}`, 'pt-BR': `Tentativa ${n}`, vi: `Lần thử ${n}`, id: `Percobaan ${n}`, tr: `Deneme ${n}`, pl: `Próba ${n}` }),
+  skipA11y: triLang(lang, { ru: 'Пропустить вопрос интро', uk: 'Пропустити питання інтро', en: 'Skip intro question', es: 'Saltar la pregunta', 'pt-BR': 'Pular a pergunta', vi: 'Bỏ qua câu hỏi', id: 'Lewati pertanyaan', tr: 'Soruyu atla', pl: 'Pomiń pytanie' }),
+  skipHint: triLang(lang, { ru: 'Вопрос получит ноль звёзд, проверка продолжится', uk: 'Питання отримає нуль зірок, перевірка продовжиться', en: 'This question gets zero stars; the check continues', es: 'La pregunta suma cero estrellas y la prueba sigue', 'pt-BR': 'A pergunta fica sem estrelas e a verificação continua', vi: 'Câu này được 0 sao, bài kiểm tra vẫn tiếp tục', id: 'Pertanyaan ini dapat nol bintang, cek berlanjut', tr: 'Bu soru sıfır yıldız alır, kontrol devam eder', pl: 'Pytanie dostanie zero gwiazdek, sprawdzian trwa dalej' }),
+  skip: triLang(lang, { ru: 'Пропустить', uk: 'Пропустити', en: 'Skip', es: 'Saltar', 'pt-BR': 'Pular', vi: 'Bỏ qua', id: 'Lewati', tr: 'Atla', pl: 'Pomiń' }),
+  start: triLang(lang, { ru: 'Начать сессию', uk: 'Почати сесію', en: 'Start session', es: 'Empezar la sesión', 'pt-BR': 'Começar a sessão', vi: 'Bắt đầu phiên', id: 'Mulai sesi', tr: 'Oturumu başlat', pl: 'Zacznij sesję' }),
+  next: triLang(lang, { ru: 'Следующий вопрос', uk: 'Наступне питання', en: 'Next question', es: 'Siguiente pregunta', 'pt-BR': 'Próxima pergunta', vi: 'Câu tiếp theo', id: 'Pertanyaan berikutnya', tr: 'Sonraki soru', pl: 'Następne pytanie' }),
+});
 
 /**
  * Three generator-owned comprehension checks. They intentionally consume the
@@ -51,6 +84,7 @@ export default function LearningV2SessionIntroCheck({
   onBack,
 }: LearningV2SessionIntroCheckProps) {
   const { lang } = useLang();
+  const t = useMemo(() => introCopy(lang), [lang]);
   const insets = useStableSafeAreaInsets();
   // зачем (владелец, 2026-08-23): на 667pt (iPhone SE/8) экран не помещался
   // даже при одной строке текста — дефицит 31pt, а с вопросом в две строки и
@@ -157,7 +191,7 @@ export default function LearningV2SessionIntroCheck({
       <View style={[styles.top, { paddingTop: insets.top + 8 }]}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel="Закрыть проверку интро"
+          accessibilityLabel={t.close}
           hitSlop={10}
           onPressIn={() => void hapticTap()}
           onPress={onBack}
@@ -166,12 +200,12 @@ export default function LearningV2SessionIntroCheck({
           <Ionicons name="close" size={24} color="#EAF0F6" />
         </Pressable>
         <View style={styles.progressTrack}><View style={[styles.progressFill, progressStyle]} /></View>
-        <View accessible accessibilityLabel={`Вопрос ${questionIndex + 1} из 3`} style={styles.counter}>
+        <View accessible accessibilityLabel={t.counter(questionIndex + 1)} style={styles.counter}>
           <Text style={styles.counterText}>{questionIndex + 1}/3</Text>
         </View>
         <Animated.View
           accessible
-          accessibilityLabel={`Собрано ${displayedStars} ${starWord(displayedStars)} в этой сессии`}
+          accessibilityLabel={t.collected(displayedStars)}
           style={[styles.starCounter, rewardStyle]}
         >
           <Ionicons name="star" size={17} color="#FFD75A" />
@@ -194,8 +228,8 @@ export default function LearningV2SessionIntroCheck({
         >
           <View style={styles.eyebrowIcon}><Ionicons name="sparkles" size={18} color="#F8C84E" /></View>
           <View style={styles.eyebrowCopy}>
-            <Text style={styles.eyebrow}>ПРОВЕРКА ИНТРО</Text>
-            <Text style={styles.eyebrowDetail}>3 вопроса · до 9 звёзд</Text>
+            <Text style={styles.eyebrow}>{t.eyebrow}</Text>
+            <Text style={styles.eyebrowDetail}>{t.eyebrowDetail}</Text>
           </View>
         </Animated.View>
 
@@ -204,7 +238,7 @@ export default function LearningV2SessionIntroCheck({
           entering={reducedMotion ? FadeIn.duration(1) : FadeInDown.duration(280).reduceMotion(ReduceMotion.System)}
           style={[styles.questionCard, shortScreen && styles.questionCardShort]}
         >
-          <Text style={styles.questionNumber}>ВОПРОС {questionIndex + 1}</Text>
+          <Text style={styles.questionNumber}>{t.questionNumber(questionIndex + 1)}</Text>
           <Text style={styles.prompt}>{prompt}</Text>
         </Animated.View>
 
@@ -216,7 +250,7 @@ export default function LearningV2SessionIntroCheck({
               <Pressable
                 key={`${question.questionId}-${index}`}
                 accessibilityRole="button"
-                accessibilityLabel={`Ответ ${String.fromCharCode(65 + index)}: ${choice}`}
+                accessibilityLabel={t.answer(String.fromCharCode(65 + index), choice)}
                 accessibilityState={{ selected: selectedIndex === index, disabled: result === 'correct' }}
                 disabled={result === 'correct'}
                 onPress={() => choose(index)}
@@ -241,7 +275,7 @@ export default function LearningV2SessionIntroCheck({
       <View style={[styles.bottom, { paddingBottom: insets.bottom + 14 }]}>
         {result === 'wrong' && (
           <Text accessibilityLiveRegion="polite" style={styles.feedbackWrong}>
-            Почти. Перечитай формулу и попробуй ещё раз.
+            {t.wrong}
           </Text>
         )}
         {result === 'correct' && (
@@ -250,7 +284,7 @@ export default function LearningV2SessionIntroCheck({
             entering={reducedMotion ? FadeIn.duration(1) : FadeInDown.duration(220).reduceMotion(ReduceMotion.System)}
             accessible
             accessibilityLiveRegion="polite"
-            accessibilityLabel={`Верно. Плюс ${latestAward} ${starWord(latestAward)}. ${explanation}`}
+            accessibilityLabel={t.correctA11y(latestAward, explanation)}
             style={styles.rewardMoment}
           >
             <View importantForAccessibility="no-hide-descendants" style={styles.rewardStars}>
@@ -259,22 +293,22 @@ export default function LearningV2SessionIntroCheck({
               ))}
             </View>
             <View style={styles.rewardCopy}>
-              <Text style={styles.feedbackCorrect}>Верно! +{latestAward} {starWord(latestAward)}</Text>
+              <Text style={styles.feedbackCorrect}>{t.correct(latestAward)}</Text>
               <Text style={styles.explanation}>{explanation}</Text>
             </View>
           </Animated.View>
         )}
         {result !== 'correct' && (
           <View style={styles.assistRow}>
-            <Text style={styles.attemptText}>Попытка {attempts}</Text>
+            <Text style={styles.attemptText}>{t.attempt(attempts)}</Text>
             <Pressable
               accessibilityRole="button"
-              accessibilityLabel="Пропустить вопрос интро"
-              accessibilityHint="Вопрос получит ноль звёзд, проверка продолжится"
+              accessibilityLabel={t.skipA11y}
+              accessibilityHint={t.skipHint}
               onPress={skip}
               style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
             >
-              <Text style={styles.skipText}>Пропустить</Text>
+              <Text style={styles.skipText}>{t.skip}</Text>
             </Pressable>
           </View>
         )}
@@ -286,7 +320,7 @@ export default function LearningV2SessionIntroCheck({
           onPress={completeOrAdvance}
           style={({ pressed }) => [styles.cta, result !== 'correct' && styles.ctaDisabled, pressed && styles.pressed]}
         >
-          <Text style={styles.ctaText}>{questionIndex === 2 ? 'Начать сессию' : 'Следующий вопрос'}</Text>
+          <Text style={styles.ctaText}>{questionIndex === 2 ? t.start : t.next}</Text>
           <Ionicons name="arrow-forward" size={20} color="#07110A" />
         </Pressable>
       </View>

@@ -187,7 +187,7 @@ export default function PrivacySettings() {
     // зачем (координатор 12.10: «записи в облако с робота — НЕТ»): dev robot_no_cloud=1 — меняется только экран; ни локального
     // сохранения, ни отметки «не доставлено», ни облака — досылать потом нечего. Вне dev / в стор-сборке флаг всегда false.
     if (isDevRobotNoCloud()) {
-      noteRobotNoCloudSkip(`consent:${key}=${val ? 'granted' : 'denied'} (локальное сохранение + запись в облако)`);
+      noteRobotNoCloudSkip(`consent:${key}=${val ? 'granted' : 'denied'} (локальное сохранение + запись в облако)`); // i18n-ok: заметка для робота Сверки в журнал, не текст экрана
       return;
     }
     void (async () => {

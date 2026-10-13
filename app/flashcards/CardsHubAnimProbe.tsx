@@ -17,21 +17,21 @@ export function CardsHubAnimProbe({ float, active }: Readonly<{ float: SharedVal
   );
   useEffect(() => {
     if (!active) {
-      log('[CARDS-HUB-ANIM] анимация выключена (экран не в фокусе, приложение в фоне, «уменьшить движение» или dev animations=off)');
+      log('[CARDS-HUB-ANIM] анимация выключена (экран не в фокусе, приложение в фоне, «уменьшить движение» или dev animations=off)'); // i18n-ok: лог трассировки анимации хаба, на экран не выводится
       return undefined;
     }
     const startedAt = Date.now();
     let last = ticks.value;
-    log('[CARDS-HUB-ANIM] старт: бесконечное парение (по приказу владельца 11.10), пока экран в фокусе и приложение активно');
+    log('[CARDS-HUB-ANIM] старт: бесконечное парение (по приказу владельца 11.10), пока экран в фокусе и приложение активно'); // i18n-ok: лог трассировки анимации хаба, на экран не выводится
     const timer = setInterval(() => {
       const now = ticks.value;
       const delta = now - last;
       last = now;
-      log(`[CARDS-HUB-ANIM] за ${WINDOW_MS / 1000} с: обновлений анимации=${delta} (${Math.round(delta / (WINDOW_MS / 1000))} к/с), значение=${float.value.toFixed(2)}, с начала=${Date.now() - startedAt} мс`);
+      log(`[CARDS-HUB-ANIM] за ${WINDOW_MS / 1000} с: обновлений анимации=${delta} (${Math.round(delta / (WINDOW_MS / 1000))} к/с), значение=${float.value.toFixed(2)}, с начала=${Date.now() - startedAt} мс`); // i18n-ok: лог трассировки анимации хаба, на экран не выводится
     }, WINDOW_MS);
     return () => {
       clearInterval(timer);
-      log(`[CARDS-HUB-ANIM] стоп: экран ушёл из фокуса или размонтирован, работала ${Date.now() - startedAt} мс`);
+      log(`[CARDS-HUB-ANIM] стоп: экран ушёл из фокуса или размонтирован, работала ${Date.now() - startedAt} мс`); // i18n-ok: лог трассировки анимации хаба, на экран не выводится
     };
   }, [active, float, ticks]);
   return null;

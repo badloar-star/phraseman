@@ -221,7 +221,7 @@ export default function SurveySheetModal({
   const handleDismissed = useCallback(() => {
     const pending = pendingFollowUp;
     pendingFollowUp = null;
-    if (pending) runFollowUpRef.current(pending, 'нативное закрытие');
+    if (pending) runFollowUpRef.current(pending, 'нативное закрытие'); // i18n-ok: причина события для лога опроса, не текст экрана
     onDismissed?.();
   }, [onDismissed]);
 
@@ -234,7 +234,7 @@ export default function SurveySheetModal({
     // Родитель снял launch — onDismissed уже не придёт, обещание исполняем тут.
     const pending = pendingFollowUp;
     pendingFollowUp = null;
-    if (pending) runFollowUpRef.current(pending, 'размонтирование');
+    if (pending) runFollowUpRef.current(pending, 'размонтирование'); // i18n-ok: причина события для лога опроса, не текст экрана
   }, []);
 
   return (

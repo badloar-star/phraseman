@@ -2314,8 +2314,8 @@ export default function LearningV2DirectSessionPlayerV1() {
       <Pressable
         testID="learning-v2-dev-jump-to-voice"
         accessibilityRole="button"
-        accessibilityLabel="DEV: перейти к первому заданию Устно"
-        accessibilityHint="Пропускает интро и предыдущие задания только в этой тестовой сессии"
+        accessibilityLabel="DEV: перейти к первому заданию Устно" /* i18n-ok: подпись dev-кнопки перехода к Устно, только тестовая сессия */
+        accessibilityHint="Пропускает интро и предыдущие задания только в этой тестовой сессии" /* i18n-ok: подсказка dev-кнопки, только тестовая сессия */
         onPress={jumpToFirstVoicePractice}
         style={({ pressed }) => [
           styles.devJumpToVoiceButton,

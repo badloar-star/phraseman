@@ -121,7 +121,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     contentHRef.current = h;
     const pending = pendingRef.current;
     console.log('[SPIRE-SCROLL] размер содержимого', JSON.stringify({ h: roundLayout(h), pending: pending ? { floor: pending.floor } : null })); // guard-ok: единичный лог на изменение размера
-    if (pending) scrollToFloor(pending.floor, false, 'после-layout');
+    if (pending) scrollToFloor(pending.floor, false, 'после-layout'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
   }, [scrollToFloor]);
 
   const onScrollEcho = useCallback((e: { nativeEvent: { contentOffset: { y: number } } }) => {
@@ -133,14 +133,14 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
 
   useEffect(() => {
     if (scale <= 0) return;
-    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false, 'нет-этажа'); return; }
+    if (myFloor === null) { placedRef.current = false; scrollToFloor(null, false, 'нет-этажа'); return; } // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
     const target = markerTarget(myFloor, scale);
     if (!placedRef.current || reduceMotion) {
       // Первый кадр и «уменьшить движение»: маркер сразу на месте.
       tx.setValue(target.x);
       ty.setValue(target.y);
       placedRef.current = true;
-      scrollToFloor(myFloor, false, 'первый-показ');
+      scrollToFloor(myFloor, false, 'первый-показ'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
       return;
     }
     // Подъём на этаж выше: перелёт на нативном драйвере, окно догоняет.
@@ -148,7 +148,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       Animated.timing(tx, { toValue: target.x, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
       Animated.timing(ty, { toValue: target.y, duration: 900, easing: Easing.bezier(0.2, 0.9, 0.2, 1), useNativeDriver: true }),
     ]).start();
-    scrollToFloor(myFloor, true, 'смена-этажа');
+    scrollToFloor(myFloor, true, 'смена-этажа'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря

@@ -25,14 +25,14 @@ export function TapLatencyNavProbe() {
       lastRoute = currentRouteName();
     } catch (e) {
       // зачем: до готовности контейнера getCurrentRoute может бросить — стартуем с null.
-      traceLog(`пробник: контейнер ещё не готов, стартуем без маршрута: ${e instanceof Error ? e.message : String(e)}`);
+      traceLog(`пробник: контейнер ещё не готов, стартуем без маршрута: ${e instanceof Error ? e.message : String(e)}`); // i18n-ok: лог пробника задержки тапа, на экран не выводится
     }
     const unsubscribe = navigationRef.addListener('state', () => {
       let route: string | null = null;
       try {
         route = currentRouteName();
       } catch (e) {
-        traceLog(`пробник: getCurrentRoute упал: ${e instanceof Error ? e.message : String(e)}`);
+        traceLog(`пробник: getCurrentRoute упал: ${e instanceof Error ? e.message : String(e)}`); // i18n-ok: лог пробника задержки тапа, на экран не выводится
         return;
       }
       if (route === lastRoute) return;

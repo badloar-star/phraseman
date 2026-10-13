@@ -128,7 +128,7 @@ export interface EnergyContextValue {
   recoveryIntervalMs: number;// current +1 energy recovery interval
   recoveryEndsAtMs: number;
   timeUntilNextMs: number;   // ms until +1 energy (0 if full or unlimited)
-  formattedTime: string;     // e.g. ru "29м 12с", en "29m 12s" (единицы языка интерфейса) — ready to display
+  formattedTime: string;     // e.g. ru "29м 12с", en "29m 12s" (единицы языка интерфейса) — ready to display // i18n-ok: пример в комментарии типа, не текст экрана
   isUnlimited: boolean;      // premium or tester mode
   restoringPremium: boolean; // true while animating premium energy restore
   /** Start one priced activity using the canonical numeric-energy catalog. */

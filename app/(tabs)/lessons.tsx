@@ -1618,15 +1618,15 @@ function learningV2NewWordCountLabel(count: number | null, lang: Lang): string {
     });
   }
   const ruWord = count % 10 === 1 && count % 100 !== 11
-    ? "новое слово"
+    ? "новое слово" // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
     : [2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)
-      ? "новых слова"
-      : "новых слов";
+      ? "новых слова" // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
+      : "новых слов"; // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
   const ukWord = count % 10 === 1 && count % 100 !== 11
-    ? "нове слово"
+    ? "нове слово" // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
     : [2, 3, 4].includes(count % 10) && ![12, 13, 14].includes(count % 100)
-      ? "нові слова"
-      : "нових слів";
+      ? "нові слова" // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
+      : "нових слів"; // i18n-ok: формы «N новых слов» для ru/uk, остальные языки в triLang ниже
   return triLang(lang, {
     ru: `${count} ${ruWord}`,
     uk: `${count} ${ukWord}`,
@@ -2176,7 +2176,7 @@ function pluralSlavic(
 function chapterLessonsWord(count: number, lang: Lang): string {
   switch (lang) {
     case "uk":
-      return pluralSlavic(count, "урок", "уроки", "уроків");
+      return pluralSlavic(count, "урок", "уроки", "уроків"); // i18n-ok: формы слова «урок» по языку, все 9 языков в switch этой функции
     case "en":
       return count === 1 ? "lesson" : "lessons";
     case "es":
@@ -2192,7 +2192,7 @@ function chapterLessonsWord(count: number, lang: Lang): string {
     case "pl":
       return pluralSlavic(count, "lekcja", "lekcje", "lekcji");
     default:
-      return pluralSlavic(count, "урок", "урока", "уроков");
+      return pluralSlavic(count, "урок", "урока", "уроков"); // i18n-ok: формы слова «урок» по языку, все 9 языков в switch этой функции
   }
 }
 
@@ -5325,8 +5325,8 @@ export default function LessonsTab({
                     const options = devStudyTargetsForUiLang(lang);
                     if (options.length <= 1) {
                       Alert.alert(
-                        "Dev: язык обучения",
-                        "Испанский/французский доступны только при русском или украинском языке интерфейса. Смени язык интерфейса в настройках, чтобы переключить сюда.",
+                        "Dev: язык обучения", // i18n-ok: dev-окно выбора языка обучения, только __DEV__ && ENABLE_DEV_STUDY_TARGET_LANG
+                        "Испанский/французский доступны только при русском или украинском языке интерфейса. Смени язык интерфейса в настройках, чтобы переключить сюда.", // i18n-ok: dev-окно выбора языка обучения, только __DEV__ && ENABLE_DEV_STUDY_TARGET_LANG
                       );
                       return;
                     }

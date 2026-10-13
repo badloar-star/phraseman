@@ -76,6 +76,17 @@ const CONTENT_FILES = [
   // зачем (12.10, английский в R1): проба хранилища Account V2 на iPhone — без EXPO_PUBLIC_ACCOUNT_V2_IOS_PROOF=1 файл физически исключён
   // из бандла Metro, внутри второй замок; подписи фаз адресованы владельцу на тестовом iPhone, игрок экран не видит.
   /app\/dev-account-v2-ios-proof\.tsx$/,
+  // зачем (координатор 13.10, база 91 → 0, владелец «перевести всё»): dev-экраны для съёмок Сверки — маршрут уводит на Главную в стор-сборке
+  // (ENABLE_DEV_TOOLS / IS_STORE_RELEASE, router.ctx вырезает dev_state), подписи адресованы владельцу и роботу, игрок их не видит.
+  /app\/dev_state\.tsx$/,
+  /app\/dev_cards_result_preview\.tsx$/,
+  /app\/dev_spire_preview\.tsx$/,
+  /app\/_learning_v2_authoring_preview\.tsx$/,
+  /components\/friends_together\/DevBotsSheet\.tsx$/,
+  // зачем (13.10): не подключены ни к одному экрану (grep по app/ и components/ — только сам файл): лаборатория режимов V2 и админ-превью
+  // итога экзамена. Переводить мёртвый код незачем; при подключении — убрать отсюда и перевести.
+  /components\/learning-v2-lab\/ModeDemoPlayer\.tsx$/,
+  /components\/ExamResultPreviewAdminModal\.tsx$/,
 ];
 
 /**
@@ -292,6 +303,8 @@ function maskLocaleKeyedEntries(source, original = source) {
   return lines.join('\n');
 }
 
+// Строчная пометка исключения с причиной: `// i18n-ok: лог трассировки` (в JSX — блочным комментарием с той же пометкой).
+const I18N_OK_MARK = /i18n-ok:\s*\S.{8,}/;
 const CYRILLIC_LITERAL = /(['"`])(?:(?!\1)[^\r\n])*[а-яА-ЯёЁ](?:(?!\1)[^\r\n])*\1/g;
 
 function scanFile(file) {
@@ -305,7 +318,12 @@ function scanFile(file) {
   // зачем построчно: только так видно, есть ли рядом парный перевод —
   // а он превращает находку в другую проблему, не в эту.
   const hits = [];
-  for (const line of stripped.split('\n')) {
+  const originalLines = source.split('\n');
+  for (const [index, line] of stripped.split('\n').entries()) {
+    // зачем (координатор 13.10, владелец «перевести всё», база 91 → 0): служебная строка (лог, причина события, dev-подпись,
+    // перевод формами по языкам, который сторож не распознаёт) помечается в ИСХОДНОЙ строке `i18n-ok: <причина>` — причина
+    // обязательна (от 10 символов), голая пометка не действует. Так исключение видно в коде и в ревью, а не прячется в базе.
+    if (I18N_OK_MARK.test(originalLines[index] ?? '')) continue;
     if (PAIRED_TRANSLATION.test(line)) continue;
     if (INLINE_LOCALE_MAP.test(line)) continue;
     if (DIAGNOSTIC_LOG_CALL.test(line)) continue;

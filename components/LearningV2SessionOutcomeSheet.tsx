@@ -70,16 +70,16 @@ export default function LearningV2SessionOutcomeSheet({
   secondaryLabel,
   onSecondaryPress,
   onClose,
-  closeLabel = "Закрыть",
-  sessionLabel = "Сессия",
-  chapterLabel = "Глава",
-  durationLabel = "≈ 5 минут",
-  wordsLabel = "4 новых слова",
-  attemptsLabel = "3 попытки",
+  closeLabel = "Закрыть", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  sessionLabel = "Сессия", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  chapterLabel = "Глава", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  durationLabel = "≈ 5 минут", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  wordsLabel = "4 новых слова", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
+  attemptsLabel = "3 попытки", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
   onMounted,
   locked = false,
   bestStars,
-  bestStarsLabel = "Лучший результат",
+  bestStarsLabel = "Лучший результат", // i18n-ok: значение по умолчанию; экран уроков передаёт перевод на 9 языков (lessons.tsx)
 }: LearningV2SessionOutcomeSheetProps) {
   const sx = useScaledTextStyles(styles);
   const lh = useLineScale();

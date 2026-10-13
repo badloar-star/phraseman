@@ -1620,7 +1620,7 @@ export default function FriendsTabScreen() {
       // и без входа; заявка такому другу дальше тоже не уходит в сеть (handleAddFound). В стор-сборке геттер выключен.
       if (isCode && isDevFoundFriendCode(codeUpper)) {
         console.warn('[DEV-STATE] friends: найден подставной друг (DEVFND) — без сервера'); // guard-ok: dev-ветка
-        setFoundUser(placeholderFriendProfile(DEV_FOUND_FRIEND_UID, 'Алиса'));
+        setFoundUser(placeholderFriendProfile(DEV_FOUND_FRIEND_UID, 'Алиса')); // i18n-ok: имя подставного друга dev-кода DEVFND, только dev-сборка
         return;
       }
       const devUnsynced = isCode && isDevUnsyncedFriendCode(codeUpper);
@@ -2172,7 +2172,7 @@ export default function FriendsTabScreen() {
     console.log('[DEV-STATE] friends: окно приглашения на занятие (study_invite)'); // guard-ok: dev-ветка
     setStudyInvite({
       event: { id: 'dev_study_invite', actorStableUid: 'dev_friend', kind: 'study_invite', createdAtMs: now, expiresAtMs: now + 10 * 60_000, inviteId: 'dev_invite' },
-      friendName: 'Алиса',
+      friendName: 'Алиса', // i18n-ok: имя подставного друга dev-события study_invite, только dev-сборка
       friendCoinRank: 3,
     });
   }, [focusTick]);
@@ -2282,7 +2282,7 @@ export default function FriendsTabScreen() {
           onPress={() => setDevBotsSheetOpen(true)}
           activeOpacity={0.8}
           accessibilityRole="button"
-          accessibilityLabel="DEV: боты «Вместе»"
+          accessibilityLabel="DEV: боты «Вместе»" /* i18n-ok: подпись dev-кнопки, только ENABLE_DEV_TOOLS */
           hitSlop={4}
           style={{ minWidth: 64, minHeight: 44, borderRadius: 22, backgroundColor: glass.opaqueControl, flexDirection: 'row', gap: 5, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
         >

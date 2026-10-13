@@ -314,7 +314,7 @@ export default function SettingsNotifications() {
     // зачем (координатор 12.10: «записи в облако с робота — НЕТ»): dev robot_no_cloud=1 — меняется только экран; ни сохранения на
     // устройство, ни pushPrefs/push-токена в облаке, ни системного окна разрешения. Вне dev / в стор-сборке флаг всегда false.
     if (isDevRobotNoCloud()) {
-      noteRobotNoCloudSkip(`notif-prefs master=${next.master} (сохранение, pushPrefs, push-токен, разрешение ОС)`);
+      noteRobotNoCloudSkip(`notif-prefs master=${next.master} (сохранение, pushPrefs, push-токен, разрешение ОС)`); // i18n-ok: заметка для робота Сверки в журнал, не текст экрана
       return;
     }
     try {
@@ -345,7 +345,7 @@ export default function SettingsNotifications() {
     setS(next);
     flashSaved();
     if (isDevRobotNoCloud()) {
-      noteRobotNoCloudSkip(`notif-schedule enabling=${enabling} (сохранение, планирование, разрешение ОС)`);
+      noteRobotNoCloudSkip(`notif-schedule enabling=${enabling} (сохранение, планирование, разрешение ОС)`); // i18n-ok: заметка для робота Сверки в журнал, не текст экрана
       return;
     }
     try {

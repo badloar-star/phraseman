@@ -9,7 +9,8 @@ describe('settings_edu: подпись голоса пересчитываетс
   it('загрузка подписи — отдельный колбэк с зависимостью только от языка интерфейса', () => {
     expect(src).toContain('const loadVoiceValue = useCallback((reason: \'focus\' | \'lang_changed\') => {');
     expect(src).toContain('  }, [lang]);\n  const loadVoiceValueRef = useRef(loadVoiceValue);');
-    expect(src).toContain('const next = match ? voiceTitle(match, lang, voices) : null;');
+    // settings-gap-034 (13.10): компактная подпись — язык уже в названии строки «(EN)»
+    expect(src).toContain('const next = match ? voiceTitle(match, lang, voices, { compact: true }) : null;');
   });
 
   it('фокус-эффект остаётся с пустыми deps: смена языка не перечитывает настройки и переключатели', () => {

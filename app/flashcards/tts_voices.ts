@@ -198,7 +198,13 @@ const voiceNameLogged = new Set<string>();
  *  зачем: одно правило имени для экрана выбора голоса и строки «Голос озвучки (EN)» в Настройках обучения.
  *  зачем (settings-gap-034, координатор 12.10): Android отдаёт в name технический id («en-au-x-aua-local») — такой голос
  *  подписывается «English (Australia) · 2» на языке интерфейса; uiLang и список голосов (для номера) необязательны. */
-export function voiceTitle(v: FcVoiceLike, uiLang?: string, voices?: readonly FcVoiceLike[]): string {
+export function voiceTitle(
+  v: FcVoiceLike,
+  uiLang?: string,
+  voices?: readonly FcVoiceLike[],
+  options?: Readonly<{ compact?: boolean }>,
+): string {
+  const compact = options?.compact === true;
   const name = (v.name ?? '').trim();
   const technical = isTechnicalVoiceName(name, v.identifier);
   let branch: string;
@@ -208,16 +214,17 @@ export function voiceTitle(v: FcVoiceLike, uiLang?: string, voices?: readonly Fc
     title = name.replace(/\s*\((enhanced|premium)\)\s*/i, '').trim() || name;
   } else if (technical && (name || /^[a-z]{2,3}[-_]/i.test(v.identifier))) {
     branch = 'technical_id_formatted';
-    title = technicalVoiceDisplayName(v, uiLang, voices);
+    title = technicalVoiceDisplayName(v, uiLang, voices, compact);
   } else {
     // iOS-идентификатор вида com.apple.voice.compact.en-US.Samantha без имени — последний сегмент
     branch = 'identifier_tail';
     const parts = v.identifier.split('.');
     title = parts[parts.length - 1] || v.identifier;
   }
-  if (!voiceNameLogged.has(v.identifier)) {
-    voiceNameLogged.add(v.identifier);
-    console.log(`[VOICE-NAME] ${JSON.stringify({ identifier: v.identifier, name: v.name ?? null, language: v.language, quality: v.quality ?? null, branch, title, uiLang: uiLang ?? null, listSize: voices?.length ?? null })}`);
+  const logKey = `${v.identifier}|${compact ? 'compact' : 'full'}`;
+  if (!voiceNameLogged.has(logKey)) {
+    voiceNameLogged.add(logKey);
+    console.log(`[VOICE-NAME] ${JSON.stringify({ identifier: v.identifier, name: v.name ?? null, language: v.language, quality: v.quality ?? null, branch, title, compact, uiLang: uiLang ?? null, listSize: voices?.length ?? null })}`);
   }
   return title;
 }

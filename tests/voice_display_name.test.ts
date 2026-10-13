@@ -33,6 +33,12 @@ describe('имя голоса озвучки', () => {
     expect(voiceTitle(aua, 'en')).toBe('English (Australia)');
   });
 
+  it('compact (settings-gap-034): в строке «Голос озвучки (EN)» — только регион и номер, человеческое имя как есть', () => {
+    expect(voiceTitle(aub, 'ru', list, { compact: true })).toBe('Австралия · 2');
+    expect(voiceTitle(aua, 'en', undefined, { compact: true })).toBe('Australia');
+    expect(voiceTitle(aua, 'en', list)).toBe('English (Australia) · 1');
+  });
+
   it('на всех 9 языках интерфейса — без сырого id', () => {
     const expected: Record<string, string> = {
       ru: 'Английский (Австралия) · 1', uk: 'Англійська (Австралія) · 1', en: 'English (Australia) · 1',

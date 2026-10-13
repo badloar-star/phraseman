@@ -140,7 +140,8 @@ export default function SettingsEdu() {
         const match = voices.find((v) => v.identifier === prefs.voiceIdEn);
         // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
         // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
-        const next = match ? voiceTitle(match, lang, voices) : null;
+        // compact (settings-gap-034, 13.10): язык уже в названии строки «(EN)» — справа только регион и номер, название не переносится
+        const next = match ? voiceTitle(match, lang, voices, { compact: true }) : null;
         if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (ушёл с экрана или язык сменился ещё раз)`); return; }
         lastShownVoiceValue = next;
         setVoiceValue((prev) => (prev === next ? prev : next));
@@ -464,8 +465,9 @@ export default function SettingsEdu() {
             >
             <PlateFill g={glass} radius={14} />
             <RowIcon name="person-outline" />
-            <View style={{ flex: 1, minWidth: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
-            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, maxWidth: 120, flexShrink: 1, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится, без обрезки */ }}>
+            {/* зачем (settings-gap-034): название строки не сжимается и не переносится — место уступает значение справа (оно переносится, без обрезки). */}
+            <View style={{ flexGrow: 1, flexShrink: 0 }}><Text style={titleStyle}>{L({ ru: 'Голос озвучки (EN)', uk: 'Голос озвучення (EN)', en: 'Voice (EN)', es: 'Voz (EN)', 'pt-BR': 'Voz (EN)', vi: 'Giọng đọc (EN)', id: 'Suara (EN)', tr: 'Ses (EN)', pl: 'Głos (EN)' })}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
+            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 1, marginLeft: 8, textAlign: 'right' /* зачем: text-integrity — длинное имя голоса переносится, без обрезки */ }}>
               {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
             </Text>
             <Ionicons name="chevron-forward" size={20} color={t.textMuted} />

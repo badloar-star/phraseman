@@ -82,11 +82,23 @@ export function voiceOrdinal(voice: VoiceNameInput, voices: readonly VoiceNameIn
 }
 
 /** Человеческая подпись технического голоса: «English (Australia) · 2». Неизвестный язык/регион — заглавным кодом («EN-AU»). */
-export function technicalVoiceDisplayName(voice: VoiceNameInput, uiLang?: string, voices?: readonly VoiceNameInput[]): string {
+/**
+ * compact (settings-gap-034, 13.10): в строке «Голос озвучки (EN)» язык уже назван — показываем только регион и номер
+ * («Австралия · 2»): полный вид «English (Australia) · 2» не помещался и переносил название строки на две строки.
+ * Нет региона — язык, как в полном виде.
+ */
+export function technicalVoiceDisplayName(
+  voice: VoiceNameInput,
+  uiLang?: string,
+  voices?: readonly VoiceNameInput[],
+  compact = false,
+): string {
   const ui = uiLangOf(uiLang);
   const { language, region } = parseVoiceLocale(voice.language, voice.identifier);
   const languageName = LANGUAGE_NAMES[language]?.[ui] ?? (language ? language.toUpperCase() : voice.identifier);
   const regionName = region ? (REGION_NAMES[region]?.[ui] ?? region) : null;
   const ordinal = voiceOrdinal(voice, voices);
-  return `${languageName}${regionName ? ` (${regionName})` : ''}${ordinal ? ` · ${ordinal}` : ''}`;
+  const suffix = ordinal ? ` · ${ordinal}` : '';
+  if (compact && regionName) return `${regionName}${suffix}`;
+  return `${languageName}${regionName ? ` (${regionName})` : ''}${suffix}`;
 }

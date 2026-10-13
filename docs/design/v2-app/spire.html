@@ -210,8 +210,8 @@ function floorSvg(fl, myFloor, o) {
     ${windows(fl, st)}
     ${g ? '' : `<rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="7" rx="3" fill="url(#cylCorn)"/><rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="1.4" rx=".7" fill="rgba(255,255,255,.28)"/>`}
     ${avs}
-    ${o.clean ? '' : `<text class="fn" x="14" y="${y + h / 2 + (label ? 0 : 5)}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? '#FFFFFF' : '#6E6E72'}" text-anchor="middle">${f}</text>`}
-    ${label ? `<text x="20" y="${y + h / 2 + 14}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="#8E8E92" text-anchor="middle">${label}</text>` : ''}
+    ${o.clean ? '' : `<text class="fn" x="14" y="${y + h / 2 + (label ? 0 : 5)}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? SC(o).numMine : SC(o).num}" text-anchor="middle">${f}</text>`}
+    ${label ? `<text x="20" y="${y + h / 2 + 14}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="${SC(o).label}" text-anchor="middle">${label}</text>` : ''}
     <rect class="selr" x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>
     <rect x="0" y="${y - 4}" width="${TW}" height="${h + 4}" fill="transparent"/>
   </g>`;
@@ -233,12 +233,17 @@ function spireSvg(o) {
     <circle cx="${CX}" cy="${apex - 16}" r="${big ? 7 : 5.5}" fill="#FFFFFF"/>
   </g>`;
 }
-function skySvg() {
+/* зачем (D178, код useSpireScene 80b07bdaa): цвета сцены вокруг башни из темы; o.light — светлая тема (звёзд нет) */
+const SC = (o = {}) => o.light
+  ? { star: null, cloud: '0,0,0', cloudK: 0.78, gc: '#000000', ga: 0.1, shadow: 'rgba(0,0,0,.16)', num: '#6C6C72', numMine: '#0B0C0E', label: '#6C6C72', id: 'L' }
+  : { star: '255,255,255', cloud: '255,255,255', cloudK: 1, gc: '#FFFFFF', ga: 0.14, shadow: 'rgba(0,0,0,.55)', num: '#A6A6A8', numMine: '#FFFFFF', label: '#A6A6A8', id: 'D' };
+function skySvg(o = {}) {
+  const sc = SC(o);
   const y = G.top - 250; let stars = '';
   const pts = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
-  pts.forEach(([x, yy], i) => { stars += `<circle cx="${x}" cy="${y - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="rgba(255,255,255,${i % 2 ? 0.35 : 0.55})"/>`; });
-  return `${stars}<g filter="url(#blur)"><ellipse cx="60" cy="${G.top - 150}" rx="120" ry="14" fill="rgba(255,255,255,.07)"/><ellipse cx="330" cy="${G.top - 170}" rx="130" ry="16" fill="rgba(255,255,255,.06)"/><ellipse cx="80" cy="${G.top - 96}" rx="100" ry="10" fill="rgba(255,255,255,.04)"/><ellipse cx="320" cy="${G.top - 90}" rx="110" ry="11" fill="rgba(255,255,255,.045)"/></g>
-    <text x="${CX}" y="${G.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="#5E5E62" text-anchor="middle">НАД ОБЛАКАМИ</text>`;
+  if (sc.star) pts.forEach(([x, yy], i) => { stars += `<circle cx="${x}" cy="${y - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="rgba(${sc.star},${i % 2 ? 0.35 : 0.55})"/>`; });
+  return `${stars}<g filter="url(#blur)"><ellipse cx="60" cy="${G.top - 150}" rx="120" ry="14" fill="rgba(${sc.cloud},.07)"/><ellipse cx="330" cy="${G.top - 170}" rx="130" ry="16" fill="rgba(${sc.cloud},.06)"/><ellipse cx="80" cy="${G.top - 96}" rx="100" ry="10" fill="rgba(${sc.cloud},.04)"/><ellipse cx="320" cy="${G.top - 90}" rx="110" ry="11" fill="rgba(${sc.cloud},.045)"/></g>
+    <text x="${CX}" y="${G.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="${sc.label}" text-anchor="middle">НАД ОБЛАКАМИ</text>`;
 }
 function markerSvg(o) {
   const fl = G.floors[Math.min(o.myFloor, FLOORS) - 1]; const p = markerXY(fl);
@@ -264,16 +269,14 @@ function towerSvg(o = {}) {
     <radialGradient id="glow"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".45" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
     <radialGradient id="litfloor"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101013"/><stop offset=".5" stop-color="#17171A"/><stop offset="1" stop-color="#0E0E10"/></linearGradient>
-    <radialGradient id="ground" cy=".2"><stop offset="0" stop-color="#26262A"/><stop offset="1" stop-color="#0E0E10" stop-opacity="0"/></radialGradient>
+    <radialGradient id="ground${SC(o).id}" cy=".2"><stop offset="0" stop-color="${SC(o).gc}" stop-opacity="${SC(o).ga}"/><stop offset="1" stop-color="${SC(o).gc}" stop-opacity="0"/></radialGradient>
     <filter id="wglow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter>
     <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
   </defs>
-  ${o.clean ? '' : `<rect width="${TW}" height="${G.H}" fill="url(#sky)"/>
-  <ellipse cx="${CX}" cy="${G.top - 120}" rx="200" ry="260" fill="rgba(255,255,255,.03)"/>`}
-  ${skySvg()}
+  ${skySvg(o)}
   ${celeb}
-  <ellipse cx="${CX}" cy="${G.base + 44}" rx="210" ry="40" fill="url(#ground)"/>
-  <ellipse cx="${CX}" cy="${G.base + 30}" rx="${b.w / 2 + 64}" ry="12" fill="rgba(0,0,0,.55)"/>
+  <ellipse cx="${CX}" cy="${G.base + 44}" rx="210" ry="40" fill="url(#ground${SC(o).id})"/>
+  <ellipse cx="${CX}" cy="${G.base + 30}" rx="${b.w / 2 + 64}" ry="12" fill="${SC(o).shadow}"/>
   <rect x="${b.x0 - 30}" y="${G.base + 16}" width="${b.w + 60}" height="14" rx="3" fill="url(#cylCorn)" opacity=".7"/>
   <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="16" rx="3" fill="url(#cylCorn)"/>
   <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="1.5" fill="rgba(255,255,255,.25)"/>
@@ -380,6 +383,10 @@ document.getElementById('root').innerHTML = [
     col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься на пике Гранит', weekStay())]),
   block('edge', '10–11. Нет энергии · Нет сети', 'Без блокирующих модалок: таймер до энергии и мягкий Plus; при отсутствии сети свой маркер живой, чужие цифры приглушены.', [
     col('Нет энергии', noEnergy()), col('Нет сети', noNet())]),
+  /* зачем (D178): окно башни берёт цвета темы, а не наряда лиги — тёмная и светлая плита рядом (кадры приложения в светлой теме сверять по правой) */
+  block('scene', '12. Окно башни по теме', 'Окно — плита темы: неба по наряду нет. Звёзды — цвета текста и только в тёмной теме; облака и земля — тон текста; номера этажей — вторичный текст темы, свой этаж — основной. Башня остаётся нарядом лиги.', [
+    col('Тёмная тема', `<div class="tview" style="height:460px" data-center="${G.floors[3].y + G.floors[3].h / 2}">${towerSvg({ mySteps: 30, myFloor: 4, sel: 4 })}</div>`),
+    col('Светлая тема', `<div class="tview" style="height:460px;background:#F4F4F8;border-color:rgba(0,0,0,.06)" data-center="${G.floors[3].y + G.floors[3].h / 2}">${towerSvg({ mySteps: 30, myFloor: 4, sel: 4, light: true })}</div>`)]),
 ].join('');
 
 /* ===================== ПОВЕДЕНИЕ БАШНИ ===================== */

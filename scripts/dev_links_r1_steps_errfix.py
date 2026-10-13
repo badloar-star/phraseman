@@ -136,3 +136,6 @@ add('cards-v2-089', ['wait:1500'], 'cards=demo&catalog=demo&packdraft=on', '/fla
 # reminderTime=20:00 показывает время напоминания как в образце (расписание и хранилище не меняются). Шаги этих строк верны (см. выше).
 set_param('system-015', 'inbox', 'empty')
 set_param('settings-gap-028', 'reminderTime', '20:00')
+
+# energy-modes-017 (Ядро/координатор 13.10): кадр снимался на скелете меню урока — после тапа «Начать» нет паузы под окно «Нет энергии» (NoEnergyModal): ждём 2,5 с.
+set_steps('energy-modes-017', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:2500'])

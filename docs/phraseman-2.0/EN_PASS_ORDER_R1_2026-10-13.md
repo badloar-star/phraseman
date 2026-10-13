@@ -81,7 +81,7 @@
 
 | № | id | экран | ссылка | тапы | на что смотреть |
 |---|---|---|---|---|---|
-| 31 | settings-gap-028 | Настройки · Уведомления — окно выбора времени | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&robot_no_cloud=1&overlays=off&uiLang=en&enStudyPrompt=off&next=/settings_notifications` | tap:#notif-daily-switch; wait:400; tap:#notif-time-label; wait:600 | окно выбора времени напоминания |
+| 31 | settings-gap-028 | Настройки · Уведомления — окно выбора времени | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&robot_no_cloud=1&overlays=off&uiLang=en&enStudyPrompt=off&next=/settings_notifications` | tap:#notif-master-switch; wait:500; tap:#notif-daily-switch; wait:500; tap:#notif-time-label; wait:700 | окно выбора времени напоминания |
 | 32 | system-015 | Сообщения · Входящие — пусто | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en&enStudyPrompt=off&next=/(tabs)/home` | scroll:up; wait:400; wait:1500; tap:#home-notification-center-button; await:#notification-center-screen; wait:600 | входящие (пусто): заголовок, пустое состояние |
 
 ## Выбор языка изучения D164 (единственный кадр БЕЗ enStudyPrompt=off)
@@ -99,7 +99,7 @@
 | 36 | auth-gap-008 | Вход · Аккаунт удалён | `phraseman://dev_state?onboarding=done&intros=seen&restore=retired&overlays=off&uiLang=en&enStudyPrompt=off&next=/account_details` | tap:#account-link-row; tap:#auth-google-button; wait:1500 | «Account deleted» |
 | 37 | settings-gap-016 | Настройки · Приватность — ИИ выключен | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en&enStudyPrompt=off&next=/privacy_settings` |  | приватность: заголовки согласий |
 | 38 | profile-012 | Обучение и внешний вид · Terms · прокручиваемый документ | `phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&uiLang=en&enStudyPrompt=off&next=/privacy_settings` | tap:#privacy-terms-row | удаление: первый шаг |
-| 39 | auth-gap-009 | Аккаунт · Удалить аккаунт? — с входом (14 дней) | `phraseman://dev_state?onboarding=done&intros=seen&delete=fail&overlays=off&uiLang=en&enStudyPrompt=off&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | «Delete account?» с «14 days» — НЕ подтверждать |
+| 39 | auth-gap-009 | Аккаунт · Удалить аккаунт? — с входом (14 дней) | `phraseman://dev_state?onboarding=done&intros=seen&delete=fail&account=linked&overlays=off&uiLang=en&enStudyPrompt=off&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | «Delete account?» с «14 days» — НЕ подтверждать |
 | 40 | auth-gap-010 | Аккаунт · Удалить аккаунт? — гость | `phraseman://dev_state?guest=required&onboarding=done&intros=seen&delete=fail&overlays=off&uiLang=en&enStudyPrompt=off&next=/account_details` | see:#account-delete-button; tap:#account-delete-button | гость: «Progress will be deleted» — НЕ подтверждать |
 
 ## Итог

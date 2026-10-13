@@ -84,6 +84,8 @@ import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
 import { animateNextLayoutTransition } from './smooth_layout'; // зачем (аудит Optimistic UI Уроков, 13.10): карточка «Всё было понятно?» встаёт в уже показанный экран
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
+import { scanLessonProgress } from './lesson_progress_scan'; // зачем (аудит Optimistic UI Уроков, 13.10): 32 последовательных getItem → один multiGet
+import { navOnce } from './nav_once'; // зачем: замок двойного тапа «Следующий урок»
 import { frenchStudyActive } from './spanish_content_gate';
 import {
   lessonProgressKey,
@@ -647,6 +649,8 @@ export default function LessonComplete() {
     studyTarget: softUpsellStudyTarget,
   };
   const repeatOpeningRef = useRef(false);
+  // зачем (аудит Optimistic UI Уроков, 13.10): после тапа «Следующий урок» шло два await (премиум и лимит) без видимой реакции — кнопка остаётся в нажатом состоянии до ухода с экрана, второй тап не пускает nav_once.
+  const [nextOpening, setNextOpening] = useState(false);
   // зачем (аудит 2026-08-22): «Следующий урок» ждала 2 await (премиум-статус +
   // лимит бесплатных уроков) без защиты от двойного тапа — сосед «Повторить»
   // уже был защищён тем же паттерном (ref-гейт + видимое состояние).
@@ -732,6 +736,11 @@ export default function LessonComplete() {
   const [seqDone, setSeqDone] = useState(false);
   const resultsSequenceVisible = useOverlayVisible('lessonResultsSequence', !seqDone);
   const sequenceShowing = resultsSequenceVisible && resultsReady && completionAccessReady && completionXpReady;
+  // зачем (аудит Optimistic UI Уроков, 13.10; сперва логи): «Сохраняю результат…» ждёт ТРИ готовности — по строке видно, какая пришла последней и сколько прошло с монтирования.
+  const completeMountedAtRef = useRef(Date.now());
+  useEffect(() => {
+    DebugLogger.info('[LESSON-RESULT-SAVE]', `gates +${Date.now() - completeMountedAtRef.current}мс lesson=${lessonId}: results=${String(resultsReady)} access=${String(completionAccessReady)} xp=${String(completionXpReady)} → ${resultsReady && completionAccessReady && completionXpReady ? 'экран итога открыт' : 'ждём «Сохраняю результат…»'}`);
+  }, [resultsReady, completionAccessReady, completionXpReady, lessonId]);
 
   // Оценка урока (владелец 2026-08-25): троттлинг раз в неделю на раздел,
   // гейт решается один раз при монтировании — не зависит от очереди модалок.
@@ -823,6 +832,7 @@ export default function LessonComplete() {
         studyTarget: softUpsellStudyTarget,
       };
       // зачем: D70 — жемчуг за урок (0 штук) удалён; здесь только отметка первого прохождения.
+      const grantStartedAt = Date.now();
       const firstBonus = await grantLessonFirstCompleteBonus({ lessonId, studyTarget, lang });
       const softUpsellCandidate = candidateAfterLessonGrant({
         status: firstBonus.status,
@@ -836,26 +846,10 @@ export default function LessonComplete() {
 
       try {
       // [ACHIEVEMENT] Считаем сколько уроков завершено + проверяем идеальность
-      let lessonCount = 0;
-      let perfectCount = 0;
-      let wasPerfect = false;
-      for (let i = 1; i <= 32; i++) {
-        try {
-          const saved = await AsyncStorage.getItem(lessonProgressKey(i, studyTarget));
-          if (saved) {
-            const p: string[] = JSON.parse(saved);
-            const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-            if (correct >= 45) {
-              lessonCount++;
-              const wrong = p.filter(x => x === 'wrong').length;
-              if (wrong === 0 && i === lessonId) wasPerfect = true;
-              if (wrong === 0) perfectCount++;
-            }
-          }
-        } catch (e) {
-      DebugLogger.error('lesson_complete:wrong', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-      }
+      // зачем (аудит Optimistic UI Уроков, 13.10): раньше 32 последовательных `getItem` держали экран «Сохраняю результат…»; теперь один `multiGet` (lesson_progress_scan.ts), время — в [LESSON-RESULT-SAVE].
+      const scanStartedAt = Date.now();
+      const { lessonCount, perfectCount, wasPerfect } = await scanLessonProgress(studyTarget, lessonId);
+      DebugLogger.info('[LESSON-RESULT-SAVE]', `grantBonus: этапы lesson=${lessonId} первый бонус=${scanStartedAt - grantStartedAt}мс, сводка прохождения=${Date.now() - scanStartedAt}мс`);
       checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId, studyTarget }).catch(noteSwallowedHandler('lesson_complete:useCallback.checkAchievements'));
       const activeDays = wasPerfect ? await getReviewActiveDays() : 0;
       const eligible = wasPerfect && await canShowReview({
@@ -867,6 +861,7 @@ export default function LessonComplete() {
         setReviewContext('perfect_lesson');
         pendingReview.current = true;
       }
+      DebugLogger.info('[LESSON-RESULT-SAVE]', `grantBonus: готово lesson=${lessonId} всего=${Date.now() - grantStartedAt}мс (бонус+сводка+отзыв), wasPerfect=${String(wasPerfect)} eligibleReview=${String(eligible)}`);
       // зачем: D107 — починка серии уроком удалена; спасает серию только заморозка Plus.
 
       // D+1 персональное уведомление — только после первого урока
@@ -1124,10 +1119,16 @@ export default function LessonComplete() {
   }, [lessonId]);
 
   const goNext = () => {
-    if (nextOpeningRef.current) return;
+    if (nextOpeningRef.current) {
+      DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}: «Следующий урок» уже открывается — повторный тап игнорируем`);
+      return;
+    }
+    if (!navOnce(`lesson_complete:next:${lessonId}`)) return;
     const next = lessonId + 1;
     if (next <= 32) {
       nextOpeningRef.current = true;
+      setNextOpening(true);
+      const tapAt = Date.now();
       void (async () => {
         try {
           const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_complete:goNext.getVerifiedPremiumStatus', false));
@@ -1149,12 +1150,14 @@ export default function LessonComplete() {
           }
           void prefetchLessonMenuCache(next, studyTarget).catch(noteSwallowedHandler('lesson_complete:goNext.prefetchLessonMenuCache'));
           markNextNavigationAsReplace();
+          DebugLogger.info('[LESSON-NEXT]', `lesson=${lessonId}→${next}: проверки заняли ${Date.now() - tapAt}мс, уходим на список`);
           router.replace({ pathname: '/lessons_list', params: { id: next } });
         } finally {
           // Экран уходит по replace в любой ветке — сброс не нужен для повторного
           // тапа НА ЭТОМ экране, но снимаем гейт на случай, если навигация не
           // произошла (например, router выбросил синхронно).
           nextOpeningRef.current = false;
+          setNextOpening(false);
         }
       })();
     } else {
@@ -1328,6 +1331,7 @@ export default function LessonComplete() {
                   : isComboCompletion
                     ? triLang(lang, { ru: 'Продолжить', en: 'Continue', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })
                     : triLang(lang, { ru: 'Следующий урок', en: 'Next lesson', uk: 'Наступний урок', es: 'Siguiente lección', 'pt-BR': 'Próxima lição', vi: 'Bài tiếp theo', id: 'Pelajaran berikutnya', tr: 'Sonraki ders', pl: 'Następna lekcja' })}
+              primaryBusy={nextOpening}
               onPrimary={() => {
                 if (!completionRequiresPremium && !isComboCompletion && RESULTS_STARS_BY_TIER[medalTier] === 1) {
                   handleRepeatLesson();

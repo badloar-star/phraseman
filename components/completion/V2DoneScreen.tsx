@@ -53,6 +53,8 @@ export type V2DoneScreenProps = Readonly<{
   /** Форма «Всё было понятно?» и прочие вставки режима. */
   feedbackSlot?: ReactNode;
   primaryLabel: string;
+  /** Основное действие уже выполняется (асинхронные проверки перед переходом): кнопка остаётся в нажатом состоянии и не принимает повторный тап. Без спиннера. */
+  primaryBusy?: boolean;
   onPrimary: () => void;
   secondaryLabel?: string;
   onSecondary?: () => void;
@@ -252,8 +254,10 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         <Pressable
           testID="v2-done-primary"
           accessibilityRole="button"
-          onPress={() => { hapticTap(); props.onPrimary(); }}
-          style={({ pressed }) => [s.cta, { backgroundColor: g.cta, transform: [{ scale: pressed ? 0.98 : 1 }] }]}
+          onPress={() => { if (props.primaryBusy) return; hapticTap(); props.onPrimary(); }}
+          accessibilityState={{ busy: props.primaryBusy === true, disabled: props.primaryBusy === true }}
+          // зачем (аудит Optimistic UI Уроков, 13.10): пока идут проверки перед переходом, кнопка держит нажатый вид (масштаб и приглушение) — тап не выглядит потерянным
+          style={({ pressed }) => [s.cta, { backgroundColor: g.cta, transform: [{ scale: pressed || props.primaryBusy ? 0.98 : 1 }], opacity: props.primaryBusy ? 0.72 : 1 }]}
         >
           <Text style={[s.ctaText, { color: g.ctaInk }]}>{props.primaryLabel}</Text>
           <Ionicons name="arrow-forward" size={20} color={g.ctaInk} style={s.ctaArrow} />

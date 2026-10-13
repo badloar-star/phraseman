@@ -1,0 +1,47 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=9 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] dialogs-029: шаг tap:#dialogue-v2-world-toggle-*
+[BATCH-SHOOT] dialogs-029: шаг tap:#dialogue-v2-catalogue-row-*
+[BATCH-SHOOT] dialogs-029: шаг tap:#dialogue-v2-briefing-start
+[BATCH-SHOOT] dialogs-029: шаг wait:3000
+[BATCH-SHOOT] dialogs-029: шаг tap:#dialogue-v2-session-input
+[BATCH-SHOOT] dialogs-029: шаг type:Hello
+[BATCH-SHOOT] dialogs-029: шаг tap:#dialogue-v2-session-send
+[BATCH-SHOOT] dialogs-029: журнал приложения → 61 строк в _runs
+[BATCH-SHOOT] dialogs-029: ok 15890мс marker+шагов_8+склейка+ждали_metro_27мс → docs/phraseman-2.0/evidence/parity/dialogs-029.png
+[BATCH-SHOOT] cards-section-008: журнал приложения → 43 строк в _runs
+[BATCH-SHOOT] cards-section-008: пустой кадр (доминанта 98.4%, цветов 71) — ждём и снимаем снова
+[BATCH-SHOOT] cards-section-008: ok 14711мс marker+пусто_1393мс+склейка+ждали_metro_5мс → docs/phraseman-2.0/evidence/parity/cards-section-008.png
+[BATCH-SHOOT] cards-015: журнал приложения → 32 строк в _runs
+[BATCH-SHOOT] cards-015: пустой кадр (доминанта 98.6%, цветов 64) — ждём и снимаем снова
+[BATCH-SHOOT] cards-015: ok 14771мс marker+пусто_1385мс+склейка+ждали_metro_4мс → docs/phraseman-2.0/evidence/parity/cards-015.png
+[BATCH-SHOOT] cards-016: шаг long:#flashcards-pack-card-dev_demo_community_1
+[BATCH-SHOOT] cards-016: шаг tap:#flashcards-pack-report
+[BATCH-SHOOT] cards-016: журнал приложения → 34 строк в _runs
+[BATCH-SHOOT] cards-016: ok 12377мс marker+шагов_2+склейка+ждали_metro_5мс → docs/phraseman-2.0/evidence/parity/cards-016.png
+[BATCH-SHOOT] cards-048: шаг tap:#flashcards-packs-search
+[BATCH-SHOOT] cards-048: шаг type:xyzq
+[BATCH-SHOOT] cards-048: шаг key:ENTER
+[BATCH-SHOOT] cards-048: шаг hidekb
+[BATCH-SHOOT] cards-048: hidekb: клавиатура не показана — ничего не делаю
+[BATCH-SHOOT] cards-048: шаг wait:600
+[BATCH-SHOOT] cards-048: журнал приложения → 49 строк в _runs
+[BATCH-SHOOT] cards-048: ok 16768мс marker+шагов_5+склейка+ждали_metro_3мс → docs/phraseman-2.0/evidence/parity/cards-048.png
+[BATCH-SHOOT] cards-024: шаг tap:#ugc-pack-add-card
+[BATCH-SHOOT] cards-024: элемент #ugc-pack-add-card не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] cards-024: элемент #ugc-pack-add-card не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] cards-024: элемент #ugc-pack-add-card не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] cards-024: элемент #ugc-pack-add-card не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] cards-024: элемент #ugc-pack-add-card не виден — ищем прокруткой вниз (5/8)
+[BATCH-SHOOT] cards-024: журнал приложения → 39 строк в _runs
+[BATCH-SHOOT] cards-024: ok 14947мс marker+шагов_1+склейка+ждали_metro_3мс → docs/phraseman-2.0/evidence/parity/cards-024.png
+[BATCH-SHOOT] cards-v2-022: журнал приложения → 35 строк в _runs
+[BATCH-SHOOT] cards-v2-022: пустой кадр (доминанта 98.5%, цветов 72) — ждём и снимаем снова
+[BATCH-SHOOT] cards-v2-022: ok 15780мс marker+пусто_1512мс+склейка+ждали_metro_5мс → docs/phraseman-2.0/evidence/parity/cards-v2-022.png
+[BATCH-SHOOT] cards-gap-003: журнал приложения → 44 строк в _runs
+[BATCH-SHOOT] cards-gap-003: ok 17212мс marker+склейка+ждали_metro_3мс → docs/phraseman-2.0/evidence/parity/cards-gap-003.png
+[BATCH-SHOOT] cards-v2-005: шаг tap:#fc-zoom-larger
+[BATCH-SHOOT] cards-v2-005: шаг wait:500
+[BATCH-SHOOT] cards-v2-005: шаг scroll:up
+[BATCH-SHOOT] cards-v2-005: журнал приложения → 47 строк в _runs
+[BATCH-SHOOT] cards-v2-005: ok 17255мс marker+шагов_3+склейка+ждали_metro_4мс → docs/phraseman-2.0/evidence/parity/cards-v2-005.png
+[BATCH-SHOOT] готово (все попытки): ok=9 timeout=0 error=0 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"ok":9}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-52-48-906Z.tsv

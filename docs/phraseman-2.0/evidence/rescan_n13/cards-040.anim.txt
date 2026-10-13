@@ -1,0 +1,2 @@
+[PARITY-SHOT] wrote docs/phraseman-2.0/evidence/parity/cards-040.anim.mp4 + docs/phraseman-2.0/evidence/parity/cards-040.anim.mockup.webm seconds=8 mockup_phone=14
+[PARITY-SHOT] registry updated id=cards-040 anim_evidence (сверять длительности/кривые: spn 0.8s linear infinite)

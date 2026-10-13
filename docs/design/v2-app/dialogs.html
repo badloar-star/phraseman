@@ -350,13 +350,14 @@ const hub = (o = {}) => phone(`
 const dl = (ic, t, lvl, kind = '') => `<div class="card t dl ${kind}" style="background:#1D1D1F;display:flex;align-items:center;gap:16px;padding:0 14px 0 10px;min-height:60px">
   <div class="tile t46" style="background:#28282A;color:${kind === 'plus' || kind === 'rank' ? '#8E8E92' : '#fff'}">${kind === 'plus' || kind === 'rank' ? icon('lockF', 's20') : icon(ic, 's20')}</div>
   <div class="grow"><div class="tt" style="font-size:17px;line-height:22px;font-weight:600;${kind === 'plus' || kind === 'rank' ? 'color:#D0D0D2' : ''}">${t}</div>${kind === 'plus' ? '<div style="font-size:14px;color:var(--sec);margin-top:2px">Входит в Plus</div>' : kind === 'rank' ? `<div class="rank">Откроется на ранге 3 ${coinImg(3, 16)}</div>` : ''}</div><span class="lvl">${lvl}</span>${kind === 'done' ? `<span class="ch" style="color:#fff">${icon('check', 's20')}</span>` : ch}</div>`;
+/* зачем (D185, 13.10): раздел «Повседневное» из каталога кода (19 диалогов), ранг 3 — замки по рангу с монетой, замков Plus нет (D124) */
 const openCat = (o = {}) => phone(`
   <div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow" style="font-size:34px;font-weight:700;letter-spacing:-.4px">Диалоги</div>${o.plus ? '' : energy(5, { ol: true })}</div>
   ${o.plus ? '<div style="height:10px"></div>' : `<div class="center" style="margin-top:10px"><span class="pill">${icon('chatDots', 's20')}30/30</span></div>`}
   <div class="card" style="background:#161618;border-radius:24px;margin-top:12px;padding:14px 14px 16px">
-    <div class="flex t" data-cat style="gap:16px"><div class="tile t55" style="background:#2A2A2C">${icon('cupF', 's26')}</div><div class="grow" style="font-size:20px;font-weight:700">Повседневное</div><span class="frac"><b>${o.done ?? 1}</b><span>/11</span></span><span class="ch" style="margin-left:6px">${icon(o.anim ? 'down' : 'up', 's20')}</span></div>
-    <div class="trk dot" style="margin:16px 6px ${o.anim ? 0 : 18}px"><i style="left:${Math.round((o.done ?? 1) / 11 * 100)}%;margin-left:-8px"></i></div>
-    <div class="cat-body${o.anim ? '' : ' on'}"><div class="stack" style="padding-top:18px">${dl('cupF', 'Закажи кофе', 'A1', 'done')}${dl('basket', 'В продуктовом', 'A1')}${dl('shirt', 'Магазин одежды', 'A2')}${dl('', 'В аптеке', 'A2', 'plus')}${dl('', 'В ресторане', 'A2', 'plus')}${dl('', 'У врача', 'B1', o.rank ? 'rank' : 'plus')}${dl('', 'Доставка', 'A2', 'plus')}</div></div>
+    <div class="flex t" data-cat style="gap:16px"><div class="tile t55" style="background:#2A2A2C">${icon('cupF', 's26')}</div><div class="grow" style="font-size:20px;font-weight:700">Повседневное</div><span class="frac"><b>${o.done ?? 1}</b><span>/19</span></span><span class="ch" style="margin-left:6px">${icon(o.anim ? 'down' : 'up', 's20')}</span></div>
+    <div class="trk dot" style="margin:16px 6px ${o.anim ? 0 : 18}px"><i style="left:${Math.round((o.done ?? 1) / 19 * 100)}%;margin-left:-8px"></i></div>
+    <div class="cat-body${o.anim ? '' : ' on'}"><div class="stack" style="padding-top:18px">${RK_TITLES.everyday.slice(0, 8).map((_, i) => rkRow('everyday', 'cupF', i, 3, o.done ?? 1)).join('')}</div></div>
   </div>`, { time: '13:00' });
 
 // ================= G. Каталог по рангу (D185) =================

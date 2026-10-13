@@ -100,6 +100,7 @@ export default function SpireHomeScreen() {
     }
     let alive = true;
     const enteredAtMs = Date.now();
+    console.log('[PM-214] spire first_frame', JSON.stringify({ source: config === null ? 'skeleton (память пуста)' : 'memory', enabled: config === null ? null : config.enabled === true })); // guard-ok: замер до/после — чем рисуется первый кадр Пика
     DebugLogger.info(LOG, `home: вход, читаем конфиг (кэш 6 ч); первый кадр из памяти процесса: ${config === null ? 'нет (первый заход)' : `да (enabled=${String(config.enabled)})`}`);
     loadSpireConfig()
       .then((next) => {

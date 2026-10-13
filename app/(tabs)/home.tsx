@@ -1128,6 +1128,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const profileIntroMounted = useMountedAfterFirstOpen(profileIntroEnabled);
     const savedCardsFlightMounted = useMountedAfterFirstOpen(cardArrivals > 0);
     useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
+    // зачем (PM-214, координатор 13.10): первый заход в Пик за запуск рисует экран из памяти, а не скелет — конфиг прогревается из дискового кэша после первого кадра Главной и после онбординга (сети нет)
+    useEffect(() => runAfterHomeFirstFrame('spire_config_warm', () => import('../spire_config_client').then((m) => m.warmSpireConfigFromDisk()), { holdDuringOnboarding: true }), []);
     const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const isSketchLightTheme = isLightThemeMode(themeMode);

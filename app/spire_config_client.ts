@@ -37,6 +37,28 @@ export function peekSpireConfig(): SpireConfigDoc | null {
   return configMemory;
 }
 
+/**
+ * Прогрев конфига Пика из ДИСКОВОГО кэша в память процесса — без сети.
+ * зачем (PM-214, координатор 13.10: «каждый раздел открывается мгновенно»): память процесса на старте пуста, и первый заход в Пик за запуск рисовал скелет,
+ * пока AsyncStorage отдавал конфиг. Прогрев после первого кадра Главной делает первый кадр Пика готовым. Возраст кэша не проверяем: свежесть решает экран
+ * (loadSpireConfig при входе освежает фоном, старое «выключен» перепроверяет refreshSpireConfigIfLocked).
+ */
+export async function warmSpireConfigFromDisk(): Promise<'memory' | 'disk' | 'none'> {
+  const startedAt = Date.now();
+  if (configMemory !== null) {
+    console.log('[PM-214] spire_config_warm', JSON.stringify({ source: 'memory', ms: 0 })); // guard-ok: ранний выход называет причину
+    return 'memory';
+  }
+  const cached = await readCache();
+  if (cached === null) {
+    console.log('[PM-214] spire_config_warm', JSON.stringify({ source: 'none', ms: Date.now() - startedAt, why: 'кэша на диске нет — первый заход в Пик нарисует скелет' })); // guard-ok: ранний выход называет причину
+    return 'none';
+  }
+  if (configMemory === null) configMemory = cached.config; // не затираем конфиг, который успел прийти по сети, пока читали диск
+  console.log('[PM-214] spire_config_warm', JSON.stringify({ source: 'disk', ms: Date.now() - startedAt, ageMs: Date.now() - cached.fetchedAtMs, enabled: cached.config.enabled === true })); // guard-ok: итог прогрева
+  return 'disk';
+}
+
 // Ленивый импорт держит Expo Go / выключенный облачный sync тихими —
 // Тот же приём, что в прежнем сетевом клиенте лиг.
 function getFirestore(): unknown | null {

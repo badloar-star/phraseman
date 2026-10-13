@@ -341,3 +341,6 @@ set_param('cards-section-029', 'packdraft', 'none')
 set_steps('cards-section-029', ['await:#flashcards-community-empty-label', 'wait:300'])
 # dialogs-024 (Макеты f64c751fc): образец — «Готовлю микрофон…» в середине разговора, после ответа (ряд действий и лампа — только после хода).
 set_steps('dialogs-024', list(_DLG_START) + _DLG_SEND + ['wait:2500', 'long:#dialogue-v2-voice-input', 'wait:400'])
+# paywall-gap-005 (Макеты 13.10 ~18:05): образец — единый пейвол Plus (D115) с контекстом no_energy в «Авроре» (страница класса A по таблице Тем).
+set_param('paywall-gap-005', 'theme', 'grad_aurora')
+set_param('paywall-gap-005', 'level', '1')

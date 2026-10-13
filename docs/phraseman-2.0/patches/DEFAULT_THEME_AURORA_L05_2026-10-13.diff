@@ -1,0 +1,51 @@
+diff --git a/app/theme_first_run_default.ts b/app/theme_first_run_default.ts
+index 8ffaff6..9da1bd2 100644
+--- a/app/theme_first_run_default.ts
++++ b/app/theme_first_run_default.ts
+@@ -9,8 +9,8 @@
+ // меняется одна строка (DEFAULT_THEME_OPTIONS_R1.md, раздел «После да»).
+ // ═════════════════════════════════════════════════════════════════════
+ 
+-/** Тема для новых пользователей. Сейчас = встроенный дефолт (поведение не меняется). Вариант (б): { themeId: 'grad_aurora', intensity: 1 }. */
+-export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'graphite', intensity: 0 });
++/** Тема для новых пользователей: «Аврора / середина» (решение владельца, вопрос 3). Старые пользователи не перекрашиваются — их ведёт метка первого запуска (decideFirstRunTheme). */
++export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'grad_aurora', intensity: 0.5 });
+ 
+ /** Встроенный дефолт приложения (resolveLiquidGlassTheme(null) / migrateStoredLiquidGlassIntensity без ключей). */
+ export const BUILTIN_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'graphite', intensity: 0 });
+diff --git a/tests/theme_first_run_default.test.ts b/tests/theme_first_run_default.test.ts
+index 4e6e316..960f49f 100644
+--- a/tests/theme_first_run_default.test.ts
++++ b/tests/theme_first_run_default.test.ts
+@@ -13,11 +13,26 @@ const AURORA_MAX = { themeId: 'grad_aurora', intensity: 1 };
+ const empty = { storedThemeId: null, storedIntensity: null, storedLevel: null };
+ 
+ describe('тема по умолчанию для новых (метка первого запуска)', () => {
+-  it('сейчас конфиг = встроенный дефолт → поведение прежнее (новичку ничего не пишется)', () => {
+-    expect(NEW_USER_DEFAULT_THEME).toEqual(BUILTIN_DEFAULT_THEME);
+-    const decision = decideFirstRunTheme({ ...empty, onboardingDone: null });
+-    expect(decision).toMatchObject({ kind: 'new_user', apply: false });
+-    expect(decision.reason).toContain('config_equals_builtin');
++  it('конфиг по умолчанию = Аврора / середина (отличается от встроенного дефолта → новичку тема пишется)', () => {
++    expect(NEW_USER_DEFAULT_THEME).toEqual({ themeId: 'grad_aurora', intensity: 0.5 });
++    expect(NEW_USER_DEFAULT_THEME).not.toEqual(BUILTIN_DEFAULT_THEME);
++  });
++
++  it('новый пользователь (ключей темы нет, онбординг не пройден) получает Аврору середина', () => {
++    expect(decideFirstRunTheme({ ...empty, onboardingDone: null }))
++      .toMatchObject({ kind: 'new_user', apply: true, themeId: 'grad_aurora', intensity: 0.5 });
++  });
++
++  it('существующий пользователь без ключей (онбординг пройден) — тема не меняется', () => {
++    expect(decideFirstRunTheme({ ...empty, onboardingDone: '1' }))
++      .toEqual({ kind: 'existing_user_kept', reason: 'no_theme_keys_but_onboarding_done', apply: false });
++  });
++
++  it('смена темы пользователем сохраняется: выбор из хранилища сильнее умолчания', () => {
++    expect(decideFirstRunTheme({ ...empty, storedThemeId: 'graphite', storedIntensity: '0', onboardingDone: null }))
++      .toMatchObject({ kind: 'stored_choice', apply: false, reason: 'stored:theme' });
++    expect(decideFirstRunTheme({ ...empty, storedThemeId: 'rose', onboardingDone: '1' }))
++      .toMatchObject({ kind: 'stored_choice', apply: false });
+   });
+ 
+   it('новичок (нет ключей темы, онбординг не пройден) → тема из конфига применяется и пишется', () => {

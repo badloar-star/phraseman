@@ -97,11 +97,11 @@ const { icon, phone, col, block } = K;
 const gift = '<svg class="i s16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="9" width="17" height="4.5" rx="1"/><path d="M5 13.5V20h14v-6.5M12 9v11"/><path d="M12 9c-2.5 0-4.2-1-4.2-2.7S10.6 4 12 9zm0 0c2.5 0 4.2-1 4.2-2.7S13.4 4 12 9z"/></svg>';
 // контекст входа — утверждённый «Энергия закончилась» (paywall-context-texts.md): значок входа, пилюля «что закончилось», заголовок, фраза, выгода
 const CX = { icon: 'bolt', pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', ben: 'Занятия без ожидания' };
-const YEAR = '3 990 ₽', MON = '490 ₽', PER = '≈ 333 ₽ в месяц';
+const YEAR = '≈ €39,99', MON = '≈ €7,99', PER = '≈ €3,33 в месяц';
 const head = (o = {}) => `<div class="whd"></div><div class="wctx"><span class="wtile">${icon(CX.icon, 's24')}</span><span class="wpill">${CX.pill}</span><span class="wcl"${o.closeOff ? ' style="opacity:.45"' : ''}>${icon('close', 's18')}</span></div><div class="wh1">${CX.title}</div><div class="wsub">${CX.sub}</div>`;
 const lead = `<div class="wlead"><span class="ok">${icon('check', 's16')}</span><span class="tx">${CX.ben}</span></div>`;
-const plans = (o = {}) => `<div class="wrow${o.off ? ' wphome' : ''}"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div>${o.promo ? `<div class="wstr" style="margin-top:3px">${YEAR}</div>` : ''}<div class="wbig" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '2 790 ₽' : YEAR}</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">${PER}</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
-  <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div>${o.promo ? `<div class="wstr" style="margin-top:3px">${MON}</div>` : ''}<div class="wmon" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '340 ₽' : MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
+const plans = (o = {}) => `<div class="wrow${o.off ? ' wphome' : ''}"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div>${o.promo ? `<div class="wstr" style="margin-top:3px">${YEAR}</div>` : ''}<div class="wbig" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '≈ €27,99' : YEAR}</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">${PER}</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
+  <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div>${o.promo ? `<div class="wstr" style="margin-top:3px">${MON}</div>` : ''}<div class="wmon" style="margin-top:${o.promo ? 0 : 3}px">${o.promo ? '≈ €5,59' : MON}</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
 // справочные цены (app/paywall_reference_prices.ts): «≈» перед суммой, «≈ €3,33 в месяц» у года
 const plansRef = `<div class="wrow"><div class="wcell"><div class="wcard on"><div class="wnm">Год<span class="wbadge">Выгоднее всего</span></div><div class="wbig" style="margin-top:3px">≈ €39,99</div><div class="wsm">в год</div><div class="wsm" style="margin-top:3px">≈ €3,33 в месяц</div><div class="wtrial">${gift}7 дней бесплатно</div></div></div>
   <div class="wcell"><div class="wcard"><div class="wnm">Месяц</div><div class="wmon" style="margin-top:3px">≈ €7,99</div><div class="wsm">в месяц</div><div class="wsm" style="margin-top:3px">Без пробного периода</div></div></div></div>`;
@@ -109,7 +109,7 @@ const skel = '<div class="wrow"><div class="wcell"><div class="wsk"></div></div>
 const unav = '<div class="wqn">Цена уточнится в магазине</div>';
 // зачем (координатор 11.10): магазин недоступен на этом устройстве (billing_unavailable) — повтор бессмыслен, поэтому БЕЗ кнопки «Ещё раз»
 const unavBilling = '<div class="wqn">Магазин недоступен на этом устройстве</div>';
-const promo = '<div class="wpromo"><div class="k">Скидка действует сейчас</div><div class="rw"><span class="pc">−30%</span><span class="pr">2 790 ₽</span><span class="st">3 990 ₽</span></div><div class="th">далее 3 990 ₽</div></div>';
+const promo = '<div class="wpromo"><div class="k">Скидка действует сейчас</div><div class="rw"><span class="pc">−30%</span><span class="pr">≈ €27,99</span><span class="st">≈ €39,99</span></div><div class="th">далее ≈ €39,99</div></div>';
 const dock = (o = {}) => `<div class="wdock"><div class="wcta${o.off ? ' off' : ''}">${o.spin ? '<span class="wspin"></span>' : o.label}</div><div class="wfine">${o.fine}</div>
   <div class="wlinks"><span${o.restoreOff ? ' class="off"' : ''}>${o.restoring ? 'Восстанавливаем…' : 'Восстановить'}</span><span>Условия</span><span>Конфиденциальность</span></div></div>`;
 const sheet = (o) => `<div class="wsh">${head(o)}<div class="wbody">${o.body}</div>${o.dock}</div>`;
@@ -117,7 +117,7 @@ const und = '<div class="wund"><div class="t1">Урок</div><div class="r"></di
 const alert = (title, body, btns) => `<div class="wdim"></div><div class="wal"><div class="tt">${title}</div><div class="bd">${body}</div><div class="ac">${btns}</div></div>`;
 const toast = (txt, mark) => `<div class="wtoast"><span class="ti">${mark}</span><span class="tx">${txt}</span></div>`;
 const errToast = (txt) => `<div class="wbtoast"><span class="rl"></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/></svg></span><span style="flex:1;min-width:0"><div class="lb">Что-то пошло не так</div><div class="ms">${txt}</div></span></div>`;
-const FINE_YEAR = 'Затем 3 990 ₽ в год · Отмена в любой момент';
+const FINE_YEAR = 'Затем ≈ €39,99 в год · Отмена в любой момент';
 const CTA_TRIAL = 'Начать 7 дней бесплатно';
 const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
 
@@ -139,7 +139,7 @@ const S = [
   ['016 · Статус неизвестен (после проверки)', 'Проверка не нашла покупку: тост ведёт к «Восстановить». Другие исходы: «Не удалось проверить статус. Попробуй позже.», «Активных подписок не обнаружено.».',
     () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + errToast('Покупка пока не найдена. Нажми «Восстановить покупки».')],
   ['018 · Промо от магазина', 'Если магазин даёт скидку на первый период: плашка над тарифами («Скидка действует сейчас», процент, цена со скидкой, зачёркнутая обычная, «далее»), в карточках — зачёркнутая и новая цена. Нет скидки — нет плашки.',
-    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'Затем 3 990 ₽ в год · Отмена в любой момент' }) })],,
+    () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за ≈ €27,99 в год', fine: 'Затем ≈ €39,99 в год · Отмена в любой момент' }) })],,
   ['012 · Магазин недоступен на этом устройстве', 'Причина — billing_unavailable: на месте плиток тихая строка «Магазин недоступен на этом устройстве» (та же высота), «Ещё раз» нет (повтор бессмыслен). «Получить Plus» остаётся, но тап не открывает оплату: без тоста под кнопкой тихо появляется «Попробуй через минуту».',
     () => und + sheet({ body: lead + unavBilling, dock: dock({ label: 'Получить Plus', fine: 'Магазин недоступен на этом устройстве', restoreOff: true }) })],
   ['012 · Справочная цена с «≈»', 'Магазин не отдал цену, но есть справочная (последняя настоящая из кэша, иначе из рубильника): перед суммой «≈», под плитками тихая строка «Цена уточнится в магазине». Платёж идёт только по живой цене магазина. Суммы в евро — как справочные в приложении.',

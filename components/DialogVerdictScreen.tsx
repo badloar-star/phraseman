@@ -618,7 +618,7 @@ export default function DialogVerdictScreen({
                                     vi: 'Đã hoàn thành', id: 'Selesai', tr: 'Tamamlandı', pl: 'Zaliczone',
                                   })
                                 : triLang(lang, {
-                                    ru: 'Можно потренировать ещё', uk: 'Можна потренувати ще', en: 'Worth practising again', es: 'Vale la pena practicarlo de nuevo',
+                                    ru: 'Можно потренировать ещё', uk: 'Можна потренувати ще', en: 'Worth practicing again', es: 'Vale la pena practicarlo de nuevo',
                                     'pt-BR': 'Vale praticar de novo', vi: 'Nên luyện thêm', id: 'Layak dilatih lagi', tr: 'Tekrar pratik yapmaya değer', pl: 'Warto przećwiczyć ponownie',
                                   })}
                             </Text>

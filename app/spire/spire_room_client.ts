@@ -23,6 +23,7 @@ import {
 import type { SpireLang } from '../../modules/spire/report_queue';
 import { spireCohortDay, spireWeekStartMs } from '../../modules/spire/residents';
 import { spireCurrentWeekKey } from '../../components/spire/spire_tower_model';
+import { peekCoinRank } from '../coin_rank_state_v1';
 import { DebugLogger } from '../debug-logger';
 import type { SpireLiveGate } from './spire_live_gate';
 import {
@@ -126,10 +127,13 @@ type RoomIdentity = Readonly<{ groupId: string; tier: number; cohortDay: number 
 
 async function joinRoom(gate: SpireLiveGate, input: Readonly<{ stableId: string; lang: SpireLang; weekId: string }>): Promise<RoomIdentity> {
   DebugLogger.info(LOG, `room: spireJoinRoom lang=${input.lang} week=${input.weekId}`);
+  // зачем (владелец 13.10, аватар-монета у соперников): свой ранг монеты — в строку комнаты; сервер берёт только 0…19.
+  const coinRank = peekCoinRank(input.stableId);
   const res = await spireCall<Readonly<Record<string, unknown>>, JoinResponse>(gate, 'spireJoinRoom', {
     lang: input.lang,
     weekId: input.weekId,
     stableId: input.stableId,
+    ...(coinRank !== null ? { member: { coinRank } } : {}),
   });
   if (!res || res.ok !== true || typeof res.groupId !== 'string' || !res.groupId) {
     throw new Error(`spire_join_bad_response:${JSON.stringify(res ?? null).slice(0, 120)}`);

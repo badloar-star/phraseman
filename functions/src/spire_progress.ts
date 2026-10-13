@@ -16,6 +16,7 @@ import {
   clampSpireTier,
   resolveSpireTier,
   savedSpireGroupId,
+  spireCoinRankOrNull,
   spireMemberStepsUpdate,
 } from './spire_groups';
 import {
@@ -289,8 +290,8 @@ export const spireReportSteps = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     // (даже из одних duplicate) поднимет его строку. spireMemberStepsUpdate
     // вернёт null, когда поднимать нечего, — тогда записи нет.
     if (roomValid && groupRef) {
-      const current = (group?.members as Record<string, { steps?: unknown }> | undefined)?.[stableUid];
-      const roomPatch = spireMemberStepsUpdate(stableUid, current, evaluation.record, nowMs);
+      const current = (group?.members as Record<string, { steps?: unknown; coinRank?: unknown }> | undefined)?.[stableUid];
+      const roomPatch = spireMemberStepsUpdate(stableUid, current, evaluation.record, nowMs, spireCoinRankOrNull(data.coinRank));
       if (roomPatch) {
         // guard-ok: запись внутри runTransaction; точечный путь members.<uid> — только update.
         tx.update(groupRef, roomPatch);

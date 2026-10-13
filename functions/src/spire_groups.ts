@@ -62,7 +62,14 @@ type SpireMember = {
   reachedAtMs: number;
   totalMs: number;
   joinedAtMs: number;
+  /** Ранг монеты 0…19 — аватар-монета соперника (владелец 13.10); присылает клиент, иначе null. */
+  coinRank: number | null;
 };
+
+/** Ранг монеты от клиента: только целое 0…19, иначе null (как public_profiles.coinRank). */
+export function spireCoinRankOrNull(value: unknown): number | null {
+  return typeof value === 'number' && Number.isInteger(value) && value >= 0 && value <= 19 ? value : null;
+}
 
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -153,6 +160,7 @@ function buildMember(
     reachedAtMs: 0,
     totalMs: 0,
     joinedAtMs: nowMs,
+    coinRank: spireCoinRankOrNull(raw.coinRank),
   };
 }
 
@@ -166,17 +174,22 @@ function buildMember(
  */
 export function spireMemberStepsUpdate(
   stableUid: string,
-  current: Readonly<{ steps?: unknown }> | undefined,
+  current: Readonly<{ steps?: unknown; coinRank?: unknown }> | undefined,
   next: Readonly<{ steps: number; reachedAtMs: number; totalMs: number }>,
   nowMs: number,
+  coinRank: number | null = null,
 ): Record<string, number> | null {
   const prev = Math.max(0, Math.trunc(Number(current?.steps)) || 0);
   const steps = Math.max(0, Math.trunc(next.steps) || 0);
-  if (steps <= prev) return null;
+  // зачем (владелец 13.10, аватар-монета): ранг едет той же записью, что ступени; отдельная запись — только если ранг сменился
+  // без новых ступеней (повышение ранга — редкость), иначе null: лишних записей нет.
+  const rank = coinRank !== null && current?.coinRank !== coinRank ? { [`members.${stableUid}.coinRank`]: coinRank } : {};
+  if (steps <= prev) return Object.keys(rank).length > 0 ? { ...rank, updatedAt: nowMs } : null;
   return {
     [`members.${stableUid}.steps`]: steps,
     [`members.${stableUid}.reachedAtMs`]: Math.max(0, Math.trunc(next.reachedAtMs) || 0),
     [`members.${stableUid}.totalMs`]: Math.max(0, Math.trunc(next.totalMs) || 0),
+    ...rank,
     updatedAt: nowMs,
   };
 }

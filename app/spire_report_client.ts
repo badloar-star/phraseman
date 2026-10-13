@@ -23,6 +23,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { peekCoinRank } from './coin_rank_state_v1';
 import { DebugLogger } from './debug-logger';
 import { getLocalDayKey } from './local_date';
 import { peekStableId } from './stable_id';
@@ -166,7 +167,8 @@ export async function spireFlushNow(
       lang: input.lang,
       trigger: input.trigger,
       nowMs: () => Date.now(),
-      send: (payload) => callSpireReportSteps({ ...payload, stableId: input.stableId }),
+      // зачем (владелец 13.10): свой ранг монеты едет с отчётом — сервер обновит аватар-монету в строке комнаты той же записью.
+      send: (payload) => callSpireReportSteps({ ...payload, stableId: input.stableId, coinRank: peekCoinRank(input.stableId) }),
       logger,
     });
   } catch (error) {

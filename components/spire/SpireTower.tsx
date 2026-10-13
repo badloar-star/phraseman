@@ -247,8 +247,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             ) : null}
             {myFloor !== null ? (
               <Animated.View pointerEvents="none" style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}>
-                <View style={s.markerGlow} />
-                <View style={s.markerRing}>
+                <View style={[s.markerGlow, scene.light ? { backgroundColor: scene.tone, opacity: 0.12 } : null]} />
+                <View style={[s.markerRing, scene.light ? { backgroundColor: scene.numMine } : null]}>
                   <View style={s.markerInner}>
                     {myCoinRank !== null ? <AvatarView avatar="" coinRank={myCoinRank} size={MARKER_SIZE - 6} /> : null}
                   </View>

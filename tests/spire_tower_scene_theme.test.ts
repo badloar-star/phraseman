@@ -48,4 +48,9 @@ describe('окно башни — по теме, башня — по наряд�
     expect(read('components/spire/SpireTower.tsx')).toContain('scene={scene}');
     expect(read('components/spire/SpireTour.tsx')).toContain('scene={scene}');
   });
+
+  it('светлая тема: рамка выбранного этажа и кольцо моей монеты берутся из цвета текста темы, тёмная без изменений', () => {
+    expect(read('components/spire/SpireTowerSvg.tsx')).toContain("stroke={scene && scene.light ? scene.numMine : 'rgba(255,255,255,.8)'}");
+    expect(read('components/spire/SpireTower.tsx')).toContain('scene.light ? { backgroundColor: scene.numMine } : null');
+  });
 });

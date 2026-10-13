@@ -25,15 +25,16 @@ async function enc(file, w, h) {
 (async () => {
   const art = {};
   const dir = (m) => path.join(ROOT, 'assets', 'images', 'v2art', m);
-  for (const [name, w, h] of [['lessons', 192, 192], ['dialogs', 192, 192], ['cards', 192, 192], ['continue', 288, 192]]) {
+  for (const [name, w, h] of [['lessons', 192, 192], ['dialogs', 192, 192], ['cards', 192, 192], ['continue', 288, 192], ['spire_tile', 256, 256]]) {
     art[name] = {
       dark: await enc(path.join(dir('dark'), name + '.webp'), w, h), darkAccent: await enc(path.join(dir('dark'), name + '.accent.webp'), w, h),
       light: await enc(path.join(dir('light'), name + '.webp'), w, h), lightAccent: await enc(path.join(dir('light'), name + '.accent.webp'), w, h),
     };
   }
+  art.spire = art.spire_tile;
   art.coin = await enc(path.join(ROOT, 'assets', 'images', 'coins', 'coin_rank_00.webp'), 96, 96);
   let html = fs.readFileSync(path.join(__dirname, 'theme_picker_live_template.html'), 'utf8');
-  html = html.replace('/*__LG_BUNDLE__*/', () => fs.readFileSync(bundle, 'utf8')).replace('/*__ART__*/', () => JSON.stringify(art));
+  html = html.replace('/*__LG_BUNDLE__*/', () => fs.readFileSync(bundle, 'utf8')).replace('/*__ART__*/', () => JSON.stringify(art)).replace('/*__SCREENS2__*/', () => fs.readFileSync(path.join(__dirname, 'theme_picker_live_screens2.js'), 'utf8'));
   const out = path.join(ROOT, 'docs', 'design', 'v2-app', 'theme-picker-live.html');
   fs.writeFileSync(out, html);
   console.log('готово', out, Math.round(html.length / 1024) + ' КБ');

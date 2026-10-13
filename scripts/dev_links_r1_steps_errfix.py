@@ -168,3 +168,7 @@ add('mistakes-panel-010', ['wait:1500', 'tap:#mistakes-hub-start', 'wait:800', '
 
 # onboarding-018 (Сверка): шаг «Уведомления» играет анимацию появления — кадр нужен после паузы ≥ 3 с (меняются только шаги, вид онбординга заморожен владельцем 11.10).
 set_steps('onboarding-018', ['wait:3500'])
+
+# settings-gap-002/003/004/030 (Авторизация AUTH_ZONES_DIFF_ROWS_R1): главная Настроек снималась сверху, образцы — низ страницы («PHRASEMAN PLUS»). 002/003/030 уже несут прокрутку (chain7 _SET_BOTTOM);
+# 004 («Plus по коду»: see:#settings-plus-access-details) шёл без прокрутки — цель ниже края экрана (правило Сверки y>2150): явная прокрутка вниз, затем see: и пауза.
+set_steps('settings-gap-004', ['wait:1200', 'scroll:down', 'scroll:down', 'see:#settings-plus-access-details', 'wait:500'])

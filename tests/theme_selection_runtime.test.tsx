@@ -10,9 +10,12 @@ let mockThemesFeatureAccess = true;
 jest.mock('react-native', () => ({
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
+  // зачем (владелец 13.10, тема новичка по системному режиму): ThemeContext читает useColorScheme и Appearance.getColorScheme
+  useColorScheme: () => 'dark',
+  Appearance: { getColorScheme: () => 'dark' },
 }));
 
-let mockMultiGet: (keys: string[]) => Promise<[string, string | null][]> = async (keys) => keys.map((key) => [key, null]);
+let mockMultiGet: (keys: string[]) => Promise<[string, string | null][]> = async (keys) => keys.map((key) => [key, key === 'onboarding_done' ? '1' : null]); // зачем (владелец 13.10): «ключей нет» без onboarding_done = новичок с темой по системе; эти тесты про существующего человека
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
   default: {
@@ -45,7 +48,7 @@ jest.mock('../app/oskolok', () => ({
 
 describe('runtime theme selection', () => {
   beforeEach(() => {
-    mockMultiGet = async (keys) => keys.map((key) => [key, null]);
+    mockMultiGet = async (keys) => keys.map((key) => [key, key === 'onboarding_done' ? '1' : null]); // зачем (владелец 13.10): «ключей нет» без onboarding_done = новичок с темой по системе; эти тесты про существующего человека
     mockThemesFeatureAccess = true;
     mockGetVerifiedPremiumStatus.mockReset();
     mockGetVerifiedPremiumStatus.mockResolvedValue(false);

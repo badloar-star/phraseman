@@ -20,10 +20,12 @@ describe('lesson card contrast contract', () => {
     has('const LESSON_CARD_OPEN_META_TEXT = LESSON_CARD_FILLED_META_TEXT;');
     has('const useDarkMetaText = isSagePorcelainCard || useFilledMetaText;');
     has('const useFilledMetaText = isComplete && showLessonProgressFill && bgLuminance > 0.45;');
-    has('color: useDarkMetaText ? LESSON_CARD_OPEN_META_TEXT : lessonMetaColor');
+    // зачем (a573bc660, светлая плашка урока): тёмная подпись берётся из metaInk — светлая плашка даёт свой текст, иначе LESSON_CARD_OPEN_META_TEXT
+    has('color: useDarkMetaText ? metaInk : lessonMetaColor');
+    has('const metaInk = lightCard ? (isUnlocked ? lightCard.text : lightCard.lockedText) : LESSON_CARD_OPEN_META_TEXT;');
     has('...(useDarkMetaText ? {} : LESSON_CARD_ACCENT_TEXT_SHADOW)');
 
-    const metaStart = source.indexOf(compact('const lessonMetaColor = isSagePorcelainTheme'));
+    const metaStart = source.indexOf(compact('const lessonMetaColor = lightSurface') /* зачем (a573bc660): расчёт начинается с ветки светлой плашки */);
     const metaEnd = source.indexOf(compact('return (<LessonCard key={`l-${num}`}'), metaStart);
     expect(metaStart).toBeGreaterThanOrEqual(0);
     expect(metaEnd).toBeGreaterThan(metaStart);

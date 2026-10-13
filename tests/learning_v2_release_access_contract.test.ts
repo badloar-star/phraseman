@@ -58,7 +58,8 @@ assert.match(
 );
 assert.match(
   lessons,
-  /darkenHexCached\(bookPalette\(num, themeMode\), 0\.1\)/u,
+  // зачем (b13f3f5b3): палитра уровня теперь берётся из токенов активной темы (levelInkGlass), а не из статичной книги
+  /darkenHexCached\(bookPalette\(num, themeMode, levelInkGlass\), 0\.1\)/u,
   'the WIP shade should stay subtle and derive from the real lesson palette',
 );
 

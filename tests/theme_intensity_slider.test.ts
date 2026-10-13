@@ -26,12 +26,15 @@ const mockWrites: string[] = [];
 jest.mock('react-native', () => ({
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
+  // зачем (владелец 13.10, тема новичка по системному режиму): ThemeContext читает useColorScheme и Appearance.getColorScheme
+  useColorScheme: () => 'dark',
+  Appearance: { getColorScheme: () => 'dark' },
 }));
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
   default: {
-    multiGet: jest.fn(async (keys: string[]) => keys.map((key) => [key, mockStore.get(key) ?? null])),
+    multiGet: jest.fn(async (keys: string[]) => keys.map((key) => [key, mockStore.get(key) ?? (key === 'onboarding_done' ? '1' : null)])),
     setItem: jest.fn(async (key: string, value: string) => { mockWrites.push(key); mockStore.set(key, value); }),
     multiSet: jest.fn(async (pairs: [string, string][]) => {
       pairs.forEach(([key, value]) => { mockWrites.push(key); mockStore.set(key, value); });

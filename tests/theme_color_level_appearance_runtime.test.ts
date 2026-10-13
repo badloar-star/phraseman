@@ -12,6 +12,9 @@ let mockMultiGetGate: Promise<void> | null = null;
 jest.mock('react-native', () => ({
   Platform: { OS: 'ios', select: (values: Record<string, unknown>) => values.ios ?? values.default },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
+  // зачем (владелец 13.10, тема новичка по системному режиму): ThemeContext читает useColorScheme и Appearance.getColorScheme
+  useColorScheme: () => 'dark',
+  Appearance: { getColorScheme: () => 'dark' },
 }));
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
@@ -19,7 +22,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   default: {
     multiGet: jest.fn(async (keys: string[]) => {
       if (mockMultiGetGate) await mockMultiGetGate;
-      return keys.map((key) => [key, mockStore.get(key) ?? null]);
+      return keys.map((key) => [key, mockStore.get(key) ?? (key === 'onboarding_done' ? '1' : null)]);
     }),
     setItem: jest.fn(async (key: string, value: string) => { mockStore.set(key, value); }),
     // зачем (ползунок 2026-10-04): интенсивность и совместимый уровень пишутся одной multiSet.

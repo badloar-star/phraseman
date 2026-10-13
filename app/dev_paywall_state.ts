@@ -197,6 +197,29 @@ export function getDevLessonGates(): DevLessonGates | null {
   return devPaywallAvailable() ? lessonGates : null;
 }
 
+/**
+ * зачем (settings-gap-005, координатор 13.10): плашка «Полный доступ на 3 дня» в Настройках видна только при активном
+ * пробном доступе — у гостя эмулятора его нет. Подмена в памяти: доступ «начат сейчас», кончается через 3 дня. Хранилище,
+ * облако, уведомления и деньги не трогаются; в стор-сборке — заглушка.
+ */
+export type DevIntroFullAccess = Readonly<{ startedAt: number; endsAt: number }>;
+const DEV_INTRO_FULL_ACCESS_MS = 3 * 24 * 60 * 60 * 1000;
+let introFullAccess: DevIntroFullAccess | null = null;
+
+export function setDevIntroFullAccess(active: boolean, nowMs: number = Date.now()): boolean {
+  if (!devPaywallAvailable()) {
+    console.warn(`${LOG} intro: подмена отклонена — не dev-сборка`, { active }); // guard-ok: ранний выход логируется
+    return false;
+  }
+  introFullAccess = active ? Object.freeze({ startedAt: nowMs, endsAt: nowMs + DEV_INTRO_FULL_ACCESS_MS }) : null;
+  console.log(`${LOG} intro: пробный доступ=${JSON.stringify(introFullAccess)} (только память)`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function getDevIntroFullAccess(): DevIntroFullAccess | null {
+  return devPaywallAvailable() ? introFullAccess : null;
+}
+
 export type PaywallDevView = {
   loading: boolean;
   offeringsSettled: boolean;

@@ -203,6 +203,8 @@ export type DevStateRequest = Readonly<{
   examA1?: 'almost' | 'passed' | 'off';
   /** learn-012/013 (Ядро 13.10): ворота уроков как в релизе (без DEV_CONTENT_UNLOCK) — окна A11/A12 вместо экрана зачёта. */
   lessonGates?: 'real' | 'off';
+  /** settings-gap-005 (Ядро 13.10): пробный доступ «3 дня» активен — только память, окна приветствия не всплывают. */
+  introAccess?: 'active' | 'off';
   /** learn-013 (Ядро 13.10): сохранённый бесплатный потолок старого аккаунта (D122) при plus=off — только память. */
   legacyCap?: number | 'off';
   /** dialogs-020 (Ядро 12.10): бесплатные «Почему так» на сегодня исчерпаны — только память. */
@@ -447,6 +449,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   }
   request.examA1 = pick('examA1', ['almost', 'passed', 'off'] as const);
   request.lessonGates = pick('lessonGates', ['real', 'off'] as const);
+  request.introAccess = pick('introAccess', ['active', 'off'] as const);
   const legacyCapRaw = one(params.legacyCap);
   if (legacyCapRaw !== undefined) {
     const legacyCapN = Number(legacyCapRaw);
@@ -1008,6 +1011,15 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         done: typeof request.lessonsDone === 'number' ? request.lessonsDone : 0,
         examA1: request.examA1 === 'almost' || request.examA1 === 'passed' ? request.examA1 : null,
       });
+    });
+  }
+  if (request.introAccess !== undefined) {
+    // зачем (settings-gap-005): плашка «Полный доступ на 3 дня» в Настройках — PremiumContext перечитывает пробный доступ по событию
+    await step('introAccess', request.introAccess, async () => {
+      const { setDevIntroFullAccess } = await import('./dev_paywall_state');
+      const ok = setDevIntroFullAccess(request.introAccess === 'active');
+      if (ok) emitAppEvent('intro_full_access_changed');
+      return ok;
     });
   }
   if (request.lessonGates !== undefined || request.legacyCap !== undefined) {

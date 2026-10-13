@@ -159,6 +159,16 @@ function readIntroPairs(): Promise<readonly (readonly [string, string | null])[]
 }
 
 export async function getIntroFullAccessState(nowMs: number = Date.now()): Promise<IntroFullAccessState> {
+  // зачем (settings-gap-005, координатор 13.10): dev-подмена «пробный доступ активен» — только память и только __DEV__
+  // (ленивый require: в стор-сборке ветка мертва, модуль — заглушка). Окна приветствия/окончания не всплывают.
+  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const dev = (require('./dev_paywall_state') as typeof import('./dev_paywall_state')).getDevIntroFullAccess();
+    if (dev) {
+      console.log(`[DEV-STATE] intro: состояние из подмены endsAt=${new Date(dev.endsAt).toISOString()}`); // guard-ok: dev-ветка
+      return { active: dev.endsAt > nowMs, startedAt: dev.startedAt, endsAt: dev.endsAt, remainingMs: Math.max(0, dev.endsAt - nowMs), expiredUnseen: false, welcomeUnseen: false };
+    }
+  }
   const pairs = await readIntroPairs();
   const get = (key: string) => pairs.find(([k]) => k === key)?.[1] ?? null;
   const startedAt = parsePositiveMs(get(INTRO_FULL_ACCESS_STARTED_AT_KEY));

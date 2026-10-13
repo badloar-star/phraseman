@@ -637,8 +637,8 @@
       <div style="margin-top:14px">${o.chips === false ? '' : `<div class="chips">${['Популярные', 'Новые', 'A1', 'A2', 'B1', 'B2'].map((c, i) => `<span class="chipbtn${i === 1 ? ' on' : ''}" data-chip>${c}</span>`).join('')}</div>`}</div>`;
   const catalog = () => phone(`${commHead('')}
       <div class="stack g14 rise" style="margin-top:20px">${COMM.map(([t, a, c, l, h, w]) => deck(t, `<span class="av">${icon('user', 's16')}</span>${a} · ${c} · ${l}`, [w, ...W.slice((c % 9) + 13, (c % 9) + 15).map((x) => x[0])], likes(h))).join('')}</div>`, { time: '9:41' });
-  // зачем (координатор 13.10, cards-v2-026; код FlashcardsCategoryHub): при пустом поиске в каталоге только значок, «Ничего не нашли» и «Попробуй другое слово» — кнопки «Сбросить поиск» нет
-  const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', '').replace('min-height:640px', '').replace(/<span class="cta sm t"><\/span>/, '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
+  // зачем (координатор 13.10, cards-048 / cards-v2-026): кнопка «Сбросить поиск» в приложении ЕСТЬ (кадр cards-048 без клавиатуры); на cards-v2-026 её скрывала клавиатура ОС — прежнее удаление кнопки из образца было ошибкой, возвращено
+    const catalogNone = () => phone(`${commHead('xyzq', { caret: 1, chips: false })}${empty('search', 'Ничего не нашли', 'Попробуй другое слово', 'Сбросить поиск').replace('min-height:640px', '')}`, { time: '9:41' }).replace('class="empty"', 'class="empty" style="min-height:520px"');
 
 
   // =====================================================================

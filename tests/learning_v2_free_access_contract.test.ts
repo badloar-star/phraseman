@@ -4,18 +4,20 @@ import {
   learningV2LessonRequiresPremium,
 } from "../app/learning_v2_access_policy";
 
-describe("Learning V2 free access", () => {
-  test("keeps first two full lessons free", () => {
-    expect(LEARNING_V2_FREE_LESSON_LIMIT).toBe(2);
-    expect(learningV2LessonIsAccessible(1, false)).toBe(true);
-    expect(learningV2LessonIsAccessible(2, false)).toBe(true);
-    expect(learningV2LessonRequiresPremium(1)).toBe(false);
-    expect(learningV2LessonRequiresPremium(2)).toBe(false);
+// зачем: владелец 13.10 — все уроки Learning V2 бесплатны в R1 (замок «Уроки 3+ доступны в Plus» снят).
+describe("Learning V2 free access (R1: every lesson is free)", () => {
+  beforeEach(() => jest.spyOn(console, "log").mockImplementation(() => undefined));
+  afterEach(() => jest.restoreAllMocks());
+
+  test("every lesson is accessible without Plus", () => {
+    for (const lesson of [1, 2, 3, 10, 32]) {
+      expect(learningV2LessonRequiresPremium(lesson)).toBe(false);
+      expect(learningV2LessonIsAccessible(lesson, false)).toBe(true);
+    }
   });
 
-  test("requires Plus from lesson three while Plus remains unrestricted", () => {
-    expect(learningV2LessonIsAccessible(3, false)).toBe(false);
-    expect(learningV2LessonIsAccessible(32, false)).toBe(false);
+  test("Plus stays unrestricted; the old limit constant is kept for a later decision", () => {
     expect(learningV2LessonIsAccessible(3, true)).toBe(true);
+    expect(LEARNING_V2_FREE_LESSON_LIMIT).toBe(2);
   });
 });

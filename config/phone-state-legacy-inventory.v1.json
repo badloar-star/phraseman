@@ -1559,6 +1559,33 @@
       "sensitivity": "personal"
     },
     {
+      "key": "reminder_schedule_sig_v1",
+      "domain": "notifications",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
+      "key": "smart_reminder_activity_v1",
+      "domain": "notifications",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "personal"
+    },
+    {
+      "key": "smart_reminder_state_v1",
+      "domain": "notifications",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
+    },
+    {
       "key": "personal_plan_completed_tasks_v1",
       "domain": "practice",
       "scope": "portable",

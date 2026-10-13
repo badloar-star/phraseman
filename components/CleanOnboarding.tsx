@@ -72,7 +72,7 @@ import { ONBOARDING_COMPLETED_AT_KEY } from '../app/fresh_install_gate';
 import { fill, onboardingCopy, OnboardingCopyProvider, useOnboardingCopy, useOnboardingLang, type OnboardingCopyKey } from './onboarding/clean_onboarding_copy';
 import { formatOnboardingDateLong, formatOnboardingLockDate, onboardingDaysWord } from './onboarding/clean_onboarding_dates';
 import { languageNameOf, languageSentenceName, levelReaction, levelTitleOf, sourceTitle } from './onboarding/clean_onboarding_options';
-import { requestNotificationPermissionWithFallback, scheduleDailyReminder } from '../app/notifications';
+import { enableSmartDailyReminder, requestNotificationPermissionWithFallback } from '../app/notifications';
 import {
   readOnboardingNotificationChoice,
   setOnboardingNotificationChoice,
@@ -3210,7 +3210,9 @@ function CleanOnboarding({
       if (granted) {
         await setOnboardingNotificationChoice('allow').catch(noteSwallowedHandler('CleanOnboarding:useCallback.setOnboardingNotificationChoice'));
         setNotificationChoice('allow');
-        await scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.scheduleDailyReminder'));
+        // зачем (владелец 13.10, вариант (а)): отключённая scheduleDailyReminder ничего не планировала — согласие включает
+        // расписание на все 7 дней с умным временем (пока мало данных — 20:00). Вид онбординга не меняется.
+        await enableSmartDailyReminder(lang, { requestPermission: false, studyTarget, caller: 'onboarding_allow' }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.enableSmartDailyReminder'));
         go('name');
         return;
       }
@@ -3560,7 +3562,7 @@ function CleanOnboarding({
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY]).catch(noteSwallowedHandler('CleanOnboarding:useCallback.multiRemove'));
       if (notificationChoice === 'allow') {
-        void scheduleDailyReminder(20, 0, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.scheduleDailyReminder_2'));
+        void enableSmartDailyReminder(lang, { requestPermission: false, studyTarget, caller: 'onboarding_finish' }).catch(noteSwallowedHandler('CleanOnboarding:useCallback.enableSmartDailyReminder_2'));
       }
     } catch (error) {
       // Запись не удалась — даём выходу повториться, а не запираем пейвол навсегда.

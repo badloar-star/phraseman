@@ -43,8 +43,9 @@ const LEGAL_FILES = [
   // 12.10 (ночью, решения советника по PRIVACY_R1_GAP): §3/§4/§5/§6/§10/§11/§12 — аварийная копия, вход по коду, Шпиль и компьютерные участники, ИИ-проверка наборов и черновики ответов, состав обращения, язык и пояс при push, свободный чат; дата 12 октября.
   // 13.10 (решение владельца, вопрос 13 «Да, все 3 правки»): PRIVACY_R1_PATCH — §10 «most recent entries», §13 голос в Диалогах
   // остаётся на телефоне, уходит только текст (Android — системный распознаватель), §19/§20 запись о выполненном удалении + заявка 14 дней.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '250f189143e89c873a5bc3ffd7e1dc73626026b96848f8efd6e67fa40404c29c'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '9136b8851068b7672dced7a92fa612b724f5dd701f7cae6e760ea578dc983ad9'],
+  // 13.10 (координатор по решению владельца об умном напоминании): §12 — время занятий хранится и обрабатывается только на телефоне.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '901d334ff56171a36467cf8b0e11417f45e414edc2670a151ebbcfe6a1904275'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '7774b9d15d282ad7f964c745d1d670c423acfe74cc24d88470958a1fd6c56ab7'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'f863b642c155a27f95a2b1b02f01d1032d27f6f247d0e1c5bb83cf90cb875d5c'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'ab826ddfd649854a51a4228b7423b0cc6ab984b4067b98b3ebb9fc5c9c71c4df'],

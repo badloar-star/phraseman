@@ -805,9 +805,9 @@ async function scheduleRemindersForLang(lang: Lang, studyTarget?: RuntimeStudyTa
   if (hasPerDay) {
     notifications.scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleNotifications'));
   } else {
-    const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19');
-    const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0');
-    notifications.scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleDailyReminder'));
+    // зачем (умное напоминание): на запуске НЕ включаем напоминание сами — его включает только согласие человека (окно, онбординг,
+    // Настройки). Раньше здесь звалась отключённая scheduleDailyReminder — она ничего не делала.
+    console.log('[SMART-REMINDER] startup:skip reason=daily_reminder_off (расписание по дням выключено)'); // guard-ok: ранний выход пишет причину, раз на запуск
   }
   notifications.scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(noteSwallowedHandler('_layout:runSessionChecks.scheduleStreakWarningIfNeeded'));
   notifications.schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget }).catch(noteSwallowedHandler('_layout:runSessionChecks.schedulePhraseOfDayNotification'));
@@ -3748,7 +3748,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         const perm = await notifications.requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
         const ok = perm.granted;
         setNotifNudgeVisible(false);
-        if (!ok) return;
+        if (!ok) {
+          console.warn(`[SMART-REMINDER] notifNudge:confirm permission=denied missedDays=${notifNudgeMissedDays} → ничего не планируем`); // guard-ok: одно нажатие, warn нужен в релизе (log вырезается)
+          return;
+        }
         // зачем: юзер мог заранее выключить общий мастер в разделе «Уведомления».
         // Без этой синхронизации scheduleNotifications ниже тихо блокируется гейтом
         // isNotifMasterEnabled(), а юзер видит «разрешение дал» и думает, что включил.
@@ -3759,13 +3762,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         }
         const snap = notifications.getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
+        // зачем (SMART_REMINDER, «сперва логи»): какая ветка выбрана нажатием «включить напоминания» и почему.
+        console.warn(`[SMART-REMINDER] notifNudge:confirm permission=granted masterWas=${String(prefsSnap.master)} perDayEnabled=${Object.values(snap.schedule).filter(d => d.enabled).length}/7 → ${hasPerDay ? 'scheduleNotifications (расписание по дням)' : 'enableSmartDailyReminder (7 дней, авто)'}`); // guard-ok: одно нажатие, warn нужен в релизе
         if (hasPerDay) {
           await notifications.scheduleNotifications(snap, lang, 0, { studyTarget });
           return;
         }
-        const hour = parseInt((await AsyncStorage.getItem('notification_hour')) || '19', 10);
-        const minute = parseInt((await AsyncStorage.getItem('notification_minute')) || '0', 10);
-        await notifications.scheduleDailyReminder(hour, minute, lang, { studyTarget });
+        // зачем (владелец 13.10, вариант (а)): раньше здесь звалась отключённая scheduleDailyReminder и ничего не планировалось.
+        // Теперь «включить напоминания» = расписание на все 7 дней с умным временем (пока мало данных — 20:00).
+        await notifications.enableSmartDailyReminder(lang, { studyTarget, caller: 'notif_nudge' });
       }}
     />
 

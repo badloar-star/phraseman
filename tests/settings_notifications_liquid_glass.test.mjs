@@ -52,11 +52,13 @@ const protectedHashes = {
   // 11.10: в catch добавлен лог [NOTIF-PREFS] persist_failed (правило владельца: немых catch нет), логика отката прежняя.
   // 12.10 (координатор, съёмка R1): dev robot_no_cloud=1 — после мгновенного обновления экрана выход ДО сохранения и облака (только dev, app/dev_robot_no_cloud.ts).
   persistPrefs: 'aac4653efa549df6fcb77dada44ceed0f3b567fd681e5dbc51cb4e7e5b0249f7',
-  persistSchedule: '62f21433377dfa1a0d7663e1a12bd2ab39839931633c5818394bd2ddb6894fb3', // 12.10: тот же выход robot_no_cloud
+  // 13.10 (умное напоминание, владелец вариант (а)): после планирования экран берёт фактическое время дней «авто» (setS снимка).
+  persistSchedule: 'fb8dec5624597a61dbdd83af2fafe87782f5d60e910269493da0b0ad769567a8', // 12.10: тот же выход robot_no_cloud
   toggleMaster: '48e7e186a958d38d5d0bd17198b5bfc65f5867b7bdd4b73d58c9bb2cd117b387',
   toggleCategory: 'c735bcda2ed9177b35deec2f91bc78663f8e2f25083628f76e3469de63a9c4f5',
-  toggleDaily: 'bc7abe406862ba6802cc9bbdf7c7dd53cc7f7eaedd44a9481d649d9be0839a94',
-  confirmTime: '58e6ad3e11b0d47437ba2994b06016b8ffd3be5e16a484775622ca7c9f418cba',
+  // 13.10 (умное напоминание): включение без выбора времени — mode 'auto', выбор времени — mode 'manual' (не перетираем никогда).
+  toggleDaily: 'dbb31abc66bdb4a0133096137ecf3de932a9e9babbca956f29426d31943badb4',
+  confirmTime: '545d9752fd86fc06a5e5195cf0f72bbf78a317c622adcff684d312fe1b4a1636',
 };
 
 test('protected scheduling, permission, and modal AST nodes remain byte-identical', () => {

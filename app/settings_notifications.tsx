@@ -347,6 +347,8 @@ export default function SettingsNotifications() {
       const permitted = await ensurePermissionIfEnabling(enabling);
       if (!permitted) return;
       await scheduleNotifications(next, lang as Lang, 0, { requestPermission: false, studyTarget });
+      // зачем (умное напоминание): у дней «авто» время подставил телефон — показываем фактическое, если выбор не сменился позже.
+      if (scheduleSeqRef.current === seq) setS(getNotifSettingsSnapshot());
     } catch (error: unknown) {
       // зачем: раньше `catch {` откатывал тумблер/время молча — теперь причина в журнале и сообщение человеку
       const reason = error instanceof Error ? error.message : String(error);
@@ -373,9 +375,14 @@ export default function SettingsNotifications() {
   const toggleDaily = (v: boolean) => {
     const cur = sRef.current;
     const { hour, minute } = scheduleTime(cur);
+    // зачем (умное напоминание, владелец 13.10): включение без выбора времени — «авто» (время подберёт телефон);
+    // если человек уже выбирал время сам (mode 'manual') — оставляем его. Выключено-включено без выбора времени — «авто».
+    const keepManual = Object.values(cur.schedule).some(d => d.mode === 'manual');
+    const mode: 'auto' | 'manual' = keepManual ? 'manual' : 'auto';
     const schedule = Object.fromEntries(
-      Array.from({ length: 7 }, (_, d) => [d, { enabled: v, hour, minute }])
+      Array.from({ length: 7 }, (_, d) => [d, { enabled: v, hour, minute, mode }])
     );
+    console.log(`[SMART-REMINDER] ui:toggleDaily enabled=${String(v)} mode=${mode}`);
     void persistSchedule({ ...cur, schedule }, v);
   };
 
@@ -383,7 +390,8 @@ export default function SettingsNotifications() {
     setTimeOpen(false);
     const cur = sRef.current;
     const schedule = Object.fromEntries(
-      Object.entries(cur.schedule).map(([d, day]) => [d, { ...day, hour: h, minute: m }])
+      // зачем (умное напоминание): человек выбрал время сам — «вручную», телефон его больше не трогает.
+      Object.entries(cur.schedule).map(([d, day]) => [d, { ...day, hour: h, minute: m, mode: 'manual' as const }])
     );
     void persistSchedule({ ...cur, schedule }, scheduleAnyEnabled(cur));
   };

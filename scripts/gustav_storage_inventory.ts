@@ -467,6 +467,10 @@ const REVIEWED_GLOBAL_LITERAL_KEYS_POST_BASELINE = new Set([
   'lingman_youtube_last_seen_video_id_v2',
   'lingman_youtube_last_successful_snapshot_v2',
   'cinema_asset_variant',
+  // Умное время напоминания (владелец 13.10): история минут занятий, состояние и подпись расписания — только устройство.
+  'smart_reminder_activity_v1',
+  'smart_reminder_state_v1',
+  'reminder_schedule_sig_v1',
 ]);
 
 // Reviewed GLOBAL key-prefix patterns for post-baseline families whose members

@@ -54,16 +54,17 @@ describe('Gustav French notification target isolation', () => {
 
     expect(layoutSource).toContain('const runSessionChecks = async (studyTarget?: RuntimeStudyTarget)');
     expect(layoutSource).toContain('scheduleNotifications(notifSnap, lang, 0, { requestPermission: false, studyTarget })');
-    expect(layoutSource).toContain('scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget })');
+    // 13.10 (умное напоминание, владелец вариант (а)): на запуске отключённая scheduleDailyReminder больше не зовётся.
+    expect(layoutSource).not.toContain('scheduleDailyReminder(hour, minute, lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('schedulePhraseOfDayNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('scheduleMonthlyRecapNotification(lang, { requestPermission: false, studyTarget })');
     expect(layoutSource).toContain('await runSessionChecks(studyTarget)');
     expect(layoutSource).toContain('await scheduleNotifications(snap, lang, 0, { studyTarget })');
-    expect(layoutSource).toContain('await scheduleDailyReminder(hour, minute, lang, { studyTarget })');
+    expect(layoutSource).toContain("await notifications.enableSmartDailyReminder(lang, { studyTarget, caller: 'notif_nudge' })");
 
     expect(settingsSource).toContain("import { useStudyTarget } from '../components/StudyTargetContext'");
     expect(settingsSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(settingsSource).toContain('await scheduleNotifications(next, lang as Lang, 0, { requestPermission: false, studyTarget })');
-    expect(mainSettingsSource).toContain('await scheduleDailyReminder(notifHour, 0, lang, { studyTarget })');
+    expect(mainSettingsSource).toContain("await enableSmartDailyReminder(lang, { studyTarget, caller: 'settings_toggle' })");
   });
 });

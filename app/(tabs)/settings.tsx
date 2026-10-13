@@ -33,7 +33,7 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { coinRankRowForDisplay, coinRankTitle, isValidCoinRank } from '../coin_rank_table_v1';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
-import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
+import { enableSmartDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { actionToastTri, emitAppEvent } from '../events';
 import { requestOpenDevHub } from '../dev_hub_bus';
 import { ENABLE_DEV_TOOLS } from '../config';
@@ -275,7 +275,8 @@ export default function SettingsMain() {
           revert(new Error('toggle_notifications_missing_lang'));
           return;
         }
-        await scheduleDailyReminder(notifHour, 0, lang, { studyTarget });
+        // зачем (умное напоминание, владелец 13.10): отключённую scheduleDailyReminder не зовёт никто — включение = 7 дней «авто».
+        await enableSmartDailyReminder(lang, { studyTarget, caller: 'settings_toggle' });
       } else {
         await cancelAllNotifications();
       }

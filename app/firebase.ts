@@ -7,6 +7,7 @@ import { isAnalyticsConsentGranted } from './analytics_consent';
 import { getProductAnalyticsSessionId } from './product_analytics_session_context';
 import { shouldUseNativeFirebaseTelemetry } from './native_runtime_capability';
 import { rnfbInstance } from './rnfb_modular';
+import { recordSmartReminderEvent } from './smart_reminder_store';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Firebase недоступен в Expo Go — только в production билде
@@ -110,6 +111,9 @@ export function logLessonComplete(lessonId: number, attemptId: string, elapsedMs
 }
 
 export function logLessonStart(lessonId: number, totalPhrases: number, attemptId: string) {
+  // зачем (умное напоминание): начало урока — самый честный сигнал «хочу учиться сейчас» (вес 2); пишется на телефоне
+  // независимо от согласия на аналитику, т. к. никуда не уходит (политика §12).
+  void recordSmartReminderEvent('lesson');
   logEvent('lesson_start', { lesson_id: lessonId, total_phrases: totalPhrases, lesson_attempt_id: attemptId });
 }
 

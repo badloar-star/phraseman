@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, type AppStateStatus } from 'react-native';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { recordSmartReminderEvent } from './smart_reminder_store';
 
 const STORAGE_KEY = 'phraseman_foreground_usage_ms_v1';
 /** UTC-календарный день → миллисекунды только в foreground (активное окно). */
@@ -119,6 +120,9 @@ function flushOpenSession(): void {
 function onAppState(state: AppStateStatus): void {
   if (state === 'active') {
     const now = Date.now();
+    // зачем (умное напоминание, владелец 13.10): начало сессии — сигнал привычки (вес 1); повтор в 30 мин и открытие по нашему
+    // пушу хранилище отбрасывает само. Только локально, без сети.
+    void recordSmartReminderEvent('session', now);
     activeSince = now;
     lastFlushAt = now;
     if (intervalId) clearInterval(intervalId);

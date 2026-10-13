@@ -90,7 +90,9 @@ describe('запуск: один исправленный язык для сер
   });
 
   it('тот же lang уходит в напоминания и в регистрацию токена', () => {
-    expect(src).toContain('notifications.scheduleDailyReminder(hour, minute, lang,');
+    // 13.10 (умное напоминание): напоминание включается через enableSmartDailyReminder(lang, …), отключённая scheduleDailyReminder не зовётся.
+    expect(src).toContain('notifications.enableSmartDailyReminder(lang,');
+    expect(src).not.toContain('notifications.scheduleDailyReminder(hour, minute, lang,');
     expect(src).toContain('notifications.scheduleStreakWarningIfNeeded(lang,');
     expect(src).toContain('registerPushTokenForServerPush(lang)');
   });

@@ -2,6 +2,7 @@ import { createDisposableAdoption } from './disposable_adoption';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
 
 import { reportSwallowed, swallowError } from './debug-logger';
+import { recordSmartReminderEvent } from './smart_reminder_store';
 type NotificationRouter = {
   push: (route: any) => void;
   replace?: (route: any) => void;
@@ -79,6 +80,8 @@ export function setupNotificationTapHandler(router: NotificationRouter): () => v
       if (lifetime.isDisposed()) return;
       const data = response?.notification?.request?.content?.data;
       if (!data?.type) return;
+      // зачем (умное напоминание): открытие по нашему же напоминанию не считаем привычкой, иначе алгоритм закрепит своё время.
+      if (data.type === 'reminder' || data.type === 'd1_reminder' || data.type === 'streak_warning') void recordSmartReminderEvent('push_open');
       switch (data.type) {
         case 'youtube_premiere':
           scheduleNav(() => router.push({

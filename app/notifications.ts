@@ -26,6 +26,7 @@ import {
   type TrialReminderTiming,
 } from './trial_end_reminder_schedule';
 import { getDevReminderTime } from './dev_robot_display';
+import { resolveAutoReminderTime } from './smart_reminder_store';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -525,7 +526,24 @@ export const scheduleDailyReminder = async (
   // notification metadata are physically removed.
   // зачем: флаг вместо голого `return` — иначе TS считает остаток недостижимым, теряет
   // сужение типов (prevPerDayRaw) и ломает проверку типов; поведение то же (функция инертна).
-  if (DAILY_REMINDER_RETIRED) return;
+  if (DAILY_REMINDER_RETIRED) {
+    // зачем (SMART_REMINDER Этап 1, правило владельца «сперва логи»): окно «включить напоминания» (_layout), шаг уведомлений
+    // онбординга (CleanOnboarding, 20:00) и Настройки зовут эту функцию, а она инертна — человек думает, что включил напоминание.
+    // Журнал показывает, кто звал (час/минута/запрос разрешения) и что по расписанию дней недели реально включено.
+    try {
+      const snap = getNotifSettingsSnapshot();
+      const enabledDays = Object.values(snap.schedule).filter((d) => d.enabled).length;
+      const prefs = getNotifPrefsSnapshot();
+      console.warn(
+        `[SMART-REMINDER] scheduleDailyReminder:retired requested=${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
+        + ` requestPermission=${String(opts.requestPermission ?? true)} master=${String(prefs.master)} perDayEnabled=${enabledDays}/7`
+        + ` → НИЧЕГО НЕ ЗАПЛАНИРОВАНО${enabledDays === 0 ? ' (расписание по дням выключено — напоминаний нет совсем)' : ' (живёт расписание по дням)'}`,
+      );
+    } catch (e) {
+      console.warn('[SMART-REMINDER] scheduleDailyReminder:retired snapshot_failed', e instanceof Error ? e.message : String(e));
+    }
+    return;
+  }
 
   try {
     const N = await getNotifications();
@@ -1177,12 +1195,15 @@ export const schedulePaywallAbandonedNotification = async (
 };
 
 // ── Типы для расширенных настроек (совместимость с settings_notifications.tsx) ─
-export type DaySchedule = { enabled: boolean; hour: number; minute: number };
+// зачем (умное напоминание, владелец 13.10): mode 'auto' — время подбирает телефон (smart_reminder_store), 'manual' — человек
+// выбрал сам и его время не трогаем никогда. Нет поля (старые данные) = 'manual': не можем отличить «оставил по умолчанию» от «выбрал».
+export type DaySchedule = { enabled: boolean; hour: number; minute: number; mode?: 'auto' | 'manual' };
 export type NotifSettings = { schedule: Record<number, DaySchedule> };
 
+// зачем (решение координатора 13.10): время по умолчанию 20:00 — как в образце настроек и фолбэк умного напоминания.
 export const DEFAULT_NOTIF: NotifSettings = {
   schedule: Object.fromEntries(
-    Array.from({ length: 7 }, (_, i) => [i, { enabled: false, hour: 19, minute: 0 }])
+    Array.from({ length: 7 }, (_, i) => [i, { enabled: false, hour: 20, minute: 0 }])
   ),
 };
 
@@ -1482,6 +1503,89 @@ export const applyNotifPrefsSideEffects = async (
 // app day index 0=Mon..6=Sun → expo weekday 1=Sun,2=Mon..7=Sat
 const appDayToExpoWeekday = (d: number): number => d === 6 ? 1 : d + 2;
 
+// ── Умное время ежедневного напоминания (Этап 1, владелец 13.10) ──────────────────────────────────────────────
+const REMINDER_SCHEDULE_SIG_KEY = 'reminder_schedule_sig_v1';
+
+function reminderScheduleSignature(s: NotifSettings, lang: string, studyTarget: unknown): string {
+  const days = Object.entries(s.schedule)
+    .filter(([, d]) => d.enabled)
+    .map(([k, d]) => `${k}@${d.hour}:${d.minute}`)
+    .join(',');
+  return `${lang}|${String(studyTarget ?? '')}|${days}`;
+}
+
+/** Расписание то же и в системе стоят все напоминания — перепланировать не нужно (батарея, лишние отмены). */
+async function reminderScheduleUnchanged(N: Awaited<ReturnType<typeof getNotifications>>, signature: string, enabledDays: number): Promise<boolean> {
+  try {
+    const prevSig = await AsyncStorage.getItem(REMINDER_SCHEDULE_SIG_KEY);
+    if (prevSig !== signature) {
+      console.log(`[SMART-REMINDER] schedule:replan reason=${prevSig == null ? 'first' : 'changed'}`);
+      return false;
+    }
+    if (!N?.getAllScheduledNotificationsAsync) {
+      console.log('[SMART-REMINDER] schedule:replan reason=cannot_list_scheduled');
+      return false;
+    }
+    const scheduled = await N.getAllScheduledNotificationsAsync();
+    const reminders = (scheduled || []).filter((r: any) => r?.content?.data?.type === 'reminder').length;
+    if (reminders !== enabledDays) {
+      console.log(`[SMART-REMINDER] schedule:replan reason=system_count_mismatch scheduled=${reminders} expected=${enabledDays}`);
+      return false;
+    }
+    console.log(`[SMART-REMINDER] schedule:skip reason=unchanged days=${enabledDays}`);
+    return true;
+  } catch (e) {
+    console.warn('[SMART-REMINDER] schedule:check_failed → replan', e instanceof Error ? e.message : String(e));
+    return false;
+  }
+}
+
+/** Дни в режиме 'auto' получают время из истории привычки; ручные — как есть. Новое время сохраняется, чтобы экран показал его. */
+async function applyAutoReminderTime(s: NotifSettings): Promise<NotifSettings> {
+  const autoDays = Object.values(s.schedule).filter(d => d.enabled && d.mode === 'auto').length;
+  if (autoDays === 0) {
+    console.log('[SMART-REMINDER] auto:skip reason=no_auto_days (ручное время или расписание выключено)');
+    return s;
+  }
+  try {
+    const t = await resolveAutoReminderTime();
+    const schedule = Object.fromEntries(
+      Object.entries(s.schedule).map(([k, d]) => [k, d.mode === 'auto' ? { ...d, hour: t.hour, minute: t.minute } : d]),
+    );
+    const next: NotifSettings = { ...s, schedule };
+    if (JSON.stringify(next.schedule) !== JSON.stringify(s.schedule)) await saveNotifSettings(next);
+    return next;
+  } catch (e) {
+    console.warn('[SMART-REMINDER] auto:failed → прежнее время', e instanceof Error ? e.message : String(e));
+    return s;
+  }
+}
+
+/**
+ * Включить ежедневное напоминание «умно» (решение владельца 13.10, вариант (а)): все 7 дней, время «авто».
+ * Зовут окно «включить напоминания», онбординг после согласия и Настройки. Если человек уже включал расписание сам —
+ * его выбор не трогаем, только перепланируем.
+ */
+export async function enableSmartDailyReminder(
+  lang: Lang,
+  opts: NotificationTargetOpts & { caller: string },
+): Promise<void> {
+  const snap = getNotifSettingsSnapshot();
+  const enabledDays = Object.values(snap.schedule).filter(d => d.enabled).length;
+  if (enabledDays > 0) {
+    console.log(`[SMART-REMINDER] enable:keep_existing caller=${opts.caller} enabledDays=${enabledDays} → только перепланировка`);
+    await scheduleNotifications(snap, lang, 0, opts);
+    return;
+  }
+  const schedule = Object.fromEntries(
+    Array.from({ length: 7 }, (_, d) => [d, { enabled: true, hour: DEFAULT_NOTIF.schedule[0].hour, minute: 0, mode: 'auto' as const }]),
+  );
+  const next: NotifSettings = { schedule };
+  await saveNotifSettings(next);
+  console.log(`[SMART-REMINDER] enable caller=${opts.caller} days=7 mode=auto requestPermission=${String(opts.requestPermission ?? true)}`);
+  await scheduleNotifications(next, lang, 0, opts);
+}
+
 export const scheduleNotifications = async (
   s: NotifSettings,
   lang: string,
@@ -1495,9 +1599,15 @@ export const scheduleNotifications = async (
   void cancelRetiredLocalNotificationsOnce();
 
   const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
-  if (!hasPermission) return;
+  if (!hasPermission) {
+    console.log(`[SMART-REMINDER] schedule:skip reason=no_permission requestPermission=${String(opts.requestPermission ?? true)}`);
+    return;
+  }
 
-  if (!(await isNotifMasterEnabled())) return;
+  if (!(await isNotifMasterEnabled())) {
+    console.log('[SMART-REMINDER] schedule:skip reason=master_off');
+    return;
+  }
 
   const anyEnabled = Object.values(s.schedule).some(d => d.enabled);
   if (!anyEnabled) {
@@ -1517,9 +1627,17 @@ export const scheduleNotifications = async (
     }
     const staleDailyId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
     if (staleDailyId) await N.cancelScheduledNotificationAsync(staleDailyId).catch(swallowError('notifications:scheduleNotifications'));
-    await AsyncStorage.multiRemove(['per_day_notif_ids', DAILY_REMINDER_ID_KEY]);
+    await AsyncStorage.multiRemove(['per_day_notif_ids', DAILY_REMINDER_ID_KEY, REMINDER_SCHEDULE_SIG_KEY]);
+    console.log('[SMART-REMINDER] schedule:cleared reason=daily_reminder_off');
     return;
   }
+
+  // зачем (умное напоминание): дни в режиме 'auto' получают время из истории привычки; ручные дни не трогаем.
+  s = await applyAutoReminderTime(s);
+  // зачем (план §3.6): перепланировать только при смене — подпись расписания совпала и в системе стоит столько же
+  // напоминаний, сколько включено дней → ничего не отменяем и не создаём заново.
+  const signature = reminderScheduleSignature(s, lang, opts.studyTarget);
+  if (await reminderScheduleUnchanged(N, signature, Object.values(s.schedule).filter(d => d.enabled).length)) return;
 
   // Отменяем старые reminder-уведомления, включая orphaned ids после прошлых версий.
   await cancelScheduledNotificationsByType(N, ['reminder']);
@@ -1556,6 +1674,10 @@ export const scheduleNotifications = async (
   }
 
   await AsyncStorage.setItem('per_day_notif_ids', JSON.stringify(newIds));
+  await AsyncStorage.setItem(REMINDER_SCHEDULE_SIG_KEY, signature).catch((e: unknown) => {
+    console.warn('[SMART-REMINDER] schedule:sig_write_failed', e instanceof Error ? e.message : String(e));
+  });
+  console.log(`[SMART-REMINDER] schedule created=${newIds.length} days=${Object.entries(s.schedule).filter(([, d]) => d.enabled).map(([k, d]) => `${k}@${String(d.hour).padStart(2, '0')}:${String(d.minute).padStart(2, '0')}${d.mode === 'auto' ? 'A' : 'M'}`).join(',')}`);
   await persistPortablePreference('notifications_enabled', 'true');
   // Сохраняем время первого включённого дня для восстановления после перезапуска
   const first = Object.values(s.schedule).find(d => d.enabled);

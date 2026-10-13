@@ -106,7 +106,10 @@ describe('хаб: плитка «Мои наборы» берёт последн
     expect(hub).toContain('count: fmt(myPackCount ?? heldMineCount)');
   });
   it('«хаб новичка» решается только по подтверждённому счёту, а не по последнему известному', () => {
-    expect(hub).toMatch(/const fresh = savedCount === 0 && myPackCount === 0/);
+    // зачем (perf-правка cb8997f68): решение вынесено в showFresh, а объект fresh мемоизирован по нему — смысл прежний: только подтверждённые счета, не «последний известный»
+    expect(hub).toContain('const showFresh = savedCount === 0 && myPackCount === 0;');
+    expect(hub).toContain('const fresh = useMemo(() => showFresh');
+    expect(hub).not.toMatch(/showFresh = [^;\n]*heldMineCount/);
   });
   it('логи [HUB-TILES] mine:instant и mine:update на месте; в логе нет uid', () => {
     expect(hub).toContain("'[HUB-TILES] mine:instant'");

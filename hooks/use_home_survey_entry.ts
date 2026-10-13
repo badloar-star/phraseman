@@ -9,7 +9,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 
-import type { Lang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import {
   captureAccountGeneration,
   subscribeAccountGeneration,
@@ -37,6 +37,22 @@ export type HomeSurveyEntry = Readonly<{
   closeSurvey: () => void;
   onDurablyReconciled: (completed: SurveyDurableScope) => void;
 }>;
+
+/**
+ * Строка опроса в «Сегодня»: метка «Опрос» и короткая подпись, а не весь вопрос.
+ *
+ * зачем (владелец 13.10 12:30, скрин Главной uk): вопрос и подпись опроса приходят с сервера длинными и не вмещались в строку; «опросы должны
+ * помечаться как ОПРОС, а не показывать сразу весь вопрос». Текст вопроса виден только внутри листа после тапа (offer.survey не меняется).
+ */
+export function homeSurveyRowCopy(lang: Lang): Readonly<{ title: string; subtitle: string }> {
+  return {
+    title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Survey', es: 'Encuesta', 'pt-BR': 'Pesquisa', vi: 'Khảo sát', id: 'Survei', tr: 'Anket', pl: 'Ankieta' }),
+    subtitle: triLang(lang, {
+      ru: '1 вопрос · 1 мин', uk: '1 запитання · 1 хв', en: '1 question · 1 min', es: '1 pregunta · 1 min', 'pt-BR': '1 pergunta · 1 min',
+      vi: '1 câu hỏi · 1 phút', id: '1 pertanyaan · 1 menit', tr: '1 soru · 1 dk', pl: '1 pytanie · 1 min',
+    }),
+  };
+}
 
 export function useHomeSurveyEntry(lang: Lang, runtimeActive: boolean): HomeSurveyEntry {
   const [offer, setOffer] = useState<Offer | null>(null);
@@ -139,7 +155,7 @@ export function useHomeSurveyEntry(lang: Lang, runtimeActive: boolean): HomeSurv
   }, [lang]);
 
   return {
-    row: offer ? { title: offer.survey.title, subtitle: offer.survey.subtitle || undefined } : null,
+    row: offer ? homeSurveyRowCopy(lang) : null,
     openSurvey,
     launch,
     closeSurvey,

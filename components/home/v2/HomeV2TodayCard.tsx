@@ -83,10 +83,10 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
             <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
             <V2IconTile name="clipboard-outline" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
             <View style={s.copy}>
-              {/* зачем (владелец 13.10, кадр home_old_tiles.png, рамка 1): текст опроса приходит с сервера и бывает длинным — при numberOfLines={1} заголовок и подпись обрезались «…» и подпись садилась на нижний край строки; теперь переносится на 2 строки, строка растёт (minHeight 58 + вертикальные поля) */}
-              <Text numberOfLines={2} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
+              {/* зачем (владелец 13.10 12:30, скрин Главной uk): вопрос опроса приходит с сервера длинным и не вмещался — строка показывает короткую метку «Опрос» и подпись «1 вопрос · 1 мин» (hooks/use_home_survey_entry.ts, homeSurveyRowCopy), каждая в одну строку; сам вопрос — внутри листа после тапа */}
+              <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
               {surveyRow.subtitle ? (
-                <Text numberOfLines={2} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
+                <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
               ) : null}
             </View>
             <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />

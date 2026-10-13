@@ -73,7 +73,7 @@
 <body>
 <div class="page">
   <h1 class="page-h1">Башни лиг Шпиля · v2</h1>
-  <p class="page-lead">Двенадцать лиг-камней (Гранит … Алмаз). У каждой лиги — своя архитектура со своей геометрией: силуэт, материал, свет, атмосфера. Эталон качества — чёрная башня приложения, она закреплена за лигой «Оникс». Первый круг: <b>Гранит</b> (крепостной донжон), <b>Оникс</b> (эталон), <b>Алмаз</b> (ледяная игла с парящим бриллиантом). Остальные девять — после утверждения. Всё — SVG кодом, без картинок; каждая башня — параметры и набор форм поверх модели этажей (15 этажей, Страж каждые 5).</p>
+  <p class="page-lead">Двенадцать лиг-камней (Гранит … Алмаз). У каждой лиги — своя архитектура со своей геометрией: силуэт, материал, свет, атмосфера. Эталон качества — чёрная башня приложения, она закреплена за лигой «Оникс». Первый круг: <b>Гранит</b> (крепостной донжон), <b>Оникс</b> (эталон), <b>Алмаз</b> (хрустальная башня: огранённая кладка, стрельчатые окна со светом изнутри, кристаллический венец и шпиль). Остальные девять — после утверждения. Всё — SVG кодом, без картинок; каждая башня — параметры и набор форм поверх модели этажей (15 этажей, Страж каждые 5).</p>
   <div class="lg-bar">
     <div class="lg-arrow" id="prev" aria-label="Предыдущая лига">‹</div>
     <div class="lg-chips" id="chips"></div>
@@ -134,7 +134,7 @@ const LEAGUES = [
   { id: 'opal', ru: 'Опал', uk: 'Опал' },
   { id: 'topaz', ru: 'Топаз', uk: 'Топаз' },
   { id: 'obsidian', ru: 'Обсидиан', uk: 'Обсидіан' },
-  { id: 'diamond', ru: 'Алмаз', uk: 'Алмаз', arch: 'needle', ready: true, mat: 'ледяная огранённая игла: три грани с преломлениями, ярусы-кристаллы, фонари во льду, венцы шардов у Стражей, парящий бриллиант над остриём, сияние и лучи' },
+  { id: 'diamond', ru: 'Алмаз', uk: 'Алмаз', arch: 'crystal', ready: true, mat: 'хрустальная башня: восьмигранник углом к зрителю, огранённая кладка с преломлениями и тёмно-синими тенями, стрельчатые окна светятся изнутри, контрфорсы-кристаллы, зубцы-призмы у Стражей, барабан с кристаллическим венцом и высокий гранёный шпиль со светящейся сердцевиной' },
 ];
 LEAGUES.forEach((L, i) => { L.i = i; });
 const READY = LEAGUES.filter((L) => L.ready);
@@ -419,146 +419,162 @@ const CYL = {
   },
 };
 
-/* ===================== АРХЕТИП 3: ЛЕДЯНАЯ ИГЛА С ПАРЯЩИМ БРИЛЛИАНТОМ (Алмаз) ===================== */
-// зачем: высшая лига — не камень, а огранённый лёд. Силуэт — узкая игла, сужающаяся к острию (трапеции этажей сходятся в одну линию);
-// объём — три вертикальные грани (левая светлая, центральная — блик, правая в глубокой тени) с косыми преломлениями;
-// этажи — ярусы с яркими кромками льда и сосульками, фонари-ромбы во льду; Стражи — венцы шардов; над остриём парит бриллиант с кольцом и лучами.
-const NEEDLE = {
+/* ===================== АРХЕТИП 3: ХРУСТАЛЬНАЯ БАШНЯ (Алмаз) ===================== */
+// зачем (вердикт владельца 13.10 через координатора): первая «ледяная игла» — плоский конус с наклейками и клипарт-бриллиантом. Нужно ЗДАНИЕ,
+// как Гранит и Оникс (кладка, ярусы, окна, навершие), но из алмаза: огранённые блоки с преломлениями и глубиной, тёмно-синие внутренние тени
+// и холодные блики (не белая заливка), окна светятся изнутри, контрфорсы-кристаллы, навершие — кристаллический венец и шпиль, вписанные в архитектуру.
+// Силуэт выше и стройнее Оникса (вершина прогрессии), той же весомости: восьмигранник углом к зрителю — три видимые грани.
+const CRYST = {
   pal: {
-    sky: ['#0A1226', '#10203F', '#060A14'], accent: '#9FE6FF', num: '#FFFFFF', numDim: '#6F86A8', lab: '#8FA6C8',
-    edge: 'rgba(255,255,255,.72)', win: { lit: '#EAFBFF', past: '#7FA6D2', dark: '#15305C', glow: '#8FE4FF' },
-    shardL: '#DCEEFF', shardR: '#6B96CC', ledge: '#F3F9FF',
+    sky: ['#070C1A', '#0E1A33', '#050812'], accent: '#9FE6FF', num: '#FFFFFF', numDim: '#6F86A8', lab: '#8FA6C8',
+    win: { lit: '#DFF6FF', past: '#4F74A6', dark: '#0C1E3E', glow: '#8FE4FF' },
   },
-  taper: 8.5,
+  w0: 176, taper: 3.5, fh: 48, gh: 62,
   geom() {
-    const w0 = 200, fh = 44, gh = 58, topPad = 440, basePad = 110; let h = 0;
-    for (let f = 1; f <= FLOORS; f++) h += isGuard(f) ? gh : fh;
+    const topPad = 430, basePad = 100; let h = 0;
+    for (let f = 1; f <= FLOORS; f++) h += isGuard(f) ? this.gh : this.fh;
     const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
-    for (let f = 1; f <= FLOORS; f++) { const hh = isGuard(f) ? gh : fh; const w = w0 - (f - 1) * this.taper, wt = w - this.taper; yb -= hh; floors.push({ f, y: yb, h: hh, w, wt, x0: CX - w / 2, xt0: CX - wt / 2 }); }
-    const top = floors[FLOORS - 1].y;
-    return { floors, H, base: H - basePad, top, apex: top - 190 };
+    for (let f = 1; f <= FLOORS; f++) { const hh = isGuard(f) ? this.gh : this.fh; const w = this.w0 - (f - 1) * this.taper, wt = w - this.taper; yb -= hh; floors.push({ f, y: yb, h: hh, w, wt, x0: CX - w / 2, xt0: CX - wt / 2 }); }
+    return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y };
   },
   fx: (fl, k, top) => (top ? fl.xt0 + fl.wt * k : fl.x0 + fl.w * k),
-  facet(fl, k0, k1, fill, extra = '') { const yb = fl.y + fl.h; return poly([[this.fx(fl, k0, false), yb], [this.fx(fl, k1, false), yb], [this.fx(fl, k1, true), fl.y], [this.fx(fl, k0, true), fl.y]], fill, extra); },
+  fxm(fl, k) { return (this.fx(fl, k, false) + this.fx(fl, k, true)) / 2; },
+  facetPts(fl, k0, k1) { const yb = fl.y + fl.h; return [[this.fx(fl, k0, false), yb], [this.fx(fl, k1, false), yb], [this.fx(fl, k1, true), fl.y], [this.fx(fl, k0, true), fl.y]]; },
+  facet(fl, k0, k1, fill, extra = '') { return poly(this.facetPts(fl, k0, k1), fill, extra); },
   defs(p) {
     const lin = (id, cols, x2 = '1', y2 = '0') => `<linearGradient id="${p}${id}" x1="0" y1="0" x2="${x2}" y2="${y2}">${cols.map((c, i) => stp(c, i / (cols.length - 1))).join('')}</linearGradient>`;
-    return lin('L', ['#A6C9EE', '#D4E9FA', '#BBD9F4']) + lin('C', ['#DDEFFF', '#FFFFFF', '#E2F0FF']) + lin('R', ['#5E88C2', '#3A61A1', '#213F78'])
-      + lin('Lm', ['#C4DEF6', '#EAF5FF', '#D2E7FA']) + lin('Rm', ['#7CA3D6', '#527BB8', '#365A95'])
+    return lin('L', ['#4F7CB8', '#86AEDD', '#6F9CD0']) + lin('C', ['#9CC0E8', '#C6DDF5', '#A9CBEE']) + lin('R', ['#27457A', '#1A3460', '#122646'])
+      + lin('Lm', ['#6E9AD0', '#A6C8EC', '#8DB4E2']) + lin('Cm', ['#B9D5F2', '#DCEBFA', '#C4DCF4']) + lin('Rm', ['#365A96', '#27477E', '#1C375F'])
+      + lin('corn', ['#17305A', '#A4C8EE', '#6A95CA', '#2B4B82', '#102444']) + lin('spire', ['#24427A', '#86AEDD', '#C6DDF5', '#5F8BC4', '#17305A'])
       + lin('sky', this.pal.sky, '0', '1')
-      + `<radialGradient id="${p}glow" cx=".5" cy=".5" r=".5">${stp('#BFF0FF', 0, 0.75)}${stp('#8FE4FF', 0.35, 0.22)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
-      + `<radialGradient id="${p}halo" cx=".5" cy=".5" r=".5">${stp('#8FE4FF', 0, 0.22)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
-      + `<radialGradient id="${p}ground" cx=".5" cy=".25" r=".5">${stp('#2C4B7E', 0)}${stp('#0B1426', 1, 0)}</radialGradient>`
-      + `<radialGradient id="${p}ice" cx=".5" cy=".5" r=".5">${stp('#BFDCF7', 0, 0.55)}${stp('#7FA9DC', 0.6, 0.22)}${stp('#7FA9DC', 1, 0)}</radialGradient>`
-      + `<filter id="${p}wg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.4"/></filter><filter id="${p}bl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter><filter id="${p}bl2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2"/></filter>`;
+      + `<linearGradient id="${p}under" x1="0" y1="0" x2="0" y2="1">${stp('#040B1E', 0, 0.5)}${stp('#040B1E', 0.3, 0)}${stp('#040B1E', 1, 0.18)}</linearGradient>`
+      + `<linearGradient id="${p}smear" x1="0" y1="0" x2="0" y2="1">${stp('#BFEAFF', 0, 0.45)}${stp('#BFEAFF', 1, 0)}</linearGradient>`
+      + `<linearGradient id="${p}core" x1="0" y1="0" x2="0" y2="1">${stp('#DFF6FF', 0, 0.9)}${stp('#8FE4FF', 1, 0.05)}</linearGradient>`
+      + `<radialGradient id="${p}glow" cx=".5" cy=".5" r=".5">${stp('#DFF6FF', 0, 0.7)}${stp('#8FE4FF', 0.4, 0.18)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}litfloor" cx=".5" cy=".5" r=".5">${stp('#8FE4FF', 0, 0.2)}${stp('#8FE4FF', 1, 0)}</radialGradient>`
+      + `<radialGradient id="${p}ground" cx=".5" cy=".2" r=".5">${stp('#1A2F58', 0)}${stp('#070C1A', 1, 0)}</radialGradient>`
+      + `<filter id="${p}wg" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="3.6"/></filter><filter id="${p}bl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="12"/></filter><filter id="${p}bl2" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3"/></filter>`;
   },
-  streaks(fl, seed, clip) {
-    const rd = rnd(seed); let out = ''; const yb = fl.y + fl.h;
-    for (let i = 0; i < 3; i++) { const k = 0.05 + rd() * 0.5; const x = this.fx(fl, k, false), xt = this.fx(fl, k, true) + 14 + rd() * 10; const ww = 4 + rd() * 5; out += poly([[x, yb], [x + ww, yb], [xt + ww, fl.y], [xt, fl.y]], `rgba(255,255,255,${f1(0.1 + rd() * 0.14)})`); }
-    out += poly([[this.fx(fl, 0.7, false), yb], [this.fx(fl, 0.73, false), yb], [this.fx(fl, 0.86, true), fl.y], [this.fx(fl, 0.83, true), fl.y]], 'rgba(255,255,255,.08)');
-    return `<g clip-path="url(#${clip})">${out}</g>`;
+  // огранённая кладка грани: курсы 16 px, блоки 24 px со смещением; у каждого блока светлая кромка сверху-слева и тёмная снизу-справа (огранка),
+  // часть блоков — преломление (светлее) или внутренняя тень (темнее). Три пути на грань, а не три на блок.
+  blocks(fl, k0, k1, seed, clip, side) {
+    const rd = rnd(seed); const { y, h } = fl;
+    const xa = Math.min(this.fx(fl, k0, false), this.fx(fl, k0, true)) - 24, xb = Math.max(this.fx(fl, k1, false), this.fx(fl, k1, true)) + 24;
+    const hl = side > 0 ? 0.16 : side < 0 ? 0.34 : 0.5, dk = side > 0 ? 0.55 : 0.4;
+    let pl = '', pd = '', pr = '', tint = ''; const ch = 16, bw = 24; let row = 0;
+    for (let yy = y; yy < y + h - 2; yy += ch, row++) {
+      const hh = Math.min(ch, y + h - yy); const off = (row % 2) * (bw / 2);
+      for (let xx = xa + off; xx < xb; xx += bw) {
+        pl += `M${f1(xx + 0.6)} ${f1(yy + hh - 0.6)}V${f1(yy + 0.6)}H${f1(xx + bw - 0.6)}`;
+        pd += `M${f1(xx + bw - 0.6)} ${f1(yy + 0.6)}V${f1(yy + hh - 0.6)}H${f1(xx + 0.6)}`;
+        const r = rd();
+        if (r < 0.16) tint += `<rect x="${f1(xx + 1)}" y="${f1(yy + 1)}" width="${bw - 2}" height="${f1(hh - 2)}" fill="rgba(215,238,255,${side > 0 ? 0.1 : 0.22})"/>`;
+        else if (r > 0.86) tint += `<rect x="${f1(xx + 1)}" y="${f1(yy + 1)}" width="${bw - 2}" height="${f1(hh - 2)}" fill="rgba(4,12,34,${side > 0 ? 0.32 : 0.2})"/>`;
+        if (r > 0.3 && r < 0.5) pr += `M${f1(xx + 3)} ${f1(yy + hh - 3)}L${f1(xx + bw - 3)} ${f1(yy + 3)}`;
+      }
+    }
+    return `<g clip-path="url(#${clip})">${tint}<path d="${pd}" stroke="rgba(4,12,34,${dk})" stroke-width="1.3" fill="none"/><path d="${pl}" stroke="rgba(230,244,255,${hl})" stroke-width="1" fill="none"/><path d="${pr}" stroke="rgba(230,244,255,${side > 0 ? 0.1 : 0.2})" stroke-width="0.9" fill="none"/></g>`;
   },
-  lantern(x, y, tone, p, s = 1) {
-    const W = this.pal.win; const w = 10 * s, h = 17 * s;
-    const d = `M${f1(x)} ${f1(y - h / 2)}L${f1(x + w / 2)} ${f1(y)}L${f1(x)} ${f1(y + h / 2)}L${f1(x - w / 2)} ${f1(y)}Z`;
-    let out = `<path d="${d}" transform="translate(1.5 2)" fill="rgba(0,20,60,.35)"/>`;
-    if (tone === 'lit') out += `<path d="${d}" fill="${W.glow}" filter="url(#${p}wg)"/>`;
+  // стрельчатое окно: светится изнутри (ореол + световой мазок по кладке под окном), тусклое у пройденных, тёмное впереди
+  lancet(x, y, tone, p, big, side) {
+    const W = this.pal.win; const w = big ? 15 : 11, h = big ? 30 : 20, hw = w / 2;
+    const d = `M${f1(x - hw)} ${f1(y + h)}V${f1(y + hw)}Q${f1(x - hw)} ${f1(y + 1)} ${f1(x)} ${f1(y - 4)}Q${f1(x + hw)} ${f1(y + 1)} ${f1(x + hw)} ${f1(y + hw)}V${f1(y + h)}Z`;
+    let out = `<path d="${d}" transform="translate(1.2 1.2)" fill="rgba(4,12,34,.5)"/>`;
+    if (tone === 'lit') out += `<path d="${d}" fill="${W.glow}" filter="url(#${p}wg)"/>${poly([[x - hw - 2, y + h], [x + hw + 2, y + h], [x + hw + 9, y + h + 26], [x - hw - 9, y + h + 26]], `url(#${p}smear)`)}`;
     out += `<path d="${d}" fill="${W[tone]}"/>`;
-    if (tone !== 'dark') out += `<path d="M${f1(x)} ${f1(y - h / 2 + 2)}L${f1(x + w / 2 - 2)} ${f1(y)}" stroke="rgba(255,255,255,.85)" stroke-width="1"/>`;
-    else out += `<path d="M${f1(x)} ${f1(y - h / 2 + 2)}L${f1(x + w / 2 - 2)} ${f1(y)}" stroke="rgba(255,255,255,.22)" stroke-width="1"/>`;
+    if (tone === 'lit') out += `<path d="M${f1(x)} ${f1(y - 1)}V${f1(y + h)}M${f1(x - hw)} ${f1(y + h * 0.55)}H${f1(x + hw)}" stroke="rgba(10,40,90,.55)" stroke-width="1.2"/>`;
+    out += `<path d="${d}" fill="none" stroke="rgba(230,244,255,${tone === 'dark' ? (side > 0 ? 0.18 : 0.3) : 0.6})" stroke-width="1"/>`;
+    out += `<rect x="${f1(x - hw - 2)}" y="${f1(y + h)}" width="${f1(w + 4)}" height="2.6" rx="1" fill="${side > 0 ? '#2F5288' : '#8FB3DE'}"/>`;
     return out;
   },
-  ledge(fl, seed) {
-    const { y, xt0, wt } = fl; const rd = rnd(seed); let out = '';
-    out += poly([[xt0 - 4, y - 1], [xt0 + wt + 4, y - 1], [xt0 + wt + 2, y + 4], [xt0 - 2, y + 4]], this.pal.ledge);
-    out += poly([[xt0 - 4, y - 1], [xt0 + wt * 0.6, y - 1], [xt0 + wt * 0.6, y + 1], [xt0 - 4, y + 1]], 'rgba(255,255,255,.9)');
-    out += poly([[xt0 - 2, y + 4], [xt0 + wt + 2, y + 4], [this.fx(fl, 1, true) + 1, y + 9], [this.fx(fl, 0, true) - 1, y + 9]], 'rgba(10,30,70,.22)');
-    for (let i = 0; i < 5; i++) { const k = 0.52 + i * 0.1 + rd() * 0.04; const x = xt0 + wt * k; const len = 5 + rd() * 9; out += poly([[x - 2.2, y + 4], [x + 2.2, y + 4], [x, y + 4 + len]], 'rgba(225,242,255,.72)'); }
-    for (let i = 0; i < 3; i++) { const k = 0.08 + i * 0.14 + rd() * 0.04; const x = xt0 + wt * k; const len = 3 + rd() * 5; out += poly([[x - 1.8, y + 4], [x + 1.8, y + 4], [x, y + 4 + len]], 'rgba(255,255,255,.55)'); }
+  cornice(fl, p) { // карниз-кольцо с огранкой и мелкими висячими кристаллами
+    const { y, xt0, wt } = fl; let out = `<rect x="${f1(xt0 - 5)}" y="${f1(y - 3)}" width="${f1(wt + 10)}" height="7" rx="2" fill="url(#${p}corn)"/><rect x="${f1(xt0 - 5)}" y="${f1(y - 3)}" width="${f1(wt + 10)}" height="1.4" rx=".7" fill="rgba(230,244,255,.55)"/>`;
+    for (let xx = xt0 - 2; xx < xt0 + wt; xx += 13) { const k = (xx - xt0) / wt; out += poly([[xx, y + 4], [xx + 4, y + 4], [xx + 2, y + 10]], k < 0.62 ? 'rgba(200,228,255,.6)' : 'rgba(40,70,120,.8)'); }
     return out;
   },
-  shardCrown(fl) {
-    const { y, xt0, wt } = fl; const P = this.pal; let out = '';
-    for (let i = 0; i < 3; i++) { const bx = xt0 + i * wt * 0.13, by = y + 3 + i * 6; const tip = [bx - 20 - i * 3, by - 30 - i * 7]; out += poly([[bx, by], [bx + 9, by + 5], tip], P.shardL) + poly([[bx, by], tip, [bx - 3, by - 2]], 'rgba(255,255,255,.55)'); out += `<line x1="${f1(bx + 9)}" y1="${f1(by + 5)}" x2="${f1(tip[0])}" y2="${f1(tip[1])}" stroke="rgba(255,255,255,.7)" stroke-width="1"/>`; }
-    for (let i = 0; i < 3; i++) { const bx = xt0 + wt - i * wt * 0.13, by = y + 3 + i * 6; const tip = [bx + 20 + i * 3, by - 30 - i * 7]; out += poly([[bx, by], [bx - 9, by + 5], tip], P.shardR) + poly([[bx, by], tip, [bx + 3, by - 2]], 'rgba(255,255,255,.28)'); out += `<line x1="${f1(bx)}" y1="${f1(by)}" x2="${f1(tip[0])}" y2="${f1(tip[1])}" stroke="rgba(255,255,255,.55)" stroke-width="1"/>`; }
-    out += poly([[CX - 7, y - 1], [CX + 7, y - 1], [CX + 1.5, y - 34]], '#EEF7FF') + poly([[CX - 7, y - 1], [CX + 1.5, y - 34], [CX - 2, y - 1]], '#FFFFFF');
-    out += poly([[CX - 20, y - 1], [CX - 10, y - 1], [CX - 16, y - 22]], '#D5E8FB') + poly([[CX + 10, y - 1], [CX + 20, y - 1], [CX + 13, y - 22]], '#9DBEE6');
+  parapet(fl, p) { // Страж: кольцо пошире, зубцы-призмы с остриём (тон по положению), кронштейны-машикули
+    const { y, xt0, wt } = fl; let out = `<rect x="${f1(xt0 - 8)}" y="${f1(y - 4)}" width="${f1(wt + 16)}" height="11" rx="2" fill="url(#${p}corn)"/><rect x="${f1(xt0 - 8)}" y="${f1(y - 4)}" width="${f1(wt + 16)}" height="1.6" fill="rgba(230,244,255,.6)"/>`;
+    const n = 9; for (let i = 0; i <= n; i++) { const k = i / n; const x = xt0 - 8 + (wt + 16) * k; const mw = 9, mh = 15; const lt = k < 0.4 ? '#86AEDD' : k < 0.64 ? '#B9D5F2' : '#2A4A80'; out += poly([[x - mw / 2, y - 4], [x - mw / 2, y - 4 - mh + 5], [x, y - 4 - mh], [x + mw / 2, y - 4 - mh + 5], [x + mw / 2, y - 4]], lt) + `<path d="M${f1(x - mw / 2)} ${f1(y - 4 - mh + 5)}L${f1(x)} ${f1(y - 4 - mh)}" stroke="rgba(230,244,255,.7)" stroke-width="1"/><path d="M${f1(x + mw / 2)} ${f1(y - 4 - mh + 5)}L${f1(x)} ${f1(y - 4 - mh)}V${f1(y - 4)}" stroke="rgba(4,12,34,.4)" stroke-width="1"/>`; }
+    for (let xx = xt0 - 4; xx < xt0 + wt; xx += 12) out += `<path d="M${f1(xx)} ${f1(y + 7)}h6l-1 7h-4Z" fill="rgba(4,12,34,.5)"/>`;
+    return out;
+  },
+  // контрфорсы-кристаллы: у основания — большие наклонные плиты с огранкой; у Стражей 5 и 10 — угловые распорки
+  buttresses(G, p) {
+    const b = G.floors[0], t4 = G.floors[3]; const base = G.base; let out = '';
+    const slab = (x, dir, top, fill, edge) => { const pts = [[x + dir * 30, base + 2], [x + dir * 30, base - 36], [x - dir * 2, top], [x - dir * 2, base + 2]]; return poly(pts, fill) + poly([[x + dir * 30, base - 36], [x - dir * 2, top], [x + dir * 14, top + 14], [x + dir * 24, base - 30]], edge) + `<path d="M${f1(x + dir * 30)} ${f1(base - 36)}L${f1(x - dir * 2)} ${f1(top)}" stroke="rgba(230,244,255,${dir < 0 ? 0.7 : 0.35})" stroke-width="1.2"/>`; };
+    out += slab(b.x0, -1, t4.y + 8, '#3F6AA6', 'rgba(170,205,240,.45)') + slab(b.x0 + b.w, 1, t4.y + 8, '#15294C', 'rgba(90,130,185,.4)');
+    G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).forEach((fl) => {
+      const yb = fl.y + fl.h; out += poly([[fl.x0 - 15, yb + 6], [fl.x0 - 8, yb + 6], [fl.xt0 + 1, fl.y - 2], [fl.xt0 - 6, fl.y - 2]], '#6F9CD0') + `<path d="M${f1(fl.x0 - 15)} ${f1(yb + 6)}L${f1(fl.xt0 - 6)} ${f1(fl.y - 2)}" stroke="rgba(230,244,255,.7)" stroke-width="1"/>`;
+      const x1 = fl.x0 + fl.w, xt1 = fl.xt0 + fl.wt; out += poly([[x1 + 15, yb + 6], [x1 + 8, yb + 6], [xt1 - 1, fl.y - 2], [xt1 + 6, fl.y - 2]], '#1C375F') + `<path d="M${f1(x1 + 15)} ${f1(yb + 6)}L${f1(xt1 + 6)} ${f1(fl.y - 2)}" stroke="rgba(150,190,235,.5)" stroke-width="1"/>`;
+    });
     return out;
   },
   floor(fl, st, o, p) {
     const { f, y, h, w, x0 } = fl; const P = this.pal; const g = isGuard(f); const yb = y + h;
-    const tone = st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark'; const mine = st === 'mine';
-    const clip = `${p}c${f}`;
-    let out = `<g class="fl" data-f="${f}" style="cursor:pointer"><clipPath id="${clip}">${poly([[this.fx(fl, 0, false) - 1, yb + 1], [this.fx(fl, 1, false) + 1, yb + 1], [this.fx(fl, 1, true) + 1, y - 1], [this.fx(fl, 0, true) - 1, y - 1]], '#000')}</clipPath>`;
-    if (mine) out += `<ellipse cx="${CX}" cy="${f1(y + h / 2)}" rx="${f1(w / 2 + 90)}" ry="${f1(h * 1.2)}" fill="url(#${p}halo)"/>`;
-    out += this.facet(fl, 0, 0.42, `url(#${p}${mine ? 'Lm' : 'L'})`) + this.facet(fl, 0.42, 0.62, `url(#${p}C)`) + this.facet(fl, 0.62, 1, `url(#${p}${mine ? 'Rm' : 'R'})`);
-    out += this.streaks(fl, f * 97 + 11, clip);
-    // внутренние трещины-преломления в правой грани
-    out += `<path d="M${f1(this.fx(fl, 0.7, false))} ${f1(yb - 4)}L${f1(this.fx(fl, 0.78, true))} ${f1(y + h * 0.5)}L${f1(this.fx(fl, 0.9, true))} ${f1(y + 4)}" stroke="rgba(190,220,255,.35)" stroke-width="1" fill="none"/>`;
-    // рёбра граней
-    const edge = (k, col, wdt) => `<line x1="${f1(this.fx(fl, k, false))}" y1="${f1(yb)}" x2="${f1(this.fx(fl, k, true))}" y2="${f1(y)}" stroke="${col}" stroke-width="${wdt}"/>`;
-    out += edge(0.42, 'rgba(255,255,255,.9)', 1.2) + edge(0.62, 'rgba(255,255,255,.55)', 1) + edge(0, 'rgba(255,255,255,.6)', 1) + edge(1, 'rgba(10,30,70,.5)', 1);
-    if (st === 'ahead') out += poly([[this.fx(fl, 0, false), yb], [this.fx(fl, 1, false), yb], [this.fx(fl, 1, true), y], [this.fx(fl, 0, true), y]], P.sky[0], 'opacity=".34"');
-    out += this.ledge(fl, f * 53 + 5);
-    const ly = y + h * 0.55;
-    out += this.lantern(this.fx(fl, 0.2, false) + (this.fx(fl, 0.2, true) - this.fx(fl, 0.2, false)) * 0.45, ly, tone, p, g ? 1.1 : 1);
-    out += this.lantern(this.fx(fl, 0.82, false) + (this.fx(fl, 0.82, true) - this.fx(fl, 0.82, false)) * 0.45, ly, tone, p, g ? 1.1 : 1);
-    if (g) out += this.lantern(CX + 1, ly - 2, tone, p, 1.5);
-    if (mine) out += `<g clip-path="url(#${clip})"><rect x="${f1(x0 - 2)}" y="${f1(y)}" width="${f1(w + 4)}" height="${f1(h)}" fill="rgba(255,255,255,.08)"/>${poly([[this.fx(fl, 0.46, false), yb], [this.fx(fl, 0.52, false), yb], [this.fx(fl, 0.62, true), y], [this.fx(fl, 0.56, true), y]], 'rgba(255,255,255,.35)')}</g>`;
-    if (g && f < FLOORS) out += this.shardCrown(fl);
+    const tone = st === 'mine' ? 'lit' : st === 'passed' ? 'past' : 'dark'; const mine = st === 'mine'; const m = mine ? 'm' : '';
+    const cl = (i) => `${p}c${f}f${i}`; const K = [[0, 0.38], [0.38, 0.62], [0.62, 1]];
+    let out = `<g class="fl" data-f="${f}" style="cursor:pointer">${K.map((kk, i) => `<clipPath id="${cl(i)}">${poly(this.facetPts(fl, kk[0], kk[1]), '#000')}</clipPath>`).join('')}`;
+    if (mine) out += `<ellipse cx="${CX}" cy="${f1(y + h / 2)}" rx="${f1(w / 2 + 80)}" ry="${f1(h * 1.15)}" fill="url(#${p}litfloor)"/>`;
+    out += this.facet(fl, 0, 0.38, `url(#${p}L${m})`) + this.facet(fl, 0.38, 0.62, `url(#${p}C${m})`) + this.facet(fl, 0.62, 1, `url(#${p}R${m})`);
+    out += this.blocks(fl, 0, 0.38, f * 131 + 7, cl(0), -1) + this.blocks(fl, 0.38, 0.62, f * 173 + 3, cl(1), 0) + this.blocks(fl, 0.62, 1, f * 197 + 5, cl(2), 1);
+    out += poly(this.facetPts(fl, 0, 1), `url(#${p}under)`);
+    const edge = (k, col, wd) => `<line x1="${f1(this.fx(fl, k, false))}" y1="${f1(yb)}" x2="${f1(this.fx(fl, k, true))}" y2="${f1(y)}" stroke="${col}" stroke-width="${wd}"/>`;
+    out += edge(0.38, 'rgba(230,244,255,.75)', 1.3) + edge(0.62, 'rgba(4,12,34,.55)', 1.2) + edge(0, 'rgba(230,244,255,.45)', 1) + edge(1, 'rgba(4,12,34,.6)', 1);
+    if (st === 'ahead') out += poly(this.facetPts(fl, 0, 1), P.sky[0], 'opacity=".3"');
+    const wy = y + (g ? 20 : 11) - (g ? 4 : 0);
+    out += this.lancet(this.fxm(fl, 0.19), wy, tone, p, false, -1);
+    if (f < 12 || g) out += this.lancet(this.fxm(fl, 0.5), wy - (g ? 4 : 0), tone, p, g, 0);
+    out += this.lancet(this.fxm(fl, 0.81), wy, tone, p, false, 1);
+    if (mine) out += `<g clip-path="url(#${cl(2)})"><rect x="${f1(x0)}" y="${f1(y)}" width="${f1(w)}" height="${f1(h)}" fill="rgba(143,228,255,.08)"/></g>`;
+    if (!g) out += this.cornice(fl, p);
     out += rivalsSvg(fl, x0) + floorLabelSvg(fl, mine, o.clean ? '' : isSummit(f) ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '', P);
-    if (f === o.selected) out += `<rect x="${f1(x0 - 9)}" y="${f1(y - (g ? 36 : 6))}" width="${f1(w + 18)}" height="${f1(h + (g ? 39 : 9))}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>`;
+    if (f === o.selected) out += `<rect x="${f1(x0 - 9)}" y="${f1(y - (g ? 22 : 6))}" width="${f1(w + 18)}" height="${f1(h + (g ? 25 : 9))}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>`;
     out += `<rect x="0" y="${f1(y - 4)}" width="${TW}" height="${f1(h + 4)}" fill="transparent"/></g>`;
     return out;
   },
-  sparkle(x, y, r, col = '#FFFFFF', op = 0.9) { return `<path d="M${f1(x)} ${f1(y - r)}Q${f1(x)} ${f1(y)} ${f1(x + r)} ${f1(y)}Q${f1(x)} ${f1(y)} ${f1(x)} ${f1(y + r)}Q${f1(x)} ${f1(y)} ${f1(x - r)} ${f1(y)}Q${f1(x)} ${f1(y)} ${f1(x)} ${f1(y - r)}Z" fill="${col}" opacity="${op}"/>`; },
+  after(G, o, p) { return this.buttresses(G, p) + G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map((fl) => this.parapet(fl, p)).join(''); },
+  // навершие: восьмигранный барабан с окнами, кристаллический венец из призм, высокий гранёный шпиль со светящейся сердцевиной, навершие-фонарь
   crown(G, o, p) {
-    const t = G.floors[FLOORS - 1]; const y = t.y, apex = G.apex; const sm = o.summit; const P = this.pal;
-    const xa = t.xt0, xb = t.xt0 + t.wt; const kA = xa + t.wt * 0.42, kB = xa + t.wt * 0.62; let out = '';
-    // остриё: три грани сходятся в точку
-    out += poly([[xa, y], [kA, y], [CX, apex]], `url(#${p}L)`) + poly([[kA, y], [kB, y], [CX, apex]], `url(#${p}C)`) + poly([[kB, y], [xb, y], [CX, apex]], `url(#${p}R)`);
-    out += poly([[xa + 8, y], [xa + 14, y], [CX - 1, apex + 30]], 'rgba(255,255,255,.22)') + poly([[kB + 4, y], [kB + 8, y], [CX + 1, apex + 40]], 'rgba(255,255,255,.12)');
-    out += `<path d="M${f1(kA)} ${y}L${CX} ${f1(apex)}" stroke="rgba(255,255,255,.9)" stroke-width="1.2"/><path d="M${f1(kB)} ${y}L${CX} ${f1(apex)}" stroke="rgba(255,255,255,.5)" stroke-width="1"/><path d="M${f1(xa)} ${y}L${CX} ${f1(apex)}L${f1(xb)} ${y}" stroke="rgba(255,255,255,.55)" stroke-width="1" fill="none"/>`;
-    out += poly([[xa - 4, y - 1], [xb + 4, y - 1], [xb + 2, y + 4], [xa - 2, y + 4]], P.ledge);
-    out += `<circle cx="${CX}" cy="${f1(apex)}" r="2.2" fill="#FFFFFF"/>`;
-    // парящий бриллиант
-    const gy = apex - 52; const s = sm ? 1.3 : 1; const gw = 24 * s, ch = 13 * s, pv = 30 * s, tw = 12 * s;
-    out += `<circle cx="${CX}" cy="${f1(gy + 4)}" r="${sm ? 130 : 78}" fill="url(#${p}glow)"/>`;
-    // лучи
-    for (let i = 0; i < 8; i++) { const a = -Math.PI / 2 + i * Math.PI / 4 + 0.2; const L = (sm ? 70 : 46) * (i % 2 ? 0.62 : 1); out += `<line x1="${f1(CX + Math.cos(a) * 20 * s)}" y1="${f1(gy + 4 + Math.sin(a) * 20 * s)}" x2="${f1(CX + Math.cos(a) * L)}" y2="${f1(gy + 4 + Math.sin(a) * L)}" stroke="#DFF6FF" stroke-width="${i % 2 ? 0.8 : 1.3}" opacity="${i % 2 ? 0.35 : 0.6}"/>`; }
-    // кольцо
-    out += `<ellipse cx="${CX}" cy="${f1(gy + 6)}" rx="${f1(gw + 18)}" ry="${f1(7 * s)}" fill="none" stroke="#BFEAFF" stroke-width="1.4" opacity=".7"/><ellipse cx="${CX}" cy="${f1(gy + 6)}" rx="${f1(gw + 18)}" ry="${f1(7 * s)}" fill="none" stroke="#FFFFFF" stroke-width="2.2" opacity=".9" stroke-dasharray="${f1(gw * 0.9)} ${f1(gw * 3.5)}"/>`;
-    // корона (верх) и павильон (низ)
-    out += poly([[CX - gw, gy], [CX - tw, gy - ch], [CX + tw, gy - ch], [CX + gw, gy]], '#CFE4FF');
-    out += poly([[CX - tw, gy - ch], [CX + tw, gy - ch], [CX + tw * 0.55, gy], [CX - tw * 0.55, gy]], '#FFFFFF');
-    out += poly([[CX - gw, gy], [CX - tw, gy - ch], [CX - tw * 0.55, gy]], '#E7F2FF') + poly([[CX + gw, gy], [CX + tw, gy - ch], [CX + tw * 0.55, gy]], '#9EC3F0');
-    out += poly([[CX - gw, gy], [CX - tw * 0.55, gy], [CX, gy + pv]], '#A9CCF3') + poly([[CX - tw * 0.55, gy], [CX + tw * 0.55, gy], [CX, gy + pv]], '#E9F5FF') + poly([[CX + tw * 0.55, gy], [CX + gw, gy], [CX, gy + pv]], '#6C98D4');
-    out += `<path d="M${f1(CX - gw)} ${f1(gy)}H${f1(CX + gw)}M${f1(CX - tw * 0.55)} ${f1(gy)}L${CX} ${f1(gy + pv)}L${f1(CX + tw * 0.55)} ${f1(gy)}M${f1(CX - tw)} ${f1(gy - ch)}L${f1(CX - tw * 0.55)} ${f1(gy)}M${f1(CX + tw)} ${f1(gy - ch)}L${f1(CX + tw * 0.55)} ${f1(gy)}" stroke="rgba(255,255,255,.85)" stroke-width="1" fill="none"/>`;
-    out += this.sparkle(CX + gw + 4, gy - ch - 2, 7 * s) + this.sparkle(CX - gw - 8, gy + 10, 4 * s, '#FFFFFF', 0.7);
-    // ореол под бриллиантом — он парит над остриём
-    out += `<ellipse cx="${CX}" cy="${f1(apex - 6)}" rx="10" ry="3" fill="#BFEAFF" opacity=".5" filter="url(#${p}bl2)"/>`;
-    if (sm) out += `<text x="${CX}" y="${f1(gy - ch - 46)}" font-size="11" font-weight="700" letter-spacing="3" fill="${P.accent}" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>`;
+    const t = G.floors[FLOORS - 1]; const sm = o.summit; const P = this.pal; const W = P.win;
+    const dw = t.wt - 18, dx = CX - dw / 2, yd = t.y - 32, dh = 32; const rw = dw + 22, apex = yd - 232;
+    const dfl = { y: yd, h: dh, w: dw, wt: dw - 3, x0: dx, xt0: CX - (dw - 3) / 2 };
+    let out = `<clipPath id="${p}cdrum">${poly(this.facetPts(dfl, 0, 1), '#000')}</clipPath>` + this.facet(dfl, 0, 0.38, `url(#${p}L)`) + this.facet(dfl, 0.38, 0.62, `url(#${p}C)`) + this.facet(dfl, 0.62, 1, `url(#${p}R)`);
+    out += this.blocks(dfl, 0, 1, 991, `${p}cdrum`, 0) + poly(this.facetPts(dfl, 0, 1), `url(#${p}under)`);
+    [0.19, 0.5, 0.81].forEach((k, i) => { out += this.lancet(this.fxm(dfl, k), yd + 8, sm ? 'lit' : 'dark', p, false, i - 1).replace(/<polygon[^>]*smear[^>]*\/>/, ''); });
+    // венец: призмы по кольцу барабана (середина выше), тон по положению
+    out += `<rect x="${f1(dx - 11)}" y="${f1(yd - 4)}" width="${f1(dw + 22)}" height="9" rx="3" fill="url(#${p}corn)"/><rect x="${f1(dx - 11)}" y="${f1(yd - 4)}" width="${f1(dw + 22)}" height="1.5" fill="rgba(230,244,255,.6)"/>`;
+    const n = 8; for (let i = 0; i <= n; i++) { const k = i / n; const x = dx - 11 + (dw + 22) * k; const mh = 18 + (1 - Math.abs(k - 0.5) * 2) * 12; const lt = k < 0.4 ? '#86AEDD' : k < 0.64 ? '#C6DDF5' : '#2A4A80'; const lean = (k - 0.5) * 14; out += poly([[x - 5, yd - 4], [x + lean, yd - 4 - mh], [x + 5, yd - 4]], lt) + `<path d="M${f1(x - 5)} ${f1(yd - 4)}L${f1(x + lean)} ${f1(yd - 4 - mh)}" stroke="rgba(230,244,255,.75)" stroke-width="1"/>`; }
+    // шпиль: три грани, курсы огранки, светящаяся сердцевина
+    const xs = [CX - rw / 2, CX - rw / 2 + rw * 0.38, CX - rw / 2 + rw * 0.62, CX + rw / 2]; const cols = [`url(#${p}L)`, `url(#${p}C)`, `url(#${p}R)`];
+    for (let i = 0; i < 3; i++) out += poly([[xs[i], yd], [xs[i + 1], yd], [CX, apex]], cols[i]);
+    out += poly([[CX - 7, yd], [CX + 7, yd], [CX, apex + 10]], `url(#${p}core)`, `opacity="${sm ? 0.95 : 0.55}" filter="url(#${p}bl2)"`);
+    let crs = ''; for (let yy = yd - 14; yy > apex + 16; yy -= 14) { const k = (yd - yy) / (yd - apex); const hw = (rw / 2) * (1 - k); crs += `M${f1(CX - hw)} ${yy}L${f1(CX + hw)} ${yy}`; }
+    out += `<path d="${crs}" stroke="rgba(4,12,34,.42)" stroke-width="1.1"/><path d="${crs}" stroke="rgba(230,244,255,.22)" stroke-width="1" transform="translate(0 1.2)"/>`;
+    out += `<path d="M${f1(xs[1])} ${yd}L${CX} ${f1(apex)}" stroke="rgba(230,244,255,.8)" stroke-width="1.2"/><path d="M${f1(xs[2])} ${yd}L${CX} ${f1(apex)}" stroke="rgba(4,12,34,.5)" stroke-width="1.1"/><path d="M${f1(xs[0])} ${yd}L${CX} ${f1(apex)}L${f1(xs[3])} ${yd}" stroke="rgba(230,244,255,.4)" stroke-width="1" fill="none"/>`;
+    out += poly([[xs[0] + 6, yd], [xs[0] + 12, yd], [CX - 1, apex + 40]], 'rgba(230,244,255,.16)');
+    // навершие-фонарь: кристалл на игле, сияние
+    out += `<circle cx="${CX}" cy="${f1(apex - 14)}" r="${sm ? 92 : 36}" fill="url(#${p}glow)"/><line x1="${CX}" y1="${f1(apex + 4)}" x2="${CX}" y2="${f1(apex - 10)}" stroke="#DFF6FF" stroke-width="2"/>`;
+    const gs = sm ? 8 : 6; out += poly([[CX, apex - 14 - gs], [CX + gs * 0.7, apex - 14], [CX, apex - 14 + gs], [CX - gs * 0.7, apex - 14]], '#FFFFFF') + poly([[CX, apex - 14 - gs], [CX + gs * 0.7, apex - 14], [CX, apex - 14]], '#BFEAFF');
+    if (sm) out += `<text x="${CX}" y="${f1(apex - 64)}" font-size="11" font-weight="700" letter-spacing="3" fill="${P.accent}" text-anchor="middle">ВЕРШИНА НЕДЕЛИ</text>`;
     return out;
   },
   scene(G, o, p) {
-    const b = G.floors[0]; const rd = rnd(29); let out = ''; const top = G.apex - 80;
-    for (let k = 0; k < 26; k++) out += `<circle cx="${f1(rd() * TW)}" cy="${f1(rd() * (top - 20))}" r="${f1(0.5 + rd() * 1)}" fill="#E8F3FF" opacity="${f1(0.25 + rd() * 0.5)}"/>`;
-    // северное сияние
-    const ay = top - 40;
-    out += `<g filter="url(#${p}bl)"><path d="M-40 ${f1(ay + 60)}Q${CX - 40} ${f1(ay - 70)} 430 ${f1(ay + 30)}" stroke="#4FE3B0" stroke-width="34" fill="none" opacity="${o.summit ? 0.22 : 0.13}"/><path d="M-40 ${f1(ay + 110)}Q${CX + 30} ${f1(ay - 10)} 430 ${f1(ay + 90)}" stroke="#7FD4FF" stroke-width="28" fill="none" opacity="${o.summit ? 0.2 : 0.12}"/><path d="M-40 ${f1(ay + 150)}Q${CX - 60} ${f1(ay + 60)} 430 ${f1(ay + 150)}" stroke="#B48CFF" stroke-width="24" fill="none" opacity="${o.summit ? 0.16 : 0.09}"/></g>`;
-    for (let k = 0; k < 6; k++) out += this.sparkle(20 + rd() * 350, top + 40 + rd() * (G.base - top - 120), 2 + rd() * 3, '#FFFFFF', 0.25 + rd() * 0.3);
-    // земля: ледяное зеркало, кристаллы, отражение нижних этажей
-    out += `<ellipse cx="${CX}" cy="${f1(G.base + 50)}" rx="236" ry="48" fill="url(#${p}ground)"/><ellipse cx="${CX}" cy="${f1(G.base + 24)}" rx="${f1(b.w / 2 + 90)}" ry="22" fill="url(#${p}ice)"/>`;
-    out += `<clipPath id="${p}refl"><ellipse cx="${CX}" cy="${f1(G.base + 22)}" rx="${f1(b.w / 2 + 50)}" ry="30"/></clipPath><g clip-path="url(#${p}refl)" opacity=".2" transform="translate(0 ${f1(2 * G.base)}) scale(1 -1)">${G.floors.slice(0, 2).map((fl) => this.facet(fl, 0, 0.42, `url(#${p}L)`) + this.facet(fl, 0.42, 0.62, `url(#${p}C)`) + this.facet(fl, 0.62, 1, `url(#${p}R)`)).join('')}</g>`;
-    out += `<ellipse cx="${CX}" cy="${f1(G.base + 2)}" rx="${f1(b.w / 2 + 30)}" ry="7" fill="#DCEFFF" opacity=".85"/><ellipse cx="${CX}" cy="${f1(G.base + 3)}" rx="${f1(b.w / 2 + 30)}" ry="7" fill="none" stroke="#FFFFFF" stroke-width="1" opacity=".7"/>`;
-    [[b.x0 - 48, 26, -12], [b.x0 - 24, 18, -6], [b.x0 + b.w + 26, 30, 10], [b.x0 + b.w + 52, 16, 14], [b.x0 - 70, 14, -16]].forEach(([x, hh, lean]) => { out += poly([[x - 7, G.base + 8], [x + 7, G.base + 8], [x + lean, G.base + 8 - hh]], lean < 0 ? '#C9DFF6' : '#7FA6D8') + poly([[x - 7, G.base + 8], [x + lean, G.base + 8 - hh], [x - 2, G.base + 8]], 'rgba(255,255,255,.5)'); });
+    const b = G.floors[0]; const rd = rnd(29); let out = ''; const top = G.top - 300;
+    for (let k = 0; k < 24; k++) out += `<circle cx="${f1(rd() * TW)}" cy="${f1(rd() * (top + 40))}" r="${f1(0.5 + rd() * 0.9)}" fill="#E8F3FF" opacity="${f1(0.25 + rd() * 0.45)}"/>`;
+    out += `<g filter="url(#${p}bl)"><path d="M-40 ${f1(top + 10)}Q${CX - 40} ${f1(top - 110)} 430 ${f1(top - 20)}" stroke="#4FE3B0" stroke-width="30" fill="none" opacity="${o.summit ? 0.16 : 0.07}"/><path d="M-40 ${f1(top + 70)}Q${CX + 30} ${f1(top - 40)} 430 ${f1(top + 50)}" stroke="#7FD4FF" stroke-width="26" fill="none" opacity="${o.summit ? 0.14 : 0.06}"/></g>`;
+    out += `<ellipse cx="${CX}" cy="${f1(G.top - 120)}" rx="200" ry="260" fill="rgba(160,200,255,.03)"/>`;
+    // земля: тёмный лёд, плинт из двух колец, осколки
+    out += `<ellipse cx="${CX}" cy="${f1(G.base + 44)}" rx="214" ry="40" fill="url(#${p}ground)"/><ellipse cx="${CX}" cy="${f1(G.base + 30)}" rx="${f1(b.w / 2 + 70)}" ry="12" fill="rgba(0,4,16,.6)"/>`;
+    out += `<rect x="${f1(b.x0 - 36)}" y="${f1(G.base + 16)}" width="${f1(b.w + 72)}" height="14" rx="3" fill="url(#${p}corn)" opacity=".75"/><rect x="${f1(b.x0 - 20)}" y="${f1(G.base + 2)}" width="${f1(b.w + 40)}" height="16" rx="3" fill="url(#${p}corn)"/><rect x="${f1(b.x0 - 20)}" y="${f1(G.base + 2)}" width="${f1(b.w + 40)}" height="1.5" fill="rgba(230,244,255,.5)"/>`;
+    [[b.x0 - 62, 16, -5], [b.x0 - 46, 10, -3], [b.x0 + b.w + 50, 18, 6], [b.x0 + b.w + 66, 11, 4]].forEach(([x, hh, lean]) => { out += poly([[x - 5, G.base + 30], [x + 5, G.base + 30], [x + lean, G.base + 30 - hh]], lean < 0 ? '#3F6AA6' : '#1C375F') + `<path d="M${f1(x - 5)} ${f1(G.base + 30)}L${f1(x + lean)} ${f1(G.base + 30 - hh)}" stroke="rgba(230,244,255,.5)" stroke-width="1"/>`; });
     return out;
   },
 };
 
 /* ===================== СБОРКА БАШНИ ИЗ АРХЕТИПА ===================== */
 const { icon, phone, energy } = K;
-const ARCH = { fortress: FORT, cylinder: CYL, needle: NEEDLE };
-const ARCH_RU = { fortress: 'Крепостной донжон', cylinder: 'Круглая башня (эталон)', needle: 'Ледяная игла' };
+const ARCH = { fortress: FORT, cylinder: CYL, crystal: CRYST };
+const ARCH_RU = { fortress: 'Крепостной донжон', cylinder: 'Круглая башня (эталон)', crystal: 'Хрустальная башня' };
 // зачем: одна точка сборки — архетип даёт геометрию, defs, этаж, навершие, сцену; состояния этажей и маркер общие (как SpireTowerSvg: модель этажей отдельно от рисунка)
 function towerSvg(L, o = {}) {
   const A = ARCH[L.arch]; const G = A.geom(); const p = `t${++UID}_`;
@@ -609,7 +625,7 @@ function weekHtml() {
 const SPEC = {
   fortress: { geom: 'квадрат углом к зрителю: две грани (левая свет, правая тень), светлое ребро; w₁ 232 → 222, этаж 44 / Страж 58', mat: 'грубая кладка 14 px курсами со смещением, случайные светлые/тёмные блоки; сверху каждого этажа карниз-полка', floors: 'бойницы-арки 7×24 (2 на этаж, с 12-го — 3); «мой» — факелы по бокам + тёплое гало', guards: 'машикули на консолях, зубцы по обеим граням, угловая башенка на ребре с колпаком', top: 'площадка с зубцами, жаровня-маяк (огонь 36 / 56 на вершине), знамя; вершина недели — огонь на всю высоту', pal: 'гранит #4E525B–#6B6F78 / #33363D–#1F2126, огонь #FFB75A, небо #13161B' },
   cylinder: { geom: 'цилиндр: w 196 − (f−1)·5, этаж 46 / Страж 60, topPad 300, basePad 96 (= SpireTowerSvg)', mat: 'градиент cyl (6 стопов #1F1F23→#5A5A62→#18181B), кладка рядами 11 px с изгибом, швы по cos', floors: 'окна по окружности (ширина·cos t), углы −.72/0/.72 (с 12-го — 2), lit #EEF0F6 / past #3A3A40 / dark #0B0B0D', guards: 'зубцы 11·cos t с тоном по углу, машикули-кронштейны', top: 'барабан 34 + конус 168 с черепицей, навершие: шар 5.5 / 7, сияние r 34 / 90', pal: 'как в приложении: #1F1F23…#5A5A62, карниз cylCorn, небо #101013→#17171A' },
-  needle: { geom: 'игла: трапеции этажей, w 200 − (f−1)·8.5, сходятся в остриё (190 над 15-м); три грани 0–.42 / .42–.62 / .62–1', mat: 'лёд: грани L #A6C9EE–#D4E9FA, C #DDEFFF–#FFFFFF, R #5E88C2–#213F78; косые преломления, трещины', floors: 'кромка-полка #F3F9FF с сосульками; фонари-ромбы 10×17 (lit #EAFBFF + свечение #8FE4FF, past #7FA6D2, dark #15305C)', guards: 'венец шардов: по 3 с каждой стороны + центральный шпиль; центральный фонарь ×1.5', top: 'остриё из трёх граней, над ним парящий бриллиант (корона + павильон, 6 граней), кольцо, 8 лучей, сияние r 78 / 130', pal: 'небо #0A1226→#10203F, сияние #9FE6FF, северное сияние #4FE3B0 / #7FD4FF / #B48CFF' },
+  crystal: { geom: 'восьмигранник углом к зрителю (три грани 0–.38 / .38–.62 / .62–1): w 176 − (f−1)·3.5, этаж 48 / Страж 62 — выше и стройнее Оникса; контрфорсы у основания до 4-го этажа, угловые распорки у Стражей', mat: 'хрусталь: грани L #4F7CB8–#86AEDD, C #9CC0E8–#C6DDF5, R #27457A–#122646; огранённые блоки 24×16 (светлая кромка сверху-слева, тёмная снизу-справа, случайные преломления/тени); тень под карнизом #040B1E', floors: 'стрельчатые окна 11×20 (Страж — 15×30): lit #DFF6FF + свечение #8FE4FF + световой мазок по кладке, past #4F74A6, dark #0C1E3E; карниз corn с висячими кристаллами', guards: 'кольцо 11 px, зубцы-призмы 9×15 с остриём (тон по положению), машикули; угловые распорки-кристаллы', top: 'барабан 32 с окнами, венец из 9 призм (середина выше), шпиль 232 из трёх граней с курсами огранки и светящейся сердцевиной, навершие-кристалл на игле, сияние r 36 / 92', pal: 'небо #070C1A→#0E1A33→#050812, акцент #9FE6FF, сияние на небе едва заметное (#4FE3B0/#7FD4FF .07)' },
 };
 function specHtml() {
   const cols = ['Лига', 'Архетип', 'Геометрия', 'Материал и свет', 'Этажи и окна', 'Стражи', 'Навершие', 'Палитра'];

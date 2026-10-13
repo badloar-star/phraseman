@@ -6,7 +6,7 @@ import path from 'node:path';
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const FILES = [
   'app/community_packs/CommunityPackSocialBar.tsx', 'app/flashcards/CollectionHeader.tsx', 'app/flashcards/CollectionListView.tsx', 'app/flashcards/DeckPickerSheet.tsx',
-  'app/flashcards/FlashcardListItem.tsx', 'app/flashcards_card_editor.tsx', 'app/flashcards_packs.tsx',
+  'app/flashcards/FlashcardListItem.tsx', 'app/flashcards_card_editor.tsx', 'app/flashcards_packs.tsx', 'app/flashcards/WordStrengthDots.tsx',
 ];
 
 describe('доступность: нет служебных qa- меток', () => {
@@ -15,7 +15,15 @@ describe('доступность: нет служебных qa- меток', () 
       const src = read(rel);
       expect(src).not.toMatch(/accessibilityLabel="qa-/);
       expect(src).not.toMatch(/\blabel="qa-/);
+      expect(src).not.toMatch(/accessibilityLabel=\{[^}]*qa-/); // шаблонная строка вида qa-${testID} тоже читается диктором
     }
+  });
+
+  it('точки силы слова скрыты от диктора, testID для робота на месте', () => {
+    const dots = read('app/flashcards/WordStrengthDots.tsx');
+    expect(dots).toContain('accessible={false}');
+    expect(dots).toContain('importantForAccessibility="no-hide-descendants"');
+    expect(dots).toContain('testID={testID}');
   });
 
   it('testID этих элементов на месте — по ним ищет робот Сверки', () => {

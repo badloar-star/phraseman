@@ -428,7 +428,6 @@ export default function DeckPickerSheet({
                     <PressableHybrid
                       key={n}
                       testID={`fc-deck-size-${n}`}
-                      accessibilityLabel={`qa-fc-deck-size-${n}`}
                       variant="chip"
                       onPress={() => setSize(n)}
                       style={{

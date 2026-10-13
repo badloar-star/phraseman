@@ -32,7 +32,9 @@ function WordStrengthDotsImpl({ strength, t, style, testID }: Props) {
     <View
       pointerEvents="none"
       testID={testID}
-      accessibilityLabel={testID ? `qa-${testID}` : undefined}
+      // зачем (Макеты a11y 13.10): диктор читал служебный id автотеста «qa-…»; точки — цветовой признак без слов, поэтому скрыты от диктора, testID остаётся для робота
+      accessible={false}
+      importantForAccessibility="no-hide-descendants"
       style={[{ flexDirection: 'row', alignItems: 'center', gap: 3 }, style]}
     >
       {[0, 1, 2].map((i) => (

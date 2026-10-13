@@ -38,4 +38,14 @@ name…»), settings-gap-028, system-015, en-d164-lang-choice-001: `[I18N-FALLBA
 | settings-gap-028, profile-006 | Заголовки «Study/Recaps» — исправлено по слову координатора: `SettingsGlassEyebrow` + прописные на 9 языках (13 px по D145 вместо 11 макета) | `app/settings_notifications.tsx` | коммит в окно 05:00; profile-006 переснять |
 | en-d164-lang-choice-001 | Шторка «Learning language» поверх «Interface language» — это и есть переход D164; текст чистый | — | ок |
 
-Ещё не сняты (жду кадров): auth-gap-001/003/008/009/010, settings-gap-016, profile-012.
+**Дополнение 04:50** — auth-gap-001 (аккаунт гостя), auth-gap-003 (шторка входа: «This phone is already linked to another
+account» — заголовок и текст разделены переносом, `RegistrationPromptModal.tsx:503`, не склейка), auth-gap-008 («Account deleted»,
+тёмное окно), settings-gap-016 (Privacy), profile-012: `[I18N-FALLBACK]` 0, кириллицы нет, кнопки в одну строку.
+
+| Кадр | Что не так | Где | Чьё / статус |
+|---|---|---|---|
+| profile-012 | Кадр — «Terms of Use», а по описанию строки «удаление: первый шаг» | шаги profile-012 | Сверка/робот |
+| profile-011, profile-012 | Адрес почты разорван переносом: «support» / «.phraseman@gmail.com» | текст юр. документов (`legal/*.json` → экран документа) | юр. тексты не правлю (решение владельца); вариант — неразрывный адрес при показе в приложении, решение Дизайна/Ядра |
+| settings-gap-016 vs Главная | Термин: на Главной «Dialogues» (брит.), в Приватности «AI dialogs», «Dialog memory» (амер.) | тексты интерфейса | Тексты — выбрать одно написание |
+
+Ещё не сняты (жду кадров): auth-gap-009, auth-gap-010.

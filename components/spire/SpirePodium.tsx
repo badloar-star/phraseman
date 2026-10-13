@@ -48,7 +48,8 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
             return (
               <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireStepsCount(lang, m.steps)}`}>
                 <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
-                <Text style={[s.name, { color: p.text }]}>{spireNickWrap(m.name)}</Text>
+                {/* зачем (координатор 13.10): на 360 dp колонка ≈ 101 dp, при шрифте ×1,3 длинное имя без пробела рвалось посреди слова. До 2 строк, перенос по слогам (Android hyphenationFrequency=full, iOS переносит сам), потолок роста шрифта 1,15 только у имени — это не ужатие шрифта под ширину */}
+                <Text style={[s.name, { color: p.text }]} numberOfLines={2} maxFontSizeMultiplier={1.15} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
                 <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>

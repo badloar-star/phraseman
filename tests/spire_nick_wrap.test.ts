@@ -30,6 +30,6 @@ describe('мягкий перенос в нике', () => {
     const podium = read('components/spire/SpirePodium.tsx');
     expect(podium).toContain('{spireNickWrap(m.name)}');
     expect(podium).toContain('accessibilityLabel={`${place}. ${m.name}, ');
-    expect(podium).not.toMatch(/numberOfLines|adjustsFontSizeToFit|ellipsizeMode/);
+    expect(podium).not.toMatch(/adjustsFontSizeToFit/); // ужатия нет: имя переносится, а не сжимается
   });
 });

@@ -75,7 +75,8 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
   assert.match(rows, /width:\s*48,\s*minWidth:\s*48,\s*minHeight:\s*48/);
   assert.match(rows, /translateX: value \? 19 : 0/);
   for (const text of [rows, body]) {
-    assert.doesNotMatch(text, /adjustsFontSizeToFit|maxFontSizeMultiplier/);
+    // зачем (координатор 13.10, коммит 687205b5b): кап шрифта 1,15 допустим только на заголовке экрана; сжатие и любой другой кап запрещены
+    assert.doesNotMatch(text, /adjustsFontSizeToFit|maxFontSizeMultiplier(?!={1.15})/);
     assert.doesNotMatch(text, /borderWidth:\s*(?!1\b|0\b)\d/);
     assert.doesNotMatch(text, /#34C759/);
   }

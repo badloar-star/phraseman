@@ -28,7 +28,8 @@ test('language settings use the approved liquid-glass scroll shell and geometry'
   assert.match(source, /boxShadow:\s*plateBoxShadow\(glass\)/);
   assert.match(source, /raisedBoxShadow\(glass\)/);
   assert.doesNotMatch(source, /borderColor:\s*glass\.glassEdge|borderWidth:\s*1/);
-  assert.doesNotMatch(source, /SectionSheetHeader|TouchableOpacity|SafeAreaView|BlurView|adjustsFontSizeToFit|maxFontSizeMultiplier|numberOfLines=/);
+  // зачем (координатор 13.10, коммит 687205b5b): кап шрифта 1,15 на заголовке экрана допустим (×1,3 на 360 dp ломает заголовок); любой другой кап и сжатие запрещены
+  assert.doesNotMatch(source, /SectionSheetHeader|TouchableOpacity|SafeAreaView|BlurView|adjustsFontSizeToFit|maxFontSizeMultiplier(?!={1.15})|numberOfLines=/);
 });
 
 test('language rows preserve the registry, active and disabled semantics, and one callback haptic', () => {

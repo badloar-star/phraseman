@@ -137,7 +137,11 @@ test('notification settings use the approved safe liquid-glass shell and card ge
   // Исключение — рамка текущего часа в колёсике (индикатор выбора, не контейнер): borderTopWidth/borderBottomWidth.
   assert.doesNotMatch(source, /borderWidth:\s*1,\s*borderColor:\s*glass\.glassEdge/);
   assert.doesNotMatch(source, /SectionSheetHeader|CustomSwitch|SafeAreaView|BlurView/);
-  assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier|numberOfLines=/);
+  assert.doesNotMatch(source, /adjustsFontSizeToFit|numberOfLines=/);
+  // зачем (координатор 13.10, Авторизация: системный «Крупный шрифт» ×1,3 ломает заголовки 34/40 pt на 360 dp у pl/es; коммит 687205b5b):
+  // кап шрифта допустим ТОЛЬКО на заголовке экрана и ровно 1,15 — перенос по словам остаётся; на остальном тексте экрана кап по-прежнему запрещён.
+  const caps = source.match(/maxFontSizeMultiplier=\{[^}]*\}/g) ?? [];
+  assert.deepEqual(caps, ['maxFontSizeMultiplier={1.15}'], 'only the screen title is capped, at 1.15');
 });
 
 test('master hint and back label retain all nine existing locales', () => {

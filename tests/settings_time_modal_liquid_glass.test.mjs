@@ -60,6 +60,7 @@ test('time modal keeps the action dock reachable in a bounded viewport and uses 
   assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass\.opaqueControl, boxShadow:nestedBoxShadow\(glass\)/, 'Cancel is a nested plate with a small shadow instead of a ghost outline');
   assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass.accent, boxShadow:actionBoxShadow\(glass\)/, 'OK keeps the approved pill radius and gets the action shadow');
   assert.match(source, /useEffect\(\(\) => \(\) => \{ if \(timer\.current\) clearTimeout\(timer\.current\); \}, \[\]\)/, 'pending wheel snap timer is cleaned on unmount');
-  assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier/, 'large text is not shrunk or capped');
+  // зачем (координатор 13.10, коммит 687205b5b): кап 1,15 допустим только на заголовке экрана уведомлений; сжатие и любой другой кап запрещены
+  assert.doesNotMatch(source, /adjustsFontSizeToFit|maxFontSizeMultiplier(?!=\{1\.15\})/, 'large text is not shrunk or capped (except the screen title at 1.15)');
   assert.doesNotMatch(source, /lineHeight: Math\.ceil\(\(v === value \? 32 : 20\) \* fontScale\)/, 'wheel line height is not manually scaled twice');
 });

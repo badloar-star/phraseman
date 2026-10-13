@@ -9,7 +9,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
@@ -23,6 +23,8 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { pluralWord } from '../../constants/plural';
 import { hapticTap } from '../../hooks/use-haptics';
 import { actionToastTri, emitAppEvent } from '../events';
+import { DebugLogger } from '../debug-logger';
+import { animateNextLayoutTransition } from '../smooth_layout';
 import CommunityPackSocialBar from '../community_packs/CommunityPackSocialBar';
 import type { FlashcardMarketPack } from './marketplace';
 import { formatDuration, openVideo, packVideoProgress } from './VideoPackRow';
@@ -38,7 +40,7 @@ type Props = Readonly<{
   /** «⋮» — меню набора (жалоба и т. п.); null — кнопки нет. */
   onMore: (() => void) | null;
   onSpeak: (text: string) => void;
-  /** Тап по строке фразы: открыть ролик на её секунде; null — строка только озвучивает. */
+  /** Кнопка «▶ В видео» раскрытой фразы: открыть ролик на её секунде; null — у фраз нет кнопки, тап по строке только озвучивает. */
   onOpenMoment: ((card: CardItem) => void) | null;
   /** Набор уже у человека (экран открыт не в режиме просмотра): вместо «Добавить +» — «✓ В моих наборах». */
   owned?: boolean;
@@ -81,6 +83,28 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
   // зачем (замечание владельца 10.10): цвета — токены выбранной темы, стили пересобираются при смене темы.
   const styles = useScaledTextStyles(useMemo(() => makeStyles(g), [g]));
   const copy = useMemo(() => copyFor(lang), [lang]);
+  // зачем (владелец 13.10, образец cards-v2.html videoSet(), «▶ В видео»): тап по фразе с отметкой времени раскрывает кнопку, а не открывает ролик сразу;
+  // раскрыта одна фраза за раз. Название — коротко, как утвердил владелец.
+  const [openCardId, setOpenCardId] = useState<string | null>(null);
+  const jumpLabel = useMemo(() => triLang(lang, {
+    ru: 'В видео', uk: 'У відео', en: 'In the video', es: 'En el vídeo', 'pt-BR': 'No vídeo', vi: 'Trong video', id: 'Di video', tr: 'Videoda', pl: 'W filmie',
+  }), [lang]);
+  const toggleJump = useCallback((card: CardItem) => {
+    animateNextLayoutTransition(); // зачем: кнопка вставляется в поток — карточки ниже сдвигаются плавно, а не скачком
+    setOpenCardId((prev) => {
+      const next = prev === card.id ? null : card.id;
+      DebugLogger.info('[VIDEO-PHRASE-JUMP]', `${next ? 'раскрыта' : 'свёрнута'} фраза: набор=${pack.id} карточка=${card.id} время=${String(card.videoStartSec)}с (поле карточки videoStartSec, без запросов)`);
+      return next;
+    });
+  }, [pack.id]);
+  const jumpToVideo = useCallback((card: CardItem) => {
+    if (!onOpenMoment) {
+      DebugLogger.warn('[VIDEO-PHRASE-JUMP]', `нажато «В видео», обработчика нет: набор=${pack.id} карточка=${card.id}`);
+      return;
+    }
+    DebugLogger.info('[VIDEO-PHRASE-JUMP]', `открываю видео: набор=${pack.id} ролик=${String(pack.videoId ?? '')} карточка=${card.id} старт=${String(card.videoStartSec)}с`);
+    onOpenMoment(card);
+  }, [onOpenMoment, pack.id, pack.videoId]);
   const videoId = String(pack.videoId ?? '').trim();
   const thumbUrl = videoId ? `https://i.ytimg.com/vi/${encodeURIComponent(videoId)}/hqdefault.jpg` : null;
   const count = cards.length > 0 ? cards.length : pack.cardCount;
@@ -161,7 +185,7 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
                 testID={`video-set-row-${card.id}`}
                 accessibilityRole="button"
                 accessibilityLabel={back ? `${card.en}, ${back}` : card.en}
-                onPress={() => { void hapticTap(); if (onOpenMoment && time) onOpenMoment(card); else onSpeak(card.en); }}
+                onPress={() => { void hapticTap(); if (onOpenMoment && time) toggleJump(card); else onSpeak(card.en); }}
                 style={[styles.phraseCard, { boxShadow: plateBoxShadow(g) }]}
               >
                 <PlateFill g={g} radius={16} />
@@ -178,6 +202,20 @@ function VideoSetViewInner({ pack, title, cards, lang, cardContentLang, onBack, 
                 </View>
                 <Text style={[styles.phrase, { color: g.text }]}>{card.en}</Text>
                 {back ? <Text style={[styles.tr, { color: g.secondary }]}>{back}</Text> : null}
+                {onOpenMoment && time && openCardId === card.id ? (
+                  <View style={styles.jumpRow}>
+                    <Pressable
+                      testID={`video-set-jump-${card.id}`}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${jumpLabel} ${time}`}
+                      onPress={() => { void hapticTap(); jumpToVideo(card); }}
+                      style={({ pressed }) => [styles.jump, { backgroundColor: g.cta }, pressed && styles.pressed]}
+                    >
+                      <Ionicons name="play" size={16} color={g.ctaInk} />
+                      <Text style={[styles.jumpText, { color: g.ctaInk }]}>{jumpLabel}</Text>
+                    </Pressable>
+                  </View>
+                ) : null}
               </KitTouchable>
             );
           })}
@@ -211,6 +249,10 @@ const makeStyles = (g: ReturnType<typeof useLv2Glass>) => StyleSheet.create({
   ctaSlot: { flex: 1, minWidth: 0 },
   sectionTitle: { marginTop: 26, marginBottom: 14, marginHorizontal: 2, fontSize: 19, lineHeight: 24, fontWeight: '600' },
   rows: { gap: 13 },
+  // `.pill` раскрытой фразы (cards-v2 videoSet): высота 38, поля 14/18, шрифт 15, зазор 8, сверху 14
+  jumpRow: { marginTop: 14, flexDirection: 'row' },
+  jump: { height: 38, borderRadius: 19, paddingLeft: 14, paddingRight: 18, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  jumpText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
   // `phrase()` макета: карточка r16 от 118 высотой, поля 14/18/16; таймкод-чип и озвучка в верхней строке.
   phraseCard: { minHeight: 118, borderRadius: 16, paddingTop: 14, paddingHorizontal: 18, paddingBottom: 16 },
   phraseTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

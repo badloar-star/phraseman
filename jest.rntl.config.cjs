@@ -50,7 +50,12 @@ module.exports = {
     // expo-* / @expo/* поставляются как ESM — без трансформации набор не загружался
     // (expo-linear-gradient, expo-blur, expo/virtual/env).
     // + react-native-* (reanimated mock.ts) и @react-navigation/* (через expo-router) — тоже ESM.
-    'node_modules/(?!((jest-)?react-native(-[a-z-]+)?|@react-native(-community)?|@react-navigation/[a-z-]+|expo(-[a-z-]+)?|@expo(/[a-z-]+)?)/)',
+    // зачем (координатор 13.10, ночная регрессия 18959e709): под pnpm пакет лежит в
+    // node_modules/.pnpm/<pkg@ver>/node_modules/<pkg>/ — после первого `node_modules/` стоит `.pnpm`, и прежний
+    // паттерн игнорировал ВСЁ: react-native/jest/setup.js не трансформировался, раннер выполнял 0 тестов.
+    // Необязательная приставка `.pnpm/<pkg@ver>/node_modules/` пропускает тот же список и в pnpm-размещении.
+    // `@react-native(-[a-z-]+)?` вместо `(-community)?`: @react-native-masked-view (иконка энергии, HUD) — тоже ESM.
+    'node_modules/(?!(\\.pnpm/[^/]+/node_modules/)?((jest-)?react-native(-[a-z-]+)?|@react-native(-[a-z-]+)?|@react-navigation/[a-z-]+|expo(-[a-z-]+)?|@expo(/[a-z-]+)?)/)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',

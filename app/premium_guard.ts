@@ -30,6 +30,13 @@ const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 const RC_TIMEOUT_MS = 8000;
 const CACHE_TTL_MS  = 5 * 60 * 1000; // 5 minutes — avoid hammering RevenueCat
+// зачем (смета Firebase п.10, 13.10; Ядро: «TTL 30 мин — доступ и так идёт слушателем access_projection»): охранный
+// restoreFromCloud у человека без Plus — это полное чтение облака. Раньше он шёл каждые 5 мин (общий CACHE_TTL_MS RevenueCat),
+// теперь не чаще раза в 30 мин. Кэши RevenueCat остаются на 5 мин — это не Firestore.
+export const CLOUD_ACCESS_REFRESH_TTL_MS = 30 * 60 * 1000;
+// зачем (аудит «пропала сеть» 13.10): addFlashcard ждёт проверку Plus внутри замка записи карточек — на плохой сети restoreFromCloud
+// без потолка держал сохранение карточки. Ждём облако не дольше 5 с; дальше решаем по локальным данным, обновление доезжает фоном.
+export const CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS = 5_000;
 // Зеркало functions/src/premium_status.ts SERVER_RC_GRACE_MS (72ч): покрывает billing retry
 // и сетевые лаги вебхука RC. Раньше клиент стоял на 24ч → между 24ч и 72ч клиент показывал
 // «нет премиума» и открывал пейвол, в то время как сервер ещё пропускал ИИ-функции. Аудит 2026-06-27.
@@ -891,15 +898,21 @@ function cacheAccess(result: boolean, generation: AccountGenerationToken): boole
 async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerationToken): Promise<boolean> {
   if (!accountGenerationIsCurrent(generation)) return false;
   const now = Date.now();
-  if (now - _lastCloudAccessRefreshTime < CACHE_TTL_MS) return false;
-  if (_cloudAccessRefreshInFlight) return _cloudAccessRefreshInFlight;
+  if (_cloudAccessRefreshInFlight) return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'joined_in_flight');
+  const sinceLastMs = now - _lastCloudAccessRefreshTime;
+  if (sinceLastMs < CLOUD_ACCESS_REFRESH_TTL_MS) {
+    console.log(`[PREMIUM-CLOUD] skip reason=ttl ageMs=${sinceLastMs} ttlMs=${CLOUD_ACCESS_REFRESH_TTL_MS}`); // guard-ok: ранний выход
+    return false;
+  }
 
   _lastCloudAccessRefreshTime = now;
   _cloudAccessRefreshInFlight = (async () => {
+    const startedAt = Date.now();
     try {
       const cloudSync = await import('./cloud_sync');
       if (!accountGenerationIsCurrent(generation)) return false;
       await cloudSync.restoreFromCloud();
+      console.log(`[PREMIUM-CLOUD] restore done ms=${Date.now() - startedAt}`); // guard-ok: итог сети
       return accountGenerationIsCurrent(generation);
     } catch (error) {
       // Немой catch запрещён: облако не ответило — доступ остаётся по локальному решению, причина в журнале.
@@ -909,7 +922,21 @@ async function refreshPremiumAccessFromCloudIfNeeded(generation: AccountGenerati
       _cloudAccessRefreshInFlight = null;
     }
   })();
-  return _cloudAccessRefreshInFlight;
+  return waitCloudAccessRefreshWithCeiling(_cloudAccessRefreshInFlight, 'started');
+}
+
+/** Ждать охранный restore не дольше потолка; по потолку — «облако не обновило» (fail-closed: доступ не выдаётся), restore идёт дальше фоном. */
+function waitCloudAccessRefreshWithCeiling(inFlight: Promise<boolean>, origin: 'started' | 'joined_in_flight'): Promise<boolean> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const ceiling = new Promise<boolean>((resolve) => {
+    timer = setTimeout(() => {
+      console.warn(`[PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=${CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS} origin=${origin} — решаем по локальным данным, restore доезжает фоном`); // guard-ok: потолок
+      resolve(false);
+    }, CLOUD_ACCESS_REFRESH_WAIT_CEILING_MS);
+  });
+  return Promise.race([inFlight, ceiling]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

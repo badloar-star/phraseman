@@ -1,0 +1,10 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] energy-modes-007: шаг wait:3000
+[BATCH-SHOOT] energy-modes-007: шаг tap:#lesson-menu-primary
+[BATCH-SHOOT] energy-modes-007: шаг wait:1500
+[BATCH-SHOOT] energy-modes-007: журнал приложения → 42 строк в _runs
+[BATCH-SHOOT] energy-modes-007: ok 13163мс marker+шагов_3+голый_кадр+ждали_metro_24мс → docs/phraseman-2.0/evidence/parity/energy-modes-007.png
+[BATCH-SHOOT] готово (все попытки): ok=1 timeout=0 error=0 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"ok":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T02-42-19-067Z.tsv
+[BATCH-SHOOT] energy-modes-007: склейка не удалась (status=1, свежий файл=true): rror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\energy-modes-007.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=660151 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230
+[BATCH-SHOOT] stitch-only energy-modes-007: failed склейка_не_удалась: rror, open 'C:\appsprojects\phraseman\docs\phraseman-2.0\evidence\parity\energy-modes-007.png' [PARITY-SHOT] device=emulator-5554 frame_bytes=660151 [PARITY-SHOT] fit=width mockup_h=1200 device_h=1230 — исходный голый кадр оставлен на месте
+[BATCH-SHOOT] stitch-only готово: склеено=0 пропущено=0 не_удалось=1; журнал docs\phraseman-2.0\evidence\parity\_runs\stitch_2026-10-13T02-42-54-627Z.tsv; голые кадры в docs\phraseman-2.0\evidence\parity\_runs\2026-10-13T02-42-54-627Z

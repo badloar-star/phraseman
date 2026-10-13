@@ -1,0 +1,7 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] energy-modes-003: шаг wait:2500
+[BATCH-SHOOT] energy-modes-003: журнал приложения → 51 строк в _runs
+[BATCH-SHOOT] energy-modes-003: ok 16637мс marker+шагов_1+голый_кадр+ждали_metro_30мс → docs/phraseman-2.0/evidence/parity/energy-modes-003.png
+[BATCH-SHOOT] готово (все попытки): ok=1 timeout=0 error=0 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"ok":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T02-41-49-947Z.tsv
+[BATCH-SHOOT] stitch-only energy-modes-003: stitched склейка_1800x1304
+[BATCH-SHOOT] stitch-only готово: склеено=1 пропущено=0 не_удалось=0; журнал docs\phraseman-2.0\evidence\parity\_runs\stitch_2026-10-13T02-42-16-117Z.tsv; голые кадры в docs\phraseman-2.0\evidence\parity\_runs\2026-10-13T02-42-16-117Z

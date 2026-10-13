@@ -179,3 +179,18 @@ set_steps('settings-gap-004', ['wait:1200', 'scroll:down', 'scroll:down', 'see:#
 for _rid in ('paywalls-024', 'paywalls-025', 'profile-022', 'profile-023'):
     if _rid in ENTRIES:
         ENTRIES[_rid]['steps'] = [x for x in ENTRIES[_rid]['steps'] if x != 'tap:#manage-subscription-reasons-continue']
+
+# ── Итог урока (Дизайн 13.10: dev-параметр devResult=верно:ошибок в /lesson_complete — цифры, медаль, пример ошибки; без него итог «пустой» без прогресса).
+# Числа — из образцов: learn.html E1 48:2 (3★ ≥85 %), E2 38:12 (2★), E3 27:23 (1★), E4 47:3 («следующий в Plus»), practice.html «Урок V1 — 2 звезды» 15:5.
+for _rid, _res in (('paywalls-009', '38:12'), ('paywalls-010', '48:2')):
+    _e = _entry(_rid)
+    if 'devResult=' not in _e['link']:
+        _e['link'] = _e['link'].replace('%26passed=1', '%26passed=1%26devResult=' + _res, 1)
+for _rid, _res, _plus, _note in (
+        ('learn-047', '48:2', 'plus=off', 'итог урока E1: 3★ (≥85 %), 48 верно / 2 ошибки'),
+        ('learn-048', '38:12', 'plus=off', 'итог урока E2: 2★ (60–84 %), 38 / 12'),
+        ('learn-049', '27:23', 'plus=off', 'итог урока E3: 1★ (<60 %), 27 / 23'),
+        ('learn-050', '47:3', 'plus=off', 'итог урока E4: «Урок пройден — следующий в Plus», 47 / 3'),
+        ('practice-024', '15:5', 'plus=off', 'итог урока V1 — 2 звезды, 15 / 5')):
+    if _rid not in ENTRIES:
+        add(_rid, ['wait:3000'], _plus, '/lesson_complete?id=3%26passed=1%26devResult=' + _res, unique=False, note=_note + ' (devResult — демо в памяти, прогресс не пишется)')

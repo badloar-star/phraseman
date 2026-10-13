@@ -18,5 +18,13 @@ paywalls-019, paywalls-023. Во всех журналах `[I18N-FALLBACK]` —
 | paywall-gap-001/005, 011 | «keep going right / away.» — «away.» одно на второй строке | `app/paywall_context_texts.ts:109` | мелочь; не блокер |
 | onboarding-001, onboarding-007 | Серая прямоугольная подложка вокруг «Get started» и вокруг круглой кнопки «назад» | — | вероятно подсветка фокуса Android после клавиш робота (на касании её нет); проверить на кадре без клавиш, в коде не трогаю |
 
-Ещё не сняты (жду кадров): settings-gap-002, profile-004/006/011/003, settings-gap-024, settings-gap-028, system-015,
+**Дополнение 04:50** — settings-gap-002, profile-004, profile-006: `[I18N-FALLBACK]` 0, кириллицы в интерфейсе нет («Русский»,
+«Українська» в списке языков — самоназвания, так и должно быть), кнопки и строки не обрезаны.
+
+| Кадр | Что не так | Где | Чьё / статус |
+|---|---|---|---|
+| profile-006 (Уведомления) | Заголовки разделов «Study» / «Recaps» строчными 13 px, в Настройках — «PHRASEMAN PLUS» / «HELP» прописными. Макет: `.eyebrow` — 11 px, letter-spacing 1.7, **uppercase** (`docs/design/v2-app/extension.css:38`, группы `profile.html:34`) → расхождение с макетом и в русском («Учёба», «Итоги») | `app/settings_notifications.tsx:428` (`sectionTitleStyle`: fontSize 13, нет textTransform) | Авторизация — правка вида, гейт паритета: не трогал без слова Сверки/координатора (2 свойства: fontSize 11, textTransform uppercase) |
+| profile-004 | Кадр — шторка «Learning language» поверх «Interface language», а в EN_PASS_ORDER у строки написано «профиль: карточка, ранги» | описание строки в EN_PASS_ORDER_R1 | моя неточность описания — языковых дыр на кадре нет |
+
+Ещё не сняты (жду кадров): profile-011/003, settings-gap-024, settings-gap-028, system-015,
 auth-gap-001/003/008/009/010, settings-gap-016, profile-012, en-d164-lang-choice-001.

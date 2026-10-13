@@ -194,3 +194,8 @@ for _rid, _res, _plus, _note in (
         ('practice-024', '15:5', 'plus=off', 'итог урока V1 — 2 звезды, 15 / 5')):
     if _rid not in ENTRIES:
         add(_rid, ['wait:3000'], _plus, '/lesson_complete?id=3%26passed=1%26devResult=' + _res, unique=False, note=_note + ' (devResult — демо в памяти, прогресс не пишется)')
+
+# зачем (координатор 13.10, Авторизация): у learn-047…050, practice-024, mistakes-panel-005/010 в реестре нет release=r1 —
+# генератор (dev_links_r1_generate.py:37) берёт только r1 или INCLUDE_IDS, и ссылки выше молча не попадали в DEV_LINKS_R1.
+import dev_links_r1_steps_robot as _STEPS_ROBOT  # noqa: E402
+_STEPS_ROBOT.INCLUDE_IDS.update({'learn-047', 'learn-048', 'learn-049', 'learn-050', 'practice-024', 'mistakes-panel-005', 'mistakes-panel-010'})

@@ -20,9 +20,10 @@ import { getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
+import { SPIRE_WINDOW_MAX } from './spire_tower_window';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
 
-const WINDOW_HEIGHT = 400;
+const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
 const MARKER_SIZE = 40;
 
 type Props = Readonly<{
@@ -38,6 +39,8 @@ type Props = Readonly<{
   dimRivals?: boolean;
   /** Лига игрока (tier 0..11): выбирает наряд башни. null/нет = Оникс без деталей. */
   tier?: number | null;
+  /** Высота окна, dp (по умолчанию 400 по макету): экран сужает её, если низ окна иначе уходит под кнопку «Играть». */
+  windowHeight?: number;
 }>;
 
 const RIVAL = 22;
@@ -103,7 +106,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
@@ -124,6 +127,9 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // зачем (приоритет владельца 13.10): журнал [SPIRE-RIVALS] — сколько соперников попадает в окно башни при прокрутке (кто выше/ниже виден или нет)
   const rivalsRef = useRef<ReadonlyMap<number, readonly SpireRival[]> | undefined>(rivalsByFloor);
   rivalsRef.current = rivalsByFloor;
+  // зачем (строка 25 R1_BACKLOG): высота окна может меняться после измерения дока; прокрутка к этажу берёт актуальную из ref, не пересоздавая scrollToFloor
+  const windowHeightRef = useRef(windowHeight);
+  windowHeightRef.current = windowHeight;
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
@@ -138,7 +144,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     }
     const fl = floor === null ? SPIRE_TOWER_GEOM.floors[0] : SPIRE_TOWER_GEOM.floors[Math.min(floor, SPIRE_FLOOR_COUNT) - 1];
     const cy = (fl.y + fl.h / 2) * scale;
-    const y = Math.max(0, cy - WINDOW_HEIGHT / 2);
+    const wh = windowHeightRef.current;
+    const y = Math.max(0, cy - wh / 2);
     const needH = SPIRE_TOWER_GEOM.height * scale;
     const ready = contentHRef.current >= needH - 1;
     logSpireLayout(`scroll-req#${why}`, { floor, scale: roundLayout(scale), cy: roundLayout(cy), requestedY: roundLayout(y), contentH: roundLayout(contentHRef.current), needH: roundLayout(needH), ready: ready ? 'да' : 'нет → отложено', animated: animated ? 'да' : 'нет' });
@@ -149,12 +156,12 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     for (const f of SPIRE_TOWER_GEOM.floors) {
       const mid = (f.y + f.h / 2) * scale;
       const list = rivalsRef.current?.get(f.f);
-      if (mid >= y && mid <= y + WINDOW_HEIGHT && list && list.length > 0) { inWindow += list.length; floorsInWindow += 1; }
+      if (mid >= y && mid <= y + wh && list && list.length > 0) { inWindow += list.length; floorsInWindow += 1; }
     }
     console.log('[SPIRE-RIVALS] window', JSON.stringify({ why, floor, requestedY: roundLayout(y), rivalsInWindow: inWindow, floorsWithRivals: floorsInWindow, total: rivalsRef.current?.size ?? 0 })); // guard-ok: журнал окна башни
     echoRef.current = why;
     draggedRef.current = false; // новый запрос — прежняя ручная прокрутка не мешает
-    lastReqRef.current = { y: Math.min(y, Math.max(0, needH - WINDOW_HEIGHT)), why }; // ожидаемое смещение — не дальше низа содержимого
+    lastReqRef.current = { y: Math.min(y, Math.max(0, needH - wh)), why }; // ожидаемое смещение — не дальше низа содержимого
     scrollRef.current?.scrollTo({ y, animated });
     if (!animated) verifyScroll({ scroll: scrollRef, last: lastReqRef, offset: offsetRef, dragged: draggedRef }, 0); // анимированный подъём догоняет сам; сверяем только мгновенные показы
   }, [scale, width]);
@@ -173,6 +180,13 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     echoRef.current = null;
     console.log('[SPIRE-SCROLL] получено', JSON.stringify({ why, gotY: roundLayout(e.nativeEvent.contentOffset.y) })); // guard-ok: итог прокрутки
   }, []);
+
+  // окно стало выше/ниже (измерили док) — свой этаж снова по центру нового окна, без анимации
+  useEffect(() => {
+    if (scale <= 0 || !placedRef.current || myFloor === null) return;
+    scrollToFloor(myFloor, false, 'окно-изменило-высоту'); // i18n-ok: причина прокрутки для лога [SPIRE-SCROLL], не текст экрана
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [windowHeight]);
 
   useEffect(() => {
     if (scale <= 0) return;
@@ -216,7 +230,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     // зачем (владелец 12.10, стиль «Тень»): окно башни без кромки; тень — на внешней обёртке, обрезка содержимого — на внутреннем окне.
     <View style={[s.shadowWrap, { boxShadow: plateBoxShadow(g) }]}>
     <View
-      style={[s.window, { backgroundColor: g.plateFillFrom }]}
+      style={[s.window, { height: windowHeight, backgroundColor: g.plateFillFrom }]}
       onLayout={onLayout}
       accessible
       accessibilityRole="adjustable"

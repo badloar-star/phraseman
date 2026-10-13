@@ -50,6 +50,7 @@ import SpireLockedState from './SpireLockedState';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
 import SpireHomeSkeleton from './SpireHomeSkeleton';
+import { spireTowerWindowHeight } from './spire_tower_window';
 import SpireStepScreen from './SpireStepScreen';
 import SpireTour from './SpireTour';
 import SpireTower from './SpireTower';
@@ -92,6 +93,10 @@ export default function SpireHomeScreen() {
   const [tourSeen, setTourSeen] = useState<boolean | null>(() => (preview ? preview.tourSeen : peekSpireTourSeen()));
   // Измеренная высота дока (кнопка «Подняться» / панель итога): от неё считается нижний запас списка. 0 — ещё не измерен.
   const [dockH, setDockH] = useState(0);
+  // зачем (строка 25 R1_BACKLOG): верх окна башни и верх дока — из измерений; окно ровно до дока, чтобы кнопка «Играть» не закрывала нижние этажи
+  const [towerTop, setTowerTop] = useState(0);
+  const [dockTop, setDockTop] = useState(0);
+  const towerWindowH = spireTowerWindowHeight(towerTop, dockTop, DOCK_GAP);
 
   useEffect(() => {
     if (preview) {
@@ -310,8 +315,8 @@ export default function SpireHomeScreen() {
         {(devWeekResult ?? game.weekResult) ? (
           <SpireWeekResultCard lang={lang} result={(devWeekResult ?? game.weekResult)!} myCoinRank={myCoinRank} />
         ) : null}
-        <View style={s.towerWrap}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} />
+        <View style={s.towerWrap} onLayout={(e) => { const y = Math.round(e.nativeEvent.layout.y); setTowerTop((prev) => (prev === y ? prev : y)); }}>
+          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null} windowHeight={towerWindowH} />
         </View>
         <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}
@@ -327,6 +332,8 @@ export default function SpireHomeScreen() {
         style={[s.dock, { bottom: bottomPad - 24 }]}
         onLayout={(e) => {
           const h = e.nativeEvent.layout.height;
+          const dy = Math.round(e.nativeEvent.layout.y);
+          setDockTop((prev) => (prev === dy ? prev : dy));
           setDockH((prev) => (Math.abs(prev - h) < 0.5 ? prev : h)); // зачем: порог 0,5 dp — дрожь округления не гоняет перерисовку; док на запас списка не влияет (absolute), цикла нет
           logSpireLayout('dock.wrap', { y: roundLayout(e.nativeEvent.layout.y), h: roundLayout(h), bottomOffset: roundLayout(bottomPad - DOCK_LIFT) });
         }}

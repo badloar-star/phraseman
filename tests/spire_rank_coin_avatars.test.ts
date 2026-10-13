@@ -92,7 +92,7 @@ describe('Шпиль: монеты рангов вместо букв', () => {
 
   it('номер этажа на башне #8E8E92 (≥ 4,5 на небе всех лиг), у своего этажа белый', () => {
     const svg = read('components/spire/SpireTowerSvg.tsx');
-    expect(svg).toContain("fill={mine ? '#FFFFFF' : '#8E8E92'} textAnchor=\"middle\">{String(f)}");
+    expect(svg).toContain("mine ? '#FFFFFF' : '#8E8E92'"); // без сцены (по умолчанию) — #8E8E92; со сценой цвет берётся из токенов темы (Темы, 80b07bdaa)
     expect(svg).not.toContain('#6E6E72');
   });
 

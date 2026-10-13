@@ -78,6 +78,8 @@
   .gs-al .ab { margin-top: 9px; font-size: 16px; line-height: 22px; color: var(--sec); white-space: pre-line; }
   .gs-al .cta { margin-top: 18px; height: 44px; border-radius: 22px; font-size: 16px; }
 
+  /* зачем (Темы DIFF_COLOR_TRIAGE группа В + координатор 13.10, cards-gap-011): шторка режима тренировки — нейтральный градиент #28282E→#1E1E24 стиля «Тень» (как .sheet в shadow-skin.css), а не плоский kit #1B1B1D */
+  .ph .sheet[data-sheet="mw"], .ph .sheet[data-sheet="mf"] { background: linear-gradient(180deg, rgba(40,40,46,.98), rgba(30,30,36,.98)); }
   /* ---------- тост ActionToast ---------- */
   /* зачем: по коду ActionToast: карточка от 76, радиус 20, слева рейка 3, плитка значка 44, подпись-тон 13/800 капсом и сообщение 16/22; цвета не зависят от типа — отличаются только значок и подпись тона */
   .gs-toast { position: absolute; left: 14px; right: 14px; bottom: 42px; z-index: 60; min-height: 76px; border-radius: 20px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;
@@ -211,7 +213,8 @@
     albums20: svg('<rect x="3" y="8.25" width="18" height="12" rx="1.4"/><path d="M6.75 3.75h10.5M4.5 6h15"/>', 's20'),
     lock18: svg('<rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="currentColor" stroke="none"/><path d="M8 10.5V8a4 4 0 018 0v2.5" stroke-width="2.2"/>', 's18'),
     checkC: svg('<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.5"/>', 's22'),
-    alertC: svg('<circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.4"/>', 's22'),
+    // зачем (Дизайн CARDS_LAYOUT_ROWS_R1 п.6, кадр cards-gap-022): значок общего тоста ошибки — белый заливной круг с тёмным «!» (не кольцо)
+    alertC: svg('<circle cx="12" cy="12" r="9.5" fill="#F2F1F6" stroke="none"/><path d="M12 7.2v5.6M12 16.4h.01" stroke="#1B1B1D" stroke-width="2.6"/>', 's22'),
     infoC: svg('<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8h.01" stroke-width="2.4"/>', 's22'),
     radioOn: svg('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/>', 's20'),
     radioOff: svg('<circle cx="12" cy="12" r="8.5"/>', 's20'),
@@ -303,7 +306,8 @@
   const bgPackOther = (added) => `${packHead({ t: 'B2 глаголы', author: 'Ирина', l: 'B2', n: 49, likes: 3, liked: false,
       btns: added ? `<div class="cta gh t grow">${ic('check', 's18')}В моих наборах</div><div class="cta t grow">${ic('play', 's18')}Тренировать</div>`
         : `<div class="cta t grow">Добавить себе ${ic('plus', 's18')}</div><span class="gs-rb l t">${ic('heart', 's20')}</span>` })}${zoomBar()}${grid2(W.slice(10, 16))}`;
-  const savedTop = back(`<span class="gs-rb t">${ic('dotsH', 's20')}</span><span class="gs-rb t">${ic('plus', 's20')}</span>`) + ttl('Сохранённые', 64);
+  // зачем (Дизайн CARDS_LAYOUT_ROWS_R1 п.5 + координатор 13.10, cards-gap-018/022): шапка «Сохранённых» как в утверждённом cards-v2 №5 и в приложении — «‹», поиск, «+», «⋮» (было «…» и «+»)
+const savedTop = back(`<span class="gs-rb t">${ic('search', 's20')}</span><span class="gs-rb t">${ic('plus', 's20')}</span><span class="gs-rb s t">${ic('dotsV', 's18')}</span>`) + ttl('Сохранённые', 64);
   const savedFab = `<div class="gs-fab"><span class="cta sm t">${ic('play', 's18')}Тренировать</span></div>`;
   const bgSaved = (list) => `${savedTop}${zoomBar()}${grid2(list || W.slice(0, 12))}`;
 

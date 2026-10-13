@@ -1,0 +1,8 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] coins-004: шаг wait:1500
+[BATCH-SHOOT] coins-004: шаг tap:#coin-rank-upgrade
+[BATCH-SHOOT] coins-004: шаг await:#coin-rank-pending-spinner
+[BATCH-SHOOT] coins-004: шаг не выполнен: Error: step_target_not_found:#coin-rank-pending-spinner
+[BATCH-SHOOT] coins-004: журнал приложения → 39 строк в _runs
+[BATCH-SHOOT] coins-004: error 13550мс step_target_not_found:#coin-rank-pending-spinner+ждали_metro_24мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-42-39-837Z/coins-004.error.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=1 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-42-39-837Z.tsv

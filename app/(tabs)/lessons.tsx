@@ -2399,19 +2399,29 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
 
   useEffect(() => {
     const ownerStableId = activeLegacyAccountOwner(token);
-    if (!enabled || !ownerStableId) {
+    if (!ownerStableId) {
       setBinding(null);
       return undefined;
     }
+    // зачем (Макеты 13.10, learn-014): вкладка в фоне (поверх окно Plus, урок) раньше обнуляла баланс — под шторкой в шапке
+    // стояло «—», а при возврате число мигало «— → N». Держим последнее проверенное значение ЭТОГО владельца и поколения;
+    // сброс — только при смене аккаунта (подписка выше) или без владельца.
+    if (!enabled) return undefined;
 
     let alive = true;
     let durableReadValidated = false;
-    setBinding(null);
+    setBinding((prev) => (prev && prev.ownerStableId === ownerStableId && prev.accountGeneration === token.generation ? prev : null));
 
     void getRunesBalanceRead().then((read) => {
-      if (!alive
-        || read.quality !== "durable"
-        || !isCurrentAccountGeneration(token, ownerStableId)) return;
+      if (!alive) return;
+      if (read.quality !== "durable") {
+        console.warn('[LESSONS-COINS] баланс: чтение не durable — держим прежнее значение', { quality: read.quality });
+        return;
+      }
+      if (!isCurrentAccountGeneration(token, ownerStableId)) {
+        console.warn('[LESSONS-COINS] баланс: поколение аккаунта сменилось во время чтения — ответ отброшен', { generation: token.generation });
+        return;
+      }
       durableReadValidated = true;
       setBinding(Object.freeze({
         ownerStableId,

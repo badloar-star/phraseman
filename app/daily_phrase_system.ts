@@ -22,7 +22,8 @@ import {
   getCachedTargetRemoteDailyPhrasePool,
 } from './multilingual_daily_phrase_remote_runtime';
 import type { Idiom, IdiomSourceLocaleMap } from './idioms_data';
-import { getIdiomsSync } from './idioms_lazy';
+import { getIdiomsSync, isIdiomsCatalogLoaded } from './idioms_lazy';
+import { InteractionManager } from 'react-native';
 import type { SourceLocale } from './source_locales';
 import type { StudyTarget } from './study_target';
 import {
@@ -475,6 +476,8 @@ async function readCachedRemotePhrase(date: string): Promise<DailyPhrase | null>
 // пропущен день (нет пред-вычисленной фразы), квест деталей, уведомления.
 const DAILY_PHRASE_PEEK_KEY = 'daily_phrase_peek_v1';
 let peekPhraseToday: DailyPhrase | null = null;
+/** Снимок с диска целиком ({сегодня, завтра}) — чтобы «завтра», посчитанное прошлым запуском, не требовало каталога. */
+let peekStoredMap: Record<string, DailyPhrase | undefined> | null = null;
 
 // зачем (координатор 11.10, «сперва логи»): первый кадр Главной поднимал полный каталог идиом (627 мс). Снимок
 // фразы дня существует ровно чтобы этого не было — видно, в каком состоянии он был в момент промаха.
@@ -509,6 +512,7 @@ export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
       return;
     }
     const parsed = JSON.parse(raw) as Record<string, DailyPhrase | undefined>;
+    peekStoredMap = parsed ?? null;
     const todays = parsed?.[todayKey()];
     if (todays?.english?.trim()) peekPhraseToday = todays;
     peekHydrationState = peekPhraseToday ? 'ready' : 'no_today';
@@ -524,23 +528,75 @@ export async function hydrateDailyPhrasePeekFromStorage(): Promise<void> {
     }
 }
 
-function rememberPeekPhrases(today: DailyPhrase): void {
-  peekPhraseToday = today;
-  const map: Record<string, DailyPhrase> = { [today.date]: today };
+/**
+ * зачем (координатор 13.10, профили Сверки f0d559796: getIdiomsSync ← rememberPeekPhrases 50–60 мс в окне +5…+12 с холодного
+ * старта): ради одной «завтрашней» фразы каждый запуск поднимал каталог идиом (610 КБ JS). Сегодняшняя фраза пишется сразу;
+ * завтрашняя — из прошлого снимка, или сразу если каталог уже поднят, иначе отложенно (пауза + конец взаимодействий).
+ */
+const TOMORROW_PEEK_DEFER_MS = 10_000;
+let tomorrowPeekTimer: ReturnType<typeof setTimeout> | null = null;
+
+function tomorrowPeekDateKey(): string {
+  return new Date(Date.now() + 86400000).toISOString().split('T')[0]!;
+}
+
+function writePeekMap(map: Record<string, DailyPhrase>): void {
+  peekStoredMap = map;
+  void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(noteSwallowedHandler('daily_phrase_system:promise_4'));
+}
+
+/** Завтрашняя локальная фраза детерминирована (dayIndex+1 по кругу каталога). Если завтра админ назначит remote — async-путь заменит. */
+function computeTomorrowPeek(tomorrowDate: string): DailyPhrase | null {
   try {
-    // Завтрашняя локальная фраза детерминирована (dayIndex+1 по кругу каталога):
-    // считаем её здесь, в фоне, чтобы ЗАВТРАШНИЙ холодный старт тоже не грузил
-    // каталог. Если завтра админ назначит remote-фразу — async-путь заменит её
-    // после первого кадра (та же механика, что была у sync→remote всегда).
     const all = getIdiomsSync();
     const tomorrowIdiom = all[(getDayIndex() + 1) % all.length];
-    const tomorrowDate = new Date(Date.now() + 86400000).toISOString().split('T')[0]!;
-    if (tomorrowIdiom) map[tomorrowDate] = phraseFromIdiom(tomorrowIdiom, tomorrowDate);
+    return tomorrowIdiom ? phraseFromIdiom(tomorrowIdiom, tomorrowDate) : null;
   } catch (e) {
-      // каталог недоступен — сохраним хотя бы сегодняшнюю
-      DebugLogger.error('daily_phrase_system:tomorrowDate', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
-  void AsyncStorage.setItem(DAILY_PHRASE_PEEK_KEY, JSON.stringify(map)).catch(noteSwallowedHandler('daily_phrase_system:promise_4'));
+    // каталог недоступен — сохраним хотя бы сегодняшнюю
+    DebugLogger.error('daily_phrase_system:tomorrowDate', e instanceof Error ? e : new Error(String(e)), 'warning');
+    return null;
+  }
+}
+
+function rememberPeekPhrases(today: DailyPhrase): void {
+  peekPhraseToday = today;
+  const tomorrowDate = tomorrowPeekDateKey();
+  const map: Record<string, DailyPhrase> = { [today.date]: today };
+  const known = peekStoredMap?.[tomorrowDate];
+  if (tomorrowPeekTimer) { clearTimeout(tomorrowPeekTimer); tomorrowPeekTimer = null; }
+  if (known?.english?.trim()) {
+    map[tomorrowDate] = known;
+    console.log('[IDIOMS-LAZY] tomorrow source=peek — каталог не нужен', JSON.stringify({ today: today.date, tomorrow: tomorrowDate }));
+    writePeekMap(map);
+    return;
+  }
+  if (isIdiomsCatalogLoaded()) {
+    const tomorrow = computeTomorrowPeek(tomorrowDate);
+    if (tomorrow) map[tomorrowDate] = tomorrow;
+    console.log('[IDIOMS-LAZY] tomorrow source=catalog_already_loaded', JSON.stringify({ today: today.date, tomorrow: tomorrowDate, ok: Boolean(tomorrow) }));
+    writePeekMap(map);
+    return;
+  }
+  writePeekMap(map);
+  console.log('[IDIOMS-LAZY] tomorrow deferred — сегодняшняя записана, каталог позже', JSON.stringify({ today: today.date, tomorrow: tomorrowDate, delayMs: TOMORROW_PEEK_DEFER_MS }));
+  tomorrowPeekTimer = setTimeout(() => {
+    tomorrowPeekTimer = null;
+    // InteractionManager есть всегда в приложении; в тестовой среде (частичный мок react-native) его может не быть — тогда сразу.
+    const afterInteractions = (task: () => void) => (InteractionManager?.runAfterInteractions ? InteractionManager.runAfterInteractions(task) : task());
+    afterInteractions(() => {
+      const current = peekPhraseToday;
+      if (!current) {
+        console.log('[IDIOMS-LAZY] tomorrow skip reason=no_today_phrase');
+        return;
+      }
+      const startedAt = Date.now();
+      const tomorrow = computeTomorrowPeek(tomorrowDate);
+      const next: Record<string, DailyPhrase> = { [current.date]: current };
+      if (tomorrow) next[tomorrowDate] = tomorrow;
+      console.log('[IDIOMS-LAZY] tomorrow source=deferred_load', JSON.stringify({ tomorrow: tomorrowDate, ok: Boolean(tomorrow), ms: Date.now() - startedAt }));
+      writePeekMap(next);
+    });
+  }, TOMORROW_PEEK_DEFER_MS);
 }
 
 /** Sync phrase for first paint; matches idiomForDay() / cloud logic without I/O. */

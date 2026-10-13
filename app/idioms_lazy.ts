@@ -10,6 +10,11 @@ import { gcDelta, gcSnapshot } from './mem_probe';
 
 let cachedIdioms: readonly Idiom[] | null = null;
 
+/** Каталог уже поднят в этом процессе — обращение к нему бесплатно (daily_phrase_system: «завтрашняя» фраза). */
+export function isIdiomsCatalogLoaded(): boolean {
+  return cachedIdioms !== null;
+}
+
 export function getIdiomsSync(): readonly Idiom[] {
   if (!cachedIdioms) {
     // зачем (координатор 11.10, замер home_paint: idioms_data 627 мс на первом кадре Главной): «сперва логи» —

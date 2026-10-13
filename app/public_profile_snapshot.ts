@@ -61,7 +61,9 @@ const getFirestore = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (error) {
+    // зачем (аудит Optimistic UI Профиля, 13.10; «немого catch нет»): без Firestore проекция публичной карточки молча не уходила — теперь причина в журнале
+    DebugLogger.warn('[PROFILE-CARD]', `public snapshot: Firestore недоступен (${error instanceof Error ? error.message : String(error)}) — проекция не уйдёт`);
     return null;
   }
 };
@@ -92,7 +94,8 @@ function publicProfileProjectionCallable() {
 async function readString(key: string): Promise<string> {
   try {
     return (await AsyncStorage.getItem(key)) ?? '';
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-CARD]', `public snapshot: ключ ${key} не прочитался (${error instanceof Error ? error.message : String(error)})`);
     return '';
   }
 }
@@ -105,7 +108,8 @@ async function readSnapshotCache(stableId: string): Promise<SnapshotCache> {
   try {
     const raw = await AsyncStorage.getItem(snapshotCacheKey(stableId));
     return raw ? JSON.parse(raw) as SnapshotCache : {};
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-CARD]', `public snapshot: кэш проекции не прочитался или битый (${error instanceof Error ? error.message : String(error)}) — начнём с пустого`);
     return {};
   }
 }
@@ -114,7 +118,8 @@ async function writeSnapshotCache(stableId: string, cache: SnapshotCache): Promi
   try {
     await AsyncStorage.setItem(snapshotCacheKey(stableId), JSON.stringify(cache));
     return true;
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-CARD]', `public snapshot: кэш проекции не записался (${error instanceof Error ? error.message : String(error)})`);
     return false;
   }
 }
@@ -319,7 +324,9 @@ export function syncPublicProfileSnapshot(
       ownerState.pending = null;
       try {
         await syncPublicProfileSnapshotUnsafe(next, operationToken, ownerState);
-      } catch {
+      } catch (error) {
+        // зачем (аудит Optimistic UI Профиля, 13.10): упала проекция («Про», стиль, ранг) — другие игроки не увидят изменения; причина должна быть в журнале, а не только флаг dirty
+        DebugLogger.warn('[PROFILE-CARD]', `public snapshot: проекция упала (${error instanceof Error ? error.message : String(error)}) — публичная карточка останется старой до следующей отправки`);
         ownerState.dirty = true;
       }
     }

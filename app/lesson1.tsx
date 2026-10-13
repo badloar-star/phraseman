@@ -86,6 +86,7 @@ import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } f
 import { isInteractiveTheoryLesson } from './theory_topic_accents';
 import type { LessonPhrase } from './lesson_data_types';
 import { answerDisplayLineWithCanonicalPunctuation, phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phraseHasStudyTargetContent, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Теории» открывал два экрана теории
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Enabled by default with the same emergency build-time rollback as the shared
@@ -1588,7 +1589,7 @@ const LessonContent = React.memo(function LessonContent({
           {/* Theory Button */}
           {/* зачем (координатор 12.10): своей теории для языка интерфейса нет (английский) — кнопку не показываем; pt-BR/vi/id/tr/pl — в lesson_help на их языке. */}
           {(lessonTheorySupportBlocked || theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1') !== 'hidden') && (
-          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
+          <LessonPressable testID="lesson1-theory" style={toolChip} onPress={() => { fk.tap(); if (!navOnce(`lesson1:theory:${topicLessonId}`)) return; /* зачем (владелец 2026-09-17): в комбинированном уроке тему задаёт ТЕКУЩАЯ фраза, а не маршрут — иначе открылась бы чужая теория. */ if (lessonTheorySupportBlocked) { router.push({ pathname: '/lesson_help', params: { id: topicLessonId } }); return; } const entry = theoryEntryFor(lang, isInteractiveTheoryLesson(topicLessonId), 'lesson1'); if (entry === 'hidden') return; router.push(entry === 'hint' ? { pathname: '/hint', params: { id: topicLessonId } } : { pathname: '/lesson_help', params: { id: topicLessonId } }); }}>
             <Ionicons name={lessonTheorySupportBlocked ? 'shield-checkmark-outline' : 'book-outline'} size={26} color={glass.text} />
             <Text style={{ color: glass.secondary, fontSize: TOOL_LABEL_FONT, marginTop: 4 }}>
               {lessonTheorySupportBlocked ? triLang(lang, {
@@ -1978,7 +1979,8 @@ function LessonScreen() {
         setRemoteFrenchLessonRows(rows);
         setRemoteFrenchLessonLoadState(rows.length > 0 ? 'ready' : 'failed');
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        noteSwallowedHandler('lesson1:remoteFrenchLessons')(error); // зачем: сбой загрузки французских уроков был немым — экран «не загрузилось» без причины
         if (cancelled) return;
         setRemoteFrenchLessonRows([]);
         setRemoteFrenchLessonLoadState('failed');
@@ -3081,7 +3083,9 @@ function LessonScreen() {
         {
           const canonKey = phraseCanonicalAnswer(phrase, stRm);
           const correctTokens = canonKey.split(/\s+/).filter(Boolean);
-          const resolvedToken = resolvePhraseMistakeToken(canonKey, selectedWords.join(' '));
+          // зачем (аудит Optimistic UI Уроков, 13.10): раньше здесь стоял `selectedWords.join(' ')` — переменная замыкания, которой нет в deps колбэка (устаревшее значение) и которая пуста в режиме ввода.
+          // Тип ошибки и слово-промах считались по пустому ответу → почти всё записывалось как «пропущено слово». Берём фактический `answer`.
+          const resolvedToken = resolvePhraseMistakeToken(canonKey, answer);
           const tokenRows = phraseWordRowsForStudyTarget(phrase, stRm);
           const tokenIndex = resolvedToken?.tokenIndex ?? 0;
           const tokenRow = tokenIndex >= 0 ? tokenRows[tokenIndex] : undefined;
@@ -3126,10 +3130,7 @@ function LessonScreen() {
                 // 'word_order', поэтому ЛЮБАЯ ошибка урока приходила в раздел
                 // с подсказкой «Сверь порядок слов». Тип считаем по промаху.
                 facet: {
-                  kind: lessonMistakeFacet({
-                    expectedPhrase: canonKey,
-                    answeredPhrase: selectedWords.join(' '),
-                  }),
+                  kind: mistakeFacetKind,
                   tokenIndex: tokenIndex >= 0 ? tokenIndex : undefined,
                   expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
                 },
@@ -3142,6 +3143,8 @@ function LessonScreen() {
 
     // Серия правильных ответов — используется для комбо-достижений.
     if (isRight) {
+            const mistakeFacetKind = lessonMistakeFacet({ expectedPhrase: canonKey, answeredPhrase: answer });
+            console.log('[MISTAKE-CAPTURE] facet', JSON.stringify({ phraseId: phrase.id, answer, answerSource: 'checkAnswer.arg', staleSelectedWords: selectedWords.join(' '), facet: mistakeFacetKind, tokenIndex, errWord })); // guard-ok: одна строка на неверный ответ, видно по какому ответу считан тип ошибки
       correctStreakRef.current += 1;
       setComboCount(correctStreakRef.current);
       // Проверка combo читает/пишет состояние всех достижений. Она нужна только
@@ -3395,7 +3398,11 @@ function LessonScreen() {
       // (download timeout + player watchdog + settle grace, см.
       // phrase_audio_timing.ts) плюс саму длительность речи, с запасом.
       if (!settings.voiceOut) {
-        setTimeout(() => { void runLessonCompletionNavigation(); }, 1500);
+        // зачем (аудит Optimistic UI Уроков, 13.10): таймер без ссылки не чистился при выходе — «Назад» в первые 1,5 с возвращал человека на итог. Теперь он в том же ref, что и запасной, и гасится при размонтировании.
+        lessonCompletionFallbackTimerRef.current = setTimeout(() => {
+          lessonCompletionFallbackTimerRef.current = null;
+          void runLessonCompletionNavigation();
+        }, 1500);
       } else {
         lessonCompletionNavigateRef.current = () => { void runLessonCompletionNavigation(); };
         lessonCompletionFallbackTimerRef.current = setTimeout(() => {

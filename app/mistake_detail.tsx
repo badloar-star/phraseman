@@ -125,7 +125,11 @@ export default function MistakeDetailScreen() {
   }, [mistakeId, target]));
 
   const practise = useCallback(() => {
-    if (openingRef.current || detail === null || detail === 'missing' || !detail.ready) return;
+    if (openingRef.current || detail === null || detail === 'missing' || !detail.ready) {
+      // зачем (аудит Optimistic UI Уроков, 13.10): «Отработать» молча не срабатывала — теперь причина в журнале
+      console.log('[MISTAKE-DETAIL] practise:ignored', JSON.stringify({ opening: openingRef.current, detail: detail === null ? 'null' : detail === 'missing' ? 'missing' : (detail.ready ? 'ready' : 'not_ready') })); // guard-ok: редкий ранний выход
+      return;
+    }
     hapticTap();
     if (!gate.tryStartSession()) return;
     openingRef.current = true;

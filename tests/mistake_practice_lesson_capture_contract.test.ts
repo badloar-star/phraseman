@@ -14,7 +14,9 @@ describe('lesson mistake-practice capture wiring', () => {
     expect(source).toContain("objective: true");
     // зачем (репорт #15 Ольга, 2026-09-20): здесь стоял жёсткий kind: 'word_order' — ЛЮБАЯ ошибка урока приходила в «Мои ошибки» с подсказкой
     // «Сверь порядок слов». Теперь тип считается по самому промаху (lessonMistakeFacet); прежняя строка сторожила именно этот баг.
-    expect(source).toContain('kind: lessonMistakeFacet({');
+    // 13.10 (аудит Optimistic UI Уроков): тип считается один раз по ФАКТИЧЕСКОМУ ответу (const mistakeFacetKind) и пишется и в журнал, и в запись.
+    expect(source).toContain('lessonMistakeFacet({ expectedPhrase: canonKey, answeredPhrase: answer })');
+    expect(source).toContain('kind: mistakeFacetKind,');
     expect(source).not.toContain("kind: 'word_order'");
   });
 

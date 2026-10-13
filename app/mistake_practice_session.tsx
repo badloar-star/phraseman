@@ -831,7 +831,11 @@ function MistakePracticeSessionScreen() {
   }, [feedback]);
 
   const submitVerdict = useCallback(async (correct: boolean) => {
-    if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current) return;
+    if (!session || !entry || !accountScope || submitting || feedback || submissionLatchRef.current) {
+      // зачем (аудит Optimistic UI Уроков, 13.10; «ранний выход пишет причину»): тап по «Верно/Неверно» молча терялся — теперь видно, какое условие его остановило
+      console.log('[MISTAKE-SESSION] verdict:ignored', JSON.stringify({ session: !!session, entry: !!entry, accountScope: !!accountScope, submitting, feedback: !!feedback, latch: submissionLatchRef.current })); // guard-ok: редкий ранний выход, одна строка
+      return;
+    }
     // зачем (сверка 22:33, «шторка вердикта на экране через 1,2–2,2 с, хотя verdict:shown 0–1 мс»): метка тапа для логов по этапам —
     // тап → вычисление → setState → коммит шторки → первый кадр. Значения печатаются в [MISTAKE-SESSION] verdict:stage.
     verdictTapAtRef.current = Date.now();

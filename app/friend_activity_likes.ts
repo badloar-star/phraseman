@@ -82,7 +82,8 @@ const getDb = () => {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     return require('@react-native-firebase/firestore').default();
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-LIKE]', `getDb: Firestore недоступен (${error instanceof Error ? error.message : String(error)}) — лайки работают как «нет данных»`);
     return null;
   }
 };
@@ -171,7 +172,8 @@ async function fetchLegacyActivityLikeStates(
       if (state) out.push({ ...state, legacy: true });
     }
     return out;
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-LIKE]', `старые лайки (daily_limits) не прочитались (${error instanceof Error ? error.message : String(error)}) — считаем пустыми`);
     return [];
   }
 }
@@ -200,7 +202,9 @@ export async function fetchActivityLikeState(
     }
     const legacyStates = await fetchLegacyActivityLikeStates(myUid, db);
     return legacyStates.find(state => state.targetUid === targetUid && state.eventId === eventId) ?? null;
-  } catch {
+  } catch (error) {
+    // зачем: null здесь значит и «лайка нет», и «не прочиталось» — вызывающий их не различает, поэтому причину пишем сами
+    DebugLogger.warn('[PROFILE-LIKE]', `состояние лайка ${targetUid.slice(0, 6)}… не прочиталось (${error instanceof Error ? error.message : String(error)}) — отдаём «нет лайка»`);
     return null;
   }
 }
@@ -258,7 +262,8 @@ export async function fetchActivityLikeTotal(userUid: string): Promise<number> {
     if (!snap.exists) return 0;
     const n = Number(snap.data?.()?.total ?? 0);
     return Number.isFinite(n) && n > 0 ? Math.floor(n) : 0;
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-LIKE]', `счётчик лайков ${userUid.slice(0, 6)}… не прочитался (${error instanceof Error ? error.message : String(error)}) — отдаём 0`);
     return 0;
   }
 }
@@ -363,7 +368,8 @@ export async function fetchActivityLikesReceived(limit = 30): Promise<ActivityLi
       });
     }
     return out;
-  } catch {
+  } catch (error) {
+    DebugLogger.warn('[PROFILE-LIKE]', `полученные лайки не прочитались (${error instanceof Error ? error.message : String(error)}) — лента без «лайкнул тебя»`);
     return [];
   }
 }

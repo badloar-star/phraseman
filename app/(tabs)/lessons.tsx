@@ -130,6 +130,7 @@ import {
   type LearningV2SessionStarResultsV1,
 } from "../learning_v2_session_star_results_store";
 import { prefetchLessonMenuCache } from "../lesson_menu";
+import { navOnce } from "../nav_once"; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по карточке урока
 import ReportErrorButton from "../../components/ReportErrorButton";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import { LUM } from "../../constants/motionHybrid";
@@ -4513,6 +4514,8 @@ export default function LessonsTab({
         cap: effectiveLegacyFreeLessonCap ?? null, levelLockedByExam: false,
       });
       if (access === "available") {
+        // зачем (аудит Optimistic UI Уроков, 13.10): два быстрых тапа по карточке открывали два меню урока — синхронный замок на ключ урока.
+        if (!navOnce(`lessons:menu:${num}`)) return;
         void prefetchLessonMenuCache(num, studyTarget);
         router.push({ pathname: "/lesson_menu", params: { id: num } });
       } else if (access === "premium_required") {

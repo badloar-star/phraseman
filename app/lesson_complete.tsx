@@ -82,6 +82,7 @@ import { lessonNamesForLang } from '../constants/lessons';
 import CombinedLessonBreakdown from '../components/CombinedLessonBreakdown';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import { shouldPromptFeedback, markFeedbackPrompted } from './feedback_prompt_throttle';
+import { animateNextLayoutTransition } from './smooth_layout'; // зачем (аудит Optimistic UI Уроков, 13.10): карточка «Всё было понятно?» встаёт в уже показанный экран
 import { phraseHasStudyTargetContent } from './phrase_target_utils';
 import { frenchStudyActive } from './spanish_content_gate';
 import {
@@ -739,6 +740,7 @@ export default function LessonComplete() {
     let cancelled = false;
     void shouldPromptFeedback('lesson').then((allowed) => {
       if (cancelled || !allowed) return;
+      animateNextLayoutTransition(); // зачем: карточка вставляется в поток после первого кадра — сдвиг плавный, а не скачком
       setShowLessonFeedback(true);
       void markFeedbackPrompted('lesson');
     });

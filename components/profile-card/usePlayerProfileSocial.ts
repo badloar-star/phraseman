@@ -50,6 +50,21 @@ function logCatch(where: string, error: unknown): void {
   DebugLogger.warn('[PROFILE-CARD]', `${where}: ${error instanceof Error ? error.message : String(error)}`);
 }
 
+// зачем (аудит Optimistic UI Профиля, 13.10): отправленная заявка нигде не помнилась (кроме синтетических) — закрыл карточку и открыл снова, кнопка опять «Добавить в друзья», тап стоил 3–5 чтений
+// ради ответа «уже отправлена». Держим uid в памяти процесса 10 минут (не durable, не очередь «показать потом»): живая подписка на друзей сама уберёт принятого, откат — удаляет.
+const SENT_REQUEST_MEMORY_MS = 10 * 60_000;
+const sentRequestsInSession = new Map<string, number>();
+
+function peekSentRequests(): string[] {
+  const now = Date.now();
+  const alive: string[] = [];
+  sentRequestsInSession.forEach((at, uid) => {
+    if (now - at < SENT_REQUEST_MEMORY_MS) alive.push(uid);
+    else sentRequestsInSession.delete(uid);
+  });
+  return alive;
+}
+
 export function usePlayerProfileSocial(
   player: SocialPlayer,
   myName: string,
@@ -58,10 +73,13 @@ export function usePlayerProfileSocial(
 ) {
   const isMe = player.isMe;
   const [friendRequestBusy, setFriendRequestBusy] = useState(false);
-  const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
+  // зачем (там же): первый кадр уже знает друзей из снимка вкладки «Друзья» — раньше у друга на миг стояло «Добавить в друзья», пока подписка не ответила. Чтений нет, снимок в памяти.
+  const [friendUids, setFriendUids] = useState<Set<string>>(() => (player.isMe ? new Set() : new Set(friendsAccountStore.getSnapshot().rows.map((row) => row.uid))));
   const [friendRequestSentUids, setFriendRequestSentUids] = useState<Set<string>>(
-    () => new Set(peekSyntheticFriendRequests()),
+    () => new Set([...peekSyntheticFriendRequests(), ...peekSentRequests()]),
   );
+  // Синхронный замок действий с друзьями: состояние `friendRequestBusy` обновляется после рендера, два тапа в одном кадре прошли бы оба.
+  const friendOpInFlightRef = useRef(false);
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [reportUserOpen, setReportUserOpen] = useState(false);
   const [activityLikeTotal, setActivityLikeTotal] = useState(0);
@@ -97,7 +115,7 @@ export function usePlayerProfileSocial(
     setFriendRequestBusy(false);
     setRemoveFriendConfirmOpen(false);
     setReportUserOpen(false);
-    setFriendRequestSentUids(new Set(peekSyntheticFriendRequests()));
+    setFriendRequestSentUids(new Set([...peekSyntheticFriendRequests(), ...peekSentRequests()]));
   }, [player.friendUid, player.uid]);
 
   useEffect(() => {
@@ -123,6 +141,7 @@ export function usePlayerProfileSocial(
     return friendsAccountStore.subscribe((rows) => {
       const nextFriendUids = new Set(rows.map((row) => row.uid));
       setFriendUids(nextFriendUids);
+      nextFriendUids.forEach((uid) => sentRequestsInSession.delete(uid)); // принятая заявка больше не «в пути»
       setFriendRequestSentUids((previous) => {
         const next = new Set([...previous].filter((uid) => !nextFriendUids.has(uid)));
         return next.size === previous.size ? previous : next;
@@ -148,8 +167,9 @@ export function usePlayerProfileSocial(
         );
         return;
       }
+      // зачем (аудит Optimistic UI Профиля, 13.10; Firebase-экономия): счётчик лайков рисует только футер ЧУЖОЙ карточки (PlayerProfileModal → ProfileCardOtherFooter) — у своей карточки это было лишнее чтение при каждом открытии.
       const [total, likeState] = await Promise.all([
-        fetchActivityLikeTotal(uid),
+        isMe ? Promise.resolve(0) : fetchActivityLikeTotal(uid),
         isMe ? Promise.resolve(null) : fetchActivityLikeState(uid).catch((error: unknown) => {
           logCatch('лайк: состояние не прочитано', error);
           return null;
@@ -175,7 +195,8 @@ export function usePlayerProfileSocial(
   });
 
   const handleAddFriendPress = useCallback(async () => {
-    if (!friendRequestTargetUid || friendRequestBusy) return;
+    if (!friendRequestTargetUid || friendRequestBusy || friendOpInFlightRef.current) return;
+    friendOpInFlightRef.current = true;
     const targetUid = friendRequestTargetUid;
     setFriendRequestBusy(true);
     setFriendRequestSentUids((previous) => new Set([...previous, targetUid]));
@@ -184,8 +205,10 @@ export function usePlayerProfileSocial(
     if (isSyntheticUid(targetUid)) {
       rememberSyntheticFriendRequest(targetUid);
       setFriendRequestBusy(false);
+      friendOpInFlightRef.current = false;
       return;
     }
+    sentRequestsInSession.set(targetUid, Date.now());
 
     try {
       const result = await sendFriendRequest(targetUid);
@@ -193,6 +216,7 @@ export function usePlayerProfileSocial(
         onFriendRequestToast(requestSentText, 'info');
       } else if (result === 'already_friends') {
         setFriendRequestSentUids((previous) => {
+          sentRequestsInSession.delete(targetUid);
           const next = new Set(previous);
           next.delete(targetUid);
           return next;
@@ -209,6 +233,7 @@ export function usePlayerProfileSocial(
         }), 'info');
       } else if (result === 'self' || result === 'not_found' || result === 'error' || result === 'network') {
         setFriendRequestSentUids((previous) => {
+          sentRequestsInSession.delete(targetUid);
           const next = new Set(previous);
           next.delete(targetUid);
           return next;
@@ -233,6 +258,7 @@ export function usePlayerProfileSocial(
     } catch (error) {
       logCatch('заявка в друзья: сбой', error);
       setFriendRequestSentUids((previous) => {
+        sentRequestsInSession.delete(targetUid);
         const next = new Set(previous);
         next.delete(targetUid);
         return next;
@@ -240,6 +266,7 @@ export function usePlayerProfileSocial(
       onFriendRequestToast(requestFailedText, 'error');
     } finally {
       setFriendRequestBusy(false);
+      friendOpInFlightRef.current = false;
     }
   }, [friendRequestBusy, friendRequestTargetUid, L, onFriendRequestToast, requestFailedText, requestSentText]);
 
@@ -254,7 +281,8 @@ export function usePlayerProfileSocial(
   }, [friendRequestBusy, friendRequestTargetUid, handleAddFriendPress, isAlreadyFriend, isFriendRequestSent]);
 
   const handleRemoveFriendConfirm = useCallback(() => {
-    if (!friendRequestTargetUid || friendRequestBusy) return;
+    if (!friendRequestTargetUid || friendRequestBusy || friendOpInFlightRef.current) return;
+    friendOpInFlightRef.current = true;
     const removedUid = friendRequestTargetUid;
     const wasFriend = friendUids.has(removedUid);
     setRemoveFriendConfirmOpen(false);
@@ -287,7 +315,10 @@ export function usePlayerProfileSocial(
           id: 'Belum bisa dihapus. Coba lagi', tr: 'Kaldırılamadı. Tekrar dene', pl: 'Nie udało się usunąć. Spróbuj ponownie',
         }), 'error');
       })
-      .finally(() => setFriendRequestBusy(false));
+      .finally(() => {
+        setFriendRequestBusy(false);
+        friendOpInFlightRef.current = false;
+      });
   }, [friendRequestBusy, friendRequestTargetUid, friendUids, L, onFriendRequestToast]);
 
   const handleToggleLike = useCallback(() => {
@@ -297,6 +328,9 @@ export function usePlayerProfileSocial(
     setLikeBusy(true);
 
     const wasLiked = likedThisProfile;
+    // зачем (аудит Optimistic UI Профиля, 13.10): запоминаем, что человек видел ДО тапа, — при сбое возвращаем ровно это.
+    const prevTotal = activityLikeTotal;
+    const prevLike = profileLike;
     if (wasLiked) {
       setActivityLikeTotal((total) => Math.max(0, total - 1));
       setProfileLike(null);
@@ -326,19 +360,13 @@ export function usePlayerProfileSocial(
         );
         emitAppEvent('profile_like_changed', { targetUid: likeTargetUid, liked: !wasLiked });
       })
-      .catch(async (error: unknown) => {
-        logCatch('лайк: сбой, сверяем с сервером', error);
-        const freshState = await fetchActivityLikeState(likeTargetUid).catch((readError: unknown) => {
-          logCatch('лайк: сверка состояния упала', readError);
-          return null;
-        });
-        const freshTotal = await fetchActivityLikeTotal(likeTargetUid).catch((readError: unknown) => {
-          logCatch('лайк: сверка счётчика упала', readError);
-          return null;
-        });
-        setProfileLike(freshState);
-        if (typeof freshTotal === 'number') setActivityLikeTotal(Math.max(0, freshTotal));
-        emitAppEvent('profile_like_changed', { targetUid: likeTargetUid, liked: !!freshState });
+      .catch((error: unknown) => {
+        // зачем (аудит Optimistic UI Профиля, 13.10): раньше сбой «сверялся с сервером», но чтения лайков при обрыве связи глотают ошибку и отдают «нет лайка» и 0 — сердце гасло, счётчик падал в ноль,
+        // хотя сервер не менялся. Откат к значениям до тапа мгновенный и без чтений; правда сервера подтянется при следующем открытии карточки.
+        logCatch('лайк: сбой, откат к значениям до тапа', error);
+        DebugLogger.warn('[PROFILE-LIKE]', `откат ${likeTargetUid.slice(0, 6)}…: было liked=${String(wasLiked)} total=${prevTotal} → возвращаем liked=${String(!!prevLike)} total=${prevTotal} (источник: значения до тапа, чтений нет)`);
+        setProfileLike(prevLike);
+        setActivityLikeTotal(prevTotal);
         onFriendRequestToast(triLang(L, {
           ru: 'Не получилось. Проверь интернет и попробуй ещё раз', uk: 'Не вдалося. Перевір інтернет і спробуй ще раз',
           es: 'No funcionó. Comprueba Internet e inténtalo de nuevo', en: 'Did not work. Check your internet and try again',
@@ -350,7 +378,7 @@ export function usePlayerProfileSocial(
         likeInFlightRef.current = false;
         setLikeBusy(false);
       });
-  }, [canLike, L, likeTargetUid, likedThisProfile, myName, onFriendRequestToast]);
+  }, [activityLikeTotal, canLike, L, likeTargetUid, likedThisProfile, myName, onFriendRequestToast, profileLike]);
 
   const relationshipText = (() => {
     switch (profileState) {

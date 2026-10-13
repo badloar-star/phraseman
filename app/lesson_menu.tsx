@@ -85,6 +85,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useLineScale } from '../hooks/useLineScale';
 
@@ -524,7 +525,8 @@ function LessonMenu() {
         rememberPrepHintSeen(seen === '1');
         if (!cancelled) setLessonPrepHintVisible(seen !== '1');
       })
-      .catch(() => {
+      .catch((error: unknown) => {
+        noteSwallowedHandler('lesson_menu:prepHint')(error); // зачем: сбой чтения флага подсказки был немым
         rememberPrepHintSeen(false);
         if (!cancelled) setLessonPrepHintVisible(true);
       });
@@ -731,7 +733,8 @@ function LessonMenu() {
       const prep = parsePrepositionAnswered(lessonId, saved, studyTarget);
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
-    }).catch(() => {
+    }).catch((error: unknown) => {
+      noteSwallowedHandler('lesson_menu:prepositionProgress')(error); // зачем: сбой чтения прогресса предлогов был немым
       const prep = parsePrepositionAnswered(lessonId, null, studyTarget);
       setPrepositionAnswered(prep.answered);
       setPrepositionTotal(prep.total);
@@ -740,7 +743,10 @@ function LessonMenu() {
       .then(progressRaw => {
         setTheoryProgressPct(parseTheoryMenuProgress(progressRaw));
       })
-      .catch(() => setTheoryProgressPct(0));
+      .catch((error: unknown) => {
+        noteSwallowedHandler('lesson_menu:theoryProgress')(error); // зачем: сбой чтения прогресса теории был немым
+        setTheoryProgressPct(0);
+      });
   }, [lessonId, studyTarget]);
 
   // зачем: гидратация из прогретого кэша раньше ждала runAfterInteractions — цифры и
@@ -800,6 +806,7 @@ function LessonMenu() {
       return;
     }
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage'));
+    if (!navOnce(`lesson_menu:open:${lessonId}`)) { lessonMenuTrace('primary:exit', { reason: 'double_tap' }); return; }
     lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'continue', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
   }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);
@@ -815,6 +822,7 @@ function LessonMenu() {
     void primeLessonScreenFromStorage(lessonId, studyTarget).catch(noteSwallowedHandler('lesson_menu:useCallback.primeLessonScreenFromStorage_2'));
     // push (не replace): meню урока должно остаться в стеке, чтобы «назад» из lesson1
     // возвращал на lesson_menu, а не проваливался на список уроков (tabs/lessons).
+    if (!navOnce(`lesson_menu:open:${lessonId}`)) { lessonMenuTrace('primary:exit', { reason: 'double_tap' }); return; }
     lessonMenuTrace('primary:navigate', { to: '/lesson1', mode: 'push', from: 'start', plan: planLessonParams });
     router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu', ...planLessonParams } });
   }, [frenchLessonSourceGated, lessonId, lessonLaunchBlocked, lessonMenuTrace, router, studyTarget]);

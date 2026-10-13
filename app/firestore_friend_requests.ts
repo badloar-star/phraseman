@@ -639,7 +639,9 @@ export async function deleteFriend(friendUid: string): Promise<void> {
       action: 'delete_friend',
       friendUid,
     });
-    return;
+    // зачем (аудит Optimistic UI Профиля, 13.10): голый `return` разрешал промис как УСПЕХ — человек видел «Друг убран», а дружба оставалась в базе. Вызывающие (карточка профиля, «Друзья»)
+    // откатывают список и показывают тост именно по отказу промиса.
+    throw new Error('delete_friend_no_canonical_uid');
   }
 
   const db = getFirestore();
@@ -649,7 +651,7 @@ export async function deleteFriend(friendUid: string): Promise<void> {
       myUid,
       friendUid,
     });
-    return;
+    throw new Error('delete_friend_firestore_unavailable');
   }
 
   const batch = db.batch();

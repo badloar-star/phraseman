@@ -105,7 +105,8 @@ describe('palette along the slider', () => {
     // зачем (регрессия 13.10, c62e8fc70): accentGraphic/accentTextSafe — производные токены, считаются поверх построителя ПО УРОВНЮ (в тёмном оба равны accent уровня: accent #5ED99E; у «Спокойно» — свой серый).
     // calmBase (уровень calm) нёс бы их calm-значения в сравнение с уровнем accent/max и давал ложное расхождение (#D8EADB против #5ED99E); сами токены проверяет tests/accent_graphic_token.test.ts (23 темы × 2 оформления × 5 уровней, тёмный = accent).
     // + mutedText/secondary/accentText (a9415916f, Дизайн 366ae9846): на «Максимуме» доводятся до ≥ 4,55 на selected/тинте плашки поверх построителя (например mutedText #8FA598 → #99AEA2); их читаемость стерегут theme_muted_text_aa и two_theme_new_screens_contrast.
-    const DERIVED = ['accentGraphic', 'accentTextSafe', 'mutedText', 'secondary', 'accentText', 'overline']; // overline — тоже токен поверх построителя (подпись-надзаголовок)
+// + opaqueSheet (13.10, стиль «Тень», Г2): в ТЁМНОМ подложка шторок нейтральная #28282E поверх построителя при любой теме — проверяет tests/neutral_dark_opaque_sheet.test.ts
+    const DERIVED = ['accentGraphic', 'accentTextSafe', 'mutedText', 'secondary', 'accentText', 'overline', 'opaqueSheet']; // overline — тоже токен поверх построителя (подпись-надзаголовок)
     const strip = (o: object) => Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'intensity' && !SURFACE.includes(k) && !PALETTE.includes(k) && !DERIVED.includes(k)));
     const accentNoI = strip(accent);
     const maxNoI = strip(max);

@@ -17,7 +17,8 @@ import { useTheme } from '../ThemeContext';
 import { useLv2Glass, type Lv2Glass } from '../learning-v2/LearningV2Glass';
 import { LinearGradient } from '../SafeLinearGradient';
 import { mpColors } from './panelPaint';
-import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow, sheetPlateTokens } from '../v2/ShadowSurface';
+import { actionBoxShadow, nestedBoxShadow, PlateFill, plateBoxShadow } from '../v2/ShadowSurface';
+import { shadowSheetPlateTokens } from '../v2/shadow_sheet_paint';
 import { GlassRim } from './GlassRim';
 
 /** `.ph .rb` (cards-glass.css): фон круглой кнопки — 7 % от цвета текста темы (в светлой теме тоже виден). */
@@ -225,7 +226,7 @@ export function SheetRow({ g, icon, title, danger, onPress, testID }: Readonly<{
   const styles = useScaledTextStyles(baseStyles);
   return (
     <Pressable testID={testID} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.menuRow, { boxShadow: plateBoxShadow(g) }, pressed && styles.pressed]}>
-      <PlateFill g={sheetPlateTokens(g)} radius={20} />
+      <PlateFill g={shadowSheetPlateTokens(g)} radius={20} />
       <View style={[styles.menuTile, { backgroundColor: g.dividerTone, boxShadow: nestedBoxShadow(g) }]}>
         <Ionicons name={icon} size={20} color={danger ? mpColors(g).bad : g.text} />
       </View>

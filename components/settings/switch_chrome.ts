@@ -16,3 +16,12 @@ export function switchOffTrackTone(
     ? { track: `${glass.secondary.slice(0, 7)}A6`, knob: '#FFFFFF' } // theme-exempt: ручка переключателя всегда светлая, как у iOS/Android
     : { track: glass.opaqueControl, knob: glass.secondary };
 }
+
+// зачем (разбор diff Темами 13.10, Г5; settings-gap-013/014/015/034, образец settings-gaps-states `.gs-sw.on`): включённый переключатель — дорожка цвета АКЦЕНТА темы и тёмная
+// «чернильная» подпись акцента на бегунке (в Графите — светлая дорожка и чёрный бегунок, в Авроре — мятная и тёмно-зелёный), а не тёмная дорожка с белым бегунком.
+// accentGraphic = accent в тёмном и проверенный на контраст в светлом; accentInk — подпись на акценте. Общий токен для трёх копий LocalSwitch (замена — Авторизация/Дизайн).
+export function switchOnTone(
+  glass: Readonly<{ accentGraphic: string; accentInk: string }>,
+): Readonly<{ track: string; knob: string }> {
+  return { track: glass.accentGraphic, knob: glass.accentInk };
+}

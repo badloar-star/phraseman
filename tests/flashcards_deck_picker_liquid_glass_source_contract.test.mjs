@@ -350,6 +350,8 @@ function loadShell(material, themeId = 'graphite') {
     '../../constants/liquidGlassThemePalette': { liquidGlassTokens: () => glass },
     '../SafeLinearGradient': { LinearGradient: 'LinearGradient' },
     '../TonalSurface': { __esModule: true, default: 'TonalSurface' },
+    // зачем (13.10, нейтральная заливка шторок «Тень», 4863c136d): оболочка берёт градиент из components/v2/shadow_sheet_paint — в харнессе заглушка (светлая ветка: без градиента)
+    '../v2/shadow_sheet_paint': { shadowSheetGradient: () => null, shadowSheetPlateTokens: value => value },
     './native_modal_dismiss_coordinator': { createNativeModalDismissState: visible => ({ visible, token: 1 }), reduceNativeModalDismiss: state => ({ state, commands: [] }) },
     '../../app/debug-logger': { DebugLogger: { error() {} } },
   };

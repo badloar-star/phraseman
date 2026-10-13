@@ -162,6 +162,12 @@ export function getActiveLiquidGlassVariant(): Required<LiquidGlassVariant> {
   return activeVariant;
 }
 
+/** Тёмное оформление: подложка шторок/окон нейтральная при любой теме (стиль «Тень»); светлое — как есть. */
+export const SHADOW_SHEET_NEUTRAL_DARK = '#28282E';
+function withNeutralDarkSheet<T extends { isLight: boolean; opaqueSheet: string }>(built: T): T {
+  return built.isLight ? built : { ...built, opaqueSheet: SHADOW_SHEET_NEUTRAL_DARK };
+}
+
 /** Unknown or retired names safely return graphite. Without `variant` the active one is used. */
 export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = activeVariant): GlassTokens {
   // зачем: вызов вида ids.map(liquidGlassTokens) передаёт индекс вторым аргументом —
@@ -175,7 +181,10 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     variantCache.set(key, cached);
     return cached;
   }
-  const built = buildThemeTokens(themeId, variant);
+  // зачем (координатор 13.10, разбор diff Темами Г2; решение владельца 12.10 «стиль «Тень» на всё приложение»): подложка шторок и окон в ТЁМНОМ оформлении — нейтральная
+  // (#28282E, shadow-skin.css `.ph .sheet`) при любой теме, а не окрашенная тоном темы (у «Авроры» было #2B3839, у «Ириса» #33353E). Все производные (плашки шторок,
+  // контраст текста на подложке) считаются уже от неё. Светлое оформление не меняется. Откат — git revert коммита с этой строкой.
+  const built = withNeutralDarkSheet(buildThemeTokens(themeId, variant));
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.

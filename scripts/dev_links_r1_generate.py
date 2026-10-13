@@ -18,6 +18,7 @@ import dev_links_r1_steps_auth  # noqa: F401  зачем (12.10): ссылки �
 import dev_links_r1_steps_chain7  # noqa: F401  зачем (Авторизация 12.10): пропущенные Сверкой в chain7 id — ссылки из существующих подмен; ПОСЛЕ auth (копии блица)
 import dev_links_r1_steps_p83  # noqa: F401  зачем (Дизайн 12.10 ночь): п.83 и chain7 Диалогов — исправления шагов dialogs-005/017/018/036, cards-027, cards-030; ПОСЛЕДНИМ, put() заменяет прежние записи тех же id
 import dev_links_r1_steps_p84  # noqa: F401  зачем (Дизайн 13.10): поправки кадров Карточек/Диалогов (hidekb, scroll:up, cards=empty, quota=6, dquota=30) — ПОСЛЕ p83, перед ним нельзя: правит уже готовые записи
+import dev_links_r1_steps_errfix  # noqa: F401  зачем (координатор 13.10, Темы befda6335): исправления шагов по ошибкам робота step_target_not_found — ПОСЛЕДНИМ, поверх всех модулей
 
 R = 'C:/appsprojects/phraseman/'
 reg = json.load(open(R + 'docs/phraseman-2.0/registries/visual_parity.json', encoding='utf-8'))

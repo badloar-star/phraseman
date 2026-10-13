@@ -65,6 +65,7 @@ import { PanelSheet } from '../components/mistakes-panel/PanelSheet';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
 import { EditorField } from './community_packs/PackEditorV2';
 import { addCardToLocalPack, loadAddableLocalPacks } from './community_packs/localPackCardAdd';
+import { getDevCardDraft } from './dev_cards_state';
 import type { LocalAuthorPack } from './community_packs/localAuthorPacks';
 
 function firstParam(v: string | string[] | undefined): string | null {
@@ -203,8 +204,10 @@ export default function FlashcardsCardEditorScreen() {
   // ухода назад — экран с понятной причиной и кнопкой «Назад».
   const [notFound, setNotFound] = useState(false);
   const handleSaveRef = useRef<() => void>(() => {});
-  const [draftEN, setDraftEN] = useState('');
-  const [draftTR, setDraftTR] = useState('');
+  // зачем (Макеты cards-061): dev_state?cardsdraft=filled открывает новую карточку с заполненными полями без клавиатуры; в режиме правки и вне dev — как раньше
+  const devDraft = isEdit ? null : getDevCardDraft();
+  const [draftEN, setDraftEN] = useState(devDraft?.en ?? '');
+  const [draftTR, setDraftTR] = useState(devDraft?.tr ?? '');
   const [draftDescription, setDraftDescription] = useState('');
   /** Перевод текущей локали на момент загрузки — чтобы отличать «не было» от «стёр». */
   const prefillTrRef = useRef('');

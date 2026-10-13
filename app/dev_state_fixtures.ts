@@ -140,6 +140,8 @@ export type DevStateRequest = Readonly<{
   voices?: 'demo' | 'none' | 'off';
   /** Готовый черновик нового набора из памяти: on — 12 в сообщество (cards-072), few — 4 (069), full — 50 (071), private — без публикации (073). */
   packdraft?: (typeof DEV_PACK_DRAFTS)[number] | 'off';
+  /** filled — редактор новой карточки (create=1) открывается с заполненными полями «Layover / пересадка» без клавиатуры (cards-061, образец cards-v2 №24); off — снять. */
+  cardsdraft?: 'filled' | 'off';
   /** Ветка откликов демо-набора: три отклика (demo) или пусто (empty). */
   comments?: DevCommunityComments | 'off';
   /** reset — забыть «добавленное»/лайки/отправленное; added — «добавлены» демо-наборы 2, 1, 3 (cards-044); off — выключить режим. */
@@ -449,6 +451,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.packcards = pick('packcards', ['on', 'meta', 'off'] as const);
   request.voices = pick('voices', [...DEV_CARDS_VOICES, 'off'] as const);
   request.packdraft = pick('packdraft', [...DEV_PACK_DRAFTS, 'off'] as const);
+  request.cardsdraft = pick('cardsdraft', ['filled', 'off'] as const);
   request.comments = pick('comments', [...DEV_COMMUNITY_COMMENTS, 'off'] as const);
   request.community = pick('community', ['reset', 'added', 'off'] as const);
   request.mistakes = pick('mistakes', ['demo', 'off'] as const);
@@ -1033,6 +1036,12 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   }
   if (request.answer !== undefined) {
     await step('answer', request.answer, async () => setDevCardsState({ answer: request.answer === 'off' ? null : request.answer! }));
+  }
+  if (request.cardsdraft !== undefined) {
+    await step('cardsdraft', request.cardsdraft, async () => {
+      const { setDevCardDraft } = await import('./dev_cards_state');
+      return setDevCardDraft(request.cardsdraft === 'off' ? null : 'filled');
+    });
   }
   if (request.packdraft !== undefined) {
     await step('packdraft', request.packdraft, async () => setDevPackDraft(request.packdraft === 'off' ? null : request.packdraft!));

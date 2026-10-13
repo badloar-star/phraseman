@@ -38,3 +38,7 @@ export function getDevAnswerTarget(): null { return null; }
 // зачем (Авторизация 12.10, cards-gap-025): «публикация отправлена» в стор-сборке не подменяется
 export function setDevPublishOk(): boolean { return false; }
 export function isDevPublishOk(): boolean { return false; }
+// зачем (Макеты cards-061, 13.10): заполненная новая карточка в стор-сборке не подменяется
+export const DEV_CARD_DRAFTS = [] as const;
+export function setDevCardDraft(): boolean { return false; }
+export function getDevCardDraft(): null { return null; }

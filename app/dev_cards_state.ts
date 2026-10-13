@@ -300,6 +300,29 @@ export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
   };
 }
 
+// ───────────────────── Заполненная новая карточка (Макеты cards-061, 13.10) ─────────────────────
+// зачем: кадр «Новая карточка — превью живое» (cards-v2 №24) — поля заполнены «Layover / пересадка», фокуса и клавиатуры нет. Ручной ввод на эмуляторе у Сверки ломается о клавиатуру и прокрутку.
+// `cardsdraft=filled` отдаёт редактору создания (create=1) стартовые значения полей из памяти; пользовательские данные и хранилище не трогаются.
+export const DEV_CARD_DRAFTS = ['filled'] as const;
+export type DevCardDraft = (typeof DEV_CARD_DRAFTS)[number];
+let cardDraft: DevCardDraft | null = null;
+
+export function setDevCardDraft(mode: DevCardDraft | null): boolean {
+  if (!devCardsAvailable()) {
+    console.warn(`${LOG} cardsdraft: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  cardDraft = mode;
+  console.log(`${LOG} cardsdraft=${mode ?? 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+/** Стартовые поля новой карточки или null (вне dev — всегда null). */
+export function getDevCardDraft(): Readonly<{ en: string; tr: string; description: string }> | null {
+  if (!devCardsAvailable() || cardDraft === null) return null;
+  return { en: 'Layover', tr: 'пересадка', description: '' };
+}
+
 // ───────────────────── Вступление урока (Макеты 12.10, energy-modes) ─────────────────────
 // зачем: перед первым заданием урока идут вступительные экраны, число блоков заранее неизвестно — робот листал вслепую.
 // `lessonintro=skip` считает вступление уже показанным ТОЛЬКО в памяти (отметка на диск не пишется). В сторе выключено.

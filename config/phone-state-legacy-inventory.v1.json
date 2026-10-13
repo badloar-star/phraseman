@@ -2660,6 +2660,15 @@
       "importSource": [],
       "legacyMirror": false,
       "sensitivity": "low"
+    },
+    {
+      "key": "home_video_rail_cache_v1",
+      "domain": "app",
+      "scope": "device_only",
+      "reducer": "none",
+      "importSource": [],
+      "legacyMirror": false,
+      "sensitivity": "low"
     }
   ],
   "prefixRules": [

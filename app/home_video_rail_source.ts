@@ -11,6 +11,7 @@
 // памяти процесса 6 часов — повторные заходы на Главную не читают Firestore.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { LearningLanguageTarget } from './learning_language_contour';
 import type { LingmanYoutubeVideo } from './lingman_youtube';
 import { resolveVideoChannelForStudyTarget } from './video_language_contour';
@@ -30,6 +31,39 @@ export type HomeVideoRailResult = Readonly<{
 }>;
 
 const cache = new Map<LearningLanguageTarget, { atMs: number; result: HomeVideoRailResult }>();
+
+// зачем (смета Firebase R1, п.11): кэш жил только в памяти — каждый ХОЛОДНЫЙ старт заново читал манифест, корень, канал и ≤8
+// роликов (до 11 чтений). Тот же результат и тот же срок 6 ч теперь лежат на диске по языку; публичные данные каталога.
+type RailDiskEntry = { atMs: number; result: HomeVideoRailResult };
+
+async function readRailFromDisk(target: LearningLanguageTarget, nowMs: number): Promise<RailDiskEntry | null> {
+  try {
+    const raw = await AsyncStorage.getItem('home_video_rail_cache_v1');
+    if (!raw) return null;
+    const entry = (JSON.parse(raw) as Partial<Record<string, RailDiskEntry>>)[target];
+    if (!entry || typeof entry.atMs !== 'number' || !entry.result || !Array.isArray(entry.result.videos)) return null;
+    const ageMs = nowMs - entry.atMs;
+    if (ageMs < 0 || ageMs >= RAIL_TTL_MS) {
+      console.log('[LANG-SURFACE] home_rail:disk_stale', { target, ageMin: Math.round(ageMs / 60_000) });
+      return null;
+    }
+    return entry;
+  } catch (error) {
+    console.warn('[LANG-SURFACE] home_rail:disk_read_failed — иду в сеть', { target, reason: error instanceof Error ? error.message : String(error) });
+    return null;
+  }
+}
+
+async function writeRailToDisk(target: LearningLanguageTarget, entry: RailDiskEntry): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem('home_video_rail_cache_v1');
+    const all = raw ? (JSON.parse(raw) as Record<string, RailDiskEntry>) : {};
+    await AsyncStorage.setItem('home_video_rail_cache_v1', JSON.stringify({ ...all, [target]: entry }));
+    console.log('[LANG-SURFACE] home_rail:disk_write', { target, count: entry.result.videos.length });
+  } catch (error) {
+    console.warn('[LANG-SURFACE] home_rail:disk_write_failed', { target, reason: error instanceof Error ? error.message : String(error) });
+  }
+}
 
 export function homeVideoRailUsesCatalog(target: LearningLanguageTarget): boolean {
   return HOME_VIDEO_CATALOG_TARGETS.includes(target);
@@ -63,6 +97,12 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
     console.log('[LANG-SURFACE] home_rail:cache_hit', { target, count: cached.videos.length, source: cached.source });
     return cached;
   }
+  const disk = await readRailFromDisk(target, Date.now());
+  if (disk) {
+    cache.set(target, disk);
+    console.log('[LANG-SURFACE] home_rail:disk_hit — без сети', { target, count: disk.result.videos.length, ageMin: Math.round((Date.now() - disk.atMs) / 60_000) });
+    return disk.result;
+  }
   const startedAt = Date.now();
   const client = await import('./youtube_catalog_client');
   const manifest = await client.fetchYoutubeCatalogManifest();
@@ -74,7 +114,9 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
       channels: manifest.channels.map((item) => ({ id: item.id, tags: item.languageTags })),
     });
     const result: HomeVideoRailResult = { videos: [], source: 'no_channel_for_target', channelId: null };
-    cache.set(target, { atMs: Date.now(), result });
+    const entry = { atMs: Date.now(), result };
+    cache.set(target, entry);
+    void writeRailToDisk(target, entry);
     return result;
   }
   const rail = await client.fetchYoutubeHomeRailCatalog(channel.id, manifest, RAIL_LIMIT);
@@ -89,8 +131,15 @@ export async function loadHomeVideoRailForTarget(target: LearningLanguageTarget)
     count: result.videos.length,
     ms: Date.now() - startedAt,
   });
-  cache.set(target, { atMs: Date.now(), result });
+  const entry = { atMs: Date.now(), result };
+  cache.set(target, entry);
+  void writeRailToDisk(target, entry);
   return result;
+}
+
+/** Только для тестов: сбросить кэш процесса (диск не трогает). */
+export function resetHomeVideoRailMemoryForTests(): void {
+  cache.clear();
 }
 
 /* expo-router: не регистрировать файл как экран */

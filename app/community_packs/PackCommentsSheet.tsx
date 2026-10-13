@@ -36,6 +36,9 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { USER_AVATAR_AURA_KEY } from '../../constants/customization_storage_keys';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../../hooks/use-haptics';
+import { useMyCoinRankBinding } from '../../hooks/use_my_coin_rank';
+import { Image as CoinImage } from 'expo-image';
+import { COIN_RANK_TABLE, isValidCoinRank } from '../coin_rank_table_v1';
 import { actionToastTri, emitAppEvent } from '../events';
 import { getCanonicalUserId } from '../user_id_policy';
 import ReportCommentModal from './ReportCommentModal';
@@ -203,6 +206,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
   /** authorId → профиль (avatar/frame/aura), для рендера настоящих аватарок вместо emoji. */
   const [profiles, setProfiles] = useState<Record<string, CommunityAuthorProfile>>({});
   const [myAvatarProfile, setMyAvatarProfile] = useState<CommunityAuthorProfile | null>(null);
+  // зачем (cards-052, образец cards-states `.cmt .av`): аватар отклика = монета ранга автора, как везде в 2.0; свой ранг — из локального состояния (мгновенно, без сети)
+  const myCoinRank = useMyCoinRankBinding()?.rank ?? null;
   /**
    * зачем (аудит 2026-09-17, «закрытие во время отправки теряет черновик»):
    * шторка размонтируется целиком при закрытии (`{commentsSheetOpen && <PackCommentsSheet/>}`
@@ -692,6 +697,8 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
 
   const renderItem = useCallback(({ item }: { item: PackComment }) => {
     const mine = item.authorId === myUserId;
+    const authorCoinRank = mine ? myCoinRank : profiles[item.authorId]?.coinRank;
+    const rankCoin = isValidCoinRank(authorCoinRank) ? COIN_RANK_TABLE.find((row) => row.rank === authorCoinRank) : undefined; // нет ранга — прежний AvatarView, ранг не выдумываем
     const isHighlighted = highlightId === item.id;
     const reactionChip = (active: boolean) => ({
       flexDirection: 'row' as const, alignItems: 'center' as const, gap: 5, height: 30, paddingHorizontal: 11, borderRadius: 15,
@@ -724,12 +731,16 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
             актуальный уровень (protected projectionAuthority), а выдумывать
             цифру нельзя (см. AvatarView.tsx, жалоба «Издевательство»). */}
         <View style={{ width: 36, height: 36 }}>
-          <AvatarView
-            avatar={(mine ? myAvatarProfile?.avatar : profiles[item.authorId]?.avatar) || undefined}
-            auraId={(mine ? myAvatarProfile?.aura : profiles[item.authorId]?.aura) || undefined}
-            size={36}
-            animateAura={false}
-          />
+          {rankCoin ? (
+            <CoinImage source={rankCoin.source} contentFit="contain" style={{ width: 36, height: 36 }} accessible={false} />
+          ) : (
+            <AvatarView
+              avatar={(mine ? myAvatarProfile?.avatar : profiles[item.authorId]?.avatar) || undefined}
+              auraId={(mine ? myAvatarProfile?.aura : profiles[item.authorId]?.aura) || undefined}
+              size={36}
+              animateAura={false}
+            />
+          )}
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 7, flexWrap: 'wrap' }}>
@@ -824,7 +835,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
         </View>
       </View>
     );
-  }, [myUserId, packAuthorStableId, glass, f, lang, highlightId, handleReaction, handleRetry, handleDiscardFailed, handleReply, canWrite, replyLabel, authorBadge, pinnedBadge, profiles, myAvatarProfile]);
+  }, [myUserId, packAuthorStableId, glass, f, lang, highlightId, handleReaction, handleRetry, handleDiscardFailed, handleReply, canWrite, replyLabel, authorBadge, pinnedBadge, profiles, myAvatarProfile, myCoinRank]);
 
   return (
     <HybridSheetShell

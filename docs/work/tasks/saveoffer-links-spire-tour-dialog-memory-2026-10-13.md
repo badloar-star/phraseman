@@ -3,6 +3,7 @@
 Governance-ID: TG-E7D9B4C1817D
 Governance-ID: TG-ECE99C855ACA
 Governance-ID: TG-DFB94E18C58B
+Governance-ID: TG-6CB8425F93E8
 Status: в работе
 Owner: сессия «4 · ТЕМЫ 2.0» (поручение координатора от владельца; пункты 2–3 забраны у Дизайна)
 
@@ -28,3 +29,6 @@ Owner: сессия «4 · ТЕМЫ 2.0» (поручение координат
 
 ## Rollback
 git revert соответствующих коммитов.
+
+## Дополнение (13.10, cards-052)
+Аватары откликов под набором — монета ранга автора (как везде в 2.0, образец cards-states `.cmt .av`) вместо шестиугольника AvatarView; если ранг автора неизвестен — прежний AvatarView (ранг не выдумываем). Файл `app/community_packs/PackCommentsSheet.tsx`, только строки аватара; тест источника. Откат — git revert.

@@ -188,8 +188,11 @@ for _rid in ('cards-017', 'cards-048'):
 # Ядро: остаток тренировок 0/30 с прошлых кадров — quota=reset
 for _rid in ('cards-v2-028', 'cards-section-033'):
     ENTRIES.pop(_rid, None)
-add(['cards-section-033', 'cards-v2-028'], [], 'cards=demo&plus=off&animations=off&quota=reset', '/flashcards_training_setup?mode=blitz',
+add('cards-section-033', [], 'cards=demo&plus=off&animations=off&quota=reset', '/flashcards_training_setup?mode=blitz',
     note='настройка тренировки «Блиц» (quota=reset — остаток прошлых кадров сброшен)')
+# зачем (Темы 13.10): в образце cards-v2-028 «осталось 24 из 30» и активная «Начать» — quota=6 (использовано 6), как cards-section-034/036 в p84
+add('cards-v2-028', [], 'cards=demo&plus=off&animations=off&quota=6', '/flashcards_training_setup?mode=blitz',
+    note='настройка тренировки «Блиц» — «осталось 24 из 30» (quota=6)')
 # Ядро: перевод «пересадка» робот не наберёт (type: только ASCII)
 ENTRIES.pop('cards-v2-046', None)
 add('cards-v2-046', ['tap:#fc-editor-en', 'type:Layover', 'hidekb', 'wait:400'], 'plus=off&cards=custom50', '/flashcards_card_editor?create=1&cat=custom',

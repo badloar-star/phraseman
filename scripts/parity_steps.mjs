@@ -189,6 +189,11 @@ export async function runSteps(run, steps, opts = {}) {
     log(`элемент ${selector} не удалось вывести на экран за 6 прокруток — жмём как есть`); // guard-ok: причина, по которой тап может промахнуться
     return found.node;
   };
+  // зачем (Авторизация 13.10): клавиша «назад» прошлой строки включает режим клавиатурного фокуса — на кадрах серая подложка вокруг кнопок; касание по шапке (центр) сбрасывает режим
+  if (steps.some((st) => ['tap', 'long', 'see', 'swipe-left', 'swipe-right'].includes(st.op))) {
+    run(['shell', 'input', 'tap', '540', '160']);
+    await sleep(300);
+  }
   for (let index = 0; index < steps.length; index += 1) {
     const step = steps[index];
     if (step.op === 'settle') continue; // мета-шаг: читает робот, а не исполнитель
@@ -216,7 +221,8 @@ export async function runSteps(run, steps, opts = {}) {
       run(['shell', 'input', 'swipe', String(x), String(from), String(x), String(to), '400']);
     } else {
       // see: запас снизу 320 px — над таб-баром/нижней панелью, иначе следующий tap попадает в неё, а не в строку
-      const found = await bringIntoView(step.value, step.op === 'see' ? 320 : 60);
+      // зачем (Авторизация/Сверка 13.10, paywalls-023): центр кнопки в 60 px от низа попадал в полосу жестов — шаг «проходил», а экран не менялся; запас 130 px
+      const found = await bringIntoView(step.value, step.op === 'see' ? 320 : 130);
       const node = step.op === 'see' ? found : await settleNode(step.value, found);
       const [cx, cy] = centre(node);
       if (step.op === 'see') { /* только прокрутка до видимости */ }

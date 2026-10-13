@@ -85,7 +85,7 @@ describe('dev_spire_preview: tier= и floor=', () => {
 
   it('маршрут читает параметры и меняет ключ провайдера; параметры описаны в шапке; боевой код Шпиля не тронут', () => {
     const route = read('app', 'dev_spire_preview.tsx');
-    expect(route).toContain('parseSpirePreviewOverrides(params.tier, params.floor, params.steps)');
+    expect(route).toContain('parseSpirePreviewOverrides(params.tier, params.floor, params.steps, params.nicks)');
     expect(route).toContain('spirePreviewModel(state, overrides)');
     expect(route).toContain('spireStepPreview(state, overrides)');
     expect(route).toMatch(/&tier=0/);

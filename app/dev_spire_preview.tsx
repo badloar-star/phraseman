@@ -82,12 +82,12 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
 }
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string }>();
+  const params = useLocalSearchParams<{ state?: string; selector?: string; exit?: string; spirePanel?: string; tier?: string; floor?: string; steps?: string; nicks?: string }>();
   const fromParam = isSpirePreviewState(params.state) ? params.state : 'room';
   const [state, setState] = useState<SpirePreviewState>(fromParam);
   useEffect(() => { setState(fromParam); }, [fromParam]);
   // зачем (координатор 15.10): tier= (0…11, 0 = Гранит) и floor= (1…15) — данные кадров Макетов = образцу; без них прежние tier 3 / этаж 7
-  const overrides = useMemo(() => parseSpirePreviewOverrides(params.tier, params.floor, params.steps), [params.tier, params.floor, params.steps]);
+  const overrides = useMemo(() => parseSpirePreviewOverrides(params.tier, params.floor, params.steps, params.nicks), [params.tier, params.floor, params.steps, params.nicks]);
   const model = useMemo(() => spirePreviewModel(state, overrides), [state, overrides]);
   const step = isSpireStepPreviewState(state);
   const exitOpen = params.exit === '1';

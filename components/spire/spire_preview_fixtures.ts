@@ -36,13 +36,15 @@ const ENABLED_CONFIG: SpireConfigDoc = { ...SPIRE_CONFIG_DEFAULTS, enabled: true
 // зачем (координатор 15.10, Макеты: кадры spire-007/011/gap-015/018 должны совпасть с образцом «Гранит, этаж 4»): dev-превью принимает `tier=` и `floor=`.
 // tier — индекс лиги 0…11 (0 = Гранит; прежнее значение 3 = Нефрит), floor — мой этаж 1…15 (прежнее значение 7). Без параметров всё как раньше.
 // steps — число ступеней в карточке итога недели (weekresult*, прежние 58 / 31 / 12); лига итога привязана к tier (см. weekTiers)
-export type SpirePreviewOverrides = Readonly<{ tier?: number; floor?: number; steps?: number }>;
+// nicks=long — зачем (координатор 13.10): на подиуме три первых места получают длинные ники без пробела («мокрый_асфальт», «Александра», «anna.k-2024») для кадров переноса имени
+export type SpirePreviewOverrides = Readonly<{ tier?: number; floor?: number; steps?: number; nicks?: 'long' }>;
+export const SPIRE_PREVIEW_LONG_NICKS: readonly string[] = ['мокрый_асфальт', 'Александра', 'anna.k-2024'];
 const PREVIEW_BASE_TIER = 3;
 const PREVIEW_BASE_FLOOR = 7;
 const PREVIEW_SUMMIT_FLOOR = 15;
 
 /** Только целые в допустимом диапазоне; всё остальное игнорируется (с предупреждением в журнале). */
-export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown, rawSteps?: unknown): SpirePreviewOverrides {
+export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown, rawSteps?: unknown, rawNicks?: unknown): SpirePreviewOverrides {
   const first = (v: unknown): unknown => (Array.isArray(v) ? v[0] : v);
   const asInt = (v: unknown, min: number, max: number, name: string): number | undefined => {
     const raw = first(v);
@@ -55,7 +57,10 @@ export function parseSpirePreviewOverrides(rawTier: unknown, rawFloor: unknown, 
   const tier = asInt(rawTier, 0, 11, 'tier');
   const floor = asInt(rawFloor, 1, PREVIEW_SUMMIT_FLOOR, 'floor');
   const steps = asInt(rawSteps, 0, 200, 'steps');
-  return { ...(tier === undefined ? {} : { tier }), ...(floor === undefined ? {} : { floor }), ...(steps === undefined ? {} : { steps }) };
+  const nicksRaw = first(rawNicks);
+  const nicks = nicksRaw === 'long' ? ('long' as const) : undefined;
+  if (nicksRaw !== undefined && nicksRaw !== null && nicksRaw !== '' && nicks === undefined) console.warn(`[DEV-STATE] spire_preview override nicks=${String(nicksRaw)} игнорирован: допустимо long`); // guard-ok: dev-превью, причина отказ
+  return { ...(tier === undefined ? {} : { tier }), ...(floor === undefined ? {} : { floor }), ...(steps === undefined ? {} : { steps }), ...(nicks === undefined ? {} : { nicks }) };
 }
 
 let activeOverrides: SpirePreviewOverrides = {};
@@ -117,7 +122,11 @@ function rows(mySteps: number, count = 12, aroundFloor?: number): readonly Spire
     return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false, coinRank: PREVIEW_COIN_LEVELS[i % PREVIEW_COIN_LEVELS.length] };
   });
   list.push({ uid: 'preview-me', name: 'Ты', steps: mySteps, reachedAtMs: now - 120_000, isMe: true });
-  return list.sort((a, b) => b.steps - a.steps || a.reachedAtMs - b.reachedAtMs);
+  const sorted = list.sort((a, b) => b.steps - a.steps || a.reachedAtMs - b.reachedAtMs);
+  if (activeOverrides.nicks !== 'long') return sorted;
+  // nicks=long: длинные ники получают первые три места подиума (себя не переименовываем)
+  let k = 0;
+  return sorted.map((r, i) => (r.isMe || i >= 3 || k >= SPIRE_PREVIEW_LONG_NICKS.length ? r : { ...r, name: SPIRE_PREVIEW_LONG_NICKS[k++] }));
 }
 
 const FRIENDS: readonly SpireFriendChip[] = [

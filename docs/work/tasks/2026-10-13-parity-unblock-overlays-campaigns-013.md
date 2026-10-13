@@ -1,7 +1,7 @@
 # Task packet: overlays-campaigns-013 — blocked → pending (шаги робота готовы)
 
 Governance-ID: TG-348C9BBB0D41
-Status: In progress
+Status: Done (82ecadf92)
 Owner: сессия «3 · Макеты» по поручению координатора
 Related epic/enabler: непрерывная сверка паритета (RELEASE_PLAN_2026-10-11.md)
 
@@ -25,7 +25,7 @@ No architecture change: реестр.
 
 ## Technical debt
 
-None.
+Contain: нового долга нет; заметка об инциденте с замком ветки (коммит под timeout) сохранена в памяти сессии.
 
 ## Verification
 

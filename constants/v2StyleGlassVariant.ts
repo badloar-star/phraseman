@@ -43,16 +43,17 @@ export function adaptV2PaletteToGlass(p: V2Palette, g: GlassTokens): V2Palette {
     sheet: g.opaqueSheet,
   };
   if (g.level === 'calm' && !g.isLight) {
-    return Object.freeze({ ...p, ...darkSurfaces, cta: g.cta, ctaText: g.ctaInk });
+    return Object.freeze({ ...p, ...darkSurfaces, cta: g.ctaFill, ctaText: g.ctaInk });
   }
   const accentRoles = {
     accent: g.accent,
     accentSoft: g.accentSoft,
     // зачем (светлый акцент, кадр Главной «Аврора/1» 13.10): полоса прогресса — графика; на светлых градиентных темах сырой accent бледный, accentGraphic там глубже, в тёмном равен accent
     progressFill: g.accentGraphic,
-    cta: g.accent,
+    // зачем (владелец 13.10, №35): заливка главной кнопки — ctaFill (= accent, а где пастель слилась бы с фоном — глубже, ≥ 1,8 : 1)
+    cta: g.ctaFill,
     ctaText: g.accentInk,
-    accentFill: g.accent,
+    accentFill: g.ctaFill,
     accentText: g.accentText,
     link: g.accentText,
     // Значки в плитках, огонь серии на Главной, отметки «Сегодня» — цвет темы (макет .tile / .fl).

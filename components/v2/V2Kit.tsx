@@ -253,8 +253,13 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
   const s = useScaledTextStyles(styles);
   const g = useShadowGlass();
   const height = size === 'large' ? V2.cta.height : 40;
-  const fg = variant === 'primary' || variant === 'accent' ? p.ctaText : p.text;
-  const bg = variant === 'primary' ? p.cta : variant === 'accent' ? p.accentFill : 'transparent';
+  // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): отключённая кнопка — не «всё на 45 % прозрачности» (подпись уходила ниже 3 : 1),
+  // а плоская заливка buttonFillDisabled + подпись buttonInkDisabled (≈ 3,4 : 1), без тени; активная вторичная — buttonFill (≥ 1,6 : 1 к поверхностям).
+  const filled = variant === 'primary' || variant === 'accent';
+  const fg = disabled ? (filled || variant === 'secondary' ? g.buttonInkDisabled : p.textMuted) : filled ? p.ctaText : p.text;
+  const bg = disabled && (filled || variant === 'secondary')
+    ? g.buttonFillDisabled
+    : variant === 'primary' ? p.cta : variant === 'accent' ? p.accentFill : variant === 'secondary' ? g.buttonFill : 'transparent';
   const iconNode = icon ? <Ionicons name={icon} size={size === 'large' ? 20 : 17} color={fg} /> : null;
   return (
     <V2Pressable
@@ -266,10 +271,10 @@ export const V2Button = memo(function V2Button({ label, onPress, variant = 'prim
       scaleTo={0.97}
       style={[
         s.button,
-        { minHeight: height, paddingVertical: 6, borderRadius: height / 2, backgroundColor: bg, opacity: disabled ? 0.45 : 1 },
+        { minHeight: height, paddingVertical: 6, borderRadius: height / 2, backgroundColor: bg },
         // зачем (стиль «Тень»): кнопка действия — цветная тень; второстепенная вместо контура — плашка с малой тенью.
-        variant === 'primary' || variant === 'accent' ? { boxShadow: actionBoxShadow(g) } : null,
-        variant === 'secondary' ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) } : null,
+        filled && !disabled ? { boxShadow: actionBoxShadow(g) } : null,
+        variant === 'secondary' && !disabled ? { boxShadow: nestedBoxShadow(g) } : null,
         size === 'small' ? { paddingHorizontal: 16 } : null,
         style,
       ]}

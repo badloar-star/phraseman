@@ -2,6 +2,7 @@ import type { Theme } from './theme';
 import { alpha, oklchToHex } from './liquidGlassColor';
 import { deriveLiquidGlassSurfaceRoles, flattenOver, legibleOn, type LiquidGlassSurfaceRoles } from './liquidGlassSurfaceRoles';
 import { deriveLiquidGlassPaletteRoles, type LiquidGlassPaletteRoles } from './liquidGlassPaletteRoles';
+import { deriveLiquidGlassButtonRoles, type LiquidGlassButtonRoles } from './liquidGlassButtonTokens';
 import {
   DEFAULT_LIQUID_GLASS_VARIANT,
   resolveLiquidGlassAppearance,
@@ -76,7 +77,7 @@ type BaseGlassTokens = LiquidGlassBaseTokens;
  * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
  */
 // зачем (замечание владельца 10.10): + токены поверхностей для экранов с зашитыми под макет цветами (liquidGlassSurfaceRoles.ts).
-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string }>;
+export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string }>;
 
 /** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
 function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
@@ -221,6 +222,8 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     accentTextSafe: built.isLight ? accentText : built.accent,
     mutedText,
     ...surfaceRoles,
+    // зачем (владелец 13.10, №35): роли кнопок — вторичная/отключённая/главная заливки, не сливающиеся с фоном ни в одной теме (constants/liquidGlassButtonTokens.ts)
+    ...deriveLiquidGlassButtonRoles({ ...built, opaqueControl: built.opaqueControl }),
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
     ...(deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles),
     intensity: variant.intensity,

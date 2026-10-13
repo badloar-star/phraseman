@@ -235,3 +235,18 @@ FULL=$(git -C /c/appsprojects/phraseman rev-parse HEAD); cd /c/Temp/phraseman_de
 ## Откат
 
 Предыдущая ревизия функции в Cloud Run (консоль) или повторная выкладка из среза коммита до b7c1fd1e8 / 7d9064944.
+
+## Предполётная проверка 03:05 (Авторизация, по заданию координатора) — НИЧЕГО НЕ ВЫКЛАДЫВАЛОСЬ
+
+`firebase deploy` не запускался, ключи и `functions/.env*` не читались и в срез не копировались (сборке они не нужны), эмуляторы не
+поднимались. Пакет: `docs/work/tasks/deploy-morning-preflight-2026-10-13.md`.
+
+| Проверка | Результат |
+|---|---|
+| Сборка функций — чистый срез `git -c core.autocrlf=false archive` + переходы node_modules, `PHRASEMAN_SUPPORT_RELEASE_ARCHIVE=1` + полный id, `npm --prefix functions run build` (как в разделе «Команда»), одна сборка при свободных ≥3 ГБ | **rc=0 за 32–38 с**, дважды: срез 0c3c5a61d и 91c80f60e (HEAD сдвинулся между прогонами). Все шаги: support-context, gate:spire-multilingual, tsc, копия ассетов (4/4 пула Шпиля), functions-runtime-parity |
+| Экспорт каждой функции в собранном `functions/lib/functions/src/index.js` (это `main` пакета) под именем из `--only functions:<имя>` | **11/11 есть.** А: dialogueV2TextTurn, dialogueV2SessionComplete, reEngagePushCron · Б: premiumExpiryReminderCron · В: adminTranslateMessage, adminCreateAppMessage, adminUpdateAppMessage, adminLaunchVipSurveyCampaign · Д: submitClientReport · Е: accountDeleteMine, accountDeleteWorker |
+| `firestore.indexes.json` на HEAD (блок Д) — синтаксис локально | JSON читается: 77 индексов, 80 fieldOverrides, повторов override нет. **`error_reports.expireAt` — `ttl: true`, `indexes: []`** (как у остальных 11 TTL-правил) |
+| Тесты функций блоков, одна нить | **19 наборов, 322/322 зелёные:** dialogue_v2_turn_callable, _turn_coaching, _turn_coaching_provider, _turn_production_callable, dialogue_v2_session_complete_callable, re_engage_push, premium_expiry_cron, _cron_select, _phase2_cas, premium_expiry_reminder, _reminder_select, admin_app_messages, client_reports, log_ttl, account_delete_worker, account_delete, account_delete_job, account_delete_grace_login_contract, account_delete_tombstone_contract. Рабочая папка `functions/` = HEAD (незакоммиченного нет) |
+
+Срез удалён правильно: сначала `rmdir` переходов, потом папка. Если утром HEAD снова сдвинется — повторять ничего не нужно, кроме
+`git status --short functions/` (пусто) и, при новых серверных коммитах, сборки по разделу «Команда».

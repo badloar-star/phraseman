@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Недостающие значки</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+/* зачем (владелец 13.10): недостающие значки рисуем кодом (SVG, без картинок): огонёк серии (10 ступеней + заморозка), корона за 500 дней серии, флаги испанского и французского. Утверждает по картинке. */
+.msec { margin-top: 46px; }
+.msec h2 { font-size: 24px; font-weight: 700; letter-spacing: -.3px; margin: 0; }
+.msec p { color: var(--sec); font-size: 15px; line-height: 1.5; margin: 8px 0 16px; max-width: 880px; }
+.grid { display: grid; grid-template-columns: 150px repeat(2, 1fr); gap: 8px 14px; align-items: stretch; }
+.hdr { font-size: 13px; font-weight: 700; color: var(--sec); letter-spacing: .5px; padding: 0 6px; }
+.lab { display: flex; flex-direction: column; justify-content: center; font-size: 14px; font-weight: 600; padding: 4px 6px; }
+.lab small { color: var(--sec); font-weight: 400; font-size: 12px; margin-top: 2px; }
+.pane { display: flex; align-items: center; justify-content: space-evenly; gap: 12px; padding: 12px 16px; border-radius: 16px; min-height: 84px; }
+.pane.d { background: #121215; box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.pane.l { background: #F4F4F7; box-shadow: 0 6px 18px rgba(0,0,0,.25); }
+.pane svg { display: block; flex: none; }
+.strip { display: flex; gap: 6px; align-items: flex-end; padding: 14px 10px 10px; border-radius: 18px; overflow-x: auto; margin-top: 10px; scrollbar-width: none; }
+.strip.d { background: #121215; } .strip.l { background: #F4F4F7; }
+.strip .c { flex: none; text-align: center; font-size: 11px; color: #8E8E92; width: 84px; }
+.row-ctx { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 8px; }
+.ctx { width: 300px; border-radius: 22px; padding: 16px; }
+.ctx.d { background: #17171A; box-shadow: 0 12px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.05); }
+.ctx.l { background: #F4F4F7; color: #111; }
+.ctx .t { font-size: 13px; font-weight: 700; letter-spacing: .5px; color: #8E8E92; margin-bottom: 10px; }
+.fr-row { display: flex; align-items: center; gap: 12px; }
+.fr-row .av { width: 44px; height: 44px; border-radius: 22px; background: #2A2A30; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+.ctx.l .fr-row .av { background: #E2E2E8; }
+.fr-row .nm { font-size: 16px; font-weight: 700; flex: 1; }
+.fr-row .sk { display: flex; align-items: center; gap: 4px; font-weight: 700; font-size: 15px; }
+.big { display: flex; flex-direction: column; align-items: center; padding: 8px 0 4px; }
+.big b { font-size: 44px; line-height: 48px; letter-spacing: -1px; margin-top: 4px; }
+.big span { font-size: 15px; color: #8E8E92; }
+.chip { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px 0 8px; border-radius: 18px; background: #26262B; font-size: 15px; font-weight: 600; }
+.ctx.l .chip { background: #E4E4EA; }
+.lng { display: flex; align-items: center; gap: 14px; padding: 10px 0; font-size: 17px; font-weight: 600; }
+.note { color: var(--sec); font-size: 13px; line-height: 1.5; margin-top: 10px; max-width: 880px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1 class="page-h1">Недостающие значки</h1>
+  <p class="page-lead">Три набора, нарисованных кодом: <b>огонёк серии</b> (10 ступеней роста и состояние «заморозка» — вместо старого пера), <b>корона за 500 дней серии</b> (вместо временного пьедестала в достижениях), <b>флаги испанского и французского</b> (выбор языка изучения). Каждый значок — на тёмном и светлом фоне в трёх размерах: 16 / 24 / 48. Флаги — размер по высоте (ширина 8:5), как у остальных флагов приложения.</p>
+
+  <section class="msec"><h2>1. Огонёк серии</h2>
+    <p>Растёт вместе с серией: от искры до пылающего огня с белым жаром и венцом языков. Стоит: карточка друга, окно «Зарегистрируйся», экран «Серия». Номера ступеней — порядок роста; при каких днях серии меняется ступень, решает логика (в образец дни не вписаны). «Заморозка» — огонь в ледяном панцире: серия сохранена заморозкой.</p>
+    <div class="strip d" id="strip-d"></div><div class="strip l" id="strip-l"></div>
+    <div class="grid" id="flames" style="margin-top:22px"></div>
+  </section>
+
+  <section class="msec"><h2>2. Корона за 500 дней серии</h2>
+    <p>Золотая корона с языками пламени-зубцами и тремя камнями: рубин по центру, сапфиры по бокам. Для достижения «500 дней серии».</p>
+    <div class="grid" id="crown"></div>
+  </section>
+
+  <section class="msec"><h2>3. Флаги: испанский и французский</h2>
+    <p>Плоские флаги со скруглёнными углами 8:5, как остальные флаги выбора языка (EN, DE, IT). Испанский — красно-жёлто-красный с упрощённым гербом (на 16 px герб превращается в цветное пятно); французский — вертикальный триколор.</p>
+    <div class="grid" id="flags"></div>
+  </section>
+
+  <section class="msec"><h2>Где стоят — в контексте</h2>
+    <p>Карточка друга, окно «Зарегистрируйся», экран «Серия», выбор языка изучения — на тёмном и светлом фоне.</p>
+    <div class="row-ctx" id="ctx"></div>
+  </section>
+</div>
+<script src="kit.js"></script>
+<script>
+let UID = 0;
+const f1 = (n) => (Math.round(n * 10) / 10).toString();
+
+/* ---------- огонёк серии ---------- */
+// ступени 1..10: масштаб, число языков, цвета, ядро, свечение, искры. Основание пламени всегда внизу по центру (32, 58).
+const FL = [
+  { k: 0.42, t: 0, out: ['#FF9A3D', '#F2561A'], core: '#FFD08A', glow: 0.0, sp: 0 },
+  { k: 0.52, t: 0, out: ['#FF9A2E', '#F24A12'], core: '#FFD27A', glow: 0.08, sp: 0 },
+  { k: 0.62, t: 1, out: ['#FFA028', '#F23E0E'], core: '#FFD470', glow: 0.14, sp: 0 },
+  { k: 0.7, t: 1, out: ['#FFA824', '#EE3A0C'], core: '#FFDA78', glow: 0.2, sp: 1 },
+  { k: 0.78, t: 2, out: ['#FFB020', '#EC340A'], core: '#FFE084', glow: 0.26, sp: 2 },
+  { k: 0.85, t: 2, out: ['#FFBC1C', '#EA2E08'], core: '#FFE890', glow: 0.34, sp: 3 },
+  { k: 0.92, t: 3, out: ['#FFC81A', '#F0300A'], core: '#FFF2B0', glow: 0.42, sp: 4, blue: false },
+  { k: 0.98, t: 3, out: ['#FFD21A', '#F0360C'], core: '#FFF8D0', glow: 0.5, sp: 5, blue: true },
+  { k: 1.04, t: 4, out: ['#FFDB2A', '#F4400E'], core: '#FFFFFF', glow: 0.58, sp: 6, blue: true },
+  { k: 1.1, t: 4, out: ['#FFE23A', '#F8480E'], core: '#FFFFFF', glow: 0.7, sp: 8, blue: true, ring: true },
+];
+function flameShape(cx, base, w, h) {
+  // капля-язык с загнутой вершиной: ширина w, высота h, основание (cx, base)
+  const l = cx - w / 2, r = cx + w / 2, top = base - h;
+  return `M${f1(cx)} ${f1(top)}C${f1(cx + w * 0.12)} ${f1(top + h * 0.22)} ${f1(r + w * 0.02)} ${f1(top + h * 0.38)} ${f1(r)} ${f1(base - h * 0.28)}C${f1(r)} ${f1(base - h * 0.08)} ${f1(cx + w * 0.3)} ${f1(base)} ${f1(cx)} ${f1(base)}C${f1(cx - w * 0.3)} ${f1(base)} ${f1(l)} ${f1(base - h * 0.08)} ${f1(l)} ${f1(base - h * 0.3)}C${f1(l)} ${f1(base - h * 0.46)} ${f1(cx - w * 0.18)} ${f1(base - h * 0.56)} ${f1(cx - w * 0.12)} ${f1(top + h * 0.2)}C${f1(cx - w * 0.06)} ${f1(top + h * 0.12)} ${f1(cx - w * 0.04)} ${f1(top + h * 0.06)} ${f1(cx)} ${f1(top)}Z`;
+}
+function flameSvg(stage, size, o = {}) {
+  const p = 'f' + (++UID) + '_'; const S = FL[stage - 1]; const k = S.k;
+  const W = 26 + 1.45 * (stage - 1), H = 38 + 2.3 * (stage - 1); const base = 59; const cx = 32;
+  let g = `<defs><linearGradient id="${p}o" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S.out[0]}"/><stop offset="1" stop-color="${S.out[1]}"/></linearGradient><linearGradient id="${p}c" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${S.core}"/><stop offset="1" stop-color="${S.out[0]}"/></linearGradient><radialGradient id="${p}h" cx=".5" cy=".62" r=".5"><stop offset="0" stop-color="#FF8A2A" stop-opacity="${S.glow}"/><stop offset="1" stop-color="#FF8A2A" stop-opacity="0"/></radialGradient><linearGradient id="${p}b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7AD7FF" stop-opacity="0"/><stop offset="1" stop-color="#4AA8FF" stop-opacity=".95"/></linearGradient></defs>`;
+  if (S.glow > 0) g += `<circle cx="32" cy="${f1(base - H * 0.42)}" r="${f1(30 * Math.min(1.1, k + 0.1))}" fill="url(#${p}h)"/>`;
+  if (S.ring) { for (let a = 0; a < 8; a++) { const t = (a / 8) * Math.PI * 2 + 0.3; g += `<circle cx="${f1(32 + Math.cos(t) * 25)}" cy="${f1(34 + Math.sin(t) * 22)}" r="1.5" fill="#FFE58A" opacity=".85"/>`; } }
+  // боковые языки (ступени с t>0): слева и справа ниже вершины
+  if (S.t >= 1) g += `<path d="${flameShape(cx - W * 0.4, base, W * 0.46, H * 0.56)}" fill="url(#${p}o)" opacity=".95"/>`;
+  if (S.t >= 2) g += `<path d="${flameShape(cx + W * 0.4, base, W * 0.46, H * 0.5)}" fill="url(#${p}o)" opacity=".95"/>`;
+  if (S.t >= 3) g += `<path d="${flameShape(cx - W * 0.66, base, W * 0.32, H * 0.3)}" fill="url(#${p}o)" opacity=".9"/><path d="${flameShape(cx + W * 0.66, base, W * 0.32, H * 0.27)}" fill="url(#${p}o)" opacity=".9"/>`;
+  g += `<path d="${flameShape(cx, base, W, H)}" fill="url(#${p}o)"/>`;
+  if (S.blue) g += `<path d="${flameShape(cx, base, W * 0.7, H * 0.24)}" fill="url(#${p}b)"/>`;
+  g += `<path d="${flameShape(cx, base, W * 0.58, H * 0.62)}" fill="url(#${p}c)"/>`;
+  g += `<path d="${flameShape(cx, base, W * 0.28, H * 0.34)}" fill="${stage >= 9 ? '#FFFFFF' : '#FFF4D0'}" opacity=".95"/>`;
+  for (let s = 0; s < S.sp; s++) { const a = (s / Math.max(1, S.sp)) * 6.2 + 0.7; const rr = 12 + (s % 3) * 5; g += `<circle cx="${f1(32 + Math.cos(a) * (W * 0.6 + (s % 2) * 6))}" cy="${f1(base - H * 0.55 - Math.abs(Math.sin(a)) * rr)}" r="${f1(0.9 + (s % 3) * 0.4)}" fill="#FFD27A" opacity=".9"/>`; }
+  if (o.frozen) g += iceOverlay(p, S);
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" aria-label="огонёк серии, ступень ${stage}${o.frozen ? ', заморозка' : ''}">${g}</svg>`;
+}
+function iceOverlay(p, S) {
+  // ледяной панцирь: огранённый кристалл льда поверх пламени, бело-голубой, полупрозрачный, с бликами и снежинкой
+  let g = `<defs><linearGradient id="${p}i" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF8FF" stop-opacity=".5"/><stop offset=".5" stop-color="#A9DCFF" stop-opacity=".36"/><stop offset="1" stop-color="#5FA8F2" stop-opacity=".5"/></linearGradient></defs>`;
+  g += `<path d="M32 3L50 14L56 36L47 56L32 61L17 56L8 36L14 14Z" fill="url(#${p}i)" stroke="#E8F6FF" stroke-width="1.6" stroke-linejoin="round"/>`;
+  g += `<path d="M32 3L32 61M14 14L32 24L50 14M8 36L32 24L56 36M17 56L32 40L47 56" stroke="rgba(255,255,255,.55)" stroke-width="1" fill="none"/>`;
+  g += `<path d="M14 14L32 24L8 36Z" fill="rgba(255,255,255,.38)"/><path d="M32 3L50 14L32 24Z" fill="rgba(255,255,255,.28)"/>`;
+  g += `<path d="M32 22v20M23 27l18 10M41 27L23 37" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" opacity=".6"/><circle cx="32" cy="32" r="2" fill="#fff" opacity=".7"/>`;
+  g += `<path d="M44 10l1.2 3.2L48.4 14.4 45.2 15.6 44 18.8 42.8 15.6 39.6 14.4 42.8 13.2Z" fill="#fff" opacity=".9"/>`;
+  return g;
+}
+
+/* ---------- корона за 500 дней ---------- */
+function crownSvg(size) {
+  const p = 'c' + (++UID) + '_';
+  let g = `<defs><linearGradient id="${p}g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0A8"/><stop offset=".45" stop-color="#FFC73A"/><stop offset="1" stop-color="#C27A0E"/></linearGradient><linearGradient id="${p}r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF6B7A"/><stop offset="1" stop-color="#C4122E"/></linearGradient><linearGradient id="${p}s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8CC8FF"/><stop offset="1" stop-color="#2A64D0"/></linearGradient><radialGradient id="${p}h" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFC73A" stop-opacity=".5"/><stop offset="1" stop-color="#FFC73A" stop-opacity="0"/></radialGradient></defs>`;
+  g += `<circle cx="32" cy="34" r="30" fill="url(#${p}h)"/>`;
+  g += `<path d="M8 50L5 18L19 30L25 12L32 28L39 12L45 30L59 18L56 50Z" fill="url(#${p}g)" stroke="#9A5C06" stroke-width="1.2" stroke-linejoin="round"/>`;
+  g += `<path d="M8 50L5 18L19 30L25 12" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linejoin="round"/>`;
+  g += `<rect x="7" y="48" width="50" height="9" rx="3" fill="url(#${p}g)" stroke="#9A5C06" stroke-width="1.2"/><path d="M10 50.5h44" stroke="rgba(255,255,255,.55)" stroke-width="1"/>`;
+  [[5, 16], [25, 10], [39, 10], [59, 16]].forEach(([x, y]) => { g += `<circle cx="${x}" cy="${y}" r="3.2" fill="url(#${p}g)" stroke="#9A5C06" stroke-width="1"/>`; });
+  g += `<circle cx="32" cy="26" r="3.6" fill="url(#${p}g)" stroke="#9A5C06" stroke-width="1"/>`;
+  g += `<path d="M32 33L37 39L32 46L27 39Z" fill="url(#${p}r)" stroke="#7E0C20" stroke-width="1"/><path d="M32 33L37 39L32 39Z" fill="rgba(255,255,255,.4)"/>`;
+  [[17, 41], [47, 41]].forEach(([x, y]) => { g += `<path d="M${x} ${y - 5}L${x + 4} ${y}L${x} ${y + 5}L${x - 4} ${y}Z" fill="url(#${p}s)" stroke="#183E92" stroke-width=".9"/>`; });
+  g += `<path d="M47 6l1 2.6L50.6 9.6 48 10.6 47 13.2 46 10.6 43.4 9.6 46 8.6Z" fill="#fff" opacity=".9"/>`;
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" aria-label="корона за 500 дней серии">${g}</svg>`;
+}
+
+/* ---------- флаги ---------- */
+function flagSvg(code, h) {
+  const W = h * 1.6; const rx = W * 0.094; const p = 'g' + (++UID) + '_';
+  let g = `<defs><clipPath id="${p}c"><rect width="512" height="320" rx="48"/></clipPath></defs><g clip-path="url(#${p}c)">`;
+  if (code === 'es') {
+    g += `<rect width="512" height="320" fill="#AA151B"/><rect y="80" width="512" height="160" fill="#F1BF00"/>`;
+    if (h >= 24) {
+      g += `<g transform="translate(112 160)"><rect x="-26" y="-34" width="52" height="58" rx="6" fill="#fff" stroke="#9A6A10" stroke-width="3"/><path d="M-26 -34h26v29h-26z" fill="#C8102E"/><path d="M0 -5h26v29a26 26 0 0 1 -26 0z" fill="#C8102E"/><path d="M0 -34h26v29h-26z" fill="#F1BF00"/><path d="M-26 -5h26v29a26 26 0 0 1 -26 -8z" fill="#F1BF00"/><path d="M-20 -34L-14 -46L-6 -38L0 -50L6 -38L14 -46L20 -34Z" fill="#E0A800" stroke="#9A6A10" stroke-width="2"/><rect x="-40" y="-24" width="10" height="56" rx="3" fill="#D9D2C0" stroke="#9A8A60" stroke-width="2"/><rect x="30" y="-24" width="10" height="56" rx="3" fill="#D9D2C0" stroke="#9A8A60" stroke-width="2"/></g>`;
+    } else g += `<rect x="86" y="124" width="52" height="72" rx="10" fill="#C8102E"/><rect x="100" y="110" width="24" height="16" fill="#E0A800"/>`;
+  } else {
+    g += `<rect width="512" height="320" fill="#FFFFFF"/><rect width="171" height="320" fill="#0055A4"/><rect x="341" width="171" height="320" fill="#EF4135"/>`;
+  }
+  g += `</g>`;
+  return `<svg viewBox="0 0 512 320" width="${f1(W)}" height="${h}" aria-label="флаг ${code === 'es' ? 'Испании' : 'Франции'}">${g}</svg>`;
+}
+
+/* ---------- раскладка ---------- */
+const SIZES = [16, 24, 48];
+const pane = (cls, items) => `<div class="pane ${cls}">${items.join('')}</div>`;
+function section(id, rows) {
+  document.getElementById(id).innerHTML = `<div></div><div class="hdr">ТЁМНЫЙ ФОН · 16 / 24 / 48</div><div class="hdr">СВЕТЛЫЙ ФОН · 16 / 24 / 48</div>` + rows.map(([lab, sub, fn]) => `<div class="lab">${lab}${sub ? `<small>${sub}</small>` : ''}</div>${pane('d', SIZES.map(fn))}${pane('l', SIZES.map(fn))}`).join('');
+}
+const STAGE_NOTE = ['искра', 'огонёк', 'язычок', 'растёт', 'два языка', 'три языка', 'золотой', 'белый жар', 'пламя', 'пылающий'];
+section('flames', [
+  ...FL.map((_, i) => [`Ступень ${i + 1}`, STAGE_NOTE[i], (s) => flameSvg(i + 1, s)]),
+  ['Заморозка', 'серия сохранена льдом', (s) => flameSvg(6, s, { frozen: true })],
+  ['Заморозка · малый огонь', 'ступень 2 во льду', (s) => flameSvg(2, s, { frozen: true })],
+]);
+section('crown', [['Корона · 500 дней', 'достижение', (s) => crownSvg(s)]]);
+section('flags', [['Испания · ES', 'красно-жёлто-красный', (s) => flagSvg('es', s)], ['Франция · FR', 'триколор', (s) => flagSvg('fr', s)]]);
+
+const stripHtml = [...FL.map((_, i) => `<div class="c">${flameSvg(i + 1, 84)}<br>${i + 1}</div>`), `<div class="c">${flameSvg(6, 84, { frozen: true })}<br>заморозка</div>`].join('');
+document.getElementById('strip-d').innerHTML = stripHtml; document.getElementById('strip-l').innerHTML = stripHtml;
+const ctxHtml = (cls) => `<div class="ctx ${cls}"><div class="t">КАРТОЧКА ДРУГА</div><div class="fr-row"><div class="av">А</div><div class="nm">Аня</div><div class="sk">${flameSvg(7, 24)}18</div></div>
+  <div class="fr-row" style="margin-top:12px"><div class="av">К</div><div class="nm">Kirill</div><div class="sk">${flameSvg(3, 24)}4</div></div></div>
+  <div class="ctx ${cls}"><div class="t">ЭКРАН «СЕРИЯ»</div><div class="big">${flameSvg(9, 112)}<b>42</b><span>дня подряд</span></div></div>
+  <div class="ctx ${cls}"><div class="t">ОКНО «ЗАРЕГИСТРИРУЙСЯ»</div><div class="chip">${flameSvg(5, 24)}Серия 12 дней сохранится</div><div style="margin-top:12px" class="chip">${flameSvg(6, 24, { frozen: true })}Заморозка на 1 день</div></div>
+  <div class="ctx ${cls}"><div class="t">ДОСТИЖЕНИЕ</div><div class="big">${crownSvg(96)}<b style="font-size:22px;line-height:28px">500 дней серии</b></div></div>
+  <div class="ctx ${cls}"><div class="t">ЯЗЫК ИЗУЧЕНИЯ</div><div class="lng">${flagSvg('es', 28)}Español</div><div class="lng">${flagSvg('fr', 28)}Français</div></div>`;
+document.getElementById('ctx').innerHTML = ctxHtml('d') + ctxHtml('l');
+</script>
+</body>
+</html>

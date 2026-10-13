@@ -11,10 +11,10 @@ index 0fd1a0a0e..97ef07dc1 100644
 +// зачем (координатор 13.10, вопрос владельцу 15): окно «Что нового» 2.0 видят только люди, у которых приложение стояло ДО выхода 2.0
 +// и которые обновились на сборку 2.0. Новичок (установил после выхода) окна не видит — ему нечего сравнивать.
 +// ВПИСАТЬ перед сборкой:
-+//  - V2_RELEASE_MIN_BUILD_ID — номер сборки 2.0 (вопрос 8: 131, или 132, если 131 уже загружалась в магазин);
-+//  - V2_RELEASE_NEW_USER_CUTOFF_MS — момент выхода 2.0 (называет владелец, вопрос 15). Установившие раньше — «старые».
-+const V2_RELEASE_MIN_BUILD_ID = 131;
-+const V2_RELEASE_NEW_USER_CUTOFF_MS = Date.UTC(2026, 9, 16, 0, 0, 0);
++//  - V2_RELEASE_MIN_BUILD_ID — номер сборки 2.0: 132 (решение владельца 13.10, вопрос 8);
++//  - V2_RELEASE_NEW_USER_CUTOFF_MS — день выхода 2.0: ориентир 20.10 (владелец 13.10, вопрос 15). Установившие раньше — «старые».
++const V2_RELEASE_MIN_BUILD_ID = 132;
++const V2_RELEASE_NEW_USER_CUTOFF_MS = Date.UTC(2026, 9, 20, 0, 0, 0); // зачем: владелец 13.10, сдвинуть, если выход переедет
  
 -/** Release 2.0 is not live. Supply its real build and rollout day only at release. */
  function configuredV2Release(): ReleaseNotesV2Release | null {
@@ -171,15 +171,15 @@ index 841339447..5f03ba62b 100644
 -  it('stays off before the separate release is configured', async () => {
 +  // зачем (координатор 13.10, вопрос 15): выпуск настроен константами — окно у старых пользователей на сборке 2.0, новички его не видят.
 +  it('is active only on the configured 2.0 build', () => {
-+    mockBuildId.mockReturnValue(130);
-     expect(isReleaseNotesV2ReleaseActive()).toBe(false);
 +    mockBuildId.mockReturnValue(131);
+     expect(isReleaseNotesV2ReleaseActive()).toBe(false);
++    mockBuildId.mockReturnValue(132);
 +    expect(isReleaseNotesV2ReleaseActive()).toBe(true);
 +  });
 +
 +  it('new users never see the window: installed after the release moment, no install date, or onboarding not done', async () => {
-+    mockBuildId.mockReturnValue(131);
-+    const cutoff = Date.UTC(2026, 9, 16, 0, 0, 0);
++    mockBuildId.mockReturnValue(132);
++    const cutoff = Date.UTC(2026, 9, 20, 0, 0, 0);
 +    await AsyncStorage.multiSet([['onboarding_done', '1'], ['install_date', String(cutoff + 60_000)]]);
 +    await expect(shouldOfferReleaseNotesV2Modal()).resolves.toBe(false);
 +    await AsyncStorage.removeItem('install_date');

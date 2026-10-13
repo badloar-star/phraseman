@@ -400,7 +400,9 @@ const failSave = () => failPhone(savePanel());
 /* ===================== 5. ИТОГ НЕДЕЛИ ===================== */
 /* зачем: тексты по spireGameText weekUp / weekStay / weekDown и spireWeekResultLines: «N место · K ступеней · +монеты монет» или «новая неделя, все с 1 этажа».
    Новая неделя: локальной недели ещё нет — маркер и соперники на башне не рисуются, на карточке этажа «Ты здесь» нет (решение Дизайна 12.10) */
-const weekCard = (title, sub) => `<div class="sg-week">${coinImg(ME.rank, 52)}<div class="grow"><div class="sg-over">Итог недели</div><div class="sg-wt">${title}</div><div class="sg-ws">${sub}</div></div><span class="sg-x t">${icon('close', 's16')}</span></div>`;
+/* зачем (D182): мини-башня нового наряда в карточке «Итог недели» + значок моей монеты (SpireWeekResultCard) */
+const miniTower = () => `<span style="position:relative;width:52px;height:76px;flex:none;display:block">${towerSvg({ mySteps: 0, sel: 0, clean: true, noMarker: true }).replace(`width="${TW}" height="${G.H}"`, 'width="52" height="76" preserveAspectRatio="xMidYMid meet"').replace(`viewBox="0 0 ${TW} ${G.H}"`, `viewBox="${CX - 80} ${G.top - 215} 160 234"`)}<span style="position:absolute;right:-6px;bottom:-4px;border-radius:50%;box-shadow:0 0 0 2px var(--card, #1C1C1E)">${coinImg(ME.rank, 24)}</span></span>`;
+const weekCard = (title, sub) => `<div class="sg-week">${miniTower()}<div class="grow"><div class="sg-over">Итог недели</div><div class="sg-wt">${title}</div><div class="sg-ws">${sub}</div></div></div>`; /* крестика нет (12cc1deea) */
 const newWeek = (title, sub, stone) => homePhone({ stone, left: '6 д 22 ч', top: weekCard(title, sub), tower: { myFloor: 0, noMarker: true, noRivals: true, sel: 1 }, finfo: floorInfo(1, { noWeek: true }) });
 const weekUp = () => newWeek('Ты поднимаешься в Базальт', '2 место · 39 ступеней · +200 · +100 монет', 'Базальт');
 const weekStay = () => newWeek('Остаёшься на пике Гранит', '12 место · 25 ступеней · новая неделя, все с 1 этажа', 'Гранит');

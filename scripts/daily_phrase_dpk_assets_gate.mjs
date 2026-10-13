@@ -9,10 +9,12 @@
  *
  * Всегда (дёшево): тип dpk в assetExts сборщика; три пакета на месте, читаются, по 176 фраз, цель совпадает; на каждый
  * есть ссылка в app/daily_phrase_pack_assets.ts.
- * Если есть результат сборки: манифест expo-updates release-сборки и/или стор-экспорт (dist-store/metadata.json) обязаны
- * содержать все три пакета. Нет ни того, ни другого — громкое «пропущено» (сборка делается в день релиза).
+ * Если есть результат сборки: манифест expo-updates release-сборки обязан содержать все три пакета, а стор-экспорт
+ * (dist-store/_expo) — регистрировать их в бандле с хэшем текущих файлов. Нет ни того, ни другого — громкое «пропущено»
+ * (сборка делается в день релиза).
  * Использование: node scripts/daily_phrase_dpk_assets_gate.mjs
  */
+import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -54,13 +56,40 @@ export function missingDpkInAssetList(assets) {
   return DPK_TARGETS.filter((target) => !present.has(target));
 }
 
-function exportAssets(root) {
-  const meta = path.join(root, 'dist-store', 'metadata.json');
-  if (!fs.existsSync(meta)) return null;
-  const json = JSON.parse(fs.readFileSync(meta, 'utf8'));
-  const list = json?.fileMetadata?.android?.assets ?? [];
-  // В metadata.json у ресурса есть path и ext; имя берём из пути исходника недоступно — сверяем по числу dpk.
-  return list.map((a) => ({ type: a.ext, name: '' }));
+/** Файлы бандла стор-экспорта (.hbc / .js / .bundle) в dist-store/_expo; нет экспорта — null. */
+function exportBundleFiles(root) {
+  const dir = path.join(root, 'dist-store', '_expo');
+  if (!fs.existsSync(dir)) return null;
+  const out = [];
+  const walk = (current) => {
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (/\.(hbc|js|bundle)$/i.test(entry.name)) out.push(full);
+    }
+  };
+  walk(dir);
+  return out;
+}
+
+/**
+ * Какие пакеты НЕ зарегистрированы в бандле с хэшем текущего файла. Сборщик пишет в registerAsset hash = md5 файла.
+ * зачем (Ядро 13.10, первый стор-экспорт PM-216): экспорт кладёт в metadata.json только ресурсы из assetPatternsToBeBundled
+ * (app.config.js) — 28 картинок, без .dpk, — поэтому «0 dpk в metadata.json» ничего не доказывает. Хэш в бандле доказывает, что
+ * код ссылается на ТЕКУЩИЕ пакеты; встраивание в установочный файл проверяет манифест релизной сборки (выше).
+ */
+export function missingDpkInBundles(bundleBuffers, hashesByTarget) {
+  return DPK_TARGETS.filter((target) => {
+    const needle = Buffer.from(hashesByTarget[target] ?? '', 'utf8');
+    return needle.length === 0 || !bundleBuffers.some((data) => data.indexOf(needle) >= 0);
+  });
+}
+
+function dpkHashes(root) {
+  return Object.fromEntries(DPK_TARGETS.map((target) => {
+    const file = path.join(root, 'assets', 'daily_phrase_packs', `${target}.dpk`);
+    return [target, fs.existsSync(file) ? createHash('md5').update(fs.readFileSync(file)).digest('hex') : ''];
+  }));
 }
 
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
@@ -97,16 +126,18 @@ if (isMain) {
       console.log(`${LOG} манифест ${rel}: все ${DPK_TARGETS.length} пакета на месте`);
     }
   }
-  const exported = exportAssets(ROOT);
-  if (exported) {
+  const bundleFiles = exportBundleFiles(ROOT);
+  if (bundleFiles && bundleFiles.length > 0) {
     checkedBuild = true;
-    const dpkCount = exported.filter((a) => String(a.type).replace(/^\./, '') === 'dpk').length;
-    if (dpkCount < DPK_TARGETS.length) {
+    const missing = missingDpkInBundles(bundleFiles.map((file) => fs.readFileSync(file)), dpkHashes(ROOT));
+    if (missing.length > 0) {
       failed = true;
-      console.error(`${LOG} ОТКАЗ: в dist-store/metadata.json пакетов dpk ${dpkCount}, нужно ${DPK_TARGETS.length}`);
+      console.error(`${LOG} ОТКАЗ: стор-бандл не регистрирует пакеты ${missing.join(', ')} с хэшем текущего файла — экспорт старше пакетов или ссылка потеряна; повтори экспорт`);
     } else {
-      console.log(`${LOG} стор-экспорт: пакетов dpk ${dpkCount}`);
+      console.log(`${LOG} стор-экспорт: бандл регистрирует все ${DPK_TARGETS.length} пакета с хэшем текущих файлов (встраивание — по манифесту релизной сборки)`);
     }
+  } else if (bundleFiles) {
+    console.log(`${LOG} ПРОПУЩЕНО: в dist-store/_expo нет файла бандла`);
   }
   if (!checkedBuild) console.log(`${LOG} ПРОПУЩЕНО: нет ни манифеста release-сборки, ни dist-store — проверка сборки делается в день релиза`);
   process.exit(failed ? 1 : 0);

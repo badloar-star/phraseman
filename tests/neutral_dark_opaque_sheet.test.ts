@@ -23,18 +23,18 @@ describe('opaqueSheet в тёмном — нейтраль', () => {
     expect(SHADOW_SHEET_DARK_TOP.toUpperCase()).toBe('#28282E');
   });
 
-  it('opaqueControl в тёмном — нейтральный #34343A у всех тем и уровней, светлее подложки; в светлом не тронут', () => {
+  it('opaqueControl в тёмном — нейтральный #3A3A40 у всех тем и уровней, светлее подложки; в светлом не тронут', () => {
     const bad: string[] = [];
     for (const id of THEMES) {
       for (const intensity of [0, 0.5, 1]) {
         const g = liquidGlassTokens(id, { appearance: 'dark', intensity } as never);
-        if (g.opaqueControl.toUpperCase() !== '#34343A') bad.push(`${id}@${intensity}: ${g.opaqueControl}`);
+        if (g.opaqueControl.toUpperCase() !== '#3A3A40') bad.push(`${id}@${intensity}: ${g.opaqueControl}`);
         if (L(g.opaqueControl) <= L(g.opaqueSheet)) bad.push(`${id}@${intensity}: поле не светлее подложки`);
       }
     }
     expect(bad).toEqual([]);
     const light = liquidGlassTokens('grad_aurora', { appearance: 'light', intensity: 0.6 } as never);
-    expect(light.opaqueControl.toUpperCase()).not.toBe('#34343A');
+    expect(light.opaqueControl.toUpperCase()).not.toBe('#3A3A40');
   });
 
   it('плитка значка режима: в тёмном нейтральная при любой теме, в светлом — цвет темы (cards-v2 №27)', () => {

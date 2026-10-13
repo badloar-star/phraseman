@@ -18,6 +18,7 @@ import type { Lang } from '../../constants/i18n';
 import { SPIRE_DEFAULT_SKIN, mixHex, type SpireTowerSkin } from '../../modules/spire/tower_skins';
 import { spireText } from './spire_strings';
 import SpireTowerFinial, { spireFinialTopY } from './SpireTowerFinial';
+import type { SpireScene } from './useSpireScene';
 import { SPIRE_TEX_ID, skinTextureDefs } from './SpireTowerTextures';
 import {
   SPIRE_CX, SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireFloorState, spireIsGuard, spireIsSummit,
@@ -85,9 +86,11 @@ type FloorProps = Readonly<{
   onSelect: (floor: number) => void;
   /** Мини-башня «Итога недели»: без номера этажа, подписи, рамки выбора и зоны нажатия (их всё равно не видно в кадре). */
   bare?: boolean;
+  /** Цвета сцены из темы (номер этажа, подписи). Нет пропа = прежние серые литералы ночной сцены. */
+  scene?: SpireScene;
 }>;
 
-const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect, bare = false }: FloorProps) {
+const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSelect, bare = false, scene }: FloorProps) {
   const { f, y, h, w, x0 } = fl;
   const guard = spireIsGuard(f);
   const stones = useMemo(() => stonesPath(fl), [fl]);
@@ -109,8 +112,8 @@ const Floor = memo(function Floor({ fl, tone, skin, mine, selected, label, onSel
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={1.4} rx={0.7} fill="rgba(255,255,255,.28)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         </>
       )}
-      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={mine ? '#FFFFFF' : '#8E8E92'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill="#8E8E92" textAnchor="middle">{label}</SvgText> : null}
+      {bare ? null : <SvgText x={14} y={y + h / 2 + (label ? 0 : 5)} fontSize={14} fontWeight={mine ? '700' : '600'} fill={scene ? (mine ? scene.numMine : scene.num) : mine ? '#FFFFFF' : '#8E8E92'} textAnchor="middle">{String(f)}</SvgText>}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {label && !bare ? <SvgText x={20} y={y + h / 2 + 14} fontSize={7.5} fontWeight="700" letterSpacing={0.5} fill={scene ? scene.num : '#8E8E92'} textAnchor="middle">{label}</SvgText> : null}
       {selected ? <Rect x={x0 - 9} y={y - (guard ? 20 : 6)} width={w + 18} height={h + (guard ? 23 : 9)} rx={5} fill="none" stroke="rgba(255,255,255,.8)" strokeWidth={1.4} /> : null}{/* theme-exempt: рамка выбранного этажа на ночной сцене (небо всегда тёмное) */}
       {bare ? null : <Rect x={0} y={y - 4} width={SPIRE_TW} height={h + 4} fill="transparent" />}
     </G>
@@ -217,7 +220,7 @@ const Crown = memo(function Crown({ skin, summit }: CrownProps) {
 const STARS: readonly (readonly [number, number])[] = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
 
 /** Градиенты наряда: цилиндр, карнизы, конус, небо, земля, свет; у премиальных ещё блик, металл, шар опала и жар осколка. */
-function skinDefs(skin: SpireTowerSkin): React.ReactNode {
+function skinDefs(skin: SpireTowerSkin, scene?: SpireScene): React.ReactNode {
   const s = skin.spec;
   const O6 = ['0', '0.16', '0.36', '0.55', '0.8', '1'] as const;
   const O4 = ['0', '0.35', '0.6', '1'] as const;
@@ -232,7 +235,8 @@ function skinDefs(skin: SpireTowerSkin): React.ReactNode {
       <RadialGradient id="spireLitFloor" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.glow} stopOpacity={0.16} /><Stop offset="1" stopColor={skin.glow} stopOpacity={0} /></RadialGradient>
       <LinearGradient id="spireSky" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor={skin.sky[0]} /><Stop offset="0.5" stopColor={skin.sky[1]} /><Stop offset="1" stopColor={skin.sky[2]} /></LinearGradient>
       <RadialGradient id="spireGround" cx="0.5" cy="0.2" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.ground[0]} /><Stop offset="1" stopColor={skin.ground[1]} stopOpacity={0} /></RadialGradient>
-      <RadialGradient id="spireCloud" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.09} /><Stop offset="1" stopColor="#FFFFFF" stopOpacity={0} /></RadialGradient>
+      <RadialGradient id="spireCloud" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={scene ? scene.tone : '#FFFFFF'} stopOpacity={scene ? (scene.light ? 0.07 : 0.09) : 0.09} /><Stop offset="1" stopColor={scene ? scene.tone : '#FFFFFF'} stopOpacity={0} /></RadialGradient>
+      {scene ? <RadialGradient id="spireGroundTheme" cx="0.5" cy="0.2" rx="0.5" ry="0.5"><Stop offset="0" stopColor={scene.tone} stopOpacity={scene.light ? 0.1 : 0.14} /><Stop offset="1" stopColor={scene.tone} stopOpacity={0} /></RadialGradient> : null}
       {skin.premium ? (
         <>
           {/* зачем: «премиальный» отлив без фильтров — узкий зеркальный блик (сила spec), мягкая вторая полоса и подсветка края цветом лиги (gloss образца) */}
@@ -289,18 +293,20 @@ type Props = Readonly<{
    * Состояние окон — по myFloor: 15 («вершина недели», окна горят, свечение ×2.6) или 1 (окна тёмные).
    */
   variant?: 'tower' | 'weekTop';
+  /** зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): цвета сцены (небо, звёзды, облака, подписи, земля, тень) из токенов темы. Нет пропа = ночное небо наряда лиги (старый вид). */
+  scene?: SpireScene;
 }>;
 
 const WEEK_TOP_W = 192;
 const WEEK_TOP_H = 342;
 
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower' }: Props) {
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   const guardLabel = useMemo(() => spireText(lang, 'guard').toUpperCase(), [lang]);
   const summitLabel = useMemo(() => spireText(lang, 'summit').toUpperCase(), [lang]);
   const cloudsLabel = useMemo(() => spireText(lang, 'aboveClouds').toUpperCase(), [lang]);
-  const defs = useMemo(() => skinDefs(skin), [skin]);
+  const defs = useMemo(() => skinDefs(skin, scene), [skin, scene]);
   const b = geom.floors[0];
   const skyY = geom.top - 250;
   const summit = myFloor === SPIRE_FLOOR_COUNT;
@@ -335,16 +341,17 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
   return (
     <Svg width={width} height={geom.height * scale} viewBox={`0 0 ${SPIRE_TW} ${geom.height}`}>
       <Defs>{defs}</Defs>
-      <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />
-      <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill="rgba(255,255,255,.03)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      {STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={`rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} />)}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
+      {/* зачем (владелец 13.10): со сценой темы небо не рисуем — окно остаётся плитой темы (SpireTower.window), башня стоит на ней */}
+      {scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}
+      {scene ? null : <Ellipse cx={SPIRE_CX} cy={geom.top - 120} rx={200} ry={260} fill="rgba(255,255,255,.03)" />}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      {(scene ? scene.star !== null : true) ? STARS.map(([x, yy], i) => <Circle key={`s${i}`} cx={x} cy={skyY - 40 + yy} r={i % 3 ? 0.8 : 1.2} fill={scene && scene.star ? scene.star : `rgba(255,255,255,${i % 2 ? 0.35 : 0.55})`} opacity={scene ? (i % 2 ? 0.35 : 0.55) : 1} />) : null}{/* theme-exempt: звёзды на ночном небе сцены (spireSky всегда тёмное) */}
       <Ellipse cx={60} cy={geom.top - 150} rx={130} ry={28} fill="url(#spireCloud)" />
       <Ellipse cx={330} cy={geom.top - 170} rx={140} ry={30} fill="url(#spireCloud)" />
       <Ellipse cx={80} cy={geom.top - 96} rx={110} ry={22} fill="url(#spireCloud)" />
       <Ellipse cx={320} cy={geom.top - 90} rx={120} ry={22} fill="url(#spireCloud)" />
-      <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill="#5E5E62" textAnchor="middle">{cloudsLabel}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-      <Ellipse cx={SPIRE_CX} cy={geom.base + 44} rx={210} ry={40} fill="url(#spireGround)" />
-      <Ellipse cx={SPIRE_CX} cy={geom.base + 30} rx={b.w / 2 + 64} ry={12} fill="rgba(0,0,0,.55)" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <SvgText x={SPIRE_CX} y={geom.top - 272} fontSize={11} fontWeight="700" letterSpacing={3} fill={scene ? scene.cloudsLabel : '#5E5E62'} textAnchor="middle">{cloudsLabel}</SvgText>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+      <Ellipse cx={SPIRE_CX} cy={geom.base + 44} rx={210} ry={40} fill={scene ? 'url(#spireGroundTheme)' : 'url(#spireGround)'} />
+      <Ellipse cx={SPIRE_CX} cy={geom.base + 30} rx={b.w / 2 + 64} ry={12} fill={scene ? scene.shadow : 'rgba(0,0,0,.55)'} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Rect x={b.x0 - 30} y={geom.base + 16} width={b.w + 60} height={14} rx={3} fill="url(#spireCylCorn)" opacity={0.7} />
       <Rect x={b.x0 - 16} y={geom.base + 2} width={b.w + 32} height={16} rx={3} fill="url(#spireCylCorn)" />
       {skin.premium ? <Rect x={b.x0 - 16} y={geom.base + 2} width={b.w + 32} height={1.5} fill="rgba(255,255,255,.25)" /> : null}{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
@@ -353,7 +360,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
         const state = spireFloorState(fl.f, myFloor);
         const tone: WindowTone = state === 'mine' ? 'lit' : state === 'passed' ? 'past' : 'dark';
         const label = spireIsSummit(fl.f) ? summitLabel : spireIsGuard(fl.f) ? guardLabel : '';
-        return <Floor key={fl.f} fl={fl} tone={tone} skin={skin} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} />;
+        return <Floor key={fl.f} fl={fl} tone={tone} skin={skin} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} scene={scene} />;
       })}
       {skin.rim === 'full' ? <CornRims /> : null}
       {geom.floors.filter((fl) => spireIsGuard(fl.f) && !spireIsSummit(fl.f)).map((fl) => <Parapet key={`p${fl.f}`} fl={fl} skin={skin} />)}

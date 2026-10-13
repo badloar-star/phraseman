@@ -21,6 +21,7 @@ import SpireTowerSvg from './SpireTowerSvg';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText } from './spire_game_strings';
+import { useSpireScene } from './useSpireScene';
 import { spireStepsShort } from './spire_plurals';
 
 const IMG_HEIGHT = 340;
@@ -29,10 +30,11 @@ const TOWER_OFFSET = -32;
 const noop = () => undefined;
 
 function TourTower({ lang }: Readonly<{ lang: Lang }>) {
+  const scene = useSpireScene(); // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): фон сцены тура — из темы, как у экрана
   return (
     <View style={s.towerClip} pointerEvents="none">
       <View style={{ marginTop: TOWER_OFFSET, width: TOWER_WIDTH }}>
-        <SpireTowerSvg lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} />
+        <SpireTowerSvg lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} scene={scene} />
       </View>
     </View>
   );

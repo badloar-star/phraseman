@@ -14,6 +14,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
+import { useSpireScene } from './useSpireScene';
 import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { getDevSpireTierOverride } from '../../app/dev_spire_tier';
 import SpireRankCoin from './SpireRankCoin';
@@ -197,6 +198,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
   const devTier = getDevSpireTierOverride();
   const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);
+  // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): небо, звёзды, облака, земля и подписи — из токенов темы; башня — наряд лиги
+  const scene = useSpireScene();
   const label = useMemo(
     () => `${spireText(lang, 'floor')} ${selected}`,
     [lang, selected],
@@ -236,7 +239,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       >
         {width > 0 ? (
           <View style={{ width, height: SPIRE_TOWER_GEOM.height * scale }}>
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} skin={skin} />
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} skin={skin} scene={scene} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
                 <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} />

@@ -201,3 +201,7 @@ add('cards-v2-046', ['tap:#fc-editor-en', 'type:Layover', 'hidekb', 'wait:400'],
 ENTRIES.pop('dialogs-gap-016', None)
 add('dialogs-gap-016', DLG_START + ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'hidekb', 'wait:500'],
     DLG_BASE + '&dev_dialog_fail=service', DLG, note='тост «Энергия возвращена» (dev_dialog_fail=service); сценария «Закажи кофе / Мия» в каталоге V2 нет — к Макетам')
+# зачем (Ядро 77f934e96): образец settings-gap-005 — «Plus за приглашения» + «Полный доступ на 3 дня»; introAccess=active — трёхдневный доступ в памяти
+ENTRIES.pop('settings-gap-005', None)
+add('settings-gap-005', ['see:#settings-plus-access-details'], 'vip=referral&plus=inherit&introAccess=active', '/(tabs)/settings',
+    note='главная Настроек: Plus за приглашения + «Полный доступ на 3 дня» (introAccess=active, только память)')

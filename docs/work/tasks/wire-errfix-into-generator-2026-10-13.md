@@ -32,3 +32,7 @@ prod_write_guard по таблице.
 ## Rollback
 
 Откат коммита.
+
+## Дополнение: settings-gap-005 (Ядро 77f934e96)
+
+`vip=referral&plus=inherit&introAccess=active` — две плашки «Plus за приглашения» + «Полный доступ на 3 дня» (подмена в памяти).

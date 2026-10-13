@@ -27,12 +27,13 @@ type DevSeedAttempt = Readonly<{
 /** Шесть фраз демо-хаба: как настоящие ошибки урока (lesson_phrase), свежая запись сразу «готова» (dueAt = момент записи). */
 export const DEV_MISTAKES_SEED_ATTEMPTS: readonly DevSeedAttempt[] = Object.freeze(
   ([
-    ['I am used to it', 'я к этому привык', 'word_order'],
-    ['in the end', 'в конце концов', 'meaning'],
-    ['How much is it?', 'сколько это стоит?', 'word_order'],
-    ['I look forward to it', 'я с нетерпением жду этого', 'meaning'],
-    ['take off', 'взлетать', 'meaning'],
-    ['layover', 'пересадка', 'meaning'],
+    // зачем (координатор 13.10, mistakes-panel-021): фразы — как в образце mistakes-panel.shadow.html.
+    ['Grandchildren', 'Внуки', 'meaning'],
+    ['I have been', 'Я был', 'word_order'],
+    ['Ready', 'Готов', 'meaning'],
+    ['Although', 'Хотя', 'meaning'],
+    ['Make a decision', 'Принять решение', 'word_order'],
+    ['Through', 'Через', 'meaning'],
   ] as const).map(([phrase, meaning, facet], index): DevSeedAttempt => Object.freeze({
     attemptId: `dev-seed:mistakes-ready:${index + 1}`,
     studyTarget: DEV_MISTAKES_SEED_TARGET,

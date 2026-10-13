@@ -74,12 +74,12 @@ export function buildDevMistakesDemoSnapshot(nowMs: number = Date.now()): Mistak
     firstCapturedAtMs: nowMs - daysAgoCaptured * DAY_MS,
   });
   const items: readonly MistakePracticeListItem[] = Object.freeze([
-    item('dev-mistake-1', 'I am used to it', 'я к этому привык', 'form', 'active', 4, 1, -1, 6, null),
-    item('dev-mistake-2', 'in the end', 'в конце концов', 'meaning', 'active', 3, 0, 0, 4, null),
-    item('dev-mistake-3', 'How much is it?', 'сколько это стоит?', 'word_order', 'active', 2, 2, 2, 3, null),
-    item('dev-mistake-4', 'I look forward to it', 'я с нетерпением жду этого', 'missing_token', 'active', 2, 0, 3, 2, null),
-    item('dev-mistake-5', 'layover', 'пересадка', 'meaning', 'corrected', 3, 3, 0, 9, 1),
-    item('dev-mistake-6', 'take off', 'взлетать', 'form', 'corrected', 2, 3, 0, 12, 3),
+    item('dev-mistake-1', 'Grandchildren', 'Внуки', 'form', 'active', 4, 1, -1, 6, null),
+    item('dev-mistake-2', 'I have been', 'Я был', 'meaning', 'active', 3, 0, 0, 4, null),
+    item('dev-mistake-3', 'Ready', 'Готов', 'word_order', 'active', 2, 2, 2, 3, null),
+    item('dev-mistake-4', 'Although', 'Хотя', 'missing_token', 'active', 2, 0, 3, 2, null),
+    item('dev-mistake-5', 'Make a decision', 'Принять решение', 'meaning', 'corrected', 3, 3, 0, 9, 1),
+    item('dev-mistake-6', 'Through', 'Через', 'form', 'corrected', 2, 3, 0, 12, 3),
   ]);
   const active = items.filter((entry) => entry.status === 'active');
   const insights = Object.freeze({

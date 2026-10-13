@@ -17,7 +17,8 @@ const S = {
   friendsWeek: ['Друзья на этой неделе', 'Друзі цього тижня', 'Friends this week', 'Amigos esta semana', 'Amigos nesta semana', 'Bạn bè tuần này', 'Teman minggu ini', 'Bu hafta arkadaşlar', 'Znajomi w tym tygodniu'],
   roomWeek: ['Комната недели', 'Кімната тижня', 'Room of the week', 'Sala de la semana', 'Sala da semana', 'Phòng của tuần', 'Ruang minggu ini', 'Haftanın odası', 'Pokój tygodnia'],
   allMembers: ['Все участники', 'Усі учасники', 'All participants', 'Todos los participantes', 'Todos os participantes', 'Tất cả người tham gia', 'Semua peserta', 'Tüm katılımcılar', 'Wszyscy uczestnicy'],
-  climb: ['Подняться', 'Піднятися', 'Climb', 'Subir', 'Subir', 'Leo lên', 'Naik', 'Yüksel', 'Wspinaj się'],
+  // зачем (владелец 13.10, D177): главная кнопка Пика — «Играть», без «подняться/ступень»; ключ climb оставлен ради совместимости
+  climb: ['Играть', 'Грати', 'Play', 'Jugar', 'Jogar', 'Chơi', 'Main', 'Oyna', 'Graj'],
   floor: ['Этаж', 'Поверх', 'Floor', 'Piso', 'Andar', 'Tầng', 'Lantai', 'Kat', 'Piętro'],
   guard: ['Страж', 'Вартовий', 'Guardian', 'Guardián', 'Guardião', 'Người canh', 'Penjaga', 'Muhafız', 'Strażnik'],
   summit: ['Вершина', 'Вершина', 'Summit', 'Cima', 'Topo', 'Đỉnh', 'Puncak', 'Zirve', 'Szczyt'],

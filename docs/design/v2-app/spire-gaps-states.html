@@ -151,7 +151,12 @@ const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill e
 const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
 const STEPS = [47, 39, 33, 31, 29, 27, 25, 24, 22, 21, 19, 18, 17, 15, 14, 12, 11, 11, 9, 8, 7, 6, 5, 5, 4, 3, 2, 1, 0, 0];
 const RANKS = [12, 9, 7, 11, 6, 8, 5, 4, 10, 3, 7, 6, 2, 9, 5, 1, 8, 4, 3, 6, 2, 0, 7, 1, 5, 3, 0, 2, 1, 0];
-const ROOM = NAMES.map((name, i) => ({ name, steps: STEPS[i], rank: RANKS[i], me: name === 'Денис' }));
+// зачем (D162/D184): место в комнате — по монетам за неделю во всех режимах (как spire.html); этажи — ступени
+const COINS = [612, 538, 455, 470, 402, 395, 340, 318, 330, 290, 268, 255, 240, 215, 198, 180, 166, 150, 140, 122, 110, 96, 88, 70, 64, 52, 40, 26, 0, 0];
+const ROOM = NAMES.map((name, i) => ({ name, steps: STEPS[i], coins: COINS[i], rank: RANKS[i], me: name === 'Денис' }));
+const plCoins = (n) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'монета' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'монеты' : 'монет'; };
+const coinsTxt = (n) => `${n.toLocaleString('ru-RU')} ${plCoins(n)}`;
+const byCoins = (a, b) => b.coins - a.coins || b.steps - a.steps;
 const ME = ROOM.find((m) => m.me);
 /* зачем: чип друга в коде подписан ИМЕНЕМ КАМНЯ (SpireFriendsRow: сервер отдаёт tier, а не этаж), а не «N этаж» как в spire.html */
 const FRIENDS = [{ name: 'Аня', rank: 12, stone: 'Мрамор' }, { name: 'Kirill', rank: 10, stone: 'Гранит' }, { name: 'Лидия', rank: 1, stone: 'Гранит' }, { name: 'Sergio', rank: 2, stone: 'Базальт' }];
@@ -202,9 +207,9 @@ const INFO = `<svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d=
 const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex-start;margin-top:6px"><div class="grow"><div class="sg-trow"><div class="sg-h1">Пик</div>${o.beta ? '<span class="sg-beta">бета</span>' : ''}</div><div class="sg-sub">${o.stone ?? 'Гранит'} · до конца недели ${o.left ?? '2 д 14 ч'}</div></div>${energyBare(o.energy ?? 3)}</div>`; /* D173: кнопки правил «i» нет */
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
 const podium = () => {
-  const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
-  const pd = (m, p) => `<div class="sg-pc p${p} t">${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${m.steps} ступ.</div><div class="blk">${p}</div></div>`;
-  const myIdx = [...ROOM].sort((a, b) => b.steps - a.steps).findIndex((m) => m.me) + 1;
+  const top = [...ROOM].filter((m) => !m.me).sort(byCoins).slice(0, 3);
+  const pd = (m, p) => `<div class="sg-pc p${p} t">${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${coinsTxt(m.coins)}</div><div class="blk">${p}</div></div>`;
+  const myIdx = [...ROOM].sort(byCoins).findIndex((m) => m.me) + 1;
   return `<div class="sec" style="margin:26px 2px 0"><div class="ti">Комната недели</div><div class="ac">${ROOM.length}</div></div><div class="sg-pod">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div><div class="sg-all t">Все участники · ${myIdx}</div>`;
 };
 /* зачем: комнаты нет (SpirePodium:36-46) — вместо числа людей «—», пьедестала нет, «Все участники · —» неактивна (50%) */
@@ -269,11 +274,11 @@ const failSave = () => failPhone(savePanel());
 const miniTower = (title = '') => R.weekTowerHtml({ tier: tierOf(title), promoted: /поднимаешься/i.test(title), myRank: ME.rank, coin: K.coin, card: 'var(--card, #1C1C1E)' }); // зачем (№36): SpireWeekResultCard 58×103 + монета 26
 const weekCard = (title, sub) => `<div class="sg-week">${miniTower(title)}<div class="grow"><div class="sg-over">Итог недели</div><div class="sg-wt">${title}</div><div class="sg-ws">${sub}</div></div></div>`; /* крестика нет (12cc1deea) */
 const newWeek = (title, sub, stone) => homePhone({ stone, left: '6 д 22 ч', top: weekCard(title, sub), tower: { myFloor: 0, noMarker: true, noRivals: true, sel: 1 }, finfo: floorInfo(1, { noWeek: true }) });
-const weekUp = () => newWeek('Ты поднимаешься в Базальт', '2 место · 39 ступеней · +200 · +100 монет', 'Базальт');
-const weekStay = () => newWeek('Остаёшься на пике Гранит', '12 место · 25 ступеней · новая неделя, все с 1 этажа', 'Гранит');
+const weekUp = () => newWeek('Ты поднимаешься в Базальт', '2 место · 538 монет за неделю · +200 · +100 монет', 'Базальт');
+const weekStay = () => newWeek('Остаёшься на пике Гранит', '12 место · 255 монет за неделю · новая неделя, все с 1 этажа', 'Гранит');
 /* зачем (код spireWeekResultLines, 12.10): у итога две строки — «N место · K ступеней · +монеты монет» (результат показан сразу, неделя ещё старая: маркер и соперники на башне, «Ты здесь» на карточке этажа) и «новая неделя, все с 1 этажа» (после старта новой недели). Здесь первая — «остаёшься» с наградой +60 монет */
-const weekStayReward = () => homePhone({ stone: 'Гранит', left: '0 д 1 ч', top: weekCard('Остаёшься на пике Гранит', '12 место · 25 ступеней · +60 монет'), tower: { mySteps: 25, sel: 4 }, pb: 150 });
-const weekDown = () => newWeek('Ты спускаешься в Гранит', '27 место · 5 ступеней · новая неделя, все с 1 этажа', 'Гранит');
+const weekStayReward = () => homePhone({ stone: 'Гранит', left: '0 д 1 ч', top: weekCard('Остаёшься на пике Гранит', '12 место · 255 монет за неделю · +60 монет'), tower: { mySteps: 25, sel: 4 }, pb: 150 });
+const weekDown = () => newWeek('Ты спускаешься в Гранит', '29 место · 0 монет за неделю · новая неделя, все с 1 этажа', 'Гранит');
 
 /* ===================== 6. ПРАВИЛА ===================== */
 /* зачем: восемь правил — spire_game_strings rule1…rule8; числа правил 6 и 7 подставляются из config/spire_v1 (значения по умолчанию:
@@ -282,8 +287,8 @@ const RULES = [
   'Каждую неделю — новый пик: 15 этажей и комната на 30 человек.',
   'Ступень — 10 заданий, общий таймер и 3 сердца. Ошибка снимает сердце.',
   'Энергия списывается, когда появляется первое задание ступени.',
-  'Место в комнате — по пройденным ступеням. При равенстве выше тот, кто дошёл раньше.',
-  'Верхние 15% переходят на пик выше, нижние 15% и все без ступеней спускаются.',
+  'Место в комнате — по монетам за неделю во всех занятиях.',
+  'Пятеро лучших переходят на пик выше; кто не заработал за неделю ни одной монеты — спускается.',
   'Монеты: 10 за ступень, за этаж N — 10×N, у Стража ×2, за вершину +200.',
   'За места недели: 300 / 200 / 150 монет, за повышение +100.',
   'В понедельник все начинают с 1 этажа.',

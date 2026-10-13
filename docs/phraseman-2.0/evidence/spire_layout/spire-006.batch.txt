@@ -1,0 +1,11 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-006: шаг tap:#spire-all-members
+[BATCH-SHOOT] spire-006: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-006: dump не снят (повторим): Error: adb_failed args=shell uiautomator dump /sdcard/phm_ui.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-006: элемент #spire-all-members не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] spire-006: элемент #spire-all-members не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] spire-006: шаг не выполнен: Error: step_target_not_found:#spire-all-members
+[BATCH-SHOOT] spire-006: журнал приложения → 49 строк в _runs
+[BATCH-SHOOT] spire-006: экран не классифицирован (дамп не снялся): Error: adb_failed args=shell uiautomator dump /sdcard/phm_health.xml status=137 error= stderr=
+[BATCH-SHOOT] spire-006: error 11523мс step_target_not_found:#spire-all-members+ждали_metro_24мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-24-10-085Z/spire-006.error.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=1 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-24-10-085Z.tsv

@@ -1,0 +1,14 @@
+[BATCH-SHOOT] режим=съёмка устройство=emulator-5554 к съёмке=1 пропущено=0 потолок=90000мс пауза=1500мс
+[BATCH-SHOOT] spire-005: шаг see:#spire-all-members
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (1/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (2/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (3/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (4/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (5/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (6/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (7/8)
+[BATCH-SHOOT] spire-005: элемент #spire-all-members не виден — ищем прокруткой вниз (8/8)
+[BATCH-SHOOT] spire-005: шаг не выполнен: Error: step_target_not_found:#spire-all-members
+[BATCH-SHOOT] spire-005: журнал приложения → 52 строк в _runs
+[BATCH-SHOOT] spire-005: error 16483мс step_target_not_found:#spire-all-members+ждали_metro_27мс → docs/phraseman-2.0/evidence/parity/_runs/2026-10-13T00-22-55-062Z/spire-005.error.png
+[BATCH-SHOOT] готово (все попытки): ok=0 timeout=0 error=1 blank_too_long=0 stitch_failed=0 metro_down=0 redbox=0 fixture_hang=0; ИТОГ по id: {"error":1}; журнал docs\phraseman-2.0\evidence\parity\_runs\batch_2026-10-13T00-22-55-062Z.tsv

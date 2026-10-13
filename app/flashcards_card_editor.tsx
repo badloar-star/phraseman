@@ -238,6 +238,36 @@ export default function FlashcardsCardEditorScreen() {
   }, [isEdit]);
 
   const backInputRef = useRef<TextInput | null>(null);
+  // зачем (Макеты, en-проход cards-021: «Translation» наполовину под кнопкой «Add» при открытой клавиатуре; сперва логи):
+  // сколько места у прокрутки, где поле и где сейчас прокрутка — по строке [CARD-EDITOR-KB] видно, почему поле оказалось под панелью.
+  const editorScrollRef = useRef<ScrollView | null>(null);
+  const editorScrollYRef = useRef(0);
+  const editorViewportHRef = useRef(0);
+  const editorContentHRef = useRef(0);
+  const fieldTopRef = useRef<Record<string, number>>({});
+  const focusedFieldRef = useRef<'front' | 'back' | 'description'>('front');
+  const revealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const revealField = useCallback((name: 'front' | 'back' | 'description', reason: string) => {
+    if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
+    // пауза: клавиатура ещё меняет высоту прокрутки — позиция считается после перестроения
+    revealTimerRef.current = setTimeout(() => {
+      revealTimerRef.current = null;
+      const top = fieldTopRef.current[name];
+      const target = typeof top === 'number' ? Math.max(0, top - 16) : null;
+      DebugLogger.info('[CARD-EDITOR-KB]', `reveal поле=${name} причина=${reason}: top=${String(top)} scrollY=${Math.round(editorScrollYRef.current)} viewportH=${Math.round(editorViewportHRef.current)} contentH=${Math.round(editorContentHRef.current)} → ${target === null ? 'нет координаты, прокрутки нет' : `scrollTo y=${Math.round(target)}`}`);
+      if (target !== null) editorScrollRef.current?.scrollTo({ y: target, animated: true });
+    }, 120);
+  }, []);
+  useEffect(() => {
+    const show = Keyboard.addListener('keyboardDidShow', (e) => {
+      DebugLogger.info('[CARD-EDITOR-KB]', `клавиатура показана высота=${Math.round(e.endCoordinates?.height ?? 0)} фокус=${focusedFieldRef.current}`);
+      revealField(focusedFieldRef.current, 'клавиатура');
+    });
+    return () => {
+      show.remove();
+      if (revealTimerRef.current) clearTimeout(revealTimerRef.current);
+    };
+  }, [revealField]);
   const descriptionInputRef = useRef<TextInput | null>(null);
 
   // ── E13: ассистирование — автотранскрипция, подсказка перевода, дубликат ───
@@ -666,6 +696,11 @@ export default function FlashcardsCardEditorScreen() {
             ) : (
               <>
               <ScrollView decelerationRate="fast"
+                ref={editorScrollRef}
+                onLayout={(e) => { editorViewportHRef.current = e.nativeEvent.layout.height; }}
+                onContentSizeChange={(_w, h) => { editorContentHRef.current = h; }}
+                onScroll={(e) => { editorScrollYRef.current = e.nativeEvent.contentOffset.y; }}
+                scrollEventThrottle={100}
                 style={{ flex: 1 }}
                 contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 22, paddingBottom: 24 }}
                 keyboardShouldPersistTaps="handled"
@@ -688,7 +723,7 @@ export default function FlashcardsCardEditorScreen() {
                 </View>
 
                 {/* EN field */}
-                <View style={{ marginTop: 22 }}>
+                <View style={{ marginTop: 22 }} onLayout={(e) => { fieldTopRef.current.front = e.nativeEvent.layout.y; }}>
                   <EditorField g={g} label={fieldCopy.word}>
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <TextInput
@@ -702,7 +737,7 @@ export default function FlashcardsCardEditorScreen() {
                         onSubmitEditing={() => backInputRef.current?.focus()}
                         blurOnSubmit={false}
                         maxLength={80}
-                        onFocus={() => setFocusedField('front')}
+                        onFocus={() => { focusedFieldRef.current = 'front'; setFocusedField('front'); revealField('front', 'фокус'); }}
                         placeholderTextColor={g.mutedText}
                       />
                       {/* E13: TTS-превью введённого EN */}
@@ -773,7 +808,7 @@ export default function FlashcardsCardEditorScreen() {
                 ) : null}
 
                 {/* Translation field (текущая локаль — инвариант) */}
-                <View style={{ marginTop: 14 }}>
+                <View style={{ marginTop: 14 }} onLayout={(e) => { fieldTopRef.current.back = e.nativeEvent.layout.y; }}>
                   <EditorField g={g} label={fieldCopy.translation}>
                     <TextInput
                       ref={backInputRef}
@@ -786,7 +821,7 @@ export default function FlashcardsCardEditorScreen() {
                       onSubmitEditing={() => descriptionInputRef.current?.focus()}
                       blurOnSubmit={false}
                       maxLength={80}
-                      onFocus={() => setFocusedField('back')}
+                      onFocus={() => { focusedFieldRef.current = 'back'; setFocusedField('back'); revealField('back', 'фокус'); }}
                       placeholderTextColor={g.mutedText}
                     />
                   </EditorField>
@@ -819,7 +854,7 @@ export default function FlashcardsCardEditorScreen() {
                 ) : null}
 
                 {/* Пример (необязательно) — теперь всегда виден, как в макете; хранится как заметка карточки */}
-                <View style={{ marginTop: 14 }}>
+                <View style={{ marginTop: 14 }} onLayout={(e) => { fieldTopRef.current.description = e.nativeEvent.layout.y; }}>
                   <EditorField g={g} label={fieldCopy.example}>
                     <TextInput
                       ref={descriptionInputRef}
@@ -832,7 +867,7 @@ export default function FlashcardsCardEditorScreen() {
                       onSubmitEditing={handleSave}
                       blurOnSubmit
                       maxLength={220}
-                      onFocus={() => setFocusedField('description')}
+                      onFocus={() => { focusedFieldRef.current = 'description'; setFocusedField('description'); revealField('description', 'фокус'); }}
                       placeholderTextColor={g.mutedText}
                     />
                   </EditorField>

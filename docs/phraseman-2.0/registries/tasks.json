@@ -16105,5 +16105,103 @@
     "gate_evidence": null,
     "actual_model": null,
     "actual_reasoning": null
+  },
+  {
+    "id": "PM-294",
+    "epic": "E21",
+    "title": "Испанский учебный контент — ленивой загрузкой, а не в стартовом бандле (пока es скрыт D129)",
+    "requirement_ids": [
+      "R216"
+    ],
+    "basis": "PROPOSAL",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S2",
+    "model": "gpt-6-sol",
+    "reasoning": "high",
+    "spec": "docs/RUNTIME.md",
+    "acceptance": [
+      {
+        "id": "PM-294-A1",
+        "text": "lesson_data_*_phrases_es.gen.ts, lesson_intro_screens_es_l2.ts, modules/learning-v2/content/source/es_episode_01_* не входят в стартовый бандл: загрузка через аксессор реестра только при включённом es (learning_language_surface_readiness)",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-294-A2",
+        "text": "Обмер стор-бандла (scripts/pm216_release_size_report.mjs) показывает уменьшение JS ≈ 1,4 МБ; английские уроки и Learning V2 en не изменились (регрессия зоны)",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [
+      "PM-216"
+    ],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-13 PM-216 обмер (c9fb9767c, evidence/PM-216_store_bundle_2026-10-13.md), кандидат А: 17 файлов, 1,61 МБ JS (5 %), ≈ 1,4 МБ байткода. Координатор 13.10: НЕТ до R1 — бюджет соблюдён, статический импорт из lesson_data_1_8.ts и legacy_lesson_payload.ts за 3 дня до сборки — лишний риск."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
+  },
+  {
+    "id": "PM-295",
+    "epic": "E22",
+    "title": "Крон «вернись» читает только неактивных в окне И с токеном (составной индекс)",
+    "requirement_ids": [
+      "R227"
+    ],
+    "basis": "PROPOSAL",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "gpt-6-sol",
+    "reasoning": "medium",
+    "spec": "docs/BACKEND.md",
+    "acceptance": [
+      {
+        "id": "PM-295-A1",
+        "text": "Скан reEngagePushCron = users с expoPushToken И last_active_at в [now−30 дн, now−20 ч] (составной индекс в firestore.indexes.json, выложен до кода)",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-295-A2",
+        "text": "Замер count() до/после: чтений за прогон меньше, чем 439 (скан по токену на 13.10)",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-13 замер Ядра count() (только чтение): users 5821; с токеном 439 (читает крон сейчас); окно 20 ч…30 дн по last_active_at 782 (20–24 ч 14, 3–14 дн 265, 15–30 дн 392). Окно без токена дороже текущего скана, поэтому до R1 не менялось (координатор: «нет индекса — не изобретай»). Два прогона e8315d20a = 878 чтений/сутки."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

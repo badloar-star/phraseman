@@ -1,0 +1,38 @@
+diff --git a/metro.config.js b/metro.config.js
+--- a/metro.config.js
++++ b/metro.config.js
+@@ -307,6 +307,17 @@
+   ].map((name) => [name, path.join(storeReleaseDevStateStubDir, `${name}_stub.ts`)]),
+ );
+ 
++// зачем (план Б R1, PM-216 «Б»; применять ТОЛЬКО если владелец 15.10 сказал «скрыть V2»): при потолке 0 ни одно занятие V2 не
++// собирается, а три сгенерированных модуля данных (≈3,9 МБ JS, ≈3,5 МБ байткода) всё равно едут в стор-бандл. В стор-сборке с
++// PHRASEMAN_R1_HIDE_V2=1 подменяем их пустыми данными той же формы. Снимается вместе с планом Б (R1_PLAN_B_HIDE_V2.md, раздел 5).
++const planBHideV2Bundle = process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && process.env.PHRASEMAN_R1_HIDE_V2 === '1';
++const planBV2DataStubDir = path.join(__dirname, 'store_release_stubs', 'plan_b_v2');
++const planBV2DataStubs = new Map([
++  ['factory_native_manifest_v1.generated', path.join(planBV2DataStubDir, 'factory_native_manifest_v1_stub.ts')],
++  ['learning_v2_factory_lesson_audio_index_v1.generated', path.join(planBV2DataStubDir, 'learning_v2_factory_lesson_audio_index_v1_stub.ts')],
++  ['learning_v2_factory_production_audio_entries_v1.generated', path.join(planBV2DataStubDir, 'learning_v2_factory_production_audio_entries_v1_stub.ts')],
++]);
++
+ config.resolver.resolveRequest = (context, moduleName, platform) => {
+   if (moduleName === 'expo-router/_ctx') {
+     return {
+@@ -354,6 +365,16 @@
+       type: 'sourceFile',
+       filePath: storeReleaseDevModuleStubPath,
+     };
++  }
++
++  if (planBHideV2Bundle && moduleName.startsWith('.')) {
++    const planBStub = planBV2DataStubs.get(path.posix.basename(moduleName).replace(/\.tsx?$/, ''));
++    if (planBStub) {
++      return {
++        type: 'sourceFile',
++        filePath: planBStub,
++      };
++    }
+   }
+ 
+   if (defaultResolveRequest) {

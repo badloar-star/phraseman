@@ -83,9 +83,10 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
             <View style={[s.check, { borderColor: p.textMuted }]} /* guard-ok: D43 отметка-кружок, как у заданий */ />
             <V2IconTile name="clipboard-outline" size={36} iconSize={19} bgAlpha={HOME_PLATE_ALPHA} />
             <View style={s.copy}>
-              <Text numberOfLines={1} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
+              {/* зачем (владелец 13.10, кадр home_old_tiles.png, рамка 1): текст опроса приходит с сервера и бывает длинным — при numberOfLines={1} заголовок и подпись обрезались «…» и подпись садилась на нижний край строки; теперь переносится на 2 строки, строка растёт (minHeight 58 + вертикальные поля) */}
+              <Text numberOfLines={2} style={[s.taskTitle, { color: p.text }]}>{surveyRow.title}</Text>
               {surveyRow.subtitle ? (
-                <Text numberOfLines={1} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
+                <Text numberOfLines={2} style={[s.taskSubtitle, { color: p.textSecondary }]}>{surveyRow.subtitle}</Text>
               ) : null}
             </View>
             <Ionicons name="chevron-forward" size={16} color={p.textSecondary} />
@@ -110,6 +111,7 @@ const s = StyleSheet.create({
   list: { gap: 10 },
   row: {
     minHeight: 58,
+    paddingVertical: 10, // зачем (13.10): строка с переносом текста (опрос) растёт, а не садится на нижний край; задачи в 2 строки по 37 px остаются 58
     borderRadius: V2.radius.row,
     flexDirection: 'row',
     alignItems: 'center',

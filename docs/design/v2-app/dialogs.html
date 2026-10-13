@@ -230,6 +230,8 @@
 @keyframes pop { 0% { transform: scale(.5) rotate(-30deg); opacity: 0; } 55% { transform: scale(1.18) rotate(6deg); opacity: 1; } 100% { transform: none; } }
 .award .n { font-size: 34px; font-weight: 700; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
 .award .n small { font-size: 16px; color: var(--sec); font-weight: 600; margin-left: 10px; letter-spacing: 0; }
+/* зачем (координатор 13.10, проход Дизайна по экранам завершения): в итоге диалога код показывает карточку целей (dialogue-v2-completion-goals) после монет — образец к коду */
+.goalc { border-radius: 16px; background: #131315; border: 1px solid var(--line); margin-top: 14px; padding: 6px 16px; }
 .errc { border-radius: 16px; background: #131315; border: 1px solid var(--line); margin-top: 14px; padding: 14px 16px 14px; }
 .errc .h { display: flex; align-items: center; justify-content: space-between; font-size: 17px; font-weight: 700; }
 .errc .h .n { color: var(--muted); font-weight: 600; margin-left: 10px; }
@@ -449,6 +451,7 @@ const done = (o) => phone(`
   <div class="done-t"><div class="ti">${o.title}</div><div class="su">${o.sub}</div>${o.neutral ? `<div class="su" style="margin-top:10px;line-height:22px">${o.neutral}</div>` : ''}${o.mood ? `<span class="mood">${face(o.mood)}${MOOD[o.mood][1]}</span>` : ''}</div>
   ${statsRow(o.c, o.w, o.goals)}
   ${o.nocoins ? '' : award(o.gain)}
+  ${o.nocoins || o.goals == null ? '' : `<div class="goalc">${objList(o.goals)}</div>`}
   ${o.errs ? errs(o.errs) : ''}
   ${rate(o.rate || {})}
   <div class="next"><div class="cta t">${o.next || 'Готово'}<span class="ar">${icon('arrowR', 's20')}</span></div><span class="quiet t">${o.errs ? `Добить: Ещё учу (${o.errs.length})` : 'Ещё раз'}</span></div>`, { time: '13:09' });

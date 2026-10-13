@@ -1,0 +1,50 @@
+[
+ {
+  "id": "cards-020-report-sheet",
+  "notes": [
+   "нет tap:#pack-preview-more",
+   "нет tap:#pack-more-report"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-059-report-sent",
+  "notes": [
+   "нет tap:#pack-preview-more",
+   "нет tap:#pack-more-report",
+   "нет tap:#report-pack-reason-spam",
+   "нет tap:#report-pack-send"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-hide-pack",
+  "notes": [
+   "нет tap:#pack-preview-more",
+   "нет tap:#pack-more-hide"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "cards-video-pill",
+  "notes": [
+   "нет tap:#fc-gallery-tile-*"
+  ],
+  "fallback_lines": 0
+ },
+ {
+  "id": "home-poll-row",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "dialog-completion-coins",
+  "notes": [],
+  "fallback_lines": 0
+ },
+ {
+  "id": "dialog-completion-errors",
+  "notes": [],
+  "fallback_lines": 0
+ }
+]

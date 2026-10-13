@@ -7,22 +7,24 @@
  * опросы вернулись на uk/en, переводы нужно вписать в документы. Вставлять 54 опроса × 2 языка руками в админке нереально —
  * этот скрипт делает то же самое за один проход.
  *
- * Запускает ТОЛЬКО владелец (запись в прод). Сессии ИИ этот скрипт не запускают: он читает service-account.json.
+ * Вход — учётка gcloud владельца (`gcloud auth application-default login`), файл ключа service-account НЕ читается
+ * (координатор 13.10, Q18-1). План (без записи) безопасен; запись — только после сводки сухого прогона и слова владельца.
  *   План (ничего не пишет):  node scripts/apply_shard_survey_translations.mjs
- *   Запись:                  node scripts/apply_shard_survey_translations.mjs --write --confirm APPLY_SURVEY_TRANSLATIONS_UK_EN
+ *   Запись:                  node scripts/apply_shard_survey_translations.mjs --write --confirm APPLY_SURVEY_TRANSLATIONS_ALL
  *
  * Правила безопасности:
  * - пишет только языки, которых в документе НЕТ (уже вписанный перевод не перезаписывается);
  * - документ пропускается, если число вариантов или кнопок действий не совпадает с черновиком (опрос правили в админке);
  * - ru и всё остальное в документе не трогается; каждый документ — отдельная запись с merge.
  */
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const PROJECT_ID = 'phraseman-ea0b3';
 const COLLECTION = 'shard_surveys';
-const LANGS = ['uk', 'en'];
-const CONFIRM = 'APPLY_SURVEY_TRANSLATIONS_UK_EN';
+// зачем (владелец 13.10, Q18 «перевести все»): языки берутся из черновика — все 8 языков интерфейса кроме ru (ru уже в документах).
+const ALL_LANGS = ['uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const CONFIRM = 'APPLY_SURVEY_TRANSLATIONS_ALL';
 
 const args = process.argv.slice(2);
 const write = args.includes('--write');
@@ -33,7 +35,11 @@ if (write && !confirmed) {
   process.exit(2);
 }
 
-const draft = JSON.parse(readFileSync(new URL('../docs/phraseman-2.0/shard_survey_translations_uk_en_draft.json', import.meta.url), 'utf8'));
+// Полный черновик (8 языков) — если есть; иначе прежний uk/en.
+const FULL_DRAFT = new URL('../docs/phraseman-2.0/shard_survey_translations_draft.json', import.meta.url);
+const draft = JSON.parse(readFileSync(existsSync(FULL_DRAFT) ? FULL_DRAFT : new URL('../docs/phraseman-2.0/shard_survey_translations_uk_en_draft.json', import.meta.url), 'utf8'));
+const LANGS = ALL_LANGS.filter((lang) => Object.values(draft.presets).some((preset) => preset && preset[lang]));
+console.log(`[SURVEY-TR] черновик: ${existsSync(FULL_DRAFT) ? 'полный' : 'uk/en'}, языки к записи: ${LANGS.join(', ')}`);
 
 function withLang(localized, lang, value) {
   if (!localized || typeof localized !== 'object' || !value) return { localized, changed: false };
@@ -49,7 +55,9 @@ function planDoc(id, data) {
   if (!question || !Array.isArray(question.options)) return { id, skip: 'нет вопроса q1' };
   const next = { title: data.title, subtitle: data.subtitle, questions: data.questions, finalScreen: data.finalScreen };
   let changes = 0;
+  const byLang = {};
   for (const lang of LANGS) {
+    const before = changes;
     const t = tr[lang];
     if (!t) continue;
     if (t.o.length !== question.options.length) return { id, skip: `${lang}: вариантов ${question.options.length} в документе, ${t.o.length} в черновике — опрос правили, пропуск` };
@@ -77,19 +85,22 @@ function planDoc(id, data) {
       changes += (ft.changed ? 1 : 0) + (fsub.changed ? 1 : 0);
       next.finalScreen = { ...next.finalScreen, title: ft.localized, subtitle: fsub.localized };
     }
+    byLang[lang] = changes - before;
   }
-  return { id, presetId, titleRu: data.title?.ru ?? '', changes, next };
+  return { id, presetId, titleRu: data.title?.ru ?? '', changes, byLang, next };
 }
 
 async function main() {
   const require = createRequire(import.meta.url);
   const admin = require('../functions/node_modules/firebase-admin');
-  const serviceAccount = JSON.parse(readFileSync(new URL('../service-account.json', import.meta.url), 'utf8'));
-  admin.initializeApp({ credential: admin.credential.cert(serviceAccount), projectId: PROJECT_ID });
+  // зачем (координатор 13.10, Q18-1): вход через ADC (gcloud владельца), как у error_reports_ttl_backfill — файл ключа не читается.
+  admin.initializeApp({ credential: admin.credential.applicationDefault(), projectId: PROJECT_ID });
   const db = admin.firestore();
   const snap = await db.collection(COLLECTION).get();
   const plans = snap.docs.filter((d) => d.id.startsWith('survey_preset_')).map((d) => planDoc(d.id, d.data()));
   const ready = plans.filter((p) => !p.skip && p.changes > 0);
+  const perLang = Object.fromEntries(LANGS.map((lang) => [lang, plans.filter((p) => !p.skip && p.byLang && p.byLang[lang] > 0).length]));
+  console.log(`[SURVEY-TR] документов с новыми полями по языкам: ${JSON.stringify(perLang)}`);
   for (const p of plans) {
     if (p.skip) console.log(`[SURVEY-TR] ${p.id}: ПРОПУСК — ${p.skip}`);
     else console.log(`[SURVEY-TR] ${p.id}: ${p.changes ? `+${p.changes} строк` : 'уже переведено'} — «${String(p.titleRu).slice(0, 60)}»`);
@@ -97,7 +108,7 @@ async function main() {
   console.log(`[SURVEY-TR] итог: документов ${plans.length}, к записи ${ready.length}, пропусков ${plans.filter((p) => p.skip).length}, режим ${write ? 'ЗАПИСЬ' : 'план'}`);
   if (!write) return;
   for (const p of ready) {
-    await db.collection(COLLECTION).doc(p.id).set({ ...p.next, updatedAtMs: Date.now(), updatedBy: 'survey_translations_uk_en_2026_10_12' }, { merge: true });
+    await db.collection(COLLECTION).doc(p.id).set({ ...p.next, updatedAtMs: Date.now(), updatedBy: 'survey_translations_all_2026_10_13' }, { merge: true });
     console.log(`[SURVEY-TR] записан ${p.id}`);
   }
 }

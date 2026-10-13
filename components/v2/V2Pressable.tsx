@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef } from 'react';
+import React, { memo, useCallback, useMemo, useRef } from 'react';
 import { Animated, Pressable, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
@@ -15,6 +15,20 @@ interface Props extends PassthroughProps {
   /** Насколько сжимается при нажатии. Карточки — 0.97–0.98, мелкие кнопки — 0.94. */
   scaleTo?: number;
   withHaptic?: boolean;
+}
+
+/** Прозрачность, которую вызывающий задал в `style` (приглушение «недоступно»); без неё или вне 0…1 — 1. */
+export function v2PressableStyleOpacity(style: StyleProp<ViewStyle>): number {
+  // Последнее заданное значение побеждает — как при склейке стилей.
+  const pick = (s: StyleProp<ViewStyle>): number | undefined => {
+    if (Array.isArray(s)) {
+      for (let i = s.length - 1; i >= 0; i -= 1) { const v = pick(s[i] as StyleProp<ViewStyle>); if (v !== undefined) return v; }
+      return undefined;
+    }
+    return s && typeof s === 'object' && typeof (s as ViewStyle).opacity === 'number' ? (s as ViewStyle).opacity as number : undefined;
+  };
+  const value = pick(style);
+  return value !== undefined && value >= 0 && value < 1 ? value : 1;
 }
 
 /**
@@ -49,6 +63,12 @@ function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, w
 
   const onPressOut = useCallback(() => animateTo(1), [animateTo]);
 
+  // зачем (Макеты 13.10, paywalls-013): `[style, { opacity }]` — прозрачность нажатия (1) перекрывала `opacity` из стиля, и с 10.10
+  // молча не гасли «недоступные» кнопки (× и «Восстановить» во время оплаты, использованные слова Шпиля). Прозрачность стиля
+  // умножается на прозрачность нажатия; без своей прозрачности — прежний путь без лишнего узла.
+  const baseOpacity = v2PressableStyleOpacity(style);
+  const layerOpacity = useMemo(() => (baseOpacity === 1 ? opacity : Animated.multiply(opacity, baseOpacity)), [baseOpacity, opacity]);
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -59,7 +79,7 @@ function V2Pressable({ style, outerStyle, children, scaleTo = KIT_PRESS_SCALE, w
       onPressIn={onPressIn}
       onPressOut={onPressOut}
     >
-      <Animated.View style={[style, { opacity, transform: [{ scale }] }]}>{children}</Animated.View>
+      <Animated.View style={[style, { opacity: layerOpacity, transform: [{ scale }] }]}>{children}</Animated.View>
     </Pressable>
   );
 }

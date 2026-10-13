@@ -152,6 +152,12 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   // пока на тапе грузятся offerings (оплата не начата), окно закрывается. Кнопка при этом занята (purchasing).
   const checkoutInFlight = p.payStarted || p.restoring;
   const ctaBusy = p.purchasing || p.restoring;
+  // зачем (Макеты 13.10, paywalls-013): в журнале видно, что именно держит окно занятым — без этого «× активен при оплате» не отличить
+  // от «флаг оплаты не пришёл».
+  useEffect(() => {
+    DebugLogger.info('[PAYWALL]', `окно Plus: оплата payStarted=${String(p.payStarted)} purchasing=${String(p.purchasing)} restoring=${String(p.restoring)} `
+      + `закрытие/восстановить заблокированы=${String(checkoutInFlight)} тарифы/кнопка заняты=${String(ctaBusy)}`);
+  }, [checkoutInFlight, ctaBusy, p.payStarted, p.purchasing, p.restoring]);
   const prompt = p.trialReminderPrompt;
   const baseOptions = usePaywallScreenStackOptions(false);
   const screenOptions = useMemo(() => (checkoutInFlight || prompt

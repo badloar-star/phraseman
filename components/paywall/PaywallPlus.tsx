@@ -207,7 +207,8 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           withHaptic={false}
           scaleTo={0.98}
           outerStyle={tileOuter(yearOn)}
-          style={[S.card, S.planCol, tileShadow(yearOn)]}
+          // зачем (Макеты 13.10, paywalls-013): пока идёт оплата/восстановление — плашки приглушены до ответа магазина, как на макете.
+          style={[S.card, S.planCol, tileShadow(yearOn), disabled ? S.planDisabled : null]}
         >
           <PlateFill g={g} radius={22} raised={yearOn} />
           <View style={S.planNameRow}>
@@ -238,7 +239,7 @@ export const PaywallPlusPlans = memo(function PaywallPlusPlans({
           withHaptic={false}
           scaleTo={0.98}
           outerStyle={tileOuter(monthOn)}
-          style={[S.card, S.planCol, tileShadow(monthOn)]}
+          style={[S.card, S.planCol, tileShadow(monthOn), disabled ? S.planDisabled : null]}
         >
           <PlateFill g={g} radius={22} raised={monthOn} />
           <Text style={[S.planName, { color: g.text }]}>{pick(lang, COPY.month)}</Text>
@@ -432,6 +433,7 @@ const S = StyleSheet.create({
   leadRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
   leadCheck: { width: 28, height: 28, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
   leadText: { flex: 1, minWidth: 0, fontSize: 16, lineHeight: 22, fontWeight: '700' },
+  planDisabled: { opacity: PAYWALL_DISABLED_OPACITY },
   // overlay-more.css `.om-promo`: поля 14, r18; `.om-kicker` 11/800 по центру; цена 21/800; обычная 13/700 зачёркнута; «далее» 14/21
   promo: { padding: 14, borderRadius: 18, marginBottom: 12, alignItems: 'center' },
   promoKicker: { fontSize: 13, fontWeight: '800', letterSpacing: 1.2, textTransform: 'uppercase', textAlign: 'center' },

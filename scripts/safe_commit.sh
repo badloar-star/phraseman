@@ -193,6 +193,15 @@ while :; do
   if [ "$NOW" != "$BASE" ] && [ "$(git log -1 --format=%s)" = "$SUBJECT" ]; then rc=0; break; fi
   if [ "$NOW" != "$BASE" ]; then say "отказ: HEAD сдвинулся на ${NOW:0:9} чужим коммитом"; exit 7; fi
   lock_path=$(grep -o "Unable to create '[^']*'" "$TMP_INDEX.cerr" | head -1 | sed "s/Unable to create '//; s/'$//")
+  # зачем (13.10, найдено на собственном коммите 6eba48fbf): git commit падает rc=139 и оставляет замок СВОЕГО временного
+  # индекса; следующая попытка упирается в «Unable to create '…safe_commit_index_N.lock'». Этот индекс — только наш (уникальное
+  # имя, под общим замком коммита), поэтому его замок после падения снимаем сразу, без ожидания 60 с.
+  if [ -e "$TMP_INDEX.lock" ] && { [ "$rc" -eq 139 ] || [ "$lock_path" = "$TMP_INDEX.lock" ]; }; then
+    rm -f "$TMP_INDEX.lock" && say "снят замок своего временного индекса после падения git (rc=$rc) — повтор"
+    own_lock_clears=$(( ${own_lock_clears:-0} + 1 ))
+    if [ "$own_lock_clears" -le 5 ]; then sleep 2; continue; fi
+    say "свой замок снимался уже $own_lock_clears раз — дальше обычные правила"
+  fi
   if [ -n "$lock_path" ]; then
     lock_waits=$((lock_waits + 1))
     say "коммит не создан: rc=$rc, занят замок '$lock_path' (временный индекс: $TMP_INDEX) — ожидание $lock_waits/10"

@@ -148,6 +148,16 @@ describe('safe_commit.sh', () => {
     expect(commits()).toBe(2);
   });
 
+  // зачем (13.10, коммит 6eba48fbf): git commit падает rc=139 и оставляет замок своего временного индекса — его снимаем сразу.
+  // Падение git в тесте не воспроизвести, поэтому проверяется текст ветки; тело скрипта — один блок (замена файла безопасна).
+  it('замок своего временного индекса после падения git снимается сразу; тело скрипта — один блок', () => {
+    const src = fs.readFileSync(SCRIPT, 'utf8').replace(/\r\n/g, '\n');
+    expect(src).toContain('if [ -e "$TMP_INDEX.lock" ] && { [ "$rc" -eq 139 ] || [ "$lock_path" = "$TMP_INDEX.lock" ]; }; then');
+    expect(src).toContain('rm -f "$TMP_INDEX.lock" && say "снят замок своего временного индекса после падения git (rc=$rc) — повтор"');
+    expect(src).toMatch(/\n\{\nset -u\n/);
+    expect(src.trimEnd().endsWith('exit 0\n}')).toBe(true);
+  });
+
   it('после коммита замок освобождён, общий индекс по своим путям совпадает с HEAD', () => {
     write('f.txt', 'a\nb\nc\nd\n');
     const r = run(['-m', 'msg.txt', '--expect', 'f.txt=1/0', '--', 'f.txt']);

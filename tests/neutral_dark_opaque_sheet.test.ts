@@ -2,6 +2,7 @@
 // (образец shadow-skin.css `.ph .sheet`), светлое оформление не меняется. Сторож не даёт вернуть окрашенную подложку; а плашки шторок остаются светлее подложки.
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { SHADOW_SHEET_DARK_TOP } from '../components/v2/shadow_sheet_paint';
+import { iconTileColors } from '../components/mistakes-panel/panelPaint';
 
 const THEMES = ['graphite', 'grad_aurora', 'grad_iris', 'grad_magma', 'grad_jade', 'grad_orchid', 'grad_midnight', 'rose', 'polar', 'taupe'] as const;
 const L = (hex: string) => {
@@ -20,6 +21,28 @@ describe('opaqueSheet в тёмном — нейтраль', () => {
     }
     expect(bad).toEqual([]);
     expect(SHADOW_SHEET_DARK_TOP.toUpperCase()).toBe('#28282E');
+  });
+
+  it('opaqueControl в тёмном — нейтральный #34343A у всех тем и уровней, светлее подложки; в светлом не тронут', () => {
+    const bad: string[] = [];
+    for (const id of THEMES) {
+      for (const intensity of [0, 0.5, 1]) {
+        const g = liquidGlassTokens(id, { appearance: 'dark', intensity } as never);
+        if (g.opaqueControl.toUpperCase() !== '#34343A') bad.push(`${id}@${intensity}: ${g.opaqueControl}`);
+        if (L(g.opaqueControl) <= L(g.opaqueSheet)) bad.push(`${id}@${intensity}: поле не светлее подложки`);
+      }
+    }
+    expect(bad).toEqual([]);
+    const light = liquidGlassTokens('grad_aurora', { appearance: 'light', intensity: 0.6 } as never);
+    expect(light.opaqueControl.toUpperCase()).not.toBe('#34343A');
+  });
+
+  it('плитка значка режима: в тёмном нейтральная при любой теме, в светлом — цвет темы (cards-v2 №27)', () => {
+    const dark = THEMES.map((id) => { const g = liquidGlassTokens(id, { appearance: 'dark', intensity: 1 } as never); return iconTileColors(g, '#7EF0C8', '#7C5CFF').join('/'); });
+    expect(new Set(dark).size).toBe(1);
+    expect(dark[0]).toBe('#33333A/#2B2B31');
+    const light = liquidGlassTokens('grad_aurora', { appearance: 'light', intensity: 0.6 } as never);
+    expect(iconTileColors(light, '#7EF0C8', '#7C5CFF').join('/')).not.toBe('#33333A/#2B2B31');
   });
 
   it('в светлом подложка не нейтрализована (тема сохраняет свои значения)', () => {

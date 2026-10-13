@@ -41,8 +41,12 @@ export const glassFillColors = (g: GlassTokens, a: string, b: string) =>
   [`${mixDark(a, g.deepBase, 0.17)}B0`, `${g.deepBase}94`, `${mixDark(b, g.deepBase, 0.17)}A3`] as const;
 
 /** Заливка плитки-значка 145°: цвет темы 60 % / 32 % в базах темы. */
+// зачем (координатор 13.10, cards-v2-027; образец «Тени» — плитки значков плоские нейтральные, `.tile` #242426): в ТЁМНОМ плитка значка нейтральная при любой теме
+// (у «Авроры» был градиент зелёный→фиолетовый); в светлом — прежний цвет темы.
 export const iconTileColors = (g: GlassTokens, a: string, b: string) =>
-  [mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const;
+  g.isLight
+    ? ([mixDark(a, g.deepBase, 0.6), mixDark(b, g.deepBaseAlt, 0.32)] as const)
+    : (['#33333A', '#2B2B31'] as const);
 
 /** Диагонали 150° и 170° макета в долях бокса. */
 export const DIAG_150 = { start: { x: 0.25, y: 0.07 }, end: { x: 0.75, y: 0.93 } } as const;

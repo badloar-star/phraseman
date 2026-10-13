@@ -164,8 +164,11 @@ export function getActiveLiquidGlassVariant(): Required<LiquidGlassVariant> {
 
 /** Тёмное оформление: подложка шторок/окон нейтральная при любой теме (стиль «Тень»); светлое — как есть. */
 export const SHADOW_SHEET_NEUTRAL_DARK = '#28282E';
-function withNeutralDarkSheet<T extends { isLight: boolean; opaqueSheet: string }>(built: T): T {
-  return built.isLight ? built : { ...built, opaqueSheet: SHADOW_SHEET_NEUTRAL_DARK };
+// зачем (координатор 13.10, кадры dark_sheet_r1: поле ввода и «Отмена» в диалоге удаления оставались зеленоватыми на нейтральной подложке): `opaqueControl` в ТЁМНОМ тоже нейтральный
+// (#34343A — чуть светлее подложки #28282E, как плашки/поля в образцах «Тени»), а не тонированный темой (у «Авроры» #2B3839). Светлое не трогаем. Откат — git revert коммита с этой строкой.
+export const SHADOW_CONTROL_NEUTRAL_DARK = '#34343A';
+function withNeutralDarkSheet<T extends { isLight: boolean; opaqueSheet: string; opaqueControl: string }>(built: T): T {
+  return built.isLight ? built : { ...built, opaqueSheet: SHADOW_SHEET_NEUTRAL_DARK, opaqueControl: SHADOW_CONTROL_NEUTRAL_DARK };
 }
 
 /** Unknown or retired names safely return graphite. Without `variant` the active one is used. */

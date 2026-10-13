@@ -13,6 +13,7 @@
 // OpenAI (аварийный стоп расходов без передеплоя).
 // ════════════════════════════════════════════════════════════════════════════
 import * as admin from 'firebase-admin';
+import { DEFAULT_TEXT_MODEL, SUPPORTED_IMAGE_MODELS, migrateRetiredTextModel } from './openai_model_policy';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 
@@ -25,12 +26,11 @@ export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | '
 export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'digest', 'support', 'content_factory', 'video_phrases', 'image_assets', 'tournament', 'jarvis'];
 
 export const ALLOWED_JOB_MODELS = [
-  'gpt-4.1-nano',
   'gpt-4.1-mini',
   'gpt-4.1',
   'gpt-4o-mini',
 ] as const;
-const ALLOWED_IMAGE_JOB_MODELS = ['gpt-image-1'] as const;
+const ALLOWED_IMAGE_JOB_MODELS = SUPPORTED_IMAGE_MODELS;
 export type JobModel = (typeof ALLOWED_JOB_MODELS)[number] | (typeof ALLOWED_IMAGE_JOB_MODELS)[number];
 
 const DAILY_CAP_MAX = 1_000_000;
@@ -50,10 +50,10 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   weekly: { model: 'gpt-4o-mini', globalDailyCap: 500, aiV2Enabled: true, rolloutPct: 100 },
   stats: { model: 'gpt-4o-mini', globalDailyCap: 5000 },
   explain: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
-  dialog: { model: 'gpt-4.1-nano', globalDailyCap: 0 },
+  dialog: { model: DEFAULT_TEXT_MODEL, globalDailyCap: 0 },
   choice: { model: 'gpt-4o-mini', globalDailyCap: 3000 },
   // Непрерывающий пост Компаса в лиговом чате; не связан с удалённой Home-модалкой.
-  compass: { model: 'gpt-4.1-nano', globalDailyCap: 5000 },
+  compass: { model: DEFAULT_TEXT_MODEL, globalDailyCap: 5000 },
   // Дайджест для владельца: раз в сутки, один вызов на весь проект. Кап символический
   // (несколько ручных перегенераций в день максимум). Модель поумнее — сводка должна
   // осмысленно расставлять приоритеты, а не просто пересчитывать.
@@ -65,7 +65,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // Извлечение фраз из видео — отдельный kill-switch, чтобы общая фабрика
   // контента могла быть выключена без поломки ежедневной работы с роликами.
   video_phrases: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
-  image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
+  image_assets: { model: SUPPORTED_IMAGE_MODELS[0], globalDailyCap: 40 },
   // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
   // на БАТЧИ в сутки; каждый батч может стоить до 3 реальных запросов OpenAI
   // (генерация + до 2 починок), т.е. фактический потолок запросов = 3×кап.
@@ -74,7 +74,7 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   // LLM-обогатитель Джарвиса: один прогон в сутки (крон 06:00), решений
   // мало (максимум по одному на департамент) — кап символический, реальный
   // денежный потолок держит отдельный технический бюджет (jarvis/llm_budget.ts).
-  jarvis: { model: 'gpt-4.1-nano', globalDailyCap: 20 },
+  jarvis: { model: DEFAULT_TEXT_MODEL, globalDailyCap: 20 },
 };
 
 export interface JobConfig {
@@ -107,7 +107,7 @@ function allowedModelsForJob(job: OpenAiJob): readonly JobModel[] {
 }
 
 function normalizeModel(value: unknown, fallback: JobModel, allowedModels: readonly JobModel[]): JobModel {
-  const m = text(value, 80);
+  const m = migrateRetiredTextModel(text(value, 80));
   return (allowedModels as readonly string[]).includes(m) ? (m as JobModel) : fallback;
 }
 

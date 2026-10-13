@@ -134,7 +134,7 @@ describe('openai_jobs_config — resolveJobConfig', () => {
 
   it('supports content factory and image jobs without restoring removed features', async () => {
     expect(await resolveJobConfig(fakeDb(undefined), 'content_factory')).toEqual({ model: 'gpt-4.1-mini', globalDailyCap: 500, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
-    expect(await resolveJobConfig(fakeDb(undefined), 'image_assets')).toEqual({ model: 'gpt-image-1', globalDailyCap: 40, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
+    expect(await resolveJobConfig(fakeDb(undefined), 'image_assets')).toEqual({ model: 'gpt-image-2.5-flare', globalDailyCap: 40, enabled: true, aiV2Enabled: false, rolloutPct: 0 });
   });
 
   it('keeps video phrase extraction independent from the content factory kill-switch', async () => {
@@ -163,5 +163,31 @@ describe('openai_jobs_config — assertJobEnabled', () => {
   it('no-op when enabled', () => {
     expect(() => assertJobEnabled({ model: 'gpt-4o-mini', globalDailyCap: 0, enabled: true, aiV2Enabled: false, rolloutPct: 0 }, 'weekly'))
       .not.toThrow();
+  });
+});
+
+describe('October 23 retirement regression', () => {
+  const hooks = __openAiJobsConfigTestHooks;
+  test.each(['gpt-4.1-nano', 'gpt-4.1-nano-2025-04-14'])('migrates persisted %s across all text jobs, preserving caps and switches', (model) => {
+    const jobs: OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'digest', 'support', 'content_factory', 'video_phrases', 'tournament', 'jarvis'];
+    for (const job of jobs) {
+      expect(hooks.jobFromData(job, { [job]: { model, enabled: false, globalDailyCap: 123 } }))
+        .toMatchObject({ model: 'gpt-4o-mini', enabled: false, globalDailyCap: 123 });
+    }
+  });
+  test('old image setting resolves safely while partial updates preserve controls', () => {
+    const previous = hooks.jobFromData('image_assets', { image_assets: { model: 'gpt-image-1', enabled: false, globalDailyCap: 7 } });
+    expect(previous).toMatchObject({ model: 'gpt-image-2.5-flare', enabled: false, globalDailyCap: 7 });
+    expect(hooks.mergeJobConfigForSet('image_assets', previous, { model: 'gpt-image-2.5-sunburst' }))
+      .toMatchObject({ model: 'gpt-image-2.5-sunburst', enabled: false, globalDailyCap: 7 });
+  });
+  test('retired tournament model-pair overrides migrate without weakening distinct judges', () => {
+    expect(hooks.jobFromData('tournament', { tournament: {
+      primaryModel: 'gpt-4.1-nano', adversarialModel: 'gpt-4.1-nano-2025-04-14', semanticDailyRequestCap: 17,
+    } })).toMatchObject({ primaryModel: 'gpt-4o-mini', adversarialModel: 'gpt-4.1', semanticDailyRequestCap: 17 });
+  });
+  test('wrong image/text categories do not cross the allowlists', () => {
+    expect(hooks.jobFromData('image_assets', { image_assets: { model: 'gpt-4o-mini' } }).model).toBe('gpt-image-2.5-flare');
+    expect(hooks.jobFromData('support', { support: { model: 'gpt-image-2.5-sunburst' } }).model).toBe('gpt-4o-mini');
   });
 });

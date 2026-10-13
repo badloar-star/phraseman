@@ -85,7 +85,7 @@ function ensureInsideAllowedOutput(file) {
 
 async function generatePng(apiKey, item) {
   const body = {
-    model: 'gpt-image-1',
+    model: 'gpt-image-2.5-flare',
     prompt: item.prompt,
     size: '1024x1024',
     quality: 'low',
@@ -176,7 +176,7 @@ async function main() {
     queuePath,
     totalQueueItems: queue.length,
     selectedItems: selected.length,
-    model: 'gpt-image-1',
+    model: 'gpt-image-2.5-flare',
     imageRequest: {
       size: '1024x1024',
       quality: 'low',

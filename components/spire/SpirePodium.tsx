@@ -13,6 +13,7 @@ import V2Pressable from '../v2/V2Pressable';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
+import { spireNickWrap } from './spire_nick_wrap';
 import { spireText } from './spire_strings';
 import { spireStepsCount, spireStepsShort } from './spire_plurals';
 import type { SpireMemberRow } from './spire_room_types';
@@ -47,7 +48,7 @@ function SpirePodium({ lang, members, onOpenAll }: Props) {
             return (
               <View key={m.uid} style={s.col} accessible accessibilityLabel={`${place}. ${m.name}, ${spireStepsCount(lang, m.steps)}`}>
                 <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
-                <Text style={[s.name, { color: p.text }]}>{m.name}</Text>
+                <Text style={[s.name, { color: p.text }]}>{spireNickWrap(m.name)}</Text>
                 <Text style={[s.steps, { color: p.textSecondary }]}>{m.steps} {spireStepsShort(lang, m.steps)}</Text>
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>

@@ -1,7 +1,8 @@
 diff --git a/app/config.ts b/app/config.ts
+index c02c39efc..46d9c559e 100644
 --- a/app/config.ts
 +++ b/app/config.ts
-@@ -246,7 +246,9 @@
+@@ -246,7 +246,9 @@ export const SPANISH_UI_LOCALE_ENABLED = true;
   * получат ключ `en` и это не будет реально проверено (не только tsc — он
   * падал по памяти на полном прогоне и давал ложное "0 ошибок").
   */

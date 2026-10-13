@@ -397,6 +397,8 @@ const BACKGROUND_TAB_PREMOUNT_STEP_GAP_MS = 150;
 const BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS = 1200;
 const BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS = 80;
 const BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS = 200;
+// зачем (замер #3 Сверки: quietWaitMs:0 во всех шагах — первая проверка по построению «тихая»): тишина = подряд CLEAN_TICKS проверок (≥ CLEAN_TICKS×POLL мс наблюдения) без касаний и без лага; любой лаг/касание обнуляет счёт.
+const BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS = 4;
 const BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS = 8000;
 const BACKGROUND_TAB_PREMOUNT_STEP_GUARD_MS = BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS + 4000;
 /** Фоново прогреваем все отложенные вкладки в их логическом порядке. */
@@ -868,6 +870,8 @@ function ReleasedTabLayout() {
       }
       const quietStartedAt = Date.now();
       let lastTickAt = quietStartedAt;
+      let cleanTicks = 0;
+      let maxLagMs = 0;
       const startWork = (quiet: Record<string, number | string>) => {
         if (done) return;
         const workStartedAt = Date.now();
@@ -910,9 +914,12 @@ function ReleasedTabLayout() {
         lastTickAt = now;
         const sinceTouchMs = lastTouchAtRef.current === 0 ? BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS : now - lastTouchAtRef.current;
         const quietWaitMs = now - quietStartedAt;
-        const isQuiet = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
+        maxLagMs = Math.max(maxLagMs, lastLagMs);
+        const tickClean = sinceTouchMs >= BACKGROUND_TAB_PREMOUNT_QUIET_TOUCH_MS && lastLagMs <= BACKGROUND_TAB_PREMOUNT_QUIET_LAG_MAX_MS;
+        cleanTicks = tickClean ? cleanTicks + 1 : 0;
+        const isQuiet = cleanTicks >= BACKGROUND_TAB_PREMOUNT_QUIET_CLEAN_TICKS;
         if (isQuiet || quietWaitMs >= BACKGROUND_TAB_PREMOUNT_QUIET_MAX_WAIT_MS) {
-          startWork({ quietReason: isQuiet ? 'quiet' : 'ceiling', quietWaitMs, lastLagMs, sinceTouchMs: Math.min(sinceTouchMs, 99999) });
+          startWork({ quietReason: isQuiet ? 'quiet' : 'ceiling', quietWaitMs, cleanTicks, lastLagMs, maxLagMs, sinceTouchMs: Math.min(sinceTouchMs, 99999) });
           return;
         }
         setTimeout(pollQuiet, BACKGROUND_TAB_PREMOUNT_QUIET_POLL_MS);

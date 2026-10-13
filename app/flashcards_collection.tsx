@@ -1046,7 +1046,15 @@ export default function FlashcardsScreen() {
     if (!packDeeplink || publishBusy) return;
     setPublishBusy(true);
     void (async () => {
-      const res = await publishLocalAuthorPack(packDeeplink, lang, studyTarget);
+      // зачем (аудит Optimistic UI 13.10, правило №10 «откат при ошибке + кнопка не зависает»): исключение из publishLocalAuthorPack раньше оставляло publishBusy=true навсегда и уходило в необработанный отказ без сообщения.
+      // Теперь исключение сводится к исходу 'error' (та же ветка тоста ниже), флаг снимается всегда, причина — в журнал.
+      let res: Awaited<ReturnType<typeof publishLocalAuthorPack>>;
+      try {
+        res = await publishLocalAuthorPack(packDeeplink, lang, studyTarget);
+      } catch (error: unknown) {
+        console.warn('[PACK-PUBLISH] onPublishPack: исключение — кнопка освобождена, показываем ошибку', error instanceof Error ? error.message : String(error)); // guard-ok: лог причины в catch
+        res = 'error';
+      }
       setPublishBusy(false);
       if (res === 'submitted') {
         setPublishSubmitted(true);

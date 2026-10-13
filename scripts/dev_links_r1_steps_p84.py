@@ -75,3 +75,10 @@ add_note('dialogs-012', 'dquota=30: пилюля «30/30» под энергие
 for rid in ('cards-section-034', 'cards-section-036', 'cards-gap-011'):
     set_param(rid, 'quota', '6')
     add_note(rid, 'quota=6 (использовано 6) → «осталось 24 из 30» как в образце')
+
+# Блиц: пока идёт раунд, `uiautomator dump` не отдаёт дерево («could not get idle state» — непрерывная анимация полосы таймера; Сверка, evidence/blitz_dump2, 13.10) → шаг `#fc-blitz-opt-target` не находит узел,
+# хотя экран отрисован. dev `animations=off` (app/flashcards_blitz_session.tsx: полоса и тики секунд не запускаются) держит экран на «до ответа» — всем ссылкам на Блиц.
+for _rid, _entry_data in list(ENTRIES.items()):
+    if 'flashcards_blitz_session' in _entry_data['link']:
+        set_param(_rid, 'animations', 'off')
+        add_note(_rid, 'animations=off: таймер Блица заморожен — иначе uiautomator не отдаёт дерево (could not get idle state)')

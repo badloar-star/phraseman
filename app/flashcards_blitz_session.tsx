@@ -24,6 +24,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { getDevBlitzAnswer, getDevTrainGate } from './dev_cards_state';
+import { isDevAnimationsOff } from './dev_animations_off';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -475,6 +476,10 @@ export default function FlashcardsBlitzSession() {
     endAtRef.current = Date.now() + remainingMs;
     setTimeLeft(Math.ceil(remainingMs / 1000));
     progress.value = Math.min(1, remainingMs / (roundDurationMsRef.current ?? roundDurationMs));
+    if (isDevAnimationsOff()) {
+      console.log('[DEV-STATE] blitz: возобновление без анимации (animations=off)', JSON.stringify({ remainingMs })); // guard-ok: dev-ветка
+      return;
+    }
     progress.value = withTiming(0, { duration: remainingMs, easing: Easing.linear });
     intervalRef.current = setInterval(() => {
       const remainder = endAtRef.current - Date.now();
@@ -881,6 +886,12 @@ export default function FlashcardsBlitzSession() {
       shownAtRef.current = paintedAt;
       endAtRef.current = paintedAt + (roundDurationMsRef.current ?? roundDurationMs);
       console.log('[FC-BLITZ-GATE] round:timer_start', JSON.stringify({ round: roundId, afterPaintMs: paintedAt - roundStartedAt }));
+      // зачем (Сверка, practice-001…003: `uiautomator dump` не отдаёт дерево пока идёт раунд — «could not get idle state»; координатор 13.10): полоса таймера — непрерывная анимация на весь раунд.
+      // dev `animations=off` (dev_animations_off.ts, в стор-сборке всегда false) держит экран на «до ответа»: полоса полная, секунды не тикают — робот снимает дерево, кадр = макет practice.html №1.
+      if (isDevAnimationsOff()) {
+        console.log('[DEV-STATE] blitz: таймер заморожен (animations=off) — полоса и тики секунд не запущены', JSON.stringify({ round: roundId, seconds: roundDurationMsRef.current ?? roundDurationMs })); // guard-ok: dev-ветка
+        return;
+      }
       progress.value = withTiming(0, {
         duration: roundDurationMsRef.current ?? roundDurationMs,
         easing: Easing.linear,

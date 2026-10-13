@@ -307,3 +307,22 @@ export function subscribeDevAppMessage(listener: (kind: DevAppMessage | null) =>
   if (current) listener(current);
   return () => { appMessageListeners.delete(listener); };
 }
+
+// ───────────────────── Удержание чистки кеша (Авторизация 13.10, settings-gap-007) ─────────────────────
+// зачем: «чистим…» живёт доли секунды, а настоящая чистка стирает кеши тестового устройства. `cache=hold` держит строку в «чистим…»:
+// clearAppCaches не возвращается и ничего не стирает. Снять — `cache=ok|failed` или перезапуск. В сторе геттер выключен.
+let cacheClearHold = false;
+
+export function setDevCacheClearHold(on: boolean): boolean {
+  if (!devSocialAvailable()) {
+    console.warn(`${LOG} cache=hold: отклонено — не dev-сборка`); // guard-ok: ранний выход логируется
+    return false;
+  }
+  cacheClearHold = on;
+  console.log(`${LOG} cache_clear_hold=${on ? 'on' : 'off'}`); // guard-ok: единичный лог на ссылку
+  return true;
+}
+
+export function isDevCacheClearHold(): boolean {
+  return devSocialAvailable() && cacheClearHold;
+}

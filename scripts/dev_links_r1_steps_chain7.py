@@ -166,3 +166,35 @@ for _rid, _params, _note in (('settings-gap-002', 'plus=off', 'Plus не акт�
 ENTRIES.pop('settings-gap-028', None)
 add('settings-gap-028', ['tap:#notif-daily-switch', 'wait:400', 'tap:#notif-time-label', 'wait:600'], 'plus=off&robot_no_cloud=1', '/settings_notifications',
     note='окно выбора времени: включить «Ежедневное напоминание» (без записи — robot_no_cloud) → «Время»')
+
+# ── Блокирующие строки Авторизации (R1_PENDING_READINESS 13.10) и правки Ядра (R1_LINKS_46_CORE, 5bdfd5b35)
+# overlays-campaigns-014: код WELCOME30 как в образце; подмена promo=off → «Промокоды временно выключены» (журнал [DEV-STATE] promo — при расхождении)
+ENTRIES.pop('overlays-campaigns-014', None)
+add('overlays-campaigns-014', ['tap:#promo-code-input', 'type:WELCOME30', 'hidekb', 'tap:#promo-code-submit', 'wait:600'],
+    'plus=off&energy=3&promo=off', '/promo_code_entry', note='«Промокоды сейчас временно выключены» (promo=off → promo_disabled, сеть не вызывается)')
+# settings-gap-007: cache=hold держит «чистим…» без настоящей чистки; опрос (slot=poll, нижний слот) — внизу страницы
+ENTRIES.pop('settings-gap-007', None)
+add('settings-gap-007', ['see:#settings-clear-cache-row', 'tap:#settings-clear-cache-row', 'wait:400', 'tap:#glass-alert-action-1', 'wait:400', 'scroll:down', 'scroll:down', 'wait:500'],
+    'plus=off&slot=poll&cache=hold', '/(tabs)/settings', note='«Очистить кеш — чистим…» (cache=hold, ничего не стирается) + опрос внизу (slot=poll)')
+
+# Ядро: «Продолжить создание набора» — настоящий черновик с прошлых кадров; cards=demo его чистит (cards-v2-025/026 и section-022/023 правит p84)
+for _rid in ('cards-014', 'cards-section-024', 'packs-simple-001'):
+    ENTRIES.pop(_rid, None)
+    add(_rid, [], 'cards=demo&catalog=demo', '/flashcards_packs', note='каталог сообщества, «Новые» (cards=demo чистит черновик набора)')
+for _rid in ('cards-017', 'cards-048'):
+    ENTRIES.pop(_rid, None)
+    add(_rid, ['tap:#flashcards-packs-search', 'type:xyzq', 'key:ENTER', 'hidekb', 'wait:600'], 'cards=demo&catalog=demo', '/flashcards_packs',
+        note='поиск по каталогу без совпадений (xyzq как в образце, клавиатура спрятана)')
+# Ядро: остаток тренировок 0/30 с прошлых кадров — quota=reset
+for _rid in ('cards-v2-028', 'cards-section-033'):
+    ENTRIES.pop(_rid, None)
+add(['cards-section-033', 'cards-v2-028'], [], 'cards=demo&plus=off&animations=off&quota=reset', '/flashcards_training_setup?mode=blitz',
+    note='настройка тренировки «Блиц» (quota=reset — остаток прошлых кадров сброшен)')
+# Ядро: перевод «пересадка» робот не наберёт (type: только ASCII)
+ENTRIES.pop('cards-v2-046', None)
+add('cards-v2-046', ['tap:#fc-editor-en', 'type:Layover', 'hidekb', 'wait:400'], 'plus=off&cards=custom50', '/flashcards_card_editor?create=1&cat=custom',
+    unique=False, note='Free: лимит своих карточек 50/50; EN «Layover», перевод пустой — ввести вручную или принять')
+# Ядро: тост «Энергия возвращена» короткий — без паузы 2,5 с из SEND
+ENTRIES.pop('dialogs-gap-016', None)
+add('dialogs-gap-016', DLG_START + ['tap:#dialogue-v2-session-input', 'type:Hello', 'tap:#dialogue-v2-session-send', 'hidekb', 'wait:500'],
+    DLG_BASE + '&dev_dialog_fail=service', DLG, note='тост «Энергия возвращена» (dev_dialog_fail=service); сценария «Закажи кофе / Мия» в каталоге V2 нет — к Макетам')

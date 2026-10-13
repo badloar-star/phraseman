@@ -208,7 +208,7 @@ export type DevStateRequest = Readonly<{
   /** dialogs-020 (Ядро 12.10): бесплатные «Почему так» на сегодня исчерпаны — только память. */
   dialogWhy?: 'spent' | 'off';
   /** «Не удалось» при очистке кеша (settings-gap-009). */
-  cache?: 'failed' | 'ok';
+  cache?: 'failed' | 'ok' | 'hold';
   /** Друзья: удержание «отправки заявки» (add_request) или off. */
   friendsHold?: readonly DevFriendsHold[] | 'off';
   /** Друзья: отказ отправки заявки (add) / поиска (search) или off. */
@@ -458,7 +458,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.energyStop = pick('energy_stop', ['plus_granted', 'off'] as const);
   request.lessonIntro = pick('lessonintro', ['skip', 'off'] as const);
   request.notifPerm = pick('notifperm', ['denied', 'off'] as const);
-  request.cache = pick('cache', ['failed', 'ok'] as const);
+  request.cache = pick('cache', ['failed', 'ok', 'hold'] as const);
   request.promo = pick('promo', DEV_PROMO_RESULTS);
   request.refcode = pick('refcode', DEV_REFCODE_RESULTS);
   request.friendsHold = list('dev_friends_hold', DEV_FRIENDS_HOLDS);
@@ -978,6 +978,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
         return !touched && isDevSettingsFail(fail);
       });
       return setDevSocialState({ settingsFails: [...kept, ...fails], ...(request.support !== undefined ? { supportSent: request.support === 'sent' } : {}) });
+    });
+  }
+  if (request.cache !== undefined) {
+    // зачем (Авторизация 13.10, settings-gap-007): hold — «чистим…» без настоящей чистки; ok/failed снимают удержание
+    await step('cache_hold', request.cache, async () => {
+      const { setDevCacheClearHold } = await import('./dev_social_state');
+      return setDevCacheClearHold(request.cache === 'hold');
     });
   }
   if (request.manage !== undefined) {

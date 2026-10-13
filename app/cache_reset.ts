@@ -22,7 +22,7 @@
  *     останется пустым до истечения TTL (top_helpers/club: 3 ч).
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { isDevSettingsFail } from './dev_social_state';
+import { isDevCacheClearHold, isDevSettingsFail } from './dev_social_state';
 import { Image } from 'expo-image';
 import { REFERRAL_STATE_STORAGE_KEY } from './referrals_cache';
 import { FRIENDS_TAB_SWR_CACHE_KEY, FRIEND_PROFILES_CACHE_KEY } from './friends_tab_swr_warm';
@@ -99,6 +99,11 @@ export async function clearAppCaches(): Promise<{ removedKeys: number; ok: boole
   try {
     // зачем (координатор 12.10, R1 «нет пути»): dev `cache=failed` — «Не удалось» при очистке кеша: сбой хранилища до удаления, ничего не стирается; в стор-сборке геттер выключен.
     if (isDevSettingsFail('cache_clear')) throw new Error('dev_cache_clear_failed');
+    // зачем (Авторизация 13.10, settings-gap-007): dev `cache=hold` — строка держит «чистим…», ничего не стирается; в сторе геттер выключен
+    if (isDevCacheClearHold()) {
+      console.log('[CACHE-RESET] [DEV-STATE] cache=hold — чистка удержана, хранилище не трогаем'); // guard-ok: dev-ветка
+      return await new Promise<{ removedKeys: number; ok: boolean }>(() => undefined);
+    }
     const keys = await AsyncStorage.getAllKeys();
     const doomed = keys.filter(
       (k) =>

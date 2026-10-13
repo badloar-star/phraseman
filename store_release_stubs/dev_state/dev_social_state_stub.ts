@@ -40,3 +40,6 @@ export function subscribeDevErrorScreen(): () => void { return () => undefined; 
 export function setDevAppMessage(): boolean { return false; }
 export function getDevAppMessage(): null { return null; }
 export function subscribeDevAppMessage(): () => void { return () => undefined; }
+// зачем (Авторизация 13.10, settings-gap-007): удержание чистки кеша в стор-сборке не подменяется
+export function setDevCacheClearHold(): boolean { return false; }
+export function isDevCacheClearHold(): boolean { return false; }

@@ -366,7 +366,7 @@ export default function CoinRankScreen() {
         </V2Pressable>
       </View>
       {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как кошелёк и профиль. */}
-      <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
+      <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{copy.title}</Text>
 
       <ScrollView
         style={styles.scroll}

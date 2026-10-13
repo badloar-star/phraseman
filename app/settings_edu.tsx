@@ -385,7 +385,7 @@ export default function SettingsEdu() {
               {/* зачем: паритет с макетом profile.html — иконка «назад» это шеврон (kit.js back) */}
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
-            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
+            <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {loc.edu.title}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>

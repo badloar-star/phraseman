@@ -99,7 +99,7 @@ export const PackInfoBlock = memo(function PackInfoBlock({ lang, title, authorNa
   const added = badge === 'in_you';
   return (
     <View style={styles.info}>
-      <Text testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+      <Text maxFontSizeMultiplier={1.15} testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
       {showAuthor ? (
         <View style={styles.authorRow}>
           <View style={styles.ava}><Ionicons name="person" size={14} color={g.mutedText} /></View>

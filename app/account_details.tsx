@@ -221,7 +221,7 @@ export default function AccountDetailsScreen() {
             >
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
-            <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
+            <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={{ color: glass.text, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>
               {L('Аккаунт', 'Акаунт', 'Account', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
 

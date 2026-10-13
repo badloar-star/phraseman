@@ -157,7 +157,7 @@ function CardsHubV2Inner({
         </View>
       </View>
 
-      <Text accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
+      <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
       <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text>
 
       {fresh ? (

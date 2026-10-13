@@ -2330,6 +2330,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           <FlowText
             testID="stats-header-title"
             provenance="authored"
+            maxFontSizeMultiplier={1.15}
             style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: embedded ? 0 : 10 }}
           >
             {triLang(lang, {

@@ -47,7 +47,7 @@ export const BackButton = memo(function BackButton({ g, onPress, label }: Readon
 export const ScreenTitle = memo(function ScreenTitle({ g, text }: Readonly<{ g: Lv2Glass; text: string }>) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
-  return <Text accessibilityRole="header" style={[styles.title, { color: g.text }]}>{text}</Text>;
+  return <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: g.text }]}>{text}</Text>;
 });
 
 /** Кольцо прогресса: большое 236 (хаб, итог) и малое 150 (вход). Внутри — центр (проценты и подпись). */

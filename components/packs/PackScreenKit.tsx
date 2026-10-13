@@ -81,7 +81,7 @@ export const PackTopBarRow = memo(function PackTopBarRow({ left, right }: Readon
 export const PackScreenTitle = memo(function PackScreenTitle({ g, title, count, testID }: Readonly<{ g: GlassTokens; title: string; count?: number | null; testID?: string }>) {
   const lh = useLineScale();
   return (
-    <Text testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(40) }]}>
+    <Text maxFontSizeMultiplier={1.15} testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(40) }]}>
       {title}
       {count != null ? <Text style={[styles.titleCount, { color: g.mutedText }]}>{`  ${count}`}</Text> : null}
     </Text>

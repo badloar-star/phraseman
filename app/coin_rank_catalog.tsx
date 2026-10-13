@@ -45,7 +45,7 @@ export default function CoinRankCatalogScreen() {
           <Ionicons name="chevron-back" size={21} color={p.text} />
         </V2Pressable>
       </View>
-      <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>
+      <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{coinRankCatalogTitle(lang)}</Text>
       <ScrollView
         style={styles.scroll}
         contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 28 }]}

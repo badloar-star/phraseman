@@ -503,7 +503,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
                 капсула поиска «Наборы и авторы», чипы «Популярные / Новые / A1…B2» (чипы уровней — только когда в каталоге есть уровни). */}
             <View style={styles.listHead}>
               <View style={styles.titleRow}>
-                <Text accessibilityRole="header" testID={embedded ? 'flashcards-packs-title-embedded' : 'flashcards-packs-title'} style={[styles.embeddedTitle, { color: g.text }]}>
+                <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" testID={embedded ? 'flashcards-packs-title-embedded' : 'flashcards-packs-title'} style={[styles.embeddedTitle, { color: g.text }]}>
                   {screenTitle}
                 </Text>
                 <KitTouchable

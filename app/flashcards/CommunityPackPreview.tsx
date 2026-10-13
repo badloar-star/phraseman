@@ -219,7 +219,7 @@ export default function CommunityPackPreview({
           />
 
           {/* `setHead()` макета: название 34/40, автор, «уровень · N карточек · ♥ N», ряд кнопок. */}
-          <Text testID="pack-preview-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+          <Text maxFontSizeMultiplier={1.15} testID="pack-preview-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
           <View style={styles.authorRow}>
             <View style={[styles.ava, { backgroundColor: g.opaqueControl }]}><Ionicons name="person" size={14} color={g.mutedText} /></View>
             <Text testID="pack-preview-author" style={[styles.author, { color: g.secondary }]}>{author.name}</Text>

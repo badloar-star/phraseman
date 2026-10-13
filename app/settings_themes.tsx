@@ -234,7 +234,7 @@ export default function SettingsThemes() {
               <Ionicons name="chevron-back" size={21} color={glass.text} />
             </PressableHybrid>
             <View style={styles.head}>
-              <Text accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>
+              <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>
                 {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}
               </Text>
               <AppearanceToggle glass={glass} lang={lang} value={liquidGlassAppearance} onChange={onAppearance} />

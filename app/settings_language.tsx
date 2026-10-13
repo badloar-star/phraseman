@@ -100,7 +100,7 @@ export default function SettingsLanguage() {
             >
               <Ionicons name="close" size={21} color={glass.lightTint} />
             </PressableHybrid>
-            <Text style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>{s.settings.lang}</Text>
+            <Text maxFontSizeMultiplier={1.15} style={{ color: t.textPrimary, fontSize: 34, lineHeight: 40, fontWeight: '700', letterSpacing: -0.5, marginTop: 10 }}>{s.settings.lang}</Text>
             <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 22, marginTop: 7 }}>{subtitle}</Text>
             <View style={{ marginTop: 22, gap: 10 }}>
             {getVisibleInterfaceLanguageOptions(IS_STORE_RELEASE).map((item) => {

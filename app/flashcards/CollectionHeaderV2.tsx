@@ -194,7 +194,7 @@ export const CollectionTitleBlock = memo(function CollectionTitleBlock({ lang, t
   return (
     <View>
       <View style={styles.titleRow}>
-        <Text testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
+        <Text maxFontSizeMultiplier={1.15} testID="fc-collection-title" accessibilityRole="header" style={[styles.title, { color: g.text }]}>{title}</Text>
         {titleOnly || !big ? null : <Text testID="fc-collection-count" style={[styles.titleCount, { color: g.mutedText }]}>{cardCount}</Text>}
       </View>
       {showSearch && !titleOnly ? (

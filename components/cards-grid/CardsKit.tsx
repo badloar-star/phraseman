@@ -96,7 +96,7 @@ export const KitTitle = memo(function KitTitle({ g, title, subtitle, testID }: R
   const lh = useLineScale();
   return (
     <View>
-      <Text testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
+      <Text maxFontSizeMultiplier={1.15} testID={testID} accessibilityRole="header" style={[styles.title, { color: g.text, lineHeight: lh(46) }]}>{title}</Text>
       {subtitle ? <Text style={[styles.subtitle, { color: g.secondary, lineHeight: lh(22) }]}>{subtitle}</Text> : null}
     </View>
   );

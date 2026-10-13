@@ -150,7 +150,7 @@ export function V2LargeTitle({ title, subtitle, right, subtitleHidden = false }:
   return (
     <View style={s.largeTitleRow}>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text accessibilityRole="header" style={[s.largeTitle, { color: p.text }]}>{title}</Text>
+        <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[s.largeTitle, { color: p.text }]}>{title}</Text>
         {subtitle && !subtitleHidden ? <Text style={[s.largeSubtitle, { color: p.textSecondary }]}>{subtitle}</Text> : null}
       </View>
       {right}

@@ -136,7 +136,7 @@ export default function RunesWalletScreen() {
           </V2Pressable>
         </View>
         {/* зачем (coins.html back()): «назад» голым шевроном, ниже крупный заголовок 34 слева — как во всех экранах профиля. */}
-        <Text accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
+        <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.headerTitle, { color: p.text }]}>{title}</Text>
 
         <ScrollView
           decelerationRate="fast"

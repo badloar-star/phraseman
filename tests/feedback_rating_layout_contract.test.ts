@@ -31,7 +31,8 @@ describe('feedback rating layout reachability', () => {
     const lessonSurface = lesson.slice(lessonStart, lessonEnd);
 
     expect(lessonSurface).toContain('<V2DoneScreen');
-    expect(lessonSurface).toContain('feedbackSlot={(isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ?');
+    // зачем (db61aa3e4, 13.10): слот отзыва открывается и для мягкого предложения Plus после урока — оценка урока остаётся в нём же.
+    expect(lessonSurface).toContain('feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ?');
     expect(lessonSurface).toMatch(/\{showLessonFeedback \? \(\s*<FeedbackRatingCard\s+kind="lesson"/);
     expect(lessonSurface).not.toMatch(/position:\s*['"]absolute['"][\s\S]{0,240}<FeedbackRatingCard/);
   });

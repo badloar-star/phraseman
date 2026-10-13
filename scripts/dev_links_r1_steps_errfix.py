@@ -205,3 +205,16 @@ _STEPS_ROBOT.INCLUDE_IDS.update({'learn-047', 'learn-048', 'learn-049', 'learn-0
 _ya = _entry('results-009')
 _ya['link'] = _ya['link'].replace('next=/streak_stats', 'next=/year_activity')
 _ya['steps'] = ['wait:2000']
+
+# зачем (координатор 13.10 ~11:25): кадры Шпиля в образцах сняты с 2 энергии — все строки spire-* / spire-gap-* открываются с energy=2,
+# кроме spire-016 (кадр «нет энергии» — energy=0). Подмена энергии только в памяти (dev_state), Firestore не трогается.
+for _rid in sorted(ENTRIES):
+    if _rid.startswith('spire-'):
+        set_param(_rid, 'energy', '0' if _rid == 'spire-016' else '2')
+
+# results-009: подмена Ядра 0bc13b5b7 — yearActivity=demo даёт заполненную сетку и итоги образца (только __DEV__ и память).
+set_param('results-009', 'yearActivity', 'demo')
+
+# зачем (координатор 13.10): spire-gap-021 исключена из R1 — в DEV_LINKS_R1 не попадает. Реестр не трогаем (release снимают Сверка/Макеты);
+# генератор читает EXCLUDE_IDS рядом с INCLUDE_IDS.
+_STEPS_ROBOT.EXCLUDE_IDS = set(getattr(_STEPS_ROBOT, 'EXCLUDE_IDS', set())) | {'spire-gap-021'}

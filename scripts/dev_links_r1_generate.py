@@ -34,7 +34,7 @@ def it(o):
             yield from it(v)
 
 # зачем (координатор 12.10, Макеты): match-строки, протухшие после правок кода, надо переснимать — им тоже нужны ссылка и шаги (20 строк Сверка пропускала как «нет в DEV_LINKS_R1»)
-rows = [r for r in it(reg) if (r.get('release') == 'r1' or r.get('id') in STEPS_ROBOT.INCLUDE_IDS) and r.get('status') in ('pending', 'diff', 'match')]
+rows = [r for r in it(reg) if (r.get('release') == 'r1' or r.get('id') in STEPS_ROBOT.INCLUDE_IDS) and r.get('status') in ('pending', 'diff', 'match') and r.get('id') not in getattr(STEPS_ROBOT, 'EXCLUDE_IDS', set())]  # зачем (координатор 13.10): EXCLUDE_IDS — строки, исключённые из R1 (errfix)
 
 # ── индекс shot-list: id → (источник, заголовок, строка таблицы или шаги группы)
 texts = {}

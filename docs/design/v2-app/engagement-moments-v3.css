@@ -1,0 +1,84 @@
+/* PhraseMan 2.0 — «Моменты вовлечения» v3: расширение каркаса (13.10.2026). Подключается ПОСЛЕ v1/v2 css; v1/v2 не трогает.
+   зачем (этап 3 — «в 1000 раз»): точные тайминги и «тайм-лист ударов» со звуком/хаптиком под каждым телефоном (чтобы Дизайн/Разработка
+   реализовали 1:1), эмоции персонажа (сердца, пот, искры, «!», «…»), стоп-кадр и замедление на пике комбо, морф огня при смене стадии,
+   «прочитано/записывает голосовое» в живых переписках, фейерверк на повышении, дрожь экрана с затуханием. */
+
+/* ---------- тайм-лист ударов (beats) ---------- */
+.em-var .beats { margin-top: 2px; padding: 10px 12px; border-radius: 14px; background: #101012; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.em-var .beats .ttl { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 800; color: #8CC4FF; margin-bottom: 8px; display: flex; justify-content: space-between; }
+.em-var .beats .ttl span { color: var(--muted); letter-spacing: 0; text-transform: none; font-weight: 600; }
+.em-var .beats .bar { position: relative; height: 6px; border-radius: 3px; background: #1E1E22; margin: 6px 0 10px; }
+.em-var .beats .bar i { position: absolute; top: -3px; width: 12px; height: 12px; border-radius: 50%; margin-left: -6px; background: #8CC4FF; box-shadow: 0 0 0 2px #101012; }
+.em-var .beats .bar i.h { background: #D6B4FF; } .em-var .beats .bar i.s { background: #F2C48B; } .em-var .beats .bar i.hs { background: linear-gradient(90deg, #D6B4FF 50%, #F2C48B 50%); } .em-var .beats .bar i.big { width: 16px; height: 16px; top: -5px; margin-left: -8px; }
+.em-var .beats ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.em-var .beats li { display: grid; grid-template-columns: 46px 1fr; gap: 2px 8px; align-items: baseline; font-size: 12px; line-height: 16px; color: var(--sec); }
+.em-var .beats li .t { font-variant-numeric: tabular-nums; font-weight: 800; color: #E6E6E8; }
+.em-var .beats li .w { color: #CFCFD3; }
+.em-var .beats li .w b { color: #fff; font-weight: 700; }
+.em-var .beats li .hs { grid-column: 2; display: flex; flex-wrap: wrap; gap: 4px; }
+.em-var .beats li .hs:empty { display: none; }
+.em-var .beats li .hs span { padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: .5px; }
+.em-var .beats li .hs .hp { background: #2A1F3D; color: #D6B4FF; } .em-var .beats li .hs .sn { background: #3A2A14; color: #F2C48B; }
+
+/* ---------- эмоции персонажа ---------- */
+.em-ph .cc .emo { position: absolute; pointer-events: none; font-size: 18px; line-height: 1; animation: emEmo 1200ms var(--em-ease) both; }
+.em-ph .cc .emo.heart { color: #FF6B8B; } .em-ph .cc .emo.sweat { color: #7EC8FF; } .em-ph .cc .emo.bang { color: #FFD166; font-weight: 900; font-size: 26px; } .em-ph .cc .emo.dots { color: var(--sc); letter-spacing: 2px; }
+@keyframes emEmo { 0% { opacity: 0; transform: translate(0, 6px) scale(.5); } 25% { opacity: 1; transform: translate(0, -4px) scale(1.1); } 100% { opacity: 0; transform: translate(var(--ex, 10px), var(--ey, -36px)) scale(1); } }
+.em-ph .cc.cheer .face { animation: emCcCheer 1100ms var(--em-ease-pop) both; }
+@keyframes emCcCheer { 0% { transform: scale(1, 1); } 15% { transform: scale(1.12, .86) translateY(4px); } 45% { transform: scale(.94, 1.1) translateY(-40px) rotate(-8deg); } 65% { transform: scale(1, 1) translateY(-30px) rotate(8deg); } 85% { transform: scale(1.08, .92) translateY(3px); } 100% { transform: none; } }
+.em-ph .cc.shiver .face { animation: emCcShiver 600ms ease-in-out both; }
+@keyframes emCcShiver { 0%, 100% { transform: translateX(0) rotate(0); } 20% { transform: translateX(-3px) rotate(-3deg); } 40% { transform: translateX(3px) rotate(3deg); } 60% { transform: translateX(-2px) rotate(-2deg); } 80% { transform: translateX(2px) rotate(2deg); } }
+.em-ph .cc.peek { overflow: visible; }
+.em-ph .cc.peek .face { animation: emCcPeek 900ms var(--em-ease-pop) both; }
+@keyframes emCcPeek { 0% { transform: translateY(40px) rotate(-20deg); opacity: 0; } 60% { transform: translateY(-6px) rotate(6deg); opacity: 1; } 100% { transform: none; } }
+.em-ph .cc.spin .face { animation: emSpinY 1.2s var(--em-ease-in-out) both; }
+.em-ph .cc .say.big { font-size: 17px; padding: 12px 16px; }
+.em-ph .cc .say.gold { background: linear-gradient(135deg, #FFE08A, #F0B33A); color: #3A2400; }
+
+/* ---------- стоп-кадр и замедление ---------- */
+.em-ph .freeze { animation: emFreeze 420ms steps(1) both; }
+@keyframes emFreeze { 0% { filter: contrast(1.3) brightness(1.4); } 100% { filter: none; } }
+.em-ph .slowmo { animation-duration: 2.4s !important; }
+.em-ph .vignette { position: absolute; inset: 0; z-index: 43; pointer-events: none; background: radial-gradient(ellipse at center, transparent 50%, rgba(255,120,40,.35) 100%); animation: emGlow 1.2s ease-in-out infinite; }
+.em-ph .vignette.cold { background: radial-gradient(ellipse at center, transparent 55%, rgba(126,200,255,.35) 100%); animation: emFade 600ms reverse both; animation-delay: 400ms; }
+.em-ph .rumble { animation: emRumble 700ms ease-out both; }
+@keyframes emRumble { 0% { transform: translate(0, 0); } 10% { transform: translate(-6px, 3px); } 20% { transform: translate(6px, -3px); } 30% { transform: translate(-5px, 2px); } 40% { transform: translate(5px, -2px); } 50% { transform: translate(-3px, 1px); } 60% { transform: translate(3px, -1px); } 80% { transform: translate(-1px, 0); } 100% { transform: none; } }
+
+/* ---------- фейерверк (CSS) ---------- */
+.em-ph .fw { position: absolute; width: 4px; height: 4px; border-radius: 50%; z-index: 56; pointer-events: none; animation: emFw 1200ms ease-out both; }
+@keyframes emFw { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.3); opacity: 0; } }
+.em-ph .fwcore { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #fff; z-index: 56; pointer-events: none; animation: emFwCore 400ms ease-out both; }
+@keyframes emFwCore { 0% { transform: scale(0); opacity: 1; } 100% { transform: scale(6); opacity: 0; } }
+
+/* ---------- морф огня (стадия → стадия) ---------- */
+.em-ph .fire.morph svg { animation: emFlame 1.5s ease-in-out infinite, emFireMorph 900ms var(--em-ease-pop) both; }
+@keyframes emFireMorph { 0% { transform: scale(.7); filter: brightness(2) blur(2px); } 50% { transform: scale(1.25); filter: brightness(1.6); } 100% { transform: scale(1); filter: none; } }
+.em-ph .fire .lvlup { position: absolute; left: 50%; top: -14px; transform: translateX(-50%); padding: 4px 10px; border-radius: 10px; background: #FFD166; color: #2A1500; font-size: 11px; font-weight: 900; letter-spacing: 2px; animation: emPop 500ms var(--em-ease-pop) 600ms both; white-space: nowrap; }
+
+/* ---------- живая переписка: прочитано / записывает ---------- */
+.em-ph .bub .meta { display: block; font-size: 11px; color: var(--mu); margin-top: 4px; text-align: right; }
+.em-ph .bub.me .meta { color: color-mix(in srgb, var(--on) 60%, transparent); }
+.em-ph .rec { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--sc); font-weight: 600; }
+.em-ph .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--bad); animation: emGlow 900ms ease-in-out infinite; }
+.em-ph .ghostin { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; border-radius: 24px; background: var(--ti); font-size: 15px; color: var(--sc); }
+.em-ph .ghostin .mic { width: 34px; height: 34px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; animation: emPulse 1.4s ease-in-out infinite; }
+.em-ph .ghostin .tx { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; }
+.em-ph .ghostin .tx b { color: var(--tx); font-weight: 600; }
+.em-ph .ambient { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mu); font-weight: 600; }
+.em-ph .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.em-ph .chips .ch { padding: 6px 10px; border-radius: 12px; background: var(--ti); font-size: 13px; font-weight: 600; animation: emPop 400ms var(--em-ease-pop) both; }
+
+/* ---------- лестница с «зоной» ---------- */
+.em-ph .zone-line { position: absolute; left: -8px; right: -8px; height: 2px; background: var(--good); box-shadow: 0 0 12px var(--good); z-index: 3; animation: emZoneSweep 1400ms var(--em-ease) both; }
+@keyframes emZoneSweep { from { transform: translateY(-260px); opacity: 0; } 30% { opacity: 1; } to { transform: none; } }
+.em-ph .zone-lbl { position: absolute; right: 0; top: -18px; font-size: 10px; letter-spacing: 2px; font-weight: 800; color: var(--good); }
+.em-ph .ladder .lrow.flicker { animation: emFlicker 1200ms steps(6) both; }
+@keyframes emFlicker { 0% { opacity: .4; } 50% { opacity: 1; } 100% { opacity: 1; } }
+
+/* ---------- скип и «нажми, чтобы ускорить» ---------- */
+.em-ph .skip { position: absolute; right: 18px; top: 58px; z-index: 70; font-size: 13px; font-weight: 700; color: var(--sc); padding: 6px 10px; border-radius: 12px; background: var(--ti); }
+.em-ph .tap-hint { position: absolute; left: 0; right: 0; bottom: 50px; text-align: center; font-size: 12px; color: var(--mu); z-index: 70; animation: emGlow 2s ease-in-out infinite; }
+
+/* ---------- монета: золотая рамка «100» / «полная неделя» ---------- */
+.em-ph .frame-gold { position: relative; display: inline-block; border-radius: 50%; padding: 4px; background: conic-gradient(from 0deg, #FFE08A, #B9842A, #FFF3C4, #D29A2A, #FFE08A); animation: emSpin 6s linear infinite; }
+.em-ph .frame-gold img { display: block; border-radius: 50%; animation: emSpin 6s linear infinite reverse; }

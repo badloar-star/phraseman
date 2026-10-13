@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Моменты вовлечения v3 · A — Пик и лиги</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-v2.css">
+<link rel="stylesheet" href="engagement-moments-v3.css">
+<style>
+/* зачем (этап 3 — «в 1000 раз»): v2 дал персонажа и подъём, но каждый момент был «одним кадром». v3 — драматургия: повышение в три акта
+   (напряжение → граница зоны → подъём → награда), точный тайм-лист ударов со звуком и хаптиком под каждым телефоном, эмоции персонажа
+   (сердца, пот, «!»), стоп-кадр, дрожь с затуханием, фейерверк на башне. Всё — для реализации 1:1 (Reanimated + expo-haptics + наш каталог звуков). */
+.em-page .diff { margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: #121214; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); max-width: 1100px; }
+.em-page .diff h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #8BE5B6; }
+.em-page .diff ol { margin: 0; padding-left: 20px; color: var(--sec); font-size: 14px; line-height: 1.6; }
+.em-page .diff li b { color: #E6E6E8; font-weight: 600; }
+.em-ph .act { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 76px 24px 36px; opacity: 0; pointer-events: none; transition: opacity 400ms; }
+.em-ph .act.on { opacity: 1; pointer-events: auto; }
+.em-ph .act .body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 0; }
+.em-ph .zone { position: relative; height: 10px; border-radius: 5px; background: linear-gradient(90deg, var(--good) 0 15%, var(--trk) 15% 85%, var(--bad) 85%); }
+.em-ph .zone .me { position: absolute; top: -8px; width: 26px; height: 26px; border-radius: 50%; margin-left: -13px; transition: left 1400ms var(--em-ease); }
+.em-ph .zone .me img { width: 26px; height: 26px; border-radius: 50%; display: block; box-shadow: 0 2px 8px rgba(0,0,0,.5); }
+.em-ph .stair { display: flex; align-items: flex-end; gap: 6px; height: 70px; }
+.em-ph .stair i { flex: 1; border-radius: 8px 8px 4px 4px; background: var(--ti); transform-origin: bottom; animation: emRise 500ms var(--em-ease) both; }
+.em-ph .stair i.on { background: var(--acc); }
+.em-ph .stair i.nx { background: color-mix(in srgb, var(--acc) 40%, transparent); animation: emGlow 1.4s ease-in-out infinite; }
+.em-ph .timer-ring { position: relative; width: 110px; height: 110px; }
+.em-ph .timer-ring svg { transform: rotate(-90deg); }
+.em-ph .timer-ring .v { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; }
+.em-ph .timer-ring .v small { font-size: 12px; color: var(--sc); font-weight: 600; }
+.em-ph .cd { font-size: 40px; font-weight: 900; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.em-ph .heart-big { display: flex; gap: 10px; }
+.em-ph .heart-big .ic { width: 34px; height: 34px; color: var(--bad); }
+.em-ph .heart-big .ic.off { color: var(--trk); animation: emShake 500ms ease-in-out both; }
+.em-ph .fog { position: absolute; inset: 0; z-index: 42; background: linear-gradient(180deg, rgba(10,12,20,.1), rgba(10,12,20,.75)); backdrop-filter: blur(3px); animation: emFade 900ms both; pointer-events: none; }
+.em-ph .pour { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFE9A8, #E2A62A 60%, #9A6A14); z-index: 60; animation: emPour 700ms var(--em-ease-in-out) both; }
+@keyframes emPour { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(.4); opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="em-page">
+  <div class="em-top"><div><span class="em-stage">Этап 3 · v3 · часть A</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v3 — Пик и лиги</h1>
+  <p class="page-lead">Драматургия вместо кадра: повышение — в три акта, у каждого варианта под телефоном «тайм-лист ударов» (секунда · что происходит · haptic · звук) для реализации 1:1. Эмоции персонажа, стоп-кадр, дрожь с затуханием, фейерверк на башне. Решения владельца 13.10 — в силе.</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="engagement-moments-v2-a.html">v2 этой части</a><a class="em-btn" href="engagement-moments-v3-b.html">Часть B →</a><a class="em-btn" href="engagement-moments-v3-c.html">Часть C →</a></div></div>
+  <div class="diff"><h3>Что изменилось в v3 (часть A) и почему</h3><ol>
+    <li><b>Повышение — три акта за 9 секунд.</b> Акт 1: «подводим итоги» — таблица комнаты мерцает, линия зоны топ-15% опускается сверху и останавливается НАД моей строкой (напряжение). Акт 2: моя строка вспыхивает «ТОП-15%», монета cheer. Акт 3: подъём камеры к новой башне, фейерверк на вершине, монеты сыплются в баланс, карточка. Тап — ускорить. В v2 это были три разных экрана.</li>
+    <li><b>Тайм-лист ударов.</b> Под каждым телефоном: секунда → что → haptic → звук. Это спецификация для Reanimated/expo-haptics, а не описание «примерно».</li>
+    <li><b>Эмоции персонажа.</b> Сердца, пот, «!» — вылетают из монеты в нужную секунду: «на волоске» = пот, обгон = «!», вершина = сердца.</li>
+    <li><b>Физика.</b> Дрожь экрана с затуханием (rumble 700 мс) на имени лиги; стоп-кадр 120 мс (контраст↑) на «ТОП-15%»; затем всё тише — одна ударная точка на акт.</li>
+    <li><b>Понижение — туман.</b> Экран Пика заволакивает туман, монета дремлет под ним; «разбудить» — тап по монете (tap-hint). Мягче модала.</li>
+    <li><b>Сторис недели листаются сами</b> (3 слайда по 2,4 с с прогресс-полосками), как в Instagram, с тапом «дальше».</li>
+    <li><b>«Последний шанс»:</b> кнопка Plus пульсирует синхронно с отсчётом (каждые 10 с — тик + лёгкий хаптик), «Олег играет сейчас» — живой индикатор.</li>
+  </ol></div>
+  <nav class="em-toc" id="toc"><a class="file" href="engagement-moments-v3-a.html">A · Пик</a><a class="file" href="engagement-moments-v3-b.html">B · Занятия</a><a class="file" href="engagement-moments-v3-c.html">C · Диалоги · Серия · Plus</a></nav>
+  <div id="root"></div>
+</div>
+<script src="engagement-moments.js"></script>
+<script src="engagement-moments-v2.js"></script>
+<script src="engagement-moments-v3.js"></script>
+<script>
+(() => {
+const { icon, coin, tower, league, LEAGUES, confetti, countUp, moment, render } = EM;
+const { coinChar, climb, ladder, ladderPlay, shareCard } = EM2;
+const { attachBeats, emo, firework, seq } = EM3;
+const ROOM = [{ name: 'Марк', rank: 12, pts: 61 }, { name: 'Ира', rank: 7, pts: 58 }, { name: 'Соня', rank: 8, pts: 52 }, { name: 'Олег', rank: 4, pts: 50 }, { name: 'Ты', rank: 5, pts: 47, me: true }, { name: 'Лена', rank: 9, pts: 45 }, { name: 'Дима', rank: 3, pts: 41 }];
+
+const room = (o = {}) => `<div class="room sf"><div class="p p2">${coin(7, 36)}Ира<b>58</b></div><div class="p p1">${coin(12, 44)}Марк<b>61</b></div><div class="p p3">${coin(8, 36)}Соня<b>52</b></div><div class="p ${o.me ? 'me' : ''}" style="margin-left:10px;padding-left:12px;box-shadow:inset 1px 0 0 var(--ti)">${coin(5, 36)}Ты<b>${o.pos || 5}-й · 47</b></div></div>`;
+const spireUnder = (o = {}) => { const L = league(o.li ?? 0); return `<div class="top"><div class="ttl">Пик</div><span class="pill gold">${coin(5, 20)}<span data-bal>1 240</span></span><span class="pill en">${icon('boltF', 's16')} ${o.en ?? 4}</span></div>
+  ${o.top || ''}<div style="margin-top:12px">${room(o)}</div>
+  <div class="fl" style="margin-top:12px"><span class="chip" style="color:${L.edge};background:color-mix(in srgb, ${L.stone} 45%, transparent)">${L.ru}</span><span class="small">30 в комнате · итог ${o.when || 'через 2 дня'}</span></div>
+  <div class="tower" style="margin-top:6px;opacity:.9">${tower(o.li ?? 0, { w: 150, lit: o.lit ?? 4, floors: 12 })}</div>
+  <div class="dock"><div class="cta white">Играть ${icon('arrowR', 's20')}</div></div>`; };
+
+/* ---------- 01. Повышение — три акта ---------- */
+const promo3 = () => `<div class="full" style="padding:0">
+  <div class="act on" data-act="1"><div class="body" style="justify-content:flex-start;padding-top:4px"><div class="ov">Итог недели · Гранит</div><div class="h-md" style="margin-top:6px" data-drum>Подводим итоги…</div>
+    <div style="position:relative;width:100%;margin-top:18px"><div class="zone-line" data-zone hidden style="top:0"><span class="zone-lbl">ТОП-15%</span></div>${ladder(ROOM, {})}</div></div></div>
+  <div class="act" data-act="2"><div class="body"><div data-cc2>${coinChar(5, 120, { mood: 'idle', glints: true })}</div><div class="ov" style="margin-top:22px;color:var(--good)">Топ-15% комнаты</div><div class="h-xl" style="margin-top:6px">5 место. Поднимаешься!</div></div></div>
+  <div class="act" data-act="3" style="padding:0">${climb(0, 1, { dist: 540, ms: 2400, delay: 200, base: 190, reveal: true, lit: 15, noTag: true })}
+    <div style="position:absolute;left:24px;right:24px;bottom:36px;text-align:center" data-final hidden><div class="h-xl">Базальт</div><div class="fl" style="justify-content:center;gap:10px;margin-top:10px"><span class="pill gold" data-pill>${coin(5, 20)}<span data-bal2>1 240</span></span><span class="chip" style="color:var(--gold)">+150</span></div><div class="cta white" style="margin-top:14px">Играть в Базальте</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>
+  <span class="skip">Пропустить</span><div class="tap-hint">тап — быстрее</div></div>`;
+const promo3init = (ph) => { const act = (n) => ph.querySelectorAll('.act').forEach((a) => a.classList.toggle('on', a.dataset.act === String(n)));
+  return seq(ph, [
+    [300, () => ph.querySelectorAll('.lrow').forEach((r, i) => { r.classList.add('flicker'); r.style.animationDelay = `${i * 60}ms`; })],
+    [1600, () => { const z = ph.querySelector('[data-zone]'); z.hidden = false; const h = ph.querySelector('.lrow').offsetHeight + 6; z.style.top = `${h * 5 - 3}px`; }],
+    [3000, () => { ph.querySelector('[data-drum]').textContent = 'Граница зоны — под тобой'; const me = ph.querySelector('.lrow.me'); me.classList.add('rise'); ph.querySelector('.full').classList.add('freeze'); }],
+    [4200, () => { act(2); const cc = ph.querySelector('[data-cc2] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 4); }],
+    [6200, () => { act(3); }],
+    [8800, () => { ph.querySelector('.full').classList.add('rumble'); firework(ph, 195, 150, { r: 110 }); setTimeout(() => firework(ph, 120, 220, { r: 70 }), 250); setTimeout(() => firework(ph, 270, 200, { r: 80 }), 450); ph.querySelector('[data-final]').hidden = false; ph.querySelector('[data-final]').style.animation = 'emUp 500ms var(--em-ease) both'; }],
+    [9600, () => { for (let i = 0; i < 10; i++) { const p = document.createElement('i'); p.className = 'pour'; p.style.left = `${150 + Math.random() * 90}px`; p.style.top = '420px'; p.style.setProperty('--dx', `${-10 + (i % 3) * 10}px`); p.style.setProperty('--dy', '280px'); p.style.animationDelay = `${i * 60}ms`; ph.appendChild(p); setTimeout(() => p.remove(), 1500); } setTimeout(() => countUp(ph.querySelector('[data-bal2]'), 1240, 1390, 800), 500); }],
+  ]); };
+moment({ id: 'm01', num: '01', short: 'Повышение · три акта', title: 'Повышение лиги v3 — драма в три акта', tag: 'new',
+  lead: 'Одна последовательность 10 секунд с тапом «быстрее»: напряжение (линия зоны опускается и останавливается над тобой) → стоп-кадр и cheer персонажа → подъём камеры → фейерверк на башне, дрожь, монеты сыплются в баланс.',
+  variants: [
+    { k: 'A', label: 'Три акта: зона → cheer → подъём → фейерверк', time: '~10 с', phone: { under: spireUnder({ li: 1, lit: 0 }), over: promo3() }, init: promo3init, total: 10.5,
+      beats: [{ t: 0.3, w: 'строки комнаты мерцают (steps 6), «Подводим итоги…»', s: 'дробь тихая, нарастает' }, { t: 1.6, w: 'линия ТОП-15% опускается сверху 1,4 с и замирает над строкой «Ты»', h: 'light ×3 (каждые 400 мс)', s: 'свист вниз' }, { t: 3.0, w: '<b>стоп-кадр 120 мс</b>: строка «Ты» вспыхивает, «Граница зоны — под тобой»', h: 'rigid', s: 'удар №1 (низкий)' }, { t: 4.2, w: 'акт 2: монета cheer (прыжок с squash) + искры ✦', h: 'success', s: '«йу-ху» 300 мс' }, { t: 6.2, w: 'акт 3: подъём камеры 2,4 с, старая башня уходит вниз, новая раскрывается', h: 'light каждые 600 мс', s: 'подъём (глиссандо вверх)' }, { t: 8.8, w: '<b>дрожь экрана 700 мс</b> с затуханием, фейерверк ×3 на вершине, имя «Базальт»', h: 'heavy', s: 'удар №2 + залп', big: true }, { t: 9.6, w: 'монеты сыплются в капсулу, баланс 1 240 → 1 390', h: 'light ×5', s: 'звон монет' }],
+      why: 'Повышение — событие недели; 10 секунд драматургии делают его тем, ради чего играют неделю. Все три акта — одна «история» с одной ударной точкой на акт.', ref: 'Clash Royale (арена + сундук), Duolingo League Results, Brawl Stars rank-up, Apple Fitness awards.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Короткая: корона + фейерверк (для повторных повышений)', time: '~3,5 с', phone: { under: spireUnder({ li: 1, lit: 0, pos: 3 }), over: `<div class="full"><div class="glowspot gold" style="top:30%"></div><div class="body"><div data-cc>${coinChar(5, 120, { mood: 'idle', crown: true, glints: true })}</div><div class="ov a-up d3" style="margin-top:20px;color:var(--gold)">Топ-3 · Базальт</div><div class="h-xl a-up d4" style="margin-top:6px">Выше!</div><div class="a-up d6" style="margin-top:18px">${shareCard({ k: 'ПИК · НЕДЕЛЯ 41', big: '3 место', sub: 'Гранит → Базальт · 47 ступеней', bg: 'linear-gradient(160deg,#384352,#0E1217)', inner: `<div class="fl" style="gap:8px">${coin(5, 34)}<span style="font-size:13px;font-weight:700">+150 монет</span></div>` })}</div></div><div class="foot a-up d7"><div class="cta gold">Забрать 150 и играть</div><div class="cta ghost">${icon('share', 's18')} Отправить карточку</div></div></div>` },
+      init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 4); }], [900, () => { firework(ph, 195, 200, { r: 100 }); ph.querySelector('.full').classList.add('rumble'); }], [1300, () => confetti(ph, { gold: true, n: 80 })]]), total: 3.5,
+      beats: [{ t: 0.4, w: 'монета cheer + сердца ♥', h: 'success', s: '«йу-ху»' }, { t: 0.9, w: 'фейерверк из монеты, дрожь 700 мс', h: 'heavy', s: 'залп', big: true }, { t: 1.3, w: 'золотой дождь, карточка выезжает', s: 'звон' }],
+      why: 'Со второго повышения трёхактная драма приедается — короткая версия для «ветеранов», с переключателем в настройках.', ref: 'Duolingo (сокращённые анимации после N раз), Apple (reduce motion).', fx: 'cheer + фейерверк + золото.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 02. Удержался — «сердце ёкнуло» ---------- */
+const stay3 = () => `<div class="dim"></div><div class="modal"><div style="display:flex;justify-content:center" data-cc>${coinChar(5, 80, { mood: 'idle' })}</div>
+  <div class="h-lg center" style="margin-top:10px" data-h>Итоги…</div><div class="p center" style="margin-top:6px" data-p>Смотрим, где граница вылета.</div>
+  <div style="margin:22px 4px 8px"><div class="zone"><span class="me" data-me style="left:70%">${coin(5, 26)}</span></div><div class="fl" style="justify-content:space-between;margin-top:10px;font-size:12px;font-weight:700;color:var(--sc)"><span style="color:var(--good)">▲ подъём</span><span style="color:var(--bad)">вылет ▼</span></div></div>
+  <div class="loss" style="margin-top:12px" data-plus hidden>${icon('shield', 's20')}<div><b>Щит лиги</b> в Plus гасит одно понижение в месяц — на такой неделе он бы пригодился.</div></div>
+  <div class="cta white" style="margin-top:14px">Новая неделя</div></div>`;
+moment({ id: 'm02', num: '02', short: 'Удержался', title: 'Удержался в лиге v3 — «сердце ёкнуло»', tag: 'new',
+  lead: 'Микро-драма 3 секунды: монета едет к красной зоне (пот), замирает в двух делениях от неё (стоп-кадр), откатывается (выдох, «Фух…»). Щит лиги появляется только после выдоха — предложение в момент облегчения, не страха.',
+  variants: [{ k: 'A', label: 'Монета к зоне → стоп → откат → «Фух…»', time: '~3,5 с', phone: { under: spireUnder({ pos: 24 }), over: stay3() }, total: 4,
+    init: (ph) => seq(ph, [[300, () => { ph.querySelector('[data-me]').style.left = '86%'; }], [1200, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.add('shiver'); emo(cc, 'sweat', 2); }], [1700, () => { ph.querySelector('.modal').classList.add('freeze'); ph.querySelector('[data-h]').textContent = 'На волоске'; ph.querySelector('[data-p]').innerHTML = 'Два человека ниже — и ты в зоне вылета.'; }], [2300, () => { ph.querySelector('[data-me]').style.left = '80%'; const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Фух…</span>'); }], [3200, () => { const p = ph.querySelector('[data-plus]'); p.hidden = false; p.style.animation = 'emUp 500ms var(--em-ease) both'; }]]),
+    beats: [{ t: 0.3, w: 'монета едет к красной зоне 1,4 с', s: 'напряжённый тон' }, { t: 1.2, w: 'монета дрожит, капли пота 💧', h: 'rigid ×2' }, { t: 1.7, w: '<b>стоп-кадр</b>: «На волоске»', h: 'rigid', s: 'удар', big: true }, { t: 2.3, w: 'откат от зоны, кивок, «Фух…»', h: 'success', s: 'выдох' }, { t: 3.2, w: 'строка «Щит лиги» всплывает', s: '—' }],
+    why: 'Страх → облегчение — самая запоминающаяся пара эмоций; Plus предлагается на выдохе, когда человек благодарен, а не напуган.', ref: 'Duolingo Demotion Zone, Mario Kart фотофиниш.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+
+/* ---------- 03. Понижение — туман ---------- */
+const down3 = () => `<div class="fog"></div><div style="position:absolute;left:0;right:0;top:300px;z-index:46;display:flex;flex-direction:column;align-items:center;gap:14px" data-wrap><div data-cc style="position:relative">${coinChar(5, 110, { mood: 'sleep', zz: true })}<span class="tapme" style="left:50%;top:50%;margin:-22px"></span></div><div class="ov" style="color:var(--sc)">Тихая неделя · Гранит</div><div class="h-lg center" style="padding:0 30px">Монета задремала.<br>Разбуди её</div><div class="small center" style="padding:0 40px">6 ступеней. Ничего не потеряно — ранг, монеты, фразы на месте.</div></div>
+  <div class="dock" style="z-index:47"><div class="cta white" data-wake>Разбудить — Играть</div><div class="cta ghost">Напомнить вечером</div></div>`;
+moment({ id: 'm03', num: '03', short: 'Понижение · туман', title: 'Понижение лиги v3 — туман и сон', tag: 'new',
+  lead: 'Без модала: экран Пика заволакивает туман, монета спит с z-z-z, подсказка «тап». Тап по монете (или «Разбудить») — туман рассеивается, монета просыпается с «!», башня Гранита зажигается цветом темы. Понижение подано как пауза, не поражение.',
+  variants: [{ k: 'A', label: 'Туман → тап → проснулась', time: '~3 с', phone: { under: spireUnder({ li: 0, lit: 0 }), over: down3() }, total: 3.5,
+    init: (ph) => seq(ph, [[2000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); ph.querySelector('.fog').style.animation = 'emFade 800ms reverse both'; ph.querySelector('.tapme')?.remove(); ph.querySelector('[data-wrap] .h-lg').innerHTML = 'Проснулась!<br>Реванш за неделю'; }], [2600, () => { ph.querySelectorAll('.tw rect[opacity="1"]').forEach((r) => { r.style.fill = 'var(--acc)'; }); }]]),
+    beats: [{ t: 0.0, w: 'туман наползает 900 мс, монета спит, z-z-z', s: 'тихое сопение' }, { t: 2.0, w: 'тап (или авто через 2 с): туман тает, монета peek + «!»', h: 'medium', s: '«хоп»', big: true }, { t: 2.6, w: 'окна башни зажигаются', h: 'light', s: 'тик' }],
+    why: 'Переносит вину на персонажа и даёт тактильное действие (разбудить) — человек сам «включает» новую неделю.', ref: 'Tamagotchi, Duolingo sad Duo, Monument Valley.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+
+/* ---------- 04. Итог недели — карточка + сторис авто ---------- */
+const weekCard = () => `<div class="sf on a-up" style="margin-top:12px;padding:14px 16px;position:relative;overflow:hidden" data-autoclose><div class="glowspot" style="top:50%;width:200px;height:200px;margin:-100px 0 0 -100px;opacity:.5"></div><div class="fl" style="gap:12px;position:relative"><div style="flex:none">${tower(1, { w: 50, lit: 15, floors: 8 })}</div><div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:2px">Базальт — твой</div><div class="small" style="margin-top:2px">5 место · 47 ступеней · +150</div></div><div data-cc>${coinChar(5, 44, { mood: 'idle', shadow: false })}</div></div><div class="bar" style="margin-top:12px;height:3px"><i style="--w:100%;transition:width 6s linear" data-life></i></div></div>`;
+const stories = () => { const S = [['Неделя 41 · Гранит', '<span data-n>0</span> ступеней', 'Больше, чем у 84% комнаты', `<div class="stat3" style="margin-top:22px"><div class="st sf"><b>7</b><span>этаж — рекорд</span></div><div class="st sf"><b>1:04</b><span>лучшая ступень</span></div><div class="st sf"><b>5</b><span>дней подряд</span></div></div>`], ['Комната', '5 место из 30', 'До подиума — 5 ступеней', `<div class="podium" style="margin-top:20px"><div class="pl p2">${coin(7, 40)}<div class="nm">Ира</div><div class="blk">2</div></div><div class="pl p1">${coin(12, 46)}<div class="nm">Марк</div><div class="blk">1</div></div><div class="pl p3">${coin(8, 40)}<div class="nm">Соня</div><div class="blk">3</div></div></div>`], ['Лига', 'Базальт', 'Топ-15% — ты поднимаешься', `<div style="margin-top:14px">${tower(1, { w: 110, lit: 15, floors: 8 })}</div>`]];
+  return `<div class="full" style="padding:0"><div style="position:absolute;inset:0;background:linear-gradient(180deg, color-mix(in srgb, ${league(0).stone} 45%, var(--bg)), var(--bg) 70%)"></div>
+  <div style="position:relative;padding:62px 24px 36px;height:100%;display:flex;flex-direction:column"><div class="fl" style="gap:4px">${S.map((_, i) => `<i style="flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.3);overflow:hidden"><b style="display:block;height:100%;width:0;background:#fff;transition:width 2400ms linear" data-prog="${i}"></b></i>`).join('')}</div>
+  ${S.map(([k, h, p, inner], i) => `<div data-slide="${i}" style="display:${i ? 'none' : 'block'};text-align:center"><div class="ov" style="margin-top:22px">${k}</div><div class="h-xl" style="margin-top:8px;font-size:40px;line-height:44px">${h}</div><div class="p" style="margin-top:6px">${p}</div>${inner}</div>`).join('')}
+  <div style="flex:1"></div><div class="cta white">${icon('share', 's18')} Поделиться карточкой</div></div></div>`; };
+moment({ id: 'm04', num: '04', short: 'Итог недели', title: '«Итог недели» v3 — карточка и авто-сторис', tag: 'old',
+  lead: 'Карточка наверху Пика без крестика (решение владельца) — монета в ней cheer при появлении, полоска 6 с, сворачивание. Сторис листаются сами по 2,4 с (три слайда: моя неделя → комната → лига), тап — дальше.',
+  variants: [
+    { k: 'A', label: 'Карточка: cheer → 6 с → свернулась', time: '6,5 с', phone: { under: spireUnder({ li: 1, lit: 0, pos: 5, when: 'через 7 дней', top: weekCard() }) }, total: 7,
+      init: (ph) => seq(ph, [[300, () => { ph.querySelector('[data-life]').style.width = '0%'; const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 3); }], [6400, () => { const card = ph.querySelector('[data-autoclose]'); card.style.transition = 'opacity 400ms, transform 400ms, max-height 500ms, margin 500ms, padding 500ms'; card.style.opacity = '0'; card.style.transform = 'translateY(-10px)'; card.style.maxHeight = '0'; card.style.margin = '0'; card.style.padding = '0 16px'; }]]),
+      beats: [{ t: 0.3, w: 'карточка приподнята, монета cheer ✦, полоска жизни стартует', h: 'success', s: 'короткая фанфара' }, { t: 6.4, w: 'карточка сворачивается (высота → 0) 500 мс', s: '—' }],
+      why: 'Не блокирует, но празднует; уходит сама.', ref: 'iOS Live Activity, Duolingo recap card.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Авто-сторис 3 × 2,4 с', time: '~7,5 с', phone: { under: spireUnder({}), over: stories() }, total: 7.5,
+      init: (ph) => { const show = (i) => { ph.querySelectorAll('[data-slide]').forEach((s) => { s.style.display = s.dataset.slide === String(i) ? 'block' : 'none'; s.style.animation = 'emUp 400ms var(--em-ease) both'; }); ph.querySelector(`[data-prog="${i}"]`).style.width = '100%'; }; return seq(ph, [[200, () => { show(0); countUp(ph.querySelector('[data-n]'), 0, 47, 1100); }], [2600, () => show(1)], [5000, () => show(2)]]); },
+      beats: [{ t: 0.2, w: 'слайд 1: счётчик 0→47', s: 'вуш' }, { t: 2.6, w: 'слайд 2: подиум растёт', h: 'light', s: 'вуш' }, { t: 5.0, w: 'слайд 3: башня Базальта раскрывается', h: 'success', s: 'аккорд' }],
+      why: 'Пассивный просмотр — как сторис: не нужно ничего нажимать, чтобы увидеть всё.', ref: 'Instagram stories, Spotify Wrapped.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 05. Позиция / обгон / последний шанс ---------- */
+const rise3 = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:4px"><div class="ov a-up">Ступень пройдена</div><div class="h-lg a-up d1" style="margin-top:6px" data-h>Считаем позицию…</div>
+  <div style="position:relative;width:100%;margin-top:16px"><div class="zone-line" data-zone hidden style="top:0"><span class="zone-lbl">ТОП-15%</span></div>${ladder(ROOM, { from: 4, to: 2, delta: '+2' })}</div>
+  <div class="p a-up d4 center" style="margin-top:14px" data-p>&nbsp;</div></div><div class="foot a-up d5"><div class="cta white">Ещё ступень ${icon('arrowR', 's18')}</div><div class="cta ghost">К башне</div></div></div>`;
+const overtake3 = () => `<div class="toast"><div class="faces">${coin(7, 36)}${coin(5, 36)}</div><div class="x">Ира обошла тебя<s>3 ступени — 6 минут</s></div><span class="pill acc" style="height:34px">Догнать</span></div><div style="position:absolute;left:50%;top:300px;transform:translateX(-50%);z-index:46" data-cc>${coinChar(5, 96, { mood: 'idle' })}</div>`;
+const last3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="fl" style="gap:14px"><div class="grow"><div class="ov" style="color:var(--bad)">Воскресенье · до итога</div><div class="cd" data-cd>03:12:40</div></div><div data-cc>${coinChar(5, 56, { mood: 'idle', shadow: false })}</div></div>
+  <div class="p" style="margin-top:8px">До зоны повышения — <b>2 ступени</b>. Энергии 0, восстановится через 42 минуты.</div>
+  <div class="zone" style="margin:18px 4px 0"><span class="me" style="left:17%">${coin(5, 26)}</span></div>
+  <div class="loss" style="margin-top:18px"><span class="rec"><i></i></span><div><b>Олег играет сейчас</b> — 49 → 50. Ждать 42 минуты рискованно.</div></div>
+  <div class="cta gold" style="margin-top:12px" data-cta><span class="two">Играть сейчас<span class="sub">Plus · 7 дней бесплатно</span></span></div><div class="cta ghost">+1 энергия за 100 монет</div></div>`;
+moment({ id: 'm05', num: '05', short: 'Позиция · обгон · последний шанс', title: 'Позиция выросла / обогнали / последний шанс v3', tag: 'new',
+  lead: 'v3: лестница с линией зоны (видно, что +2 перенесло тебя ЧЕРЕЗ границу топ-15%); обгон — монета вздрагивает с «!»; последний шанс — кнопка пульсирует в такт отсчёту, «Олег играет сейчас» — живой красный индикатор.',
+  variants: [
+    { k: 'A', label: '+2 через границу зоны', time: '~3 с', phone: { under: spireUnder({ lit: 5 }), over: rise3() }, total: 3.5,
+      init: (ph) => seq(ph, [[600, () => { const z = ph.querySelector('[data-zone]'); z.hidden = false; const h = ph.querySelector('.lrow').offsetHeight + 6; z.style.top = `${h * 3 - 3}px`; }], [1200, () => ladderPlay(ph, 0)], [2400, () => { ph.querySelector('[data-h]').textContent = 'Ты пересёк границу зоны'; ph.querySelector('[data-p]').innerHTML = '3 место. До Иры — <b>1 ступень</b>, 2 минуты.'; ph.querySelector('.full').classList.add('freeze'); }]]),
+      beats: [{ t: 0.6, w: 'линия ТОП-15% опускается на место', h: 'light', s: 'свист' }, { t: 1.2, w: 'строка «Ты» едет вверх 1,1 с через линию, соседи вниз', h: 'medium', s: '«вжик»' }, { t: 2.4, w: '<b>стоп-кадр</b>: «Ты пересёк границу зоны», +2 pop', h: 'success', s: 'щелчок посадки', big: true }],
+      why: 'Пересечение границы зоны — конкретный смысл каждой ступени (не «+2 позиции», а «теперь поднимаешься»).', ref: 'Duolingo промо-зона, Strava.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Обогнали: монета вздрогнула «!»', time: '~1,5 с', phone: { under: spireUnder({ lit: 4 }), over: overtake3() }, total: 2,
+      init: (ph) => seq(ph, [[500, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'bang', 1); }], [1100, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ну неееет</span>'); }]]),
+      beats: [{ t: 0.0, w: 'тост пружиной сверху', h: 'light', s: 'тук' }, { t: 0.5, w: 'монета вздрагивает, «!»', h: 'rigid' }, { t: 1.1, w: 'кивок + «Ну неееет»', s: 'короткое «мм»' }],
+      why: 'Социальный толчок через эмоцию персонажа.', ref: 'Duolingo «X passed you».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'C', label: 'Последний шанс: пульс в такт отсчёту', time: 'живой', phone: { under: spireUnder({ en: 0, when: 'через 3 ч', lit: 6 }), over: last3() }, total: 10,
+      init: (ph) => { let s = 3 * 3600 + 12 * 60 + 40; const el = ph.querySelector('[data-cd]'); const cta = ph.querySelector('[data-cta]'); const cc = ph.querySelector('[data-cc] .cc'); const iv = setInterval(() => { s--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; if (s % 10 === 0) { cta.style.animation = 'none'; void cta.offsetWidth; cta.style.animation = 'emPulse 600ms var(--em-ease-pop)'; cc.classList.remove('shiver'); void cc.offsetWidth; cc.classList.add('shiver'); } }, 1000); return () => clearInterval(iv); },
+      beats: [{ t: 0.0, w: 'шторка, отсчёт идёт', h: 'light' }, { t: 10, w: 'каждые 10 с: кнопка Plus пульсирует, монета вздрагивает', h: 'light', s: 'тик' }],
+      why: 'Ритм отсчёта держит напряжение без агрессии; живой индикатор соперника — реальная причина не ждать.', ref: 'Duolingo «Last chance», Clash Royale timers, eBay last minutes.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 06. Ступень ---------- */
+const stepUnder = () => `<div class="top"><span class="chip">${icon('close', 's16')}</span><div class="grow" style="text-align:center;font-size:15px;font-weight:700">Ступень 7 · 4 этаж</div><span class="hearts">${icon('heartF', 's16')}${icon('heartF', 's16')}${icon('heart', 's16')}</span></div>
+  <div class="bar" style="margin-top:14px"><i style="--w:100%"></i></div>
+  <div class="sf" style="margin-top:22px;padding:28px 22px;text-align:center"><div class="small">Переведи</div><div class="h-md" style="margin-top:12px">Не могли бы вы повторить?</div></div>
+  <div class="tone" style="margin-top:12px;padding:16px;text-align:center;font-weight:600;background:color-mix(in srgb, var(--good) 18%, transparent);color:var(--good)">Could you repeat that, please?</div>`;
+const stepPass3 = () => `<div class="full"><div class="glowspot"></div><div class="body"><div class="fl a-up" style="gap:18px"><div class="timer-ring"><svg width="110" height="110" viewBox="0 0 110 110"><circle cx="55" cy="55" r="47" fill="none" stroke="var(--trk)" stroke-width="9"/><circle cx="55" cy="55" r="47" fill="none" stroke="var(--acc)" stroke-width="9" stroke-linecap="round" stroke-dasharray="295" stroke-dashoffset="295" data-ring style="transition:stroke-dashoffset 1100ms var(--em-ease)"/></svg><div class="v"><span data-t>0:00</span><small>из 2:00</small></div></div><div data-cc>${coinChar(5, 84, { mood: 'idle' })}</div></div>
+  <div class="h-xl a-up d3" style="margin-top:20px">10 из 10</div><div class="p a-up d4" style="margin-top:4px" data-rec>&nbsp;</div>
+  <div class="stair a-up d5" style="margin-top:22px;width:100%">${[1, 2, 3, 4, 5, 6, 7, 8].map((i) => `<i class="${i <= 7 ? 'on' : 'nx'}" style="height:${28 + i * 5}px;animation-delay:${i * 60}ms"></i>`).join('')}</div>
+  <div class="fl a-up d6" style="margin-top:10px;justify-content:center;gap:8px"><span class="small">На 4 этаже:</span><span class="floor-mates">${[7, 4, 9].map((r) => coin(r, 22)).join('')}<span class="more">+2</span></span></div></div><div class="foot a-up d7"><div class="cta white">Следующая — последняя на этаже ${icon('arrowR', 's18')}</div></div></div>`;
+const stepFail3 = () => `<div class="full"><div class="glowspot red" style="opacity:.45"></div><div class="body"><div class="heart-big a-up">${icon('heartF')}<span class="ic off" style="animation-delay:.3s">${icon('heartF')}</span>${icon('heartF', 'off')}</div><div style="margin-top:16px" data-cc>${coinChar(5, 80, { mood: 'idle' })}</div>
+  <div class="h-lg a-up d3" style="margin-top:14px">8 из 10 — почти</div><div class="p a-up d4" style="margin-top:6px">Ступени не сгорают. Споткнулся на двух:</div>
+  <div class="sf a-up d5" style="margin-top:14px;padding:12px 14px;width:100%;text-align:left;font-size:15px;line-height:22px;font-weight:600">«Не могли бы вы повторить?» → <span style="color:var(--good)">Could you repeat that?</span><br>«Сколько это стоит?» → <span style="color:var(--good)">How much is it?</span></div></div><div class="foot a-up d6"><div class="cta white">Эти же 10 — ещё раз</div><div class="cta ghost">К башне</div></div></div>`;
+moment({ id: 'm06', num: '06', short: 'Итог ступени', title: 'Ступень пройдена / не пройдена v3', tag: 'old',
+  lead: 'v3: таймер докручивается с бегущими цифрами и останавливается с щелчком; если быстрее рекорда — «РЕКОРД» pop и cheer; провал — монета дрожит (пот), потом кивает «Ещё раз?» — без стыда и без паузы.',
+  variants: [
+    { k: 'A', label: '«Чисто!» + рекорд', time: '~3 с', phone: { under: stepUnder(), over: stepPass3() }, total: 3.5,
+      init: (ph) => seq(ph, [[200, () => { ph.querySelector('[data-ring]').style.strokeDashoffset = String(295 * (1 - 72 / 120)); countUp(ph.querySelector('[data-t]'), 0, 72, 1100, (v) => `${Math.floor(v / 60)}:${String(Math.round(v) % 60).padStart(2, '0')}`); }], [1400, () => { ph.querySelector('[data-rec]').innerHTML = '<span class="chip" style="color:var(--gold)">РЕКОРД −9 с</span>'; ph.querySelector('[data-rec] .chip').style.animation = 'emPop 500ms var(--em-ease-pop) both'; const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Чисто!</span>'); emo(cc, 'star', 3); }]]),
+      beats: [{ t: 0.2, w: 'кольцо докручивается 1,1 с, цифры бегут 0:00 → 1:12', s: 'тикающий тон' }, { t: 1.3, w: 'щелчок остановки', h: 'rigid', s: 'клик' }, { t: 1.4, w: '«РЕКОРД −9 с» pop, монета cheer «Чисто!» ✦', h: 'success', s: '«дзинь» + «йу-ху»', big: true }, { t: 1.9, w: 'лесенка ступеней растёт по 60 мс', h: 'light ×7', s: 'тики вверх' }],
+      why: 'Рекорд против себя — петля на каждую ступень.', ref: 'Strava PR, Candy Crush.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: '«Почти» — дрожь → кивок', time: '~2 с', phone: { under: stepUnder(), over: stepFail3() }, total: 2.5,
+      init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'sweat', 2); }], [1100, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ещё раз?</span>'); }]]),
+      beats: [{ t: 0.3, w: 'третье сердце трясётся и гаснет; монета дрожит, пот 💧', h: 'rigid', s: 'глухой тук' }, { t: 1.1, w: 'кивок «Ещё раз?»', h: 'light', s: '—' }],
+      why: 'Переживание неудачи вместе с персонажем и мгновенный реванш.', ref: 'Candy Crush retry.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 07. Этаж / Вершина ---------- */
+const floor3 = () => `<div class="full"><div class="body"><div class="ov a-up">Этаж 4 пройден</div><div class="tower a-up d1" style="margin-top:10px;position:relative"><div class="glowspot" style="top:60%"></div>${tower(0, { w: 160, lit: 4, floors: 12 })}<div style="position:absolute;left:50%;bottom:118px;transform:translateX(-50%)"><span class="floor-mates" style="background:var(--sheet);padding:4px 8px;border-radius:14px;box-shadow:var(--sho)">${[7, 4, 9, 12].map((r) => coin(r, 22)).join('')}<span class="more">на 5-м</span></span></div></div>
+  <div class="fl a-up d3" style="margin-top:8px;gap:12px"><div class="sf" style="padding:10px 14px;display:inline-flex;align-items:center;gap:8px">${coin(5, 24)}<span class="h-md">+<span data-c>0</span></span></div><div data-cc>${coinChar(5, 56, { mood: 'idle', shadow: false })}</div></div>
+  <div class="h-lg a-up d4" style="margin-top:12px">5 этаж — Страж</div><div class="p a-up d5" style="margin-top:6px">Монеты ×2. Там уже Ира, Олег, Лена и Марк.</div></div><div class="foot a-up d6"><div class="cta white">На 5 этаж</div><div class="cta ghost">Передохнуть</div></div></div>`;
+const summit3 = () => `<div class="full"><div class="glowspot gold" style="top:30%"></div><div class="body"><div class="ov a-up" style="color:var(--gold)">Вершина</div><div style="margin-top:10px" data-cc>${coinChar(5, 120, { mood: 'idle', crown: true, glints: true })}</div>
+  <div class="h-xl a-up d4" style="margin-top:14px">15 этаж</div><div class="p a-up d5" style="margin-top:6px">135 ступеней — выше никого в комнате. <b>+200 монет.</b></div>
+  <div class="a-up d6" style="margin-top:16px">${shareCard({ k: 'ПИК · ВЕРШИНА', big: '15/15', sub: '135 ступеней · 1 место', bg: 'linear-gradient(160deg,#B9842A,#2A1A05)', inner: `<div class="fl" style="gap:8px">${coin(5, 30)}<span style="font-size:13px;font-weight:700">первый в комнате</span></div>` })}</div></div><div class="foot a-up d7"><div class="cta gold">Забрать 200</div><div class="cta ghost">${icon('share', 's18')} Поделиться</div></div></div>`;
+moment({ id: 'm07', num: '07', short: 'Этаж · Вершина', title: 'Этаж пройден / Вершина v3', tag: 'old',
+  lead: 'v3: этаж — окна 5-го зажигаются по одному (цветом темы) с тиками, монеты +60 бегут, персонаж peek; вершина — три фейерверка с интервалом, дрожь, сердца, золотая рамка на монете в карточке.',
+  variants: [
+    { k: 'A', label: 'Этаж: окна по одному + peek', time: '~2,5 с', phone: { under: spireUnder({ lit: 4 }), over: floor3() }, total: 3,
+      init: (ph) => seq(ph, [[600, () => { const rects = [...ph.querySelectorAll('.full .tw rect[opacity]')]; const unlit = rects.filter((r) => r.getAttribute('opacity') === '.8').slice(-2); unlit.forEach((r, i) => setTimeout(() => { r.setAttribute('opacity', '1'); r.style.fill = 'var(--acc)'; }, i * 180)); }], [1100, () => countUp(ph.querySelector('[data-c]'), 0, 60, 900)], [1300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }]]),
+      beats: [{ t: 0.6, w: 'окна 5-го этажа зажигаются по одному (180 мс)', h: 'light ×2', s: 'тик, тик' }, { t: 1.1, w: 'счётчик +60', s: 'звон' }, { t: 1.3, w: 'монета peek (выглядывает снизу)', h: 'success' }],
+      why: 'Вертикаль и конкретные люди этажом выше.', ref: 'Clash Royale arena unlock.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Вершина: 3 залпа + сердца', time: '~4 с', phone: { under: spireUnder({ lit: 12 }), over: summit3() }, total: 4,
+      init: (ph) => seq(ph, [[500, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 5); }], [900, () => { firework(ph, 195, 180, { r: 110 }); ph.querySelector('.full').classList.add('rumble'); }], [1300, () => firework(ph, 110, 240, { r: 70 })], [1700, () => { firework(ph, 280, 220, { r: 80 }); confetti(ph, { gold: true, n: 110 }); }]]),
+      beats: [{ t: 0.5, w: 'монета cheer + корона, сердца ♥', h: 'success', s: '«йу-ху»' }, { t: 0.9, w: '<b>залп 1</b> + дрожь 700 мс', h: 'heavy', s: 'залп', big: true }, { t: 1.3, w: 'залп 2', h: 'medium', s: 'залп' }, { t: 1.7, w: 'залп 3 + золотой дождь', h: 'medium', s: 'залп + звон' }],
+      why: 'Редчайший момент недели — заслуживает трёх залпов.', ref: 'Alto’s Odyssey, Duolingo Legendary.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+attachBeats(document.getElementById('root'));
+})();
+</script>
+</body>
+</html>

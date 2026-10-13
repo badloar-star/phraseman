@@ -1,0 +1,25 @@
+/* PhraseMan 2.0 — «Моменты вовлечения» v3: помощники (13.10.2026). Подключается ПОСЛЕ engagement-moments.js и -v2.js; v1/v2 не трогает.
+   зачем: тайм-лист ударов (beats) под каждым телефоном — секунды, что происходит, звук и хаптик; эмоции персонажа; фейерверк; стоп-кадр;
+   «прочитано / записывает голосовое»; сценарные последовательности (sequence) с общим расписанием. guard-ok: макет-галерея, только разметка. */
+(() => {
+  const { MOMENTS } = EM;
+  // Тайм-лист: v.beats = [{ t: 0.3, w: 'что', h: 'light|medium|heavy|success|rigid|…', s: 'звук' }]
+  const beatsHtml = (beats, total) => { const T = total || Math.max(...beats.map((b) => b.t)) + .6; return `<div class="beats"><div class="ttl">Тайм-лист ударов <span>${T.toFixed(1)} с · ${beats.length} удар${beats.length === 1 ? '' : beats.length < 5 ? 'а' : 'ов'}</span></div><div class="bar">${beats.map((b) => `<i class="${b.h && b.s ? 'hs' : b.h ? 'h' : b.s ? 's' : ''} ${b.big ? 'big' : ''}" style="left:${Math.min(100, b.t / T * 100)}%" title="${b.t}s"></i>`).join('')}</div><ol>${beats.map((b) => `<li><span class="t">${b.t.toFixed(2)} с</span><span class="w">${b.w}</span><span class="hs">${b.h ? `<span class="hp">haptic ${b.h}</span>` : ''}${b.s ? `<span class="sn">♪ ${b.s}</span>` : ''}</span></li>`).join('')}</ol></div>`; };
+  const attachBeats = (root) => { root.querySelectorAll('[data-vid]').forEach((vr) => { const vid = vr.dataset.vid; const m = MOMENTS.find((x) => vid.startsWith(x.id + '-')); if (!m) return; const v = m.variants.find((x, j) => `${m.id}-${x.k || j}` === vid); if (v && v.beats && !vr.querySelector('.beats')) vr.insertAdjacentHTML('beforeend', beatsHtml(v.beats, v.total)); }); };
+  // Эмоции персонажа: emo(cc, 'heart'|'sweat'|'bang'|'dots', n)
+  const EMO = { heart: '♥', sweat: '💧', bang: '!', dots: '…', star: '✦', zz: 'z' };
+  const emo = (cc, kind = 'heart', n = 3) => { for (let i = 0; i < n; i++) { const e = document.createElement('span'); e.className = `emo ${kind}`; e.textContent = EMO[kind] || kind; e.style.left = `${30 + Math.random() * 40}%`; e.style.top = `${10 + Math.random() * 30}%`; e.style.setProperty('--ex', `${(Math.random() - .5) * 60}px`); e.style.setProperty('--ey', `${-30 - Math.random() * 40}px`); e.style.animationDelay = `${i * 140}ms`; cc.appendChild(e); setTimeout(() => e.remove(), 1600 + i * 140); } };
+  // Фейерверк из точки (x,y в px телефона)
+  const firework = (ph, x, y, o = {}) => { const n = o.n || 26; const cols = o.colors || ['#FFE08A', '#5FE3C0', '#7C9BFF', '#fff', '#FF7A45']; const core = document.createElement('i'); core.className = 'fwcore'; core.style.left = `${x - 5}px`; core.style.top = `${y - 5}px`; ph.appendChild(core); setTimeout(() => core.remove(), 500); for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'fw'; const a = (Math.PI * 2 / n) * i + Math.random() * .2; const r = (o.r || 90) + Math.random() * 40; p.style.left = `${x}px`; p.style.top = `${y}px`; p.style.background = cols[i % cols.length]; p.style.setProperty('--dx', `${Math.cos(a) * r}px`); p.style.setProperty('--dy', `${Math.sin(a) * r + 30}px`); p.style.animationDelay = `${Math.random() * 80}ms`; ph.appendChild(p); setTimeout(() => p.remove(), 1400); } };
+  // Расписание: seq(ph, [[ms, fn], ...]) → stop()
+  const seq = (ph, steps) => { const ts = steps.map(([ms, fn]) => setTimeout(() => { try { fn(ph); } catch (e) { console.warn('[EM3] step failed', e); } }, ms)); return () => ts.forEach(clearTimeout); };
+  // Чат v3: шаги с meta («прочитано 9:41»), rec (записывает голосовое), ghost (черновик ответа печатается в поле)
+  const chatPlay3 = (box, steps, o = {}) => { box.innerHTML = ''; let t = 0; const timers = []; const push = (f, d) => timers.push(setTimeout(f, d));
+    steps.forEach((s) => { t += s.delay ?? 500;
+      if (s.who === 'them') { const kind = s.rec ? 'rec' : 'typing'; push(() => { const d = document.createElement('div'); d.className = 'bub them'; d.dataset.typing = '1'; d.innerHTML = kind === 'rec' ? '<span class="rec"><i></i>записывает голосовое…</span>' : '<span class="typing"><i></i><i></i><i></i></span>'; if (o.skin) d.classList.add(o.skin); box.appendChild(d); box.scrollTop = 1e5; }, t); t += s.typingMs ?? 900; }
+      push(() => { box.querySelector('[data-typing]')?.remove(); const d = document.createElement('div'); d.className = `bub ${s.who}`; if (s.who === 'them' && o.skin) d.classList.add(o.skin); d.innerHTML = `${s.text}${s.tr ? `<span class="tr">${s.tr}</span>` : ''}${s.meta ? `<span class="meta">${s.meta}</span>` : ''}`; box.appendChild(d); box.scrollTop = 1e5; }, t); });
+    return () => timers.forEach(clearTimeout); };
+  // Черновик ответа печатается в поле ввода
+  const ghostType = (el, text, ms = 45, delay = 0) => { el.innerHTML = ''; let i = 0; const t = setTimeout(() => { const iv = setInterval(() => { i++; el.innerHTML = `<b>${text.slice(0, i)}</b><span class="cursor"></span>`; if (i >= text.length) clearInterval(iv); }, ms); el._iv = iv; }, delay); return () => { clearTimeout(t); if (el._iv) clearInterval(el._iv); }; };
+  window.EM3 = { beatsHtml, attachBeats, emo, firework, seq, chatPlay3, ghostType };
+})();

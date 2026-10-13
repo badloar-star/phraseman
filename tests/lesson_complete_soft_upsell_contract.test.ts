@@ -26,7 +26,11 @@ describe('lesson completion soft upsell integration', () => {
   });
 
   it('renders only after the reward sequence and preserves existing controls', () => {
-    expect(source).toContain('shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity)');
+    // зачем (Ядро 13.10): с 7a79d3519 боевое предложение идёт через upsellOpportunity = dev-подмена ?? softUpsell.opportunity.
+    expect(source).toMatch(/shouldRenderLessonSoftUpsell\(seqDone, (softUpsell\.opportunity|upsellOpportunity)\)/);
+    if (!source.includes('shouldRenderLessonSoftUpsell(seqDone, softUpsell.opportunity)')) {
+      expect(source).toContain('const upsellOpportunity = devUpsellOpportunity ?? softUpsell.opportunity;');
+    }
     expect(source).toContain('<SoftContextualUpsellCard');
     expect(source).toContain('testID="lesson-complete-next-lesson"');
     expect(source).toContain('testID="lesson-complete-repeat"');
@@ -48,8 +52,15 @@ describe('lesson completion soft upsell integration', () => {
     for (const prop of ['title', 'body', 'ctaLabel', 'dismissLabel', 'dismissAccessibilityLabel', 'dismissAccessibilityHint', 'ctaAccessibilityLabel', 'ctaAccessibilityHint']) {
       expect(source).toContain(`${prop}={softUpsellCopy.${prop}}`);
     }
-    expect(source).toContain('onImpression={softUpsell.onImpression}');
-    expect(source).toContain('onDismiss={softUpsell.onDismiss}');
+    // зачем (Ядро 13.10): с 7a79d3519 (Авторизация, dev `upsell=`) обработчики обёрнуты в dev-подмену — подставное предложение
+    // съёмки не пишет отметок. Боевой путь тот же (softUpsell.*); подмена возможна только в dev (стор-заглушка возвращает null).
+    expect(source).toMatch(/onImpression=\{(devUpsellOpportunity \? devUpsellNoop : )?softUpsell\.onImpression\}/);
+    expect(source).toMatch(/onDismiss=\{(devUpsellOpportunity \? devUpsellNoop : )?softUpsell\.onDismiss\}/);
+    if (source.includes('devUpsellOpportunity')) {
+      expect(source).toContain('const kind = getDevLessonUpsell();');
+      const stub = fs.readFileSync(path.join(__dirname, '..', 'store_release_stubs', 'dev_state', 'dev_paywall_state_stub.ts'), 'utf8');
+      expect(stub).toMatch(/export function getDevLessonUpsell\(\)[^{]*\{ return null; \}/);
+    }
     expect(source).not.toContain('OverlayKey');
     expect(source).not.toContain('softUpsellQueue');
   });

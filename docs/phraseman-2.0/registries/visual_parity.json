@@ -24569,9 +24569,13 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [],
-      "status": "pending",
+      "status": "removed_by_owner",
       "reviewed_by": null,
-      "reviewed_at": null
+      "reviewed_at": null,
+      "removed_reason": "владелец 13.10: окна ожидания оплаты не будет",
+      "triage": {
+        "macets_note_2026_10_13": "то же окно, что paywalls-014 («Покупка ждёт подтверждения — родителя или банка»); демо OR-ALERT-PURCHASE-EXTERNAL-PENDING остаётся в overlays-runtime.html до пересборки номеров кадров (удаление сдвинуло бы нумерацию)."
+      }
     },
     {
       "id": "overlays-runtime-014",

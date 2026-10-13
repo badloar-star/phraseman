@@ -40,6 +40,32 @@ function defaultGit(root, args) {
   return result.status === 0 ? result.stdout : '';
 }
 
+// зачем (координатор 13.10, дыра cards-070): время кадра раньше бралось из evidence_at, а его ставит регистрирующий скрипт по mtime файла —
+// после пересклейки «старый» кадр получал свежую отметку и match принимался по снимку до правки кода. mtime ненадёжен (git его не хранит).
+// Теперь свежесть считается по явному полю строки shot_at (время съёмки ГОЛОГО кадра: журнал съёмки / [RESTITCH] raw_shot_at / папка запуска)
+// и shot_at_source (откуда время). Нет shot_at — время неизвестно, match не принимается. Источник 'mtime' не принимается как надёжный.
+export const SHOT_SOURCES = ['shoot_log', 'restitch_log', 'bare_run_dir'];
+
+/** Проверка времени съёмки строки match. Возвращает запись журнала { id, shot_at, source, code_changed_at, verdict, reason }. */
+export function checkShotTime(row, minAtMs, violations) {
+  const codeChangedAt = minAtMs === null ? null : new Date(minAtMs).toISOString();
+  const entry = { id: row.id, shot_at: row.shot_at ?? null, source: row.shot_at_source ?? null, code_changed_at: codeChangedAt, verdict: 'accepted', reason: '' };
+  const fail = (code, detail) => {
+    violations.push({ id: row.id, code, detail });
+    entry.verdict = 'rejected';
+    entry.reason = code;
+  };
+  const at = Date.parse(row.shot_at ?? '');
+  if (!row.shot_at || !Number.isFinite(at)) {
+    fail('shot_time_unknown', 'нет shot_at — время съёмки голого кадра не записано в реестре, match не принимается (заполняется из журнала съёмки/[RESTITCH])');
+  } else if (!SHOT_SOURCES.includes(row.shot_at_source)) {
+    fail('shot_source_invalid', `источник времени съёмки «${row.shot_at_source ?? 'не указан'}» не принят (допустимы: ${SHOT_SOURCES.join(', ')}; mtime файла — ненадёжен)`);
+  } else if (minAtMs !== null && at < minAtMs) {
+    fail('evidence_stale', `${row.evidence}: снято ${row.shot_at} (источник ${row.shot_at_source}), код экрана менялся позже (${codeChangedAt})`);
+  }
+  return entry;
+}
+
 function checkTrace(root, row, field, atField, shaField, minAtMs, violations, label) {
   const rel = row[field];
   if (!rel || typeof rel !== 'string') {
@@ -58,7 +84,7 @@ function checkTrace(root, row, field, atField, shaField, minAtMs, violations, la
   const at = Date.parse(row[atField] ?? '');
   if (!Number.isFinite(at)) {
     violations.push({ id: row.id, code: `${label}_time_missing`, detail: `нет ${atField}` });
-  } else if (minAtMs !== null && at < minAtMs) {
+  } else if (label !== 'evidence' && minAtMs !== null && at < minAtMs) {
     violations.push({ id: row.id, code: `${label}_stale`, detail: `${rel}: снято ${row[atField]}, код экрана менялся позже (${new Date(minAtMs).toISOString()})` });
   }
 }
@@ -214,6 +240,7 @@ export function evaluateRegistry(root, registry, options = {}) {
   const rows = filterRowsByRelease(allRows, options.release);
   if (rows.length === 0) violations.push({ id: '*', code: 'registry_empty', detail: 'в реестре нет строк' });
   const sverkaOpen = options.sverkaOpenDiffs ?? new Map();
+  const shots = [];
   const counts = { total: rows.length, match: 0, pending: 0, diff: 0, no_mockup: 0, removed_by_owner: 0, no_release_surface: 0, blocked: 0, other: 0 };
   const storeRegex = options.storeRouteRegex !== undefined ? options.storeRouteRegex : storeRouteRegex(root);
   for (const row of rows) {
@@ -254,6 +281,7 @@ export function evaluateRegistry(root, registry, options = {}) {
       else minAtMs = Math.max(minAtMs ?? 0, changed);
     }
     checkTrace(root, row, 'evidence', 'evidence_at', 'evidence_sha256', minAtMs, violations, 'evidence');
+    shots.push(checkShotTime(row, minAtMs, violations));
     if (row.has_animation === true) {
       checkTrace(root, row, 'anim_evidence', 'anim_evidence_at', 'anim_evidence_sha256', minAtMs, violations, 'anim_evidence');
     } else if (row.has_animation !== false) {
@@ -262,7 +290,7 @@ export function evaluateRegistry(root, registry, options = {}) {
   }
   // зачем (вариант «А+Б»): нарушения отложенных строк уходят в deferred — числом и списком, не молча.
   const deferred = { rows: 0, by: {}, violations: [] };
-  if (!options.deferTriage) return { ok: violations.length === 0, counts, violations, deferred };
+  if (!options.deferTriage) return { ok: violations.length === 0, counts, violations, deferred, shots };
   const reasonById = new Map();
   for (const row of rows) {
     if (row.status === 'removed_by_owner' || row.status === 'no_release_surface') continue;
@@ -279,7 +307,7 @@ export function evaluateRegistry(root, registry, options = {}) {
   }
   for (const id of deferredIds) deferred.by[reasonById.get(id)] = (deferred.by[reasonById.get(id)] ?? 0) + 1;
   deferred.rows = deferredIds.size;
-  return { ok: kept.length === 0, counts, violations: kept, deferred };
+  return { ok: kept.length === 0, counts, violations: kept, deferred, shots };
 }
 
 /**
@@ -379,6 +407,16 @@ async function main() {
   // отмеченная строка сам гейт (привязка к коду, свежая склейка, анимация) — нет. Теперь явно: сколько отмечено и сколько из них проходит.
   const matchIds = new Set(filterRowsByRelease(registry.rows, release).filter((row) => row.status === 'match').map((row) => row.id));
   const badMatch = new Set(result.violations.filter((violation) => matchIds.has(violation.id)).map((violation) => violation.id));
+  // зачем (координатор 13.10): журнал времени съёмки — для каждого отклонённого match всегда, для принятых — с флагом --log-shots; плюс счётчик источников.
+  const shots = result.shots ?? [];
+  const bySource = {};
+  for (const shot of shots) bySource[shot.source ?? 'нет'] = (bySource[shot.source ?? 'нет'] ?? 0) + 1;
+  console.log(`${LOG} время съёмки match: ${shots.length} строк · источники: ${Object.entries(bySource).map(([k, n]) => `${k}=${n}`).join(' ') || '—'} · отклонено ${shots.filter((x) => x.verdict === 'rejected').length}`);
+  for (const shot of shots) {
+    if (shot.verdict === 'rejected' || flag('--log-shots')) {
+      console.log(`${LOG} shot ${shot.id} shot_at=${shot.shot_at ?? 'нет'} источник=${shot.source ?? 'нет'} code_changed_at=${shot.code_changed_at ?? 'нет'} → ${shot.verdict}${shot.reason ? ` (${shot.reason})` : ''}`);
+    }
+  }
   console.log(`${LOG} match отмечено Сверкой/владельцем: ${matchIds.size}, проходят гейт: ${matchIds.size - badMatch.size}${badMatch.size ? ` · не проходят: ${[...badMatch].join(', ')} (причины — code_unmapped / evidence_stale / anim_evidence_missing, строки ниже)` : ''}`);
   if (result.ok) {
     console.log(deferTriage && result.deferred.rows > 0

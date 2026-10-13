@@ -109,6 +109,9 @@ export function buildRows(matrixRows, scan, existingRows) {
       evidence: old?.evidence ?? null,
       evidence_at: old?.evidence_at ?? null,
       evidence_sha256: old?.evidence_sha256 ?? null,
+      // зачем (координатор 13.10): время съёмки голого кадра и его источник — явные поля строки, пересборка их не стирает
+      shot_at: old?.shot_at ?? null,
+      shot_at_source: old?.shot_at_source ?? null,
       anim_evidence: old?.anim_evidence ?? null,
       anim_evidence_at: old?.anim_evidence_at ?? null,
       anim_evidence_sha256: old?.anim_evidence_sha256 ?? null,

@@ -29,11 +29,13 @@ const sha = (text) => crypto.createHash('sha256').update(text).digest('hex');
 // git подменён: «коммит файла кода» = CODE_COMMIT_MS, рабочее дерево чистое.
 const fakeGit = (codeCommitMs) => (_root, args) => (args[0] === 'log' ? `${Math.floor(codeCommitMs / 1000)}\n` : '');
 function matchRow(over = {}) {
-  return {
+  const merged = {
     id: 'demo-001', screen: 'Экран', state: 'Состояние', status: 'match', reviewed_by: 'coordinator', diffs: [], code: ['app/screen.tsx'],
     has_animation: false, evidence: 'evidence.png', evidence_at: new Date(T0 + 10 * MINUTE).toISOString(), evidence_sha256: sha('png-bytes'),
     anim_evidence: null, ...over,
   };
+  // зачем (координатор 13.10): свежесть кадра считается по явному shot_at (время съёмки голого кадра) + shot_at_source; по умолчанию = evidence_at
+  return { shot_at: merged.evidence_at, shot_at_source: 'shoot_log', ...merged };
 }
 const run = (dir, rows, commitMs = T0) => evaluateRegistry(dir, { rows }, { runGit: fakeGit(commitMs) });
 const codes = (result) => result.violations.map((v) => v.code);
@@ -410,4 +412,36 @@ test('--defer-triage: precheck считает r1 с отложенными ко�
   const gate = path.join(ROOT, 'scripts', 'visual_parity_gate.mjs');
   const out = spawnSync(process.execPath, [gate, '--max-lines=0', '--release=r1', '--defer-triage'], { cwd: ROOT, encoding: 'utf8', env: { ...process.env, PARITY_GATE_WAIVER: '' } });
   assert.match(out.stderr, /ОТЛОЖЕНО по варианту «А\+Б» \(решение владельца\): строк \d+/);
+});
+
+// зачем (координатор 13.10, дыра cards-070): пересклейка ставила склейке свежий evidence_at, а голой кадр был снят ДО правки кода — гейт принимал match.
+// Теперь время съёмки — явное поле shot_at с источником; нет поля или источник «mtime» — match не принимается; журнал печатает источник и code_changed_at.
+test('shot_at: нет поля времени съёмки — match не принимается (shot_time_unknown)', () => {
+  const result = run(sandbox(), [matchRow({ shot_at: null, shot_at_source: null })]);
+  assert.ok(codes(result).includes('shot_time_unknown'));
+});
+
+test('shot_at: источник mtime или неизвестный не принимается (shot_source_invalid)', () => {
+  assert.ok(codes(run(sandbox(), [matchRow({ shot_at_source: 'mtime' })])).includes('shot_source_invalid'));
+  assert.ok(codes(run(sandbox(), [matchRow({ shot_at_source: null })])).includes('shot_source_invalid'));
+});
+
+test('дыра cards-070: evidence_at свежий, а shot_at старше кода — evidence_stale', () => {
+  const fresh = new Date(T0 + 10 * MINUTE).toISOString();
+  const rawBefore = new Date(T0 - 60 * MINUTE).toISOString();
+  const result = run(sandbox(), [matchRow({ evidence_at: fresh, shot_at: rawBefore, shot_at_source: 'restitch_log' })], T0);
+  assert.ok(codes(result).includes('evidence_stale'));
+  const shot = result.shots.find((x) => x.id === 'demo-001');
+  assert.equal(shot.verdict, 'rejected');
+  assert.equal(shot.source, 'restitch_log');
+  assert.equal(shot.reason, 'evidence_stale');
+  assert.ok(shot.code_changed_at);
+});
+
+test('shot_at: свежий кадр из журнала съёмки принимается, запись журнала несёт источник и время кода', () => {
+  const result = run(sandbox(), [matchRow({ shot_at: new Date(T0 + 5 * MINUTE).toISOString(), shot_at_source: 'bare_run_dir' })], T0);
+  assert.deepEqual(codes(result), []);
+  const shot = result.shots[0];
+  assert.deepEqual([shot.verdict, shot.source, shot.shot_at], ['accepted', 'bare_run_dir', new Date(T0 + 5 * MINUTE).toISOString()]);
+  assert.equal(shot.code_changed_at, new Date(T0).toISOString());
 });

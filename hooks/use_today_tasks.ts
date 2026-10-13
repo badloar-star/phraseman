@@ -8,7 +8,7 @@
 // Обновляется сразу по событию активности (подписка на store), при возврате
 // приложения на передний план и в локальную полночь — новый набор.
 // ═══════════════════════════════════════════════════════════════════════════
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { AppState } from 'react-native';
 
 import type { Lang } from '../constants/i18n';
@@ -31,6 +31,7 @@ import {
 } from '../modules/today-tasks/today_tasks_core';
 import { peekTodayTasks, refreshTodayTasks, subscribeTodayTasks } from '../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../modules/today-tasks/today_tasks_view';
+import { getDevTodayTaskSpire, subscribeDevTodayTasks } from '../app/dev_today_tasks';
 
 /**
  * Живая выполнимость типов, которую нельзя знать синхронно.
@@ -144,6 +145,16 @@ export function useTodayTasks(lang: Lang, studyTarget: LearningLanguageTarget): 
     };
   }, [studyTarget, spireEnabled]);
 
-  const tasks = useMemo(() => todayTasksToView(state, lang), [state, lang]);
+  // зачем (координатор 13.10, «Шпиль → Пик»): dev `todaytask=spire` — задание Пика в ПОКАЗЕ «Сегодня» (копия состояния; хранилище не трогаем). В стор-сборке false.
+  const devSpire = useSyncExternalStore(subscribeDevTodayTasks, getDevTodayTaskSpire, getDevTodayTaskSpire);
+  const tasks = useMemo(() => {
+    if (!devSpire || state.tasks.some((task) => task.kind === 'spire_steps') || state.tasks.length === 0) return todayTasksToView(state, lang);
+    const spireTask = Object.freeze({
+      kind: 'spire_steps' as const, units: 0, unitKeys: Object.freeze([] as string[]), done: false, doneAtMs: null,
+      rewardCoins: TODAY_TASK_RULES.spire_steps.rewardCoins, rewardStatus: 'none' as const,
+    });
+    console.log(`[DEV-STATE] todaytask: показ «Сегодня» — ${state.tasks[state.tasks.length - 1]!.kind} → spire_steps (только показ)`); // guard-ok: dev-ветка, раз на смену набора
+    return todayTasksToView({ ...state, tasks: [...state.tasks.slice(0, -1), spireTask] }, lang);
+  }, [state, lang, devSpire]);
   return useMemo(() => ({ dayKey: state.dayKey, tasks }), [state.dayKey, tasks]);
 }

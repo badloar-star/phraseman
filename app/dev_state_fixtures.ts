@@ -273,6 +273,8 @@ export type DevStateRequest = Readonly<{
   saveOffer?: 'progress' | 'support' | 'off';
   /** Английский интерфейс без глобального флага (dev_ui_lang.ts): en — открыть ворота en и переключить язык, off — вернуть сохранённый. Только память, в сторе отклоняется. */
   uiLang?: 'en' | 'off';
+  /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
+  todaytask?: 'spire' | 'off';
   /** EN-проход R1: off — при паре «интерфейс en + изучаю en» не открывать выбор языка изучения (только память). */
   enStudyPrompt?: 'on' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
@@ -394,6 +396,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.offerProgress = pick('offerProgress', ['on', 'off'] as const);
   request.saveOffer = pick('saveOffer', ['progress', 'support', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
+  request.todaytask = pick('todaytask', ['spire', 'off'] as const);
   request.enStudyPrompt = pick('enStudyPrompt', ['on', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
@@ -862,6 +865,13 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
   if (request.uiLang !== undefined) {
     // зачем (координатор 12.10, п.76): проход разделов в английском до включения флага; только память
     await step('uiLang', request.uiLang, async () => setDevUiLang(request.uiLang!));
+  }
+  if (request.todaytask !== undefined) {
+    // зачем (координатор 13.10, «Шпиль → Пик» 95d30d485): «Пройти ступени Пика» в «Сегодня» выпадает только при живом конфиге Пика — подмена показа, только память
+    await step('todaytask', request.todaytask, async () => {
+      const { setDevTodayTaskSpire } = await import('./dev_today_tasks');
+      return setDevTodayTaskSpire(request.todaytask === 'spire');
+    });
   }
   if (request.enStudyPrompt !== undefined) {
     // зачем (EN-проход R1): карточным кадрам с английскими демо-данными автопереход D164 перекрывал экран

@@ -154,14 +154,18 @@ test('master hint and back label retain all nine existing locales', () => {
 });
 
 test('all supported live controls are bound and retired or invented controls stay absent', () => {
-  assert.match(source, /label=\{dailyLabel\}[\s\S]*?value=\{dailyEnabled\}[\s\S]*?onValueChange=\{toggleDaily\}/);
+  // зачем (settings-gap-012): при системном запрете строка показывает «выключено» (master = prefs.master && !needsPermission)
+  assert.match(source, /label=\{dailyLabel\}[\s\S]*?value=\{master && dailyEnabled\}[\s\S]*?onValueChange=\{toggleDaily\}/);
+  assert.match(source, /const master = prefs\.master && !needsPermission;/);
+  assert.match(source, /value=\{master && prefs\.categories\.streak\}/);
+  assert.match(source, /\[NOTIF-PERM\] display system_blocked=/);
   for (const [label, category] of [
     ['streakLabel', 'streak'], ['phraseLabel', 'phrase_of_day'], ['energyLabel', 'energy'],
     ['weeklyLabel', 'weekly_recap'], ['monthlyLabel', 'monthly_recap'], ['friendsLabel', 'friends'], ['offersLabel', 'offers'],
     // 11.10 (profile-006, координатор): Шпиль в первом выпуске, сервер уважает pushPrefs.league — тумблер больше не «выдуманный».
     ['spireLabel', 'spire'],
   ]) {
-    assert.match(source, new RegExp(`label=\\{${label}\\}[\\s\\S]*?value=\\{prefs\\.categories\\.${category}\\}[\\s\\S]*?onValueChange=\\{toggleCategory\\('${category}'\\)\\}`));
+    assert.match(source, new RegExp(`label=\\{${label}\\}[\\s\\S]*?value=\\{master && prefs\\.categories\\.${category}\\}[\\s\\S]*?onValueChange=\\{toggleCategory\\('${category}'\\)\\}`));
   }
   assert.match(source, /\{pad\(hour\)\}:\{pad\(minute\)\}/, 'the time row renders actual saved time');
   assert.doesNotMatch(source, />20:00<|['"]20:00['"]/, 'the actual app does not hardcode demo time');

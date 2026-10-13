@@ -278,6 +278,11 @@ export default function SettingsNotifications() {
     }, [])
   );
 
+  // зачем (settings-gap-012, сперва логи): что экран показывает при системном запрете и что сохранено — по журналу видно, почему мастер выключен.
+  useEffect(() => {
+    console.log(`[NOTIF-PERM] display system_blocked=${String(needsPermission)} stored_master=${String(prefs.master)} shown_master=${String(prefs.master && !needsPermission)}`); // guard-ok: смена показа, единичный лог
+  }, [needsPermission, prefs.master]);
+
   const flashSaved = () => { setSaved(true); setTimeout(() => setSaved(false), 1400); };
 
   // Общий хвост: сохранение фоном, проверка разрешения при включении, откат при ошибке.
@@ -433,7 +438,9 @@ export default function SettingsNotifications() {
 
   const dailyEnabled = scheduleAnyEnabled(s);
   const { hour, minute } = scheduleTime(s);
-  const master = prefs.master;
+  // зачем (settings-gap-012, образец settings-gaps-states №12): пока телефон запрещает уведомления, ни одно не придёт — экран показывает
+  // ФАКТИЧЕСКОЕ состояние: мастер выключен, строки выключены и приглушены. Сохранённые выборы человека не трогаем — после разрешения они вернутся.
+  const master = prefs.master && !needsPermission;
   const timeRowActive = master && dailyEnabled;
 
   // зачем: паритет с макетом profile.html PRF-04 — заголовок секции как eyebrow (SettingsGlassEyebrow: secondary, 1.7)
@@ -533,7 +540,7 @@ export default function SettingsNotifications() {
             <View style={{ opacity: master ? 1 : 0.45 }}>
               <SettingsGlassEyebrow glass={glass} title={sectionStudy} />
               <View style={{ gap: 10 }}>
-                <ToggleRow label={dailyLabel} icon="flame-outline" value={dailyEnabled} onValueChange={toggleDaily} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-daily-switch" />
+                <ToggleRow label={dailyLabel} icon="flame-outline" value={master && dailyEnabled} onValueChange={toggleDaily} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-daily-switch" />
                 <PressableHybrid
                   accessibilityLabel={timeLabel}
                   accessibilityRole="button"
@@ -544,7 +551,7 @@ export default function SettingsNotifications() {
                   withHaptic={false}
                   withSound={false}
                   variant="card"
-                  style={{ opacity: master && !dailyEnabled ? 0.45 : 1 }}
+                  style={{ opacity: timeRowActive || !master ? 1 : 0.45 }}
                   contentStyle={rowStyle}
                 >
                   <PlateFill g={glass} radius={14} />
@@ -555,23 +562,23 @@ export default function SettingsNotifications() {
                     <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
                   </View>
                 </PressableHybrid>
-                <ToggleRow label={streakLabel} icon="flame-outline" value={prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-streak" />
-                <ToggleRow label={phraseLabel} icon="bookmark-outline" value={prefs.categories.phrase_of_day} onValueChange={toggleCategory('phrase_of_day')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-phrase_of_day" />
-                <ToggleRow label={energyLabel} icon="flash-outline" value={prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-energy" />
+                <ToggleRow label={streakLabel} icon="flame-outline" value={master && prefs.categories.streak} onValueChange={toggleCategory('streak')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-streak" />
+                <ToggleRow label={phraseLabel} icon="bookmark-outline" value={master && prefs.categories.phrase_of_day} onValueChange={toggleCategory('phrase_of_day')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-phrase_of_day" />
+                <ToggleRow label={energyLabel} icon="flash-outline" value={master && prefs.categories.energy} onValueChange={toggleCategory('energy')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-energy" />
               </View>
 
               <SettingsGlassEyebrow glass={glass} title={sectionRecaps} />
               <View style={{ gap: 10 }}>
-                <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-weekly_recap" />
-                <ToggleRow label={monthlyLabel} icon="calendar-outline" value={prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-monthly_recap" />
-                <ToggleRow label={spireLabel} icon="people-outline" value={prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-spire" />
+                <ToggleRow label={weeklyLabel} icon="trending-up-outline" value={master && prefs.categories.weekly_recap} onValueChange={toggleCategory('weekly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-weekly_recap" />
+                <ToggleRow label={monthlyLabel} icon="calendar-outline" value={master && prefs.categories.monthly_recap} onValueChange={toggleCategory('monthly_recap')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-monthly_recap" />
+                <ToggleRow label={spireLabel} icon="people-outline" value={master && prefs.categories.spire} onValueChange={toggleCategory('spire')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-spire" />
               </View>
 
               <SettingsGlassEyebrow glass={glass} title={sectionMore} />
               <View style={{ gap: 10 }}>
                 {/* «Вместе» (friends_together §4/§5): категория «Друзья» — пуш «Позвал(а)». */}
-                <ToggleRow label={friendsLabel} icon="people-outline" value={prefs.categories.friends} onValueChange={toggleCategory('friends')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-friends" />
-                <ToggleRow label={offersLabel} icon="pricetag-outline" value={prefs.categories.offers} onValueChange={toggleCategory('offers')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-offers" />
+                <ToggleRow label={friendsLabel} icon="people-outline" value={master && prefs.categories.friends} onValueChange={toggleCategory('friends')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-friends" />
+                <ToggleRow label={offersLabel} icon="pricetag-outline" value={master && prefs.categories.offers} onValueChange={toggleCategory('offers')} disabled={!master} glass={glass} titleColor={t.textPrimary} rowStyle={rowStyle} switchTestID="notif-switch-offers" />
               </View>
             </View>
           </BouncyScrollView>

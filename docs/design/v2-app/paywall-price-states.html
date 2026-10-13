@@ -71,6 +71,13 @@
   .wtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 14px 34px rgba(0,0,0,.4); }
   .wtoast .ti { width: 41px; height: 41px; border-radius: 10px; background: var(--w-surf); display: flex; align-items: center; justify-content: center; flex: none; font-size: 22px; font-weight: 800; }
   .wtoast .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 600; }
+  /* зачем (координатор 13.10, D158, вердикт paywalls-012/016): сбой магазина — общий ActionToast снизу (тон error): рельса 3 px, плитка 44 с ⓘ, «ЧТО-ТО ПОШЛО НЕ ТАК» 13/800 капсом, текст 16/22; образец приведён к коду */
+  .wbtoast { position: absolute; left: 14px; right: 14px; bottom: 34px; z-index: 50; min-height: 76px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: var(--w-surf); box-shadow: 0 18px 34px rgba(0,0,0,.45); overflow: hidden; }
+  .wbtoast .rl { align-self: stretch; width: 3px; border-radius: 3px; background: var(--acc); flex: none; }
+  .wbtoast .ic { width: 44px; height: 44px; border-radius: 12px; background: color-mix(in srgb, var(--w-tx) 9%, transparent); display: flex; align-items: center; justify-content: center; flex: none; }
+  .wbtoast .ic svg { width: 20px; height: 20px; }
+  .wbtoast .lb { font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; }
+  .wbtoast .ms { margin-top: 3px; font-size: 16px; line-height: 22px; color: var(--w-sc); }
   .wnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
 </style>
 </head>
@@ -108,6 +115,7 @@ const sheet = (o) => `<div class="wsh">${head(o)}<div class="wbody">${o.body}</d
 const und = '<div class="wund"><div class="t1">Урок</div><div class="r"></div><div class="r"></div><div class="r"></div></div>';
 const alert = (title, body, btns) => `<div class="wdim"></div><div class="wal"><div class="tt">${title}</div><div class="bd">${body}</div><div class="ac">${btns}</div></div>`;
 const toast = (txt, mark) => `<div class="wtoast"><span class="ti">${mark}</span><span class="tx">${txt}</span></div>`;
+const errToast = (txt) => `<div class="wbtoast"><span class="rl"></span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.2h.01" stroke-width="2.2"/></svg></span><span style="flex:1;min-width:0"><div class="lb">Что-то пошло не так</div><div class="ms">${txt}</div></span></div>`;
 const FINE_YEAR = 'Затем 3 990 ₽ в год · Отмена в любой момент';
 const CTA_TRIAL = 'Начать 7 дней бесплатно';
 const ph = (inner, lite) => phone(inner, {}).replace('class="ph"', `class="ph${lite ? ' lite' : ''}"`);
@@ -116,7 +124,7 @@ const S = [
   ['011 · Загрузка условий', 'Цены ещё грузятся: два блока-«скелета» той же высоты, что и тарифы, кнопка «Оформить Plus» уже активна, «Восстановить» неактивно. После 12 секунд — состояние «Цены не загрузились».',
     () => und + sheet({ body: lead + skel, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.', restoreOff: true }) })],
   ['012 · Ошибка до checkout (оплата не началась)', 'Тап по кнопке: магазин не ответил. Сверху тост, под кнопкой «Попробуй через минуту». Деньги не списаны.',
-    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: 'Попробуй через минуту' }) }) + toast('Не удалось связаться с магазином. Попробуй позже.', '!')],
+    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: 'Попробуй через минуту' }) }) + errToast('Не удалось связаться с магазином. Попробуй позже.')],
   ['012 · Цен нет совсем (сеть): тихая строка', 'Тарифа нет совсем (магазин ответил, а плана нет — сеть): на месте плиток тихая строка «Цена уточнится в магазине» той же высоты, без красного и без «Ещё раз»; цены докачиваются в фоне. Кнопка покупки жива.',
     () => und + sheet({ body: lead + unav, dock: dock({ label: 'Оформить Plus', fine: 'Кнопка работает и без цен — цена покажется в магазине.' }) })],
   ['013 · Проверяем покупку: идёт оплата', 'Магазин открыл оплату: в кнопке кружок, тарифы и закрытие неактивны, пока не придёт ответ.',
@@ -128,7 +136,7 @@ const S = [
   ['015 · Результат покупки неизвестен (диалог)', 'Магазин ответил сбоем, а списание неизвестно: выбрать проверку статуса или восстановление, повторно не покупать.',
     () => und + sheet({ body: lead + plans({ off: true }), dock: dock({ label: CTA_TRIAL, off: true, fine: FINE_YEAR }) }) + alert('Статус покупки не подтверждён', 'Неизвестно, прошла ли оплата. Сначала проверь покупки в магазине или нажми «Восстановить» на этом экране. Не покупай повторно, пока не выяснишь статус.', '<span class="bt gh t">Проверить статус</span><span class="bt t">Восстановить покупки</span>')],
   ['016 · Статус неизвестен (после проверки)', 'Проверка не нашла покупку: тост ведёт к «Восстановить». Другие исходы: «Не удалось проверить статус. Попробуй позже.», «Активных подписок не обнаружено.».',
-    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + toast('Покупка пока не найдена. Нажми «Восстановить покупки».', '!')],
+    () => und + sheet({ body: lead + plans(), dock: dock({ label: CTA_TRIAL, fine: FINE_YEAR }) }) + errToast('Покупка пока не найдена. Нажми «Восстановить покупки».')],
   ['018 · Промо от магазина', 'Если магазин даёт скидку на первый период: плашка над тарифами («Скидка действует сейчас», процент, цена со скидкой, зачёркнутая обычная, «далее»), в карточках — зачёркнутая и новая цена. Нет скидки — нет плашки.',
     () => und + sheet({ body: lead + `<div style="margin-top:12px">${promo}</div>` + plans({ promo: true }).replace('margin-top:14px', 'margin-top:0'), dock: dock({ label: 'Оформить за 2 790 ₽ в год', fine: 'Затем 3 990 ₽ в год · Отмена в любой момент' }) })],,
   ['012 · Магазин недоступен на этом устройстве', 'Причина — billing_unavailable: на месте плиток тихая строка «Магазин недоступен на этом устройстве» (та же высота), «Ещё раз» нет (повтор бессмыслен). «Получить Plus» остаётся, но тап не открывает оплату: без тоста под кнопкой тихо появляется «Попробуй через минуту».',

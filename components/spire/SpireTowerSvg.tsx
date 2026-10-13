@@ -11,6 +11,7 @@ import Svg, {
   Circle, ClipPath, Defs, Ellipse, G, LinearGradient, Path, Polygon, RadialGradient, Rect, Stop, Text as SvgText,
 } from 'react-native-svg';
 import type { Lang } from '../../constants/i18n';
+import { SPIRE_DEFAULT_SKIN, type SpireTowerSkin } from '../../modules/spire/tower_skins';
 import { spireText } from './spire_strings';
 import {
   SPIRE_CX, SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireFloorState, spireIsGuard, spireIsSummit,
@@ -42,7 +43,7 @@ function stonesPath(fl: SpireFloorGeom): Readonly<{ seams: string; light: string
   return { seams, light };
 }
 
-const FloorWindows = memo(function FloorWindows({ fl, tone }: { fl: SpireFloorGeom; tone: WindowTone }) {
+const FloorWindows = memo(function FloorWindows({ fl, tone, lit }: { fl: SpireFloorGeom; tone: WindowTone; lit: string }) {
   const { f, y, w } = fl;
   const r = w / 2;
   const guard = spireIsGuard(f);
@@ -58,8 +59,8 @@ const FloorWindows = memo(function FloorWindows({ fl, tone }: { fl: SpireFloorGe
         const d = windowPath(x, yy, ww, wh);
         return (
           <G key={t}>
-            {tone === 'lit' ? <Path d={d} fill="#EEF0F6" fillOpacity={0.3} stroke="#EEF0F6" strokeOpacity={0.25} strokeWidth={6} strokeLinejoin="round" /> : null}{/* theme-exempt: свечение окна на ночной сцене башни — небо (spireSky) всегда тёмное, в светлом оформлении сцена не светлеет */}
-            <Path d={d} fill={WINDOW_FILL[tone]} />
+            {tone === 'lit' ? <Path d={d} fill={lit} fillOpacity={0.3} stroke={lit} strokeOpacity={0.25} strokeWidth={6} strokeLinejoin="round" /> : null}{/* theme-exempt: свечение окна на ночной сцене башни — небо (spireSky) всегда тёмное, в светлом оформлении сцена не светлеет */}
+            <Path d={d} fill={tone === 'lit' ? lit : WINDOW_FILL[tone]} />
             <Rect x={x - 2} y={yy + wh} width={ww + 4} height={2.6} rx={1} fill="#6B6B72" />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
           </G>
         );
@@ -71,13 +72,14 @@ const FloorWindows = memo(function FloorWindows({ fl, tone }: { fl: SpireFloorGe
 type FloorProps = Readonly<{
   fl: SpireFloorGeom;
   tone: WindowTone;
+  lit: string;
   mine: boolean;
   selected: boolean;
   label: string;
   onSelect: (floor: number) => void;
 }>;
 
-const Floor = memo(function Floor({ fl, tone, mine, selected, label, onSelect }: FloorProps) {
+const Floor = memo(function Floor({ fl, tone, lit, mine, selected, label, onSelect }: FloorProps) {
   const { f, y, h, w, x0 } = fl;
   const guard = spireIsGuard(f);
   const stones = useMemo(() => stonesPath(fl), [fl]);
@@ -90,7 +92,7 @@ const Floor = memo(function Floor({ fl, tone, mine, selected, label, onSelect }:
       <Path d={stones.seams} stroke="rgba(0,0,0,.34)" strokeWidth={1.1} fill="none" clipPath={`url(#${clipId})`} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Path d={stones.light} stroke="rgba(255,255,255,.045)" strokeWidth={1} fill="none" clipPath={`url(#${clipId})`} />{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       <Rect x={x0} y={y} width={w} height={h} fill="url(#spireUnder)" />
-      <FloorWindows fl={fl} tone={tone} />
+      <FloorWindows fl={fl} tone={tone} lit={lit} />
       {guard ? null : (
         <>
           <Rect x={x0 - 5} y={y - 3} width={w + 10} height={7} rx={3} fill="url(#spireCylCorn)" />
@@ -106,7 +108,7 @@ const Floor = memo(function Floor({ fl, tone, mine, selected, label, onSelect }:
 });
 
 /** Зубцы и машикули Стража (parapet() макета). */
-const Parapet = memo(function Parapet({ fl }: { fl: SpireFloorGeom }) {
+const Parapet = memo(function Parapet({ fl, tint }: { fl: SpireFloorGeom; tint: SpireTowerSkin['merlonTint'] }) {
   const { y, w, x0 } = fl;
   const r = w / 2 + 7;
   const merlons: React.ReactNode[] = [];
@@ -114,7 +116,7 @@ const Parapet = memo(function Parapet({ fl }: { fl: SpireFloorGeom }) {
     const mw = 11 * Math.cos(t);
     const x = SPIRE_CX + r * Math.sin(t) - mw / 2;
     const c = Math.round(66 + 44 * (0.62 - 0.38 * Math.sin(t + 0.45)));
-    merlons.push(<Rect key={`m${t.toFixed(2)}`} x={x} y={y - 17} width={mw} height={14} rx={1.2} fill={`rgb(${c},${c},${c + 5})`} />);
+    merlons.push(<Rect key={`m${t.toFixed(2)}`} x={x} y={y - 17} width={mw} height={14} rx={1.2} fill={`rgb(${c + tint[0]},${c + tint[1]},${c + tint[2]})`} />);
   }
   let brackets = '';
   for (let t = -1.25; t <= 1.26; t += 0.25) {
@@ -166,9 +168,11 @@ type Props = Readonly<{
   selected: number;
   onSelect: (floor: number) => void;
   width: number;
+  /** Наряд лиги (modules/spire/tower_skins.ts). Нет пропа = Оникс без деталей, прежний вид. */
+  skin?: SpireTowerSkin;
 }>;
 
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width }: Props) {
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   const guardLabel = useMemo(() => spireText(lang, 'guard').toUpperCase(), [lang]);
@@ -179,14 +183,14 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width }: Props) {
   return (
     <Svg width={width} height={geom.height * scale} viewBox={`0 0 ${SPIRE_TW} ${geom.height}`}>
       <Defs>
-        <LinearGradient id="spireCyl" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor="#1F1F23" /><Stop offset="0.16" stopColor="#3D3D44" /><Stop offset="0.36" stopColor="#5A5A62" /><Stop offset="0.55" stopColor="#46464D" /><Stop offset="0.8" stopColor="#2C2C31" /><Stop offset="1" stopColor="#18181B" /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-        <LinearGradient id="spireCylG" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor="#232328" /><Stop offset="0.16" stopColor="#46464D" /><Stop offset="0.36" stopColor="#67676F" /><Stop offset="0.55" stopColor="#505058" /><Stop offset="0.8" stopColor="#303035" /><Stop offset="1" stopColor="#1A1A1D" /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-        <LinearGradient id="spireCylCorn" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor="#2A2A2F" /><Stop offset="0.35" stopColor="#77777F" /><Stop offset="0.6" stopColor="#55555C" /><Stop offset="1" stopColor="#222226" /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-        <LinearGradient id="spireCone" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor="#1E1E22" /><Stop offset="0.35" stopColor="#55555D" /><Stop offset="0.6" stopColor="#3A3A41" /><Stop offset="1" stopColor="#151518" /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+        <LinearGradient id="spireCyl" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor={skin.cyl[0]} /><Stop offset="0.16" stopColor={skin.cyl[1]} /><Stop offset="0.36" stopColor={skin.cyl[2]} /><Stop offset="0.55" stopColor={skin.cyl[3]} /><Stop offset="0.8" stopColor={skin.cyl[4]} /><Stop offset="1" stopColor={skin.cyl[5]} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
+        <LinearGradient id="spireCylG" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor={skin.cylG[0]} /><Stop offset="0.16" stopColor={skin.cylG[1]} /><Stop offset="0.36" stopColor={skin.cylG[2]} /><Stop offset="0.55" stopColor={skin.cylG[3]} /><Stop offset="0.8" stopColor={skin.cylG[4]} /><Stop offset="1" stopColor={skin.cylG[5]} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
+        <LinearGradient id="spireCylCorn" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor={skin.corn[0]} /><Stop offset="0.35" stopColor={skin.corn[1]} /><Stop offset="0.6" stopColor={skin.corn[2]} /><Stop offset="1" stopColor={skin.corn[3]} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
+        <LinearGradient id="spireCone" x1="0" x2="1" y1="0" y2="0"><Stop offset="0" stopColor={skin.cone[0]} /><Stop offset="0.35" stopColor={skin.cone[1]} /><Stop offset="0.6" stopColor={skin.cone[2]} /><Stop offset="1" stopColor={skin.cone[3]} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
         <LinearGradient id="spireUnder" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor="#000000" stopOpacity={0.42} /><Stop offset="0.3" stopColor="#000000" stopOpacity={0} /><Stop offset="1" stopColor="#000000" stopOpacity={0.12} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-        <RadialGradient id="spireGlow" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.5} /><Stop offset="0.45" stopColor="#FFFFFF" stopOpacity={0.1} /><Stop offset="1" stopColor="#FFFFFF" stopOpacity={0} /></RadialGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+        <RadialGradient id="spireGlow" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor={skin.glow} stopOpacity={0.5} /><Stop offset="0.45" stopColor={skin.glow} stopOpacity={0.1} /><Stop offset="1" stopColor={skin.glow} stopOpacity={0} /></RadialGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
         <RadialGradient id="spireLitFloor" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.16} /><Stop offset="1" stopColor="#FFFFFF" stopOpacity={0} /></RadialGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
-        <LinearGradient id="spireSky" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor="#101013" /><Stop offset="0.5" stopColor="#17171A" /><Stop offset="1" stopColor="#0E0E10" /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
+        <LinearGradient id="spireSky" x1="0" x2="0" y1="0" y2="1"><Stop offset="0" stopColor={skin.sky[0]} /><Stop offset="0.5" stopColor={skin.sky[1]} /><Stop offset="1" stopColor={skin.sky[2]} /></LinearGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG), цвета из наряда лиги */}
         <RadialGradient id="spireGround" cx="0.5" cy="0.2" rx="0.5" ry="0.5"><Stop offset="0" stopColor="#26262A" /><Stop offset="1" stopColor="#0E0E10" stopOpacity={0} /></RadialGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
         <RadialGradient id="spireCloud" cx="0.5" cy="0.5" rx="0.5" ry="0.5"><Stop offset="0" stopColor="#FFFFFF" stopOpacity={0.09} /><Stop offset="1" stopColor="#FFFFFF" stopOpacity={0} /></RadialGradient>{/* theme-exempt: иллюстрация башни Шпиля (SVG) */}
       </Defs>
@@ -206,9 +210,9 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width }: Props) {
         const state = spireFloorState(fl.f, myFloor);
         const tone: WindowTone = state === 'mine' ? 'lit' : state === 'passed' ? 'past' : 'dark';
         const label = spireIsSummit(fl.f) ? summitLabel : spireIsGuard(fl.f) ? guardLabel : '';
-        return <Floor key={fl.f} fl={fl} tone={tone} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} />;
+        return <Floor key={fl.f} fl={fl} tone={tone} lit={skin.lit} mine={state === 'mine'} selected={fl.f === selected} label={label} onSelect={onSelect} />;
       })}
-      {geom.floors.filter((fl) => spireIsGuard(fl.f) && !spireIsSummit(fl.f)).map((fl) => <Parapet key={`p${fl.f}`} fl={fl} />)}
+      {geom.floors.filter((fl) => spireIsGuard(fl.f) && !spireIsSummit(fl.f)).map((fl) => <Parapet key={`p${fl.f}`} fl={fl} tint={skin.merlonTint} />)}
       <Crown />
     </Svg>
   );

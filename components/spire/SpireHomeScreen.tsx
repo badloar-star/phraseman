@@ -349,7 +349,7 @@ export default function SpireHomeScreen() {
           <SpireWeekResultCard lang={lang} result={game.weekResult} myCoinRank={myCoinRank} onClose={game.dismissWeekResult} />
         ) : null}
         <View style={s.towerWrap}>
-          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} />
+          <SpireTower lang={lang} myFloor={myFloor} selected={shownFloor} onSelect={onSelect} myCoinRank={myCoinRank} rivalsByFloor={rivals} dimRivals={offline} tier={game.tier ?? week?.tier ?? null} />
         </View>
         <SpireFloorInfo lang={lang} floor={shownFloor} myFloor={myFloor} stepInFloor={week ? week.stepInFloor : null} coins={config.coins} others={rivals.get(shownFloor)} />
         {/* Нет сети: свой маркер живой, чужие цифры приглушены (макет §11). */}

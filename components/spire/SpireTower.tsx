@@ -14,6 +14,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useSpirePalette } from './useSpirePalette';
 import { PlateFill, plateBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
 import SpireTowerSvg from './SpireTowerSvg';
+import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import { SpireInitial } from './SpirePodium';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
@@ -33,6 +34,8 @@ type Props = Readonly<{
   rivalsByFloor?: ReadonlyMap<number, readonly SpireRival[]>;
   /** Нет сети — чужие цифры приглушены (макет §11). */
   dimRivals?: boolean;
+  /** Лига игрока (tier 0..11): выбирает наряд башни. null/нет = Оникс без деталей. */
+  tier?: number | null;
 }>;
 
 const RIVAL = 22;
@@ -74,7 +77,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
@@ -147,6 +150,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     scrollToFloor(myFloor, true, 'смена-этажа');
   }, [myFloor, scale, reduceMotion, tx, ty, scrollToFloor]);
 
+  // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря
+  const skin = useMemo(() => spireSkinForTier(tier), [tier]);
   const label = useMemo(
     () => `${spireText(lang, 'floor')} ${selected}`,
     [lang, selected],
@@ -185,7 +190,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
       >
         {width > 0 ? (
           <View style={{ width, height: SPIRE_TOWER_GEOM.height * scale }}>
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} />
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} skin={skin} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
                 <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} />

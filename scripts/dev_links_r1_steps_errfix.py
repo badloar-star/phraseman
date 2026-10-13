@@ -119,3 +119,9 @@ if _c46['steps'][-2:] != ['hidekb', 'wait:400']:
 # energy-modes-007 (Сверка R7): после «Начать» при нуле энергии кадр снимался на остатке экрана урока (пилюля ⚡ 0), а образец — список уроков с тостом «Нужна энергия».
 # Добавляем возврат: системная «назад» и пауза под тост. Если после «назад» откроется подтверждение выхода — нужен журнал кадра, тогда второй шаг.
 set_steps('energy-modes-007', ['wait:3000', 'tap:#lesson-menu-primary', 'wait:1500', 'back', 'wait:1500'])
+
+# cards-v2-088 (Макеты 303b3efc4/ad7f4ebd9): настройка Блица, наборы на 2 языках — чип «ES ⌄» и меню. Подмена cardslangs=on выбирает языки по studyTarget, НЕ по языку интерфейса
+# (app/dev_fc_lang_state.ts getDevOtherLanguageDecks), поэтому uiLang=en не нужен: образец №88 русский. Сейчас меню покажет English/Español/Français (3 языка) против двух в образце —
+# нужен dev-вариант cardslangs от Ядра («два языка»: English 6 + Español 3).
+add('cards-v2-088', ['wait:1800', 'tap:#fc-training-setup-language-chip', 'wait:400'], 'cards=demo&plus=off&free=on&studyTarget=es&cardslangs=on', '/flashcards_training_setup?mode=blitz', unique=False,
+    note='меню языка наборов открыто: чип «ES ⌄» (studyTarget=es), cardslangs=on — списки других языков в памяти; образец №88 — два языка (English 6 / Español 3)')

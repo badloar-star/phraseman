@@ -266,7 +266,9 @@ export function devCommunityRecordPosted(comment: PackComment): void {
 // набирать 12 карточек роботом — долго и хрупко. `packdraft=on` отдаёт экрану создания готовый черновик из памяти.
 // on — 12 карточек в сообщество (cards-072); few — 4 (cards-069 «Минимум 10»); full — 50 (cards-071 лимит); private — 12 без публикации
 // (cards-073 «Набор сохранён» без сервера).
-export const DEV_PACK_DRAFTS = ['on', 'few', 'full', 'private'] as const;
+// none — «черновика нет» (Макеты 13.10, cards-section-029): строка «Продолжить создание набора» не показывается, даже если на телефоне
+// робота остался настоящий черновик от прошлых кадров; черновик НЕ удаляется — только память процесса.
+export const DEV_PACK_DRAFTS = ['on', 'few', 'full', 'private', 'none'] as const;
 export type DevPackDraft = (typeof DEV_PACK_DRAFTS)[number];
 let packDraft: DevPackDraft | null = null;
 
@@ -281,8 +283,12 @@ export function setDevPackDraft(mode: DevPackDraft | null): boolean {
 }
 
 /** Черновик «нового набора» (форма CommunityPackCreateDraftV1) или null (вне dev — всегда null). */
+export function isDevPackDraftNone(): boolean {
+  return devCardsAvailable() && packDraft === 'none';
+}
+
 export function getDevPackDraft(): Readonly<Record<string, unknown>> | null {
-  if (!devCardsAvailable() || packDraft === null) return null;
+  if (!devCardsAvailable() || packDraft === null || packDraft === 'none') return null;
   const words: readonly (readonly [string, string])[] = [
     ['Layover', 'пересадка'], ['Gate', 'выход на посадку'], ['Customs', 'таможня'], ['Boarding pass', 'посадочный талон'],
     ['Luggage', 'багаж'], ['Delay', 'задержка'], ['Aisle seat', 'место у прохода'], ['Window seat', 'место у окна'],

@@ -30,6 +30,7 @@ export const DEV_CARDS_VOICES = [] as const;
 export function getDevVoices(): null { return null; }
 export function setDevPackDraft(): boolean { return false; }
 export function getDevPackDraft(): null { return null; }
+export function isDevPackDraftNone(): boolean { return false; }
 export const DEV_PACK_DRAFTS = [] as const;
 export function setDevLessonIntroSkip(): boolean { return false; }
 export function isDevLessonIntroSkip(): boolean { return false; }

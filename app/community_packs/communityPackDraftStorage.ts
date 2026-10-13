@@ -1,4 +1,4 @@
-import { getDevPackDraft } from '../dev_cards_state';
+import { getDevPackDraft, isDevPackDraftNone } from '../dev_cards_state';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COMMUNITY_PACK_CARD_COUNT_MAX } from './schema';
 
@@ -158,6 +158,10 @@ export async function loadCommunityPackCreateDraft(
   packLanguage?: PackLanguage,
 ): Promise<CommunityPackCreateDraftV1 | null> {
   // зачем (координатор 12.10, cards-072): dev `packdraft=on` — готовый черновик нового набора из памяти (12 карточек, в сообщество).
+  if (isDevPackDraftNone()) {
+    console.warn('[DEV-STATE] packdraft=none: черновика нет (только память, хранилище не читаем и не трогаем)'); // guard-ok: dev-ветка
+    return null;
+  }
   const devDraft = getDevPackDraft();
   if (devDraft) {
     console.warn('[DEV-STATE] packdraft: черновик нового набора из памяти'); // guard-ok: dev-ветка

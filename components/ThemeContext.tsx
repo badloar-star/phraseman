@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useWindowDimensions } from 'react-native';
+import { Appearance, useColorScheme, useWindowDimensions } from 'react-native';
 import { DARK, Theme, ThemeMode } from '../constants/theme';
 import { sagePorcelainShadow } from '../constants/sagePorcelainChrome';
 import { goldShadow } from '../constants/goldTheme';
@@ -29,7 +29,7 @@ import {
 import { createThemePersister, type ThemePersister } from '../app/theme_persist';
 import { getDevAppearance, getDevThemeChoice, subscribeDevAppearance, subscribeDevThemeChoice } from '../app/dev_appearance_override';
 import { actionToastTri, emitAppEvent } from '../app/events';
-import { decideFirstRunTheme } from '../app/theme_first_run_default';
+import { FOLLOW_SYSTEM_MARKER_KEY, decideFirstRunTheme, pickSystemDefaultTheme } from '../app/theme_first_run_default';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
@@ -306,6 +306,9 @@ const APPEARANCE_STORAGE_KEY = 'liquid_glass_appearance';
 let peekLiquidGlassThemeId: LiquidGlassThemeId = 'graphite';
 // Выбор уже прочитан в этом процессе — ремаунт провайдера не ждёт хранилище повторно.
 let themeHydratedInProcess = false;
+// зачем (владелец 13.10, тема новичка «как на телефоне»): пара «Сумерки/Океан» следует за системным режимом, пока человек сам ничего не выбрал.
+// Модульный флаг — чтобы ремаунт провайдера в том же процессе не мигал графитом и не ждал хранилище. Логи [DEFAULT-THEME].
+let followSystemInProcess = false;
 // Чтение трёх ключей занимает единицы мс; 400 мс — страховка от зависшего хранилища.
 const THEME_HYDRATION_CEILING_MS = 400;
 
@@ -330,7 +333,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем (Макеты 15.10): dev_state?appearance=light|dark — оформление ТОЛЬКО в памяти (app/dev_appearance_override.ts); хранилище и сохранённый выбор не меняются. Без оверрайда — прежнее значение.
   const [devAppearance, setDevAppearanceState] = useState<LiquidGlassAppearance | null>(() => getDevAppearance());
   useEffect(() => subscribeDevAppearance(setDevAppearanceState), []);
-  const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? savedLiquidGlassAppearance;
+  const systemScheme = useColorScheme();
+  const [followSystem, setFollowSystem] = useState<boolean>(() => followSystemInProcess);
+  const systemDefault = pickSystemDefaultTheme(systemScheme);
+  const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? (followSystem ? systemDefault.appearance : savedLiquidGlassAppearance);
   // зачем: запоздалое чтение хранилища при старте не должно затереть выбор, который
   // человек успел сделать раньше (last-write-guard, как с осколками).
   const touchedRef = useRef({ theme: false, level: false, appearance: false });
@@ -371,7 +377,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }
   const [liquidGlassChoiceReady, setLiquidGlassChoiceReady] = useState<boolean>(() => themeHydratedInProcess);
   const [previewLiquidGlassThemeId, setPreviewLiquidGlassThemeId] = useState<LiquidGlassThemeId | null>(null);
-  const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? appliedLiquidGlassThemeId;
+  const liquidGlassThemeId = previewLiquidGlassThemeId ?? (devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId);
   currentChoiceRef.current = { theme: appliedLiquidGlassThemeId, appearance: liquidGlassAppearance, intensity: String(appliedLiquidGlassIntensity) };
   const uiScale = windowUiScale;
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
@@ -385,7 +391,45 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     LIQUID_GLASS_THEME_IDS.includes(id)
   ), []);
 
+  // зачем (владелец 13.10): пока человек ничего не выбирал, пара тема/оформление/насыщенность следует за системным режимом и НЕ лежит в хранилище.
+  // Первый же его выбор (тема, оформление или насыщенность) замораживает ту пару, которую он сейчас видит, и записывает её целиком — дальше это
+  // обычный выбор навсегда. Вызывается первым делом в каждом из трёх commit-ов.
+  const followRef = useRef({ on: followSystem, themeId: systemDefault.themeId, appearance: systemDefault.appearance, intensity: systemDefault.intensity });
+  followRef.current = { on: followRef.current.on, themeId: systemDefault.themeId, appearance: systemDefault.appearance, intensity: systemDefault.intensity };
+  const freezeFollowSystem = useCallback((trigger: string) => {
+    const cur = followRef.current;
+    if (!cur.on) return;
+    followRef.current = { ...cur, on: false };
+    followSystemInProcess = false;
+    const id = resolveLiquidGlassTheme(cur.themeId);
+    console.log(`[DEFAULT-THEME] выбор человека (${trigger}) → пара заморожена: тема=${id} оформление=${cur.appearance} насыщенность=${cur.intensity} источник=выбор человека`); // guard-ok: переход «по умолчанию» → «выбор человека»
+    peekLiquidGlassThemeId = id;
+    setAppliedLiquidGlassThemeId(id);
+    setAppearanceState(cur.appearance);
+    setIntensityState(cur.intensity);
+    setFollowSystem(false);
+    currentChoiceRef.current = { theme: id, appearance: cur.appearance, intensity: String(cur.intensity) };
+    persisterRef.current?.setPersisted('theme', id);
+    persisterRef.current?.setPersisted('appearance', cur.appearance);
+    persisterRef.current?.setPersisted('intensity', String(cur.intensity));
+    AsyncStorage.multiSet([
+      [THEME_STORAGE_KEY, id],
+      [APPEARANCE_STORAGE_KEY, cur.appearance],
+      [INTENSITY_STORAGE_KEY, String(cur.intensity)],
+      [COLOR_LEVEL_STORAGE_KEY, liquidGlassLevelForIntensity(cur.intensity)],
+      [FOLLOW_SYSTEM_MARKER_KEY, '0'],
+    ]).catch((e: unknown) => {
+      console.warn(`[DEFAULT-THEME] запись замороженной пары не удалась: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина в журнале
+      logThemeWriteError(THEME_STORAGE_KEY)(e);
+    });
+  }, []);
+  useEffect(() => {
+    if (!followSystem) return;
+    console.log(`[DEFAULT-THEME] системный режим=${String(systemScheme)} → тема=${systemDefault.themeId} оформление=${systemDefault.appearance} насыщенность=${systemDefault.intensity} источник=по умолчанию`); // guard-ok: смена пары вслед за системой
+  }, [followSystem, systemScheme, systemDefault.themeId, systemDefault.appearance, systemDefault.intensity]);
+
   const commitLiquidGlassThemeId = useCallback((id: LiquidGlassThemeId) => {
+    freezeFollowSystem('theme');
     const previous = currentChoiceRef.current.theme;
     touchedRef.current.theme = true;
     peekLiquidGlassThemeId = id;
@@ -398,6 +442,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   // зачем (владелец 2026-10-04, ползунок): на диск — ТОЛЬКО при отпускании, одной записью,
   // а не на каждый кадр перетаскивания. State меняется сразу (optimistic), диск догоняет.
   const setLiquidGlassIntensity = useCallback((intensity: number) => {
+    freezeFollowSystem('intensity');
     const next = quantizeLiquidGlassIntensity(intensity);
     const level = liquidGlassLevelForIntensity(next);
     const previous = currentChoiceRef.current.intensity;
@@ -417,6 +462,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [setLiquidGlassIntensity]);
 
   const setLiquidGlassAppearance = useCallback((appearance: LiquidGlassAppearance) => {
+    freezeFollowSystem('appearance');
     const resolved = resolveLiquidGlassAppearance(appearance);
     const previous = currentChoiceRef.current.appearance;
     touchedRef.current.appearance = true;
@@ -449,7 +495,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     };
     void (async () => {
       // зачем (DEFAULT_THEME_OPTIONS_R1): onboarding_done — в ТОМ ЖЕ чтении (без лишнего await до кадра), чтобы отличить новичка от старого
-      const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY, INTENSITY_STORAGE_KEY, 'onboarding_done']);
+      const pairs = await AsyncStorage.multiGet([THEME_STORAGE_KEY, COLOR_LEVEL_STORAGE_KEY, APPEARANCE_STORAGE_KEY, INTENSITY_STORAGE_KEY, 'onboarding_done', FOLLOW_SYSTEM_MARKER_KEY]);
       if (cancelled) return;
       const storedId = pairs[0]?.[1] ?? null;
       const firstRun = decideFirstRunTheme({
@@ -457,15 +503,27 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         storedLevel: pairs[1]?.[1] ?? null,
         storedIntensity: pairs[3]?.[1] ?? null,
         onboardingDone: pairs[4]?.[1] ?? null,
+        followSystemMarker: pairs[5]?.[1] ?? null,
       });
       console.log(`[THEME-DEFAULT] ${firstRun.kind} ${JSON.stringify({ reason: firstRun.reason, apply: firstRun.apply, ...(firstRun.kind === 'new_user' ? { themeId: firstRun.themeId, intensity: firstRun.intensity } : {}) })}`);
       const newUserApply = firstRun.kind === 'new_user' && firstRun.apply ? firstRun : null;
       const storedResolved = resolveLiquidGlassTheme(storedId);
-      const resolved = newUserApply ? resolveLiquidGlassTheme(newUserApply.themeId) : storedResolved;
-      if (newUserApply) {
-        // новичок: тема из конфига пишется один раз — дальше это обычный «выбор», старые пользователи сюда не попадают
-        AsyncStorage.multiSet([[THEME_STORAGE_KEY, resolved], [INTENSITY_STORAGE_KEY, String(newUserApply.intensity)]])
-          .catch(logThemeWriteError(THEME_STORAGE_KEY));
+      // зачем (владелец 13.10): новичку тема не пишется в хранилище — пара «Сумерки/Океан» следует за системным режимом, пока он ничего не выбрал.
+      // В хранилище лежит только метка; первый выбор замораживает пару (freezeFollowSystem). Старые пользователи сюда не попадают.
+      const bootScheme = Appearance.getColorScheme();
+      const newUserPair = newUserApply ? pickSystemDefaultTheme(bootScheme) : null;
+      const resolved = newUserPair ? resolveLiquidGlassTheme(newUserPair.themeId) : storedResolved;
+      console.log(`[DEFAULT-THEME] первый запуск=${String(firstRun.kind === 'new_user')} решение=${firstRun.kind}/${firstRun.reason} системный режим=${String(bootScheme)} → тема=${resolved} источник=${newUserPair ? 'по умолчанию (следует за системой)' : 'выбор человека / прежнее'}`); // guard-ok: итог выбора стартовой темы
+      if (newUserPair) {
+        followSystemInProcess = true;
+        followRef.current = { ...followRef.current, on: true };
+        setFollowSystem(true);
+        if (pairs[5]?.[1] !== '1') {
+          AsyncStorage.setItem(FOLLOW_SYSTEM_MARKER_KEY, '1').catch((e: unknown) => {
+            console.warn(`[DEFAULT-THEME] метка новичка не записана: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: причина в журнале
+            logThemeWriteError(FOLLOW_SYSTEM_MARKER_KEY)(e);
+          });
+        }
       }
       persisterRef.current?.setPersisted('theme', resolved);
       persisterRef.current?.setPersisted('appearance', resolveLiquidGlassAppearance(pairs[2]?.[1] ?? null));
@@ -495,7 +553,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       }
       if (!touchedRef.current.level) {
         setIntensityState(migration.intensity);
-        if (migration.needsWrite) {
+        if (migration.needsWrite && !newUserApply) {
           AsyncStorage.setItem(INTENSITY_STORAGE_KEY, String(migration.intensity)).catch(logThemeWriteError(INTENSITY_STORAGE_KEY));
         }
       }

@@ -36,7 +36,8 @@ describe('dev_state appearance (только память)', () => {
 
   it('ThemeContext берёт эффективное оформление = оверрайд ?? сохранённое и не пишет оверрайд в хранилище', () => {
     const ctx = read('components', 'ThemeContext.tsx');
-    expect(ctx).toContain('const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? savedLiquidGlassAppearance;');
+    // зачем (владелец 13.10): между оверрайдом и сохранённым стоит «пара по умолчанию для новичка» (следует за системой), оверрайд по-прежнему первый
+    expect(ctx).toContain('const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? (followSystem ? systemDefault.appearance : savedLiquidGlassAppearance);');
     expect(ctx).toContain('subscribeDevAppearance(setDevAppearanceState)');
     const override = read('app', 'dev_appearance_override.ts');
     expect(override).not.toMatch(/AsyncStorage|setItem|firestore|persist/i);
@@ -73,7 +74,7 @@ describe('dev_state appearance (только память)', () => {
     it('ThemeContext берёт тему и оттенок = оверрайд ?? сохранённое и не пишет оверрайд в хранилище', () => {
       const ctx = read('components', 'ThemeContext.tsx');
       expect(ctx).toContain('previewLiquidGlassIntensity ?? devThemeChoice?.intensity ?? appliedLiquidGlassIntensity');
-      expect(ctx).toContain('devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? appliedLiquidGlassThemeId');
+      expect(ctx).toContain('devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId)');
       expect(ctx).toContain('subscribeDevThemeChoice(setDevThemeChoiceState)');
       expect(read('app', 'dev_appearance_override.ts')).not.toMatch(/AsyncStorage|setItem|firestore|persist/i);
     });

@@ -9,8 +9,26 @@
 // меняется одна строка (DEFAULT_THEME_OPTIONS_R1.md, раздел «После да»).
 // ═════════════════════════════════════════════════════════════════════
 
-/** Тема для новых пользователей. Сейчас = встроенный дефолт (поведение не меняется). Вариант (б): { themeId: 'grad_aurora', intensity: 1 }. */
-export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'graphite', intensity: 0 });
+/**
+ * зачем (владелец 13.10 10:05, вопрос 3): новому человеку тема по умолчанию — «как на телефоне»: системный светлый → «Сумерки» (ink),
+ * системный тёмный → «Океан» (marine), насыщенность 1. Пока он сам не выбрал тему/оформление/насыщенность, пара следует за системным
+ * режимом (без перезапуска и мигания); первый же выбор замораживает текущую пару как его выбор навсегда.
+ */
+export const NEW_USER_SYSTEM_PAIR: Readonly<{ light: string; dark: string; intensity: number }> = Object.freeze({ light: 'ink', dark: 'marine', intensity: 1 });
+
+/** Метка «этот человек — новичок, тема ещё следует за системой». Пишется один раз при первом запуске; снимается первым выбором. */
+export const FOLLOW_SYSTEM_MARKER_KEY = 'theme_default_follow_system_v1';
+
+export type SystemDefaultTheme = Readonly<{ themeId: string; appearance: 'light' | 'dark'; intensity: number }>;
+
+/** Тема новичка по системному режиму; неизвестный/пустой режим → тёмный («Океан»). */
+export function pickSystemDefaultTheme(scheme: string | null | undefined): SystemDefaultTheme {
+  const light = scheme === 'light';
+  return { themeId: light ? NEW_USER_SYSTEM_PAIR.light : NEW_USER_SYSTEM_PAIR.dark, appearance: light ? 'light' : 'dark', intensity: NEW_USER_SYSTEM_PAIR.intensity };
+}
+
+/** Тема для новых пользователей (тёмное зерно; реальную пару по системному режиму даёт pickSystemDefaultTheme). */
+export const NEW_USER_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: NEW_USER_SYSTEM_PAIR.dark, intensity: NEW_USER_SYSTEM_PAIR.intensity });
 
 /** Встроенный дефолт приложения (resolveLiquidGlassTheme(null) / migrateStoredLiquidGlassIntensity без ключей). */
 export const BUILTIN_DEFAULT_THEME: Readonly<{ themeId: string; intensity: number }> = Object.freeze({ themeId: 'graphite', intensity: 0 });
@@ -20,6 +38,8 @@ export type FirstRunThemeInput = Readonly<{
   storedIntensity: string | null;
   storedLevel: string | null;
   onboardingDone: string | null;
+  /** Значение FOLLOW_SYSTEM_MARKER_KEY; '1' — новичок, пара ещё следует за системой. */
+  followSystemMarker?: string | null;
 }>;
 
 export type FirstRunThemeDecision =
@@ -46,6 +66,9 @@ export function decideFirstRunTheme(
   ].filter(Boolean);
   if (storedKeys.length > 0) {
     return { kind: 'stored_choice', reason: `stored:${storedKeys.join('+')}`, apply: false };
+  }
+  if (input.followSystemMarker === '1') {
+    return { kind: 'new_user', reason: 'follow_system_marker', apply: true, themeId: config.themeId, intensity: config.intensity };
   }
   if (input.onboardingDone === '1') {
     return { kind: 'existing_user_kept', reason: 'no_theme_keys_but_onboarding_done', apply: false };

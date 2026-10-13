@@ -114,7 +114,11 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
   const router = { push: route => calls.push.push(route) };
   const modules = {
     // 12.10 (стиль «Тень»): дорожка выключенного — тон без кромки (switchOffTrackTone; контраст тем — switch_track_border_contract).
-    '../components/settings/switch_chrome': { switchOffTrackTone: (glass) => ({ track: glass.opaqueControl, knob: glass.secondary }) },
+    // 13.10 (Темы 4801981d8): включённый — дорожка акцента и бегунок accentInk (switchOnTone; токен проверяет local_switch_on_tone_contract).
+    '../components/settings/switch_chrome': {
+      switchOffTrackTone: (glass) => ({ track: glass.opaqueControl, knob: glass.secondary }),
+      switchOnTone: (glass) => ({ track: glass.accentGraphic, knob: glass.accentInk }),
+    },
     react: { __esModule: true, default: React, ...React },
     'react-native': { Text: 'Text', View: 'View' },
     '@expo/vector-icons/Ionicons': { __esModule: true, default: 'Ionicons' },

@@ -5,7 +5,7 @@
 // (решение владельца от 2026-07-26), категории гейтятся в app/notifications.ts.
 // Визуальный слой следует профилю Liquid Glass; логика расписания и разрешений
 // остаётся изолированной от презентации.
-import { switchOffTrackTone } from '../components/settings/switch_chrome';
+import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_chrome';
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import DuoPressable from '../components/DuoPressable';
 import { View, Text, Modal, ScrollView, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent, type StyleProp, type ViewStyle } from 'react-native';
@@ -165,6 +165,9 @@ type LocalSwitchProps = {
 };
 
 function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = false, glass, testID }: LocalSwitchProps) {
+  // зачем (координатор 13.10, Темы 4801981d8; образец settings-gap-013/014/015/034 `.gs-sw.on`): включённый — дорожка цвета акцента
+  // и «чернильный» бегунок из общего токена switchOnTone, а не тёмная дорожка glass.selected с белым бегунком.
+  const onTone = switchOnTone(glass);
   return (
     <PressableHybrid
       testID={testID}
@@ -181,8 +184,8 @@ function LocalSwitch({ value, onValueChange, accessibilityLabel, disabled = fals
       style={{ width: 48, minWidth: 48, minHeight: 36, alignSelf: 'center' }}
       contentStyle={{ width: 48, minHeight: 36, justifyContent: 'center', alignItems: 'center' }}
     >
-      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? glass.selected : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
-        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? glass.lightTint : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
+      <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: value ? onTone.track : switchOffTrackTone(glass).track /* зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном */ }}>
+        <View style={{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? onTone.knob : switchOffTrackTone(glass).knob, transform: [{ translateX: value ? 19 : 0 }] }} />
       </View>
     </PressableHybrid>
   );

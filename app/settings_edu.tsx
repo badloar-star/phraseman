@@ -1,6 +1,6 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { actionToastTri, emitAppEvent } from './events';
-import { switchOffTrackTone } from '../components/settings/switch_chrome';
+import { switchOffTrackTone, switchOnTone } from '../components/settings/switch_chrome';
 import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -56,6 +56,9 @@ type LocalSwitchProps = {
 
 function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }: LocalSwitchProps) {
   const offTone = switchOffTrackTone(glass);
+  // зачем (координатор 13.10, Темы 4801981d8; образец settings-gap-013/014/015/034 `.gs-sw.on`): включённый — дорожка цвета акцента
+  // и «чернильный» бегунок из общего токена switchOnTone, а не тёмная дорожка glass.selected с белым бегунком.
+  const onTone = switchOnTone(glass);
   return (
     <PressableHybrid
       testID={testID}
@@ -77,7 +80,7 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
           padding: 3,
           justifyContent: 'center',
           // зачем (координатор 12.10, «Тень»): без обводки — дорожка выключенного отделяется тоном (switchOffTrackTone)
-          backgroundColor: value ? glass.selected : offTone.track,
+          backgroundColor: value ? onTone.track : offTone.track,
         }}
       >
         <View
@@ -85,7 +88,7 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
             width: 21,
             height: 21,
             borderRadius: 11,
-            backgroundColor: value ? glass.lightTint : offTone.knob,
+            backgroundColor: value ? onTone.knob : offTone.knob,
             transform: [{ translateX: value ? 19 : 0 }],
           }}
         />

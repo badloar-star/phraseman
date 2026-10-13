@@ -192,6 +192,10 @@ export default function SettingsMain() {
     const sinceCommit = perfRef.current.committedAt > 0 ? now - perfRef.current.committedAt : -1;
     console.warn(`[SETTINGS-PERF] first_focus sinceRenderMs=${now - perfRef.current.firstRenderAt} sinceCommitMs=${sinceCommit} premounted=${sinceCommit > 500 ? 'да' : 'нет'}`); // guard-ok: временный замер №16
   }, []));
+  // зачем (№16, сперва логи): доля первого кадра по поддеревьям — тело экрана и окно входа; только монтирование, только dev.
+  const onSettingsProfile = React.useCallback((id: string, phase: string, actualDuration: number) => {
+    if (__DEV__ && phase === 'mount') console.warn(`[SETTINGS-PERF] profile id=${id} phase=${phase} actualMs=${Math.round(actualDuration)}`); // guard-ok: временный замер №16
+  }, []);
   const tabContentBottomPad = useTabContentBottomPad();
   const router = useRouter();
   // зачем (координатор 11.10, «сперва логи»): phraseman://settings вешал приложение (addViewAt «already has a parent»,
@@ -453,6 +457,14 @@ export default function SettingsMain() {
   const linkedAuthGenerationRef = useRef(0);
   const linkedAuthInFlightRef = useRef<Promise<void> | null>(null);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
+  // зачем (№16, журнал SP1 13.10 15:58: renderToCommitMs=469): окно входа (2507 строк, 86 хуков, без раннего выхода при visible=false)
+  // входило в первый кадр «Настроек». Монтируем его скрытым ПОСЛЕ кадра и взаимодействий — к моменту тапа «Войти» оно уже смонтировано,
+  // переход скрытое→открытое прежний; тап раньше этого монтирует его сразу (рендер по visible).
+  const [authPromptMounted, setAuthPromptMounted] = useState(false);
+  useEffect(() => {
+    const task = InteractionManager.runAfterInteractions(() => setAuthPromptMounted(true));
+    return () => task.cancel();
+  }, []);
   const [studySheetVisible, setStudySheetVisible] = useState(false);
   /**
    * зачем: статус чистки кеша показываем прямо в ряду (правая подпись), а не вторым
@@ -944,6 +956,7 @@ export default function SettingsMain() {
 
   return (
     <ScreenGradient>
+      <React.Profiler id="settings_body" onRender={onSettingsProfile}>
       <BouncyWrap style={bouncyStyle}>
       <Reanimated.ScrollView
         decelerationRate="fast"
@@ -1357,6 +1370,7 @@ export default function SettingsMain() {
 
       </Reanimated.ScrollView>
       </BouncyWrap>
+      </React.Profiler>
 
 
       <StudyLanguageSheet
@@ -1366,6 +1380,8 @@ export default function SettingsMain() {
         activeTarget={studyTarget}
         logTag="[SETTINGS-STUDY-LANG]"
       />
+      {authPromptMounted || authPromptVisible ? (
+      <React.Profiler id="settings_auth_modal" onRender={onSettingsProfile}>
       <RegistrationPromptModal
         visible={authPromptVisible}
         context="settings"
@@ -1377,6 +1393,8 @@ export default function SettingsMain() {
           void refreshLinkedAuth();
         }}
       />
+      </React.Profiler>
+      ) : null}
 
       {/* ── Смена аккаунта: подтверждение + лоадер в ОДНОМ нативном <Modal> ──
           зачем (владелец, 2026-09-13): «нажимаю сохранить и выйти — мелькает и

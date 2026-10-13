@@ -166,6 +166,7 @@ function SessionContent() {
     console.log(`[DIALOGS-FIRST-FRAME] session ${first ? 'first' : 'update'} kind=${state.kind} content=${String(state.kind === 'available')} skeleton=${String(state.kind === 'loading')} ms=${Date.now() - firstFrameAtRef.current}`); // guard-ok: под __DEV__, число решает ветку
   }, [state.kind]);
   const [startAttempt, setStartAttempt] = useState(0);
+  const startBudgetBeganAtRef = useRef(Date.now());
   const [messages, setMessages] = useState<readonly DialogueV2SessionMessage[]>([]);
   // зачем (координатор 12.10, dialogs-038, «сперва логи»): номер реплики ученика для [DIALOG-END] — замыкание
   // appendReplies отстаёт на одну отрисовку, ref всегда видит текущую ленту.
@@ -315,9 +316,18 @@ function SessionContent() {
     if (!model?.unlocked || !scenarioId || !supportedTarget(studyTarget)) return undefined;
     let active = true;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    if (startAttempt === 0) startBudgetBeganAtRef.current = Date.now();
     const scheduleRetry = () => {
       // зачем (владелец 01.10): без экрана «недоступно» — тихий повтор старта в фоне (до 5 раз).
       if (startAttempt >= 5) { setServerSessionState('unavailable'); return; }
+      // зачем (аудит «пропала сеть», Авторизация 13.10): общий потолок всех тихих повторов — на медленной сети ход ученика
+      // висел с «печатает…» до ~5–6 минут. После бюджета — «недоступно» и «Повторить» (старт заново, счётчик с нуля).
+      const spentMs = Date.now() - startBudgetBeganAtRef.current;
+      if (spentMs >= DIALOGUE_V2_SESSION_START_BUDGET_MS) {
+        console.warn(`[DIALOG-NET] session:start → бюджет исчерпан ${JSON.stringify({ attempt: startAttempt, spentMs, budgetMs: DIALOGUE_V2_SESSION_START_BUDGET_MS })} → недоступно`); // guard-ok: ветвление
+        setServerSessionState('unavailable');
+        return;
+      }
       retryTimer = setTimeout(() => setStartAttempt((value) => value + 1), 4_000);
     };
     if (startAttempt === 0) setServerSession(null);
@@ -429,7 +439,7 @@ function SessionContent() {
       })),
     ]));
     coaching.applyCoaching(coached);
-    coaching.applyQuota(result.quota, pending.turnId);
+    coaching.applyQuota(result.quota, pending.turnId, result.replayed);
     if (typeof __DEV__ !== 'undefined' && __DEV__) {
       // зачем (dialogs-038: конец после 2-й реплики при невыполненных целях): что сервер сказал на этом ходе — конец ли
       // диалога, какая цель активна и где остальные цели относительно неё (пройдена / текущая / впереди).
@@ -823,6 +833,12 @@ function SessionContent() {
 }
 
 /** V2 text session remains behind the established, neutral AI-dialogue consent gate. */
+/**
+ * Общий бюджет тихих повторов старта сессии (аудит «пропала сеть», 13.10). Проверяется перед каждым повтором; один вызов ограничен
+ * DIALOGUE_V2_SESSION_START_TIMEOUT_MS (22 с), поэтому «недоступно» с «Повторить» появляется не позже ~25 с, а не через минуты.
+ */
+const DIALOGUE_V2_SESSION_START_BUDGET_MS = 20_000;
+
 export default function DialogueV2SessionRoute() {
   // зачем (находка Макетов d8b078e8e, координатор 12.10): брифинг теперь спрашивает согласие ДО списания энергии,
   // но если сюда всё же пришли со списанной энергией (energyOp) и согласие отклонено — SessionContent не смонтируется

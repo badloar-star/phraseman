@@ -169,6 +169,9 @@ function devCompletionResult(kind: Extract<DevDialogCompletion, 'clean' | 'error
   };
 }
 
+/** Потолок вызова итога диалога на телефоне (сервер — до 60 с). */
+export const DIALOGUE_V2_COMPLETION_TIMEOUT_MS = 45_000;
+
 export async function completeDialogueV2Session(
   input: DialogueV2CompletionSelection,
 ): Promise<DialogueV2CompletionResult | null> {
@@ -192,9 +195,13 @@ export async function completeDialogueV2Session(
   // Печатаем код/текст/details отказа, длительность и, если ответ пришёл, — какую проверку формы он не прошёл.
   const startedAt = Date.now();
   try {
+    // зачем (аудит «пропала сеть», Авторизация 13.10): без потолка «Собеседник готовит итог…» висел до нативных ~60–70 с. Сервер
+    // итога работает до 60 с намеренно (02.10 итог обрывался на 30 с в проде), поэтому НЕ 15–20 с: 45 с — ниже нативного, с запасом
+    // для настоящего медленного итога. Дальше «недоступно» + «Повторить»; повтор идемпотентен (вернёт готовый итог, replayed).
     const callable = httpsCallable<DialogueV2CompletionSelection, unknown>(
       getFunctions(getApp(), REGION),
       'dialogueV2SessionComplete',
+      { timeout: DIALOGUE_V2_COMPLETION_TIMEOUT_MS },
     );
     const response = await callable(selection);
     const result = safeResult(response?.data);

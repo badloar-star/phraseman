@@ -71,6 +71,9 @@ export function spireFirestore(gate: SpireLiveGate, where: string): unknown | nu
   }
 }
 
+/** Потолок получения ID-токена (аудит «пропала сеть», 13.10): обновление токена на плохой сети не ограничено таймером пакета. */
+export const SPIRE_ID_TOKEN_TIMEOUT_MS = 8_000;
+
 /** ID-токен вошедшего (для скачивания пакета из Storage) или null с причиной в логе. */
 export async function spireIdToken(gate: SpireLiveGate, where: string): Promise<string | null> {
   if (!spireGateStillOpen(gate, where) || !spireCloudAvailable()) return null;
@@ -82,7 +85,16 @@ export async function spireIdToken(gate: SpireLiveGate, where: string): Promise<
       DebugLogger.info(LOG, `${where}: нет вошедшего пользователя — токена нет`);
       return null;
     }
-    const token: unknown = await user.getIdToken();
+    // зачем (аудит «пропала сеть», Авторизация 13.10): getIdToken() вызывался ДО 20-секундного таймера пакета и сам потолка не имел —
+    // «Готовим ступень…» на плохой сети тянулось дольше 20 с. По потолку — null с причиной (тот же путь, что «токена нет»).
+    const startedAt = Date.now();
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const timedOut = new Promise<'timeout'>((resolve) => { timer = setTimeout(() => resolve('timeout'), SPIRE_ID_TOKEN_TIMEOUT_MS); });
+    const token: unknown = await Promise.race([user.getIdToken(), timedOut]).finally(() => { if (timer) clearTimeout(timer); });
+    if (token === 'timeout') {
+      DebugLogger.warn(LOG, `${where}: токен не получен за ${SPIRE_ID_TOKEN_TIMEOUT_MS} мс — считаю «нет сети» (ждали ${Date.now() - startedAt} мс)`);
+      return null;
+    }
     return typeof token === 'string' && token.length > 0 ? token : null;
   } catch (error) {
     DebugLogger.warn(LOG, `${where}: токен не получен (${spireErrorText(error)})`);

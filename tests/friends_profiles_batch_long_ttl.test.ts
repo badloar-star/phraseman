@@ -91,7 +91,8 @@ describe('Шпиль: ручное обновление друзей — кон�
     expect(refresh).toMatch(/if \(chips\.length !== countRef\.current\) animateNextLayoutTransition\(\);\n\s*setFriends\(chips\);/);
     expect(refresh).toMatch(/inFlightRef\.current = false;/);
     expect(hook).toMatch(/useSpireFriendsRefresh\(\{ gate, ids, lang, friendsCount: friends\.length, setFriends \}\)/);
-    expect(hook).toMatch(/if \(alive && chips\) setFriends\(chips\);/);
+    // аудит «пропала сеть» 13.10: ранние выходы теперь с причиной в журнале; ряд по-прежнему ставится только при живом экране и данных
+    expect(hook).toMatch(/if \(!alive\) \{ DebugLogger\.info\(LOG, 'game: друзья[^']*'\); return; \}\s*if \(!chips\) \{ DebugLogger\.info\(LOG, 'game: друзей[^']*'\); return; \}\s*setFriends\(chips\);/);
   });
 
   it('экран: RefreshControl на списке Шпиля вызывает refreshFriends', () => {

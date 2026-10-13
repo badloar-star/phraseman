@@ -282,6 +282,9 @@ export function prestartDialogueV2TextSession(selection: DialogueV2SessionStartR
   registerDialogueV2Prestart(request, () => requestDialogueV2TextSessionFromNetwork(request), Date.now());
 }
 
+/** Потолок одного вызова старта: сервер — 20 с, плюс запас на сеть. */
+export const DIALOGUE_V2_SESSION_START_TIMEOUT_MS = 22_000;
+
 async function requestDialogueV2TextSessionFromNetwork(request: DialogueV2SessionStartRequest): Promise<DialogueV2SessionStartResponse | null> {
   // зачем (координатор 12.10, dev_dialog_send): при подставном ходе и старт не идёт в сеть — иначе в прод пишется
   // документ сессии. Здесь же ловится и предстарт с брифинга. В стор-сборке getDevDialogSend() = null.
@@ -291,7 +294,9 @@ async function requestDialogueV2TextSessionFromNetwork(request: DialogueV2Sessio
     return session;
   }
   try {
-    const callable = httpsCallable<DialogueV2SessionStartRequest, unknown>(getFunctions(getApp(), FUNCTIONS_REGION), 'dialogueV2SessionStart');
+    // зачем (аудит «пропала сеть», Авторизация 13.10): без своего потолка вызов ждал нативные ~60–70 с, и тихие повторы старта
+    // растягивались до минут. Сервер работает до 20 с (timeoutSeconds: 20) — ждём чуть дольше, дальше обычный тихий повтор.
+    const callable = httpsCallable<DialogueV2SessionStartRequest, unknown>(getFunctions(getApp(), FUNCTIONS_REGION), 'dialogueV2SessionStart', { timeout: DIALOGUE_V2_SESSION_START_TIMEOUT_MS });
     return safeStartResponse((await callable(request)).data);
   } catch (error) {
     // Немой catch запрещён: код отказа виден в логе, наружу — нейтральная ошибка.

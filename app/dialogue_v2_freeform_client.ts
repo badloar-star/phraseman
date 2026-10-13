@@ -153,15 +153,27 @@ export async function startDialogueV2FreeformSession(
     console.warn('[DEV-STATE] freeform: сессия без сервера (dev_dialog_send)'); // guard-ok: dev-ветка
     return { ok: true, sessionId: `d2fs_dev${'0'.repeat(32)}`, expiresAtMs: Date.now() + 3_600_000 };
   }
+  const startedAt = Date.now();
   try {
     const callable = httpsCallable<DialogueV2FreeformSessionStart, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionStart',
     );
     return validStartResponse((await callable(request)).data);
-  } catch {
+  } catch (error) {
+    logFreeformFailure('start', startedAt, error);
     throw new DialogueV2FreeformUnavailableError();
   }
+}
+
+/**
+ * зачем (аудит «пропала сеть», Авторизация 13.10): здесь стояли немые `catch {}` — код ошибки сервера (unavailable, deadline-exceeded,
+ * resource-exhausted…) терялся, в журнале не было ничего. Причина пишется до превращения в «недоступно»; поведение прежнее.
+ */
+function logFreeformFailure(stage: 'start' | 'turn' | 'voice', startedAt: number, error: unknown): void {
+  const code = typeof (error as { code?: unknown })?.code === 'string' ? (error as { code: string }).code : 'unknown';
+  const message = error instanceof Error ? error.message.slice(0, 160) : String(error).slice(0, 160);
+  console.warn(`[DIALOG-NET] freeform:${stage} → недоступно ${JSON.stringify({ code, message, ms: Date.now() - startedAt })}`);
 }
 
 export async function sendDialogueV2FreeformTurn(
@@ -178,13 +190,15 @@ export async function sendDialogueV2FreeformTurn(
     console.warn('[DEV-STATE] freeform: ответ без сервера (dev_dialog_send)'); // guard-ok: dev-ветка
     return { ok: true, assistantMessage: 'Sure! Ask me anything about it. (dev)', sessionId: request.sessionId, expiresAtMs: Date.now() + 3_600_000 };
   }
+  const startedAt = Date.now();
   try {
     const callable = httpsCallable<DialogueV2FreeformSessionTurn, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformSessionTurn',
     );
     return validTurnResponse((await callable(request)).data, request);
-  } catch {
+  } catch (error) {
+    logFreeformFailure('turn', startedAt, error);
     throw new DialogueV2FreeformUnavailableError();
   }
 }
@@ -198,13 +212,15 @@ export async function requestDialogueV2FreeformPreparedBotVoice(
 ): Promise<DialogueV2FreeformPreparedBotVoiceTextOnlyResponse | null> {
   const request = validPreparedBotVoiceRequest(selection);
   if (!request) return null;
+  const startedAt = Date.now();
   try {
     const callable = httpsCallable<DialogueV2FreeformPreparedBotVoiceRequest, unknown>(
       getFunctions(getApp(), FUNCTIONS_REGION),
       'dialogueV2FreeformPreparedBotVoiceResolve',
     );
     return validPreparedBotVoiceTextOnlyResponse((await callable(request)).data);
-  } catch {
+  } catch (error) {
+    logFreeformFailure('voice', startedAt, error);
     throw new DialogueV2FreeformUnavailableError();
   }
 }

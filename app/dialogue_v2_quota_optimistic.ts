@@ -38,11 +38,18 @@ export function settleDialogueV2QuotaTurn(
   state: DialogueV2QuotaState,
   turnId: string,
   serverRemaining: number | null | undefined,
+  replayed = false,
 ): DialogueV2QuotaState {
   const pending = new Set(state.pending);
   const had = pending.delete(turnId);
-  const remaining = typeof serverRemaining === 'number' ? serverRemaining : state.remaining;
-  console.log(LOG, JSON.stringify({ event: 'settle', turn: shortId(turnId), had, serverRemaining: serverRemaining ?? null, pending: pending.size }));
+  // зачем (аудит «пропала сеть», Авторизация 13.10, п.4): ход дошёл до сервера (квота списана), ответ потерян → откат пилюли; повтор
+  // приходит replayed БЕЗ квоты — остаток оставался до-ходовым, пилюля «N/30» показывала на 1 больше. Повтор хода, который был в полёте,
+  // списывает 1 сам. Дубль ответа без хода в полёте (had=false) не трогаем — его уже снял первый ответ.
+  const replayCharge = replayed && had && typeof serverRemaining !== 'number' && typeof state.remaining === 'number';
+  const remaining = typeof serverRemaining === 'number'
+    ? serverRemaining
+    : replayCharge ? Math.max(0, (state.remaining as number) - 1) : state.remaining;
+  console.log(LOG, JSON.stringify({ event: replayCharge ? 'settle_replayed' : 'settle', turn: shortId(turnId), had, replayed, serverRemaining: serverRemaining ?? null, remaining, pending: pending.size }));
   return { remaining, pending };
 }
 

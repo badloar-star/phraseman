@@ -183,9 +183,15 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
         });
       }
     });
-    void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => { if (alive && chips) setFriends(chips); });
+    // зачем (аудит «пропала сеть», Авторизация 13.10): ранние выходы загрузки друзей и итога недели были немыми — пишем причину.
+    void spireLoadFriendChips(gate, { myUid: ids.uid, lang }).then((chips) => {
+      if (!alive) { DebugLogger.info(LOG, 'game: друзья пришли после ухода с экрана — не показываю'); return; }
+      if (!chips) { DebugLogger.info(LOG, 'game: друзей нет или не загрузились (null) — плашки друзей не будет'); return; }
+      setFriends(chips);
+    });
     void spireLoadWeekResult(gate, { uid: ids.uid, lang }).then((res) => {
-      if (!alive) return;
+      if (!alive) { DebugLogger.info(LOG, 'game: итог недели пришёл после ухода с экрана — не показываю'); return; }
+      if (!res) DebugLogger.info(LOG, 'game: итога недели нет (null) — карточки не будет');
       // зачем (там же): карточка «Итог недели» встаёт НАД башней — сдвиг контента идёт плавно, а не скачком.
       if (res) animateNextLayoutTransition();
       setWeekResult(res);

@@ -49,7 +49,8 @@ describe('Dialogue V2 completion client', () => {
       scenarioId: 'social_01',
       interfaceLang: 'en',
     });
-    expect(mockHttpsCallable).toHaveBeenCalledWith(expect.anything(), 'dialogueV2SessionComplete');
+    // аудит «пропала сеть» 13.10: свой потолок вызова итога (сервер — до 60 с)
+    expect(mockHttpsCallable).toHaveBeenCalledWith(expect.anything(), 'dialogueV2SessionComplete', { timeout: 45_000 });
     expect(mockCallable).toHaveBeenCalledWith({
       sessionId: 'd2s_abcdefghijklmnopqrstuvwxyz123456', studyTarget: 'en', scenarioId: 'social_01', interfaceLang: 'en',
     });

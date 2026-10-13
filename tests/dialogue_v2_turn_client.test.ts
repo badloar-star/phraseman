@@ -60,7 +60,8 @@ describe('Dialogue V2 text turn Firebase client', () => {
     await expect(startDialogueV2TextSession({ studyTarget: 'de', scenarioId: 'work_01' })).resolves.toEqual({
       ok: true, sessionId: `d2s_${'a'.repeat(32)}`, expiresAtMs: Date.UTC(2026, 9, 1),
     });
-    expect(mockHttpsCallable).toHaveBeenCalledWith({ region: 'us-central1' }, 'dialogueV2SessionStart');
+    // аудит «пропала сеть» 13.10: свой потолок вызова старта (сервер — до 20 с)
+    expect(mockHttpsCallable).toHaveBeenCalledWith({ region: 'us-central1' }, 'dialogueV2SessionStart', { timeout: 22_000 });
     expect(mockCallableRun).toHaveBeenCalledWith({ studyTarget: 'de', scenarioId: 'work_01' });
   });
 

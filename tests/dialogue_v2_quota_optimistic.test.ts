@@ -54,6 +54,20 @@ describe('переходы квоты', () => {
     const answered = settleDialogueV2QuotaTurn(sent, 'turn-a', null);
     expect(displayDialogueV2QuotaRemaining(answered)).toBe(7);
   });
+
+  // аудит «пропала сеть» 13.10, п.4: ответ потерян → откат → повтор приходит replayed без квоты — сервер ход уже списал.
+  it('повтор хода после отката (replayed без квоты) списывает 1; дубль без хода в полёте — нет', () => {
+    const sent = beginDialogueV2QuotaTurn(withRemaining(7), 'turn-a');
+    const rolledBack = rollbackDialogueV2QuotaTurn(sent, 'turn-a', 'network');
+    expect(displayDialogueV2QuotaRemaining(rolledBack)).toBe(7);
+    const resent = beginDialogueV2QuotaTurn(rolledBack, 'turn-a');
+    expect(displayDialogueV2QuotaRemaining(resent)).toBe(6);
+    const replayed = settleDialogueV2QuotaTurn(resent, 'turn-a', null, true);
+    expect(displayDialogueV2QuotaRemaining(replayed)).toBe(6);
+    const duplicate = settleDialogueV2QuotaTurn(replayed, 'turn-a', null, true);
+    expect(displayDialogueV2QuotaRemaining(duplicate)).toBe(6);
+    expect(displayDialogueV2QuotaRemaining(settleDialogueV2QuotaTurn(beginDialogueV2QuotaTurn(withRemaining(0), 'z'), 'z', null, true))).toBe(0);
+  });
 });
 
 describe('экран диалога зовёт переходы в нужных местах (контракт по исходнику)', () => {
@@ -62,7 +76,7 @@ describe('экран диалога зовёт переходы в нужных 
 
   it('отправка, ответ, лимит, пауза и сбой', () => {
     expect(screen).toContain('coaching.beginQuotaTurn(pending.turnId);');
-    expect(screen).toContain('coaching.applyQuota(result.quota, pending.turnId);');
+    expect(screen).toContain('coaching.applyQuota(result.quota, pending.turnId, result.replayed);');
     expect(screen).toContain('coaching.applyQuota(null, pending.turnId);');
     expect(screen).toContain('error.quotaObservation : null, pending.turnId);');
     expect(screen.split('coaching.rollbackQuotaTurn(pending.turnId, reason);').length - 1).toBe(2);

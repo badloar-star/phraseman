@@ -162,11 +162,12 @@ export function useDialogueV2SessionCoaching({ studyTarget, sessionId, freeTier 
     setQuota((current) => rollbackDialogueV2QuotaTurn(current, turnId, reason));
   }, []);
 
-  const applyQuota = useCallback((quota: DialogueV2CoachedTurnQuota | null, turnId?: string) => {
+  const applyQuota = useCallback((quota: DialogueV2CoachedTurnQuota | null, turnId?: string, replayed = false) => {
     if (!quota || quota.remaining === null) {
-      console.log(`[DIALOGUE-V2] quota:skip — ${quota ? 'remaining=null (безлимит)' : 'нет квоты в ответе'}`);
+      console.log(`[DIALOGUE-V2] quota:skip — ${quota ? 'remaining=null (безлимит)' : `нет квоты в ответе (replayed=${String(replayed)})`}`);
       // зачем (E3): ход отвечен — снимаем его из «в полёте» даже без остатка в ответе, иначе пилюля осталась бы −1.
-      if (turnId) setQuota((current) => settleDialogueV2QuotaTurn(current, turnId, null));
+      // Повтор хода (replayed) без квоты списывает 1 сам — см. settleDialogueV2QuotaTurn (аудит 13.10, п.4).
+      if (turnId) setQuota((current) => settleDialogueV2QuotaTurn(current, turnId, null, replayed));
       return;
     }
     console.log('[DIALOGUE-V2] quota:turn', JSON.stringify({

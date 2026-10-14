@@ -528,6 +528,15 @@ export function dismissPaywallModal(
   const chosen = safeTarget(candidate, fallback);
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
+  // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): какой веткой закрыли пейвол и что осталось сверху стека.
+  const canDismiss = typeof router.canDismiss === 'function' ? router.canDismiss() : 'n/a';
+  const branch = !shouldReplace && candidate !== null && canDismiss === true && typeof router.dismiss === 'function'
+    ? 'dismiss(1)'
+    : NATIVE_POP_TO_BACK_ENABLED && typeof router.dismissTo === 'function' ? 'dismissTo' : 'replace';
+  console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} dismiss leaving=${leaving?.href ?? 'none'} candidate=${candidate?.href ?? 'none'} chosen=${chosen.path} shouldReplace=${shouldReplace} canDismiss=${canDismiss} branch=${branch} stack=${navigationStack.map((e) => e.key).join('>')}`); // guard-ok: временная трассировка
+  setTimeout(() => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} dismiss +800ms top=${currentEntry()?.href ?? 'none'} stack=${navigationStack.map((e) => e.key).join('>')}`); // guard-ok: временная трассировка
+  }, 800);
 
   if (
     !shouldReplace

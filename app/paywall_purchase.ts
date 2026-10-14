@@ -1755,6 +1755,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   const closeLockUntilRef = useRef(0);
   const doClose = useCallback((reason: 'close' | 'continue_free') => {
     const nowMs = Date.now();
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} doClose reason=${reason} context=${context} source=${source} lockLeftMs=${Math.max(0, closeLockUntilRef.current - nowMs)}`); // guard-ok: временная трассировка
     if (nowMs < closeLockUntilRef.current) {
       DebugLogger.info('[PAYWALL]', `закрытие проигнорировано: повторный тап (reason=${reason}, lockLeftMs=${closeLockUntilRef.current - nowMs})`);
       return;
@@ -1828,11 +1829,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           alreadySeen: false,
           forceTrialUI: false,
         }));
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} handleClose reason=${reason} context=${context} source=${source} exitEligible=${exitEligible} exitAlreadyShown=${exitOfferShownRef.current} trialDays=${trialDays ?? 'none'}`); // guard-ok: временная трассировка
     if (
       !exitOfferShownRef.current &&
       source !== 'onboarding' &&
       exitEligible
     ) {
+      console.warn(`[WINBACK-FREEZE] t=${Date.now() % 100000} handleClose → exit-оффер перехватил закрытие (возможно только с dev _force_trial_ui: пейвол Plus передаёт disableExitOffer=true)`); // guard-ok: временная трассировка
       exitOfferShownRef.current = true;
       void (async () => {
         try {

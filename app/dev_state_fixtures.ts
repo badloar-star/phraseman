@@ -281,6 +281,10 @@ export type DevStateRequest = Readonly<{
   uiLang?: 'en' | 'off';
   /** «Сегодня» на Главной с заданием Пика (координатор 13.10, «Шпиль → Пик»): только показ, хранилище не трогается. */
   todaytask?: 'spire' | 'off';
+  /** [WINBACK-FREEZE]: гейт winback считает, что человек не заходил N дней (3 / 8 / 30) или снять. Только память. */
+  winbackaway?: '3' | '8' | '30' | 'off';
+  /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
+  edu?: 'parity' | 'off';
   /** EN-проход R1: off — при паре «интерфейс en + изучаю en» не открывать выбор языка изучения (только память). */
   enStudyPrompt?: 'on' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
@@ -404,6 +408,8 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.saveOffer = pick('saveOffer', ['progress', 'support', 'off'] as const);
   request.uiLang = pick('uiLang', ['en', 'off'] as const);
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
+  request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
+  request.edu = pick('edu', ['parity', 'off'] as const);
   request.enStudyPrompt = pick('enStudyPrompt', ['on', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
@@ -884,6 +890,20 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
     await step('todaytask', request.todaytask, async () => {
       const { setDevTodayTaskSpire } = await import('./dev_today_tasks');
       return setDevTodayTaskSpire(request.todaytask === 'spire');
+    });
+  }
+  if (request.winbackaway !== undefined) {
+    // зачем (координатор 14.10, 🔴 зависание после пейвола): пройти НАСТОЯЩИЙ путь winback (гейт → push из _layout) без недели ожидания
+    await step('winbackaway', request.winbackaway, async () => {
+      const { setDevWinbackAwayDays } = await import('./winback_offer');
+      return setDevWinbackAwayDays(request.winbackaway === 'off' ? null : Number(request.winbackaway));
+    });
+  }
+  if (request.edu !== undefined) {
+    // зачем (координатор 14.10, settings-gap-034): кадр «Обучения» расходился с образцом данными эмулятора, а не вёрсткой
+    await step('edu', request.edu, async () => {
+      const { setDevEduSettingsParity } = await import('./dev_edu_settings');
+      return setDevEduSettingsParity(request.edu === 'parity');
     });
   }
   if (request.enStudyPrompt !== undefined) {

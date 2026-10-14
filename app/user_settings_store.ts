@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { devEduSettingsOverlay } from './dev_edu_settings';
 import { patchAppSnapshot } from './app_snapshot_store';
 import { DebugLogger } from './debug-logger';
 import { beginSettingsStorageMutation, type SettingsBootReadScope } from '../lib/startup_settings_read_scope';
@@ -63,7 +64,8 @@ function normalizeSettings(raw: Partial<UserSettings> | null | undefined): UserS
 }
 
 export function getUserSettingsSnapshot(): UserSettings {
-  return { ...memory };
+  // зачем (координатор 14.10, settings-gap-034): dev-подмена показа «Автопроверка вкл, 1,0x» для кадра паритета; в стор-сборке — тот же объект.
+  return devEduSettingsOverlay({ ...memory });
 }
 
 export async function hydrateUserSettingsFromStorage(scope?: SettingsBootReadScope): Promise<void> {

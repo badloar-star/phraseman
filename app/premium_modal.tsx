@@ -139,6 +139,13 @@ export default function PremiumModalDispatcher() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rootNavReady]);
 
+  // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): жив ли прозрачный маршрут пейвола после закрытия.
+  useEffect(() => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} route mount context=${firstParam(params.context) || 'none'} source=${firstParam(params.source) || 'none'}`); // guard-ok: временная трассировка
+    return () => console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} route UNMOUNT context=${firstParam(params.context) || 'none'}`); // guard-ok: временная трассировка
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только момент монтирования/размонтирования маршрута
+  }, []);
+
   const entitlementDismissedRef = useRef(false);
   useEffect(() => {
     if (!rootNavReady || isManageContext || entryResolution?.decision !== 'dismiss') return;

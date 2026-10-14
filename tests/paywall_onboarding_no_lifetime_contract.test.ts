@@ -61,7 +61,8 @@ describe('lifetime (Phraseman Pro) sale is retired everywhere', () => {
 
   it('keeps the lifetime purchase code intact so Pro can be restored deliberately', () => {
     // Продажу вернуть можно снятием пломбы — путь покупки намеренно НЕ удалён.
-    expect(source).toContain("if (plan === 'lifetime' && !lifetimeAvailable) return;");
+    // зачем (Авторизация 14.10): a15631ea5 развернул ранний выход в блок с логом — смысл тот же: скрытый lifetime выбрать нельзя.
+    expect(source).toMatch(/if \(plan === 'lifetime' && !lifetimeAvailable\) (?:return;|\{[\s\S]{0,200}?return;)/);
   });
 
   it('ships the flag default as false so no build sells Pro', () => {

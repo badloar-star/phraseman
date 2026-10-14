@@ -3198,6 +3198,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
 
   const closeIntroFullAccessModal = useCallback(async (action: 'primary' | 'secondary') => {
     const variant = introFullAccessModal;
+    if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} intro_modal close variant=${variant ?? 'none'} action=${action} path=${pathnameRef.current}`); // guard-ok: закрытие окна конца интро
     if (!variant) return;
     if (variant === 'welcome') {
       await markIntroFullAccessWelcomeSeen().catch(noteSwallowedHandler('_layout:useCallback.markIntroFullAccessWelcomeSeen'));
@@ -3216,6 +3217,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const streakCount = parseInt((await AsyncStorage.getItem('streak_count').catch(noteSwallowedAs('_layout:useCallback.getItem', null))) || '0', 10) || 0;
       // replace на пейвол = всегда mark, иначе источник остаётся в стеке «назад» → петля.
       markNextNavigationAsReplace();
+      if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} intro_modal → replace /premium_modal context=intro_ended (окно конца интро только что снято setIntroFullAccessModal(null))`); // guard-ok: навигация на пейвол
       router.replace({
         pathname: '/premium_modal',
         params: { context: 'intro_ended', source: 'intro_ended', streak: String(streakCount) },
@@ -3266,7 +3268,10 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // ВАЖНО: сначала ОЦЕНИВАЕМ по сохранённой активности, ПОТОМ записываем свежую —
   // иначе разрыв всегда ~0. Не показываем одновременно с intro_ended (не два пейвола разом).
   const checkWinbackOffer = useCallback(async () => {
-    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) return;
+    if (!ready || effectiveShowOnboarding || isBanned || !firstContentReady) {
+      if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} check skip ready=${ready} onboarding=${effectiveShowOnboarding} banned=${isBanned} firstContent=${firstContentReady}`); // guard-ok: ранний выход называет причину
+      return;
+    }
     try {
       const { shouldShowWinback, markWinbackShown, recordLastActive } = await import('./winback_offer');
       const isPremium = await hasVerifiedRealPremiumOrVip();
@@ -3276,6 +3281,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       const introPending = introState?.expiredUnseen === true;
 
       const show = !introPending && (await shouldShowWinback({ isPremium, nowMs }));
+      if (__DEV__) console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} check decision show=${show} isPremium=${isPremium} introPending=${introPending} path=${pathnameRef.current}`); // guard-ok: решение показа
       if (show) {
         // Сначала навигация, потом отметка — если push упадёт, не «сжигаем» окно winback.
         globalRouter.push({ pathname: '/premium_modal', params: { context: 'winback', source: 'winback' } } as Href);

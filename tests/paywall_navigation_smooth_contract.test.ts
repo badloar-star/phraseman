@@ -65,6 +65,18 @@ describe('paywall navigation and scroll smoothness contract', () => {
     expect(source).not.toContain('<Animated.View');
   });
 
+  // зачем (координатор 14.10, свайп вниз закрывает шторку): перетаскивание вынесено в PaywallSwipeSheet. Это не входная анимация —
+  // сдвиг стартует с 0, первый кадр шторки финальный; закрытие идёт тем же путём, что крестик.
+  it('lets the paywall sheet be swiped down without an entrance animation', () => {
+    const screen = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallPlusScreen.tsx'), 'utf8');
+    const sheet = fs.readFileSync(path.join(root, 'components', 'paywall', 'PaywallSwipeSheet.tsx'), 'utf8');
+    expect(screen).toContain('<PaywallSwipeSheet');
+    expect(screen).toContain("p.handleClose('close')");
+    expect(sheet).toContain('useSharedValue(0)');
+    expect(sheet).not.toMatch(/entering=|FadeIn|SlideIn/);
+    expect(sheet).toContain('.enabled(enabled)');
+  });
+
   it('dismisses paywalls through native modal dismissal when possible', () => {
     const purchase = readAppFile('paywall_purchase.ts');
     const nav = readAppFile('navigation_back.ts');

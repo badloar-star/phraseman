@@ -7,8 +7,10 @@
 // защита жестов на время оплаты и экран «Напомнить о конце пробного?» после покупки.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useOverlayActiveKey } from '../OverlayArbiter'; // зачем: [WINBACK-FREEZE] — кто держит слот окон, пока открыт пейвол
 import { parseDevPaywallState } from '../../app/dev_paywall_state';
 import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { PaywallSwipeSheet } from './PaywallSwipeSheet';
 import { Stack, useLocalSearchParams } from 'expo-router';
 
 import { useLang } from '../LangContext';
@@ -164,6 +166,24 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     ? { ...baseOptions, gestureEnabled: false }
     : baseOptions), [baseOptions, checkoutInFlight, prompt]);
 
+  // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло»): экран пейвола жив? кто обработал «назад»? кто держит слот окон?
+  const freezeOverlayKey = useOverlayActiveKey();
+  useEffect(() => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet mount context=${ctx} source=${source}`); // guard-ok: временная трассировка
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet android_back context=${ctx} checkout=${checkoutInFlight} prompt=${!!prompt}`); // guard-ok: временная трассировка
+      return false;
+    });
+    return () => {
+      sub.remove();
+      console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet UNMOUNT context=${ctx}`); // guard-ok: временная трассировка
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: только момент монтирования/размонтирования
+  }, []);
+  useEffect(() => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet arbiter active=${freezeOverlayKey ?? 'none'}`); // guard-ok: временная трассировка
+  }, [freezeOverlayKey]);
+
   // Android «назад»: во время оплаты — игнор; на экране напоминания — как «Не сейчас».
   const { skipTrialReminder } = p;
   useEffect(() => {
@@ -188,7 +208,16 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
     yearlyApprox: p.yearlyPriceSource === 'reference', monthlyApprox: p.monthlyPriceSource === 'reference',
   });
 
+  // зачем (координатор 14.10, 🔴 «закрыл предложение — всё зависло», Сверка WB-4): «ручка» шторки обещает свайп вниз — теперь
+  // он закрывает тем же путём, что крестик. Во время оплаты и на экране напоминания свайп выключен.
+  const swipeEnabled = !checkoutInFlight && !prompt;
+  const onSwipeClose = (dy: number) => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet swipe_close dy=${Math.round(dy)} context=${ctx}`); // guard-ok: закрытие свайпом
+    p.handleClose('close');
+  };
+
   const closeWindow = () => {
+    console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet scrim_tap checkout=${checkoutInFlight}`); // guard-ok: временная трассировка
     if (checkoutInFlight) return;
     p.handleClose('close');
   };
@@ -209,13 +238,15 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
           {/* зачем (решение владельца 11.10, вариант 1 «Шторка»): окно выезжает поверх того экрана, где человек был, — за ним затемнённый
               прежний экран, тап по затемнению закрывает (кроме времени оплаты). */}
           <PaywallScrim onPress={closeWindow} />
-          <View testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}>
-            <PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
-              onClose={() => p.handleClose('close')}
+          <PaywallSwipeSheet testID="paywall-sheet" style={[S.sheet, { backgroundColor: paywallSheetBg(g), maxHeight: windowHeight - insets.top - 8 }]}
+            enabled={swipeEnabled} travel={windowHeight} onSwipeClose={onSwipeClose}
+            header={<PaywallPlusHeader lang={lang} g={g} trialDays={yearlyTrialDays} closeDisabled={checkoutInFlight}
+              onClose={() => { console.log(`[WINBACK-FREEZE] t=${Date.now() % 100000} sheet close_button`); p.handleClose('close'); }}
               contextTitle={contextual ? headline.title : undefined}
               contextSubtitle={contextual ? headline.subtitle : undefined}
               contextIcon={contextual ? <PaywallContextIcon ctx={ctx} size={26} color={g.accentText} /> : undefined}
-              contextPill={contextual ? contextPill : undefined} />
+              contextPill={contextual ? contextPill : undefined} />}
+          >
             <PaywallPlusScroll>
               {/* зачем: выгода этого входа стоит над тарифами (`.ben.glass` макета). */}
               <PaywallPlusDetails lang={lang} g={g}
@@ -249,7 +280,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               // а вернувшийся покупатель как раз сюда и идёт. Блокируем только на время самой оплаты/восстановления.
               restoring={p.restoring} restoreDisabled={checkoutInFlight}
               onRestore={() => { void p.handleRestore(); }} />
-          </View>
+          </PaywallSwipeSheet>
         </>
       )}
     </View>

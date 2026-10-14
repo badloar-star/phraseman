@@ -107,6 +107,11 @@ export interface UseStudyLanguageSelectionArgs {
   onSwitched?: () => void | Promise<void>;
   /** Запись не удалась и язык НЕ сменился — откатить оптимистичную отметку (тост об ошибке хук показывает сам). */
   onSwitchFailed?: (code: StudyTarget) => void;
+  /**
+   * D188 (владелец 14.10: «И ВСЕ РАЗБЛОКИРОВАНЫ», тап по любому языку сразу переключает обучение): неначатый язык
+   * включается тем же путём, что начатый (applyStudyLanguageSelection сам отмечает его начатым), без экрана приветствия.
+   */
+  switchNewLanguagesDirectly?: boolean;
 }
 
 /**
@@ -123,6 +128,7 @@ export function useStudyLanguageSelection({
   onSwitchStart,
   onSwitched,
   onSwitchFailed,
+  switchNewLanguagesDirectly = false,
 }: UseStudyLanguageSelectionArgs) {
   const router = useRouter();
   // зачем (аудит «мгновенное открытие», 04.10): если список начатых языков уже известен в памяти (по аккаунту) — берём его первым кадром и считаем
@@ -161,7 +167,7 @@ export function useStudyLanguageSelection({
       return 'ignored_same';
     }
     doHaptic();
-    if (!startedLanguagesResolved) {
+    if (!startedLanguagesResolved && !switchNewLanguagesDirectly) {
       // Open an opaque resolver route in this frame. It performs the storage
       // decision after navigation, so a cold tap is both immediate and correct.
       if (__DEV__) console.log(`${logTag} branch=resolver route=/language_welcome target=${code} resolveStarted=1`);
@@ -172,9 +178,10 @@ export function useStudyLanguageSelection({
       } as any);
       return 'resolver';
     }
-    if (startedLanguages.includes(code)) {
-      // Уже начатый язык — свободное переключение, прогресс сохранён за языком.
-      if (__DEV__) console.log(`${logTag} branch=switch from=${activeTarget} to=${code}`);
+    const alreadyStarted = startedLanguages.includes(code);
+    if (alreadyStarted || switchNewLanguagesDirectly) {
+      // Уже начатый язык — свободное переключение, прогресс сохранён за языком; D188 — так же и новый язык.
+      if (__DEV__) console.log(`${logTag} branch=switch from=${activeTarget} to=${code} started=${alreadyStarted} direct=${switchNewLanguagesDirectly} resolved=${startedLanguagesResolved}`);
       busyRef.current = true;
       setBusy(true);
       onSwitchStart?.(code);
@@ -215,7 +222,7 @@ export function useStudyLanguageSelection({
     onBeforeNavigate?.();
     router.push({ pathname: '/language_welcome', params: { target: code } } as any);
     return 'welcome';
-  }, [activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, onSwitchStart, onSwitchFailed, onBeforeNavigate, reloadStarted, logTag]);
+  }, [activeTarget, startedLanguages, startedLanguagesResolved, lang, router, onSwitched, onSwitchStart, onSwitchFailed, onBeforeNavigate, reloadStarted, logTag, switchNewLanguagesDirectly]);
 
   return { options, startedLanguages, startedLanguagesResolved, busy, select };
 }

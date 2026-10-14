@@ -14,11 +14,12 @@
 // check s20 (kit.js), выбранный язык первым.
 //
 // D188 (владелец 14.10): все пять языков видны и открыты при любом интерфейсе — без замка, без серого
-// флага; у неначатого языка подписи нет вовсе (координатор: минимум элементов), тап сразу ведёт на
-// приветствие языка (/language_welcome) через общий хук.
+// флага; у неначатого языка подписи нет вовсе (координатор: минимум элементов). Английский — обычная строка
+// наравне с остальными при ЛЮБОМ языке интерфейса («это языки изучения, а не интерфейса»). Тап по любому
+// языку сразу переключает обучение (общий хук, switchNewLanguagesDirectly) — без экрана приветствия.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
 import Svg, { Path } from 'react-native-svg';
@@ -29,18 +30,10 @@ import { useTheme } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { StudyTarget } from '../../app/study_target';
+import { orderStudyLanguageSheetOptions } from './study_language_sheet_order';
 import { hapticTap } from '../../hooks/use-haptics';
 
-/** Порядок макета: выбранный язык первым, остальные — en, es, fr, de, it. */
-export function orderStudyLanguageSheetOptions(options: readonly StudyTarget[], activeTarget: StudyTarget): StudyTarget[] {
-  const canonical: readonly StudyTarget[] = ['en', 'es', 'fr', 'de', 'it'];
-  const rank = (code: StudyTarget) => {
-    const index = canonical.indexOf(code);
-    return index < 0 ? canonical.length : index;
-  };
-  const rest = options.filter((code) => code !== activeTarget).slice().sort((a, b) => rank(a) - rank(b));
-  return options.includes(activeTarget) ? [activeTarget, ...rest] : rest;
-}
+export { orderStudyLanguageSheetOptions };
 
 interface StudyLanguageSheetProps {
   visible: boolean;
@@ -111,8 +104,16 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
     onCloseNow();
   }, [logTag, onCloseNow]);
 
-  const { options, startedLanguages, startedLanguagesResolved, select } = useStudyLanguageSelection({ lang, activeTarget, logTag, onSwitchStart, onBeforeNavigate });
+  const { options, startedLanguages, startedLanguagesResolved, select } = useStudyLanguageSelection({
+    lang, activeTarget, logTag, onSwitchStart, onBeforeNavigate, switchNewLanguagesDirectly: true,
+  });
   const ordered = useMemo(() => orderStudyLanguageSheetOptions(options, activeTarget), [options, activeTarget]);
+  const orderedKey = ordered.join(',');
+  const startedKey = startedLanguages.join(',');
+  useEffect(() => {
+    // зачем (D188, координатор): по одной строке видно, какой интерфейс и какой итоговый список увидел человек.
+    console.log(`[LEARN-LANG] sheet ui=${lang} list=${orderedKey} count=${orderedKey.split(',').length} active=${activeTarget} started=${startedKey} resolved=${startedLanguagesResolved} from=${logTag}`);
+  }, [lang, orderedKey, activeTarget, startedKey, startedLanguagesResolved, logTag]);
 
   const onRowPress = useCallback((code: StudyTarget, learning: boolean) => {
     if (dismissingRef.current) {
@@ -125,10 +126,10 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
       closeAnimated('already_selected');
       return;
     }
-    // зачем (D188): новый язык открыт — общий select сам выбирает путь (resolver / switch / welcome) и уводит мгновенно.
+    // зачем (D188): любой язык открыт — общий select сразу переключает обучение (галочка и закрытие в кадре тапа).
     const route = select(code);
-    console.log(`[LEARN-LANG] select lang=${code} started=${learning} resolved=${startedLanguagesResolved} route=${route} from=${logTag}`);
-  }, [closeAnimated, logTag, select, shownTarget, startedLanguagesResolved]);
+    console.log(`[LEARN-LANG] select ui=${lang} lang=${code} started=${learning} resolved=${startedLanguagesResolved} route=${route} from=${logTag}`);
+  }, [closeAnimated, lang, logTag, select, shownTarget, startedLanguagesResolved]);
 
   return (
     <View style={styles.list}>

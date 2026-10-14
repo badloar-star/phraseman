@@ -44,7 +44,7 @@ import { useStudyLanguageSelection } from '../components/settings/StudyLanguageP
 const ROOT = path.resolve(__dirname, '..');
 const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
 
-function renderSelection(extra: { onBeforeNavigate?: () => void; onSwitchStart?: (code: string) => void } = {}) {
+function renderSelection(extra: { onBeforeNavigate?: () => void; onSwitchStart?: (code: string) => void; switchNewLanguagesDirectly?: boolean } = {}) {
   return renderHook(() => useStudyLanguageSelection({ lang: 'ru', activeTarget: 'en', logTag: '[VIDEO-LANG-PILL]', ...extra }));
 }
 
@@ -118,6 +118,20 @@ describe('useStudyLanguageSelection — выбор изучаемого язык
     expect(mockApply).not.toHaveBeenCalled();
   });
 
+  it('D188: с switchNewLanguagesDirectly новый язык сразу включается тем же путём, без приветствия', async () => {
+    const onSwitchStart = jest.fn();
+    const onBeforeNavigate = jest.fn();
+    const { result } = await renderSelection({ onSwitchStart, onBeforeNavigate, switchNewLanguagesDirectly: true });
+    let outcome: string | undefined;
+    await act(async () => { outcome = result.current.select('fr'); });
+    expect(outcome).toBe('switch');
+    expect(onSwitchStart).toHaveBeenCalledWith('fr');
+    expect(onBeforeNavigate).not.toHaveBeenCalled();
+    expect(mockApply).toHaveBeenCalledWith('fr', 'ru');
+    expect(mockPush).not.toHaveBeenCalled();
+    await waitFor(() => expect(mockEmit).toHaveBeenCalledWith('action_toast', expect.objectContaining({ type: 'success' })));
+  });
+
   it('тап по текущему языку ничего не делает', async () => {
     const { result } = await renderSelection();
     let outcome: string | undefined;
@@ -167,6 +181,7 @@ describe('шторка «Язык изучения» — по макету PRF-2
     expect(sheet).not.toContain('<KitLockFilledIcon');
     expect(sheet).not.toContain('not_started_locked');
     expect(sheet).toContain('const route = select(code);');
+    expect(sheet).toContain('switchNewLanguagesDirectly: true');
     expect(read('components/settings/StudyLanguagePicker.tsx')).toContain("router.push({ pathname: '/language_welcome', params: { target: code } } as any);");
   });
 

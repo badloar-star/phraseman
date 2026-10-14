@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { isStudyTargetAllowedForUi, studyTargetsForSourceLocale } from '../app/study_target';
+import { orderStudyLanguageSheetOptions } from '../components/settings/study_language_sheet_order';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 const ALL = ['en', 'es', 'fr', 'de', 'it'];
@@ -15,6 +16,17 @@ describe('D188: all study languages are offered and open', () => {
     expect(isStudyTargetAllowedForUi('en', 'en')).toBe(true);
   });
 
+  it('the sheet lists exactly five languages, English included, for every interface and every active language', () => {
+    for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      for (const active of ALL as ('en' | 'es' | 'fr' | 'de' | 'it')[]) {
+        const rows = orderStudyLanguageSheetOptions(studyTargetsForSourceLocale(lang), active);
+        expect(rows).toHaveLength(5);
+        expect(rows[0]).toBe(active);
+        expect([...rows].sort()).toEqual([...ALL].sort());
+      }
+    }
+  });
+
   it('the study language sheet has no lock, no greyed flag and no caption for a not-started language', () => {
     const sheet = read('components/settings/StudyLanguageSheet.tsx');
     expect(sheet).not.toContain('STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES');
@@ -23,7 +35,10 @@ describe('D188: all study languages are offered and open', () => {
     expect(sheet).not.toContain('access being confirmed');
     expect(sheet).toContain('sub={active ? sub.selected : learning ? sub.learning : undefined}');
     expect(sheet).toContain('const route = select(code);');
-    expect(sheet).toContain('[LEARN-LANG] select lang=${code} started=${learning}');
+    expect(sheet).toContain('switchNewLanguagesDirectly: true');
+    expect(sheet).not.toMatch(/[Сс]коро|coming soon|в разработке/);
+    expect(sheet).toContain('[LEARN-LANG] sheet ui=${lang} list=${orderedKey}');
+    expect(sheet).toContain('[LEARN-LANG] select ui=${lang} lang=${code} started=${learning}');
   });
 
   it('the en+en migration prompt is gone (the pair is allowed now)', () => {

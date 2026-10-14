@@ -5,7 +5,7 @@
 // Это чистые данные: ни сети, ни записей, ни реальных людей (имена выдуманные). Файл НЕ импортируется боевым кодом —
 // только маршрутом app/dev_spire_preview.tsx (охраняет tests/spire_dev_preview_release_guard.test.mjs).
 // ═══════════════════════════════════════════════════════════
-import { SPIRE_CONFIG_DEFAULTS, type SpireConfigDoc } from '../../modules/spire/config_contract';
+import { SPIRE_CONFIG_DEFAULTS, spireBotWeekCoins, type SpireConfigDoc } from '../../modules/spire/config_contract';
 import { SPIRE_WEEK_LOCAL_SCHEMA_VERSION, type SpireWeekLocal } from '../../modules/spire/report_queue';
 import type { SpireRoomRow } from '../../modules/spire/room_rows';
 import type { SpirePackTask } from '../../modules/spire/pack_plan';
@@ -119,9 +119,10 @@ function rows(mySteps: number, count = 12, aroundFloor?: number): readonly Spire
   const list: SpireRoomRow[] = NAMES.slice(0, count - 1).map((name, i) => {
     const floor = Math.min(PREVIEW_SUMMIT_FLOOR, Math.max(1, myFloor + RIVAL_FLOOR_OFFSETS[i % RIVAL_FLOOR_OFFSETS.length]));
     const steps = spireCumulativeSteps(floor - 1) + 1 + (i % 2); // начало этажа + 0…1 ступень
-    return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false, coinRank: PREVIEW_COIN_LEVELS[i % PREVIEW_COIN_LEVELS.length] };
+    return { uid: `preview-${i}`, name, steps, reachedAtMs: now - (i + 1) * 900_000, isMe: false, coinRank: PREVIEW_COIN_LEVELS[i % PREVIEW_COIN_LEVELS.length], weekCoins: spireBotWeekCoins(steps) };
   });
-  list.push({ uid: 'preview-me', name: 'Ты', steps: mySteps, reachedAtMs: now - 120_000, isMe: true });
+  // зачем (координатор 14.10, D162): монеты недели превью — по формуле ботов (30 за ступень), чтобы при rankBy=coins подиум показывал «8 511», а не нули
+  list.push({ uid: 'preview-me', name: 'Ты', steps: mySteps, reachedAtMs: now - 120_000, isMe: true, weekCoins: spireBotWeekCoins(mySteps) });
   const sorted = list.sort((a, b) => b.steps - a.steps || a.reachedAtMs - b.reachedAtMs);
   if (activeOverrides.nicks !== 'long') return sorted;
   // nicks=long: длинные ники получают первые три места подиума (себя не переименовываем)

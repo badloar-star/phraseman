@@ -59,6 +59,7 @@ import { isDailyPhraseCardHalfVisible } from '../daily_phrase_pulse';
 import { useOverlayActiveKey, useOverlayVisible } from '../../components/OverlayArbiter';
 import { useSpireWeekMoment } from '../spire/use_spire_week_moment';
 import { useWelcomeBackMoment } from '../../hooks/use_welcome_back_moment';
+import { useCoinRankEnoughMoment } from '../use_coin_rank_enough_moment';
 import { peekEnergy } from '../energy_peek_cache';
 import { SheetSwipeRoot } from '../../components/modal_fx/SheetSwipeClose';
 import {
@@ -146,6 +147,8 @@ import { noteSwallowedAs, noteSwallowedHandler } from '../swallow_log'; // за�
 const SpireWeekMomentHost = lazy(() => import('../../components/spire/moments/SpireWeekMomentHost'));
 // зачем (D193, владелец 14.10): «С возвращением» (m21) — раз после долгой отлучки; грузится лениво, когда хук Авторизации дал слот
 const WelcomeBackMoment = lazy(() => import('../../components/moments/WelcomeBackMoment'));
+// зачем (m14A, Ядро 14.10): «Хватает на ранг N» — когда монет впервые хватает на следующий ранг; слот в той же очереди окон (после «С возвращением»), грузится лениво
+const CoinRankEnoughDialog = lazy(() => import('../../components/coin_rank_moments/CoinRankEnoughDialog'));
 const loadPremiumCelebrationModal = () => import('../../components/PremiumCelebrationModal');
 const loadVipCelebrationModal = () => import('../../components/VipCelebrationModal');
 const loadSurveySheetModal = () => import('../../components/survey/SurveySheetModal');
@@ -660,6 +663,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         energy: energyPeekNow ? { current: energyPeekNow.energy, max: energyPeekNow.maxEnergy } : null,
         active: homeRuntimeActive,
     });
+    const rankEnough = useCoinRankEnoughMoment({ active: homeRuntimeActive });
     const overlayActiveKey = useOverlayActiveKey();
     const overlayActiveKeyRef = useRef(overlayActiveKey);
     overlayActiveKeyRef.current = overlayActiveKey;
@@ -2663,6 +2667,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 decision={welcomeBack.decision}
                 onCards={() => { welcomeBack.close(); nav.push({ pathname: '/flashcards_collection', params: { cat: 'saved', from: 'welcome_back' } } as never); }} /* зачем: тот же путь, что у плитки «Сохранённые» на Главной */
                 onHome={welcomeBack.close}
+              />
+            </Suspense>
+          </SheetSwipeRoot>
+        </Modal>
+      ) : null}
+      {rankEnough.visible && rankEnough.offer ? (
+        <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={rankEnough.close}>
+          <SheetSwipeRoot>
+            <Suspense fallback={null}>
+              <CoinRankEnoughDialog
+                lang={lang}
+                coinRank={rankEnough.offer.rank}
+                coins={rankEnough.offer.balance}
+                onUpgrade={() => { rankEnough.close(); nav.push('/coin_rank'); }} /* зачем: покупка — на своём экране ранга (церемония чеканки), окно только сообщает */
+                onLater={rankEnough.close}
               />
             </Suspense>
           </SheetSwipeRoot>

@@ -60,6 +60,7 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: 
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
 const mockPlayEvent = jest.fn();
 jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: (...args: unknown[]) => mockPlayEvent(...args) }));
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: jest.fn() })); // звук листания 'story' ведут Темы через мост (флаг sound_v2)
 jest.mock('../components/spire/SpireRankCoin', () => ({ __esModule: true, default: 'SpireRankCoin' }));
 jest.mock('../components/spire/useSpireScene', () => ({ useSpireScene: () => ({ light: false }) }));
 jest.mock('../components/spire/SpireTowerSvg', () => ({ __esModule: true, default: 'SpireTowerSvg' }));
@@ -154,7 +155,6 @@ describe('просмотр сторис', () => {
     expect(screen.queryByTestId('story-viewer-bar-1-live')).toBeNull();
     expect(screen.getByText('Твои события')).toBeTruthy();
     expect(screen.getByTestId('story-viewer-when').props.children).toBe('сегодня');
-    expect(mockPlayEvent).toHaveBeenCalledWith('story');
     await fireEvent.press(screen.getByTestId('story-viewer-close'));
     expect(mockPlayEvent).toHaveBeenCalledWith('sheet_close');
     expect(onClose).toHaveBeenCalledTimes(1);

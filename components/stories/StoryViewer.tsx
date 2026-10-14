@@ -129,7 +129,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     const event = events[k];
     DebugLogger.info(LOG, `кадр ${k + 1}/${count} id=${event?.id ?? '—'} тип=${event?.type ?? '—'} автопереход=${String(!screenReaderRef.current)}`);
     if (event) onSeenRef.current(event.id);
-    playEvent('story');
+    // звук листания 'story' ведёт общий мост tryPlayV2Event выше (решение координатора 14.10: звуки ведут Темы; свой playEvent убран, чтобы не звучало дважды)
     if (!screenReaderRef.current && !pausedRef.current) runBar(0);
   }, [appear, close, count, events, progress, reduceMotion, runBar]);
   goRef.current = go;

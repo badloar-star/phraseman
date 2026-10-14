@@ -3,6 +3,8 @@
 Governance-ID: TG-4F19D0DD244F
 Governance-ID: TG-1C31BD192B82
 Governance-ID: TG-7E03FC0B275A
+Governance-ID: TG-004D2A3B39CE
+Governance-ID: TG-56A1F3C432E8
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН» по решению координатора (14.10)
 Related epic/enabler: `docs/phraseman-2.0/ETALON_MOMENTS_V3_TRANSFER.md` (ТЗ), образец `docs/design/v2-app/engagement-moments-v3-all.html`, [moments-v3-peak-m01-m03-2026-10-14.md](moments-v3-peak-m01-m03-2026-10-14.md)

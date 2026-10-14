@@ -9,6 +9,7 @@
 //   state=streak&d=N — рубеж серии (1,3,7,14,30,50,100,150,200,250,300,365,400,500,600,730,800,900,1000; по умолчанию 7); state=rings&p=1,3,10 — выполнено по трём кольцам «Сегодня» (по умолчанию 0,1,2)
 //   state=back — «С возвращением» (m21): моки образца — 9 дней, 412 фраз, ранг &rank=N (5), энергия полная, 5 карточек; state=rankenough — «Хватает на ранг N» (m14A): &rank=N текущий 0…18 (5), &coins=N баланс (7004)
 //   state=down&awake=1 — «Новая неделя» после тапа (финальный кадр эталона m03)
+//   state=steppass | stepfail | floor | summit — m06 «Ступень пройдена / не пройдена» и m07 «Этаж пройден / Вершина» на моках образца (&tier=N лига для башни, &rank=N ранг монеты)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную; в стор-сборке файл исключён регуляркой router.ctx.js.
@@ -22,6 +23,10 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import CoinRankEnoughDialog from '../components/coin_rank_moments/CoinRankEnoughDialog';
 import WelcomeBackMoment from '../components/moments/WelcomeBackMoment';
+import SpireFloorMoment from '../components/spire/moments/SpireFloorMoment';
+import SpireStepResultMoment from '../components/spire/moments/SpireStepResultMoment';
+import type { SpireStepOutcome } from './spire/use_spire_game';
+import type { SpireCoinsConfig } from '../modules/spire/config_contract';
 import MomentDown from '../components/spire/moments/MomentDown';
 import MomentPromotion, { type MomentRoomRow } from '../components/spire/moments/MomentPromotion';
 import MomentStay from '../components/spire/moments/MomentStay';
@@ -30,10 +35,18 @@ import TodayRings from '../components/streak/moments/TodayRings';
 import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../components/streak/moments/streak_milestones';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
+// моки итога ступени (m06/m07): числа образца — 10 из 10, 1:12 из 2:00, ступень 7 на этаже 4, этаж 4 = 40 монет (10 × N), вершина +200
+const MOCK_COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 } as unknown as SpireCoinsConfig;
+const mockOutcome = (kind: SpireStepOutcome['kind'], tier: number): SpireStepOutcome => ({
+  kind, report: {} as never, errors: kind === 'failed' ? 3 : 0, usedMs: 72_000, budgetMs: 120_000,
+  floorBefore: kind === 'summit' ? 15 : 4,
+  local: { tier, floor: kind === 'floor' ? 5 : kind === 'summit' ? 16 : 4, stepInFloor: kind === 'floor' || kind === 'summit' ? 0 : 7, stepsCleared: 27 } as never,
+  failReason: (kind === 'failed' ? 'hearts' : null) as never,
+});
 
 /** Комната недели образца (engagement-moments-v3-all.html): «Ты» — 5-й, повышаются 5 из 30. */
 const MOCK_ROWS: readonly MomentRoomRow[] = [
@@ -92,6 +105,12 @@ function Inner() {
         ) : null}
         {state === 'rankenough' ? (
           <CoinRankEnoughDialog key={key} lang={lang} coinRank={Math.min(rank, 18)} coins={coins} onUpgrade={noop} onLater={noop} />
+        ) : null}
+        {state === 'steppass' || state === 'stepfail' ? (
+          <SpireStepResultMoment key={key} lang={lang} outcome={mockOutcome(state === 'steppass' ? 'passed' : 'failed', tier)} coins={MOCK_COINS} coinRank={rank} onAgain={noop} onLater={noop} />
+        ) : null}
+        {state === 'floor' || state === 'summit' ? (
+          <SpireFloorMoment key={key} lang={lang} outcome={mockOutcome(state, tier)} coins={MOCK_COINS} coinRank={rank} onNext={noop} onLater={noop} />
         ) : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">

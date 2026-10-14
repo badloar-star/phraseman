@@ -8,7 +8,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { SPIRE_LEAGUE_SKINS } from '../modules/spire/tower_skins';
 import { SPIRE_TOWER_GEOM, SPIRE_TW } from '../components/spire/spire_tower_model';
-import { spireMaxTowerHeadroom, spireTowerBounds, spireWeekTopViewBox } from '../components/spire/spire_tower_bounds';
+import { spireMaxTowerHeadroom, spireTowerBounds, spireTowerFitScale, spireTowerHeadroom, spireTowerNeedUnits, spireWeekTopViewBox } from '../components/spire/spire_tower_bounds';
+import { spireCrownTopY, spireWindowScrollY } from '../components/spire/spire_tower_crown';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
@@ -49,6 +50,31 @@ describe('башня Пика: граница ⊂ контейнер', () => {
     const slack = /SPIRE_FINIAL_SLACK\s*=\s*(\d+)/.exec(crown);
     expect(slack === null || Number(slack[1]) === 0).toBe(true);
     expect(read('components/spire/SpireTower.tsx')).toContain('spireTowerHeadroom(skin, myFloor === SPIRE_FLOOR_COUNT)');
+  });
+
+  it('окна 320/360/399 dp × вершина (и 14 этаж): в покое и при автоскролле вся башня с ореолом и свой этаж в кадре — при нехватке места меньше масштаб, а не срез', () => {
+    // зачем (координатор 14.10): низкое окно Пика — масштаб башни под окно; срез допустим только при ручной прокрутке человеком
+    const baseScale = 0.95;
+    for (const skin of SPIRE_LEAGUE_SKINS) {
+      for (const floorNo of [14, 15]) {
+        const summit = floorNo === 15;
+        const fl = SPIRE_TOWER_GEOM.floors[floorNo - 1];
+        const headroom = spireTowerHeadroom(skin, summit);
+        for (const windowH of [320, 360, 399]) {
+          const scale = spireTowerFitScale(baseScale, windowH, spireTowerNeedUnits(headroom, fl.y + fl.h - SPIRE_TOWER_GEOM.top));
+          const crownTopY = spireCrownTopY(SPIRE_TOWER_GEOM.top, scale, headroom);
+          const y = spireWindowScrollY({ cy: (fl.y + fl.h / 2) * scale, windowH, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop: true });
+          const topVisible = y <= crownTopY + 0.5; // верх границы (с ореолом) не выше верха окна
+          const floorVisible = (fl.y + fl.h) * scale <= y + windowH + 0.5;
+          expect([skin.id, floorNo, windowH, topVisible, floorVisible]).toEqual([skin.id, floorNo, windowH, true, true]);
+          expect(scale).toBeLessThanOrEqual(baseScale);
+        }
+      }
+    }
+    // башня берёт масштаб под окно именно так
+    const tower = read('components/spire/SpireTower.tsx');
+    expect(tower).toContain('spireTowerFitScale(baseScale, windowHeight');
+    expect(tower).toContain('const renderWidth = SPIRE_TW * scale;');
   });
 
   it('тур: контейнер башни без overflow:hidden и без отрицательного marginTop', () => {

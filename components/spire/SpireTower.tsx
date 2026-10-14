@@ -22,7 +22,7 @@ import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
 import { SPIRE_CROWN_RISE, spireCrownTopY, spireWindowScrollY } from './spire_tower_crown';
-import { spireTowerHeadroom } from './spire_tower_bounds';
+import { spireTowerFitScale, spireTowerHeadroom, spireTowerNeedUnits } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
 
 const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
@@ -114,7 +114,20 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   const reduceMotion = useReduceMotion();
   const scrollRef = useRef<ScrollView>(null);
   const [width, setWidth] = useState(0);
-  const scale = width > 0 ? width / SPIRE_TW : 0;
+  // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не перерисовывается зря;
+  // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются.
+  const devTier = getDevSpireTierOverride();
+  const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);
+  // зачем (закон владельца 14.10, «ничем не обрезаться вообще»; координатор: при нехватке места — меньше масштаб): на 14–15 этаже башня с ореолом и свой этаж обязаны
+  // уместиться в окне — масштаб = min(по ширине, высота окна / нужные единицы). Срез допустим только при ручной прокрутке. Для остальных этажей масштаб прежний.
+  const nearTopFloor = myFloor !== null && myFloor >= SPIRE_FLOOR_COUNT - 1;
+  const headroom = spireTowerHeadroom(skin, myFloor === SPIRE_FLOOR_COUNT);
+  const ownFloor = myFloor !== null ? SPIRE_TOWER_GEOM.floors[Math.min(myFloor, SPIRE_FLOOR_COUNT) - 1] : null;
+  const baseScale = width > 0 ? width / SPIRE_TW : 0;
+  const scale = nearTopFloor && ownFloor && baseScale > 0
+    ? spireTowerFitScale(baseScale, windowHeight, spireTowerNeedUnits(headroom, ownFloor.y + ownFloor.h - SPIRE_TOWER_GEOM.top))
+    : baseScale;
+  const renderWidth = SPIRE_TW * scale;
   const tx = useRef(new Animated.Value(0)).current;
   const ty = useRef(new Animated.Value(0)).current;
   const placedRef = useRef(false);
@@ -135,6 +148,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): запас над верхним этажом считается из границы башни ЭТОЙ лиги и состояния (ореол ×2.6 на вершине);
   // значение обновляется ниже, когда известен наряд, а прокрутка берёт актуальное из ref.
   const headroomRef = useRef<number>(SPIRE_CROWN_RISE);
+  headroomRef.current = headroom;
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
@@ -221,9 +235,6 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
 
   // зачем (владелец 13.10: одна башня Оникса в 12 «нарядах»): наряд по лиге игрока, объект стабилен по ссылке — memo башни не просыпается зря
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
-  const devTier = getDevSpireTierOverride();
-  const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);
-  headroomRef.current = spireTowerHeadroom(skin, myFloor === SPIRE_FLOOR_COUNT);
   // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): небо, звёзды, облака, земля и подписи — из токенов темы; башня — наряд лиги
   const scene = useSpireScene();
   const label = useMemo(
@@ -264,8 +275,8 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         scrollEventThrottle={32}
       >
         {width > 0 ? (
-          <View style={{ width, height: SPIRE_TOWER_GEOM.height * scale }}>
-            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={width} skin={skin} scene={scene} />
+          <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
+            <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
                 <RivalsLayer rivals={rivalsByFloor} scale={scale} dim={dimRivals} />

@@ -65,3 +65,19 @@ export function spireWeekTopViewBox(skin: SpireTowerSkin, summit: boolean): Spir
 
 /** Ширина башни целиком в её системе координат: границы не должны выходить за [0, SPIRE_TW]. */
 export const SPIRE_TOWER_VIEW_WIDTH = SPIRE_TW;
+
+/**
+ * Сколько единиц SVG нужно окну, чтобы показать башню целиком с ореолом и свой этаж: от верха границы (с полем) до низа своего этажа.
+ * floorBottomOffset — низ своего этажа относительно верха верхнего этажа (fl.y + fl.h − geom.top).
+ */
+export function spireTowerNeedUnits(headroom: number, floorBottomOffset: number): number {
+  return headroom + floorBottomOffset;
+}
+
+/**
+ * Масштаб башни под окно (закон владельца 14.10: «ничем не обрезаться вообще»; координатор: «при нехватке места — меньше масштаб»):
+ * не больше базового (по ширине), но так, чтобы нужные единицы влезли в высоту окна. Срез допустим только при ручной прокрутке человеком.
+ */
+export function spireTowerFitScale(baseScale: number, windowH: number, needUnits: number): number {
+  return needUnits > 0 && windowH > 0 ? Math.min(baseScale, windowH / needUnits) : baseScale;
+}

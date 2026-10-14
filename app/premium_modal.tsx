@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Profiler, useEffect, useRef, useState } from 'react';
 import { InteractionManager, StyleSheet, View } from 'react-native';
 import { useLocalSearchParams, useRouter, useRootNavigationState } from 'expo-router';
 import * as Crypto from 'expo-crypto';
@@ -12,6 +12,11 @@ import { dismissPaywallModal } from './navigation_back';
 import { paywallEntryAccessInputs, resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
 import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
 import { getAppSnapshot } from './app_snapshot_store';
+import { createTapLatencyProfilerHandler } from './tap_latency_trace';
+
+// зачем (координатор 14.10, [PAYWALL-CLOSE-JS]; TAP-LAT Сверки: закрытие пейвола из Настроек — корневой «stack» рендерится 2× по 1,1–1,7 с,
+// а панели вкладок дешёвые): отдельный замер экрана пейвола в том же [TAP-LAT]. Без флага EXPO_PUBLIC_TAP_LATENCY_TRACE=1 обработчика нет.
+const paywallScreenProfilerOnRender = createTapLatencyProfilerHandler();
 
 /** §141: последний известный доступ из снимка профиля (тот же источник, что засевает PremiumContext). */
 function cachedEntitlementFromSnapshot(): CachedPaywallEntitlement {
@@ -164,7 +169,10 @@ export default function PremiumModalDispatcher() {
     // or when Plus is already active, keep the neutral backing instead of
     // flashing an acquisition screen to a paid user.
     if (entryResolution?.decision === 'show') {
-      return <PaywallPlusScreen entry={entryResolution.entry} />;
+      const screen = <PaywallPlusScreen entry={entryResolution.entry} />;
+      return paywallScreenProfilerOnRender
+        ? <Profiler id="screen:premium_modal" onRender={paywallScreenProfilerOnRender}>{screen}</Profiler>
+        : screen;
     }
   }
 

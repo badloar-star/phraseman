@@ -76,8 +76,17 @@ export default function DevStateRoute() {
         console.warn('[DEV-STATE] route: replace через 300 мс →', applied.next, since()); // guard-ok: трассировка
         setTimeout(() => {
           try {
-            router.replace(applied.next as never);
-            console.warn('[DEV-STATE] route: replace вызван →', applied.next); // guard-ok: трассировка
+            // зачем (координатор 14.10, зонд [PAYWALL-CLOSE-FREEZE]: стек [(tabs),*(tabs)]): replace поверх dev_state ставил ВТОРУЮ копию
+            // группы вкладок, нижняя оставалась замороженной — в прогонах это давало ложные «зависания». dismissTo снимает dev_state и
+            // ведёт на уже открытый маршрут (вкладку), а если его в стеке нет — expo-router сам делает replace.
+            const canDismissNow = typeof router.canDismiss === 'function' ? router.canDismiss() : false;
+            if (canDismissNow && typeof router.dismissTo === 'function') {
+              router.dismissTo(applied.next as never);
+              console.warn('[DEV-STATE] route: dismissTo вызван (без второй копии вкладок) →', applied.next, `canDismiss=${String(canDismissNow)}`); // guard-ok: трассировка
+            } else {
+              router.replace(applied.next as never);
+              console.warn('[DEV-STATE] route: replace вызван →', applied.next, `canDismiss=${String(canDismissNow)}`); // guard-ok: трассировка
+            }
             // зачем (№18, paywall-gap-011…013): действия «после перехода» (тост) — когда экран `next` уже открывается, а не по таймеру от шага
             setTimeout(() => runAfterDevStateRouteActions('replaced'), 900);
           } catch (error) {

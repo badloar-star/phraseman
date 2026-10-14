@@ -1251,7 +1251,9 @@ export default function TabLayout() {
   // внутри вкладки просит скрытие, а рисует таббар этот же layout.
   return (
     <TabBarVisibilityProvider>
-      <ReleasedTabLayout />
+      {/* зачем (координатор 14.10, [PAYWALL-CLOSE-JS]): замер всей разметки вкладок (перелистыватель, обёртки панелей) отдельно от
+          содержимого панелей — после крестика пейвола «stack» дорогой, а tab:* дешёвые. Без флага [TAP-LAT] — пустышка. */}
+      <TabRenderProbe id="layout:tabs"><ReleasedTabLayout /></TabRenderProbe>
     </TabBarVisibilityProvider>
   );
 }

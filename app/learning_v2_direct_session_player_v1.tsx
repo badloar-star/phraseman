@@ -2614,7 +2614,7 @@ export default function LearningV2DirectSessionPlayerV1() {
             onPress={exitLearningV2Session}
             style={({ pressed }) => [
               styles.checkpointClose,
-              { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 },
+              { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 },
             ]}
           >
             <KitGlassLayer radius={21} />
@@ -2840,7 +2840,7 @@ export default function LearningV2DirectSessionPlayerV1() {
           onPress={exitLearningV2Session}
           style={({ pressed }) => [
             styles.iconButton,
-            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.72 : 1 },
+            { backgroundColor: g.buttonFill, opacity: pressed ? 0.72 : 1 },
           ]}
         >
           <Ionicons name="close" size={22} color={g.text} />
@@ -3085,7 +3085,7 @@ export default function LearningV2DirectSessionPlayerV1() {
                   style={({ pressed }) => [
                     styles.audioButton,
                     {
-                      backgroundColor: g.opaqueControl,
+                      backgroundColor: g.buttonFill,
                       opacity: pressed ? 0.72 : 1,
                     },
                   ]}

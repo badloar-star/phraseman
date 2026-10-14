@@ -491,7 +491,7 @@ export default function CoinRankScreen() {
             disabled={!canUpgrade}
             onPress={handleUpgrade}
             scaleTo={0.97}
-            style={[styles.cta, { marginTop: 4, backgroundColor: canUpgrade ? g.cta : g.opaqueControl }]}
+            style={[styles.cta, { marginTop: 4, backgroundColor: canUpgrade ? g.cta : g.buttonFill }]}
           >
             <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>
           </V2Pressable>
@@ -509,7 +509,7 @@ export default function CoinRankScreen() {
             scaleTo={0.97}
             style={[
               styles.cta,
-              { backgroundColor: canUpgrade ? g.cta : g.opaqueControl },
+              { backgroundColor: canUpgrade ? g.cta : g.buttonFill },
             ]}
           >
             <Text style={[styles.ctaText, { color: canUpgrade ? g.ctaInk : g.mutedText }]}>{ctaLabel}</Text>

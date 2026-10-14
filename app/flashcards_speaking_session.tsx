@@ -1696,7 +1696,7 @@ RU: ${card.translation}`}
                       onPress={onRetry}
                       // зачем (PM-130, practice.html `.aux`): «Ещё раз» — нейтральная кнопка, цветом режима
                       // не красится; главный цвет остаётся за микрофоном.
-                      style={[styles.resultBtn, { backgroundColor: speakingGlass.opaqueControl }]}
+                      style={[styles.resultBtn, { backgroundColor: speakingGlass.buttonFill }]}
                     >
                       <Ionicons name="refresh" size={16} color={speakingGlass.text} />
                       <Text style={{ color: speakingGlass.text, fontSize: f.caption, fontWeight: '800' }}>{labels.retry}</Text>
@@ -1776,7 +1776,7 @@ RU: ${card.translation}`}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
                     style={[
                       styles.taskPill,
-                      { backgroundColor: active ? speakingGlass.selected : speakingGlass.opaqueControl },
+                      { backgroundColor: active ? speakingGlass.selected : speakingGlass.buttonFill },
                     ]}
                   >
                     <Ionicons
@@ -1805,7 +1805,7 @@ RU: ${card.translation}`}
                 accessibilityRole="button"
                 accessibilityState={{ disabled: holdActive && !stuck }}
                 accessible
-                style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive && !stuck ? 0.5 : 1 }]}
+                style={[styles.sideBtn, { backgroundColor: speakingGlass.buttonFill, opacity: holdActive && !stuck ? 0.5 : 1 }]}
               >
                 <Ionicons name="arrow-forward" size={22} color={t.textPrimary} />
               </TouchableOpacity>
@@ -1818,7 +1818,7 @@ RU: ${card.translation}`}
                 accessibilityRole="button"
                 accessibilityState={{ disabled: holdActive && !stuck }}
                 accessible
-                style={[styles.sideBtn, { backgroundColor: speakingGlass.opaqueControl, opacity: holdActive ? 0.5 : 1 }]}
+                style={[styles.sideBtn, { backgroundColor: speakingGlass.buttonFill, opacity: holdActive ? 0.5 : 1 }]}
               >
                 <Ionicons name="volume-high" size={22} color={t.textPrimary} />
               </TouchableOpacity>

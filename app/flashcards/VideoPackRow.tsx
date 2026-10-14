@@ -228,7 +228,7 @@ function VideoPackRowBase({ pack, lang, t, opening = false, disabled = false, on
               if (plain) { onOpen(pack); return; }
               void openVideo(pack.videoId, () => emitAppEvent('action_toast', videoFailed));
             }}
-            style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+            style={({ pressed }) => [plain ? styles.thumbPlain : styles.thumb, { backgroundColor: g.buttonFill, opacity: pressed ? 0.8 : 1 }]}
           >
             <VideoThumb surface={plain ? 'video_pack_plain' : 'video_pack_card'} id={pack.id} videoId={pack.videoId} thumbUrl={thumbUrl} title={title} g={g} showTitle={false} />
             {/* зачем (Сверка 11.10, макет video-redesign #c1, экран 4): на обложке строки вкладки «Наборы» нет ни ▶, ни длительности. */}

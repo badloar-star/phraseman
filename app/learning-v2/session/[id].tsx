@@ -2191,7 +2191,7 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
             onPress={() => safeRouterBack(router, "/(tabs)/lessons" as never)}
             style={({ pressed }) => [
               styles.gateSkeletonClose,
-              { backgroundColor: gateGlass.opaqueControl, boxShadow: nestedBoxShadow(gateGlass), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: без кромки
+              { backgroundColor: gateGlass.buttonFill, boxShadow: nestedBoxShadow(gateGlass), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: без кромки
             ]}
           >
             <KitGlassLayer radius={21} />

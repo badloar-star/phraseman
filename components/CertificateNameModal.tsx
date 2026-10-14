@@ -130,7 +130,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip, motio
           style={[
             styles.primaryBtn,
             {
-              backgroundColor: canSave ? glass.cta : glass.opaqueControl,
+              backgroundColor: canSave ? glass.cta : glass.buttonFill,
               opacity: canSave ? 1 : 0.55,
             },
           ]}

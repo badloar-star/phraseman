@@ -434,7 +434,7 @@ export default function DeckPickerSheet({
                         flex: 1,
                         minHeight: 44,
                         borderRadius: 22,
-                        backgroundColor: active ? glass.cta : glass.opaqueControl,
+                        backgroundColor: active ? glass.cta : glass.buttonFill,
                         boxShadow: active ? actionBoxShadow(glass) : nestedBoxShadow(glass), // зачем (Тень 12.10): чип без кромки
                       }}
                       contentStyle={{ flex: 1, paddingHorizontal: 12, alignItems: 'center', justifyContent: 'center' }}
@@ -464,7 +464,7 @@ export default function DeckPickerSheet({
                 minHeight: 48,
                 marginTop: 20,
                 borderRadius: 24,
-                backgroundColor: canStart ? glass.cta : glass.opaqueControl,
+                backgroundColor: canStart ? glass.cta : glass.buttonFill,
                 boxShadow: canStart ? actionBoxShadow(glass) : undefined, // зачем (Тень 12.10): выключенная кнопка — плотный тон без кромки
               }}
               contentStyle={{ minHeight: 48, paddingVertical: 12, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center' }}

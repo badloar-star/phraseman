@@ -1497,7 +1497,7 @@ export default function SettingsMain() {
                 accessibilityRole="button"
                 activeOpacity={0.88}
                 onPress={() => { doHaptic(); setSwitchAccountStage('idle'); }}
-                style={{ flex: 1, minHeight: 44, borderRadius: 22, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }}
+                style={{ flex: 1, minHeight: 44, borderRadius: 22, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }}
               >
                 <Text numberOfLines={2} style={{ color: glass.text, fontSize: 16, fontWeight: '700', textAlign: 'center' }}>
                   {L('Отмена', 'Скасувати', 'Cancel', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}

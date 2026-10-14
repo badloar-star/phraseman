@@ -792,7 +792,7 @@ function FlashcardListItemImpl({
                     {strength ? <WordStrengthDots strength={strength} t={t} testID={`fc-strength-${item.id}`} /> : null}
                   </ScrollView>
                   <View style={styles.savedActions}>
-                    {voiceHidden ? null : <TouchableOpacity testID={`fc-saved-row-play-${item.id}`} accessibilityRole="button" accessibilityLabel={voiceLabel} disabled={voiceDisabled} onPress={speakFront} style={[styles.savedAction, { backgroundColor: g.opaqueControl }]}>
+                    {voiceHidden ? null : <TouchableOpacity testID={`fc-saved-row-play-${item.id}`} accessibilityRole="button" accessibilityLabel={voiceLabel} disabled={voiceDisabled} onPress={speakFront} style={[styles.savedAction, { backgroundColor: g.buttonFill }]}>
                       <Ionicons name="play" size={17} color={g.lightTint} />
                     </TouchableOpacity>}
                     {canDeleteThis ? <TouchableOpacity testID={`fc-saved-row-menu-${item.id}`} accessibilityRole="button" accessibilityLabel={deleteLabel} onPress={() => onOpenDelete(item.id)} style={styles.savedAction}>

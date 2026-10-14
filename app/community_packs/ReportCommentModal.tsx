@@ -230,7 +230,7 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
                       style={{
                         flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12,
                         minHeight: 52, paddingHorizontal: 16, borderRadius: 16, marginBottom: 8,
-                        backgroundColor: active ? glass.selected : glass.opaqueControl,
+                        backgroundColor: active ? glass.selected : glass.buttonFill,
                       }}
                     >
                       <Text style={{ color: glass.text, fontSize: f.body, fontWeight: active ? '700' : '400', flexShrink: 1 }}>{r.label}</Text>
@@ -263,7 +263,7 @@ function ReportCommentModal({ visible, packId, packTitle, comment, lang, onClose
                 accessibilityState={{ disabled: !selected }}
                 style={{
                   marginTop: 16, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center',
-                  backgroundColor: selected ? glass.cta : glass.opaqueControl,
+                  backgroundColor: selected ? glass.cta : glass.buttonFill,
                 }}
               >
                 <Text style={{ color: selected ? glass.ctaInk : glass.mutedText, fontWeight: '700', fontSize: f.body }}>

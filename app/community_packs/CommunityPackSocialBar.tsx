@@ -478,7 +478,7 @@ export default function CommunityPackSocialBar({
                 minHeight: 44,
                 paddingHorizontal: 12,
                 borderRadius: 22,
-                backgroundColor: g.opaqueControl,
+                backgroundColor: g.buttonFill,
                 boxShadow: nestedBoxShadow(g), // зачем (стиль «Тень», серия cards-v2): контрол отделён малой тенью, а не плоской заливкой
               }
             : { flexDirection: 'row', alignItems: 'center', gap }
@@ -556,7 +556,7 @@ export default function CommunityPackSocialBar({
         onPress={onAddPress}
         activeOpacity={0.85}
         hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}
-        style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }}
+        style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }}
       >
         <Ionicons name={isAdded ? 'checkmark' : 'add'} size={20} color={isAdded ? g.accentText : g.text} />
       </TouchableOpacity>
@@ -595,7 +595,7 @@ export default function CommunityPackSocialBar({
           alignItems: 'center',
           justifyContent: 'center',
           gap: 8,
-          backgroundColor: isAdded && !ownedAction ? g.opaqueControl : t.accent,
+          backgroundColor: isAdded && !ownedAction ? g.buttonFill : t.accent,
         }}
       >
         {isAdded ? <Ionicons name={ownedAction ? 'layers-outline' : 'checkmark'} size={18} color={ownedAction ? t.textOnGold : g.text} /> : null}
@@ -712,7 +712,7 @@ export default function CommunityPackSocialBar({
             minHeight: 44,
             paddingHorizontal: 16,
             borderRadius: 22,
-            backgroundColor: isAdded ? g.opaqueControl : g.cta,
+            backgroundColor: isAdded ? g.buttonFill : g.cta,
           }}
         >
           {isAdded ? <Ionicons name="checkmark" size={18} color={g.text} /> : null}
@@ -793,7 +793,7 @@ export default function CommunityPackSocialBar({
           minHeight: 44,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: isAdded ? g.opaqueControl : g.cta,
+          backgroundColor: isAdded ? g.buttonFill : g.cta,
         }}
       >
         <Text style={{ color: isAdded ? g.text : g.ctaInk, fontSize: 13, fontWeight: '700' }}>

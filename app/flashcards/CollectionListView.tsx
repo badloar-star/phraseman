@@ -866,7 +866,7 @@ export default function CollectionListView({
             accessibilityState={{ disabled: !canCreatePack }}
             disabled={!canCreatePack}
             onPress={onCreatePack}
-            style={{ flex: 1, minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? g.cta : g.opaqueControl, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, minHeight: 48, borderRadius: 14, backgroundColor: canCreatePack ? g.cta : g.buttonFill, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: canCreatePack ? g.ctaInk : g.secondary, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, {

@@ -239,7 +239,7 @@ export default function SavedTopCommunityPacks({
             testID="saved-top-community-try-again"
             accessibilityRole="button"
             onPress={() => { hapticTap(); catalogGate.retryNow('tap'); }}
-            style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+            style={({ pressed }) => [styles.unavailableAction, { backgroundColor: g.buttonFill, opacity: pressed ? 0.8 : 1 }]}
           >
             <Text style={[styles.unavailableActionLabel, { color: g.text }]}>{triLang(lang, {
               ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo',

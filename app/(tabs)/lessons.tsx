@@ -5624,7 +5624,7 @@ export default function LessonsTab({
                       width: 44,
                       height: 44,
                       borderRadius: 22,
-                      backgroundColor: learnGlass.opaqueControl,
+                      backgroundColor: learnGlass.buttonFill,
                       boxShadow: nestedBoxShadow(learnGlass), // зачем («Тень» 12.10): круглая кнопка без кромки, с малой тенью
                     }}
                     contentStyle={{ flex: 1, alignItems: "center", justifyContent: "center" }}
@@ -5771,7 +5771,7 @@ export default function LessonsTab({
                       width: 40,
                       height: 40,
                       borderRadius: 20,
-                      backgroundColor: learnGlass.opaqueControl,
+                      backgroundColor: learnGlass.buttonFill,
                       boxShadow: nestedBoxShadow(learnGlass),
                     }}
                     contentStyle={{
@@ -5814,7 +5814,7 @@ export default function LessonsTab({
                         width: 40,
                         height: 40,
                         borderRadius: 20,
-                        backgroundColor: learnGlass.opaqueControl,
+                        backgroundColor: learnGlass.buttonFill,
                         boxShadow: nestedBoxShadow(learnGlass),
                         opacity: LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY ? 1 : 0.45,
                       }}

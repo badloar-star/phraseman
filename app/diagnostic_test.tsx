@@ -1411,7 +1411,7 @@ export default function DiagnosticTest() {
                   testID="diagnostic-questions-try-again"
                   accessibilityRole="button"
                   onPress={() => retryQuestions('tap')}
-                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl, opacity: pressed ? 0.8 : 1 })}
+                  style={({ pressed }) => ({ minHeight: 44, paddingHorizontal: 22, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill, opacity: pressed ? 0.8 : 1 })}
                 >
                   <Text style={{ color: glass.text, fontSize: 16, fontWeight: '600' }}>
                     {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати ще', en: 'Try again', es: 'Intentar de nuevo', 'pt-BR': 'Tentar de novo', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
@@ -1654,7 +1654,7 @@ export default function DiagnosticTest() {
                         setBuildSelected(prev => prev.filter((_, i) => i !== wi));
                         setBuildBank(prev => [...prev, word]);
                       }}
-                      style={({ pressed }) => ({ backgroundColor: glass.opaqueControl, borderRadius: 14, minHeight: 44, paddingHorizontal: 14, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
+                      style={({ pressed }) => ({ backgroundColor: glass.buttonFill, borderRadius: 14, minHeight: 44, paddingHorizontal: 14, justifyContent: 'center', opacity: pressed ? 0.8 : 1 })}
                     >
                       <Text style={{ color: glass.text, fontSize: 16, fontWeight: '700' }}>{word}</Text>
                     </Pressable>

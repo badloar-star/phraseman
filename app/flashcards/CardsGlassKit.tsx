@@ -151,7 +151,7 @@ export function CardsGlassPrimaryButton({
           alignItems: 'center',
           justifyContent: 'center',
           // зачем (темы 2.0): accent/accentInk — в «Спокойно» это прежние cta/ctaInk.
-          backgroundColor: disabled ? g.opaqueControl : ghost ? g.opaqueControl : g.accent,
+          backgroundColor: disabled ? g.buttonFill : ghost ? g.buttonFill : g.accent,
           // зачем (Тень 12.10): контурный «ghost» заменён плашкой с малой тенью, главная — цветная тень действия
           boxShadow: disabled ? undefined : ghost ? nestedBoxShadow(g) : actionBoxShadow(g),
         },

@@ -212,7 +212,7 @@ export default function MistakesListScreen() {
           ) : (
             <View style={styles.topbar}>
               <BackButton g={g} label={copy.back} onPress={goBack} />
-              <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+              <Pressable testID="mistakes-list-search-open" accessibilityRole="button" accessibilityLabel={copy.search} hitSlop={8} onPress={() => { hapticTap(); setSearching(true); }} style={({ pressed }) => [styles.round, { backgroundColor: g.buttonFill }, pressed && styles.pressed]}>
                 <Ionicons name="search" size={20} color={g.text} />
                 <GlassRim radius={21} />
               </Pressable>

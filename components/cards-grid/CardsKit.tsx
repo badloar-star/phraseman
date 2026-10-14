@@ -128,7 +128,7 @@ export const KitCta = memo(function KitCta({ g, label, icon, trailingIcon, onPre
       style={({ pressed }) => [
         styles.cta,
         disabled
-          ? { backgroundColor: g.opaqueControl }
+          ? { backgroundColor: g.buttonFill }
           : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
         pressed && styles.pressed,
       ]}>

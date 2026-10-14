@@ -168,7 +168,7 @@ function TrainingSetupV2Inner(props: Props) {
                       accessibilityState={{ expanded: visible }}
                       onPress={open}
                       hitSlop={6}
-                      style={({ pressed }) => [styles2.pill, { backgroundColor: visible ? g.selected : g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.78 : 1 }]}
+                      style={({ pressed }) => [styles2.pill, { backgroundColor: visible ? g.selected : g.buttonFill, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.78 : 1 }]}
                     >
                       <Text style={[styles2.pillText, { color: g.text }]}>{languageLabel}</Text>
                       <Ionicons name="chevron-down" size={16} color={g.text} />

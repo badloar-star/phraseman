@@ -803,7 +803,7 @@ export default function FlashcardsMyPacksScreen() {
                 })}` : ''}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10, marginTop: 24 }}>
-                <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }}>
+                <TouchableOpacity testID="fc-delete-pack-confirm-cancel" accessibilityRole="button" disabled={deletePackBusy} onPress={() => setDeletePackTarget(null)} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }}>
                   <Text style={{ color: g.text, fontWeight: '800' }}>{triLang(lang, { ru: 'Отмена', uk: 'Скасувати', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'Vazgeç', pl: 'Anuluj' })}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity testID="fc-delete-pack-confirm-confirm" accessibilityRole="button" disabled={deletePackBusy} onPress={() => { void deletePack(); }} style={{ flex: 1, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 14, backgroundColor: EXEMPT_COLOR_1 }}>

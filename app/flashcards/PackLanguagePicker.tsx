@@ -119,7 +119,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
         onPress={open}
         hitSlop={4}
         style={({ pressed }) => [styles.trigger, pill ? styles.triggerPill : null, {
-          backgroundColor: visible ? g.selected : pill ? g.hairlineSoft : g.opaqueControl,
+          backgroundColor: visible ? g.selected : pill ? g.hairlineSoft : g.buttonFill,
           opacity: disabled ? 0.55 : pressed ? 0.78 : 1,
         }]}
       >
@@ -165,7 +165,7 @@ export default function PackLanguagePicker({ lang, t, value, onChange, disabled 
                     close();
                   }}
                   style={({ pressed }) => [styles.option, {
-                    backgroundColor: selected ? g.opaqueControl : pressed ? g.selected : 'transparent',
+                    backgroundColor: selected ? g.buttonFill : pressed ? g.selected : 'transparent',
                   }]}
                 >
                   <FlagMark code={item.code} width={26} height={17} color={g.text} />

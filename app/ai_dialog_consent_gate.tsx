@@ -155,7 +155,7 @@ export default function AiDialogConsentGate({ children, onDeclined }: {
         accessibilityLabel={triLang(lang, {
           ru: 'Открыть настройки приватности', uk: 'Відкрити налаштування конфіденційності', en: 'Open Privacy settings', es: 'Abrir ajustes de privacidad', 'pt-BR': 'Abrir ajustes de privacidade', vi: 'Mở cài đặt quyền riêng tư', id: 'Buka pengaturan privasi', tr: 'Gizlilik ayarlarını aç', pl: 'Otwórz ustawienia prywatności',
         })}
-        style={[styles.secondaryAction, { backgroundColor: glass.opaqueControl }]}
+        style={[styles.secondaryAction, { backgroundColor: glass.buttonFill }]}
       >
         <View style={styles.actionContent}>
           <Ionicons name="settings-outline" size={18} color={glass.text} />

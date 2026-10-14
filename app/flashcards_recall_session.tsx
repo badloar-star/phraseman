@@ -1156,7 +1156,7 @@ export default function FlashcardsRecallSession() {
                   style={({ pressed }) => [
                     styles.hintButton,
                     {
-                      backgroundColor: recallGlass.opaqueControl,
+                      backgroundColor: recallGlass.buttonFill,
                       opacity: !attemptsInteractive ? 0.5 : pressed ? 0.72 : 1,
                     },
                   ]}

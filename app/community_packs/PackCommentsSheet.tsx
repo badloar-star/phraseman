@@ -764,7 +764,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <TouchableOpacity
                 onPress={() => handleRetry(item)}
                 accessibilityRole="button"
-                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.opaqueControl }}
+                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.buttonFill }}
               >
                 <Text style={{ color: glass.text, fontSize: f.caption, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Повторить', uk: 'Повторити', en: 'Retry', es: 'Reintentar', 'pt-BR': 'Repetir', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Ponów' })}
@@ -773,7 +773,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               <TouchableOpacity
                 onPress={() => handleDiscardFailed(item.id)}
                 accessibilityRole="button"
-                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.opaqueControl }}
+                style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 16, borderRadius: 22, backgroundColor: glass.buttonFill }}
               >
                 <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700' }}>
                   {triLang(lang, { ru: 'Удалить', uk: 'Видалити', en: 'Delete', es: 'Eliminar', 'pt-BR': 'Excluir', vi: 'Xóa', id: 'Hapus', tr: 'Sil', pl: 'Usuń' })}
@@ -815,7 +815,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                   hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}
                   accessibilityRole="button"
                   accessibilityLabel={replyLabel}
-                  style={{ height: 30, paddingHorizontal: 11, borderRadius: 15, justifyContent: 'center', backgroundColor: glass.opaqueControl }}
+                  style={{ height: 30, paddingHorizontal: 11, borderRadius: 15, justifyContent: 'center', backgroundColor: glass.buttonFill }}
                 >
                   <Text style={{ color: glass.secondary, fontSize: f.caption, fontWeight: '700' }}>{replyLabel}</Text>
                 </TouchableOpacity>
@@ -941,7 +941,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
                   accessibilityState={{ disabled: !canSend }}
                   style={{
                     width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: canSend ? glass.cta : glass.opaqueControl,
+                    backgroundColor: canSend ? glass.cta : glass.buttonFill,
                   }}
                 >
                   <Ionicons name="arrow-up" size={20} color={canSend ? glass.ctaInk : glass.mutedText} />

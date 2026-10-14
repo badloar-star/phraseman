@@ -168,7 +168,7 @@ export default function LingmanVideoWatchScreen() {
             accessibilityState={{ selected: savedVideo }}
             onPressIn={() => hapticTap()}
             onPress={toggleSave}
-            style={[styles.topButton, { backgroundColor: savedVideo ? g.accent : g.opaqueControl }]}
+            style={[styles.topButton, { backgroundColor: savedVideo ? g.accent : g.buttonFill }]}
           >
             <Ionicons name={savedVideo ? 'bookmark' : 'bookmark-outline'} size={20} color={savedVideo ? g.accentInk : g.text} />
           </Pressable>

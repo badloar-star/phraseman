@@ -141,7 +141,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
             </View>
           </ScrollView>
           <View style={{ flexDirection:'row', gap:10, paddingHorizontal:21, paddingTop:16, paddingBottom:21 }}>
-            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.opaqueControl, boxShadow:nestedBoxShadow(glass) }} onPress={onCancel}>
+            <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.buttonFill, boxShadow:nestedBoxShadow(glass) }} onPress={onCancel}>
               <Text style={{ color:glass.text, fontSize:16, fontWeight:'700' }}>{cancelLabel}</Text>
             </DuoPressable>
             <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.accent, boxShadow:actionBoxShadow(glass) }} onPress={() => onConfirm(h, m)}>

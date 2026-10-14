@@ -647,7 +647,7 @@ function PhraseCardImpl({
             borderRadius: 22,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: g.opaqueControl,
+            backgroundColor: g.buttonFill,
             boxShadow: nestedBoxShadow(g), // зачем (Тень 12.10): кнопка озвучки без кромки — малая тень
           }}
         >

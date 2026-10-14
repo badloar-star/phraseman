@@ -2284,7 +2284,7 @@ export default function FriendsTabScreen() {
           accessibilityRole="button"
           accessibilityLabel="DEV: боты «Вместе»" /* i18n-ok: подпись dev-кнопки, только ENABLE_DEV_TOOLS */
           hitSlop={4}
-          style={{ minWidth: 64, minHeight: 44, borderRadius: 22, backgroundColor: glass.opaqueControl, flexDirection: 'row', gap: 5, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
+          style={{ minWidth: 64, minHeight: 44, borderRadius: 22, backgroundColor: glass.buttonFill, flexDirection: 'row', gap: 5, justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}
         >
           <Ionicons name="flask-outline" size={16} color={glass.text} />
           <FlowText testID="friends-together-dev-badge" provenance="authored" style={{ color: glass.text, fontSize: 13, fontWeight: '700', letterSpacing: 0.5 }}>DEV</FlowText>

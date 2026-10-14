@@ -103,7 +103,7 @@ function CardFlipV2Impl({ g, front, back, frontLabel, backLabel, backNote, heigh
               accessibilityLabel={speakLabel ?? front}
               hitSlop={6}
               onPress={onSpeak}
-              style={[styles.vol, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }]}
+              style={[styles.vol, { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }]}
             >
               <Ionicons name="volume-high-outline" size={18} color={g.text} />
             </Pressable>

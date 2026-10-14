@@ -841,7 +841,7 @@ export default function FlashcardsCardEditorScreen() {
                       minHeight: 44,
                       justifyContent: 'center',
                       borderRadius: 22,
-                      backgroundColor: g.opaqueControl,
+                      backgroundColor: g.buttonFill,
                       paddingHorizontal: 16,
                     }}
                   >

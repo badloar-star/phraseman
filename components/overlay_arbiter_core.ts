@@ -2,6 +2,7 @@ export type OverlayKey =
   | 'onboardingWelcome'
   | 'authRecovery'
   | 'spireWeekMoment'
+  | 'welcomeBack'
   | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
@@ -49,6 +50,8 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // окон». Уступает только системным (приветствие новичка, обязательное обновление, восстановление входа). Рисуется в дереве,
   // не нативным <Modal>, поэтому в NATIVE_MODAL_KEYS не входит.
   'spireWeekMoment',
+  // welcomeBack — окно «С возвращением» (D193, владелец 14.10): после окна итога недели; рисуется в дереве, не нативным <Modal>.
+  'welcomeBack',
   'releaseNotes',
   'broadcast',
   'appMessageModal',
@@ -167,6 +170,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
   authRecovery: false,
   spireWeekMoment: false,
+  welcomeBack: false,
   arenaOpponentFound: false,
   update: false,
   releaseNotes: false,

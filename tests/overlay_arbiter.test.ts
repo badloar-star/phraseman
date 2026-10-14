@@ -212,6 +212,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'onboardingWelcome', 'authRecovery',
     // spireWeekMoment — окно итога недели Пика (D191): закрывает человек («Играть» / крестик), выселять таймером нельзя.
     'spireWeekMoment',
+    // welcomeBack — «С возвращением» (D193): закрывает человек («N карточек» / «На Главную»), таймера нет — выселять нельзя.
+    'welcomeBack',
     'update', 'releaseNotes', 'broadcast', 'appMessageModal', 'personalAdminMessage', 'notifNudge',
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'streakRevive',

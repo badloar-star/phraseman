@@ -754,11 +754,14 @@ async function resumeInternal(
   let receiptRaw: string | null;
   let providerHandoffRaw: string | null;
   try {
+    // зачем ([ACC-SPEED], прогон №3): до первой зависимости ≈0,25 с — это чтение трёх журналов с диска.
+    const journalsStartedAtMs = Date.now();
     [raw, receiptRaw, providerHandoffRaw] = await Promise.all([
       AsyncStorage.getItem(ACCOUNT_SWITCH_QUARANTINE_KEY),
       AsyncStorage.getItem(ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY),
       AsyncStorage.getItem(ACCOUNT_PROVIDER_HANDOFF_KEY),
     ]);
+    accSpeed('head:read_journals', journalsStartedAtMs);
   } catch (error) {
     // An unreadable point-of-no-return journal is not evidence that no switch
     // exists. Keep every account-derived reader closed until storage recovers.
@@ -1076,19 +1079,27 @@ async function resumeInternal(
         publish({ visible: true, status: 'quarantined', reason: 'fresh_identity_invalid' });
         return { result: 'quarantined', reason: 'fresh_identity_invalid' };
       }
+      // зачем ([ACC-SPEED], координатор 14.10, прогон №3): после последней зависимости до resume_done 0,86 с без разметки —
+      // по отдельности: снятие маркера, удаление квитанции, включение поколения. Поведение не меняется.
+      const tailClearStartedAtMs = Date.now();
       const cleared = await clearCompletedAccountSwitchQuarantine({
         operationId: marker.operationId,
         nonce: marker.nonce,
         freshAuthUid: currentAuth.uid,
         freshStableId: currentStable!,
       });
+      accSpeed('tail:clear_marker', tailClearStartedAtMs, { cleared });
       if (!cleared) {
         publish({ visible: true, status: 'quarantined', reason: 'marker_changed' });
         return { result: 'quarantined', reason: 'marker_changed' };
       }
+      const tailReceiptStartedAtMs = Date.now();
       await removeVerified(ACCOUNT_SWITCH_COMPLETION_RECEIPT_KEY, 'account_switch_receipt_clear_failed');
+      accSpeed('tail:remove_receipt', tailReceiptStartedAtMs);
       publish({ visible: false, status: 'idle', reason: null });
+      const tailGenerationStartedAtMs = Date.now();
       deps.activateGeneration(currentStable!);
+      accSpeed('tail:activate_generation', tailGenerationStartedAtMs);
       return { result: 'completed', stableId: currentStable!, authUid: currentAuth.uid };
     } catch (error) {
       const detail = error instanceof Error ? error.message : 'unknown';

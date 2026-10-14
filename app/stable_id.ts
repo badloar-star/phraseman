@@ -24,7 +24,7 @@ import {
   assertAccountDeleteStableIdentityAvailable,
 } from './account_delete_quarantine';
 import { DebugLogger } from './debug-logger';
-import { identityErrorCode, identityTag, identityTrace } from './identity_trace';
+import { identityErrorCode, identityTag, identityTrace, identityTraceClockMs } from './identity_trace';
 import { noteSwallowed, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SECURE_KEY = 'phraseman_stable_uid';
@@ -660,29 +660,50 @@ export function _resetStableIdCache(): void {
  * а stored value в SecureStore/AsyncStorage остаётся прежним.
  */
 async function clearStableIdStorage(): Promise<void> {
-  identityTrace('[PROFILE-FLIP]', 'cleared', { previous: identityTag(cachedId) }, { persist: true });
-  const previousId = cachedId;
-  cachedId = null;
-  const SecureStore = getSecureStore();
-  if (SecureStore) {
-    const opts = getSecureStoreOpts(SecureStore);
-    await SecureStore.deleteItemAsync(SECURE_KEY, opts);
-    await SecureStore.deleteItemAsync(SECURE_KEY);
-    const [currentValue, legacyValue] = await Promise.all([
-      SecureStore.getItemAsync(SECURE_KEY, opts),
-      SecureStore.getItemAsync(SECURE_KEY),
-    ]);
-    if (currentValue !== null || legacyValue !== null) {
-      throw new Error('stable_id_secure_clear_mismatch');
+  // зачем (координатор 14.10, прогон №5: dep:clearStableId 1,1 с при выходе): «сперва логи» — мс каждой стадии одной строкой
+  // [STABLE-ID-CLEAR]; порядок и проверки НЕ меняются. При сбое — стадия, после которой упало.
+  const startedAt = identityTraceClockMs();
+  let at = startedAt;
+  const stages: Record<string, number> = {};
+  let lastStage = 'start';
+  const mark = (stage: string): void => { const now = identityTraceClockMs(); stages[stage] = now - at; at = now; lastStage = stage; };
+  try {
+    identityTrace('[PROFILE-FLIP]', 'cleared', { previous: identityTag(cachedId) }, { persist: true });
+    mark('trace');
+    const previousId = cachedId;
+    cachedId = null;
+    const SecureStore = getSecureStore();
+    if (SecureStore) {
+      const opts = getSecureStoreOpts(SecureStore);
+      await SecureStore.deleteItemAsync(SECURE_KEY, opts);
+      mark('secureDelete');
+      await SecureStore.deleteItemAsync(SECURE_KEY);
+      mark('secureDeleteLegacy');
+      const [currentValue, legacyValue] = await Promise.all([
+        SecureStore.getItemAsync(SECURE_KEY, opts),
+        SecureStore.getItemAsync(SECURE_KEY),
+      ]);
+      mark('secureVerify');
+      if (currentValue !== null || legacyValue !== null) {
+        throw new Error('stable_id_secure_clear_mismatch');
+      }
     }
+    await AsyncStorage.removeItem(ASYNC_KEY);
+    mark('asyncRemove');
+    const asyncValue = await AsyncStorage.getItem(ASYNC_KEY);
+    mark('asyncVerify');
+    if (asyncValue !== null) throw new Error('stable_id_async_clear_mismatch');
+    // зачем (AA S2d 🔴3): метка «SecureStore отстал» относится к стёртому профилю.
+    await AsyncStorage.removeItem(SECURE_STALE_MARKER_KEY);
+    mark('staleMarker');
+    // AA S2d 🔴1: «Сменить аккаунт» — тоже смена аккаунта (новый id появится при следующем чтении).
+    emitStableIdChange({ previous: previousId, next: null, kind: 'cleared' });
+    mark('emit');
+    console.warn('[STABLE-ID-CLEAR]', JSON.stringify({ ...stages, secureStore: Boolean(SecureStore), totalMs: identityTraceClockMs() - startedAt })); // guard-ok: стадии сброса
+  } catch (error) {
+    console.warn('[STABLE-ID-CLEAR]', JSON.stringify({ ...stages, failedAfter: lastStage, code: identityErrorCode(error), totalMs: identityTraceClockMs() - startedAt })); // guard-ok: сбой со стадией
+    throw error;
   }
-  await AsyncStorage.removeItem(ASYNC_KEY);
-  const asyncValue = await AsyncStorage.getItem(ASYNC_KEY);
-  if (asyncValue !== null) throw new Error('stable_id_async_clear_mismatch');
-  // зачем (AA S2d 🔴3): метка «SecureStore отстал» относится к стёртому профилю.
-  await AsyncStorage.removeItem(SECURE_STALE_MARKER_KEY);
-  // AA S2d 🔴1: «Сменить аккаунт» — тоже смена аккаунта (новый id появится при следующем чтении).
-  emitStableIdChange({ previous: previousId, next: null, kind: 'cleared' });
 }
 
 export function clearStableId(): Promise<void> {
@@ -691,10 +712,14 @@ export function clearStableId(): Promise<void> {
   stableIdLoadInFlight = null;
   invalidateAccountGeneration();
   const previous = stableIdMutationInFlight ?? Promise.resolve();
+  const queuedAt = identityTraceClockMs();
   const mutation = previous
     .catch(noteSwallowedHandler('stable_id:promise_10'))
     .then(async () => {
+      const queueMs = identityTraceClockMs() - queuedAt;
       await loadToDrain?.catch(noteSwallowedHandler('stable_id:promise_11'));
+      // зачем ([STABLE-ID-CLEAR]): сколько ждали предыдущую операцию с id и незавершённое чтение — до самого сброса.
+      console.warn('[STABLE-ID-CLEAR]', JSON.stringify({ step: 'waited', queueMs, drainMs: identityTraceClockMs() - queuedAt - queueMs, hadLoad: Boolean(loadToDrain) })); // guard-ok: ожидание
       await clearStableIdStorage();
     });
   stableIdMutationInFlight = mutation;

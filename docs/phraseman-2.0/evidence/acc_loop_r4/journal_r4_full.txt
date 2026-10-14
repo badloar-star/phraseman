@@ -1,0 +1,148 @@
+10-14 20:17:27.620 I/ReactNativeJS(26876): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=7977732
+10-14 20:17:31.876 I/ReactNativeJS(26876): [ACC-MUT] firestore_cache_clear check ms=1 marker=0 lock=0 reason=none source=startup_multiget
+10-14 20:17:32.357 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":1,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.359 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":2,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.361 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":3,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.361 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":4,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.362 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":5,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.619 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":6,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:32.626 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":7,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:34.189 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":8,"minSinceStart":0.1,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://l
+10-14 20:17:39.716 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":9,"minSinceStart":0.2,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":true,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":false,"willCallNetwork":true,"networkReason":"requireAuthoritative","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGenerato
+10-14 20:17:44.186 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":10,"minSinceStart":0.3,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":true,"willCallNetwork":false,"networkReason":"none","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGeneratorStep (http://
+10-14 20:17:44.247 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":11,"minSinceStart":0.3,"stableId":"00803283","authUid":"Zc9C2gCH","requireAuthoritative":true,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":false,"willCallNetwork":true,"networkReason":"requireAuthoritative","inFlight":false,"accountGeneration":"1:active","caller":" at next (native) <- at asyncGenerat
+10-14 20:17:49.890 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=69887 focus active=false dirty=true authReady=false shown=none focusTick=1
+10-14 20:18:00.116 I/SVERKA  (27086): === R4 START 20:18:01 ===
+10-14 20:18:04.842 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=84840 focus active=true dirty=true authReady=false shown=none focusTick=1
+10-14 20:18:04.846 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=84842 refresh enter active=true inflight=false dirty=true gen=1
+10-14 20:18:06.261 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=86260 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1413
+10-14 20:18:06.261 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=86261 refresh result=none applied=true gen=1/1 active=true
+10-14 20:18:06.444 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=86443 focus active=true dirty=false authReady=true shown=none focusTick=1
+10-14 20:18:19.031 I/ReactNativeJS(26876): [ACC-SPEED] warm start source=registration_prompt
+10-14 20:18:19.646 I/ReactNativeJS(26876): [ACC-SPEED] warm done fn=authEnsureStableLink warm=true ms=619
+10-14 20:18:23.823 I/ReactNativeJS(26876): [SIGNIN] ui:tap provider=google context=settings
+10-14 20:18:24.057 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:b3bf13a6","localStable":"h:623909d8","requireOwnership":false,"t":8034167}
+10-14 20:18:25.203 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=5201 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-14 20:18:27.982 I/ReactNativeJS(26876): [ACC-SPEED] warm done fn=authStampAnonOwnership warm=true ms=8950
+10-14 20:18:27.997 I/SVERKA  (27241): === R4 SIGNIN-TAP 20:18:29 ===
+10-14 20:18:34.097 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":8044195}
+10-14 20:18:34.111 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:b3bf13a6","preProviderStable":"h:623909d8","t":8044211}
+10-14 20:18:34.619 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=14617 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-14 20:18:34.623 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=14619 refresh enter active=true inflight=false dirty=true gen=2
+10-14 20:18:35.516 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":8045627}
+10-14 20:18:35.523 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=15522 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=899
+10-14 20:18:35.524 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=15523 refresh result=none applied=true gen=2/2 active=true
+10-14 20:18:35.639 I/ReactNativeJS(26876): [ACC-SPEED] warm done fn=authMergeStableAccounts warm=true ms=16611
+10-14 20:18:35.717 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":31,"keys":"user_avatar,user_frame,streak_count,active_days_v1,unlocked_lessons,legacy_free_","t":8045830}
+10-14 20:18:35.905 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":true,"t":8046017}
+10-14 20:18:36.675 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"switch:handoff_credential_ready","ms":768}'
+10-14 20:18:38.702 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"switch:stamp_anon_ownership","ms":2027}'
+10-14 20:18:39.590 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"switch:signInWithCredential","ms":882}'
+10-14 20:18:39.592 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] handoff signed_in {"provider":"google","sourceUid":"h:b3bf13a6","targetUid":"h:d9408b9b","uidChanged":true,"t":8049703}
+10-14 20:18:40.374 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] link_lookup result {"provider":"google","completed":true,"found":true,"providerUid":"h:d9408b9b","localStable":"h:623909d8","remoteStable":"h:de10a251","branch":"remote","t":8050486}
+10-14 20:18:40.380 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":12,"minSinceStart":1.2,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":true,"metadataKeys":["provider","email","displayName","lastSignInAt","devicePlatform"],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"freshMetadata","inFlight":false,"accountGeneration"
+10-14 20:18:44.012 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] ensure_link remote {"provider":"google","ok":true,"failure":null,"source":"callable","stableUid":"h:de10a251","nonceRejection":null,"t":8054124}
+10-14 20:18:44.013 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] outcome {"provider":"google","kind":"merged_swap_to_remote","handoffMarker":true,"target":"h:de10a251","t":8054125}
+10-14 20:18:44.014 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage local_data_checked {"provider":"google","tookMs":0,"sinceStartMs":19959,"preserveLocalProgress":false,"handoff":true,"t":8054127}
+10-14 20:18:44.015 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap presync_skipped {"provider":"google","reason":"handoff","t":8054127}
+10-14 20:18:44.019 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage presync_phase_done {"provider":"google","tookMs":1,"sinceStartMs":19960,"t":8054127}
+10-14 20:18:44.030 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage server_merge_done {"provider":"google","tookMs":6,"sinceStartMs":19966,"called":false,"t":8054133}
+10-14 20:18:44.030 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap merge_result {"provider":"google","called":false,"ok":false,"canonical":"none","canonicalIsRemote":false,"alreadyMerged":false,"t":8054142}
+10-14 20:18:44.031 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage authoritative_link_reused {"provider":"google","tookMs":10,"sinceStartMs":19976,"source":"callable","ageMs":18,"t":8054143}
+10-14 20:18:44.033 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":8054145}
+10-14 20:18:44.035 W/ReactNativeJS(26876): [WARNING] [AUTH-LINK-GOOGLE] swap merge_skipped_fallback: [AUTH-LINK-GOOGLE] swap merge_skipped_fallback {"provider":"google","preserveLocalProgress":false,"ok":true,"failure":null,"canonical":"h:de10a251","t":8054145}
+10-14 20:18:44.042 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage sync_quiesced {"provider":"google","tookMs":6,"sinceStartMs":19982,"t":8054149}
+10-14 20:18:44.056 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage entitlement_transition_begun {"provider":"google","tookMs":18,"sinceStartMs":20000,"t":8054167}
+10-14 20:18:44.060 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage transition_lock_acquired {"provider":"google","tookMs":4,"sinceStartMs":20004,"t":8054171}
+10-14 20:18:46.204 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage wipe_done {"provider":"google","tookMs":2145,"sinceStartMs":22149,"t":8056316}
+10-14 20:18:46.796 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage set_stable_id_done {"provider":"google","tookMs":592,"sinceStartMs":22741,"t":8056908}
+10-14 20:18:46.853 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage handoff_cleared {"provider":"google","tookMs":57,"sinceStartMs":22798,"t":8056965}
+10-14 20:18:46.862 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage generation_begun {"provider":"google","tookMs":6,"sinceStartMs":22804,"t":8056971}
+10-14 20:18:46.866 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage stable_id_installed {"provider":"google","tookMs":6,"sinceStartMs":22810,"t":8056977}
+10-14 20:18:46.869 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] swap stage auth_user_ready {"provider":"google","tookMs":3,"sinceStartMs":22813,"t":8056980}
+10-14 20:18:46.875 W/ReactNativeJS(26876): [AUTH-LINK-GOOGLE] result merged_devices {"provider":"google","from":"h:623909d8","to":"h:de10a251","tookMs":22819,"t":8056986}
+10-14 20:18:46.878 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=26877 emit auth_provider_linked from=at ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1323529:33)
+10-14 20:18:46.882 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=26880 event auth_provider_linked received
+10-14 20:18:46.883 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=26882 refresh enter active=true inflight=false dirty=true gen=3
+10-14 20:18:47.179 I/ReactNativeJS(26876): [SIGNIN] ui:returned provider=google result=merged_devices in=23355ms
+10-14 20:18:47.538 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=27538 event auth_provider_linked received
+10-14 20:18:47.541 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=27540 refresh enter active=true inflight=true dirty=true gen=4
+10-14 20:18:47.542 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded inflightGen=3 gen=4
+10-14 20:18:47.547 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=27545 refresh enter active=true inflight=true dirty=true gen=5
+10-14 20:18:47.547 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] refresh stale_inflight_superseded inflightGen=4 gen=5
+10-14 20:18:47.553 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":13,"minSinceStart":1.3,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":false,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (h
+10-14 20:18:47.558 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":14,"minSinceStart":1.3,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":true,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (ht
+10-14 20:18:47.559 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":15,"minSinceStart":1.3,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":true,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (ht
+10-14 20:18:47.559 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":16,"minSinceStart":1.3,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":true,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (ht
+10-14 20:18:48.144 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":17,"minSinceStart":1.4,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":true,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (ht
+10-14 20:18:48.165 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28163 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=1282
+10-14 20:18:48.167 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28166 refresh result=google applied=false gen=3/5 active=true
+10-14 20:18:48.201 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28198 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=654
+10-14 20:18:48.205 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28201 refresh result=google applied=false gen=4/5 active=true
+10-14 20:18:48.239 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28226 getLinkedAuthInfo source=users_doc.linkedAuth result=google ms=678
+10-14 20:18:48.245 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=28242 refresh result=google applied=true gen=5/5 active=true
+10-14 20:18:48.558 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":18,"minSinceStart":1.4,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":true,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGeneratorStep (ht
+10-14 20:18:53.068 I/ReactNativeJS(26876): [SIGNIN] bg:swap_restore:restoreFromCloud ok 6195ms
+10-14 20:18:54.245 I/ReactNativeJS(26876): [SIGNIN] bg:swap_restore:switchBackup ok 1174ms
+10-14 20:18:54.250 I/ReactNativeJS(26876): [SIGNIN] bg:swap_restore:markOnboarded ok 4ms
+10-14 20:18:54.256 I/ReactNativeJS(26876): [SIGNIN] bg:swap_restore:revenueCat ok 4ms
+10-14 20:18:54.350 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":19,"minSinceStart":1.5,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":true,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":false,"willCallNetwork":true,"networkReason":"requireAuthoritative","inFlight":false,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGenerat
+10-14 20:18:57.151 I/SVERKA  (27359): === R4 CARD-WATCH 20:18:58 ===
+10-14 20:18:58.455 I/ReactNativeJS(26876): [SIGNIN] bg:swap_restore done total=11583ms restore=restored
+10-14 20:19:44.232 I/SVERKA  (27464): === R4 SIGNOUT-TAP 20:19:45 ===
+10-14 20:19:47.338 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=87329 focus active=false dirty=false authReady=true shown=google focusTick=1
+10-14 20:19:47.368 I/ReactNativeJS(26876): [ACC-SPEED] warm skip source=account_details reason=throttled sinceLastMs=88339
+10-14 20:19:51.856 I/ReactNativeJS(26876): '[ACC-MUT] signout:in', '{"allowWipeWithoutSync":true,"allowPendingShardSpendDiscard":false}'
+10-14 20:19:51.987 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage shard_preflight_start {"sinceStartMs":22,"t":8122098}
+10-14 20:19:52.330 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage shard_preflight_done {"sinceStartMs":365,"pendingSpend":0,"t":8122441}
+10-14 20:19:52.348 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage shard_sync_done {"sinceStartMs":382,"t":8122459}
+10-14 20:19:52.358 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":20,"minSinceStart":2.4,"stableId":"3ca0ca0e","authUid":"AvRKC2GS","requireAuthoritative":true,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":true,"willUseCache":false,"willCallNetwork":true,"networkReason":"requireAuthoritative","inFlight":false,"accountGeneration":"5:active","caller":" at next (native) <- at asyncGenerat
+10-14 20:19:55.531 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage force_sync_deadline {"sinceStartMs":3566,"deadlineMs":3000,"t":8125642}
+10-14 20:19:55.531 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage force_sync_done {"sinceStartMs":3567,"synced":false,"t":8125643}
+10-14 20:19:55.535 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage emergency_backup_skipped {"sinceStartMs":3570,"reason":"final_snapshot_under_lock","t":8125647}
+10-14 20:19:55.536 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage lock_wait_start {"sinceStartMs":3571,"t":8125648}
+10-14 20:19:55.538 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage lock_acquired {"sinceStartMs":3574,"t":8125650}
+10-14 20:19:55.563 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage shard_queue_read {"sinceStartMs":3587,"entries":0,"t":8125664}
+10-14 20:19:57.098 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage final_snapshot_done {"sinceStartMs":5133,"t":8127210}
+10-14 20:19:57.326 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage marker_done {"sinceStartMs":5361,"t":8127438}
+10-14 20:19:57.335 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage entitlement_transition_done {"sinceStartMs":5370,"t":8127447}
+10-14 20:19:57.336 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage quarantine_resume_start {"sinceStartMs":5371,"t":8127448}
+10-14 20:19:57.631 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"head:read_journals","ms":281,"sinceResumeMs":289}'
+10-14 20:19:57.640 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"quiesce:premium","ms":1,"idle":true}'
+10-14 20:19:57.642 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"quiesce:cloud","ms":3,"idle":true}'
+10-14 20:19:57.644 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"quiesce:restore","ms":4,"idle":true}'
+10-14 20:19:57.645 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:quiesce","ms":7,"sinceResumeMs":305,"outcome":"true"}'
+10-14 20:19:57.648 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":3,"sinceResumeMs":309,"outcome":"ok"}'
+10-14 20:19:58.008 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:signOut","ms":357,"sinceResumeMs":668,"outcome":"ok"}'
+10-14 20:19:58.377 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":366,"sinceResumeMs":1038,"from":"prepared","to":"provider_signed_out","lockWaitMs":3}'
+10-14 20:19:58.411 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":31,"sinceResumeMs":1070,"to":"provider_signed_out","totalSinceQueuedMs":400}'
+10-14 20:19:58.422 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":10,"sinceResumeMs":1083,"outcome":"ok"}'
+10-14 20:19:59.828 I/ReactNativeJS(26876): [SETTINGS-ACCOUNT-CARD] t=99827 getLinkedAuthInfo source=users_doc_timeout_or_error→currentUser result=none ms=12458
+10-14 20:20:00.375 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:wipeLocalData","ms":1952,"sinceResumeMs":3035,"outcome":"ok"}'
+10-14 20:20:00.631 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":255,"sinceResumeMs":3291,"from":"provider_signed_out","to":"local_data_cleared","lockWaitMs":0}'
+10-14 20:20:00.657 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":26,"sinceResumeMs":3318,"to":"local_data_cleared","totalSinceQueuedMs":281}'
+10-14 20:20:00.670 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":12,"sinceResumeMs":3331,"outcome":"ok"}'
+10-14 20:20:01.059 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:clearStableId","ms":387,"sinceResumeMs":3719,"outcome":"ok"}'
+10-14 20:20:01.064 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":4,"sinceResumeMs":3724,"from":"local_data_cleared","to":"stable_id_cleared","lockWaitMs":0}'
+10-14 20:20:01.102 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":36,"sinceResumeMs":3763,"to":"stable_id_cleared","totalSinceQueuedMs":43}'
+10-14 20:20:02.154 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"anon:ensureAnonUser","ms":1049}'
+10-14 20:20:02.154 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"anon:getStableId","ms":0}'
+10-14 20:20:02.155 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:ensureAnonymousIdentity","ms":1052,"sinceResumeMs":4816,"outcome":"ok"}'
+10-14 20:20:02.241 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":84,"sinceResumeMs":4900,"from":"stable_id_cleared","to":"anonymous_authenticated","lockWaitMs":0}'
+10-14 20:20:02.270 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":28,"sinceResumeMs":4930,"to":"anonymous_authenticated","totalSinceQueuedMs":114}'
+10-14 20:20:02.276 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":5,"sinceResumeMs":4936,"outcome":"ok"}'
+10-14 20:20:02.531 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":255,"sinceResumeMs":5192,"from":"anonymous_authenticated","to":"fresh_stable_created","lockWaitMs":0}'
+10-14 20:20:02.868 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":335,"sinceResumeMs":5528,"to":"fresh_stable_created","totalSinceQueuedMs":591}'
+10-14 20:20:02.872 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":3,"sinceResumeMs":5532,"outcome":"ok"}'
+10-14 20:20:03.117 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:read","ms":245,"sinceResumeMs":5778,"from":"fresh_stable_created","to":"ready","lockWaitMs":0}'
+10-14 20:20:03.200 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"marker_advance:write_verified","ms":83,"sinceResumeMs":5861,"to":"ready","totalSinceQueuedMs":328}'
+10-14 20:20:03.210 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"dep:readStableId","ms":8,"sinceResumeMs":5870,"outcome":"ok"}'
+10-14 20:20:03.816 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"tail:clear_marker","ms":602,"sinceResumeMs":6474,"cleared":true}'
+10-14 20:20:03.851 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"tail:remove_receipt","ms":31,"sinceResumeMs":6509}'
+10-14 20:20:03.857 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"tail:activate_generation","ms":5,"sinceResumeMs":6517}'
+10-14 20:20:03.859 W/ReactNativeJS(26876): '[ACC-SPEED]', '{"step":"resume_done","ms":6520,"sinceResumeMs":6520,"result":"completed"}'
+10-14 20:20:03.860 W/ReactNativeJS(26876): [ACC-SIGNOUT] stage quarantine_resume_done {"sinceStartMs":11896,"kind":"resumed","t":8133972}
+10-14 20:20:03.862 I/ReactNativeJS(26876): '[ACC-MUT] signout:out', '{"ok":true,"reason":null,"detail":null,"synced":false,"tookMs":12007}'
+10-14 20:20:03.863 I/ReactNativeJS(26876): '[ACC-MUT] ui:logout_attempt_1', '{"ok":true,"reason":null,"detail":null}'
+10-14 20:20:04.251 I/ReactNativeJS(26876): [ACC-SPEED] warm skip source=registration_prompt reason=throttled sinceLastMs=105222
+10-14 20:20:04.446 I/ReactNativeJS(26876): '[AUTH-LOOP] ensureStableAuthLink', '{"callNo":21,"minSinceStart":2.6,"stableId":"432e654a","authUid":"ZWsHJWCV","requireAuthoritative":false,"hasFreshMetadata":false,"metadataKeys":[],"cacheHit":false,"willUseCache":false,"willCallNetwork":true,"networkReason":"cacheMiss","inFlight":false,"accountGeneration":"15:active","caller":" at next (native) <- at asyncGeneratorStep (

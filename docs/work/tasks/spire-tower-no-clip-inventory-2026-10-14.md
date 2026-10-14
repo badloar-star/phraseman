@@ -46,3 +46,12 @@ git revert коммитов.
 5. **Главная (`home.tsx`)**: плитка Пика — картинка (`spire_tile`, арт Codex), не SVG — не относится. Превью лиг/окна лиг — тоже через `SpireWeekResultCard`/`SpireTower` (п. 1–2); отдельных мест с `SpireTowerSvg` нет (проверено поиском по `app/`, `components/`, `modules/`).
 
 Итого к правке: 4 места (карточка итога недели, вершина на экране Пика, окно/запас навершия, тур) + сторож.
+
+## Каскад перед TOP_PAD 300 → 360 (проверено чтением, 14.10)
+
+Все потребители координат считают от `SPIRE_TOWER_GEOM` (`floors[i].y/h`, `top`, `height`), а не от чисел: сдвиг +60 подхватывается сам.
+- Позиции этажей и «Ты здесь» (`markerTarget`, `spireMarkerXY`), автоскролл к своему этажу (`scrollToFloor`: `cy = (fl.y + fl.h/2) * scale`), тап по этажу (`Floor` в SVG из `fl`), монеты соседей (`RivalsLayer`: `top = (fl.y + fl.h/2 - RIVAL/2) * scale`), высота содержимого (`SPIRE_TOWER_GEOM.height * scale`) — всё через геометрию.
+- Внутри `SpireTowerSvg` небо, звёзды, облака, подпись «НАД ОБЛАКАМИ» заданы от `geom.top` (−250/−272/−150…) — сдвигаются вместе с башней.
+- Прокрутка окна: `spireCrownTopY(geom.top, scale)` и `SPIRE_CROWN_RISE = 34+168+36` — заменяю на запас из `spireTowerHeadroom` (граница башни).
+- «Комната недели» (`SpirePodium`/`SpireAllMembers`) геометрию башни не использует.
+Тесты, которые обязаны измениться вместе с правкой: `tests/spire_tower_crown.test.ts:58` (закреплён `TOP_PAD = 300` → станет «≥ нужного запаса из `spire_tower_bounds`»), `:34` (допуск `SPIRE_FINIAL_SLACK`), `tests/spire_tower_skins.test.ts:145` (закреплён `geom.top - 236` у weekTop). Новый сторож: `tests/spire_tower_no_clip_contract.test.ts` (красный до правки).

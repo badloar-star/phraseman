@@ -158,6 +158,8 @@ describe('accountDelete query plan', () => {
       expect.any(Number),
       expect.objectContaining({ operationId: expect.any(String), capabilityHash: expect.any(String) }),
       ['stable-123', 'alias-a', 'auth-456'],
+      // D189: без токена вызова решение «гость — сразу» не принимается — обычные 14 дней.
+      { immediate: false, reason: 'no_token' },
     );
     expect(result).toMatchObject({ ok: true, authReleased: true, credentialSafe: true });
   });

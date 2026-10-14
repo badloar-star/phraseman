@@ -8,9 +8,11 @@ import {
   accountDeleteJobId,
   accountDeleteCredentialReceiptId,
   accountDeletePermanentDenialId,
+  accountDeleteProfilesLinked,
   enqueueAccountDeletionJob,
   fenceAccountDeletionCredential,
   fenceAccountDeletionRoots,
+  type AccountDeleteGuestDecision,
 } from './account_delete_job';
 // Префикс синтетических жителей: комната без ЖИВЫХ считается пустой и удаляется,
 // иначе после ухода последнего человека остался бы призрак из ботов.
@@ -2156,6 +2158,59 @@ export function createAccountDeleteEnqueueTrace(now: () => number = Date.now): A
   };
 }
 
+/** D189: что сервер знает о входе из токена вызова (request.auth.token.firebase). */
+export type AccountDeleteGuestToken = Readonly<{ signInProvider: unknown; identities: unknown }>;
+
+type AccountDeleteAuthLookup = (uids: readonly string[]) => Promise<ReadonlyArray<Readonly<{ uid: string; providerCount: number }>>>;
+
+const defaultAuthLookup: AccountDeleteAuthLookup = async (uids) => {
+  const result = await admin.auth().getUsers(uids.slice(0, 100).map((uid) => ({ uid })));
+  return result.users.map((user) => ({ uid: user.uid, providerCount: user.providerData.length }));
+};
+
+/**
+ * D189 (владелец 14.10 «ДА, СРАЗУ»; координатор: строго, сомнение = «не гость»): гость — это ВСЁ вместе:
+ * анонимный вход в токене; в token.firebase.identities нет ни одного провайдера; у пользователя Auth providerData пуст и
+ * ни у одного Auth-пользователя из identityClosure нет провайдеров; ни в одном профиле closure нет привязанного входа.
+ * Любая ошибка чтения или неполные данные → { immediate: false } + причина. Ошибка в сторону «привязанный стёрт сразу» —
+ * потеря данных настоящего человека.
+ */
+export async function decideAccountDeleteGuestImmediate(input: Readonly<{
+  db: FirebaseFirestore.Firestore;
+  authUid: string;
+  identityClosure: readonly string[];
+  token: AccountDeleteGuestToken | undefined;
+  lookupAuthUsers?: AccountDeleteAuthLookup;
+  profilesLinked?: typeof accountDeleteProfilesLinked;
+}>): Promise<AccountDeleteGuestDecision> {
+  const no = (reason: string): AccountDeleteGuestDecision => ({ immediate: false, reason });
+  if (!input.token) return no('no_token');
+  if (input.token.signInProvider !== 'anonymous') {
+    return no(`sign_in_provider_${typeof input.token.signInProvider === 'string' ? input.token.signInProvider.slice(0, 24) : 'missing'}`);
+  }
+  const identities = input.token.identities;
+  if (!identities || typeof identities !== 'object' || Array.isArray(identities)) return no('token_identities_missing');
+  if (Object.values(identities as Record<string, unknown>).some((v) => !Array.isArray(v) || v.length > 0)) {
+    return no('token_identities_linked');
+  }
+  const ids = Array.from(new Set([input.authUid, ...input.identityClosure].filter((id) => typeof id === 'string' && id.length > 0)));
+  let authUsers: ReadonlyArray<Readonly<{ uid: string; providerCount: number }>>;
+  try {
+    authUsers = await (input.lookupAuthUsers ?? defaultAuthLookup)(ids);
+  } catch {
+    return no('auth_lookup_failed');
+  }
+  if (!authUsers.some((user) => user.uid === input.authUid)) return no('auth_user_missing');
+  if (authUsers.some((user) => user.providerCount > 0)) return no('auth_provider_linked');
+  try {
+    const profiles = await (input.profilesLinked ?? accountDeleteProfilesLinked)(input.db, ids);
+    if (profiles !== 'clean') return no('profile_linked');
+  } catch {
+    return no('profile_read_failed');
+  }
+  return { immediate: true, reason: 'anonymous_no_links' };
+}
+
 /**
  * Прогрев инстанса accountDeleteEnqueue с экрана удаления (координатор 14.10: холодный старт ≈9,5 с из 17,2 с ack).
  * зачем именно `warm: true` в ТОЙ ЖЕ функции: отдельное имя — отдельный сервис Cloud Run, он не прогрел бы этот инстанс.
@@ -2182,6 +2237,9 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     prepareAccountsV2?: (jobId: string, authUid: string, credential: unknown) => Promise<AccountsV2EnqueueOutcome>;
     /** [ACCOUNT-DELETE-ENQUEUE]: стадии и миллисекунды (обработчик передаёт свою трассировку). */
     trace?: AccountDeleteEnqueueTrace;
+    /** D189: токен вызова для решения «гость — сразу»; нет токена — обычные 14 дней. */
+    guestToken?: AccountDeleteGuestToken;
+    decideGuest?: typeof decideAccountDeleteGuestImmediate;
   } = {},
 ) {
   const proof = cleanCredentialProof(rawProof);
@@ -2207,6 +2265,12 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     authUid,
   );
   deps.trace?.mark('closure_resolved', { closureSize: Array.isArray(identityClosure) ? identityClosure.length : null });
+  // зачем (D189): решение «гость — удалить сразу» ДО снятия пользователя Auth — потом providerData уже не проверить.
+  const guest = await (deps.decideGuest ?? decideAccountDeleteGuestImmediate)({
+    db, authUid, identityClosure, token: deps.guestToken,
+  });
+  console.log(JSON.stringify({ event: 'account_delete_guest_decision', tag: '[ACCOUNT-DELETE]', guest_immediate: guest.immediate, reason: guest.reason }));
+  deps.trace?.mark('guest_decided', { guestImmediate: guest.immediate });
   const result = await enqueue(
     db,
     authUid,
@@ -2214,6 +2278,7 @@ export async function enqueueAndReleaseAuthenticatedAccount(
     Date.now(),
     receipt,
     identityClosure,
+    guest,
   );
   deps.trace?.mark('enqueued', { status: result.status, created: (result as { created?: unknown }).created ?? null });
   // зачем (Пакет 6A): ключ V2 сохраняется в задаче лишь ЗАГОТОВКОЙ квитанции —
@@ -2378,7 +2443,15 @@ export const accountDeleteEnqueue = onCall({
         capability: request.data?.capability,
       },
       // зачем (Пакет 6A): новый клиент (6B) шлёт ключ V2 отдельным полем; старый — нет.
-      { accountsV2Credential: request.data?.accountsV2Deletion, trace },
+      {
+        accountsV2Credential: request.data?.accountsV2Deletion,
+        trace,
+        // зачем (D189): что сервер сам знает о способе входа — клиенту не верим.
+        guestToken: {
+          signInProvider: (request.auth.token as { firebase?: { sign_in_provider?: unknown } }).firebase?.sign_in_provider,
+          identities: (request.auth.token as { firebase?: { identities?: unknown } }).firebase?.identities,
+        },
+      },
     );
     trace.mark('done', { status: result.status });
     return result;

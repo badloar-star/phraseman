@@ -104,7 +104,7 @@ describe('[ACCOUNT-DELETE-ENQUEUE] / [ACCOUNT-DELETE-JOB] / [ACCOUNT-DELETE-SWEE
   });
 
   it('в журналах удаления нет uid', () => {
-    const traceSrc = SRC.slice(SRC.indexOf('export function createAccountDeleteEnqueueTrace'), SRC.indexOf('export function isAccountDeleteWarmRequest'));
+    const traceSrc = SRC.slice(SRC.indexOf('export function createAccountDeleteEnqueueTrace'), SRC.indexOf('export type AccountDeleteGuestToken'));
     expect(traceSrc).not.toMatch(/authUid|stableUid|email/);
   });
 });

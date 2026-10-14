@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   __cloudSyncTestHooks,
   ensureStableAuthLinkForStableIdDetailed,
+  forgetAuthoritativeStableAuthLinkMemo,
 } from '../app/cloud_sync';
 import {
   __resetAccountGenerationForTests,
@@ -37,12 +38,36 @@ describe('cloud sync identity anchor', () => {
     jest.clearAllMocks();
     __resetAccountGenerationForTests();
     beginAccountGeneration('stable-a');
+    forgetAuthoritativeStableAuthLinkMemo('test_reset');
   });
 
   it('bypasses a fresh local cache when authoritative confirmation is required', async () => {
     await ensureStableAuthLinkForStableIdDetailed('stable-a');
+    // зачем (14.10): дисковый кэш остался, а память ответа — нет (как в новом процессе) → авторитетный вызов идёт в сеть.
+    forgetAuthoritativeStableAuthLinkMemo('new_process');
     await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    expect(mockCallable).toHaveBeenCalledTimes(2);
+  });
 
+  // зачем (координатор 14.10, прогон №4: 2 авторитетных вызова на холодном старте и 2–4 при входе — 3,3–3,6 с каждый):
+  // подтверждённый сервером ответ переиспользуется в том же поколении аккаунта, без сети.
+  it('reuses a server-confirmed answer for the same identity and account generation', async () => {
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    await expect(ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true }))
+      .resolves.toMatchObject({ ok: true, stableUid: 'stable-a' });
+    expect(mockCallable).toHaveBeenCalledTimes(1);
+  });
+
+  it('goes to the server again after the account generation changes', async () => {
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    beginAccountGeneration('stable-a');
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    expect(mockCallable).toHaveBeenCalledTimes(2);
+  });
+
+  it('never answers a metadata update from memory', async () => {
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', undefined, { requireAuthoritative: true });
+    await ensureStableAuthLinkForStableIdDetailed('stable-a', { provider: 'google' } as never, { requireAuthoritative: true });
     expect(mockCallable).toHaveBeenCalledTimes(2);
   });
 
@@ -68,6 +93,7 @@ describe('cloud sync identity anchor', () => {
       { requireAuthoritative: true },
     )).resolves.toMatchObject({ ok: true, source: 'callable' });
 
+    forgetAuthoritativeStableAuthLinkMemo('check_identity_ready_again');
     mockCallable.mockResolvedValueOnce({
       data: { ok: true, stableUid: 'stable-a', authUid: 'provider-a' },
     } as any);

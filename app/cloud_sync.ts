@@ -2222,6 +2222,21 @@ export function warmAccountDeleteEnqueue(source: string): void {
   }
 }
 
+// ── Память подтверждённого сервером ответа ensure_link (координатор 14.10, прогон №4) ───────────────────────────────────
+// зачем: перед каждой облачной записью ensureCloudMutationIdentity / ensureAuthoritativeIdentityForCloudMutation зовут
+// requireAuthoritative — мимо кэша, сетевым вызовом (3,3–3,6 с на тёплом сервере): 2 на холодном старте, 2–4 при входе.
+// Свежий ответ сервера для того же stableId:authUid в ТОМ ЖЕ поколении аккаунта — уже авторитетный: переиспользуем 10 минут.
+// Защита «не писать в чужой аккаунт» (инцидент 2026-08-25) остаётся: любая смена личности меняет поколение и сбрасывает
+// память; repair после ошибки личности — тоже. Только память процесса, на диск не пишем.
+const AUTHORITATIVE_LINK_MEMO_TTL_MS = 10 * 60_000;
+let authoritativeLinkMemo: Readonly<{ key: string; generation: number; atMs: number; result: StableAuthLinkEnsureResult }> | null = null;
+
+/** Для тестов и repair: забыть подтверждённый ответ. */
+export function forgetAuthoritativeStableAuthLinkMemo(reason: string): void {
+  if (authoritativeLinkMemo) console.log(`[ENSURE-LINK] authoritative_memo_cleared reason=${reason}`); // guard-ok: сброс памяти виден
+  authoritativeLinkMemo = null;
+}
+
 export async function ensureStableAuthLinkForStableIdDetailed(
   stableIdRaw: string,
   metadata?: StableAuthLinkMetadata,
@@ -2296,6 +2311,16 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта предъявляется
   // серверу, только если он выдан этому же stableId; живёт в памяти процесса.
   const nonceField = anonMergeNonceField('ensure_link', [stableId]);
+  const memoGeneration = captureAccountGeneration().generation;
+  if (options.requireAuthoritative === true && !hasFreshMetadata && nonceField.anonMergeNonce === undefined) {
+    const memo = authoritativeLinkMemo;
+    const ageMs = memo ? Date.now() - memo.atMs : -1;
+    if (memo && memo.key === key && memo.generation === memoGeneration && ageMs >= 0 && ageMs < AUTHORITATIVE_LINK_MEMO_TTL_MS) {
+      console.log(`[ENSURE-LINK] authoritative_memo hit ageMs=${ageMs} generation=${memoGeneration}`); // guard-ok: ответ без сети
+      return memo.result;
+    }
+    console.log(`[ENSURE-LINK] authoritative_memo miss reason=${!memo ? 'empty' : memo.key !== key ? 'other_identity' : memo.generation !== memoGeneration ? 'generation_changed' : 'expired'}`); // guard-ok: почему в сеть
+  }
   const promiseKey = [
     key,
     hasFreshMetadata ? 'metadata' : '',
@@ -2322,7 +2347,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       const actualAuthUid = String(res?.data?.authUid ?? authUid).trim() || authUid;
       const ok = res?.data?.ok === true && res.data.identityReady === true && actualStableUid.length > 0;
       if (ok) writeStableAuthLinkCache(`${actualStableUid}:${actualAuthUid}`).catch(swallowError('cloud_sync:ensureStableAuthLinkForStableIdDetailed'));
-      return {
+      const result: StableAuthLinkEnsureResult = {
         ok,
         requestedStableId: stableId,
         stableUid: ok ? actualStableUid : null,
@@ -2330,6 +2355,11 @@ export async function ensureStableAuthLinkForStableIdDetailed(
         source: 'callable',
         ...(ok ? {} : { failure: 'identity_unavailable' as const }),
       };
+      // зачем (прогон №4): ответ сервера подтверждён — помним для того же ключа и поколения (только если поколение не сменилось за запрос).
+      if (ok && actualStableUid === stableId && actualAuthUid === authUid && captureAccountGeneration().generation === memoGeneration) {
+        authoritativeLinkMemo = { key, generation: memoGeneration, atMs: Date.now(), result };
+      }
+      return result;
     } catch (error) {
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
       const failure = classifyCloudAccessFailure(error);
@@ -2414,6 +2444,7 @@ export async function repairStableAuthLinkAfterIdentityFailure(): Promise<boolea
   await removeStoredItem(STABLE_AUTH_LINK_CACHE_KEY).catch(swallowError('cloud_sync:repairStableAuthLinkAfterIdentityFailure'));
   stableAuthLinkPromise = null;
   stableAuthLinkKey = '';
+  forgetAuthoritativeStableAuthLinkMemo('repair_after_identity_failure');
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
   const result = await ensureStableAuthLinkForStableIdDetailed(stableId, undefined, {

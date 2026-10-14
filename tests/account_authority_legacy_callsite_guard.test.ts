@@ -550,7 +550,9 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         stableIdentityWrites: 3,
         authLinkLookups: 1,
         generationTransitions: 4,
-        generationFences: 14,
+        // Ядро 14.10: +1 — поколение в трассировке [AUTH-LOOP] ensureStableAuthLink (7f9c95187, только чтение для лога);
+        // +2 — память подтверждённого ответа ensure_link: поколение при входе и сверка, что оно не сменилось за запрос.
+        generationFences: 17,
         transitionLocks: 4,
         anonymousSessionDecisions: 9,
       },
@@ -680,13 +682,14 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // AA S2b (пункт 9): +1 — стирание nonce M-1 после успешного слияния.
         // AA S2c (L-S2b-4): +2 — различение отказа из-за потерянного nonce (ensureLink, merge).
         // Пункт (а) 11.10: +1 — forceSyncToCloud перепроверяет поколение после ожидания отложенного восстановления.
-        occurrences: 74,
+        // Ядро 14.10: +1 — поколение в трассировке [AUTH-LOOP] (7f9c95187); +2 — память подтверждённого ответа ensure_link.
+        occurrences: 77,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
           'call:beginAccountGeneration': 1,
           'call:beginInitialAccountGeneration': 3,
-          'call:captureAccountGeneration': 5,
+          'call:captureAccountGeneration': 8,
           'call:classifyAnonMergeNonceRejection': 2,
           'call:clearStableId': 2,
           'call:collection': 1,

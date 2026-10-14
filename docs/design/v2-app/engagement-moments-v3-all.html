@@ -137,6 +137,12 @@
 .em-ph .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
 .em-ph .calendar i { aspect-ratio: 1; border-radius: 8px; background: var(--ti); display: block; }
 .em-ph .calendar i.on { background: var(--acc); }
+.em-ph .bub.me { align-self: flex-end; background: var(--cta); color: var(--cta-ink); border-bottom-right-radius: 6px; animation: emUp 300ms var(--em-ease) both; }
+.em-ph .goalline.brow { opacity: 0; transform: translateY(10px) scale(.98); transition: opacity 260ms var(--em-ease), transform 420ms cubic-bezier(.34,1.56,.64,1); } .em-ph .goalline.brow.in { opacity: 1; transform: none; }
+.em-ph .gstrip { margin-top: 12px; height: 40px; border-radius: 20px; padding: 0 14px; display: flex; align-items: center; gap: 10px; background: var(--control); box-shadow: var(--sh2); font-size: 13px; color: var(--sc); }
+.em-ph .gstrip .gst-k { font-weight: 700; } .em-ph .gstrip .gst-dots { display: flex; gap: 6px; flex: 1; } .em-ph .gstrip .gst-dots i { width: 10px; height: 10px; border-radius: 5px; background: var(--ti); box-shadow: inset 0 0 0 1.5px var(--mu); transition: background 240ms, box-shadow 240ms, transform 420ms cubic-bezier(.34,1.56,.64,1); }
+.em-ph .gstrip .gst-dots i.ok { background: var(--acc); box-shadow: none; transform: scale(1.25); } .em-ph .gstrip b { color: var(--tx); font-weight: 700; }
+.em-ph .gstrip.pulse { animation: emPulse 600ms var(--em-ease) 1; }
 .em-ph .goalline { display: flex; align-items: center; gap: 12px; font-size: 16px; padding: 11px 0; }
 .em-ph .goalline + .goalline { box-shadow: inset 0 1px 0 var(--line); }
 .em-ph .goalline .n { width: 26px; height: 26px; border-radius: 13px; background: var(--control); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex: none; }
@@ -756,37 +762,61 @@ const sec = (t) => `<div class="cta ghost">${t}</div>`;
 const themeCols = (ph) => ['--acc', '--acc2', '--tx'].map((v) => getComputedStyle(ph).getPropertyValue(v).trim());
 const flame = (st, n = '', size = 160) => `<div class="flame st-${st}" style="--fs2:${size}px" data-flame><div class="glow"></div><span class="g outline">${IO.flameO}</span><span class="g fill l2">${IO.flame}</span><span class="g fill l1">${IO.flame}</span><span class="g core">${IO.flame}</span>${[0, 1, 2, 3].map((k) => `<i class="sp" style="--dx:${(k - 1.5) * 14}px;animation-delay:${k * .65}s"></i>`).join('')}<div class="veil"></div>${n !== '' ? `<div class="n${String(n).length > 3 ? ' n4' : ''}">${n}</div>` : ''}</div>`;
 
-/* ---------- 16. Брифинг — живая переписка (шторка над экраном брифинга) ---------- */
+/* ---------- 16. Диалог — поток «звонок → брифинг → переписка» ---------- */
+// зачем (владелец 14.10): брифинг был спрятан под шторкой переписки — человек не видел, что делать. Теперь один связный поток:
+// звонок → «Ответить» → брифинг со ВСЕМИ заданиями сценария (1:1 app/ai_dialog_scenarios.ts: objectives[].labelRu, persona, setting, cefr)
+// → «Начать» → переписка: наверху компактная полоска заданий (тап — развернуть), выполненное отмечается галочкой прямо в полоске.
 const SCEN = {
-  cafe: { who: 'Эмма', role: 'бариста', sub: 'Кофейня · утро', t: 'Закажи кофе', lvl: 'A1', hint: 'Hi! Could I get a cappuccino, please?', goals: ['Заказать капучино', 'Выбрать размер', 'Спросить цену'], brief: 'Закажи капучино, выбери размер и спроси цену.',
-    steps: [{ who: 'sys', text: 'Ты у стойки.', delay: 300 }, { who: 'them', text: 'Hi there! What can I get for you?', tr: 'Привет! Что вам принести?', meta: '9:41', delay: 500, typingMs: 1100 }, { who: 'them', text: 'Take your time.', tr: 'Не торопитесь.', meta: '9:41 · прочитано', delay: 700, typingMs: 900 }] },
-  pharmacy: { who: 'Том', role: 'фармацевт', sub: 'Аптека · вечер', t: 'В аптеке', lvl: 'A2', hint: 'Good evening. I have a headache…', goals: ['Описать, что болит', 'Спросить, как принимать', 'Сказать про аллергию'], brief: 'Опиши симптом, спроси дозировку и предупреди об аллергии.',
-    steps: [{ who: 'sys', text: 'Голова болит второй день.', delay: 300 }, { who: 'them', text: 'Good evening. How can I help you?', tr: 'Добрый вечер. Чем могу помочь?', meta: '19:02', delay: 500, typingMs: 1000 }, { who: 'them', text: 'Any allergies I should know about?', tr: 'Есть аллергии, о которых мне стоит знать?', meta: '19:02 · прочитано', delay: 800, typingMs: 1300 }] },
+  cafe: { who: 'Mia', role: 'бариста', place: 'Уютная кофейня', t: 'Закажи кофе', lvl: 'A1', icon: 'cafe', goal: 'Закажи капучино, уточни размер и спроси цену',
+    goals: ['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'],
+    hint: 'Hi! Could I get a cappuccino, please?',
+    steps: [{ who: 'them', text: 'Hi there! What can I get for you?', tr: 'Привет! Что вам принести?', meta: '9:41', delay: 300, typingMs: 1000 }] },
+  pharmacy: { who: 'Mr. Patel', role: 'фармацевт', place: 'Аптека, у стойки', t: 'В аптеке', lvl: 'A2', icon: 'medical', goal: 'Объясни простую проблему и попроси безопасно направить к специалисту',
+    goals: ['Обратиться к фармацевту', 'Описать, что беспокоит', 'Сказать, как давно это длится', 'Попросить направить к специалисту'],
+    hint: 'Good evening. Can you help me?',
+    steps: [{ who: 'them', text: 'Good evening. How can I help you?', tr: 'Добрый вечер. Чем могу помочь?', meta: '19:02', delay: 300, typingMs: 1000 }] },
 };
-const briefSheet = (s) => `<div class="dim"></div><div class="sheet"><div class="grab"></div><div class="who"><span class="av">${io('chats', 24)}</span><div class="nm">${s.who} · ${s.role}<s>печатает…</s></div><span class="chip lvl" style="margin-left:auto">${s.lvl}</span></div>
-  <div class="chatbox" data-chat style="margin-top:14px"></div>
-  <div class="ghostin" style="margin-top:12px"><span class="mic">${io('mic', 18)}</span><span class="tx" data-ghost><span style="color:var(--mu)">Скажи или напиши…</span></span></div>
-  <div style="margin-top:12px">${prim('Ответить', false)}</div></div>`;
-const liveInit = (s) => (ph) => { const stop = chatPlay3(ph.querySelector('[data-chat]'), s.steps, {}); const t = setTimeout(() => ghostType(ph.querySelector('[data-ghost]'), s.hint, 38), 3600); return () => { stop(); clearTimeout(t); }; };
-const BEATS_LIVE = [{ t: 0.3, w: 'закадровая строка сцены', snd: 'tick', s: 'fc_tick', gain: .6 }, { t: 0.8, w: 'три точки «печатает» 1,1 с', snd: 'flip', s: 'fc_flip', gain: .5 }, { t: 1.9, w: 'реплика всплывает, метка времени', h: 'light', snd: 'msg', s: 'message_received' }, { t: 3.4, w: 'вторая реплика · «прочитано»', h: 'light', snd: 'msg', s: 'message_received' }, { t: 3.6, w: 'черновик первой фразы печатается в поле (38 мс/символ), микрофон пульсирует', snd: 'rec', s: 'record_start', gain: .5 }];
-const call = (s) => `<div class="call"><div class="ov">Входящий · диалог ${s.lvl}</div><div class="av a-pop" style="margin-top:22px">${io('chats', 52)}<span class="ring"></span><span class="ring r2"></span></div>
-  <div class="h-lg a-up d2" style="margin-top:18px">${s.who} звонит</div><div class="p a-up d3" style="margin-top:4px">${s.t} · ${s.sub}</div>
-  <div class="btns"><div><div class="b ghost cta" style="padding:0;width:72px">${io('close', 28)}</div><div class="lbl">Потом</div></div><div><div class="b cta" style="padding:0;width:72px;animation:emPulse 1.2s ease-in-out infinite">${io('mic', 28)}</div><div class="lbl">Ответить</div></div></div></div>`;
-moment({ id: 'm16', num: '16', short: 'Брифинг · переписка', title: 'Брифинг диалога — живая переписка', tag: 'new',
-  lead: 'Под шторкой — настоящий экран брифинга из кода (плитка chatbubbles, чип уровня, заголовок, задания, док «Начать диалог» без ценника энергии). В шторке KitSheetModal собеседник печатает, реплики с меткой времени и «прочитано», черновик первой фразы печатается в поле. Голосовые — только у реплик с готовой озвучкой (D167), в примере их нет. «Входящий звонок» — предложение.',
+const ICON = (s) => io(s.icon === 'cafe' ? 'chats' : 'chats', 26);
+const callStep = (s) => `<div class="call" data-step="call"><div class="ov">Входящий · диалог ${s.lvl}</div><div class="av a-pop" style="margin-top:22px">${io('chats', 52)}<span class="ring"></span><span class="ring r2"></span></div>
+  <div class="h-lg a-up d2" style="margin-top:18px">${s.who} звонит</div><div class="p a-up d3" style="margin-top:4px">${s.t} · ${s.place}</div>
+  <div class="btns"><div><div class="b ghost cta" style="padding:0;width:72px">${io('close', 28)}</div><div class="lbl">Потом</div></div><div><div class="b cta" data-answer style="padding:0;width:72px;animation:emPulse 1.2s ease-in-out infinite">${io('mic', 28)}</div><div class="lbl">Ответить</div></div></div></div>`;
+const briefStep = (s) => `<div class="full" data-step="brief" style="display:none"><div class="body" style="justify-content:flex-start;padding-top:6px">
+  <div class="who" style="align-self:stretch"><span class="av">${io('chats', 24)}</span><div class="nm">${s.who} · ${s.role}<s>${s.place}</s></div><span class="chip lvl" style="margin-left:auto">${s.lvl}</span></div>
+  <div class="h-lg" style="margin-top:18px;align-self:stretch;text-align:left">${s.t}</div>
+  <div class="sf" style="margin-top:14px;padding:8px 16px 4px;align-self:stretch;text-align:left"><div class="ov" style="padding:8px 0 4px">Что нужно сделать</div>
+    ${s.goals.map((g, i) => `<div class="goalline brow" data-brow="${i}"><span class="n"></span>${g}</div>`).join('')}</div></div>
+  <div class="foot">${prim('Начать')}</div></div>`;
+const chatStep = (s) => `<div class="full" data-step="chat" style="display:none;padding-top:62px">
+  <div class="who"><span class="av">${io('chats', 24)}</span><div class="nm">${s.who} · ${s.role}<s>${s.place}</s></div><span class="chip lvl" style="margin-left:auto">${s.lvl}</span></div>
+  <div class="gstrip" data-gstrip><span class="gst-k">Задания</span><span class="gst-dots">${s.goals.map((_, i) => `<i data-gd="${i}"></i>`).join('')}</span><b data-gn>0/${s.goals.length}</b>${io('chevron', 16)}</div>
+  <div class="chatbox" data-chat style="flex:1;margin-top:12px"></div>
+  <div class="ghostin" style="margin-top:12px"><span class="mic">${io('mic', 18)}</span><span class="tx" data-ghost><span style="color:var(--mu)">Скажи или напиши…</span></span></div></div>`;
+const flow = (s) => `${callStep(s)}${briefStep(s)}${chatStep(s)}`;
+const flowInit = (s) => (ph) => { const show = (k) => { const next = ph.querySelector(`[data-step="${k}"]`); next.style.display = 'flex'; setTimeout(() => ph.querySelectorAll('[data-step]').forEach((e) => { if (e !== next) e.style.display = 'none'; }), 460); }; // наложение: новый шаг проявляется (emFade 420 мс) поверх прежнего, прежний прячется после — экран под потоком не мелькает
+  let stopChat = () => {}; let stopGhost = () => {};
+  const stop = seq(ph, [
+    [2000, () => { const b = ph.querySelector('[data-answer]'); b.style.animation = 'none'; b.style.transform = 'scale(.92)'; }],
+    [2300, () => { show('brief'); ph.querySelectorAll('[data-brow]').forEach((r, i) => setTimeout(() => r.classList.add('in'), 120 + i * 100)); }],
+    [5800, () => { const c = ph.querySelector('[data-step="brief"] .cta'); c.style.transform = 'scale(.97)'; }],
+    [6000, () => { show('chat'); stopChat = chatPlay3(ph.querySelector('[data-chat]'), s.steps, {}); }],
+    [7600, () => { stopGhost = ghostType(ph.querySelector('[data-ghost]'), s.hint, 38); }],
+    [7600 + s.hint.length * 38 + 500, () => { const box = ph.querySelector('[data-chat]'); const d = document.createElement('div'); d.className = 'bub me'; d.textContent = s.hint; box.appendChild(d); ph.querySelector('[data-ghost]').innerHTML = '<span style="color:var(--mu)">Скажи или напиши…</span>'; }],
+    [7600 + s.hint.length * 38 + 1100, () => { const g = ph.querySelector('[data-gd="0"]'); g.classList.add('ok'); ph.querySelector('[data-gn]').textContent = `1/${s.goals.length}`; ph.querySelector('[data-gstrip]').classList.add('pulse'); }],
+  ]);
+  return () => { stop && stop(); stopChat(); stopGhost(); }; };
+const BEATS_FLOW = (s) => [{ t: 0.0, w: 'входящий звонок: плитка pop, два кольца, «Ответить» пульсирует', h: 'light', snd: 'msg', s: 'message_received' }, { t: 2.3, w: '«Ответить» → брифинг: строки заданий по очереди (100 мс, пружина)', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 6.0, w: '«Начать» → переписка, собеседник печатает', h: 'light', snd: 'msg', s: 'message_received' }, { t: (7600 + s.hint.length * 38 + 1100) / 1000, w: 'фраза отправлена → задание 1 отмечено галочкой в полоске', h: 'success', snd: 'star', s: 'fc_star' }];
+moment({ id: 'm16', num: '16', short: 'Диалог · поток', title: 'Диалог — поток «звонок → брифинг → переписка»', tag: 'new',
+  lead: 'Поток: звонок → брифинг → диалог. Задания — все из сценария в коде (app/ai_dialog_scenarios.ts), брифинг ничем не перекрыт, кнопка «Начать». В переписке наверху полоска заданий (тап — развернуть), выполненное отмечается галочкой. «Входящий звонок» одобрен владельцем 14.10 — в код после R1.',
   variants: [
-    { k: 'A1', label: 'Кофейня · черновик печатается сам', time: '~6 с', phone: { under: briefUnder({ title: SCEN.cafe.t, lvl: 'A1', brief: SCEN.cafe.brief, goals: SCEN.cafe.goals }), over: briefSheet(SCEN.cafe) }, init: liveInit(SCEN.cafe), total: 6.5, beats: BEATS_LIVE,
-      why: 'Собеседник живой, видно, что спросят, и как начать — три страха сняты до первого слова.', ref: 'iMessage, Praktika, Speak.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
-    { k: 'A2', label: 'Аптека · «прочитано»', time: '~6 с', phone: { under: briefUnder({ title: SCEN.pharmacy.t, lvl: 'A2', brief: SCEN.pharmacy.brief, goals: SCEN.pharmacy.goals }), over: briefSheet(SCEN.pharmacy) }, init: liveInit(SCEN.pharmacy), total: 6.5, beats: BEATS_LIVE,
-      why: 'Тот же шаблон, другой сценарий: вопрос про аллергию — сразу ясно, что спросят.', ref: '—', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
-    { k: 'B', label: '«Входящий звонок» — предложение', time: '~2 с', phone: { under: dialogsUnder(), over: call(SCEN.cafe) }, total: 2,
-      beats: [{ t: 0.0, w: 'плитка pop + два кольца, кнопка «Ответить» пульсирует', h: 'light', snd: 'msg', s: 'message_received' }],
-      why: 'Самый короткий путь к речи (локальное уведомление 19:00) — новая точка входа, нужно «да» владельца.', ref: 'FaceTime, Duolingo «call from Lily».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'A1', label: 'Закажи кофе · A1 · 5 заданий', time: '~11 с', phone: { under: dialogsUnder(), over: flow(SCEN.cafe) }, init: flowInit(SCEN.cafe), total: 11.5, beats: BEATS_FLOW(SCEN.cafe),
+      why: 'Человек сначала видит, ЧТО делать (все задания), потом говорит — страх «что от меня хотят» снят до первого слова.', ref: 'FaceTime, Duolingo «call from Lily», Praktika.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'A2', label: 'В аптеке · A2 · 4 задания', time: '~11 с', phone: { under: dialogsUnder(), over: flow(SCEN.pharmacy) }, init: flowInit(SCEN.pharmacy), total: 11.5, beats: BEATS_FLOW(SCEN.pharmacy),
+      why: 'Тот же поток, свои задания: без советов о лекарствах (персонаж направляет к специалисту, как в коде).', ref: '—', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
 /* ---------- 17. Первый диалог ---------- */
 const doneDlgUnder = () => `<div style="text-align:center;padding-top:8px"><div class="ov">Диалог пройден</div><div class="h-lg" style="margin-top:8px">Закажи кофе</div><div class="small" style="margin-top:4px">Повседневное · A1</div>
-  <div class="sf" style="margin-top:18px;padding:6px 16px;text-align:left">${['Заказать капучино', 'Выбрать размер', 'Спросить цену'].map((g) => `<div class="goalline"><span class="n ok">${io('check', 14)}</span>${g}</div>`).join('')}</div>
+  <div class="sf" style="margin-top:18px;padding:6px 16px;text-align:left">${['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'].map((g) => /* все 5 заданий сценария coffee — как в коде */ `<div class="goalline"><span class="n ok">${io('check', 14)}</span>${g}</div>`).join('')}</div>
   <div class="sf" style="margin-top:12px;padding:12px 16px;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div style="flex:1;text-align:left;font-size:16px;font-weight:700">+30 монет</div></div><div class="dock">${prim('Следующий сценарий')}</div></div>`;
 const first3 = () => `<div class="full"><div class="glowspot"></div><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'idle', glints: true })}</div><div class="ov beat" data-b style="margin-top:20px">Первый диалог</div><div class="h-xl beat" data-b style="margin-top:6px">Ты говорил<br>по-английски</div><div class="p beat" data-b style="margin-top:8px">6 реплик · 3 цели из 3</div></div><div class="foot beat" data-b>${prim('Следующий сценарий')}</div></div>`;
 moment({ id: 'm17', num: '17', short: 'Первый диалог', title: 'Первый диалог пройден', tag: 'new',
@@ -799,7 +829,7 @@ moment({ id: 'm17', num: '17', short: 'Первый диалог', title: 'Пе�
 /* ---------- 18. Итог диалога ---------- */
 const done3 = () => `<div class="full" style="padding-top:60px"><div class="body" style="justify-content:flex-start;padding-top:8px"><div class="who beat" data-b style="flex-direction:column;gap:8px"><span class="av" style="width:64px;height:64px;border-radius:20px">${io('chats', 30)}</span></div>
   <div class="h-lg beat" data-b style="margin-top:10px" data-h>Эмма думает…</div><div class="p beat" data-b style="margin-top:4px">Закажи кофе · 3 цели из 3</div>
-  <div class="sf" style="width:100%;margin-top:16px;padding:6px 16px;text-align:left">${['Заказать капучино', 'Выбрать размер', 'Спросить цену'].map((g) => `<div class="goalline beat" data-b><span class="n ok">${io('check', 14)}</span>${g}</div>`).join('')}</div>
+  <div class="sf" style="width:100%;margin-top:16px;padding:6px 16px;text-align:left">${['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'].map((g) => /* все 5 заданий сценария coffee — как в коде */ `<div class="goalline beat" data-b><span class="n ok">${io('check', 14)}</span>${g}</div>`).join('')}</div>
   <div class="sf beat" data-b style="margin-top:12px;padding:12px 16px;width:100%;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div class="grow" style="text-align:left;font-size:16px;font-weight:700">+<span data-c>0</span> монет</div></div></div><div class="foot beat" data-b>${prim('Следующий сценарий')}${sec('Разобрать 2 фразы')}</div></div>`;
 moment({ id: 'm18', num: '18', short: 'Итог диалога', title: 'Итог диалога', tag: 'old',
   lead: 'dialogue_v2_completion: микро-саспенс «Эмма думает…» 0,8 с → «Эмма довольна», цели закрываются каскадом, монеты без множителей.',

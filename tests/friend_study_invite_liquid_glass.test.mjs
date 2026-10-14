@@ -148,7 +148,7 @@ test('COM-04 invite uses the approved opaque Liquid Glass geometry, typography, 
   assert.match(modal, /backgroundColor: glass.accent/);
   assert.match(modal, /color: glass.accentInk/);
   // зачем (владелец 12.10, стиль «Тень»): «Не сейчас» без контура — отделяется тоном opaqueControl.
-  assert.match(modal, /styles.secondary, { backgroundColor: glass.opaqueControl }/);
+  assert.match(modal, /styles.secondary, { backgroundColor: glass.buttonFill }/);
   for (const copy of [...TITLE_COPY, ...BODY_COPY, ...START_COPY, ...DECLINE_COPY]) {
     assert.ok(modal.includes(copy), `missing approved locale copy: ${copy}`);
   }

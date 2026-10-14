@@ -547,6 +547,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             sourceId: `${vKey}:${form}`,
             canonicalTarget: correct,
             sourceMeaning: verb.ru,
+            // зачем (репорт 13.10 «Находить — found»): в «Моих ошибках» не было видно, какая форма спрашивается (прошлое/причастие/основная)
+            sourcePrompt: `${irregularVerbTranslation(verb, lang)} — ${form === 'past' ? verbTenseCaptions(lang).pastT : form === 'pp' ? verbTenseCaptions(lang).participle : verbTenseCaptions(lang).present}`,
             lessonId: String(lessonId ?? 0),
             distractors: activeOptions,
           },

@@ -657,7 +657,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'book', ru: 'Бронировать', uk: 'Бронювати', es: 'reservar',
     'pt-BR': 'reservar', pos: 'verbs' },
     { en: 'code', ru: 'Код', uk: 'Код', es: 'código', pos: 'nouns' },
-    { en: 'room', ru: 'Номер', uk: 'Номер', es: 'habitación', pos: 'nouns' },
+    { en: 'room', ru: 'Номер (в отеле)', uk: 'Номер (у готелі)', es: 'habitación', pos: 'nouns' }, // зачем (репорт 05.10): «Номер» читали как цифру
     { en: 'table', ru: 'Стол', uk: 'Стіл', es: 'mesa', pos: 'nouns' },
     { en: 'vegetable', ru: 'Овощ', uk: 'Овоч', es: 'verdura', pos: 'nouns' },
     { en: 'job', ru: 'Работа', uk: 'Робота', es: 'trabajo', pos: 'nouns' },
@@ -914,7 +914,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'group', ru: 'Группа', uk: 'Група', es: 'grupo', pos: 'nouns' },
     { en: 'video', ru: 'Видео', uk: 'Відео', es: 'video', pos: 'nouns' },
     { en: 'profile', ru: 'Профиль', uk: 'Профіль', es: 'perfil', pos: 'nouns' },
-    { en: 'house', ru: 'Дом', uk: 'Будинок', es: 'casa', pos: 'nouns' },
+    { en: 'house', ru: 'Дом (здание)', uk: 'Будинок (будівля)', es: 'casa', pos: 'nouns' },
     { en: 'country', ru: 'Страна', uk: 'Країна', es: 'país', pos: 'nouns' },
     { en: 'countries', ru: 'Страны', uk: 'Країни', es: 'países', pos: 'nouns' },
     { en: 'any', ru: 'Любой / какой-нибудь', uk: 'Будь-який', es: 'cualquier', pos: 'adjectives' },
@@ -1462,7 +1462,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'chair', ru: 'Стул', uk: 'Стілець', es: 'silla', pos: 'nouns' },
     { en: 'bed', ru: 'Кровать', uk: 'Ліжко', es: 'cama', pos: 'nouns' },
     { en: 'door', ru: 'Дверь', uk: 'Двері', es: 'puerta', pos: 'nouns' },
-    { en: 'house', ru: 'Дом', uk: 'Будинок', es: 'casa', pos: 'nouns' },
+    { en: 'house', ru: 'Дом (здание)', uk: 'Будинок (будівля)', es: 'casa', pos: 'nouns' },
     { en: 'shop', ru: 'Магазин', uk: 'Магазин', es: 'tienda', pos: 'nouns' },
     { en: 'hotel', ru: 'Отель', uk: 'Готель', es: 'hotel', pos: 'nouns' },
     { en: 'bank', ru: 'Банк', uk: 'Банк', es: 'banco', pos: 'nouns' },
@@ -2649,6 +2649,12 @@ const ISSUE_RECOGNITION_DISTRACTOR_SKIP = new Set<string>(['answer', 'problem'])
 
 const makeOptions = (correct: Word, all: Word[]): string[] => {
   const blockedValues = new Set<string>();
+  // зачем (репорты 04.10 «house/home» и 05.10 «answer/reply»): слово с ТЕМ ЖЕ переводом нельзя класть в неверные варианты — ученик не может его отличить.
+  for (const w of [...all, ...allWordsFlat()]) {
+    if (w.en !== correct.en && w.pos === correct.pos && (w.ru === correct.ru || w.uk === correct.uk)) blockedValues.add(w.en);
+  }
+  if (correct.en === 'house') blockedValues.add('home');
+  if (correct.en === 'home') blockedValues.add('house');
   if (correct.en === 'cafe') {
     CAFE_EN_DISTRACTOR_SKIP.forEach((value) => blockedValues.add(value));
   }

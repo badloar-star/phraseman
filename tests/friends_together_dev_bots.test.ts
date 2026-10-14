@@ -141,7 +141,7 @@ describe('friends_together DEV bots', () => {
 
     expect(buttonStart).toBeGreaterThan(-1);
     // зачем (владелец 2026-09-29): DEV-кнопка на нейтральных токенах Liquid Glass, не на «брендовом» accent/зелёном.
-    expect(devButton).toContain('backgroundColor: glass.opaqueControl');
+    expect(devButton).toContain('backgroundColor: glass.buttonFill');
     expect(devButton).toContain('color: glass.text');
     expect(devButton).toMatch(/>DEV<\/FlowText>/);
   });

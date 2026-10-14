@@ -26,7 +26,7 @@ const DEPENDENCY_HASHES = {
   // 10.10: PM-228 (лимит журнала, 0d6609bd2) и PM-229 (c0b7e4b1e).
   'app/debug-logger.ts': 'c674fd3f4f3670ea6754978be2045c0dbe3d11dd485b0502d2ae201ef6515d04',
 };
-const PROTECTED_AST = { count: 7, digest: '80f60e74868c26136e37247854b52212f0b48c7962a26106d0e4418b92342a22' };
+const PROTECTED_AST = { count: 7, digest: 'd7b3c388ae552a4f7e26861d7d8cebf2a20d5cd5dff8fe768c6e90c41d494a44' };
 const LEGACY_RENDER_HASHES = {
   default: '267079d88eeb0b7faf69a36280c40073803a9adfbc18439fa141c775677af3cc',
   'compact-stars': 'd62f04873bc254aa93d38de979b3c405664f4d1c11195ab219c10954a15508c0',
@@ -158,6 +158,8 @@ function createHarness({
     opaqueCard: `${themeId}-opaque-card`, glassEdge: `${themeId}-edge`,
     lightTint: `${themeId}-light`, cta: `${themeId}-cta`, ctaInk: `${themeId}-ink`,
     opaqueControl: `${themeId}-control`, mutedText: `${themeId}-muted`, text: `${themeId}-text`,
+    // зачем (владелец 13.10, №35): токены кнопок темы — главная ctaFill, отключённая buttonFillDisabled
+    ctaFill: `${themeId}-cta`, buttonFillDisabled: `${themeId}-control`,
   };
   const modules = {
     react: { __esModule: true, default: React, ...React },
@@ -195,6 +197,8 @@ function createHarness({
       flushFeedbackOutbox: async (...args) => { calls.flushed.push(args); },
     },
     '../app/debug-logger': { DebugLogger: { error: (...args) => calls.errors.push(args) } },
+    // зачем (337e0e9be, dev_dialog_feedback): карточка читает dev-флаг «отправлено» — в harness его нет, всегда false
+    '../app/dev_dialog_state': { isDevDialogFeedbackSent: () => false },
   };
   const output = ts.transpileModule(candidate, {
     fileName: SOURCE_PATH,

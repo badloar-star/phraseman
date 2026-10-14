@@ -38,7 +38,7 @@ describe('cards-027 / п.83: чип языка на настройке трен�
     expect(block).toContain('accessibilityState={{ expanded: visible }}');
     expect(block).toContain('name="chevron-down"');
     // пилюля в позиции справа сверху — прежний вид чипа
-    expect(block).toContain('backgroundColor: visible ? g.selected : g.opaqueControl');
+    expect(block).toContain('backgroundColor: visible ? g.selected : g.buttonFill');
     expect(block).toContain('boxShadow: nestedBoxShadow(g)');
   });
 

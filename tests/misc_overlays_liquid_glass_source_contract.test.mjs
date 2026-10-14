@@ -55,7 +55,7 @@ test('certificate name modal has no gold or borders and keeps its props', () => 
 
 test('pack language picker is a borderless glass menu with the same public props', () => {
   assert.ok(picker.includes('liquidGlassTokens(liquidGlassThemeId)'));
-  assert.ok(picker.includes('g.opaqueSheet') && picker.includes('g.opaqueControl'));
+  assert.ok(picker.includes('g.opaqueSheet') && picker.includes('g.buttonFill')); // зачем (владелец 13.10, №35): кнопка-триггер языка на токене кнопок buttonFill, а не на слабом opaqueControl
   assert.ok(!/borderWidth|borderColor/.test(picker), 'no borders');
   assert.ok(!picker.includes('adjustsFontSizeToFit'));
   assert.ok(picker.includes('liquidGlass?: boolean'), 'callers passing liquidGlass still typecheck');

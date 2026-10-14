@@ -31,11 +31,11 @@ describe('Настройки: окно «Сменить аккаунт?» в в�
   });
 
   it('кнопки — пилюли 44 в ряд; ghost «Отмена» и главная «Продолжить» с акцентом; testID робота сохранены', () => {
-    expect(card).toContain("<View style={{ flexDirection: 'row', gap: 9, marginTop: 18 }}>");
+    expect(card).toContain("<View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>");
     expect(card).toContain('testID="settings-switch-cancel"');
     expect(card).toContain('testID="settings-switch-continue"');
     expect(card).toContain('testID="settings-switch-plus-notice"');
-    expect(card).toContain('backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass)');
+    expect(card).toContain('backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass)');
     expect(card).toContain('backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass)');
     expect(card).toContain('<ThemeAccentFill glass={glass} radius={22} />');
     expect((card.match(/minHeight: 44, borderRadius: 22/g) ?? []).length).toBe(2);

@@ -374,7 +374,7 @@ test('protects pre-edit business, classic, default tile, and dependency contract
   });
   // зачем (Тень 12.10): хэш последнего return листа обновлён — менялся ТОЛЬКО стиль (кнопка закрытия, чипы размера и «Начать» без border,
   // с boxShadow плашки/действия; gap чипов 8→10); логика и разметка не менялись.
-  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), '4841c3a2dd0edf4b2b71f3743cb55c164977d4a5e4379b935c4e6eb2e6078fea');
+  assert.equal(finalReturnHash(PICKER_PATH, pickerSource, 'DeckPickerSheet'), 'b0e536479d72d637a95e8153b210ec62bada404a787eecda0065567f25103cc0' /* №35 14.10: менялся ТОЛЬКО цвет кнопок (opaqueControl → buttonFill), логика и разметка нет */);
   // зачем (Тень 12.10): хэш обновлён — менялся ТОЛЬКО стиль плитки (обложка без border, строка/бейдж с boxShadow плашки); логика и разметка те же.
   assert.equal(finalReturnHash(TILE_PATH, tileSource, 'DeckSelectionTile'), 'ab92026f7b9982140f6df9865312da65a12249a4439b02feda8781fa283c4104'); // 11.10: иконка выбора — accentText (акцент как текст на карточке) // 11.10: галочка выбора берёт цвет из t.textOnGold (текст на акценте по теме), не из t.correctText // перепин 13.10 (светлый акцент, аудит §1, координатор): кольцо отметки плитки — gs.accentBorder вместо сырого t.accent (в светлых градиентных темах accent невидим); бизнес-логика и зависимости не менялись
   assert.deepEqual(protectedShellCoordination(shellSource), {

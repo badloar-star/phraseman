@@ -48,7 +48,7 @@ test('time modal keeps the action dock reachable in a bounded viewport and uses 
   assert.match(source, /lineHeight: v === value \? 32 : 20/, 'wheel line height remains a base value that React Native scales once');
   assert.match(source, /fontSize:\s*v === value \? 27 : distance === 1 \? 16 : 16/, 'selected and adjacent wheel values use the approved hierarchy');
   assert.match(timeModalSource, /<ScrollView nestedScrollEnabled style=\{\{ flexShrink:1, minHeight:0 \}\}[^>]*>/, 'only the modal body scrolls when the bounded panel is short');
-  assert.ok(timeModalSource.indexOf('</ScrollView>') < timeModalSource.indexOf("gap:10"), 'fixed action dock follows the scrollable body');
+  assert.ok(timeModalSource.indexOf('</ScrollView>') < timeModalSource.indexOf("gap:12"), 'fixed action dock follows the scrollable body');
   assert.match(source, /liquidGlassTokens\(liquidGlassThemeId\)/, 'all 13 themes resolve through the liquid glass token registry');
   assert.match(timeModalSource, /colors=\{\[glass\.opaqueSheet, glass\.opaqueSheet\]\}/, 'panel has the approved opaque sheet base');
   assert.match(timeModalSource, /colors=\{\[glass\.selected, 'transparent'\]\}/, 'panel has the approved subtle sheen');
@@ -57,7 +57,7 @@ test('time modal keeps the action dock reachable in a bounded viewport and uses 
   assert.doesNotMatch(timeModalSource, /borderColor:glass\.glassEdge|borderWidth:1/, 'panel and buttons carry no edge');
   assert.match(timeModalSource, /backgroundColor:glass.accent/, 'OK uses the approved CTA token');
   assert.match(timeModalSource, /color:glass.accentInk/, 'OK label uses the approved CTA ink token');
-  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass\.opaqueControl, boxShadow:nestedBoxShadow\(glass\)/, 'Cancel is a nested plate with a small shadow instead of a ghost outline');
+  assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass\.buttonFill, boxShadow:nestedBoxShadow\(glass\)/, 'Cancel is a nested plate with a small shadow instead of a ghost outline');
   assert.match(timeModalSource, /borderRadius:24, backgroundColor:glass.accent, boxShadow:actionBoxShadow\(glass\)/, 'OK keeps the approved pill radius and gets the action shadow');
   assert.match(source, /useEffect\(\(\) => \(\) => \{ if \(timer\.current\) clearTimeout\(timer\.current\); \}, \[\]\)/, 'pending wheel snap timer is cleaned on unmount');
   // зачем (координатор 13.10, коммит 687205b5b): кап 1,15 допустим только на заголовке экрана уведомлений; сжатие и любой другой кап запрещены

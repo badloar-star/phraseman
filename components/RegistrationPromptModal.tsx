@@ -2391,7 +2391,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'center',
-    columnGap: 8,
+    columnGap: 12, // зачем (№35): зазор между соседними нажимаемыми ссылками >= 12 (было 8)
     rowGap: 2,
     marginTop: 8,
     width: '100%',

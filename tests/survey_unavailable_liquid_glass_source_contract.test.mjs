@@ -60,7 +60,7 @@ const PROTECTED_FILES = new Map([
   // зачем (Тень 12.10): в SurveySheetModal менялся ТОЛЬКО вид — варианты и поле ввода без кромок, с plateBoxShadow/raisedBoxShadow; логика прежняя.
   // зачем (координатор 12.10, разрешение на правку закреплённого файла): у снятого варианта transform со значением undefined → в dev
   // processTransform(null) падал на null.forEach при смене выбора (класс краша смены языка 91758eb36). Теперь `: []` — вид прежний.
-  ['components/survey/SurveySheetModal.tsx', 'a8cdd90a620c1316bdf5b0593156ba229681e58ddea40e2cbef41210752c97fc'],
+  ['components/survey/SurveySheetModal.tsx', '81b69a017a60fa4f639bd9880204208dd11de7cc3da57ced0657c23a26040c11'],
   ['app/survey_handoff.ts', 'b93b86591466a6b7514340828964231245d32e1fb2529f04b2d0072b7b13ff6f'],
   // зачем (30.09): награда жемчугом за опрос удалена (PM-058/D70, efe19ae9d) — законно.
   ['app/survey_flow_controller.ts', '420e4a04cc27a63cf45ea604e2b00f19b87eef5d300d0d5acf0a7133b2977b30'],

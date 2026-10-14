@@ -3884,6 +3884,7 @@ export const LESSON_28_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson28_phrase_16',
     english: 'You did it yourselves',
+    alternatives: ['You did it yourself'],
     russian: 'Вы сделали это сами',
     ukrainian: 'Ви зробили це самі',
     spanish: 'Ustedes lo hicieron mismos',
@@ -4445,6 +4446,7 @@ export const LESSON_28_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson28_phrase_46',
     english: 'Teach yourself every day',
+    alternatives: ['Study by yourself every day', 'Learn by yourself every day', 'Study on your own every day', 'Learn on your own every day'],
     russian: 'Учись самостоятельно каждый день',
     ukrainian: 'Вчися самостійно кожен день',
     spanish: 'Aprende solo cada día',
@@ -5697,6 +5699,7 @@ export const LESSON_29_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson29_phrase_50',
     english: 'We used to learn slowly, but now we learn faster',
+    alternatives: ['We used to study slowly, but now we study faster'],
     russian: 'Раньше мы учились медленно, но сейчас учимся быстрее',
     ukrainian: 'Раніше ми вчилися повільно, але зараз вчимося швидше',
     spanish: 'Antes aprendíamos despacio, pero ahora aprendemos más rápido',

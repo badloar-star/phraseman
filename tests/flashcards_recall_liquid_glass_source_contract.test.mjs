@@ -26,7 +26,7 @@ assert.match(source, /function RecallGlassSurface\(/);
 assert.match(activeScreen, /automaticallyAdjustKeyboardInsets/);
 assert.match(activeScreen, /keyboardShouldPersistTaps="handled"/);
 assert.match(activeScreen, /backgroundColor: recallGlass\.card/);
-assert.match(activeScreen, /backgroundColor: recallGlass\.opaqueControl/);
+assert.match(activeScreen, /backgroundColor: recallGlass\.buttonFill/);
 assert.match(activeScreen, /onChangeText=\{setInput\}/);
 assert.match(activeScreen, /onSubmitEditing=\{checkAnswer\}/);
 assert.match(activeScreen, /onPress=\{checkAnswer\}/);

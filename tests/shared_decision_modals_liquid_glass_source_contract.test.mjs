@@ -17,8 +17,10 @@ test('shared confirm modal uses the active 13-theme glass palette and the approv
   assert.match(source, /accessibilityRole="header"/);
   assert.match(source, /accessibilityRole="button"/);
   assert.match(source, /accessibilityState=\{\{ disabled: false \}\}/);
-  assert.match(source, /t\.wrongBg/);
-  assert.match(source, /t\.wrong/);
+  // зачем (владелец 13.10, №35): опасная кнопка — токены кнопок темы (dangerFill / dangerInk), а не t.wrongBg / t.wrong и не зашитые #3A1E1C/#FF8C82
+  assert.match(source, /glass\.dangerFill/);
+  assert.match(source, /glass\.dangerInk/);
+  assert.match(source, /glass\.buttonFill/);
   assert.doesNotMatch(source, /maxFontSizeMultiplier/);
   assert.doesNotMatch(source, /GOLD_GRADIENTS|OLIVE_GRADIENTS|GoldBevel/);
   assert.doesNotMatch(source, /borderWidth:\s*1/);

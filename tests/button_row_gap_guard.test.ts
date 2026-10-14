@@ -9,7 +9,7 @@ const SKIP = /node_modules|[\\/]\.|\.test\.|__tests__|dev_|[\\/]dev[\\/]|\.d\.ts
 const EXEMPT = /components\/VerbLetterBank\.tsx|components\/ActivityHeatmap365\.tsx/;
 const BTN = /^(Pressable|TouchableOpacity|TouchableHighlight|DuoPressable|V2Pressable|PressableHybrid|AnimatedPressable|V2Button|DialogueGlassCta|FriendsButton|PackGhostCta|Reanimated\.Pressable)$/;
 /** Ждут коммита чужих правок (пейвол, окно регистрации) — после их коммита потолок станет 0. */
-const CEILING = 2;
+const CEILING = 1;
 
 function listTsx(dir: string, out: string[] = []): string[] {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

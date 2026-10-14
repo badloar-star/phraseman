@@ -87,10 +87,15 @@
       const a = burst ? (Math.random() * Math.PI * 2) : 0; const sp = burst ? 3 + Math.random() * 9 : 0;
       ps.push({ x, y, vx: burst ? Math.cos(a) * sp : (Math.random() - .5) * 1.4, vy: burst ? Math.sin(a) * sp - 4 : 1.5 + Math.random() * 2.5, r: o.gold ? 4 + Math.random() * 5 : 3 + Math.random() * 4, c: o.gold ? ['#F5C451', '#FFE08A', '#D29A2A', '#FFF3C4'][i % 4] : cols[i % cols.length], rot: Math.random() * 6, vr: (Math.random() - .5) * .3, sq: Math.random() > .5 });
     }
+    // зачем (координатор 14.10: конфетти под текстом всё равно густо идёт по заголовку и подписи): «тихая зона» — у заголовков, подписей,
+    // чисел и кнопок частицы гаснут до 12 % (рамки пересчитываются каждые 6 кадров — текст появляется по ходу момента)
+    const QUIET = '.h-xl, .h-lg, .h-md, .p, .ov, .bignum, .cta, .small, [data-final], .x';
+    let quiet = []; let fr = 0; const calcQuiet = () => { const R = cv.getBoundingClientRect(); const k = 390 / (R.width || 390); quiet = [...ph.querySelectorAll(QUIET)].filter((e) => { const cs = getComputedStyle(e); return cs.visibility !== 'hidden' && Number(cs.opacity) > .1 && e.offsetParent; }).map((e) => { const r = e.getBoundingClientRect(); return [(r.left - R.left) * k - 14, (r.top - R.top) * k - 14, (r.right - R.left) * k + 14, (r.bottom - R.top) * k + 14]; }); };
+    const inQuiet = (x, y) => quiet.some(([l, tp, r, b]) => x > l && x < r && y > tp && y < b);
     let t0 = performance.now(); let raf;
-    const step = (t) => { const dt = Math.min(2, (t - t0) / 16); t0 = t; ctx.clearRect(0, 0, 390, 844); let alive = 0;
+    const step = (t) => { const dt = Math.min(2, (t - t0) / 16); t0 = t; ctx.clearRect(0, 0, 390, 844); let alive = 0; if (fr++ % 6 === 0) calcQuiet();
       ps.forEach((p) => { p.vy += .12 * dt; p.vx *= .99; p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt; if (p.y < 900) alive++;
-        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.c; ctx.globalAlpha = Math.max(0, Math.min(1, (900 - p.y) / 200));
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.fillStyle = p.c; ctx.globalAlpha = Math.max(0, Math.min(1, (900 - p.y) / 200)) * (inQuiet(p.x, p.y) ? .12 : 1);
         if (o.gold) { ctx.beginPath(); ctx.ellipse(0, 0, p.r, p.r * Math.abs(Math.cos(p.rot * 2)), 0, 0, Math.PI * 2); ctx.fill(); } else if (p.sq) ctx.fillRect(-p.r, -p.r / 2, p.r * 2, p.r); else { ctx.beginPath(); ctx.arc(0, 0, p.r / 1.6, 0, Math.PI * 2); ctx.fill(); }
         ctx.restore(); });
       if (alive && t - start < (o.ms || 5200)) raf = requestAnimationFrame(step); else cv.remove(); };

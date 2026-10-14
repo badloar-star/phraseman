@@ -375,15 +375,17 @@ const s = StyleSheet.create({
   sayBig: { paddingVertical: 12, paddingHorizontal: 16 },
   sayLeftShape: { borderBottomLeftRadius: 18, borderBottomRightRadius: 6 },
   noPad: { padding: 0 },
-  sayText: { fontSize: 15, lineHeight: 20, fontWeight: '700' },
-  sayTextBig: { fontSize: 17, lineHeight: 22 },
+  // зачем (D145, сторож typography_store_surface_ratchet): шкала владельца 16/21 главнее макета (.say 15/700, .say.big 17) — облачко
+  // отличается полями, не кеглем; значки сна и эмоций 20/25 (≥19 — вне храповика, межстрочный ≥1,25×).
+  sayText: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
+  sayTextBig: { fontSize: 16, lineHeight: 21 },
   sayTail: { position: 'absolute', left: '50%', bottom: -6, width: 12, height: 12, marginLeft: -14, borderRadius: 2, transform: [{ rotate: '45deg' }], zIndex: -1 },
   sayTailLeft: { left: undefined, right: 14, marginLeft: 0 },
   crownAnchor: { position: 'absolute', top: -22, left: 0, right: 0, alignItems: 'center', zIndex: 2 },
   glint: { position: 'absolute', width: 10, height: 10, borderRadius: 5, backgroundColor: '#FFFFFF', boxShadow: '0 0 10px #FFFFFF' }, // theme-exempt: блик металла
-  zz: { position: 'absolute', right: -8, top: -4, fontSize: 18, lineHeight: 22, fontWeight: '800' },
+  zz: { position: 'absolute', right: -8, top: -4, fontSize: 20, lineHeight: 25, fontWeight: '800' },
   shadow: { height: 10, borderRadius: 999, marginTop: 6, backgroundColor: 'rgba(0,0,0,0.45)', filter: [{ blur: 4 }] }, // theme-exempt: тень под монетой
-  emo: { position: 'absolute', fontSize: 18, lineHeight: 20 },
+  emo: { position: 'absolute', fontSize: 20, lineHeight: 25 },
   emoBang: { fontSize: 26, lineHeight: 28, fontWeight: '900' },
   emoDots: { letterSpacing: 2 },
 });

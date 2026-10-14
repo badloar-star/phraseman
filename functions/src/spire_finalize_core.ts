@@ -32,6 +32,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
+import { spireCoinsZoneK, spireCoinsZonesFor } from '../../shared/spire_coins_zones';
 import { spireBotWeekCoins } from './spire_config_contract';
 import {
   isSpireResidentMember,
@@ -220,8 +221,24 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   });
   const compare = compareSpireStandingBy(rankBy);
   const liveTotal = live.length;
-  const zoneSize = spireLiveZoneSize(liveTotal);
+  // зачем (D190, владелец 14.10): в режиме монет зона — k = N≥15 ? 5 : max(1, floor(N/3)) от ЖИВЫХ, вниз только k последних
+  // (нули сверх k не спускаются), группы не пересекаются. Та же функция у экрана «Все участники» (shared/spire_coins_zones.ts).
+  // Режим ступеней — прежняя зона 15% комнаты с ботами (D59).
+  const zoneSize = rankBy === 'coins' ? spireCoinsZoneK(liveTotal) : spireLiveZoneSize(liveTotal);
   const hasAnyScorer = live.some((m) => spireStandingScored(m, rankBy));
+  const lateJoinCutoffMs = input.weekStartMs + WEEK_MS - SPIRE_LATE_JOIN_GRACE_MS;
+  const coinsZoneByUid = new Map<string, 'up' | 'stay' | 'down'>();
+  if (rankBy === 'coins') {
+    const sorted = [...live].sort(compare);
+    const zones = spireCoinsZonesFor(
+      sorted,
+      compare,
+      (m) => spireStandingScored(m, rankBy),
+      // D190 (в3): вошедших в последние сутки недели не понижаем — справедливо, как и раньше.
+      (m) => (m.joinedAtMs ?? 0) >= lateJoinCutoffMs,
+    );
+    sorted.forEach((m, i) => coinsZoneByUid.set(m.uid, zones[i]));
+  }
 
   // Боты на конец недели — та же формула, что на экране (0 чтений/записей).
   const bots = spireRoomResidents({
@@ -237,7 +254,6 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
   const roomTotal = room.length;
 
   const results: Record<string, SpireMemberWeekResult> = {};
-  const lateJoinCutoffMs = input.weekStartMs + WEEK_MS - SPIRE_LATE_JOIN_GRACE_MS;
   for (const me of live) {
     const liveRank = 1 + live.filter((o) => compare(o, me) < 0).length;
     const bottomRank = 1 + live.filter((o) => compare(o, me) > 0).length;
@@ -246,15 +262,21 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     // Зона повышения требует ≥1 ступени: иначе нули в тихой комнате (строго
     // выше них — только игравшие) попадали бы в «топ» и гасили себе понижение
     // — ровно баг лиги 2026-08-17.
-    const promotionEligible = scored && zoneSize > 0 && liveRank <= zoneSize;
+    const coinsZone = coinsZoneByUid.get(me.uid);
+    const promotionEligible = coinsZone !== undefined
+      ? coinsZone === 'up'
+      : scored && zoneSize > 0 && liveRank <= zoneSize;
     const promoted = promotionEligible && tier < SPIRE_FINAL_MAX_TIER;
     const inZeroZone = !scored && hasAnyScorer;
     const lateJoinProtected = !scored && (me.joinedAtMs ?? 0) >= lateJoinCutoffMs;
-    const demoted = hasAnyScorer
-      && !promotionEligible
-      && !lateJoinProtected
-      && (inZeroZone || (zoneSize > 0 && bottomRank <= zoneSize))
-      && tier > 0;
+    // D190: в режиме монет понижение решает только зона «k последних»; нижняя лига никого не спускает (tier > 0).
+    const demoted = coinsZone !== undefined
+      ? coinsZone === 'down' && tier > 0
+      : hasAnyScorer
+        && !promotionEligible
+        && !lateJoinProtected
+        && (inZeroZone || (zoneSize > 0 && bottomRank <= zoneSize))
+        && tier > 0;
     const place = scored ? placeCoins(liveRank, input.coins) : 0;
     const promotion = promoted ? input.coins.promotionBonus : 0;
     results[me.uid] = {

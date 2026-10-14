@@ -108,11 +108,11 @@ moment({ id: 'm01', num: '01', short: 'Повышение · три акта', t
   lead: 'Поверх Главной — при первом открытии приложения после закрытия недели (D191). Акт 1: таблица комнаты в монетах недели, линия ТОП-5 опускается и замирает под «Ты» (повышаются 5 из 30). Акт 2: монета-персонаж cheer. Акт 3: башня Базальта целиком (SpireTowerRender), загорается 1 этаж — на нём монета-аватар и «Этаж 1» (новая неделя — все с 1 этажа), фейерверк, «+100 за повышение» и «Играть» (монеты начисляет ночной крон, «Забрать» нет).',
   variants: [
     { k: 'A', label: 'Три акта за 10 с', time: '~10 с', phone: { under: EMA.homeUnder({}), over: promo3() }, init: promo3init, total: 10,
-      beats: [{ t: 0.3, w: 'строки комнаты мерцают, «Считаем монеты недели…»' }, { t: 1.6, w: 'линия ТОП-5 опускается 1,4 с и замирает под «Ты»', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 3.0, w: '<b>стоп-кадр 120 мс</b>: строка «Ты» вспыхивает', h: 'rigid', snd: 'flip', s: 'fc_flip', big: true }, { t: 4.2, w: 'акт 2: монета cheer + искры', h: 'success', snd: 'correct', s: 'fc_correct' }, { t: 6.2, w: 'акт 3: башня Базальта всплывает 0,9 с', h: 'light' }, { t: 7.3, w: 'монета-аватар садится на 1 этаж, «Этаж 1»', h: 'medium', snd: 'tick', s: 'fc_tick' }, { t: 8.8, w: '<b>дрожь 700 мс + фейерверк ×3</b>, «Базальт», +100', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }],
+      beats: [{ t: 0.3, w: 'строки комнаты мерцают, «Считаем монеты недели…»' }, { t: 1.6, w: 'линия ТОП-5 опускается 1,4 с и замирает под «Ты»', h: 'light', snd: 'tick' }, { t: 3.0, w: '<b>стоп-кадр 120 мс</b>: строка «Ты» вспыхивает', h: 'rigid', snd: 'flip', big: true }, { t: 4.2, w: 'акт 2: монета cheer + искры', h: 'success', snd: 'correct' }, { t: 6.2, w: 'акт 3: башня Базальта всплывает 0,9 с', h: 'light' }, { t: 7.3, w: 'монета-аватар садится на 1 этаж, «Этаж 1»', h: 'medium', snd: 'tick' }, { t: 8.8, w: '<b>дрожь 700 мс + фейерверк ×3</b>, «Базальт», +100', h: 'heavy', snd: 'done', big: true }],
       why: 'Повышение — событие недели; три акта делают его тем, ради чего играют. Цифры — из правил: 5 из 30, +100 за повышение.', ref: 'Clash Royale (арена), Duolingo League Results.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Короткая: для повторных повышений', time: '~3 с', phone: { under: EMA.homeUnder({}), over: `<div class="full"><div class="glowspot" style="top:30%"></div><div class="body"><div data-cc>${coinChar(5, 120, { mood: 'idle', glints: true })}</div><div class="ov a-up d3" style="margin-top:20px;color:var(--acc-text)">Топ-5 · Базальт</div><div class="h-xl a-up d4" style="margin-top:6px">Поднимаешься</div><div class="p a-up d5" style="margin-top:6px">5 место · 470 монет за неделю · +100</div></div><div class="foot a-up d6">${prim('Играть')}${sec('Поделиться')}</div></div>` },
       init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 4); }], [900, () => { firework(ph, 195, 200, { r: 100 }); ph.querySelector('.full').classList.add('rumble'); }]]), total: 3,
-      beats: [{ t: 0.4, w: 'монета cheer + искры', h: 'success', snd: 'correct', s: 'fc_correct' }, { t: 0.9, w: 'фейерверк, дрожь 700 мс', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }],
+      beats: [{ t: 0.4, w: 'монета cheer + искры', h: 'success', snd: 'correct' }, { t: 0.9, w: 'фейерверк, дрожь 700 мс', h: 'heavy', snd: 'done', big: true }],
       why: 'Со второго повышения — короткая версия. «Поделиться» — карточка итога лиги (D76).', ref: 'Duolingo (сокращённые анимации после N раз).', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
@@ -124,7 +124,7 @@ moment({ id: 'm02', num: '02', short: 'Удержался', title: 'Удержа
   lead: 'GlassAlertDialog поверх Главной (итог недели — при первом открытии после закрытия недели, D191): монета кивает «Держимся», место и дистанция до топ-5 — в монетах недели. Понижают 5 последних по монетам недели (D190).',
   variants: [{ k: 'A', label: 'Кивок + «до топ-5 — 240 монет»', time: '~1,5 с', phone: { under: EMA.homeUnder({}), over: stay3() }, total: 2,
     init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Держимся.</span>'); }]]),
-    beats: [{ t: 0.0, w: 'окно пружиной', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 0.4, w: 'кивок + «Держимся.»', snd: 'tick', s: 'fc_tick' }],
+    beats: [{ t: 0.0, w: 'окно пружиной', h: 'light', snd: 'flip' }, { t: 0.4, w: 'кивок + «Держимся.»', snd: 'tick' }],
     why: 'Середина таблицы превращается в цель на неделю в понятной валюте — монетах.', ref: 'Duolingo «You stayed in…».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 03. Понижение — туман ---------- */
@@ -134,7 +134,7 @@ moment({ id: 'm03', num: '03', short: 'Понижение · туман', title:
   lead: 'Понижают 5 последних по монетам недели (D190); окно — при первом открытии после закрытия недели, поверх Главной (D191). Отдельный экран темы (туман — непрозрачный фон, текст ничего не перекрывает), монета спит; тап — просыпается с «!».',
   variants: [{ k: 'A', label: 'Туман → тап → проснулась', time: '~3 с', phone: { under: EMA.homeUnder({}), over: down3() }, total: 3.5,
     init: (ph) => seq(ph, [[2000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); ph.querySelector('.fog').classList.add('awake'); ph.querySelector('.tapme')?.remove(); ph.querySelector('[data-h]').innerHTML = 'Проснулась.<br>Новая неделя'; ph.querySelector('[data-p]').textContent = 'Гранит · все с 1 этажа.'; }]]),
-    beats: [{ t: 0.0, w: 'туман наползает 900 мс, монета спит', snd: 'learn', s: 'fc_swipe_learn', gain: .6 }, { t: 2.0, w: 'тап: туман светлеет, монета peek + «!»', h: 'medium', snd: 'know', s: 'fc_swipe_know', big: true }],
+    beats: [{ t: 0.0, w: 'туман наползает 900 мс, монета спит', snd: 'learn', gain: .6 }, { t: 2.0, w: 'тап: туман светлеет, монета peek + «!»', h: 'medium', snd: 'know', big: true }],
     why: 'Переносит вину на персонажа и даёт действие «разбудить» — человек сам включает новую неделю.', ref: 'Tamagotchi, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 04. Итог недели — карточка (D182) и сторис ---------- */
@@ -149,11 +149,11 @@ moment({ id: 'm04', num: '04', short: 'Итог недели', title: '«Ито�
   variants: [
     { k: 'A', label: 'Карточка над башней (как в коде)', time: '1 с', phone: { under: spireUnder({ li: 1, myFloor: 1, room: ROOM, top: weekCard(), when: '7 д 0 ч' }) }, total: 1.2,
       init: (ph) => seq(ph, [[200, () => { const mt = ph.querySelector('[data-week] .mt'); mt.style.animation = 'emPop 600ms var(--em-ease-pop) both'; }]]),
-      beats: [{ t: 0.2, w: 'мини-башня пружиной (scale .55 → 1), как в коде', h: 'success', snd: 'star', s: 'fc_star' }],
+      beats: [{ t: 0.2, w: 'мини-башня пружиной (scale .55 → 1), как в коде', h: 'success', snd: 'star' }],
       why: 'Один в один с кодом; празднует, не блокирует.', ref: 'SpireWeekResultCard.tsx.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Сторис 3 × 2,4 с', time: '~7,5 с', phone: { under: spireUnder({ li: 0, myFloor: 7, room: ROOM }), over: stories() }, total: 7.5,
       init: (ph) => { const show = (i) => { ph.querySelectorAll('[data-slide]').forEach((s) => { s.style.display = s.dataset.slide === String(i) ? 'block' : 'none'; s.style.animation = 'emUp 400ms var(--em-ease) both'; }); ph.querySelector(`[data-prog="${i}"]`).style.width = '100%'; }; return seq(ph, [[200, () => { show(0); countUp(ph.querySelector('[data-n]'), 0, 470, 1100); }], [2600, () => show(1)], [5000, () => show(2)]]); },
-      beats: [{ t: 0.2, w: 'слайд 1: счётчик 0 → 470', snd: 'tick', s: 'fc_tick' }, { t: 2.6, w: 'слайд 2: место', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 5.0, w: 'слайд 3: башня Базальта', h: 'success', snd: 'star', s: 'fc_star' }],
+      beats: [{ t: 0.2, w: 'слайд 1: счётчик 0 → 470', snd: 'tick' }, { t: 2.6, w: 'слайд 2: место', h: 'light', snd: 'tick' }, { t: 5.0, w: 'слайд 3: башня Базальта', h: 'success', snd: 'star' }],
       why: 'Пассивный просмотр: всё видно без тапов; «Поделиться» — карточка лиги (D76).', ref: 'Instagram stories, Spotify Wrapped.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
@@ -169,15 +169,15 @@ moment({ id: 'm05', num: '05', short: 'Позиция · обгон · посл�
   variants: [
     { k: 'A', label: '+1 через линию ТОП-5', time: '~3 с', phone: { under: spireUnder({ li: 0, myFloor: 5, room: ROOM2 }), over: rise3() }, total: 3.5,
       init: (ph) => seq(ph, [[600, () => { const z = ph.querySelector('[data-zone]'); z.hidden = false; const h = ph.querySelector('.lrow').offsetHeight + 6; z.style.top = `${h * 5 - 3}px`; }], [1200, () => ladderPlay(ph, 0)], [2400, () => { ph.querySelector('[data-h]').textContent = 'Ты в топ-5'; ph.querySelector('.full').classList.add('freeze'); }]]),
-      beats: [{ t: 0.6, w: 'линия ТОП-5 на место', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 1.2, w: 'строка «Ты» едет вверх 1,1 с', h: 'medium', snd: 'know', s: 'fc_swipe_know' }, { t: 2.4, w: '<b>стоп-кадр</b>: «Ты в топ-5»', h: 'success', snd: 'star', s: 'fc_star', big: true }],
+      beats: [{ t: 0.6, w: 'линия ТОП-5 на место', h: 'light', snd: 'tick' }, { t: 1.2, w: 'строка «Ты» едет вверх 1,1 с', h: 'medium', snd: 'know' }, { t: 2.4, w: '<b>стоп-кадр</b>: «Ты в топ-5»', h: 'success', snd: 'star', big: true }],
       why: 'Каждая ступень видна в таблице в монетах — понятная связь действие → место.', ref: 'Duolingo после урока.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Тост «Ира обошла тебя»', time: '~1,5 с', phone: { under: spireUnder({ li: 0, myFloor: 4, room: ROOM2 }), over: overtake3() }, total: 2,
       init: (ph) => seq(ph, [[500, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'bang', 1); }]]),
-      beats: [{ t: 0.0, w: 'тост пружиной', h: 'light', snd: 'msg', s: 'message_received' }, { t: 0.5, w: 'монета вздрагивает «!»', h: 'rigid', snd: 'tick', s: 'fc_tick' }],
+      beats: [{ t: 0.0, w: 'тост пружиной', h: 'light', snd: 'msg' }, { t: 0.5, w: 'монета вздрагивает «!»', h: 'rigid', snd: 'tick' }],
       why: 'Социальный толчок по кэшу комнаты (без серверных пушей).', ref: 'Duolingo «X passed you».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'C', label: 'Последний шанс: отсчёт + док без энергии', time: 'живой', phone: { under: spireUnder({ li: 0, myFloor: 6, room: ROOM2, en: 0, when: '3 ч 12 мин', wait: '9:40' }), over: last3() }, total: 10,
       init: (ph) => { let s = 3 * 3600 + 12 * 60 + 40, e = 9 * 60 + 40; const el = ph.querySelector('[data-cd]'); const iv = setInterval(() => { s--; e--; el.textContent = `${String(Math.floor(s / 3600)).padStart(2, '0')}:${String(Math.floor(s % 3600 / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`; const t = `${Math.floor(e / 60)}:${String(e % 60).padStart(2, '0')}`; ph.querySelectorAll('[data-en],[data-en2]').forEach((x) => { x.textContent = t; }); }, 1000); return () => clearInterval(iv); },
-      beats: [{ t: 0.0, w: 'шторка, два отсчёта (итог недели и энергия +1 за 10 мин)', h: 'light', snd: 'flip', s: 'fc_flip' }],
+      beats: [{ t: 0.0, w: 'шторка, два отсчёта (итог недели и энергия +1 за 10 мин)', h: 'light', snd: 'flip' }],
       why: 'Совпадение «близко к топ-5» и «энергия 0» — честная точка Plus: та же ссылка, что в коде дока.', ref: 'Duolingo «Last chance», SpireClimbDock.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
@@ -192,11 +192,11 @@ moment({ id: 'm06', num: '06', short: 'Итог ступени', title: 'Сту�
   variants: [
     { k: 'A', label: '«Чисто!» — 10 из 10', time: '~3 с', phone: { under: stepUnder({ step: 7, floor: 4, n: 10 }), over: stepPass3() }, total: 3.5,
       init: (ph) => seq(ph, [[200, () => { ph.querySelector('[data-ring]').style.strokeDashoffset = String(295 * (1 - 72 / 120)); countUp(ph.querySelector('[data-t]'), 0, 72, 1100, (v) => `${Math.floor(v / 60)}:${String(Math.round(v) % 60).padStart(2, '0')}`); }], [1400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Чисто!</span>'); emo(cc, 'star', 3); }]]),
-      beats: [{ t: 0.2, w: 'кольцо докручивается 1,1 с, цифры бегут до 1:12', snd: 'tick', s: 'fc_tick' }, { t: 1.4, w: 'монета cheer «Чисто!»', h: 'success', snd: 'star', s: 'fc_star', big: true }, { t: 1.9, w: 'лесенка растёт по 60 мс', h: 'light', snd: 'correct', s: 'fc_correct' }],
+      beats: [{ t: 0.2, w: 'кольцо докручивается 1,1 с, цифры бегут до 1:12', snd: 'tick' }, { t: 1.4, w: 'монета cheer «Чисто!»', h: 'success', snd: 'star', big: true }, { t: 1.9, w: 'лесенка растёт по 60 мс', h: 'light', snd: 'correct' }],
       why: 'Короткая петля «ещё одну».', ref: 'Candy Crush level complete.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: '3 ошибки — «Ещё раз»', time: '~2 с', phone: { under: stepUnder({ step: 7, floor: 4, hearts: 0, n: 10, opts: [['Could you repeat that, please?', 'ok'], ['Could you call me back?', 'no'], ['Where is the station?', '']] }), over: stepFail3() }, total: 2.5,
       init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'sweat', 2); }], [1100, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ещё раз?</span>'); }]]),
-      beats: [{ t: 0.3, w: 'сердца гаснут, монета дрожит', h: 'rigid', snd: 'wrong', s: 'fc_incorrect' }, { t: 1.1, w: 'кивок «Ещё раз?»', h: 'light', snd: 'tick', s: 'fc_tick' }],
+      beats: [{ t: 0.3, w: 'сердца гаснут, монета дрожит', h: 'rigid', snd: 'wrong' }, { t: 1.1, w: 'кивок «Ещё раз?»', h: 'light', snd: 'tick' }],
       why: 'Мгновенный реванш без наказания.', ref: 'Candy Crush retry.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
@@ -211,11 +211,11 @@ moment({ id: 'm07', num: '07', short: 'Этаж · Вершина', title: 'Эт
   variants: [
     { k: 'A', label: 'Этаж: +40, окна 5-го', time: '~2,5 с', phone: { under: spireUnder({ li: 0, myFloor: 4, room: ROOM }), over: floor3() }, total: 3,
       init: (ph) => seq(ph, [[600, () => { ph.querySelector('[data-tw]').innerHTML = towerSvg({ tier: 0, myFloor: 5, width: 280, h: 240, focus: 5, lite: ph.classList.contains('lite') }); }], [1100, () => countUp(ph.querySelector('[data-c]'), 0, 40, 900)], [1300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('peek'); }]]),
-      beats: [{ t: 0.6, w: 'окна 5-го этажа зажигаются цветом темы', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 1.1, w: 'счётчик +40', snd: 'star', s: 'fc_star' }, { t: 1.3, w: 'монета peek', h: 'success', snd: 'correct', s: 'fc_correct' }],
+      beats: [{ t: 0.6, w: 'окна 5-го этажа зажигаются цветом темы', h: 'light', snd: 'tick' }, { t: 1.1, w: 'счётчик +40', snd: 'star' }, { t: 1.3, w: 'монета peek', h: 'success', snd: 'correct' }],
       why: 'Вертикаль и конкретные люди этажом выше.', ref: 'Clash Royale arena unlock.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Вершина: 3 залпа, +200', time: '~3 с', phone: { under: spireUnder({ li: 0, myFloor: 15, room: ROOM }), over: summit3() }, total: 3.5,
       init: (ph) => seq(ph, [[500, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 5); }], [900, () => { firework(ph, 195, 180, { r: 110 }); ph.querySelector('.full').classList.add('rumble'); }], [1300, () => firework(ph, 110, 240, { r: 70 })], [1700, () => { firework(ph, 280, 220, { r: 80 }); confetti(ph, { n: 90, colors: [getComputedStyle(ph).getPropertyValue('--acc').trim(), getComputedStyle(ph).getPropertyValue('--acc2').trim(), getComputedStyle(ph).getPropertyValue('--tx').trim()] }); }]]),
-      beats: [{ t: 0.5, w: 'монета cheer + сердца', h: 'success', snd: 'correct', s: 'fc_correct' }, { t: 0.9, w: '<b>залп 1</b> + дрожь', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }, { t: 1.3, w: 'залп 2', h: 'medium', snd: 'star', s: 'fc_star' }, { t: 1.7, w: 'залп 3 + конфетти цветов темы', h: 'medium', snd: 'star', s: 'fc_star' }],
+      beats: [{ t: 0.5, w: 'монета cheer + сердца', h: 'success', snd: 'correct' }, { t: 0.9, w: '<b>залп 1</b> + дрожь', h: 'heavy', snd: 'done', big: true }, { t: 1.3, w: 'залп 2', h: 'medium', snd: 'star' }, { t: 1.7, w: 'залп 3 + конфетти цветов темы', h: 'medium', snd: 'star' }],
       why: 'Редчайший момент недели.', ref: 'Alto’s Odyssey.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 

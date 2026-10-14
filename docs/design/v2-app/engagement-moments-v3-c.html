@@ -155,7 +155,7 @@ const flowInit = (s) => (ph) => { const show = (k) => { const next = ph.querySel
     [7600 + s.hint.length * 38 + 1100, () => { const g = ph.querySelector('[data-gd="0"]'); g.classList.add('ok'); ph.querySelector('[data-gn]').textContent = `1/${s.goals.length}`; ph.querySelector('[data-gstrip]').classList.add('pulse'); }],
   ]);
   return () => { stop && stop(); stopChat(); stopGhost(); }; };
-const BEATS_FLOW = (s) => [{ t: 0.0, w: 'входящий звонок: плитка pop, два кольца, «Ответить» пульсирует', h: 'light', snd: 'msg', s: 'message_received' }, { t: 2.3, w: '«Ответить» → брифинг: строки заданий по очереди (100 мс, пружина)', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 6.0, w: '«Начать» → переписка, собеседник печатает', h: 'light', snd: 'msg', s: 'message_received' }, { t: (7600 + s.hint.length * 38 + 1100) / 1000, w: 'фраза отправлена → задание 1 отмечено галочкой в полоске', h: 'success', snd: 'star', s: 'fc_star' }];
+const BEATS_FLOW = (s) => [{ t: 0.0, w: 'входящий звонок: плитка pop, два кольца, «Ответить» пульсирует', h: 'light', snd: 'msg' }, { t: 2.3, w: '«Ответить» → брифинг: строки заданий по очереди (100 мс, пружина)', h: 'light', snd: 'flip' }, { t: 6.0, w: '«Начать» → переписка, собеседник печатает', h: 'light', snd: 'msg' }, { t: (7600 + s.hint.length * 38 + 1100) / 1000, w: 'фраза отправлена → задание 1 отмечено галочкой в полоске', h: 'success', snd: 'star' }];
 moment({ id: 'm16', num: '16', short: 'Диалог · поток', title: 'Диалог — поток «звонок → брифинг → переписка»', tag: 'new',
   lead: 'Поток: звонок → брифинг → диалог. Задания — все из сценария в коде (app/ai_dialog_scenarios.ts), брифинг ничем не перекрыт, кнопка «Начать». В переписке наверху полоска заданий (тап — развернуть), выполненное отмечается галочкой. «Входящий звонок» одобрен владельцем 14.10 — в код после R1.',
   variants: [
@@ -174,7 +174,7 @@ moment({ id: 'm17', num: '17', short: 'Первый диалог', title: 'Пе�
   lead: 'На экране завершения диалога (dialogue_v2_completion): монета cheer «Получилось!» (нейтрально по роду), конфетти цветов темы, одно действие. Без шеринга фразы пользователя (конфиденциальность), без разблокировок и бонусов (D124/D09).',
   variants: [{ k: 'A', label: '«Первый разговор — есть!»', time: '~3 с', phone: { under: doneDlgUnder(), over: first3() }, total: 3.5,
     init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say">Получилось!</span>'); }], [700, () => confetti(ph, { n: 90, colors: themeCols(ph) })], [900, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
-    beats: [{ t: 0.3, w: 'монета cheer + сердца, «Получилось!»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }, { t: 0.7, w: 'конфетти цветов темы', snd: 'done', s: 'fc_session_complete' }, { t: 0.9, w: 'текст по 220 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
+    beats: [{ t: 0.3, w: 'монета cheer + сердца, «Получилось!»', h: 'success', snd: 'ob', big: true }, { t: 0.7, w: 'конфетти цветов темы', snd: 'done' }, { t: 0.9, w: 'текст по 220 мс', h: 'light', snd: 'tick' }],
     why: 'Эмоция «я смог» — ядро удержания в диалогах.', ref: 'Speak, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 18. Итог диалога ---------- */
@@ -186,7 +186,7 @@ moment({ id: 'm18', num: '18', short: 'Итог диалога', title: 'Ито�
   lead: 'dialogue_v2_completion: микро-саспенс «Эмма думает…» 0,8 с → «Эмма довольна», цели закрываются каскадом, монеты без множителей.',
   variants: [{ k: 'A', label: '«думает…» → довольна → каскад', time: '~4 с', phone: { under: doneDlgUnder(), over: done3() }, total: 4.5,
     init: (ph) => { const beats = [...ph.querySelectorAll('[data-b]')]; return seq(ph, [[200, () => beats[0].classList.add('on')], [1000, () => { ph.querySelector('[data-h]').textContent = 'Эмма довольна'; beats[1].classList.add('on'); beats[2].classList.add('on'); }], ...beats.slice(3).map((b, i) => [1600 + i * 300, () => { b.classList.add('on'); if (i === 3) countUp(ph.querySelector('[data-c]'), 0, 30, 800); }])]); },
-    beats: [{ t: 0.2, w: 'аватар собеседника, «думает…»', snd: 'tick', s: 'fc_tick', gain: .6 }, { t: 1.0, w: '<b>«Эмма довольна»</b>', h: 'success', snd: 'correct', s: 'fc_correct', big: true }, { t: 1.6, w: 'цели по 300 мс', h: 'light', snd: 'tick', s: 'fc_tick' }, { t: 2.5, w: '+30 монет', snd: 'correctNew', s: 'correct_new' }],
+    beats: [{ t: 0.2, w: 'аватар собеседника, «думает…»', snd: 'tick', gain: .6 }, { t: 1.0, w: '<b>«Эмма довольна»</b>', h: 'success', snd: 'correct', big: true }, { t: 1.6, w: 'цели по 300 мс', h: 'light', snd: 'tick' }, { t: 2.5, w: '+30 монет', snd: 'correctNew' }],
     why: 'Саспенс перед реакцией собеседника делает оценку эмоциональной.', ref: 'DialogVerdictScreen.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 19. Рубежи серии — без подарков ---------- */
@@ -207,15 +207,15 @@ moment({ id: 'm19', num: '19', short: 'Рубежи серии', title: 'Руб�
   variants: [
     { k: 'A', label: '7 дней — морф + ачивка', time: '~3,5 с', phone: { under: homeUnder({ streak: 7 }), over: streak7() }, total: 4,
       init: (ph) => seq(ph, [[800, () => { morphTo(ph, 1, '7', 150); const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 3); }], [1400, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 180))]]),
-      beats: [{ t: 0.0, w: 'огонь стадии 0 с числом 6', snd: 'riser', s: 'fc_riser', gain: .6 }, { t: 0.8, w: '<b>морф</b>: вуаль-вспышка + burst (scale 1.28→1), число 7, монета cheer', h: 'success', snd: 'star', s: 'fc_star', big: true }, { t: 1.4, w: 'текст, ачивка, шкала стадий — по 180 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
+      beats: [{ t: 0.0, w: 'огонь стадии 0 с числом 6', snd: 'riser', gain: .6 }, { t: 0.8, w: '<b>морф</b>: вуаль-вспышка + burst (scale 1.28→1), число 7, монета cheer', h: 'success', snd: 'star', big: true }, { t: 1.4, w: 'текст, ачивка, шкала стадий — по 180 мс', h: 'light', snd: 'tick' }],
       why: 'Первый рубеж, на котором решается удержание; ачивка — из каталога, без подарков.', ref: 'Duolingo streak milestone.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: '30 дней — календарь', time: '~4 с', phone: { under: homeUnder({ streak: 30 }), over: streak30() }, total: 4.5,
       init: (ph) => seq(ph, [[800, () => { morphTo(ph, 2, '30', 110); ph.querySelector('[data-k]').textContent = 'Новая стадия огня'; ph.querySelector('.full').classList.add('rumble'); }], [1300, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
-      beats: [{ t: 0.8, w: '<b>морф стадии</b> + дрожь 700 мс', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }, { t: 1.3, w: '30 клеток календаря по 26 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
+      beats: [{ t: 0.8, w: '<b>морф стадии</b> + дрожь 700 мс', h: 'heavy', snd: 'done', big: true }, { t: 1.3, w: '30 клеток календаря по 26 мс', h: 'light', snd: 'tick' }],
       why: 'Календарь 30 клеток — ощущение объёма; без подарков.', ref: 'Duolingo 30-day, GitHub.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'C', label: '100 дней', time: '~4 с', phone: { under: homeUnder({ streak: 100 }), over: streak100() }, total: 4.5,
       init: (ph) => seq(ph, [[600, () => { morphTo(ph, 3, '', 170); ph.querySelector('.full').classList.add('rumble'); countUp(ph.querySelector('[data-n]'), 0, 100, 1400); firework(ph, 195, 200, { r: 120, colors: themeCols(ph) }); }], [2000, () => { confetti(ph, { n: 110, colors: themeCols(ph) }); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220)); }]]),
-      beats: [{ t: 0.6, w: '<b>морф</b> + дрожь + фейерверк, число 0 → 100', h: 'heavy', snd: 'done', s: 'fc_session_complete', big: true }, { t: 2.0, w: 'конфетти цветов темы, текст', h: 'success', snd: 'purchase', s: 'ob_purchase_success', gain: .7 }],
+      beats: [{ t: 0.6, w: '<b>морф</b> + дрожь + фейерверк, число 0 → 100', h: 'heavy', snd: 'done', big: true }, { t: 2.0, w: 'конфетти цветов темы, текст', h: 'success', snd: 'purchase', gain: .7 }],
       why: 'Редкий рубеж — заслуживает драмы; подарков нет.', ref: 'Duolingo 100-day.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 
@@ -224,7 +224,7 @@ const risk3 = () => `<div class="toast"><span class="tile">${io('flameO', 22, 'c
 moment({ id: 'm20', num: '20', short: 'Серия под угрозой', title: '«Серия под угрозой» — тост 21:00', tag: 'old',
   lead: '= StreakRiskToastHost + пуш 21:00 (бери как есть): тост на Главной с огнём outline, самое короткое действие. Заморозки и восстановления нет (D101).',
   variants: [{ k: 'A', label: 'Тост + «Заниматься»', time: '~1 с', phone: { under: homeUnder({ streak: 12, streakPending: true }), over: risk3() }, total: 1.2,
-    beats: [{ t: 0.0, w: 'тост пружиной сверху', h: 'light', snd: 'msg', s: 'message_received' }],
+    beats: [{ t: 0.0, w: 'тост пружиной сверху', h: 'light', snd: 'msg' }],
     why: 'Конкретика снимает сопротивление: «одна ступень — 2 минуты».', ref: 'Duolingo streak saver.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 21. Возвращение ---------- */
@@ -233,14 +233,14 @@ moment({ id: 'm21', num: '21', short: 'Возвращение · ОДОБРЕН'
   lead: 'Монета спит → просыпается «!» → cheer «С возвращением» (нейтрально по роду). Цифры — пример. Ничего не сгорело, один лёгкий шаг. Без ленты друзей (серверный запрос) и без бонусов (D09).',
   variants: [{ k: 'A', label: 'Спит → «!» → cheer', time: '~3 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: back3() }, total: 3.5,
     init: (ph) => seq(ph, [[1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); }], [1800, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'heart', 5); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 300)); }]]),
-    beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', s: 'fc_swipe_learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know', s: 'fc_swipe_know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «С возвращением»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }],
+    beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «С возвращением»', h: 'success', snd: 'ob', big: true }],
     why: 'Персонаж скучал — снимает вину лучше текста.', ref: 'Tamagotchi, Duolingo welcome back.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 22. Энергия закончилась → Plus (D115) ---------- */
 moment({ id: 'm22', num: '22', short: 'Энергия → Plus', title: 'Энергия закончилась → Plus', tag: 'old',
   lead: 'Единый пейвол D115 как шторка над экраном Пика с настоящим доком без энергии (SpireClimbDock). Контекст «Энергия закончилась» — заголовок; выгода одна; пробный «как даёт магазин», цена ≈ €4,99/мес; вторичное — «Подожду 10 минут» (энергия +1 за 10 мин).',
   variants: [{ k: 'A', label: 'Шторка пейвола (контекст «Энергия»)', time: '~1 с', phone: { under: spireUnder({ li: 0, myFloor: 4, en: 0, wait: '9:40' }), over: plusSheet({ ctx: 'Энергия', title: 'Энергия закончилась', sub: 'Следующая — через 9:40. С Plus — без ожидания.', benefit: 'Энергия не кончается', cta: 'Попробовать Plus', fine: 'пробный период из магазина · ≈ €4,99/мес', secondary: 'Подожду 10 минут' }) }, total: 1.2,
-    beats: [{ t: 0.0, w: 'шторка 440 мс (KitSheetModal)', h: 'light', snd: 'flip', s: 'fc_flip' }],
+    beats: [{ t: 0.0, w: 'шторка 440 мс (KitSheetModal)', h: 'light', snd: 'flip' }],
     why: 'Честная точка Plus без давления: одна мысль, одно действие, выход «Подожду».', ref: 'Duolingo hearts sheet, PaywallPlus (D115).', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 23. Пробный Plus ---------- */
@@ -254,10 +254,10 @@ moment({ id: 'm23', num: '23', short: 'Пробный Plus', title: 'Пробн�
   variants: [
     { k: 'A', label: '«Plus включён» — первое действие', time: '~2,5 с', phone: { under: homeUnder({}), over: trialOn() }, total: 3,
       init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'star', 4); }], [900, () => { confetti(ph, { n: 60, colors: themeCols(ph) }); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220)); }]]),
-      beats: [{ t: 0.3, w: 'монета cheer + искры', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }, { t: 0.9, w: 'конфетти цветов темы, текст и строка «Свободный разговор»', h: 'light', snd: 'tick', s: 'fc_tick' }],
+      beats: [{ t: 0.3, w: 'монета cheer + искры', h: 'success', snd: 'purchase' }, { t: 0.9, w: 'конфетти цветов темы, текст и строка «Свободный разговор»', h: 'light', snd: 'tick' }],
       why: 'Пробный без первого действия забывается — ведём к самому ценному.', ref: 'Spotify Premium onboarding.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
     { k: 'B', label: 'Рекап «Что дал Plus»', time: '~1 с', phone: { under: homeUnder({}), over: trialRecap() }, total: 1.2,
-      beats: [{ t: 0.0, w: 'шторка', h: 'light', snd: 'flip', s: 'fc_flip' }],
+      beats: [{ t: 0.0, w: 'шторка', h: 'light', snd: 'flip' }],
       why: 'Своя ценность в цифрах перед концом пробного.', ref: 'Headspace trial recap.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
   ] });
 

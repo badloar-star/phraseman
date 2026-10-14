@@ -12,10 +12,32 @@
   const coin = (r = 5, s = 48, cls = '') => `<img class="coinimg ${cls}" src="${coinUrl(r)}" width="${s}" height="${s}" style="width:${s}px;height:${s}px" alt="">`;
 
   /* ---------- звук: только каталог приложения (assets/sounds) ---------- */
-  const SND = { tick: 'fc_tick', star: 'fc_star', done: 'fc_session_complete', correct: 'fc_correct', wrong: 'fc_incorrect', riser: 'fc_riser', flip: 'fc_flip', chest: 'fc_chest_open', know: 'fc_swipe_know', learn: 'fc_swipe_learn', msg: 'message_received', ob: 'ob_correct', purchase: 'ob_purchase_success', rec: 'record_start', correct2: 'correct', correctNew: 'correct_new' };
+  // зачем (владелец 14.10: «звуки дешёвые, хочу премиальные и разнообразные»): звуки V2 из лаборатории — assets/sounds/v2/<событие>/v1..v4[_sN].m4a
+  // (карта docs/work/tasks/sound-v2-catalog.md, код modules/sound_v2). fc_* убраны. Правила как в приложении: у события колода из 4 вариантов
+  // «не повторять» (и на стыке колод); серии correct/lightning/coin растут и держатся на последнем шаге, ring ходит по кругу, wrong сбрасывает серии.
+  const V2_STEPS = { correct: 8, lightning: 4, coin: 5, ring: 3 };
+  const V2_EVENTS = ['tap', 'toggle_on', 'toggle_off', 'sheet_open', 'sheet_close', 'swipe_know', 'swipe_learn', 'story', 'correct', 'wrong', 'lightning', 'lesson_done', 'lesson_perfect', 'hint', 'coin', 'coins_many', 'coin_rank', 'achievement', 'ring', 'day_done', 'streak_small', 'streak_mid', 'streak_big', 'streak_year', 'streak_legend', 'streak_risk', 'step', 'floor', 'summit', 'league_up', 'league_stay', 'league_down', 'new_week', 'plus', 'energy_out', 'energy_back'];
+  const deck = {}; const series = { correct: 0, lightning: 0, coin: 0, ring: 0 };
+  const nextVariant = (ev) => { const d = deck[ev] || (deck[ev] = { q: [], last: 0 }); if (!d.q.length) { const q = [1, 2, 3, 4].sort(() => Math.random() - .5); if (q[0] === d.last) q.push(q.shift()); d.q = q; } const v = d.q.shift(); d.last = v; return v; };
+  const v2File = (ev) => { const v = nextVariant(ev); let f = `assets/sounds/v2/${ev}/v${v}`; if (V2_STEPS[ev]) { const st = ev === 'ring' ? series.ring % 3 : Math.min(series[ev], V2_STEPS[ev] - 1); f += `_s${st}`; series[ev]++; } if (ev === 'wrong') { series.correct = 0; series.lightning = 0; series.coin = 0; } return `${f}.m4a`; };
+  // старые ключи тайм-листов → события V2 (общее правило) и уточнения по смыслу момента
+  const V2_BASE = { tick: 'tap', flip: 'sheet_open', msg: 'tap', star: 'correct', correct: 'correct', correct2: 'coin', correctNew: 'coins_many', wrong: 'wrong', riser: null, know: 'swipe_know', learn: 'swipe_learn', rec: 'tap', chest: 'achievement', ob: 'achievement', purchase: 'plus', done: 'lesson_done' };
+  const SMALL = { msg: 'tap', star: 'streak_small' }; const MID = { riser: null, star: 'streak_mid' }; const BIG = { riser: null, done: 'streak_big', purchase: null }; const YEAR = { riser: null, done: 'streak_year', purchase: null };
+  const V2_BY = { m01: { done: 'league_up', correct: 'step' }, m02: { flip: 'league_stay' }, m03: { learn: 'league_down', know: 'new_week' }, m04: { star: 'new_week', tick: 'story' },
+    m05: { star: 'floor', know: 'step' }, m06: { star: 'step', correct: 'coin' }, m07: { star: 'floor', correct: 'coin', done: 'summit' }, m08: { star: 'lightning' },
+    m09: { done: 'lesson_perfect' }, m10: { done: 'lesson_done', know: 'streak_small' }, m11: { star: 'ring', done: 'day_done' }, m14: { star: 'coin_rank' },
+    m16: { star: 'correct' }, m17: { ob: 'achievement', done: null }, m18: { correctNew: 'coins_many' }, m19: { done: 'streak_big', star: 'streak_small', purchase: null }, m20: { msg: 'streak_risk' },
+    m21: { learn: null, know: 'tap', ob: 'new_week' }, m22: { flip: 'energy_out' }, m23: { purchase: 'plus' },
+    d1: SMALL, d3: SMALL, d14: SMALL, d150: SMALL, d250: SMALL, d50: MID, d200: MID, d300: MID, d400: MID, d600: MID, d800: MID, d900: MID,
+    d7: BIG, d30: BIG, d100: BIG, d500: BIG, d365: YEAR, d730: YEAR, d1000: { riser: null, done: 'streak_legend', ob: null, purchase: null } };
+  const v2Event = (mid, key) => { if (!key) return null; if (V2_EVENTS.includes(key)) return key; const by = V2_BY[mid] || {}; return key in by ? by[key] : (key in V2_BASE ? V2_BASE[key] : null); };
+  // момент при регистрации переводится на V2: snd → событие, ♪ в тайм-листе → v2/событие (тексты ударов не меняются)
+  const toV2 = (m) => ({ ...m, variants: (m.variants || []).map((v) => ({ ...v, beats: (v.beats || []).map((b) => { if (!b.snd && !b.s) return b; const ev = v2Event(m.id, b.snd); const nb = { ...b }; delete nb.snd; delete nb.s; if (ev) { nb.snd = ev; nb.s = `v2/${ev}`; } return nb; }) })) });
+  if (window.EM && EM.moment && !EM._v2) { const orig = EM.moment; EM.moment = (m) => orig(toV2(m)); EM._v2 = true; }
   const audio = {}; let soundOn = true, unlocked = false;
-  Object.entries(SND).forEach(([k, f]) => { const a = new Audio(`assets/sounds/${f}.mp3`); a.preload = 'auto'; audio[k] = a; });
-  const play = (k, gain = 1) => { if (!soundOn || !unlocked || !audio[k]) return; try { const c = audio[k].cloneNode(); c.volume = Math.min(1, .5 * gain); c.play().catch(() => {}); } catch (e) {} };
+  // зачем: заранее прогреть все файлы (колода и серии), 208 файлов ≈ 2,9 МБ — preload='auto', проверка «не загрузилось 0»
+  V2_EVENTS.forEach((ev) => [1, 2, 3, 4].forEach((v) => (V2_STEPS[ev] ? Array.from({ length: V2_STEPS[ev] }, (_, i) => `_s${i}`) : ['']).forEach((sfx) => { const f = `assets/sounds/v2/${ev}/v${v}${sfx}.m4a`; const a = new Audio(f); a.preload = 'auto'; audio[f] = a; })));
+  const play = (k, gain = 1) => { const ev = V2_EVENTS.includes(k) ? k : v2Event('', k); if (!ev || !soundOn || !unlocked) return; try { const f = v2File(ev); const base = audio[f] || new Audio(f); const c = base.cloneNode(); c.volume = Math.min(1, .5 * gain); c.play().catch(() => {}); } catch (e) { console.warn('[EM-SOUND] не сыграл', k, e && e.message); } };
   document.addEventListener('pointerdown', () => { unlocked = true; }, { once: true });
   const soundToggle = () => { const b = document.createElement('span'); b.className = 'em-btn pri'; b.id = 'em-snd'; b.textContent = '🔊 Звук: вкл'; b.addEventListener('click', () => { soundOn = !soundOn; b.textContent = soundOn ? '🔊 Звук: вкл' : '🔇 Звук: выкл'; b.classList.toggle('pri', soundOn); }); const toc = document.querySelector('.em-toc'); if (toc) toc.prepend(b); };
   /* ---------- хаптик — импульс у телефона ---------- */
@@ -91,7 +113,7 @@
   // прокрутка Главной: блок «Сегодня» целиком над панелью вкладок (низ панели 14, высота 66, запас 12) — как прокрученный экран
   const fitHome = (root = document) => root.querySelectorAll('[data-home-scroll]').forEach((sc) => { const ph = sc.closest('.em-ph, .ph2, .ph'); const slot = sc.querySelector('[data-today-slot]'); if (!ph || !slot) return; sc.style.transform = ''; const P = ph.getBoundingClientRect(); const over = slot.getBoundingClientRect().bottom - (P.top + P.height - 14 - 66 - 12); if (over > 0) sc.style.transform = `translateY(${-Math.ceil(over)}px)`; });
   window.addEventListener('load', () => { fitHome(); setTimeout(fitHome, 400); });
-  window.EMA = { IO, io, fitHome, coin, coinUrl, play, hap, playBeats, soundToggle, tabbar, energy, coinsPill, homeUnder, spireUnder, stepUnder, lessonUnder, doneUnder, dialogsUnder, briefUnder, plusSheet, towerWindow, towerSvg, LEAGUES_RU };
+  window.EMA = { IO, io, fitHome, v2Event, V2_EVENTS, coin, coinUrl, play, hap, playBeats, soundToggle, tabbar, energy, coinsPill, homeUnder, spireUnder, stepUnder, lessonUnder, doneUnder, dialogsUnder, briefUnder, plusSheet, towerWindow, towerSvg, LEAGUES_RU };
   // замена кнопки «тема» на реальные названия и подключение звука/тайм-листа к ▶ Повторить
   document.addEventListener('DOMContentLoaded', () => {
     soundToggle();

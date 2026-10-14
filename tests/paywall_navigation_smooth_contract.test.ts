@@ -28,7 +28,9 @@ describe('paywall navigation and scroll smoothness contract', () => {
 
     // 2026-09-30 (D78): пейволы A–G удалены — диспетчер рисует единственный пейвол Plus.
     expect(source).toContain("import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';");
-    expect(source).toContain('return <PaywallPlusScreen entry={entryResolution.entry} />;');
+    // зачем (14.10, Profiler [PAYWALL-CLOSE-JS]): экран собирается в `screen` и отдаётся сразу; под флагом TAP-LAT — внутри Profiler.
+    expect(source).toContain('const screen = <PaywallPlusScreen entry={entryResolution.entry} />;');
+    expect(source).toMatch(/return paywallScreenProfilerOnRender\s*\?\s*<Profiler id="screen:premium_modal" onRender=\{paywallScreenProfilerOnRender\}>\{screen\}<\/Profiler>\s*:\s*screen;/);
     expect(source).not.toMatch(/paywall_[a-g]'/);
     expect(navigation).toContain("pathname: '/premium_modal'");
     expect(navigation).not.toContain('pathname: resolveCurrentPaywallRoute()');
@@ -40,7 +42,7 @@ describe('paywall navigation and scroll smoothness contract', () => {
   it('does not re-navigate to a paywall it already rendered (no unmount/remount flash)', () => {
     const source = readAppFile('premium_modal.tsx');
     expect(source).toContain('if (!isManageContext) return;');
-    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*return <PaywallPlusScreen entry=\{entryResolution\.entry\} \/>/);
+    expect(source).toMatch(/if \(!isManageContext\)[\s\S]*const screen = <PaywallPlusScreen entry=\{entryResolution\.entry\} \/>;[\s\S]*: screen;/);
   });
 
   it('keeps regular paywalls dismissible but opens them without route delay', () => {

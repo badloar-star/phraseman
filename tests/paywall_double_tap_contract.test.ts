@@ -42,7 +42,11 @@ test('doClose ignores a repeated tap within the close lock window', () => {
   expect(event).toBeGreaterThan(take);
 });
 
-test('exit-offer read failure is logged, not swallowed silently', () => {
+// зачем (D187, 14.10): оффер на выходе удалён — смысл «закрытие не глотает ошибок молча» держим на нынешнем закрытии.
+test('close path is direct and logged, never silently swallowed (D187)', () => {
   expect(src).not.toContain('} catch { /* при сбое чтения');
-  expect(src).toContain('exit-оффер: чтение «уже видели» упало');
+  expect(src).not.toMatch(/exitOffer|ExitTrialOffer|EXIT_TRIAL_OFFER|shouldShowExitTrialOffer/);
+  const body = src.slice(src.indexOf('const handleClose = useCallback('), src.indexOf('const handleClose = useCallback(') + 600);
+  expect(body.indexOf('[PAYWALL-CLOSE] via=')).toBeGreaterThan(-1);
+  expect(body.indexOf('[PAYWALL-CLOSE] via=')).toBeLessThan(body.indexOf('doClose(reason)'));
 });

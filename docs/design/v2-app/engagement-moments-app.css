@@ -229,3 +229,5 @@
 .em-ph .cta.ghost { opacity: 1; filter: none; }
 /* kit.css красит .cta градиентом background-image (#FFF→var(--cta)) — в оболочке 2.0 кнопки плоские, как V2Button */
 .em-ph .cta:not(.gh):not(.dis):not(.red), .em-ph .cta.dis, .em-ph .cta.gh, .em-ph .cta.danger { background-image: none; }
+/* зачем (D143, home.tsx homeV2FillerTiles): запасные плитки «Пик» / «Наборы из видео» видны только когда основного раздела у языка нет — включает шлюз языка страницы */
+.em-ph [data-filler] { display: none !important; }

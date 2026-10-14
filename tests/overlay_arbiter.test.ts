@@ -214,6 +214,8 @@ describe('OverlayArbiter: исчерпывающая классификация 
     'spireWeekMoment',
     // welcomeBack — «С возвращением» (D193): закрывает человек («N карточек» / «На Главную»), таймера нет — выселять нельзя.
     'welcomeBack',
+    // coinRankEnough — m14A: закрывает человек («Повысить» / «Позже»), таймера нет — выселять нельзя.
+    'coinRankEnough',
     'update', 'releaseNotes', 'broadcast', 'appMessageModal', 'personalAdminMessage', 'notifNudge',
     'introFullAccess', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'streakRevive',

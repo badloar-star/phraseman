@@ -3,6 +3,7 @@ export type OverlayKey =
   | 'authRecovery'
   | 'spireWeekMoment'
   | 'welcomeBack'
+  | 'coinRankEnough'
   | 'arenaOpponentFound'
   | 'update'
   | 'releaseNotes'
@@ -52,6 +53,8 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'spireWeekMoment',
   // welcomeBack — окно «С возвращением» (D193, владелец 14.10): после окна итога недели; рисуется в дереве, не нативным <Modal>.
   'welcomeBack',
+  // coinRankEnough — m14A «Хватает на ранг N» (координатор 14.10): после окон итога недели и «С возвращением»; в дереве, не <Modal>.
+  'coinRankEnough',
   'releaseNotes',
   'broadcast',
   'appMessageModal',
@@ -171,6 +174,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   authRecovery: false,
   spireWeekMoment: false,
   welcomeBack: false,
+  coinRankEnough: false,
   arenaOpponentFound: false,
   update: false,
   releaseNotes: false,

@@ -1,0 +1,7 @@
+10-14 20:33:36.493 I/ReactNativeJS(29791): [NO-ENERGY-PLUS] tap ctx=no_energy variant=learn activity=flashcards handler=onClose
+10-14 20:33:36.511 W/ReactNativeJS(29791): '[NAV-BACK] decision', '{"leaving":"/flashcards_blitz_session","leavingSection":"flashcards","candidate":"/flashcards_training_setup","chosen":"/flashcards_training_setup","fallback":"/flashcards","method":"dismiss_to
+10-14 20:33:36.741 I/ReactNativeJS(29791): [NO-ENERGY-PLUS] unmount_with_pending ctx=no_energy variant=learn → push after screen left
+10-14 20:33:37.411 I/ReactNativeJS(29791): [NO-ENERGY-PLUS] push via=unmount_rescue ctx=no_energy
+10-14 20:33:37.682 I/ReactNativeJS(29791): [INFO] [PAYWALL-OPEN]: шапка: ctx=no_energy source=no_energy_modal текст=no_energy контекстная=true выгода=есть lang=ru
+10-14 20:33:37.705 I/ReactNativeJS(29791): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"no_energy","source":"no_energy_modal","shownContext":"no_energy","accessResolved":true,"hasPremiumAccess":false,"cachedEntitleme
+10-14 20:33:57.974 I/ReactNativeJS(29791): [PAYWALL-CLOSE-FREEZE] t=37974 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true

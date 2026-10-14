@@ -107,3 +107,45 @@ describe('spire finalize: зоны (правило владельца + D59)', (
     expect(out.results.d.rewardCoins.place).toBe(0);
   });
 });
+
+// D191 (координатор 14.10): лестница комнаты и порог повышения в итоге недели — для окон m01/m02, без новых чтений.
+describe('spire finalize: лестница итога недели (D191)', () => {
+  function runCoins(members: Record<string, unknown>, weekCoinsByUid: Record<string, number>) {
+    return computeSpireRoomResults({
+      groupId: '2026-W39_en_t5_d0_1_room', tier: 5, weekStartMs: WEEK_START, cohortDay: 0,
+      members, coins: COINS, tuning: TUNING, rankBy: 'coins', weekCoinsByUid,
+    });
+  }
+
+  it('до 6 строк, «я» всегда среди них, чужих uid нет, имя и ранг монеты из комнаты', () => {
+    const members: Record<string, unknown> = {};
+    const coins: Record<string, number> = {};
+    for (let i = 0; i < 15; i += 1) {
+      members[`u${i}`] = { ...member(20 - i), name: `Игрок ${i}`, coinRank: i % 20 };
+      coins[`u${i}`] = 1000 - i * 50;
+    }
+    const out = runCoins(members, coins);
+    const low = out.results.u14;
+    expect(low.ladder.length).toBeLessThanOrEqual(6);
+    expect(low.ladder.filter((r) => r.isMe)).toHaveLength(1);
+    expect(low.ladder[low.ladder.length - 1]).toMatchObject({ isMe: true, name: 'Игрок 14', coinRank: 14, coins: 300 });
+    expect(JSON.stringify(low.ladder)).not.toMatch(/"uid"|u\d+"/);
+    const top = out.results.u0;
+    expect(top.ladder[0]).toMatchObject({ place: 1, isMe: true, name: 'Игрок 0' });
+    for (const row of top.ladder) expect(Object.keys(row).sort()).toEqual(['coinRank', 'coins', 'isMe', 'name', 'place']);
+    // пустой ранг монеты — базовая монета (null), а не «ранг 0»
+    const noRank = runCoins({ a: { ...member(5), name: 'А', coinRank: null }, b: member(3) }, { a: 10, b: 5 });
+    expect(noRank.results.a.ladder.find((r) => r.isMe)?.coinRank).toBeNull();
+  });
+
+  it('порог повышения в режиме монет — монеты последнего живого в зоне «вверх»; в режиме ступеней — null', () => {
+    const members: Record<string, unknown> = {};
+    const coins: Record<string, number> = {};
+    for (let i = 0; i < 15; i += 1) { members[`u${i}`] = member(10); coins[`u${i}`] = 1000 - i * 10; }
+    const out = runCoins(members, coins);
+    // N=15 → k=5: в зоне повышения u0..u4, последний — u4 с 960 монетами.
+    expect(out.results.u9.promotionLineCoins).toBe(960);
+    expect(run({ a: member(5), b: member(3) }).results.a.promotionLineCoins).toBeNull();
+  });
+});
+

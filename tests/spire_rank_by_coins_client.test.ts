@@ -114,4 +114,15 @@ describe('D162 клиент: итог недели', () => {
     expect(spireDecodeWeekResult({ ...base, rankBy: 'coins', weekCoins: 4200 }, '2026-W43', 'en')).toMatchObject({ rankBy: 'coins', weekCoins: 4200 });
     expect(spireDecodeWeekResult(base, '2026-W42', 'en')).toMatchObject({ rankBy: 'steps', weekCoins: 0 });
   });
+
+  // D191 (координатор 14.10): лестница и порог повышения — только если пришли; старый итог без них.
+  it('итог с лестницей и порогом повышения разбирается; старый — без этих полей', () => {
+    const ladder = [{ place: 1, name: 'Аня', coinRank: 3, coins: 900, isMe: false }, { place: 2, name: 'Я', coinRank: null, coins: 800, isMe: true }];
+    const view = spireDecodeWeekResult({ ...base, rankBy: 'coins', weekCoins: 800, ladder, promotionLineCoins: 760 }, '2026-W43', 'en');
+    expect(view?.ladder).toEqual(ladder);
+    expect(view?.promotionLineCoins).toBe(760);
+    const old = spireDecodeWeekResult(base, '2026-W42', 'en');
+    expect(old).not.toHaveProperty('ladder');
+    expect(old).not.toHaveProperty('promotionLineCoins');
+  });
 });

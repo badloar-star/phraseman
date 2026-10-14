@@ -48,7 +48,33 @@ export type SpireWeekResultView = Readonly<{
   rankBy?: 'steps' | 'coins';
   /** D162: монеты недели по журналу (с потолком); старые итоги — 0. */
   weekCoins?: number;
+  /** D191: лестница комнаты для окна m01 (до 6 строк, «я» среди них); нет поля (старые итоги, до выкладки 17.10) — undefined. */
+  ladder?: readonly SpireWeekLadderRowView[];
+  /** D191: монеты последнего в зоне повышения (режим монет) — для m02 «сколько не хватило»; нет — undefined. */
+  promotionLineCoins?: number;
 }>;
+
+export type SpireWeekLadderRowView = Readonly<{ place: number; name: string; coinRank: number | null; coins: number; isMe: boolean }>;
+
+/** D191: строки лестницы из документа крона; битые строки пропускаем, пустой список = поля нет. */
+function decodeLadder(raw: unknown): readonly SpireWeekLadderRowView[] | undefined {
+  if (!Array.isArray(raw)) return undefined;
+  const rows: SpireWeekLadderRowView[] = [];
+  for (const item of raw.slice(0, 6)) {
+    if (!item || typeof item !== 'object') continue;
+    const r = item as Record<string, unknown>;
+    // зачем: Number(null) = 0 — пустой ранг (базовая монета) стал бы «ранг 0»; берём только настоящее целое 0…19.
+    const rank = typeof r.coinRank === 'number' ? r.coinRank : NaN;
+    rows.push({
+      place: Math.max(1, n(r.place)),
+      name: typeof r.name === 'string' ? r.name.slice(0, 48) : '',
+      coinRank: Number.isInteger(rank) && rank >= 0 && rank <= 19 ? rank : null,
+      coins: Math.max(0, n(r.coins)),
+      isMe: r.isMe === true,
+    });
+  }
+  return rows.length > 0 ? rows : undefined;
+}
 
 type CacheRow = Readonly<{
   weekId: string;
@@ -84,6 +110,9 @@ export function spireDecodeWeekResult(raw: unknown, weekId: string, lang: SpireL
     promotionCoins: Math.max(0, n(coins.promotion)),
     rankBy: d.rankBy === 'coins' ? 'coins' : 'steps', // guard-ok: показ решения сервера (D162)
     weekCoins: Math.max(0, n(d.weekCoins)),
+    // зачем (D191, координатор 14.10): клиент рисует лестницу / разрыв до топ-5 ТОЛЬКО если поля пришли — старые итоги без них.
+    ...(decodeLadder(d.ladder) ? { ladder: decodeLadder(d.ladder) } : {}),
+    ...(typeof d.promotionLineCoins === 'number' && Number.isFinite(d.promotionLineCoins) ? { promotionLineCoins: Math.max(0, n(d.promotionLineCoins)) } : {}),
   };
 }
 

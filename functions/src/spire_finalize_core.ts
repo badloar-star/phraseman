@@ -35,6 +35,7 @@ import type { SpireCoinsConfig, SpireRankBy } from './spire_config_contract';
 import { spireCoinsZoneK, spireCoinsZonesFor } from '../../shared/spire_coins_zones';
 import { spireBotWeekCoins } from './spire_config_contract';
 import {
+  buildSpireRoster,
   isSpireResidentMember,
   spireLiveZoneSize,
   spireRoomResidents,
@@ -55,7 +56,22 @@ export type SpireStanding = Readonly<{
   joinedAtMs?: number;
   /** D162: монеты, заработанные за неделю во всех режимах (журнал), уже с потолком недели. 0 — нет/не считаем. */
   weekCoins?: number;
+  /** D191: имя и ранг монеты — только для лестницы итога недели (у живых из members, у ботов из формулы жителей). */
+  name?: string;
+  coinRank?: number | null;
 }>;
+
+/** D191: строка лестницы комнаты в итоге недели (окно m01). Чужих uid нет — только то, что человек видел на экране комнаты. */
+export type SpireWeekLadderRow = Readonly<{
+  place: number;
+  name: string;
+  coinRank: number | null;
+  coins: number;
+  isMe: boolean;
+}>;
+
+/** D191: сколько строк лестницы пишем (в образце m01 — первые 6, «Ты» среди них). */
+export const SPIRE_WEEK_LADDER_ROWS = 6;
 
 /**
  * D61: отчёты последних 10 минут недели засчитываются уже в НОВУЮ неделю.
@@ -97,6 +113,10 @@ export type SpireMemberWeekResult = Readonly<{
   weekCoins: number;
   /** D162: сумма недели упёрлась в потолок weekCoinsCap. */
   weekCoinsCapped: boolean;
+  /** D191 (координатор 14.10): лестница комнаты для окна m01 — до 6 строк, «я» всегда среди них. */
+  ladder: readonly SpireWeekLadderRow[];
+  /** D191: монеты последнего живого в зоне повышения (режим монет) — для m02 «сколько не хватило»; null — нет зоны/режим ступеней. */
+  promotionLineCoins: number | null;
 }>;
 
 export type SpireRoomFinalizeInput = Readonly<{
@@ -186,12 +206,17 @@ export function spireLiveStandings(members: Readonly<Record<string, unknown>>): 
     if (isSpireResidentMember(uid, member)) continue;
     if (member.identityHidden === true) continue;
     const steps = nonNegativeInt(member.steps);
+    // зачем: Number(null) = 0 — пустой ранг превращался бы в «ранг 0»; берём только настоящее целое 0…19.
+    const rank = typeof member.coinRank === 'number' ? member.coinRank : NaN;
     out.push({
       uid,
       steps,
       reachedAtMs: steps > 0 ? nonNegativeInt(member.reachedAtMs) : 0,
       totalMs: steps > 0 ? nonNegativeInt(member.totalMs) : 0,
       joinedAtMs: nonNegativeInt(member.joinedAtMs),
+      // зачем (D191): имя и ранг монеты — для лестницы итога недели; уже лежат в том же документе комнаты, чтений не добавляют.
+      name: typeof member.name === 'string' ? member.name.trim().slice(0, 48) : '',
+      coinRank: Number.isInteger(rank) && rank >= 0 && rank <= 19 ? rank : null,
     });
   }
   return out;
@@ -250,8 +275,25 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
     tuning: input.tuning,
   });
   // D162: у ботов в режиме монет — монеты по формуле от их ступеней (только для показанного «места X из N»).
-  const room: SpireStanding[] = [...live, ...bots.map((b) => ({ ...b, weekCoins: spireBotWeekCoins(b.steps) }))];
+  // D191: имена и ранги монет ботов — из того же реестра жителей, что рисует комнату (0 чтений).
+  const rosterByUid = new Map(buildSpireRoster(input.groupId, input.weekStartMs).map((r) => [r.uid, r]));
+  const room: SpireStanding[] = [...live, ...bots.map((b) => ({
+    ...b,
+    weekCoins: spireBotWeekCoins(b.steps),
+    name: rosterByUid.get(b.uid)?.name ?? '',
+    coinRank: rosterByUid.get(b.uid)?.coinRank ?? null,
+  }))];
   const roomTotal = room.length;
+  const roomSorted = [...room].sort(compare);
+  const roomPlace = (s: SpireStanding): number => 1 + room.filter((o) => compare(o, s) < 0).length;
+  // D191 m02: порог повышения = монеты последнего живого в зоне «вверх» (режим монет); иначе null.
+  const upCoins = live.filter((m) => coinsZoneByUid.get(m.uid) === 'up').map((m) => m.weekCoins ?? 0);
+  const promotionLineCoins = rankBy === 'coins' && upCoins.length > 0 ? Math.min(...upCoins) : null;
+  const ladderFor = (me: SpireStanding): SpireWeekLadderRow[] => {
+    const top = roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS);
+    const rows = top.some((s) => s.uid === me.uid) ? top : [...roomSorted.slice(0, SPIRE_WEEK_LADDER_ROWS - 1), me];
+    return rows.map((s) => ({ place: roomPlace(s), name: s.name ?? '', coinRank: s.coinRank ?? null, coins: s.weekCoins ?? 0, isMe: s.uid === me.uid }));
+  };
 
   const results: Record<string, SpireMemberWeekResult> = {};
   for (const me of live) {
@@ -298,6 +340,8 @@ export function computeSpireRoomResults(input: SpireRoomFinalizeInput): SpireRoo
       rankBy,
       weekCoins: me.weekCoins,
       weekCoinsCapped: cappedUids.has(me.uid),
+      ladder: ladderFor(me),
+      promotionLineCoins,
     };
   }
   return { zoneSize, liveTotal, roomTotal, hasAnyScorer, results, rankBy, capHits: cappedUids.size };

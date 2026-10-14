@@ -1,0 +1,266 @@
+10-14 18:18:44.171 I/SVERKA  ( 6864): === WB-1 крестик 18:18:45 ===
+10-14 18:18:44.858 I/ReactNativeJS( 6657): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:18:44.860 I/ReactNativeJS( 6657): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:18:45.232 W/ReactNativeJS( 6657): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:18:45.587 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=25587 check skip ready=true onboarding=true banned=false firstContent=true
+10-14 18:18:47.684 I/ReactNativeJS( 6657): [ONB-PAYWALL-WAIT] hook:unmount живёт=21031ms
+10-14 18:18:47.823 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=27819 gate no reason=recent awayDays=0
+10-14 18:18:47.824 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=27823 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:18:47.836 I/ReactNativeJS( 6657): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:18:47.837 W/ReactNativeJS( 6657): '[DEV-STATE] route: фикстуры применены', '2607мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:18:48.165 W/ReactNativeJS( 6657): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '2935мс'
+10-14 18:18:48.800 W/ReactNativeJS( 6657): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:18:48.909 I/ReactNativeJS( 6657): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":28744,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:18:49.055 I/ReactNativeJS( 6657): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:18:49.057 I/ReactNativeJS( 6657): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:18:49.059 I/ReactNativeJS( 6657): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:18:49.062 I/ReactNativeJS( 6657): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:18:49.063 I/ReactNativeJS( 6657): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:18:49.065 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=29064 sheet mount context=winback source=winback
+10-14 18:18:49.067 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=29066 sheet arbiter active=none
+10-14 18:18:49.069 I/ReactNativeJS( 6657): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:18:49.072 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=29070 route mount context=winback source=winback
+10-14 18:18:49.075 I/ReactNativeJS( 6657): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#J0cWAA*[(tabs)#k7QAis,premium_modal#iFPz12*]","atMs":28910}'
+10-14 18:18:49.331 I/ReactNativeJS( 6657): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:18:49.515 W/ReactNativeJS( 6657): [NAV-PAINT] group=screen route=/premium_modal ms=435
+10-14 18:18:52.808 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":31,"route":"/premium_modal","heapMb":64,"gc":"14gc/121ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":19,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at I
+10-14 18:18:57.825 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":36,"route":"/premium_modal","heapMb":64,"gc":"27gc/302ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":2,"timeoutsByCaller":{"tick <- apply (native)":1,"anonymous <
+10-14 18:18:58.892 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=38891 sheet close_button
+10-14 18:18:58.909 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=38902 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 18:18:58.911 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=38910 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 18:18:58.919 W/ReactNativeJS( 6657): '[NAV-BACK] candidate:reset', '{"reason":"section_mismatch","leaving":"/premium_modal","leavingSection":"home","candidate":"/dev_state","candidateSection":null}', { [Stack] name: 'Stack' }
+10-14 18:18:58.942 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=38941 dismiss leaving=/premium_modal?context=winback&source=winback candidate=none chosen=/(tabs)/home shouldReplace=false canDismiss=true branch=dismissTo stack=
+10-14 18:18:59.268 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=39267 route UNMOUNT context=winback
+10-14 18:18:59.269 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=39268 sheet UNMOUNT context=winback
+10-14 18:18:59.762 I/ReactNativeJS( 6657): [WINBACK-FREEZE] t=39762 dismiss +800ms top=none stack=
+10-14 18:19:00.984 I/SVERKA  ( 6953): === WB-1 closed 18:19:02 ===
+10-14 18:19:02.858 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":42,"route":"/premium_modal","heapMb":64,"gc":"8gc/68ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":7,"timeoutsByCaller":{"onResponderGrant <- executeDirectDispatc
+10-14 18:19:07.942 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":47,"route":"/premium_modal","heapMb":64,"gc":"14gc/123ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"_scheduleCellsToRenderUpdate <- compon
+10-14 18:19:12.987 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":52,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:18.134 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":57,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:23.215 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":62,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:28.250 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":67,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:28.496 I/SVERKA  ( 7012): === WB-1 control 18:19:29 ===
+10-14 18:19:33.321 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":72,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:38.391 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":77,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:19:43.419 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":82,"route":"/premium_modal","heapMb":64,"gc":"2gc/23ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":6,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGr
+10-14 18:19:48.517 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":87,"route":"/premium_modal","heapMb":64,"gc":"2gc/23ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGr
+10-14 18:19:53.672 I/ReactNativeJS( 6657): '[MEM-TICK]', '{"tSec":92,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:20:10.141 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=10140 check skip ready=false onboarding=false banned=false firstContent=false
+10-14 18:20:13.254 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=13254 gate no reason=recent awayDays=0
+10-14 18:20:13.256 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=13255 check decision show=false isPremium=false introPending=false path=/
+10-14 18:20:14.356 I/ReactNativeJS( 7086): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:20:14.359 W/ReactNativeJS( 7086): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=258
+10-14 18:20:33.042 I/SVERKA  ( 7312): === WB-1 крестик 18:20:34 ===
+10-14 18:20:33.464 I/ReactNativeJS( 7086): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:20:33.466 I/ReactNativeJS( 7086): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:20:33.900 W/ReactNativeJS( 7086): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:20:34.794 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=34793 gate no reason=recent awayDays=0
+10-14 18:20:34.795 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=34794 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:20:35.018 I/ReactNativeJS( 7086): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:20:35.020 W/ReactNativeJS( 7086): '[DEV-STATE] route: фикстуры применены', '1121мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:20:35.389 W/ReactNativeJS( 7086): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '1492мс'
+10-14 18:20:35.710 W/ReactNativeJS( 7086): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:20:35.734 I/ReactNativeJS( 7086): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":28735,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:20:35.813 I/ReactNativeJS( 7086): '[PAYWALL-PRICE] справочные цены', '{"yearly":"€39,99","monthly":"€7,99","yearlyPerMonth":"€3,33","source":"builtin"}'
+10-14 18:20:35.971 I/ReactNativeJS( 7086): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:20:35.973 I/ReactNativeJS( 7086): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:20:35.974 I/ReactNativeJS( 7086): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:20:35.977 I/ReactNativeJS( 7086): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:20:35.979 I/ReactNativeJS( 7086): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:20:35.982 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=35980 sheet mount context=winback source=winback
+10-14 18:20:35.984 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=35983 sheet arbiter active=none
+10-14 18:20:35.986 I/ReactNativeJS( 7086): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:20:35.988 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=35986 route mount context=winback source=winback
+10-14 18:20:36.002 I/ReactNativeJS( 7086): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#WSIQFM*[(tabs)#nYd5Bs,premium_modal#AMdRfr*]","atMs":29003}'
+10-14 18:20:36.302 I/ReactNativeJS( 7086): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:20:36.435 W/ReactNativeJS( 7086): [NAV-PAINT] group=screen route=/premium_modal ms=425
+10-14 18:20:39.755 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":32,"route":"/premium_modal","heapMb":64,"gc":"12gc/104ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":25,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at I
+10-14 18:20:44.770 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":37,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:20:47.680 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=47678 sheet close_button
+10-14 18:20:47.694 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=47694 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 18:20:47.695 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=47694 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 18:20:47.714 W/ReactNativeJS( 7086): '[NAV-BACK] candidate:reset', '{"reason":"section_mismatch","leaving":"/premium_modal","leavingSection":"home","candidate":"/dev_state","candidateSection":null}', { [Stack] name: 'Stack' }
+10-14 18:20:47.726 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=47721 dismiss leaving=/premium_modal?context=winback&source=winback candidate=none chosen=/(tabs)/home shouldReplace=false canDismiss=true branch=dismissTo stack=
+10-14 18:20:48.131 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=48128 route UNMOUNT context=winback
+10-14 18:20:48.133 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=48131 sheet UNMOUNT context=winback
+10-14 18:20:48.727 I/ReactNativeJS( 7086): [WINBACK-FREEZE] t=48726 dismiss +800ms top=none stack=
+10-14 18:20:49.787 I/SVERKA  ( 7387): === WB-1 closed 18:20:50 ===
+10-14 18:20:49.793 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":42,"route":"/premium_modal","heapMb":64,"gc":"9gc/98ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGr
+10-14 18:20:54.816 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":47,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGra
+10-14 18:20:59.835 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":52,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:21:04.911 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":57,"route":"/premium_modal","heapMb":64,"gc":"14gc/109ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"_scheduleCellsToRenderUpdate <- compon
+10-14 18:21:09.962 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":62,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:21:15.016 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":67,"route":"/premium_modal","heapMb":64,"gc":"1gc/11ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeo
+10-14 18:21:20.127 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":72,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:21:25.155 I/ReactNativeJS( 7086): '[MEM-TICK]', '{"tSec":77,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:21:42.067 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=2066 check skip ready=false onboarding=false banned=false firstContent=false
+10-14 18:21:44.423 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=4422 check skip ready=true onboarding=false banned=false firstContent=false
+10-14 18:21:46.936 I/ReactNativeJS( 7521): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:21:46.942 W/ReactNativeJS( 7521): [PAYWALL] цены прогреты: нет кэша importMs=1 hydrateMs=415
+10-14 18:21:46.954 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=6953 gate no reason=recent awayDays=0
+10-14 18:21:46.956 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=6955 check decision show=false isPremium=false introPending=false path=/
+10-14 18:22:06.283 I/SVERKA  ( 7751): === WB-2 фон 18:22:07 ===
+10-14 18:22:06.838 I/ReactNativeJS( 7521): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:22:06.839 I/ReactNativeJS( 7521): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:22:07.331 W/ReactNativeJS( 7521): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:22:08.586 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=28585 gate no reason=recent awayDays=0
+10-14 18:22:08.587 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=28586 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:22:08.836 I/ReactNativeJS( 7521): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:22:08.839 W/ReactNativeJS( 7521): '[DEV-STATE] route: фикстуры применены', '1510мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:22:09.362 W/ReactNativeJS( 7521): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '2033мс'
+10-14 18:22:09.678 W/ReactNativeJS( 7521): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:22:09.713 I/ReactNativeJS( 7521): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":30839,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:22:09.815 I/ReactNativeJS( 7521): '[PAYWALL-PRICE] справочные цены', '{"yearly":"€39,99","monthly":"€7,99","yearlyPerMonth":"€3,33","source":"builtin"}'
+10-14 18:22:10.074 I/ReactNativeJS( 7521): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:22:10.076 I/ReactNativeJS( 7521): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:22:10.078 I/ReactNativeJS( 7521): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:22:10.086 I/ReactNativeJS( 7521): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:22:10.089 I/ReactNativeJS( 7521): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:22:10.101 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=30090 sheet mount context=winback source=winback
+10-14 18:22:10.104 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=30102 sheet arbiter active=none
+10-14 18:22:10.134 I/ReactNativeJS( 7521): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:22:10.137 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=30135 route mount context=winback source=winback
+10-14 18:22:10.143 I/ReactNativeJS( 7521): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hsAE0t*[(tabs)#q8CKYS,premium_modal#ZDrivU*]","atMs":31271}'
+10-14 18:22:10.999 I/ReactNativeJS( 7521): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:22:11.217 W/ReactNativeJS( 7521): [NAV-PAINT] group=screen route=/premium_modal ms=1065
+10-14 18:22:12.475 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":33,"route":"/premium_modal","heapMb":64,"gc":"26gc/512ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":36,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at I
+10-14 18:22:17.486 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":38,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:22:20.985 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=40985 sheet scrim_tap checkout=false
+10-14 18:22:21.049 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41049 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 18:22:21.050 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41050 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 18:22:21.062 W/ReactNativeJS( 7521): '[NAV-BACK] candidate:reset', '{"reason":"section_mismatch","leaving":"/premium_modal","leavingSection":"home","candidate":"/dev_state","candidateSection":null}', { [Stack] name: 'Stack' }
+10-14 18:22:21.071 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41071 dismiss leaving=/premium_modal?context=winback&source=winback candidate=none chosen=/(tabs)/home shouldReplace=false canDismiss=true branch=dismissTo stack=
+10-14 18:22:21.463 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41460 route UNMOUNT context=winback
+10-14 18:22:21.465 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41464 sheet UNMOUNT context=winback
+10-14 18:22:21.950 I/ReactNativeJS( 7521): [WINBACK-FREEZE] t=41949 dismiss +800ms top=none stack=
+10-14 18:22:22.508 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":43,"route":"/premium_modal","heapMb":64,"gc":"10gc/131ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":5,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponder
+10-14 18:22:23.065 I/SVERKA  ( 7810): === WB-2 closed 18:22:24 ===
+10-14 18:22:27.532 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":48,"route":"/premium_modal","heapMb":64,"gc":"1gc/8ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGra
+10-14 18:22:32.566 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":53,"route":"/premium_modal","heapMb":64,"gc":"1gc/8ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGra
+10-14 18:22:38.053 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":58,"route":"/premium_modal","heapMb":64,"gc":"8gc/115ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":3,"timeoutsByCaller":{"tick <- apply (native)":1,"onPanRespond
+10-14 18:22:43.097 I/ReactNativeJS( 7521): '[MEM-TICK]', '{"tSec":63,"route":"/premium_modal","heapMb":64,"gc":"6gc/53ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":2,"timeoutsByCaller":{"tick <- apply (native)":1,"_scheduleCell
+10-14 18:23:01.623 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=81620 check skip ready=false onboarding=false banned=false firstContent=false
+10-14 18:23:03.958 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=83958 gate no reason=recent awayDays=0
+10-14 18:23:03.960 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=83958 check decision show=false isPremium=false introPending=false path=/
+10-14 18:23:05.538 I/ReactNativeJS( 7890): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:23:05.539 W/ReactNativeJS( 7890): [PAYWALL] цены прогреты: нет кэша importMs=1 hydrateMs=177
+10-14 18:23:23.609 I/SVERKA  ( 8130): === WB-3 назад 18:23:24 ===
+10-14 18:23:24.020 I/ReactNativeJS( 7890): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:23:24.022 I/ReactNativeJS( 7890): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:23:24.303 W/ReactNativeJS( 7890): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:23:25.109 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=5108 gate no reason=recent awayDays=0
+10-14 18:23:25.109 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=5109 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:23:25.293 I/ReactNativeJS( 7890): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:23:25.294 W/ReactNativeJS( 7890): '[DEV-STATE] route: фикстуры применены', '991мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:23:25.554 W/ReactNativeJS( 7890): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '1251мс'
+10-14 18:23:25.880 W/ReactNativeJS( 7890): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:23:25.898 I/ReactNativeJS( 7890): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":27489,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:23:25.958 I/ReactNativeJS( 7890): '[PAYWALL-PRICE] справочные цены', '{"yearly":"€39,99","monthly":"€7,99","yearlyPerMonth":"€3,33","source":"builtin"}'
+10-14 18:23:26.080 I/ReactNativeJS( 7890): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:23:26.082 I/ReactNativeJS( 7890): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:23:26.084 I/ReactNativeJS( 7890): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:23:26.087 I/ReactNativeJS( 7890): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:23:26.089 I/ReactNativeJS( 7890): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:23:26.090 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=6089 sheet mount context=winback source=winback
+10-14 18:23:26.091 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=6090 sheet arbiter active=none
+10-14 18:23:26.094 I/ReactNativeJS( 7890): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:23:26.096 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=6094 route mount context=winback source=winback
+10-14 18:23:26.100 I/ReactNativeJS( 7890): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Uup6kA*[(tabs)#1uXE06,premium_modal#GzejDn*]","atMs":27690}'
+10-14 18:23:26.330 I/ReactNativeJS( 7890): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:23:26.415 W/ReactNativeJS( 7890): [NAV-PAINT] group=screen route=/premium_modal ms=311
+10-14 18:23:26.882 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":27,"route":"/premium_modal","heapMb":64,"gc":"23gc/254ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":36,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at I
+10-14 18:23:31.911 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":32,"route":"/premium_modal","heapMb":64,"gc":"1gc/9ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:23:34.796 W/ReactNativeJS( 7890): '[NAV-BACK] candidate:reset', '{"reason":"section_mismatch","leaving":"/premium_modal","leavingSection":"home","candidate":"/dev_state","candidateSection":null}'
+10-14 18:23:34.806 W/ReactNativeJS( 7890): '[NAV-BACK] decision', '{"leaving":"/premium_modal","leavingSection":"home","candidate":null,"chosen":"/(tabs)/home","fallback":"/(tabs)/home","method":"dismiss_to"}'
+10-14 18:23:35.066 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=15065 route UNMOUNT context=winback
+10-14 18:23:35.068 I/ReactNativeJS( 7890): [WINBACK-FREEZE] t=15066 sheet UNMOUNT context=winback
+10-14 18:23:36.904 I/SVERKA  ( 8190): === WB-3 closed 18:23:38 ===
+10-14 18:23:36.932 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":37,"route":"/premium_modal","heapMb":64,"gc":"8gc/61ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":2,"timeoutsByCaller":{"tick <- apply (native)":1,"_scheduleCell
+10-14 18:23:41.961 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":42,"route":"/premium_modal","heapMb":64,"gc":"1gc/26ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGr
+10-14 18:23:46.968 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":47,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGra
+10-14 18:23:51.996 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":52,"route":"/premium_modal","heapMb":64,"gc":"15gc/161ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"_scheduleCellsToRenderUpdate <- compon
+10-14 18:23:57.047 I/ReactNativeJS( 7890): '[MEM-TICK]', '{"tSec":57,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:24:13.025 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=53024 check skip ready=false onboarding=false banned=false firstContent=false
+10-14 18:24:16.401 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=56401 gate no reason=recent awayDays=0
+10-14 18:24:16.402 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=56402 check decision show=false isPremium=false introPending=false path=/
+10-14 18:24:17.726 I/ReactNativeJS( 8286): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:24:17.728 W/ReactNativeJS( 8286): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=539
+10-14 18:24:35.996 I/SVERKA  ( 8545): === WB-4 свайп 18:24:37 ===
+10-14 18:24:36.349 I/ReactNativeJS( 8286): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:24:36.350 I/ReactNativeJS( 8286): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:24:36.720 W/ReactNativeJS( 8286): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:24:37.521 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=77521 gate no reason=recent awayDays=0
+10-14 18:24:37.522 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=77522 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:24:37.696 I/ReactNativeJS( 8286): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:24:37.698 W/ReactNativeJS( 8286): '[DEV-STATE] route: фикстуры применены', '983мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:24:38.039 W/ReactNativeJS( 8286): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '1324мс'
+10-14 18:24:38.372 W/ReactNativeJS( 8286): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:24:38.392 I/ReactNativeJS( 8286): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":28678,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:24:38.441 I/ReactNativeJS( 8286): '[PAYWALL-PRICE] справочные цены', '{"yearly":"€39,99","monthly":"€7,99","yearlyPerMonth":"€3,33","source":"builtin"}'
+10-14 18:24:38.561 I/ReactNativeJS( 8286): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:24:38.563 I/ReactNativeJS( 8286): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:24:38.564 I/ReactNativeJS( 8286): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:24:38.567 I/ReactNativeJS( 8286): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:24:38.569 I/ReactNativeJS( 8286): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:24:38.570 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=78569 sheet mount context=winback source=winback
+10-14 18:24:38.571 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=78570 sheet arbiter active=none
+10-14 18:24:38.572 I/ReactNativeJS( 8286): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:24:38.574 I/ReactNativeJS( 8286): [WINBACK-FREEZE] t=78573 route mount context=winback source=winback
+10-14 18:24:38.576 I/ReactNativeJS( 8286): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#2lZ6ce*[(tabs)#yLQx67,premium_modal#STY4-O*]","atMs":28863}'
+10-14 18:24:38.811 I/ReactNativeJS( 8286): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:24:38.898 W/ReactNativeJS( 8286): [NAV-PAINT] group=screen route=/premium_modal ms=316
+10-14 18:24:42.518 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":32,"route":"/premium_modal","heapMb":64,"gc":"9gc/77ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":17,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at Int
+10-14 18:24:47.548 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":37,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:24:50.373 I/SVERKA  ( 8596): === WB-4 closed 18:24:51 ===
+10-14 18:24:50.585 I/ReactNativeJS( 8286): [INFO] [PAYWALL-PLUS]: тихий повтор цен
+10-14 18:24:52.571 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":42,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:24:57.597 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":47,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:25:02.622 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":52,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:25:02.924 I/ReactNativeJS( 8286): [INFO] [PAYWALL]: restore: выход без действия dev_bypass=true restoring=false purchasing=false mode=restore
+10-14 18:25:07.645 I/ReactNativeJS( 8286): '[MEM-TICK]', '{"tSec":57,"route":"/premium_modal","heapMb":64,"gc":"1gc/30ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":3,"timeoutsByCaller":{"tick <- apply (native)":1,"onResponderGr
+10-14 18:25:27.845 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=27843 check skip ready=false onboarding=false banned=false firstContent=false
+10-14 18:25:30.840 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=30840 gate no reason=recent awayDays=0
+10-14 18:25:30.841 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=30841 check decision show=false isPremium=false introPending=false path=/
+10-14 18:25:32.290 I/ReactNativeJS( 8689): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:25:32.292 W/ReactNativeJS( 8689): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=412
+10-14 18:25:48.961 I/SVERKA  ( 8924): === WB-1 крестик 18:25:50 ===
+10-14 18:25:49.336 I/ReactNativeJS( 8689): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:25:49.338 I/ReactNativeJS( 8689): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/premium_modal?context=winback%26source=winback","initial":false,"out":"/dev_state?onboarding=done&intros=seen&plus=off&overlays=off&next=/
+10-14 18:25:49.618 W/ReactNativeJS( 8689): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","intros":"seen","overlays":"off","next":"/premium_modal?context=winback&source=winback"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 18:25:50.309 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=50309 gate no reason=recent awayDays=0
+10-14 18:25:50.310 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=50310 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 18:25:50.422 I/ReactNativeJS( 8689): '[DEV-STATE] applied', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:25:50.423 W/ReactNativeJS( 8689): '[DEV-STATE] route: фикстуры применены', '807мс', '{"applied":{"plus":"off","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{},"next":"/premium_modal?context=winback&source=winback"}'
+10-14 18:25:50.706 W/ReactNativeJS( 8689): '[DEV-STATE] route: replace через 300 мс →', '/premium_modal?context=winback&source=winback', '1086мс'
+10-14 18:25:51.030 W/ReactNativeJS( 8689): '[DEV-STATE] route: replace вызван →', '/premium_modal?context=winback&source=winback'
+10-14 18:25:51.053 I/ReactNativeJS( 8689): '[PERF-R1-NAV]', '{"event":"action","type":"REPLACE","name":"premium_modal","noop":false,"atMs":26239,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/i
+10-14 18:25:51.096 I/ReactNativeJS( 8689): '[PAYWALL-PRICE] справочные цены', '{"yearly":"€39,99","monthly":"€7,99","yearlyPerMonth":"€3,33","source":"builtin"}'
+10-14 18:25:51.220 I/ReactNativeJS( 8689): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 18:25:51.222 I/ReactNativeJS( 8689): [INFO] [PAYWALL-PRICE]: цены на плитках: год=€39,99(reference) месяц=€7,99(reference) справочная=true storeUnavailable=нет ever=false
+10-14 18:25:51.224 I/ReactNativeJS( 8689): [INFO] [PAYWALL-PROMO]: план=yearly промо=нет год=— месяц=— навсегда=— ценаСтора=€39,99/€7,99
+10-14 18:25:51.227 I/ReactNativeJS( 8689): [INFO] [PAYWALL]: окно Plus: состояние=ready цены=магазин план=yearly год=€39,99 месяц=€7,99 пробныйГода=нет источникПробного=нет лента=false подпись=нет ctx=winback sou
+10-14 18:25:51.228 I/ReactNativeJS( 8689): [INFO] [PAYWALL]: окно Plus: оплата payStarted=false purchasing=false restoring=false закрытие/восстановить заблокированы=false тарифы/кнопка заняты=false
+10-14 18:25:51.229 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=51229 sheet mount context=winback source=winback
+10-14 18:25:51.231 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=51230 sheet arbiter active=none
+10-14 18:25:51.233 I/ReactNativeJS( 8689): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 18:25:51.234 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=51233 route mount context=winback source=winback
+10-14 18:25:51.237 I/ReactNativeJS( 8689): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hL709v*[(tabs)#jcckVO,premium_modal#D1hnDO*]","atMs":26423}'
+10-14 18:25:51.474 I/ReactNativeJS( 8689): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-14 18:25:51.573 W/ReactNativeJS( 8689): [NAV-PAINT] group=screen route=/premium_modal ms=326
+10-14 18:25:52.150 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":26,"route":"/premium_modal","heapMb":68,"gc":"31gc/267ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":38,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at I
+10-14 18:25:57.168 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":31,"route":"/premium_modal","heapMb":68,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:26:02.187 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":36,"route":"/premium_modal","heapMb":68,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:26:03.089 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63088 sheet close_button
+10-14 18:26:03.112 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63112 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 18:26:03.125 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63113 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 18:26:03.134 W/ReactNativeJS( 8689): '[NAV-BACK] candidate:reset', '{"reason":"section_mismatch","leaving":"/premium_modal","leavingSection":"home","candidate":"/dev_state","candidateSection":null}', { [Stack] name: 'Stack' }
+10-14 18:26:03.156 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63152 dismiss leaving=/premium_modal?context=winback&source=winback candidate=none chosen=/(tabs)/home shouldReplace=false canDismiss=true branch=dismissTo stack=
+10-14 18:26:03.581 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63579 route UNMOUNT context=winback
+10-14 18:26:03.583 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=63581 sheet UNMOUNT context=winback
+10-14 18:26:04.106 I/ReactNativeJS( 8689): [WINBACK-FREEZE] t=64105 dismiss +800ms top=none stack=
+10-14 18:26:05.197 I/SVERKA  ( 8999): === WB-1 closed 18:26:06 ===
+10-14 18:26:07.205 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":41,"route":"/premium_modal","heapMb":68,"gc":"10gc/107ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":9,"timeoutsByCaller":{"onResponderGrant <- executeDirectDispa
+10-14 18:26:12.221 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":47,"route":"/premium_modal","heapMb":68,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:26:17.242 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":52,"route":"/premium_modal","heapMb":68,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeou
+10-14 18:26:22.279 I/ReactNativeJS( 8689): '[MEM-TICK]', '{"tSec":57,"route":"/premium_modal","heapMb":68,"gc":"14gc/141ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":4,"timeoutsByCaller":{"_scheduleCellsToRenderUpdate <- compon

@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import { ctaFillGradient } from '../constants/accentFill';
 
 type Tok = Record<string, string>;
 const rgb = (hex: string): number[] => { const h = hex.replace('#', '').slice(0, 6); return [0, 2, 4].map((i) => parseInt(h.slice(i, i + 2), 16)); };
@@ -41,6 +42,13 @@ describe('токены кнопок × все темы', () => {
         // опасная кнопка: своя заливка, отличимая от поверхностей, и читаемая подпись
         for (const s of SURFACES) if (ratio(t.dangerFill!, t[s]!) < 1.5) bad.push(`${at} опасная → ${s}: ${ratio(t.dangerFill!, t[s]!).toFixed(2)} < 1.5`);
         if (ratio(t.dangerInk!, t.dangerFill!) < 4.5) bad.push(`${at} подпись опасной ${ratio(t.dangerInk!, t.dangerFill!).toFixed(2)} < 4.5`);
+        // главная кнопка пейвола (градиент ctaFillGradient): подпись >= 4,5 и не сливается с поверхностями и вторичной
+        const [gTop, gBottom] = ctaFillGradient(t as never);
+        for (const c of [gTop, gBottom]) {
+          if (ratio(t.accentInk!, c) < 4.5) bad.push(`${at} пейвол: подпись ${ratio(t.accentInk!, c).toFixed(2)} < 4.5 на ${c}`);
+          for (const s of SURFACES) if (ratio(c, t[s]!) < 1.5) bad.push(`${at} пейвол: ${c} → ${s} ${ratio(c, t[s]!).toFixed(2)} < 1.5`);
+        }
+        if (ratio(gBottom, t.buttonFill!) < 1.3) bad.push(`${at} пейвол: основная ≈ вторичная ${ratio(gBottom, t.buttonFill!).toFixed(2)} < 1.3`);
         if (ratio(t.buttonFill!, t.buttonFillDisabled!) < 1.08) bad.push(`${at} отключённая не отличается от вторичной ${ratio(t.buttonFill!, t.buttonFillDisabled!).toFixed(2)} < 1.08`);
       }
     }

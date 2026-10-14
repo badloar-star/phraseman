@@ -16,3 +16,11 @@ export function accentFillBright(t: Pick<GlassTokens, 'accent' | 'accentBright' 
 export function accentFillGradient(t: Pick<GlassTokens, 'accent' | 'accentBright' | 'accentInk'>): readonly [string, string] {
   return [accentFillBright(t), t.accent];
 }
+
+/**
+ * зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): заливка главной кнопки с градиентом. Если ctaFill (токены кнопок) совпал с accent — прежний градиент accentFillGradient;
+ * если ctaFill углублён (пастельный accent слился бы с фоном светлой градиентной темы) — сплошная глубокая заливка ctaFill без светлого верха, который снова слился бы с фоном.
+ */
+export function ctaFillGradient(t: Pick<GlassTokens, 'accent' | 'accentBright' | 'accentInk' | 'ctaFill'>): readonly [string, string] {
+  return t.ctaFill.toUpperCase() === t.accent.toUpperCase() ? accentFillGradient(t) : [t.ctaFill, t.ctaFill];
+}

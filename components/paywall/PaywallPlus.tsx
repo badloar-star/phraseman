@@ -16,7 +16,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 import type { Lang } from '../../constants/i18n';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { accentFillGradient } from '../../constants/accentFill';
+import { ctaFillGradient } from '../../constants/accentFill';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 import type { StorePromoPricing } from '../../app/premium_store_promo_display';
 import { canPromiseTrialReminder, trialReminderDayNumber } from '../../app/trial_end_reminder_schedule';
@@ -361,10 +361,11 @@ export const PaywallPlusDock = memo(function PaywallPlusDock({ lang, g, state, l
         onPress={onPress}
         withHaptic={false}
         scaleTo={0.97}
-        style={[S.cta, { backgroundColor: g.accent, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.accent}4D` }] }]}
+        // зачем (владелец 13.10, №35): основная кнопка пейвола — ctaFill (>= 1,8 к поверхностям, >= 1,3 к вторичной, подпись >= 4,5 во всех 23 темах)
+        style={[S.cta, { backgroundColor: g.ctaFill, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 26, color: `${g.ctaFill}4D` }] }]}
       >
         {/* зачем (Дизайн 12.10): заливка под accentInk — только с гарантией контраста ≥ 4,5 (accentFillGradient), accentBright в светлых градиентных темах слишком тёмный */}
-        <LinearGradient pointerEvents="none" colors={[...accentFillGradient(g)]} style={StyleSheet.absoluteFill} />
+        <LinearGradient pointerEvents="none" colors={[...ctaFillGradient(g)]} style={StyleSheet.absoluteFill} />
         {purchasing
           ? <ActivityIndicator color={g.accentInk} />
           : <Text style={[S.ctaText, { color: g.accentInk }]}>{label}</Text>}

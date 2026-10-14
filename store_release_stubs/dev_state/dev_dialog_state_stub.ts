@@ -23,3 +23,5 @@ export function getDevDialogMemory(): null { return null; }
 export function isDevDialogVoiceSpent(): boolean { return false; }
 // зачем (Ядро 12.10, dialogs-020): подмена «разборы на сегодня закончились» в стор-сборке выключена
 export function isDevDialogWhySpent(): boolean { return false; }
+// зачем (координатор 14.10, dialogs-044): «Отзыв отправлен» без отправки в стор-сборке выключен
+export function isDevDialogFeedbackSent(): boolean { return false; }

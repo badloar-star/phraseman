@@ -28,6 +28,7 @@ import { type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { plateBoxShadow } from './v2/ShadowSurface';
 import { DebugLogger } from '../app/debug-logger';
+import { isDevDialogFeedbackSent } from '../app/dev_dialog_state';
 
 export interface FeedbackRatingCardProps {
   kind: FeedbackKind;
@@ -72,7 +73,8 @@ export default function FeedbackRatingCard({
   // «убрать чекбокс И слать», поэтому согласие теперь даётся один раз в
   // Политике конфиденциальности, а не отдельной галочкой в каждой карточке.
   const aiSummaryConsent = true;
-  const [state, setState] = useState<'idle' | 'sent'>('idle');
+  // зачем (координатор 14.10, dialogs-044): dev_dialog_feedback=sent открывает карточку диалога уже в состоянии «Отзыв отправлен», сам отзыв не отправляется (вызов только по кнопке)
+  const [state, setState] = useState<'idle' | 'sent'>(kind === 'dialogue' && isDevDialogFeedbackSent() ? 'sent' : 'idle');
   const [expanded, setExpanded] = useState(false);
   const compactStars = presentation === 'compact-stars';
   const liquidGlassRate = presentation === 'liquid-glass-rate';

@@ -43,12 +43,15 @@ type State = {
   whySpent: boolean;
   // зачем (координатор 13.10, кадр итога D1): итог диалога показывает «+N монет» без настоящего начисления (dev_dialog_coins=award) — только память.
   coinsAward: boolean;
+  // зачем (координатор 14.10, dialogs-044): карточка отзыва на итоге диалога сразу показывает «Отзыв отправлен» (dev_dialog_feedback=sent), ничего не отправляя — только память.
+  feedbackSent: boolean;
 };
 const EMPTY: State = {
   fail: null, mood: null, holdFreeformLoading: false, holdLanguageGate: false, energyFail: false, send: null, end: false, better: false, completion: null, memory: null,
   voiceSpent: false,
   whySpent: false,
   coinsAward: false,
+  feedbackSent: false,
 };
 let state: State = EMPTY;
 
@@ -126,6 +129,11 @@ export function isDevDialogVoiceSpent(): boolean {
 /** Бесплатные «Почему так» на сегодня исчерпаны (`dev_dialog_why=spent`). В стор-сборке всегда false. */
 export function isDevDialogWhySpent(): boolean {
   return devDialogAvailable() && state.whySpent;
+}
+
+/** Карточка отзыва диалога рисуется уже «отправленной», настоящий отзыв не уходит (`dev_dialog_feedback=sent`). В стор-сборке всегда false. */
+export function isDevDialogFeedbackSent(): boolean {
+  return devDialogAvailable() && state.feedbackSent;
 }
 
 /** Только для тестов. */

@@ -18,9 +18,10 @@
   const chatPlay3 = (box, steps, o = {}) => { box.innerHTML = ''; let t = 0; const timers = []; const push = (f, d) => timers.push(setTimeout(f, d));
     steps.forEach((s) => { t += s.delay ?? 500;
       if (s.who === 'them') { const kind = s.rec ? 'rec' : 'typing'; push(() => { const d = document.createElement('div'); d.className = 'bub them'; d.dataset.typing = '1'; d.innerHTML = kind === 'rec' ? '<span class="rec"><i></i>записывает голосовое…</span>' : '<span class="typing"><i></i><i></i><i></i></span>'; if (o.skin) d.classList.add(o.skin); box.appendChild(d); box.scrollTop = 1e5; }, t); t += s.typingMs ?? 900; }
-      push(() => { box.querySelector('[data-typing]')?.remove(); const d = document.createElement('div'); d.className = `bub ${s.who}`; if (s.who === 'them' && o.skin) d.classList.add(o.skin); d.innerHTML = `${s.text}${s.tr ? `<span class="tr">${s.tr}</span>` : ''}${s.meta ? `<span class="meta">${s.meta}</span>` : ''}`; box.appendChild(d); box.scrollTop = 1e5; }, t); });
+      push(() => { box.querySelector('[data-typing]')?.remove(); const d = document.createElement('div'); d.className = `bub ${s.who}`; if (s.who === 'them' && o.skin) d.classList.add(o.skin); d.innerHTML = `${(window.EMLANG ? window.EMLANG(s.text) : s.text)}${s.tr ? `<span class="tr">${s.tr}</span>` : ''}${s.meta ? `<span class="meta">${s.meta}</span>` : ''}`; box.appendChild(d); box.scrollTop = 1e5; }, t); });
     return () => timers.forEach(clearTimeout); };
   // Черновик ответа печатается в поле ввода
-  const ghostType = (el, text, ms = 45, delay = 0) => { el.innerHTML = ''; let i = 0; const t = setTimeout(() => { const iv = setInterval(() => { i++; el.innerHTML = `<b>${text.slice(0, i)}</b><span class="cursor"></span>`; if (i >= text.length) clearInterval(iv); }, ms); el._iv = iv; }, delay); return () => { clearTimeout(t); if (el._iv) clearInterval(el._iv); }; };
+  // язык изучения (переключатель v3-all): реплики и черновик переводятся в момент вставки — window.EMLANG
+  const ghostType = (el, text0, ms = 45, delay = 0) => { const text = window.EMLANG ? window.EMLANG(text0) : text0; el.innerHTML = ''; let i = 0; const t = setTimeout(() => { const iv = setInterval(() => { i++; el.innerHTML = `<b>${text.slice(0, i)}</b><span class="cursor"></span>`; if (i >= text.length) clearInterval(iv); }, ms); el._iv = iv; }, delay); return () => { clearTimeout(t); if (el._iv) clearInterval(el._iv); }; };
   window.EM3 = { beatsHtml, attachBeats, emo, firework, seq, chatPlay3, ghostType };
 })();

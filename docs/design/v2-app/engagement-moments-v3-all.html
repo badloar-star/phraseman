@@ -393,7 +393,7 @@
 <div class="em-page">
   <div class="em-top"><div><span class="em-stage">Моменты вовлечения · v3 · всё на одной странице</span><h1 class="page-h1" style="margin-top:10px">Моменты вовлечения v3 — Пик, занятия, диалоги, серия дней, Plus, кольца «Сегодня», огонь и рубежи</h1>
   <p class="page-lead">Все моменты v3 на одной странице поверх настоящих экранов 2.0 (Пик с SpireTowerRender, урок, итог, Главная с блоком «Сегодня», диалоги, пейвол D115). Одна тема на всё: кнопка «Тема» наверху переключает Аврора тёмная → Аврора светлая → Ирис светлая. Один «Звук» — реальные звуки каталога приложения; под каждым телефоном тайм-лист с хаптик-импульсом, «▶ Повторить» проигрывает заново.</p></div>
-  <div class="em-tools"><span class="em-btn pri" id="em-theme">Тема: Аврора тёмная</span></div></div>
+  <div class="em-tools"><span class="em-btn pri" id="em-theme">Тема: Аврора тёмная</span><span class="em-btn" id="em-lang">Язык изучения: EN</span></div></div>
   <div class="diff"><h3>Отметка по чек-листу владельца (разделы 1–6)</h3><ol>
     <li><b>1 · Вид 2.0:</b> настоящие экраны из кода (SpirePodium/SpireClimbDock/SpireFloorInfo/SpireFriendsRow, lesson-top, HomeV2Header + HomeV2TodayCard, DialogueV2BriefingScreen), окна GlassAlertDialog, шторки KitSheetModal, V2TabBar; стиль «Тень», обводок нет; токены трёх тем из liquidGlassThemePalette.</li>
     <li><b>2 · 1:1 из кода:</b> башня — spire-tower-render.js (SpireTowerSvg), монеты coin_rank_*, иконки Ionicons.ttf, ачивки streak_3/streak_7 из каталога, огонь — StreakFlameFill + burst LiveStreakFlame, звуки — только assets/sounds каталога приложения. Цифры по коду: 85 % = 3 звезды, ранг 6 = 6 000 монет, энергия +1/10 мин, этаж 4 = 40, 30 ответов в диалогах в месяц.</li>
@@ -800,7 +800,7 @@ const flowInit = (s) => (ph) => { const show = (k) => { const next = ph.querySel
     [5800, () => { const c = ph.querySelector('[data-step="brief"] .cta'); c.style.transform = 'scale(.97)'; }],
     [6000, () => { show('chat'); stopChat = chatPlay3(ph.querySelector('[data-chat]'), s.steps, {}); }],
     [7600, () => { stopGhost = ghostType(ph.querySelector('[data-ghost]'), s.hint, 38); }],
-    [7600 + s.hint.length * 38 + 500, () => { const box = ph.querySelector('[data-chat]'); const d = document.createElement('div'); d.className = 'bub me'; d.textContent = s.hint; box.appendChild(d); ph.querySelector('[data-ghost]').innerHTML = '<span style="color:var(--mu)">Скажи или напиши…</span>'; }],
+    [7600 + s.hint.length * 38 + 500, () => { const box = ph.querySelector('[data-chat]'); const d = document.createElement('div'); d.className = 'bub me'; d.textContent = window.EMLANG ? window.EMLANG(s.hint) : s.hint; box.appendChild(d); ph.querySelector('[data-ghost]').innerHTML = '<span style="color:var(--mu)">Скажи или напиши…</span>'; }],
     [7600 + s.hint.length * 38 + 1100, () => { const g = ph.querySelector('[data-gd="0"]'); g.classList.add('ok'); ph.querySelector('[data-gn]').textContent = `1/${s.goals.length}`; ph.querySelector('[data-gstrip]').classList.add('pulse'); }],
   ]);
   return () => { stop && stop(); stopChat(); stopGhost(); }; };
@@ -818,12 +818,12 @@ moment({ id: 'm16', num: '16', short: 'Диалог · поток', title: 'Ди
 const doneDlgUnder = () => `<div style="text-align:center;padding-top:8px"><div class="ov">Диалог пройден</div><div class="h-lg" style="margin-top:8px">Закажи кофе</div><div class="small" style="margin-top:4px">Повседневное · A1</div>
   <div class="sf" style="margin-top:18px;padding:6px 16px;text-align:left">${['Заказать капучино', 'Выбрать размер', 'Сказать, какое молоко', 'Уточнить: с собой или здесь', 'Спросить цену'].map((g) => /* все 5 заданий сценария coffee — как в коде */ `<div class="goalline"><span class="n ok">${io('check', 14)}</span>${g}</div>`).join('')}</div>
   <div class="sf" style="margin-top:12px;padding:12px 16px;display:flex;align-items:center;gap:12px">${coin(5, 30)}<div style="flex:1;text-align:left;font-size:16px;font-weight:700">+30 монет</div></div><div class="dock">${prim('Следующий сценарий')}</div></div>`;
-const first3 = () => `<div class="full"><div class="glowspot"></div><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'idle', glints: true })}</div><div class="ov beat" data-b style="margin-top:20px">Первый диалог</div><div class="h-xl beat" data-b style="margin-top:6px">Ты говорил<br>по-английски</div><div class="p beat" data-b style="margin-top:8px">6 реплик · 3 цели из 3</div></div><div class="foot beat" data-b>${prim('Следующий сценарий')}</div></div>`;
+const first3 = () => `<div class="full"><div class="glowspot"></div><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'idle', glints: true })}</div><div class="ov beat" data-b style="margin-top:20px">Первый диалог</div><div class="h-xl beat" data-b style="margin-top:6px">Первый разговор<br>по-английски — есть!</div><div class="p beat" data-b style="margin-top:8px">6 реплик · 5 заданий из 5</div></div><div class="foot beat" data-b>${prim('Следующий сценарий')}</div></div>`;
 moment({ id: 'm17', num: '17', short: 'Первый диалог', title: 'Первый диалог пройден', tag: 'new',
-  lead: 'На экране завершения диалога (dialogue_v2_completion): монета cheer «Ты говорил!», конфетти цветов темы, одно действие. Без шеринга фразы пользователя (конфиденциальность), без разблокировок и бонусов (D124/D09).',
-  variants: [{ k: 'A', label: '«Ты говорил!»', time: '~3 с', phone: { under: doneDlgUnder(), over: first3() }, total: 3.5,
-    init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ты говорил!</span>'); }], [700, () => confetti(ph, { n: 90, colors: themeCols(ph) })], [900, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
-    beats: [{ t: 0.3, w: 'монета cheer + сердца, «Ты говорил!»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }, { t: 0.7, w: 'конфетти цветов темы', snd: 'done', s: 'fc_session_complete' }, { t: 0.9, w: 'текст по 220 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
+  lead: 'На экране завершения диалога (dialogue_v2_completion): монета cheer «Получилось!» (нейтрально по роду), конфетти цветов темы, одно действие. Без шеринга фразы пользователя (конфиденциальность), без разблокировок и бонусов (D124/D09).',
+  variants: [{ k: 'A', label: '«Первый разговор — есть!»', time: '~3 с', phone: { under: doneDlgUnder(), over: first3() }, total: 3.5,
+    init: (ph) => seq(ph, [[300, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('cheer'); emo(cc, 'heart', 4); cc.insertAdjacentHTML('afterbegin', '<span class="say">Получилось!</span>'); }], [700, () => confetti(ph, { n: 90, colors: themeCols(ph) })], [900, () => ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 220))]]),
+    beats: [{ t: 0.3, w: 'монета cheer + сердца, «Получилось!»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }, { t: 0.7, w: 'конфетти цветов темы', snd: 'done', s: 'fc_session_complete' }, { t: 0.9, w: 'текст по 220 мс', h: 'light', snd: 'tick', s: 'fc_tick' }],
     why: 'Эмоция «я смог» — ядро удержания в диалогах.', ref: 'Speak, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 18. Итог диалога ---------- */
@@ -1011,6 +1011,29 @@ grp('secB', 'm08', 'B · Занятия', 'Экран урока, итог, Гл
 grp('secC', 'm16', 'C · Диалоги · Серия дней · Plus', 'Брифинг как живая переписка, первый разговор, рубежи 7/30/100, риск серии, возвращение, пейвол D115, пробный Plus.');
 const d1 = root.querySelector('#d1');
 if (d1) { d1.insertAdjacentHTML('beforebegin', '<h2 class="grp" id="secL">Кольца «Сегодня» и огонь серии — лаборатория<small>Блок «Сегодня» 1:1 по HomeV2TodayCard: три кольца — три настоящие задачи дня; огонь — глиф Ionicons flame с заливкой StreakFlameFill и burst LiveStreakFlame, 6 стадий и морф. Обе темы рядом.</small></h2>'); d1.insertAdjacentElement('beforebegin', document.getElementById('lab')); d1.insertAdjacentHTML('beforebegin', '<h2 class="grp" id="secD">Рубежи серии — 19<small>Малый (тост ≤1,5 с): 1, 3, 14, 150, 250 · средний (≈3 с): 50, 200, 300, 400, 600, 700, 800, 900 · большой (≈5–6 с): 7, 30, 100, 500 · огромный «Год» (≈8–10 с): 365 · легенда: 1000. Лента рубежей на Главной под пилюлей серии.</small></h2>'); }
+// язык изучения на всю страницу: EN → ES → FR → DE → IT (владелец 14.10: «у нас же не только английский»).
+// Фразы — естественные на каждом языке; названия уроков — как в коде (lesson_titles_for_study_target.ts: у FR своя программа,
+// у ES/DE/IT код сейчас показывает английские названия — так и в образце, строка Ядру).
+const LANGS = ['en', 'es', 'fr', 'de', 'it']; let lang = 0;
+const LDICT = {
+  'по-английски': { es: 'по-испански', fr: 'по-французски', de: 'по-немецки', it: 'по-итальянски' },
+  'Hi there! What can I get for you?': { es: '¡Hola! ¿Qué te pongo?', fr: 'Bonjour ! Qu’est-ce que je vous sers ?', de: 'Hallo! Was darf’s sein?', it: 'Ciao! Cosa ti preparo?' },
+  'Hi! Could I get a cappuccino, please?': { es: '¡Hola! ¿Me pones un capuchino, por favor?', fr: 'Bonjour ! Un cappuccino, s’il vous plaît.', de: 'Hallo! Einen Cappuccino, bitte.', it: 'Ciao! Un cappuccino, per favore.' },
+  'Good evening. How can I help you?': { es: 'Buenas tardes. ¿En qué puedo ayudarle?', fr: 'Bonsoir. Je peux vous aider ?', de: 'Guten Abend. Wie kann ich helfen?', it: 'Buonasera. Come posso aiutarla?' },
+  'Good evening. Can you help me?': { es: 'Buenas tardes. ¿Me puede ayudar?', fr: 'Bonsoir. Vous pouvez m’aider ?', de: 'Guten Abend. Können Sie mir helfen?', it: 'Buonasera. Può aiutarmi?' },
+  'Could you repeat that, please?': { es: '¿Puede repetirlo, por favor?', fr: 'Vous pouvez répéter, s’il vous plaît ?', de: 'Können Sie das bitte wiederholen?', it: 'Può ripetere, per favore?' },
+  'Could you call me back?': { es: '¿Me puede llamar más tarde?', fr: 'Vous pouvez me rappeler ?', de: 'Können Sie mich zurückrufen?', it: 'Può richiamarmi?' },
+  'Where is the station?': { es: '¿Dónde está la estación?', fr: 'Où est la gare ?', de: 'Wo ist der Bahnhof?', it: 'Dov’è la stazione?' },
+  'Can I have the bill, please?': { es: '¿Me trae la cuenta, por favor?', fr: 'L’addition, s’il vous plaît.', de: 'Die Rechnung, bitte.', it: 'Il conto, per favore.' },
+  'Местоимения и глагол To Be': { fr: 'Местоимения, être / avoir и c’est' },
+  'Present Simple: Утверждение': { fr: 'Present: обычные глаголы на -er' },
+};
+const LKEYS = Object.keys(LDICT).sort((a, b) => b.length - a.length);
+window.EMLANG = (t) => { const L = LANGS[lang]; if (L === 'en' || !t) return t; let out = t; LKEYS.forEach((k) => { const v = LDICT[k][L]; if (v && out.includes(k)) out = out.split(k).join(v); }); return out; };
+const applyLang = (root) => root.querySelectorAll('.em-ph, .ph2').forEach((ph) => { const w = document.createTreeWalker(ph, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { if (n._src === undefined) { if (!LKEYS.some((k) => n.textContent.includes(k))) continue; n._src = n.textContent; } n.textContent = window.EMLANG(n._src); } });
+const lbtn = document.getElementById('em-lang');
+lbtn.addEventListener('click', () => { lang = (lang + 1) % LANGS.length; lbtn.textContent = `Язык изучения: ${LANGS[lang].toUpperCase()}`; applyLang(document); });
+document.body.addEventListener('click', (e) => { if (e.target.closest('[data-replay]')) setTimeout(() => applyLang(document), 10); });
 // одна тема на всю страницу: Аврора тёмная → Аврора светлая → Ирис светлая
 const NAMES = ['Тема: Аврора тёмная', 'Тема: Аврора светлая', 'Тема: Ирис светлая'];
 let theme = 0;

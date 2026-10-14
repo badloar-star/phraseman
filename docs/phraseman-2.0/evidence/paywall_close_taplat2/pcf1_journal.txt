@@ -1,0 +1,20 @@
+10-14 21:32:47.448 I/SVERKA  ( 7901): === PCF-1 start 21:32:48 ===
+10-14 21:32:49.243 W/ReactNativeJS( 7651): '[DEV-STATE] route: старт', '{"request":{"plus":"off","onboarding":"done","free":"on","intros":"seen","overlays":"off","studyTarget":"en","next":"/(tabs)/settings"},"rejected":{}}', { [Stack] name: 'Stack' }
+10-14 21:32:49.279 I/ReactNativeJS( 7651): [PAYWALL-CLOSE-FREEZE] t=69278 tabs blur
+10-14 21:32:49.737 I/ReactNativeJS( 7651): [WINBACK-FREEZE] t=69733 check skip ready=true onboarding=true banned=false firstContent=true
+10-14 21:32:50.229 I/ReactNativeJS( 7651): [TAP-LAT] → dev_state (из (tabs)) · без касания (редирект/таймер) · коммит→кадр 937мс
+10-14 21:32:50.229 I/ReactNativeJS( 7651): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (935мс) · рендеры: stack 12×(159/179/32/307/119/…мс, всего 2570мс) · layout:tabs 12×(150/171/29/305/117/…мс, всего 2420мс) · tab:lessons 9×(21/168/26/77/2/…
+10-14 21:32:52.306 I/ReactNativeJS( 7651): [WINBACK-FREEZE] t=72302 gate no reason=recent awayDays=0
+10-14 21:32:52.310 I/ReactNativeJS( 7651): [WINBACK-FREEZE] t=72309 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 21:32:52.341 W/ReactNativeJS( 7651): '[DEV-STATE] route: фикстуры применены', '3117мс', '{"applied":{"plus":"off","free":"on","onboarding":"done","overlays":"off","intros":"seen"},"skipped":{"studyTarget":"en: dev_state: studyTarget=en refused: not a disposable guest (not_anonymous)"},"next":"/
+10-14 21:32:54.242 W/ReactNativeJS( 7651): '[DEV-STATE] route: перечитывание энергии →', 'ok', '5018мс'
+10-14 21:32:54.243 W/ReactNativeJS( 7651): '[DEV-STATE] route: replace через 300 мс →', '/(tabs)/settings', '5019мс'
+10-14 21:32:54.566 W/ReactNativeJS( 7651): '[DEV-STATE] route: replace вызван →', '/(tabs)/settings', 'canDismiss=true (возможна вторая копия вкладок — артефакт dev)'
+10-14 21:32:55.992 I/ReactNativeJS( 7651): [PAYWALL-CLOSE-FREEZE] t=75991 tabs focus
+10-14 21:32:57.160 I/ReactNativeJS( 7651): [TAP-LAT] → (tabs) (из dev_state) · без касания (редирект/таймер) · коммит→кадр 1620мс
+10-14 21:32:57.160 I/ReactNativeJS( 7651): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (1617мс) · рендеры: stack 13×(47/5/54/4/61/…мс, всего 2414мс) · layout:tabs 15×(45/2/51/2/59/…мс, всего 2349мс) · tab:settings 4×(272/80/75/122мс, всег�
+10-14 21:32:58.460 I/ReactNativeJS( 7651): [PAYWALL-CLOSE-FREEZE] t=78459 tabs blur
+10-14 21:32:59.016 I/ReactNativeJS( 7651): [TAP-LAT] → settings_edu (из (tabs)) · палец 26.8мс · JS-лаг на отпускании 0мс · отпускание→обработчик — · обработчик→коммит 795.3мс · коммит→кадр 551.1мс · ОТ ОТПУСКАНИЯ Д
+10-14 21:32:59.016 I/ReactNativeJS( 7651): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (551мс) · рендеры от касания: stack 4×(341/419/555/5мс, всего 1320мс) · layout:tabs 4×(330/279/231/264мс, всего 1104мс) · tab:settings 3×(123/103/73мс,
+10-14 21:33:07.432 I/SVERKA  ( 7970): === PCF-1 close-tap 21:33:08 ===
+10-14 21:33:24.409 I/SVERKA  ( 8033): === PCF-1 tab-tap 21:33:25 ===

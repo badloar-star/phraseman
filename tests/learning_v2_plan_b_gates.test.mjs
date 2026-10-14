@@ -3,16 +3,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { planBVerdict, readBundleCeiling } from '../scripts/learning_v2_plan_b_gates.mjs';
+import { planBVerdict, readBundleCeiling, readVisibilitySwitch } from '../scripts/learning_v2_plan_b_gates.mjs';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
 test('verdict: without the env the gates run; with it only a zero ceiling is not applicable', () => {
   assert.deepEqual(planBVerdict({ hide: false, ceiling: 0 }), { kind: 'run_gates' });
   assert.deepEqual(planBVerdict({ hide: false, ceiling: 7 }), { kind: 'run_gates' });
-  assert.deepEqual(planBVerdict({ hide: true, ceiling: 0 }), { kind: 'not_applicable' });
+  assert.deepEqual(planBVerdict({ hide: true, ceiling: 0 }), { kind: 'not_applicable', by: 'ceiling0' });
   assert.equal(planBVerdict({ hide: true, ceiling: 3 }).kind, 'refuse');
   assert.equal(planBVerdict({ hide: true, ceiling: null }).kind, 'refuse');
+});
+
+// зачем (координатор 14.10): рубильник «V2 скрыт» тоже делает гейты неприменимыми — при любом потолке; без переменной гейты идут.
+test('verdict: the visibility switch hides V2 at any ceiling, but only when plan B is declared', () => {
+  assert.deepEqual(planBVerdict({ hide: true, ceiling: 4, switchHidden: true }), { kind: 'not_applicable', by: 'switch' });
+  assert.deepEqual(planBVerdict({ hide: true, ceiling: null, switchHidden: true }), { kind: 'not_applicable', by: 'switch' });
+  assert.equal(planBVerdict({ hide: true, ceiling: 4, switchHidden: false }).kind, 'refuse');
+  assert.deepEqual(planBVerdict({ hide: false, ceiling: 4, switchHidden: true }), { kind: 'run_gates' });
+  assert.equal(readVisibilitySwitch('export const LEARNING_V2_HIDDEN: boolean = true;'), true);
+  assert.equal(readVisibilitySwitch('export const LEARNING_V2_HIDDEN: boolean = false;'), false);
+  assert.equal(readVisibilitySwitch('nothing'), null);
+  assert.equal(typeof readVisibilitySwitch(read('app/learning_v2_visibility_switch.ts')), 'boolean');
 });
 
 test('reads the bundle ceiling from the generated availability file', () => {

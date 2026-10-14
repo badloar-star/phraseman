@@ -145,3 +145,24 @@ PHRASEMAN_R1_HIDE_V2=1 npm run release:precheck
 4. Доставка — EAS Update (OTA) по каналу production или следующая стор-сборка.
 
 Хранилища, облако и данные пользователей план Б не трогает. Прогресс V2 у тех, кто проходил его в dev-сборках, остаётся на месте.
+
+## 7. Рубильник «V2 скрыт» (14.10, b613d477a) — решение одной строкой при любом потолке
+
+Зачем: к 14.10 Codex собирает уже 4 занятия подряд (l1s1–l1s4). Если он перегенерирует потолок выше 0, план Б «потолок 0»
+перестаёт прятать V2. Рубильник прячет V2 независимо от потолка и без отката артефакта Codex.
+
+- Где: `app/learning_v2_visibility_switch.ts` → `export const LEARNING_V2_HIDDEN: boolean = false;` (по умолчанию ВЫКЛ).
+- Применение 15.10, если владелец говорит «скрыть»: поставить `true` (окно кода, `safe_commit.sh`) и `"PHRASEMAN_R1_HIDE_V2": "1"`
+  в `eas.json` → `build.production.env`. Обёртка гейтов тогда даёт «НЕПРИМЕНИМО (рубильник LEARNING_V2_HIDDEN)» при любом потолке.
+
+| вход | как скрывается при `true` |
+|---|---|
+| кнопка «V2», чип «Новые уроки», вкладка из памяти, `initialPage="v2"` | константа `LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && (…)` |
+| маршрут `/learning-v2/course` | Redirect на Главную, `[V2-HIDDEN] entry=route_learning_v2_course` |
+| занятие `/learning-v2/session/[id]` | обёртка до хуков экрана, Redirect на Главную, `[V2-HIDDEN] entry=route_learning_v2_session` |
+| внешние ссылки `/learning-v2/…`, `/learning_v2_…` | `+native-intent` → `/home`, `[V2-HIDDEN] entry=deep_link` (в любой сборке) |
+| прогрев каталога V2 на вкладке «Обучение» | не взводится |
+| Главная, пуши, «Что нового» | входов в V2 нет (сторож проверяет) |
+
+Сторож: `tests/learning_v2_visibility_switch_contract.test.ts` (оба положения + скан «переходов в маршруты V2 вне самого V2 нет»).
+Фоновые досылки завершённых занятий рубильник не трогает — прогресс не теряется.

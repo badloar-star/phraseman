@@ -113,13 +113,19 @@ export function spirePreviousWeekKey(nowMs: number): string {
 export async function spireLoadWeekResult(
   gate: SpireLiveGate,
   input: Readonly<{ uid: string; lang: SpireLang }>,
+  // зачем (D191, координатор 14.10): Главная зовёт загрузчик «только посмотреть» (markShown: false) — узнать и записать в журнал,
+  // КОГДА показали бы окно итога, не показывая его и не ставя «показано» (иначе карточка в Пике пропала бы). Найденный итог
+  // кладётся в кэш как 'found' — Пик потом покажет его без сети.
+  opts: Readonly<{ markShown?: boolean; where?: string }> = {},
 ): Promise<SpireWeekResultView | null> {
   const nowMs = Date.now();
   const prevWeek = spirePreviousWeekKey(nowMs);
+  const shouldMark = opts.markShown !== false;
+  const where = opts.where ?? 'spire';
   const row = await readRow(input.uid, input.lang);
   // зачем (владелец 13.10, «ЗАЧЕМ ТУТ КРЕСТИК?»): карточка показывается при ПЕРВОМ входе в Пик на новой неделе и при следующем входе уже нет. Отметка «показано»
   // — локально по weekId+uid+язык (state 'dismissed'), без записей в Firestore; ставится сразу, как только решили показать (markShown). Лог [SPIRE-WEEK-CARD].
-  const logCard = (decision: 'shown' | 'skip', why: string): void => DebugLogger.info(LOG, `[SPIRE-WEEK-CARD] weekId=${prevWeek} lang=${input.lang} ${decision}: ${why}`);
+  const logCard = (decision: 'shown' | 'skip', why: string): void => DebugLogger.info(LOG, `[SPIRE-WEEK-CARD] where=${where} weekId=${prevWeek} lang=${input.lang} ${shouldMark ? decision : `peek_${decision}`}: ${why}`);
   const markShown = async (): Promise<void> => {
     await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'dismissed', checkedAtMs: Date.now(), result: null });
     logCard('shown', 'отметка «показано» записана локально — при следующем входе карточки не будет');
@@ -131,7 +137,7 @@ export async function spireLoadWeekResult(
     }
     if (row.state === 'found') {
       logCard('shown', `из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
-      await markShown();
+      if (shouldMark) await markShown();
       return row.result;
     }
     const giveUp = row.checkedAtMs - spireWeekStartMs(nowMs) > GIVE_UP_AFTER_WEEK_START_MS;
@@ -154,7 +160,8 @@ export async function spireLoadWeekResult(
     DebugLogger.info(LOG, `week result: сеть ${prevWeek}_${input.lang} exists=${String(Boolean(snap?.exists))} разобран=${String(result !== null)}`);
     if (result) {
       logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
-      await markShown();
+      if (shouldMark) await markShown();
+      else await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'found', checkedAtMs: nowMs, result });
     } else {
       logCard('skip', 'документа итога нет — повторим позже');
       await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'absent', checkedAtMs: nowMs, result: null });

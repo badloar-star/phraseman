@@ -1130,6 +1130,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
     // зачем (PM-214, координатор 13.10): первый заход в Пик за запуск рисует экран из памяти, а не скелет — конфиг прогревается из дискового кэша после первого кадра Главной и после онбординга (сети нет)
     useEffect(() => runAfterHomeFirstFrame('spire_config_warm', () => import('../spire_config_client').then((m) => m.warmSpireConfigFromDisk()), { holdDuringOnboarding: true }), []);
+    // зачем (D191, координатор 14.10): окно итога недели будет «как штык» при первом открытии после закрытия недели; в сборку 16.10 —
+    // только проба после первого кадра и журнал [SPIRE-WEEK-MODAL] «когда показали бы», без показа и без арбитра (≤1 чтение в неделю).
+    useEffect(() => runAfterHomeFirstFrame('spire_week_modal_probe', () => import('../spire/spire_week_modal_probe').then((m) => m.spireProbeWeekModal({ uiLang: lang, studyTarget, tabEnabled: spireTabEnabled })), { holdDuringOnboarding: true }), [lang, studyTarget, spireTabEnabled]);
     const [lessonsCompleted, setLessonsCompleted] = useState(() => hh?.lessonsCompleted ?? 0);
     const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
     const isSketchLightTheme = isLightThemeMode(themeMode);

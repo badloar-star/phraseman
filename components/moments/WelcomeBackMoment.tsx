@@ -100,7 +100,9 @@ function WelcomeBackMoment({ lang, coinRank, decision, onCards, onHome, testID =
 
   return (
     <MomentFullScreen testID={testID}>
-      <View style={[s.full, { paddingTop: insets.top + 76, paddingBottom: insets.bottom + 36 }]}>
+      {/* зачем (самопроверка по m21, 15.10): 76/36 образца считаются от края телефона (кадр 412×915 со статус-баром и полосой жестов);
+          безопасная зона сверх них поднимала кнопки выше эталона. Та же формула, что у MomentPromotion/MomentDown. */}
+      <View style={[s.full, { paddingTop: Math.max(insets.top + 28, 76), paddingBottom: Math.max(insets.bottom, 12) + 24 }]}>
         <View style={s.body}>
           <MomentCoin
             rank={coinRank}
@@ -133,7 +135,7 @@ function WelcomeBackMoment({ lang, coinRank, decision, onCards, onHome, testID =
 }
 
 const s = StyleSheet.create({
-  // `.full`: колонка, поля 24, сверху 76, снизу 36 (+ безопасные зоны)
+  // `.full`: колонка, поля 24, сверху 76, снизу 36 — от края экрана (безопасные зоны внутри, см. разметку)
   full: { flex: 1, paddingHorizontal: 24 },
   // `.full .body`: по центру
   body: { flex: 1, alignItems: 'center', justifyContent: 'center' },

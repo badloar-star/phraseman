@@ -267,6 +267,9 @@ function fixedChildSection(pathname: string): NavigationSection | null {
 
   if (pathname.startsWith('/lingman_')) return 'lingman';
   if (pathname.startsWith('/arena_')) return 'arena';
+  // зачем (Сверка 14.10, 3 из 3): брифинг диалога был без раздела — история «куда вернуться» обнулялась на нём, пейвол «энергия → Plus»
+  // наследовал пустой раздел, и крестик уводил на Главную, снимая брифинг. Брифинг — часть «Диалогов»: крестик возвращает на него.
+  if (pathname === '/dialogue_v2_briefing') return 'dialogs';
 
   if (
     pathname.startsWith('/settings_')

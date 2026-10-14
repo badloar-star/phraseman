@@ -233,6 +233,37 @@ export function announceAccountSwitchQuarantineFailure(reason: string): void {
   publish({ visible: true, status: 'retryable', reason });
 }
 
+// ── [ACC-SPEED] (координатор 14.10, прогон №2: quarantine_resume 7,6–9,6 с) ─────────────────────────────────────────────
+// зачем: «сперва логи» — до правки знать, чего ждёт восстановление после смены/выхода: каждый вызов зависимостей
+// и каждая запись маркера фазы (ожидание замка + запись). Только миллисекунды и названия шагов, без идентификаторов.
+let accSpeedResumeStartedAtMs = 0;
+function accSpeed(step: string, startedAtMs: number, extra?: Readonly<Record<string, string | number | boolean | null>>): void {
+  const now = Date.now();
+  console.warn('[ACC-SPEED]', JSON.stringify({
+    step, ms: now - startedAtMs, sinceResumeMs: accSpeedResumeStartedAtMs > 0 ? now - accSpeedResumeStartedAtMs : null, ...(extra ?? {}),
+  }));
+}
+const ACC_SPEED_TIMED_DEPS = ['readStableId', 'quiesce', 'signOut', 'wipeLocalData', 'clearStableId', 'ensureAnonymousIdentity'] as const;
+/** Та же зависимость, но каждый асинхронный вызов пишет [ACC-SPEED] dep:<имя> с длительностью и исходом. */
+function timedRecoveryDependencies(deps: AccountSwitchRecoveryDependencies): AccountSwitchRecoveryDependencies {
+  const timed: Record<string, unknown> = { ...deps };
+  for (const name of ACC_SPEED_TIMED_DEPS) {
+    const original = deps[name] as (...args: unknown[]) => Promise<unknown>;
+    timed[name] = async (...args: unknown[]) => {
+      const startedAtMs = Date.now();
+      try {
+        const value = await original(...args);
+        accSpeed(`dep:${name}`, startedAtMs, { outcome: typeof value === 'boolean' ? String(value) : 'ok' });
+        return value;
+      } catch (error) {
+        accSpeed(`dep:${name}`, startedAtMs, { outcome: 'threw', code: error instanceof Error ? error.message.slice(0, 80) : String(error).slice(0, 80) });
+        throw error;
+      }
+    };
+  }
+  return timed as AccountSwitchRecoveryDependencies;
+}
+
 async function withMutation<T>(work: () => Promise<T>): Promise<T> {
   const previous = mutationTail;
   let release!: () => void;
@@ -590,8 +621,12 @@ export async function advanceAccountSwitchQuarantine(
   phase: AccountSwitchPhase,
   proof: Partial<Pick<AccountSwitchQuarantineMarker, 'freshAuthUid' | 'freshStableId'>> = {},
 ): Promise<AccountSwitchQuarantineMarker> {
+  const queuedAtMs = Date.now();
   return withMutation(async () => {
+    const lockWaitMs = Date.now() - queuedAtMs;
+    const startedAtMs = Date.now();
     const raw = await AsyncStorage.getItem(ACCOUNT_SWITCH_QUARANTINE_KEY);
+    accSpeed('marker_advance:read', startedAtMs, { from: expected.phase, to: phase, lockWaitMs });
     if (raw === null || raw !== JSON.stringify(expected)) {
       throw new Error('account_switch_marker_changed');
     }
@@ -599,13 +634,16 @@ export async function advanceAccountSwitchQuarantine(
     if (PHASES.indexOf(phase) !== PHASES.indexOf(expected.phase) + 1) {
       throw new Error('account_switch_phase_invalid');
     }
-    return persistVerified(parseMarker(JSON.stringify({
+    const writeStartedAtMs = Date.now();
+    const next = await persistVerified(parseMarker(JSON.stringify({
       ...expected,
       phase,
       freshAuthUid: proof.freshAuthUid ?? expected.freshAuthUid,
       freshStableId: proof.freshStableId ?? expected.freshStableId,
       updatedAt: Math.max(Date.now(), expected.updatedAt),
     })));
+    accSpeed('marker_advance:write_verified', writeStartedAtMs, { to: phase, totalSinceQueuedMs: Date.now() - queuedAtMs });
+    return next;
   });
 }
 
@@ -1076,8 +1114,11 @@ export function resumeAccountSwitchQuarantine(
   deps: AccountSwitchRecoveryDependencies,
 ): Promise<AccountSwitchResumeResult> {
   if (!recoveryFlight) {
-    const flight = resumeInternal(deps);
+    accSpeedResumeStartedAtMs = Date.now();
+    const resumeStartedAtMs = accSpeedResumeStartedAtMs;
+    const flight = resumeInternal(timedRecoveryDependencies(deps));
     recoveryFlight = flight;
+    void flight.then((result) => accSpeed('resume_done', resumeStartedAtMs, { result: result.result }), () => undefined);
     void flight.finally(() => {
       if (recoveryFlight === flight) recoveryFlight = null;
     }).catch((flightError: unknown) => {

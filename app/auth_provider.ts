@@ -2840,12 +2840,19 @@ async function runSignInWithProviderWhileOwningHandoffLease(
             }
             return { result: 'error', error: 'account_switch_required' };
           }
+          // зачем ([ACC-SPEED], координатор 14.10): между «handoff proof» и «signed_in» 8,1 с — по отдельности маркер, отметка, вход.
+          const handoffStepStartedAtMs = Date.now();
           providerHandoffMarker = await markProviderCredentialHandoffCredentialReady(
             providerHandoffMarker,
             cred.providerSubject ?? providerSubjectFromIdToken(cred.idToken),
           );
+          console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:handoff_credential_ready', ms: Date.now() - handoffStepStartedAtMs }));
+          const stampStartedAtMs = Date.now();
           await stampAnonOwnershipBeforeSignIn(preProviderStableId);
+          console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:stamp_anon_ownership', ms: Date.now() - stampStartedAtMs }));
+          const signInStartedAtMs = Date.now();
           userCredential = await auth.signInWithCredential(credential);
+          console.warn('[ACC-SPEED]', JSON.stringify({ step: 'switch:signInWithCredential', ms: Date.now() - signInStartedAtMs }));
           const targetAuthUid = String(userCredential?.user?.uid ?? auth.currentUser?.uid ?? '').trim();
           identityTrace('[AUTH-LINK-GOOGLE]', 'handoff signed_in', {
             provider,
@@ -3842,10 +3849,17 @@ function accountSwitchRecoveryDependencies() {
     invalidateGeneration: (): void => { invalidateAccountGeneration(); },
     beginPremiumTransition: (): void => { beginPremiumAccountTransition(); },
     quiesce: async (): Promise<boolean> => {
+      // зачем ([ACC-SPEED], координатор 14.10): какое из трёх ожиданий держит восстановление после выхода/смены.
+      const startedAtMs = Date.now();
+      const timedWait = async (name: string, work: Promise<boolean>): Promise<boolean> => {
+        const value = await work;
+        console.warn('[ACC-SPEED]', JSON.stringify({ step: `quiesce:${name}`, ms: Date.now() - startedAtMs, idle: value }));
+        return value;
+      };
       const [premiumIdle, restoreIdle, cloudIdle] = await Promise.all([
-        waitForPremiumAccountWorkIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-        waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
-        quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+        timedWait('premium', waitForPremiumAccountWorkIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)),
+        timedWait('restore', waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)),
+        timedWait('cloud', quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS)),
       ]);
       return premiumIdle && restoreIdle && cloudIdle;
     },
@@ -3857,8 +3871,13 @@ function accountSwitchRecoveryDependencies() {
       await clearPendingAuthLink();
     },
     ensureAnonymousIdentity: async (): Promise<void> => {
+      // зачем ([ACC-SPEED]): анонимный вход (сеть Firebase) и выдача stable id — по отдельности.
+      const startedAtMs = Date.now();
       await ensureAnonUser();
+      console.warn('[ACC-SPEED]', JSON.stringify({ step: 'anon:ensureAnonUser', ms: Date.now() - startedAtMs }));
+      const stableStartedAtMs = Date.now();
       await getStableId();
+      console.warn('[ACC-SPEED]', JSON.stringify({ step: 'anon:getStableId', ms: Date.now() - stableStartedAtMs }));
     },
     activateGeneration: (stableId: string): void => { beginAccountGeneration(stableId); },
   };

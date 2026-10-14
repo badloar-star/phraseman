@@ -8,9 +8,11 @@ import {
 } from './home_hints';
 
 describe('home hint catalog', () => {
-  it('contains 300 ideas with exactly three Russian variants', () => {
-    expect(HOME_HINT_CATALOG).toHaveLength(300);
-    expect(new Set(HOME_HINT_CATALOG.map((item) => item.id)).size).toBe(300);
+  // зачем (Ядро 14.10): было 300 = 15 категорий × 20. Категорию «league» убрали сознательно в efe19ae9d (30.09) — Лиги удалены
+  // в PhraseMan 2.0 (D54/D74). Теперь 14 × 20 = 280; тест под факт, а не каталог под старый тест.
+  it('contains 280 ideas with exactly three Russian variants', () => {
+    expect(HOME_HINT_CATALOG).toHaveLength(280);
+    expect(new Set(HOME_HINT_CATALOG.map((item) => item.id)).size).toBe(280);
     for (const item of HOME_HINT_CATALOG) {
       expect(item.variantsRu).toHaveLength(3);
       expect(item.variantsRu.every((text) => text.trim().length > 0)).toBe(true);

@@ -14,6 +14,10 @@ const privacySource = fs.readFileSync(PRIVACY_PATH, 'utf8');
 const termsSource = fs.readFileSync(TERMS_PATH, 'utf8');
 
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+const PRIVACY_TITLES = [
+  'Политика конфиденциальности', 'Політика конфіденційності', 'Privacy Policy', 'Política de privacidad', 'Política de Privacidade',
+  'Chính sách quyền riêng tư', 'Kebijakan Privasi', 'Gizlilik Politikası', 'Polityka prywatności',
+];
 const TERMS_TITLES = [
   'Условия использования', 'Умови використання', 'Terms of Use', 'Términos de uso', 'Termos de uso',
   'Điều khoản sử dụng', 'Ketentuan penggunaan', 'Kullanım Koşulları', 'Warunki korzystania',
@@ -178,7 +182,8 @@ test('actual route wrappers preserve platform-specific section arrays and all lo
     LOCALES.forEach((lang, index) => {
       const privacy = loadRoute('privacy', { lang, os });
       assert.equal(privacy.tree.type, 'LegalDocumentSheet');
-      assert.equal(privacy.tree.props.title, 'Privacy Policy');
+      // зачем (Ядро 14.10): заголовок политики локализован в bedaa9d4d (i18n 13.10) — правильно; тест под факт, как у условий.
+      assert.equal(privacy.tree.props.title, PRIVACY_TITLES[index]);
       assert.equal(privacy.tree.props.externalAccessibilityLabel, PRIVACY_EXTERNAL_LABELS[index]);
       assert.equal(privacy.tree.props.closeAccessibilityLabel, CLOSE_LABELS[index]);
       assert.deepEqual(privacy.tree.props.sections, os === 'ios' ? privacy.privacyIos : privacy.privacyGeneric);

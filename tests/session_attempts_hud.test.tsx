@@ -63,6 +63,14 @@ jest.mock('react-native-reanimated', () => {
 
 jest.mock('../hooks/use_reduce_motion', () => ({ useReduceMotion: () => true }));
 
+// зачем (полный прогон 15.10): с 14.10 HybridAlertShell оборачивает шторку в SheetSwipeRoot (жесты + reanimated.createAnimatedComponent),
+// а заглушка reanimated выше этого не умеет — набор падал «failed to run» до первого теста. HUD свайп шторки не проверяет: обёртка рисует детей.
+jest.mock('../components/modal_fx/SheetSwipeClose', () => {
+  const ReactLocal = require('react');
+  const Pass = ({ children }: { children?: React.ReactNode }) => ReactLocal.createElement(ReactLocal.Fragment, null, children);
+  return { __esModule: true, default: Pass, SheetSwipeRoot: Pass, SHEET_SWIPE_CLOSE_DISTANCE: 0, SHEET_SWIPE_CLOSE_VELOCITY: 0 };
+});
+
 describe('SessionAttemptsHud', () => {
   test('renders three fixed visual slots as one accessible attempts status', async () => {
     const view = await render(<SessionAttemptsHud remaining={2} locale="ru" />);

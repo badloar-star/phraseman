@@ -8,7 +8,10 @@ const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), '
 
 describe('прогрев accountDeleteEnqueue с клиента', () => {
   const cloud = read('app/cloud_sync.ts');
-  const body = cloud.slice(cloud.indexOf('export function warmAccountDeleteEnqueue('), cloud.indexOf('export async function ensureStableAuthLinkForStableIdDetailed('));
+  // зачем (полный прогон 15.10): 594f643ad вставил между прогревом и ensureStableAuthLink блок памяти ensure_link (там есть stableId) —
+  // режем ровно тело функции прогрева: до первой строки «}» в начале строки после её начала.
+  const warmStart = cloud.indexOf('export function warmAccountDeleteEnqueue(');
+  const body = cloud.slice(warmStart, cloud.indexOf('\n}', warmStart) + 2);
 
   it('тело вызова — только { warm: true }, без ключа удаления и личности', () => {
     expect(body).toContain("callable<{ warm: true }, { ok?: boolean; warm?: boolean }>('accountDeleteEnqueue'");

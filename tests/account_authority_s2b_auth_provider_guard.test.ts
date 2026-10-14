@@ -27,7 +27,9 @@ function functionBody(text: string, signature: string): string {
 describe('AA S2b — auth_provider: nonce M-1 and raw Firebase errors', () => {
   test('stamp asks for the nonce and hands the response to the in-memory nonce module only', () => {
     const body = functionBody(source, 'async function stampAnonOwnershipBeforeSignIn(');
-    expect(body).toContain('fn({ stableId: localStableId, nonceRequested: true })');
+    // зачем (полный прогон 15.10): 0c094c846 (вход через fetch под флагом) вынес тело в payload — тот же объект уходит и в fetch, и в нативный вызов
+    expect(body).toContain('const payload = { stableId: localStableId, nonceRequested: true };');
+    expect(body).toContain("invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload)");
     expect(body).toContain('acceptAnonMergeStampResponse(localStableId, response)');
     expect(body).not.toMatch(/AsyncStorage|SecureStore|setItem|mergeNonce/);
   });

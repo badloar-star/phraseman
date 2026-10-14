@@ -121,7 +121,9 @@ describe('Карточки: ответ робота, «Из видео», мал
     expect(route).toContain('<Redirect href="/" />');
     expect(route).not.toMatch(/usePracticeRunes|settle\(|feedback=|httpsCallable|firestore|fetch\(/);
     // координатор 12.10: в стор-бандле маршрута нет совсем — как dev_state и dev_spire_preview
-    expect(read('router.ctx.js')).toContain('|dev_spire_preview|dev_state|dev_cards_result_preview)');
+    // зачем (полный прогон 15.10): a317aa98d вписал dev_moments_preview в середину списка — проверяем каждое имя в вырезаемой группе, а не их соседство
+    const storeCut = read('router.ctx.js').match(/\|dev_spire_preview\|[^)]*\)/)?.[0] ?? '';
+    for (const route of ['dev_spire_preview', 'dev_state', 'dev_cards_result_preview']) expect(storeCut).toContain(`|${route}`);
   });
 
   it('места внедрения: «Правда/ложь» помечает цель, «Напиши» держит порядок и вписывает ответ, «Из видео» — до чтения каталога', () => {

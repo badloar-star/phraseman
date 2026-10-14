@@ -48,8 +48,10 @@ describe('authEnsureStableLink anon relink (post-reinstall fix)', () => {
     expect(source).toContain('const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);');
     expect(source).toContain('await ensureStableIdentityPair(db, authUid');
     expect(source).toContain('identityReady: true');
+    // зачем (полный прогон 15.10): 9835f75a7 ([AUTH-ENSURE-LINK]) оборачивает исход в done('bN', …) — журнал стадии; смысл тот же:
+    // identityReady только сразу после ensureStableIdentityPair.
     expect(source).toMatch(
-      /await ensureStableIdentityPair\(db, authUid,[\s\S]{0,420}return \{ ok: true, stableUid[^}]*identityReady: true \};/,
+      /await ensureStableIdentityPair\(db, authUid,[\s\S]{0,420}return (?:done\('[a-z0-9_]+', )?\{ ok: true, stableUid[^}]*identityReady: true \}\)?;/,
     );
   });
 

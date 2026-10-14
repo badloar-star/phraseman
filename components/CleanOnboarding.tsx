@@ -2732,7 +2732,7 @@ function CleanOnboarding({
   // по Google контейнеры подняты, холодный старт (3–10 с) не попадает в цепочку
   // входа. Троттл 10 мин и fire-and-forget внутри warmAuthSignInCallables.
   useEffect(() => {
-    if (step === 'welcome' || step === 'privacy') warmAuthSignInCallables();
+    if (step === 'welcome' || step === 'privacy') warmAuthSignInCallables('onboarding');
   }, [step]);
 
   // зачем (повторное ревью TG-C8E5C56B2F02): ответ входа пришёл после ухода с экрана.

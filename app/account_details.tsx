@@ -59,7 +59,7 @@ import { safeRouterBack } from './navigation_back';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { traceAccountDeleteUi } from './account_delete_ui_trace';
 import { DebugLogger } from './debug-logger';
-import { prewarmAccountWipeModules } from './cloud_sync';
+import { prewarmAccountWipeModules, warmAuthSignInCallables } from './cloud_sync';
 
 const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   ru: 'ru-RU',
@@ -111,6 +111,9 @@ export default function AccountDetailsScreen() {
   }, [snapshotName]);
   // зачем (прогон Сверки 11.10): модули стирания подгружены до тапа «Выйти» — выход не зависит от ленивой подгрузки.
   useEffect(() => { prewarmAccountWipeModules('account_details'); }, []);
+  // зачем ([ACC-SPEED], координатор 14.10): функции входа будим уже при открытии экрана аккаунта — к тапу «Войти»/«Сменить»
+  // инстансы тёплые (холодный старт 7–8 с). Троттл 10 мин и fire-and-forget внутри; сервер отвечает на warmup без работы.
+  useEffect(() => { warmAuthSignInCallables('account_details'); }, []);
 
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(() => peekLinkedAuthFromCurrentUser());
   const linkedAuthRef = useRef(linkedAuth);

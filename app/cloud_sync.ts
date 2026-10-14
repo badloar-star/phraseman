@@ -2156,16 +2156,28 @@ const AUTH_WARMUP_THROTTLE_MS = 10 * 60_000;
  * вызовы (Firebase-экономия); сам вызов — копейки ($0.40 за миллион).
  * Fire-and-forget: любой сбой прогрева не влияет на вход.
  */
-export function warmAuthSignInCallables(): void {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+export function warmAuthSignInCallables(source = 'unknown'): void {
+  // зачем ([ACC-SPEED], координатор 14.10, прогон №3): холодные старты authStampAnonOwnership 8,4 с и authMergeStableAccounts
+  // 7,6 с — видно, был ли прогрев и когда: каждый исход пишет строку (источник, пропуск, ответ и время).
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    console.log(`[ACC-SPEED] warm skip source=${source} reason=${IS_EXPO_GO ? 'expo_go' : 'cloud_sync_disabled'}`); // guard-ok: ранний выход
+    return;
+  }
   const nowMs = Date.now();
-  if (nowMs - lastAuthWarmupAtMs < AUTH_WARMUP_THROTTLE_MS) return;
+  if (nowMs - lastAuthWarmupAtMs < AUTH_WARMUP_THROTTLE_MS) {
+    console.log(`[ACC-SPEED] warm skip source=${source} reason=throttled sinceLastMs=${nowMs - lastAuthWarmupAtMs}`); // guard-ok: ранний выход
+    return;
+  }
   lastAuthWarmupAtMs = nowMs;
+  console.log(`[ACC-SPEED] warm start source=${source}`); // guard-ok: старт прогрева
   const names = ['authEnsureStableLink', 'authStampAnonOwnership', 'authMergeStableAccounts'];
   for (const name of names) {
     try {
       const fn = callable<{ warmup: true }, { warm?: boolean }>(name);
-      void fn({ warmup: true }).catch(swallowError('cloud_sync:warmAuthSignInCallables'));
+      void fn({ warmup: true }).then(
+        (res) => console.log(`[ACC-SPEED] warm done fn=${name} warm=${String(res?.data?.warm === true)} ms=${Date.now() - nowMs}`), // guard-ok: итог прогрева
+        swallowError('cloud_sync:warmAuthSignInCallables'),
+      );
     } catch (e) {
       // прогрев best-effort
       DebugLogger.error('cloud_sync:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -2273,6 +2285,8 @@ export async function ensureStableAuthLinkForStableIdDetailed(
             ? 'freshMetadata'
             : 'cacheMiss',
       inFlight: stableAuthLinkPromise != null,
+      // зачем ([ACC-SPEED] (в), координатор 14.10: ≈35 вызовов за 5 минут): поколение аккаунта — видно, рвёт ли кэш смена поколения.
+      accountGeneration: (() => { const g = captureAccountGeneration(); return `${g.generation}:${g.phase}`; })(),
       caller,
     }));
   }

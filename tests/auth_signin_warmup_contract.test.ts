@@ -63,16 +63,22 @@ describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
     expect(slice).toContain("'authMergeStableAccounts'");
     expect(slice).toContain('AUTH_WARMUP_THROTTLE_MS');
     // ошибка прогрева не глушится молча (правило «ни одного немого catch»), но и не мешает входу.
-    expect(slice).toContain(".catch(swallowError('cloud_sync:warmAuthSignInCallables'))");
+    // [ACC-SPEED] (14.10): ответ прогрева пишется в журнал, отказ — по-прежнему через swallowError с причиной.
+    expect(slice).toContain("swallowError('cloud_sync:warmAuthSignInCallables')");
+    expect(slice).toContain('[ACC-SPEED] warm done fn=${name}');
+    expect(slice).toContain('[ACC-SPEED] warm skip source=${source} reason=throttled');
     expect(slice).toContain('{ warmup: true }');
   });
 
   test('warm ping fires from both sign-in surfaces', () => {
     // Онбординг: welcome («уже есть аккаунт») и сейф-экран privacy.
     expect(onboardingSource).toMatch(
-      /if \(step === 'welcome' \|\| step === 'privacy'\) warmAuthSignInCallables\(\);/,
+      /if \(step === 'welcome' \|\| step === 'privacy'\) warmAuthSignInCallables\('onboarding'\);/,
     );
     // Модалка регистрации/восстановления: при каждом открытии.
-    expect(registrationSource).toMatch(/if \(visible\) warmAuthSignInCallables\(\);/);
+    expect(registrationSource).toMatch(/if \(visible\) warmAuthSignInCallables\('registration_prompt'\);/);
+    // Экран аккаунта (14.10, [ACC-SPEED]): будим функции входа ещё до тапа «Войти»/«Сменить».
+    const accountDetails = readFileSync(path.join(__dirname, '..', 'app', 'account_details.tsx'), 'utf8');
+    expect(accountDetails).toContain("useEffect(() => { warmAuthSignInCallables('account_details'); }, []);");
   });
 });

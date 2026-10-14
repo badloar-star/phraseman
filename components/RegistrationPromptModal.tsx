@@ -372,7 +372,7 @@ function RegistrationPromptModal({
   // уже подняты — холодный старт (3–10 с) не попадает в цепочку входа.
   // Троттл и fire-and-forget внутри warmAuthSignInCallables.
   useEffect(() => {
-    if (visible) warmAuthSignInCallables();
+    if (visible) warmAuthSignInCallables('registration_prompt');
   }, [visible]);
 
   useEffect(() => {

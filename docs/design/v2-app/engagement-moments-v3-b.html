@@ -182,9 +182,9 @@ const exit3 = () => `<div class="dim"></div><div class="sheet"><div class="grab"
   <div style="margin-top:18px">${prim('Продолжить', false)}${sec('Выйти')}</div></div>`;
 moment({ id: 'm15', num: '15', short: 'Выход', title: 'Выход из урока', tag: 'old',
   lead: 'KitSheetModal по D67: попытка не сохраняется, повторный вход — минус энергия. Монета просит остаться. Главное действие — «Продолжить», вторичное — «Выйти».',
-  variants: [{ k: 'A', label: '«Ещё 2 минуты?»', time: '~1,5 с', phone: { under: lessonUnder({ w: '60%', n: '12 / 20' }), over: exit3() }, total: 2,
-    init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }], [1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); cc.insertAdjacentHTML('afterbegin', '<span class="say">Ещё 2 минуты?</span>'); }]]),
-    beats: [{ t: 0.0, w: 'шторка', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 0.4, w: 'монета дрожит', h: 'rigid', snd: 'tick', s: 'fc_tick' }, { t: 1.0, w: 'кивок «Ещё 2 минуты?»', snd: 'msg', s: 'message_received', gain: .6 }],
+  variants: [{ k: 'A', label: 'Монета кивает — остаться', time: '~1,5 с', phone: { under: lessonUnder({ w: '60%', n: '12 / 20' }), over: exit3() }, total: 2,
+    init: (ph) => seq(ph, [[400, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('idle'); cc.classList.add('shiver'); emo(cc, 'sweat', 1); }], [1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('shiver'); cc.classList.add('nod'); }]]), // зачем (владелец 14.10, «минимум элементов»): облачко «Ещё 2 минуты?» убрано — срезалось краем телефона, наезжало на шторку и пересказывало кнопку
+    beats: [{ t: 0.0, w: 'шторка', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 0.4, w: 'монета дрожит', h: 'rigid', snd: 'tick', s: 'fc_tick' }, { t: 1.0, w: 'кивок', snd: 'msg', s: 'message_received', gain: .6 }],
     why: 'Честная цена выхода + эмоция персонажа возвращают в урок.', ref: 'Duolingo quit screen.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 render(document.getElementById('root'), document.getElementById('toc'));

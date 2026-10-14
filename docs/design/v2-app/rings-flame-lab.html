@@ -113,7 +113,7 @@
 .flame.st-4 .stars { opacity: 1; }
 .flame .stars i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px #fff; animation: tw 2.2s ease-in-out infinite; }
 @keyframes tw { 0%, 100% { opacity: .2; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.2); } }
-.flame .n { position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; font-weight: 800; font-size: calc(var(--fs2, 160px) * .3); color: #fff; letter-spacing: -1px; text-shadow: 0 2px 14px rgba(0,0,0,.45); }
+.flame .n { position: absolute; left: 50%; right: auto; bottom: 12%; transform: translateX(-50%); text-align: center; font-weight: 800; font-size: calc(var(--fs2, 160px) * .24); line-height: 1.25; padding: 0 .32em; border-radius: 999px; background: rgba(8,10,14,.82); color: #fff; letter-spacing: -.5px; white-space: nowrap; } /* зачем (владелец 14.10 «цифру на огоньке не видно»): цифра на тёмной плашке внутри огня — ≥ 4,5:1 во всех стадиях и темах */
 .flame .veil { position: absolute; inset: -10%; border-radius: 50%; background: var(--c3); opacity: 0; pointer-events: none; filter: blur(10px); }
 .flame.morphing .veil { animation: veil 700ms cubic-bezier(.23,1,.32,1) both; }
 @keyframes veil { 0% { opacity: 0; transform: scale(.7); } 30% { opacity: .75; } 100% { opacity: 0; transform: scale(1.3); } }

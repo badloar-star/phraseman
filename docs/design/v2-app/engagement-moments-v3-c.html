@@ -198,12 +198,12 @@ moment({ id: 'm20', num: '20', short: 'Серия под угрозой', title:
     why: 'Конкретика снимает сопротивление: «одна ступень — 2 минуты».', ref: 'Duolingo streak saver.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 21. Возвращение ---------- */
-const back3 = () => `<div class="full"><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'sleep', zz: true })}</div><div class="h-xl beat" data-b style="margin-top:22px">Ты вернулся</div><div class="p beat" data-b style="margin-top:8px">9 дней — ничего не сгорело: 412 фраз, ранг 5, энергия полная.</div></div><div class="foot beat" data-b>${prim('5 карточек — 1 минута')}${sec('На Главную')}</div></div>`;
-moment({ id: 'm21', num: '21', short: 'Возвращение', title: 'Возвращение после перерыва', tag: 'new',
-  lead: 'Монета спит → просыпается «!» → cheer «Ты вернулся». Ничего не сгорело, один лёгкий шаг. Без ленты друзей (серверный запрос) и без бонусов (D09).',
+const back3 = () => `<div class="full"><div class="body"><div data-cc>${coinChar(5, 110, { mood: 'sleep', zz: true })}</div><div class="h-xl beat" data-b style="margin-top:22px">С возвращением</div><div class="p beat" data-b style="margin-top:8px">9 дней — ничего не сгорело: 412 фраз, ранг 5, энергия полная.</div></div><div class="foot beat" data-b>${prim('5 карточек — 1 минута')}${sec('На Главную')}</div></div>`;
+moment({ id: 'm21', num: '21', short: 'Возвращение · ОДОБРЕН', title: 'Возвращение после перерыва — ОДОБРЕН владельцем 14.10, заменяет winback-пейвол (D193)', tag: 'new',
+  lead: 'Монета спит → просыпается «!» → cheer «С возвращением» (нейтрально по роду). Цифры — пример. Ничего не сгорело, один лёгкий шаг. Без ленты друзей (серверный запрос) и без бонусов (D09).',
   variants: [{ k: 'A', label: 'Спит → «!» → cheer', time: '~3 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: back3() }, total: 3.5,
     init: (ph) => seq(ph, [[1000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); }], [1800, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('peek'); cc.classList.add('cheer'); emo(cc, 'heart', 5); ph.querySelectorAll('[data-b]').forEach((b, i) => setTimeout(() => b.classList.add('on'), i * 300)); }]]),
-    beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', s: 'fc_swipe_learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know', s: 'fc_swipe_know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «Ты вернулся»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }],
+    beats: [{ t: 0.0, w: 'монета спит', snd: 'learn', s: 'fc_swipe_learn', gain: .5 }, { t: 1.0, w: 'просыпается + «!»', h: 'medium', snd: 'know', s: 'fc_swipe_know' }, { t: 1.8, w: '<b>cheer + сердца</b>, «С возвращением»', h: 'success', snd: 'ob', s: 'ob_correct', big: true }],
     why: 'Персонаж скучал — снимает вину лучше текста.', ref: 'Tamagotchi, Duolingo welcome back.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 22. Энергия закончилась → Plus (D115) ---------- */

@@ -47,14 +47,22 @@ const {
   maskEmailForRecoveryHint,
 } = require('./auth_identity') as typeof import('./auth_identity');
 
+// зачем (Ядро 14.10, [AUTH-RECOVERY-HINT]): счётчики лимита живут в общей для теста памяти — лимит виден между вызовами.
+let rateStore: Record<string, DocData> = {};
+
 function makeRecoveryDb(
   initial: RecoveryStore = {},
   failPaths: readonly string[] = [],
 ): { reads: string[] } {
   const reads: string[] = [];
   currentDb = {
+    runTransaction: async (fn: (tx: unknown) => Promise<unknown>) => fn({
+      get: async (ref: { path: string }) => ({ exists: Boolean(rateStore[ref.path]), data: () => rateStore[ref.path] }),
+      set: (ref: { path: string }, data: DocData) => { rateStore[ref.path] = { ...(rateStore[ref.path] ?? {}), ...data }; },
+    }),
     collection: (collection: string) => ({
       doc: (id: string) => ({
+        path: `${collection}/${id}`,
         get: async () => {
           const path = `${collection}/${id}`;
           reads.push(path);
@@ -75,13 +83,14 @@ function runRecoveryHint(input: {
   authUid?: string;
   app?: boolean;
   stableId?: string;
+  ip?: string;
 }): Promise<unknown> {
   const handler = authRecoveryHint as unknown as (request: Record<string, unknown>) => Promise<unknown>;
   return handler({
     auth: input.authUid ? { uid: input.authUid, token: {} } : undefined,
     app: input.app === false ? undefined : { appId: 'app-test' },
     data: { stableId: input.stableId },
-    rawRequest: { headers: {} },
+    rawRequest: { headers: input.ip ? { 'x-forwarded-for': input.ip } : {} },
   });
 }
 
@@ -150,21 +159,39 @@ describe('buildRecoveryHintFromUserData', () => {
 describe('authRecoveryHint callable disclosure boundary', () => {
   beforeEach(() => {
     currentDb = null;
+    rateStore = {};
+    jest.spyOn(console, 'log').mockImplementation(() => undefined);
   });
+  afterEach(() => jest.restoreAllMocks());
 
   it('registers with unconditional App Check enforcement', () => {
     expect(registeredCallableOptions.get(authRecoveryHint as unknown as object))
       .toMatchObject({ enforceAppCheck: false });
   });
 
-  it('requires Firebase Auth and App Check before reading identity data', async () => {
+  // зачем (Ядро 14.10): App Check запломбирован (клиент его не шлёт) — прежнее `app_check_required` делало подсказку
+  // вечным отказом. Защита теперь: вход + лимит + ответ без почты.
+  it('requires Firebase Auth before reading identity data; missing App Check no longer blocks', async () => {
     const { reads } = makeRecoveryDb();
 
     await expect(runRecoveryHint({ app: true, stableId: 'stable-a' }))
       .rejects.toMatchObject({ code: 'unauthenticated', message: 'auth_required' });
-    await expect(runRecoveryHint({ authUid: 'auth-a', app: false, stableId: 'stable-a' }))
-      .rejects.toMatchObject({ code: 'failed-precondition', message: 'app_check_required' });
     expect(reads).toEqual([]);
+    await expect(runRecoveryHint({ authUid: 'auth-a', app: false, stableId: 'stable-a' })).resolves.toEqual(NEUTRAL_HINT);
+  });
+
+  it('limits 5 hints per hour per uid and per IP before any identity read', async () => {
+    const { reads } = makeRecoveryDb({ auth_links: { 'auth-a': { stable_id: 'stable-a' } }, users: { 'stable-a': {} } });
+    for (let i = 0; i < 5; i += 1) await runRecoveryHint({ authUid: 'auth-a', stableId: 'stable-a', ip: '1.1.1.1' });
+    const readsBefore = reads.length;
+    await expect(runRecoveryHint({ authUid: 'auth-a', stableId: 'stable-a', ip: '2.2.2.2' }))
+      .rejects.toMatchObject({ code: 'resource-exhausted', message: 'recovery_hint_rate_limited' });
+    expect(reads.length).toBe(readsBefore);
+    // другой uid с того же IP — тоже упирается в лимит IP
+    await expect(runRecoveryHint({ authUid: 'auth-b', stableId: 'stable-b', ip: '1.1.1.1' }))
+      .rejects.toMatchObject({ code: 'resource-exhausted' });
+    // счётчики лимита — по хэшу, без uid/IP в открытом виде
+    expect(Object.keys(rateStore).join(' ')).not.toMatch(/auth-a|1\.1\.1\.1/);
   });
 
   it('reads the target user only after the caller auth_links anchor exactly matches', async () => {
@@ -181,11 +208,12 @@ describe('authRecoveryHint callable disclosure boundary', () => {
       },
     });
 
+    // зачем (Ядро 14.10): наружу только тип входа — без почты, даже маскированной.
     await expect(runRecoveryHint({ authUid: 'auth-a', stableId: 'stable-a' })).resolves.toEqual({
       found: true,
       linked: true,
       provider: 'google',
-      maskedEmail: 'pri***@example.com',
+      maskedEmail: null,
     });
     expect(reads).toEqual(['auth_links/auth-a', 'users/stable-a']);
   });

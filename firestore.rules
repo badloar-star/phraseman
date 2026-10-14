@@ -1088,6 +1088,11 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Ядро 14.10 ([AUTH-RECOVERY-HINT]): счётчики лимита подсказки восстановления — только сервер.
+    match /auth_recovery_hint_rate_limits/{document=**} {
+      allow read, write: if false;
+    }
+
     match /auth_recovery_events/{document=**} {
       allow read, write: if false;
     }

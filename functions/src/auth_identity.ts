@@ -2444,24 +2444,101 @@ export function buildRecoveryHintFromUserData(
   return { found: true, linked: true, provider, maskedEmail };
 }
 
+// ── [AUTH-RECOVERY-HINT] (Ядро 14.10, координатор; выкладка 17.10 — ТОЛЬКО словом владельца) ─────────────────────────────
+// зачем: здесь стояло `if (!request.app) throw 'app_check_required'`, а клиентский App Check удалён (пломба 2026-08-17) —
+// request.app всегда пуст, и подсказка «каким аккаунтом входить» ВСЕГДА отказывала. Проверку App Check снимать голой нельзя:
+// она стояла против перебора. Замена: обязательный вход (как и было) + лимит 5 в час на uid и на IP (счётчики в окне,
+// как в auth_recovery.ts) + ответ ТОЛЬКО с типом входа, без почты и идентификаторов (клиент уже умеет: «привязан к
+// аккаунту Google — выбери его при входе»). Связка «вызывающий ↔ stableId» по-прежнему проверяется до чтения профиля.
+const RECOVERY_HINT_RATE_LIMITS = 'auth_recovery_hint_rate_limits';
+export const RECOVERY_HINT_RATE_MAX = 5;
+export const RECOVERY_HINT_RATE_WINDOW_MS = 60 * 60 * 1000;
+
+function recoveryHintLog(outcome: string, extra: Record<string, unknown> = {}): void {
+  console.log(JSON.stringify({ event: 'auth_recovery_hint', tag: '[AUTH-RECOVERY-HINT]', outcome, ...extra }));
+}
+
+/** IP вызывающего: первый адрес из x-forwarded-for, иначе rawRequest.ip; нет — пусто (лимит тогда только по uid). */
+export function recoveryHintClientIp(rawRequest: unknown): string {
+  const req = (rawRequest ?? {}) as { headers?: Record<string, unknown>; ip?: unknown };
+  const forwarded = req.headers?.['x-forwarded-for'];
+  const first = (Array.isArray(forwarded) ? String(forwarded[0] ?? '') : String(forwarded ?? '')).split(',')[0].trim();
+  const ip = first || (typeof req.ip === 'string' ? req.ip.trim() : '');
+  return ip.slice(0, 64);
+}
+
+/** Ответ наружу: только найден/привязан/тип входа — без почты (даже маскированной) и без идентификаторов. */
+export function publicRecoveryHint(hint: RecoveryHintResult): RecoveryHintResult {
+  return { found: hint.found, linked: hint.linked, provider: hint.provider, maskedEmail: null };
+}
+
+/** Фиксированное окно на uid и на IP; документы — по хэшу, без uid/IP в открытом виде. */
+export async function consumeRecoveryHintRate(
+  db: admin.firestore.Firestore,
+  authUid: string,
+  ip: string,
+  nowMs = Date.now(),
+): Promise<'ok' | 'limited_uid' | 'limited_ip'> {
+  const hash = (value: string) => createHash('sha256').update(value).digest('hex').slice(0, 32);
+  const refs = [
+    { kind: 'uid' as const, ref: db.collection(RECOVERY_HINT_RATE_LIMITS).doc(`uid_${hash(authUid)}`) },
+    ...(ip ? [{ kind: 'ip' as const, ref: db.collection(RECOVERY_HINT_RATE_LIMITS).doc(`ip_${hash(ip)}`) }] : []),
+  ];
+  return db.runTransaction(async (tx) => {
+    const snaps = await Promise.all(refs.map(({ ref }) => tx.get(ref)));
+    const states = snaps.map((snap) => {
+      const data = snap.exists ? snap.data() ?? {} : {};
+      const windowStartMs = Number(data.windowStartMs ?? 0);
+      const sameWindow = Number.isFinite(windowStartMs) && nowMs - windowStartMs < RECOVERY_HINT_RATE_WINDOW_MS;
+      return { sameWindow, windowStartMs, count: sameWindow ? Number(data.count ?? 0) : 0 };
+    });
+    const limitedAt = states.findIndex((s) => s.count >= RECOVERY_HINT_RATE_MAX);
+    if (limitedAt >= 0) return refs[limitedAt].kind === 'uid' ? 'limited_uid' : 'limited_ip';
+    refs.forEach(({ ref }, i) => {
+      tx.set(ref, {
+        count: states[i].count + 1,
+        windowStartMs: states[i].sameWindow ? states[i].windowStartMs : nowMs,
+        updatedAtMs: nowMs,
+      }, { merge: true });
+    });
+    return 'ok';
+  });
+}
+
 export const authRecoveryHint = onCall({
   ...HOT_CALLABLE_OPTIONS,
   enforceAppCheck: false,
 }, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
-  const stableId = normalizeStableId(request.data?.stableId);
-  if (!stableId) return NEUTRAL_RECOVERY_HINT;
+  if (!request.auth?.uid) {
+    recoveryHintLog('rejected_unauthenticated');
+    throw new HttpsError('unauthenticated', 'auth_required');
+  }
   const db = admin.firestore();
+  const ip = recoveryHintClientIp(request.rawRequest);
+  const rate = await consumeRecoveryHintRate(db, request.auth.uid, ip);
+  if (rate !== 'ok') {
+    recoveryHintLog(rate, { hasIp: Boolean(ip) });
+    throw new HttpsError('resource-exhausted', 'recovery_hint_rate_limited');
+  }
+  const stableId = normalizeStableId(request.data?.stableId);
+  if (!stableId) {
+    recoveryHintLog('neutral_no_stable_id');
+    return NEUTRAL_RECOVERY_HINT;
+  }
   const authLinkSnap = await readIdentityOrThrow(
     db.collection(AUTH_LINKS).doc(request.auth.uid).get(),
   );
   const linkedStableId = authLinkSnap.exists
     ? normalizeStableId(authLinkSnap.data()?.stable_id)
     : '';
-  if (!linkedStableId || linkedStableId !== stableId) return NEUTRAL_RECOVERY_HINT;
+  if (!linkedStableId || linkedStableId !== stableId) {
+    recoveryHintLog('neutral_not_linked_to_caller', { anchor: linkedStableId ? 'mismatch' : 'missing' });
+    return NEUTRAL_RECOVERY_HINT;
+  }
   const snap = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
-  return buildRecoveryHintFromUserData(snap?.exists ? snap.data() : undefined);
+  const hint = publicRecoveryHint(buildRecoveryHintFromUserData(snap?.exists ? snap.data() : undefined));
+  recoveryHintLog('answered', { found: hint.found, linked: hint.linked, provider: hint.provider });
+  return hint;
 });
 
 // ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────

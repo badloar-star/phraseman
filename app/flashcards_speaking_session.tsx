@@ -1891,7 +1891,7 @@ const styles = StyleSheet.create({
   verdictValue: { marginTop: 2, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   verdictAward: { height: 26, borderRadius: 13, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'center' },
   verdictAwardText: { fontSize: 13, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  resultActions: { flexDirection: 'row', gap: 10, marginTop: 2 },
+  resultActions: { flexDirection: 'row', gap: 12, marginTop: 2 },
   resultBtn: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1298,7 +1298,7 @@ const styles = StyleSheet.create({
   characterCount: { alignSelf: 'flex-end', marginTop: 4, fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },
   answerCard: { marginTop: 18, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 16 },
   answerText: { marginTop: 8, fontSize: 20, lineHeight: 26, fontWeight: '600' },
-  selfGradeRow: { marginTop: 16, flexDirection: 'row', gap: 10 },
+  selfGradeRow: { marginTop: 16, flexDirection: 'row', gap: 12 },
   selfGradeButton: { flex: 1, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
   selfGradeText: { fontSize: 16, lineHeight: 21, fontWeight: '700', textAlign: 'center' },
   // `.ansr` макета: радиус 16, заголовок 15/600, правильный ответ 20/26.

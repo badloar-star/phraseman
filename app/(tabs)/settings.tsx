@@ -1491,7 +1491,7 @@ export default function SettingsMain() {
             </Text>
 
             {/* `.or-actions`: две пилюли 44 в ряд через 9, отступ 18; ghost — плашка с малой тенью, главная — акцент (как GlassAlertCard). */}
-            <View style={{ flexDirection: 'row', gap: 9, marginTop: 18 }}>
+            <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
               <TouchableOpacity
                 testID="settings-switch-cancel"
                 accessibilityRole="button"

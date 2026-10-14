@@ -5454,7 +5454,7 @@ const styles = StyleSheet.create({
   // Макет: «Да»/«Нет» — белые карточки без обводки; выбранная заливается чернилами.
   ageButtons: {
     flexDirection: 'row',
-    gap: 10,
+    gap: 12,
     marginBottom: 0,
   },
   ageButton: {

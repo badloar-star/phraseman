@@ -140,7 +140,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
               <SimplePicker values={MINUTES} value={m} onChange={setM}/>
             </View>
           </ScrollView>
-          <View style={{ flexDirection:'row', gap:10, paddingHorizontal:21, paddingTop:16, paddingBottom:21 }}>
+          <View style={{ flexDirection:'row', gap:12, paddingHorizontal:21, paddingTop:16, paddingBottom:21 }}>
             <DuoPressable wrapStyle={{ flex:1 }} style={{ minHeight:48, borderRadius:24, backgroundColor:glass.buttonFill, boxShadow:nestedBoxShadow(glass) }} onPress={onCancel}>
               <Text style={{ color:glass.text, fontSize:16, fontWeight:'700' }}>{cancelLabel}</Text>
             </DuoPressable>

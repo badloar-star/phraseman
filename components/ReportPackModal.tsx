@@ -274,7 +274,7 @@ function ReportPackModal({
             />
           </ScrollView>
 
-          <View style={{ flexDirection: 'row', gap: 10, marginTop: 18 }}>
+          <View style={{ flexDirection: 'row', gap: 12, marginTop: 18 }}>
             <TouchableOpacity
               testID="report-pack-cancel"
               onPress={requestDismiss}

@@ -651,7 +651,7 @@ export default function CommunityPackSocialBar({
   /** Экран набора: лайк · добавления · отклики + «Добавить себе» (макет cards.html #18–19). */
   if (isScreen) {
     return (
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <TouchableOpacity
           testID={`pack-like-${pack.id}`}
           accessibilityRole="button"

@@ -760,7 +760,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
           <Text style={{ color: glass.text, fontSize: f.body, lineHeight: Math.round(f.body * 1.4), marginTop: 4 }}>{item.text}</Text>
 
           {item.status === 'failed' ? (
-            <View style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
+            <View style={{ flexDirection: 'row', gap: 12, marginTop: 8 }}>
               <TouchableOpacity
                 onPress={() => handleRetry(item)}
                 accessibilityRole="button"
@@ -781,7 +781,7 @@ export default function PackCommentsSheet({ visible, packId, packTitle, isPackAu
               </TouchableOpacity>
             </View>
           ) : item.status === 'published' ? (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 }}>
               <TouchableOpacity
                 onPress={() => handleReaction(item, 'like')}
                 hitSlop={{ top: 7, bottom: 7, left: 4, right: 4 }}

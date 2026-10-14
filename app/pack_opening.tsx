@@ -721,7 +721,7 @@ export default function PackOpeningScreen() {
       >
         <RowDivider color={t.borderLight} />
         {!allOpened ? (
-          <View style={{ flexDirection: 'row', gap: 10 }}>
+          <View style={{ flexDirection: 'row', gap: 12 }}>
             <Pressable
               onPress={onRevealAll}
               style={[styles.secondaryBtn, { borderColor: accent }]}

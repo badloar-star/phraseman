@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   wall: { paddingHorizontal: 18, paddingTop: 20, paddingBottom: 18, alignItems: 'center' },
   wallTitle: { fontSize: 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' },
   wallText: { fontSize: 16, lineHeight: 22, marginTop: 8, textAlign: 'center' },
-  wallButtons: { flexDirection: 'row', gap: 10, marginTop: 18, alignSelf: 'stretch' },
+  wallButtons: { flexDirection: 'row', gap: 12, marginTop: 18, alignSelf: 'stretch' },
   wallButton: { flex: 1 },
   veil: { minHeight: 44, alignItems: 'center', justifyContent: 'center', paddingVertical: 12 },
   veilText: { fontSize: 16, fontWeight: '700', textAlign: 'center' },

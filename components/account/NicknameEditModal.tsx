@@ -517,7 +517,7 @@ export default function NicknameEditModal({
         </View>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] + 192 : 0} reduceMotion={!isHybrid || reduceMotion}>
-        <View style={{ flexDirection: 'row', gap: 10, marginTop: 8 }}>
+        <View style={{ flexDirection: 'row', gap: 12, marginTop: 8 }}>
           <TouchableOpacity
             accessibilityRole="button"
             activeOpacity={0.7}

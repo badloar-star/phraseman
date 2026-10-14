@@ -853,7 +853,7 @@ export default function CollectionListView({
               })}
             </Text>
           ) : null}
-          <View style={{ flexDirection: 'row', gap: 10 }}>
+          <View style={{ flexDirection: 'row', gap: 12 }}>
           <DuoPressable
             testID="fc-create-pack-from-selection"
             accessibilityRole="button"

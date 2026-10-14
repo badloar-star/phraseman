@@ -481,7 +481,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
               нажатие «Удалить» уходило в «Отмена» либо терялось вовсе — кнопка
               выглядела мёртвой. Убираем перехват целиком: пусть каждая кнопка
               получает своё касание сама, как и положено. */}
-          <View style={{ flexDirection: 'row', gap: 10, paddingHorizontal: 22, paddingTop: 8, paddingBottom: 22 }}>
+          <View style={{ flexDirection: 'row', gap: 12, paddingHorizontal: 22, paddingTop: 8, paddingBottom: 22 }}>
             <Pressable
               testID="delete-account-cancel"
               disabled={deleting}

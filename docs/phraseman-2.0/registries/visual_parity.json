@@ -2466,14 +2466,14 @@
       "anim_evidence_at": null,
       "anim_evidence_sha256": null,
       "diffs": [
-        "[состояние] нет всплывающего меню «Удалить» у своего комментария — нужна ссылка dev_state или пересъёмка с открытым меню",
-        "кнопка отправки ↑ вместо →",
+        "[образец приведён к коду 14.10] Кнопка отправки — стрелка вверх, как в коде (PackCommentsSheet.tsx:947 arrow-up).",
+        "[состояние] нет всплывающего меню «Удалить» у своего комментария — нужна ссылка dev_state или пересъёмка с открытым меню (Сверка).",
         "[язык] кадр на uk — переснять на ru"
       ],
-      "status": "diff",
+      "status": "pending",
       "blocked_reason": null,
       "reviewed_by": null,
-      "reviewed_at": "2026-10-13T12:13:29.109Z",
+      "reviewed_at": "2026-10-14T17:24:02.724Z",
       "prev_blocked_reason": "ждёт одобрения cards-states.html (старый cards.html не эталон)",
       "release": "r1",
       "triage": {

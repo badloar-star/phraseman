@@ -459,9 +459,10 @@
   const IPA = { Layover: '/ˈleɪoʊvər/' };
 
   // ---------- шторки ----------
-  const modeTile = (ic, n, s) => `<div class="mt t"><div class="tile t46">${icon(ic, 's22')}</div><div><div class="n">${n}</div><div class="s">${s}</div></div></div>`;
+  // зачем (владелец 14.10 «минимум элементов»; код Дизайна 54efc180a, FlashcardsTrainingModeSheet): подписей под режимами нет — подпись только причина недоступности («Вслух» без распознавания речи)
+  const modeTile = (ic, n, s) => `<div class="mt t"><div class="tile t46">${icon(ic, 's22')}</div><div><div class="n">${n}</div>${s ? `<div class="s">${s}</div>` : ''}</div></div>`;
   const modeSheetInner = `<div class="center"><div style="font-size:22px;line-height:28px;font-weight:700">Режим тренировки</div></div>
-    <div class="mgrid">${modeTile('bolt', 'Блиц', '60 секунд')}${modeTile('mic', 'Устно', 'Вслух')}${modeTile('check', 'Правда / ложь', 'Да или нет')}${modeTile('edit', 'Напиши', 'По памяти')}</div>`;
+    <div class="mgrid">${modeTile('bolt', 'Блиц')}${modeTile('mic', 'Устно')}${modeTile('check', 'Правда / ложь')}${modeTile('edit', 'Напиши')}</div>`;
   const cardSheetInner = (w, tr, ex, on, ex2) => `${flip(w, tr, { fs: IPA[w] || '', ex, ex2, on })}
     <div class="acts">${[['vol', 'Озвучить'], ['albums', 'В набор'], ['trash', 'Удалить', 1]].map(([ic, l, r]) => `<div class="act t${r ? ' red' : ''}"><span class="o">${X[ic] || icon(ic, 's20')}</span>${l}</div>`).join('')}</div>`;
 

@@ -227,3 +227,13 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: var(--danger) !important; background-image: none !important; color: var(--danger-ink) !important; }
 /* «Войти через Apple» на тёмной теме — БЕЛАЯ кнопка с чёрным яблоком (Apple HIG; решение координатора 13.10 — чёрная на тёмной плите сливалась). Код — Авторизация (AuthProviderButtons.tsx). */
 .ph .ov-provider.dark { background: #FFFFFF !important; background-image: none !important; color: #000000 !important; }
+
+/* ===================== ТОСТ «МИНИМУМ ЭЛЕМЕНТОВ» (владелец 14.10; код Дизайна 54efc180a, components/ActionToast.tsx) =====================
+   зачем: тост = значок без плашки (24) + одна строка цветом заголовка; полоска-рейл, плашка значка и капс-тон убраны.
+   Одно правило на все копии тоста в образцах (overlay.css, dialogs-gaps, cards-v2, cards-gaps, settings-gaps, paywall-gaps). */
+.ph :is(.ov-action-toast, .dg-toast, .atoast, .gs-toast, .wtoast) :is(.rail, .ra, .gs-rail, .tk, .tone, .gs-tl) { display: none !important; }
+.ph .ov-action-toast .tile, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44) { background: none !important; box-shadow: none !important; width: auto !important; height: auto !important; min-width: 0 !important; padding: 0 !important; }
+.ph .ov-action-toast .tile::after, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44)::after { display: none !important; }
+.ph .ov-action-toast .tile svg, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44) svg { width: 24px !important; height: 24px !important; }
+.ph :is(.dg-toast, .atoast, .gs-toast) :is(.tm, .gs-tm), .ph .ov-action-toast .message { color: var(--text) !important; margin-top: 0 !important; font-size: 15px; line-height: 20px; }
+.ph .wtoast .tm { margin-top: 0 !important; }

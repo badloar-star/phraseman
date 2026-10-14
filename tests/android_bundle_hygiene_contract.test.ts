@@ -187,8 +187,23 @@ expoAutolinking.useExpoModules()
 
   it('keeps non-runtime build inputs out of the EAS upload archive', () => {
     const easIgnore = read('.easignore');
+    // зачем (2a033ab6e, координатор 15.10): content/ уходит из архива EAS целиком, КРОМЕ content/learning-v2-course/activation/
+    // (мелкие манифесты рантайма курса V2, их импортирует приложение). Голое «/content/» исключение назад не пустило бы,
+    // поэтому форма — «/content/*» + цепочка «!»-возвратов ровно до activation/. Любой другой возврат под content/ — красный.
+    const easLines = easIgnore.split(/\r?\n/).map((line) => line.trim());
     for (const pattern of [
-      '/content/',
+      '/content/*',
+      '!/content/learning-v2-course/',
+      '/content/learning-v2-course/*',
+      '!/content/learning-v2-course/activation/',
+    ]) {
+      expect(easLines).toContain(pattern);
+    }
+    expect(easLines.filter((line) => /^!\/?content\//.test(line))).toEqual([
+      '!/content/learning-v2-course/',
+      '!/content/learning-v2-course/activation/',
+    ]);
+    for (const pattern of [
       '.shots/',
       '.eas-logs/',
       'test-results/',

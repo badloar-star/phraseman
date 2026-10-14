@@ -28,7 +28,8 @@ const consumeLearningV2CourseSessionReadyHandoffV3: ReleasedSessionClientV3["con
     .consumeLearningV2CourseSessionReadyHandoffV3(input);
 import { resolveLearningV2SessionRouteCoordinatesV1 } from "../../../app/learning_v2_session_route_coordinates_v1";
 import SessionAttemptsHud from "../../../components/session_attempts/SessionAttemptsHud";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Redirect, useLocalSearchParams, useRouter } from "expo-router";
+import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from "../../learning_v2_visibility_switch";
 import React, {
   useCallback,
   useEffect,
@@ -2225,7 +2226,18 @@ function LearningV2SessionEnergyGate({ children, directMode }: { children: React
   );
 }
 
-export default function LearningV2SessionScreen() {
+// зачем (план Б 16.10, координатор 14.10): при скрытом V2 занятие по старой ссылке не открывается — Главная и [V2-HIDDEN].
+// Проверка в обёртке, а не внутри экрана: у экрана хуки, ранний return до них нарушил бы порядок хуков.
+export default function LearningV2SessionRoute() {
+  const { id } = useLocalSearchParams<{ id?: string | string[] }>();
+  if (isLearningV2Hidden()) {
+    logLearningV2Hidden("route_learning_v2_session", LEARNING_V2_HIDDEN_REDIRECT, `session=${first(id) ?? "none"}`);
+    return <Redirect href={LEARNING_V2_HIDDEN_REDIRECT} />;
+  }
+  return <LearningV2SessionScreen />;
+}
+
+function LearningV2SessionScreen() {
   const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{
     id?: string | string[];

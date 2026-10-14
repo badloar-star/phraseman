@@ -4,6 +4,7 @@
  */
 
 import { rememberInitialDeepLinkTarget } from './initial_deep_link_store';
+import { LEARNING_V2_HIDDEN_REDIRECT, isLearningV2Hidden, logLearningV2Hidden } from './learning_v2_visibility_switch';
 
 // зачем (Сверка 10.10: `phraseman://video` открывает Главную; сперва логи): каждый вход и выход нормализации ссылки пишется одной строкой —
 // видно, что пришло, холодный ли это старт и куда ссылку отправили. Поиск по префиксу [DEEPLINK].
@@ -62,8 +63,13 @@ function redirectSystemPathInner({
   // зачем (координатор 10.10 21:05): в СТОР-сборке маршруты Learning V2 вырезаны router.ctx.js (`*learning[_-]v2*`) —
   // внешняя ссылка в /learning-v2/… или /learning_v2_… вела бы на «маршрут не найден». Ведём на обычные уроки.
   // Флаг читаем в момент вызова (как router.ctx.js), а не через app/config — так модуль остаётся лёгким.
-  if (process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && /^\/?learning[-_]v2(?:[/_?#]|$)/i.test(raw)) {
+  if (process.env.EXPO_PUBLIC_STORE_RELEASE === '1' && /^\/?learning[-_]v2(?:[/_?#]|$)/i.test(raw) && !isLearningV2Hidden()) {
     return '/(tabs)/lessons';
+  }
+  // зачем (план Б 16.10): рубильник «V2 скрыт» — любая внешняя ссылка в V2 (в любой сборке) открывает Главную.
+  if (isLearningV2Hidden() && /^\/?learning[-_]v2(?:[/_?#]|$)/i.test(raw)) {
+    logLearningV2Hidden('deep_link', LEARNING_V2_HIDDEN_REDIRECT, `path=${raw.split(/[?#]/)[0]}`);
+    return LEARNING_V2_HIDDEN_REDIRECT;
   }
 
   // зачем (владелец 2026-09-30): пейволы A–G удалены, остался один пейвол Plus

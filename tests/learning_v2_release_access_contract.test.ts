@@ -33,11 +33,14 @@ const route = read('app/learning-v2/course.tsx');
 const layout = read('app/_layout.tsx');
 const lessons = read('app/(tabs)/lessons.tsx');
 
-assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)|<Redirect/u);
+// зачем (план Б 16.10): маршрут курса не режется сборкой; уводит на Главную ТОЛЬКО рубильник «V2 скрыт» (решение владельца).
+assert.doesNotMatch(route, /if \(!ENABLE_DEV_TOOLS\)/u);
+assert.equal((route.match(/<Redirect/gu) ?? []).length, 1);
+assert.match(route, /if \(isLearningV2Hidden\(\)\) \{\n[^\n]*logLearningV2Hidden[^\n]*\n\s*return <Redirect href=\{LEARNING_V2_HIDDEN_REDIRECT\} \/>;/u);
 assert.doesNotMatch(layout, /isBlockedLearningV2RoutePath/u);
 // зачем (владелец 11.10: «LEARNING V2 ПОПАДАЕТ», курс виден всем сразу): вырез 10.10 снят — вход в курс открыт во всех сборках.
 // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход — только если есть выпущенные занятия.
-assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS;/u);
+assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);/u);
 assert.doesNotMatch(
   lessons,
   /\{ENABLE_DEV_TOOLS \? \(\s*<TabUnderlineButton\s*\n\s*label="V2"/u,

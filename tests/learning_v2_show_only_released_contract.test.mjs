@@ -22,7 +22,7 @@ test('артефакт: целые неотрицательные числа, п
 
 test('экран уроков: вход и множество занятий — по выпущенному префиксу', () => {
   const lessons = read('app/(tabs)/lessons.tsx');
-  assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS;/);
+  assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);/);
   assert.match(lessons, /authored\.filter\(\(session\) => isLearningV2SessionReleasedV1\(session\.lessonOrdinal, session\.sessionOrdinal\)\)/);
   // вход в занятие, прогрев и карта пользуются одним множеством
   assert.ok((lessons.match(/learningV2FactoryNativeSessionIds\.has\(/g) ?? []).length >= 4);

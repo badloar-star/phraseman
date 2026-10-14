@@ -273,6 +273,7 @@ import type { LearningV2CourseSessionOutcomeKindV1 } from "../../modules/learnin
 import { learningV2CourseSessionIdV1 } from "../../modules/learning-v2/content/course_topology_v1";
 import { learningV2LessonIsAccessible } from "../learning_v2_access_policy";
 import { isLearningV2SessionReleasedV1, LEARNING_V2_HAS_RELEASED_SESSIONS_V1 } from "../learning_v2_session_availability_v1";
+import { LEARNING_V2_HIDDEN, logLearningV2Hidden } from "../learning_v2_visibility_switch";
 import { learningV2SessionTitleV1 } from "../../modules/learning-v2/content/session_titles_v1.generated";
 import {
   factoryNativeLearningV2AvailabilityV1,
@@ -1408,7 +1409,10 @@ type LessonsTabProps = {
 // зачем (владелец 11.10: «ТАМ ДОЛЖНО ПОКАЗЫВАТЬСЯ СТОЛЬКО СКОЛЬКО ДОСТУПНО»): вход в курс есть, только если хоть одно
 // занятие реально открывается (app/learning_v2_session_availability_v1.ts) — без пустых экранов и тупиков. Дев-сборка
 // входит всегда: там проверяют невыпущенные занятия кнопкой массовой разблокировки.
-const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS;
+// зачем (план Б 16.10, координатор 14.10): рубильник «V2 скрыт» — одна строка в learning_v2_visibility_switch.ts закрывает
+// кнопку «V2», чип «Новые уроки», запомненную вкладку V2 и initialPage="v2" маршрута курса, в том числе в дев-сборке.
+const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && (LEARNING_V2_HAS_RELEASED_SESSIONS_V1 || ENABLE_DEV_TOOLS);
+if (LEARNING_V2_HIDDEN) logLearningV2Hidden("lessons_tab_v2_entries", "lessons", "hidden=v2_button,new_lessons_chip,remembered_tab");
 
 // зачем (владелец 13.10, вопрос 18; макет learn.html A7/A8/A10 — вкладки «Уроки | V2»): выбранная вкладка хранится локально и при следующем
 // входе открывается сразу. Память процесса читается синхронно в первом кадре, диск (AsyncStorage) догружается один раз при загрузке модуля
@@ -2907,7 +2911,8 @@ export default function LessonsTab({
   const [learningV2WarmupArmed, setLearningV2WarmupArmed] = useState(false);
   useFocusEffect(
     useCallback(() => {
-      if (learningV2WarmupArmed || page !== "lessons") return undefined;
+      // зачем (план Б): при скрытом V2 прогрев каталога V2 не нужен — ни диска, ни памяти.
+      if (!LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY || learningV2WarmupArmed || page !== "lessons") return undefined;
       let timer: ReturnType<typeof setTimeout> | null = null;
       const task = InteractionManager.runAfterInteractions(() => {
         timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);

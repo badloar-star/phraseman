@@ -60,9 +60,9 @@
 .em-ph .bub.me .meta { color: color-mix(in srgb, var(--on) 60%, transparent); }
 .em-ph .rec { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--sc); font-weight: 600; }
 .em-ph .rec i { width: 8px; height: 8px; border-radius: 50%; background: var(--bad); animation: emGlow 900ms ease-in-out infinite; }
-.em-ph .ghostin { display: flex; align-items: center; gap: 10px; height: 48px; padding: 0 14px; border-radius: 24px; background: var(--ti); font-size: 15px; color: var(--sc); }
+.em-ph .ghostin { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 14px; border-radius: 24px; background: var(--ti); font-size: 15px; color: var(--sc); }
 .em-ph .ghostin .mic { width: 34px; height: 34px; border-radius: 50%; background: var(--acc); color: var(--on); display: flex; align-items: center; justify-content: center; flex: none; animation: emPulse 1.4s ease-in-out infinite; }
-.em-ph .ghostin .tx { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; }
+.em-ph .ghostin .tx { flex: 1; min-width: 0; white-space: normal; overflow: hidden; line-height: 20px; padding: 4px 0; } /* зачем: черновик фразы переносится, как многострочное поле ввода в приложении, — на 360 dp не срезается */
 .em-ph .ghostin .tx b { color: var(--tx); font-weight: 600; }
 .em-ph .ambient { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mu); font-weight: 600; }
 .em-ph .chips { display: flex; flex-wrap: wrap; gap: 6px; }

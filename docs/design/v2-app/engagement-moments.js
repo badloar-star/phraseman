@@ -73,8 +73,14 @@
   };
 
   // Конфетти на canvas телефона. o.gold — золотые монетки вместо бумаги; o.n — число частиц; o.burst — из точки (x,y в долях)
+  // зачем (владелец 14.10 «конфетти поверх кнопок — каша»): частицы никогда не лежат поверх текста и кнопок — в полноэкранном моменте
+  // они внутри .full под содержимым (z 0, текст/кнопки z 1), над окном/шторкой — между затемнением (40) и окном (50).
+  //   момент прямо на экране (без окна) — под содержимым экрана (.in изолирован, частицы z −1: видны только в просветах между блоками).
+  const fxHost = (ph) => { const full = ph.querySelector(':scope > .full'); if (full) return { host: full, z: 0 };
+    if (ph.querySelector(':scope > .dim, :scope > .fog, :scope > .modal, :scope > .sheet')) return { host: ph, z: 45 };
+    const inn = ph.querySelector(':scope > .scr > .in'); if (!inn) return { host: ph, z: 45 }; inn.style.position = inn.style.position || 'relative'; inn.style.isolation = 'isolate'; return { host: inn, z: -1 }; };
   const confetti = (ph, o = {}) => {
-    const cv = document.createElement('canvas'); cv.className = 'fx'; cv.width = 390; cv.height = 844; ph.appendChild(cv);
+    const fh = fxHost(ph); const cv = document.createElement('canvas'); cv.className = 'fx'; cv.width = 390; cv.height = 844; cv.style.zIndex = String(fh.z); fh.host.appendChild(cv);
     const ctx = cv.getContext('2d'); const n = o.n || 140; const cols = o.colors || ['#5FE3C0', '#7C9BFF', '#F5C451', '#FF7A45', '#FFFFFF', '#D6B4FF'];
     const ps = []; for (let i = 0; i < n; i++) {
       const burst = o.burst; const x = burst ? burst[0] * 390 : Math.random() * 390; const y = burst ? burst[1] * 844 : -20 - Math.random() * 300;
@@ -137,5 +143,5 @@
       if (th) { ph.classList.toggle('lite'); }
     });
   };
-  window.EM = { icon, coin, phone, tower, league, LEAGUES, rings, confetti, countUp, chatPlay, typeText, moment, render, MOMENTS };
+  window.EM = { icon, coin, phone, tower, league, LEAGUES, rings, confetti, fxHost, countUp, chatPlay, typeText, moment, render, MOMENTS };
 })();

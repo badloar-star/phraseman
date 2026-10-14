@@ -140,6 +140,8 @@
 .em-ph .full.clear { background: transparent; }
 .em-ph .full .body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 0; }
 .em-ph .full .foot { flex: none; display: flex; flex-direction: column; gap: 12px; }
+/* зачем: текст и кнопки полноэкранного момента выше слоя частиц (EM.fxHost — частицы z 0 внутри .full) */
+.em-ph .full > .body, .em-ph .full > .foot { position: relative; z-index: 1; } .em-ph .full > .act, .em-ph .full > [data-final], .em-ph .full > .skip { z-index: 1; }
 .em-ph .toast { position: absolute; left: 20px; right: 20px; top: 60px; z-index: 70; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: var(--sheet); box-shadow: var(--sho); animation: emToastIn 600ms var(--em-ease-pop) both; }
 .em-ph .toast.bot { top: auto; bottom: 90px; }
 .em-ph .toast .x { flex: 1; min-width: 0; font-size: 16px; line-height: 20px; font-weight: 700; }

@@ -7,7 +7,7 @@ function pickRandom<T>(values: T[]): T {
 export function buildAchievementShareMessage(lang: Lang, name: string, storeUrl: string): string {
   const variantsRu = [
     `Мама, я не бездельничаю, я коллекционирую ачивки в Phraseman! 🏅 Плюс одно достижение «${name}» в копилку гениальности.`,
-    `Уровень английского: «Бог ачивок». Взял «${name}» в Phraseman. А чего добился ты сегодня? 😎`,
+    `Уровень: «Бог ачивок». В Phraseman открыта ачивка «${name}». А у тебя что сегодня? 😎`, // D188: без языка и без рода
     `Этот трофей «${name}» заслуживает отдельного поста! Phraseman, что ты со мной делаешь? 🏆✨`,
     `Кажется, я случайно стал умнее. 🧠 Получил ачивку «${name}» в Phraseman. Не пытайтесь это повторить (шучу, пытайтесь)!`,
     `Моя полка с трофеями пополнилась! «${name}» теперь в моей коллекции Phraseman. Мелочь, а приятно! 🏆✨`,
@@ -20,7 +20,7 @@ export function buildAchievementShareMessage(lang: Lang, name: string, storeUrl:
   ];
   const variantsUk = [
     `Мамо, я не марную час, я колекціоную ачівки у Phraseman! 🏅 Ще одне досягнення «${name}» у скарбничку геніальності.`,
-    `Рівень англійської: «Бог ачівка». Взяв «${name}» у Phraseman. А чого досяг ти сьогодні? 😎`,
+    `Рівень: «Бог ачівок». У Phraseman відкрито ачівку «${name}». А в тебе що сьогодні? 😎`,
     `Цей трофей «${name}» заслуговує на окремий пост! Phraseman, що ти зі мною робиш? 🏆✨`,
     `Здається, я випадково став розумнішим. 🧠 Здобув ачівку «${name}» у Phraseman. Не намагайтеся це повторити (жартую, намагайтеся)!`,
     `Моя полиця з трофеями поповнилася! «${name}» тепер у моїй колекції Phraseman. Дрібниця, а приємно! 🏆✨`,
@@ -33,7 +33,7 @@ export function buildAchievementShareMessage(lang: Lang, name: string, storeUrl:
   ];
   const variantsEs = [
     `¡Mamá, no pierdo el tiempo: colecciono logros en Phraseman! 🏅 Otro más, «${name}», para el museo del genio.`,
-    `Nivel de inglés: «rey del logro». Desbloqueé «${name}» en Phraseman. ¿Y tú qué has hecho hoy? 😎`,
+    `Nivel: «rey del logro». Desbloqueé «${name}» en Phraseman. ¿Y tú qué has hecho hoy? 😎`,
     `Este trofeo «${name}» merece su propio post. Phraseman, ¿qué me estás haciendo? 🏆✨`,
     `Creo que sin querer me volví más listo. 🧠 Logro «${name}» en Phraseman. No intenten repetirlo (¿o sí?).`,
     `¡Mi vitrina crece! «${name}» ya forma parte de mi colección en Phraseman. Pequeño gustito. 🏆✨`,

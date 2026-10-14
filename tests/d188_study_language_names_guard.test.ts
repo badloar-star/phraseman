@@ -54,6 +54,10 @@ describe('D188: статичные строки исправленных пов�
     'components/onboarding_aha/aha_scenes.ts',
     'app/paywall_profile.ts',
     'app/(tabs)/home.tsx',
+    'app/referral_invite_share.ts',
+    'app/achievement_share.ts',
+    'app/achievement_copy_ru_v2.ts',
+    'components/friends_together/FriendStudyInviteModal.tsx',
   ];
   it.each(FILES)('%s', (rel) => {
     const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');

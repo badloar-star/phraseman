@@ -200,7 +200,8 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
       type: 'friend_nudge',
       fromUid: stableUid,
       fromName: senderName,
-      text: 'Пять минут на английский?',
+      // зачем (D188-следствие, 14.10): друзья учат разные языки — без названия языка (клиент 2.0 показывает свой перевод).
+      text: 'Пять минут на практику?',
       nav: {
         kind: 'friend_event',
         actorStableUid: stableUid,
@@ -224,7 +225,7 @@ export const friendsNudge = onCall(CALLABLE_BASE, async (request) => {
   if (pushToken) {
     void sendExpoPush(
       pushToken,
-      `${senderName}: пять минут английского?`,
+      `${senderName}: пять минут практики?`,
       'Одно маленькое занятие.',
       {
         type: 'friend_nudge',

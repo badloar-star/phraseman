@@ -14,67 +14,69 @@ import { generateReferralCode, getReferralCode } from './referral_system';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import type { Lang } from '../constants/i18n';
 
+// зачем (D188-следствие, владелец 14.10): приглашают в приложение, где учат любой из пяти языков, — без «английского»;
+// заодно без мужского рода («нашёл», «стал»): делится и девушка, и парень. Юмор сохранён.
 const BODY_RU = [
-  'Хватит смотреть мемы, пошли учить английский в Phraseman! Со мной ты хотя бы поймёшь, о чём шутят в оригинале. 🔥',
-  'Нашёл Phraseman — это как фитнес для мозга, только без одышки. Залетай, будем тупить вместе (но на английском)! 🧠🚀',
-  'Секретный ингредиент моего английского — Phraseman. Дарю ссылку, пока я не стал слишком умным для этой компании. 😉',
-  'Хватит гуглить перевод мемов! 😂 Качай Phraseman и начни понимать английский как родной. Погнали со мной!',
-  'Нашёл идеальный способ учить английский без боли и страданий — Phraseman. 🚀 Присоединяйся, будем качаться вместе!',
-  'Эй, не хочешь прокачать свой English? 🇬🇧 В Phraseman это реально весело. Залетай по ссылке!',
-  'Если даже я учу английский в Phraseman, то у тебя вообще нет оправданий. Качай и погнали! 😜',
-  'Хочешь зарабатывать больше? Учи английский! Phraseman — самый кайфовый способ это сделать. Проверено! 📈✨',
+  'Хватит смотреть мемы, пошли учить языки в Phraseman! Со мной ты хотя бы поймёшь, о чём шутят в оригинале. 🔥',
+  'Phraseman — это как фитнес для мозга, только без одышки. Залетай, будем тупить вместе (но уже на новом языке)! 🧠🚀',
+  'Секретный ингредиент моего прогресса в языке — Phraseman. Дарю ссылку, пока это ещё наш маленький секрет. 😉',
+  'Хватит гуглить перевод мемов! 😂 Качай Phraseman и начни понимать язык как родной. Погнали со мной!',
+  'Вот идеальный способ учить язык без боли и страданий — Phraseman. 🚀 Присоединяйся, будем качаться вместе!',
+  'Эй, не хочешь прокачать свой язык? 🌍 В Phraseman это реально весело. Залетай по ссылке!',
+  'Если даже я учу язык в Phraseman, то у тебя вообще нет оправданий. Качай и погнали! 😜',
+  'Хочешь зарабатывать больше? Учи язык! Phraseman — самый кайфовый способ это сделать. Проверено! 📈✨',
 ] as const;
 
 const BODY_UK = [
-  'Досить дивитися меми, ходімо вчити англійську у Phraseman! Зі мною ти хоча б зрозумієш, про що жартують в оригіналі. 🔥',
-  'Знайшов Phraseman — це як фітнес для мозку, тільки без задишки. Залітай, будемо тупити разом (але англійською)! 🧠🚀',
-  'Секретний інгредієнт моєї англійської — Phraseman. Дарую посилання, поки я не став занадто розумним для цієї компанії. 😉',
-  'Досить гуглити переклад мемів! 😂 Качай Phraseman і почни розуміти англійську як рідну. Погнали зі мною!',
-  'Знайшов ідеальний спосіб вчити англійську без болю та страждань — Phraseman. 🚀 Приєднуйся, будемо качатися разом!',
-  'Гей, не хочеш прокачати свій English? 🇬🇧 У Phraseman це реально весело. Залітай за посиланням!',
-  'Якщо навіть я вчу англійську у Phraseman, то в тебе взагалі немає виправдань. Качай і погнали! 😜',
-  'Хочеш заробляти більше? Вчи англійську! Phraseman — найкайфовіший спосіб це зробити. Перевірено! 📈✨',
+  'Досить дивитися меми, ходімо вчити мови у Phraseman! Зі мною ти хоча б зрозумієш, про що жартують в оригіналі. 🔥',
+  'Phraseman — це як фітнес для мозку, тільки без задишки. Залітай, будемо тупити разом (але вже новою мовою)! 🧠🚀',
+  'Секретний інгредієнт мого прогресу в мові — Phraseman. Дарую посилання, поки це ще наш маленький секрет. 😉',
+  'Досить гуглити переклад мемів! 😂 Качай Phraseman і почни розуміти мову як рідну. Погнали зі мною!',
+  'Ось ідеальний спосіб вчити мову без болю та страждань — Phraseman. 🚀 Приєднуйся, будемо качатися разом!',
+  'Гей, не хочеш прокачати свою мову? 🌍 У Phraseman це реально весело. Залітай за посиланням!',
+  'Якщо навіть я вчу мову у Phraseman, то в тебе взагалі немає виправдань. Качай і погнали! 😜',
+  'Хочеш заробляти більше? Вчи мову! Phraseman — найкайфовіший спосіб це зробити. Перевірено! 📈✨',
 ] as const;
 
 const BODY_EN = [
-  'Stop scrolling memes and come learn English with Phraseman! With me you\'ll at least get the original jokes. 🔥',
-  'Found Phraseman — it\'s like a gym for your brain, minus the sweat. Join in, let\'s be nerds together (in English)! 🧠🚀',
+  'Stop scrolling memes and come learn a language with Phraseman! With me you\'ll at least get the original jokes. 🔥',
+  'Phraseman is like a gym for your brain, minus the sweat. Join in, let\'s be nerds together (in a new language)! 🧠🚀',
 ] as const;
 
 const BODY_ES = [
-  'Deja los memes un rato y ven a estudiar inglés con Phraseman. Conmigo, al menos entenderás por qué se ríen en el original. 🔥',
-  'Probé Phraseman: entrenamiento para el cerebro, sin drama. ¡Únete y practiquemos en inglés! 🧠🚀',
-  'Mi secreto para el inglés: Phraseman. Te paso el enlace antes de que me ponga demasiado listo. 😉',
-  'Ya basta de buscar en Google la traducción de los memes. 😂 Instala Phraseman y empieza a entender inglés de verdad. ¡Vamos!',
-  'Encontré una forma de estudiar inglés sin sufrir: Phraseman. 🚀 Únete y subamos de nivel juntos.',
-  '¿Te animas a mejorar tu inglés? 🇬🇧 En Phraseman es muy entretenido. Entra desde el enlace.',
-  'Si hasta yo estudio inglés aquí, tú no tienes excusa. Instala Phraseman ya. 😜',
-  '¿Más oportunidades laborales? Aprende inglés. Phraseman funciona de verdad. 📈✨',
+  'Deja los memes un rato y ven a aprender idiomas con Phraseman. Conmigo, al menos entenderás por qué se ríen en el original. 🔥',
+  'Probé Phraseman: entrenamiento para el cerebro, sin drama. ¡Únete y practiquemos juntos! 🧠🚀',
+  'Mi secreto para los idiomas: Phraseman. Te paso el enlace mientras sigue siendo nuestro secreto. 😉',
+  'Ya basta de buscar en Google la traducción de los memes. 😂 Instala Phraseman y empieza a entender idiomas de verdad. ¡Vamos!',
+  'Encontré una forma de aprender idiomas sin sufrir: Phraseman. 🚀 Únete y subamos de nivel juntos.',
+  '¿Te animas a mejorar tus idiomas? 🌍 En Phraseman es muy entretenido. Entra desde el enlace.',
+  'Si hasta yo estudio idiomas aquí, tú no tienes excusa. Instala Phraseman ya. 😜',
+  '¿Más oportunidades laborales? Aprende idiomas. Phraseman funciona de verdad. 📈✨',
 ] as const;
 
 const BODY_PT_BR = [
-  'Bora aprender inglês no Phraseman comigo! É treino para o cérebro, mas sem sofrimento. 🔥',
-  'Achei um jeito divertido de estudar inglês: Phraseman. Entra pelo link e vamos evoluir juntos. 🚀',
+  'Bora aprender idiomas no Phraseman comigo! É treino para o cérebro, mas sem sofrimento. 🔥',
+  'Achei um jeito divertido de estudar idiomas: Phraseman. Entra pelo link e vamos evoluir juntos. 🚀',
 ] as const;
 
 const BODY_VI = [
-  'Cùng mình học tiếng Anh trên Phraseman nhé! Vui, gọn và dễ duy trì mỗi ngày. 🔥',
-  'Mình đang luyện tiếng Anh bằng Phraseman. Vào link này để cùng tiến bộ nhé. 🚀',
+  'Cùng mình học ngoại ngữ trên Phraseman nhé! Vui, gọn và dễ duy trì mỗi ngày. 🔥',
+  'Mình đang luyện ngoại ngữ bằng Phraseman. Vào link này để cùng tiến bộ nhé. 🚀',
 ] as const;
 
 const BODY_ID = [
-  'Ayo belajar bahasa Inggris bareng di Phraseman! Latihannya ringan, tapi terasa hasilnya. 🔥',
-  'Aku pakai Phraseman buat naik level bahasa Inggris. Masuk lewat tautan ini dan latihan bareng. 🚀',
+  'Ayo belajar bahasa asing bareng di Phraseman! Latihannya ringan, tapi terasa hasilnya. 🔥',
+  'Aku pakai Phraseman buat naik level bahasa asing. Masuk lewat tautan ini dan latihan bareng. 🚀',
 ] as const;
 
 const BODY_TR = [
-  'Phraseman’da benimle İngilizce çalışmaya var mısın? Kısa, eğlenceli ve işe yarıyor. 🔥',
-  'İngilizcemi Phraseman ile geliştiriyorum. Linkten katıl, birlikte ilerleyelim. 🚀',
+  'Phraseman’da benimle dil çalışmaya var mısın? Kısa, eğlenceli ve işe yarıyor. 🔥',
+  'Yabancı dilimi Phraseman ile geliştiriyorum. Linkten katıl, birlikte ilerleyelim. 🚀',
 ] as const;
 
 const BODY_PL = [
-  'Chodź uczyć się angielskiego ze mną w Phraseman! Krótko, konkretnie i bez męki. 🔥',
-  'Ćwiczę angielski w Phraseman. Wejdź z tego linku i róbmy postępy razem. 🚀',
+  'Chodź uczyć się języków ze mną w Phraseman! Krótko, konkretnie i bez męki. 🔥',
+  'Ćwiczę język w Phraseman. Wejdź z tego linku i róbmy postępy razem. 🚀',
 ] as const;
 
 export type InviteShareLang = Lang;

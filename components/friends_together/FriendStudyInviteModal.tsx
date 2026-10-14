@@ -56,7 +56,8 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           )}
         </View>
         <Text accessibilityRole="header" style={[styles.title, { color: glass.text, fontSize: 22 * textScale, lineHeight: 28 * textScale }]}>
-          {L('Пять минут на английский?', 'П’ять хвилин на англійську?', 'Five minutes of English?', '¿Cinco minutos de inglés?', 'Cinco minutos de inglês?', 'Năm phút học tiếng Anh?', 'Lima menit bahasa Inggris?', 'Beş dakika İngilizce?', 'Pięć minut angielskiego?')}
+          {/* зачем (D188-следствие, 14.10): друзья учат разные языки — приглашение без названия языка */}
+          {L('Пять минут на практику?', 'П’ять хвилин на практику?', 'Five minutes of practice?', '¿Cinco minutos de práctica?', 'Cinco minutos de prática?', 'Năm phút luyện tập?', 'Lima menit latihan?', 'Beş dakika pratik?', 'Pięć minut praktyki?')}
         </Text>
         <Text style={[styles.body, { color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }]}>
           {L('Друг зовёт тебя заниматься сегодня.', 'Друг кличе тебе позайматися сьогодні.', 'A friend is inviting you to study today.', 'Un amigo te invita a estudiar hoy.', 'Um amigo está convidando você para estudar hoje.', 'Một người bạn đang mời bạn học hôm nay.', 'Seorang teman mengajakmu belajar hari ini.', 'Bir arkadaşın seni bugün çalışmaya davet ediyor.', 'Znajomy zaprasza cię dziś do nauki.')}

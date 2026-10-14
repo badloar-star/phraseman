@@ -19,11 +19,12 @@ describe('referral invite share planned locale runtime copy', () => {
     for (const marker of ["'pt-BR': BODY_PT_BR", 'vi: BODY_VI', 'id: BODY_ID', 'tr: BODY_TR', 'pl: BODY_PL']) {
       expect(source).toContain(marker);
     }
-    expect(source).toContain('Bora aprender inglês no Phraseman comigo!');
-    expect(source).toContain('Cùng mình học tiếng Anh trên Phraseman nhé!');
-    expect(source).toContain('Ayo belajar bahasa Inggris bareng di Phraseman!');
-    expect(source).toContain('Phraseman’da benimle İngilizce çalışmaya var mısın?');
-    expect(source).toContain('Chodź uczyć się angielskiego ze mną w Phraseman!');
+    // зачем (D188-следствие, 14.10): приглашают в приложение, где учат любой из пяти языков, — без «английского».
+    expect(source).toContain('Bora aprender idiomas no Phraseman comigo!');
+    expect(source).toContain('Cùng mình học ngoại ngữ trên Phraseman nhé!');
+    expect(source).toContain('Ayo belajar bahasa asing bareng di Phraseman!');
+    expect(source).toContain('Phraseman’da benimle dil çalışmaya var mısın?');
+    expect(source).toContain('Chodź uczyć się języków ze mną w Phraseman!');
   });
 
   it('requires complete localized share labels', () => {

@@ -27,7 +27,7 @@ describe('friend event marker and study modal', () => {
   it('keeps the friend row human and gives study invite only approved primary copy', () => {
     expect(row).toContain('<FriendEventMarker');
     expect(modal).toContain('HybridAlertShell');
-    expect(modal).toContain('Пять минут на английский?');
+    expect(modal).toContain('Пять минут на практику?'); // D188: без названия языка
     expect(modal).toContain('Начать занятие');
     expect(modal).toContain('Не сейчас');
     expect(modal).not.toContain('Одно маленькое занятие');

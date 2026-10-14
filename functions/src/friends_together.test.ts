@@ -252,7 +252,7 @@ describe('friendsNudge', () => {
     expect(docs.get('users/bob/notifications/friends_together_nudge_alice_2026-08-23')).toMatchObject({
       type: 'friend_nudge',
       fromUid: 'alice',
-      text: 'Пять минут на английский?',
+      text: 'Пять минут на практику?',
       nav: {
         kind: 'friend_event',
         actorStableUid: 'alice',
@@ -263,7 +263,7 @@ describe('friendsNudge', () => {
     const pushRequest = (global.fetch as jest.Mock).mock.calls[0]?.[1] as { body?: string } | undefined;
     const pushRows = JSON.parse(String(pushRequest?.body || '[]')) as Array<Record<string, unknown>>;
     expect(pushRows[0]).toMatchObject({
-      title: 'Alice: пять минут английского?',
+      title: 'Alice: пять минут практики?',
       body: 'Одно маленькое занятие.',
       data: expect.objectContaining({
         type: 'friend_nudge',

@@ -66,7 +66,6 @@ const INTENTIONAL_OVERLAY_KEYS_WITHOUT_LITERAL_OWNER = new Set([
   'friendGift', // подарок другу снят в снимке 2.0 (efe19ae9d)
   'levelUp', // модалка уровня удалена, повышение играется на Главной (1b0ee9d52)
   'streakRevive', // восстановление серии убрано (D107, a8abc1d85)
-  'welcomeBack', // ВРЕМЕННО (D193, 14.10): хук Авторизации hooks/use_welcome_back_moment.ts — следующим коммитом, он же снимет пометку
 ]);
 
 type SourceFile = {

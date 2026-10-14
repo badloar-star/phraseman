@@ -96,7 +96,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
               hitSlop={4}
               onPressIn={() => hapticTap()}
               onPress={onToggleSave}
-              style={({ pressed }) => [styles.saveBtn, { backgroundColor: g.opaqueControl }, pressed && styles.savePressed]}
+              style={({ pressed }) => [styles.saveBtn, { backgroundColor: g.buttonFill }, pressed && styles.savePressed]}
             >
               <Ionicons name={saved ? 'bookmark' : 'bookmark-outline'} size={20} color={saved ? g.text : g.secondary} />
             </Pressable>

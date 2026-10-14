@@ -138,7 +138,7 @@ function ExplainSheetHybrid({ visible, onClose, phraseEn, phraseMeaning, lang, o
                 testID="explain-refresh"
                 onPress={state.retry}
                 accessibilityRole="button"
-                style={({ pressed }) => [styles.retryBtn, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.78 }]}
+                style={({ pressed }) => [styles.retryBtn, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.78 }]}
               >
                 <Text style={[styles.retryLabel, { color: glass.text, fontSize: f.body }]}>{aiExplainRefreshLabel(asLang(lang))}</Text>
               </Pressable>
@@ -177,7 +177,7 @@ function ExplainSheetHybrid({ visible, onClose, phraseEn, phraseMeaning, lang, o
             onPress={requestDismiss}
             accessibilityRole="button"
             accessibilityLabel={closeLabel}
-            style={({ pressed }) => [styles.closeCta, { backgroundColor: glass.opaqueControl }, pressed && { opacity: 0.78 }]}
+            style={({ pressed }) => [styles.closeCta, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.78 }]}
           >
             <Text style={[styles.closeCtaLabel, { color: glass.text, fontSize: f.body }]}>{closeLabel}</Text>
           </Pressable>

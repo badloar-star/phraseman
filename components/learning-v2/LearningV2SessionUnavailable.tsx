@@ -57,7 +57,7 @@ function LearningV2SessionUnavailableBase({ title, hint, backLabel, closeLabel, 
           onPress={onClose}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: круглая кнопка без кромки
+            { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g), opacity: pressed ? 0.72 : 1 }, // «Тень» 12.10: круглая кнопка без кромки
           ]}
         >
           <KitGlassLayer radius={21} />

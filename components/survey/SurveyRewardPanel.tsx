@@ -124,7 +124,7 @@ export default function SurveyRewardPanel({
                 <FlowText testID="survey-retry-label" provenance="authored" style={[styles.actionLabel, { color: glass.accentInk, fontSize: f.body }]}>{labels.retry}</FlowText>
               </PressableHybrid>
               {!!onBack && (
-                <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={[styles.action, { backgroundColor: glass.opaqueControl }]} contentStyle={styles.actionContent}>
+                <PressableHybrid testID="survey-back" accessibilityLabel={labels.back} onPress={onBack} withHaptic={false} variant="secondary" style={[styles.action, { backgroundColor: glass.buttonFill }]} contentStyle={styles.actionContent}>
                   <Ionicons name="arrow-back" size={20} color={glass.text} accessibilityElementsHidden />
                   <FlowText testID="survey-back-label" provenance="authored" style={[styles.actionLabel, { color: glass.text, fontSize: f.body }]}>{labels.back}</FlowText>
                 </PressableHybrid>
@@ -145,7 +145,7 @@ export default function SurveyRewardPanel({
                   onPress={() => onFollowUp?.(followUp)}
                   withHaptic={false}
                   variant="secondary"
-                  style={[styles.action, { backgroundColor: glass.opaqueControl }]}
+                  style={[styles.action, { backgroundColor: glass.buttonFill }]}
                   contentStyle={styles.actionContent}
                 >
                   <FlowText

@@ -562,7 +562,7 @@ function SurveySheetContent({
             accessibilityLabel={ctaLabel}
             accessibilityState={{ disabled: ctaDisabled, busy: flow.submitting }}
             accessibilityLiveRegion={flow.submitting ? 'polite' : undefined}
-            style={[styles.cta, { backgroundColor: ctaDisabled ? glass.opaqueControl : glass.cta }]}
+            style={[styles.cta, { backgroundColor: ctaDisabled ? glass.buttonFill : glass.cta }]}
             contentStyle={styles.ctaContent}
           >
             {flow.submitting ? <ActivityIndicator color={glass.secondary} /> : null}

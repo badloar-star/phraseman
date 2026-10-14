@@ -27,7 +27,7 @@ export const RoundButton = memo(function RoundButton({ g, icon, label, onPress, 
       accessibilityLabel={label}
       hitSlop={8}
       onPress={onPress}
-      style={({ pressed }) => [styles.round, { backgroundColor: g.opaqueControl }, pressed && styles.pressed]}>
+      style={({ pressed }) => [styles.round, { backgroundColor: g.buttonFill }, pressed && styles.pressed]}>
       <Ionicons name={icon} size={20} color={g.text} />
       <GlassRim radius={21} />
     </Pressable>
@@ -129,7 +129,7 @@ export const Token = memo(function Token({ g, label, used, onPress }: Readonly<{
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   return (
-    <Pressable disabled={used || !onPress} accessibilityState={{ disabled: !!(used || !onPress) }} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.token, { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }, used && styles.tokenUsed, pressed && styles.pressed]}>
+    <Pressable disabled={used || !onPress} accessibilityState={{ disabled: !!(used || !onPress) }} accessibilityRole="button" onPress={onPress} style={({ pressed }) => [styles.token, { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }, used && styles.tokenUsed, pressed && styles.pressed]}>
       <Text style={[styles.tokenText, { color: g.text }]}>{label}</Text>
     </Pressable>
   );

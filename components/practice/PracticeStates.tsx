@@ -48,7 +48,7 @@ export function PracticeCta({
       style={({ pressed }) => [
         small ? styles.ctaSmall : styles.cta,
         {
-          backgroundColor: disabled ? glass.opaqueControl : glass.cta,
+          backgroundColor: disabled ? glass.buttonFill : glass.cta,
           opacity: disabled ? 0.72 : 1,
           transform: [{ scale: pressed && !disabled ? 0.98 : 1 }],
         },

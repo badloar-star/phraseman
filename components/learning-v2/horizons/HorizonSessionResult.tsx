@@ -148,7 +148,7 @@ export default function HorizonSessionResult({
           onPress={onContinue}
           style={({ pressed }) => [
             styles.close,
-            { backgroundColor: g.opaqueControl, opacity: pressed ? 0.7 : 1 },
+            { backgroundColor: g.buttonFill, opacity: pressed ? 0.7 : 1 },
           ]}
         >
           <Ionicons name="close" size={20} color={g.text} />

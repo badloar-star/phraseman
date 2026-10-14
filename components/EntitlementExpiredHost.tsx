@@ -371,7 +371,7 @@ function EntitlementExpiredHost() {
             accessibilityRole="button"
             accessibilityLabel={tx.invite}
             activeOpacity={0.8}
-            style={[styles.invite, { backgroundColor: glass.opaqueControl }]}
+            style={[styles.invite, { backgroundColor: glass.buttonFill }]}
             onPress={() => {
               navigateAfterModalClose(markShownAndClose, () => {
                 router.push({ pathname: '/referrals' } as never);

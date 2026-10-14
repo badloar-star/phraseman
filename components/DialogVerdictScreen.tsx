@@ -13,7 +13,7 @@
  */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeIn, FadeInDown, ZoomIn } from 'react-native-reanimated';
@@ -30,6 +30,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { soundDirector } from '../modules/audio/sound_director';
 import SkeletonBlock from './SkeletonShimmer';
 import { glassFill } from './GlassSurface';
+import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import DialogPhraseReview from './dialogs/DialogPhraseReview';
 import { useTheme } from './ThemeContext';
 
@@ -89,7 +90,9 @@ export default function DialogVerdictScreen({
   onShowChat,
   onOpenPlus,
 }: DialogVerdictScreenProps) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, liquidGlassThemeId } = useTheme();
+  // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): кнопки действий — токены кнопок темы (ctaFill / buttonFill), зазор между ними 12
+  const glass = useMemo(() => liquidGlassTokens(liquidGlassThemeId), [liquidGlassThemeId]);
   const reduceMotion = useReduceMotion();
   const success = outcome === 'success';
   const neutral = !!neutralClosing;
@@ -854,10 +857,10 @@ export default function DialogVerdictScreen({
                   minHeight: 52,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: t.accent,
+                  backgroundColor: glass.ctaFill,
                 }}
               >
-                <Text style={{ color: t.textOnGold, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Открыть Plus',
                     uk: 'Відкрити Plus',
@@ -881,10 +884,10 @@ export default function DialogVerdictScreen({
                   minHeight: 52,
                   alignItems: 'center',
                   justifyContent: 'center',
-                  backgroundColor: t.accent,
+                  backgroundColor: glass.ctaFill,
                 }}
               >
-                <Text style={{ color: t.textOnGold, fontWeight: '700', fontSize: f.bodyLg }}>
+                <Text style={{ color: glass.ctaInk, fontWeight: '700', fontSize: f.bodyLg }}>
                   {triLang(lang, {
                     ru: 'Ещё раз',
                     uk: 'Ще раз',
@@ -910,11 +913,11 @@ export default function DialogVerdictScreen({
                 minHeight: 52,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: glassFill(t.bgCard, 0.46),
-                marginTop: 10,
+                backgroundColor: glass.buttonFill,
+                marginTop: 12,
               }}
             >
-              <Text style={{ color: t.textPrimary, fontWeight: '700', fontSize: f.bodyLg }}>
+              <Text style={{ color: glass.text, fontWeight: '700', fontSize: f.bodyLg }}>
                 {triLang(lang, {
                   ru: 'К диалогам',
                   uk: 'До діалогів',

@@ -233,7 +233,7 @@ function ReportPackModal({
                     paddingHorizontal: 16,
                     borderRadius: 16,
                     marginBottom: 8,
-                    backgroundColor: active ? glass.selected : glass.opaqueControl,
+                    backgroundColor: active ? glass.selected : glass.buttonFill,
                   }}
                 >
                   {/* макет `.opt2`: радио слева, затем название */}
@@ -279,7 +279,7 @@ function ReportPackModal({
               testID="report-pack-cancel"
               onPress={requestDismiss}
               accessibilityRole="button"
-              style={{ flex: 1, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.opaqueControl }}
+              style={{ flex: 1, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.buttonFill }}
             >
               <Text style={{ color: glass.text, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', en: 'Cancel', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
@@ -291,7 +291,7 @@ function ReportPackModal({
               onPress={() => { void handleSend(requestDismiss); }}
               accessibilityRole="button"
               accessibilityState={{ disabled: !canSend }}
-              style={{ flex: 1.4, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: canSend ? glass.cta : glass.opaqueControl }}
+              style={{ flex: 1.4, minHeight: 48, borderRadius: 24, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: canSend ? glass.cta : glass.buttonFill }}
             >
               <Text style={{ color: canSend ? glass.ctaInk : glass.mutedText, fontWeight: '700', fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', en: 'Send report', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}

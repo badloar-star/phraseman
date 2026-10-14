@@ -154,7 +154,7 @@ export default function LearningV2WordPocketOverlayV1({
                 <Text style={[sx.word, { color: g.text }]}>{card.en}</Text>
                 <Text style={[sx.meaning, { color: g.secondary }]}>{meaning}</Text>
               </Pressable>
-              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak(card.en)} hitSlop={4} onPress={() => onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) })} style={[sx.wordSpeak, { backgroundColor: g.opaqueControl }]}>
+              <Pressable accessibilityRole="button" accessibilityLabel={copy.speak(card.en)} hitSlop={4} onPress={() => onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage) })} style={[sx.wordSpeak, { backgroundColor: g.buttonFill }]}>
                 <Ionicons name="volume-high" size={18} color={g.text} />
               </Pressable>
               <View style={sx.wordTool}><AddToFlashcard en={card.en} ru={card.ru} uk={card.uk} es={card.es} sourceLocales={card.sourceLocales} source="lesson" sourceId={card.sourceId} size={22} /></View>

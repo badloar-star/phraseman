@@ -78,7 +78,7 @@ function FriendStudyInviteModal({ visible, friendCoinRank = null, onStart, onDec
           accessibilityLabel={L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}
           onPress={onDecline}
           wrapStyle={styles.secondaryWrap}
-          style={[styles.button, styles.secondary, { backgroundColor: glass.opaqueControl }]} // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (кнопка «Не сейчас»)
+          style={[styles.button, styles.secondary, { backgroundColor: glass.buttonFill }]} // зачем (владелец 12.10, стиль «Тень»): без обводки — отделяют тон и малая внешняя тень (кнопка «Не сейчас»)
         >
           <Text style={[styles.buttonText, { color: glass.text, fontSize: 16 * textScale }]}>
             {L('Не сейчас', 'Не зараз', 'Not now', 'Ahora no', 'Agora não', 'Không phải bây giờ', 'Jangan sekarang', 'Şimdi değil', 'Nie teraz')}

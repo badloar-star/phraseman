@@ -248,7 +248,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
                     accessibilityState={{ selected }}
                     style={[
                       styles.reasonRow,
-                      { borderColor: selected ? `${glass.cta}66` : glass.line, backgroundColor: selected ? glass.opaqueControl : glass.opaqueCard },
+                      { borderColor: selected ? `${glass.cta}66` : glass.line, backgroundColor: selected ? glass.buttonFill : glass.opaqueCard },
                     ]}
                   >
                     <Ionicons

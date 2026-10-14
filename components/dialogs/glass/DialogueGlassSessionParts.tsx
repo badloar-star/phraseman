@@ -138,7 +138,7 @@ export function DialogueGlassReplyAction({
       style={({ pressed }) => [
         styles.replyAction,
         {
-          backgroundColor: active ? glass.selected : glass.opaqueControl,
+          backgroundColor: active ? glass.selected : glass.buttonFill,
           boxShadow: nestedBoxShadow(glass), // зачем (стиль «Тень»): кнопка под репликой без кромки — малая тень
           opacity: pressed ? 0.7 : 1,
         },
@@ -170,7 +170,7 @@ export function DialogueGlassBetterPhrasing({
       accessibilityRole="button"
       accessibilityLabel={label}
       hitSlop={7}
-      style={({ pressed }) => [styles.fixButton, { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.7 : 1 }]}
+      style={({ pressed }) => [styles.fixButton, { backgroundColor: glass.buttonFill, opacity: pressed ? 0.7 : 1 }]}
     >
       <Ionicons name="create-outline" size={15} color={glass.secondary} />
       <Text maxFontSizeMultiplier={1.2} style={[styles.fixButtonText, { color: glass.secondary }]}>{label}</Text>

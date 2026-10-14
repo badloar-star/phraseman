@@ -27,7 +27,7 @@ export default function PhraseBuilderQuestion({ task, selectedTokenIds, onChange
               accessibilityRole="button"
               onPress={() => onChange(selectedTokenIds.filter((_id, selectedIndex) => selectedIndex !== index))}
               accessibilityLabel={`${token.text}, remove`}
-              style={({ pressed }) => [styles.tile, { backgroundColor: glass.opaqueControl, opacity: pressed ? 0.8 : 1 }]}
+              style={({ pressed }) => [styles.tile, { backgroundColor: glass.buttonFill, opacity: pressed ? 0.8 : 1 }]}
             >
               <Text style={[styles.tileText, { color: glass.text }]}>{token.text}</Text>
             </Pressable>

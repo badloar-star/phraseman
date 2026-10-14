@@ -300,7 +300,7 @@ export default function YoutubeVideoPhrases({ videoId, packLanguage = 'en', sour
             style={({ pressed }) => [
               styles.sheetCta,
               // зачем (Тень 12.10): контурная `.cta.gh` («сохранено») — плашка с малой тенью вместо контура; главная — цветная тень действия
-              selectedSaved ? { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) } : { backgroundColor: glass.cta, boxShadow: actionBoxShadow(glass) },
+              selectedSaved ? { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) } : { backgroundColor: glass.cta, boxShadow: actionBoxShadow(glass) },
               { opacity: pressed ? 0.82 : 1 },
             ]}
           >

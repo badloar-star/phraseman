@@ -92,7 +92,7 @@ function StreakRuleExplainerBase({ lang }: Readonly<{ lang: Lang }>) {
         testID="streak-rule-explainer-ok"
         accessibilityRole="button"
         onPress={dismiss}
-        style={({ pressed }) => [{ alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', paddingHorizontal: 18, borderRadius: 14, backgroundColor: g.opaqueControl }, pressed && { opacity: 0.8 }]}
+        style={({ pressed }) => [{ alignSelf: 'flex-start', minHeight: 44, justifyContent: 'center', paddingHorizontal: 18, borderRadius: 14, backgroundColor: g.buttonFill }, pressed && { opacity: 0.8 }]}
       >
         <Text style={{ color: g.text, fontSize: f.body, fontWeight: '700' }}>{copy.ok}</Text>
       </Pressable>

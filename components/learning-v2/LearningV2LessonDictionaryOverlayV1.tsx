@@ -290,7 +290,7 @@ export default function LearningV2LessonDictionaryOverlayV1({
             hitSlop={4}
             style={({ pressed }) => [
               sx.speak,
-              { backgroundColor: active || pressed ? g.selected : g.opaqueControl },
+              { backgroundColor: active || pressed ? g.selected : g.buttonFill },
             ]}
           >
             <Ionicons name={active ? "volume-high" : "volume-medium"} size={18} color={g.text} />

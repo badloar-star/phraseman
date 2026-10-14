@@ -290,7 +290,7 @@ function ReleaseNotesModal({
               accessibilityRole="button"
               accessibilityLabel={displayTx.close}
               hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-              style={[styles.closeButton, { backgroundColor: announcementGlass.opaqueControl }]}
+              style={[styles.closeButton, { backgroundColor: announcementGlass.buttonFill }]}
             >
               <Ionicons name="close" size={22} color={announcementGlass.text} />
             </Pressable>

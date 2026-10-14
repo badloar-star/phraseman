@@ -167,7 +167,7 @@ export const PanelCta = memo(function PanelCta({ g, label, onPress, testID, disa
         styles.cta,
         flex && styles.ctaFlex,
         ghost
-          ? { backgroundColor: g.opaqueControl, boxShadow: nestedBoxShadow(g) }
+          ? { backgroundColor: g.buttonFill, boxShadow: nestedBoxShadow(g) }
           : { backgroundColor: g.accent, boxShadow: actionBoxShadow(g) },
         disabled && styles.ctaDisabled,
         pressed && styles.pressed,

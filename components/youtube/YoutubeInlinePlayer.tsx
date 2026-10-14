@@ -323,7 +323,7 @@ export default function YoutubeInlinePlayer({
             accessibilityRole="button"
             accessibilityLabel={copy.close}
             onPress={onClose}
-            style={[styles.roundButton, { backgroundColor: glass.opaqueControl }]}
+            style={[styles.roundButton, { backgroundColor: glass.buttonFill }]}
           >
             <Ionicons name="close" size={22} color={glass.text} />
           </TouchableOpacity>

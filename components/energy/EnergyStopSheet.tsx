@@ -175,7 +175,7 @@ function EnergyStopSheet({ visible, onExit, onResume, paywallContext = 'no_energ
               accessibilityLabel={exit}
               onPress={leave}
               activeOpacity={0.7}
-              style={[styles.exit, { backgroundColor: g.opaqueControl }]}
+              style={[styles.exit, { backgroundColor: g.buttonFill }]}
             >
               <Text style={[styles.exitLabel, { color: g.text }]}>{exit}</Text>
             </TouchableOpacity>

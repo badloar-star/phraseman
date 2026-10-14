@@ -541,7 +541,7 @@ function DeleteAccountConfirmModal({ visible, onRequestClose, motionVariant = 'h
                 borderRadius: 24,
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: deleteConfirmMatches ? t.wrongBg : glass.opaqueControl,
+                backgroundColor: deleteConfirmMatches ? t.wrongBg : glass.buttonFill,
                 overflow: 'hidden',
                 opacity: deleting ? 0.78 : deleteConfirmMatches ? (pressed ? 0.82 : 1) : 0.45,
               })}

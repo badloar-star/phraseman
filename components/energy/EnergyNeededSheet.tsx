@@ -182,7 +182,7 @@ function EnergyNeededSheet({ visible, onWait, onPlus, onRestored, required = 1 }
               accessibilityLabel={wait}
               onPress={() => { hapticTap(); DebugLogger.info(TAG, 'тап «Подожду»'); onWait(); }}
               activeOpacity={0.7}
-              style={[styles.wait, { backgroundColor: g.opaqueControl }]}
+              style={[styles.wait, { backgroundColor: g.buttonFill }]}
             >
               <Text style={[styles.waitLabel, { color: g.text }]}>{wait}</Text>
             </TouchableOpacity>

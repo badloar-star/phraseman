@@ -15,8 +15,8 @@
 //
 // СПЕРВА ЛОГИ: префикс [SPIRE] — вход, откуда данные, причина каждого раннего выхода.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import React, { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Modal, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { triLang } from '../../constants/i18n';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -49,6 +49,11 @@ import SpireFriendsRow from './SpireFriendsRow';
 import SpireLockedState from './SpireLockedState';
 import SpirePodium from './SpirePodium';
 import SpireResultPanel from './SpireResultPanel';
+import { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
+import { useMomentsV3Enabled } from '../streak/moments/use_moments_v3_flag';
+// зачем (m06/m07, владелец 14.10, за флагом moments_v3): итог ступени / этажа / вершины — отдельный экран-момент вместо плашки у дока; грузится лениво, только когда есть итог и флаг включён
+const SpireStepResultMoment = lazy(() => import('./moments/SpireStepResultMoment'));
+const SpireFloorMoment = lazy(() => import('./moments/SpireFloorMoment'));
 import SpireHomeSkeleton from './SpireHomeSkeleton';
 import { spireTowerWindowHeight } from './spire_tower_window';
 import SpireStepScreen from './SpireStepScreen';
@@ -239,6 +244,9 @@ export default function SpireHomeScreen() {
     if (!preview) void spireMarkTourSeen();
   }, [preview]);
   const climb = useCallback(() => { void game.startStep(); }, [game]);
+  // зачем (m06/m07): при включённом moments_v3 итог passed/failed/floor/summit рисует экран-момент; save_failed и выключенный флаг — прежняя плашка SpireResultPanel (поведение без флага не меняется)
+  const momentsV3 = useMomentsV3Enabled();
+  const momentOutcome = momentsV3 && game.outcome !== null && game.outcome.kind !== 'save_failed';
 
   const subtitle = useMemo(() => {
     const tier = devWeekResult?.newTier ?? game.tier ?? week?.tier ?? null; // зачем (координатор 13.10): в кадре spireWeek= шапка говорит о новой лиге, как карточка
@@ -340,7 +348,7 @@ export default function SpireHomeScreen() {
         }}
       >
         <LinearGradient pointerEvents="none" colors={[`${bgBottom}00`, `${bgBottom}FF`, `${bgBottom}FF`]} locations={[0, 0.32, 1]} style={[s.scrim, { bottom: -Math.max(40, bottomPad - 24) }]} /> {/* зачем (макет `.bp.scrim`, Сверка 11.10): затухание вверх, под кнопкой фон сплошной и в цвет низа градиента темы */}
-        {game.outcome ? (
+        {game.outcome && !momentOutcome ? (
           <SpireResultPanel
             lang={lang}
             outcome={game.outcome}
@@ -355,6 +363,19 @@ export default function SpireHomeScreen() {
           <SpireClimbDock lang={lang} ready={climbReady} busy={game.starting} premium={hasPremiumAccess} block={game.startBlock} onClimb={climb} />
         )}
       </View>
+      {momentOutcome && game.outcome ? (
+        <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={game.dismissOutcome}>
+          <SheetSwipeRoot>
+            <Suspense fallback={null}>
+              {game.outcome.kind === 'passed' || game.outcome.kind === 'failed' ? (
+                <SpireStepResultMoment lang={lang} outcome={game.outcome} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onAgain={climb} onLater={game.dismissOutcome} />
+              ) : (
+                <SpireFloorMoment lang={lang} outcome={game.outcome} coins={config.coins} coinRank={myCoinRank} busy={game.starting} onNext={climb} onLater={game.dismissOutcome} />
+              )}
+            </Suspense>
+          </SheetSwipeRoot>
+        </Modal>
+      ) : null}
       {game.uid && game.stableId ? (
         <SpireStepScreen
           lang={lang}

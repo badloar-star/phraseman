@@ -25,6 +25,8 @@ jest.mock('react-native-reanimated', () => {
 });
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn(), hapticMediumImpact: jest.fn(), hapticHeavyImpact: jest.fn() }));
 jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: jest.fn() }));
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ playUnlessRecentlyPlayed: jest.fn() }));
+jest.mock('../components/streak/moments/StreakConfetti', () => ({ __esModule: true, default: 'StreakConfetti' }));
 jest.mock('../modules/spire/tower_skins', () => ({ spireSkinForTier: () => ({ id: 'mock-skin' }) }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));

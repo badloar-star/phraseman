@@ -10,6 +10,8 @@
 //   state=back — «С возвращением» (m21): моки образца — 9 дней, 412 фраз, ранг &rank=N (5), энергия полная, 5 карточек; state=rankenough — «Хватает на ранг N» (m14A): &rank=N текущий 0…18 (5), &coins=N баланс (7004)
 //   state=down&awake=1 — «Новая неделя» после тапа (финальный кадр эталона m03)
 //   state=steppass | stepfail | floor | summit — m06 «Ступень пройдена / не пройдена» и m07 «Этаж пройден / Вершина» на моках образца (&tier=N лига для башни, &rank=N ранг монеты)
+//   state=rise | overtake | lastchance — m05 «Позиция выросла / обогнали / последний шанс» на моках образца (lastchance: &gap=N не хватает до топ-5, по умолчанию 60)
+//   state=fonts — полоса весов Inter 400–900 для решения владельца по шрифту 800 (Темы; на Android 246 мест рисуются как 700)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную; в стор-сборке файл исключён регуляркой router.ctx.js.
@@ -27,6 +29,10 @@ import SpireFloorMoment from '../components/spire/moments/SpireFloorMoment';
 import SpireStepResultMoment from '../components/spire/moments/SpireStepResultMoment';
 import type { SpireStepOutcome } from './spire/use_spire_game';
 import type { SpireCoinsConfig } from '../modules/spire/config_contract';
+import SpireLastChanceSheet from '../components/spire/moments/SpireLastChanceSheet';
+import SpireOvertakeToast from '../components/spire/moments/SpireOvertakeToast';
+import SpirePositionRiseMoment from '../components/spire/moments/SpirePositionRiseMoment';
+import FontWeightStrip from '../components/dev/FontWeightStrip';
 import MomentDown from '../components/spire/moments/MomentDown';
 import MomentPromotion, { type MomentRoomRow } from '../components/spire/moments/MomentPromotion';
 import MomentStay from '../components/spire/moments/MomentStay';
@@ -35,10 +41,19 @@ import TodayRings from '../components/streak/moments/TodayRings';
 import { STREAK_MILESTONES, isStreakMilestone, type StreakMilestone } from '../components/streak/moments/streak_milestones';
 import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from './config';
 
-const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit'] as const;
+const STATES = ['promo', 'stay', 'down', 'streak', 'rings', 'back', 'rankenough', 'steppass', 'stepfail', 'floor', 'summit', 'rise', 'overtake', 'lastchance', 'fonts'] as const;
 type PreviewState = (typeof STATES)[number];
 const isState = (v: unknown): v is PreviewState => typeof v === 'string' && (STATES as readonly string[]).includes(v);
 const noop = (): void => undefined;
+// моки m05 (образец ROOM2): «Ты» на 6-м месте поднимается на 5-е, соперник «Ира» обгоняет на 30 монет, до итога 3:12:40, энергия через 9:40, до топ-5 — 60
+const RISE_ROWS: readonly MomentRoomRow[] = [
+  { uid: 'p1', name: 'Марк', coinRank: 12, coins: 610, isMe: false },
+  { uid: 'p2', name: 'Ира', coinRank: 7, coins: 580, isMe: false },
+  { uid: 'p3', name: 'Соня', coinRank: 8, coins: 520, isMe: false },
+  { uid: 'p4', name: 'Олег', coinRank: 4, coins: 500, isMe: false },
+  { uid: 'p6', name: 'Лена', coinRank: 9, coins: 450, isMe: false },
+  { uid: 'me', name: 'Ты', coinRank: 5, coins: 440, isMe: true },
+];
 // моки итога ступени (m06/m07): числа образца — 10 из 10, 1:12 из 2:00, ступень 7 на этаже 4, этаж 4 = 40 монет (10 × N), вершина +200
 const MOCK_COINS = { perStep: 10, perFloorPerLevel: 10, guardianMultiplier: 2, summitBonus: 200 } as unknown as SpireCoinsConfig;
 const mockOutcome = (kind: SpireStepOutcome['kind'], tier: number): SpireStepOutcome => ({
@@ -112,6 +127,16 @@ function Inner() {
         {state === 'floor' || state === 'summit' ? (
           <SpireFloorMoment key={key} lang={lang} outcome={mockOutcome(state, tier)} coins={MOCK_COINS} coinRank={rank} onNext={noop} onLater={noop} />
         ) : null}
+        {state === 'rise' ? (
+          <SpirePositionRiseMoment key={key} lang={lang} rows={RISE_ROWS} fromIndex={5} toIndex={4} coinsGained={10} onPlay={noop} onLater={noop} />
+        ) : null}
+        {state === 'overtake' ? (
+          <SpireOvertakeToast key={key} lang={lang} rivalName="Ира" rivalCoinRank={7} myCoinRank={rank} gapCoins={30} onPlay={noop} onDismiss={noop} autoDismissMs={600000} />
+        ) : null}
+        {state === 'lastchance' ? (
+          <SpireLastChanceSheet key={key} lang={lang} visible weekEndsAtMs={Date.now() + (3 * 3600 + 12 * 60 + 40) * 1000} energyReadyAtMs={Date.now() + (9 * 60 + 40) * 1000} gapCoins={int(params.gap, 60, 0, 99999)} onPlus={noop} onClose={noop} />
+        ) : null}
+        {state === 'fonts' ? <FontWeightStrip /> : null}
         {params.selector === '1' ? (
           <View style={s.bar} pointerEvents="box-none">
             {STATES.map((st) => (

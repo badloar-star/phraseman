@@ -37,6 +37,7 @@ jest.mock('react-native-reanimated', () => {
 });
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn(), hapticMediumImpact: jest.fn() }));
 jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: jest.fn() }));
+jest.mock('../modules/sound_v2/legacy_bridge', () => ({ playUnlessRecentlyPlayed: jest.fn() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
 jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: (props: { say?: string }) => (props.say ? require('react').createElement('Text', null, props.say) : null) }));

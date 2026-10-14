@@ -88,7 +88,7 @@ const PHASE_END: Phase = { act: 3, zone: true, topLine: true, cheer: true, tower
 
 type RowProps = Readonly<{ row: MomentRoomRow; index: number; place: number; flicker: boolean; rise: boolean; onFirstLayout?: (e: LayoutChangeEvent) => void; testID: string }>;
 
-const LadderRow = memo(function LadderRow({ row, index, place, flicker, rise, onFirstLayout, testID }: RowProps) {
+export const LadderRow = memo(function LadderRow({ row, index, place, flicker, rise, onFirstLayout, testID }: RowProps) {
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const op = useSharedValue(1);

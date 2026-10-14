@@ -5,7 +5,7 @@
 // на следующем этаже — на 0,6 с башня перерисовывается и окна следующего этажа загораются, счётчик монет за этаж бежит 0,9 с, монета выглядывает; заголовок «Впереди этаж N» / «Впереди Страж», подпись как в коде;
 // «На N этаж» (главная) и «Передохнуть». Вершина: «Вершина», монета радуется с сердцами, «15 этаж», «+N монет за вершину» (число из config/spire_v1.coins.summitBonus), три залпа фейерверка с дрожью, «Дальше».
 // Правило «10×N» и награда за вершину — из конфига сервера (spireFloorCoinsOf / summitBonus), «+200» в коде не живёт. Без карточки шеринга (D76 — только итоги лиги). Компонент ничего не пишет:
-// «На N этаж» / «Дальше» зовут прежний подъём (climb), «Передохнуть» — dismissOutcome. Конфетти образца пока нет (в работе у серии, общий компонент не вынесен) — отмечено в отчёте.
+// «На N этаж» / «Дальше» зовут прежний подъём (climb), «Передохнуть» — dismissOutcome. Конфетти — общий StreakConfetti (серия), 90 штук на третьем залпе.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -16,7 +16,9 @@ import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
 import { spireSkinForTier } from '../../../modules/spire/tower_skins';
 import { hapticHeavyImpact, hapticMediumImpact, hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
+import { playUnlessRecentlyPlayed } from '../../../modules/sound_v2/legacy_bridge';
 import MomentCoin from '../../moments/MomentCoin';
+import StreakConfetti from '../../streak/moments/StreakConfetti';
 import { V2Button } from '../../v2/V2Kit';
 import SpireRankCoin from '../SpireRankCoin';
 import SpireTowerSvg from '../SpireTowerSvg';
@@ -68,6 +70,8 @@ function FloorView({ lang, outcome, coins, coinRank, onNext, onLater, busy, test
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] этаж ${outcome.floorBefore} пройден → ${next}, монеты=${reward} страж=${String(guardNext)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    // зачем: игра уже сыграла 'floor' мгновенно — момент повторит только если прошло > 400 мс
+    playUnlessRecentlyPlayed('floor', 'SpireFloorMoment');
     if (reduceMotion) return undefined;
     const T = FLOOR_MOMENT_TIMELINE;
     const timers: ReturnType<typeof setTimeout>[] = [];
@@ -125,22 +129,27 @@ function SummitView({ lang, coins, coinRank, onNext, busy, testID }: SpireFloorM
   const rumble = useMomentRumble();
   const [cheer, setCheer] = useState(reduceMotion);
   const [fire, setFire] = useState(false);
+  const [confetti, setConfetti] = useState(false);
 
   useEffect(() => {
     console.log(`[FLOOR-MOMENT] вершина: бонус=${coins.summitBonus} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    // зачем: игра уже сыграла 'summit' мгновенно — момент повторит только если прошло > 400 мс
+    playUnlessRecentlyPlayed('summit', 'SpireFloorMoment');
     if (reduceMotion) return undefined;
     const T = FLOOR_MOMENT_TIMELINE;
     const timers: ReturnType<typeof setTimeout>[] = [];
     timers.push(setTimeout(() => { setCheer(true); playEvent('correct'); void hapticSuccess(); }, T.cheer));
-    timers.push(setTimeout(() => { setFire(true); rumble.play(); playEvent('floor'); void hapticHeavyImpact(); }, T.volley1));
+    timers.push(setTimeout(() => { setFire(true); rumble.play(); void hapticHeavyImpact(); }, T.volley1));
     timers.push(setTimeout(() => { void hapticMediumImpact(); }, T.volley2));
-    timers.push(setTimeout(() => { void hapticMediumImpact(); }, T.volley3));
+    // залп 3 + конфетти цветов темы (образец: confetti n=90 на 1,7 с; общий компонент серии)
+    timers.push(setTimeout(() => { setConfetti(true); void hapticMediumImpact(); }, T.volley3));
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: сценарий играет один раз на показ
   }, []);
 
   return (
     <Animated.View style={[s.fill, rumble.style]}>
+      <StreakConfetti fire={confetti} n={90} />
       <View style={s.body}>
         <Animated.Text entering={reduceMotion ? undefined : FadeIn} style={[s.ov, { color: p.textSecondary }]}>{spireText(lang, 'summit').toUpperCase()}</Animated.Text>
         <View style={s.summitCoin}>

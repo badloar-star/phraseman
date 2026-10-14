@@ -17,6 +17,7 @@ import type { SpireStepOutcome } from '../../../app/spire/use_spire_game';
 import type { SpireCoinsConfig } from '../../../modules/spire/config_contract';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
+import { playUnlessRecentlyPlayed } from '../../../modules/sound_v2/legacy_bridge';
 import MomentCoin from '../../moments/MomentCoin';
 import { V2Button } from '../../v2/V2Kit';
 import { spireClock, spireGameText } from '../spire_game_strings';
@@ -64,6 +65,8 @@ function PassView({ lang, outcome, coins, coinRank, onAgain, busy, testID }: Spi
 
   useEffect(() => {
     console.log(`[STEP-MOMENT] пройдена: время=${outcome.usedMs}/${outcome.budgetMs} ошибок=${outcome.errors} ступень=${outcome.local.stepInFloor}/${stairsN} монеты=${coins.perStep} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
+    // зачем: игра уже сыграла 'step' мгновенно — момент повторит только если прошло > 400 мс
+    playUnlessRecentlyPlayed('step', 'SpireStepResultMoment');
     if (reduceMotion) return undefined;
     const T = STEP_MOMENT_TIMELINE;
     const timers: ReturnType<typeof setTimeout>[] = [];

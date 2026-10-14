@@ -63,11 +63,12 @@ describe('sign-in warm path contract (latency fix 2026-08-22)', () => {
     expect(slice).toContain("'authMergeStableAccounts'");
     expect(slice).toContain('AUTH_WARMUP_THROTTLE_MS');
     // ошибка прогрева не глушится молча (правило «ни одного немого catch»), но и не мешает входу.
-    // [ACC-SPEED] (14.10): ответ прогрева пишется в журнал, отказ — по-прежнему через swallowError с причиной.
     expect(slice).toContain("swallowError('cloud_sync:warmAuthSignInCallables')");
-    expect(slice).toContain('[ACC-SPEED] warm done fn=${name}');
     expect(slice).toContain('[ACC-SPEED] warm skip source=${source} reason=throttled');
-    expect(slice).toContain('{ warmup: true }');
+    // 14.10 (прогон №5, лог Cloud Run): прогрев — обычным fetch, мимо однопоточной очереди RNFirebase callable;
+    // итог каждого — [WARM-FETCH] в app/auth_warm_fetch.ts. callable() в прогреве больше нет.
+    expect(slice).toContain('warmCallableViaFetch(name, source)');
+    expect(slice).not.toContain('callable<');
   });
 
   test('warm ping fires from both sign-in surfaces', () => {

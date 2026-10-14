@@ -319,6 +319,7 @@ import {
   mergeSwipeMemoryRestoreValue,
   type CustomCardsMergeStats,
 } from './flashcards/restore_merge';
+import { warmCallableViaFetch } from './auth_warm_fetch'; // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -2171,17 +2172,12 @@ export function warmAuthSignInCallables(source = 'unknown'): void {
   lastAuthWarmupAtMs = nowMs;
   console.log(`[ACC-SPEED] warm start source=${source}`); // guard-ok: старт прогрева
   const names = ['authEnsureStableLink', 'authStampAnonOwnership', 'authMergeStableAccounts'];
+  // зачем (координатор 14.10, прогон №5 + лог Cloud Run): через callable() прогревы вставали в ОДНОПОТОЧНУЮ очередь RNFirebase
+  // (firebase.json android_task_executor_maximum_pool_size: 0 — инвариант утечки потоков, не трогаем) и приходили на сервер
+  // по одному: 13,3 / 22,4 / 32,4 с, а реальные вызовы входа ждали за ними. Обычный fetch идёт мимо очереди — параллельно.
+  // Итог каждого — строка [WARM-FETCH]; функция никогда не бросает.
   for (const name of names) {
-    try {
-      const fn = callable<{ warmup: true }, { warm?: boolean }>(name);
-      void fn({ warmup: true }).then(
-        (res) => console.log(`[ACC-SPEED] warm done fn=${name} warm=${String(res?.data?.warm === true)} ms=${Date.now() - nowMs}`), // guard-ok: итог прогрева
-        swallowError('cloud_sync:warmAuthSignInCallables'),
-      );
-    } catch (e) {
-      // прогрев best-effort
-      DebugLogger.error('cloud_sync:fn', e instanceof Error ? e : new Error(String(e)), 'warning');
-    }
+    void warmCallableViaFetch(name, source).catch(swallowError('cloud_sync:warmAuthSignInCallables'));
   }
 }
 

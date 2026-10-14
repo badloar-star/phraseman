@@ -76,17 +76,12 @@ export default function DevStateRoute() {
         console.warn('[DEV-STATE] route: replace через 300 мс →', applied.next, since()); // guard-ok: трассировка
         setTimeout(() => {
           try {
-            // зачем (координатор 14.10, зонд [PAYWALL-CLOSE-FREEZE]: стек [(tabs),*(tabs)]): replace поверх dev_state ставил ВТОРУЮ копию
-            // группы вкладок, нижняя оставалась замороженной — в прогонах это давало ложные «зависания». dismissTo снимает dev_state и
-            // ведёт на уже открытый маршрут (вкладку), а если его в стеке нет — expo-router сам делает replace.
+            // зачем (Сверка 14.10 21:28, регресс): dismissTo снимал dev_state, но НЕ переключал вкладку кастомного перелистывателя
+            // (next=/(tabs)/settings → оставалась прежняя вкладка) и ломал DEV_LINKS. Возвращён replace; вторая копия (tabs) в стеке после
+            // него — известный артефакт тестового входа (у пользователей его нет), чинится отдельно по логам. canDismiss пишем для разбора.
             const canDismissNow = typeof router.canDismiss === 'function' ? router.canDismiss() : false;
-            if (canDismissNow && typeof router.dismissTo === 'function') {
-              router.dismissTo(applied.next as never);
-              console.warn('[DEV-STATE] route: dismissTo вызван (без второй копии вкладок) →', applied.next, `canDismiss=${String(canDismissNow)}`); // guard-ok: трассировка
-            } else {
-              router.replace(applied.next as never);
-              console.warn('[DEV-STATE] route: replace вызван →', applied.next, `canDismiss=${String(canDismissNow)}`); // guard-ok: трассировка
-            }
+            router.replace(applied.next as never);
+            console.warn('[DEV-STATE] route: replace вызван →', applied.next, `canDismiss=${String(canDismissNow)} (возможна вторая копия вкладок — артефакт dev)`); // guard-ok: трассировка
             // зачем (№18, paywall-gap-011…013): действия «после перехода» (тост) — когда экран `next` уже открывается, а не по таймеру от шага
             setTimeout(() => runAfterDevStateRouteActions('replaced'), 900);
           } catch (error) {

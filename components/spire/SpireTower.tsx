@@ -21,7 +21,8 @@ import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
 import { logSpireLayout, roundLayout } from './spire_layout_log';
 import { SPIRE_WINDOW_MAX } from './spire_tower_window';
-import { spireCrownTopY, spireWindowScrollY } from './spire_tower_crown';
+import { SPIRE_CROWN_RISE, spireCrownTopY, spireWindowScrollY } from './spire_tower_crown';
+import { spireTowerHeadroom } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT, SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY, type SpireRival } from './spire_tower_model';
 
 const WINDOW_HEIGHT = SPIRE_WINDOW_MAX;
@@ -131,6 +132,9 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // зачем (строка 25 R1_BACKLOG): высота окна может меняться после измерения дока; прокрутка к этажу берёт актуальную из ref, не пересоздавая scrollToFloor
   const windowHeightRef = useRef(windowHeight);
   windowHeightRef.current = windowHeight;
+  // зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): запас над верхним этажом считается из границы башни ЭТОЙ лиги и состояния (ореол ×2.6 на вершине);
+  // значение обновляется ниже, когда известен наряд, а прокрутка берёт актуальное из ref.
+  const headroomRef = useRef<number>(SPIRE_CROWN_RISE);
 
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const next = Math.round(e.nativeEvent.layout.width);
@@ -147,7 +151,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
     const cy = (fl.y + fl.h / 2) * scale;
     const wh = windowHeightRef.current;
     // зачем (координатор 13.10, №25б): на 14–15 этаже окно прижимается к верху башни, чтобы конус и навершие были видны (свой этаж при этом остаётся в окне)
-    const crownTopY = spireCrownTopY(SPIRE_TOWER_GEOM.top, scale);
+    const crownTopY = spireCrownTopY(SPIRE_TOWER_GEOM.top, scale, headroomRef.current);
     // dev_state?spireScroll=top: к началу сцены (конус и навершие в кадре) для Сверки; в стор-сборке геттер всегда null
     const devTop = getDevSpireScrollOverride() === 'top';
     const y = devTop ? 0 : spireWindowScrollY({ cy, windowH: wh, crownTopY, floorHalf: (fl.h / 2) * scale, nearTop: floor !== null && floor >= SPIRE_FLOOR_COUNT - 1 });
@@ -219,6 +223,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
   // dev_state?spireTier=N подменяет лигу для кадров Сверки (в стор-сборке всегда null); неделя и комната не меняются
   const devTier = getDevSpireTierOverride();
   const skin = useMemo(() => spireSkinForTier(devTier ?? tier), [devTier, tier]);
+  headroomRef.current = spireTowerHeadroom(skin, myFloor === SPIRE_FLOOR_COUNT);
   // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): небо, звёзды, облака, земля и подписи — из токенов темы; башня — наряд лиги
   const scene = useSpireScene();
   const label = useMemo(

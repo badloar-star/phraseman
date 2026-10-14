@@ -10,8 +10,12 @@
 /** От верха верхнего этажа до верха навершия с запасом: барабан 34 + конус 168 + навершие/свечение 36 (см. Crown в SpireTowerSvg.tsx). */
 export const SPIRE_CROWN_RISE = 34 + 168 + 36;
 
-/** Сколько dp навершия можно срезать, чтобы свой этаж влез в узкое окно. */
-export const SPIRE_FINIAL_SLACK = 12;
+/**
+ * Сколько dp навершия можно срезать, чтобы свой этаж влез в узкое окно.
+ * зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): допуск снят — статичные показы (начальное положение, автоскролл «Ты здесь» на вершине) обязаны
+ * показывать башню целиком, с ореолом. Было 12.
+ */
+export const SPIRE_FINIAL_SLACK = 0;
 
 export type SpireWindowScrollInput = Readonly<{
   /** Центр своего этажа в координатах содержимого, dp. */
@@ -36,13 +40,18 @@ export function spireWindowScrollY(p: SpireWindowScrollInput): number {
   for (const target of [0, p.crownTopY]) {
     if (p.cy + p.floorHalf <= target + p.windowH) return Math.min(centered, target);
   }
-  // свой этаж (у вершины он выше обычного: Страж) чуть не влез — низ этажа у низа окна, если навершие при этом режется не больше допуска
+  // зачем (закон владельца 14.10): допуск на срез навершия снят. Окно слишком низкое, чтобы вместить и верх башни с ореолом, и свой этаж, — свой этаж остаётся виден,
+  // низ этажа у низа окна: над ним показано максимум башни (прежняя центровка срезала её целиком). Окно ниже нужного — остаточный срез сверху, он пишется в журнал [SPIRE-DOCK-INSET].
+  // (старый комментарий ниже: свой этаж (у вершины он выше обычного: Страж) чуть не влез — низ этажа у низа окна, если навершие при этом режется не больше допуска
   const bottomAligned = Math.max(0, p.cy + p.floorHalf - p.windowH);
-  if (bottomAligned <= p.crownTopY + SPIRE_FINIAL_SLACK) return Math.min(centered, bottomAligned);
-  return centered;
+  return Math.min(centered, bottomAligned);
 }
 
-/** Верх навершия в координатах содержимого, dp: верх верхнего этажа минус подъём кровли, не выше 0. */
-export function spireCrownTopY(topFloorY: number, scale: number): number {
-  return Math.max(0, (topFloorY - SPIRE_CROWN_RISE) * scale);
+/**
+ * Верх башни (вместе с ореолом) в координатах содержимого, dp: верх верхнего этажа минус запас, не выше 0.
+ * headroom — запас из границы башни этой лиги и состояния (spire_tower_bounds.spireTowerHeadroom: острие, навершие, древко, ореол ×2.6 + поле);
+ * без него — прежний подъём кровли SPIRE_CROWN_RISE.
+ */
+export function spireCrownTopY(topFloorY: number, scale: number, headroom: number = SPIRE_CROWN_RISE): number {
+  return Math.max(0, (topFloorY - headroom) * scale);
 }

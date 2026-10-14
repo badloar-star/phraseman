@@ -18,6 +18,7 @@ import type { Lang } from '../../constants/i18n';
 import { SPIRE_DEFAULT_SKIN, mixHex, type SpireTowerSkin } from '../../modules/spire/tower_skins';
 import { spireText } from './spire_strings';
 import SpireTowerFinial, { spireFinialTopY } from './SpireTowerFinial';
+import { spireWeekTopViewBox } from './spire_tower_bounds';
 import type { SpireScene } from './useSpireScene';
 import { SPIRE_TEX_ID, skinTextureDefs } from './SpireTowerTextures';
 import {
@@ -295,12 +296,14 @@ type Props = Readonly<{
   variant?: 'tower' | 'weekTop';
   /** зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): цвета сцены (небо, звёзды, облака, подписи, земля, тень) из токенов темы. Нет пропа = ночное небо наряда лиги (старый вид). */
   scene?: SpireScene;
+  /**
+   * Высота видимой части башни в единицах SVG (тур: верх башни без хвоста вниз). Верх НЕ режется никогда: viewBox всегда начинается с 0 (запас над ореолом
+   * входит в TOP_PAD); обрезается только низ — зачем (закон владельца 14.10): «пик башни не обрезается ничем, свет тоже».
+   */
+  cropHeight?: number;
 }>;
 
-const WEEK_TOP_W = 192;
-const WEEK_TOP_H = 342;
-
-function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene }: Props) {
+function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;
   const guardLabel = useMemo(() => spireText(lang, 'guard').toUpperCase(), [lang]);
@@ -310,20 +313,21 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
   const b = geom.floors[0];
   const skyY = geom.top - 250;
   const summit = myFloor === SPIRE_FLOOR_COUNT;
+  const visibleH = cropHeight !== undefined ? Math.min(geom.height, cropHeight) : geom.height;
   if (variant === 'weekTop') {
-    const vx = SPIRE_CX - WEEK_TOP_W / 2;
-    const vy = geom.top - 236;
+    // зачем (закон владельца 14.10, скрин «ИТОГ НЕДЕЛИ»): viewBox считается из границы башни (острие, навершие, древко, ореол ×2.6) — всё внутри с полем;
+    // маска гасит только низ (срез этажей): верх и бока — в абсолютных координатах viewBox, а не радиальным овалом (он гасил острие и свет).
+    const vb = spireWeekTopViewBox(skin, summit);
     const topFloors = geom.floors.slice(SPIRE_FLOOR_COUNT - 2); // этаж 14 и Страж-15
     return (
-      <Svg width={width} height={(width * WEEK_TOP_H) / WEEK_TOP_W} viewBox={`${vx} ${vy} ${WEEK_TOP_W} ${WEEK_TOP_H}`}>
+      <Svg width={width} height={(width * vb.h) / vb.w} viewBox={`${vb.x} ${vb.y} ${vb.w} ${vb.h}`}>
         <Defs>
           {defs}
-          {/* зачем (макет «Итог недели»): края мини-башни растворяются — mask-image radial-gradient(ellipse 72% 62% at 50% 42%, #000 66%, transparent) образца */}
-          <RadialGradient id="spireWeekFadeG" cx="0.5" cy="0.42" rx="0.72" ry="0.62">
-            <Stop offset="0" stopColor="#FFFFFF" /><Stop offset="0.66" stopColor="#FFFFFF" /><Stop offset="1" stopColor="#000000" />
-          </RadialGradient>
-          <Mask id="spireWeekFade" x={vx} y={vy} width={WEEK_TOP_W} height={WEEK_TOP_H} maskUnits="userSpaceOnUse">
-            <Rect x={vx} y={vy} width={WEEK_TOP_W} height={WEEK_TOP_H} fill="url(#spireWeekFadeG)" />
+          <LinearGradient id="spireWeekFadeG" x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#FFFFFF" /><Stop offset="0.8" stopColor="#FFFFFF" /><Stop offset="1" stopColor="#000000" />
+          </LinearGradient>
+          <Mask id="spireWeekFade" x={vb.x} y={vb.y} width={vb.w} height={vb.h} maskUnits="userSpaceOnUse">
+            <Rect x={vb.x} y={vb.y} width={vb.w} height={vb.h} fill="url(#spireWeekFadeG)" />
           </Mask>
         </Defs>
         <G mask="url(#spireWeekFade)">
@@ -339,7 +343,7 @@ function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_
     );
   }
   return (
-    <Svg width={width} height={geom.height * scale} viewBox={`0 0 ${SPIRE_TW} ${geom.height}`}>
+    <Svg width={width} height={visibleH * scale} viewBox={`0 0 ${SPIRE_TW} ${visibleH}`}>
       <Defs>{defs}</Defs>
       {/* зачем (владелец 13.10): со сценой темы небо не рисуем — окно остаётся плитой темы (SpireTower.window), башня стоит на ней */}
       {scene ? null : <Rect width={SPIRE_TW} height={geom.height} fill="url(#spireSky)" />}

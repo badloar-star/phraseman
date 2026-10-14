@@ -59,7 +59,9 @@ export function spireTimeLeft(nowMs: number, weekStartMs: number): Readonly<{ da
 /** Геометрия башни (координаты viewBox 390 × H), как towerGeom() макета. */
 export const SPIRE_TW = 390;
 export const SPIRE_CX = 195;
-const TOP_PAD = 300;
+// зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): запас над верхним этажом = граница башни (острие, навершие, древко, ореол ×2.6 «вершины недели»)
+// самой большой лиги + поле — 360 (считает spire_tower_bounds.spireMaxTowerHeadroom; сторож tests/spire_tower_no_clip_contract.test.ts). Было 300: ореол выходил выше верха SVG.
+const TOP_PAD = 360;
 const BASE_PAD = 96;
 
 export const spireFloorHeight = (f: number): number => (spireIsGuard(f) ? 60 : 46);

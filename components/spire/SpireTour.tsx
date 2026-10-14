@@ -23,19 +23,20 @@ import { useSpireShadow } from './useSpireShadow';
 import { spireGameText } from './spire_game_strings';
 import { useSpireScene } from './useSpireScene';
 import { spireStepsShort } from './spire_plurals';
+import { SPIRE_TW } from './spire_tower_model';
 
 const IMG_HEIGHT = 340;
 const TOWER_WIDTH = 240;
-const TOWER_OFFSET = -32;
+// зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): раньше башню сдвигали вверх на 32 dp и резали overflow:hidden — навершие и ореол уходили за край.
+// Теперь сверху настоящий запас (TOP_PAD), а обрезается только низ: SVG сам берёт видимую высоту (cropHeight в единицах SVG).
+const TOUR_CROP_UNITS = IMG_HEIGHT / (TOWER_WIDTH / SPIRE_TW);
 const noop = () => undefined;
 
 function TourTower({ lang }: Readonly<{ lang: Lang }>) {
   const scene = useSpireScene(); // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): фон сцены тура — из темы, как у экрана
   return (
     <View style={s.towerClip} pointerEvents="none">
-      <View style={{ marginTop: TOWER_OFFSET, width: TOWER_WIDTH }}>
-        <SpireTowerSvg lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} scene={scene} />
-      </View>
+      <SpireTowerSvg lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} scene={scene} cropHeight={TOUR_CROP_UNITS} />
     </View>
   );
 }
@@ -141,7 +142,7 @@ const s = StyleSheet.create({
   skip: { minHeight: 44, paddingHorizontal: 8, justifyContent: 'center' },
   skipText: { fontSize: 16, fontWeight: '600' },
   img: { height: IMG_HEIGHT, marginTop: 8, alignItems: 'center', justifyContent: 'center' },
-  towerClip: { height: IMG_HEIGHT, width: TOWER_WIDTH, overflow: 'hidden', alignSelf: 'center' },
+  towerClip: { height: IMG_HEIGHT, width: TOWER_WIDTH, alignSelf: 'center' },
   center: { alignItems: 'center', gap: 26 },
   ringCenter: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' },
   ringText: { fontSize: 30, fontWeight: '700', fontVariant: ['tabular-nums'], letterSpacing: -0.3 },

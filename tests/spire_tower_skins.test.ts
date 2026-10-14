@@ -134,7 +134,8 @@ describe('наряды башни Шпиля', () => {
     expect(weekCard).toContain('variant="weekTop"');
     expect(weekCard).toContain('spireSkinForTier(result.newTier)');
     expect(weekCard).toContain('result.promoted ? SPIRE_FLOOR_COUNT : 1'); // повышение — вершина недели, иначе окна тёмные
-    for (const piece of ['const TOWER_W = 58;', 'const TOWER_H = 103;', 'const COIN = 26;', 'const COIN_RING = 3;', 'size={COIN}', 'backgroundColor: p.cardRaised']) {
+    // зачем (закон владельца 14.10): блок башни — высота 112 (было 58×103), ширина считается из границы башни (spireWeekTopViewBox), чтобы навершие и ореол не резались
+    for (const piece of ['const TOWER_H = 112;', 'spireWeekTopViewBox(skin, towerFloor === SPIRE_FLOOR_COUNT)', 'const COIN = 26;', 'const COIN_RING = 3;', 'size={COIN}', 'backgroundColor: p.cardRaised']) {
       expect(weekCard).toContain(piece);
     }
     expect(weekCard).not.toContain('size={52}'); // прежней монеты 52 нет
@@ -142,10 +143,12 @@ describe('наряды башни Шпиля', () => {
     expect(weekCard).toContain('useMemo(() => spireSkinForTier(result.newTier), [result.newTier])');
     // мини-башня: узкий viewBox образца, без неба, земли и маркера, края — маска внутри SVG
     expect(svg).toContain("variant === 'weekTop'");
-    expect(svg).toContain('geom.top - 236');
-    expect(svg).toContain('WEEK_TOP_W = 192');
-    expect(svg).toContain('WEEK_TOP_H = 342');
+    // зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): прежние закреплённые числа viewBox (верх этажа − 236, ширина 192, высота 342) и радиальный овал маски
+    // резали навершие и ореол (скрин «ИТОГ НЕДЕЛИ»). Теперь viewBox считается из границы башни (spire_tower_bounds.spireWeekTopViewBox), а маска гасит только низ в абсолютных координатах.
+    expect(svg).toContain('spireWeekTopViewBox(skin, summit)');
+    expect(svg).not.toContain('geom.top - 236');
     expect(svg).toContain('<Mask id="spireWeekFade"');
-    expect(svg).toContain('rx="0.72" ry="0.62"');
+    expect(svg).toContain('<LinearGradient id="spireWeekFadeG" x1="0" y1="0" x2="0" y2="1">');
+    expect(svg).not.toContain('rx="0.72" ry="0.62"');
   });
 });

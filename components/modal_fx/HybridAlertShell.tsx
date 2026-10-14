@@ -28,6 +28,7 @@ import { noAndroidOutline } from '../../constants/androidGlow';
 import { LUM } from '../../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useKeyboardBottomInset } from '../keyboardAvoidance';
+import { SheetSwipeRoot } from './SheetSwipeClose';
 
 type Props = {
   visible: boolean;
@@ -177,6 +178,8 @@ function HybridAlertShell({
 
   return (
     <Modal visible={visible} transparent animationType="none" onRequestClose={dismissHandler}>
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): корень жестов внутри Modal — нужен шторкам-наследникам со свайпом (ThemedChoiceModal); раскладка прежняя: Pressable ниже заполняет экран как и раньше */}
+      <SheetSwipeRoot>
       {/* guard-ok: скрим-фон закрывает модалку по тапу вовне, у него нет своего
           смысла для VoiceOver/TalkBack — озвучиваемые элементы (заголовок,
           кнопки) идут внутри children панели. */}
@@ -232,6 +235,7 @@ function HybridAlertShell({
           </Pressable>
         </View>
       </Pressable>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

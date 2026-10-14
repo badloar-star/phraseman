@@ -10,6 +10,7 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 const EXEMPT_COLOR_1 = '#000000'; // theme-exempt: тень и затемнение окна — постоянные
 
@@ -58,7 +59,10 @@ function ThemedChoiceModal({
   const isHybrid = motionVariant === 'hybrid';
   const panelBackground = Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet;
 
+  // зачем (координатор 14.10, «ручка ⇒ свайп»; решение: лист едет за пальцем): у шторки выбора ручка была без свайпа — теперь свайп вниз за ручку/шапку закрывает её тем же onRequestClose, что фон и «назад».
+  // Внешний слой несёт translateY; высоту ограничивает он сам (maxHeight 100% от родителя, flexShrink 1), а лист внутри сжимается (flexShrink 1) — прокрутка списка цела.
   const panelContent = (
+    <SheetSwipeClose name="themed-choice" onClose={onRequestClose} wrapStyle={{ flexShrink: 1, maxHeight: '100%', minHeight: 0 }}>
     <LinearGradient
       colors={[panelBackground, panelBackground]}
       style={[styles.sheet, { paddingBottom: Math.max(18, insets.bottom + 10) }]}
@@ -144,6 +148,7 @@ function ThemedChoiceModal({
         </CascadeItem>
       </ScrollView>
     </LinearGradient>
+    </SheetSwipeClose>
   );
 
   if (isHybrid) {
@@ -163,6 +168,7 @@ function ThemedChoiceModal({
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onRequestClose}>
+      <SheetSwipeRoot>
       <Pressable
         accessible={false}
         style={[styles.classicBackdrop, { paddingTop: Math.max(24, insets.top) }]}
@@ -178,6 +184,7 @@ function ThemedChoiceModal({
           {panelContent}
         </Pressable>
       </Pressable>
+      </SheetSwipeRoot>
     </Modal>
   );
 }
@@ -189,6 +196,7 @@ const styles = StyleSheet.create({
   sheet: {
     width: '100%',
     maxHeight: '100%',
+    flexShrink: 1, // зачем: внутри внешнего слоя свайпа лист сжимается вместе с ним — прокрутка списка цела
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     overflow: 'hidden',

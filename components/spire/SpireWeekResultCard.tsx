@@ -17,6 +17,7 @@ import AvatarView from '../AvatarView';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireTowerSvg from './SpireTowerSvg';
+import { spireWeekTopViewBox } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
 import { spireCoinsCount, spireStepsCount } from './spire_plurals';
@@ -42,8 +43,9 @@ export function spireWeekResultLines(lang: Lang, r: SpireWeekResultView): Readon
 }
 
 // зачем (макет «Итог недели», Макеты 13.10): слева вместо монеты 52 — верхушка башни лиги НОВОЙ недели 58×103; монета ранга 26 — значок справа снизу с кольцом цвета карточки
-const TOWER_W = 58;
-const TOWER_H = 103;
+// зачем (закон владельца 14.10, «пик башни не обрезается, свет тоже»): высота блока башни фиксирована, ширина — из границы башни (острие, навершие, ореол ×2.6):
+// нет места — башня меньше, но не режется. Раньше ширина 58 и viewBox «верх этажа − 236» резали навершие и ореол.
+const TOWER_H = 112;
 const COIN = 26;
 const COIN_RING = 3;
 
@@ -53,6 +55,8 @@ function SpireWeekResultCard({ lang, result, myCoinRank }: Props) {
   // зачем: наряд по newTier, состояние окон — по решению сервера: повышение = «вершина недели» (окна горят, свечение ×2.6), остаёшься и понижение = окна тёмные
   const skin = useMemo(() => spireSkinForTier(result.newTier), [result.newTier]);
   const towerFloor = result.promoted ? SPIRE_FLOOR_COUNT : 1;
+  const weekVb = useMemo(() => spireWeekTopViewBox(skin, towerFloor === SPIRE_FLOOR_COUNT), [skin, towerFloor]);
+  const towerW = Math.round((TOWER_H * weekVb.w) / weekVb.h);
   // зачем (макет community.html COM-SPIRE-WEEK, anim-pop): блок башни с монетой «выпрыгивает» один раз
   // при появлении карточки. Нативный драйвер, без цикла; «уменьшить движение» — сразу на месте.
   const reduceMotion = useReduceMotion();
@@ -67,8 +71,8 @@ function SpireWeekResultCard({ lang, result, myCoinRank }: Props) {
   };
   return (
     <View style={[s.card, { backgroundColor: p.cardRaised }, sh.plate]} accessible={false} testID="spire-week-result">
-      <Animated.View style={[s.tower, popStyle]} testID="spire-week-result-pop" pointerEvents="none">
-        <SpireTowerSvg variant="weekTop" lang={lang} myFloor={towerFloor} selected={0} onSelect={noop} width={TOWER_W} skin={skin} />
+      <Animated.View style={[s.tower, { width: towerW }, popStyle]} testID="spire-week-result-pop" pointerEvents="none">
+        <SpireTowerSvg variant="weekTop" lang={lang} myFloor={towerFloor} selected={0} onSelect={noop} width={towerW} skin={skin} />
         {myCoinRank !== null ? (
           <View style={[s.coin, { backgroundColor: p.cardRaised }]}>
             <AvatarView avatar="" coinRank={myCoinRank} size={COIN} />
@@ -86,7 +90,7 @@ function SpireWeekResultCard({ lang, result, myCoinRank }: Props) {
 
 const s = StyleSheet.create({
   card: { marginTop: 16, borderRadius: 20, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 14 },
-  tower: { width: TOWER_W, height: TOWER_H },
+  tower: { height: TOWER_H },
   // кольцо цветом карточки вокруг монеты: плотный круг-подложка, а не рамка
   coin: { position: 'absolute', right: -6 - COIN_RING, bottom: -2 - COIN_RING, padding: COIN_RING, borderRadius: (COIN + COIN_RING * 2) / 2 },
   text: { flex: 1, minWidth: 0 },

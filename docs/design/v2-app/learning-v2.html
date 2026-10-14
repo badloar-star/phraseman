@@ -254,8 +254,8 @@ svg.i.off { color: #3A3A3E; }
 .wcard .en { font-size: 12px; color: var(--sec); font-weight: 600; letter-spacing: 1px; }
 .wcard .w { font-size: 34px; line-height: 40px; font-weight: 700; margin-top: 10px; letter-spacing: -.4px; }
 .wcard .tr { font-size: 17px; color: var(--sec); margin-top: 8px; }
-.wcard .bm { position: absolute; top: 14px; right: 14px; }
-.wcard.fly { animation: wfly 620ms cubic-bezier(.33,.52,.25,.99) forwards; }
+.wcard .bm { position: absolute; bottom: 12px; right: 12px; } /* как cardBookmark в коде */
+.wcard.fly, .cd.fly { animation: wfly 620ms cubic-bezier(.33,.52,.25,.99) forwards; }
 @keyframes wfly { 0% { transform: none; opacity: 1; } 100% { transform: translate(0, 420px) scale(.18); opacity: .2; } }
 .defn { font-size: 17px; line-height: 24px; text-align: center; margin-top: 20px; }
 .fliph { text-align: center; color: var(--sec); font-size: 14px; font-weight: 600; margin-top: 16px; animation: hp 1.6s ease-in-out infinite; }
@@ -562,12 +562,18 @@ const energyEmpty = () => phone(`${ihead('СМЫСЛ', 1, { en: 0 })}<div class=
   <span class="sec2 t">Позже</span>`) });
 
 // ================= внутри занятия =================
-const wordCard = (o = {}) => phone(`${shead({ pct: 25, step: '4 / 16', coins: 9 })}
-  <div class="flex" style="justify-content:space-between;margin-top:30px"><span style="font-size:20px;font-weight:700">Новое слово</span><span style="font-size:15px;color:var(--sec);font-weight:600">1 из 4</span></div>
-  <div class="wcard t" data-wcard><span class="bm rb t" style="width:38px;height:38px;background:#262628;border:none;color:${o.saved ? '#fff' : 'var(--sec)'}">${icon(o.saved ? 'bookmark' : 'bookmark', 's18')}${o.saved ? '' : ''}</span><div class="en">EN</div><div class="w">${o.flipped ? 'начальник' : 'boss'}</div><div class="tr">${o.flipped ? 'boss · /bɒs/' : '/bɒs/'}</div><span class="rb t" style="width:38px;height:38px;background:#262628;border:none;margin-top:18px">${icon('vol', 's18')}</span></div>
-  <div class="defn">Тот, кто руководит и принимает решения. Не обязательно строгий.</div>
-  <div class="fliph">Нажмите на карточку, чтобы перевернуть</div>
-  ${o.status ? `<div class="expl" style="margin-top:16px">${li(o.fail ? 'bulb' : 'checkC', 's20')}<div>${o.status}</div></div>` : ''}`, { time: '9:45', inStyle: 'padding-bottom:150px', fixed: `<div class="fx"><div class="cta t">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div></div>${sfoot({ words: o.words ?? 3, wordsOn: true })}` });
+// зачем (раздел 6 требований, 14.10): «Новое слово» — как в коде LearningV2NewWordEncounterOverlay: окно по центру поверх
+// затемнённого занятия (scrim .6, лист 88% / max 330, r22, тень без кромки), «Продолжить» внутри окна, статус под кнопкой.
+// Раньше «Продолжить» был прибит к низу экрана и лёг под подвал «Назад · Слова · Дальше» — наложение кнопки на текст.
+// Улёт в «Слова» (телефон 81) — всё окно целиком (data-wcard на листе), как pocketFlight в коде.
+const wordCard = (o = {}) => phone(`${shead({ pct: 25, step: '4 / 16', coins: 9 })}`, { time: '9:45', fixed: sfoot({ words: o.words ?? 3, wordsOn: true }), overlay: `<div class="cm" style="background:rgba(0,0,0,.6)"><div class="cd modal" data-wcard style="width:88%;max-width:330px;padding:12px 12px 16px;border:none;box-shadow:0 18px 44px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:10px">
+  <div class="flex" style="justify-content:space-between;align-items:baseline;padding:4px 6px 0"><span style="font-size:20px;line-height:26px;font-weight:700">Новое слово</span><span style="font-size:15px;line-height:21px;color:var(--sec);font-weight:600">1 из 4</span></div>
+  <div class="wcard t" style="min-height:196px;margin:0"><span class="bm rb t" style="width:38px;height:38px;background:#262628;border:none;color:${o.saved ? '#fff' : 'var(--sec)'}">${icon(o.saved ? 'bookmark' : 'bookmark', 's18')}${o.saved ? '' : ''}</span><div class="en">EN</div><div class="w">${o.flipped ? 'начальник' : 'boss'}</div><div class="tr">${o.flipped ? 'boss · /bɒs/' : '/bɒs/'}</div><span class="rb t" style="width:38px;height:38px;background:#262628;border:none;margin-top:18px">${icon('vol', 's18')}</span></div>
+  <div class="defn" style="margin-top:2px">Тот, кто руководит и принимает решения. Не обязательно строгий.</div>
+  <div class="fliph" style="margin-top:0">Нажмите на карточку, чтобы перевернуть</div>
+  <div class="cta t" style="margin-top:4px">Продолжить<span class="ar">${icon('arrowR', 's20')}</span></div>
+  ${o.status ? `<div class="expl">${li(o.fail ? 'bulb' : 'checkC', 's20')}<div>${o.status}</div></div>` : ''}
+  </div></div>` });
 const pocket = (o = {}) => phone(`
   <div class="dh"><div><div class="ov">Слова урока</div><div class="ti">Карман слов</div><div class="cnt">Открыто: ${o.empty ? 0 : 3}</div></div><span class="rb sq t" style="margin-top:8px">${icon('close', 's18')}</span></div>
   ${o.empty ? `<div class="empty">${icon('layers')}Новые слова появятся здесь после знакомства с ними.</div>` : `<div class="stack g13" style="margin-top:18px">${[['office', 'офис'], ['boss', 'начальник'], ['late', 'поздно, опаздывать']].map(([w, m]) => `<div class="card t" style="border-radius:16px;min-height:88px;display:flex;align-items:center;gap:16px;padding:0 16px 0 20px"><div class="grow"><div style="font-size:24px;line-height:30px;font-weight:600">${w}</div><div style="font-size:15px;color:var(--sec);margin-top:4px">${m}</div></div><span class="rb t" style="width:38px;height:38px;background:#262628;border:none">${icon('vol', 's18')}</span><span style="color:var(--sec)">${icon('bookmark', 's22')}</span></div>`).join('')}</div>`}`, { time: '9:45' });

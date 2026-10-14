@@ -10,12 +10,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { Lang } from '../../constants/i18n';
 import { V2_TYPE } from '../../constants/v2Style';
 import V2Pressable from '../v2/V2Pressable';
+import RuneGlyph from '../RuneGlyph';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireNickWrap } from './spire_nick_wrap';
 import { spireText } from './spire_strings';
-import { spireCoinsCount, spireStepsCount, spireStepsShort } from './spire_plurals';
+import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
 
 type Props = Readonly<{
@@ -30,7 +31,8 @@ type Props = Readonly<{
 function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps' }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const ranked = members ? spireSortMembers(members, rankBy) : [];
-  const score = (m: SpireMemberRow): string => (rankBy === 'coins' ? spireCoinsCount(lang, m.weekCoins ?? 0) : `${m.steps} ${spireStepsShort(lang, m.steps)}`);
+  // зачем (координатор 14.10, D162): в колонке ≈101 dp слово «монет» не помещается рядом с числом — на подиуме число с неразрывным пробелом тысяч («8 511») и маленькая монета; слово остаётся в «Всех участниках», подзаголовке и подписи для читалки
+  const stepsScore = (m: SpireMemberRow): string => `${m.steps} ${spireStepsShort(lang, m.steps)}`;
   const top = ranked.slice(0, 3);
   const meIndex = ranked.findIndex((m) => m.isMe);
   const order = top.length === 3 ? [1, 0, 2] : top.map((_, i) => i);
@@ -53,7 +55,14 @@ function SpirePodium({ lang, members, onOpenAll, rankBy = 'steps' }: Props) {
                 <SpireRankCoin rank={m.coinRank} size={place === 1 ? 56 : 46} />
                 {/* зачем (координатор 13.10): на 360 dp колонка ≈ 101 dp, при шрифте ×1,3 длинное имя без пробела рвалось посреди слова. До 2 строк, перенос по слогам (Android hyphenationFrequency=full, iOS переносит сам), потолок роста шрифта 1,15 только у имени — это не ужатие шрифта под ширину */}
                 <Text style={[s.name, { color: p.text }]} numberOfLines={2} maxFontSizeMultiplier={1.15} android_hyphenationFrequency="full">{spireNickWrap(m.name)}</Text>
-                <Text style={[s.steps, { color: p.textSecondary }]}>{score(m)}</Text>
+                {rankBy === 'coins' ? (
+                  <View style={s.scoreRow}>
+                    <Text style={[s.steps, { color: p.textSecondary }]} numberOfLines={1}>{spireGroupThousands(m.weekCoins ?? 0)}</Text>
+                    <RuneGlyph size={14} />
+                  </View>
+                ) : (
+                  <Text style={[s.steps, { color: p.textSecondary }]}>{stepsScore(m)}</Text>
+                )}
                 <View style={[s.block, { height: blk, backgroundColor: place === 1 ? p.cardRaised : p.card }, sh.plate]}>
                   <Text style={[s.place, { color: p.text }]}>{place}</Text>
                 </View>
@@ -84,6 +93,7 @@ const s = StyleSheet.create({
   col: { flex: 1, alignItems: 'center', gap: 8 },
   name: { fontSize: 16, fontWeight: '700', textAlign: 'center', maxWidth: 110 },
   steps: { fontSize: 13 },
+  scoreRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 },
   block: { width: '100%', borderTopLeftRadius: 14, borderTopRightRadius: 14, borderBottomLeftRadius: 6, borderBottomRightRadius: 6, alignItems: 'center', paddingTop: 10 },
   place: { fontSize: 20, fontWeight: '700' },
   all: { marginTop: 16, minHeight: 52, borderRadius: 26, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },

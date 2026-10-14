@@ -12,7 +12,7 @@ import {
 } from '../modules/spire/config_contract';
 import { spireCompareRowsBy, spireDecodeRoomMembers, type SpireRoomRow } from '../modules/spire/room_rows';
 import { spireMemberScored, spireSortMembers, type SpireMemberRow } from '../components/spire/spire_room_types';
-import { spireCoinsCount } from '../components/spire/spire_plurals';
+import { spireCoinsCount, spireGroupThousands } from '../components/spire/spire_plurals';
 import { spireDecodeWeekResult } from '../app/spire/spire_week_result_client';
 
 const row = (uid: string, steps: number, weekCoins: number, reachedAtMs = 0): SpireRoomRow => ({ uid, name: uid, steps, reachedAtMs, isMe: false, weekCoins });
@@ -76,6 +76,25 @@ describe('D162 клиент: пьедестал и «Все участники»
     expect(spireCoinsCount('uk', 5)).toBe('5 монет');
     expect(spireCoinsCount('en', 1)).toBe('1 coin');
     expect(spireCoinsCount('en', 1240)).toBe('1240 coins');
+  });
+
+  it('на подиуме число монет с неразрывным пробелом тысяч и маленькой монетой вместо слова; слово остаётся в «Все участники»-подписи и ярлыке читалки', () => {
+    const nb = String.fromCharCode(160);
+    expect(spireGroupThousands(8511)).toBe('8' + nb + '511');
+    expect(spireGroupThousands(20000)).toBe('20' + nb + '000');
+    expect(spireGroupThousands(999)).toBe('999');
+    expect(spireGroupThousands(0)).toBe('0');
+    expect(spireGroupThousands(-5)).toBe('0');
+    expect(spireGroupThousands(1234567)).toBe('1' + nb + '234' + nb + '567');
+    const podium = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpirePodium.tsx'), 'utf8');
+    expect(podium).toContain('spireGroupThousands(m.weekCoins ?? 0)');
+    expect(podium).toContain('<RuneGlyph size={14} />');
+    // слово «монет» на подиум не возвращаем: колонка ≈101 dp; оно остаётся только в подписи для читалки
+    expect(podium).not.toMatch(/\{score\(m\)\}/);
+    expect(podium).not.toContain('adjustsFontSizeToFit');
+    const all = fs.readFileSync(path.join(__dirname, '..', 'components', 'spire', 'SpireAllMembers.tsx'), 'utf8');
+    expect(all).toContain('spireGroupThousands(m.weekCoins ?? 0)');
+    expect(all).toContain('runeWord(lang, m.weekCoins ?? 0)');
   });
 
   it('экран передаёт рубильник в пьедестал и «Все участники»; подпись «место по монетам недели»', () => {

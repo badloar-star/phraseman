@@ -19,7 +19,7 @@ import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import SpireRankCoin from './SpireRankCoin';
 import { spireText } from './spire_strings';
-import { spireCoinsCount, spireStepsCount, spireStepsShort } from './spire_plurals';
+import { spireCoinsCount, spireGroupThousands, spireStepsCount, spireStepsShort } from './spire_plurals';
 import { spireMemberScored, spireSortMembers, type SpireMemberRow, type SpireRankByView } from './spire_room_types';
 import { runeWord } from '../../constants/runes';
 
@@ -69,7 +69,7 @@ function SpireAllMembers({ lang, members, subtitle, onBack, rankBy = 'steps' }: 
             </View>
             {zone === 'up' ? <Ionicons name="arrow-up" size={16} color={p.correct} /> : null}
             {zone === 'down' ? <Ionicons name="arrow-down" size={16} color={p.wrong} /> : null}
-            <Text style={[s.steps, { color: p.text }]}>{rankBy === 'coins' ? (m.weekCoins ?? 0) : m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {rankBy === 'coins' ? runeWord(lang, m.weekCoins ?? 0) : spireStepsShort(lang, m.steps)}</Text></Text>
+            <Text style={[s.steps, { color: p.text }]}>{rankBy === 'coins' ? spireGroupThousands(m.weekCoins ?? 0) : m.steps}<Text style={[s.stepsUnit, { color: p.textSecondary }]}> {rankBy === 'coins' ? runeWord(lang, m.weekCoins ?? 0) : spireStepsShort(lang, m.steps)}</Text></Text>
           </View>
         ))}
       </View>

@@ -75,6 +75,16 @@ export function spireCoinsCount(lang: Lang, n: number): string {
   return `${value} ${runeWord(lang, value)}`;
 }
 
+/**
+ * Число с разделителем тысяч — неразрывный пробел U+00A0: «8 511».
+ * зачем (координатор 14.10, D162): в колонке подиума ≈101 dp число монет не должно рваться на «8» и «511» и не должно ужиматься шрифтом; без разделителя
+ * «8511» читается хуже. Не Intl: на Hermes/Android локаль не всегда подключена, а нам нужен один и тот же вид на 9 языках.
+ */
+export function spireGroupThousands(n: number): string {
+  const value = Math.max(0, Math.trunc(Number(n)) || 0);
+  return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
 /** «30 человек». */
 export function spirePeopleCount(lang: Lang, n: number): string {
   return `${n} ${pluralWord(lang, n, SPIRE_PEOPLE_FORMS[lang])}`;

@@ -30,7 +30,7 @@
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
 /* ---------- токены темы: СВЕТЛАЯ «Ирис» (grad_iris, light k=1) — вторая светлая градиентная ---------- */
 .em-ph.lite.iris { --bg: #F8DDEE; --bg2: #DADFFA; --bg-bottom: #F8DDEE; --tx: #111114; --sc: #5C5C63; --mu: #606066;
-  --acc: #323B6B; --on: #FFFFFF; --acc-text: #323B6B; --acc-soft: rgba(199,201,255,.30); --acc-tile: #E0E0F8; --acc2: #D5567F;
+  --acc: #757695; --on: #FFFFFF; --acc-text: #323B6B; --acc-soft: rgba(199,201,255,.30); --acc-tile: #E0E0F8; --acc2: #D5567F;
   --cta: #9495BD; --cta-ink: #1B1C4A; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #ADAEBF; --btn-dis: #D6D7DF; --ink-dis: #5C5C61; --danger: #DCA9A8; --danger-ink: #782D2D;
   --ti2: #AFAFB2; --good: #097234; --bad: #AF3C3A; --warn: #835A00; --gold: #835A00; --flame: #323B6B;
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
@@ -251,3 +251,10 @@ body[data-lang="es"] .em-ph [data-home-video] [data-thumb="2"] { background: #00
 /* зачем: плитка значка задания (V2IconTile bgAlpha=HOME_PLATE_ALPHA) и круглые кнопки «Фразы дня» (v2Round) — glassRaised = opaqueControl·0.92 на 0.5 */
 .em-ph [data-task] .tile, .em-ph [data-home-phrase] .ib { background: color-mix(in srgb, var(--control) 46%, transparent) !important; }
 /* зачем (лист приёмки 14.10): главная кнопка = V2Button primary → p.cta = ctaFill (liquidGlassButtonTokens, №35): светлая Аврора #57A087, светлый Ирис #9495BD — было #5FB296/#A3A4D0 до №35 */
+/* зачем (координатор 14.10, Авторизация de46dc356 — образцы под код): MomentCoin по шкале D145 — облачко 16/21 (и .big тоже 16/21, отличается полями),
+   «zz» и эмоции 20/25, «!» 26/28 (MomentCoin.tsx: sayText, zz, emo, emoBang) */
+.em-ph .cc .say, .em-ph .cc .say.big { font-size: 16px; line-height: 21px; }
+.em-ph .cc .zz { font-size: 20px; line-height: 25px; }
+.em-ph .cc .emo { font-size: 20px; line-height: 25px; } .em-ph .cc .emo.bang { font-size: 26px; line-height: 28px; }
+/* зачем (лист приёмки 14.10): --acc образцов = accentGraphic кода (графика: кольца, полосы, точки — в светлой Авроре #48816E совпадало);
+   у светлого Ириса было #323B6B (это accentText), в коде accentGraphic #757695 */

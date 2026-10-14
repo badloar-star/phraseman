@@ -44,14 +44,18 @@ beforeEach(() => {
 });
 
 describe('production StudyTarget contract', () => {
-  it('exposes only English as a production study target while keeping French internal', () => {
-    expect(STUDY_TARGETS).toEqual(['en']);
-    expect(studyTargetsForSourceLocale('ru')).toEqual(['en']);
-    expect(studyTargetsForSourceLocale('uk')).toEqual(['en']);
+  // зачем (D188, владелец 14.10, координатор): прежние ожидания «в проде только английский, французский внутренний» протухли
+  // ещё с открытием языков (D129/D163) — тест был красным. Теперь все пять языков изучения — боевые при любом интерфейсе.
+  it('exposes all five study languages as production targets for every interface (D188)', () => {
+    expect(STUDY_TARGETS).toEqual(['en', 'es', 'fr', 'de', 'it']);
+    for (const ui of ['ru', 'uk', 'en'] as const) {
+      expect(studyTargetsForSourceLocale(ui)).toEqual(['en', 'es', 'fr', 'de', 'it']);
+    }
     expect(isStudyTarget('en')).toBe(true);
     expect(isStudyTarget('fr')).toBe(true);
-    expect(isStudyTarget('es')).toBe(false);
-    expect(() => assertStudyTarget('es')).toThrow(/Unsupported StudyTarget/);
+    expect(isStudyTarget('es')).toBe(true);
+    expect(isStudyTarget('xx')).toBe(false);
+    expect(() => assertStudyTarget('xx')).toThrow(/Unsupported StudyTarget/);
   });
 
   it('keeps sourceLocale separate from studyTarget', () => {
@@ -65,42 +69,29 @@ describe('production StudyTarget contract', () => {
     expect(ttsLocaleForProductionStudyTarget('en')).toBe('en-US');
   });
 
-  it('coerces French back to English in production study target storage', async () => {
+  it('stores a chosen production study target as is (D188)', async () => {
     await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
-    await expect(setStoredStudyTarget('fr', 'ru')).resolves.toBe('en');
-    await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
-    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('en');
+    await expect(setStoredStudyTarget('fr', 'ru')).resolves.toBe('fr');
+    await expect(getStoredStudyTarget('ru')).resolves.toBe('fr');
+    await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('fr');
 
-    await expect(setStoredStudyTarget('fr', 'es')).resolves.toBe('en');
-    await expect(getStoredStudyTarget('es')).resolves.toBe('en');
+    await expect(setStoredStudyTarget('es', 'en')).resolves.toBe('es');
+    await expect(getStoredStudyTarget('en')).resolves.toBe('es');
   });
 
-  it('normalizes a previously stored French production target back to English', async () => {
-    await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, 'fr');
+  it('normalizes an unknown stored study target back to English', async () => {
+    await AsyncStorage.setItem(STUDY_TARGET_STORAGE_KEY, 'xx');
 
     await expect(getStoredStudyTarget('ru')).resolves.toBe('en');
     await expect(AsyncStorage.getItem(STUDY_TARGET_STORAGE_KEY)).resolves.toBe('en');
   });
 
-  it('uses English production storage while keeping French and Spanish dev-only', () => {
+  it('reads the study target through the shared storage contract', () => {
     const provider = fs.readFileSync(path.join(ROOT, 'components', 'StudyTargetContext.tsx'), 'utf8');
-    const settings = fs.readFileSync(path.join(ROOT, 'app', '(tabs)', 'settings.tsx'), 'utf8');
-    const studyLanguages = fs.readFileSync(path.join(ROOT, 'app', 'study_languages.ts'), 'utf8');
     const picker = fs.readFileSync(path.join(ROOT, 'components', 'settings', 'StudyLanguagePicker.tsx'), 'utf8');
     const notifications = fs.readFileSync(path.join(ROOT, 'app', 'notifications.ts'), 'utf8');
 
     expect(provider).toContain('getStoredStudyTarget(lang)');
-    expect(provider).toContain("if (devTarget === 'es')");
-    expect(provider).toContain("if (devTarget === 'fr')");
-    expect(settings).toContain('French and Spanish are DEV-only. The public version keeps English active.');
-    expect(studyLanguages).toContain("if (ENABLE_DEV_STUDY_TARGET_LANG && (code === 'es' || code === 'fr'))");
-    expect(studyLanguages).toContain('await setDevStudyTargetLang(code, uiLang)');
-    expect(studyLanguages).toContain("await setStoredStudyTarget('en', uiLang)");
-    expect(studyLanguages).toContain("prefetchAndRecordStudyTargetServerPack('fr', uiLang)");
-    expect(picker).toContain('language_en.webp');
-    expect(picker).toContain('language_fr_dev.webp');
-    expect(picker).toContain('language_es_dev.webp');
-    expect(picker).toContain('if (!ENABLE_DEV_STUDY_TARGET_LANG) return undefined;');
     expect(picker).toContain('studyTargetsForSourceLocale(lang)');
     expect(notifications).toContain('getStoredStudyTarget(lang)');
     expect(notifications).not.toContain('getDevStudyTargetLang(lang)');

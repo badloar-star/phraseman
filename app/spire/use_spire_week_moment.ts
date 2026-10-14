@@ -12,7 +12,7 @@ import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { DebugLogger } from '../debug-logger';
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
 import { markSpireWeekMomentShown, resolveSpireWeekMoment, type SpireWeekMomentShow } from './spire_week_moment_gate';
-import { scheduleSpireWeekRemind, spireWeekRemindAvailability } from './spire_week_remind';
+import { scheduleSpireWeekRemindWithFeedback, spireWeekRemindAvailability } from './spire_week_remind';
 
 export type UseSpireWeekMomentInput = Readonly<{ uiLang: string; studyTarget: string; tabEnabled: boolean; active: boolean }>;
 
@@ -71,7 +71,7 @@ export function useSpireWeekMoment(input: UseSpireWeekMomentInput): UseSpireWeek
 
   const scheduleRemind = useCallback(() => {
     // Окно закрывается сразу (мгновенный отклик), напоминание ставится фоном; итог — в [D191-REMIND].
-    void scheduleSpireWeekRemind(uiLang);
+    void scheduleSpireWeekRemindWithFeedback(uiLang);
     setDecision(null);
   }, [uiLang]);
 

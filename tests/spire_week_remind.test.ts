@@ -2,6 +2,7 @@
 // разрешении и включённой категории «Шпиль»; новый запрос разрешения не делаем; после 18:30 кнопки нет.
 import {
   scheduleSpireWeekRemind,
+  scheduleSpireWeekRemindWithFeedback,
   spireWeekRemindAvailability,
   spireWeekRemindTriggerAt,
 } from '../app/spire/spire_week_remind';
@@ -20,6 +21,11 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   },
 }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+const mockEmit = jest.fn();
+jest.mock('../app/events', () => ({
+  emitAppEvent: (...args: unknown[]) => mockEmit(...args),
+  actionToastTri: (type: string, m: Record<string, string>) => ({ type, messageRu: m.ru, messageUk: m.uk }),
+}));
 jest.mock('../app/notifications', () => ({
   canOfferSpireWeekRemind: async () => mockOffer,
   scheduleSpireWeekRemindLocalNotification: (...args: unknown[]) => mockSchedule(...(args as [])),
@@ -61,6 +67,18 @@ describe('D191 «Напомнить вечером»', () => {
     await scheduleSpireWeekRemind('ru', localAt(9, 5));
     expect(mockCancel).toHaveBeenCalledWith('n1');
     expect(mockSchedule).toHaveBeenCalledTimes(2);
+  });
+
+  // координатор 14.10 (аудит Optimistic UI): окно закрылось сразу — при отказе человек должен узнать, что напоминания нет.
+  it('отказ постановки → тихий тост ровно один раз; успех → тоста нет', async () => {
+    mockEmit.mockClear();
+    mockSchedule.mockImplementationOnce(async () => ({ id: null, reason: 'permission' }) as never);
+    await expect(scheduleSpireWeekRemindWithFeedback('ru', localAt(9, 0))).resolves.toBe(false);
+    expect(mockEmit).toHaveBeenCalledTimes(1);
+    expect(mockEmit).toHaveBeenCalledWith('action_toast', { type: 'info', messageRu: 'Не получилось поставить напоминание', messageUk: 'Не вдалося поставити нагадування' });
+    mockEmit.mockClear();
+    await expect(scheduleSpireWeekRemindWithFeedback('uk', localAt(9, 5))).resolves.toBe(true);
+    expect(mockEmit).not.toHaveBeenCalled();
   });
 
   it('после 18:30 даже по прямому вызову не ставит', async () => {

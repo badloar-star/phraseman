@@ -8,6 +8,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from '../debug-logger';
+import { actionToastTri, emitAppEvent } from '../events';
 
 const TAG = '[D191-REMIND]';
 const ID_KEY = 'spire_week_remind_id_v1';
@@ -73,6 +74,23 @@ export async function scheduleSpireWeekRemind(uiLang: string, nowMs: number = Da
     log(`не поставили: сбой (${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)})`);
     return false;
   }
+}
+
+/**
+ * То же, что scheduleSpireWeekRemind, но при отказе — тихий тост.
+ * зачем (координатор 14.10, аудит Optimistic UI): окно закрывается сразу, напоминание ставится фоном; если постановка
+ * не удалась, человек был уверен, что напоминание есть, — теперь он узнаёт, что нет. Закрытие окна остаётся оптимистичным.
+ */
+export async function scheduleSpireWeekRemindWithFeedback(uiLang: string, nowMs: number = Date.now()): Promise<boolean> {
+  const ok = await scheduleSpireWeekRemind(uiLang, nowMs);
+  if (ok) return true;
+  log('fail_toast: напоминание не поставилось — показываем тихий тост');
+  emitAppEvent('action_toast', actionToastTri('info', {
+    ru: 'Не получилось поставить напоминание', uk: 'Не вдалося поставити нагадування', en: "Couldn't set the reminder",
+    es: 'No se pudo programar el recordatorio', 'pt-BR': 'Não foi possível agendar o lembrete', vi: 'Không đặt được lời nhắc',
+    id: 'Pengingat tidak dapat dipasang', tr: 'Hatırlatıcı kurulamadı', pl: 'Nie udało się ustawić przypomnienia',
+  }));
+  return false;
 }
 
 /* expo-router route shim: модуль в app/ — не экран */

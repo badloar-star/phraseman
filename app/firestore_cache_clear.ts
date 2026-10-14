@@ -125,7 +125,8 @@ export function runFirestoreCacheClearFromStartupRead(
   console.log(`${LOG} check ms=${Date.now() - checkStartedAt} marker=${markerValue && !markerValue.startsWith(CLEARED_PREFIX) ? 1 : 0} lock=${decision.lockOperationId ? 1 : 0} reason=${decision.reason} source=startup_multiget`); // guard-ok: одна строка на холодный старт
   if (!decision.run) { clearPhase = 'none'; return Promise.resolve('none'); }
   clearPhase = 'running';
-  if (__DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_start ms=${Math.round(globalThis.performance?.now?.() ?? -1)} touchesBefore=${firstTouchCount}`); // guard-ok: временная трассировка
+  // зачем (полный прогон 15.10, aa_guest_delete_deadline_and_cache): в тестах глобала __DEV__ нет — голое обращение роняло очистку кэша ReferenceError
+  if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_start ms=${Math.round(globalThis.performance?.now?.() ?? -1)} touchesBefore=${firstTouchCount}`); // guard-ok: временная трассировка
   const startedAt = Date.now();
   // зачем (координатор 12.10): процесс убили между AsyncStorage.clear и записью метки — замок удаления есть, метки нет. Ставим её сейчас,
   // чтобы при отказе очистки повтор был и на следующем старте.
@@ -154,7 +155,7 @@ export function runFirestoreCacheClearFromStartupRead(
       const code = errorCode(error);
       console.warn(`${LOG} failed code=${code} ms=${Date.now() - startedAt} — метка оставлена${code.includes('failed-precondition') ? ', повтор на следующем старте (Firestore уже был запущен)' : ''}`); // guard-ok
       clearPhase = 'failed';
-      if (__DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_end failed touches=${firstTouchCount} ms=${Math.round(globalThis.performance?.now?.() ?? -1)}`); // guard-ok: временная трассировка
+      if (typeof __DEV__ !== 'undefined' && __DEV__) console.log(`[FIRESTORE-FIRST-TOUCH] clear_end failed touches=${firstTouchCount} ms=${Math.round(globalThis.performance?.now?.() ?? -1)}`); // guard-ok: временная трассировка
       return 'failed' as const;
     },
   );

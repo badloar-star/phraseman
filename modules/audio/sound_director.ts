@@ -1,4 +1,5 @@
 import { ExpoSfxBackend } from './expo_sfx_backend';
+import { tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
 import {
   SoundArbiter,
   type SoundDecision,
@@ -237,6 +238,11 @@ export class SoundDirector {
       // звук; параллельные allowConcurrent-плееры доигрывают свои хвосты.
       this.backend.stopExclusive();
       this.activePlayback = null;
+    }
+    // зачем (координатор 14.10, п.4): флаг sound_v2 включён и у события есть пара в V2 — играет V2, старый плеер не трогаем; выключен — прежний путь без изменений
+    if (tryPlayV2ForDirector(decision.eventId)) {
+      this.arbiter.finishActive(decision.requestId);
+      return;
     }
     const started = this.backend.play(
       decision.eventId,

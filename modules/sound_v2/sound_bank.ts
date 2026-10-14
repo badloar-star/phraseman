@@ -101,6 +101,8 @@ export type SoundBankDeps = {
   warn(message: string): void;
   /** Вызывается при каждом отказе по флагу — боевая версия прогревает флаг из кэша. */
   onFlagMiss?(): void;
+  /** Поддерживает ли платформа смену скорости воспроизведения (Android < 6 — нет). Нет зависимости → считаем, что да. */
+  isRateSupported?(): boolean;
   /** Подписка на «пора замолчать» (звук выключили / началась запись). Возвращает отписку. */
   onSilenceNeeded?(listener: (reason: 'effects_disabled' | 'quiet_recording') => void): () => void;
 };
@@ -143,6 +145,9 @@ export class SoundBank {
   private silenceSubscribed = false;
   private useSeq = 0;
   private disposed = false;
+  // зачем (координатор 14.10, п.3): если платформа не применяет микро-вариацию скорости, тихо отключаем её ОДИН раз с логом — без исключений и без шума на каждом запуске
+  private rateDisabled = false;
+  private rateMismatchRun = 0;
 
   constructor(
     private readonly deps: SoundBankDeps,
@@ -490,7 +495,15 @@ export class SoundBank {
 
   private applyRate(entry: PoolEntry, rate: number): void {
     const { player, clip } = entry;
-    if (typeof player.setPlaybackRate !== 'function') return;
+    if (this.rateDisabled) return;
+    if (typeof player.setPlaybackRate !== 'function') {
+      this.disableRate(`у плеера нет setPlaybackRate file=${clip.file}`);
+      return;
+    }
+    if (this.deps.isRateSupported && !this.deps.isRateSupported()) {
+      this.disableRate('платформа не поддерживает смену скорости (Android < 6)');
+      return;
+    }
     try {
       // Без коррекции высоты, иначе ±0,15 % скорости не дают микро-сдвиг тона.
       if (!entry.pitchReady) {
@@ -498,9 +511,29 @@ export class SoundBank {
         entry.pitchReady = true;
       }
       player.setPlaybackRate(rate);
+      this.verifyRate(player, rate, clip.file);
     } catch (error) {
-      this.deps.warn(`${LOG} setPlaybackRate не удался file=${clip.file} rate=${rate} (${errText(error)}) — играю без микро-вариации`);
+      this.disableRate(`setPlaybackRate упал file=${clip.file} rate=${rate} (${errText(error)})`);
     }
+  }
+
+  /** Читаем скорость обратно: если три запуска подряд плеер остаётся на 1,0 вместо заказанных 1±0,15 % — платформа её игнорирует. */
+  private verifyRate(player: SoundV2Player, rate: number, file: string): void {
+    const got = (player as { playbackRate?: unknown }).playbackRate;
+    if (typeof got !== 'number' || !Number.isFinite(got)) return; // плеер не отдаёт скорость — проверить нечем
+    if (Math.abs(got - rate) <= 0.0008) {
+      this.rateMismatchRun = 0;
+      return;
+    }
+    this.rateMismatchRun += 1;
+    this.deps.log(`${LOG} rate: заказано=${rate.toFixed(5)} прочитано=${got.toFixed(5)} file=${file} подряд=${this.rateMismatchRun}`);
+    if (this.rateMismatchRun >= 3) this.disableRate(`плеер не применяет скорость: заказано ${rate.toFixed(5)}, прочитано ${got.toFixed(5)} трижды подряд`);
+  }
+
+  private disableRate(reason: string): void {
+    if (this.rateDisabled) return;
+    this.rateDisabled = true;
+    this.deps.warn(`${LOG} микро-вариация скорости отключена: ${reason} — звуки играют без неё (тембр и громкость вариантов остаются)`);
   }
 
   private finish(entry: PoolEntry, playback: Playback): void {
@@ -575,6 +608,7 @@ function defaultDeps(): SoundBankDeps {
     isFlagEnabled: isSoundV2Enabled,
     isEffectsEnabled: () => rt().isEffectsEnabled(),
     isQuiet: () => rt().isRecordingActive(),
+    isRateSupported: () => rt().isRateSupported(),
     rng: Math.random,
     now: Date.now,
     setTimer: (callback, ms) => setTimeout(callback, ms),

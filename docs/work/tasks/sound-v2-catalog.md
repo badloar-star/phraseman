@@ -79,3 +79,27 @@
 - Микро-вариация на каждый запуск: скорость воспроизведения ±0,15 % (около ±2,5 цента), громкость ±1 дБ вокруг −1 дБ (потолок плеера 1,0).
 - Серии: `correct`, `lightning`, `coin` растут с каждым верным ответом и держатся на последнем шаге; `ring` ходит по кругу 0→1→2→0. Событие `wrong` сбрасывает `correct`, `lightning`, `coin`.
 - Файл серийного события: `<событие>/v<вариант>_s<шаг>.m4a`.
+
+## Подключение (14.10): событие → место в коде
+
+Включение: удалённый флаг `sound_v2` (по умолчанию выключен) или в dev-сборке ссылка `phraseman://dev_state?soundv2=on|off` (сохраняется, переживает перезапуск). Флаг выключен — звучит прежний путь без изменений.
+Запуск: корень зовёт `bootSoundV2()` через `runAfterHomeFirstFrame('sound_v2_boot')` — после первого кадра Главной; флаг выключен → файлы не грузятся. Журнал: `[SOUND-V2] prime ms=… flag=… events=… files≈…`.
+Микро-вариация скорости (±0,15 %) на Android: проверяется платформа (API ≥ 23) и чтение скорости обратно; не применилась три раза подряд / исключение / нет поддержки → отключается один раз с причиной в журнале, звук играет.
+
+| Событие V2 | Откуда вызывается | Место в коде |
+|---|---|---|
+| `tap` | `pm.ui.tap_primary`, `pm.ui.tap_soft` | мост `modules/sound_v2/legacy_bridge.ts` ← `SoundDirector.execute` |
+| `lesson_done` | `pm.complete.session`, `pm.dialog.victory`; карточки `session_complete` | мост ← `SoundDirector.execute`, `playSfx` (`app/flashcards/SoundService.ts`) |
+| `lesson_perfect` | `pm.complete.perfect`, `pm.complete.star_3_perfect`, `pm.complete.exam_pass` | мост ← `SoundDirector.execute` |
+| `coin` (серия) | `pm.reward.small`, `pm.coin.flight_start` | мост ← `SoundDirector.execute` |
+| `coins_many` | `pm.reward.rune_count_done`, `pm.complete.rewards_finale` | мост ← `SoundDirector.execute` |
+| `streak_small` | `pm.streak.saved`; малый рубеж серии | мост; `components/streak/moments/streak_moments_sound.ts` |
+| `streak_mid`, `streak_big`, `streak_year`, `streak_legend` | рубежи серии | `components/streak/moments/streak_moments_sound.ts` |
+| `ring`, `day_done` | кольца «Сегодня» | `components/streak/moments/streak_moments_sound.ts` |
+| `energy_out`, `energy_back` | `pm.energy.empty`, `pm.hearts.restored` | мост ← `SoundDirector.execute` |
+| `correct` (серия), `wrong` | карточки: верно / неверно (`playSfx('correct'/'incorrect')`) | мост ← `playSfx` |
+| `swipe_know`, `swipe_learn` | карточки: свайп | мост ← `playSfx` |
+| `league_up`, `league_stay`, `league_down`, `new_week`, `sheet_open` | моменты Пика m01–m03 | `components/spire/moments/moments_sound.ts` |
+| `tap`, `new_week` | «С возвращением» m21 | `components/moments/WelcomeBackMoment.tsx` |
+
+Не подключено намеренно: верный/неверный ответ в уроках (решение владельца 2026-09-15 — вердикт вибрацией), флип и тики карточек, нарастание, сундук, Арена (удалена). Событий V2 без места пока: `hint`, `story`, `toggle_on/off`, `sheet_close`, `lightning`, `coin_rank`, `achievement`, `step`, `floor`, `summit`, `plus`, `streak_risk` — их подключают сессии-владельцы экранов через `playEvent`.

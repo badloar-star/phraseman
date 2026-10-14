@@ -29,6 +29,7 @@ import { getDevLocalPlusStorageKey, setDevLocalPlusOverride } from './dev_plus_c
 import { setDevAsFreeFlag } from './dev_as_free_flag';
 import { getStableId } from './stable_id';
 import { setSpireTabDevOverride } from './spire_tab_flag';
+import { setSoundV2DevOverride } from '../modules/sound_v2/sound_v2_flag';
 import { getDevThemeChoice, setDevAppearance, setDevThemeChoice } from './dev_appearance_override';
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { forceRefreshSpireGatesNow } from './spire_gate_refresh';
@@ -90,6 +91,8 @@ export type DevStateRequest = Readonly<{
   /** Кэш каталога сообщества: пустой (живая сеть, «Здесь появятся наборы…») или демо-наборы. */
   catalog?: 'empty' | 'demo';
   spire?: 'open' | 'closed';
+  /** Звуки V2 (modules/sound_v2): on — включить на устройстве (dev-переключатель вместо удалённого флага sound_v2), off — выключить. */
+  soundv2?: 'on' | 'off';
   /** Оформление light/dark ТОЛЬКО в памяти (хранилище не тронуто); clear — снять оверрайд. Для съёмки светлых образцов ссылкой. */
   appearance?: 'light' | 'dark' | 'clear';
   /** Тема Liquid Glass ТОЛЬКО в памяти (id из LIQUID_GLASS_THEME_IDS); clear — снять. Образец макетов — grad_aurora (Сверка chain7, 12.10). */
@@ -338,6 +341,7 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.dquota = intOrWord('dquota', ['reset'] as const, 30);
   request.dialogsDone = intOrWord('dialogsDone', ['reset'] as const, 76);
   request.spire = pick('spire', ['open', 'closed'] as const);
+  request.soundv2 = pick('soundv2', ['on', 'off'] as const);
   request.appearance = pick('appearance', ['light', 'dark', 'clear'] as const);
   // зачем (Сверка chain7 12.10): тема и оттенок образца (Аврора, полная насыщенность) выставляются ссылкой, а не руками в настройках
   const themeRaw = one(params.theme);
@@ -688,6 +692,11 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const intensity = request.level === undefined ? before?.intensity ?? null : request.level === 'clear' ? null : request.level;
       setDevThemeChoice({ themeId, intensity });
       return true;
+    });
+  }
+  if (request.soundv2) {
+    await step('soundv2', request.soundv2, async () => {
+      await setSoundV2DevOverride(request.soundv2 === 'on');
     });
   }
   if (request.spire) {

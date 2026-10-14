@@ -12,6 +12,7 @@
 // Режим аудиосессии (UI_SFX_AUDIO_MODE, mixWithOthers) выставляет корневой layout через тот же
 // audio_session_coordinator; банк его не трогает, только читает признак записи.
 
+import { Platform } from 'react-native';
 import { createAudioPlayer } from 'expo-audio';
 import { getManagedAudioModeSnapshot, subscribeManagedAudioMode } from '@/app/audio_session_coordinator';
 import { getAudioActivitySnapshot, subscribeAudioActivity } from '@/modules/audio/audio_activity';
@@ -21,6 +22,11 @@ import type { SoundV2Player } from './sound_bank';
 
 export function createRuntimePlayer(clip: SoundV2Clip): SoundV2Player {
   return createAudioPlayer(clip.source) as unknown as SoundV2Player;
+}
+
+/** Смена скорости воспроизведения: iOS — да; Android — с API 23 (ExoPlayer PlaybackParameters). */
+export function isRateSupported(): boolean {
+  return Platform.OS !== 'android' || Number(Platform.Version) >= 23;
 }
 
 export function isEffectsEnabled(): boolean {

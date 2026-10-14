@@ -2991,6 +2991,8 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       // запросу, — поэтому посев идёт после первого кадра Главной.
       // Замер «после» (04.10): событие оболочки вкладок отпускало посев на 1–5 с РАНЬШЕ настоящего кадра ленивой
       // Главной — ждём сам кадр (HOME-PAINT), потолок 15 с, чтобы посев не потерялся.
+      // зачем (координатор 14.10, п.2): звуки V2 — после первого кадра Главной; флаг выключен → ни файла, ни импорта движка (modules/sound_v2/sound_v2_boot.ts)
+      runAfterHomeFirstFrame('sound_v2_boot', () => import('../modules/sound_v2/sound_v2_boot').then(({ bootSoundV2 }) => bootSoundV2()));
       runAfterHomeFirstFrame('v2_audio_seed', () => Promise.all([
         whenHomePainted(15_000),
         whenNativeSplashHidden(15_000),

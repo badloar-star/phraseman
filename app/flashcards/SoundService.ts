@@ -23,6 +23,7 @@
  * Звуки — продакшн-семейство E9 («мягкая маримба», −16 LUFS, пики −6 dBFS),
  * производство: scripts/audio_pipeline.sh (ffmpeg-синтез + pitch-shift комбо).
  */
+import { tryPlayV2ForFc } from '../../modules/sound_v2/legacy_bridge';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
@@ -175,6 +176,8 @@ export function playSfx(name: FcSfxName): void {
   // выключенных звуках. Локальный тумблер остаётся дополнительным фильтром.
   if (!getSoundSettingsSnapshot().effectsEnabled) return;
   if (!isFcSfxEnabled()) return;
+  // зачем (координатор 14.10, п.4): sound_v2 включён и у звука карточек есть пара в V2 — играет V2; выключен — прежний путь
+  if (tryPlayV2ForFc(name)) return;
   try {
     const p = getPlayer(name);
     if (!p) return;

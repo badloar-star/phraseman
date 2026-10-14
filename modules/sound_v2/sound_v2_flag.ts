@@ -10,6 +10,9 @@
 // подключаются лениво внутри прогрева, поэтому импорт этого файла ничего не тянет на холодном старте.
 
 const FLAG_KEY = 'sound_v2';
+// зачем (координатор 14.10, п.1): Сверка включает звуки V2 на эмуляторе ссылкой dev_state (soundv2=on|off) без правки удалённой конфигурации; только в __DEV__, переживает перезапуск
+const DEV_KEY = 'sound_v2_dev_override_v1';
+let devOverride = false;
 const LOG = '[SOUND-V2]';
 
 let remoteEnabled = false;
@@ -21,7 +24,7 @@ let testOverride: boolean | null = null;
 /** Синхронное чтение: до прогрева кэша всегда false. */
 export function isSoundV2Enabled(): boolean {
   if (testOverride !== null) return testOverride;
-  return hydrated && remoteEnabled;
+  return hydrated && (remoteEnabled || (__DEV__ && devOverride));
 }
 
 export function isSoundV2FlagHydrated(): boolean {
@@ -39,6 +42,11 @@ async function readCacheOnce(): Promise<void> {
       remoteEnabled = parsed?.bools?.[FLAG_KEY] === true;
     } else {
       remoteEnabled = false;
+    }
+    if (__DEV__) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const AsyncStorage = (require('@react-native-async-storage/async-storage') as typeof import('@react-native-async-storage/async-storage')).default;
+      devOverride = (await AsyncStorage.getItem(DEV_KEY)) === '1';
     }
     if (before !== remoteEnabled) {
       console.log(`${LOG} flag: ${FLAG_KEY}=${String(remoteEnabled)} (из кэша remote_config_cache_v1, раньше=${String(before)})`);
@@ -81,3 +89,22 @@ export function primeSoundV2Flag(): Promise<void> {
 export function setSoundV2FlagForTests(value: boolean | null): void {
   testOverride = value;
 }
+
+/** Dev-переключатель (только __DEV__): включить/выключить звуки V2 на устройстве, не трогая удалённый флаг. */
+export async function setSoundV2DevOverride(enabled: boolean): Promise<void> {
+  if (!__DEV__) {
+    console.log(`${LOG} dev-переключатель игнорирован: это не dev-сборка`);
+    return;
+  }
+  devOverride = enabled;
+  hydrated = true;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const AsyncStorage = (require('@react-native-async-storage/async-storage') as typeof import('@react-native-async-storage/async-storage')).default;
+    await AsyncStorage.setItem(DEV_KEY, enabled ? '1' : '0');
+    console.log(`${LOG} dev-переключатель: sound_v2=${String(enabled)} (сохранено в ${DEV_KEY})`);
+  } catch (error) {
+    console.warn(`${LOG} dev-переключатель: значение не сохранилось, до перезапуска работает (${error instanceof Error ? error.message : String(error)})`);
+  }
+}
+

@@ -7,6 +7,8 @@
 // (только если карточки есть) и «На Главную». Звуки — события-заглушки до лаборатории. «Уменьшить движение» — всё сразу, монета стоит.
 // В тексте монета не одушевляется (владелец 14.10).
 // ═══════════════════════════════════════════════════════════════════════════
+import type { SoundV2EventId } from '../../modules/sound_v2/catalog';
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
@@ -39,7 +41,12 @@ export type WelcomeBackMomentProps = Readonly<{
   testID?: string;
 }>;
 
+// зачем (координатор 14.10, п.4): «С возвращением» — звуки V2 по тайм-листу m21 (tap на выглянувшей монете, new_week на радости); флаг sound_v2 выключен — заглушка с журналом
+const WELCOME_BACK_V2: Readonly<Record<string, SoundV2EventId | null>> = { 'moment.back.learn': null, 'moment.back.know': 'tap', 'moment.back.ob': 'new_week' };
+
 function playSound(event: string): void {
+  const v2 = WELCOME_BACK_V2[event];
+  if (v2 && tryPlayV2Event(v2, event)) return;
   if (__DEV__) console.log(`[MOMENT-SOUND] ${event} (заглушка: файла звука пока нет)`); // guard-ok: единичный лог события
 }
 

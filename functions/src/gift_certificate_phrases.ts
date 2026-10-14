@@ -164,10 +164,27 @@ export const GIFT_CERTIFICATE_PHRASES: Readonly<Record<GiftPhrasePlan, readonly 
   ],
 };
 
+/**
+ * D188 (координатор 14.10, вариант а): фраза говорит про конкретный язык («английский», «по-английски», English).
+ * Подарок Plus — общий на все языки, покупатель не обязан знать язык получателя: такие фразы не выпадают случайно.
+ */
+export function isGiftPhraseLanguageSpecific(phrase: GiftPhrase): boolean {
+  return /англ|english/i.test(phrase.text);
+}
+
+const NEUTRAL_GIFT_PHRASES: Readonly<Record<GiftPhrasePlan, readonly GiftPhrase[]>> = {
+  monthly: GIFT_CERTIFICATE_PHRASES.monthly.filter((phrase) => !isGiftPhraseLanguageSpecific(phrase)),
+  yearly: GIFT_CERTIFICATE_PHRASES.yearly.filter((phrase) => !isGiftPhraseLanguageSpecific(phrase)),
+  lifetime: GIFT_CERTIFICATE_PHRASES.lifetime.filter((phrase) => !isGiftPhraseLanguageSpecific(phrase)),
+};
+
 export function resolveGiftPhrase(plan: GiftPhrasePlan, phraseId: unknown): GiftPhrase {
   const phrases = GIFT_CERTIFICATE_PHRASES[plan];
   const requestedId = typeof phraseId === 'string' ? phraseId.trim() : '';
+  // Явный выбор покупателя (он видел текст) — отдаём как есть, даже если фраза про английский.
   const requested = phrases.find(({ id }) => id === requestedId);
   if (requested) return requested;
-  return phrases[Math.floor(Math.random() * phrases.length)];
+  // Случайная — только из нейтральных; если их вдруг нет — из всего списка (сертификат не останется без фразы).
+  const pool = NEUTRAL_GIFT_PHRASES[plan].length > 0 ? NEUTRAL_GIFT_PHRASES[plan] : phrases;
+  return pool[Math.floor(Math.random() * pool.length)];
 }

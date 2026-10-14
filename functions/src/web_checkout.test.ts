@@ -50,6 +50,7 @@ import {
 } from './callable_options';
 import {
   GIFT_CERTIFICATE_PHRASES,
+  isGiftPhraseLanguageSpecific,
   resolveGiftPhrase,
 } from './gift_certificate_phrases';
 
@@ -59,16 +60,38 @@ describe('resolveGiftPhrase', () => {
     expect(resolveGiftPhrase('yearly', phrase.id)).toEqual(phrase);
   });
 
+  // D188 (координатор 14.10, вариант а): случайная фраза — только из нейтральных (подарок Plus общий на все языки).
+  const neutral = (plan: 'monthly' | 'yearly' | 'lifetime') => GIFT_CERTIFICATE_PHRASES[plan].filter((p) => !isGiftPhraseLanguageSpecific(p));
+
   it('does not accept a phrase identifier from another plan', () => {
     const random = jest.spyOn(Math, 'random').mockReturnValue(0);
-    expect(resolveGiftPhrase('yearly', 'monthly-01')).toEqual(GIFT_CERTIFICATE_PHRASES.yearly[0]);
+    expect(resolveGiftPhrase('yearly', 'monthly-01')).toEqual(neutral('yearly')[0]);
     random.mockRestore();
   });
 
   it('falls back within the purchased plan for a missing identifier', () => {
     const random = jest.spyOn(Math, 'random').mockReturnValue(0.999);
-    expect(resolveGiftPhrase('lifetime', undefined)).toEqual(GIFT_CERTIFICATE_PHRASES.lifetime[49]);
+    const pool = neutral('lifetime');
+    expect(resolveGiftPhrase('lifetime', undefined)).toEqual(pool[pool.length - 1]);
     random.mockRestore();
+  });
+
+  it('a random phrase is never language-specific, across all three plans', () => {
+    for (const plan of ['monthly', 'yearly', 'lifetime'] as const) {
+      for (let i = 0; i < 500; i += 1) {
+        expect(isGiftPhraseLanguageSpecific(resolveGiftPhrase(plan, i % 2 === 0 ? undefined : 'unknown-id'))).toBe(false);
+      }
+    }
+  });
+
+  it('an explicitly chosen language-specific phrase is kept — the buyer saw the text', () => {
+    const english = GIFT_CERTIFICATE_PHRASES.yearly.find((p) => isGiftPhraseLanguageSpecific(p));
+    expect(english).toBeDefined();
+    expect(resolveGiftPhrase('yearly', english?.id)).toEqual(english);
+    // 14.10: «английских» 50 из 150 (monthly 15, yearly 19, lifetime 16) — нейтральных хватает на каждый срок.
+    expect(neutral('monthly').length).toBe(35);
+    expect(neutral('yearly').length).toBe(31);
+    expect(neutral('lifetime').length).toBe(34);
   });
 });
 

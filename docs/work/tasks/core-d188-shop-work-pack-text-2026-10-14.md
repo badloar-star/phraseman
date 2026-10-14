@@ -22,7 +22,7 @@ In scope: одна строка detail товара cards-work. Out of scope: sh
 
 ## Security and privacy
 
-Нет.
+Только текст описания товара; данных людей не касается, сбор/передача данных не меняются, политика не затрагивается.
 
 ## Technical debt
 

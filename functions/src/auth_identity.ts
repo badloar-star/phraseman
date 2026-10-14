@@ -2115,6 +2115,23 @@ async function rotateRetiredProviderStableLink(
   }
 }
 
+// ── [AUTH-ENSURE-LINK] (координатор 14.10, ACC-SPEED: тёплый вызов 3,3–3,6 с, один — 10,7 с) ───────────────────────────
+// зачем: «сперва логи» — до ускорения знать, какая стадия держит ответ: проверки удаления, данные из Auth, чтение связки,
+// ветка решения. Только стадии, ветка и миллисекунды; без uid/почты.
+export type AuthEnsureLinkTrace = { mark(stage: string, extra?: Record<string, unknown>): void };
+export function createAuthEnsureLinkTrace(now: () => number = Date.now): AuthEnsureLinkTrace & { total(): number } {
+  const startedAtMs = now();
+  let stageStartedAtMs = startedAtMs;
+  return {
+    mark(stage, extra = {}) {
+      const t = now();
+      console.log(JSON.stringify({ event: 'auth_ensure_link_stage', tag: '[AUTH-ENSURE-LINK]', stage, ms: t - stageStartedAtMs, sinceStartMs: t - startedAtMs, ...extra }));
+      stageStartedAtMs = t;
+    },
+    total: () => now() - startedAtMs,
+  };
+}
+
 export async function ensureStableLinkForAuth(
   db: admin.firestore.Firestore,
   authUid: string,
@@ -2123,8 +2140,11 @@ export async function ensureStableLinkForAuth(
   metadata?: AuthLinkMetadata,
   anonMergeNonce: string | null = null,
   callerAuthTimeMs: number | null = null,
+  trace?: AuthEnsureLinkTrace,
 ): Promise<{ ok: true; stableUid: string; authUid: string; identityReady: true }> {
   const stableId = normalizeStableId(requestedStableId);
+  // зачем ([AUTH-ENSURE-LINK]): каждый выход функции называет свою ветку.
+  const done = <T>(branch: string, result: T): T => { trace?.mark(`return:${branch}`); return result; };
   const provider: AuthProvider | null =
     signInProvider === 'google.com'
       ? 'google'
@@ -2141,10 +2161,12 @@ export async function ensureStableLinkForAuth(
 
   await assertAccountDeletionNotPending(db, authUid);
   if (stableId) await assertStableDeletionNotPending(db, stableId);
+  trace?.mark('deletion_checks', { provider: provider ?? 'anonymous', hasStableId: Boolean(stableId) });
 
   // Добираем email/displayName из Firebase Auth, если клиент их не прислал —
   // иначе linkedAuth.email пишется null и юзера не найти по почте в админке.
   metadata = await enrichMetadataFromAuth(authUid, provider, metadata);
+  trace?.mark('metadata_enriched');
 
   if (provider) {
     const existingLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
@@ -2176,7 +2198,7 @@ export async function ensureStableLinkForAuth(
           provider,
           metadata,
         );
-        return { ok: true, stableUid: stableId, authUid, identityReady: true };
+        return done('b1', { ok: true, stableUid: stableId, authUid, identityReady: true });
       }
       if (linkedStableRetired) throwIdentityRetired('stable');
     }
@@ -2211,7 +2233,7 @@ export async function ensureStableLinkForAuth(
         stableUid: linkedStableUid,
         sourceStableIds: [linkedStableId, linkedStableUid],
       }, provider, metadata, anonMergeNonce, anonMergeCaller);
-      return { ok: true, stableUid: linkedStableUid, authUid, identityReady: true };
+      return done('b2', { ok: true, stableUid: linkedStableUid, authUid, identityReady: true });
     }
     if (!linkedStableId) {
       const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
@@ -2226,7 +2248,7 @@ export async function ensureStableLinkForAuth(
           stableUid,
           sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
         }, provider, metadata, anonMergeNonce, anonMergeCaller);
-        return { ok: true, stableUid, authUid, identityReady: true };
+        return done('b3', { ok: true, stableUid, authUid, identityReady: true });
       }
     }
   }
@@ -2245,7 +2267,7 @@ export async function ensureStableLinkForAuth(
         stableUid,
         sourceStableIds: [...existingAnchor.selection.sourceStableIds, stableUid],
       }, provider, metadata, anonMergeNonce, anonMergeCaller);
-      return { ok: true, stableUid, authUid, identityReady: true };
+      return done('b4', { ok: true, stableUid, authUid, identityReady: true });
     }
 
     const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
@@ -2261,7 +2283,7 @@ export async function ensureStableLinkForAuth(
         stableUid,
         sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
       }, provider, metadata, anonMergeNonce, anonMergeCaller);
-      return { ok: true, stableUid, authUid, identityReady: true };
+      return done('b5', { ok: true, stableUid, authUid, identityReady: true });
     }
 
     const bootstrap = await bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata);
@@ -2286,7 +2308,7 @@ export async function ensureStableLinkForAuth(
           }));
         });
       }
-      return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
+      return done('b6', { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true });
     }
     if (bootstrap.status === 'authoritative') {
       await assertStableDeletionNotPending(db, bootstrap.stableUid);
@@ -2297,7 +2319,7 @@ export async function ensureStableLinkForAuth(
           sourceStableIds: [bootstrap.stableUid],
         }, provider, metadata, anonMergeNonce, anonMergeCaller);
       }
-      return { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true };
+      return done('b7', { ok: true, stableUid: bootstrap.stableUid, authUid, identityReady: true });
     }
   }
 
@@ -2310,7 +2332,7 @@ export async function ensureStableLinkForAuth(
     stableUid,
     sourceStableIds: [...new Set([stableId, stableUid].filter(Boolean))],
   }, provider, metadata, anonMergeNonce, anonMergeCaller);
-  return { ok: true, stableUid, authUid, identityReady: true };
+  return done('b8', { ok: true, stableUid, authUid, identityReady: true });
 }
 
 export const authEnsureStableLink = onCall({
@@ -2347,10 +2369,22 @@ export const authEnsureStableLink = onCall({
   // зачем (M-1 HIGH-1): необязательный nonce из authStampAnonOwnership (клиент 2.0+).
   const anonMergeNonce = parseAnonMergeNonce(request.data?.anonMergeNonce);
   logDeviceHeaderPresence('authEnsureStableLink', request.rawRequest?.headers);
-  const linked = await ensureStableLinkForAuth(
-    db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce,
-    authTimeMsFromToken(request.auth.token),
-  );
+  const trace = createAuthEnsureLinkTrace();
+  trace.mark('start', { provider: signInProvider || 'none', hasMetadata: Boolean(metadata), hasNonce: Boolean(anonMergeNonce) });
+  let linked: Awaited<ReturnType<typeof ensureStableLinkForAuth>>;
+  try {
+    linked = await ensureStableLinkForAuth(
+      db, authUid, request.data?.stableId, signInProvider, metadata, anonMergeNonce,
+      authTimeMsFromToken(request.auth.token), trace,
+    );
+  } catch (error) {
+    console.warn(JSON.stringify({
+      event: 'auth_ensure_link_failed', tag: '[AUTH-ENSURE-LINK]', totalMs: trace.total(),
+      code: typeof (error as { code?: unknown } | null)?.code === 'string' ? (error as { code: string }).code : null,
+      message: (error instanceof Error ? error.message : String(error)).slice(0, 120),
+    }));
+    throw error;
+  }
   // зачем (PM-252, координатор 04.10): забаненный удалил аккаунт и вошёл тем же Google/Apple — бан возвращается.
   // Только для входа с почтой: одно чтение документа по id; сбой проверки вход не ломает (лог [BAN-HASH]).
   if (signInProvider === 'google.com' || signInProvider === 'apple.com') {
@@ -2359,7 +2393,9 @@ export const authEnsureStableLink = onCall({
       email: request.auth.token?.email,
       provider: signInProvider,
     });
+    trace.mark('ban_hash_checked');
   }
+  console.log(JSON.stringify({ event: 'auth_ensure_link_done', tag: '[AUTH-ENSURE-LINK]', totalMs: trace.total() }));
   return linked;
 });
 

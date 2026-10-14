@@ -370,6 +370,13 @@
   const STARS = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
   const WEEK_TOP_W = 192;
   const WEEK_TOP_H = 342;
+  // зачем (закон владельца 14.10 «пик башни и свет ничем не обрезаются»): в коде рамка «Итога недели» top−236 режет ореол навершия
+  // (круг r 88 выходит на 68 ед. выше) — поднимаем рамку на WEEK_TOP_PAD, маску держим в тех же абсолютных координатах.
+  // Тот же сдвиг должен прийти в SpireTowerSvg.tsx (строка Дизайну).
+  const WEEK_TOP_PAD = 80;
+  // полная башня: ореол шпиля выходит на 4 ед. выше y=0 — svg не режет по своему краю (overflow visible, геометрия и маркеры
+  // страниц не сдвигаются), а окно башни даёт запас сверху TOWER_PAD (маркер и соперники лежат в том же слое и едут вместе).
+  const TOWER_PAD = 14;
 
   /** Башня целиком (SpireTowerSvg со сценой темы — как в приложении сейчас: неба нет, окно = плита темы). */
   function svg(o) {
@@ -387,16 +394,18 @@
     const toneOf = (f) => { const s = floorState(f, myFloor); return s === 'mine' ? 'lit' : s === 'passed' ? 'past' : 'dark'; };
     if (o.variant === 'weekTop') {
       const vx = CX - WEEK_TOP_W / 2;
-      const vy = GEOM.top - 236;
+      const vy = GEOM.top - 236 - WEEK_TOP_PAD;
+      const VH = WEEK_TOP_H + WEEK_TOP_PAD;
+      const mcy = GEOM.top - 236 + 0.42 * WEEK_TOP_H; // центр маски краёв — как в коде, в абсолютных единицах
       // маска краёв: RN RadialGradient cx .5 cy .42 rx .72 ry .62 → браузер r .62 + растяжение по x (0,72/0,62)
-      const fade = `<radialGradient id="${id('WeekFadeG')}" cx="0.5" cy="0.42" r="0.62" gradientTransform="translate(0.5 0.42) scale(${f1(0.72 / 0.62 * 1000) / 1000} 1) translate(-0.5 -0.42)"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.66" stop-color="#FFFFFF"/><stop offset="1" stop-color="#000000"/></radialGradient>`
-        + `<mask id="${id('WeekFade')}" x="${vx}" y="${vy}" width="${WEEK_TOP_W}" height="${WEEK_TOP_H}" maskUnits="userSpaceOnUse"><rect x="${vx}" y="${vy}" width="${WEEK_TOP_W}" height="${WEEK_TOP_H}" fill="url(#${id('WeekFadeG')})"/></mask>`;
+      const fade = `<radialGradient id="${id('WeekFadeG')}" gradientUnits="userSpaceOnUse" cx="${CX}" cy="${f1(mcy)}" r="${f1(0.62 * WEEK_TOP_H)}" gradientTransform="translate(${CX} ${f1(mcy)}) scale(${f1(0.72 * WEEK_TOP_W / (0.62 * WEEK_TOP_H) * 1000) / 1000} 1) translate(${-CX} ${f1(-mcy)})"><stop offset="0" stop-color="#FFFFFF"/><stop offset="0.66" stop-color="#FFFFFF"/><stop offset="1" stop-color="#000000"/></radialGradient>`
+        + `<mask id="${id('WeekFade')}" x="${vx}" y="${vy}" width="${WEEK_TOP_W}" height="${VH}" maskUnits="userSpaceOnUse"><rect x="${vx}" y="${vy}" width="${WEEK_TOP_W}" height="${VH}" fill="url(#${id('WeekFadeG')})"/></mask>`;
       const floors = GEOM.floors.slice(FLOORS - 2).map((fl) => floorSvg(fl, toneOf(fl.f), skin, floorState(fl.f, myFloor) === 'mine', false, '', true, sc, id)).join('');
-      return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${f1((width * WEEK_TOP_H) / WEEK_TOP_W)}" viewBox="${vx} ${vy} ${WEEK_TOP_W} ${WEEK_TOP_H}" data-spire-tower="weekTop"><defs>${defs}${fade}</defs><g mask="url(#${id('WeekFade')})">${floors}${skin.rim === 'full' ? cornRims(id) : ''}${crown(skin, summit, id)}</g></svg>`;
+      return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${f1((width * VH) / WEEK_TOP_W)}" viewBox="${vx} ${vy} ${WEEK_TOP_W} ${VH}" data-spire-tower="weekTop"><defs>${defs}${fade}</defs><g mask="url(#${id('WeekFade')})">${floors}${skin.rim === 'full' ? cornRims(id) : ''}${crown(skin, summit, id)}</g></svg>`;
     }
     const b = GEOM.floors[0];
     const skyY = GEOM.top - 250;
-    let out = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${f1((GEOM.height * width) / TW)}" viewBox="0 0 ${TW} ${GEOM.height}" data-spire-tower="${skin.id}"><defs>${defs}</defs>`;
+    let out = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${f1((GEOM.height * width) / TW)}" viewBox="0 0 ${TW} ${GEOM.height}" style="overflow:visible" data-spire-tower="${skin.id}"><defs>${defs}</defs>`;
     if (sc.star) out += STARS.map(([x, yy], i) => `<circle cx="${x}" cy="${skyY - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="${sc.star}" opacity="${i % 2 ? 0.35 : 0.55}"/>`).join('');
     out += `<ellipse cx="60" cy="${GEOM.top - 150}" rx="130" ry="28" fill="url(#${id('Cloud')})"/><ellipse cx="330" cy="${GEOM.top - 170}" rx="140" ry="30" fill="url(#${id('Cloud')})"/><ellipse cx="80" cy="${GEOM.top - 96}" rx="110" ry="22" fill="url(#${id('Cloud')})"/><ellipse cx="320" cy="${GEOM.top - 90}" rx="120" ry="22" fill="url(#${id('Cloud')})"/>`;
     out += `<text x="${CX}" y="${GEOM.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="${sc.num}" text-anchor="middle">${L.aboveClouds}</text>`;
@@ -430,11 +439,12 @@
     const h = o.height || WINDOW_H;
     const my = o.myFloor == null ? null : Math.max(1, Math.min(FLOORS, o.myFloor));
     const fl = my == null ? GEOM.floors[0] : GEOM.floors[my - 1];
-    const cy = (fl.y + fl.h / 2) * scale;
+    const pad = TOWER_PAD * scale;
+    const cy = (fl.y + fl.h / 2) * scale + pad;
     const centered = Math.max(0, cy - h / 2);
-    const maxY = Math.max(0, GEOM.height * scale - h);
+    const maxY = Math.max(0, GEOM.height * scale + pad - h);
     if (my == null || my < FLOORS - 1) return Math.min(centered, maxY);
-    const crownTopY = Math.max(0, (GEOM.top - CROWN_RISE) * scale);
+    const crownTopY = Math.max(0, (GEOM.top - CROWN_RISE) * scale); // запас pad уже над кровлей — цель «кровля у верха» не меняется
     const half = (fl.h / 2) * scale;
     for (const target of [0, crownTopY]) if (cy + half <= target + h) return Math.min(centered, target);
     const bottomAligned = Math.max(0, cy + half - h);
@@ -474,7 +484,7 @@
     }
     const tower = svg(Object.assign({}, o, { width: o.width }));
     return `<div class="spire-window" style="border-radius:22px;box-shadow:${sc.plateShadow}"><div data-st-scroll="${f1(y)}" style="position:relative;height:${o.height}px;border-radius:22px;overflow-y:auto;overflow-x:hidden;background:${sc.plate};scrollbar-width:none">`
-      + `<div style="position:relative;width:${o.width}px;height:${f1(GEOM.height * scale)}px">${tower}${layer}</div></div></div>`;
+      + `<div style="position:relative;width:${o.width}px;height:${f1(GEOM.height * scale)}px;margin-top:${f1(TOWER_PAD * scale)}px">${tower}${layer}</div></div></div>`;
   }
 
   /** Тур первого входа (SpireTour.TourTower): Оникс без лиги, ни один этаж не горит, ширина 240, сдвиг −32, окно 240×340 — видна верхушка. */
@@ -492,7 +502,7 @@
     const coin = typeof o.coin === 'function' && o.myRank != null
       ? `<span style="position:absolute;right:-9px;bottom:-5px;padding:3px;border-radius:50%;background:${o.card || '#1C1C1E'};display:block"><img src="${o.coin(o.myRank)}" alt="" style="width:26px;height:26px;border-radius:50%;display:block"/></span>`
       : '';
-    return `<span style="position:relative;width:58px;height:103px;flex:none;display:block">${svg({ tier: o.tier, myFloor: o.promoted ? FLOORS : 1, selected: 0, width: 58, variant: 'weekTop', theme: o.theme })}${coin}</span>`;
+    return `<span style="position:relative;width:58px;height:103px;flex:none;display:flex;justify-content:center">${svg({ tier: o.tier, myFloor: o.promoted ? FLOORS : 1, selected: 0, width: Math.round(103 * WEEK_TOP_W / (WEEK_TOP_H + WEEK_TOP_PAD) * 10) / 10, variant: 'weekTop', theme: o.theme })}${coin}</span>`; // зачем: место 58×103 как в коде — ореол не режем, башню уменьшаем по высоте, а не обрезаем
   }
 
   /** Выставить прокрутку всем окнам башни внутри root (вставленным строкой). */

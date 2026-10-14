@@ -24,7 +24,7 @@
   --acc: #48816E; --on: #FFFFFF; --acc-text: #185E47; --acc-soft: rgba(126,240,200,.30); --acc-tile: #C2F0E2; --acc2: #5B49D6;
   --cta: #5FB296; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #AAAAAD; --btn-dis: #D5D5D6; --ink-dis: #5B5B5E; --danger: #DAA7A7; --danger-ink: #752A2B;
   --plate1: #FFFFFF; --plate2: #F5F5F6; --raised1: #FFFFFF; --raised2: #FAFAFB; --sheetplate1: #FFFFFF; --sheetplate2: #F5F5F6;
-  --ti: rgba(20,20,40,.06); --ti2: #AAAAAD; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(20,22,28,.45);
+  --ti: rgba(20,20,40,.06); --ti2: #AAAAAD; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(0,0,0,.62); /* как GlassAlertDialog в коде: затемнение 0,62 чёрного в любой теме */
   --sh: 0 14px 26px -14px rgba(10,10,20,.34), 0 1px 3px rgba(10,10,20,.06); --sh2: 0 5px 10px -5px rgba(10,10,20,.28); --sho: 0 26px 40px -14px rgba(10,10,20,.46), 0 2px 4px rgba(10,10,20,.08);
   --good: #006F30; --bad: #AB3837; --warn: #7F5700; --gold: #7F5700; --gold2: #5A3E00; --bolt: #111114; --flame: #48816E;
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
@@ -193,7 +193,11 @@
 .em-ph .zone { background: linear-gradient(90deg, var(--good) 0 17%, var(--control) 17%); }
 .em-ph .zone-line { background: var(--acc); box-shadow: 0 0 12px var(--acc); } .em-ph .zone-lbl { color: var(--acc-text); }
 .em-ph .delta { color: var(--good); }
-.em-ph .dusk, .em-ph .sky .stars, .em-ph .poster, .em-ph .ice, .em-ph .fog { background: transparent; }
+.em-ph .dusk, .em-ph .sky .stars, .em-ph .poster, .em-ph .ice { background: transparent; }
+/* зачем (владелец 14.10 «каша на экране»): полноэкранный момент — отдельный экран темы, а не прозрачный туман поверх подложки:
+   ни одна буква момента не лежит на буквах экрана. Туман — непрозрачный фон темы (как .full), «проснулась» — чуть светлее. */
+.em-ph .fog { background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%) !important; transition: filter 800ms var(--em-ease); }
+.em-ph .fog.awake { filter: brightness(1.12); }
 .em-ph .sky { background: transparent; }
 .em-ph .lgtag { background: var(--control); box-shadow: var(--sh2); color: var(--tx); }
 .em-ph .lgs .lg i { box-shadow: none; }

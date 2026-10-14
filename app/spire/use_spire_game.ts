@@ -346,7 +346,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek }: Input) {
     // зачем (координатор 14.10): звуки Пика V2 — ступень / этаж / вершина в момент итога; провал без звука; флаг sound_v2 выключен — тишина
     // зачем (координатор 14.10): отклик игры — СРАЗУ, без задержки; мост отмечает «событие сыграно». Момент Пика при показе играет своё событие через playUnlessRecentlyPlayed и молчит,
     // если такое же только что прозвучало отсюда (двойного звука нет, а без момента звук как был).
-    if (kind !== 'failed' && kind !== 'save_failed') {
+    if (kind !== 'failed') { // save_failed здесь невозможен (kind сужен присваиванием выше) — он появляется позже, при откате записи
       tryPlayV2Event(kind === 'summit' ? 'summit' : kind === 'floor' ? 'floor' : 'step', 'spire_step_finish');
     }
     void spireRecordStepResult(ids.uid, lang, finish.report).then((res) => {

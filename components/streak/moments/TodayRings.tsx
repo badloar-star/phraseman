@@ -74,7 +74,7 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
-  const streakColors = useStreakColors()!; // enabled по умолчанию — не null
+  const streakColors = useStreakColors();
   const colors = todayRingColors(streakColors);
   const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);

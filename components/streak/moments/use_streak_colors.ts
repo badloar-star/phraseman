@@ -14,6 +14,8 @@ export function todayRingColors(c: Readonly<{ accent: string; second: string; go
 }
 
 /** `enabled=false` (флаг moments_v3 выключен): ничего не считаем — холодный старт и рендеры Главной не платят за цвета колец. */
+export function useStreakColors(): StreakColors;
+export function useStreakColors(enabled: boolean): StreakColors | null;
 export function useStreakColors(enabled: boolean = true): StreakColors | null {
   const { liquidGlassThemeId } = useTheme();
   const p = useSpirePalette();

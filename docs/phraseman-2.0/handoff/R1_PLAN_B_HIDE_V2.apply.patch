@@ -1,0 +1,27 @@
+diff --git a/app/learning_v2_visibility_switch.ts b/app/learning_v2_visibility_switch.ts
+index f2b527b..a71cc1f 100644
+--- a/app/learning_v2_visibility_switch.ts
++++ b/app/learning_v2_visibility_switch.ts
+@@ -12,7 +12,7 @@
+ // Сторож: tests/learning_v2_visibility_switch_contract.test.ts.
+ // ═══════════════════════════════════════════════════════════════════════════
+ 
+-export const LEARNING_V2_HIDDEN: boolean = false;
++export const LEARNING_V2_HIDDEN: boolean = true;
+ 
+ /** Синхронно, без сети: вход в V2 виден/закрыт уже в первом кадре. */
+ export function isLearningV2Hidden(): boolean {
+diff --git a/eas.json b/eas.json
+index b578245..24ac03c 100644
+--- a/eas.json
++++ b/eas.json
+@@ -22,7 +22,8 @@
+       "env": {
+         "EXPO_PUBLIC_STORE_RELEASE": "1",
+         "EXPO_PUBLIC_AI_DIALOG_ENABLED": "true",
+-        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true"
++        "EXPO_PUBLIC_EXPLAIN_ENABLED": "true",
++        "PHRASEMAN_R1_HIDE_V2": "1"
+       }
+     },
+     "ios-account-v2-proof": {

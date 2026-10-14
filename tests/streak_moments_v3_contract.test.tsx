@@ -21,7 +21,7 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-svg', () => {
   const Null = () => null;
-  return { __esModule: true, default: Null, Circle: Null, Path: Null };
+  return { __esModule: true, default: Null, Circle: Null, Path: Null, Defs: Null, RadialGradient: Null, Stop: Null, Rect: Null };
 });
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');
@@ -56,11 +56,14 @@ jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: (
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ themeMode: 'dark', liquidGlassThemeId: 'aurora' }) }));
 jest.mock('../components/icons/LiveStreakFlame', () => ({ __esModule: true, default: 'LiveStreakFlame' }));
 jest.mock('../components/streak/StreakFlameFill', () => ({ StreakFlameFill: 'StreakFlameFill' }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () => null }));
+jest.mock('../components/AchievementArt', () => ({ __esModule: true, default: 'AchievementArt' }));
 jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: 'MomentCoin' }));
 jest.mock('../components/spire/moments/moments_effects', () => ({
   __esModule: true,
   default: 'MomentFirework',
   useMomentRumble: () => ({ style: {}, play: jest.fn() }),
+  momentJitter: (i: number, salt: number) => ((i * 7 + salt * 13) % 100) / 100,
 }));
 jest.mock('../components/spire/moments/moments_layout', () => {
   const R = jest.requireActual('react');
@@ -92,7 +95,7 @@ import {
   STREAK_MILESTONES, STREAK_MOMENT_DURATION_MS, STREAK_MOMENT_TIMELINE, nextStreakMilestone, streakFlameStage, streakMomentKind, streakAchievementId,
   type StreakMilestone,
 } from '../components/streak/moments/streak_milestones';
-import { STREAK_MOMENT_LANGS, STREAK_MOMENT_STRING_KEYS, STREAK_MILESTONE_TITLES_FOR_GUARD, streakMilestoneTitle, streakMomentText } from '../components/streak/moments/streak_moments_strings';
+import { STREAK_MOMENT_LANGS, STREAK_MOMENT_STRING_KEYS, STREAK_MILESTONE_TITLES_FOR_GUARD, streakDayWord, streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../components/streak/moments/streak_moments_strings';
 import { STREAK_SCENE_SOUND, playStreakSceneSound, playTodayDayDoneSound, playTodayRingClosedSound } from '../components/streak/moments/streak_moments_sound';
 import { isSoundV2EventId } from '../modules/sound_v2/catalog';
 import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
@@ -234,6 +237,27 @@ describe('рубежи серии — флаг, подключение, исхо
     expect(offenders).toEqual([]);
   });
 
+  it('тайм-лист сцены ставится ОДИН раз: эффект тактов не зависит от нестабильного rumble/fire (иначе таймеры перезапускались после каждого такта и тексты никогда не появлялись — гейт паритета, круг 1)', () => {
+    const screenSrc = read(`${DIR}/StreakMilestoneScreen.tsx`);
+    expect(screenSrc).toContain('fireRef.current(c.id)');
+    expect(screenSrc).toContain('}, [cues, reduceMotion]);');
+    expect(screenSrc).not.toMatch(/\}, \[cues, fire, reduceMotion\]\)/);
+  });
+
+  it('слово «день» в правильной форме: ru 1 день / 2 дня / 5 дней / 11 дней / 21 день, uk, pl, en; подписи как в образце («3 дня подряд», «До недели — 4 дня», «СЕРИЯ · 7 ДНЕЙ»)', () => {
+    expect([1, 2, 5, 11, 12, 21, 22, 25].map((n) => streakDayWord('ru', n))).toEqual(['день', 'дня', 'дней', 'дней', 'дней', 'день', 'дня', 'дней']);
+    expect([1, 3, 7, 11].map((n) => streakDayWord('uk', n))).toEqual(['день', 'дні', 'днів', 'днів']);
+    expect([1, 2, 5].map((n) => streakDayWord('pl', n))).toEqual(['dzień', 'dni', 'dni']);
+    expect([1, 2].map((n) => streakDayWord('en', n))).toEqual(['day', 'days']);
+    expect(streakMilestoneTitle('ru', 3)).toBe('3 дня подряд');
+    expect(streakMilestoneSubline('ru', 3)).toBe('До недели — 4 дня');
+    expect(streakMilestoneSubline('ru', 7)).toBe('Новая стадия огня — до 30 дней');
+    expect(streakMilestoneSubline('ru', 100)).toBe('Новая стадия огня — до года');
+    expect(streakMilestoneSubline('ru', 730)).toBe('До Легенды — 270 дней');
+    expect(streakMilestoneSubline('ru', 365)).toBe('До двух лет — 365 дней');
+    expect(streakMomentText('ru', 'overline', { n: 7 })).toBe('Серия · 7 дней');
+  });
+
   it('тексты про монету: без запрещённых формулировок (владелец 14.10: «монета задремала» и т. п.); анимации монеты — как в образце', () => {
     const forbidden = /монета (задремала|рада|радуется|спит|устала|грустит)|coin (dozed|is happy|sleeps)/i;
     for (const m of STREAK_MILESTONES) for (const lang of STREAK_MOMENT_LANGS) expect(streakMilestoneTitle(lang, m)).not.toMatch(forbidden);
@@ -246,14 +270,14 @@ describe('рубежи серии — флаг, подключение, исхо
 
   it('огонь — только StreakFlameFill / LiveStreakFlame (своих Ionicons-огней нет); без обводок, без случайности; цвета — из токенов или помечены theme-exempt; звук — имена событий', () => {
     for (const { f, text } of sources()) {
-      expect(`${f}: ${/Ionicons/.test(text)}`).toBe(`${f}: false`);
+      expect(`${f}: ${/name="flame|flame-outline/.test(text)}`).toBe(`${f}: false`); // своих огней на Ionicons нет (галочка и прочие значки — можно)
       expect(`${f}: ${/borderWidth|borderColor/.test(text)}`).toBe(`${f}: false`);
       expect(`${f}: ${/Math\.random/.test(text)}`).toBe(`${f}: false`);
       const raw = text.split('\n').filter((line) => /#[0-9a-fA-F]{3,8}\b|rgba?\(/.test(line) && !/theme-exempt/.test(line) && !/^\s*\/\//.test(line));
       expect(`${f}: ${raw.join(' | ')}`).toBe(`${f}: `);
     }
     expect(read(`${DIR}/StreakMomentFlame.tsx`)).toContain('StreakFlameFill');
-    expect(read(`${DIR}/StreakMilestoneToast.tsx`)).toContain('LiveStreakFlame');
+    expect(read(`${DIR}/StreakMilestoneToast.tsx`)).toContain('StreakMomentFlame');
   });
 });
 
@@ -282,7 +306,7 @@ describe.each(Object.keys(PALETTES))('рубежи серии — тема «%s�
   it('лента рубежей собирается: подпись «Рубежи» и «До 150 — 50 дн.»', async () => {
     await render(<StreakMilestoneRibbon lang="ru" days={100} />);
     expect(screen.getByText('Рубежи')).toBeTruthy();
-    expect(screen.getByText('До 150 — 50 дн.')).toBeTruthy();
+    expect(screen.getByText('до 150 — 50 дн.')).toBeTruthy();
   });
 
   it('кольца «Сегодня»: «День выполнен» нет, пока закрыты не все три', async () => {

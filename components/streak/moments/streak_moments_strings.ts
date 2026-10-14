@@ -11,19 +11,29 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
 
 const S = {
-  overline: ['Серия · {n} дн.', 'Серія · {n} дн.', 'Streak · {n} days', 'Racha · {n} días', 'Sequência · {n} dias', 'Chuỗi · {n} ngày', 'Rangkaian · {n} hari', 'Seri · {n} gün', 'Seria · {n} dni'],
-  toNext: ['До {next} — {left} дн.', 'До {next} — {left} дн.', 'To {next} — {left} days', 'Hasta {next} — {left} días', 'Até {next} — {left} dias', 'Đến {next} — {left} ngày', 'Ke {next} — {left} hari', '{next} için — {left} gün', 'Do {next} — {left} dni'],
-  stageNew: ['Новая стадия огня — до {next} дн.', 'Нова стадія вогню — до {next} дн.', 'New flame stage — up to {next} days', 'Nueva fase de la llama — hasta {next} días', 'Nova fase da chama — até {next} dias', 'Giai đoạn lửa mới — đến {next} ngày', 'Tahap api baru — hingga {next} hari', 'Yeni alev aşaması — {next} güne kadar', 'Nowy etap ognia — do {next} dni'],
+  overline: ['Серия · {n} {dn}', 'Серія · {n} {dn}', 'Streak · {n} {dn}', 'Racha · {n} {dn}', 'Sequência · {n} {dn}', 'Chuỗi · {n} {dn}', 'Rangkaian · {n} {dn}', 'Seri · {n} {dn}', 'Seria · {n} {dn}'],
+  stageNewYear: ['Новая стадия огня — до года', 'Нова стадія вогню — до року', 'New flame stage — up to a year', 'Nueva fase de la llama — hasta un año', 'Nova fase da chama — até um ano', 'Giai đoạn lửa mới — đến một năm', 'Tahap api baru — hingga setahun', 'Yeni alev aşaması — bir yıla kadar', 'Nowy etap ognia — do roku'],
+  achievementRow: ['Ачивка «{n} {dn}»', 'Ачівка «{n} {dn}»', 'Achievement “{n} {dn}”', 'Logro «{n} {dn}»', 'Conquista “{n} {dn}”', 'Thành tựu “{n} {dn}”', 'Pencapaian “{n} {dn}”', 'Başarım “{n} {dn}”', 'Osiągnięcie „{n} {dn}”'],
+  tomorrow: ['Завтра — {n} {dn}', 'Завтра — {n} {dn}', 'Tomorrow — {n} {dn}', 'Mañana — {n} {dn}', 'Amanhã — {n} {dn}', 'Ngày mai — {n} {dn}', 'Besok — {n} {dn}', 'Yarın — {n} {dn}', 'Jutro — {n} {dn}'],
+  toWeek: ['До недели — {left} {dl}', 'До тижня — {left} {dl}', 'To a week — {left} {dl}', 'Hasta una semana — {left} {dl}', 'Até uma semana — {left} {dl}', 'Đến một tuần — {left} {dl}', 'Menuju seminggu — {left} {dl}', 'Bir haftaya — {left} {dl}', 'Do tygodnia — {left} {dl}'],
+  toMonth: ['До месяца — {left} {dl}', 'До місяця — {left} {dl}', 'To a month — {left} {dl}', 'Hasta un mes — {left} {dl}', 'Até um mês — {left} {dl}', 'Đến một tháng — {left} {dl}', 'Menuju sebulan — {left} {dl}', 'Bir aya — {left} {dl}', 'Do miesiąca — {left} {dl}'],
+  toHundred: ['До сотни — {left} {dl}', 'До сотні — {left} {dl}', 'To a hundred — {left} {dl}', 'Hasta cien — {left} {dl}', 'Até cem — {left} {dl}', 'Đến một trăm — {left} {dl}', 'Menuju seratus — {left} {dl}', 'Yüze — {left} {dl}', 'Do stu — {left} {dl}'],
+  toYear: ['До года — {left} {dl}', 'До року — {left} {dl}', 'To a year — {left} {dl}', 'Hasta un año — {left} {dl}', 'Até um ano — {left} {dl}', 'Đến một năm — {left} {dl}', 'Menuju setahun — {left} {dl}', 'Bir yıla — {left} {dl}', 'Do roku — {left} {dl}'],
+  toFiveHundred: ['До пятисот — {left} {dl}', 'До п’ятисот — {left} {dl}', 'To five hundred — {left} {dl}', 'Hasta quinientos — {left} {dl}', 'Até quinhentos — {left} {dl}', 'Đến năm trăm — {left} {dl}', 'Menuju lima ratus — {left} {dl}', 'Beş yüze — {left} {dl}', 'Do pięciuset — {left} {dl}'],
+  toTwoYears: ['До двух лет — {left} {dl}', 'До двох років — {left} {dl}', 'To two years — {left} {dl}', 'Hasta dos años — {left} {dl}', 'Até dois anos — {left} {dl}', 'Đến hai năm — {left} {dl}', 'Menuju dua tahun — {left} {dl}', 'İki yıla — {left} {dl}', 'Do dwóch lat — {left} {dl}'],
+  toThousand: ['До тысячи — {left} {dl}', 'До тисячі — {left} {dl}', 'To a thousand — {left} {dl}', 'Hasta mil — {left} {dl}', 'Até mil — {left} {dl}', 'Đến một nghìn — {left} {dl}', 'Menuju seribu — {left} {dl}', 'Bine — {left} {dl}', 'Do tysiąca — {left} {dl}'],
+  stageNew: ['Новая стадия огня — до {next} {dx}', 'Нова стадія вогню — до {next} {dx}', 'New flame stage — up to {next} {dx}', 'Nueva fase de la llama — hasta {next} {dx}', 'Nova fase da chama — até {next} {dx}', 'Giai đoạn lửa mới — đến {next} {dx}', 'Tahap api baru — hingga {next} {dx}', 'Yeni alev aşaması — {next} {dx}e kadar', 'Nowy etap ognia — do {next} {dx}'],
   finalStage: ['Финальная стадия огня', 'Фінальна стадія вогню', 'Final flame stage', 'Fase final de la llama', 'Fase final da chama', 'Giai đoạn lửa cuối cùng', 'Tahap api terakhir', 'Son alev aşaması', 'Ostatni etap ognia'],
   legendSub: ['Высший ранг монеты — твой', 'Найвищий ранг монети — твій', 'The top coin rank is yours', 'El rango más alto de la moneda es tuyo', 'O rank mais alto da moeda é seu', 'Hạng đồng xu cao nhất là của bạn', 'Peringkat koin tertinggi jadi milikmu', 'En yüksek jeton rütbesi senin', 'Najwyższa ranga monety jest twoja'],
-  halfWay: ['Полпути к Легенде — 1000 дн.', 'Пів шляху до Легенди — 1000 дн.', 'Halfway to Legend — 1000 days', 'A mitad de camino a la Leyenda — 1000 días', 'Meio caminho para a Lenda — 1000 dias', 'Nửa đường đến Huyền thoại — 1000 ngày', 'Separuh jalan menuju Legenda — 1000 hari', 'Efsaneye yarı yol — 1000 gün', 'W połowie drogi do Legendy — 1000 dni'],
-  untilLegend: ['До Легенды — {left} дн.', 'До Легенди — {left} дн.', 'To Legend — {left} days', 'Hasta la Leyenda — {left} días', 'Até a Lenda — {left} dias', 'Đến Huyền thoại — {left} ngày', 'Menuju Legenda — {left} hari', 'Efsaneye — {left} gün', 'Do Legendy — {left} dni'],
+  halfWay: ['Полпути к Легенде — 1000 дней', 'Пів шляху до Легенди — 1000 днів', 'Halfway to Legend — 1000 days', 'A mitad de camino a la Leyenda — 1000 días', 'Meio caminho para a Lenda — 1000 dias', 'Nửa đường đến Huyền thoại — 1000 ngày', 'Separuh jalan menuju Legenda — 1000 hari', 'Efsaneye yarı yol — 1000 gün', 'W połowie drogi do Legendy — 1000 dni'],
+  ribbonNext: ['до {next} — {left} дн.', 'до {next} — {left} дн.', 'to {next} — {left} d', 'hasta {next} — {left} d', 'até {next} — {left} d', 'đến {next} — {left} ngày', 'ke {next} — {left} hr', '{next} için — {left} gün', 'do {next} — {left} dni'],
+  untilLegend: ['До Легенды — {left} {dl}', 'До Легенди — {left} {dl}', 'To Legend — {left} {dl}', 'Hasta la Leyenda — {left} {dl}', 'Até a Lenda — {left} {dl}', 'Đến Huyền thoại — {left} {dl}', 'Menuju Legenda — {left} {dl}', 'Efsaneye — {left} {dl}', 'Do Legendy — {left} {dl}'],
   yearAct1: ['Год. Каждый день', 'Рік. Щодня', 'A year. Every day', 'Un año. Cada día', 'Um ano. Todos os dias', 'Một năm. Mỗi ngày', 'Setahun. Setiap hari', 'Bir yıl. Her gün', 'Rok. Każdego dnia'],
   ribbon: ['Рубежи', 'Рубежі', 'Milestones', 'Hitos', 'Marcos', 'Cột mốc', 'Tonggak', 'Kilometre taşları', 'Kamienie milowe'],
   next: ['Дальше', 'Далі', 'Next', 'Siguiente', 'Próximo', 'Tiếp', 'Lanjut', 'Devam', 'Dalej'],
   share: ['Поделиться', 'Поділитися', 'Share', 'Compartir', 'Compartilhar', 'Chia sẻ', 'Bagikan', 'Paylaş', 'Udostępnij'],
   skip: ['Пропустить', 'Пропустити', 'Skip', 'Omitir', 'Pular', 'Bỏ qua', 'Lewati', 'Geç', 'Pomiń'],
-  flameA11y: ['Серия {n} дн.', 'Серія {n} дн.', 'Streak {n} days', 'Racha de {n} días', 'Sequência de {n} dias', 'Chuỗi {n} ngày', 'Rangkaian {n} hari', '{n} günlük seri', 'Seria {n} dni'],
+  flameA11y: ['Серия {n} {dn}', 'Серія {n} {dn}', 'Streak {n} {dn}', 'Racha de {n} {dn}', 'Sequência de {n} {dn}', 'Chuỗi {n} {dn}', 'Rangkaian {n} {dn}', '{n} {dn} seri', 'Seria {n} {dn}'],
   // ── блок «Сегодня» ──
   today: ['Сегодня', 'Сьогодні', 'Today', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj'],
   dayDone: ['День выполнен', 'День виконано', 'Day complete', 'Día completado', 'Dia concluído', 'Hoàn thành ngày', 'Hari selesai', 'Gün tamamlandı', 'Dzień ukończony'],
@@ -37,7 +47,7 @@ export type StreakMomentStringKey = keyof typeof S;
 export const STREAK_MOMENT_STRING_KEYS = Object.keys(S) as readonly StreakMomentStringKey[];
 
 /** Заголовки рубежей: слова на каждом языке; 3/150/250 — шаблон «{n} дн. подряд» (ниже). */
-const DAYS_IN_A_ROW: Nine = ['{n} дн. подряд', '{n} дн. поспіль', '{n} days in a row', '{n} días seguidos', '{n} dias seguidos', '{n} ngày liên tiếp', '{n} hari berturut-turut', '{n} gün üst üste', '{n} dni z rzędu'];
+const DAYS_IN_A_ROW: Nine = ['{n} {dn} подряд', '{n} {dn} поспіль', '{n} {dn} in a row', '{n} {dn} seguidos', '{n} {dn} seguidos', '{n} {dn} liên tiếp', '{n} {dn} berturut-turut', '{n} {dn} üst üste', '{n} {dn} z rzędu'];
 const TITLES: Readonly<Record<StreakMilestone, Nine>> = {
   1: ['Серия началась', 'Серію розпочато', 'Streak started', 'La racha empezó', 'A sequência começou', 'Chuỗi ngày bắt đầu', 'Rangkaian dimulai', 'Seri başladı', 'Seria się zaczęła'],
   3: DAYS_IN_A_ROW,
@@ -68,12 +78,62 @@ function pick(row: Nine, lang: Lang): string {
   return row[LANG_INDEX[lang] ?? 2];
 }
 
+/** Слово «день» в правильной форме для числа n (ru/uk/pl — три формы, en/es/pt — две, vi/id/tr — одна). Чистая функция: проверяет сторож. */
+export function streakDayWord(lang: Lang, n: number): string {
+  const a = Math.abs(Math.trunc(n));
+  const m10 = a % 10;
+  const m100 = a % 100;
+  const slavic = (one: string, few: string, many: string): string => (m10 === 1 && m100 !== 11 ? one : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? few : many);
+  switch (lang) {
+    case 'ru': return slavic('день', 'дня', 'дней');
+    case 'uk': return slavic('день', 'дні', 'днів');
+    case 'pl': return a === 1 ? 'dzień' : 'dni';
+    case 'es': return a === 1 ? 'día' : 'días';
+    case 'pt-BR': return a === 1 ? 'dia' : 'dias';
+    case 'vi': return 'ngày';
+    case 'id': return 'hari';
+    case 'tr': return 'gün';
+    default: return a === 1 ? 'day' : 'days';
+  }
+}
+
+/** Подставляет {n}/{left}/{next} и слова «день» ({dn}/{dl}/{dx}) в правильной форме. */
+function withDayWords(lang: Lang, vars?: Readonly<Record<string, string | number>>): Readonly<Record<string, string | number>> | undefined {
+  if (!vars) return vars;
+  const out: Record<string, string | number> = { ...vars };
+  if (typeof vars.n === 'number') out.dn = streakDayWord(lang, vars.n);
+  if (typeof vars.left === 'number') out.dl = streakDayWord(lang, vars.left);
+  if (typeof vars.next === 'number') out.dx = streakDayWord(lang, vars.next);
+  return out;
+}
+
 export function streakMomentText(lang: Lang, key: StreakMomentStringKey, vars?: Readonly<Record<string, string | number>>): string {
-  return fill(pick(S[key], lang), vars);
+  return fill(pick(S[key], lang), withDayWords(lang, vars));
 }
 
 export function streakMilestoneTitle(lang: Lang, milestone: StreakMilestone): string {
-  return fill(pick(TITLES[milestone], lang), { n: milestone });
+  return fill(pick(TITLES[milestone], lang), withDayWords(lang, { n: milestone }));
+}
+
+/** Куда ведёт подпись «до …» после рубежа (образец streak-milestones.html): число дней до цели и ключ фразы. */
+const SUBLINE: Readonly<Record<StreakMilestone, Readonly<{ key: StreakMomentStringKey; target: number }> | null>> = {
+  1: { key: 'tomorrow', target: 2 }, 3: { key: 'toWeek', target: 7 }, 7: null, 14: { key: 'toMonth', target: 30 }, 30: null, 50: { key: 'toHundred', target: 100 },
+  100: null, 150: { key: 'toYear', target: 365 }, 200: { key: 'toYear', target: 365 }, 250: { key: 'toYear', target: 365 }, 300: { key: 'toYear', target: 365 },
+  365: { key: 'toTwoYears', target: 730 }, 400: { key: 'toFiveHundred', target: 500 }, 500: null, 600: { key: 'toTwoYears', target: 730 }, 730: { key: 'untilLegend', target: 1000 },
+  800: { key: 'toThousand', target: 1000 }, 900: { key: 'toThousand', target: 1000 }, 1000: null,
+};
+
+/** Подпись под заголовком рубежа: «До недели — 4 дня», «Новая стадия огня — до 30 дней» (7/30/100), «Полпути к Легенде» (500), «Высший ранг монеты — твой» (1000). */
+export function streakMilestoneSubline(lang: Lang, milestone: StreakMilestone): string {
+  if (milestone === 7) return streakMomentText(lang, 'stageNew', { next: 30 });
+  if (milestone === 30) return streakMomentText(lang, 'stageNew', { next: 100 });
+  if (milestone === 100) return streakMomentText(lang, 'stageNewYear');
+  if (milestone === 500) return streakMomentText(lang, 'halfWay');
+  if (milestone === 1000) return streakMomentText(lang, 'legendSub');
+  const sub = SUBLINE[milestone]!;
+  return sub.key === 'tomorrow'
+    ? streakMomentText(lang, 'tomorrow', { n: sub.target })
+    : streakMomentText(lang, sub.key, { left: sub.target - milestone });
 }
 
 /** Все языки, на которых обязаны быть тексты (сторож сверяет). */

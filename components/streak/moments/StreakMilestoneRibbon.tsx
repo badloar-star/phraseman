@@ -47,7 +47,7 @@ function StreakMilestoneRibbon({ lang, days, testID = 'streak-milestone-ribbon' 
     <View testID={testID} style={[s.wrap, { backgroundColor: p.card }, sh.plate]}>
       <View style={s.head}>
         <Text style={[s.ov, { color: p.textSecondary }]}>{streakMomentText(lang, 'ribbon')}</Text>
-        {next ? <Text style={[s.small, { color: p.textSecondary }]}>{streakMomentText(lang, 'toNext', { next, left: next - days })}</Text> : null}
+        {next ? <Text style={[s.small, { color: p.textSecondary }]}>{streakMomentText(lang, 'ribbonNext', { next, left: next - days })}</Text> : null}
       </View>
       <View style={s.ribbon}>
         <View style={[s.track, { backgroundColor: p.control }]}>

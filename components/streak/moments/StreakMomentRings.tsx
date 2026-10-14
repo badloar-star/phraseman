@@ -10,6 +10,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, ZoomIn, useAnimatedProps, useReducedMotion, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
 import Svg, { Circle, Path } from 'react-native-svg';
 import { useSpirePalette } from '../../spire/useSpirePalette';
+import { useStreakColors } from './use_streak_colors';
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -44,6 +45,7 @@ export type MonthRingProps = Readonly<{ rings: 1 | 2; size: number; center: stri
 /** Круг месяцев; внешнее кольцо — первый год и зажигается первым. */
 export const MonthRing = memo(function MonthRing({ rings, size, center, lit, stepMs }: MonthRingProps) {
   const p = useSpirePalette();
+  const colors = useStreakColors();
   const c = size / 2;
   const arcs = useMemo(() => {
     const out: { key: string; d: string; delayMs: number }[] = [];
@@ -55,7 +57,7 @@ export const MonthRing = memo(function MonthRing({ rings, size, center, lit, ste
   return (
     <View accessible={false} style={{ width: size, height: size }}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={s.overflow}>
-        {arcs.map((a) => <MonthArc key={a.key} d={a.d} lit={lit} delayMs={a.delayMs} track={p.track} color={p.cta} />)}
+        {arcs.map((a) => <MonthArc key={a.key} d={a.d} lit={lit} delayMs={a.delayMs} track={p.track} color={colors.accent} />)}
       </Svg>
       <View style={s.center} pointerEvents="none"><Text style={[s.centerText, { color: p.text }]}>{center}</Text></View>
     </View>
@@ -68,6 +70,7 @@ const HALF_LEN = 710;
 /** Кольцо пути к Легенде: дорожка и дуга, которая за 1,6 с доходит до половины; в центре — огонь. */
 export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRingProps) {
   const p = useSpirePalette();
+  const colors = useStreakColors();
   const reduceMotion = useReducedMotion();
   const offset = useSharedValue(reduceMotion ? HALF_LEN / 2 : HALF_LEN);
   useEffect(() => {
@@ -79,7 +82,7 @@ export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRing
     <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={[StyleSheet.absoluteFill, s.overflow]}>
         <Circle cx={c} cy={c} r={113} fill="none" stroke={p.track} strokeWidth={12} />
-        <AnimatedCircle cx={c} cy={c} r={113} fill="none" stroke={p.cta} strokeWidth={12} strokeLinecap="round" strokeDasharray={HALF_LEN} animatedProps={animated} transform={`rotate(-90 ${c} ${c})`} />
+        <AnimatedCircle cx={c} cy={c} r={113} fill="none" stroke={colors.accent} strokeWidth={12} strokeLinecap="round" strokeDasharray={HALF_LEN} animatedProps={animated} transform={`rotate(-90 ${c} ${c})`} />
       </Svg>
       {children}
     </View>
@@ -89,6 +92,7 @@ export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRing
 /** Календарь месяца: 35 клеток, горят первые `lit`; клетки появляются по 26 мс. */
 export const MonthCalendar = memo(function MonthCalendar({ lit = 30 }: Readonly<{ lit?: number }>) {
   const p = useSpirePalette();
+  const colors = useStreakColors();
   const reduceMotion = useReducedMotion();
   return (
     <View accessible={false} style={s.cal}>
@@ -96,7 +100,7 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30 }: Readonly<
         <Animated.View
           key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
           entering={reduceMotion ? undefined : ZoomIn.delay(i * 26).duration(300)}
-          style={[s.cell, { backgroundColor: i < lit ? p.cta : p.control }]}
+          style={[s.cell, { backgroundColor: i < lit ? colors.accent : p.control }]}
         />
       ))}
     </View>

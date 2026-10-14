@@ -64,18 +64,23 @@ type Props = Readonly<{
   size: number;
   /** Серия прервалась — огонь тусклый, как прежнее «неактивное» перо. */
   inactive?: boolean;
+  /**
+   * Цвета стадии огня для моментов серии (рубежи 7 → яркий, 30 → второй цвет темы, 100 → белый, 365 → звёздный, 1000 → золотой; образец streak-milestones.html).
+   * Нет пропса — огонь рисуется как раньше (Главная, шапка): расчёт от дней и темы не меняется.
+   */
+  colors?: Readonly<{ outer: string; core: string }>;
 }>;
 
-function StreakFlameFillBase({ streakDays, size, inactive = false }: Props) {
+function StreakFlameFillBase({ streakDays, size, inactive = false, colors }: Props) {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const fill = streakFlameFillRatio(streakDays);
   const calm = !(g.level === 'accent' || g.level === 'max');
   const vivid = calm ? g.text : g.accentBright;
   // Заливка: от приглушённого к яркому тону темы — по мере заполнения и «разогрева».
-  const fillColor = mixThemeColors(g.secondary, vivid, streakFlameOuterMix(streakDays, calm));
+  const fillColor = colors?.outer ?? mixThemeColors(g.secondary, vivid, streakFlameOuterMix(streakDays, calm));
   // зачем (владелец 04.10): после 10 дней огонь разгорается от центра — светлое ядро, статично.
-  const coreOpacity = inactive ? 0 : streakFlameCoreOpacity(streakDays);
+  const coreOpacity = inactive ? 0 : colors ? 0.85 : streakFlameCoreOpacity(streakDays);
   const coreSize = Math.round(size * 0.5);
   const outlineColor = g.mutedText;
   const filledHeight = Math.round(size * fill);
@@ -96,7 +101,7 @@ function StreakFlameFillBase({ streakDays, size, inactive = false }: Props) {
           testID="streak-flame-core"
           name="flame"
           size={coreSize}
-          color={g.text}
+          color={colors?.core ?? g.text}
           style={{ position: 'absolute', left: Math.round((size - coreSize) / 2), bottom: Math.round(size * 0.08), opacity: coreOpacity }}
         />
       ) : null}

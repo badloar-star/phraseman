@@ -21,7 +21,7 @@ jest.mock('react-native', () => ({
 }));
 jest.mock('react-native-svg', () => {
   const Null = () => null;
-  return { __esModule: true, default: Null, Circle: Null, Path: Null };
+  return { __esModule: true, default: Null, Circle: Null, Path: Null, Defs: Null, RadialGradient: Null, Stop: Null, Rect: Null };
 });
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');
@@ -56,11 +56,14 @@ jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: (
 jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ themeMode: 'dark', liquidGlassThemeId: 'aurora' }) }));
 jest.mock('../components/icons/LiveStreakFlame', () => ({ __esModule: true, default: 'LiveStreakFlame' }));
 jest.mock('../components/streak/StreakFlameFill', () => ({ StreakFlameFill: 'StreakFlameFill' }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: () => null }));
+jest.mock('../components/AchievementArt', () => ({ __esModule: true, default: 'AchievementArt' }));
 jest.mock('../components/moments/MomentCoin', () => ({ __esModule: true, default: 'MomentCoin' }));
 jest.mock('../components/spire/moments/moments_effects', () => ({
   __esModule: true,
   default: 'MomentFirework',
   useMomentRumble: () => ({ style: {}, play: jest.fn() }),
+  momentJitter: (i: number, salt: number) => ((i * 7 + salt * 13) % 100) / 100,
 }));
 jest.mock('../components/spire/moments/moments_layout', () => {
   const R = jest.requireActual('react');
@@ -103,6 +106,6 @@ describe('кольца «Сегодня» в блоке — флаг moments_v3'
     expect(screen.queryByTestId('today-rings')).toBeNull();
   });
   it('цвета колец = акцент, второй цвет, золото темы (те же, что у отметок строк)', () => {
-    expect(todayRingColors({ cta: '#111111', accentText: '#222222', gold: '#333333' })).toEqual(['#111111', '#222222', '#333333']);
+    expect(todayRingColors({ accent: '#111111', second: '#222222', gold: '#333333' })).toEqual(['#111111', '#222222', '#333333']);
   });
 });

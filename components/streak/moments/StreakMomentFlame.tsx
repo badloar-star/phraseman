@@ -9,7 +9,10 @@ import React, { memo, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { StreakFlameFill } from '../StreakFlameFill';
+import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
+import type { StreakFlameStage } from './streak_milestones';
+import { streakStageColors } from './streak_stage_colors';
 
 /** Плашка цифры: тёмная в любой теме (theme-exempt — гарантирует контраст поверх огня любого цвета). */
 export const STREAK_PLATE_BG = 'rgba(8,10,14,0.82)'; // theme-exempt: плашка цифры на огне — тёмная в любой теме, иначе цифру не видно
@@ -30,12 +33,16 @@ export type StreakMomentFlameProps = Readonly<{
   burstKey?: number;
   /** Меняется — проигрывается морф-вспышка (смена стадии). */
   morphKey?: number;
+  /** Стадия огня (цвета образца: 7 яркий, 30 второй цвет темы, 100 белый, 365 звёздный, 1000 золотой); нет — огонь как на Главной. */
+  stage?: StreakFlameStage;
   accessibilityLabel?: string;
   testID?: string;
 }>;
 
-function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, accessibilityLabel, testID = 'streak-moment-flame' }: StreakMomentFlameProps) {
+function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, stage, accessibilityLabel, testID = 'streak-moment-flame' }: StreakMomentFlameProps) {
   const p = useSpirePalette();
+  const { liquidGlassThemeId } = useTheme();
+  const colors = stage === undefined ? null : streakStageColors(stage, { themeId: liquidGlassThemeId, accent: p.cta, text: p.text, bg: p.bg, gold: p.gold });
   const reduceMotion = useReducedMotion();
   const scale = useSharedValue(1);
   const veil = useSharedValue(0);
@@ -56,7 +63,7 @@ function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, a
     <View testID={testID} accessible accessibilityLabel={accessibilityLabel} style={{ width: size, height: size }}>
       <Animated.View pointerEvents="none" style={[s.veil, { backgroundColor: p.accentText }, veilStyle]} />
       <Animated.View style={flameStyle}>
-        <StreakFlameFill streakDays={days} size={size} />
+        <StreakFlameFill streakDays={days} size={size} colors={colors ?? undefined} />
       </Animated.View>
       {text !== '' ? (
         <View pointerEvents="none" style={s.plateWrap}>

@@ -9,6 +9,7 @@ import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
 import TodayRingsSlot from '../../streak/moments/TodayRingsSlot';
 import { todayRingColors } from '../../streak/moments/TodayRings';
+import { useStreakColors } from '../../streak/moments/use_streak_colors';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -39,7 +40,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
   const rowGlass = useHomePlateStyle(true);
   // зачем (координатор 14.10, момент m11): за флагом moments_v3 над списком — три кольца дня, а отметка выполненной строки красится в цвет её кольца; флаг выключен — блок как был
   const ringsOn = useMomentsV3Enabled();
-  const ringColors = todayRingColors(p);
+  const ringColors = todayRingColors(useStreakColors());
   return (
     <View testID="home-v2-today" style={s.card}>
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>

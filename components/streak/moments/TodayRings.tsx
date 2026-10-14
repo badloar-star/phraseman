@@ -8,6 +8,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedProps, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Circle } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
 import { hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
@@ -15,6 +16,7 @@ import MomentCoin from '../../moments/MomentCoin';
 import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
+import { useStreakColors } from './use_streak_colors';
 import { playStreakTapSound, playTodayDayDoneSound, playTodayRingClosedSound } from './streak_moments_sound';
 import { streakMomentText } from './streak_moments_strings';
 
@@ -57,8 +59,8 @@ const Ring = memo(function Ring({ index, value, color, instant }: RingProps) {
 });
 
 /** Цвета колец = цвета отметок строк: акцент темы, второй цвет, золото темы (образец: --acc, --r2, --r3). */
-export function todayRingColors(p: Readonly<{ cta: string; accentText: string; gold: string }>): readonly [string, string, string] {
-  return [p.cta, p.accentText, p.gold];
+export function todayRingColors(c: Readonly<{ accent: string; second: string; gold: string }>): readonly [string, string, string] {
+  return [c.accent, c.second, c.gold];
 }
 
 export type TodayRingsProps = Readonly<{
@@ -75,7 +77,8 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
-  const colors = todayRingColors(p);
+  const streakColors = useStreakColors();
+  const colors = todayRingColors(streakColors);
   const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);
   const prev = useRef<readonly number[] | null>(null);
@@ -122,6 +125,7 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
       </View>
       {allClosed ? (
         <Animated.View style={[s.dayOk, { backgroundColor: p.card }, sh.nested]}>
+          <Ionicons name="checkmark" size={16} color={streakColors.accent} />
           <Text style={[s.dayOkText, { color: p.text }]}>{streakMomentText(lang, 'dayDone')}</Text>
         </Animated.View>
       ) : null}
@@ -134,7 +138,7 @@ const s = StyleSheet.create({
   rw: { width: SIZE, height: SIZE, alignItems: 'center', justifyContent: 'center' },
   svg: { position: 'absolute', left: 0, top: 0, transform: [{ rotate: '-90deg' }], overflow: 'visible' },
   flash: { position: 'absolute', left: -14, right: -14, top: -14, bottom: -14, borderRadius: 999, opacity: 0 },
-  dayOk: { height: 32, paddingHorizontal: 12, borderRadius: 16, justifyContent: 'center' },
+  dayOk: { height: 32, paddingLeft: 10, paddingRight: 12, borderRadius: 16, flexDirection: 'row', alignItems: 'center', gap: 8 },
   dayOkText: { fontSize: 13, fontWeight: '700' },
 });
 

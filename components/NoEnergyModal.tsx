@@ -285,15 +285,15 @@ function NoEnergyModal({
     pl: 'kilka minut',
   });
   const defaultSubtitle = triLang(lang, {
-    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. В Plus и Pro энергия безлимитная.`,
-    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. У Plus і Pro енергія безлімітна.`,
-    en: `+1 ⚡ comes back in ${recoveryTimeText}. Energy is unlimited with Plus and Pro.`,
-    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. La energía es ilimitada con Plus y Pro.`,
-    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. A energia é ilimitada no Plus e Pro.`,
-    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Plus và Pro có năng lượng không giới hạn.`,
-    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Energi tanpa batas tersedia di Plus dan Pro.`,
-    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Plus ve Pro'da enerji sınırsızdır.`,
-    pl: `+1 ⚡ wróci za ${recoveryTimeText}. W Plus i Pro energia jest bez limitu.`,
+    ru: `+1 ⚡ вернётся через ${recoveryTimeText}. В Plus энергия безлимитная.`,
+    uk: `+1 ⚡ відновиться через ${recoveryTimeText}. У Plus енергія безлімітна.`,
+    en: `+1 ⚡ comes back in ${recoveryTimeText}. Energy is unlimited with Plus.`,
+    es: `+1 ⚡ se recuperará en ${recoveryTimeText}. La energía es ilimitada con Plus.`,
+    'pt-BR': `+1 ⚡ volta em ${recoveryTimeText}. A energia é ilimitada no Plus.`,
+    vi: `+1 ⚡ sẽ hồi lại sau ${recoveryTimeText}. Plus có năng lượng không giới hạn.`,
+    id: `+1 ⚡ pulih dalam ${recoveryTimeText}. Energi tanpa batas tersedia di Plus.`,
+    tr: `+1 ⚡ ${recoveryTimeText} içinde yenilenir. Plus'ta enerji sınırsızdır.`,
+    pl: `+1 ⚡ wróci za ${recoveryTimeText}. W Plus energia jest bez limitu.`,
   });
   // Запасная строка раньше брала ВСЕГДА нулевой вариант — то есть тот самый
   // экзаменный. Теперь она строится тем же способом, что и основная.

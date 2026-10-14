@@ -17,8 +17,6 @@ import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM, TOAST } from '../constants/motionHybrid';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 
-const EXEMPT_COLOR_1 = '#3A1E1C'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
-const EXEMPT_COLOR_2 = '#FF8C82'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
 const EXEMPT_COLOR_3 = '#000000'; // theme-exempt: красная плашка макета system_23 для тёмного оформления; тень и затемнение окна — постоянные
 
 type Props = {
@@ -55,7 +53,7 @@ function ThemedConfirmModal({
   motionVariant = 'hybrid',
   destructive = false,
 }: Props) {
-  const { theme: t, liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const { liquidGlassThemeId } = useTheme();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
@@ -84,14 +82,15 @@ function ThemedConfirmModal({
   const panelBackground = Platform.OS === 'android' ? glass.opaqueSheet : glass.sheet;
   // зачем: паритет с макетом system.html system_23 — «Удалить» это приглушённо-красная плашка (#3A1E1C) с коралловым
   // текстом (#FF8C82). Эти значения рассчитаны на тёмный графит; в светлой теме берём красные роли темы.
-  const darkDanger = liquidGlassAppearance === 'dark';
+  // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались» + «все модалы слушаются тему»): заливки — токены кнопок темы (dangerFill/dangerInk, ctaFill, buttonFill),
+  // а не зашитые #3A1E1C/#FF8C82 и не selected/opaqueControl (давали 1,0–1,3 : 1 к шторке). Образец Макетов: опасная #6A2A25 / текст #FFC2BB.
   const confirmBackground = destructive
-    ? (darkDanger ? EXEMPT_COLOR_1 : t.wrongBg)
+    ? glass.dangerFill
     : confirmVariant === 'accent'
-      ? glass.cta
-      : glass.opaqueControl;
+      ? glass.ctaFill
+      : glass.buttonFill;
   const confirmForeground = destructive
-    ? (darkDanger ? EXEMPT_COLOR_2 : t.wrong)
+    ? glass.dangerInk
     : confirmVariant === 'accent'
       ? glass.ctaInk
       : glass.text;
@@ -211,7 +210,7 @@ function ThemedConfirmModal({
                   hapticTap();
                   onCancel();
                 }}
-                style={[styles.action, { backgroundColor: glass.selected }]}
+                style={[styles.action, { backgroundColor: glass.buttonFill }]}
               >
                 <Text style={[styles.actionLabel, { color: glass.text }]}>
                   {cancelLabel}
@@ -308,7 +307,7 @@ const styles = StyleSheet.create({
   // зачем (system.html `.modal .mb` 15/21): шкала D145 — текст под заголовком 16/22.
   message: { fontSize: 16, lineHeight: 22, textAlign: 'center', marginTop: 8, marginBottom: 20 },
   messageNode: { marginTop: 8, marginBottom: 20 },
-  confirmActions: { flexDirection: 'row', gap: 10, marginTop: 0 },
+  confirmActions: { flexDirection: 'row', gap: 12, marginTop: 0 }, // зачем (Макеты 854d5866c, №35): зазор между кнопками >= 12 (было 10)
   action: {
     flex: 1,
     minHeight: 48,

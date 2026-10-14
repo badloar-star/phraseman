@@ -37,3 +37,5 @@ Contain: сторож с порогами и списком осознанных
 ## Rollback
 
 git revert коммита с токенами; тест останется как измеритель.
+Governance-ID: TG-47BB0027AE2F
+Governance-ID: TG-B9A9A72B998B

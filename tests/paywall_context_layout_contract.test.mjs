@@ -60,7 +60,8 @@ test('sheet and its tiles differ in every theme: graphite dark had opaqueSheet =
   const plus = read('components', 'paywall', 'PaywallPlus.tsx');
   // зачем (координатор 13.10, paywall-gap-001): в тёмном лист и плашки — нейтраль «Тени» (paywall_surfaces.ts), светлое прежнее; PaywallPlus реэкспортирует paywallSheetBg
   const surfaces = read('components', 'paywall', 'paywall_surfaces.ts');
-  assert.match(surfaces, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueSheet : SHADOW_SHEET_DARK_TOP; \}/);
+  // зачем (владелец 13.10, №35): лист пейвола — opaqueSheet текущей темы в обоих оформлениях (нейтральная тёмная шторка отменена)
+  assert.match(surfaces, /export function paywallSheetBg\(g: GlassTokens\): string \{ return g\.opaqueSheet; \}/);
   assert.match(surfaces, /export function paywallPlateBg\(g: GlassTokens\): string \{ return g\.isLight \? g\.opaqueControl : shadowSheetPlateTokens\(g\)\.plateFillFrom; \}/);
   assert.match(plus, /export \{ paywallSheetBg, paywallPlateBg \};/);
   const screen = read('components', 'paywall', 'PaywallPlusScreen.tsx');

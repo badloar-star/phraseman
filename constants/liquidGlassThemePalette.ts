@@ -163,14 +163,8 @@ export function getActiveLiquidGlassVariant(): Required<LiquidGlassVariant> {
   return activeVariant;
 }
 
-/** Тёмное оформление: подложка шторок/окон нейтральная при любой теме (стиль «Тень»); светлое — как есть. */
-export const SHADOW_SHEET_NEUTRAL_DARK = '#28282E';
-// зачем (координатор 13.10, кадры dark_sheet_r1: поле ввода и «Отмена» в диалоге удаления оставались зеленоватыми на нейтральной подложке): `opaqueControl` в ТЁМНОМ тоже нейтральный
-// (#3A3A40 — чуть светлее подложки #28282E, как плашки/поля в образцах «Тени»), а не тонированный темой (у «Авроры» #2B3839). Светлое не трогаем. Откат — git revert коммита с этой строкой.
-export const SHADOW_CONTROL_NEUTRAL_DARK = '#3A3A40'; // зачем (координатор 13.10, согласовано): было #34343A (≈1,19 к подложке) — поле/кнопка «Отмена» едва отличались; #3A3A40 даёт ≈1,30, остаётся нейтральным
-function withNeutralDarkSheet<T extends { isLight: boolean; opaqueSheet: string; opaqueControl: string }>(built: T): T {
-  return built.isLight ? built : { ...built, opaqueSheet: SHADOW_SHEET_NEUTRAL_DARK, opaqueControl: SHADOW_CONTROL_NEUTRAL_DARK };
-}
+// зачем (владелец 13.10, последнее слово через координатора: «всё строго в текущей теме, все модалы слушаются тему»): нейтральная тёмная подложка шторок (#28282E / #3A3A40, решение 12.10)
+// отменена. Подложка шторок/окон и заливка контролов берутся из токенов ТЕКУЩЕЙ темы (opaqueSheet / opaqueControl); приём «Тень» остаётся (без рамок, тень/тон/скругление).
 
 /** Unknown or retired names safely return graphite. Without `variant` the active one is used. */
 export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = activeVariant): GlassTokens {
@@ -188,7 +182,7 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // зачем (координатор 13.10, разбор diff Темами Г2; решение владельца 12.10 «стиль «Тень» на всё приложение»): подложка шторок и окон в ТЁМНОМ оформлении — нейтральная
   // (#28282E, shadow-skin.css `.ph .sheet`) при любой теме, а не окрашенная тоном темы (у «Авроры» было #2B3839, у «Ириса» #33353E). Все производные (плашки шторок,
   // контраст текста на подложке) считаются уже от неё. Светлое оформление не меняется. Откат — git revert коммита с этой строкой.
-  const built = withNeutralDarkSheet(buildThemeTokens(themeId, variant));
+  const built = buildThemeTokens(themeId, variant);
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
@@ -214,6 +208,8 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   const accentGraphic = legibleOn(built.accent, built.text, [
     built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet,
   ], 3.2);
+  // зачем (TS2345, координатор 13.10): `bad` — роль палитры, а не базового токена; считаем роли палитры один раз и отдаём `bad` ролям кнопок (dangerFill/dangerInk).
+  const paletteRoles = deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles;
   const tokens: GlassTokens = Object.freeze({
     ...built,
     secondary,
@@ -223,9 +219,9 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     mutedText,
     ...surfaceRoles,
     // зачем (владелец 13.10, №35): роли кнопок — вторичная/отключённая/главная заливки, не сливающиеся с фоном ни в одной теме (constants/liquidGlassButtonTokens.ts)
-    ...deriveLiquidGlassButtonRoles({ ...built, opaqueControl: built.opaqueControl }),
+    ...deriveLiquidGlassButtonRoles({ ...built, bad: paletteRoles.bad }),
     // зачем (релизный пол 10.10): good/bad/warn/info, скрим, плитки, достижения, медали, уровни A1–B2 — токены всех тем.
-    ...(deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles),
+    ...paletteRoles,
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);

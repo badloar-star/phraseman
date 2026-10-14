@@ -74,45 +74,6 @@ export interface CelebrationPalette {
   emblemIcon: CelebrationIconName;
 }
 
-export const CELEBRATION_PALETTES: Record<CelebrationVariant, CelebrationPalette> = {
-  premium: {
-    bg: ['#1c1405', '#0d0a04', '#050402'],
-    main: '#FFD700',
-    bright: '#FFE680',
-    titleGrad: ['#FFF6D6', '#FFD700', '#B8860B'],
-    text: '#FFE9A8',
-    rowText: '#FFF3CC',
-    rowSub: '#C9B57E',
-    cta: ['#B8860B', '#FFD700', '#B8860B'],
-    ctaText: '#1a1208',
-    auroraRgb: ['255,215,0', '184,134,11', '255,230,128'],
-    emblemIcon: 'diamond',
-  },
-  vip: {
-    bg: ['#06231a', '#04140d', '#020806'],
-    main: '#34D399',
-    bright: '#86EFAC',
-    titleGrad: ['#F0FFF7', '#34D399', '#047857'],
-    text: '#D6FFE9',
-    rowText: '#EAFFF4',
-    rowSub: '#9FD9BE',
-    cta: ['#047857', '#34D399', '#065F46'],
-    ctaText: '#04140d',
-    auroraRgb: ['52,211,153', '16,185,129', '134,239,172'],
-    emblemIcon: 'sparkles', // раньше был текст «VIP»; теперь нейтральная эмблема Plus (зелёная палитра)
-  },
-  // Pro = разовая покупка Phraseman Pro. Синяя «дорогая» палитра, отличная от Plus.
-  pro: {
-    bg: ['#08203a', '#04101f', '#02060d'],
-    main: '#38BDF8',
-    bright: '#7DD3FC',
-    titleGrad: ['#EAF7FF', '#38BDF8', '#0369A1'],
-    text: '#D6F0FF',
-    rowText: '#EAF6FF',
-    rowSub: '#9FCBE6',
-    cta: ['#0369A1', '#38BDF8', '#075985'],
-    ctaText: '#04101f',
-    auroraRgb: ['56,189,248', '14,165,233', '125,211,252'],
-    emblemIcon: 'diamond',
-  },
-};
+// зачем (владелец 13.10, №35 «все модалы слушаются тему», решение координатора: золото/зелень/синева церемоний — хардкод мимо темы): таблица CELEBRATION_PALETTES
+// была МЁРТВА — её не читал ни один файл (церемонию красит PremiumCelebrationModal токенами текущей темы через liquidGlassTokens). Удалена вместе с 45 зашитыми цветами;
+// тип CelebrationPalette оставлен: его принимают сцены (CelebrationSceneViews).

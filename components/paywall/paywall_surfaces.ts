@@ -7,12 +7,13 @@
 // брали поверхности из одного места без циклического импорта.
 // ═══════════════════════════════════════════════════════════════════════════
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
-import { SHADOW_SHEET_DARK_TOP, shadowSheetPlateTokens } from '../v2/shadow_sheet_paint';
+import { shadowSheetPlateTokens } from '../v2/shadow_sheet_paint';
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;
 
 /** Фон листа и «впадины» на плашках (круги тайм-линии, пилюля промо). */
-export function paywallSheetBg(g: GlassTokens): string { return g.isLight ? g.opaqueSheet : SHADOW_SHEET_DARK_TOP; }
+// зачем (владелец 13.10, №35 «все модалы слушаются тему»): лист пейвола — подложка текущей темы (opaqueSheet) и в светлом, и в тёмном оформлении.
+export function paywallSheetBg(g: GlassTokens): string { return g.opaqueSheet; }
 
 /** Плашки и плитки на листе: в тёмном — нейтральные, светлее листа; в светлом — как раньше. */
 export function paywallPlateBg(g: GlassTokens): string { return g.isLight ? g.opaqueControl : shadowSheetPlateTokens(g).plateFillFrom; }

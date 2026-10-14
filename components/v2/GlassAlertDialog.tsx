@@ -96,15 +96,19 @@ export const GlassAlertCard = memo(function GlassAlertCard({ title, message, ico
               style={({ pressed }) => [
                 styles.cta,
                 stack ? null : styles.ctaRow,
-                a.ghost
+                // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»): заливки кнопок — токены кнопок темы: вторичная buttonFill (≥ 1,6 : 1 к шторке), опасная dangerFill
+                // со своей подписью dangerInk (≥ 4,5 : 1), главная ctaFill; прежняя вторичная на opaqueControl давала 1,18–1,3 : 1 к шторке.
+                a.destructive && !a.ghost
+                  ? { backgroundColor: glass.dangerFill, boxShadow: nestedBoxShadow(glass) }
+                  : a.ghost
                   // зачем (стиль «Тень»): второстепенная кнопка `.cta.gh` — плашка с малой тенью вместо контура.
-                  ? { backgroundColor: glass.opaqueControl, boxShadow: nestedBoxShadow(glass) }
-                  : { backgroundColor: glass.accent, boxShadow: actionBoxShadow(glass) },
+                  ? { backgroundColor: glass.buttonFill, boxShadow: nestedBoxShadow(glass) }
+                  : { backgroundColor: glass.ctaFill, boxShadow: actionBoxShadow(glass) },
                 { opacity: pressed ? 0.88 : 1, transform: [{ scale: pressed ? 0.985 : 1 }] },
               ]}
             >
-              {a.ghost ? null : <ThemeAccentFill glass={glass} radius={22} />}
-              <Text numberOfLines={2} style={[styles.ctaText, { color: a.ghost ? glass.text : glass.accentInk }]}>{a.label}</Text>
+              {a.ghost || a.destructive ? null : <ThemeAccentFill glass={glass} radius={22} />}
+              <Text numberOfLines={2} style={[styles.ctaText, { color: a.destructive && !a.ghost ? glass.dangerInk : a.ghost ? glass.text : glass.accentInk }]}>{a.label}</Text>
             </Pressable>
           ))}
         </View>
@@ -157,7 +161,8 @@ const styles = StyleSheet.create({
   // `.or-body` 14/21 через 9 → шкала D145 16/22.
   body: { fontSize: 16, textAlign: 'center', marginTop: 9 },
   // `.or-actions`: сетка в ряд, зазор 9, 18 от текста.
-  actions: { flexDirection: 'row', gap: 9, marginTop: 18 },
+  // зачем (Макеты 854d5866c, №35): зазор между кнопками ≥ 12 (было 9)
+  actions: { flexDirection: 'row', gap: 12, marginTop: 18 },
   actionsStack: { flexDirection: 'column' },
   // `.or-actions .cta`: 44, поля 12 (подпись 14 → D145 16).
   cta: { minHeight: 44, borderRadius: 22, paddingHorizontal: 12, paddingVertical: 8, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },

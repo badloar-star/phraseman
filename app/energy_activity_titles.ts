@@ -130,15 +130,15 @@ export function energyGateMessage(
 ): string {
   const what = energyActivityTitle(activity, lang);
   return triLang(lang, {
-    ru: `Для ${what} нужно ${required} ⚡. У тебя: ${have}. Plus и Pro открывают безлимит.`,
-    uk: `Для ${what} потрібно ${required} ⚡. У тебе: ${have}. Plus і Pro прибирають ліміт.`,
-    en: `You need ${required} ⚡ for ${what}. You have: ${have}. Plus and Pro remove this limit.`,
-    es: `Para ${what} necesitas ${required} ⚡. Tienes: ${have}. Plus y Pro eliminan este límite.`,
-    'pt-BR': `Para ${what} você precisa de ${required} ⚡. Você tem: ${have}. Plus e Pro removem esse limite.`,
-    vi: `Bạn cần ${required} ⚡ cho ${what}. Hiện có: ${have}. Plus và Pro gỡ giới hạn này.`,
-    id: `Untuk ${what} kamu perlu ${required} ⚡. Tersedia: ${have}. Plus dan Pro menghapus batas ini.`,
-    tr: `${what} için ${required} ⚡ gerekir. Sende: ${have}. Plus ve Pro bu sınırı kaldırır.`,
-    pl: `Do ${what} potrzeba ${required} ⚡. Masz: ${have}. Plus i Pro znoszą ten limit.`,
+    ru: `Для ${what} нужно ${required} ⚡. У тебя: ${have}. Plus открывает безлимит.`,
+    uk: `Для ${what} потрібно ${required} ⚡. У тебе: ${have}. Plus прибирає ліміт.`,
+    en: `You need ${required} ⚡ for ${what}. You have: ${have}. Plus removes this limit.`,
+    es: `Para ${what} necesitas ${required} ⚡. Tienes: ${have}. Plus elimina este límite.`,
+    'pt-BR': `Para ${what} você precisa de ${required} ⚡. Você tem: ${have}. Plus remove esse limite.`,
+    vi: `Bạn cần ${required} ⚡ cho ${what}. Hiện có: ${have}. Plus gỡ giới hạn này.`,
+    id: `Untuk ${what} kamu perlu ${required} ⚡. Tersedia: ${have}. Plus menghapus batas ini.`,
+    tr: `${what} için ${required} ⚡ gerekir. Sende: ${have}. Plus bu sınırı kaldırır.`,
+    pl: `Do ${what} potrzeba ${required} ⚡. Masz: ${have}. Plus znosi ten limit.`,
   });
 }
 

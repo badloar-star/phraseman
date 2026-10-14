@@ -443,9 +443,10 @@ export default function DialogueV2CompletionRoute() {
               accessibilityLabel={finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}
               hitSlop={8}
               onPress={finishableMistakes ? dialogMistakes.openPractice : again}
-              style={({ pressed }) => [styles.again, pressed && { opacity: 0.6 }]}
+              // зачем (владелец 13.10, №35 «никакие кнопки чтобы не сливались»; Макеты 854d5866c): «Ещё раз» — вторичная кнопка-пилюля со своей поверхностью buttonFill, а не голый текст на фоне
+              style={({ pressed }) => [styles.again, { backgroundColor: glass.buttonFill }, pressed && { opacity: 0.6 }]}
             >
-              <Text style={[styles.againText, { color: glass.secondary }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
+              <Text style={[styles.againText, { color: glass.text }]}>{finishableMistakes ? labels.finishMistakes(dialogMistakes.mistakeIds.length) : labels.again}</Text>
             </Pressable>
           ) : null}
         </View>
@@ -539,7 +540,7 @@ const styles = StyleSheet.create({
   was: { fontSize: 16, textDecorationLine: 'line-through' },
   ok: { fontSize: 16, fontWeight: '700' },
   footer: { paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 },
-  again: { marginTop: 14, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+  again: { marginTop: 14, minHeight: 48, borderRadius: 24, paddingHorizontal: 20, alignItems: 'center', justifyContent: 'center' }, // зазор до главной 14 >= 12
   againText: { fontSize: 16, lineHeight: 22, fontWeight: '600', textAlign: 'center' },
   // кнопка «Повторить ошибки» в карточке «Ошибки» (dialogs.html .errc .cta.gh: высота 44, значок + подпись 16/600)
   repeatMistakes: { minHeight: 44, borderRadius: 22, marginTop: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },

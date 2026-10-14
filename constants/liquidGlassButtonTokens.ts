@@ -6,7 +6,8 @@
 // всё было «opacity 0.45» — подпись уходила ниже 3 : 1. Здесь считаются отдельные роли кнопок от токенов темы (без ручных цветов):
 //   buttonFill          — заливка вторичной кнопки: ≥ 1,6 : 1 к фону, верхнему/нижнему краю фона, карточке и шторке; подпись text на ней ≥ 4,6 : 1;
 //   buttonFillDisabled  — заливка отключённой: плоская (ближе к шторке), заметно отличается от вторичной (≥ 1,08 : 1);
-//   buttonInkDisabled   — подпись отключённой: подтянута к заливке до ≈ 3,4 : 1 — читается, но не спорит с активной;
+//   buttonInkDisabled   — подпись отключённой: ≥ 4,5 : 1 к своей заливке (находка Макетов 13.10: образец #8E8E93, 5,1 : 1) — читается; отличима от активной плоской заливкой;
+//   dangerFill/dangerInk — опасные «Удалить/Убрать/Очистить/Сменить без сохранения»: своя заливка цвета bad темы и подпись ≥ 4,5 : 1 (образец Макетов: #6A2A25 / #FFC2BB);
 //   ctaFill             — заливка главной кнопки: цвет cta, а там где пастельный cta слился бы с фоном (светлые градиентные темы на «Максимуме»,
 //                         1,0–1,3 : 1) — углублён в сторону текста темы до ≥ 1,8 : 1, подпись ctaInk остаётся ≥ 4,5 : 1.
 // Сторож: tests/button_tokens_contrast.test.ts (23 темы × светлое/тёмное × 5 шагов ползунка).
@@ -14,7 +15,7 @@
 
 type Surfaces = Readonly<{
   bg: string; bgTop: string; bgBottom: string; opaqueCard: string; opaqueSheet: string; opaqueControl: string;
-  text: string; cta: string; ctaInk: string;
+  text: string; cta: string; ctaInk: string; bad: string;
 }>;
 
 export type LiquidGlassButtonRoles = Readonly<{
@@ -22,8 +23,12 @@ export type LiquidGlassButtonRoles = Readonly<{
   buttonFill: string;
   /** Заливка отключённой кнопки: плоская, но отличима от вторичной. */
   buttonFillDisabled: string;
-  /** Подпись отключённой кнопки: ≈ 3,4 : 1 к своей заливке. */
+  /** Подпись отключённой кнопки: ≥ 4,5 : 1 к своей заливке. */
   buttonInkDisabled: string;
+  /** Заливка опасной кнопки: оттенок bad темы, отличима от поверхностей (≥ 1,5 : 1). */
+  dangerFill: string;
+  /** Подпись опасной кнопки: ≥ 4,5 : 1 к dangerFill. */
+  dangerInk: string;
   /** Заливка главной кнопки: cta, при слиянии с фоном — глубже, подпись ctaInk ≥ 4,5 : 1. */
   ctaFill: string;
 }>;
@@ -32,7 +37,9 @@ const SURFACE_MIN = 1.6;
 const TEXT_MIN = 4.6;
 const CTA_SURFACE_MIN = 1.8;
 const CTA_INK_MIN = 4.5;
-const DISABLED_INK_TARGET = 3.4;
+const DISABLED_INK_TARGET = 4.6;
+const DANGER_SURFACE_MIN = 1.5;
+const DANGER_INK_MIN = 4.6;
 
 const hex6 = (hex: string): string => (/^#[0-9A-Fa-f]{6}/.test(hex) ? hex.slice(0, 7).toUpperCase() : '#000000');
 const rgb = (hex: string): readonly [number, number, number] => {
@@ -90,13 +97,31 @@ function primaryFill(t: Surfaces): string {
   return cta;
 }
 
+/** Опасная кнопка: заливка — bad, растворённый в шторке (от слабого к сильному), подпись — bad, сдвинутый к тексту темы, пока не станет читаемой. */
+function dangerRoles(t: Surfaces): Readonly<{ dangerFill: string; dangerInk: string }> {
+  const under = underSurfaces(t);
+  let fallback = { dangerFill: mix(t.opaqueSheet, t.bad, 0.4), dangerInk: hex6(t.text) };
+  for (let k = 0.1; k <= 0.7001; k += 0.02) {
+    const fill = mix(t.opaqueSheet, t.bad, k);
+    if (minOver(fill, under) < DANGER_SURFACE_MIN) continue;
+    for (let m = 0.2; m <= 1.0001; m += 0.05) {
+      const ink = mix(t.bad, t.text, Math.min(m, 1));
+      if (ratio(ink, fill) >= DANGER_INK_MIN) return { dangerFill: fill, dangerInk: ink };
+    }
+    fallback = { dangerFill: fill, dangerInk: hex6(t.text) };
+  }
+  return fallback;
+}
+
 export function deriveLiquidGlassButtonRoles(t: Surfaces): LiquidGlassButtonRoles {
   const buttonFill = secondaryFill(t);
   const buttonFillDisabled = mix(buttonFill, t.opaqueSheet, 0.5);
+  // подпись приглушаем (отличие от активной), но не ниже порога: берём последнюю смесь, которая ещё держит DISABLED_INK_TARGET
   let buttonInkDisabled = hex6(t.text);
-  for (let a = 1; a >= 0.2; a -= 0.02) {
-    buttonInkDisabled = mix(buttonFillDisabled, t.text, a);
-    if (ratio(buttonInkDisabled, buttonFillDisabled) <= DISABLED_INK_TARGET) break;
+  for (let a = 0.98; a >= 0.2; a -= 0.02) {
+    const candidate = mix(buttonFillDisabled, t.text, a);
+    if (ratio(candidate, buttonFillDisabled) < DISABLED_INK_TARGET) break;
+    buttonInkDisabled = candidate;
   }
-  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primaryFill(t) };
+  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primaryFill(t), ...dangerRoles(t) };
 }

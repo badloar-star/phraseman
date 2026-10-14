@@ -8,7 +8,7 @@ import {
   accountDeleteJobId,
   accountDeleteCredentialReceiptId,
   accountDeletePermanentDenialId,
-  accountDeleteProfilesLinked,
+  accountDeleteProfileHasLinkedSignIn,
   enqueueAccountDeletionJob,
   fenceAccountDeletionCredential,
   fenceAccountDeletionRoots,
@@ -2168,6 +2168,47 @@ const defaultAuthLookup: AccountDeleteAuthLookup = async (uids) => {
   return result.users.map((user) => ({ uid: user.uid, providerCount: user.providerData.length }));
 };
 
+/** D189: что знает база о closure — привязка в профилях, отсутствующие профили, связки входа с провайдером. */
+export type AccountDeleteGuestIdentityScan = Readonly<{
+  profilesLinked: boolean;
+  missingProfiles: readonly string[];
+  /** id из closure, у которых auth_links/{id}.provider задан и ≠ 'anonymous' (Google/Apple-связь пережила Auth-пользователя). */
+  linkedAuthLinks: readonly string[];
+}>;
+
+/**
+ * D189 (координатор 14.10, разбор Авторизации): профили и связки входа всего closure — ОДНИМ getAll.
+ * +|closure| чтений на запрос удаления (удаление редкое — принято). Ошибка чтения бросает → решение «не гость».
+ */
+export async function accountDeleteGuestIdentityScan(
+  db: FirebaseFirestore.Firestore,
+  ids: readonly string[],
+): Promise<AccountDeleteGuestIdentityScan> {
+  if (ids.length === 0) return { profilesLinked: false, missingProfiles: [], linkedAuthLinks: [] };
+  const snaps = await db.getAll(
+    ...ids.map((id) => db.collection('users').doc(id)),
+    ...ids.map((id) => db.collection('auth_links').doc(id)),
+  );
+  const profiles = snaps.slice(0, ids.length);
+  const links = snaps.slice(ids.length);
+  return {
+    profilesLinked: profiles.some((snap) => snap.exists && accountDeleteProfileHasLinkedSignIn(snap.data() ?? {})),
+    missingProfiles: ids.filter((_, i) => !profiles[i]?.exists),
+    linkedAuthLinks: ids.filter((_, i) => {
+      const provider = links[i]?.exists ? links[i]?.data()?.provider : undefined;
+      return typeof provider === 'string' && provider.trim().length > 0 && provider.trim().toLowerCase() !== 'anonymous';
+    }),
+  };
+}
+
+function guestErrorDetail(error: unknown): Readonly<{ code: string | null; message: string }> {
+  const code = (error as { code?: unknown } | null)?.code;
+  return {
+    code: typeof code === 'string' || typeof code === 'number' ? String(code).slice(0, 40) : null,
+    message: (error instanceof Error ? error.message : String(error)).slice(0, 160),
+  };
+}
+
 /**
  * D189 (владелец 14.10 «ДА, СРАЗУ»; координатор: строго, сомнение = «не гость»): гость — это ВСЁ вместе:
  * анонимный вход в токене; в token.firebase.identities нет ни одного провайдера; у пользователя Auth providerData пуст и
@@ -2181,9 +2222,18 @@ export async function decideAccountDeleteGuestImmediate(input: Readonly<{
   identityClosure: readonly string[];
   token: AccountDeleteGuestToken | undefined;
   lookupAuthUsers?: AccountDeleteAuthLookup;
-  profilesLinked?: typeof accountDeleteProfilesLinked;
+  /** Стабильный аккаунт удаления: нет его профиля при stableUid ≠ authUid → profile_missing (14 дней). */
+  stableUid?: string;
+  scanIdentity?: typeof accountDeleteGuestIdentityScan;
 }>): Promise<AccountDeleteGuestDecision> {
-  const no = (reason: string): AccountDeleteGuestDecision => ({ immediate: false, reason });
+  // зачем (координатор 14.10): каждый выход решения — строка [D189-GUEST] с причиной; у ошибок чтения — код и текст.
+  const log = (immediate: boolean, reason: string, extra: Record<string, unknown> = {}): void => {
+    console.log(JSON.stringify({ event: 'account_delete_guest_check', tag: '[D189-GUEST]', immediate, reason, closureSize: input.identityClosure.length, ...extra }));
+  };
+  const no = (reason: string, extra: Record<string, unknown> = {}): AccountDeleteGuestDecision => {
+    log(false, reason, extra);
+    return { immediate: false, reason };
+  };
   if (!input.token) return no('no_token');
   if (input.token.signInProvider !== 'anonymous') {
     return no(`sign_in_provider_${typeof input.token.signInProvider === 'string' ? input.token.signInProvider.slice(0, 24) : 'missing'}`);
@@ -2197,17 +2247,27 @@ export async function decideAccountDeleteGuestImmediate(input: Readonly<{
   let authUsers: ReadonlyArray<Readonly<{ uid: string; providerCount: number }>>;
   try {
     authUsers = await (input.lookupAuthUsers ?? defaultAuthLookup)(ids);
-  } catch {
-    return no('auth_lookup_failed');
+  } catch (error) {
+    return no('auth_lookup_failed', guestErrorDetail(error));
   }
-  if (!authUsers.some((user) => user.uid === input.authUid)) return no('auth_user_missing');
+  if (!authUsers.some((user) => user.uid === input.authUid)) return no('auth_user_missing', { authUsersFound: authUsers.length });
   if (authUsers.some((user) => user.providerCount > 0)) return no('auth_provider_linked');
+  let scan: AccountDeleteGuestIdentityScan;
   try {
-    const profiles = await (input.profilesLinked ?? accountDeleteProfilesLinked)(input.db, ids);
-    if (profiles !== 'clean') return no('profile_linked');
-  } catch {
-    return no('profile_read_failed');
+    scan = await (input.scanIdentity ?? accountDeleteGuestIdentityScan)(input.db, ids);
+  } catch (error) {
+    return no('profile_read_failed', guestErrorDetail(error));
   }
+  if (scan.profilesLinked) return no('profile_linked');
+  // в) Google-пользователь в Auth уже удалён, а связка входа осталась — это не гость.
+  if (scan.linkedAuthLinks.length > 0) return no('auth_link_linked', { linkedAuthLinks: scan.linkedAuthLinks.length });
+  // а) Связь есть, а профиля стабильного аккаунта нет — данные неполные, сомнение → 14 дней. stableUid = authUid без профиля —
+  // чистый гость (решение владельца «ДА, СРАЗУ» не ломаем).
+  const stable = typeof input.stableUid === 'string' && input.stableUid.length > 0 ? input.stableUid : null;
+  if (stable && scan.missingProfiles.includes(stable) && stable !== input.authUid) {
+    return no('profile_missing', { missingProfiles: scan.missingProfiles.length });
+  }
+  log(true, 'anonymous_no_links', { missingProfiles: scan.missingProfiles.length, stableIsAuth: stable === input.authUid });
   return { immediate: true, reason: 'anonymous_no_links' };
 }
 
@@ -2267,7 +2327,7 @@ export async function enqueueAndReleaseAuthenticatedAccount(
   deps.trace?.mark('closure_resolved', { closureSize: Array.isArray(identityClosure) ? identityClosure.length : null });
   // зачем (D189): решение «гость — удалить сразу» ДО снятия пользователя Auth — потом providerData уже не проверить.
   const guest = await (deps.decideGuest ?? decideAccountDeleteGuestImmediate)({
-    db, authUid, identityClosure, token: deps.guestToken,
+    db, authUid, identityClosure, token: deps.guestToken, stableUid,
   });
   console.log(JSON.stringify({ event: 'account_delete_guest_decision', tag: '[ACCOUNT-DELETE]', guest_immediate: guest.immediate, reason: guest.reason }));
   deps.trace?.mark('guest_decided', { guestImmediate: guest.immediate });

@@ -5,6 +5,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { getLocalDayKey } from './local_date';
+import { recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
 
 /**
  * Вид задания «Сегодня» для ступеней Шпиля. Шпиль по смыслу тоже засчитывает день, но это зона Codex:
@@ -105,6 +106,7 @@ export function markStreakDayCounted(input: Readonly<{ wasCountedBefore: boolean
   }
   console.log(`[STREAK-DAY] counted:first source=${input.source} days=${input.days} day=${today}`);
   emitAppEvent('streak_day_counted', { days: input.days, dayKey: today, source: input.source });
+  void recordStreakMilestoneStory(input.days, today); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
 }
 
 /** Только для тестов. */

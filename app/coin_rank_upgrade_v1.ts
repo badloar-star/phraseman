@@ -41,6 +41,7 @@ import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
 import { prepareRuneSpend, publishRuneSpend } from './level_spin_star_grants';
 import { withStorageLock } from './storage_mutex';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
+import { recordCoinRankStory } from '../modules/story_events/story_event_sources';
 
 const LOG = '[COIN-RANK-UPGRADE]';
 
@@ -162,6 +163,7 @@ export async function upgradeCoinRank(
         owner, fromRank: state.rank, toRank: next.rank, price: next.priceToReach,
         balanceAfter: spend.balanceAfter, recovered: spend.alreadySpent,
       });
+      void recordCoinRankStory(next.rank); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
       return {
         ok: true,
         status: 'upgraded',

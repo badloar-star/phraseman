@@ -23,6 +23,7 @@ import { DebugLogger } from '../debug-logger';
 import type { SpireLiveGate } from './spire_live_gate';
 import { spireErrorText, spireFirestore } from './spire_net';
 import { spireReadParticipation } from './spire_room_client';
+import { recordSpireWeekStory } from '../../modules/story_events/story_event_sources';
 
 const LOG = '[SPIRE]';
 const CACHE_PREFIX = 'spire_week_result_v1';
@@ -137,6 +138,7 @@ export async function spireLoadWeekResult(
     }
     if (row.state === 'found') {
       logCard('shown', `из кэша (promoted=${String(row.result?.promoted)} demoted=${String(row.result?.demoted)})`);
+      void recordSpireWeekStory(row.result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
       if (shouldMark) await markShown();
       return row.result;
     }
@@ -160,6 +162,7 @@ export async function spireLoadWeekResult(
     DebugLogger.info(LOG, `week result: сеть ${prevWeek}_${input.lang} exists=${String(Boolean(snap?.exists))} разобран=${String(result !== null)}`);
     if (result) {
       logCard('shown', 'первый вход на новой неделе — итог прочитан с сервера');
+      void recordSpireWeekStory(result); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
       if (shouldMark) await markShown();
       else await writeRow(input.uid, input.lang, { weekId: prevWeek, state: 'found', checkedAtMs: nowMs, result });
     } else {

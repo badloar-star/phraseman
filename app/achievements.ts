@@ -35,6 +35,7 @@ import {
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
+import { recordAchievementStories } from '../modules/story_events/story_event_sources';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 /**
@@ -1572,6 +1573,7 @@ export const checkAchievements = async (
       }
       if (!isCurrentAccountGeneration(operationToken)) return stale('reload_and_save');
       emitAppEvent('achievement_unlocked');
+      recordAchievementStories(justUnlocked.filter((a) => !backfilledIds.has(a.id)).map((a) => a.id)); // зачем (D192): факт → история у аватарки на Главной; за флагом stories_v1, без сети, поведение места не меняется.
 
     }
     console.warn('[ACH-CHECK] done', JSON.stringify({

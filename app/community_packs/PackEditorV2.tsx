@@ -17,6 +17,7 @@ import { PlateFill, actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../
 import { shadowSheetGradient } from '../../components/v2/shadow_sheet_paint';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { mixDark, themePair } from '../../components/mistakes-panel/panelPaint';
+import SheetSwipeClose from '../../components/modal_fx/SheetSwipeClose';
 
 /** Шапка: круглый «крестик» 42, заголовок слева 20/700, справа необязательное действие. */
 export const EditorHeader = memo(function EditorHeader({ g, title, closeLabel, onClose, right }: Readonly<{ g: GlassTokens; title: string; closeLabel: string; onClose: () => void; right?: React.ReactNode }>) {
@@ -304,6 +305,8 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
       <Animated.View entering={FadeIn.duration(260)} exiting={FadeOut.duration(200)} style={styles.dimLayer}>
         <Pressable accessibilityRole="button" accessibilityLabel={closeLabel} style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает лист карточки тем же onClose, что крестик и фон. Лист position:absolute — пока без следования за пальцем (PM-302) */}
+      <SheetSwipeClose name="ugc-pack-card" onClose={onClose} follow={false}>
       <Animated.View
         entering={SlideInDown.duration(260).easing(Easing.bezier(0.23, 1, 0.32, 1))}
         exiting={SlideOutDown.duration(200)}
@@ -319,6 +322,7 @@ export const EditorSheet = memo(function EditorSheet({ g, visible, title, closeL
         {children}
         {/* зачем (Тень 12.10): внутренняя кромка шторки убрана — шторку отделяет затемнение */}
       </Animated.View>
+      </SheetSwipeClose>
     </View>
   );
 });

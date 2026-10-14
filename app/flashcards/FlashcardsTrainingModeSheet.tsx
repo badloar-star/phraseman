@@ -29,6 +29,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import type { CardsTrainingMode } from './training_entry';
 import { speechUnavailableOnDeviceText, useSpeechUnavailableOnDevice } from '../speech_device_availability';
+import SheetSwipeClose, { SheetSwipeRoot } from '../../components/modal_fx/SheetSwipeClose';
 
 type Props = {
   visible: boolean;
@@ -222,10 +223,13 @@ export default function FlashcardsTrainingModeSheet({
   const [ga, gb] = themePair(g);
   return (
     <Modal visible={presented} transparent animationType="none" statusBarTranslucent onRequestClose={onClose} onDismiss={finishDismiss}>
+      <SheetSwipeRoot>
       <View style={styles.modalRoot}>
         <Pressable style={StyleSheet.absoluteFill} onPress={onClose} accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}>
           <Animated.View style={[StyleSheet.absoluteFill, styles.backdrop, backdropStyle]} />
         </Pressable>
+        {/* зачем (координатор 14.10, «ручка ⇒ свайп», лист едет за пальцем): свайп вниз за ручку/шапку закрывает шторку тем же onClose, что фон и «назад» */}
+        <SheetSwipeClose name="cards-training-mode" onClose={onClose}>
         <Animated.View testID="fc-training-mode-sheet" accessibilityViewIsModal style={[styles.sheet, { backgroundColor: g.opaqueSheet, maxHeight: screenHeight - insets.top - 24, paddingBottom: Math.max(40, insets.bottom + 8) }, sheetStyle]}>
           {/* зачем (Сверка cards-section-032, правило «стекло 2.0 = непрозрачное»): сквозь шторку читались плитки хаба.
               Заливка плотная: cards-glass.css `.sheet` 160° — цвет темы 16 % → подложка шторки темы (opaqueSheet) на 55 % → второй цвет темы 14 %, без альфы.
@@ -309,7 +313,9 @@ export default function FlashcardsTrainingModeSheet({
           </ScrollView>
           {/* зачем (Тень 12.10): внутренняя кромка шторки убрана — шторку отделяет затемнение */}
         </Animated.View>
+        </SheetSwipeClose>
       </View>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

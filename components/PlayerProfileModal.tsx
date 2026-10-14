@@ -57,6 +57,7 @@ import { usePlayerProfileSocial } from './profile-card/usePlayerProfileSocial';
 import { useSelfProfileCard } from './profile-card/useSelfProfileCard';
 import ReanimatedView from 'react-native-reanimated';
 import { noAndroidOutline } from '../constants/androidGlow';
+import { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 const EXEMPT_COLOR_1 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
 const EXEMPT_COLOR_2 = '#FFFFFF'; // theme-exempt: слой поверх обложки профиля — постоянные белый/чёрный
@@ -584,6 +585,8 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       statusBarTranslucent
       navigationBarTranslucent
     >
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): корень жестов внутри Modal — шторки «Про»/«О себе» закрываются свайпом вниз */}
+      <SheetSwipeRoot>
       {player ? (
         <View style={styles.modalFill} pointerEvents="box-none">
           <PlayerProfileModalBody
@@ -603,6 +606,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
           />
         </View>
       ) : null}
+      </SheetSwipeRoot>
     </Modal>
   );
 }

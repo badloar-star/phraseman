@@ -18,6 +18,7 @@ import PressableHybrid from './PressableHybrid';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { LUM } from '../constants/motionHybrid';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 type Props = {
   visible: boolean;
@@ -185,8 +186,11 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
 
   return (
     <Modal visible={visible} transparent animationType="slide" statusBarTranslucent onRequestClose={close}>
+      <SheetSwipeRoot>
       {/* guard-ok: скрим закрывает шторку по тапу вовне, своего смысла для VoiceOver/TalkBack не несёт. */}
       <Pressable style={styles.root} onPress={close} accessible={false}>
+        {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает шторку тем же close, что тап по фону; лист едет за пальцем */}
+        <SheetSwipeClose name="vip-survey-review" onClose={close}>
         {/* guard-ok: гасит всплытие тапа из шторки в скрим. */}
         <Pressable
           onPress={(event) => event.stopPropagation()}
@@ -196,7 +200,9 @@ function VipSurveyReviewPromptModal({ visible, onClose, motionVariant = 'classic
           <View testID="vip-survey-review-grabber" style={[styles.grabber, { backgroundColor: g.glassEdge }]} />
           {sheetBody}
         </Pressable>
+        </SheetSwipeClose>
       </Pressable>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

@@ -3,7 +3,8 @@
 //
 // зачем (владелец 14.10: «перенести точно по макетам»; D190/D191): понижают 5 последних по монетам недели; окно — при первом открытии после закрытия недели, поверх Главной. Отдельный
 // экран темы (туман — НЕПРОЗРАЧНЫЙ фон темы, текст ничего не перекрывает): монета спит («z»), вокруг — пульсирующее кольцо «тапни»; тап — туман светлеет (+12 %), монета
-// просыпается с «!», текст меняется на «Проснулась. Новая неделя» / «{лига} · все с 1 этажа.». Док внизу: «Разбудить — Играть» (главная, стрелка) и «Напомнить вечером» (вторичная).
+// просыпается с «!», заголовок остаётся «Новая неделя», строка под ним меняется на «{лига} · все с 1 этажа.». Док внизу: «Играть» (главная, стрелка) и «Напомнить вечером» (вторичная).
+// Закон владельца 14.10 (уточнён): меняется ТОЛЬКО формулировка — в текстах монета не «задремала/проснулась/разбуди»; анимация сна, «z», «!» и эмоции монеты остаются как в одобренном образце.
 // Ранг, монеты и фразы НЕ меняются — компонент ничего не пишет, только показывает; «напомнить вечером» — колбэк наверх (Ядро решает, как ставить напоминание). reduceMotion — без движения.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, 
 import type { Lang } from '../../../constants/i18n';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import { hapticMediumImpact } from '../../../hooks/use-haptics';
+import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import { V2Button } from '../../v2/V2Kit';
 import { useSpirePalette } from '../useSpirePalette';
@@ -26,7 +28,7 @@ export type MomentDownProps = Readonly<{
   newTier: number;
   /** Ранг монеты человека 0…19 (null — базовая монета). */
   coinRank: number | null;
-  /** «Разбудить — Играть»: будит и ведёт к игре. */
+  /** «Играть»: будит монету и ведёт к игре. */
   onPlay: () => void;
   /** «Напомнить вечером»: напоминание решает Ядро. */
   onRemind: () => void;
@@ -51,13 +53,18 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, testID = 'momen
   useEffect(() => {
     if (__DEV__) console.log(`[MOMENT-DOWN] показ новая_лига=${newTier} монета=${String(coinRank)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
     playMomentSound(MOMENT_SOUND_EVENTS.downFog);
-    if (!reduceMotion) {
-      fog.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
-      ring.value = withRepeat(withTiming(1, { duration: 1200, easing: Easing.out(Easing.quad) }), -1, false);
-    }
+    if (!reduceMotion) fog.value = withTiming(1, { duration: 900, easing: Easing.out(Easing.cubic) });
     return () => { cancelAnimation(ring); cancelAnimation(fog); };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: показ один раз на монтирование
   }, []);
+
+  // зачем (perf_freeze_contract «бесконечные анимации под охраной»): кольцо «тапни» пульсирует только пока экран в фокусе, приложение активно и монета ещё спит
+  const runtimeActive = useRuntimeActive(true);
+  useEffect(() => {
+    if (reduceMotion || awake || !runtimeActive) { cancelAnimation(ring); ring.value = 0; return; }
+    ring.value = withRepeat(withTiming(1, { duration: 1200, easing: Easing.out(Easing.quad) }), -1, false);
+    return () => cancelAnimation(ring);
+  }, [awake, reduceMotion, ring, runtimeActive]);
 
   const doWake = useCallback((source: 'tap' | 'button') => {
     if (awake) return;

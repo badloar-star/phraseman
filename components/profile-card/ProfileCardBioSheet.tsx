@@ -12,6 +12,7 @@ import { PROFILE_CARD_BIO_MAX_CHARS } from '../../app/profile_card_public';
 import { buttonInk, ProfileCardButton } from './ProfileCardParts';
 import { PC, t4 } from './profile_card_copy';
 import { useProfileSheetPaint } from './profile_card_sheet_paint';
+import SheetSwipeClose from '../modal_fx/SheetSwipeClose';
 
 type Props = Readonly<{
   lang: Lang;
@@ -57,6 +58,8 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
       style={styles.avoid}
       pointerEvents="box-none"
     >
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз = «Отмена», тот же onClose, что тап по ручке; пока идёт сохранение — свайп выключен */}
+      <SheetSwipeClose name="profile-card-bio" onClose={onClose} enabled={!saving}>
       <View
         testID="profile-card-bio-sheet"
         accessibilityViewIsModal
@@ -113,6 +116,7 @@ function ProfileCardBioSheetBase({ lang, initialText, saving, bottomInset, onSav
           </ProfileCardButton>
         </View>
       </View>
+      </SheetSwipeClose>
     </KeyboardAvoidingView>
   );
 }

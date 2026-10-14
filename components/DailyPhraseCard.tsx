@@ -63,6 +63,7 @@ import { colorWithAlpha } from './v2/plateAlpha';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './home/v2/homePlate';
 import { nestedBoxShadow, useShadowGlass } from './v2/ShadowSurface';
 import { noteSwallowedAs, noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
@@ -795,10 +796,13 @@ function DailyPhraseCard({
         statusBarTranslucent
         onRequestClose={closeDetails}
       >
+        <SheetSwipeRoot>
         <View style={styles.modalRoot}>
           <Animated.View style={[styles.backdrop, { opacity: modalEntranceAnim }]}>
             <Pressable style={StyleSheet.absoluteFillObject} onPress={closeDetails} />
           </Animated.View>
+          {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает детали фразы дня тем же closeDetails, что фон и крестик; лист едет за пальцем. Высоту 86 % держит внешний слой */}
+          <SheetSwipeClose name="daily-phrase-details" onClose={closeDetails} wrapStyle={{ flexShrink: 1, maxHeight: '86%', minHeight: 0 }}>
           <Animated.View
             style={[
               styles.sheet,
@@ -1081,7 +1085,9 @@ function DailyPhraseCard({
             </ScrollView>
 
           </Animated.View>
+          </SheetSwipeClose>
         </View>
+        </SheetSwipeRoot>
       </Modal>
     </>
   );
@@ -1264,6 +1270,7 @@ const styles = StyleSheet.create({
   },
   sheet: {
     width: '100%',
+    flexShrink: 1, // зачем: внутри внешнего слоя свайпа лист сжимается вместе с ним (86 % держит обёртка)
     maxHeight: '86%',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,

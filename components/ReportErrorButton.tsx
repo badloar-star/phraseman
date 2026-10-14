@@ -22,6 +22,7 @@ import { triLang } from '../constants/i18n';
 import { isDevOverlaysOff } from '../app/dev_overlays_off';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 import {
   ERROR_REPORT_COMMENT_MIN_LEN,
   ERROR_REPORT_FREE_TEXT_CATEGORY,
@@ -315,8 +316,11 @@ function ReportErrorButton({
       )}
 
       <Modal visible={visible} transparent animationType="fade" onRequestClose={() => setVisible(false)}>
+        <SheetSwipeRoot>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           <Pressable style={[styles.overlay, { paddingTop: insets.top + 8 }]} onPress={() => setVisible(false)}>
+            {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает форму тем же путём, что тап по фону; пока идёт отправка — свайп выключен и ручка спрятана */}
+            <SheetSwipeClose name="report-error" onClose={() => setVisible(false)} enabled={!sending} wrapStyle={{ flexShrink: 1, maxHeight: '100%', minHeight: 0 }}>
             <Pressable
               style={[
                 styles.sheet,
@@ -330,7 +334,7 @@ function ReportErrorButton({
               ]}
               onPress={e => e.stopPropagation()}
             >
-              <View style={[styles.grabber, { backgroundColor: glass.mutedText }]} />
+              {sending ? null : <View style={[styles.grabber, { backgroundColor: glass.mutedText }]} />}
               <ScrollView style={{ flexShrink: 1, minHeight: 0 }} contentContainerStyle={{ gap: 12 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} decelerationRate="fast">
               {failed ? (
                 <View style={styles.successBox}>
@@ -555,8 +559,10 @@ function ReportErrorButton({
               )}
               </ScrollView>
             </Pressable>
+            </SheetSwipeClose>
           </Pressable>
         </KeyboardAvoidingView>
+        </SheetSwipeRoot>
       </Modal>
     </>
   );
@@ -601,6 +607,7 @@ const styles = StyleSheet.create({
   },
   overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.55)', justifyContent: 'flex-end' }, // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
   sheet: {
+    flexShrink: 1, // зачем: внутри внешнего слоя свайпа лист сжимается вместе с ним — прокрутка формы цела
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     borderWidth: 1,

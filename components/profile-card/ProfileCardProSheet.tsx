@@ -21,6 +21,7 @@ import { buttonInk, ProBadge, ProfileCardButton } from './ProfileCardParts';
 import { PROFILE_CARD_LOOKS } from './profile_card_looks';
 import { formatCoins, PC, t4 } from './profile_card_copy';
 import { useProfileSheetPaint } from './profile_card_sheet_paint';
+import SheetSwipeClose from '../modal_fx/SheetSwipeClose';
 
 export type ProSheetMode = 'buy' | 'change';
 
@@ -88,6 +89,8 @@ function ProfileCardProSheetBase({
   const ctaDisabled = busy || (buy && (poor || unknown));
 
   return (
+    // зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз = «Отмена», тот же onClose, что тап по ручке; пока идёт покупка (busy) свайп выключен — платёж не прерываем. Лист position:absolute — без следования за пальцем (PM-302)
+    <SheetSwipeClose name="profile-card-pro" onClose={onClose} enabled={!busy} follow={false}>
     <View
       testID={buy ? 'profile-card-pro-sheet' : 'profile-card-style-sheet'}
       accessibilityViewIsModal
@@ -160,6 +163,7 @@ function ProfileCardProSheetBase({
         ) : null}
       </ProfileCardButton>
     </View>
+    </SheetSwipeClose>
   );
 }
 

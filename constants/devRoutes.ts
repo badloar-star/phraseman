@@ -53,6 +53,8 @@ export const LEARNING_V2_ROUTE_PREFIX = '/learning-v2';
 export const SHOP_ROUTE = '/shop';
 /** DEV-превью экранов Шпиля на моках (app/dev_spire_preview.tsx): в релизе уводит на Главную. */
 export const SPIRE_PREVIEW_ROUTE = '/dev_spire_preview';
+/** DEV-превью «моментов вовлечения» Пика на моках (app/dev_moments_preview.tsx): в релизе уводит на Главную. */
+export const MOMENTS_PREVIEW_ROUTE = '/dev_moments_preview';
 
 export const DEV_UTILITY_ROUTE_NAMES = [
   POS_ANALYTICS_AUDIT_ROUTE_NAME,

@@ -23,6 +23,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { FlowText } from '../components/text-integrity/FlowText';
 import { peekRunesBalance, subscribeRunesBalance } from './runes_system';
 import RuneGlyph from '../components/RuneGlyph';
+import SheetSwipeClose from '../components/modal_fx/SheetSwipeClose';
 import {
   SHOP_CATEGORIES,
   SHOP_ITEMS,
@@ -528,6 +529,8 @@ function ShopScreenImpl() {
               style={StyleSheet.absoluteFillObject}
             />
           </Animated.View>
+          {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз = «Отмена» подтверждения, тот же closeSheet, что тап по фону; покупку свайп не совершает. Лист position:absolute — пока без следования за пальцем (PM-302) */}
+          <SheetSwipeClose name="shop-confirm" onClose={closeSheet} follow={false}>
           <Animated.View
             testID="shop-sheet"
             style={[
@@ -578,6 +581,7 @@ function ShopScreenImpl() {
               {triLang(lang, YOU_HAVE)(sheetBalance, triLang(lang, CURRENCY_GENITIVE[sheetItem.currency]))}
             </Text>
           </Animated.View>
+          </SheetSwipeClose>
         </>
       ) : null}
     </View>

@@ -11,6 +11,7 @@ import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import PressableHybrid from '../PressableHybrid';
 import { glassFill } from '../GlassSurface';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import SheetSwipeClose, { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
 
 type YoutubeManifestChannel = YoutubeCatalogManifest['channels'][number];
 
@@ -71,7 +72,10 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
 
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
+      <SheetSwipeRoot>
       <Pressable style={styles.scrim} onPress={onClose} accessibilityRole="button" accessibilityLabel={closeLabel} />
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает выбор канала тем же onClose, что тап по фону. Лист position:absolute — пока без следования за пальцем (PM-302) */}
+      <SheetSwipeClose name="youtube-channel-picker" onClose={onClose} follow={false}>
       <View style={[styles.sheet, {
         backgroundColor: glassFill(t.bgSurface, 0.72),
         paddingBottom: Math.max(32, insets.bottom + 12),
@@ -90,6 +94,8 @@ export default function YoutubeChannelPickerSheet({ visible, manifest, preferenc
           })}
         </ScrollView>
       </View>
+      </SheetSwipeClose>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

@@ -36,6 +36,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { callSubmitExplainReport } from '../app/explain_phrase_client';
 import { asLang } from '../app/explain_phrase_request';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 interface Props {
   /**
@@ -202,9 +203,12 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
 
       {/* Мини-форма жалобы: причина + необязательный комментарий */}
       <Modal visible={formOpen} transparent animationType="fade" onRequestClose={() => setFormOpen(false)}>
+        <SheetSwipeRoot>
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
           {/* guard-ok: скрим закрывает форму по тапу вне листа; смысловые элементы внутри. */}
           <Pressable style={[styles.overlay, { paddingTop: insets.top + 8 }]} onPress={() => setFormOpen(false)} accessible={false}>
+            {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает форму тем же путём, что тап по фону; пока идёт отправка — свайп выключен и ручка спрятана */}
+            <SheetSwipeClose name="explain-report" onClose={() => setFormOpen(false)} enabled={!sending} wrapStyle={{ flexShrink: 1, maxHeight: '100%', minHeight: 0 }}>
             {/* guard-ok: гасит всплытие тапа из листа в скрим. */}
             <Pressable
               accessible={false}
@@ -214,7 +218,7 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               ]}
               onPress={(e) => e.stopPropagation()}
             >
-              <View style={[styles.grabberPill, { backgroundColor: glass.mutedText }]} />
+              {sending ? null : <View style={[styles.grabberPill, { backgroundColor: glass.mutedText }]} />}
               <ScrollView
                 style={styles.formScroll}
                 contentContainerStyle={styles.formScrollContent}
@@ -329,8 +333,10 @@ function ExplainReportButton({ kind = 'phrase', phraseEn, userAnswer, lang: lang
               </View>
               </ScrollView>
             </Pressable>
+            </SheetSwipeClose>
           </Pressable>
         </KeyboardAvoidingView>
+        </SheetSwipeRoot>
       </Modal>
     </>
   );

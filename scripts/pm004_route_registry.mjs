@@ -43,6 +43,7 @@ const OVERRIDES = {
   '/dialogue_v2_completion': ['keep', 'Диалоги V2', 'D112'],
   '/dialogue_v2_visual_fixture': ['archive', 'Диалоги V2', 'dev-фикстура (__DEV__), без входа'],
   '/dev_spire_preview': ['archive', 'Шпиль', 'dev-превью на моках (ENABLE_DEV_TOOLS, не стор-релиз), без входа и сети'],
+  '/dev_moments_preview': ['archive', 'Шпиль', 'dev-превью моментов вовлечения на моках (ENABLE_DEV_TOOLS, не стор-релиз), без входа и сети'],
   '/dev_state': ['archive', 'Робот-съёмка', 'dev-фикстуры состояний для Maestro (__DEV__, не стор-релиз); в Firestore не пишет'],
   '/collectibles_screen': ['remove', 'коллекция фраз', 'D140 (владелец 2026-10-01): коллекции удалены целиком'],
   '/community_pack_create': ['keep', 'наборы сообщества', 'D35/D85'],

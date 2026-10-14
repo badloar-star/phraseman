@@ -397,9 +397,12 @@ export default function HybridSheetShell({
                   pointerEvents="none"
                 />
               )}
-              <View style={styles.grabber} pointerEvents="none">
-                <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
-              </View>
+              {/* зачем (координатор 14.10, «ручка ⇒ свайп»): при dismissDisabled (необратимое действие/оплата) свайп выключен — ручку прячем, иначе она обещает закрытие, которого нет */}
+              {dismissDisabled ? null : (
+                <View style={styles.grabber} pointerEvents="none">
+                  <View style={[styles.grabberPill, { backgroundColor: t.border }]} />
+                </View>
+              )}
               {visible
                 ? (typeof children === 'function'
                   ? children({ requestDismiss: dismissSheet })

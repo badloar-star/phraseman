@@ -55,6 +55,7 @@ import { noAndroidOutline } from '../constants/androidGlow';
 import { nestedBoxShadow, raisedBoxShadow } from './v2/ShadowSurface';
 import { RowDivider } from './v2/RowDivider';
 import { isDevInboxEmpty } from '../app/dev_robot_display';
+import SheetSwipeClose, { SheetSwipeRoot } from './modal_fx/SheetSwipeClose';
 
 const BLUR_RENDER_GRACE_MS = 450;
 const EMBEDDED_MESSAGE_PAGE_SIZE = 20;
@@ -1198,10 +1199,13 @@ function AppMessagesInbox({
       })() : null}
 
       <MotionModal visible={visible} onRequestClose={closeInbox} testID="app-messages-motion-modal">
+        <SheetSwipeRoot>
         <View style={styles.backdrop}>
           <Pressable style={StyleSheet.absoluteFill} onPress={closeInbox} />
         </View>
         <View pointerEvents="box-none" style={[styles.modalWrap, { paddingTop: insets.top + 12 }]}>
+          {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает входящие тем же closeInbox, что фон и крестик; лист едет за пальцем */}
+          <SheetSwipeClose name="app-messages-inbox" onClose={closeInbox} wrapStyle={{ flexShrink: 1, maxHeight: '100%', minHeight: 0, maxWidth: 560, alignSelf: 'center' }}>
           <View accessibilityViewIsModal style={styles.panelAnim}>
             <View
               style={[
@@ -1216,7 +1220,9 @@ function AppMessagesInbox({
               {selected ? renderDetail() : renderList()}
             </View>
           </View>
+          </SheetSwipeClose>
         </View>
+        </SheetSwipeRoot>
       </MotionModal>
       <VipSurveyModal
         visible={!!surveyTarget}

@@ -17,6 +17,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useLv2Glass } from '../learning-v2/LearningV2Glass';
 import { useLang } from '../LangContext';
 import { triLang } from '../../constants/i18n';
+import SheetSwipeClose from '../modal_fx/SheetSwipeClose';
 
 const SHEET_EASE = Easing.bezier(...KIT_MOTION.sheetEase);
 
@@ -62,6 +63,8 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
       <Animated.View entering={FadeIn.duration(dimMs)} exiting={FadeOut.duration(dimMs)} style={[styles.dim, { backgroundColor: dimColor, top: -scrimExtend }]}>
         <Pressable accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })} style={StyleSheet.absoluteFill} onPress={onClose} />
       </Animated.View>
+      {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает панель тем же onClose, что крестик и системная «назад». Лист position:absolute — пока без следования за пальцем (PM-302) */}
+      <SheetSwipeClose name="mistakes-panel" onClose={onClose} follow={false}>
       <Animated.View
         entering={SlideInDown.duration(sheetMs).easing(SHEET_EASE)}
         exiting={SlideOutDown.duration(sheetMs).easing(SHEET_EASE)}
@@ -79,6 +82,7 @@ export const PanelSheet = memo(function PanelSheet({ visible, onClose, children,
         <View style={[styles.grab, { backgroundColor: `${g.text}40` }]} />
         {children}
       </Animated.View>
+      </SheetSwipeClose>
     </View>
   );
 });

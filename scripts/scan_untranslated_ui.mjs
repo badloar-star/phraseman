@@ -81,6 +81,7 @@ const CONTENT_FILES = [
   /app\/dev_state\.tsx$/,
   /app\/dev_cards_result_preview\.tsx$/,
   /app\/dev_spire_preview\.tsx$/,
+  /app\/dev_moments_preview\.tsx$/,
   /app\/_learning_v2_authoring_preview\.tsx$/,
   /components\/friends_together\/DevBotsSheet\.tsx$/,
   // зачем (13.10): не подключены ни к одному экрану (grep по app/ и components/ — только сам файл): лаборатория режимов V2 и админ-превью

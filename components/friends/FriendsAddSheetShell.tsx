@@ -40,6 +40,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { useLineScale } from '../../hooks/useLineScale';
 import { useFriendsGlass } from './FriendsGlassKit';
+import SheetSwipeClose, { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
 
 const LOG = '[FRIEND-ADD-SHEET]';
 // зачем (AGENTS.md Motion п.8): числа шторки — из словаря кита KIT_MOTION (kit.css:147/150), не литералами.
@@ -149,10 +150,13 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
 
   return (
     <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismiss}>
+      <SheetSwipeRoot>
       <View style={styles.root} onLayout={onRootLayout}>
         <Pressable style={StyleSheet.absoluteFill} onPress={dismiss} accessibilityLabel={closeLabel}>
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </Pressable>
+        {/* зачем (координатор 14.10, «ручка ⇒ свайп»): свайп вниз закрывает шторку тем же dismiss, что фон и крестик; лист едет за пальцем */}
+        <SheetSwipeClose name="friends-add" onClose={dismiss}>
         <Animated.View
           testID={testID}
           accessibilityViewIsModal
@@ -197,7 +201,9 @@ export default function FriendsAddSheetShell({ visible, onClose, title, subtitle
             {typeof children === 'function' ? children({ requestDismiss: animateOut }) : children}
           </ScrollView>
         </Animated.View>
+        </SheetSwipeClose>
       </View>
+      </SheetSwipeRoot>
     </Modal>
   );
 }

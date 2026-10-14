@@ -44,6 +44,7 @@ jest.mock('react-native-reanimated', () => {
     withTiming: (v: unknown) => v,
   };
 });
+jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }));
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn(), hapticMediumImpact: jest.fn(), hapticHeavyImpact: jest.fn() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
@@ -121,14 +122,14 @@ describe.each(Object.keys(PALETTES))('моменты Пика — тема «%s�
     expect(onPlay).toHaveBeenCalledTimes(1);
   });
 
-  it('m03 понижение (туман): монета спит, тап будит — «Проснулась. Новая неделя», кнопки «Разбудить — Играть» и «Напомнить вечером»', async () => {
+  it('m03 понижение (туман): монета спит, тап будит (анимация образца), но тексты без «задремала/проснулась»: «Новая неделя», «Играть» и «Напомнить вечером»', async () => {
     const onPlay = jest.fn();
     const onRemind = jest.fn();
     await render(<MomentDown lang="ru" newTier={0} coinRank={5} onPlay={onPlay} onRemind={onRemind} />);
-    expect(screen.getByText('Монета задремала')).toBeTruthy();
-    expect(screen.getByText('Разбудить — Играть')).toBeTruthy();
+    expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
+    expect(screen.getByText('Играть')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('moment-down-coin'));
-    expect(screen.getByTestId('moment-down-title').props.children).toBe('Проснулась.\nНовая неделя');
+    expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
     expect(screen.getByText('Гранит · все с 1 этажа.')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('moment-down-remind'));
     expect(onRemind).toHaveBeenCalledTimes(1);
@@ -149,6 +150,14 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     expect(momentLeagueIn('en', 1, 'Basalt')).toBe('Basalt');
   });
 
+  it('закон владельца 14.10 (только формулировка): в ТЕКСТАХ монета не описана как живая — «задремала/проснулась/разбуди» нет ни в одном языке; анимации сна/«!»/«Держимся.» остаются', () => {
+    const BAD = /задрем|задрім|просну|проснул|прокину|прокинул|разбуд|розбуд|dozed|\bawake\b|wake (it|up)|despert|se durmi|acord[oá]|cochil|đánh thức|ngủ gật|membangunkan|tertidur|uyan|uyuyak|przysn|obud/i;
+    for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
+      for (const key of MOMENT_STRING_KEYS) expect([lang, key, BAD.test(momentText(lang, key))]).toEqual([lang, key, false]);
+    }
+    expect(momentText('ru', 'staySay')).toBe('Держимся.');
+  });
+
   it('флаг moments_v3 по умолчанию выключен: включает только явное true', () => {
     expect(MOMENTS_V3_FLAG_KEY).toBe('moments_v3');
     expect(isMomentsV3Enabled(null)).toBe(false);
@@ -163,12 +172,14 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
       for (const name of fs.readdirSync(path.join(__dirname, '..', dir))) {
         const rel = `${dir}/${name}`;
         const stat = fs.statSync(path.join(__dirname, '..', rel));
-        if (stat.isDirectory()) { if (name !== 'node_modules' && name !== 'generated' && rel !== 'components/spire/moments') walk(rel); } else if (/\.(tsx?|js)$/.test(name) && /spire\/moments\/|\.\/moments\//.test(read(rel))) importers.push(rel);
+        if (stat.isDirectory()) { if (name !== 'node_modules' && name !== 'generated' && rel !== 'components/spire/moments') walk(rel); } else if (/\.(tsx?|js)$/.test(name) && (rel.startsWith('components/spire/') ? /spire\/moments\/|\.\/moments\// : /spire\/moments\//).test(read(rel))) importers.push(rel);
       }
     };
     walk('app');
     walk('components');
-    expect(importers).toEqual([]);
+    // зачем: сессия «Серия» (components/streak/moments) осознанно берёт общие эффекты, раскладку и флаг моментов отсюда — это не показ момента Пика; всё остальное по-прежнему запрещено
+    // и dev-маршрут app/dev_moments_preview.tsx — вход Сверки на моках (только __DEV__, в стор-сборке вырезан; сторож tests/moments_dev_preview_release_guard.test.mjs)
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && f !== 'app/dev_moments_preview.tsx')).toEqual([]);
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

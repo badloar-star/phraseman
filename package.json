@@ -426,6 +426,7 @@
       "<rootDir>/tests/survey_sheet_modal.test.tsx",
       "<rootDir>/tests/text_integrity_primitives.test.tsx",
       "<rootDir>/tests/use_session_attempts.test.tsx",
+      "<rootDir>/tests/moment_coin_contract.test.tsx",
       "<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts"
     ],
     "watchPathIgnorePatterns": [

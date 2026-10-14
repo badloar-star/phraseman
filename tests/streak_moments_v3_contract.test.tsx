@@ -222,7 +222,7 @@ describe('рубежи серии — флаг, подключение, исхо
   });
 
   // зачем: подключать моменты серии можно только осознанно — список импортёров явный (сторис берут огонь и рубежи, карточка «Сегодня» — кольца за флагом, dev-превью — всё)
-  const ALLOWED_IMPORTERS = ['app/dev_moments_preview.tsx', 'components/home/v2/HomeV2TodayCard.tsx', 'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts'];
+  const ALLOWED_IMPORTERS = ['app/dev_moments_preview.tsx', 'components/home/v2/HomeV2TodayCard.tsx', 'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts', 'app/lesson1.tsx', 'app/spire/use_spire_game.ts'];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {

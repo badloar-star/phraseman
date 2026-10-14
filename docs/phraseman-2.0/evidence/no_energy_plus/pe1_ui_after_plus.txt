@@ -1,0 +1,4 @@
+'' '' dialogue-v2-briefing-screen (0, 0, 1080, 2400)
+'' '' dialogue-v2-briefing-scene (42, 316, 1038, 878)
+'' '' dialogue-v2-briefing-tasks (42, 1355, 1038, 2143)
+'' 'Начать диалог' dialogue-v2-briefing-start (42, 2180, 1038, 2316)

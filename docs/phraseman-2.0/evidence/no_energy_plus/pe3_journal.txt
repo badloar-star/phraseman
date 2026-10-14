@@ -1,0 +1,24 @@
+10-14 20:08:21.865 I/SVERKA  (25615): === PE-3 start 20:08:23 ===
+10-14 20:08:22.918 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=2915 tabs blur
+10-14 20:08:55.321 I/SVERKA  (25743): === PE-3 plus-tap 20:08:56 ===
+10-14 20:09:02.189 I/ReactNativeJS(25397): [NO-ENERGY-PLUS] tap ctx=no_energy variant=dialogs activity=ai_dialog handler=onBeforeOpenPremium
+10-14 20:09:02.782 I/ReactNativeJS(25397): [NO-ENERGY-PLUS] push via=modal_closed ctx=no_energy variant=dialogs
+10-14 20:09:02.814 I/ReactNativeJS(25397): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":62218,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=
+10-14 20:09:03.023 I/ReactNativeJS(25397): [INFO] [PAYWALL-OPEN]: шапка: ctx=no_energy source=no_energy_modal текст=no_energy контекстная=true выгода=есть lang=ru
+10-14 20:09:03.038 I/ReactNativeJS(25397): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"no_energy","source":"no_energy_modal","shownContext":"no_energy","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","ro
+10-14 20:09:03.043 I/ReactNativeJS(25397): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#Hk0mZi*[(tabs)#FhFnvs,ai_dialog_home#q46URe,dialogue_v2_briefing#NElrOv,premium_modal#-nkVN4*]","atMs":62447}'
+10-14 20:09:03.253 W/ReactNativeJS(25397): [NAV-PAINT] group=screen route=/premium_modal ms=206
+10-14 20:09:04.809 I/ReactNativeJS(25397): '[MEM-TICK]', '{"tSec":63,"route":"/premium_modal","heapMb":68,"gc":"6gc/49ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":7,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":3,"tick <- apply (nat
+10-14 20:09:09.829 I/ReactNativeJS(25397): '[MEM-TICK]', '{"tSec":68,"route":"/premium_modal","heapMb":68,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreRead
+10-14 20:09:09.942 I/SVERKA  (25812): === PE-3 close-tap 20:09:11 ===
+10-14 20:09:12.587 W/ReactNativeJS(25397): '[NAV-BACK] candidate:reset', '{"reason":"leaving_no_section","leaving":"/premium_modal","leavingSection":null,"candidate":null,"candidateSection":null}', { [Stack] name: 'Stack' }
+10-14 20:09:12.600 I/ReactNativeJS(25397): [WINBACK-FREEZE] t=52593 dismiss leaving=/premium_modal?context=no_energy&source=no_energy_modal candidate=none chosen=/(tabs)/home shouldReplace=false canDismiss=skipped branch=dismissTo stack=
+10-14 20:09:12.604 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=52602 branch=dismissTo why: shouldReplace=false candidate=none canDismiss=skipped nativePopToBack=true
+10-14 20:09:13.300 I/ReactNativeJS(25397): [NO-ENERGY-PLUS] unmount nothing_pending
+10-14 20:09:13.329 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=53328 tabs focus
+10-14 20:09:13.584 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=53583 +0ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:09:13.585 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=53584 +300ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:09:13.588 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=53588 +800ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:09:14.380 I/ReactNativeJS(25397): [PAYWALL-CLOSE-FREEZE] t=54379 +1500ms branch=dismissTo stack=[*__root] > [*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:09:14.846 I/ReactNativeJS(25397): '[MEM-TICK]', '{"tSec":73,"route":"/premium_modal","heapMb":72,"gc":"12gc/133ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":9,"timeoutsByCaller":{"_loop <- dismissPaywallModal":4,"tick <- apply (native)":1
+10-14 20:09:19.851 I/ReactNativeJS(25397): '[MEM-TICK]', '{"tSec":78,"route":"/premium_modal","heapMb":72,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":0,"firestoreRead

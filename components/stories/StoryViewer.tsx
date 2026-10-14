@@ -9,6 +9,7 @@
 // Пауза также при фоне приложения/уходе экрана из фокуса. Экранный диктор: автопереход выключен (читать успеть нельзя), листание — тапом «дальше». reduceMotion — без раскрытия и улёта.
 // Логи: [STORY-VIEWER] (открытие, кадр, пауза/возобновление, закрытие с причиной).
 // ═══════════════════════════════════════════════════════════════════════════
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Modal, Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -118,6 +119,7 @@ function StoryViewer({ lang, events: eventsProp, coinRank, origin, onSeen, onClo
     if (closingRef.current) return;
     if (target >= count) { close('finished'); return; }
     const k = Math.max(0, target);
+    if (k !== indexRef.current) tryPlayV2Event('story', 'story_viewer'); // зачем (координатор 14.10): звук перелистывания сторис V2; флаг выключен — тишина
     indexRef.current = k;
     setIndex(k);
     cancelAnimation(progress);

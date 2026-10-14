@@ -9,7 +9,8 @@
  * Perf: анимация на UI-треде, конечная (реагирует на смену value); монтируется
  * хостом только в шапке активной сессии. Без вечных циклов.
  */
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
   cancelAnimation,
@@ -51,6 +52,12 @@ function fractionForBand(value: number, level: ComboLevel): number {
 }
 
 export function ComboRing({ value, level, size = 56 }: ComboRingProps) {
+  // зачем (координатор 14.10): «Молния» V2 — серия звука растёт с уровнем кольца (Искра → Молния → Гроза, шаги 0…2); играет, когда уровень поднялся; флаг sound_v2 выключен — тишина
+  const prevLevelRef = useRef<ComboLevel>(level);
+  useEffect(() => {
+    if (level > prevLevelRef.current && level >= 1) tryPlayV2Event('lightning', 'combo_ring', false, level - 1);
+    prevLevelRef.current = level;
+  }, [level]);
   const { theme: t } = useTheme();
 
   const stroke = 5;

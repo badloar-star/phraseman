@@ -9,11 +9,14 @@ jest.mock('../modules/sound_v2/sound_bank', () => ({
   prewarmSoundV2: jest.fn(),
 }));
 
+const mockHandlers: Array<() => void> = [];
+jest.mock('../app/events', () => ({ onAppEvent: (_name: string, cb: () => void) => { mockHandlers.push(cb); return { remove: () => undefined }; } }));
+
 import { SOUND_V2_CATALOG } from '../modules/sound_v2/catalog';
 import { SoundBank, playEvent, prewarmSoundV2, type SoundBankDeps, type SoundV2Player } from '../modules/sound_v2/sound_bank';
 import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
 import { DIRECTOR_TO_V2, FC_TO_V2, tryPlayV2Event, tryPlayV2ForDirector, tryPlayV2ForFc } from '../modules/sound_v2/legacy_bridge';
-import { SOUND_V2_BOOT_EVENTS, bootSoundV2 } from '../modules/sound_v2/sound_v2_boot';
+import { SOUND_V2_ACHIEVEMENT_THROTTLE_MS, SOUND_V2_BOOT_EVENTS, bootSoundV2, subscribeAchievementSound } from '../modules/sound_v2/sound_v2_boot';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 const playMock = playEvent as jest.Mock;
@@ -183,5 +186,57 @@ describe('микро-вариация скорости на платформах
     expect(h.rateCalls).toHaveLength(5);
     expect(h.warns).toHaveLength(0);
     expect(h.rateCalls.every((r) => Math.abs(r - 1) <= 0.0015 + 1e-9)).toBe(true);
+  });
+});
+
+describe('остальные события V2 — места подключения (все 4 варианта каждого события)', () => {
+  const SITES: ReadonlyArray<readonly [string, string]> = [
+    ['components/CustomSwitch.tsx', "tryPlayV2Event(value ? 'toggle_off' : 'toggle_on'"],
+    ['components/modal_fx/SheetSwipeClose.tsx', "tryPlayV2Event('sheet_close'"],
+    ['components/ExplainSheet.tsx', "tryPlayV2Event('hint'"],
+    ['components/ExplainSheetHybrid.tsx', "tryPlayV2Event('hint'"],
+    ['components/stories/StoryViewer.tsx', "tryPlayV2Event('story'"],
+    ['components/StreakRiskToastHost.tsx', "tryPlayV2Event('streak_risk'"],
+    ['components/level_up/CoinRankUpgradeCeremony.tsx', "tryPlayV2Event('coin_rank'"],
+    ['components/PremiumCelebrationModal.tsx', "tryPlayV2Event('plus'"],
+    ['components/feedback/ComboRing.tsx', "tryPlayV2Event('lightning'"],
+    ['app/spire/use_spire_game.ts', "tryPlayV2Event('summit'"],
+    ['app/spire/use_spire_game.ts', "tryPlayV2Event('floor'"],
+    ['app/spire/use_spire_game.ts', "tryPlayV2Event('step'"],
+  ];
+  it.each(SITES)('%s зовёт V2: %s', (file, needle) => {
+    expect(read(file)).toContain(needle);
+  });
+
+  it('ачивка: событие achievement_unlocked играет V2, пачка в течение 800 мс — один звук; флаг выключен — тишина', () => {
+    subscribeAchievementSound(); // подписка одна на процесс: её уже сделал запуск в тестах выше
+    expect(mockHandlers.length).toBeGreaterThanOrEqual(1);
+    const handler = mockHandlers[0]!;
+    let clock = 10_000_000;
+    const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => clock);
+    setSoundV2FlagForTests(true);
+    playMock.mockReturnValue({ event: 'achievement', played: true });
+    handler();
+    clock += 100;
+    handler();
+    expect(playMock).toHaveBeenCalledTimes(1);
+    expect(playMock.mock.calls[0]![0]).toBe('achievement');
+    clock += SOUND_V2_ACHIEVEMENT_THROTTLE_MS;
+    setSoundV2FlagForTests(false);
+    handler();
+    expect(playMock).toHaveBeenCalledTimes(1);
+    nowSpy.mockRestore();
+  });
+
+  it('молния: шаг серии берётся из уровня кольца, а не из счётчика движка (в уроках ответы без звука — серия не сбрасывалась бы)', () => {
+    setSoundV2FlagForTests(true);
+    playMock.mockReturnValue({ event: 'lightning', played: true });
+    tryPlayV2Event('lightning', 'combo_ring', false, 2);
+    expect(playMock).toHaveBeenLastCalledWith('lightning', { step: 2 });
+  });
+
+  it('все 12 событий V2 без старого аналога теперь имеют место подключения', () => {
+    const wired = new Set(['toggle_on', 'toggle_off', 'sheet_close', 'hint', 'story', 'streak_risk', 'coin_rank', 'plus', 'lightning', 'summit', 'floor', 'step', 'achievement']);
+    for (const e of wired) expect(SOUND_V2_CATALOG[e as keyof typeof SOUND_V2_CATALOG]).toBeDefined();
   });
 });

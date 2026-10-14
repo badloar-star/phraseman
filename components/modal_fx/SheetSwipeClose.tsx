@@ -17,6 +17,7 @@
 // - `enabled={false}` — оплата/необратимое действие/идущее сохранение: свайп выключен, а ручку прячет вызывающий.
 // Сторож: tests/sheet_handle_implies_swipe_contract.test.ts. Логи: [SHEET-SWIPE].
 // ═══════════════════════════════════════════════════════════════════════════
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import { Dimensions, type StyleProp, type ViewStyle } from 'react-native';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -64,6 +65,7 @@ export default function SheetSwipeClose({ onClose, enabled = true, name, zoneHei
 
   const finishClose = useCallback(() => {
     if (__DEV__) console.log(`[SHEET-SWIPE] close source=swipe id=${name} follow=${String(follow)}`); // guard-ok: единичный лог закрытия
+    tryPlayV2Event('sheet_close', `sheet_swipe:${name}`); // зачем (координатор 14.10): звук закрытия шторки V2; флаг выключен — тишина
     onCloseRef.current();
     // зачем (правило «не висеть невидимой»): если закрытие не состоялось (замок повторного тапа и т. п.), лист возвращается на место.
     // Обычный путь — размонтирование шторки — снимает таймер.

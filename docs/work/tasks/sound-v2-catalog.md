@@ -102,4 +102,15 @@
 | `league_up`, `league_stay`, `league_down`, `new_week`, `sheet_open` | моменты Пика m01–m03 | `components/spire/moments/moments_sound.ts` |
 | `tap`, `new_week` | «С возвращением» m21 | `components/moments/WelcomeBackMoment.tsx` |
 
-Не подключено намеренно: верный/неверный ответ в уроках (решение владельца 2026-09-15 — вердикт вибрацией), флип и тики карточек, нарастание, сундук, Арена (удалена). Событий V2 без места пока: `hint`, `story`, `toggle_on/off`, `sheet_close`, `lightning`, `coin_rank`, `achievement`, `step`, `floor`, `summit`, `plus`, `streak_risk` — их подключают сессии-владельцы экранов через `playEvent`.
+| `toggle_on`, `toggle_off` | переключатели | `components/CustomSwitch.tsx` |
+| `sheet_close` | закрытие шторки свайпом | `components/modal_fx/SheetSwipeClose.tsx` |
+| `hint` | «Разбор и подсказка» пришли | `components/ExplainSheet.tsx`, `components/ExplainSheetHybrid.tsx` |
+| `story` | перелистывание сторис | `components/stories/StoryViewer.tsx` |
+| `streak_risk` | тост «серия под угрозой» | `components/StreakRiskToastHost.tsx` |
+| `coin_rank` | церемония повышения ранга монеты | `components/level_up/CoinRankUpgradeCeremony.tsx` |
+| `plus` | торжество покупки Plus | `components/PremiumCelebrationModal.tsx` |
+| `lightning` | кольцо серии верных поднялось на уровень (шаг 0…2) | `components/feedback/ComboRing.tsx` |
+| `step`, `floor`, `summit` | итог ступени Пика | `app/spire/use_spire_game.ts` |
+| `achievement` | событие приложения `achievement_unlocked` (не чаще раза в 800 мс) | `modules/sound_v2/sound_v2_boot.ts` |
+
+Не подключено намеренно: верный/неверный ответ в уроках (решение владельца 2026-09-15 — вердикт вибрацией), флип и тики карточек, нарастание, сундук (D09), Арена (не в выпуске). Звуки событий V2 играют только при включённом `sound_v2`; при выключенном у этих событий старого звука нет — тишина как раньше.

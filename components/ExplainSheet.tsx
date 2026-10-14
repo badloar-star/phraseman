@@ -14,6 +14,7 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  *
  * Внизу — тонкая кнопка-репорт (ExplainReportButton), шлёт phraseEn (сервер хэширует).
  */
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   View,
@@ -155,6 +156,8 @@ function ExplainSheetClassic({ visible, onClose, phraseEn, phraseMeaning, lang, 
     });
     // Сообщаем вызывающему результат РОВНО раз — он решает, списывать ли дневной кредит
     // (только реальная генерация: cache MISS, без ошибки).
+    // зачем (координатор 14.10): звук V2 «hint»; флаг sound_v2 выключен — тишина как раньше (старого звука у события не было)
+    tryPlayV2Event('hint', 'explain_sheet');
     onResolved?.({ fromCache: state.fromCache, status: state.status, error: state.error });
   }, [visible, phraseEn, state.loading, state.text, state.fromCache, state.status, state.error, effLang, onResolved]);
 

@@ -10,7 +10,7 @@ import { isSoundV2Enabled } from './sound_v2_flag';
 
 const LOG = '[SOUND-V2-BRIDGE]';
 
-type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean }>;
+type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean; step?: number }>;
 
 /** Старое событие SoundDirector → событие V2. */
 export const DIRECTOR_TO_V2: Readonly<Record<string, Plan>> = {
@@ -46,7 +46,7 @@ function playPlan(source: string, id: string, plan: Plan): boolean {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { playEvent } = require('./sound_bank') as typeof import('./sound_bank');
-    const result = playEvent(plan.event, plan.advance ? { advance: true } : undefined);
+    const result = playEvent(plan.event, plan.advance ? { advance: true } : plan.step !== undefined ? { step: plan.step } : undefined);
     if (result.played) return true;
     if (result.reason && SILENT_REASONS.has(result.reason)) return true;
     console.log(`${LOG} ${source}:${id} → ${plan.event} не сыграл (${String(result.reason)}) — играет старый звук`); // guard-ok: причина отката на старый путь
@@ -65,9 +65,9 @@ export function tryPlayV2ForDirector(eventId: string): boolean {
 }
 
 /** Прямой запуск события V2 (моменты вовлечения): true — сыграло или звуки выключены/идёт запись; false — флаг выключен или не сыграло (вызывающий пишет заглушку/старый звук). */
-export function tryPlayV2Event(event: SoundV2EventId, source: string, advance = false): boolean {
+export function tryPlayV2Event(event: SoundV2EventId, source: string, advance = false, step?: number): boolean {
   if (!isSoundV2Enabled()) return false;
-  return playPlan('moment', source, { event, advance });
+  return playPlan('moment', source, { event, advance, step });
 }
 
 /** Звук карточек playSfx: true — сыграл V2, false — играть по-старому. */

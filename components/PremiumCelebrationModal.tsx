@@ -14,6 +14,7 @@
  * Контракт props сохранён: { visible, onClose, variant, promoCode }.
  * VipCelebrationModal остаётся тонкой обёрткой (variant="vip").
  */
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
@@ -134,6 +135,11 @@ function PremiumCelebrationModal({ visible, onClose, variant = 'premium', promoC
     titleT.value = 1; ctaT.value = 1;
     enterAct(hasPromo ? 'promo' : 'act3');
   }, [clearTimers, cancelAll, heroIn, strikeX, strikeY, ring1, ring2, titleT, ctaT, hasPromo, enterAct]);
+
+  // зачем (координатор 14.10): звук покупки Plus V2 в момент показа торжества (кроме экрана «Промокод применён»); флаг sound_v2 выключен — тишина как раньше
+  useEffect(() => {
+    if (visible && !hasPromo) tryPlayV2Event('plus', 'premium_celebration');
+  }, [visible, hasPromo]);
 
   // ── главная последовательность ──
   useEffect(() => {

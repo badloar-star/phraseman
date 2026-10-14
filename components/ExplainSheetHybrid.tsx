@@ -8,6 +8,7 @@
  * зачем: владелец (2026-08-15) — переезд семьи на гибрид, подключается ТОЛЬКО
  * через ExplainSheet.motionVariant='hybrid'.
  */
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import React, { memo, useEffect, useRef } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -101,6 +102,8 @@ function ExplainSheetHybrid({ visible, onClose, phraseEn, phraseMeaning, lang, o
       status: state.status,
       phase: 'resolved',
     });
+    // зачем (координатор 14.10): звук V2 «hint»; флаг sound_v2 выключен — тишина как раньше (старого звука у события не было)
+    tryPlayV2Event('hint', 'explain_sheet_hybrid');
     onResolved?.({ fromCache: state.fromCache, status: state.status, error: state.error });
   }, [visible, phraseEn, state.loading, state.text, state.fromCache, state.status, state.error, lang, onResolved]);
 

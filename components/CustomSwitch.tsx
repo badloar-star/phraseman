@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useRef } from 'react';
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import { TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { mergeSwitchAccessibilityState } from './a11y_state';
@@ -60,7 +61,12 @@ function CustomSwitch({
     <TouchableOpacity
       activeOpacity={0.85}
       disabled={disabled}
-      onPress={() => !disabled && onValueChange(!value)}
+      onPress={() => {
+        if (disabled) return;
+        // зачем (координатор 14.10): звук переключателя V2 (toggle_on/toggle_off), 4 варианта; флаг sound_v2 выключен — тишина как раньше
+        tryPlayV2Event(value ? 'toggle_off' : 'toggle_on', 'custom_switch');
+        onValueChange(!value);
+      }}
       accessibilityRole="switch"
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}

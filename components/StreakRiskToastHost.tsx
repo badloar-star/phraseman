@@ -10,6 +10,7 @@
  * заморозка не активна, и сегодня тост ещё не показывали. Один раз в день.
  * Тип warning — не блокирует, идёт через общий ActionToast (он сам выберет язык).
  */
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import { useEffect, useRef } from 'react';
 import { AppState } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,6 +50,7 @@ export default function StreakRiskToastHost() {
       // короче входа). Условия показа (вечер/раз в день/цепочка под угрозой)
       // не менялись.
       // зачем (OR-TOAST-STREAK-RISK): пассивное напоминание — сверху одной строкой с плиткой-огоньком.
+      tryPlayV2Event('streak_risk', 'streak_risk_toast'); // зачем (координатор 14.10): звук «серия под угрозой» V2; флаг выключен — тишина
       emitAppEvent('action_toast', {
         layout: 'top_line',
         lineIcon: 'flame-outline',

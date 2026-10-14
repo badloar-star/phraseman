@@ -154,7 +154,8 @@ export const SHOP_ITEMS: readonly ShopItem[] = Object.freeze([
     id: 'cards-work', category: 'cards', currency: 'runes', price: 80,
     tone: 'cards', icon: 'briefcase-outline',
     title: { ru: 'Набор «Работа»', uk: 'Набір «Робота»', es: 'Paquete «Trabajo»', en: '“Work” pack', 'pt-BR': 'Pacote «Trabalho»', vi: 'Bộ «Công việc»', id: 'Paket «Kerja»', tr: '«İş» seti', pl: 'Zestaw «Praca»' },
-    detail: { ru: 'Созвоны, письма и переговоры на английском.', uk: 'Дзвінки, листи та перемовини англійською.', es: 'Llamadas, correos y negociaciones en inglés.', en: 'Calls, emails and negotiations in English.', 'pt-BR': 'Chamadas, e-mails e negociações em inglês.', vi: 'Cuộc gọi, email và đàm phán bằng tiếng Anh.', id: 'Panggilan, email, dan negosiasi dalam bahasa Inggris.', tr: 'İngilizce toplantılar, e-postalar ve müzakereler.', pl: 'Rozmowy, maile i negocjacje po angielsku.' },
+    // зачем (D188, 14.10): язык изучения не только английский — описание без названия языка.
+    detail: { ru: 'Фразы для созвонов, писем и переговоров.', uk: 'Вислови для дзвінків, листів і перемовин.', es: 'Frases para llamadas, correos y negociaciones.', en: 'Phrases for calls, emails and negotiations.', 'pt-BR': 'Frases para chamadas, e-mails e negociações.', vi: 'Cụm từ cho cuộc gọi, email và đàm phán.', id: 'Frasa untuk panggilan, email, dan negosiasi.', tr: 'Toplantılar, e-postalar ve müzakereler için ifadeler.', pl: 'Zwroty do rozmów, maili i negocjacji.' },
   },
 ]);
 

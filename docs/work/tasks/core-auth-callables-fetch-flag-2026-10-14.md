@@ -44,3 +44,12 @@ code/message/details как у SDK; нет токена → нативный п�
 ## Rollback
 
 Флаг выключен по умолчанию; снять три обёртки — вызовы снова только нативные.
+
+## Журнал
+
+- 14.10 22:05 — App Check (вопрос координатора перед №7): сервер не требует — authEnsureStableLink / authStampAnonOwnership /
+  authMergeStableAccounts на HOT_CALLABLE_OPTIONS с enforceAppCheck: ENFORCE_APP_CHECK = false (пломба владельца 17.08,
+  functions/src/callable_options.ts, сторож app_check_sealed.test.ts); клиент модуля @react-native-firebase/app-check не имеет
+  (снят 01.10) — нативный callable заголовок X-Firebase-AppCheck не шлёт. fetch без него = то же, что натив: под флагом вход
+  по App Check не ломается.
+

@@ -23,11 +23,18 @@ import {
 } from '../../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
-jest.mock('../../app/premium_guard', () => ({
-  getVerifiedPremiumStatus: jest.fn(),
-}));
-const { getVerifiedPremiumStatus: mockGetVerifiedPremiumStatus } = require('../../app/premium_guard') as {
-  getVerifiedPremiumStatus: jest.Mock;
+// зачем (полный прогон 15.10): с 61a8248b1 (13.10) hooks/use-flashcards.ts зовёт getVerifiedPremiumAccessStatus({ allowCloudRefresh: false }),
+// а мок знал только getVerifiedPremiumStatus — тесты лимита падали «is not a function». Как в настоящем premium_guard: старая
+// getVerifiedPremiumStatus — обёртка над новой; переменная теста управляет той функцией, которую реально вызывает хук.
+jest.mock('../../app/premium_guard', () => {
+  const access = jest.fn();
+  return {
+    getVerifiedPremiumAccessStatus: access,
+    getVerifiedPremiumStatus: jest.fn(() => access()),
+  };
+});
+const { getVerifiedPremiumAccessStatus: mockGetVerifiedPremiumStatus } = require('../../app/premium_guard') as {
+  getVerifiedPremiumAccessStatus: jest.Mock;
 };
 
 const mockStorage = AsyncStorage as jest.Mocked<typeof AsyncStorage>;
@@ -191,6 +198,8 @@ describe('use-flashcards', () => {
 
       const result = await addFlashcard(makeCard('phrase beyond limit'));
       expect(result).toBe('added');
+      // лимит снимает именно проверенный доступ (тот же вызов, что в хуке: без облачного обновления)
+      expect(mockGetVerifiedPremiumStatus).toHaveBeenCalledWith({ allowCloudRefresh: false });
     });
 
     it('tester_no_premium forces free tier even if premium_active=true', async () => {

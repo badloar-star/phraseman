@@ -78,10 +78,14 @@
 </style>
 <style>
 /* ---------- D192: кольцо сторис у аватара (как в Instagram, красное) ---------- */
-.em-ph .story-ring { display: inline-flex; padding: 3.5px; border-radius: 50%; background: conic-gradient(from 210deg, #FF2D55, #FF3B30, #FF5E3A, #FF2D55); flex: none; position: relative; }
-.em-ph .story-ring > img { border-radius: 50%; box-shadow: 0 0 0 3px var(--bg); display: block; }
-.em-ph .story-ring.pulse { animation: srPulse 1.8s var(--em-ease) infinite; } @keyframes srPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-.em-ph .story-ring.gone { background: transparent; transition: background 400ms; }
+.em-ph .story-ring { position: relative; width: 48px; height: 48px; flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; }
+/* зачем (координатор 14.10: «кольцо тонкое и слабое»): как в Instagram — кольцо 3 px + зазор 2 px цветом фона, тёплый градиент красный → оранжевый;
+   кольцо и монета 38 укладываются в слот аватара шапки 48 × 48 (home.tsx avatarSlot), шапка не сдвигается */
+.em-ph .story-ring.has { background: linear-gradient(45deg, #FF2D55 0%, #FF3B30 35%, #FF6A1A 70%, #FF9500 100%); }
+.em-ph .story-ring.has::before { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--bg); }
+.em-ph .story-ring.has > img { position: relative; width: 38px !important; height: 38px !important; }
+.em-ph .story-ring.pulse { animation: srPulse 1.8s var(--em-ease) infinite; } @keyframes srPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+.em-ph .story-ring.gone { background: transparent; } .em-ph .story-ring.gone::before { display: none; } .em-ph .story-ring.gone > img { width: 48px !important; height: 48px !important; transition: width 300ms, height 300ms; }
 .em-ph .tapdot { position: absolute; width: 44px; height: 44px; border-radius: 50%; background: color-mix(in srgb, var(--tx) 18%, transparent); transform: scale(.4); opacity: 0; pointer-events: none; z-index: 30; }
 .em-ph .tapdot.on { animation: tapDot 520ms var(--em-ease) both; } @keyframes tapDot { 0% { transform: scale(.4); opacity: .9; } 100% { transform: scale(1.4); opacity: 0; } }
 /* ---------- просмотр сторис ---------- */
@@ -105,7 +109,7 @@
 <body>
 <div class="em-page">
   <div class="em-top"><div><span class="em-stage">D192 · решение владельца 14.10</span><h1 class="page-h1" style="margin-top:10px">Сторис по аватару — события недели и серии</h1>
-  <p class="page-lead">Итог недели и другие события больше не всплывают сами. Когда есть непросмотренное событие, вокруг аватара-монеты в шапке Главной — красное кольцо, как у сторис в Instagram. Тап по аватару открывает все события подряд: только то, что реально произошло. Полосы прогресса сверху, тап справа — дальше, слева — назад, удержание — пауза, свайп вниз — закрыть. Всё просмотрено — кольцо исчезает. Событий нет — кольца нет, тап ведёт туда же, куда сейчас (профиль). Монета — только валюта и аватар ранга.</p>
+  <p class="page-lead">Окно итога недели (m01 / m02 / m03) по-прежнему показывается один раз при первом входе после закрытия недели (D191), и тот же итог параллельно попадает в сторис. Сам по себе не всплывает только сторис-просмотр: когда есть непросмотренное событие, вокруг аватара-монеты в шапке Главной — красное кольцо, как у сторис в Instagram. Тап по аватару открывает все события подряд: только то, что реально произошло. Полосы прогресса сверху, тап справа — дальше, слева — назад, удержание — пауза, свайп вниз — закрыть. Всё просмотрено — кольцо исчезает. Событий нет — кольца нет, тап ведёт туда же, куда сейчас (профиль). Монета — только валюта и аватар ранга.</p>
   <div class="em-tools"><span class="em-btn pri" id="em-theme">Тема: Аврора тёмная</span><a class="em-btn" href="engagement-moments-v3-all.html">Все моменты v3</a></div></div>
   </div>
   <nav class="em-toc" id="toc"></nav>
@@ -126,7 +130,7 @@ const IO = EMA.IO;
 const flame = (st, n = '', size = 150) => `<div class="flame st-${st}" style="--fs2:${size}px" data-flame><div class="glow"></div><span class="g outline">${IO.flameO}</span><span class="g fill l2">${IO.flame}</span><span class="g fill l1">${IO.flame}</span><span class="g core">${IO.flame}</span><div class="veil"></div>${n !== '' ? `<div class="n">${n}</div>` : ''}</div>`;
 // Главная с аватаром в кольце (или без) — аватар = монета ранга в шапке (homeUnder, 48 dp)
 const homeRing = (state) => { const h = homeUnder({}); const i = h.indexOf('width="48"'); const s0 = h.lastIndexOf('<img', i); const e0 = h.indexOf('>', i) + 1; const img = h.slice(s0, e0);
-  const ring = state === 'new' ? `<span class="story-ring pulse" data-ring>${img}</span>` : state === 'gone' ? `<span class="story-ring gone" data-ring>${img}</span>` : `<span class="story-ring gone" data-ring>${img}</span>`;
+  const ring = state === 'new' ? `<span class="story-ring has pulse" data-ring>${img}</span>` : state === 'gone' ? `<span class="story-ring gone" data-ring>${img}</span>` : `<span class="story-ring gone" data-ring>${img}</span>`;
   return h.slice(0, s0) + ring + h.slice(e0); };
 // 4 события — только то, что реально произошло (данные — пример)
 const T = window.SpireTowerRender; const W = 150; const sc = W / T.TW; const mk = T.markerXY(T.GEOM.floors[0]);
@@ -148,7 +152,7 @@ const flowInit = (ph) => { let i = 0, timer = null, paused = false, left = DUR, 
   const run = (ms) => { clearTimeout(timer); left = ms; t0 = performance.now(); const b = bar(i); void b.offsetWidth; b.style.transition = `width ${ms}ms linear`; b.style.width = '100%'; timer = setTimeout(() => go(i + 1), ms); };
   const pause = () => { if (paused) return; paused = true; clearTimeout(timer); const b = bar(i); const w = getComputedStyle(b).width; b.style.transition = 'none'; b.style.width = w; left = Math.max(0, left - (performance.now() - t0)); ph.querySelector('[data-story]').classList.add('paused'); };
   const resume = () => { if (!paused) return; paused = false; ph.querySelector('[data-story]').classList.remove('paused'); run(left); };
-  const close = () => { clearTimeout(timer); const st = ph.querySelector('[data-story]'); if (!st) return; st.classList.add('closing'); EMA.play('sheet_close'); setTimeout(() => { st.remove(); const r = ph.querySelector('[data-ring]'); if (r) { r.classList.remove('pulse'); r.classList.add('gone'); } }, 340); };
+  const close = () => { clearTimeout(timer); const st = ph.querySelector('[data-story]'); if (!st) return; st.classList.add('closing'); EMA.play('sheet_close'); setTimeout(() => { st.remove(); const r = ph.querySelector('[data-ring]'); if (r) { r.classList.remove('pulse', 'has'); r.classList.add('gone'); } }, 340); };
   const open = () => { const r = ph.querySelector('[data-ring]'); const d = document.createElement('span'); d.className = 'tapdot on'; const R = r.getBoundingClientRect(), P = ph.getBoundingClientRect(); d.style.left = `${R.left - P.left + R.width / 2 - 22}px`; d.style.top = `${R.top - P.top + R.height / 2 - 22}px`; ph.appendChild(d); setTimeout(() => d.remove(), 600);
     ph.insertAdjacentHTML('beforeend', viewer(0, { enter: true })); const st = ph.querySelector('[data-story]');
     st.querySelector('[data-next]').addEventListener('click', () => go(i + 1)); st.querySelector('[data-prev]').addEventListener('click', () => go(i - 1));
@@ -158,7 +162,7 @@ const flowInit = (ph) => { let i = 0, timer = null, paused = false, left = DUR, 
   return () => { timers.forEach(clearTimeout); clearTimeout(timer); }; };
 
 moment({ id: 's1', num: '01', short: 'Главная · кольцо', title: 'Главная: красное кольцо вокруг аватара', tag: 'new',
-  lead: 'КОГДА: есть хотя бы одно непросмотренное событие (итог недели лиги — вверх / удержался / вниз, рубеж серии, повышение ранга монеты, ачивка). Кольцо — вокруг аватара-монеты в шапке Главной (HomeV2Header), красное, как у сторис в Instagram; мягко «дышит». Всё просмотрено — кольца нет. Событий нет — кольца нет, тап по аватару ведёт туда же, куда сейчас. Собирается: HomeV2Header + обёртка аватара (новая, нужна в код), coin_rank_XX.',
+  lead: 'КОГДА: есть хотя бы одно непросмотренное событие (итог недели лиги — вверх / удержался / вниз, рубеж серии, повышение ранга монеты, ачивка). Кольцо — вокруг аватара-монеты в шапке Главной (HomeV2Header): 3 px + зазор 2 px, тёплый градиент красный → оранжевый, как у сторис в Instagram; кольцо и монета 38 — в слоте аватара 48 × 48, шапка не сдвигается; мягко «дышит». Окно итога недели (D191) остаётся: 1 раз при первом входе после закрытия недели, итог параллельно попадает в сторис. Всё просмотрено — кольца нет. Событий нет — кольца нет, тап по аватару ведёт туда же, куда сейчас. Собирается: HomeV2Header + обёртка аватара (новая, нужна в код), coin_rank_XX. Данные — useStoryEvents() Ядра: кольцо = unseenCount > 0, флаг stories_v1.',
   variants: [
     { k: 'A', label: 'Есть новые события', time: '—', phone: { under: homeRing('new') }, total: 1, beats: [{ t: 0, w: 'кольцо «дышит» 1,8 с (scale 1 → 1,06)' }] },
     { k: 'B', label: 'Всё просмотрено — кольцо исчезло', time: '—', phone: { under: homeRing('gone') }, total: 1, beats: [] },

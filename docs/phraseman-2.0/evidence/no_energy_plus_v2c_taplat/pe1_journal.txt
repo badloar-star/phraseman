@@ -1,0 +1,40 @@
+10-14 20:36:35.136 I/SVERKA  (30888): === PE-1 start 20:36:36 ===
+10-14 20:36:35.855 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=95854 tabs blur
+10-14 20:36:36.535 I/ReactNativeJS(30671): [TAP-LAT] → dev_state (из (tabs)) · без касания (редирект/таймер) · коммит→кадр 673.1мс
+10-14 20:36:36.535 I/ReactNativeJS(30671): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (673мс) · рендеры: stack 22×(5/179/174/692/542/…мс, всего 6056мс) · tab:lessons 11×(69/1/92/21/1/…мс, всего 487мс) · tab:home 6×(41/90/61/49/67/…мс, вс�
+10-14 20:36:36.569 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=96569 gate no reason=recent awayDays=0
+10-14 20:36:36.570 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=96570 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 20:36:38.152 I/ReactNativeJS(30671): [TAP-LAT] → ai_dialog_home (из dev_state) · без касания (редирект/таймер) · коммит→кадр 278мс
+10-14 20:36:38.152 I/ReactNativeJS(30671): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (278мс) · рендеры: stack 23×(66/12/5/672/729/…мс, всего 5869мс) · tab:lessons 11×(7/53/69/42/68/…мс, всего 402мс) · tab:home 6×(61/49/67/65/36/…мс, все
+10-14 20:36:53.045 I/ReactNativeJS(30671): [TAP-LAT] → dialogue_v2_briefing (из ai_dialog_home) · палец 37.8мс · JS-лаг на отпускании 37.8мс · отпускание→обработчик — · обработчик→коммит 382мс · коммит→кадр 346мс · ОТ ОТПУ
+10-14 20:36:53.045 I/ReactNativeJS(30671): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (346мс) · рендеры от касания: stack 2×(197/720мс, всего 917мс) · tab:home 1×(56мс, всего 56мс) · tab:lessons 1×(52мс, всего 52мс)
+10-14 20:37:05.968 I/SVERKA  (31034): === PE-1 plus-tap 20:37:07 ===
+10-14 20:37:13.032 I/ReactNativeJS(30671): [NO-ENERGY-PLUS] tap ctx=no_energy variant=dialogs activity=ai_dialog handler=onBeforeOpenPremium
+10-14 20:37:13.621 I/ReactNativeJS(30671): [NO-ENERGY-PLUS] push via=modal_closed ctx=no_energy variant=dialogs
+10-14 20:37:13.673 I/ReactNativeJS(30671): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":67481,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=
+10-14 20:37:13.993 I/ReactNativeJS(30671): [INFO] [PAYWALL-OPEN]: шапка: ctx=no_energy source=no_energy_modal текст=no_energy контекстная=true выгода=есть lang=ru
+10-14 20:37:14.007 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=34005 sheet mount context=no_energy source=no_energy_modal
+10-14 20:37:14.011 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=34010 sheet arbiter active=none
+10-14 20:37:14.015 I/ReactNativeJS(30671): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"no_energy","source":"no_energy_modal","shownContext":"no_energy","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","ro
+10-14 20:37:14.019 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=34017 route mount context=no_energy source=no_energy_modal
+10-14 20:37:14.024 I/ReactNativeJS(30671): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#sDFewg*[(tabs)#cg7qM3,ai_dialog_home#xEfioZ,dialogue_v2_briefing#niy-_r,premium_modal#W31hjO*]","atMs":67832}'
+10-14 20:37:14.139 I/ReactNativeJS(30671): [TAP-LAT] → premium_modal (из dialogue_v2_briefing) · палец 98мс · JS-лаг на отпускании 98мс · отпускание→обработчик — · обработчик→коммит 992.3мс · коммит→кадр 114.1мс · ОТ ОТПУ�
+10-14 20:37:14.139 I/ReactNativeJS(30671): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (112мс) · рендеры от касания: stack 5×(7/43/4/868/732мс, всего 1653мс)
+10-14 20:37:14.318 W/ReactNativeJS(30671): [NAV-PAINT] group=screen route=/premium_modal ms=287
+10-14 20:37:16.711 I/ReactNativeJS(30671): '[MEM-TICK]', '{"tSec":69,"route":"/premium_modal","heapMb":64,"gc":"6gc/65ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":9,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":3,"tick <- apply (nat
+10-14 20:37:21.149 I/SVERKA  (31090): === PE-1 close-tap 20:37:22 ===
+10-14 20:37:21.725 I/ReactNativeJS(30671): '[MEM-TICK]', '{"tSec":74,"route":"/premium_modal","heapMb":64,"gc":"0gc/0ms","intervals":2,"intervalsByCaller":{"_startHeartbeat <- anonymous":1,"onAppState <- anonymous":1},"timeoutsCreated":1,"timeoutsByCaller":{"tick <- apply (native)":1},"pendingTimeouts":1,"firestoreRead
+10-14 20:37:23.784 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=43783 sheet close_button
+10-14 20:37:23.790 I/ReactNativeJS(30671): [PAYWALL-CLOSE] via=x reason=close context=no_energy source=no_energy_modal
+10-14 20:37:23.790 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=43790 doClose reason=close context=no_energy source=no_energy_modal lockLeftMs=0
+10-14 20:37:23.801 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=43800 dismiss leaving=/premium_modal?context=no_energy&source=no_energy_modal candidate=/dialogue_v2_briefing?scenarioId=social_01 chosen=/dialogue_v2_briefing?scenarioId=social_01 shouldReplace=false canDismiss=true branch=dismiss(1) stack=/ai_dialog_home>/
+10-14 20:37:23.803 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=43802 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-14 20:37:24.058 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=44057 route UNMOUNT context=no_energy
+10-14 20:37:24.062 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=44059 sheet UNMOUNT context=no_energy
+10-14 20:37:24.155 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=44153 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),ai_dialog_home,*dialogue_v2_briefing] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:37:24.157 I/ReactNativeJS(30671): [TAP-LAT] → dialogue_v2_briefing (из premium_modal) · палец 24мс · JS-лаг на отпускании 24мс · отпускание→обработчик — · обработчик→коммит 271.5мс · коммит→кадр 80.6мс · ОТ ОТПУС
+10-14 20:37:24.157 I/ReactNativeJS(30671): [TAP-LAT]    ↳ JS после коммита занят: 1 отрезк. >50мс (80мс) · рендеры от касания: stack 2×(759/710мс, всего 1468мс)
+10-14 20:37:24.157 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=44157 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),ai_dialog_home,*dialogue_v2_briefing] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:37:24.621 I/ReactNativeJS(30671): [WINBACK-FREEZE] t=44621 dismiss +800ms top=/dialogue_v2_briefing?scenarioId=social_01 stack=/ai_dialog_home>/dialogue_v2_briefing?scenarioId=social_01
+10-14 20:37:24.623 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=44623 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),ai_dialog_home,*dialogue_v2_briefing] index=0 top=__root paywallInStack=false overlay=none
+10-14 20:37:25.345 I/ReactNativeJS(30671): [PAYWALL-CLOSE-FREEZE] t=45344 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),ai_dialog_home,*dialogue_v2_briefing] index=0 top=__root paywallInStack=false overlay=none

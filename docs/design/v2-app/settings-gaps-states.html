@@ -303,9 +303,9 @@ const langScreen = () => `<div class="gs-x t">${K.icon('close')}</div><div class
   + `<div class="gs-stk" style="margin-top:22px">${LANGS.map((n, i) => `<div class="gs-pl2 gs-lang t${i === 0 ? ' on' : ''}"><div class="gs-tx"><div class="gs-pt">${n}</div></div>${i === 0 ? K.icon('check') : chev}</div>`).join('')}</div>`
   + '<div style="margin-top:2px">' + ey2('ЯЗЫК ИЗУЧЕНИЯ') + '</div>'
   + `<div class="gs-pl2 t">${flagImg('en', 54, 38)}<div class="gs-tx"><div class="gs-pt">English</div><div class="gs-st">Сейчас изучаешь</div></div>${chev}</div>`;
-const STUDY = [['en', 'English', 'Учу · выбран', 'ok'], ['es_dev', 'Español', 'Учу', 'go'], ['fr_dev', 'Français', 'Новый язык · доступ уточняется', 'lock'], ['de', 'Deutsch', 'Новый язык · доступ уточняется', 'lock'], ['it', 'Italiano', 'Новый язык · доступ уточняется', 'lock']];
+const STUDY = [['en', 'English', 'Учу · выбран', 'ok'], ['es_dev', 'Español', 'Учу', 'go'], ['fr_dev', 'Français', '', 'go'], ['de', 'Deutsch', '', 'go'], ['it', 'Italiano', '', 'go']]; // зачем (D188, владелец 14.10): все 5 языков открыты, замков и «доступ уточняется» нет; у неначатых языков подписи под названием нет
 const studySheet = () => `<div class="gs-dim"></div><div class="gs-sheet"><div class="gs-grab"></div><div class="gs-shh"><div class="gs-tx"><div class="gs-sht">Язык изучения</div><div class="gs-shs">Прогресс каждого языка хранится отдельно</div></div><span class="gs-xs t">${K.icon('close')}</span></div>`
-  + `<div class="gs-stk" style="margin-top:20px">${STUDY.map(([f, n, s, k]) => `<div class="gs-pl2 t">${flagImg(f, 58, 40, k === 'lock')}<div class="gs-tx"><div class="gs-pt">${n}</div><div class="gs-st">${s}</div></div>${k === 'ok' ? K.icon('check') : k === 'lock' ? K.icon('lockF', 's18') : '<span style="width:20px"></span>'}</div>`).join('')}</div></div>`;
+  + `<div class="gs-stk" style="margin-top:20px">${STUDY.map(([f, n, s, k]) => `<div class="gs-pl2 t">${flagImg(f, 58, 40, k === 'lock')}<div class="gs-tx"><div class="gs-pt">${n}</div>${s ? `<div class="gs-st">${s}</div>` : ''}</div>${k === 'ok' ? K.icon('check') : k === 'lock' ? K.icon('lockF', 's18') : '<span style="width:20px"></span>'}</div>`).join('')}</div></div>`;
 const toast = (kind, label, msg) => `<div class="gs-toast" role="status"><span class="gs-rail"></span><span class="gs-tt44">${I(kind === 'ok' ? 'okCF' : 'alertCF', 's22')}</span><div class="gs-tx"><div class="gs-tl">${label}</div><div class="gs-tm">${msg}</div></div></div>`;
 
 /* ---------- поддержка (support_report.tsx) ---------- */
@@ -378,7 +378,7 @@ document.getElementById('root').innerHTML =
   ]) +
   block('lang', 'Языки интерфейса и изучения', 'Английский интерфейс выключен флагом, поэтому строк восемь. Шторка «Язык изучения» — пять языков.', [
     col('Язык интерфейса: 8 строк, «Português (Brasil)», внизу «Язык изучения»', ph(langScreen(), { time: '13:15', inStyle: 'padding-bottom:60px' })),
-    col('Шторка «Язык изучения»: «Учу · выбран», «Учу», замок «Новый язык · доступ уточняется»', ph(mainScreen({}), { ...withNav, time: '13:16', overlay: studySheet() })),
+    col('Шторка «Язык изучения» (D188): все 5 языков открыты, у начатых «Учу», у неначатых подписи нет', ph(mainScreen({}), { ...withNav, time: '13:16', overlay: studySheet() })),
     col('Тост после смены языка: «Готово · Теперь учишь Español»', ph(mainScreen({ guest: true, study: 'Español' }), { ...withNav4, time: '13:16', overlay: toast('ok', 'Готово', 'Теперь учишь Español') })),
     col('Тост при сбое: «Что-то пошло не так · Не получилось сменить язык. Попробуй ещё раз.»', ph(mainScreen({ guest: true, study: 'Español' }), { ...withNav4, time: '13:17', overlay: toast('err', 'Что-то пошло не так', 'Не получилось сменить язык. Попробуй ещё раз.') })),
   ]) +

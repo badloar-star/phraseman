@@ -1,0 +1,27 @@
+10-14 19:52:33.026 I/SVERKA  (22404): === PCF-4 start 19:52:34 ===
+10-14 19:52:33.693 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=53692 tabs blur
+10-14 19:52:34.454 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=54453 gate no reason=recent awayDays=0
+10-14 19:52:34.456 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=54454 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 19:52:36.506 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=56505 tabs focus
+10-14 19:52:48.079 I/ReactNativeJS(22193): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-14 19:52:48.091 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=68090 sheet mount context=generic source=settings_premium
+10-14 19:52:48.093 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=68091 sheet arbiter active=none
+10-14 19:52:48.094 I/ReactNativeJS(22193): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootN
+10-14 19:52:48.096 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=68094 route mount context=generic source=settings_premium
+10-14 19:52:48.108 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=68107 tabs blur
+10-14 19:52:52.115 I/SVERKA  (22464): === PCF-4 close-tap 19:52:53 ===
+10-14 19:52:56.285 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76284 sheet close_button
+10-14 19:52:56.291 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76290 handleClose reason=close context=generic source=settings_premium exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 19:52:56.293 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76291 doClose reason=close context=generic source=settings_premium lockLeftMs=0
+10-14 19:52:56.300 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76299 dismiss leaving=/premium_modal?attribution_campaign=E0XCsQ45Sf678VrrdFoO&attribution_variant=treatment&context=generic&source=settings_premium candidate=/settings chosen=/settings shouldReplace=false canDismiss=true branch=dismiss(1) stack=/settings
+10-14 19:52:56.305 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=76301 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-14 19:52:56.863 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76861 route UNMOUNT context=generic
+10-14 19:52:56.867 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=76865 sheet UNMOUNT context=generic
+10-14 19:52:56.906 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=76905 tabs focus
+10-14 19:52:57.584 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=77583 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 19:52:57.586 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=77585 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 19:52:57.594 I/ReactNativeJS(22193): [WINBACK-FREEZE] t=77591 dismiss +800ms top=/settings stack=/settings
+10-14 19:52:57.596 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=77595 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 19:52:58.871 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=78871 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-14 19:53:09.851 I/SVERKA  (22537): === PCF-4 tab-tap 19:53:11 ===
+10-14 19:53:13.345 I/ReactNativeJS(22193): [PAYWALL-CLOSE-FREEZE] t=93344 tab_tap requested=1 active=4 page=4

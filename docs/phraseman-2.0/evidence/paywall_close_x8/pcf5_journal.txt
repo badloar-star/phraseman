@@ -1,0 +1,9 @@
+10-14 19:53:58.788 I/SVERKA  (22810): === PCF-5 start 19:53:59 ===
+10-14 19:54:00.381 I/ReactNativeJS(22601): [PAYWALL-CLOSE-FREEZE] t=40379 tabs blur
+10-14 19:54:01.408 I/ReactNativeJS(22601): [WINBACK-FREEZE] t=41407 gate no reason=recent awayDays=0
+10-14 19:54:01.410 I/ReactNativeJS(22601): [WINBACK-FREEZE] t=41408 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 19:54:03.671 I/ReactNativeJS(22601): [PAYWALL-CLOSE-FREEZE] t=43670 tabs focus
+10-14 19:54:12.934 I/ReactNativeJS(22601): [PAYWALL-CLOSE-FREEZE] t=52932 tab_tap requested=2 active=4 page=4
+10-14 19:54:17.709 I/SVERKA  (22872): === PCF-5 close-tap 19:54:18 ===
+10-14 19:54:39.861 I/SVERKA  (22971): === PCF-5 tab-tap 19:54:41 ===
+10-14 19:54:43.199 I/ReactNativeJS(22601): [PAYWALL-CLOSE-FREEZE] t=83196 tab_tap requested=1 active=2 page=2

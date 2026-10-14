@@ -17,7 +17,7 @@ import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
 import { STREAK_MOMENT_DURATION_MS, nextStreakMilestone, type StreakMilestone } from './streak_milestones';
-import { STREAK_SOUND_EVENTS, playStreakSound } from './streak_moments_sound';
+import { playStreakSceneSound, playStreakTapSound } from './streak_moments_sound';
 import { streakMilestoneTitle, streakMomentText } from './streak_moments_strings';
 
 export type StreakMilestoneToastProps = Readonly<{
@@ -42,13 +42,13 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   const [sparks, setSparks] = useState(false);
   const enter = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
-    playStreakSound(STREAK_SOUND_EVENTS.toast);
+    playStreakSceneSound('toast');
     if (!reduceMotion) enter.value = withSpring(1, { damping: 14, stiffness: 140 });
     else enter.value = withTiming(1, { duration: 0, easing: Easing.linear });
     const burst = setTimeout(() => {
       setBurstToken(1);
       setSparks(true);
-      playStreakSound(STREAK_SOUND_EVENTS.burst);
+      playStreakTapSound();
       void hapticSuccess();
     }, STREAK_TOAST_BURST_DELAY_MS);
     const done = setTimeout(onDone, STREAK_MOMENT_DURATION_MS.toast);

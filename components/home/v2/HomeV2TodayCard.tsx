@@ -7,6 +7,9 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { V2IconTile } from '../../v2/V2Glass';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
+import TodayRingsSlot from '../../streak/moments/TodayRingsSlot';
+import { todayRingColors } from '../../streak/moments/TodayRings';
+import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
   lesson: 'book-outline',
@@ -34,11 +37,16 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
   const p = useV2Palette();
   // зачем: приказ владельца 11.10 19:2x — плашки Главной с фоном 50 % (альфа цвета фона), без блика/дымки; общий хук стекла остальных экранов не менялся: у внешней карточки «Сегодня» фона нет совсем (ни заливки, ни тени, ни блика), у строк — фон 50 %.
   const rowGlass = useHomePlateStyle(true);
+  // зачем (координатор 14.10, момент m11): за флагом moments_v3 над списком — три кольца дня, а отметка выполненной строки красится в цвет её кольца; флаг выключен — блок как был
+  const ringsOn = useMomentsV3Enabled();
+  const ringColors = todayRingColors(p);
   return (
     <View testID="home-v2-today" style={s.card}>
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
+      {ringsOn ? <TodayRingsSlot tasks={tasks} /> : null}
       <View style={s.list}>
         {tasks.map((task, index) => {
+          const doneColor = ringsOn && index < 3 ? ringColors[index] : p.iconTint;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
             <V2Pressable
@@ -56,7 +64,7 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
               style={[s.row, rowGlass]}
             >
               <View
-                style={[s.check, task.done ? { backgroundColor: p.iconTint, borderColor: p.iconTint } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
+                style={[s.check, task.done ? { backgroundColor: doneColor, borderColor: doneColor } : { borderColor: p.textMuted }]} // guard-ok: D43 отметка-кружок
               >
                 {task.done ? <Ionicons name="checkmark" size={14} color={p.card} /> : null}
               </View>

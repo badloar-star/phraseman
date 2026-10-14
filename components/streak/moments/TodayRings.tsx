@@ -15,7 +15,7 @@ import MomentCoin from '../../moments/MomentCoin';
 import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
-import { STREAK_SOUND_EVENTS, playStreakSound } from './streak_moments_sound';
+import { playStreakTapSound, playTodayDayDoneSound, playTodayRingClosedSound } from './streak_moments_sound';
 import { streakMomentText } from './streak_moments_strings';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
@@ -56,20 +56,27 @@ const Ring = memo(function Ring({ index, value, color, instant }: RingProps) {
   );
 });
 
+/** Цвета колец = цвета отметок строк: акцент темы, второй цвет, золото темы (образец: --acc, --r2, --r3). */
+export function todayRingColors(p: Readonly<{ cta: string; accentText: string; gold: string }>): readonly [string, string, string] {
+  return [p.cta, p.accentText, p.gold];
+}
+
 export type TodayRingsProps = Readonly<{
   lang: Lang;
+  /** Цели трёх задач; по умолчанию 1 / 3 / 10 (modules/today-tasks). */
+  targets?: readonly [number, number, number];
   /** Сколько выполнено по трём задачам (урок, ступени Пика, карточки). */
   progress: readonly [number, number, number];
   coinRank: number | null;
   testID?: string;
 }>;
 
-function TodayRings({ lang, progress, coinRank, testID = 'today-rings' }: TodayRingsProps) {
+function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, testID = 'today-rings' }: TodayRingsProps) {
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
-  const colors = [p.cta, p.accentText, p.gold] as const;
-  const values = progress.map((n, i) => todayRingFraction(n, TODAY_RING_TARGETS[i]));
+  const colors = todayRingColors(p);
+  const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);
   const prev = useRef<readonly number[] | null>(null);
   const [sparkKey, setSparkKey] = useState(0);
@@ -87,16 +94,16 @@ function TodayRings({ lang, progress, coinRank, testID = 'today-rings' }: TodayR
           setSparkRing(i);
           setSparkKey((k) => k + 1);
           flash.value = withSequence(withTiming(0.9, { duration: 175, easing: EASE }), withTiming(0, { duration: 525, easing: EASE }));
-          playStreakSound(STREAK_SOUND_EVENTS.ringClose);
+          playTodayRingClosedSound();
           void hapticSuccess();
         }, 650));
       } else if (x > before[i] && x < 1) {
-        playStreakSound(STREAK_SOUND_EVENTS.ringTick);
+        playStreakTapSound();
         void hapticTap();
       }
     });
     if (allClosed && before.some((x) => x < 1)) {
-      timers.push(setTimeout(() => { playStreakSound(STREAK_SOUND_EVENTS.dayDone); void hapticSuccess(); }, 1250));
+      timers.push(setTimeout(() => { playTodayDayDoneSound(); void hapticSuccess(); }, 1250));
     }
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- значения колец собираются из progress; реагируем только на него

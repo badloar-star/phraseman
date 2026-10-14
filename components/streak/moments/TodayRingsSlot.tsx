@@ -1,0 +1,33 @@
+// TodayRingsSlot.tsx — кольца дня внутри блока «Сегодня» Главной: показываются только за флагом moments_v3 (выключен → null, ничего не стоит).
+// зачем (координатор 14.10): кольца = три задачи блока «Сегодня» (урок, ступени Пика, карточки), монета ранга в центре; числа берутся из тех же задач, что строки блока —
+// ничего не пишется и не начисляется. Монета и язык читаются только когда флаг включён (внутренний компонент), чтобы выключенный флаг не добавлял подписок на Главной.
+import React, { memo } from 'react';
+import { useLang } from '../../LangContext';
+import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
+import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
+import TodayRings from './TodayRings';
+import { useMomentsV3Enabled } from './use_moments_v3_flag';
+
+export type TodayRingsTask = Readonly<{ progress: number; target: number }>;
+
+const Inner = memo(function Inner({ tasks }: Readonly<{ tasks: readonly TodayRingsTask[] }>) {
+  const { lang } = useLang();
+  const rank = useMyCoinRank();
+  if (tasks.length < 3) return null; // колец три — меньше задач нечего рисовать честно
+  const t = tasks;
+  return (
+    <TodayRings
+      lang={lang}
+      progress={[t[0].progress, t[1].progress, t[2].progress]}
+      targets={[Math.max(1, t[0].target), Math.max(1, t[1].target), Math.max(1, t[2].target)]}
+      coinRank={isValidCoinRank(rank) ? rank : null}
+    />
+  );
+});
+
+function TodayRingsSlot({ tasks }: Readonly<{ tasks: readonly TodayRingsTask[] }>) {
+  const on = useMomentsV3Enabled();
+  return on ? <Inner tasks={tasks} /> : null;
+}
+
+export default memo(TodayRingsSlot);

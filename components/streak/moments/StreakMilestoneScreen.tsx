@@ -8,7 +8,7 @@
 // ачивку, «Поделиться» и показ решает Ядро (флаг moments_v3). Монета — как в одобренном образце (кивок/эмоции на морфе и в «Легенде»); владелец 14.10 запретил только ФОРМУЛИРОВКИ про монету («задремала», «рада» и т. п.) — тексты сторож проверяет.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
 import { hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
@@ -24,7 +24,7 @@ import {
   STREAK_MILESTONES_WITH_SHARE, STREAK_MONTH_ARCS, STREAK_MOMENT_TIMELINE, nextStreakMilestone, streakFlameStage, streakMomentKind,
   type StreakMilestone, type StreakMomentKind,
 } from './streak_milestones';
-import { STREAK_SOUND_EVENTS, playStreakSound, type StreakSoundEvent } from './streak_moments_sound';
+import { playStreakLegendSecondSound, playStreakSceneSound, playStreakTapSound } from './streak_moments_sound';
 import { streakMilestoneTitle, streakMomentText } from './streak_moments_strings';
 
 export type StreakMilestoneScreenProps = Readonly<{
@@ -38,12 +38,6 @@ export type StreakMilestoneScreenProps = Readonly<{
   testID?: string;
 }>;
 
-/** Звук такта: имя события по id такта сцены. */
-const CUE_SOUND: Readonly<Record<string, StreakSoundEvent>> = {
-  burst: STREAK_SOUND_EVENTS.burst, text: STREAK_SOUND_EVENTS.tick, morph: STREAK_SOUND_EVENTS.morph, ring: STREAK_SOUND_EVENTS.riser,
-  months: STREAK_SOUND_EVENTS.riser, act2: STREAK_SOUND_EVENTS.tick, act3: STREAK_SOUND_EVENTS.celebrate, fireworks: STREAK_SOUND_EVENTS.firework,
-  fire1: STREAK_SOUND_EVENTS.firework, fire2: STREAK_SOUND_EVENTS.firework, fire3: STREAK_SOUND_EVENTS.firework, extra: STREAK_SOUND_EVENTS.celebrate,
-};
 const HEAVY_CUES: ReadonlySet<string> = new Set(['morph', 'fireworks', 'fire1']);
 
 function Beat({ i, children }: Readonly<{ i: number; children: ReactNode }>) {
@@ -69,10 +63,14 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
     if (id === 'burst') setBurstKey((k) => k + 1);
     if (id === 'morph') { setMorphKey((k) => k + 1); rumble.play(); }
     if (id === 'fireworks') rumble.play();
-    const snd = CUE_SOUND[id];
-    if (snd) playStreakSound(snd);
+    if (id === 'text') playStreakTapSound();
+    if (id === 'act2' && kind === 'legend') playStreakLegendSecondSound();
     void (HEAVY_CUES.has(id) ? hapticSuccess() : hapticTap());
-  }, [rumble]);
+  }, [kind, rumble]);
+
+  useEffect(() => {
+    playStreakSceneSound(kind);
+  }, [kind]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -192,7 +190,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   return (
     <MomentFullScreen testID={testID}>
       <Animated.View style={[s.fill, { paddingTop: insets.top + 52, paddingBottom: insets.bottom + 24 }, rumble.style]}>
-        <View key={bodyKey} style={s.body}>{body}</View>
+        {/* зачем (контракт «до кнопки можно добраться»): на низком экране сцена прокручивается, а «Дальше» остаётся внизу */}
+        <ScrollView key={bodyKey} style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>
         {withFoot ? <Beat i={2}>{foot}</Beat> : <View style={s.footSpacer} />}
         {skippable ? (
           <Pressable accessibilityRole="button" accessibilityLabel={streakMomentText(lang, 'skip')} onPress={skip} hitSlop={12} style={[s.skip, { top: insets.top + 12 }]} testID={`${testID}-skip`}>
@@ -207,7 +206,8 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
 const COIN_OVERLAP = -20; // guard-ok: наложение монеты на огонь (вид), не баланс
 const s = StyleSheet.create({
   fill: { flex: 1, paddingHorizontal: 24 },
-  body: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 6 },
+  fillBody: { flex: 1 },
+  body: { flexGrow: 1, alignItems: 'center', justifyContent: 'center', gap: 6 },
   col: { alignItems: 'center', gap: 6, marginTop: 14 },
   fireRow: { flexDirection: 'row', alignItems: 'flex-end' },
   coinBeside: { marginLeft: COIN_OVERLAP, marginBottom: 10 },

@@ -12,6 +12,7 @@ jest.mock('react-native', () => ({
   View: 'View',
   Text: 'Text',
   Pressable: 'Pressable',
+  ScrollView: 'ScrollView',
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style, absoluteFill: {}, absoluteFillObject: {} },
   Platform: { OS: 'android', select: (o: Record<string, unknown>) => o.android ?? o.default },
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
@@ -69,6 +70,8 @@ jest.mock('../components/v2/V2Kit', () => {
   const R = jest.requireActual('react');
   return { V2Button: (props: { label: string; onPress?: () => void; testID?: string }) => R.createElement('Pressable', { testID: props.testID, accessibilityRole: 'button', accessibilityLabel: props.label, onPress: props.onPress }, R.createElement('Text', null, props.label)) };
 });
+jest.mock('../modules/sound_v2/sound_bank', () => ({ playEvent: jest.fn(() => ({ event: 'x', played: true })) }));
+jest.mock('../app/flashcards/SoundService', () => ({ playSfx: jest.fn() }));
 jest.mock('../components/spire/useSpireShadow', () => ({ useSpireShadow: () => ({ plate: {}, nested: {} }) }));
 
 type Pal = Record<string, string>;
@@ -90,7 +93,11 @@ import {
   type StreakMilestone,
 } from '../components/streak/moments/streak_milestones';
 import { STREAK_MOMENT_LANGS, STREAK_MOMENT_STRING_KEYS, STREAK_MILESTONE_TITLES_FOR_GUARD, streakMilestoneTitle, streakMomentText } from '../components/streak/moments/streak_moments_strings';
-import { STREAK_SOUND_EVENTS } from '../components/streak/moments/streak_moments_sound';
+import { STREAK_SCENE_SOUND, playStreakSceneSound, playTodayDayDoneSound, playTodayRingClosedSound } from '../components/streak/moments/streak_moments_sound';
+import { isSoundV2EventId } from '../modules/sound_v2/catalog';
+import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
+import { playEvent } from '../modules/sound_v2/sound_bank';
+import { playSfx } from '../app/flashcards/SoundService';
 import { MOMENTS_V3_FLAG_KEY, isMomentsV3Enabled } from '../components/streak/moments/streak_moments_flag';
 
 const ROOT = path.join(__dirname, '..');
@@ -187,14 +194,40 @@ describe('рубежи серии — флаг, подключение, исхо
     expect(isMomentsV3Enabled({ moments_v3: true })).toBe(true);
   });
 
-  it('экраны и компоненты components/streak/moments никто не импортирует до решения Ядра; чистые данные (рубежи, тексты, флаг) импортировать можно', () => {
+  it('звук: каждая сцена играет событие sound_v2 из каталога (тайм-лист образца); флаг выключен — запасной путь fc_*; кольцо и «День выполнен» тоже', () => {
+    for (const plan of Object.values(STREAK_SCENE_SOUND)) expect(isSoundV2EventId(plan.v2)).toBe(true);
+    expect(STREAK_SCENE_SOUND.toast.v2).toBe('streak_small');
+    expect(STREAK_SCENE_SOUND.medium.v2).toBe('streak_mid');
+    expect(STREAK_SCENE_SOUND.big.v2).toBe('streak_big');
+    expect(STREAK_SCENE_SOUND.year.v2).toBe('streak_year');
+    expect(STREAK_SCENE_SOUND.legend.v2).toBe('streak_legend');
+    (playEvent as jest.Mock).mockClear();
+    (playSfx as jest.Mock).mockClear();
+    setSoundV2FlagForTests(true);
+    playStreakSceneSound('big');
+    playTodayRingClosedSound();
+    playTodayDayDoneSound();
+    expect((playEvent as jest.Mock).mock.calls.map((c) => c[0])).toEqual(['streak_big', 'ring', 'day_done']);
+    expect((playEvent as jest.Mock).mock.calls[1][1]).toEqual({ advance: true }); // кольцо ходит по кругу 0→1→2
+    expect(playSfx).not.toHaveBeenCalled();
+    setSoundV2FlagForTests(false);
+    (playEvent as jest.Mock).mockClear();
+    playStreakSceneSound('legend');
+    expect(playEvent).not.toHaveBeenCalled();
+    expect(playSfx).toHaveBeenCalledTimes(1);
+    setSoundV2FlagForTests(null);
+  });
+
+  // зачем: подключать моменты серии можно только осознанно — список импортёров явный (сторис берут огонь и рубежи, карточка «Сегодня» — кольца за флагом, dev-превью — всё)
+  const ALLOWED_IMPORTERS = ['app/dev_moments_preview.tsx', 'components/home/v2/HomeV2TodayCard.tsx', 'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts'];
+  it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {
       for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
         const rel = `${dir}/${e.name}`;
         if (e.isDirectory()) { if (!/node_modules|^\./.test(e.name) && rel !== DIR) walk(rel); continue; }
         if (!/\.(ts|tsx)$/.test(e.name)) continue;
-        if (/streak\/moments\/(?!streak_milestones|streak_moments_flag|streak_moments_strings|streak_moments_sound)/.test(read(rel))) offenders.push(rel);
+        if (/streak\/moments\//.test(read(rel)) && !ALLOWED_IMPORTERS.includes(rel)) offenders.push(rel);
       }
     };
     for (const d of ['app', 'components', 'hooks', 'modules', 'constants']) walk(d);
@@ -221,7 +254,6 @@ describe('рубежи серии — флаг, подключение, исхо
     }
     expect(read(`${DIR}/StreakMomentFlame.tsx`)).toContain('StreakFlameFill');
     expect(read(`${DIR}/StreakMilestoneToast.tsx`)).toContain('LiveStreakFlame');
-    for (const name of Object.values(STREAK_SOUND_EVENTS)) expect(name).toMatch(/^moment\.(streak|today)\.[a-z_]+$/);
   });
 });
 

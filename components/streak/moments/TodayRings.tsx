@@ -2,7 +2,7 @@
 // TodayRings.tsx — три кольца блока «Сегодня» с монетой в центре и плашкой «День выполнен» (образец engagement-moments-v3-all.html: `.rw`, `ringsSvg`, `closeFx`, `allFx`).
 //
 // зачем (владелец 13–14.10: «кольца = задачи блока „Сегодня“ на Главной»; координатор): кольцо докручивается за 0,9 с; на цели — перехлёст (кривая .23,1.3,.32,1), вспышка по кольцу,
-// 10 искр, звук ringClose + хаптик success; когда закрыты все три — «День выполнен» (звук dayDone, тяжёлый хаптик). Цвета — из токенов темы: акцент, второй цвет, золото.
+// 10 искр, звук ringClose + хаптик success; когда закрыты все три — монета подпрыгивает, «День выполнен» (звук dayDone, тяжёлый хаптик). Цвета — из токенов темы: акцент, второй цвет, золото.
 // Только вид: числа приходят пропсами (цели 1 / 3 / 10 — как в today_tasks), ничего не пишется. Reanimated на UI-треде; reduceMotion — кольца сразу на месте, без вспышек.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useRef, useState } from 'react';
@@ -110,7 +110,7 @@ function TodayRings({ lang, progress, coinRank, testID = 'today-rings' }: TodayR
         <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} style={s.svg}>
           {values.map((x, i) => <Ring key={i} /* guard-ok: три кольца фиксированного порядка */ index={i} value={x} color={colors[i]} instant={reduceMotion} />)}
         </Svg>
-        <MomentCoin rank={coinRank} size={58} mood="idle" shadow={false} />
+        <MomentCoin rank={coinRank} size={58} mood={allClosed && !reduceMotion ? 'jump' : 'idle'} shadow={false} />
         <MomentFirework x={SIZE / 2} y={SIZE / 2} r={68 - sparkRing * 16 + 28} n={10} fire={sparkKey > 0} key={sparkKey} />
       </View>
       {allClosed ? (

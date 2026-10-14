@@ -5,8 +5,7 @@
 // зачем (владелец 14.10: «перенести полноценно все модалы, точно по макетам»): у каждого уровня своя сцена и тайм-лист (streak_milestones.ts → STREAK_MOMENT_TIMELINE):
 // такты включают стадии сцены — burst огня, морф в новую стадию с дрожью, тексты по 180–200 мс, акты года и легенды, фейерверки. Фон — экран темы (MomentFullScreen), всё из токенов
 // текущей темы. «Пропустить» есть у года и легенды. Звук — имена событий, хаптик — на тактах. Reanimated на UI-треде; reduceMotion — сразу финальный вид. Ничего не начисляет и не пишет:
-// ачивку, «Поделиться» и показ решает Ядро (флаг moments_v3). Закон владельца 14.10: «Монета — это валюта, и всё» — монета здесь только знак ранга рядом с огнём (появляется, блестит):
-// никаких реплик, сна, эмоций, прыжков.
+// ачивку, «Поделиться» и показ решает Ядро (флаг moments_v3). Монета — как в одобренном образце (кивок/эмоции на морфе и в «Легенде»); владелец 14.10 запретил только ФОРМУЛИРОВКИ про монету («задремала», «рада» и т. п.) — тексты сторож проверяет.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
@@ -120,7 +119,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
       <>
         <View style={s.fireRow}>
           <StreakMomentFlame days={morphed ? milestone : before} label={morphed ? milestone : before} size={160} morphKey={morphKey || undefined} accessibilityLabel={streakMomentText(lang, 'flameA11y', { n: milestone })} />
-          <View style={s.coinBeside}><MomentCoin rank={coinRank} size={60} mood="idle" shadow={false} /></View>
+          <View style={s.coinBeside}><MomentCoin rank={coinRank} size={60} mood={morphed ? 'cheer' : 'idle'} shadow={false} emote={morphed ? 'star' : null} emoteKey={morphKey} emoteCount={3} /></View>
         </View>
         {has('text') ? (
           <Beat i={0}><View style={s.col}>
@@ -172,7 +171,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
       </>
     ) : act === 2 ? (
       <>
-        <MomentCoin rank={19} size={130} mood="idle" glints />
+        <MomentCoin rank={19} size={130} mood="cheer" glints emote="star" emoteKey={1} emoteCount={6} />
         {T(title, 'xl')}{T(streakMomentText(lang, 'legendSub'), 'p')}
         <MomentFirework x={width / 2} y={200} r={120} fire={has('fire1')} />
         <MomentFirework x={width * 0.28} y={260} r={80} fire={has('fire2')} delayMs={0} />

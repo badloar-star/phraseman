@@ -187,24 +187,27 @@ describe('рубежи серии — флаг, подключение, исхо
     expect(isMomentsV3Enabled({ moments_v3: true })).toBe(true);
   });
 
-  it('никто не импортирует components/streak/moments до решения Ядра (сборку не трогаем)', () => {
+  it('экраны и компоненты components/streak/moments никто не импортирует до решения Ядра; чистые данные (рубежи, тексты, флаг) импортировать можно', () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {
       for (const e of fs.readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
         const rel = `${dir}/${e.name}`;
         if (e.isDirectory()) { if (!/node_modules|^\./.test(e.name) && rel !== DIR) walk(rel); continue; }
         if (!/\.(ts|tsx)$/.test(e.name)) continue;
-        if (/streak\/moments\//.test(read(rel))) offenders.push(rel);
+        if (/streak\/moments\/(?!streak_milestones|streak_moments_flag|streak_moments_strings|streak_moments_sound)/.test(read(rel))) offenders.push(rel);
       }
     };
     for (const d of ['app', 'components', 'hooks', 'modules', 'constants']) walk(d);
     expect(offenders).toEqual([]);
   });
 
-  it('монета — только знак ранга (закон владельца 14.10): ни реплик, ни сна, ни эмоций, ни прыжков, ни «рада»', () => {
+  it('тексты про монету: без запрещённых формулировок (владелец 14.10: «монета задремала» и т. п.); анимации монеты — как в образце', () => {
+    const forbidden = /монета (задремала|рада|радуется|спит|устала|грустит)|coin (dozed|is happy|sleeps)/i;
+    for (const m of STREAK_MILESTONES) for (const lang of STREAK_MOMENT_LANGS) expect(streakMilestoneTitle(lang, m)).not.toMatch(forbidden);
+    for (const key of STREAK_MOMENT_STRING_KEYS) for (const lang of STREAK_MOMENT_LANGS) expect(streakMomentText(lang, key, { n: 7, next: 14, left: 7 })).not.toMatch(forbidden);
     for (const { f, text } of sources()) {
-      expect(`${f}: ${/mood="(?!idle")|mood=\{|emote=|say=|zz|crown/.test(text)}`).toBe(`${f}: false`);
-      expect(`${f}: ${/монета (рада|радуется|спит|подпрыг)/i.test(text)}`).toBe(`${f}: false`);
+      const code = text.split(String.fromCharCode(10)).filter((l) => !/^\s*\/\//.test(l)).join(String.fromCharCode(10));
+      expect(`${f}: ${/монета (задремала|рада|проснулась)/i.test(code)}`).toBe(`${f}: false`);
     }
   });
 

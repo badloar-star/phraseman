@@ -1,0 +1,2 @@
+'' 'Профиль, Стажёр · аккаунт привязан' settings-profile-card (54, 337, 1028, 558)
+'' 'Аккаунт, Google' settings-account-row (54, 694, 1028, 852)

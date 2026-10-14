@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E1113">
+<title>Звуки PhraseMan</title>
+<style>
+/* зачем: лаборатория звуков PhraseMan 2.0 — владелец слушает и выбирает; цвета только токенами, без обводок у контейнеров */
+:root{
+  --bg:#0E1113; --card:#1A1F23; --card-on:#212A2E; --chip:#262E33; --chip-h:#2F393F;
+  --ink:#EEF3F2; --mut:#93A3A1; --acc:#6EE7C5; --acc-ink:#05211A; --acc-soft:rgba(110,231,197,.14);
+  --bar:rgba(14,17,19,.82); --shadow:0 1px 0 rgba(255,255,255,.035) inset,0 10px 28px rgba(0,0,0,.38);
+  --warn:#F2C879;
+}
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#F2F5F5; --card:#FFFFFF; --card-on:#EAF6F2; --chip:#E7EDED; --chip-h:#DAE4E4;
+    --ink:#10191A; --mut:#586868; --acc:#0E9C79; --acc-ink:#FFFFFF; --acc-soft:rgba(14,156,121,.13);
+    --bar:rgba(242,245,245,.86); --shadow:0 1px 2px rgba(16,25,26,.06),0 10px 28px rgba(16,25,26,.09);
+    --warn:#9A6A12;
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:128px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.45 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;border:0;background:none;padding:0;margin:0;cursor:pointer;touch-action:manipulation}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:none;box-shadow:0 0 0 3px var(--acc-soft),0 0 0 5px var(--acc)}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+header.hero{padding:calc(env(safe-area-inset-top) + 28px) 0 14px}
+h1{margin:0;font-size:30px;line-height:1.1;font-weight:700;letter-spacing:-.025em}
+.lead{margin:8px 0 0;color:var(--mut);font-size:13.5px}
+.bar{position:sticky;top:0;z-index:20;background:var(--bar);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);padding:10px 0 8px;box-shadow:0 8px 20px -12px rgba(0,0,0,.45)}
+.bar .r1{display:flex;gap:10px;align-items:center}
+.vol{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.vol label{font-size:12.5px;color:var(--mut);white-space:nowrap}
+.vol .vi{display:none;font-size:16px}
+.vol output{font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--mut);width:34px;text-align:right}
+input[type=range]{flex:1;min-width:60px;height:28px;background:none;-webkit-appearance:none;appearance:none}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:var(--chip)}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:var(--chip)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;background:var(--acc);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:var(--acc);box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:12px;background:var(--chip);font-weight:600;font-size:13.5px;transition:transform .12s ease,background .15s ease;white-space:nowrap}
+.btn:hover{background:var(--chip-h)}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:var(--acc);color:var(--acc-ink)}
+.btn.pri:hover{filter:brightness(1.06)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;padding:6px 12px;border-radius:999px;background:var(--chip);color:var(--mut);font-size:12.5px;font-weight:600;text-decoration:none;transition:background .15s,color .15s}
+.chips a.cur{background:var(--acc);color:var(--acc-ink)}
+section.grp{padding-top:22px}
+section.grp>h2{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 10px;font-size:19px;font-weight:700;letter-spacing:-.015em}
+section.grp>h2 small{font-size:12px;font-weight:500;color:var(--mut)}
+.pill{display:inline-flex;align-items:center;gap:8px;margin:0 0 10px;padding:6px 6px 6px 12px;border-radius:999px;background:var(--acc-soft);font-size:12.5px;color:var(--ink)}
+.pill b{font-variant-numeric:tabular-nums}
+.pill button{padding:3px 10px;border-radius:999px;background:var(--chip);font-size:12px;font-weight:600}
+article.row{display:grid;gap:12px;background:var(--card);border-radius:18px;padding:14px;margin:0 0 10px;box-shadow:var(--shadow);transition:background .25s ease}
+article.row.on{background:var(--card-on)}
+.hd{display:flex;gap:10px;justify-content:space-between;align-items:flex-start}
+.hd h3{margin:0;font-size:16px;line-height:1.25;font-weight:600;letter-spacing:-.01em}
+.hd .cap{margin:2px 0 0;color:var(--mut);font-size:12.5px}
+.star{flex:none;min-height:34px;padding:0 12px;border-radius:10px;background:var(--chip);font-size:12.5px;font-weight:600;color:var(--mut);transition:background .15s,color .15s,transform .12s}
+.star:active{transform:scale(.95)}
+.star.has{color:var(--ink)}
+.star.on{background:var(--acc);color:var(--acc-ink)}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end}
+.vs{display:flex;gap:8px}
+.vc{width:62px;display:flex;flex-direction:column;gap:2px}
+.vb{position:relative;height:44px;border-radius:14px;background:var(--chip);font-size:17px;font-weight:700;transition:transform .12s ease,background .15s,color .15s}
+.vb:hover{background:var(--chip-h)}
+.vb:active{transform:scale(.94)}
+.vb.act{background:var(--acc-soft);color:var(--acc)}
+.vb.hit{background:var(--acc);color:var(--acc-ink);transform:scale(.97)}
+.vb .k{position:absolute;top:3px;right:6px;font-size:10px;color:var(--acc);opacity:0}
+.vb.sel .k{opacity:1}
+.vb.hit .k{color:var(--acc-ink)}
+.dl{height:24px;border-radius:8px;font-size:11px;font-weight:600;color:var(--mut)}
+.dl:hover{color:var(--ink)}
+.dl[disabled]{opacity:.5;cursor:progress}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.acts .btn{min-height:44px}
+.ft{display:flex;justify-content:space-between;gap:12px;font-size:12px;line-height:1.3;color:var(--mut)}
+.step{font-variant-numeric:tabular-nums;color:var(--acc);font-weight:600;text-align:right}
+.vname{min-width:0}
+#chosen{padding:30px 0 8px}
+#chosen h2{margin:0 0 4px;font-size:19px;font-weight:700;letter-spacing:-.015em}
+.cnt{color:var(--mut);font-size:13px;margin:0 0 12px}
+.chosen-box{background:var(--card);border-radius:18px;padding:6px 14px 10px;box-shadow:var(--shadow)}
+.chosen-box h4{margin:14px 0 4px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.cl{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:14px}
+.cl span:last-child{color:var(--acc);font-weight:600;text-align:right}
+.cl.none span:last-child{color:var(--mut);font-weight:400}
+.cbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 0}
+#copybox{display:block;width:100%;min-height:150px;margin-top:12px;padding:12px;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font:12.5px/1.45 ui-monospace,Consolas,monospace;resize:vertical}
+#copybox[hidden]{display:none}
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 20px);transform:translate(-50%,24px);opacity:0;pointer-events:none;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13.5px;font-weight:600;transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);z-index:50;max-width:calc(100vw - 32px)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+footer{padding:18px 0 40px;color:var(--mut);font-size:12.5px}
+.hint{display:inline-block;margin-top:10px;padding:6px 12px;border-radius:10px;background:var(--acc-soft);color:var(--ink);font-size:12.5px}
+.hint.gone{display:none}
+@media (min-width:760px){
+  article.row{grid-template-columns:minmax(200px,1fr) auto;align-items:center;column-gap:20px}
+  .hd{grid-column:1}
+  .star{position:absolute}
+  article.row{position:relative;padding-right:132px}
+  .star{top:14px;right:14px}
+  .ctl{grid-column:2;grid-row:1 / span 2;justify-content:flex-end}
+  .ft{grid-column:1 / -1}
+}
+@media (max-width:420px){
+  h1{font-size:26px}
+  .vol label{display:none}
+  .vol .vi{display:inline}
+  .bar .btn.pri{padding:0 12px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <h1>Звуки PhraseMan</h1>
+    <p class="lead">Ре мажор, пентатоника. Всё синтезировано в браузере, чужих сэмплов нет. У каждого события 4 варианта и правило «не повторять».</p>
+    <span class="hint" id="hint">Звук включится после первого нажатия на любую кнопку</span>
+  </header>
+</div>
+<div class="bar">
+  <div class="wrap">
+    <div class="r1">
+      <div class="vol"><span class="vi" aria-hidden="true">🔊</span><label for="vol">Громкость</label><input id="vol" type="range" min="0" max="100" step="1" value="80" aria-label="Громкость"><output id="volv">80</output></div>
+      <button class="btn pri" id="gplay" type="button">▶ Сыграть подряд всю группу</button>
+    </div>
+    <nav class="chips" id="chips" aria-label="Группы событий"></nav>
+  </div>
+</div>
+<main class="wrap" id="groups"></main>
+<div class="wrap">
+  <section id="chosen" aria-labelledby="chosen-h">
+    <h2 id="chosen-h">Выбрано</h2>
+    <p class="cnt" id="cnt"></p>
+    <div class="chosen-box" id="chosen-box"></div>
+    <div class="cbar">
+      <button class="btn pri" id="copy" type="button">Скопировать выбор</button>
+      <button class="btn" id="reset" type="button">Сбросить выбор</button>
+    </div>
+    <textarea id="copybox" hidden readonly aria-label="Текст выбора для копирования"></textarea>
+  </section>
+  <footer>Пик каждого звука не выше −3 dBFS. WAV: 44,1 кГц, 16 бит, стерео. У серийных событий в WAV уходит первый шаг, остальные получаются сдвигом высоты по ступеням лада.</footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+/* ====================================================================
+   1. МУЗЫКАЛЬНАЯ ОСНОВА: Ре мажор, пентатоника D E F# A B
+   ==================================================================== */
+var SR=44100;
+var LET={C:0,D:2,E:4,F:5,G:7,A:9,B:11};
+function semis(n){var m=/^([A-G])(#|b)?(-?\d)$/.exec(n);if(!m)throw new Error('нота '+n);return LET[m[1]]+(m[2]==='#'?1:m[2]==='b'?-1:0)+12*(+m[3])-57}
+function hz(n){return 440*Math.pow(2,semis(n)/12)}
+var PENT=['D','E','F#','A','B'];
+function pIdx(n){var m=/^([A-G]#?)(\d)$/.exec(n);var i=PENT.indexOf(m[1]);return i<0?null:(+m[2])*5+i}
+function pName(i){return PENT[((i%5)+5)%5]+Math.floor(i/5)}
+function shiftNote(n,k){if(!k)return n;var i=pIdx(n);return i==null?n:pName(i+k)}
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function hash(s){var h=2166136261;for(var i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619)}return h>>>0}
+function dbg(d){return Math.pow(10,d/20)}
+
+/* ====================================================================
+   2. ТРАКТ: фильтр низа -> компрессор -> мягкий ограничитель (пик <= -3 dBFS) -> громкость
+      реверб: два свёртывателя с кодом-импульсом (затухающий шум, без металла)
+   ==================================================================== */
+var CLIP=(function(){var n=4097,c=new Float32Array(n);for(var i=0;i<n;i++){var x=i/(n-1)*2-1,a=Math.abs(x),k=.5,y=a<k?a:k+.2*Math.tanh((a-k)/.2);c[i]=(x<0?-1:1)*y}return c})();
+
+function makeIR(ctx,rt60,seed,pre){
+  var sr=ctx.sampleRate,n=Math.floor(sr*Math.min(rt60*1.15,2.2)),buf=ctx.createBuffer(2,n,sr);
+  for(var ch=0;ch<2;ch++){
+    var d=buf.getChannelData(ch),r=mulberry32(seed+ch*7919),lp=0,hp=0,p0=Math.floor(sr*(pre+ch*.0007));
+    for(var i=p0;i<n;i++){
+      var t=(i-p0)/sr,env=Math.exp(-6.9*t/rt60),fc=1300+6200*Math.exp(-1.7*t/rt60),a=Math.exp(-6.2832*fc/sr);
+      lp=(1-a)*(r()*2-1)+a*lp;hp+=(lp-hp)*.03;d[i]=(lp-hp)*env*1.6;
+    }
+    for(var e=0;e<6;e++){ /* ранние отражения: мягкие трёхточечные импульсы */
+      var k=p0+Math.floor(sr*(.007+r()*.05)),s=(r()<.5?-1:1)*(.55-e*.06);
+      if(k+2<n){d[k]+=s*.5;d[k+1]+=s;d[k+2]+=s*.5}
+    }
+    var fade=Math.floor(n*.18);for(var j=0;j<fade;j++){var w=Math.cos(j/fade*Math.PI/2);d[n-1-j]*=w*w}
+  }
+  return buf;
+}
+function makeBus(ctx){
+  var sr=ctx.sampleRate,input=ctx.createGain(),hp=ctx.createBiquadFilter();
+  hp.type='highpass';hp.frequency.value=40;hp.Q.value=.6;
+  var comp=ctx.createDynamicsCompressor();
+  comp.threshold.value=-18;comp.knee.value=12;comp.ratio.value=2.5;comp.attack.value=.006;comp.release.value=.16;
+  var clip=ctx.createWaveShaper();clip.curve=CLIP;clip.oversample='2x';
+  var out=ctx.createGain();out.gain.value=1;
+  input.connect(hp);hp.connect(comp);comp.connect(clip);clip.connect(out);out.connect(ctx.destination);
+  var sS=ctx.createGain(),sL=ctx.createGain(),cS=ctx.createConvolver(),cL=ctx.createConvolver();
+  cS.buffer=makeIR(ctx,.3,11,.004);cL.buffer=makeIR(ctx,1.5,23,.012);
+  sS.connect(cS);cS.connect(input);sL.connect(cL);cL.connect(input);
+  var noise=ctx.createBuffer(1,sr*2,sr),nd=noise.getChannelData(0),r=mulberry32(4242);
+  for(var i=0;i<nd.length;i++)nd[i]=r()*2-1;
+  return {ctx:ctx,input:input,out:out,sS:sS,sL:sL,noise:noise};
+}
+
+/* ====================================================================
+   3. ГОЛОСА: частичные тона, FM-колокол, маримба, челеста, стекло, пэд, шум
+   ==================================================================== */
+/* огибающая: линейная атака 3-15 мс -> экспоненциальный спад -> ноль (без щелчка в начале и в конце) */
+function envGain(c,t,amp,a,tau){
+  var g=c.createGain(),p=g.gain,T=t+a+tau*6.9;
+  p.setValueAtTime(0,t);p.linearRampToValueAtTime(amp,t+a);
+  p.exponentialRampToValueAtTime(amp*.001,T);p.linearRampToValueAtTime(0,T+.005);
+  return {g:g,T:T};
+}
+function part(B,mix,type,f,t,amp,a,tau,o){
+  o=o||{};if(f>11000||amp<=0||f<=0)return null;
+  var c=B.ctx,e=envGain(c,t,amp,a,tau),os=c.createOscillator();
+  os.type=type;
+  if(o.g){os.frequency.setValueAtTime(f*o.g,t);os.frequency.setTargetAtTime(f,t,o.gt||.03)}else os.frequency.value=f;
+  os.detune.value=B.cents+(o.det||0);
+  os.connect(e.g);e.g.connect(o.dest||mix);os.start(t);os.stop(e.T+.01);
+  var aud=t+a+tau*4.6;if(aud>B.end)B.end=aud;
+  return e.g;
+}
+function nburst(B,mix,t,fc,q,amp,a,tau){
+  var c=B.ctx,src=c.createBufferSource(),bp=c.createBiquadFilter(),e=envGain(c,t,amp,a,tau);
+  src.buffer=B.bus.noise;src.loop=true;bp.type='bandpass';bp.frequency.value=fc;bp.Q.value=q;
+  src.connect(bp);bp.connect(e.g);e.g.connect(mix);src.start(t,B.rnd()*1.5);src.stop(e.T+.01);
+  var aud=t+a+tau*4.6;if(aud>B.end)B.end=aud;
+}
+var INST={
+  sine:function(B,m,f,t,v,o){var tau=o.tau||.08;part(B,m,'sine',f,t,v,o.a||.004,tau,{g:o.g,gt:o.gt});if(o.h)part(B,m,'sine',f*2,t,v*o.h,.004,tau*.6)},
+  tri:function(B,m,f,t,v,o){var tau=o.tau||.1;part(B,m,'triangle',f,t,v,o.a||.005,tau,{g:o.g,gt:o.gt})},
+  pluck:function(B,m,f,t,v,o){
+    var c=B.ctx,tau=o.tau||.1,lp=c.createBiquadFilter();lp.type='lowpass';lp.Q.value=.7;
+    lp.frequency.setValueAtTime(Math.min(f*(o.br||6),9000),t);lp.frequency.setTargetAtTime(f*1.3,t,tau*.45);lp.connect(m);
+    part(B,m,'triangle',f,t,v,.004,tau,{dest:lp});part(B,m,'sine',f*2,t,v*.12,.004,tau*.5,{dest:lp});
+  },
+  marimba:function(B,m,f,t,v,o){
+    var tau=o.tau||.14;part(B,m,'sine',f,t,v,.004,tau);part(B,m,'sine',f*4,t,v*.28,.003,tau*.16);
+    if(f*9.9<8500)part(B,m,'sine',f*9.9,t,v*.06,.003,tau*.06);
+    nburst(B,m,t,Math.min(f*2.2,5000),1.2,v*.25,.003,.012);
+  },
+  celesta:function(B,m,f,t,v,o){
+    var tau=o.tau||.2;part(B,m,'sine',f,t,v,.004,tau);part(B,m,'sine',f*1.0035,t,v*.45,.004,tau);
+    part(B,m,'sine',f*2,t,v*.22,.004,tau*.55);part(B,m,'sine',f*3,t,v*.1,.003,tau*.3);
+  },
+  glass:function(B,m,f,t,v,o){
+    var tau=o.tau||.2;part(B,m,'sine',f,t,v,.005,tau);part(B,m,'sine',f*2.756,t,v*.2,.004,tau*.4);
+    if(f*5.404<8800)part(B,m,'sine',f*5.404,t,v*.06,.004,tau*.18);
+  },
+  bell:function(B,m,f,t,v,o){
+    var c=B.ctx,tau=o.tau||.2,a=o.a||.005,r=o.ratio||3.5,I=o.idx==null?1:o.idx,e=envGain(c,t,v,a,tau);
+    var car=c.createOscillator(),mod=c.createOscillator(),mg=c.createGain();
+    car.type='sine';mod.type='sine';car.frequency.value=f;mod.frequency.value=f*r;car.detune.value=mod.detune.value=B.cents;
+    mg.gain.setValueAtTime(f*r*I,t);mg.gain.setTargetAtTime(f*r*I*.03,t,tau*.4);
+    mod.connect(mg);mg.connect(car.frequency);car.connect(e.g);e.g.connect(m);
+    car.start(t);mod.start(t);car.stop(e.T+.01);mod.stop(e.T+.01);
+    part(B,m,'sine',f*2,t,v*.16,a,tau*.7);
+    var aud=t+a+tau*4.6;if(aud>B.end)B.end=aud;
+  },
+  pad:function(B,m,f,t,v,o){
+    var c=B.ctx,tau=o.tau||.5,a=o.a||.014,bl=o.bloom||.12,lp=c.createBiquadFilter();
+    lp.type='lowpass';lp.Q.value=.4;lp.frequency.setValueAtTime(f*1.5,t);
+    lp.frequency.linearRampToValueAtTime(Math.min(f*5,6500),t+bl);lp.frequency.setTargetAtTime(f*2,t+bl,tau*.6);lp.connect(m);
+    part(B,m,'triangle',f,t,v,a,tau,{dest:lp,det:-6});part(B,m,'triangle',f,t,v,a,tau,{dest:lp,det:6});
+    part(B,m,'sine',f/2,t,v*.35,a,tau*.9,{dest:lp});
+  },
+  thud:function(B,m,f,t,v,o){part(B,m,'sine',f,t,v,.006,o.tau||.07,{g:2.2,gt:.02})},
+  sweep:function(B,m,f,t,v,o){part(B,m,'sine',f,t,v,o.a||.006,o.tau||.1,{g:o.from||1,gt:o.time||.12});part(B,m,'sine',f*2,t,v*.14,.006,(o.tau||.1)*.5,{g:o.from||1,gt:o.time||.12})}
+};
+
+function route(B,m,o){
+  var c=B.ctx,node=m;
+  if(o.lp){var f=c.createBiquadFilter();f.type='lowpass';f.frequency.value=o.lp;f.Q.value=.5;m.connect(f);node=f}
+  var p=c.createStereoPanner();
+  if(o.pan2!=null){p.pan.setValueAtTime(o.pan||0,o.t);p.pan.linearRampToValueAtTime(o.pan2,o.t+(o.pd||.2))}else p.pan.value=o.pan||0;
+  node.connect(p);p.connect(B.bus.input);
+  if(o.rs>0){var g=c.createGain();g.gain.value=o.rs;p.connect(g);g.connect(B.bus.sS)}
+  if(o.rl>0){var g2=c.createGain();g2.gain.value=o.rl;p.connect(g2);g2.connect(B.bus.sL)}
+}
+
+function Builder(ctx,bus,o){
+  this.ctx=ctx;this.bus=bus;this.t0=o.t0;this.rnd=mulberry32(o.seed);this.cents=o.cents||0;
+  this.amp=dbg(o.db||0);this.step=o.step||0;this.shift=o.shift||0;this.end=o.t0;this.last=null;
+  this.d=Object.assign({rs:0,rl:0,pan:0,lp:9000},o.d||{});
+}
+Builder.prototype={
+  cfg:function(o){Object.assign(this.d,o);return this},
+  n:function(inst,name,t,v,o){
+    o=o||{};var nm=o.fixed?name:shiftNote(name,this.shift),f=hz(nm),T=this.t0+t,d=Object.assign({},this.d,o);
+    var m=this.ctx.createGain();m.gain.value=(v==null?.8:v)*this.amp*(o.vol||1);
+    INST[inst](this,m,f,T,1,o);
+    route(this,m,{pan:d.pan,pan2:d.pan2,pd:d.pd,rs:d.rs,rl:d.rl,lp:d.lp,t:T});
+    this.last={name:nm,t:t};
+  },
+  ch:function(inst,names,t,v,o){for(var i=0;i<names.length;i++)this.n(inst,names[i],t,v,o)},
+  seq:function(inst,arr,o){for(var i=0;i<arr.length;i++)this.n(inst,arr[i][0],arr[i][1],arr[i][2],o)},
+  run:function(inst,names,t,gap,v,o){for(var i=0;i<names.length;i++)this.n(inst,names[i],t+i*gap,typeof v==='function'?v(i):v,o)},
+  /* шум для «вжух»: полоса, скользящая от f0 к f1, с панорамой */
+  wh:function(t,o){
+    var c=this.ctx,d=Object.assign({},this.d,o),T=this.t0+t,dur=o.dur||.2,g=c.createGain(),bp=c.createBiquadFilter(),src=c.createBufferSource();
+    bp.type=o.type||'bandpass';bp.Q.value=o.q||1;bp.frequency.setValueAtTime(o.f0,T);bp.frequency.exponentialRampToValueAtTime(o.f1,T+dur);
+    var pk=(o.amp||.3)*2.4*this.amp;
+    g.gain.setValueAtTime(0,T);g.gain.linearRampToValueAtTime(pk,T+dur*(o.pk||.4));g.gain.exponentialRampToValueAtTime(pk*.01,T+dur);g.gain.linearRampToValueAtTime(0,T+dur+.01);
+    src.buffer=this.bus.noise;src.loop=true;src.connect(bp);bp.connect(g);
+    route(this,g,{pan:d.pan,pan2:d.pan2,pd:dur,rs:d.rs,rl:d.rl,lp:d.lp,t:T});
+    src.start(T,this.rnd()*1.5);src.stop(T+dur+.02);if(T+dur>this.end)this.end=T+dur;
+  },
+  tick:function(t,v,o){
+    o=o||{};var d=Object.assign({},this.d,o),T=this.t0+t,m=this.ctx.createGain();m.gain.value=v*this.amp;
+    nburst(this,m,T,o.fc||3000,o.q||1.4,2.4,.003,o.tau||.008);
+    route(this,m,{pan:d.pan,rs:d.rs,rl:d.rl,lp:d.lp,t:T});
+  }
+};
+
+/* ====================================================================
+   4. СОБЫТИЯ: 6 групп, 36 событий, по 4 варианта
+      lim — предел длительности, с; lv — уровень внутри группы, дБ; ser — серийная логика
+   ==================================================================== */
+var GROUPS=[
+  {id:'touch',name:'Касания и навигация',chip:'Касания',tr:-26},
+  {id:'learn',name:'Занятия',chip:'Занятия',tr:-23},
+  {id:'reward',name:'Награды',chip:'Награды',tr:-22},
+  {id:'day',name:'День и серия',chip:'День и серия',tr:-21},
+  {id:'peak',name:'Пик и лиги',chip:'Пик и лиги',tr:-21},
+  {id:'plus',name:'Plus и энергия',chip:'Plus и энергия',tr:-22}
+];
+var PEN=['D5','E5','F#5','A5','B5','D6','E6','F#6','A6'];
+var EV=[
+/* ---------- 1. Касания и навигация ---------- */
+{g:'touch',id:'tap',name:'Тап по кнопке',cap:'Короткая капля, без хвоста',lim:.12,lv:0,d:{lp:7000},vn:['Капля','Дерево','Стекло','Щелчок'],v:[
+  function(b){b.n('sine','F#5',0,1,{tau:.02,g:1.08,gt:.01,h:.2})},
+  function(b){b.n('marimba','D5',0,1,{tau:.022})},
+  function(b){b.n('glass','B5',0,.9,{tau:.02})},
+  function(b){b.n('pluck','E5',0,1,{tau:.02});b.tick(0,.3,{fc:3200})}]},
+{g:'touch',id:'toggle_on',name:'Переключатель: включить',cap:'Вверх: два лёгких тона',lim:.3,lv:0,d:{lp:7500},vn:['Синус вверх','Маримба','Стеклянная квинта','Щипок'],v:[
+  function(b){b.seq('sine',[['A4',0,.9],['D5',.055,1]],{tau:.04,h:.15})},
+  function(b){b.seq('marimba',[['F#4',0,.9],['B4',.05,1]],{tau:.045})},
+  function(b){b.ch('glass',['D5','A5'],0,.8,{tau:.05})},
+  function(b){b.seq('pluck',[['E5',0,.9],['B5',.045,1]],{tau:.04})}]},
+{g:'touch',id:'toggle_off',name:'Переключатель: выключить',cap:'Вниз: тише и мягче',lim:.3,lv:-1,d:{lp:6000},vn:['Синус вниз','Маримба','Стеклянный спуск','Глухой щипок'],v:[
+  function(b){b.seq('sine',[['D5',0,.9],['A4',.055,.9]],{tau:.04,h:.1})},
+  function(b){b.seq('marimba',[['B4',0,.9],['F#4',.05,.9]],{tau:.05})},
+  function(b){b.seq('glass',[['A5',0,.7],['D5',.045,.8]],{tau:.045})},
+  function(b){b.cfg({lp:3600});b.seq('pluck',[['B5',0,.8],['E5',.045,.9]],{tau:.04,br:3})}]},
+{g:'touch',id:'sheet_open',name:'Открытие шторки',cap:'Воздушный подъём вверх',lim:.4,lv:0,d:{lp:7500,rs:.05},vn:['Вжух и маримба','Цветение','Лесенка','Шелест и челеста'],v:[
+  function(b){b.wh(0,{dur:.22,f0:500,f1:2800,q:1.2,amp:.3,pan:-.3,pan2:.3});b.n('marimba','A4',.13,.8,{tau:.06});b.n('thud','D3',0,.6,{tau:.05})},
+  function(b){b.ch('bell',['D4','A4'],0,.7,{tau:.085,ratio:2,idx:1.1});b.n('glass','D6',.09,.35,{tau:.05})},
+  function(b){b.seq('pluck',[['F#4',0,.7],['B4',.05,.8],['D5',.1,.9]],{tau:.065});b.wh(0,{dur:.15,f0:900,f1:2500,q:.8,amp:.18})},
+  function(b){b.wh(0,{dur:.26,f0:900,f1:2200,q:.6,amp:.28,pan:.2,pan2:-.2});b.n('celesta','A5',.15,.8,{tau:.06})}]},
+{g:'touch',id:'sheet_close',name:'Закрытие шторки',cap:'Мягкое опускание вниз',lim:.4,lv:-1,d:{lp:6500,rs:.05},vn:['Вжух вниз','Свёртывание','Лесенка вниз','Колокол и глухой удар'],v:[
+  function(b){b.wh(0,{dur:.2,f0:2400,f1:450,q:1.1,amp:.26,pan:.3,pan2:-.3});b.n('marimba','D4',.12,.75,{tau:.055});b.n('thud','A2',.1,.5,{tau:.05})},
+  function(b){b.seq('bell',[['D5',0,.7],['A4',.06,.7],['D4',.12,.75]],{tau:.06,ratio:2,idx:.9})},
+  function(b){b.seq('celesta',[['A5',0,.7],['E5',.05,.75],['B4',.1,.8]],{tau:.055})},
+  function(b){b.ch('bell',['A4','D5'],0,.7,{tau:.045,ratio:2,idx:.7});b.n('thud','A2',.08,.5,{tau:.05})}]},
+{g:'touch',id:'swipe_know',name:'Свайп «Знаю»',cap:'Светлый росчерк вправо',lim:.4,lv:0,d:{lp:8000},vn:['Вжух и колокол','Маримба','Стеклянная терция','Щипок вверх'],v:[
+  function(b){b.cfg({lp:6200});b.wh(0,{dur:.16,f0:700,f1:3000,q:1.1,amp:.26,pan:-.4,pan2:.5});b.n('bell','D6',.11,.7,{tau:.065,ratio:3.5,idx:.8,pan:.4})},
+  function(b){b.seq('marimba',[['A4',0,.9],['D5',.06,1]],{tau:.07,pan:.2});b.wh(0,{dur:.1,f0:1500,f1:3600,q:1,amp:.14,pan:-.2,pan2:.4})},
+  function(b){b.seq('glass',[['E5',0,.8],['B5',.07,.9]],{tau:.06,pan:.3});b.tick(.0,.18,{fc:3600})},
+  function(b){b.seq('pluck',[['F#5',0,.8],['A5',.05,.9],['D6',.1,.8]],{tau:.05,pan:.25})}]},
+{g:'touch',id:'swipe_learn',name:'Свайп «Учить»',cap:'Тёплый росчерк влево',lim:.4,lv:0,d:{lp:6500},vn:['Вжух и маримба','Челеста','Стекло и шорох','Тёплый щипок'],v:[
+  function(b){b.wh(0,{dur:.16,f0:1800,f1:600,q:1,amp:.22,pan:.5,pan2:-.4});b.n('marimba','E4',.09,.9,{tau:.06,pan:-.35})},
+  function(b){b.seq('bell',[['B4',0,.7],['F#4',.07,.8]],{tau:.06,ratio:2,idx:.8,pan:-.3})},
+  function(b){b.n('glass','A4',.02,.8,{tau:.08,pan:-.3});b.wh(0,{dur:.16,f0:900,f1:450,q:.7,amp:.22,pan:.3,pan2:-.3})},
+  function(b){b.cfg({lp:3600});b.seq('pluck',[['E4',0,.9],['A3',.06,.9]],{tau:.075,pan:-.25})}]},
+{g:'touch',id:'story',name:'Перелистывание сторис',cap:'Лёгкий шорох страницы',lim:.25,lv:-1,d:{lp:7500},vn:['Тик и тон','Шорох и маримба','Стеклянная пара','Щипок и блик'],v:[
+  function(b){b.cfg({lp:5200});b.tick(0,.55,{fc:1700,q:1.2,tau:.02});b.n('tri','A5',0,.7,{tau:.035})},
+  function(b){b.wh(0,{dur:.08,f0:1500,f1:4000,q:1,amp:.18});b.n('marimba','F#5',.05,.8,{tau:.04})},
+  function(b){b.seq('glass',[['A5',0,.8],['D6',.035,.6]],{tau:.035})},
+  function(b){b.n('pluck','B4',0,.9,{tau:.045});b.tick(.02,.25,{fc:5200,tau:.01})}]},
+/* ---------- 2. Занятия ---------- */
+{g:'learn',id:'correct',name:'Правильный ответ',cap:'Растёт по ступеням лада',lim:.4,lv:0,d:{lp:8000,rs:.07},ser:{n:5,cap:7,mul:1,spark:true},vn:['Колокольчик','Маримба','Челеста','Стекло'],v:[
+  function(b){b.seq('bell',[['A4',0,.9],['E5',.085,.9]],{tau:.075,ratio:3.5,idx:.9})},
+  function(b){b.seq('marimba',[['F#4',0,.9],['B4',.06,1]],{tau:.065})},
+  function(b){b.seq('celesta',[['A4',0,.8],['D5',.06,.85],['F#5',.12,.9]],{tau:.065})},
+  function(b){b.seq('glass',[['E5',0,.85],['A5',.09,.9]],{tau:.07})}]},
+{g:'learn',id:'wrong',name:'Ошибка',cap:'Мягко, без наказания',lim:.4,lv:-2,d:{lp:3800,rs:.06},vn:['Деревянный вздох','Треугольный спуск','Глухой колокол','Тёплый вздох'],v:[
+  function(b){b.seq('marimba',[['F#4',0,.85],['D4',.1,.75]],{tau:.06})},
+  function(b){b.cfg({lp:2300});b.seq('tri',[['A4',0,.9],['E4',.09,.8]],{tau:.06,g:1.03,gt:.05})},
+  function(b){b.seq('bell',[['E4',0,.8],['B3',.11,.75]],{tau:.06,ratio:2,idx:.6})},
+  function(b){b.ch('sine',['A4','F#4'],0,.7,{tau:.075,g:1.015,gt:.08,h:.1})}]},
+{g:'learn',id:'lightning',name:'«Молния»: серия верных',cap:'Быстрая россыпь, всё длиннее',lim:.4,lv:0,d:{lp:8500,rs:.05},ser:{n:5,cap:3,mul:1},vn:['Стеклянный бег','Маримба-арпеджио','Щипковые пары','Колокол и вжух'],v:[
+  function(b){var n=3+Math.min(b.step,4),g=.17/(n-1);b.run('glass',PEN.slice(0,n),0,g,function(i){return .7+.05*i},{tau:.05})},
+  function(b){var n=3+Math.min(b.step,4),g=.17/(n-1),a=['D4','A4','D5','F#5','A5','D6','F#6'];b.run('marimba',a.slice(0,n),0,g,.9,{tau:.05})},
+  function(b){var n=3+Math.min(b.step,4),g=.17/(n-1);for(var i=0;i<n;i++){b.n('pluck',PEN[i],i*g,.8,{tau:.05,br:7});b.n('pluck',PEN[i+1],i*g+.012,.3,{tau:.035,br:7})}},
+  function(b){var n=3+Math.min(b.step,4),g=.17/(n-1);b.wh(0,{dur:.16+g*(n-1)*.3,f0:500,f1:4200,q:1,amp:.14});b.run('bell',PEN.slice(0,n),0,g,.8,{tau:.045,ratio:3.5,idx:.8})}]},
+{g:'learn',id:'lesson_done',name:'Урок пройден',cap:'Тёплое завершение урока',lim:2.5,lv:1,d:{lp:8500,rl:.25},vn:['Колокола','Маримба-мелодия','Перезвон','Аккорды'],v:[
+  function(b){b.run('bell',['D5','F#5','A5','D6'],0,.13,.9,{tau:.2,ratio:3.5,idx:1});b.ch('pad',['D4','A4','E5','F#5'],.39,.5,{tau:.34})},
+  function(b){b.run('marimba',['A4','B4','D5','F#5','A5'],0,.11,.9,{tau:.15});b.n('celesta','A5',.44,.6,{tau:.4});b.ch('pad',['D4','A4'],.44,.45,{tau:.3})},
+  function(b){b.ch('pad',['D4','A4'],0,.35,{tau:.4});b.run('glass',['A6','F#6','D6','B5','A5','F#5'],0,.09,function(i){return .8-.05*i},{tau:.26})},
+  function(b){b.ch('bell',['D5','A5'],0,.8,{tau:.2,ratio:2,idx:1.1});b.ch('bell',['E5','B5'],.2,.8,{tau:.2,ratio:2,idx:1.1});b.ch('bell',['F#5','A5','D6'],.4,.8,{tau:.34,ratio:2,idx:1});b.ch('pad',['D4','A4'],.4,.4,{tau:.34})}]},
+{g:'learn',id:'lesson_perfect',name:'Идеальный урок',cap:'Блестящий финал без ошибок',lim:2.5,lv:2,d:{lp:8800,rl:.32},vn:['Бег и аккорд','Фанфара','Лестница и блеск','Звон и россыпь'],v:[
+  function(b){b.run('marimba',['D4','F#4','A4','D5','F#5','A5','D6'],0,.06,.9,{tau:.12});b.run('glass',['A5','D6','F#6','A6'],.3,.07,.5,{tau:.22});b.ch('pad',['D5','F#5','A5','E6'],.46,.45,{tau:.36});b.ch('bell',['D5','A5'],.46,.6,{tau:.3,ratio:3.5,idx:1})},
+  function(b){b.wh(0,{dur:.5,f0:500,f1:5000,q:1,amp:.12});b.ch('bell',['D5','A5'],0,.8,{tau:.15,ratio:2,idx:1.1});b.ch('bell',['D5','A5'],.16,.8,{tau:.15,ratio:2,idx:1.1});b.ch('bell',['F#5','D6'],.32,.8,{tau:.22,ratio:2,idx:1.1});b.ch('bell',['A5','E6','A6'],.5,.75,{tau:.36,ratio:3.5,idx:.9});b.ch('pad',['D4','A4','F#5'],.5,.45,{tau:.36})},
+  function(b){b.run('celesta',['D5','E5','F#5','A5','B5','D6','E6','F#6'],0,.055,.85,{tau:.14});b.run('glass',['A6','F#6','E6','D6','B5','A5'],.55,.07,function(i){return .55-.04*i},{tau:.2});b.ch('pad',['D4','A4','D5'],.45,.4,{tau:.36})},
+  function(b){b.n('thud','D3',0,.9,{tau:.12});b.run('glass',['D6','F#6','A6'],0,.12,.8,{tau:.26});b.ch('bell',['D5','F#5','A5','E6'],.4,.8,{tau:.36,ratio:3.5,idx:.9});for(var i=0;i<6;i++)b.n('glass',PEN[3+((b.rnd()*6)|0)],.5+i*.09,.25,{tau:.18,pan:(b.rnd()*2-1)*.7})}]},
+{g:'learn',id:'hint',name:'Разбор и подсказка',cap:'Любопытный огонёк подсказки',lim:.4,lv:-1,d:{lp:8500,rs:.06},vn:['Стеклянная квинта','Маримба вверх','Синий огонёк','Челеста'],v:[
+  function(b){b.seq('glass',[['B5',0,.8],['F#6',.07,.75]],{tau:.065})},
+  function(b){b.seq('marimba',[['D5',0,.9],['B5',.075,.9]],{tau:.065})},
+  function(b){b.seq('sine',[['A5',0,.8],['D6',.075,.8]],{tau:.065,h:.25});b.tick(0,.1,{fc:4200})},
+  function(b){b.seq('celesta',[['F#5',0,.85],['D6',.06,.85]],{tau:.07})}]},
+/* ---------- 3. Награды ---------- */
+{g:'reward',id:'coin',name:'Монета +1',cap:'Короткий блеск монеты',lim:.4,lv:0,d:{lp:8500,rs:.05},ser:{n:5,cap:4,mul:1},vn:['Дзинь','Двойной блик','Деревянный блик','Колокольный блик'],v:[
+  function(b){b.n('glass','A5',0,.9,{tau:.07});b.n('glass','A6',0,.25,{tau:.04})},
+  function(b){b.seq('celesta',[['A5',0,.85],['E6',.05,.8]],{tau:.06})},
+  function(b){b.n('marimba','E5',0,.9,{tau:.065});b.n('glass','E6',0,.45,{tau:.04})},
+  function(b){b.n('bell','F#5',0,.8,{tau:.07,ratio:3.5,idx:.9,g:.97,gt:.02});b.n('bell','F#6',.02,.35,{tau:.05,ratio:2,idx:.8})}]},
+{g:'reward',id:'coins_many',name:'Много монет',cap:'Каскад звонких монет',lim:1.6,lv:0,d:{lp:8500,rl:.2},vn:['Стеклянный дождь','Маримба и колокол','Ускоряющийся щипок','Пинг-понг челесты'],v:[
+  function(b){var t=0;for(var i=0;i<14;i++){b.n('glass',PEN[(b.rnd()*PEN.length)|0],t,.9-i*.04,{tau:.09,pan:(b.rnd()*2-1)*.7});t+=.03+i*.006}},
+  function(b){b.run('marimba',['D4','F#4','A4','D5','F#5','A5','D6'],0,.055,.9,{tau:.1});b.ch('bell',['D5','A5','F#6'],.4,.8,{tau:.2,ratio:3.5,idx:.9})},
+  function(b){var t=0,g=.12,a=['D5','E5','F#5','A5','B5','D6','E6','F#6','A6'];b.wh(0,{dur:.7,f0:2000,f1:6500,q:1.2,amp:.07,pk:.8});for(var i=0;i<9;i++){b.n('pluck',a[i],t,.85,{tau:.09,br:8});t+=g;g*=.78}b.ch('bell',['D6','A6'],t,.6,{tau:.2,ratio:3.5,idx:.8})},
+  function(b){var a=['A5','D6','F#6','A5','E6','D6','B5','F#6','A6','E6'];for(var i=0;i<10;i++)b.n('celesta',a[i],i*.075,.75,{tau:.12,pan:i%2?.8:-.8})}]},
+{g:'reward',id:'coin_rank',name:'Повышение ранга монеты',cap:'Печать и взлёт ранга',lim:2,lv:1,d:{lp:8500,rl:.28},vn:['Печать и взлёт','Тройной колокол','Челеста и аккорд','Нарастающий аккорд'],v:[
+  function(b){b.ch('marimba',['D3','A3'],0,.9,{tau:.15});b.run('glass',['D5','F#5','A5','D6'],.12,.09,.8,{tau:.22});b.ch('pad',['D5','A5','F#6'],.5,.4,{tau:.3})},
+  function(b){b.seq('glass',[['A5',0,.85],['D6',.14,.85],['F#6',.28,.9]],{tau:.3});b.seq('celesta',[['A5',.2,.3],['D6',.34,.3],['F#6',.48,.35]],{tau:.2})},
+  function(b){b.run('celesta',['D5','F#5','A5','B5','D6','F#6'],0,.065,.85,{tau:.14});b.ch('pad',['D5','A5','D6'],.4,.45,{tau:.3});b.n('glass','A6',.4,.4,{tau:.3})},
+  function(b){b.wh(0,{dur:.4,f0:400,f1:3500,q:1,amp:.12});b.seq('bell',[['D5',0,.7],['F#5',.08,.7],['A5',.16,.7],['E6',.24,.8]],{tau:.4,ratio:2,idx:.9})}]},
+{g:'reward',id:'achievement',name:'Ачивка',cap:'Медаль: фанфара и блеск',lim:2.5,lv:1,d:{lp:8800,rl:.32},vn:['Фанфара','Маримба и корона','Пэд и россыпь','Гонг и мотив'],v:[
+  function(b){b.seq('bell',[['D5',0,.85],['A5',.13,.85]],{tau:.2,ratio:3.5,idx:.9});b.ch('bell',['D6','F#6','A6'],.3,.75,{tau:.4,ratio:3.5,idx:.8});b.ch('pad',['D4','A4','F#5'],.3,.45,{tau:.4})},
+  function(b){b.run('marimba',['E4','A4','B4','E5'],0,.07,.9,{tau:.14});b.ch('glass',['D6','A6'],.3,.8,{tau:.4});b.ch('pad',['D5','A5'],.3,.35,{tau:.38})},
+  function(b){b.ch('pad',['D4','A4','D5','F#5'],0,.5,{tau:.55,bloom:.2});b.run('glass',['D6','F#6','A6','D6','F#6'],.25,.1,.6,{tau:.24})},
+  function(b){b.n('bell','D3',0,.9,{ratio:2.76,idx:1.1,tau:.5,a:.01});b.run('bell',['A5','D6','F#6'],.12,.16,.8,{tau:.34,ratio:3.5,idx:.9})}]},
+/* ---------- 4. День и серия ---------- */
+{g:'day',id:'ring',name:'Закрыто кольцо «Сегодня»',cap:'Щелчок и сияние кольца',lim:.8,lv:0,d:{lp:8500,rs:.06,rl:.08},ser:{n:3,cap:4,mul:2},vn:['Колокол и удар','Стеклянный виток','Челеста и щелчок','Щипок и блик'],v:[
+  function(b){b.n('thud','D3',0,.7,{tau:.06,fixed:true});b.seq('bell',[['D5',0,.85],['A5',.07,.9]],{tau:.12,ratio:3.5,idx:.9})},
+  function(b){b.wh(0,{dur:.3,f0:500,f1:2500,q:1,amp:.1,pan:-.8,pan2:.8});b.n('glass','A5',.18,.9,{tau:.14})},
+  function(b){b.tick(0,.3,{fc:3000});b.seq('celesta',[['E5',.01,.85],['B5',.09,.9]],{tau:.11})},
+  function(b){b.seq('pluck',[['F#4',0,.8],['B4',.05,.85]],{tau:.09});b.n('glass','F#6',.1,.5,{tau:.12})}]},
+{g:'day',id:'day_done',name:'День выполнен',cap:'Три кольца — тёплый аккорд',lim:2.5,lv:1,d:{lp:8500,rl:.3},vn:['Арпеджио колоколов','Рябь и аккорд','Три удара','Аккорды «аминь»'],v:[
+  function(b){b.run('bell',['D4','A4','D5','F#5','A5'],0,.1,.85,{tau:.22,ratio:3.5,idx:.9});b.ch('pad',['D4','A4','E5','F#5'],.4,.45,{tau:.4});b.n('glass','D6',.5,.5,{tau:.35})},
+  function(b){b.run('marimba',['A4','B4','D5','A4','B4','D5','F#5'],0,.07,.85,{tau:.1});b.ch('glass',['D5','F#5','A5','D6'],.5,.65,{tau:.38})},
+  function(b){b.ch('bell',['D5','A5'],0,.8,{tau:.18,ratio:2,idx:1});b.ch('bell',['A5','E6'],.22,.8,{tau:.2,ratio:2,idx:1});b.ch('bell',['D6','F#6','A6'],.44,.8,{tau:.4,ratio:3.5,idx:.8});b.n('thud','D3',0,.5,{tau:.1})},
+  function(b){b.ch('marimba',['A4','E5'],0,.85,{tau:.22});b.ch('bell',['D5','A5','F#6'],.28,.75,{tau:.4,ratio:2,idx:.9});b.ch('pad',['D4','A4'],.28,.4,{tau:.42});b.run('celesta',['D6','B5','A5'],.6,.12,.4,{tau:.22})}]},
+{g:'day',id:'streak_small',name:'Рубеж серии: малый',cap:'Искра: дни 1, 3, 14',lim:1.5,lv:0,d:{lp:8500,rl:.18},vn:['Искра и колокол','Маримба-тройка','Стеклянная пара','Челеста-подъём'],v:[
+  function(b){b.wh(0,{dur:.2,f0:600,f1:3000,q:1,amp:.14});b.ch('bell',['D5','A5'],.14,.8,{tau:.28,ratio:3.5,idx:.9})},
+  function(b){b.run('marimba',['F#4','A4','D5'],0,.1,.9,{tau:.2});b.n('glass','A5',.2,.4,{tau:.3})},
+  function(b){b.seq('glass',[['B5',0,.8],['F#6',.12,.8]],{tau:.3})},
+  function(b){b.run('celesta',['E5','A5','D6'],0,.1,.85,{tau:.25})}]},
+{g:'day',id:'streak_mid',name:'Рубеж серии: средний',cap:'Живое пламя: 50, 200',lim:2,lv:1,d:{lp:8500,rl:.26},vn:['Аккорд с эхом','Щипок и колокол','Пламя','Спуск искр'],v:[
+  function(b){b.ch('bell',['D5','A5','E6'],0,.85,{tau:.4,ratio:2,idx:1});b.ch('bell',['D5','A5'],.22,.45,{tau:.3,ratio:2,idx:.9});b.n('glass','F#6',.4,.5,{tau:.3});b.ch('pad',['D4','A4'],0,.35,{tau:.4})},
+  function(b){b.run('pluck',['A4','B4','D5','F#5'],0,.1,.9,{tau:.14,br:6});b.ch('bell',['D5','F#5','A5'],.4,.7,{tau:.38,ratio:2,idx:.9})},
+  function(b){b.wh(0,{dur:.4,f0:400,f1:2600,q:.9,amp:.16});b.n('bell','D5',.28,.85,{tau:.4,ratio:3.5,idx:1});b.run('glass',['A5','D6','F#6','A6'],.34,.07,.55,{tau:.28})},
+  function(b){b.ch('pad',['D4','A4','F#5'],0,.45,{tau:.5});b.run('celesta',['A6','F#6','D6','B5'],.08,.1,.6,{tau:.3})}]},
+{g:'day',id:'streak_big',name:'Рубеж серии: большой',cap:'Торжество: 7, 30, 100, 500',lim:2.5,lv:2,d:{lp:8800,rl:.34},vn:['Фанфара с ударом','Бег и квинта','Пэд и перезвон вниз','Три аккорда'],v:[
+  function(b){b.n('thud','D3',0,.9,{tau:.12});b.run('bell',['D5','A5','D6'],0,.14,.85,{tau:.25,ratio:3.5,idx:.9});b.ch('bell',['D5','F#5','A5','E6'],.42,.8,{tau:.4,ratio:2,idx:1});b.ch('pad',['D4','A4','F#5'],.42,.45,{tau:.42})},
+  function(b){b.run('marimba',['D4','A4','D5','F#5','A5','D6'],0,.07,.9,{tau:.12});b.ch('pad',['D5','F#5','A5','E6'],.4,.45,{tau:.42});b.ch('glass',['D6','A6'],.4,.6,{tau:.4})},
+  function(b){b.ch('pad',['D4','A4'],0,.45,{tau:.6,bloom:.3});b.run('glass',['A6','F#6','E6','D6','B5','A5'],.2,.1,function(i){return .75-.05*i},{tau:.24});b.n('thud','D3',.9,.7,{tau:.12});b.ch('bell',['D5','F#5','A5','D6'],.9,.85,{tau:.36,ratio:3.5,idx:.9})},
+  function(b){b.ch('bell',['D5','A5'],0,.8,{tau:.2,ratio:2,idx:1.1});b.ch('bell',['E5','B5'],.24,.8,{tau:.2,ratio:2,idx:1.1});b.ch('bell',['F#5','A5','D6'],.48,.85,{tau:.4,ratio:2,idx:1});b.ch('pad',['D4','A4','E5'],.48,.4,{tau:.42})}]},
+{g:'day',id:'streak_year',name:'«Год»: 365 дней',cap:'Перезвон длиной в год',lim:2.5,lv:2,d:{lp:8800,rl:.36},vn:['Башенные куранты','Лестница аккордов','Три россыпи: 3, 6, 5','Вальс и гонг'],v:[
+  function(b){b.seq('bell',[['D5',0,.85],['A5',.2,.85],['B5',.4,.85],['D6',.6,.9]],{tau:.3,ratio:3.5,idx:.8});b.n('bell','D3',.8,.8,{ratio:2.76,idx:1,tau:.38,a:.01});b.ch('pad',['D4','A4','F#5'],.8,.4,{tau:.4})},
+  function(b){b.ch('bell',['D5','A5'],0,.8,{tau:.2,ratio:2,idx:1});b.ch('bell',['F#5','D6'],.25,.8,{tau:.2,ratio:2,idx:1});b.ch('bell',['A5','E6'],.5,.8,{tau:.2,ratio:2,idx:1});b.ch('bell',['D6','F#6','A6'],.75,.85,{tau:.4,ratio:3.5,idx:.8});b.ch('pad',['D4','A4','D5'],.75,.4,{tau:.42})},
+  function(b){b.run('glass',['D6','F#6','A6'],0,.07,.8,{tau:.2});b.run('glass',['A5','B5','D6','F#6','A6','D6'],.4,.06,.7,{tau:.2});b.run('glass',['B5','D6','E6','F#6','A6'],.9,.06,.7,{tau:.2});b.ch('bell',['D5','A5','F#6'],1.3,.8,{tau:.3,ratio:3.5,idx:.9});b.ch('pad',['D4','A4'],1.3,.4,{tau:.3})},
+  function(b){b.run('celesta',['D5','F#5','A5','D5','F#5','A5'],0,.12,.8,{tau:.2});b.n('bell','D3',.7,.9,{ratio:2.76,idx:1.1,tau:.42,a:.01});b.ch('glass',['A5','D6','F#6'],.7,.6,{tau:.4})}]},
+{g:'day',id:'streak_legend',name:'«Легенда»: 1000 дней',cap:'Величие: тысяча дней',lim:3.5,lv:2,d:{lp:8800,rl:.4},vn:['Гонг и хор','Три ступени','Процессия колоколов','Аккорды I–V–I'],v:[
+  function(b){b.n('bell','D3',0,1,{ratio:2.76,idx:1.2,tau:.6,a:.01});b.ch('pad',['D4','A4','D5','F#5'],.1,.55,{tau:.65,bloom:.3});b.run('glass',['D6','F#6','A6','D6','A5'],.5,.2,.7,{tau:.4});b.ch('bell',['D5','A5','D6','F#6'],1.1,.75,{tau:.5,ratio:3.5,idx:.8})},
+  function(b){b.n('thud','D3',0,.9,{tau:.15});b.run('bell',['D5','F#5','A5'],.05,.16,.85,{tau:.3,ratio:3.5,idx:.9});b.wh(.3,{dur:.7,f0:400,f1:4500,q:1,amp:.1});b.ch('bell',['D5','F#5','A5','E6'],.9,.85,{tau:.55,ratio:2,idx:1});b.ch('pad',['D4','A4','D5'],.9,.5,{tau:.6});b.run('glass',['A5','D6','F#6','A6'],1.5,.12,.5,{tau:.4})},
+  function(b){b.run('bell',['D4','A4','D5','F#5','A5','D6'],0,.25,.8,{tau:.3,ratio:3.5,idx:.9});b.ch('pad',['D4','A4','F#5','D6'],1.4,.5,{tau:.5});b.n('bell','D3',1.4,.8,{ratio:2.76,idx:1,tau:.5,a:.01})},
+  function(b){b.wh(0,{dur:.8,f0:300,f1:3000,q:.8,amp:.14});b.ch('pad',['D4','A4','D5'],0,.45,{tau:.5,bloom:.3});b.ch('pad',['E4','B4','E5'],.7,.45,{tau:.5});b.ch('bell',['D5','F#5','A5','D6'],1.3,.85,{tau:.5,ratio:2,idx:1});b.ch('pad',['D4','A4','F#5'],1.3,.5,{tau:.5});b.run('glass',['A6','F#6','D6'],1.75,.13,.45,{tau:.3})}]},
+{g:'day',id:'streak_risk',name:'Серия под угрозой',cap:'Тихий вопрос, не тревога',lim:.8,lv:-2,d:{lp:6500,rs:.1},vn:['Маримба-вопрос','Колокол-вопрос','Челеста-вопрос','Двойной стук'],v:[
+  function(b){b.seq('marimba',[['A4',0,.85],['B4',.2,.8]],{tau:.12})},
+  function(b){b.seq('bell',[['E5',0,.8],['F#5',.18,.75]],{tau:.12,ratio:2,idx:.7})},
+  function(b){b.seq('celesta',[['D5',0,.8],['E5',.18,.8]],{tau:.12})},
+  function(b){b.seq('pluck',[['A5',0,.8],['A5',.16,.55],['F#5',.3,.5]],{tau:.1,br:3})}]},
+/* ---------- 5. Пик и лиги ---------- */
+{g:'peak',id:'step',name:'Ступень пройдена',cap:'Шаг вверх по Пику',lim:.6,lv:0,d:{lp:8500,rs:.07},vn:['Маримба и удар','Лесенка щипком','Стеклянный подъём','Челеста'],v:[
+  function(b){b.n('thud','D3',0,.6,{tau:.07});b.seq('marimba',[['D4',0,.85],['A4',.09,.95]],{tau:.12})},
+  function(b){b.seq('pluck',[['F#4',0,.8],['B4',.07,.85],['D5',.14,.9]],{tau:.1})},
+  function(b){b.seq('glass',[['A4',0,.8],['E5',.09,.9]],{tau:.1})},
+  function(b){b.seq('celesta',[['D5',0,.85],['F#5',.09,.9]],{tau:.1})}]},
+{g:'peak',id:'floor',name:'Этаж пройден',cap:'Этаж взят, дальше выше',lim:1.5,lv:1,d:{lp:8500,rl:.2},vn:['Арпеджио колоколов','Маримба и стекло','Пэд и блик','Бег и колокол'],v:[
+  function(b){b.run('bell',['D5','F#5','A5','D6'],0,.1,.85,{tau:.2,ratio:3.5,idx:.9});b.ch('pad',['D5','A5'],.3,.4,{tau:.26})},
+  function(b){b.run('marimba',['A4','D5','F#5'],0,.1,.9,{tau:.14});b.ch('glass',['A5','D6'],.3,.7,{tau:.3})},
+  function(b){b.ch('pad',['D4','A4','E5'],0,.5,{tau:.3,bloom:.2});b.seq('glass',[['B5',.15,.7],['F#6',.25,.7]],{tau:.26})},
+  function(b){b.run('pluck',['D4','F#4','A4','D5','F#5'],0,.06,.85,{tau:.08});b.n('bell','A5',.3,.85,{tau:.3,ratio:3.5,idx:.9})}]},
+{g:'peak',id:'summit',name:'Вершина',cap:'Простор и высота вершины',lim:2.5,lv:2,d:{lp:8800,rl:.4},vn:['Ветер и перезвон','Растущий колокольный аккорд','Гонг и стекло','Лестница челесты'],v:[
+  function(b){b.wh(0,{dur:.9,f0:300,f1:2200,q:.7,amp:.16,pan:-.7,pan2:.7});b.run('glass',['A5','D6','F#6','A6'],.3,.14,.7,{tau:.3,pan:.4});b.ch('pad',['D4','A4','D5','E6'],.55,.45,{tau:.4,bloom:.25})},
+  function(b){var a=['D4','A4','D5','F#5','A5','E6'];for(var i=0;i<a.length;i++)b.n('bell',a[i],i*.1,.7,{tau:.5,ratio:2,idx:.9,pan:(i%2?.5:-.5)});b.run('glass',['A6','F#6','D6'],.7,.12,.45,{tau:.34})},
+  function(b){b.n('bell','D3',0,.9,{ratio:2.76,idx:1,tau:.5,a:.01});b.run('glass',['D5','F#5','A5','D6','F#6','A6'],.1,.12,.7,{tau:.3});b.ch('pad',['D5','A5'],.8,.4,{tau:.38})},
+  function(b){b.run('celesta',['D5','E5','F#5','A5','B5','D6','E6','F#6'],0,.09,.8,{tau:.2});b.ch('pad',['D4','A4','D5','F#5'],.75,.5,{tau:.4});b.ch('bell',['D6','A6'],.75,.6,{tau:.4,ratio:3.5,idx:.8})}]},
+{g:'peak',id:'league_up',name:'Повышение лиги',cap:'Торжественно, но коротко',lim:2.5,lv:2,d:{lp:8800,rl:.34},vn:['Аккорды-удары','Маримба-фанфара','Пэды I–V–I','Три удара'],v:[
+  function(b){b.n('thud','D3',0,.8,{tau:.12});b.ch('bell',['D5','A5'],0,.85,{tau:.2,ratio:2,idx:1.1});b.ch('bell',['F#5','D6'],.22,.85,{tau:.22,ratio:2,idx:1.1});b.ch('bell',['A5','E6','D5'],.5,.9,{tau:.4,ratio:2,idx:1});b.ch('pad',['D4','A4','F#5'],.5,.45,{tau:.4})},
+  function(b){b.n('thud','D3',0,.8,{tau:.12});b.seq('marimba',[['A4',0,.9],['D5',.1,.9],['F#5',.2,.95],['A5',.34,1]],{tau:.16});b.ch('marimba',['D5','A5'],.52,.9,{tau:.3});b.ch('glass',['D6','A6'],.52,.7,{tau:.42})},
+  function(b){b.wh(0,{dur:.7,f0:2500,f1:6000,q:.8,amp:.07});b.ch('pad',['D4','A4','D5'],0,.5,{tau:.3});b.ch('pad',['A4','E5','A5'],.28,.5,{tau:.3});b.ch('pad',['D4','A4','D5','F#5'],.56,.55,{tau:.42});b.n('bell','A5',0,.5,{tau:.2,ratio:3.5,idx:.8});b.n('bell','E6',.28,.5,{tau:.2,ratio:3.5,idx:.8});b.n('bell','D6',.56,.7,{tau:.4,ratio:3.5,idx:.9})},
+  function(b){b.wh(0,{dur:.35,f0:500,f1:3800,q:1,amp:.1});b.run('bell',['D5','F#5','A5'],.1,.14,.85,{tau:.3,ratio:3.5,idx:.9});b.ch('bell',['D5','A5','D6','F#6'],.5,.85,{tau:.4,ratio:2,idx:1});b.ch('pad',['D4','A4'],.5,.4,{tau:.4})}]},
+{g:'peak',id:'league_stay',name:'Удержался в лиге',cap:'Спокойно и уверенно',lim:1.5,lv:0,d:{lp:7500,rl:.2},vn:['Маримба: квинта и тоника','Колокол-пара','Челеста-качели','Пэд и блик'],v:[
+  function(b){b.ch('marimba',['A4','E5'],0,.85,{tau:.16});b.ch('marimba',['D5','A5'],.2,.9,{tau:.3});b.ch('pad',['D4','A4'],.2,.35,{tau:.3})},
+  function(b){b.seq('bell',[['D5',0,.8],['A5',.15,.8]],{tau:.3,ratio:2,idx:.8})},
+  function(b){b.seq('celesta',[['D5',0,.8],['F#5',.14,.8],['D5',.28,.85]],{tau:.24})},
+  function(b){b.ch('pad',['D4','A4'],0,.5,{tau:.3,bloom:.2});b.n('glass','E5',.15,.6,{tau:.26})}]},
+{g:'peak',id:'league_down',name:'Понижение лиги',cap:'Бережно: впереди подъём',lim:1.5,lv:-1,d:{lp:6500,rl:.2},vn:['Маримба с подъёмом','Челеста-утешение','Колокол и вверх','Тёплые аккорды'],v:[
+  function(b){b.seq('marimba',[['F#4',0,.85],['E4',.12,.8],['A4',.26,.95]],{tau:.18});b.ch('pad',['A3','E4'],.26,.3,{tau:.3})},
+  function(b){b.seq('celesta',[['B4',0,.8],['A4',.12,.8],['D5',.26,.95]],{tau:.2})},
+  function(b){b.seq('bell',[['E5',0,.8],['B4',.14,.75],['F#5',.3,.9]],{tau:.24,ratio:2,idx:.7})},
+  function(b){b.ch('pad',['E4','B4'],0,.45,{tau:.28});b.ch('pad',['A4','E5'],.25,.5,{tau:.3});b.n('glass','A5',.3,.4,{tau:.22})}]},
+{g:'peak',id:'new_week',name:'Новая неделя',cap:'Свежее утро новой недели',lim:1.5,lv:0,d:{lp:8500,rl:.24},vn:['Рассвет и перезвон','Квинта и бег','Щипковая мелодия','Пэд и стеклянная пара'],v:[
+  function(b){b.wh(0,{dur:.6,f0:300,f1:1800,q:.8,amp:.14,pan:-.4,pan2:.4});b.seq('glass',[['D6',.3,.8],['A6',.45,.8]],{tau:.22})},
+  function(b){b.ch('bell',['D5','A5'],0,.8,{tau:.3,ratio:2,idx:.9});b.run('marimba',['D5','F#5','A5','D6'],.14,.07,.8,{tau:.12})},
+  function(b){b.run('pluck',['A4','B4','D5','F#5'],0,.12,.85,{tau:.2,br:5});b.n('glass','F#6',.4,.4,{tau:.22})},
+  function(b){b.ch('pad',['D4','A4'],0,.45,{tau:.3,bloom:.25});b.seq('glass',[['F#6',.3,.65],['A6',.4,.6]],{tau:.22})}]},
+/* ---------- 6. Plus и энергия ---------- */
+{g:'plus',id:'plus',name:'Покупка Plus',cap:'Золотое открытие Plus',lim:2.5,lv:2,d:{lp:8800,rl:.38},vn:['Стеклянная вспышка','Арпеджио на две октавы','Золотая вспышка','Взлёт и россыпь'],v:[
+  function(b){b.n('thud','D3',0,.7,{tau:.1});b.run('glass',['D6','F#6','A6','E6'],0,.04,.8,{tau:.34});b.ch('pad',['D4','A4','D5','F#5'],.1,.5,{tau:.5,bloom:.2});for(var i=0;i<8;i++)b.n('glass',PEN[4+((b.rnd()*5)|0)],.3+i*.1,.3,{tau:.2,pan:(b.rnd()*2-1)*.7})},
+  function(b){b.run('bell',['D4','A4','D5','F#5','A5','D6','F#6'],0,.08,.8,{tau:.25,ratio:3.5,idx:.8});b.ch('pad',['D5','A5','E6'],.56,.45,{tau:.45});b.ch('glass',['A5','D6','A6'],.56,.5,{tau:.45})},
+  function(b){b.wh(0,{dur:.5,f0:400,f1:6000,q:1,amp:.13,pk:.7});b.ch('bell',['D5','F#5','A5','D6'],.45,.8,{tau:.5,ratio:2,idx:1});b.ch('glass',['A6','D6'],.5,.5,{tau:.42})},
+  function(b){b.n('sweep','D4',0,.6,{from:.5,tau:.5,time:.18,fixed:true,a:.012});b.n('sweep','A4',0,.5,{from:.5,tau:.5,time:.18,fixed:true,a:.012});b.ch('marimba',['D5','A5','D6'],.36,.9,{tau:.3});b.run('celesta',['F#6','A6','E6'],.42,.09,.5,{tau:.3})}]},
+{g:'plus',id:'energy_out',name:'Энергия закончилась',cap:'Мягко гаснет заряд',lim:.8,lv:-2,d:{lp:4200,rs:.08},vn:['Синус вниз','Маримба вниз','Низкий колокол','Щипок и шорох'],v:[
+  function(b){b.n('sweep','A4',0,.85,{from:1.25,tau:.13,time:.2,fixed:true});b.n('thud','D3',.2,.4,{tau:.07})},
+  function(b){b.seq('marimba',[['F#4',0,.85],['D4',.16,.8]],{tau:.14})},
+  function(b){b.seq('bell',[['B3',0,.85],['F#3',.18,.8]],{tau:.14,ratio:2,idx:.6})},
+  function(b){b.n('pluck','A4',0,.8,{tau:.14,br:3});b.wh(.05,{dur:.3,f0:1800,f1:500,q:.7,amp:.12})}]},
+{g:'plus',id:'energy_back',name:'Энергия восстановлена',cap:'Заряд вернулся, искра',lim:.9,lv:0,d:{lp:8500,rs:.07},vn:['Подъём и блик','Маримба-бег','Вжух и колокол','Челеста и мерцание'],v:[
+  function(b){b.n('sweep','D5',0,.8,{from:.5,tau:.1,time:.09,fixed:true,a:.008});b.n('glass','A5',.22,.85,{tau:.16})},
+  function(b){b.run('marimba',['D4','F#4','A4','D5'],0,.07,.9,{tau:.1});b.n('glass','A5',.3,.7,{tau:.13})},
+  function(b){b.wh(0,{dur:.3,f0:300,f1:2200,q:.9,amp:.16});b.ch('bell',['D5','A5'],.28,.8,{tau:.12,ratio:3.5,idx:.9})},
+  function(b){b.run('celesta',['E4','B4','E5'],0,.1,.85,{tau:.14});b.run('glass',['B5','F#6'],.25,.07,.45,{tau:.15})}]}
+];
+/* ==== ТАБЛИЦА ВЫРАВНИВАНИЯ ГРОМКОСТИ (дБ на вариант) — заполняется скриптом калибровки ==== */
+var TRIM=/*TRIM*/{"tap.0":-5.97,"tap.1":-6.13,"tap.2":-5.33,"tap.3":-5.26,"toggle_on.0":-13.17,"toggle_on.1":-13.43,"toggle_on.2":-9.79,"toggle_on.3":-12.06,"toggle_off.0":-13.6,"toggle_off.1":-14.01,"toggle_off.2":-12.48,"toggle_off.3":-12.78,"sheet_open.0":-12.23,"sheet_open.1":-10.67,"sheet_open.2":-14.36,"sheet_open.3":-14.44,"sheet_close.0":-13.66,"sheet_close.1":-15.27,"sheet_close.2":-18.56,"sheet_close.3":-11.15,"swipe_know.0":-11.14,"swipe_know.1":-14.58,"swipe_know.2":-13.67,"swipe_know.3":-13.88,"swipe_learn.0":-12.86,"swipe_learn.1":-12.88,"swipe_learn.2":-9.87,"swipe_learn.3":-13.12,"story.0":-4.7,"story.1":-11.28,"story.2":-10.3,"story.3":-7.69,"correct.0":-11.52,"correct.1":-11.32,"correct.2":-15.17,"correct.3":-11.14,"wrong.0":-11.61,"wrong.1":-10.48,"wrong.2":-10.84,"wrong.3":-8.62,"lightning.0":-13.49,"lightning.1":-14.23,"lightning.2":-12.59,"lightning.3":-13.09,"lesson_done.0":-15.71,"lesson_done.1":-15.29,"lesson_done.2":-14.45,"lesson_done.3":-15.55,"lesson_perfect.0":-18.48,"lesson_perfect.1":-16.25,"lesson_perfect.2":-16.2,"lesson_perfect.3":-15.26,"hint.0":-10.52,"hint.1":-11.95,"hint.2":-10.99,"hint.3":-13.43,"coin.0":-4.24,"coin.1":-9.97,"coin.2":-4.25,"coin.3":-3.65,"coins_many.0":-13.28,"coins_many.1":-16.32,"coins_many.2":-14.28,"coins_many.3":-16.31,"coin_rank.0":-13.96,"coin_rank.1":-13.94,"coin_rank.2":-15.09,"coin_rank.3":-12.32,"achievement.0":-15.83,"achievement.1":-14.48,"achievement.2":-12.78,"achievement.3":-13.41,"ring.0":-9.71,"ring.1":-7.66,"ring.2":-10.99,"ring.3":-7.88,"day_done.0":-15.82,"day_done.1":-13.79,"day_done.2":-13.35,"day_done.3":-13.51,"streak_small.0":-10.18,"streak_small.1":-11.95,"streak_small.2":-9.58,"streak_small.3":-13.14,"streak_mid.0":-9.94,"streak_mid.1":-11.22,"streak_mid.2":-10.15,"streak_mid.3":-12.1,"streak_big.0":-16.69,"streak_big.1":-17.77,"streak_big.2":-14.75,"streak_big.3":-16.33,"streak_year.0":-13.99,"streak_year.1":-17.28,"streak_year.2":-16.38,"streak_year.3":-13.14,"streak_legend.0":-18.19,"streak_legend.1":-17.05,"streak_legend.2":-14.11,"streak_legend.3":-20.74,"streak_risk.0":-10.62,"streak_risk.1":-9.29,"streak_risk.2":-12.65,"streak_risk.3":-8.33,"step.0":-10.49,"step.1":-9.94,"step.2":-9.34,"step.3":-11.61,"floor.0":-12.85,"floor.1":-10.77,"floor.2":-9.79,"floor.3":-9.21,"summit.0":-14.82,"summit.1":-12.47,"summit.2":-12.04,"summit.3":-16.78,"league_up.0":-14.95,"league_up.1":-12.48,"league_up.2":-18.35,"league_up.3":-17.22,"league_stay.0":-14.53,"league_stay.1":-9.9,"league_stay.2":-12.14,"league_stay.3":-8.48,"league_down.0":-12.66,"league_down.1":-15.16,"league_down.2":-12.22,"league_down.3":-12.14,"new_week.0":-9.87,"new_week.1":-10.56,"new_week.2":-12,"new_week.3":-9.52,"plus.0":-18.19,"plus.1":-16.49,"plus.2":-14.04,"plus.3":-14.21,"energy_out.0":-9.27,"energy_out.1":-12.42,"energy_out.2":-11.37,"energy_out.3":-7.38,"energy_back.0":-9.4,"energy_back.1":-13.7,"energy_back.2":-9.63,"energy_back.3":-15.15}/*ENDTRIM*/;
+
+var BYID={};EV.forEach(function(e){BYID[e.id]=e});
+var GBYID={};GROUPS.forEach(function(g){GBYID[g.id]=g});
+
+/* ====================================================================
+   5. СБОРКА ЗВУКА (общая для живого воспроизведения и OfflineAudioContext)
+   ==================================================================== */
+function build(ctx,bus,ev,vi,o){
+  var ser=ev.ser,step=ser?Math.min(o.step||0,ser.cap):0,shift=ser?Math.round(step*(ser.mul||1)):0;
+  var db=(TRIM[ev.id+'.'+vi]||0)+(o.db||0);
+  var B=new Builder(ctx,bus,{t0:o.t0,seed:hash(ev.id)+vi*977,cents:o.cents||0,db:db,step:step,shift:shift,d:ev.d});
+  ev.v[vi](B);
+  if(ser&&ser.spark&&step>=3&&B.last){ /* зачем: на высоких ступенях серии добавляется блик — звук «разгорается» */
+    var sp=shiftNote(B.last.name,5);if(hz(sp)<2600)B.n('glass',sp,B.last.t,.14+.04*(step-3),{tau:.05,fixed:true,pan:.3});
+  }
+  return B;
+}
+function renderOffline(ev,vi,o){
+  o=o||{};
+  var len=Math.ceil(SR*Math.min(6,ev.lim+2));
+  var ctx=new OfflineAudioContext(2,len,SR),bus=makeBus(ctx);
+  var B=build(ctx,bus,ev,vi,{t0:0,step:o.step||0,cents:0,db:o.db||0});
+  return ctx.startRendering().then(function(buf){return {buf:buf,end:B.end}});
+}
+
+/* ====================================================================
+   6. WAV 44,1 кГц / 16 бит / стерео
+   ==================================================================== */
+function bufToWav(buf){
+  var n=buf.length,L=buf.getChannelData(0),R=buf.numberOfChannels>1?buf.getChannelData(1):L,end=n;
+  while(end>0&&Math.abs(L[end-1])<.0005&&Math.abs(R[end-1])<.0005)end--;
+  end=Math.min(n,end+Math.floor(SR*.03));
+  var fade=Math.floor(SR*.012),frames=end,ab=new ArrayBuffer(44+frames*4),dv=new DataView(ab);
+  function str(o,s){for(var i=0;i<s.length;i++)dv.setUint8(o+i,s.charCodeAt(i))}
+  str(0,'RIFF');dv.setUint32(4,36+frames*4,true);str(8,'WAVE');str(12,'fmt ');dv.setUint32(16,16,true);dv.setUint16(20,1,true);dv.setUint16(22,2,true);
+  dv.setUint32(24,SR,true);dv.setUint32(28,SR*4,true);dv.setUint16(32,4,true);dv.setUint16(34,16,true);str(36,'data');dv.setUint32(40,frames*4,true);
+  for(var i=0;i<frames;i++){
+    var w=i>frames-fade?(frames-i)/fade:1,l=Math.max(-1,Math.min(1,L[i]*w)),r=Math.max(-1,Math.min(1,R[i]*w));
+    dv.setInt16(44+i*4,l<0?l*32768:l*32767,true);dv.setInt16(46+i*4,r<0?r*32768:r*32767,true);
+  }
+  return new Blob([ab],{type:'audio/wav'});
+}
+
+/* ====================================================================
+   7. ЖИВОЕ ВОСПРОИЗВЕДЕНИЕ, «не повторять», серии
+   ==================================================================== */
+var state={sel:{},vol:.8};
+var KEY='phraseman.soundlab.v1';
+try{var raw=localStorage.getItem(KEY);if(raw){var s=JSON.parse(raw);if(s&&typeof s==='object'){state.sel=s.sel||{};if(typeof s.vol==='number')state.vol=Math.min(1,Math.max(0,s.vol))}}}
+catch(e){console.warn('[SOUND-LAB] localStorage недоступен при чтении:',e&&e.message)}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){console.warn('[SOUND-LAB] localStorage недоступен при записи:',e&&e.message)}}
+
+var AC=null,BUS=null;
+function ensureAudio(){
+  if(!AC){
+    var C=window.AudioContext||window.webkitAudioContext;if(!C)throw new Error('Web Audio не поддерживается');
+    AC=new C({latencyHint:'interactive'});BUS=makeBus(AC);applyVol();
+  }
+  if(AC.state==='suspended')AC.resume();
+  var h=document.getElementById('hint');if(h)h.classList.add('gone');
+}
+function applyVol(){if(BUS)BUS.out.gain.value=state.vol*state.vol}
+
+var decks={},counters={};
+function drawVariant(ev){
+  var d=decks[ev.id]||(decks[ev.id]={q:[],last:-1});
+  if(!d.q.length){
+    var q=[0,1,2,3];for(var i=3;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=q[i];q[i]=q[j];q[j]=t}
+    if(q[0]===d.last){var k=1+Math.floor(Math.random()*3),tt=q[0];q[0]=q[k];q[k]=tt}
+    d.q=q;
+  }
+  d.last=d.q.shift();return d.last;
+}
+var act={};
+function playLive(ev,vi,step,micro){
+  ensureAudio();
+  var cents=micro?(Math.random()*2-1)*2.5:0,db=micro?(Math.random()*2-1):0;
+  var t0=AC.currentTime+.03,B=build(AC,BUS,ev,vi,{t0:t0,step:step||0,cents:cents,db:db});
+  return Math.max(.12,B.end-t0)+(ev.d.rl>0?.3:ev.d.rs>0?.1:0);
+}
+function stepFor(ev){var c=counters[ev.id]||0;return ev.ser?c:0}
+function bumpCounter(ev){if(!ev.ser)return;var c=(counters[ev.id]||0)+1;counters[ev.id]=ev.id==='ring'?c%3:Math.min(c,ev.ser.cap+1)}
+function resetSeries(){['correct','lightning','coin'].forEach(function(id){counters[id]=0});refreshSteps()}
+/* «как в приложении»: колода без повторов + микро-вариации + серия + сброс после ошибки */
+function playApp(ev){
+  var vi=drawVariant(ev),step=stepFor(ev);
+  if(ev.id==='wrong')resetSeries();
+  var dur=playLive(ev,vi,step,true);
+  bumpCounter(ev);setActive(ev,vi);flash(ev,vi,dur);refreshSteps();
+  return dur;
+}
+function playSeries5(ev,tok){
+  counters[ev.id]=0;refreshSteps();
+  var i=0;
+  (function next(){
+    if(i>=5||tok!==runTok)return;
+    var dur=playApp(ev);i++;
+    setTimeout(next,Math.max(480,(dur+.1)*1000));
+  })();
+}
+
+/* ====================================================================
+   8. ИНТЕРФЕЙС
+   ==================================================================== */
+var $=function(s,r){return(r||document).querySelector(s)};
+var runTok=0,curGroup='touch';
+function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.h);toast.h=setTimeout(function(){t.classList.remove('show')},2000)}
+function rowEl(ev){return document.getElementById('ev-'+ev.id)}
+function setActive(ev,vi){
+  act[ev.id]=vi;var r=rowEl(ev);if(!r)return;
+  r.querySelectorAll('.vb').forEach(function(b,i){b.classList.toggle('act',i===vi)});
+  r.querySelector('.vname').textContent='Вариант '+(vi+1)+' · '+ev.vn[vi];
+  refreshStar(ev);
+}
+function flash(ev,vi,dur){
+  var r=rowEl(ev);if(!r)return;
+  var b=r.querySelectorAll('.vb')[vi];b.classList.add('hit');r.classList.add('on');
+  clearTimeout(r._h);r._h=setTimeout(function(){b.classList.remove('hit');r.classList.remove('on')},Math.min(900,dur*1000));
+  setTimeout(function(){b.classList.remove('hit')},160);
+}
+function refreshSteps(){
+  EV.forEach(function(ev){
+    if(!ev.ser)return;var r=rowEl(ev);if(!r)return;
+    var c=counters[ev.id]||0;r.querySelector('.step').textContent=ev.id==='ring'?('дальше: кольцо '+(c+1)+' из 3'):('дальше: шаг '+(c+1));
+  });
+  var p=$('#serpill b');if(p)p.textContent=(counters.correct||0);
+}
+function selOf(ev){return state.sel[ev.id]||[]}
+function refreshStar(ev){
+  var r=rowEl(ev);if(!r)return;var s=selOf(ev),a=act[ev.id],btn=r.querySelector('.star');
+  var on=a!=null&&s.indexOf(a)>=0;btn.classList.toggle('on',on);btn.classList.toggle('has',s.length>0);
+  btn.textContent=on?'★ Выбрано':'★ Выбрать';btn.setAttribute('aria-pressed',on?'true':'false');
+  r.querySelectorAll('.vb').forEach(function(b,i){b.classList.toggle('sel',s.indexOf(i)>=0)});
+}
+function renderChosen(){
+  var total=0,html='',txt='Звуки PhraseMan: выбор (Ре мажор)\n';
+  GROUPS.forEach(function(g){
+    html+='<h4>'+g.name+'</h4>';txt+='\n['+g.name+']\n';
+    EV.filter(function(e){return e.g===g.id}).forEach(function(ev){
+      var s=selOf(ev).slice().sort(),has=s.length>0;if(has)total++;
+      var label=has?s.map(function(i){return (i+1)+' '+ev.vn[i]}).join(', '):'не выбрано';
+      html+='<div class="cl'+(has?'':' none')+'"><span>'+ev.name+'</span><span>'+label+'</span></div>';
+      txt+=ev.id+' — '+ev.name+': '+(has?s.map(function(i){return 'вариант '+(i+1)+' ('+ev.vn[i]+')'}).join(', '):'не выбрано')+'\n';
+    });
+  });
+  $('#chosen-box').innerHTML=html;$('#cnt').textContent='Выбрано событий: '+total+' из '+EV.length;
+  renderChosen.txt=txt;
+}
+function groupRowsHTML(g){
+  return EV.filter(function(e){return e.g===g.id}).map(function(ev){
+    var vs=[0,1,2,3].map(function(i){return '<div class="vc"><button class="vb" type="button" data-a="v" data-i="'+i+'" title="'+ev.vn[i]+'" aria-label="Вариант '+(i+1)+': '+ev.vn[i]+'">'+(i+1)+'<span class="k">★</span></button><button class="dl" type="button" data-a="dl" data-i="'+i+'" aria-label="Скачать WAV, вариант '+(i+1)+'">⬇ WAV</button></div>'}).join('');
+    return '<article class="row" id="ev-'+ev.id+'" data-ev="'+ev.id+'"><div class="hd"><div><h3>'+ev.name+'</h3><p class="cap">'+ev.cap+'</p></div><button class="star" type="button" data-a="star" aria-pressed="false">★ Выбрать</button></div>'
+      +'<div class="ctl"><div class="vs">'+vs+'</div><div class="acts"><button class="btn" type="button" data-a="app">🎲 Как в приложении</button>'
+      +(ev.ser?'<button class="btn" type="button" data-a="ser">▶ Серия из 5</button>':'')+'</div></div><div class="ft"><span class="vname">Нажмите 1–4, чтобы послушать</span><span class="step"></span></div></article>';
+  }).join('');
+}
+function buildUI(){
+  var gh='',ch='';
+  GROUPS.forEach(function(g){
+    var n=EV.filter(function(e){return e.g===g.id}).length;
+    ch+='<a href="#g-'+g.id+'" data-g="'+g.id+'">'+g.chip+'</a>';
+    gh+='<section class="grp" id="g-'+g.id+'" data-g="'+g.id+'"><h2>'+g.name+'<small>'+n+' '+(n===1?'событие':n<5?'события':'событий')+'</small></h2>'
+      +(g.id==='learn'?'<div class="pill" id="serpill">Серия верных ответов: <b>0</b><button type="button" data-a="resetser">Сбросить</button></div>':'')
+      +groupRowsHTML(g)+'</section>';
+  });
+  $('#groups').innerHTML=gh;$('#chips').innerHTML=ch;
+  EV.forEach(function(ev){refreshStar(ev)});refreshSteps();renderChosen();
+}
+function selectGroupChip(id){
+  curGroup=id;document.querySelectorAll('#chips a').forEach(function(a){a.classList.toggle('cur',a.dataset.g===id)});
+  var cur=$('#chips a.cur');if(cur&&cur.scrollIntoView){var box=$('#chips');box.scrollTo({left:cur.offsetLeft-16,behavior:'smooth'})}
+}
+function downloadWav(ev,vi,btn){
+  var old=btn.textContent;btn.disabled=true;btn.textContent='…';
+  renderOffline(ev,vi,{step:0}).then(function(r){
+    var blob=bufToWav(r.buf),a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download='phraseman_'+ev.id+'_v'+(vi+1)+'.wav';document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},2500);toast('WAV: '+ev.name+', вариант '+(vi+1));
+  }).catch(function(e){console.error('[SOUND-LAB] WAV не собран',ev.id,vi,e);toast('Не удалось собрать WAV')})
+  .then(function(){btn.disabled=false;btn.textContent=old});
+}
+var playing=false;
+function setGroupBtn(on){playing=on;var b=$('#gplay');b.textContent=on?'■ Стоп':'▶ Сыграть подряд всю группу'}
+function playGroup(){
+  if(playing){runTok++;setGroupBtn(false);return}
+  ensureAudio();var tok=++runTok,list=EV.filter(function(e){return e.g===curGroup}),i=0;setGroupBtn(true);
+  (function next(){
+    if(tok!==runTok)return;
+    if(i>=list.length){setGroupBtn(false);return}
+    var ev=list[i++];rowEl(ev).scrollIntoView({block:'center',behavior:'smooth'});
+    var dur=playApp(ev);setTimeout(next,Math.max(700,(dur+.45)*1000));
+  })();
+}
+function onClick(e){
+  var t=e.target.closest('[data-a]');if(!t)return;
+  var a=t.dataset.a,row=t.closest('.row'),ev=row?BYID[row.dataset.ev]:null;
+  try{
+    if(a==='v'){var vi=+t.dataset.i;runTok++;setGroupBtn(false);var dur=playLive(ev,vi,0,false);setActive(ev,vi);flash(ev,vi,dur)}
+    else if(a==='app'){runTok++;setGroupBtn(false);playApp(ev)}
+    else if(a==='ser'){setGroupBtn(false);playSeries5(ev,++runTok)}
+    else if(a==='dl'){downloadWav(ev,+t.dataset.i,t)}
+    else if(a==='star'){
+      var cur=act[ev.id];if(cur==null){toast('Сначала послушайте вариант');return}
+      var s=selOf(ev).slice(),k=s.indexOf(cur);if(k>=0)s.splice(k,1);else s.push(cur);
+      if(s.length)state.sel[ev.id]=s;else delete state.sel[ev.id];
+      save();refreshStar(ev);renderChosen();
+    }
+    else if(a==='resetser'){resetSeries();toast('Серия сброшена')}
+  }catch(err){console.error('[SOUND-LAB] ошибка действия',a,err);toast('Ошибка: '+(err&&err.message))}
+}
+function copyChoice(){
+  var txt=renderChosen.txt||'';
+  var fallback=function(){
+    var ta=$('#copybox');ta.hidden=false;ta.value=txt;ta.focus();ta.select();var ok=false;
+    try{ok=document.execCommand('copy')}catch(err){console.warn('[SOUND-LAB] execCommand copy:',err&&err.message)}
+    toast(ok?'Скопировано':'Выделено — скопируйте вручную');
+  };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){toast('Скопировано')},function(err){console.warn('[SOUND-LAB] clipboard отказал:',err&&err.message);fallback()});
+  }else fallback();
+}
+function init(){
+  buildUI();
+  var vol=$('#vol');vol.value=Math.round(state.vol*100);$('#volv').textContent=vol.value;
+  vol.addEventListener('input',function(){state.vol=vol.value/100;$('#volv').textContent=vol.value;applyVol();save()});
+  document.addEventListener('click',onClick);
+  $('#gplay').addEventListener('click',playGroup);
+  $('#copy').addEventListener('click',copyChoice);
+  $('#reset').addEventListener('click',function(){state.sel={};save();EV.forEach(refreshStar);renderChosen();toast('Выбор сброшен')});
+  selectGroupChip('touch');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)selectGroupChip(en.target.dataset.g)})},{rootMargin:'-30% 0px -60% 0px'});
+    document.querySelectorAll('section.grp').forEach(function(s){io.observe(s)});
+  }
+}
+init();
+/* интерфейс для скрипта проверки */
+window.SL={events:EV,groups:GROUPS,SR:SR,trim:TRIM,
+  render:function(id,vi,o){return renderOffline(BYID[id],vi,o)},
+  setTrim:function(t){Object.keys(TRIM).forEach(function(k){delete TRIM[k]});Object.assign(TRIM,t)},
+  wavBytes:function(id,vi){return renderOffline(BYID[id],vi,{step:0}).then(function(r){return bufToWav(r.buf).arrayBuffer()}).then(function(ab){return new Uint8Array(ab).length})}
+};
+})();
+</script>
+</body>
+</html>

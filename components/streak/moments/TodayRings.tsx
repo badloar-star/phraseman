@@ -16,7 +16,7 @@ import MomentCoin from '../../moments/MomentCoin';
 import MomentFirework from '../../spire/moments/moments_effects';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { useSpireShadow } from '../../spire/useSpireShadow';
-import { useStreakColors } from './use_streak_colors';
+import { todayRingColors, useStreakColors } from './use_streak_colors';
 import { playStreakTapSound, playTodayDayDoneSound, playTodayRingClosedSound } from './streak_moments_sound';
 import { streakMomentText } from './streak_moments_strings';
 
@@ -58,10 +58,7 @@ const Ring = memo(function Ring({ index, value, color, instant }: RingProps) {
   );
 });
 
-/** Цвета колец = цвета отметок строк: акцент темы, второй цвет, золото темы (образец: --acc, --r2, --r3). */
-export function todayRingColors(c: Readonly<{ accent: string; second: string; gold: string }>): readonly [string, string, string] {
-  return [c.accent, c.second, c.gold];
-}
+export { todayRingColors };
 
 export type TodayRingsProps = Readonly<{
   lang: Lang;
@@ -77,7 +74,7 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
-  const streakColors = useStreakColors();
+  const streakColors = useStreakColors()!; // enabled по умолчанию — не null
   const colors = todayRingColors(streakColors);
   const values = progress.map((n, i) => todayRingFraction(n, targets[i]));
   const allClosed = values.every((x) => x >= 1);

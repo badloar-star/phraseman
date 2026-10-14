@@ -8,12 +8,19 @@ import { streakSecondColor } from './streak_stage_colors';
 
 export type StreakColors = Readonly<{ accent: string; second: string; gold: string; text: string }>;
 
-export function useStreakColors(): StreakColors {
+/** Цвета колец = цвета отметок строк: акцент темы, второй цвет, золото темы (образец: --acc, --r2, --r3). Чистая функция — живёт здесь, чтобы Главная не тянула тяжёлый TodayRings ради неё. */
+export function todayRingColors(c: Readonly<{ accent: string; second: string; gold: string }>): readonly [string, string, string] {
+  return [c.accent, c.second, c.gold];
+}
+
+/** `enabled=false` (флаг moments_v3 выключен): ничего не считаем — холодный старт и рендеры Главной не платят за цвета колец. */
+export function useStreakColors(enabled: boolean = true): StreakColors | null {
   const { liquidGlassThemeId } = useTheme();
   const p = useSpirePalette();
   return useMemo(() => {
+    if (!enabled) return null;
     const g = liquidGlassTokens(liquidGlassThemeId);
     const accent = g.accentGraphic ?? g.accent;
     return { accent, second: streakSecondColor({ themeId: liquidGlassThemeId, accent, text: g.text, bg: g.bg, gold: p.gold }), gold: p.gold, text: g.text };
-  }, [liquidGlassThemeId, p.gold]);
+  }, [enabled, liquidGlassThemeId, p.gold]);
 }

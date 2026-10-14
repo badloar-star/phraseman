@@ -7,9 +7,7 @@ import { useV2Palette } from '../../v2/useV2Palette';
 import { V2IconTile } from '../../v2/V2Glass';
 import { HOME_PLATE_ALPHA, useHomePlateStyle } from './homePlate';
 import type { TodayTask, TodayTaskKind } from './home_v2_types';
-import TodayRingsSlot from '../../streak/moments/TodayRingsSlot';
-import { todayRingColors } from '../../streak/moments/TodayRings';
-import { useStreakColors } from '../../streak/moments/use_streak_colors';
+import { todayRingColors, useStreakColors } from '../../streak/moments/use_streak_colors';
 import { useMomentsV3Enabled } from '../../streak/moments/use_moments_v3_flag';
 
 const KIND_ICON: Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']> = {
@@ -40,14 +38,17 @@ export default function HomeV2TodayCard({ title, tasks, onOpenTask, surveyRow }:
   const rowGlass = useHomePlateStyle(true);
   // зачем (координатор 14.10, момент m11): за флагом moments_v3 над списком — три кольца дня, а отметка выполненной строки красится в цвет её кольца; флаг выключен — блок как был
   const ringsOn = useMomentsV3Enabled();
-  const ringColors = todayRingColors(useStreakColors());
+  // зачем (скорость холодного старта, 14.10): при выключенном флаге ни TodayRings, ни MomentCoin, ни слот колец не загружаются — слот подключается require'ом только когда флаг включён
+  const streakColors = useStreakColors(ringsOn);
+  const ringColors = streakColors ? todayRingColors(streakColors) : null;
+  const TodayRingsSlot = ringsOn ? (require('../../streak/moments/TodayRingsSlot') as typeof import('../../streak/moments/TodayRingsSlot')).default : null;
   return (
     <View testID="home-v2-today" style={s.card}>
       <Text accessibilityRole="header" style={[s.header, { color: p.textSecondary }]}>{title}</Text>
-      {ringsOn ? <TodayRingsSlot tasks={tasks} /> : null}
+      {TodayRingsSlot ? <TodayRingsSlot tasks={tasks} /> : null}
       <View style={s.list}>
         {tasks.map((task, index) => {
-          const doneColor = ringsOn && index < 3 ? ringColors[index] : p.iconTint;
+          const doneColor = ringColors && index < 3 ? ringColors[index] : p.iconTint;
           const counter = `${Math.min(task.progress, task.target)}/${task.target}`;
           return (
             <V2Pressable

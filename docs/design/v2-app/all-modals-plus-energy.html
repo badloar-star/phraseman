@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог модалов · 1 · Plus, энергия, возвратный оффер</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="engagement-moments.css">
+<link rel="stylesheet" href="engagement-moments-v2.css">
+<link rel="stylesheet" href="engagement-moments-v3.css">
+<link rel="stylesheet" href="engagement-moments-app.css">
+<style>
+/* зачем (координатор 14.10, «МАКЕТ ВСЕХ МОДАЛОВ»): каждое окно 1:1 из кода (тексты, GlassAlertDialog / KitSheetModal / V2Button),
+   в трёх темах (Аврора тёмная, Аврора светлая, Ирис светлая), кнопки по токенам 16e2b8311 (ctaFill / buttonFill / dangerFill),
+   минимум элементов. Где код расходится с требованиями — рисуем «как должно быть» и пишем «в коде иначе: …». */
+.em-page .diff { margin-top: 18px; padding: 16px 18px; border-radius: 18px; background: #121214; box-shadow: 0 16px 28px -14px rgba(0,0,0,.75); max-width: 1100px; }
+.em-page .diff h3 { margin: 0 0 8px; font-size: 15px; letter-spacing: 2px; text-transform: uppercase; color: #8BE5B6; }
+.em-page .diff ol, .em-page .diff ul { margin: 0; padding-left: 20px; color: var(--sec); font-size: 14px; line-height: 1.6; }
+.em-page .diff li b { color: #E6E6E8; font-weight: 600; }
+.em-page .code { display: inline-block; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 12px; padding: 1px 6px; border-radius: 6px; background: #1E1E22; color: #D6D6D8; }
+.em-var .note .dev { display: block; margin-top: 6px; padding: 8px 10px; border-radius: 10px; background: #1B1A14; color: #E8D9A0; font-size: 13px; line-height: 1.45; }
+.em-var .note .dev b { color: #F3E4A8; }
+.em-var .note .ok { display: block; margin-top: 6px; color: #8BE5B6; }
+/* три темы рядом */
+.em-page.tri .em-var { width: auto; }
+.em-page.tri .em-var [data-wrap] { display: flex; gap: 14px; flex-wrap: wrap; }
+.em-page.tri .em-var [data-wrap] .em-ph { flex: none; }
+.em-page.tri .em-var .lbl, .em-page.tri .em-var .note { max-width: 1200px; }
+/* элементы окон этой группы */
+.em-ph .modal .bolt { width: 68px; height: 68px; border-radius: 34px; margin: 0 auto 15px; background: var(--control); box-shadow: var(--sh2); display: flex; align-items: center; justify-content: center; color: var(--acc); position: relative; }
+.em-ph .modal .bolt::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; background: radial-gradient(circle, var(--acc-soft), transparent 70%); animation: haloP 2.2s ease-in-out infinite; z-index: -1; }
+@keyframes haloP { 0%, 100% { opacity: .5; transform: scale(.95); } 50% { opacity: 1; transform: scale(1.1); } }
+.em-ph .modal .bolt .io { animation: boltIn 560ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes boltIn { 0% { transform: scale(0) rotate(-12deg); } 60% { transform: scale(1.18) rotate(4deg); } 100% { transform: scale(1) rotate(0); } }
+.em-ph .modal .timer { font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.5px; text-align: center; font-variant-numeric: tabular-nums; margin-top: 10px; }
+.em-ph .modal .acts.col { flex-direction: column; }
+.em-ph .modal .meta { text-align: center; font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 10px; }
+.em-ph .modal .meta b { color: var(--tx); font-weight: 700; }
+.em-ph .modal .lead { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; padding: 12px 14px; font-size: 16px; font-weight: 600; }
+/* энергия-поповер (EnergyInfoPopover) */
+.em-ph .pop { position: absolute; z-index: 60; top: 104px; right: 16px; width: 250px; padding: 14px 16px; border-radius: 18px; background: linear-gradient(180deg, var(--sheetplate1), var(--sheetplate2)); box-shadow: var(--sh); animation: emModalIn 420ms cubic-bezier(.23,1,.32,1) both; transform-origin: 90% 0; }
+.em-ph .pop .t { font-size: 16px; line-height: 22px; font-weight: 700; }
+.em-ph .pop .s { font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 4px; }
+.em-ph .pop .seg { display: flex; gap: 4px; margin-top: 12px; }
+.em-ph .pop .seg i { flex: 1; height: 6px; border-radius: 3px; background: var(--ti); }
+.em-ph .pop .seg i.on { background: var(--acc); }
+.em-ph .pop::before { content: ''; position: absolute; top: -6px; right: 22px; width: 14px; height: 14px; transform: rotate(45deg); background: var(--sheetplate1); border-radius: 3px; }
+/* пейвол (PaywallPlusScreen) */
+.em-ph .pw { position: absolute; inset: 0; z-index: 45; background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 55%); display: flex; flex-direction: column; animation: emSheetIn 440ms cubic-bezier(.23,1,.32,1) both; }
+.em-ph .pw .scroll { flex: 1; overflow: hidden; padding: 58px 20px 0; }
+.em-ph .pw .bar { display: flex; align-items: center; justify-content: space-between; }
+.em-ph .pw .kick { font-size: 13px; line-height: 17px; letter-spacing: 2px; font-weight: 800; text-transform: uppercase; color: var(--sc); }
+.em-ph .pw .pill.ctx { height: 30px; border-radius: 15px; padding: 0 12px; font-size: 13px; font-weight: 700; margin-top: 16px; display: inline-flex; }
+.em-ph .pw .h1 { font-size: 30px; line-height: 35px; font-weight: 800; letter-spacing: -.5px; margin-top: 12px; }
+.em-ph .pw .sub { font-size: 16px; line-height: 22px; color: var(--sc); margin-top: 8px; }
+.em-ph .pw .lead { display: flex; align-items: center; gap: 10px; margin-top: 14px; padding: 12px 14px; font-size: 16px; font-weight: 600; }
+.em-ph .pw .lead .io { color: var(--acc); }
+.em-ph .pw .sec { font-size: 13px; letter-spacing: 1.4px; font-weight: 700; text-transform: uppercase; color: var(--mu); margin: 18px 0 8px; }
+.em-ph .pw .ben { display: flex; align-items: center; gap: 12px; padding: 9px 0; font-size: 16px; line-height: 20px; }
+.em-ph .pw .ben .tile { width: 36px; height: 36px; border-radius: 11px; background: var(--ti); box-shadow: var(--sh2); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.em-ph .pw .ben s { display: block; text-decoration: none; font-size: 13px; line-height: 17px; color: var(--sc); font-weight: 400; }
+.em-ph .pw .plans { display: flex; gap: 10px; margin-top: 12px; }
+.em-ph .pw .plan { flex: 1; padding: 14px; border-radius: 18px; position: relative; }
+.em-ph .pw .plan.on { box-shadow: var(--sho), inset 0 0 0 2px var(--acc); }
+.em-ph .pw .plan .nm { font-size: 16px; font-weight: 700; }
+.em-ph .pw .plan .big { font-size: 26px; line-height: 30px; font-weight: 800; letter-spacing: -.5px; margin-top: 8px; }
+.em-ph .pw .plan .sm { font-size: 13px; line-height: 17px; color: var(--sc); }
+.em-ph .pw .plan .badge { position: absolute; top: -10px; left: 12px; height: 22px; padding: 0 9px; border-radius: 11px; background: var(--cta); color: var(--cta-ink); font-size: 12px; font-weight: 800; display: inline-flex; align-items: center; }
+.em-ph .pw .dock { flex: none; padding: 12px 20px 30px; background: linear-gradient(180deg, transparent, var(--bg) 24%); }
+.em-ph .pw .dock .fine { font-size: 13px; line-height: 17px; color: var(--mu); text-align: center; margin-top: 10px; }
+.em-ph .pw .dock .links { display: flex; justify-content: center; gap: 18px; margin-top: 12px; font-size: 13px; color: var(--mu); font-weight: 600; }
+.em-ph .pw.closing { animation: pwOut 220ms cubic-bezier(.4,0,1,1) both; }
+@keyframes pwOut { to { opacity: 0; transform: translateY(40px); } }
+.em-ph .modal.closing { animation: mdOut 180ms cubic-bezier(.4,0,1,1) both; }
+@keyframes mdOut { to { opacity: 0; transform: translateY(-50%) scale(.96); } }
+.em-ph .dim.closing { animation: emFadeOut 220ms both; }
+@keyframes emFadeOut { to { opacity: 0; } }
+/* «экран отвечает» — импульс фокуса после закрытия окна */
+.em-ph .focus-ring { position: absolute; left: 16px; right: 16px; top: 122px; height: 150px; border-radius: 24px; z-index: 30; pointer-events: none; box-shadow: 0 0 0 0 var(--acc); animation: fring 900ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes fring { 0% { box-shadow: 0 0 0 0 var(--acc); opacity: 1; } 100% { box-shadow: 0 0 0 10px transparent; opacity: 0; } }
+.em-ph .tap { position: absolute; width: 36px; height: 36px; border-radius: 50%; background: var(--acc); opacity: 0; z-index: 90; pointer-events: none; transform: translate(-50%, -50%) scale(.4); animation: tapP 520ms ease-out both; }
+@keyframes tapP { 0% { opacity: .55; transform: translate(-50%, -50%) scale(.4); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.6); } }
+/* праздник Plus (PremiumCelebrationModal) */
+.em-ph .cel .scene { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 76px 24px 36px; opacity: 0; pointer-events: none; }
+.em-ph .cel .scene.on { opacity: 1; pointer-events: auto; animation: emUp 460ms var(--em-ease) both; }
+.em-ph .cel .scene .body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.em-ph .cel .card { width: 100%; padding: 16px; margin-top: 18px; text-align: left; display: flex; gap: 12px; align-items: center; }
+.em-ph .cel .card .tile { width: 44px; height: 44px; border-radius: 14px; background: var(--ti); box-shadow: var(--sh2); display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--acc); }
+.em-ph .cel .card b { display: block; font-size: 16px; }
+.em-ph .cel .card s { display: block; text-decoration: none; font-size: 13px; line-height: 17px; color: var(--sc); margin-top: 2px; }
+.em-ph .cel .dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 14px; }
+.em-ph .cel .dots i { width: 6px; height: 6px; border-radius: 3px; background: var(--ti); }
+.em-ph .cel .dots i.on { background: var(--acc); width: 18px; }
+.em-ph .cel .skip { position: absolute; top: 58px; right: 20px; font-size: 16px; font-weight: 600; color: var(--sc); height: 44px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 22px; background: var(--btn); color: var(--tx); box-shadow: var(--sh2); }
+.em-ph .cel .crest { width: 96px; height: 96px; border-radius: 30px; background: var(--control); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--acc); animation: crestIn 700ms cubic-bezier(.23,1,.32,1) both; }
+@keyframes crestIn { 0% { transform: scale(.4) rotate(-8deg); opacity: 0; } 60% { transform: scale(1.1) rotate(2deg); opacity: 1; } 100% { transform: scale(1) rotate(0); } }
+/* тосты: ряд иконка + текст (ActionToast) */
+.em-ph .toast .act { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--btn); color: var(--tx); font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; box-shadow: var(--sh2); flex: none; }
+.em-ph .toast .tile { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; flex: none; color: var(--acc); }
+.em-ph .toast.bad .tile { color: var(--bad); }
+.em-ph .toast .x { font-weight: 600; }
+.em-ph .bell { width: 96px; height: 96px; border-radius: 30px; background: var(--control); box-shadow: var(--sh); display: flex; align-items: center; justify-content: center; color: var(--acc); animation: crestIn 700ms cubic-bezier(.23,1,.32,1) both; }
+</style>
+</head>
+<body>
+<div class="em-page" id="page">
+  <div class="em-top"><div><span class="em-stage">ЧЕРНОВИК, ОСТАНОВЛЕНО (координатор 14.10: заказ «каталог всех модалов» отменён) · группа 1 · Plus, энергия, возвратный оффер</span><h1 class="page-h1" style="margin-top:10px">Все окна приложения — Plus, энергия и возврат после долгого отсутствия</h1>
+  <p class="page-lead">Каждое окно — 1:1 из кода: тексты, оболочка (GlassAlertDialog / KitSheetModal / полноэкранный маршрут), кнопки V2Button по токенам ctaFill / buttonFill / dangerFill. Три темы: Аврора тёмная → Аврора светлая → Ирис светлая (кнопка «Тема» под каждым телефоном или «Три темы рядом»). Где код расходится с требованиями владельца — нарисовано «как должно быть», расхождение подписано жёлтой плашкой «в коде иначе».</p></div>
+  <div class="em-tools"><a class="em-btn" href="engagement-moments-index.html">← Индекс</a><a class="em-btn" href="energy-modes-states.html">Энергия · состояния</a><a class="em-btn" href="paywall-context-redesign.html">Пейвол · контексты</a><span class="em-btn pri" id="tri">Три темы рядом</span></div></div>
+  <div class="diff"><h3>Отметка по чек-листу владельца (разделы 1–6)</h3><ol>
+    <li><b>1 · Вид 2.0:</b> подложки — настоящие экраны (Главная HomeV2, Пик с доком энергии SpireClimbDock, урок, диалоги); окна GlassAlertDialog (радиус 25, заголовок 23/800), шторки KitSheetModal (28, grabber 44×5), тосты ActionToast; стиль «Тень», обводок нет.</li>
+    <li><b>2 · 1:1 из кода:</b> тексты из NoEnergyModal, EnergyNeededSheet, EnergyStopSheet, EnergyInfoPopover, energy_toasts, PaywallPlusCopy, paywall_context_texts (no_energy / winback / streak / dialog_limit / intro_ended / generic), PaywallTrialReminderPrompt, celebrationLiquidCopy, IntroFullAccessModal, EntitlementExpiredHost, BillingIssueToastHost, paywall_purchase, manage_subscription. Цифры по коду: энергия +1 / 10 мин, запас 5, 30 ответов в диалогах в месяц, 3 разбора в день, уроки 1–3 бесплатно, 32 урока курса. Цены — пример «≈ €», реальные из магазина (D158).</li>
+    <li><b>3 · Кнопки:</b> primary = ctaFill, вторичная = buttonFill со своей поверхностью (никаких «текстовых» кнопок без фона), опасная = dangerFill; зазор 9 в ряду GlassAlertDialog и 12 в столбике; неактивная — отдельный токен; контраст ≥ 4,5:1 (проверка playwright).</li>
+    <li><b>4 · Правила:</b> один пейвол Plus (D115), пробный — как даёт магазин (D117), множителей и бонусов нет (D07/D147, D09), заморозка Plus — автоматическая 3 раза в месяц без кнопки (D107, Q94) — только как строка выгоды; ранг только за монеты; капсула энергии — только в Пике (D170).</li>
+    <li><b>5 · Анимация:</b> окно 420 мс пружиной, закрытие 180–220 мс, шторка 440 мс; тайм-листы со звуком каталога (fc_flip, message_received, ob_purchase_success, fc_incorrect) и хаптик-импульсом.</li>
+    <li><b>6 · Проверка:</b> playwright — картинки / кнопки / звуки / JS-ошибки, в сообщении координатору.</li>
+  </ol></div>
+  <nav class="em-toc" id="toc"></nav>
+  <div id="root"></div>
+</div>
+<script src="spire-tower-render.js"></script>
+<script src="engagement-moments.js"></script>
+<script src="engagement-moments-v2.js"></script>
+<script src="engagement-moments-v3.js"></script>
+<script src="engagement-moments-app.js"></script>
+<script>
+(() => {
+const { confetti, moment, render } = EM;
+const { coinChar } = EM2;
+const { attachBeats, seq } = EM3;
+const { io, coin, IO, homeUnder, spireUnder, lessonUnder, dialogsUnder, briefUnder } = EMA;
+const prim = (t, cls = '') => `<div class="cta ${cls}">${t}</div>`;
+const sec = (t) => `<div class="cta ghost">${t}</div>`;
+const themeCols = (ph) => ['--acc', '--acc2', '--tx'].map((v) => getComputedStyle(ph).getPropertyValue(v).trim());
+const dev = (t) => `<span class="dev"><b>в коде иначе:</b> ${t}</span>`;
+const ok = (t) => `<span class="ok">${t}</span>`;
+const WAIT = '9:40';
+// GlassAlertDialog: иконка-сцена (опц.), заголовок 23/800, текст 16, кнопки ряд gap 9 / столбик
+const dialog = (o) => `<div class="dim"></div><div class="modal">${o.stage || ''}<div class="h-lg">${o.title}</div>${o.body ? `<div class="p">${o.body}</div>` : ''}${o.extra || ''}<div class="acts${o.col ? ' col' : ''}">${o.acts}</div></div>`;
+const bolt = () => `<div class="bolt">${io('flash', 30)}</div>`;
+// KitSheetModal
+const sheet = (o) => `<div class="dim"></div><div class="sheet"><div class="grab"></div>${o.head || ''}<div class="h-md">${o.title}</div>${o.body ? `<div class="p" style="margin-top:8px">${o.body}</div>` : ''}${o.extra || ''}<div style="margin-top:18px;display:flex;flex-direction:column;gap:12px">${o.acts}</div></div>`;
+// ActionToast
+const toast = (o) => `<div class="toast${o.bad ? ' bad' : ''}${o.bot ? ' bot' : ''}"><span class="tile">${io(o.icon || 'check', 22)}</span><div class="x">${o.text}</div>${o.act ? `<span class="act">${o.act}</span>` : ''}</div>`;
+const BEAT_OPEN = [{ t: 0.0, w: 'окно 420 мс пружиной (GlassAlertDialog), скрим 320 мс', h: 'light', snd: 'flip', s: 'fc_flip' }];
+const BEAT_SHEET = [{ t: 0.0, w: 'шторка 440 мс (KitSheetModal)', h: 'light', snd: 'flip', s: 'fc_flip' }];
+const BEAT_TOAST = [{ t: 0.0, w: 'тост пружиной сверху, 3 с, уходит сам', h: 'light', snd: 'msg', s: 'message_received' }];
+const BEAT_BAD = [{ t: 0.0, w: 'тост ошибки', h: 'warning', snd: 'wrong', s: 'fc_incorrect', gain: .5 }];
+
+/* пейвол (нужен и в разделе 1 — «закрытие → пейвол») */
+const BEN = [['copy', 'Карточки без ограничений', 'Сохраняй, создавай наборы, тренируйся'], ['book', 'Все 32 урока курса', 'Бесплатно — уроки 1–3'], ['sparkles', 'AI разбирает каждую ошибку', 'Бесплатно — 3 разбора в день'], ['flash', 'Энергия не тратится', 'Учись без пауз'], ['flame', '3 заморозки серии в месяц', 'Пропустил день — серия цела']];
+const CTX = {
+  no_energy: { pill: 'Энергия 0', title: 'Энергия закончилась', sub: 'С Plus она не тратится — занимайся дальше сразу.', benefit: 'Занятия без ожидания', lead: 3 },
+  winback: { pill: '', title: 'С возвращением', sub: 'Выученное на месте. Начни с короткого урока — дальше пойдёт само.', benefit: 'Всё открыто с первого дня', lead: 1 },
+  streak: { pill: 'Серия 12 дней', title: 'Не потеряй серию', sub: 'Plus защитит её, если пропустишь день.', benefit: 'Защита серии даже при пропуске', lead: 4 },
+  dialog_limit: { pill: '30 из 30', title: 'Ответы в диалогах закончились', sub: 'Бесплатно — 30 ответов в месяц. С Plus счётчика нет.', benefit: 'Все сценарии без месячного лимита', lead: 2 },
+  intro_ended: { pill: '', title: 'Пробный доступ закончился', sub: 'Plus вернёт всё: курс, разговоры, тренировки и статистику.', benefit: 'Полный доступ возвращается целиком', lead: 1 },
+  generic: { pill: '', title: 'Всё приложение целиком', sub: 'Весь курс, разговоры вслух, тренировки, коллекция фраз и статистика.', benefit: 'Говоришь вслух с первого дня', lead: 2 },
+};
+const paywall = (c, o = {}) => `<div class="pw"${o.hidden ? ' style="display:none"' : ''} data-pw><div class="scroll"><div class="bar"><span class="kick">Phraseman Plus</span><span class="ib" data-close>${io('close', 20)}</span></div>
+  ${c.pill ? `<span class="pill ctx">${c.pill}</span>` : ''}<div class="h1">${c.title}</div><div class="sub">${c.sub}</div>
+  <div class="sf lead">${io('check', 20)}${c.benefit}</div>
+  <div class="sec">Что входит</div>${BEN.filter((b, i) => i !== c.lead).slice(0, 3).map((b) => `<div class="ben"><span class="tile">${io(b[0], 18)}</span><div>${b[1]}<s>${b[2]}</s></div></div>`).join('')}
+  <div class="plans"><div class="sf plan on"><span class="badge">Выгоднее всего</span><div class="nm">Год</div><div class="big">≈ €39,99</div><div class="sm">в год</div><div class="sm" style="margin-top:4px">≈ €3,33 в месяц</div></div><div class="sf plan"><div class="nm">Месяц</div><div class="big">≈ €4,99</div><div class="sm">в месяц</div><div class="sm" style="margin-top:4px">&nbsp;</div></div></div></div>
+  <div class="dock">${prim('Оформить за ≈ €39,99 в год')}<div class="fine">Продлевается каждый год · Отмена в любой момент</div><div class="links"><span>Восстановить</span><span>Условия</span><span>Конфиденциальность</span></div></div></div>`;
+
+/* ---------- 1. Энергия закончилась — NoEnergyModal ---------- */
+const noEnergyDialogs = () => dialog({ stage: bolt(), title: 'Энергия закончилась', body: `+1 ${io('flash', 15, 'color:var(--acc);vertical-align:-2px')} вернётся через <b style="color:var(--tx)">${WAIT}</b>. В Plus энергия безлимитная.`, acts: `${sec('Позже')}${prim('Получить Plus')}` });
+const noEnergyLearn = () => dialog({ stage: bolt(), title: 'Недостаточно энергии', body: `Одна единица восстановится через <b style="color:var(--tx)">${WAIT}</b>. В Plus энергия безлимитная.`, col: true, acts: `${prim('Открыть Plus')}${sec('Позже')}` });
+const noEnergyCourse = () => dialog({ stage: bolt(), title: 'Энергия закончилась', extra: `<div class="meta" style="margin-top:14px">Энергии хватит через</div><div class="timer" data-timer>${WAIT}</div><div class="meta">Запас <b>5</b>, каждые <b>10 минут</b> +1. Plus занимается без ограничений</div>`, col: true, acts: `${prim('Plus — без ограничений')}${sec('Позже')}` });
+const noEnergyToPaywall = () => `${noEnergyDialogs()}${paywall(CTX.no_energy, { hidden: true })}`;
+moment({ id: 'm01', num: '01', short: 'NoEnergyModal', title: 'Энергия закончилась — NoEnergyModal (три варианта)', tag: 'old',
+  lead: 'Одно окно GlassAlertDialog, три варианта из кода: <b>dialogs</b> (B5 — две кнопки в ряд), <b>learn</b> (столбик), <b>course</b> (крупный таймер). Молния в круге с пульсирующим ореолом — как boltCircle + haloPulse в коде. Тексты 1:1; «Позже» — вторичная кнопка buttonFill со своей поверхностью.',
+  variants: [
+    { k: 'A', label: 'dialogs · две кнопки в ряд', time: '~0,5 с', phone: { under: dialogsUnder(), over: noEnergyDialogs() }, total: 1, beats: BEAT_OPEN,
+      why: 'Короткая правда: сколько ждать и что даёт Plus. Два равных выхода.', ref: 'NoEnergyModal variant="dialogs" (B5).', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.',
+      note: dev('кнопки лежат на <span class="code">glass.opaqueControl</span> с nestedBoxShadow, не на buttonFill (токены 16e2b8311); скрим — хардкод <span class="code">rgba(0,0,0,0.6)</span> вместо токена темы.') },
+    { k: 'B', label: 'learn · столбик', time: '~0,5 с', phone: { under: homeUnder({ streak: 4 }), over: noEnergyLearn() }, total: 1, beats: BEAT_OPEN,
+      why: 'Из списка занятий — одно действие сверху, выход снизу.', ref: 'NoEnergyModal variant="learn".', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.',
+      note: dev('в варианте learn единственная кнопка «Открыть Plus», выход — только тапом по скриму; нужна явная вторичная «Позже» (правило кнопок владельца: у каждого окна видимый выход).') },
+    { k: 'C', label: 'course · крупный таймер', time: '~0,5 с', phone: { under: lessonUnder({ pct: 40 }), over: noEnergyCourse() }, total: 1, beats: BEAT_OPEN,
+      init: (ph) => { const el = ph.querySelector('[data-timer]'); let s = 9 * 60 + 40; const iv = setInterval(() => { s -= 1; if (s < 0) { clearInterval(iv); return; } el.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; }, 1000); return () => clearInterval(iv); },
+      why: 'Таймер живой — человек видит, что ждать недолго.', ref: 'NoEnergyModal variant="course".', fx: 'таймер тикает раз в секунду (как в коде).', snd: 'см. тайм-лист.',
+      note: dev('«Позже» в course — текстовая кнопка без поверхности (сливается с фоном); должна быть buttonFill 44 px, зазор 12.') },
+    { k: 'D', label: 'закрытие → пейвол (как должно быть)', time: '~2,5 с', phone: { under: dialogsUnder(), over: noEnergyToPaywall() }, total: 3,
+      init: (ph) => seq(ph, [[1400, () => { tapAt(ph, 290, 560); ph.querySelector('.modal').classList.add('closing'); }], [1600, () => { ph.querySelector('.modal').remove(); const pw = ph.querySelector('.pw'); pw.style.display = ''; }]]),
+      beats: [{ t: 0.0, w: 'окно 420 мс', h: 'light', snd: 'flip', s: 'fc_flip' }, { t: 1.4, w: 'тап «Получить Plus»: окно уходит 180 мс (scale .96 + fade), скрим остаётся', h: 'medium' }, { t: 1.6, w: 'пейвол выезжает 440 мс поверх того же скрима — без «чёрного кадра»', snd: 'flip', s: 'fc_flip' }],
+      why: 'Один непрерывный жест: окно → пейвол без паузы и мигания фона.', ref: 'Duolingo hearts → super sheet.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.',
+      note: dev('на Android <span class="code">Modal.onDismiss</span> не вызывается, поэтому переход на пейвол ждёт <span class="code">InteractionManager</span> + таймер 360 мс после скрытия окна — между окном и пейволом пустой кадр; на iOS переход в onDismiss. Должно быть: скрим общий, окно и пейвол меняются под ним без разрыва.') },
+  ] });
+
+/* ---------- 2. Нужна энергия — EnergyNeededSheet ---------- */
+const needed = () => dialog({ stage: bolt(), title: 'Нужна энергия', body: `Чтобы начать занятие, нужна 1 энергия. Следующая вернётся через <b style="color:var(--tx)">${WAIT}</b>`, extra: `<div class="meta">энергия <b>0</b> из <b>5</b></div>`, acts: `${sec('Подожду')}${prim('Продолжить с Plus')}` });
+moment({ id: 'm02', num: '02', short: 'EnergyNeededSheet', title: 'Нужна энергия — EnergyNeededSheet', tag: 'old',
+  lead: 'Режим neededSheetMode: окно перед стартом занятия. Тексты 1:1. «Подожду» — вторичная buttonFill (в коде так и есть).',
+  variants: [{ k: 'A', label: 'перед стартом занятия', time: '~0,5 с', phone: { under: homeUnder({ streak: 4 }), over: needed() }, total: 1, beats: BEAT_OPEN,
+    why: 'Честно: сколько ждать и чем заменить ожидание.', ref: 'EnergyNeededSheet.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: ok('кнопки в коде уже на buttonFill / ctaFill — расхождений нет; скрим хардкод rgba(0,0,0,.6).') }] });
+
+/* ---------- 3. Энергия закончилась посреди занятия — EnergyStopSheet ---------- */
+const stop = () => dialog({ stage: bolt(), title: 'Энергия закончилась', body: `Занятие остановлено, а не потеряно. Продолжи с Plus сейчас — вернёшься на тот же вопрос. Или подожди: +1 энергия вернётся через <b style="color:var(--tx)">${WAIT}</b>.`, col: true, acts: `${prim('Продолжить с Plus')}${sec('Выйти из занятия')}` });
+moment({ id: 'm03', num: '03', short: 'EnergyStopSheet', title: 'Энергия закончилась посреди занятия — EnergyStopSheet', tag: 'old',
+  lead: 'Жестом не закрывается (есть только две кнопки) — как в коде. «Выйти из занятия» — вторичная buttonFill, не dangerFill: прогресс не теряется, окно само так говорит.',
+  variants: [{ k: 'A', label: 'в уроке, вопрос 7 из 10', time: '~0,5 с', phone: { under: lessonUnder({ pct: 70 }), over: stop() }, total: 1, beats: BEAT_OPEN,
+    why: 'Снимает страх потери: «вернёшься на тот же вопрос».', ref: 'EnergyStopSheet.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: ok('тексты и кнопки совпадают с кодом.') }] });
+
+/* ---------- 4. Поповер энергии — EnergyInfoPopover ---------- */
+const pop = (o) => `<div class="pop"><div class="t">${o.t}</div><div class="s">${o.s}</div>${o.seg ? `<div class="seg">${[0, 1, 2, 3, 4].map((i) => `<i class="${i < o.seg ? 'on' : ''}"></i>`).join('')}</div>` : ''}</div>`;
+moment({ id: 'm04', num: '04', short: 'EnergyInfoPopover', title: 'Поповер энергии — EnergyInfoPopover', tag: 'old',
+  lead: 'Тап по капсуле энергии в Пике (D170: капсула только в Пике). Три состояния из кода: восстанавливается, запас полон, Plus. Закрывается тапом в любое место.',
+  variants: [
+    { k: 'A', label: '3 из 5 · восстанавливается', time: '~0,4 с', phone: { under: spireUnder({ li: 0, myFloor: 4, en: 3 }), over: pop({ t: '1 энергия каждые 10 мин', s: `Следующая через ${WAIT} · 3 из 5`, seg: 3 }) }, total: .6, beats: [{ t: 0.0, w: 'поповер 420 мс из угла капсулы', h: 'light', snd: 'tick', s: 'fc_tick', gain: .6 }],
+      why: 'Правило восстановления на месте, без отдельного экрана.', ref: 'EnergyInfoPopover.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('стрелка поповера сделана через <span class="code">borderTopWidth 7</span> — обводка; тень <span class="code">#000</span> хардкод. Должно быть: ромб той же поверхности (как здесь), тень из токена.') },
+    { k: 'B', label: '5 из 5 · запас полон', time: '~0,4 с', phone: { under: spireUnder({ li: 0, myFloor: 4, en: 5 }), over: pop({ t: 'Запас полон', s: '5 из 5 · можно начинать', seg: 5 }) }, total: .6, beats: [{ t: 0.0, w: 'поповер 420 мс', h: 'light', snd: 'tick', s: 'fc_tick', gain: .6 }],
+      why: 'Подтверждение без лишних слов.', ref: 'EnergyInfoPopover.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'C', label: 'Plus · безлимит', time: '~0,4 с', phone: { under: spireUnder({ li: 0, myFloor: 4, en: 5, inf: true }), over: pop({ t: 'Энергия безлимитная', s: 'Plus: занятия не тратят энергию' }) }, total: .6, beats: [{ t: 0.0, w: 'поповер 420 мс', h: 'light', snd: 'tick', s: 'fc_tick', gain: .6 }],
+      why: 'Plus виден в самой капсуле (∞) и в поповере.', ref: 'EnergyInfoPopover.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 5. Тосты энергии — energy_toasts ---------- */
+moment({ id: 'm05', num: '05', short: 'Тосты энергии', title: 'Тосты энергии — energy_toasts + возврат за диалог', tag: 'old',
+  lead: 'ActionToast сверху, 3 с, без кнопок. Четыре текста из кода. Иконка — Ionicons flash в плитке, цвет акцента темы.',
+  variants: [
+    { k: 'A', label: 'последняя энергия', time: '~3 с', phone: { under: lessonUnder({ pct: 50 }), over: toast({ icon: 'flashO', text: 'Последняя энергия: следующая ошибка остановит занятие.' }) }, total: 3, beats: BEAT_TOAST, why: 'Предупреждение до остановки, а не после.', ref: 'energy_toasts.lastEnergy.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'Plus включён в занятии', time: '~3 с', phone: { under: lessonUnder({ pct: 50 }), over: toast({ icon: 'infinity', text: 'Plus активирован — продолжаем с того же вопроса.' }) }, total: 3, beats: [{ t: 0.0, w: 'тост + звук покупки', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }], why: 'Подтверждение покупки прямо в занятии.', ref: 'energy_toasts.plusOn.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'C', label: 'энергия восстановилась', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'flash', text: 'Энергия восстановилась — можно начинать.' }) }, total: 3, beats: BEAT_TOAST, why: 'Возврат в занятия без поиска.', ref: 'energy_toasts.restored.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'D', label: 'возврат за диалог', time: '~3 с', phone: { under: dialogsUnder(), over: toast({ icon: 'refresh', text: 'Энергия возвращена' }) }, total: 3, beats: BEAT_TOAST, why: 'Диалог не начался — энергия вернулась, и это видно.', ref: 'dialogue_v2_session.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 6. Пейвол Plus — PaywallPlusScreen по контекстам ---------- */
+const BEAT_PW = [{ t: 0.0, w: 'экран выезжает 440 мс (route-modal), контекстная шапка', h: 'light', snd: 'flip', s: 'fc_flip' }];
+moment({ id: 'm06', num: '06', short: 'PaywallPlus · контексты', title: 'Пейвол Plus — PaywallPlusScreen по контекстам', tag: 'old',
+  lead: 'Единственный пейвол (D115). Шапка — из paywall_context_texts: пилюля «что закончилось», заголовок, подзаголовок, первая выгода. Ниже «Что входит» (три пункта, кроме уже названного), планы «Год» крупно (выбран) и «Месяц», закреплённая кнопка с ценой, подпись и ссылки «Восстановить · Условия · Конфиденциальность». Пробный период — только если его даёт магазин (D117), поэтому здесь кнопка «Оформить за …». Цены — пример.',
+  variants: [
+    { k: 'A', label: 'no_energy · «Энергия 0»', time: '~0,5 с', phone: { under: spireUnder({ li: 0, myFloor: 4, en: 0, wait: WAIT }), over: paywall(CTX.no_energy) }, total: 1, beats: BEAT_PW, why: 'Говорит про место, откуда пришёл человек.', ref: 'paywall_context_texts.no_energy.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: ok('5 выгод в коде: карточки, 32 урока, AI-разбор, энергия, 3 заморозки Plus в месяц (D107 — автоматически, без кнопки).') },
+    { k: 'B', label: 'winback · «С возвращением»', time: '~0,5 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: paywall(CTX.winback) }, total: 1, beats: BEAT_PW, why: 'Без вины: «выученное на месте».', ref: 'winback_offer.ts → premium_modal context=winback.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('открывается через <span class="code">globalRouter.push(/premium_modal)</span> сразу после первого контента; закрытие — см. раздел 07 (баг зависания).') },
+    { k: 'C', label: 'streak · «Серия 12 дней»', time: '~0,5 с', phone: { under: homeUnder({ streak: 12, streakPending: true }), over: paywall(CTX.streak) }, total: 1, beats: BEAT_PW, why: 'Пилюля с фактом из маршрута (streak).', ref: 'paywallEntryFactsFromParams.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'D', label: 'dialog_limit · «30 из 30»', time: '~0,5 с', phone: { under: dialogsUnder(), over: paywall(CTX.dialog_limit) }, total: 1, beats: BEAT_PW, why: 'Цифра лимита из констант (REVENUE_MONTHLY_LIMITS.ai_dialog_replies = 30).', ref: 'paywall_context_texts.dialog_limit.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'E', label: 'intro_ended · после трёх дней', time: '~0,5 с', phone: { under: homeUnder({ streak: 3 }), over: paywall(CTX.intro_ended) }, total: 1, beats: BEAT_PW, why: 'Продолжение IntroFullAccessModal (ended) → «Посмотреть предложение».', ref: 'paywall_context_texts.intro_ended.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'F', label: 'generic · из настроек / баннера', time: '~0,5 с', phone: { under: homeUnder({ streak: 4 }), over: paywall(CTX.generic) }, total: 1, beats: BEAT_PW, why: 'Без пилюли — входа «что закончилось» нет.', ref: 'paywall_context_texts.generic.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 7. Возвратный оффер: закрытие без зависания ---------- */
+const tapAt = (ph, x, y) => { const d = document.createElement('i'); d.className = 'tap'; d.style.left = x + 'px'; d.style.top = y + 'px'; ph.appendChild(d); setTimeout(() => d.remove(), 600); };
+const winbackClose = () => `${paywall(CTX.winback)}`;
+moment({ id: 'm07', num: '07', short: 'Winback · закрытие', title: 'Возвратный оффер после 7+ дней — как окно должно закрываться', tag: 'old',
+  lead: 'Сцена бага: после «Закрыть» приложение зависает. Как должно быть: тап по ✕ → экран уходит вниз 220 мс → Главная сразу отвечает (импульс фокуса на блоке «Сегодня», вкладки активны, второй тап по вкладке срабатывает). Оверлей-арбитр освобождает слот в момент старта анимации, а не после колбэка onDismiss.',
+  variants: [
+    { k: 'A', label: 'тап ✕ → Главная отвечает', time: '~3 с', phone: { under: homeUnder({ streak: 0, streakPending: true }), over: winbackClose() }, total: 3.5,
+      init: (ph) => seq(ph, [[1500, () => { tapAt(ph, 352, 80); ph.querySelector('.pw').classList.add('closing'); }], [1720, () => { ph.querySelector('.pw')?.remove(); const r = document.createElement('div'); r.className = 'focus-ring'; ph.appendChild(r); setTimeout(() => r.remove(), 1000); }], [2500, () => { tapAt(ph, 117, 806); }]]),
+      beats: [{ t: 0.0, w: 'пейвол winback поверх Главной', snd: 'flip', s: 'fc_flip' }, { t: 1.5, w: 'тап ✕: экран уходит вниз 220 мс, скрима нет (route-modal)', h: 'light', snd: 'swipe', s: 'fc_swipe_learn', gain: .5 }, { t: 1.72, w: '<b>Главная отвечает сразу</b>: импульс фокуса 900 мс на «Сегодня»', h: 'light' }, { t: 2.5, w: 'контрольный тап по вкладке «Уроки» — срабатывает', h: 'light', snd: 'tick', s: 'fc_tick', gain: .6 }],
+      why: 'Закрытие — часть предложения: «нет» должно быть таким же лёгким, как «да».', ref: 'Apple HIG: Modality — dismiss immediately.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.',
+      note: dev('по отчёту владельца после закрытия оффера приложение зависает. Вероятные места: <span class="code">premium_modal</span> закрывается через <span class="code">router.back()</span>, пока арбитр оверлеев ещё держит слот <span class="code">introFullAccess/entitlementExpired</span>; на Android <span class="code">onDismiss</span> не приходит, и «ожидание снятия окна» (как в NoEnergyModal: InteractionManager + 360 мс) не завершается. Должно быть: освобождать слот и возвращать фокус по началу анимации закрытия, а не по колбэку; логи <span class="code">[WINBACK-FREEZE]</span> уже стоят — по ним сверить порядок событий.') },
+  ] });
+
+/* ---------- 8. Напоминание о конце пробного — PaywallTrialReminderPrompt ---------- */
+const trialReminder = () => `<div class="full"><div class="body"><div class="bell">${io('bell', 44)}</div><div class="h-lg" style="margin-top:24px;font-size:28px;line-height:33px">Plus твой. Напомнить о конце пробного периода?</div><div class="p" style="margin-top:10px;text-align:center">Пришлём одно уведомление за 2 дня до списания — чтобы ты спокойно решил(а), оставлять ли подписку.</div></div><div class="foot">${prim('Разрешить напоминание')}${sec('Не сейчас')}</div></div>`;
+moment({ id: 'm08', num: '08', short: 'TrialReminderPrompt', title: 'Напоминание о конце пробного — PaywallTrialReminderPrompt', tag: 'old',
+  lead: 'Показывается вместо пейвола сразу после старта пробного периода, если уведомления не разрешены. Полноэкранный, заголовок 28/800, две кнопки столбиком.',
+  variants: [{ k: 'A', label: 'после старта пробного', time: '~0,6 с', phone: { under: homeUnder({ streak: 4 }), over: trialReminder() }, total: 1, beats: [{ t: 0.0, w: 'экран 420 мс, колокольчик пружиной 700 мс', h: 'light', snd: 'flip', s: 'fc_flip' }],
+    why: 'Одно уведомление, одна причина — доверие к пробному периоду.', ref: 'Apple: pre-permission prompt.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('«Не сейчас» — <span class="code">S.ghost</span> без фона; должна быть buttonFill. Пробный период здесь — только если его дал магазин (D117).') }] });
+
+/* ---------- 9. Праздник Plus — PremiumCelebrationModal ---------- */
+const cel = (o) => `<div class="full cel" data-cel><span class="skip" data-skip>${o.promo ? 'Закрыть' : 'Пропустить'}</span>
+  <div class="scene on" data-s="0"><div class="body"><div class="crest">${io(o.promo ? 'sparkles' : 'infinity', 44)}</div><div class="ov" style="margin-top:22px;color:var(--acc-text)">${o.promo ? 'промокод' : 'Доступ подтверждён'}</div><div class="h-lg" style="margin-top:6px;font-size:28px;line-height:33px">${o.promo ? 'Промокод применён' : 'Plus активирован'}</div><div class="p" style="margin-top:8px;text-align:center">${o.promo ? 'Доступ подтверждён. Условия сохранены в аккаунте.' : 'Доступ подтверждён. Твой прогресс на месте.'}</div></div><div class="dots"><i class="on"></i><i></i><i></i></div><div class="foot">${prim('Продолжить')}</div></div>
+  <div class="scene" data-s="1"><div class="body"><div class="h-lg" style="font-size:28px;line-height:33px">Занимайся без ожидания</div><div class="p" style="margin-top:8px;text-align:center">Занятия не списывают энергию. Остальные права зависят от подтверждённого плана.</div><div class="sf card"><span class="tile">${io(o.promo ? 'check' : 'flash', 22)}</span><div><b>${o.promo ? 'Подтверждённый промокод' : 'Без расхода энергии'}</b><s>${o.promo ? 'Время и тип доступа — по действующей записи аккаунта.' : 'Уроки и тренировки не уменьшают запас энергии.'}</s></div></div></div><div class="dots"><i></i><i class="on"></i><i></i></div><div class="foot">${prim('Продолжить')}</div></div>
+  <div class="scene" data-s="2"><div class="body"><div class="crest">${io('check', 44)}</div><div class="h-lg" style="margin-top:22px;font-size:28px;line-height:33px">Всё готово</div><div class="p" style="margin-top:8px;text-align:center">Продолжай с того места, где остановился(ась).</div></div><div class="dots"><i></i><i></i><i class="on"></i></div><div class="foot">${prim('К занятиям')}</div></div></div>`;
+const celInit = (ph) => seq(ph, [[300, () => confetti(ph, { n: 70, colors: themeCols(ph) })], [2200, () => { ph.querySelector('[data-s="0"]').classList.remove('on'); ph.querySelector('[data-s="1"]').classList.add('on'); }], [4200, () => { ph.querySelector('[data-s="1"]').classList.remove('on'); ph.querySelector('[data-s="2"]').classList.add('on'); }]]);
+moment({ id: 'm09', num: '09', short: 'PremiumCelebration', title: 'Праздник Plus — PremiumCelebrationModal (три шага)', tag: 'old',
+  lead: 'Три сцены из celebrationLiquidCopy: «Доступ подтверждён → Plus активирован», «Занимайся без ожидания» с карточкой «Без расхода энергии», «Всё готово → К занятиям». Пропуск — вверху справа. Вариант VIP/промокод — те же сцены с текстами промокода.',
+  variants: [
+    { k: 'A', label: 'покупка Plus · 3 шага', time: '~6 с', phone: { under: homeUnder({ streak: 4 }), over: cel({}) }, total: 6.5, init: celInit,
+      beats: [{ t: 0.0, w: 'герб пружиной 700 мс', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }, { t: 0.3, w: 'конфетти цветов темы', snd: 'star', s: 'fc_star', gain: .6 }, { t: 2.2, w: 'шаг 2: карточка выгоды', h: 'light', snd: 'flip', s: 'fc_flip', gain: .5 }, { t: 4.2, w: 'шаг 3: «Всё готово»', h: 'light', snd: 'done', s: 'fc_session_complete', gain: .6 }],
+      why: 'Три короткие сцены вместо списка — покупка ощущается событием.', ref: 'Apple One / Duolingo Super welcome.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('кнопки «Пропустить»/«Закрыть» — текстовые без поверхности; здесь — buttonFill 44 px. Тосты «Покупка подтверждена» и этот праздник не должны идти одновременно (сейчас тост из paywall_purchase может лечь поверх).') },
+    { k: 'B', label: 'промокод / VIP', time: '~6 с', phone: { under: homeUnder({ streak: 4 }), over: cel({ promo: true }) }, total: 6.5, init: celInit,
+      beats: [{ t: 0.0, w: 'герб пружиной', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }, { t: 0.3, w: 'конфетти', snd: 'star', s: 'fc_star', gain: .6 }, { t: 2.2, w: 'шаг 2', snd: 'flip', s: 'fc_flip', gain: .5 }, { t: 4.2, w: 'шаг 3', snd: 'done', s: 'fc_session_complete', gain: .6 }],
+      why: 'Тот же ритуал для промокода — без второго дизайна.', ref: 'VipCelebrationModal variant=vip.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 10. Три дня доступа — IntroFullAccessModal ---------- */
+const introWelcome = () => sheet({ head: `<div class="ov" style="color:var(--acc-text);margin-bottom:6px">Бонус на старт</div>`, title: 'Три дня доступа начались', body: 'Все возможности Plus открыты: уроки, карточки и занятия без траты энергии.', extra: `<div class="meta" style="text-align:left;margin-top:12px;color:var(--mu);font-size:13px">Это бонус. Подписка не включается автоматически.</div>`, acts: prim('Начать') });
+const introEnded = () => sheet({ title: 'Три дня доступа завершились', body: 'Учебный прогресс остаётся. Базовый режим доступен. Актуальные преимущества Plus — в предложении магазина.', acts: `${prim('Посмотреть предложение')}${sec('Остаться на базовом')}` });
+moment({ id: 'm10', num: '10', short: 'IntroFullAccess', title: 'Три дня доступа — IntroFullAccessModal (welcome / ended)', tag: 'old',
+  lead: 'Шторка после онбординга (welcome) и по окончании трёх дней (ended). Тексты 1:1. Owner-правило D09 «подарков нет» — это не подарок, а стартовый доступ из кода; текст сам говорит, что подписка не включается.',
+  variants: [
+    { k: 'A', label: 'welcome · «Бонус на старт»', time: '~0,5 с', phone: { under: homeUnder({ streak: 1 }), over: introWelcome() }, total: 1, beats: BEAT_SHEET, why: 'Одна кнопка — начать; условия честно внизу.', ref: 'IntroFullAccessModal kind=welcome.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'ended · «Три дня позади»', time: '~0,5 с', phone: { under: homeUnder({ streak: 3 }), over: introEnded() }, total: 1, beats: BEAT_SHEET, why: 'Спокойный выход в базовый режим — без давления.', ref: 'IntroFullAccessModal kind=ended → пейвол intro_ended.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: ok('«Остаться на базовом» в коде уже на opaqueControl; здесь — buttonFill.') },
+  ] });
+
+/* ---------- 11. Plus закончился — EntitlementExpiredHost ---------- */
+const expired = () => sheet({ head: `<div class="fl" style="gap:12px;margin-bottom:14px"><span class="tile" style="width:52px;height:52px;border-radius:16px;background:var(--ti);box-shadow:var(--sh2);display:inline-flex;align-items:center;justify-content:center;color:var(--acc)">${io('time', 26)}</span></div>`, title: 'Plus закончился', body: 'Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.', acts: `${prim('Продлить Plus')}${sec('Позже')}` });
+moment({ id: 'm11', num: '11', short: 'Plus закончился', title: 'Plus закончился — EntitlementExpiredHost + тост «пробный заканчивается»', tag: 'old',
+  lead: 'Шторка HybridSheetShell через арбитр entitlementExpired. Тост за 2 ч / 30 мин до конца пробного — ActionToast.',
+  variants: [
+    { k: 'A', label: 'шторка «Plus закончился»', time: '~0,5 с', phone: { under: homeUnder({ streak: 9 }), over: expired() }, total: 1, beats: BEAT_SHEET, why: 'Прогресс сохранён — главное слово первым.', ref: 'EntitlementExpiredHost.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('«Позже» — <span class="code">ghost</span> без фона → buttonFill; строка «Пригласить друга» есть в копи, но не рендерится — не рисуем.') },
+    { k: 'B', label: 'тост · пробный заканчивается', time: '~3 с', phone: { under: homeUnder({ streak: 9 }), over: toast({ icon: 'time', text: 'Триал заканчивается менее чем через 2 ч' }) }, total: 3, beats: BEAT_TOAST, why: 'Предупреждение до списания.', ref: 'EntitlementExpiredHost ~294.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('в тексте эмодзи «⏳» — заменён на Ionicons time; слово «Триал» — в остальном приложении «пробный период» (PaywallPlusCopy), украинская строка = русская.') },
+  ] });
+
+/* ---------- 12. Тосты оплаты ---------- */
+moment({ id: 'm12', num: '12', short: 'Тосты оплаты', title: 'Тосты оплаты — paywall_purchase, manage_subscription, BillingIssueToastHost', tag: 'old',
+  lead: 'ActionToast: подтверждения и ошибки покупки/восстановления, проблема с картой (кулдаун 3 дня), смена плана. Тексты 1:1.',
+  variants: [
+    { k: 'A', label: 'оплата обрабатывается', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'time', text: 'Оплата обрабатывается — Plus включится сам' }) }, total: 3, beats: BEAT_TOAST, why: 'Отложенная покупка не выглядит ошибкой.', ref: 'paywall_purchase.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'B', label: 'покупка подтверждена', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'check', text: 'Покупка подтверждена' }) }, total: 3, beats: [{ t: 0.0, w: 'тост + звук покупки', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }], why: 'Коротко и точно.', ref: 'paywall_purchase.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'C', label: 'покупки восстановлены', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'refresh', text: 'Покупки восстановлены' }) }, total: 3, beats: BEAT_TOAST, why: '—', ref: 'paywall_purchase.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'D', label: 'подписок не найдено', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'close', bad: true, text: 'Активных подписок не обнаружено.' }) }, total: 3, beats: BEAT_BAD, why: 'Результат «Восстановить» без ложной надежды.', ref: 'paywall_purchase.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'E', label: 'магазин недоступен', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'close', bad: true, text: 'Не удалось связаться с магазином. Попробуй позже.' }) }, total: 3, beats: BEAT_BAD, why: '—', ref: 'paywall_purchase.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'F', label: 'оплата не прошла (карта)', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'close', bad: true, text: 'Оплата не прошла — обнови карту, и Plus останется с тобой' }) }, total: 3, beats: BEAT_BAD, why: 'Говорит, что сделать, и что Plus не потерян.', ref: 'BillingIssueToastHost (раз в 3 дня).', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'G', label: 'Plus вернулся', time: '~3 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'infinity', text: 'Plus вернулся — подписка снова активна.' }) }, total: 3, beats: [{ t: 0.0, w: 'тост + звук покупки', h: 'success', snd: 'purchase', s: 'ob_purchase_success' }], why: '—', ref: 'manage_subscription.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+    { k: 'H', label: 'смена плана не прошла · «Повторить»', time: '~4 с', phone: { under: homeUnder({ streak: 4 }), over: toast({ icon: 'close', bad: true, text: 'Смена плана не прошла. Деньги не списаны — попробуй ещё раз.', act: 'Повторить' }) }, total: 4, beats: BEAT_BAD, why: 'Единственный тост с действием — кнопка buttonFill внутри.', ref: 'manage_subscription.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
+  ] });
+
+/* ---------- 13. Окна покупки — статус, другой аккаунт, онбординг ---------- */
+const unverified = () => dialog({ title: 'Статус покупки не подтверждён', body: 'Неизвестно, прошла ли оплата. Сначала проверь покупки в магазине или нажми «Восстановить» — Plus включится, как только магазин подтвердит.', col: true, acts: `${prim('Восстановить покупки')}${sec('Проверить статус')}` });
+const prevAccount = () => dialog({ stage: `<div class="stage">${io('people', 26)}</div>`, title: 'Покупка на другом аккаунте', body: 'Покупка оформлена на предыдущий аккаунт — войди в него, чтобы пользоваться Plus.', acts: prim('Понятно') });
+const onbFail = () => dialog({ title: 'Не удалось оформить', body: 'Попробуй ещё раз или восстанови покупки.', acts: prim('Понятно') });
+moment({ id: 'm13', num: '13', short: 'Окна покупки', title: 'Окна покупки — статус не подтверждён, другой аккаунт, не удалось оформить', tag: 'old',
+  lead: 'GlassAlertDialog через enqueueThemedBlocking*Alert. Единственная кнопка — всегда с текстом по-русски: «Понятно» вместо английского «OK» из кода.',
+  variants: [
+    { k: 'A', label: 'статус не подтверждён', time: '~0,5 с', phone: { under: homeUnder({ streak: 4 }), over: unverified() }, total: 1, beats: BEAT_OPEN, why: 'Два действия, главное — восстановить.', ref: 'paywall_purchase ~227.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('текст в коде длиннее на одно предложение; ряд из двух кнопок с длинными подписями не влезает в 342 px — здесь столбик (правило «без наложений текста»).') },
+    { k: 'B', label: 'покупка на другом аккаунте', time: '~0,5 с', phone: { under: homeUnder({ streak: 4 }), over: prevAccount() }, total: 1, beats: BEAT_OPEN, why: '—', ref: 'paywall_previous_account_copy.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('кнопка «OK» по-английски (дефолт enqueueThemedBlockingInfoAlert) → «Понятно».') },
+    { k: 'C', label: 'онбординг · не удалось оформить', time: '~0,5 с', phone: { under: homeUnder({ streak: 1 }), over: onbFail() }, total: 1, beats: [{ t: 0.0, w: 'окно 420 мс', h: 'warning', snd: 'wrong', s: 'fc_incorrect', gain: .5 }], why: '—', ref: 'paywall_purchase ~1520.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: dev('«OK» → «Понятно».') },
+  ] });
+
+render(document.getElementById('root'), document.getElementById('toc'));
+attachBeats(document.getElementById('root'));
+// пометки «в коде иначе» под телефоном
+EM.MOMENTS.forEach((m) => m.variants.forEach((v, j) => { if (!v.note) return; const el = document.querySelector(`[data-vid="${m.id}-${v.k || j}"] .note`); if (el) el.insertAdjacentHTML('beforeend', v.note); }));
+
+// «Три темы рядом»: клоны телефона в светлой Авроре и Ирисе (статические — анимации CSS идут, тайм-листы только у первого)
+const page = document.getElementById('page');
+const cloneThemes = (wrap) => {
+  wrap.querySelectorAll('[data-clone]').forEach((c) => c.remove());
+  const ph = wrap.querySelector('.em-ph'); if (!ph) return;
+  ph.classList.remove('lite', 'iris');
+  [['lite'], ['lite', 'iris']].forEach((cls) => { const c = ph.cloneNode(true); c.removeAttribute('data-ph'); c.setAttribute('data-clone', '1'); c.classList.add(...cls); c.querySelectorAll('img.al').forEach((i) => { i.style.display = ''; }); c.querySelectorAll('img.ad').forEach((i) => { i.style.display = 'none'; }); wrap.appendChild(c); });
+  ph.querySelectorAll('img.al').forEach((i) => { i.style.display = 'none'; }); ph.querySelectorAll('img.ad').forEach((i) => { i.style.display = ''; });
+};
+document.getElementById('tri').addEventListener('click', () => {
+  const on = page.classList.toggle('tri');
+  document.querySelectorAll('[data-wrap]').forEach((w) => { if (on) cloneThemes(w); else w.querySelectorAll('[data-clone]').forEach((c) => c.remove()); });
+});
+document.body.addEventListener('click', (e) => { if (!page.classList.contains('tri')) return; const vr = e.target.closest('[data-vid]'); if (!vr || !e.target.closest('[data-replay]')) return; setTimeout(() => cloneThemes(vr.querySelector('[data-wrap]')), 80); });
+})();
+</script>
+</body>
+</html>

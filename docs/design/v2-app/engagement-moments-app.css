@@ -8,13 +8,13 @@
 
 /* ---------- токены темы: ТЁМНАЯ Аврора k=1 ---------- */
 .em-ph { font-family: Inter, sans-serif;
-  --bg: #0C0D10; --bg2: #181A1F; --bg-bottom: #16181D; --tx: #FFFFFF; --sc: #BCBDC0; --mu: #BCBDC0;
+  --bg: #0C0D10; --bg2: #181A1F; --bg-bottom: #16181D; --tx: #FFFFFF; --sc: #CACBCE; --mu: #CACBCE;
   --acc: #7EF0C8; --on: #04261D; --acc-text: #98F3D3; --acc-soft: rgba(126,240,200,.24); --acc-tile: #374A45; --acc2: #7C5CFF;
-  --cta: #7EF0C8; --cta-ink: #04261D; --control: #3A3A40; --sheet: #28282E; --card: #202B29;
-  --plate1: #212224; --plate2: #16171A; --raised1: #303134; --raised2: #1D1E21; --sheetplate1: #3A3A40; --sheetplate2: #313136;
-  --ti: rgba(255,255,255,.07); --ti2: #3A3A40; --trk: #3A3A40; --line: rgba(255,255,255,.09); --dim: rgba(0,0,0,.62);
+  --cta: #7EF0C8; --cta-ink: #04261D; --control: #2B3839; --sheet: #2B3839; --card: #202B29; --btn: #4D5859; --btn-dis: #3C4849; --ink-dis: #B1B6B6; --danger: #644B4A; --danger-ink: #FAB7B3;
+  --plate1: #212224; --plate2: #16171A; --raised1: #303134; --raised2: #1D1E21; --sheetplate1: #3D494A; --sheetplate2: #334041;
+  --ti: rgba(255,255,255,.07); --ti2: #4D5859; --trk: #2B3839; --line: rgba(255,255,255,.09); --dim: rgba(0,0,0,.62);
   --sh: 0 16px 28px -14px rgba(0,0,0,.75); --sh2: 0 6px 12px -6px rgba(0,0,0,.6); --sho: 0 26px 40px -14px rgba(0,0,0,.9);
-  --good: #73CB87; --bad: #FA8079; --warn: #F0C551; --gold: #F0C551; --gold2: #8E6522; --bolt: #FFFFFF; --flame: #7EF0C8;
+  --good: #73CB87; --bad: #F67C75; --warn: #F0C551; --gold: #F0C551; --gold2: #8E6522; --bolt: #FFFFFF; --flame: #7EF0C8;
   --s1: var(--plate1); --s2: var(--plate2); --so1: var(--raised1); --so2: var(--raised2);
   color: var(--tx);
   /* V2Backdrop: вертикальный градиент bgTop → bg до 60 % + три пятна блума (bgGlow #38E0AAB3 / #7C5CFFB3 / #38E0AAB3) */
@@ -22,11 +22,17 @@
 /* ---------- токены темы: СВЕТЛАЯ Аврора k=1 ---------- */
 .em-ph.lite { --bg: #DED7F9; --bg2: #CCF1E7; --bg-bottom: #DED7F9; --tx: #111114; --sc: #5C5C63; --mu: #5B5B62;
   --acc: #48816E; --on: #FFFFFF; --acc-text: #185E47; --acc-soft: rgba(126,240,200,.30); --acc-tile: #C2F0E2; --acc2: #5B49D6;
-  --cta: #7EF0C8; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF;
+  --cta: #5FB296; --cta-ink: #04261D; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #AAAAAD; --btn-dis: #D5D5D6; --ink-dis: #5B5B5E; --danger: #DAA7A7; --danger-ink: #752A2B;
   --plate1: #FFFFFF; --plate2: #F5F5F6; --raised1: #FFFFFF; --raised2: #FAFAFB; --sheetplate1: #FFFFFF; --sheetplate2: #F5F5F6;
-  --ti: rgba(20,20,40,.06); --ti2: #ECECEF; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(20,22,28,.45);
+  --ti: rgba(20,20,40,.06); --ti2: #AAAAAD; --trk: rgba(20,20,40,.1); --line: rgba(0,0,0,.08); --dim: rgba(20,22,28,.45);
   --sh: 0 14px 26px -14px rgba(10,10,20,.34), 0 1px 3px rgba(10,10,20,.06); --sh2: 0 5px 10px -5px rgba(10,10,20,.28); --sho: 0 26px 40px -14px rgba(10,10,20,.46), 0 2px 4px rgba(10,10,20,.08);
   --good: #006F30; --bad: #AB3837; --warn: #7F5700; --gold: #7F5700; --gold2: #5A3E00; --bolt: #111114; --flame: #48816E;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
+/* ---------- токены темы: СВЕТЛАЯ «Ирис» (grad_iris, light k=1) — вторая светлая градиентная ---------- */
+.em-ph.lite.iris { --bg: #F8DDEE; --bg2: #DADFFA; --bg-bottom: #F8DDEE; --tx: #111114; --sc: #5C5C63; --mu: #606066;
+  --acc: #323B6B; --on: #FFFFFF; --acc-text: #323B6B; --acc-soft: rgba(199,201,255,.30); --acc-tile: #E0E0F8; --acc2: #D5567F;
+  --cta: #A3A4D0; --cta-ink: #1B1C4A; --control: #ECECEF; --sheet: #FFFFFF; --card: #FFFFFF; --btn: #AFAFB2; --btn-dis: #D7D7D9; --ink-dis: #5C5C5F; --danger: #DCA9A8; --danger-ink: #782D2D;
+  --ti2: #AFAFB2; --good: #097234; --bad: #AF3C3A; --warn: #835A00; --gold: #835A00; --flame: #323B6B;
   background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 60%); }
 .em-ph .sb { color: var(--tx); }
 .em-ph .sb svg { fill: var(--tx); }
@@ -58,8 +64,9 @@
 .em-ph .cta.white { background: var(--cta); color: var(--cta-ink); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
 .em-ph .cta.gold { background: var(--cta); color: var(--cta-ink); box-shadow: 0 14px 24px -10px color-mix(in srgb, var(--cta) 60%, transparent); }
 /* secondary: bg opaqueControl + nested shadow, текст text (не сливается — владелец 13.10) */
-.em-ph .cta.ghost, .em-ph .cta.tone { background: var(--control); color: var(--tx); box-shadow: var(--sh2); height: 52px; font-weight: 700; }
-.em-ph .cta.dis { background: var(--control); color: var(--mu); box-shadow: none; opacity: .72; }
+.em-ph .cta.ghost, .em-ph .cta.tone { background: var(--btn); color: var(--tx); box-shadow: var(--sh2); height: 52px; font-weight: 700; }
+.em-ph .cta.danger { background: var(--danger); color: var(--danger-ink); box-shadow: var(--sh2); }
+.em-ph .cta.dis { background: var(--btn-dis); color: var(--ink-dis); box-shadow: none; opacity: 1; }
 .em-ph .cta .ar, .em-ph .cta .ar-io { position: absolute; right: 22px; }
 .em-ph .cta + .cta { margin-top: 12px; }
 .em-ph .xbtn { background: var(--control); color: var(--tx); box-shadow: var(--sh2); width: 44px; height: 44px; }
@@ -217,4 +224,4 @@
 /* v2.css «.ghost» (сравнение «до/после») гасил вторичные кнопки — вторичная кнопка всегда читаемая */
 .em-ph .cta.ghost { opacity: 1; filter: none; }
 /* kit.css красит .cta градиентом background-image (#FFF→var(--cta)) — в оболочке 2.0 кнопки плоские, как V2Button */
-.em-ph .cta:not(.gh):not(.dis):not(.red), .em-ph .cta.dis, .em-ph .cta.gh { background-image: none; }
+.em-ph .cta:not(.gh):not(.dis):not(.red), .em-ph .cta.dis, .em-ph .cta.gh, .em-ph .cta.danger { background-image: none; }

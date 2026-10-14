@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Минимум элементов</title>
+<style>
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+:root { --bg: #0C0C0D; --card: #151517; --tile: #242426; --text: #FFFFFF; --sec: #A6A6A8; --line: rgba(255,255,255,.09); --good: #6FD08C; --warn: #E8C26A; --bad: #F2766B; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 40px 16px 80px; }
+h1 { font-size: 34px; line-height: 40px; letter-spacing: -.5px; margin: 0; }
+.lead { color: var(--sec); font-size: 16px; line-height: 24px; max-width: 760px; margin: 12px 0 0; }
+.count { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 8px; }
+.count span { background: var(--card); border-radius: 14px; padding: 10px 14px; font-size: 15px; color: var(--sec); }
+.count b { color: var(--text); font-size: 20px; margin-right: 6px; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+nav.toc a { color: var(--text); text-decoration: none; background: var(--tile); border-radius: 999px; padding: 7px 12px; font-size: 14px; }
+section { margin-top: 44px; }
+section h2 { font-size: 24px; line-height: 30px; margin: 0 0 14px; }
+section h2 small { color: var(--sec); font-weight: 400; font-size: 15px; margin-left: 8px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 16px; }
+.it { background: var(--card); border-radius: 22px; padding: 16px; }
+.it header { display: flex; align-items: center; gap: 10px; }
+.it .no { font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.it h3 { font-size: 17px; line-height: 22px; margin: 0; flex: 1; }
+.it .own { font-size: 13px; color: var(--sec); background: var(--tile); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+figure { margin: 0; }
+figure img { display: block; width: 100%; height: auto; border-radius: 18px; background: #000; }
+figcaption { font-size: 13px; color: var(--sec); margin-top: 6px; text-align: center; }
+figure:last-child figcaption { color: var(--good); }
+.why { font-size: 15px; line-height: 22px; margin: 12px 0 0; }
+.st { font-size: 14px; line-height: 20px; margin: 8px 0 0; padding: 8px 12px; border-radius: 12px; background: var(--tile); }
+.st.code { color: var(--good); } .st.note { color: var(--warn); } .st.rule { color: var(--bad); }
+.src { font-size: 12px; color: var(--sec); margin: 8px 0 0; }
+@media (max-width: 560px) { h1 { font-size: 28px; line-height: 34px; } .pair { gap: 8px; } }
+</style></head>
+<body><div class="wrap">
+<h1>Минимум ненужных элементов — на утверждение</h1>
+<p class="lead">Правило владельца: на экране только то, что нужно в этот момент — одна мысль, одно главное действие, максимум одно вторичное. Слева — экран как сейчас в приложении (образец повторяет код), справа — тот же экран без лишнего. Ничего не перерисовано: справа элементы просто убраны. Утверждаете по пунктам; код правится после R1, кроме уже сделанного.</p>
+<div class="count"><span><b>27</b>пунктов</span><span><b>12</b>групп</span><span><b>4</b>уже в коде (Дизайн)</span><span><b>12</b>Авторизация</span><span><b>14</b>Дизайн</span></div>
+<nav class="toc"><a href="#g0">Вход и восстановление · 3</a><a href="#g1">Профиль и ник · 3</a><a href="#g2">Реферал · 2</a><a href="#g3">Опросы · 2</a><a href="#g4">Пейвол · 2</a><a href="#g5">Итоги и диалоги · 1</a><a href="#g6">Карточки · 3</a><a href="#g7">Обучение · 3</a><a href="#g8">Сообщество · 1</a><a href="#g9">Монеты · 1</a><a href="#g10">Тосты и сообщения · 5</a><a href="#g11">Противоречит решениям · 1</a></nav>
+<section id="g0"><h2>Вход и восстановление<small>3</small></h2><div class="grid"><article class="it" id="p01">
+    <header><span class="no">01</span><h3>Окно входа</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/01-now.jpg" alt="Сейчас: Окно входа" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/01-new.jpg" alt="Предлагаем: Окно входа" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Строка-обещание с замком под кнопками дублирует заголовок «Всё в безопасности».</p>
+    
+    <p class="src">overlays.html · телефон 3</p>
+  </article><article class="it" id="p02">
+    <header><span class="no">02</span><h3>Вход — телефон связан с другим аккаунтом</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/02-now.jpg" alt="Сейчас: Вход — телефон связан с другим аккаунтом" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/02-new.jpg" alt="Предлагаем: Вход — телефон связан с другим аккаунтом" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Плашка «1 день твоего пути уже сохранён» и строка с замком — шум рядом с ошибкой; главное — ошибка и одна кнопка.</p>
+    
+    <p class="src">accounts-gaps-states.html · телефон 3</p>
+  </article><article class="it" id="p03">
+    <header><span class="no">03</span><h3>Восстановление по коду</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/03-now.jpg" alt="Сейчас: Восстановление по коду" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/03-new.jpg" alt="Предлагаем: Восстановление по коду" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Метка «6-значный код» дублирует поле; второй таймер «Код действует ещё…» лишний — остаётся один отсчёт у повторной отправки.</p>
+    
+    <p class="src">overlays.html · телефон 17</p>
+  </article></div></section>
+<section id="g1"><h2>Профиль и ник<small>3</small></h2><div class="grid"><article class="it" id="p04">
+    <header><span class="no">04</span><h3>Изменить имя (Профиль)</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/04-now.jpg" alt="Сейчас: Изменить имя (Профиль)" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/04-new.jpg" alt="Предлагаем: Изменить имя (Профиль)" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Подписи «Ник можно менять раз в 14 дней» и «Проверим при сохранении» — правило показываем ошибкой при попытке, а не заранее.</p>
+    
+    <p class="src">profile.html · телефон 3</p>
+  </article><article class="it" id="p05">
+    <header><span class="no">05</span><h3>Язык изучения</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/05-now.jpg" alt="Сейчас: Язык изучения" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/05-new.jpg" alt="Предлагаем: Язык изучения" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Пояснение под заголовком и повторяющиеся «Новый язык · доступ уточняется» под строками — название языка самодостаточно.</p>
+    
+    <p class="src">profile.html · телефон 5</p>
+  </article><article class="it" id="p06">
+    <header><span class="no">06</span><h3>Изменить имя (Настройки)</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/06-now.jpg" alt="Сейчас: Изменить имя (Настройки)" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/06-new.jpg" alt="Предлагаем: Изменить имя (Настройки)" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">То же правило мелким шрифтом и капс-метка «ИМЯ ПРОФИЛЯ» над полем с именем.</p>
+    
+    <p class="src">settings-gaps-states.html · телефон 24</p>
+  </article></div></section>
+<section id="g2"><h2>Реферал<small>2</small></h2><div class="grid"><article class="it" id="p07">
+    <header><span class="no">07</span><h3>Код от друга</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/07-now.jpg" alt="Сейчас: Код от друга" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/07-new.jpg" alt="Предлагаем: Код от друга" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Метка «Код приглашения» дублирует поле «Введи код»; в тексте «Plus или Pro» — Pro нет (D115).</p>
+    
+    <p class="src">referral-code-states.html · телефон 1</p>
+  </article><article class="it" id="p08">
+    <header><span class="no">08</span><h3>Код от друга (шторка)</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/08-now.jpg" alt="Сейчас: Код от друга (шторка)" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/08-new.jpg" alt="Предлагаем: Код от друга (шторка)" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Та же метка над полем и «Plus или Pro» (D115).</p>
+    
+    <p class="src">overlays-more.html · телефон 19</p>
+  </article></div></section>
+<section id="g3"><h2>Опросы<small>2</small></h2><div class="grid"><article class="it" id="p09">
+    <header><span class="no">09</span><h3>Опрос «Как тебе занятия?»</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/09-now.jpg" alt="Сейчас: Опрос «Как тебе занятия?»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/09-new.jpg" alt="Предлагаем: Опрос «Как тебе занятия?»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Подпись «Пара вопросов… займёт минуту» под заголовком — прогресс «Вопрос 1 из 2» уже говорит то же.</p>
+    
+    <p class="src">survey-states.html · телефон 1</p>
+  </article><article class="it" id="p10">
+    <header><span class="no">10</span><h3>Опрос Plus</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/10-now.jpg" alt="Сейчас: Опрос Plus" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/10-new.jpg" alt="Предлагаем: Опрос Plus" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">«Необязательно» под «Можно добавить комментарий» — поле и так необязательное.</p>
+    
+    <p class="src">vip-survey-states.html · телефон 1</p>
+  </article></div></section>
+<section id="g4"><h2>Пейвол<small>2</small></h2><div class="grid"><article class="it" id="p11">
+    <header><span class="no">11</span><h3>Пейвол из Настроек</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/11-now.jpg" alt="Сейчас: Пейвол из Настроек" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/11-new.jpg" alt="Предлагаем: Пейвол из Настроек" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «PHRASEMAN PLUS», «ЧТО ВХОДИТ», подписи под каждой выгодой и таблица «FREE И PLUS» — заголовок, выгоды одной строкой, план и кнопка. Пункт «3 заморозки серии» противоречит D101 — убрать.</p>
+    <p class="st rule">Пункт «3 заморозки серии в месяц» противоречит D101 — убрать в любом случае.</p>
+    <p class="src">paywall-gaps-states.html · телефон 1</p>
+  </article><article class="it" id="p12">
+    <header><span class="no">12</span><h3>Пейвол «Энергия закончилась»</h3><span class="own">Авторизация</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/12-now.jpg" alt="Сейчас: Пейвол «Энергия закончилась»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/12-new.jpg" alt="Предлагаем: Пейвол «Энергия закончилась»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Чип «Энергия 0» и строка «Занятия без ожидания» повторяют заголовок и абзац.</p>
+    
+    <p class="src">paywall-price-states.html · телефон 1</p>
+  </article></div></section>
+<section id="g5"><h2>Итоги и диалоги<small>1</small></h2><div class="grid"><article class="it" id="p13">
+    <header><span class="no">13</span><h3>«Почему так» в диалоге</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/13-now.jpg" alt="Сейчас: «Почему так» в диалоге" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/13-new.jpg" alt="Предлагаем: «Почему так» в диалоге" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Метки «Разбор»/«Перевод» над абзацами и счётчик бесплатных разборов — счётчик показываем только когда лимит кончился.</p>
+    <p class="st code">Уже в коде у Дизайна (окно 18:30): меток и счётчика нет; пустой лимит (#21) — как был.</p>
+    <p class="src">dialogs.html · телефон 20</p>
+  </article></div></section>
+<section id="g6"><h2>Карточки<small>3</small></h2><div class="grid"><article class="it" id="p14">
+    <header><span class="no">14</span><h3>Шторка «Режим тренировки»</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/14-now.jpg" alt="Сейчас: Шторка «Режим тренировки»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/14-new.jpg" alt="Предлагаем: Шторка «Режим тренировки»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Подписи под режимами («60 секунд», «Вслух», «Да или нет», «По памяти») — названия режимов самодостаточны.</p>
+    <p class="st code">Уже в коде у Дизайна (окно 18:30): подписей нет, остаётся только причина недоступности «Вслух» без распознавания речи.</p>
+    <p class="src">cards-v2.html · телефон 27</p>
+  </article><article class="it" id="p15">
+    <header><span class="no">15</span><h3>«Что говорим?»</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/15-now.jpg" alt="Сейчас: «Что говорим?»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/15-new.jpg" alt="Предлагаем: «Что говорим?»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">«Выбрано 2» и число карточек у каждого набора — выбор и так виден отметками.</p>
+    <p class="st note">Дизайн: число карточек несёт смысл (0 — набор недоступен). Вариант: оставить число только у пустого набора.</p>
+    <p class="src">cards-states.html · телефон 74</p>
+  </article><article class="it" id="p16">
+    <header><span class="no">16</span><h3>Новая карточка</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/16-now.jpg" alt="Сейчас: Новая карточка" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/16-new.jpg" alt="Предлагаем: Новая карточка" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «Новая карточка!», чип «Обычная» и плашка «Сет собран!» — карточка, перевод и «Класс!».</p>
+    
+    <p class="src">overlays-more.html · телефон 3</p>
+  </article></div></section>
+<section id="g7"><h2>Обучение<small>3</small></h2><div class="grid"><article class="it" id="p17">
+    <header><span class="no">17</span><h3>Урок закрыт — вход в Plus</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/17-now.jpg" alt="Сейчас: Урок закрыт — вход в Plus" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/17-new.jpg" alt="Предлагаем: Урок закрыт — вход в Plus" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Чип «Урок 4 закрыт» над заголовком «Дальше — в Plus» и сноска «Цена уточнится в магазине» рядом с ценами.</p>
+    
+    <p class="src">learn.html · телефон 14</p>
+  </article><article class="it" id="p18">
+    <header><span class="no">18</span><h3>Новое занятие</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/18-now.jpg" alt="Сейчас: Новое занятие" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/18-new.jpg" alt="Предлагаем: Новое занятие" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «СЕССИЯ 7 · ГЛАВА 1» и три чипа (≈ 5 минут, 4 новых слова, 3 попытки) — заголовок, одна фраза и «Начать».</p>
+    
+    <p class="src">learning-v2.html · телефон 10</p>
+  </article><article class="it" id="p19">
+    <header><span class="no">19</span><h3>Пропуск основателя</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/19-now.jpg" alt="Сейчас: Пропуск основателя" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/19-new.jpg" alt="Предлагаем: Пропуск основателя" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Бейдж «Ранний доступ» и капс «КУРС СОЗДАЁТСЯ СЕЙЧАС» повторяют заголовок «Войдите раньше остальных».</p>
+    
+    <p class="src">learning-v2.html · телефон 15</p>
+  </article></div></section>
+<section id="g8"><h2>Сообщество<small>1</small></h2><div class="grid"><article class="it" id="p20">
+    <header><span class="no">20</span><h3>Карточка друга</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/20-now.jpg" alt="Сейчас: Карточка друга" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/20-new.jpg" alt="Предлагаем: Карточка друга" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">«Серия дней», «Прогресс до следующего уровня» и подписи внутри кнопок — имя друга и два действия.</p>
+    
+    <p class="src">community.html · телефон 12</p>
+  </article></div></section>
+<section id="g9"><h2>Монеты<small>1</small></h2><div class="grid"><article class="it" id="p21">
+    <header><span class="no">21</span><h3>Plus закончился</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/21-now.jpg" alt="Сейчас: Plus закончился" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/21-new.jpg" alt="Предлагаем: Plus закончился" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Три действия — оставить «Продлить Plus» и «Позже»; «Пригласить друга» здесь лишнее.</p>
+    
+    <p class="src">coins.html · телефон 13</p>
+  </article></div></section>
+<section id="g10"><h2>Тосты и сообщения<small>5</small></h2><div class="grid"><article class="it" id="p22">
+    <header><span class="no">22</span><h3>Тост «Есть новое сообщение»</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/22-now.jpg" alt="Сейчас: Тост «Есть новое сообщение»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/22-new.jpg" alt="Предлагаем: Тост «Есть новое сообщение»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Полоска-рейл и капс «Сообщение» над текстом — иконка и одна строка.</p>
+    <p class="st code">Уже в коде у Дизайна (окно 18:30): ActionToast — значок и одна строка, без рейла, плитки и капса.</p>
+    <p class="src">overlays.html · телефон 53</p>
+  </article><article class="it" id="p23">
+    <header><span class="no">23</span><h3>Тост «Энергия возвращена»</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/23-now.jpg" alt="Сейчас: Тост «Энергия возвращена»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/23-new.jpg" alt="Предлагаем: Тост «Энергия возвращена»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «Сообщение» над единственной строкой.</p>
+    <p class="st code">Уже в коде у Дизайна (окно 18:30): тот же ActionToast.</p>
+    <p class="src">dialogs-gaps-states.html · телефон 16</p>
+  </article><article class="it" id="p24">
+    <header><span class="no">24</span><h3>Сообщение команды</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/24-now.jpg" alt="Сейчас: Сообщение команды" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/24-new.jpg" alt="Предлагаем: Сообщение команды" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «СООБЩЕНИЕ» над заголовком и чип «200» — монеты уже названы в тексте.</p>
+    
+    <p class="src">system.html · телефон 16</p>
+  </article><article class="it" id="p25">
+    <header><span class="no">25</span><h3>Сообщения</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/25-now.jpg" alt="Сейчас: Сообщения" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/25-new.jpg" alt="Предлагаем: Сообщения" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">«2 новых», метки «Новое» и кнопки «Нравится» у каждого сообщения — точки непрочитанного хватает.</p>
+    
+    <p class="src">system.html · телефон 17</p>
+  </article><article class="it" id="p26">
+    <header><span class="no">26</span><h3>Просьба об оценке</h3><span class="own">Дизайн</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/26-now.jpg" alt="Сейчас: Просьба об оценке" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/26-new.jpg" alt="Предлагаем: Просьба об оценке" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Капс «Маленький вопрос» и плашка «СЕРИЯ 12 дней подряд» — вопрос и две кнопки.</p>
+    
+    <p class="src">system.html · телефон 20</p>
+  </article></div></section>
+<section id="g11"><h2>Противоречит решениям<small>1</small></h2><div class="grid"><article class="it" id="p27">
+    <header><span class="no">27</span><h3>«Подарок на старт — три дня всё открыто»</h3><span class="own">Координатор</span></header>
+    <div class="pair">
+      <figure><img src="assets/minimum/27-now.jpg" alt="Сейчас: «Подарок на старт — три дня всё открыто»" loading="lazy"><figcaption>Сейчас — как в коде</figcaption></figure>
+      <figure><img src="assets/minimum/27-new.jpg" alt="Предлагаем: «Подарок на старт — три дня всё открыто»" loading="lazy"><figcaption>Предлагаем</figcaption></figure>
+    </div>
+    <p class="why">Подарков нет (D09) — окно убрать целиком; справа экран без окна.</p>
+    <p class="st rule">Противоречит решению D09 — окно убрать целиком.</p>
+    <p class="src">overlays-more.html · телефон 4</p>
+  </article></div></section>
+</div></body></html>

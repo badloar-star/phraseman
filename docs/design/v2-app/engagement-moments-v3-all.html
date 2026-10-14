@@ -548,14 +548,14 @@ moment({ id: 'm02', num: '02', short: 'Удержался', title: 'Удержа
     why: 'Середина таблицы превращается в цель на неделю в понятной валюте — монетах.', ref: 'Duolingo «You stayed in…».', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 03. Понижение — туман ---------- */
-const down3 = () => `<div class="fog"></div><div style="position:absolute;left:0;right:0;top:300px;z-index:46;display:flex;flex-direction:column;align-items:center;gap:14px;padding:0 30px" data-wrap><div data-cc style="position:relative">${coinChar(5, 110, { mood: 'sleep', zz: true })}<span class="tapme" style="left:50%;top:50%;margin:-22px"></span></div><div class="h-lg center" data-h>Монета задремала</div><div class="p center" data-p>Неделя в пятёрке последних по монетам — спускаемся в Гранит. Ранг, монеты и фразы на месте.</div></div>
-  <div class="dock" style="z-index:47">${prim('Разбудить — Играть')}${sec('Напомнить вечером')}</div>`;
+const down3 = () => `<div class="fog"></div><div style="position:absolute;left:0;right:0;top:300px;z-index:46;display:flex;flex-direction:column;align-items:center;gap:14px;padding:0 30px" data-wrap><div data-cc style="position:relative">${coinChar(5, 110, { mood: 'sleep', zz: true })}<span class="tapme" style="left:50%;top:50%;margin:-22px"></span></div><div class="h-lg center" data-h>Неделя закончилась: Гранит</div><div class="p center" data-p>Неделя в пятёрке последних по монетам — спускаемся в Гранит. Ранг, монеты и фразы на месте.</div></div>
+  <div class="dock" style="z-index:47">${prim('Играть')}${sec('Напомнить вечером')}</div>`;
 moment({ id: 'm03', num: '03', short: 'Понижение · туман', title: 'Понижение лиги — мягко', tag: 'new',
   lead: 'Понижают 5 последних по монетам недели (D190); окно — при первом открытии после закрытия недели, поверх Главной (D191). Отдельный экран темы (туман — непрозрачный фон, текст ничего не перекрывает), монета спит; тап — просыпается с «!».',
-  variants: [{ k: 'A', label: 'Туман → тап → проснулась', time: '~3 с', phone: { under: EMA.homeUnder({}), over: down3() }, total: 3.5,
-    init: (ph) => seq(ph, [[2000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); ph.querySelector('.fog').classList.add('awake'); ph.querySelector('.tapme')?.remove(); ph.querySelector('[data-h]').innerHTML = 'Проснулась.<br>Новая неделя'; ph.querySelector('[data-p]').textContent = 'Гранит · все с 1 этажа.'; }]]),
+  variants: [{ k: 'A', label: 'Туман → тап → новая неделя', time: '~3 с', phone: { under: EMA.homeUnder({}), over: down3() }, total: 3.5,
+    init: (ph) => seq(ph, [[2000, () => { const cc = ph.querySelector('[data-cc] .cc'); cc.classList.remove('sleep'); cc.querySelector('.zz')?.remove(); cc.classList.add('peek'); emo(cc, 'bang', 1); ph.querySelector('.fog').classList.add('awake'); ph.querySelector('.tapme')?.remove(); ph.querySelector('[data-h]').innerHTML = 'Новая неделя'; ph.querySelector('[data-p]').textContent = 'Гранит · все с 1 этажа.'; }]]),
     beats: [{ t: 0.0, w: 'туман наползает 900 мс, монета спит', snd: 'learn', gain: .6 }, { t: 2.0, w: 'тап: туман светлеет, монета peek + «!»', h: 'medium', snd: 'know', big: true }],
-    why: 'Переносит вину на персонажа и даёт действие «разбудить» — человек сам включает новую неделю.', ref: 'Tamagotchi, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
+    why: 'Мягко и прямо: что случилось, что сохранилось и одно действие «Играть» — человек сам начинает новую неделю.', ref: 'Tamagotchi, Duolingo.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' }] });
 
 /* ---------- 04. Итог недели — карточка (D182) и сторис ---------- */
 // зачем (закон «пик башни и свет без обрезки»): рамка «Итога недели» выше — башня уменьшена до высоты места 103 px (42 × 102), а не обрезана

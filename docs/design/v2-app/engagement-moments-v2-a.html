@@ -118,7 +118,7 @@ const downA = () => `<div class="dim"></div><div class="sheet"><div class="grab"
   <div class="fl" style="gap:16px">${coinChar(5, 64, { mood: 'sleep', zz: true })}<div class="grow"><div class="ov">Итог недели</div><div class="h-md" style="margin-top:4px">Тихая неделя</div><div class="p" style="margin-top:2px;font-size:15px">60 монет · спускаемся в Гранит</div></div></div>
   <div class="p" style="margin-top:14px">Бывает. Монеты, ранг и фразы на месте. В Граните легче разогнаться: возвращаемся за неделю?</div>
   <div class="sf" style="margin-top:14px;padding:12px 14px;display:flex;align-items:center;gap:12px">${icon('target', 's20')}<div class="grow" style="font-size:14px;line-height:19px"><b>План:</b> по 20 монет в день — это топ-5 Гранита.</div></div>
-  <div class="cta white" style="margin-top:14px">Разбудить монету — Играть</div><div class="cta ghost">Напомнить вечером</div></div>`;
+  <div class="cta white" style="margin-top:14px">Играть</div><div class="cta ghost">Напомнить вечером</div></div>`;
 const downB = () => `<div class="full"><div class="body" style="justify-content:flex-start;padding-top:6px">
   <div class="ov a-up">Итог недели</div><div class="h-lg a-up d1" style="margin-top:6px">Реванш через неделю</div>
   <div class="lgs a-up d2" style="margin-top:16px;width:100%">${[...LEAGUES].reverse().slice(8).map((L) => `<div class="lg ${L.i === 0 ? 'me' : L.i === 1 ? 'was' : ''}" style="${L.i === 0 ? 'animation-name:emLgDown' : ''}"><i style="background:${L.stone};box-shadow:inset 0 0 0 1px ${L.edge}66"></i>${L.ru}${L.i === 0 ? `<span style="margin-left:auto;display:inline-flex;align-items:center;gap:6px">${coin(5, 20)}ты</span>` : L.i === 1 ? '<span style="margin-left:auto;font-size:11px">была · вернёмся</span>' : ''}</div>`).join('')}</div>
@@ -127,7 +127,7 @@ const downB = () => `<div class="full"><div class="body" style="justify-content:
 moment({ id: 'm03', num: '03', short: 'Понижение', title: 'Понижение лиги — мягко v2', tag: 'new',
   lead: 'v1 — вежливый текст. v2: персонаж «уснул» (понижение = монета задремала, а не «ты плохой»), кнопка «Разбудить монету»; вариант «Реванш»',
   variants: [
-    { k: 'A', label: '«Монета задремала» — разбудить', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0 }), over: downA() }, why: 'Переносим вину с человека на персонажа: не «ты упал», а «монета задремала — разбуди». Снижает отток после понижения.', ref: 'Duolingo Duo sad (без стыда), Tamagotchi, Drops.', fx: 'монета спит (наклон, z-z-z), шторка.', snd: 'тихое «сопение»; без хаптика.' },
+    { k: 'A', label: '«Неделя закончилась» — Играть', time: '~1,5 с', phone: { under: spireUnder({ li: 0, lit: 0 }), over: downA() }, why: 'Переносим вину с человека на персонажа: не «ты упал», а «монета задремала — разбуди». Снижает отток после понижения.', ref: 'Duolingo Duo sad (без стыда), Tamagotchi, Drops.', fx: 'монета спит (наклон, z-z-z), шторка.', snd: 'тихое «сопение»; без хаптика.' },
   ] });
 
 /* ---------- 04. Итог недели — «Комната недели» и сторис ---------- */

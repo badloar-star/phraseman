@@ -12,6 +12,7 @@ import Animated, { Easing, FadeIn, cancelAnimation, useAnimatedStyle, useReduced
 import type { Lang } from '../../constants/i18n';
 import { hapticHeavyImpact, hapticTap } from '../../hooks/use-haptics';
 import MomentCoin from '../moments/MomentCoin';
+import { useFireOnce } from '../moments/use_fire_once';
 import { MomentFullScreen } from '../spire/moments/moments_layout';
 import { useMomentRumble } from '../spire/moments/moments_effects';
 import { stepMomentText } from '../spire/moments/step_moment_strings';
@@ -40,6 +41,8 @@ export type LessonPerfectMomentProps = Readonly<{
 }>;
 
 function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testID = 'lesson-perfect' }: LessonPerfectMomentProps) {
+  // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
+  const fire = useFireOnce('LESSON-PERFECT');
   const p = useSpirePalette();
   const sh = useSpireShadow();
   const reduceMotion = useReducedMotion();
@@ -88,7 +91,7 @@ function LessonPerfectMoment({ lang, coinRank, total, coinsEarned, onNext, testI
           <Animated.Text entering={textIn(1)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-sub`}>{perfectMomentText(lang, 'noMistakes', { n: coinsEarned })}</Animated.Text>
         </View>
         <Animated.View entering={textIn(2)} style={s.foot}>
-          <V2Button label={spireGameText(lang, 'onward')} icon="arrow-forward" onPress={onNext} testID={`${testID}-next`} />
+          <V2Button label={spireGameText(lang, 'onward')} icon="arrow-forward" onPress={() => fire(onNext, 'next')} testID={`${testID}-next`} />
         </Animated.View>
       </Animated.View>
       <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, flashStyle]} />{/* theme-exempt: стоп-кадр образца — светлая вуаль */}

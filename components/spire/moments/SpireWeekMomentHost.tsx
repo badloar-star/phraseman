@@ -7,7 +7,7 @@
 // нет полей — m01 без акта «лестница» (с места сразу к башне), m02 без строки «до топ-5 не хватило», ничего не выдумываем. «Играть» и закрытие — один обработчик (close хука).
 // «Напомнить вечером» (m03) — только если хук Ядра сказал, что напоминание доступно (weekMoment.remind.available); иначе второй кнопки нет.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useMemo } from 'react';
+import React, { memo, useCallback, useMemo, useRef } from 'react';
 import { Modal, View } from 'react-native';
 import type { Lang } from '../../../constants/i18n';
 import type { SpireWeekMomentShow } from '../../../app/spire/spire_week_moment_gate';
@@ -24,6 +24,11 @@ export type SpireWeekMomentHostProps = Readonly<{
   coinRank: number | null;
   /** «Играть» и закрытие окна — освобождает слот в очереди окон (close хука Ядра). */
   onClose: () => void;
+  /**
+   * «Играть»: переход в Пик. Вызывается СРАЗУ ПОСЛЕ onClose в том же обработчике (окно закрыто синхронно, потом навигация).
+   * Нет колбэка (Пик недоступен этому языку / вкладка выключена) — «Играть» только закрывает окно.
+   */
+  onPlay?: () => void;
   /** «Напомнить вечером» (только m03): хук Ядра отдаёт колбэк, когда напоминание доступно (разрешение уже дано, категория включена, ещё не поздно); нет колбэка — кнопки нет. Колбэк сам закрывает окно. */
   onRemind?: () => void;
   testID?: string;
@@ -41,19 +46,28 @@ export function spireWeekGapToTop5(result: SpireWeekMomentShow['result']): numbe
   return Math.max(0, result.promotionLineCoins - (result.weekCoins ?? 0)); // guard-ok: разность только для показа «не хватило N»; баланс не меняется
 }
 
-function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onRemind, testID = 'spire-week-moment' }: SpireWeekMomentHostProps) {
+function SpireWeekMomentHost({ lang, decision, coinRank, onClose, onPlay, onRemind, testID = 'spire-week-moment' }: SpireWeekMomentHostProps) {
   const { result, outcome } = decision;
+  // зачем (координатор 14.10, аудит Optimistic UI; эталон v3-all: «Играть» — человек сам начинает новую неделю): сначала синхронно закрываем окно, потом ведём в Пик; повторный тап не уводит дважды
+  const playedRef = useRef(false);
+  const handlePlay = useCallback(() => {
+    if (playedRef.current) { console.log('[WEEK-MOMENT] кнопка Играть повторно — пропуск'); return; }
+    playedRef.current = true;
+    console.log(`[WEEK-MOMENT] кнопка Играть: окно закрыто, переход в Пик=${String(Boolean(onPlay))}`); // guard-ok: единичный лог действия
+    onClose();
+    onPlay?.();
+  }, [onClose, onPlay]);
   const rows = useMemo(() => spireWeekLadderRows(result.ladder), [result.ladder]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={onClose}>
       <SheetSwipeRoot>
         <View style={{ flex: 1 }} testID={testID}>
           {outcome === 'promoted' ? (
-            <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} onPlay={onClose} />
+            <MomentPromotion lang={lang} fromTier={result.prevTier} toTier={result.newTier} rows={rows} myPlace={result.roomRank} myCoinRank={coinRank} bonusCoins={result.promotionCoins} onPlay={handlePlay} />
           ) : outcome === 'stayed' ? (
-            <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} gapToTop5={spireWeekGapToTop5(result)} onPlay={onClose} />
+            <MomentStay lang={lang} tier={result.newTier} coinRank={coinRank} place={result.roomRank} weekCoins={result.weekCoins ?? 0} gapToTop5={spireWeekGapToTop5(result)} onPlay={handlePlay} />
           ) : (
-            <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} onPlay={onClose} onRemind={onRemind} />
+            <MomentDown lang={lang} newTier={result.newTier} coinRank={coinRank} onPlay={handlePlay} onRemind={onRemind} />
           )}
         </View>
       </SheetSwipeRoot>

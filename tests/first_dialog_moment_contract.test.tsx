@@ -51,6 +51,14 @@ describe('m17 · первый диалог', () => {
     expect(onNext).toHaveBeenCalledTimes(1);
   });
 
+  it('двойной тап «Следующий сценарий» срабатывает один раз (синхронная защита, не ждём busy родителя)', async () => {
+    const onNext = jest.fn();
+    await render(<FirstDialogMoment lang="ru" studyTarget="en" coinRank={5} turns={6} goalsDone={5} goalsTotal={5} onNext={onNext} />);
+    await fireEvent.press(screen.getByTestId('first-dialog-next'));
+    await fireEvent.press(screen.getByTestId('first-dialog-next'));
+    expect(onNext).toHaveBeenCalledTimes(1);
+  });
+
   it('изучается испанский: язык в заголовке — «по-испански», а не зашитый «английски»', async () => {
     await render(<FirstDialogMoment lang="ru" studyTarget="es" coinRank={null} turns={4} goalsDone={4} goalsTotal={4} onNext={jest.fn()} />);
     expect(screen.getByTestId('first-dialog-title').props.children).toBe('Первый разговор по-испански — есть!');

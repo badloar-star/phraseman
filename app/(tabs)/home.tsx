@@ -654,6 +654,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
     // зачем (D191, Ядро 14.10): окно итога недели берёт слот в общей очереди окон, «показано» отмечает хук; здесь только точка монтирования
     const weekMoment = useSpireWeekMoment({ uiLang: lang, studyTarget: String(studyTarget), tabEnabled: spireTabEnabled, active: homeRuntimeActive });
+    // зачем (координатор 14.10; эталон v3-all: Играть ведёт в игру): после синхронного закрытия окна — в раздел Пика; Пик недоступен этому языку / вкладка выключена → кнопка только закрывает окно
+    const weekMomentPlay = useMemo(() => (spireTabEnabled && isLearningSurfaceReady(studyTarget, 'spire') ? () => { nav.push('/(tabs)/community?section=spire' as never); } : undefined), [nav, spireTabEnabled, studyTarget]);
     // зачем (координатор 14.10): авто-пейвол «серия» шёл мимо очереди окон и мог въехать поверх окна недели / «С возвращением» — перед push ждём свободный слот, показываем один раз после ([PAYWALL-AUTO])
     // зачем (D193, Авторизация 14.10): «С возвращением» стоит в той же очереди окон сразу после итога недели; энергия — из памяти (peek), без чтений
     const energyPeekNow = peekEnergy();
@@ -2656,7 +2658,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 });
             });
         }}/></Suspense>) : null}
-      {weekMoment.visible && weekMoment.decision ? (<Suspense fallback={null}><SpireWeekMomentHost lang={lang} decision={weekMoment.decision} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onClose={weekMoment.close} onRemind={weekMoment.remind.available ? weekMoment.remind.schedule : undefined} /></Suspense>) : null}
+      {weekMoment.visible && weekMoment.decision ? (<Suspense fallback={null}><SpireWeekMomentHost lang={lang} decision={weekMoment.decision} coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null} onClose={weekMoment.close} onPlay={weekMomentPlay} onRemind={weekMoment.remind.available ? weekMoment.remind.schedule : undefined} /></Suspense>) : null}
       {welcomeBack.visible && welcomeBack.decision ? (
         <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={welcomeBack.close}>
           <SheetSwipeRoot>

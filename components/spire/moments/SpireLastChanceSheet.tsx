@@ -14,6 +14,7 @@ import type { Lang } from '../../../constants/i18n';
 import { hapticTap } from '../../../hooks/use-haptics';
 import { useRuntimeActive } from '../../../hooks/use_runtime_active';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
+import { useFireOnce } from '../../moments/use_fire_once';
 import V2Pressable from '../../v2/V2Pressable';
 import { KitSheetModal } from '../../v2/KitSheetModal';
 import { V2Button } from '../../v2/V2Kit';
@@ -43,6 +44,8 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
   const reduceMotion = useReducedMotion();
   const runtimeActive = useRuntimeActive(visible);
   const [now, setNow] = useState(() => Date.now());
+  // зачем (координатор 14.10): Plus ведёт ТОЛЬКО через общий пейвол (D115) — onPlus родитель открывает сам; здесь тап срабатывает один раз на показ шторки
+  const fire = useFireOnce('LAST-CHANCE', visible);
 
   // живой отсчёт: раз в секунду, только пока шторка открыта, экран в фокусе и приложение активно
   useEffect(() => {
@@ -90,7 +93,7 @@ function SpireLastChanceSheet({ lang, visible, weekEndsAtMs, energyReadyAtMs, ga
         <View style={s.cta}>
           <V2Button label={spireGameText(lang, 'energyIn', { t: energyClock })} icon="flash" iconPosition="leading" disabled onPress={() => undefined} testID={`${testID}-cta`} />
         </View>
-        <V2Pressable onPress={onPlus} accessibilityRole="button" style={s.plus} testID={`${testID}-plus`}>
+        <V2Pressable onPress={() => fire(onPlus, 'plus')} accessibilityRole="button" style={s.plus} testID={`${testID}-plus`}>
           <Text style={[s.plusText, { color: p.text }]}>{positionMomentText(lang, 'plusLink')}</Text>
           <Ionicons name="chevron-forward" size={16} color={p.text} />
         </V2Pressable>

@@ -87,10 +87,12 @@ describe('m05A · строка «Ты» едет вверх через лини�
     expect(screen.getByTestId('position-rise-heading').props.children).toBe('Ты в топ-5');
     expect(screen.getByTestId('position-rise-row-4').props.children).toBe('5.Ты');
     expect(screen.getByTestId('position-rise-row-5').props.children).toBe('6.Лена');
+    // зачем (координатор 14.10): окно срабатывает один раз — второй тап (в том числе по другой кнопке) гасится синхронно
     await fireEvent.press(screen.getByTestId('position-rise-play'));
-    expect(onPlay).toHaveBeenCalledTimes(1);
+    await fireEvent.press(screen.getByTestId('position-rise-play'));
     await fireEvent.press(screen.getByTestId('position-rise-later'));
-    expect(onLater).toHaveBeenCalledTimes(1);
+    expect(onPlay).toHaveBeenCalledTimes(1);
+    expect(onLater).not.toHaveBeenCalled();
   });
 
   it('подъём внутри топ-5 (линию не пересёк): вместо «Ты в топ-5» — «3 место»', async () => {
@@ -110,8 +112,17 @@ describe('m05B · тост «обгоняет тебя»', () => {
     expect(screen.getByTestId('overtake-toast-title').props.children).toBe('Ира обгоняет тебя');
     expect(screen.getByTestId('overtake-toast-sub').props.children).toBe('на 30 монет недели');
     await fireEvent.press(screen.getByTestId('overtake-toast-play'));
+    await fireEvent.press(screen.getByTestId('overtake-toast-play'));
     expect(onPlay).toHaveBeenCalledTimes(1);
     expect(onDismiss).not.toHaveBeenCalled();
+    // после «Играть» автозакрытие молчит: родитель уже убрал тост, второе событие не нужно
+    await act(async () => { jest.advanceTimersByTime(6000); });
+    expect(onDismiss).not.toHaveBeenCalled();
+  });
+
+  it('без нажатия тост сам закрывается через 6 с ровно один раз', async () => {
+    const onDismiss = jest.fn();
+    await render(<SpireOvertakeToast lang="ru" rivalName="Ира" rivalCoinRank={7} myCoinRank={5} gapCoins={30} onPlay={jest.fn()} onDismiss={onDismiss} />);
     await act(async () => { jest.advanceTimersByTime(6000); });
     expect(onDismiss).toHaveBeenCalledTimes(1);
   });

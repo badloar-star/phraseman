@@ -12,6 +12,7 @@ import Animated, { Easing, cancelAnimation, useAnimatedStyle, useReducedMotion, 
 import type { Lang } from '../../../constants/i18n';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import { playEvent } from '../../../modules/sound_v2/sound_bank';
+import { useFireOnce } from '../../moments/use_fire_once';
 import { V2Button } from '../../v2/V2Kit';
 import { spireGameText } from '../spire_game_strings';
 import { useSpirePalette } from '../useSpirePalette';
@@ -53,6 +54,8 @@ export function positionRiseOrderAfter(rows: readonly MomentRoomRow[], fromIndex
 }
 
 function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, onPlay, onLater, busy, testID = 'position-rise' }: SpirePositionRiseMomentProps) {
+  // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
+  const fire = useFireOnce('POSITION-RISE');
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const [rowH, setRowH] = useState(FALLBACK_ROW_H);
@@ -115,9 +118,9 @@ function SpirePositionRiseMoment({ lang, rows, fromIndex, toIndex, coinsGained, 
           </View>
         </View>
         <View style={s.foot}>
-          <V2Button label={positionMomentText(lang, 'playMore')} icon="arrow-forward" onPress={onPlay} disabled={busy} testID={`${testID}-play`} />
+          <V2Button label={positionMomentText(lang, 'playMore')} icon="arrow-forward" onPress={() => fire(onPlay, 'play')} disabled={busy} testID={`${testID}-play`} />
           <View style={s.gap} />
-          <V2Button label={stepMomentText(lang, 'toTower')} variant="secondary" onPress={onLater} testID={`${testID}-later`} />
+          <V2Button label={stepMomentText(lang, 'toTower')} variant="secondary" onPress={() => fire(onLater, 'later')} testID={`${testID}-later`} />
         </View>
         <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { backgroundColor: '#FFFFFF' }, flashStyle]} />{/* theme-exempt: стоп-кадр образца — светлая вуаль */}
       </View>

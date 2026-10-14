@@ -125,6 +125,25 @@ describe('окно итога недели (D191): вид по данным се
     await fireEvent.press(screen.getByTestId('moment-down-play'));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
+
+  it('«Играть» СНАЧАЛА закрывает окно, потом ведёт в Пик; двойной тап — один переход; без onPlay только закрытие', async () => {
+    const order: string[] = [];
+    const onClose = jest.fn(() => { order.push('close'); });
+    const onPlay = jest.fn(() => { order.push('play'); });
+    await render(<SpireWeekMomentHost lang="ru" decision={decision('demoted', { demoted: true, prevTier: 1, newTier: 0 })} coinRank={5} onClose={onClose} onPlay={onPlay} />);
+    await fireEvent.press(screen.getByTestId('moment-down-play'));
+    await fireEvent.press(screen.getByTestId('moment-down-play'));
+    expect(order).toEqual(['close', 'play']);
+    expect(onClose).toHaveBeenCalledTimes(1);
+    expect(onPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it('«Играть» в окне «осталась»: тот же порядок закрытие → переход', async () => {
+    const order: string[] = [];
+    await render(<SpireWeekMomentHost lang="ru" decision={decision('stayed', { roomRank: 12, weekCoins: 1180 })} coinRank={5} onClose={() => { order.push('close'); }} onPlay={() => { order.push('play'); }} />);
+    await fireEvent.press(screen.getByTestId('moment-stay-play'));
+    expect(order).toEqual(['close', 'play']);
+  });
 });
 
 describe('напоминание вечером (m03)', () => {

@@ -13,6 +13,7 @@ import type { Lang } from '../../constants/i18n';
 import { studyLanguageWord } from '../../constants/study_language_words';
 import { hapticLightImpact, hapticSuccess } from '../../hooks/use-haptics';
 import MomentCoin from '../moments/MomentCoin';
+import { useFireOnce } from '../moments/use_fire_once';
 import { MomentFullScreen } from '../spire/moments/moments_layout';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import StreakConfetti from '../streak/moments/StreakConfetti';
@@ -42,6 +43,8 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
   const [cheer, setCheer] = useState(reduceMotion);
   const [confetti, setConfetti] = useState(false);
   const adv = studyLanguageWord(lang, studyTarget, 'adv');
+  // зачем (координатор 14.10, аудит Optimistic UI): тап срабатывает один раз синхронно; родитель в onNext/onPlay СНАЧАЛА закрывает окно, потом навигация/запись
+  const fire = useFireOnce('FIRST-DIALOG');
 
   useEffect(() => {
     console.log(`[FIRST-DIALOG] показ: язык=${studyTarget} реплик=${turns} задания=${goalsDone}/${goalsTotal} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -67,7 +70,7 @@ function FirstDialogMoment({ lang, studyTarget, coinRank, turns, goalsDone, goal
           <Animated.Text entering={beat(2)} style={[s.p, { color: p.textSecondary }]} testID={`${testID}-stats`}>{firstDialogText(lang, 'stats', { turns, done: goalsDone, all: goalsTotal })}</Animated.Text>
         </View>
         <Animated.View entering={beat(3)} style={s.foot}>
-          <V2Button label={firstDialogText(lang, 'next')} icon="arrow-forward" onPress={onNext} testID={`${testID}-next`} />
+          <V2Button label={firstDialogText(lang, 'next')} icon="arrow-forward" onPress={() => fire(onNext, 'next')} testID={`${testID}-next`} />
         </Animated.View>
       </View>
     </MomentFullScreen>

@@ -44,11 +44,13 @@ const LEGAL_FILES = [
   // 13.10 (решение владельца, вопрос 13 «Да, все 3 правки»): PRIVACY_R1_PATCH — §10 «most recent entries», §13 голос в Диалогах
   // остаётся на телефоне, уходит только текст (Android — системный распознаватель), §19/§20 запись о выполненном удалении + заявка 14 дней.
   // 13.10 (координатор по решению владельца об умном напоминании): §12 — время занятий хранится и обрабатывается только на телефоне.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '901d334ff56171a36467cf8b0e11417f45e414edc2670a151ebbcfe6a1904275'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '7774b9d15d282ad7f964c745d1d670c423acfe74cc24d88470958a1fd6c56ab7'],
+  // 14.10 (D189, владелец «ДА, СРАЗУ»): гость удаляется с сервера сразу — сроки хранения и §20 (14 дней только для входа через Google/Apple); дата 14 октября.
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'fb2fba150d46f9351781db568e01bfa33275ce546f2bfcf2f2613b4c296c6d09'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '20731282a029c760472b0288fb8b004b962e51bf77229a08c9a4f6bc8e52c60d'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
-  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'f863b642c155a27f95a2b1b02f01d1032d27f6f247d0e1c5bb83cf90cb875d5c'],
-  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', 'ab826ddfd649854a51a4228b7423b0cc6ab984b4067b98b3ebb9fc5c9c71c4df'],
+  // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
+  ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', '76b895aa3833acb24947b6ca37a61c75d2ee971fb027754d73be5f83deadfaa1'],
+  ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '63525c720991af31c182f7d7eaae73b14b04687730fc6796ad527ba10a1c2ee2'],
 ];
 
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');

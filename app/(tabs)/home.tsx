@@ -50,6 +50,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useDialogueV2Warmup } from '../../hooks/use_dialogue_v2_warmup';
 import { coinRankRowForDisplay, isValidCoinRank } from '../coin_rank_table_v1';
+import StoryAvatarSlot from '../../components/stories/StoryAvatarSlot';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { usePerfR1Probe } from '../perf_r1_probe';
 import { glassTone } from '../../components/dialogs/glass/glassTone';
@@ -2337,21 +2338,16 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     homeFocusTick={focusTick}
                   />
                 )}
+                // зачем (D192, владелец 14.10): кнопка аватара переехала в StoryAvatarSlot без изменений вида; при stories_v1 выкл или без событий это ровно прежняя кнопка профиля, с событиями — кольцо сторис и просмотр
                 avatarSlot={(
-                  <TouchableOpacity
-                    testID="home-hero-avatar-button"
-                    activeOpacity={0.82}
-                    onPress={openHomeProfile}
-                    accessibilityRole="button"
-                    accessibilityLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
-                    hitSlop={6}
-                  >
-                    {homeCoinRankSource ? (
-                      <Image testID="home-avatar-coin-rank" source={homeCoinRankSource} style={{ width: 48, height: 48 }} contentFit="contain" />
-                    ) : (
-                      <View testID="home-avatar-coin-loading" style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: t.bgSurface2 }} />
-                    )}
-                  </TouchableOpacity>
+                  <StoryAvatarSlot
+                    lang={lang}
+                    coinRank={isValidCoinRank(myCoinRank) ? myCoinRank : null}
+                    coinSource={homeCoinRankSource}
+                    placeholderColor={t.bgSurface2}
+                    onOpenProfile={openHomeProfile}
+                    profileLabel={triLang(lang, { ru: 'Мой профиль', uk: 'Мій профіль', en: 'My profile', es: 'Mi perfil', 'pt-BR': 'Meu perfil', vi: 'Hồ sơ của tôi', id: 'Profil saya', tr: 'Profilim', pl: 'Mój profil' })}
+                  />
                 )}
                 stats={[
                   {

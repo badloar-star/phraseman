@@ -52,6 +52,11 @@ jest.mock('../components/v2/V2Kit', () => {
   const R = jest.requireActual('react');
   return { V2Button: (props: { label: string; onPress: () => void; testID?: string }) => R.createElement('Pressable', { testID: props.testID, accessibilityRole: 'button', accessibilityLabel: props.label, onPress: props.onPress }, R.createElement('Text', null, props.label)) };
 });
+// общая монета Авторизации (components/moments/MomentCoin.tsx) тестируется её собственным сторожем; здесь — простая кнопка с теми же пропсами, чтобы проверять тексты и тап «просыпайся» момента m03
+jest.mock('../components/moments/MomentCoin', () => {
+  const R = jest.requireActual('react');
+  return { __esModule: true, default: (props: { testID?: string; onPress?: () => void; say?: string }) => R.createElement('Pressable', { testID: props.testID, onPress: props.onPress }, props.say ? R.createElement('Text', null, props.say) : null) };
+});
 jest.mock('../components/spire/SpireRankCoin', () => ({ __esModule: true, default: 'SpireRankCoin' }));
 jest.mock('../components/spire/useSpireShadow', () => ({ useSpireShadow: () => ({ plate: {}, nested: {} }) }));
 jest.mock('../components/spire/useSpireScene', () => ({ useSpireScene: () => ({ light: false }) }));
@@ -179,7 +184,8 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     walk('components');
     // зачем: сессия «Серия» (components/streak/moments) осознанно берёт общие эффекты, раскладку и флаг моментов отсюда — это не показ момента Пика; всё остальное по-прежнему запрещено
     // и dev-маршрут app/dev_moments_preview.tsx — вход Сверки на моках (только __DEV__, в стор-сборке вырезан; сторож tests/moments_dev_preview_release_guard.test.mjs)
-    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && f !== 'app/dev_moments_preview.tsx')).toEqual([]);
+    // и сторис по аватару (components/stories) — берёт готовые строки итога недели (moments_strings), не показывает сам момент
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && f !== 'app/dev_moments_preview.tsx')).toEqual([]);
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

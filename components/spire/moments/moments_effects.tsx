@@ -79,7 +79,8 @@ function MomentFirework({ x, y, r = 90, n = 26, fire, delayMs = 0 }: MomentFirew
 export default memo(MomentFirework);
 
 /** Дрожь экрана 700 мс (эталон emRumble): translate по затухающей амплитуде. Возвращает стиль для контейнера и запуск. Нет движения при reduceMotion. */
-export function useMomentRumble(): Readonly<{ style: ReturnType<typeof useAnimatedStyle>; play: () => void }> {
+// зачем: тип стиля выводится сам — явная аннотация ReturnType<typeof useAnimatedStyle> давала TS2322 при передаче в style у Animated.View (MomentPromotion, StreakMilestoneScreen)
+export function useMomentRumble() {
   const reduceMotion = useReducedMotion();
   const x = useSharedValue(0);
   const y = useSharedValue(0);

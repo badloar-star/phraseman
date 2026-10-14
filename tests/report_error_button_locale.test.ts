@@ -21,6 +21,13 @@ jest.mock('react-native', () => ({
   View: 'View',
 }));
 
+// зачем (координатор 14.10): ReportErrorButton тянет SheetSwipeClose → react-native-gesture-handler (нативный модуль не разбирается в jest); тест проверяет только подписи категорий, поэтому шторку-свайп заменяем заглушкой
+jest.mock('../components/modal_fx/SheetSwipeClose', () => ({
+  __esModule: true,
+  default: () => null,
+  SheetSwipeRoot: () => null,
+}));
+
 jest.mock('react-native-safe-area-context', () => ({
   useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }),
 }));

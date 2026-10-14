@@ -20,6 +20,7 @@ import {
   parseStoryEvents,
   pruneStoryEvents,
   serializeStoryEvents,
+  storyEventKey,
   type StoryEventList,
   type StoryEventPayload,
   type StoryEventType,
@@ -185,6 +186,9 @@ export async function recordStoryEvent(
   type: StoryEventType,
   payload: StoryEventPayload,
   atMs: number = Date.now(),
+  // зачем (координатор 14.10, D191+D192): факт уже показан в своём окне → история ложится сразу просмотренной (кольцо не горит),
+  // а если запись успела раньше окна — помечается просмотренной в той же очереди записей (без гонки «пометили до записи»).
+  opts: Readonly<{ seen?: boolean }> = {},
 ): Promise<StoryRecordResult> {
   try {
     await primeStoriesFlag();
@@ -201,7 +205,17 @@ export async function recordStoryEvent(
         info(`record: skip type=${type} reason=account_changed`);
         return { recorded: false, reason: 'account_changed' };
       }
-      const decision = addStoryEvent(list, { type, payload, atMs }, Date.now());
+      const decision = addStoryEvent(list, { type, payload, atMs, seen: opts.seen === true }, Date.now());
+      if (!decision.added && decision.reason === 'duplicate' && opts.seen === true) {
+        const id = storyEventKey(type, payload);
+        const seen = markStorySeen(decision.list, id);
+        info(`record: duplicate id=${id} → seen (shown elsewhere) changed=${String(seen.changed)}`);
+        if (!seen.changed) return { recorded: false, reason: 'duplicate' };
+        lists.set(owner, seen.list);
+        recompute(`record_seen_${type}`);
+        const savedSeen = await persist(owner, seen.list, `seen-on-record ${id}`);
+        return savedSeen ? { recorded: true, id } : { recorded: false, reason: 'storage_failed' };
+      }
       if (!decision.added) {
         info(`record: skip type=${type} reason=${decision.reason} payload=${JSON.stringify(payload)}`);
         return { recorded: false, reason: decision.reason };
@@ -209,7 +223,7 @@ export async function recordStoryEvent(
       lists.set(owner, decision.list);
       recompute(`record_${type}`);
       const saved = await persist(owner, decision.list, `record ${decision.event.id}`);
-      info(`record: ok id=${decision.event.id} atMs=${atMs} total=${decision.list.length} evicted=${decision.evicted} saved=${String(saved)}`);
+      info(`record: ok id=${decision.event.id} seen=${String(decision.event.seen)} atMs=${atMs} total=${decision.list.length} evicted=${decision.evicted} saved=${String(saved)}`);
       return saved ? { recorded: true, id: decision.event.id } : { recorded: false, reason: 'storage_failed' };
     });
     writeChain = run.catch(() => undefined);

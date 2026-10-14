@@ -7,13 +7,26 @@ import { recordStoryEvent, type StoryRecordResult } from './story_events_store';
 type SpireWeekFact = Readonly<{ weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number }>;
 
 /** Итог недели Шпиля: вверх / вниз / удержался + этаж. Тот же документ, что прочитал загрузчик, — новых чтений нет. */
-export function recordSpireWeekStory(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
-  if (!result) return undefined;
+function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string | number>> {
   const outcome = result.promoted ? 'up' : result.demoted ? 'down' : 'stay';
-  return recordStoryEvent('spire_week', {
+  return {
     weekId: result.weekId, lang: result.lang, outcome, prevTier: result.prevTier, floor: result.newTier,
     place: result.roomRank, total: result.roomTotal,
-  });
+  };
+}
+
+export function recordSpireWeekStory(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
+  if (!result) return undefined;
+  return recordStoryEvent('spire_week', spireWeekPayload(result));
+}
+
+/**
+ * Окно итога недели D191 показано (координатор 14.10): та же история сразу просмотрена — кольцо на этот итог не загорается,
+ * но история остаётся в «недавних» на 7 дней. Окно D191 зовёт это одной строкой при показе.
+ */
+export function markSpireWeekStoryShown(result: SpireWeekFact | null): Promise<StoryRecordResult> | undefined {
+  if (!result) return undefined;
+  return recordStoryEvent('spire_week', spireWeekPayload(result), Date.now(), { seen: true });
 }
 
 /** Рубеж серии — только числа из списка рубежей (streak_milestones.ts); прочие дни молча не пишем. */

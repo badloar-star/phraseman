@@ -8,7 +8,7 @@ import {
   primeStoryEvents,
   recordStoryEvent,
 } from '../modules/story_events/story_events_store';
-import { recordAchievementStories, recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
+import { markSpireWeekStoryShown, recordAchievementStories, recordSpireWeekStory, recordStreakMilestoneStory } from '../modules/story_events/story_event_sources';
 import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app/account_generation';
 
 let mockStore: Record<string, string> = {};
@@ -82,6 +82,23 @@ describe('story_events_store', () => {
     await primeStoryEvents('switch');
     expect(peekStoryEventsSnapshot()).toMatchObject({ owner: 'stable-b', unseenCount: 0 });
     await expect(getUnseenStories()).resolves.toHaveLength(0);
+  });
+
+  // координатор 14.10 (D191+D192): окно итога недели показано → кольцо на этот итог не горит, история остаётся в недавних.
+  const WEEK = { weekId: '2026-W41', lang: 'en', promoted: true, demoted: false, prevTier: 2, newTier: 3, roomRank: 4, roomTotal: 30 };
+
+  it('a week result already shown in the D191 window lands as seen, whichever comes first', async () => {
+    await markSpireWeekStoryShown(WEEK);
+    await recordSpireWeekStory(WEEK);
+    expect(peekStoryEventsSnapshot()).toMatchObject({ unseenCount: 0 });
+    expect(peekStoryEventsSnapshot().stories).toHaveLength(1);
+
+    beginAccountGeneration('stable-c');
+    await recordSpireWeekStory(WEEK);
+    expect(peekStoryEventsSnapshot()).toMatchObject({ owner: 'stable-c', unseenCount: 1 });
+    await markSpireWeekStoryShown(WEEK);
+    expect(peekStoryEventsSnapshot()).toMatchObject({ unseenCount: 0 });
+    expect(peekStoryEventsSnapshot().stories[0]).toMatchObject({ id: 'spire_week:2026-W41:en', seen: true });
   });
 
   it('records only real streak milestones', async () => {

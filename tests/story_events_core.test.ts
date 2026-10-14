@@ -7,6 +7,7 @@ import {
   parseStoryEvents,
   serializeStoryEvents,
   storyPlaybackQueue,
+  storyRecentQueue,
   unseenStories,
   type StoryEventList,
 } from '../modules/story_events/story_events_core';
@@ -58,6 +59,14 @@ describe('story_events_core', () => {
     list = addStoryEvent(list, { type: 'coin_rank_up', payload: { toRank: 2 }, atMs: NOW }, NOW + 50).list;
     list = markStorySeen(addStoryEvent(list, { type: 'achievement', payload: { achievementId: 'seen' }, atMs: NOW + 10 }, NOW + 50).list, 'achievement:seen').list;
     expect(storyPlaybackQueue(list).map((e) => e.id)).toEqual(['coin_rank_up:2', 'achievement:late']);
+  });
+
+  it('recent queue keeps seen stories too, oldest first (tap without the ring)', () => {
+    let list: StoryEventList = EMPTY;
+    list = addStoryEvent(list, { type: 'achievement', payload: { achievementId: 'b' }, atMs: NOW + 5 }, NOW + 5).list;
+    list = markStorySeen(addStoryEvent(list, { type: 'achievement', payload: { achievementId: 'a' }, atMs: NOW }, NOW + 5).list, 'achievement:a').list;
+    expect(storyRecentQueue(list).map((e) => e.id)).toEqual(['achievement:a', 'achievement:b']);
+    expect(addStoryEvent(EMPTY, { type: 'coin_rank_up', payload: { toRank: 7 }, atMs: NOW, seen: true }, NOW)).toMatchObject({ added: true, event: { seen: true } });
   });
 
   it('refuses kinds that are not in the mockup', () => {

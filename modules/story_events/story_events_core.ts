@@ -70,7 +70,7 @@ export function pruneStoryEvents(list: StoryEventList, nowMs: number): StoryEven
 
 export function addStoryEvent(
   list: StoryEventList,
-  input: Readonly<{ type: StoryEventType; payload: StoryEventPayload; atMs: number }>,
+  input: Readonly<{ type: StoryEventType; payload: StoryEventPayload; atMs: number; seen?: boolean }>,
   nowMs: number,
 ): StoryAddDecision {
   const live = pruneStoryEvents(list, nowMs);
@@ -82,7 +82,7 @@ export function addStoryEvent(
   }
   // Повтор ищем и среди просмотренных: просмотренный факт не должен вернуться непросмотренным.
   if (live.some((event) => event.id === id)) return { added: false, list: live, reason: 'duplicate' };
-  const event: StoryEvent = Object.freeze({ id, type: input.type, payload: Object.freeze({ ...input.payload }), atMs: input.atMs, seen: false });
+  const event: StoryEvent = Object.freeze({ id, type: input.type, payload: Object.freeze({ ...input.payload }), atMs: input.atMs, seen: input.seen === true });
   const next = pruneStoryEvents([event, ...live], nowMs);
   return { added: true, list: next, event, evicted: live.length + 1 - next.length };
 }
@@ -99,6 +99,14 @@ export function markStorySeen(list: StoryEventList, id: string): Readonly<{ chan
 
 export function unseenStories(list: StoryEventList, nowMs: number): StoryEventList {
   return Object.freeze(pruneStoryEvents(list, nowMs).filter((event) => !event.seen));
+}
+
+/**
+ * Недавние (координатор 14.10): тап по аватару БЕЗ кольца открывает уже просмотренные истории за 7 дней, как в Instagram;
+ * порядок тот же — по времени события, от старого к новому. Пусто → тап ведёт туда, куда сейчас.
+ */
+export function storyRecentQueue(list: StoryEventList): StoryEventList {
+  return Object.freeze(list.slice().sort((a, b) => a.atMs - b.atMs));
 }
 
 /** Очередь просмотра по образцу s2/s3: непросмотренные «по времени события» — от старого к новому. */

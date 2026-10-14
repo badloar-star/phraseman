@@ -32,6 +32,8 @@ export type MomentDownProps = Readonly<{
   onPlay: () => void;
   /** «Напомнить вечером»: напоминание решает Ядро; нет колбэка (напоминаний ещё нет) — второй кнопки нет. */
   onRemind?: () => void;
+  /** Сразу в состоянии «после тапа» (монета проснулась, «Новая неделя», «{Лига} · все с 1 этажа.»): финальный кадр эталона для сверки; в бою не передаётся. */
+  initialAwake?: boolean;
   testID?: string;
 }>;
 
@@ -40,15 +42,15 @@ const COIN_SIZE = 110;
 const TOP_FRACTION = 300 / 844;
 const TAP_RING = 44;
 
-function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, testID = 'moment-down' }: MomentDownProps) {
+function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, initialAwake = false, testID = 'moment-down' }: MomentDownProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
   const { height } = useWindowDimensions();
-  const [awake, setAwake] = useState(false);
+  const [awake, setAwake] = useState(initialAwake);
   const ring = useSharedValue(0);
   const fog = useSharedValue(reduceMotion ? 1 : 0);
-  const wake = useSharedValue(0);
+  const wake = useSharedValue(initialAwake ? 1 : 0);
 
   useEffect(() => {
     if (__DEV__) console.log(`[MOMENT-DOWN] показ новая_лига=${newTier} монета=${String(coinRank)} reduceMotion=${String(reduceMotion)}`); // guard-ok: единичный лог показа
@@ -83,7 +85,7 @@ function MomentDown({ lang, newTier, coinRank, onPlay, onRemind, testID = 'momen
   const fogStyle = useAnimatedStyle(() => ({ opacity: 0.55 + 0.45 * fog.value }));
 
   const league = spireTierName(newTier, lang);
-  const title = awake ? momentText(lang, 'downWakeTitle') : momentText(lang, 'downTitle');
+  const title = awake ? momentText(lang, 'downWakeTitle') : momentText(lang, 'downTitle', { league });
   const body = awake ? momentText(lang, 'downWakeBody', { league }) : momentText(lang, 'downBody', { league });
 
   return (

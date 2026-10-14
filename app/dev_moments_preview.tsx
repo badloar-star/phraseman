@@ -8,6 +8,7 @@
 //   &place=N  — место в комнате (promo 5 · stay 12); &gap=N — не хватило до топ-5 (stay, 240); &coins=N — монеты недели (stay, 1180); &rank=N — ранг монеты 0…19 (5)
 //   state=streak&d=N — рубеж серии (1,3,7,14,30,50,100,150,200,250,300,365,400,500,600,730,800,900,1000; по умолчанию 7); state=rings&p=1,3,10 — выполнено по трём кольцам «Сегодня» (по умолчанию 0,1,2)
 //   state=back — «С возвращением» (m21): моки образца — 9 дней, 412 фраз, ранг &rank=N (5), энергия полная, 5 карточек; state=rankenough — «Хватает на ранг N» (m14A): &rank=N текущий 0…18 (5), &coins=N баланс (7004)
+//   state=down&awake=1 — «Новая неделя» после тапа (финальный кадр эталона m03)
 //   &selector=1 — снизу полоса переключения состояний и «Повторить» (по умолчанию скрыта, чтобы не попадать в кадр); &replay=N — перезапуск показа
 // Экраны — ТЕ ЖЕ компоненты, что будут в бою; данные — моки без сети, ничего не пишется и не начисляется. Тема и язык — текущие настройки приложения (dev_state?theme=…).
 // В релизе маршрута нет: ENABLE_DEV_TOOLS && !IS_STORE_RELEASE, иначе уводим на Главную; в стор-сборке файл исключён регуляркой router.ctx.js.
@@ -50,7 +51,7 @@ const int = (raw: string | undefined, fallback: number, min: number, max: number
 };
 
 function Inner() {
-  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string }>();
+  const params = useLocalSearchParams<{ state?: string; tier?: string; place?: string; gap?: string; coins?: string; rank?: string; selector?: string; replay?: string; d?: string; p?: string; awake?: string }>();
   const { lang } = useLang();
   const fromParam: PreviewState = isState(params.state) ? params.state : 'promo';
   const [state, setState] = useState<PreviewState>(fromParam);
@@ -78,7 +79,7 @@ function Inner() {
           <MomentStay key={key} lang={lang} tier={tier} coinRank={rank} place={place} weekCoins={coins} gapToTop5={gap} onPlay={noop} />
         ) : null}
         {state === 'down' ? (
-          <MomentDown key={key} lang={lang} newTier={tier} coinRank={rank} onPlay={noop} onRemind={noop} />
+          <MomentDown key={key} lang={lang} newTier={tier} coinRank={rank} onPlay={noop} onRemind={noop} initialAwake={params.awake === '1'} />
         ) : null}
         {state === 'streak' ? (
           <StreakMilestoneMoment key={key} lang={lang} milestone={milestone} coinRank={rank} onDone={noop} onShare={noop} />

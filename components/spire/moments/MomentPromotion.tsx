@@ -163,7 +163,15 @@ function MomentPromotion({ lang, fromTier, toTier, rows, myPlace, myCoinRank, bo
     const T = MOMENT_PROMO_TIMELINE;
     // без лестницы акт 1 не играется: акт 2 («место») встаёт на 0,4 с, дальше тот же ритм образца (сдвиг всех последующих меток)
     const shift = hasLadder ? 0 : T.act2 - 400;
-    const at = (ms: number, fn: () => void) => { timers.current.push(setTimeout(fn, Math.max(0, ms - shift))); };
+    // зачем (гейт Макетов, круг 1: «через 14 с стоит на акте 2»): журнал фактического времени каждой метки сценария — план против факта; рассинхрон виден одним поиском [MOMENT-PROMO] в консольном журнале
+    const startedAt = Date.now();
+    const at = (ms: number, fn: () => void) => {
+      const plan = Math.max(0, ms - shift);
+      timers.current.push(setTimeout(() => {
+        if (__DEV__) console.log(`[MOMENT-PROMO] метка ${ms} мс: план=${plan} факт=${Date.now() - startedAt}`); // guard-ok: журнал сценария
+        fn();
+      }, plan));
+    };
     if (hasLadder) at(T.flicker, () => setPhase((v) => ({ ...v })));
     if (hasLadder) at(T.zone, () => { setPhase((v) => ({ ...v, zone: true })); zoneTop.value = withTiming((rowH + ROW_GAP) * TOP5 - 3, { duration: ZONE_SWEEP_MS, easing: Easing.out(Easing.cubic) }); playMomentSound(MOMENT_SOUND_EVENTS.promoTick); void hapticTap(); });
     if (hasLadder) at(T.topLine, () => { setPhase((v) => ({ ...v, topLine: true })); flash.value = withSequence(withTiming(1, { duration: 0 }), withDelay(FREEZE_MS, withTiming(0, { duration: 0 }))); playMomentSound(MOMENT_SOUND_EVENTS.promoFlip); void hapticMediumImpact(); });

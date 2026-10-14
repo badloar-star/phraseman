@@ -23,8 +23,8 @@ import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireScene } from '../spire/useSpireScene';
 import { momentLeagueIn, momentText } from '../spire/moments/moments_strings';
 import StreakMomentFlame from '../streak/moments/StreakMomentFlame';
-import { isStreakMilestone, nextStreakMilestone, streakFlameStage } from '../streak/moments/streak_milestones';
-import { streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
+import { isStreakMilestone } from '../streak/moments/streak_milestones';
+import { streakMilestoneSubline, streakMilestoneTitle, streakMomentText } from '../streak/moments/streak_moments_strings';
 import { storyText, storyThousands } from './story_strings';
 
 export type StorySlideProps = Readonly<{
@@ -36,8 +36,6 @@ export type StorySlideProps = Readonly<{
 
 const num = (v: unknown, fallback = 0): number => (typeof v === 'number' && Number.isFinite(v) ? v : Number(v) || fallback);
 const noopSelect = (): void => undefined;
-/** Пороги стадий огня образца (streak_milestones.streakFlameStage): первый день новой стадии показывает «новая стадия огня». */
-const STAGE_START_DAYS: readonly number[] = [7, 30, 100, 365, 1000];
 
 // ─── итог недели ────────────────────────────────────────────────────────────
 function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
@@ -85,13 +83,8 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
 function StreakSlide({ event, lang }: StorySlideProps) {
   const p = useSpirePalette();
   const days = num(event.payload.days);
-  const next = nextStreakMilestone(days);
-  const stageStarts = STAGE_START_DAYS.includes(days);
-  const nextStage = STAGE_START_DAYS.find((d) => d > days) ?? null;
-  const sub = stageStarts && nextStage
-    ? streakMomentText(lang, 'stageNew', { next: nextStage })
-    : stageStarts ? streakMomentText(lang, 'finalStage')
-      : next ? streakMomentText(lang, 'toNext', { next, left: next - days }) : null;
+  // зачем: подпись под рубежом — тот же источник, что у самого момента рубежа (серия, образец streak-milestones.html): «Новая стадия огня — до 100 дней», «До недели — 4 дня»…
+  const sub = isStreakMilestone(days) ? streakMilestoneSubline(lang, days) : null;
   return (
     <>
       <StreakMomentFlame days={days} label={days} size={150} testID="story-streak-flame" />

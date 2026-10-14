@@ -48,6 +48,12 @@ jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn(), hapticMediumImpact: jest.fn(), hapticHeavyImpact: jest.fn() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
+jest.mock('../components/v2/V2Pressable', () => {
+  const R = jest.requireActual('react');
+  return { __esModule: true, default: (props: { testID?: string; accessibilityLabel?: string; onPress?: () => void; children?: unknown }) => R.createElement('Pressable', { testID: props.testID, accessibilityLabel: props.accessibilityLabel, onPress: props.onPress }, props.children) };
+});
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Ionicons' }));
+jest.mock('../components/v2/ShadowSurface', () => ({ PlateFill: 'PlateFill', plateBoxShadow: () => [], nestedBoxShadow: () => [], sheetPlateTokens: (g: unknown) => g, useShadowGlass: () => ({ isLight: false, buttonFill: '#4D5859' }) }));
 jest.mock('../components/v2/V2Kit', () => {
   const R = jest.requireActual('react');
   return { V2Button: (props: { label: string; onPress: () => void; testID?: string }) => R.createElement('Pressable', { testID: props.testID, accessibilityRole: 'button', accessibilityLabel: props.label, onPress: props.onPress }, R.createElement('Text', null, props.label)) };
@@ -131,7 +137,8 @@ describe.each(Object.keys(PALETTES))('моменты Пика — тема «%s�
     const onPlay = jest.fn();
     const onRemind = jest.fn();
     await render(<MomentDown lang="ru" newTier={0} coinRank={5} onPlay={onPlay} onRemind={onRemind} />);
-    expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
+    // эталон m03: до тапа «Неделя закончилась: Гранит» (монета спит), после тапа «Новая неделя» + «Гранит · все с 1 этажа.»
+    expect(screen.getByTestId('moment-down-title').props.children).toBe('Неделя закончилась: Гранит');
     expect(screen.getByText('Играть')).toBeTruthy();
     await fireEvent.press(screen.getByTestId('moment-down-coin'));
     expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
@@ -140,6 +147,12 @@ describe.each(Object.keys(PALETTES))('моменты Пика — тема «%s�
     expect(onRemind).toHaveBeenCalledTimes(1);
     await fireEvent.press(screen.getByTestId('moment-down-play'));
     expect(onPlay).toHaveBeenCalledTimes(1);
+  });
+
+  it('m03 в финальном кадре эталона (initialAwake): сразу «Новая неделя» и «Гранит · все с 1 этажа.»', async () => {
+    await render(<MomentDown lang="ru" newTier={0} coinRank={5} onPlay={jest.fn()} initialAwake />);
+    expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
+    expect(screen.getByText('Гранит · все с 1 этажа.')).toBeTruthy();
   });
 });
 
@@ -187,7 +200,7 @@ describe('моменты Пика: тексты, флаг, изоляция', ()
     // и Главная (app/(tabs)/home.tsx): лениво монтирует окно итога недели SpireWeekMomentHost по слоту Ядра (D191, флаг moments_v3)
     // и флаг moments_v3 в гейте Ядра (spire_week_moment_gate), «С возвращением» (WelcomeBackMoment берёт раскладку и эффекты), окно «Хватает на ранг» (coin_rank_moments)
     // и сторис по аватару (components/stories) — берёт готовые строки итога недели (moments_strings), не показывает сам момент
-    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'components/moments/WelcomeBackMoment.tsx'].includes(f))).toEqual([]);
+    expect(importers.filter((f) => !f.startsWith('components/streak/moments/') && !f.startsWith('components/stories/') && !f.startsWith('components/coin_rank_moments/') && !['app/dev_moments_preview.tsx', 'app/(tabs)/home.tsx', 'app/spire/spire_week_moment_gate.ts', 'app/coin_rank_enough_gate.ts', 'components/moments/WelcomeBackMoment.tsx'].includes(f))).toEqual([]);
   });
 
   it('тайминги эталона и порог башни: монета ранга 5 в образце, «Играть» с стрелкой на итоге, дрожь и фейерверк на 8,8 с', () => {

@@ -47,6 +47,12 @@ jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => true }
 jest.mock('../hooks/use-haptics', () => ({ hapticTap: jest.fn(), hapticSuccess: jest.fn(), hapticMediumImpact: jest.fn(), hapticHeavyImpact: jest.fn() }));
 jest.mock('../app/stable_safe_area_metrics', () => ({ useStableSafeAreaInsets: () => ({ top: 24, bottom: 16, left: 0, right: 0 }) }));
 jest.mock('../components/SafeLinearGradient', () => ({ LinearGradient: 'LinearGradient' }));
+jest.mock('../components/v2/V2Pressable', () => {
+  const R = jest.requireActual('react');
+  return { __esModule: true, default: (props: { testID?: string; accessibilityLabel?: string; onPress?: () => void; children?: unknown }) => R.createElement('Pressable', { testID: props.testID, accessibilityLabel: props.accessibilityLabel, onPress: props.onPress }, props.children) };
+});
+jest.mock('@expo/vector-icons/Ionicons', () => ({ __esModule: true, default: 'Ionicons' }));
+jest.mock('../components/v2/ShadowSurface', () => ({ PlateFill: 'PlateFill', plateBoxShadow: () => [], nestedBoxShadow: () => [], sheetPlateTokens: (g: unknown) => g, useShadowGlass: () => ({ isLight: false, buttonFill: '#4D5859' }) }));
 jest.mock('../components/v2/V2Kit', () => {
   const R = jest.requireActual('react');
   return { V2Button: (props: { label: string; onPress: () => void; testID?: string }) => R.createElement('Pressable', { testID: props.testID, onPress: props.onPress }, R.createElement('Text', null, props.label)) };
@@ -114,7 +120,7 @@ describe('окно итога недели (D191): вид по данным се
   it('понизили: «Новая неделя», «Играть»; напоминания нет — второй кнопки нет', async () => {
     const onClose = jest.fn();
     await render(<SpireWeekMomentHost lang="ru" decision={decision('demoted', { demoted: true, prevTier: 1, newTier: 0 })} coinRank={5} onClose={onClose} />);
-    expect(screen.getByTestId('moment-down-title').props.children).toBe('Новая неделя');
+    expect(screen.getByTestId('moment-down-title').props.children).toBe('Неделя закончилась: Гранит');
     expect(screen.queryByTestId('moment-down-remind')).toBeNull();
     await fireEvent.press(screen.getByTestId('moment-down-play'));
     expect(onClose).toHaveBeenCalledTimes(1);

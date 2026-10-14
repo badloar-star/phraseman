@@ -6,11 +6,12 @@ import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import { streakSecondColor } from './streak_stage_colors';
 
-export type StreakColors = Readonly<{ accent: string; second: string; gold: string; text: string }>;
+// зачем (координатор 15.10, храповик светлого акцента): `accentGraphic` — тот же цвет, что `accent` (уже взят из токена accentGraphic), но под честным именем для графики экранов
+export type StreakColors = Readonly<{ accent: string; accentGraphic: string; second: string; gold: string; text: string }>;
 
 /** Цвета колец = цвета отметок строк: акцент темы, второй цвет, золото темы (образец: --acc, --r2, --r3). Чистая функция — живёт здесь, чтобы Главная не тянула тяжёлый TodayRings ради неё. */
-export function todayRingColors(c: Readonly<{ accent: string; second: string; gold: string }>): readonly [string, string, string] {
-  return [c.accent, c.second, c.gold];
+export function todayRingColors(c: Readonly<{ accentGraphic: string; second: string; gold: string }>): readonly [string, string, string] {
+  return [c.accentGraphic, c.second, c.gold];
 }
 
 /** `enabled=false` (флаг moments_v3 выключен): ничего не считаем — холодный старт и рендеры Главной не платят за цвета колец. */
@@ -23,6 +24,6 @@ export function useStreakColors(enabled: boolean = true): StreakColors | null {
     if (!enabled) return null;
     const g = liquidGlassTokens(liquidGlassThemeId);
     const accent = g.accentGraphic ?? g.accent;
-    return { accent, second: streakSecondColor({ themeId: liquidGlassThemeId, accent, text: g.text, bg: g.bg, gold: p.gold }), gold: p.gold, text: g.text };
+    return { accent, accentGraphic: accent, second: streakSecondColor({ themeId: liquidGlassThemeId, accentGraphic: accent, text: g.text, bg: g.bg, gold: p.gold }), gold: p.gold, text: g.text };
   }, [enabled, liquidGlassThemeId, p.gold]);
 }

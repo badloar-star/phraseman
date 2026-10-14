@@ -57,7 +57,7 @@ export const MonthRing = memo(function MonthRing({ rings, size, center, lit, ste
   return (
     <View accessible={false} style={{ width: size, height: size }}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={s.overflow}>
-        {arcs.map((a) => <MonthArc key={a.key} d={a.d} lit={lit} delayMs={a.delayMs} track={p.track} color={colors.accent} />)}
+        {arcs.map((a) => <MonthArc key={a.key} d={a.d} lit={lit} delayMs={a.delayMs} track={p.track} color={colors.accentGraphic} />)}
       </Svg>
       <View style={s.center} pointerEvents="none"><Text style={[s.centerText, { color: p.text }]}>{center}</Text></View>
     </View>
@@ -82,7 +82,7 @@ export const HalfRing = memo(function HalfRing({ size, run, children }: HalfRing
     <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={[StyleSheet.absoluteFill, s.overflow]}>
         <Circle cx={c} cy={c} r={113} fill="none" stroke={p.track} strokeWidth={12} />
-        <AnimatedCircle cx={c} cy={c} r={113} fill="none" stroke={colors.accent} strokeWidth={12} strokeLinecap="round" strokeDasharray={HALF_LEN} animatedProps={animated} transform={`rotate(-90 ${c} ${c})`} />
+        <AnimatedCircle cx={c} cy={c} r={113} fill="none" stroke={colors.accentGraphic} strokeWidth={12} strokeLinecap="round" strokeDasharray={HALF_LEN} animatedProps={animated} transform={`rotate(-90 ${c} ${c})`} />
       </Svg>
       {children}
     </View>
@@ -100,7 +100,7 @@ export const MonthCalendar = memo(function MonthCalendar({ lit = 30 }: Readonly<
         <Animated.View
           key={i} // guard-ok: 35 одинаковых клеток фиксированного календаря, порядок не меняется
           entering={reduceMotion ? undefined : ZoomIn.delay(i * 26).duration(300)}
-          style={[s.cell, { backgroundColor: i < lit ? colors.accent : p.control }]}
+          style={[s.cell, { backgroundColor: i < lit ? colors.accentGraphic : p.control }]}
         />
       ))}
     </View>

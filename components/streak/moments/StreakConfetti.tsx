@@ -5,6 +5,8 @@ import React, { memo, useEffect, useMemo } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { Easing, type SharedValue, useAnimatedStyle, useReducedMotion, useSharedValue, withTiming } from 'react-native-reanimated';
 import { momentJitter } from '../../spire/moments/moments_effects';
+import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
+import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 
 const TOTAL_MS = 4600;
@@ -24,11 +26,14 @@ function StreakConfetti({ fire, n = 60 }: StreakConfettiProps) {
   const reduceMotion = useReducedMotion();
   const { width, height } = useWindowDimensions();
   const p = useSpirePalette();
+  const { liquidGlassThemeId } = useTheme();
+  // зачем (координатор 15.10, храповик): текст/значки цвета темы — токен accentTextSafe (в светлом глубокий, в тёмном ровно accent)
+  const accentTextSafe = liquidGlassTokens(liquidGlassThemeId).accentTextSafe;
   const progress = useSharedValue(0);
   useEffect(() => {
     if (fire && !reduceMotion) progress.value = withTiming(1, { duration: TOTAL_MS, easing: Easing.linear });
   }, [fire, reduceMotion, progress]);
-  const colors = useMemo(() => [p.cta, p.accentText, p.gold, p.text, p.textSecondary], [p.cta, p.accentText, p.gold, p.text, p.textSecondary]);
+  const colors = useMemo(() => [p.cta, accentTextSafe, p.gold, p.text, p.textSecondary], [p.cta, accentTextSafe, p.gold, p.text, p.textSecondary]);
   const pieces = useMemo(() => Array.from({ length: n }, (_, i) => {
     const start = momentJitter(i, 11) * 0.35;
     const span = (2600 + momentJitter(i, 12) * 1600) / TOTAL_MS;

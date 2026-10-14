@@ -9,6 +9,7 @@ import React, { memo, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
 import { StreakFlameFill } from '../StreakFlameFill';
+import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../ThemeContext';
 import { useSpirePalette } from '../../spire/useSpirePalette';
 import type { StreakFlameStage } from './streak_milestones';
@@ -42,7 +43,9 @@ export type StreakMomentFlameProps = Readonly<{
 function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, stage, accessibilityLabel, testID = 'streak-moment-flame' }: StreakMomentFlameProps) {
   const p = useSpirePalette();
   const { liquidGlassThemeId } = useTheme();
-  const colors = stage === undefined ? null : streakStageColors(stage, { themeId: liquidGlassThemeId, accent: p.cta, text: p.text, bg: p.bg, gold: p.gold });
+  const glass = liquidGlassTokens(liquidGlassThemeId);
+  // зачем (координатор 15.10, храповик): графика огня — токен accentGraphic, как и на экране рубежа; текст/значки — accentTextSafe
+  const colors = stage === undefined ? null : streakStageColors(stage, { themeId: liquidGlassThemeId, accentGraphic: glass.accentGraphic, text: p.text, bg: p.bg, gold: p.gold });
   const reduceMotion = useReducedMotion();
   const scale = useSharedValue(1);
   const veil = useSharedValue(0);
@@ -61,7 +64,7 @@ function StreakMomentFlame({ days, label = '', size = 160, burstKey, morphKey, s
   const fontSize = Math.round(size * (text.length > 3 ? 0.18 : 0.24));
   return (
     <View testID={testID} accessible accessibilityLabel={accessibilityLabel} style={{ width: size, height: size }}>
-      <Animated.View pointerEvents="none" style={[s.veil, { backgroundColor: p.accentText }, veilStyle]} />
+      <Animated.View pointerEvents="none" style={[s.veil, { backgroundColor: glass.accentTextSafe }, veilStyle]} />
       <Animated.View style={flameStyle}>
         <StreakFlameFill streakDays={days} size={size} colors={colors ?? undefined} />
       </Animated.View>

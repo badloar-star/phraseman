@@ -106,6 +106,6 @@ describe('кольца «Сегодня» в блоке — флаг moments_v3'
     expect(screen.queryByTestId('today-rings')).toBeNull();
   });
   it('цвета колец = акцент, второй цвет, золото темы (те же, что у отметок строк)', () => {
-    expect(todayRingColors({ accent: '#111111', second: '#222222', gold: '#333333' })).toEqual(['#111111', '#222222', '#333333']);
+    expect(todayRingColors({ accentGraphic: '#111111', second: '#222222', gold: '#333333' })).toEqual(['#111111', '#222222', '#333333']);
   });
 });

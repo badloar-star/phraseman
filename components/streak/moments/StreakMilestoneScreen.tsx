@@ -15,6 +15,7 @@ import type { Lang } from '../../../constants/i18n';
 import { hapticSuccess, hapticTap } from '../../../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../../../app/stable_safe_area_metrics';
 import AchievementArt from '../../AchievementArt';
+import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../ThemeContext';
 import { V2Button } from '../../v2/V2Kit';
 import MomentCoin from '../../moments/MomentCoin';
@@ -57,6 +58,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const p = useSpirePalette();
   const colors = useStreakColors();
   const { liquidGlassThemeId } = useTheme();
+  const glass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
   const { width } = useWindowDimensions();
   const reduceMotion = useReducedMotion();
@@ -114,12 +116,12 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
   const morphed = has('morph');
   const before = milestone - 1; // guard-ok: цифра огня ДО морфа (n−1, как в образце), вид — не баланс
   const prevStage = Math.max(0, baseStage - 1) as StreakFlameStage; // guard-ok: стадия огня ДО морфа (вид), не баланс
-  const stageTokens = { themeId: liquidGlassThemeId, accent: colors.accent, text: p.text, bg: p.bg, gold: p.gold };
-  const glowColor = (st: StreakFlameStage): string => streakStageColors(st, stageTokens)?.outer ?? colors.accent;
+  const stageTokens = { themeId: liquidGlassThemeId, accentGraphic: colors.accentGraphic, text: p.text, bg: p.bg, gold: p.gold };
+  const glowColor = (st: StreakFlameStage): string => streakStageColors(st, stageTokens)?.outer ?? colors.accentGraphic;
   const flameA11y = streakMomentText(lang, 'flameA11y', { n: milestone });
 
   const T = (text: string, style: 'ov' | 'ovMuted' | 'xl' | 'md' | 'p') => (
-    <Text style={[s[style], { color: style === 'ov' ? p.accentText : style === 'p' || style === 'ovMuted' ? p.textSecondary : p.text }]}>{text}</Text>
+    <Text style={[s[style], { color: style === 'ov' ? glass.accentTextSafe : style === 'p' || style === 'ovMuted' ? p.textSecondary : p.text }]}>{text}</Text>
   );
   const foot = (
     <View style={s.foot}>
@@ -235,7 +237,7 @@ function StreakMilestoneScreen({ lang, milestone, coinRank, onDone, onShare, tes
         {glow ? <StreakGlowSpot color={glow} top={insets.top + 80} /> : null}
         {confetti ? <StreakConfetti fire /> : null}
         {/* зачем (контракт «до кнопки можно добраться»): на низком экране сцена прокручивается, а «Дальше» остаётся внизу */}
-        <ScrollView key={bodyKey} style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>
+        <ScrollView key={bodyKey} decelerationRate="fast" style={s.fillBody} contentContainerStyle={s.body} showsVerticalScrollIndicator={false} bounces={false}>{body}</ScrollView>
         {withFoot ? <Beat i={2}>{foot}</Beat> : <View style={s.footSpacer} />}
         {skippable ? (
           <Pressable accessibilityRole="button" accessibilityLabel={streakMomentText(lang, 'skip')} onPress={skip} hitSlop={12} style={[s.skip, { top: insets.top + 12 }]} testID={`${testID}-skip`}>

@@ -122,7 +122,7 @@ function TodayRings({ lang, progress, targets = TODAY_RING_TARGETS, coinRank, te
       </View>
       {allClosed ? (
         <Animated.View style={[s.dayOk, { backgroundColor: p.card }, sh.nested]}>
-          <Ionicons name="checkmark" size={16} color={streakColors.accent} />
+          <Ionicons name="checkmark" size={16} color={streakColors.accentGraphic} />
           <Text style={[s.dayOkText, { color: p.text }]}>{streakMomentText(lang, 'dayDone')}</Text>
         </Animated.View>
       ) : null}

@@ -58,6 +58,11 @@ describe('звуки V2: одно событие — один путь в фай
     expect(hook).not.toMatch(/setTimeout|isMomentsV3FlagOn|active_moment_registry/);
     const moments = ['components/spire/moments/SpireFloorMoment.tsx', 'components/spire/moments/SpireStepResultMoment.tsx']
       .map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n');
-    expect(moments).toContain("playEvent('floor')");
+    // зачем (координатор 15.10): Дизайн переписал моменты по макету m07 — звук этажа/вершины/ступени в самих моментах идёт через playUnlessRecentlyPlayed
+    // (гасит дубль после звука из use_spire_game); прямой playEvent для этих трёх событий дал бы двойной звук.
+    expect(moments).toContain("playUnlessRecentlyPlayed('floor', 'SpireFloorMoment')");
+    expect(moments).toContain("playUnlessRecentlyPlayed('summit', 'SpireFloorMoment')");
+    expect(moments).toContain("playUnlessRecentlyPlayed('step', 'SpireStepResultMoment')");
+    expect(moments).not.toMatch(/\bplayEvent\(\s*'(floor|summit|step)'/);
   });
 });

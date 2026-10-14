@@ -16,7 +16,7 @@ function FontWeightStrip() {
   const p = useSpirePalette();
   const insets = useStableSafeAreaInsets();
   return (
-    <ScrollView style={s.fill} contentContainerStyle={[s.content, { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 24 }]} testID="dev-font-weight-strip">
+    <ScrollView decelerationRate="fast" style={s.fill} contentContainerStyle={[s.content, { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 24 }]} testID="dev-font-weight-strip">
       <Text style={[s.head, { color: p.textSecondary }]}>{/* i18n-ok: подпись dev-полосы для владельца и Сверки, не экран игрока */}ВЕСА ШРИФТА · {Platform.OS.toUpperCase()}</Text>
       {WEIGHTS.map((w) => { // guard-ok: шесть фиксированных строк dev-полосы, виртуализация не нужна
         const drawn = resolveRenderedInterWeight(w);

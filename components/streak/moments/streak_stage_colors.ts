@@ -20,11 +20,11 @@ export function mixHex(from: string, to: string, k: number): string {
   return `#${c(0)}${c(1)}${c(2)}`.toUpperCase();
 }
 
-export type StreakStageTokens = Readonly<{ themeId: string; accent: string; text: string; bg: string; gold: string }>;
+export type StreakStageTokens = Readonly<{ themeId: string; accentGraphic: string; text: string; bg: string; gold: string }>;
 
 /** Второй цвет темы, доведённый до ≥ 3 : 1 к фону (на светлом оформлении образца он тёмный: фиолетовый). */
 export function streakSecondColor(t: StreakStageTokens): string {
-  const base = liquidGlassGradientTheme(t.themeId)?.glowB ?? mixHex(t.accent, t.gold, 0.45);
+  const base = liquidGlassGradientTheme(t.themeId)?.glowB ?? mixHex(t.accentGraphic, t.gold, 0.45);
   let c = base;
   for (let k = 0; k <= 0.8001 && contrastRatio(c, t.bg) < 3; k += 0.05) c = mixHex(base, t.text, k);
   return c;
@@ -35,9 +35,9 @@ export function streakStageColors(stage: StreakFlameStage, t: StreakStageTokens)
   const acc2 = streakSecondColor(t);
   switch (stage) {
     case 0: return null;
-    case 1: return { outer: t.accent, core: t.text };
+    case 1: return { outer: t.accentGraphic, core: t.text };
     case 2: return { outer: acc2, core: t.text };
-    case 3: return { outer: t.text, core: t.accent };
+    case 3: return { outer: t.text, core: t.accentGraphic };
     case 4: return { outer: mixHex(acc2, t.text, 0.55), core: t.text };
     default: return { outer: t.gold, core: t.text };
   }

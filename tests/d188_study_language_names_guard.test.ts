@@ -53,6 +53,7 @@ describe('D188: статичные строки исправленных пов�
     'app/mistake_practice_session.tsx',
     'components/onboarding_aha/aha_scenes.ts',
     'app/paywall_profile.ts',
+    'app/(tabs)/home.tsx',
   ];
   it.each(FILES)('%s', (rel) => {
     const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');

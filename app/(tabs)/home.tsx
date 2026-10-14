@@ -217,11 +217,12 @@ let homeBelowFoldReadyOnce = false;
  */
 // Старый gift-button art не подключается к Home: хедер использует только
 // актуальные локальные иконки и daily-journey projection.
+// зачем (D188-следствие, 14.10): изучаемый язык — любой из пяти, поэтому приветствия не называют английский.
 const GREETINGS_RU = [
     'Твой лингвистический дзен', 'Время покорять вершины', 'Зарядись знаниями', 'Твой мозг скажет «спасибо»',
     'Готов к новым инсайтам?', 'Мир ждет твоего слова', 'На шаг ближе к цели', 'Твой интеллект в тонусе',
     'Вдохновение начинается здесь', 'Стань лучшей версией себя', 'Твой путь к мастерству', 'Время открывать горизонты',
-    'Дай мыслям взлететь', 'Твой пропуск в мир английского', 'Прокачай свой потенциал', 'Сегодня — лучший день для старта',
+    'Дай мыслям взлететь', 'Твой пропуск в новый язык', 'Прокачай свой потенциал', 'Сегодня — лучший день для старта',
     'Будь на волне прогресса', 'Энергия твоего разума', 'Сделай шаг к успеху', 'Твое будущее начинается сейчас',
     'Твой интеллектуальный апгрейд', 'Время расширять границы', 'Зарядись на успех', 'Твой мозг в отличной форме',
     'Готов к новым свершениям?', 'Слова станут твоей силой', 'На шаг впереди всех', 'Твоя ежедневная порция знаний',
@@ -241,7 +242,7 @@ const GREETINGS_UK = [
     'Твій лінгвістичний дзен', 'Час підкорювати вершини', 'Зарядись знаннями', 'Твій мозок скаже «дякую»',
     'Готовий до нових інсайтів?', 'Світ чекає твого слова', 'На крок ближче до мети', 'Твій інтелект у тонусі',
     'Натхнення починається тут', 'Стань кращою версією себе', 'Твій шлях до майстерства', 'Час відкривати горизонти',
-    'Дай думкам злетіти', 'Твій пропуск у світ англійської', 'Розкрий свій потенціал', 'Сьогодні — найкращий день для старту',
+    'Дай думкам злетіти', 'Твій пропуск у нову мову', 'Розкрий свій потенціал', 'Сьогодні — найкращий день для старту',
     'Будь на хвилі прогресу', 'Енергія твого розуму', 'Зроби крок до успіху', 'Твоє майбутнє починається зараз',
     'Твій інтелектуальний апгрейд', 'Час розширювати межі', 'Зарядись на успіх', 'Твій мозок у відмінній формі',
     'Готовий до нових звершень?', 'Слова стануть твоєю силою', 'На крок попереду всіх', 'Твоя щоденна порція знань',
@@ -258,37 +259,37 @@ const GREETINGS_UK = [
     'Прогрес надихає', 'Слова зближують людей',
 ];
 const GREETINGS_EN = [
-    'Your English gets stronger today', 'One step closer to fluency', 'Learn a phrase, open a door',
+    'Your new language gets stronger today', 'One step closer to fluency', 'Learn a phrase, open a door',
     'Small habits build big progress', 'More confidence with every word', 'Today is a day to move forward',
     'Small drills, big leaps', 'Your progress is alive', 'Speak with more ease',
     'The next insight is here', 'Your brain loves consistency', 'Clearer than yesterday',
 ];
 const GREETINGS_PT_BR = [
-    'Seu inglês ganha força hoje', 'Um passo mais perto da fluência', 'Aprenda uma frase, abra uma porta',
+    'Seu novo idioma ganha força hoje', 'Um passo mais perto da fluência', 'Aprenda uma frase, abra uma porta',
     'Sua rotina também ensina', 'Mais confiança a cada palavra', 'Hoje é dia de avançar',
     'Pequenos treinos, grandes saltos', 'Seu progresso está vivo', 'Fale com mais leveza',
     'O próximo insight está aqui', 'Seu cérebro adora constância', 'Mais claro do que ontem',
 ];
 const GREETINGS_VI = [
-    'Tiếng Anh của bạn mạnh hơn hôm nay', 'Gần sự tự tin hơn một bước', 'Một câu mới, một cánh cửa mới',
+    'Ngôn ngữ mới của bạn mạnh hơn hôm nay', 'Gần sự tự tin hơn một bước', 'Một câu mới, một cánh cửa mới',
     'Thói quen nhỏ cũng tạo tiến bộ', 'Tự tin hơn qua từng từ', 'Hôm nay là ngày để tiến lên',
     'Luyện tập nhỏ, bước nhảy lớn', 'Tiến bộ của bạn đang sống động', 'Nói nhẹ nhàng và rõ hơn',
     'Gợi ý tiếp theo ở ngay đây', 'Não bạn thích sự đều đặn', 'Rõ hơn hôm qua',
 ];
 const GREETINGS_ID = [
-    'Bahasa Inggrismu makin kuat hari ini', 'Selangkah lebih dekat ke percaya diri', 'Satu frasa baru, satu pintu baru',
+    'Bahasa barumu makin kuat hari ini', 'Selangkah lebih dekat ke percaya diri', 'Satu frasa baru, satu pintu baru',
     'Rutinitas kecil juga membangun kemajuan', 'Lebih yakin di setiap kata', 'Hari ini waktunya maju',
     'Latihan kecil, lompatan besar', 'Progresmu tetap bergerak', 'Bicara lebih ringan dan jelas',
     'Insight berikutnya ada di sini', 'Otakmu suka konsistensi', 'Lebih jelas daripada kemarin',
 ];
 const GREETINGS_TR = [
-    'İngilizcen bugün güçleniyor', 'Özgüvene bir adım daha yakın', 'Yeni bir ifade, yeni bir kapı',
+    'Yeni dilin bugün güçleniyor', 'Özgüvene bir adım daha yakın', 'Yeni bir ifade, yeni bir kapı',
     'Küçük alışkanlıklar da ilerleme getirir', 'Her kelimeyle daha emin', 'Bugün ilerleme günü',
     'Küçük pratikler, büyük sıçramalar', 'İlerlemen canlı kalıyor', 'Daha rahat ve net konuş',
     'Sıradaki içgörü burada', 'Beynin sürekliliği sever', 'Dünden daha net',
 ];
 const GREETINGS_PL = [
-    'Twój angielski dziś rośnie w siłę', 'O krok bliżej pewności', 'Nowa fraza, nowe drzwi',
+    'Twój nowy język dziś rośnie w siłę', 'O krok bliżej pewności', 'Nowa fraza, nowe drzwi',
     'Małe nawyki też budują postęp', 'Więcej pewności z każdym słowem', 'Dziś jest dobry dzień na ruch',
     'Małe ćwiczenia, duże skoki', 'Twój postęp żyje', 'Mów swobodniej i jaśniej',
     'Następny wgląd jest tutaj', 'Twój mózg lubi regularność', 'Jaśniej niż wczoraj',

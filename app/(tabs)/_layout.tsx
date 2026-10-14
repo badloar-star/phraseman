@@ -6,7 +6,6 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
-import { useEnUiStudyTargetMigration } from '../../hooks/use_en_ui_study_target_migration';
 import { triLang, type PlannedTriLangCopy } from '../../constants/i18n';
 import { useScreen } from '../../hooks/use-screen';
 import ScreenGradient from '../../components/ScreenGradient';
@@ -756,8 +755,6 @@ function ReleasedTabLayout() {
   // studyTarget синхронный (peek из снапшота) — первый кадр таббара уже финальный,
   // без вспышки вкладки, которая потом исчезает.
   const { studyTarget } = useStudyTarget();
-  // зачем (вариант А): сохранённая пара «интерфейс en + изучаю en» → один раз за запуск экран выбора языка изучения.
-  useEnUiStudyTargetMigration();
   const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
   const pageLayout = tabPageLayoutFor({ learnTabVisible });
   const pageLayoutRef = useRef(pageLayout);

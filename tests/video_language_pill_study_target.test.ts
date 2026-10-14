@@ -160,16 +160,13 @@ describe('useStudyLanguageSelection — выбор изучаемого язык
   });
 });
 
-describe('шторка «Язык изучения» — по макету PRF-23 (решение О1 до ответа владельца)', () => {
+describe('шторка «Язык изучения» — по макету PRF-23, D188 (все языки открыты)', () => {
   const sheet = read('components/settings/StudyLanguageSheet.tsx');
 
-  it('новый язык заперт: серый флаг, «доступ уточняется», замок, без перехода на приветствие', () => {
-    expect(sheet).toContain('export const STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES = false;');
-    expect(sheet).toContain("ru: 'Новый язык · доступ уточняется'");
-    expect(sheet).toContain("filter: 'grayscale(1)'");
-    expect(sheet).toContain('<KitLockFilledIcon');
-    expect(sheet).toContain("reason=${startedLanguagesResolved ? 'not_started_locked' : 'started_unresolved'}");
-    // общий хук ветку приветствия сохраняет — включается одной строкой
+  it('D188: новый язык открыт — без замка и подписи, тап идёт в общий select (приветствие языка)', () => {
+    expect(sheet).not.toContain('<KitLockFilledIcon');
+    expect(sheet).not.toContain('not_started_locked');
+    expect(sheet).toContain('const route = select(code);');
     expect(read('components/settings/StudyLanguagePicker.tsx')).toContain("router.push({ pathname: '/language_welcome', params: { target: code } } as any);");
   });
 

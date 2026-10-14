@@ -77,15 +77,14 @@ export function ttsLocaleForProductionStudyTarget(studyTarget: ProductionStudyTa
   return STUDY_TARGET_META[studyTarget].ttsLocale;
 }
 
-// зачем (вариант А, решение владельца — handoff/en_ui_study_target_variant_A.md): при английском интерфейсе английский не предлагается
-// как язык изучения — старые уроки RU→EN человеку, не знающему русского, бессмысленны. Остальные интерфейсы — все языки, как раньше.
-const STUDY_TARGETS_WITHOUT_EN: readonly ProductionStudyTarget[] = Object.freeze(STUDY_TARGETS.filter((target) => target !== 'en'));
-
-export function studyTargetsForSourceLocale(uiLang: Lang): readonly ProductionStudyTarget[] {
-  return uiLang === 'en' ? STUDY_TARGETS_WITHOUT_EN : STUDY_TARGETS;
+// зачем (D188, владелец 14.10: «ТУТ ДОЛЖЕН БЫТЬ ЕЩЁ АНГЛИЙСКИЙ! И ОНИ ВСЕ ДОЛЖНЫ БЫТЬ ОТКРЫТЫ И ДОСТУПНЫ!»): все пять языков
+// изучения при ЛЮБОМ языке интерфейса. Прежний «вариант А» (при English-интерфейсе английский скрыт) отменён — из-за него
+// англоязычный интерфейс показывал шторку без английского, а активный en выпадал из списка вместе с галочкой.
+export function studyTargetsForSourceLocale(_uiLang: Lang): readonly ProductionStudyTarget[] {
+  return STUDY_TARGETS;
 }
 
-/** Можно ли учить этот язык при этом языке интерфейса (пара «интерфейс en + изучаю en» — нельзя). */
+/** Можно ли учить этот язык при этом языке интерфейса (D188: любой язык изучения при любом интерфейсе). */
 export function isStudyTargetAllowedForUi(target: StudyTarget, uiLang: Lang): boolean {
   return studyTargetsForSourceLocale(uiLang).includes(target);
 }

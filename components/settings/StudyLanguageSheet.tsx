@@ -10,14 +10,18 @@
 //
 // Вид (kit.css .sheet + extension.css .list/.list-row): каркас — FriendsAddSheetShell
 // с шапкой `.flex` макета (по центру, зазор 10, подзаголовок +7), строки —
-// SettingsGlassRow (`.card.list-row` 64/r14/10·14), флаг 58×40 r10, значки кита
-// check s20 / lockF s18 тем же контуром (kit.js), выбранный язык первым.
+// SettingsGlassRow (`.card.list-row` 64/r14/10·14), флаг 58×40 r10, значок кита
+// check s20 (kit.js), выбранный язык первым.
+//
+// D188 (владелец 14.10): все пять языков видны и открыты при любом интерфейсе — без замка, без серого
+// флага; у неначатого языка подписи нет вовсе (координатор: минимум элементов), тап сразу ведёт на
+// приветствие языка (/language_welcome) через общий хук.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Image } from 'expo-image';
-import Svg, { Path, Rect } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import FriendsAddSheetShell from '../friends/FriendsAddSheetShell';
 import { SettingsGlassRow } from './SettingsGlassRows';
 import { STUDY_TARGET_NATIVE_NAME, languageFlagAssetFor, useStudyLanguageSelection } from './StudyLanguagePicker';
@@ -26,15 +30,6 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { StudyTarget } from '../../app/study_target';
 import { hapticTap } from '../../hooks/use-haptics';
-
-/**
- * зачем (координатор 11.10, решение О1 до ответа владельца, гейт «нет макета → не придумывать»):
- * экран /language_welcome не имеет макета 2.0 и переведён только на ru/uk, поэтому шторка делает ТОЧНО как
- * макет PRF-23: ещё не начатый язык — серый флаг, «Новый язык · доступ уточняется», замок, без перехода.
- * Ветка перехода на приветствие живёт в общем хуке (select → 'welcome'); когда владелец решит открыть новые
- * языки из шторки — поставить здесь true, и строка нового языка позовёт select().
- */
-export const STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES = false;
 
 /** Порядок макета: выбранный язык первым, остальные — en, es, fr, de, it. */
 export function orderStudyLanguageSheetOptions(options: readonly StudyTarget[], activeTarget: StudyTarget): StudyTarget[] {
@@ -81,16 +76,6 @@ function KitCheckIcon({ color }: { color: string }) {
   );
 }
 
-/** kit.js `lockF` (s18): залитый корпус + дужка 2.2. */
-function KitLockFilledIcon({ color }: { color: string }) {
-  return (
-    <Svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
-      <Rect x={5} y={10.5} width={14} height={10} rx={2.5} fill={color} stroke="none" />
-      <Path d="M8 10.5V8a4 4 0 018 0v2.5" strokeWidth={2.2} />
-    </Svg>
-  );
-}
-
 function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, requestDismiss }: {
   lang: Lang;
   activeTarget: StudyTarget;
@@ -107,7 +92,6 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
   const sub = useMemo(() => ({
     selected: triLang(lang, { ru: 'Учу · выбран', uk: 'Вчу · обрано', en: 'Learning · selected', es: 'Aprendiendo · elegido', 'pt-BR': 'Aprendendo · escolhido', vi: 'Đang học · đã chọn', id: 'Dipelajari · dipilih', tr: 'Öğreniyorum · seçili', pl: 'Uczę się · wybrany' }),
     learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', en: 'Learning', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Dipelajari', tr: 'Öğreniyorum', pl: 'Uczę się' }),
-    locked: triLang(lang, { ru: 'Новый язык · доступ уточняется', uk: 'Нова мова · доступ уточнюється', en: 'New language · access being confirmed', es: 'Idioma nuevo · acceso por confirmar', 'pt-BR': 'Idioma novo · acesso em confirmação', vi: 'Ngôn ngữ mới · đang xác nhận quyền truy cập', id: 'Bahasa baru · akses sedang dipastikan', tr: 'Yeni dil · erişim netleşiyor', pl: 'Nowy język · dostęp do potwierdzenia' }),
   }), [lang]);
 
   const closeAnimated = useCallback((reason: string) => {
@@ -141,13 +125,9 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
       closeAnimated('already_selected');
       return;
     }
-    if (!learning && !STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES) {
-      // зачем (решение О1, ждём владельца): новый язык из шторки не открываем — только мягкий отклик.
-      if (__DEV__) console.log(`${logTag} select_ignored reason=${startedLanguagesResolved ? 'not_started_locked' : 'started_unresolved'} code=${code}`);
-      hapticTap();
-      return;
-    }
-    select(code);
+    // зачем (D188): новый язык открыт — общий select сам выбирает путь (resolver / switch / welcome) и уводит мгновенно.
+    const route = select(code);
+    console.log(`[LEARN-LANG] select lang=${code} started=${learning} resolved=${startedLanguagesResolved} route=${route} from=${logTag}`);
   }, [closeAnimated, logTag, select, shownTarget, startedLanguagesResolved]);
 
   return (
@@ -155,7 +135,6 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
       {ordered.map((code) => {
         const active = code === shownTarget;
         const learning = startedLanguages.includes(code) || code === activeTarget;
-        const locked = !learning && !STUDY_LANGUAGE_SHEET_OPENS_NEW_LANGUAGES;
         const flag = languageFlagAssetFor(code);
         return (
           <SettingsGlassRow
@@ -164,19 +143,14 @@ function StudyLanguageSheetList({ lang, activeTarget, logTag, onCloseNow, reques
             testID={`study-language-option-${code}`}
             haptic={false}
             leading={flag ? (
-              // макет: у нового языка флаг в оттенках серого (filter: grayscale(1)).
-              <View style={[styles.flagWrap, locked ? styles.flagGray : null]}>
+              <View style={styles.flagWrap}>
                 <Image source={flag} accessible={false} style={styles.flag} contentFit="cover" />
               </View>
             ) : undefined}
             title={STUDY_TARGET_NATIVE_NAME[code]}
-            sub={active ? sub.selected : learning ? sub.learning : sub.locked}
+            sub={active ? sub.selected : learning ? sub.learning : undefined}
             onPress={() => onRowPress(code, learning)}
-            right={active
-              ? <KitCheckIcon color={glass.text} />
-              : locked
-                ? <KitLockFilledIcon color={glass.text} />
-                : <View style={styles.rightSpacer} />}
+            right={active ? <KitCheckIcon color={glass.text} /> : <View style={styles.rightSpacer} />}
           />
         );
       })}
@@ -190,7 +164,5 @@ const styles = StyleSheet.create({
   // макет PRF-23: флаг 58×40, радиус 10.
   flagWrap: { width: 58, height: 40, borderRadius: 10, overflow: 'hidden' },
   flag: { width: 58, height: 40, borderRadius: 10 },
-  // зачем: CSS-фильтр макета; на Android (новая архитектура) работает, iOS фильтр grayscale не поддерживает.
-  flagGray: { filter: 'grayscale(1)' },
   rightSpacer: { width: 20 },
 });

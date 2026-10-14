@@ -319,7 +319,8 @@ import {
   mergeSwipeMemoryRestoreValue,
   type CustomCardsMergeStats,
 } from './flashcards/restore_merge';
-import { warmCallableViaFetch } from './auth_warm_fetch'; // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
+import { warmCallableViaFetch } from './auth_warm_fetch';
+import { invokeAuthCallable } from './auth_callable_fetch'; // зачем: вызовы входа мимо однопоточной очереди RNFirebase — под флагом auth_callables_fetch_v1 (выкл) // зачем: прогрев входа мимо однопоточной очереди RNFirebase (прогон №5)
 import { readTesterFlags } from './tester_premium_override'; // зачем: [COLD-START-IO] — одно чтение флагов тестера
 
 const FRENCH_SYNC_LESSON_IDS = Array.from({ length: 32 }, (_, index) => index + 1);
@@ -2334,8 +2335,9 @@ export async function ensureStableAuthLinkForStableIdDetailed(
         { stableId: string; linkMetadata?: StableAuthLinkMetadata; anonMergeNonce?: string },
         { ok: boolean; stableUid: string; authUid: string; identityReady: boolean }
       >('authEnsureStableLink');
+      const payload = { stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField };
       const res = await withTimeout(
-        fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField }),
+        invokeAuthCallable('authEnsureStableLink', payload, () => fn(payload), { timeoutMs: STABLE_AUTH_LINK_TIMEOUT_MS }),
         STABLE_AUTH_LINK_TIMEOUT_MS,
         'auth_link_callable',
       );
@@ -2662,8 +2664,9 @@ export async function mergeStableAccountsViaServer(
     >('authMergeStableAccounts');
     // зачем (AA S2b, пункт 9, M-1): nonce метки анонимного аккаунта — если он
     // выдан одной из сторон слияния; после успешного слияния он больше не нужен.
+    const payload = { stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]) };
     const res = await withTimeout(
-      fn({ stableIdA: a, stableIdB: b, ...anonMergeNonceField('merge', [a, b]) }),
+      invokeAuthCallable('authMergeStableAccounts', payload, () => fn(payload), { timeoutMs: STABLE_AUTH_LINK_TIMEOUT_MS }),
       STABLE_AUTH_LINK_TIMEOUT_MS,
       'auth_merge_callable',
     );

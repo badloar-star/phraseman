@@ -96,7 +96,9 @@ describe('auth provider stable-id linking', () => {
     expect(source).toContain('ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata)');
     expect(cloudSyncSource).toContain('linkMetadata?: StableAuthLinkMetadata');
     // зачем (AA S2b, пункт 9): к данным добавлен nonce M-1 (только для того же stableId).
-    expect(cloudSyncSource).toContain("fn({ stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField })");
+    // 14.10 (прогон №5): аргументы вынесены в payload — тот же объект уходит и нативно, и через fetch под флагом.
+    expect(cloudSyncSource).toContain("const payload = { stableId, ...(hasFreshMetadata ? { linkMetadata: metadata } : {}), ...nonceField };");
+    expect(cloudSyncSource).toContain("invokeAuthCallable('authEnsureStableLink', payload, () => fn(payload)");
   });
 
   test('provider sign-in does not stack three serial stable-link deadlines after auth is ready', () => {

@@ -240,6 +240,8 @@ async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true
  * NB: вызывается ДО signInWithCredential. На этом этапе auth.currentUser — анонимный
  * пользователь (ensureAnonUser отработал на старте приложения).
  */
+const STAMP_FETCH_TIMEOUT_MS = 20_000;
+
 async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO || !localStableId) return;
   try {
@@ -251,7 +253,11 @@ async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<vo
     // зачем (AA S2b, пункт 9, контракт M-1): просим одноразовый nonce метки. Он
     // живёт только в памяти процесса (модуль nonce) и уходит в ensureLink/merge
     // для этого же stableId. Старый сервер nonce не даёт — работаем без него.
-    const response = await fn({ stableId: localStableId, nonceRequested: true });
+    // зачем (координатор 14.10, прогон №5): под флагом auth_callables_fetch_v1 (выкл) — мимо однопоточной очереди RNFirebase;
+    // нативный путь — только если запрос гарантированно не ушёл (метку нельзя ставить дважды вслепую).
+    const payload = { stableId: localStableId, nonceRequested: true };
+    const { invokeAuthCallable } = await import('./auth_callable_fetch');
+    const response = await invokeAuthCallable('authStampAnonOwnership', payload, () => fn(payload), { timeoutMs: STAMP_FETCH_TIMEOUT_MS });
     acceptAnonMergeStampResponse(localStableId, response);
   } catch (e) {
     // Лог без текста ошибки и без stableId: только вид и код (S1-логгер).

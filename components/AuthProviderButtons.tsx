@@ -11,10 +11,11 @@
 // Не модифицировать брендинг — это требование review process.
 // ════════════════════════════════════════════════════════════════════════════
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TouchableOpacity, Text, View, StyleSheet, ActivityIndicator } from 'react-native';
 import { GoogleIcon, AppleIcon, GoogleIconMono } from './AuthProviderIcons';
 import { softShadow } from '../constants/androidGlow';
+import { appleButtonColors, type AppleButtonVariant } from './auth_apple_button_style'; // зачем: стиль Apple по фону места (координатор 13.10)
 
 const HEIGHT = 56;
 const RADIUS = 14;
@@ -42,7 +43,6 @@ interface GoogleButtonProps extends ProviderButtonProps {
   variant?: 'light' | 'dark';
 }
 
-const APPLE_INK = '#FFFFFF'; // theme-exempt: фирменная кнопка «Войти через Apple» — чёрная с белым значком в любой теме (требование бренда)
 
 export function GoogleSignInButton({ onPress, loading, disabled, label, variant = 'light', shape = 'default' }: GoogleButtonProps) {
   const isDark = variant === 'dark';
@@ -87,7 +87,11 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
   );
 }
 
-export function AppleSignInButton({ onPress, loading, disabled, label, shape = 'default' }: ProviderButtonProps) {
+export function AppleSignInButton({ onPress, loading, disabled, label, shape = 'default', variant = 'light' }: ProviderButtonProps & { variant?: AppleButtonVariant }) {
+  const colors = appleButtonColors(variant);
+  useEffect(() => {
+    if (__DEV__) console.log(`[AUTH-APPLE-BTN] variant=${variant} background=${colors.background} shape=${shape}`); // guard-ok: одна строка на монтирование
+  }, [variant, shape, colors.background]);
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -97,7 +101,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
         styles.button,
         shape === 'pill' && styles.pill,
         shape === 'sheet' && styles.sheet,
-        { backgroundColor: '#000000', borderColor: '#000000', borderWidth: 0}, // theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.)
+        { backgroundColor: colors.background, borderWidth: 0 },
         (loading || disabled) && styles.disabled,
       ]}
       testID="auth-apple-button"
@@ -105,9 +109,9 @@ export function AppleSignInButton({ onPress, loading, disabled, label, shape = '
       accessibilityLabel={label}
     >
       <View style={styles.iconWrap}>
-        {loading ? <ActivityIndicator size="small" color={APPLE_INK} /> : <AppleIcon size={22} color={APPLE_INK} />}
+        {loading ? <ActivityIndicator size="small" color={colors.ink} /> : <AppleIcon size={22} color={colors.ink} />}
       </View>
-      <Text style={[styles.label, { color: '#FFFFFF' }]} numberOfLines={1}>{/* theme-exempt: брендовые цвета кнопок входа (Google/Apple и др.) */}
+      <Text style={[styles.label, { color: colors.ink }]} numberOfLines={1}>
         {label}
       </Text>
       <View style={styles.iconWrap} />

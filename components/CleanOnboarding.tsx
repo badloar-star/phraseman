@@ -3679,6 +3679,7 @@ function CleanOnboarding({
               {appleAvailable === true ? (
                 <AppleSignInButton
                   label={oc.signInApple}
+                  variant="dark"
                   loading={authLoading === 'apple'}
                   disabled={!!authLoading}
                   onPress={() => { void handleAuth('apple'); }}
@@ -3755,6 +3756,7 @@ function CleanOnboarding({
           {appleAvailable === true ? (
             <AppleSignInButton
               label={oc.continueWithApple}
+              variant="dark"
               shape="pill"
               loading={authLoading === 'apple'}
               disabled={!!authLoading}

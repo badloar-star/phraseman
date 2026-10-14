@@ -18,6 +18,7 @@ import { AccessibilityInfo, ActivityIndicator, AppState, Modal, View, Text, Text
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
+import { isLightThemeMode } from '../constants/theme'; // зачем: стиль кнопки Apple по теме шторки (координатор 13.10)
 import { useLang } from './LangContext';
 import { GoogleSignInButton, AppleSignInButton, AuthProviderButtonPlaceholder } from './AuthProviderButtons';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -1647,6 +1648,7 @@ function RegistrationPromptModal({
                 loading={loadingProvider === 'apple'}
                 disabled={authOperationBusy}
                 label={labelApple}
+                variant={isLightThemeMode(themeMode) ? 'light' : 'dark'}
                 shape="sheet"
               />
             )}

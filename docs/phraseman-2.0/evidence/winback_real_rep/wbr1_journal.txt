@@ -1,0 +1,19 @@
+10-14 19:10:18.164 I/SVERKA  (16736): === WB-R1 крестик 19:10:19 ===
+10-14 19:10:19.553 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=19552 gate no reason=recent awayDays=0
+10-14 19:10:19.553 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=19553 check decision show=false isPremium=false introPending=false path=/dev_state
+10-14 19:11:33.571 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=93571 gate dev_override awayDays=8 (хранилище: last=1792001419491 shown=1792001341416)
+10-14 19:11:33.571 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=93571 gate YES awayDays=8 shownAt=never
+10-14 19:11:33.572 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=93572 check decision show=true isPremium=false introPending=false path=/home
+10-14 19:11:34.122 I/ReactNativeJS(16520): [INFO] [PAYWALL-OPEN]: шапка: ctx=winback source=winback текст=winback контекстная=true выгода=есть lang=ru
+10-14 19:11:34.139 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=94136 sheet mount context=winback source=winback
+10-14 19:11:34.142 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=94139 sheet arbiter active=none
+10-14 19:11:34.147 I/ReactNativeJS(16520): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"winback","source":"winback","shownContext":"winback","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"l
+10-14 19:11:34.151 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=94147 route mount context=winback source=winback
+10-14 19:11:44.873 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=4873 sheet close_button
+10-14 19:11:44.881 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=4881 handleClose reason=close context=winback source=winback exitEligible=false exitAlreadyShown=false trialDays=none
+10-14 19:11:44.884 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=4883 doClose reason=close context=winback source=winback lockLeftMs=0
+10-14 19:11:44.889 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=4887 dismiss leaving=/premium_modal?context=winback&source=winback candidate=/home chosen=/home shouldReplace=false canDismiss=true branch=dismiss(1) stack=/home
+10-14 19:11:45.332 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=5331 route UNMOUNT context=winback
+10-14 19:11:45.333 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=5332 sheet UNMOUNT context=winback
+10-14 19:11:45.768 I/ReactNativeJS(16520): [WINBACK-FREEZE] t=5768 dismiss +800ms top=/home stack=/home
+10-14 19:11:46.968 I/SVERKA  (16870): === WB-R1 closed 19:11:48 ===

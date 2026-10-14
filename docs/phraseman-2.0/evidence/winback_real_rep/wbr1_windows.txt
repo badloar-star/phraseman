@@ -1,0 +1,17 @@
+  Window #0 Window{25ca78c u0 ScreenDecorOverlayBottom}:
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+  Window #1 Window{ac18df4 u0 ScreenDecorOverlay}:
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+  Window #2 Window{175308b u0 EdgeBackGestureHandler0}:
+  Window #3 Window{136be0e u0 Taskbar}:
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+  Window #4 Window{c61786 u0 NotificationShade}:
+  Window #5 Window{c1e1e3 u0 StatusBar}:
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+  Window #6 Window{ab959fb u0 ShellDropTarget}:
+  Window #7 Window{57edc69 u0 InputMethod}:
+  Window #8 Window{1c8d010 u0 app.phraseman/app.phraseman.MainActivity}:
+    mHasSurface=true isReadyForDisplay()=true mWindowRemovalAllowed=false
+  Window #9 Window{50fb8ab u0 com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity}:
+  Window #10 Window{59066e9 u0 com.android.systemui.wallpapers.ImageWallpaper}:
+    mHasSurface=true isReadyForDisplay()=false mWindowRemovalAllowed=false

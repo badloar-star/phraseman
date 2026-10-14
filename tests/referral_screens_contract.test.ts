@@ -295,7 +295,7 @@ describe('referral roulette screen contract', () => {
     const share = read('app/referral_invite_share.ts');
     const expired = read('components/EntitlementExpiredHost.tsx');
 
-    expect(share).toContain('Установи приложение, введи мой код и оформи Plus или Pro');
+    expect(share).toContain('Установи приложение, введи мой код и оформи Plus');
     expect(share).toContain('Plus от 1 дня до 365 дней');
     // зачем: владелец (2026-08-02, вариант А) — карточка истёкшего доступа продаёт
     // продление главным CTA, а в рефералку зовёт второй tonal-кнопкой на /referrals;

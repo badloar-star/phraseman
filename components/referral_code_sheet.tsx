@@ -35,15 +35,15 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'ok',
         text: L(
-          'Код принят. Когда оформишь Plus или Pro — другу откроется ключ к награде.',
-          'Код прийнято. Коли оформиш Plus або Pro — друг отримає ключ до нагороди.',
-          'Code accepted. Once you subscribe to Plus or Pro, your friend unlocks a key.',
-          'Código aceptado. Cuando compres Plus o Pro, tu amigo recibirá una llave.',
-          'Código aceito. Quando você assinar Plus ou Pro, seu amigo recebe uma chave.',
-          'Đã nhận mã. Khi bạn mua Plus hoặc Pro, bạn của bạn nhận một chìa khóa.',
-          'Kode diterima. Setelah kamu membeli Plus atau Pro, temanmu mendapat kunci.',
-          'Kod kabul edildi. Plus veya Pro satın aldığında arkadaşın bir anahtar kazanır.',
-          'Kod przyjęty. Gdy kupisz Plus lub Pro, znajomy dostanie klucz.',
+          'Код принят. Когда оформишь Plus — другу откроется ключ к награде.',
+          'Код прийнято. Коли оформиш Plus — друг отримає ключ до нагороди.',
+          'Code accepted. Once you subscribe to Plus, your friend unlocks a key.',
+          'Código aceptado. Cuando compres Plus, tu amigo recibirá una llave.',
+          'Código aceito. Quando você assinar Plus, seu amigo recebe uma chave.',
+          'Đã nhận mã. Khi bạn mua Plus, bạn của bạn nhận một chìa khóa.',
+          'Kode diterima. Setelah kamu membeli Plus, temanmu mendapat kunci.',
+          'Kod kabul edildi. Plus satın aldığında arkadaşın bir anahtar kazanır.',
+          'Kod przyjęty. Gdy kupisz Plus, znajomy dostanie klucz.',
         ),
       };
     case 'already':
@@ -278,15 +278,15 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
       {/* зачем (`.om-copy`): пояснение по центру под заголовком. */}
       <Text style={{ color: glass.secondary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginBottom: 2, textAlign: 'center' }}>
         {L(
-          'Введи код и оформи Plus или Pro — другу откроется ключ к награде.',
-          'Введи код і оформи Plus або Pro — друг отримає ключ до нагороди.',
-          'Enter the code and subscribe to Plus or Pro — your friend unlocks a key.',
-          'Escribe el código y compra Plus o Pro para darle una llave a tu amigo.',
-          'Digite o código e assine Plus ou Pro para dar uma chave ao seu amigo.',
-          'Nhập mã và mua Plus hoặc Pro để bạn của bạn nhận một chìa khóa.',
-          'Masukkan kode dan beli Plus atau Pro agar temanmu mendapat kunci.',
-          'Kodu gir ve Plus veya Pro satın al; arkadaşın bir anahtar kazansın.',
-          'Wpisz kod i kup Plus lub Pro, aby znajomy dostał klucz.',
+          'Введи код и оформи Plus — другу откроется ключ к награде.',
+          'Введи код і оформи Plus — друг отримає ключ до нагороди.',
+          'Enter the code and subscribe to Plus — your friend unlocks a key.',
+          'Escribe el código y compra Plus para darle una llave a tu amigo.',
+          'Digite o código e assine Plus para dar uma chave ao seu amigo.',
+          'Nhập mã và mua Plus để bạn của bạn nhận một chìa khóa.',
+          'Masukkan kode dan beli Plus agar temanmu mendapat kunci.',
+          'Kodu gir ve Plus satın al; arkadaşın bir anahtar kazansın.',
+          'Wpisz kod i kup Plus, aby znajomy dostał klucz.',
         )}
       </Text>
       {/* зачем (`.om-field-label`): подпись поля над ним; макет 12/700, шкала D145 — 13. */}

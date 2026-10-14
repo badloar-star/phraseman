@@ -665,15 +665,15 @@ export default function ReferralsScreen() {
 
               <Text testID="referrals-condition-hint" style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
                 {drainVisible ? sunsetCopy.drainBody : L(
-                  'Пригласи друга — когда он введёт твой код и оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
-                  'Запроси друга — коли він введе твій код і оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
-                  'Invite a friend — when they enter your code and get Plus or Pro, you\'ll get a key. Reward: Plus from 1 to 365 days.',
-                  'Invita a un amigo: cuando use tu código y compre Plus o Pro, recibirás una llave. Recompensa: Plus de 1 a 365 días.',
-                  'Convide um amigo: quando ele usar seu código e assinar o Plus ou Pro, você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
-                  'Mời một người bạn: khi họ nhập mã của bạn và mua Plus hoặc Pro, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
-                  'Undang teman: setelah memasukkan kodemu dan membeli Plus atau Pro, kamu mendapat kunci. Hadiah: Plus dari 1 sampai 365 hari.',
-                  'Bir arkadaşını davet et: kodunu girip Plus veya Pro satın aldığında bir anahtar kazanırsın. Ödül: 1–365 gün Plus.',
-                  'Zaproś znajomego: gdy wpisze twój kod i kupi Plus lub Pro, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
+                  'Пригласи друга — когда он введёт твой код и оформит Plus, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
+                  'Запроси друга — коли він введе твій код і оформить Plus, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
+                  'Invite a friend — when they enter your code and get Plus, you\'ll get a key. Reward: Plus from 1 to 365 days.',
+                  'Invita a un amigo: cuando use tu código y compre Plus, recibirás una llave. Recompensa: Plus de 1 a 365 días.',
+                  'Convide um amigo: quando ele usar seu código e assinar o Plus, você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
+                  'Mời một người bạn: khi họ nhập mã của bạn và mua Plus, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
+                  'Undang teman: setelah memasukkan kodemu dan membeli Plus, kamu mendapat kunci. Hadiah: Plus dari 1 sampai 365 hari.',
+                  'Bir arkadaşını davet et: kodunu girip Plus satın aldığında bir anahtar kazanırsın. Ödül: 1–365 gün Plus.',
+                  'Zaproś znajomego: gdy wpisze twój kod i kupi Plus, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
                 )}
               </Text>
 
@@ -872,15 +872,15 @@ export default function ReferralsScreen() {
           title={L('Ключ получен!', 'Ключ отримано!', 'Key received!', '¡Llave conseguida!', 'Chave recebida!', 'Đã nhận chìa khóa!', 'Kunci diperoleh!', 'Anahtar alındı!', 'Klucz zdobyty!')}
           subtitle={rewardCelebration
             ? L(
-              `${rewardCelebration.name} оформил Plus или Pro — забирай ключ и крути награду.`,
-              `${rewardCelebration.name} оформив Plus або Pro — забирай ключ і крути нагороду.`,
-              `${rewardCelebration.name} got Plus or Pro — grab your key and spin for a reward.`,
-              `${rewardCelebration.name} activó Plus o Pro: recoge tu llave y gira la recompensa.`,
-              `${rewardCelebration.name} ativou o Plus ou Pro — pegue sua chave e gire a recompensa.`,
-              `${rewardCelebration.name} đã mua Plus hoặc Pro — hãy nhận chìa khóa và quay thưởng.`,
-              `${rewardCelebration.name} membeli Plus atau Pro — ambil kuncimu dan putar hadiah.`,
-              `${rewardCelebration.name} Plus veya Pro satın aldı — anahtarını al ve ödülü çevir.`,
-              `${rewardCelebration.name} kupił Plus lub Pro — odbierz klucz i zakręć nagrodą.`,
+              `${rewardCelebration.name} оформил Plus — забирай ключ и крути награду.`,
+              `${rewardCelebration.name} оформив Plus — забирай ключ і крути нагороду.`,
+              `${rewardCelebration.name} got Plus — grab your key and spin for a reward.`,
+              `${rewardCelebration.name} activó Plus: recoge tu llave y gira la recompensa.`,
+              `${rewardCelebration.name} ativou o Plus — pegue sua chave e gire a recompensa.`,
+              `${rewardCelebration.name} đã mua Plus — hãy nhận chìa khóa và quay thưởng.`,
+              `${rewardCelebration.name} membeli Plus — ambil kuncimu dan putar hadiah.`,
+              `${rewardCelebration.name} Plus satın aldı — anahtarını al ve ödülü çevir.`,
+              `${rewardCelebration.name} kupił Plus — odbierz klucz i zakręć nagrodą.`,
             )
             : ''}
           ctaLabel={L('Забрать награду', 'Забрати нагороду', 'Claim the reward', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}

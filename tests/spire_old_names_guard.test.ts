@@ -70,6 +70,24 @@ describe('«Шпиль → Пик»: старых имён нет в польз�
     }
   });
 
+  // зачем (№32, координатор 14.10): админка — «Пик/Peak» в подписях; старое имя допустимо только в идентификаторах (adminSpireConfigSet, spire-*) и комментариях
+  it('админка: в видимых подписях admin/v2/legacy.html нет «Шпиль»/«Spire» (комментарии и идентификаторы не считаются)', () => {
+    const lines = fs.readFileSync(path.join(root, 'admin/v2/legacy.html'), 'utf8').split(/\r?\n/);
+    const bad: string[] = [];
+    let inComment = false;
+    lines.forEach((raw, i) => {
+      let line = raw;
+      if (inComment) { const end = line.indexOf('-->'); if (end < 0) return; line = line.slice(end + 3); inComment = false; }
+      line = line.replace(/<!--.*?-->/g, '');
+      const open = line.indexOf('<!--');
+      if (open >= 0) { line = line.slice(0, open); inComment = true; }
+      if (/^\s*\/\//.test(line)) return;
+      line = line.replace(/\s\/\/.*$/, '');
+      if (/Шпил|Шпіл|\bSpire\b/.test(line)) bad.push(`${i + 1}: ${line.trim().slice(0, 100)}`);
+    });
+    expect(bad).toEqual([]);
+  });
+
   it('сервер: тексты пушей Пика проверяет собственный сторож на всех 9 языках (functions/src/spire_peak_push_texts.test.ts)', () => {
     const guard = fs.readFileSync(path.join(root, 'functions/src/spire_peak_push_texts.test.ts'), 'utf8');
     expect(guard).toContain("const LANGS = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl']");

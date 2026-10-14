@@ -13,7 +13,8 @@
      Каждое состояние в тёмной «Авроре» и в светлой теме. Кнопка «Нашёл ошибку?» в сборке магазина скрыта — видят тестеры (флаг REPORT_ERROR_ENABLED). */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --r-sheet: rgba(24,24,29,.985); --r-surf: #1D1D22; --r-hi: rgba(255,255,255,.14); --r-tx: #fff; --r-sc: #A6A6A8; --r-mu: #75757A; --r-edge: rgba(255,255,255,.13); --r-ink: var(--on); --r-dim: rgba(0,0,0,.55); --r-bad: #FF7A7A; color: var(--r-tx); }
-  .ph.lite { --r-sheet: #FBFBFD; --r-surf: #ECECF1; --r-hi: rgba(0,0,0,.08); --r-tx: #0C0C10; --r-sc: #55555D; --r-mu: #86868E; --r-edge: rgba(0,0,0,.11); --r-ink: #fff; --r-dim: rgba(20,20,30,.38); --r-bad: #C23B3B; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --r-sheet: #FBFBFD; --r-surf: #ECECF1; --r-hi: rgba(0,0,0,.08); --r-tx: #0C0C10; --r-sc: #55555D; --r-mu: #86868E; --r-edge: rgba(0,0,0,.11); --r-dim: rgba(20,20,30,.38); --r-bad: #C23B3B; background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   /* подложка: экран, где нажали «Нашёл ошибку?» */
   .rund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .rund .t1 { font-size: 28px; font-weight: 700; } .rund .c { height: 74px; border-radius: 18px; background: var(--r-surf); margin-top: 12px; }
@@ -28,6 +29,8 @@
   .rhint { margin-top: -4px; text-align: right; font-size: 13px; line-height: 17px; color: var(--r-bad); }
   .rrow { display: flex; gap: 12px; margin-top: 8px; }
   .rbtn { flex: 1; min-height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 700; background: var(--r-surf); color: var(--r-sc); }
+/* зачем (раздел 6, 14.10: вторичная не сливается с листом): заливка вторичной кнопки — как buttonFill кода (deriveLiquidGlassButtonRoles, графит: тёмная #45474B, светлая #C0C0C3), подпись — текст темы */
+  .rbtn:not(.send):not(.stretch) { background: #45474B; color: var(--r-tx); } .ph.lite .rbtn:not(.send):not(.stretch) { background: #C0C0C3; }
   .rbtn.send { flex: 2; background: var(--acc); color: var(--r-ink); } .rbtn.busy { opacity: .6; } .rbtn.stretch { flex: none; align-self: stretch; margin-top: 8px; background: var(--acc); color: var(--r-ink); }
   .rok { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 24px 0 0; text-align: center; } .rok .a { font-size: 18px; line-height: 24px; font-weight: 700; } .rok .b { font-size: 16px; line-height: 22px; color: var(--r-sc); }
   .rbg { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 4px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--r-sc); }

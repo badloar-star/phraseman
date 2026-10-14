@@ -14,7 +14,8 @@
      Размеры текста 16 и 13 (имя 33/38 — по коду). Обводки только 1px полупрозрачные. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --v-sheet: rgba(24,24,29,.985); --v-surf: #1D1D22; --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); color: #fff; }
-  .ph.lite { --v-sheet: #FBFBFD; --v-surf: #ECECF1; --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.11); --v-ink: #fff; --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --v-sheet: #FBFBFD; --v-surf: #ECECF1; --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.11); --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .vund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .vund .t1 { font-size: 28px; font-weight: 700; } .vund .r { height: 66px; border-radius: 18px; background: var(--v-surf); margin-top: 12px; }
   .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }
@@ -56,6 +57,8 @@
   .vcf { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--v-sheet); box-shadow: inset 0 0 0 1px var(--v-edge), 0 24px 60px rgba(0,0,0,.45); }
   .vcf .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; color: var(--v-tx); } .vcf .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--v-sc); }
   .vcf .ac { display: flex; gap: 9px; margin-top: 18px; } .vcf .bt { flex: 1; min-height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; background: var(--acc); color: var(--v-ink); } .vcf .bt.gh { background: var(--v-surf); color: var(--v-tx); }
+/* зачем (раздел 6, 14.10: вторичная не сливается с листом): заливка вторичной кнопки — как buttonFill кода (deriveLiquidGlassButtonRoles, графит: тёмная #45474B, светлая #C0C0C3), подпись — текст темы */
+  .vcf .bt.gh { background: #45474B; } .ph.lite .vcf .bt.gh { background: #C0C0C3; }
   .vnote { max-width: 430px; text-align: center; font-size: 13px; color: var(--sec); margin-top: -4px; }
 </style>
 </head>

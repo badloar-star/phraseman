@@ -16,7 +16,8 @@
      Волны и искры показаны в моменте после удара; на деле — анимация (появление, пружина, расходящиеся волны). Обводок нет (только 1px полупрозрачные при необходимости). */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --a-ctl: #1D1D22; --a-card: #202027; --a-sel: rgba(255,255,255,.1); --a-tx: #fff; --a-sc: #A6A6A8; --a-edge: rgba(255,255,255,.13); --a-ink: var(--on); --a-tint: var(--acc); color: var(--a-tx); }
-  .ph.lite { --a-ctl: #ECECF1; --a-card: #F6F6FA; --a-sel: rgba(0,0,0,.07); --a-tx: #0C0C10; --a-sc: #55555D; --a-edge: rgba(0,0,0,.12); --a-ink: #fff; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --a-ctl: #ECECF1; --a-card: #F6F6FA; --a-sel: rgba(0,0,0,.07); --a-tx: #0C0C10; --a-sc: #55555D; --a-edge: rgba(0,0,0,.12); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .apg { position: absolute; inset: 0; padding: 62px 22px 36px; display: flex; flex-direction: column; align-items: center; }
   .atop { align-self: stretch; display: flex; align-items: center; justify-content: space-between; gap: 12px; }

@@ -14,7 +14,8 @@
      Замечание по тексту: «зелёная аура и зелёный ник» в карточке «Что такое Plus?» — это обещание; в награде за опрос сейчас 30 дней Plus. Текст оставлен как в коде. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --v-panel: #1B1B21; --v-ctl: #24242B; --v-sel: rgba(255,255,255,.12); --v-tx: #fff; --v-sc: #A6A6A8; --v-mu: #75757A; --v-edge: rgba(255,255,255,.13); --v-ink: var(--on); --v-dim: rgba(0,0,0,.58); --v-tint: var(--acc); color: var(--v-tx); }
-  .ph.lite { --v-panel: #FBFBFD; --v-ctl: #ECECF1; --v-sel: rgba(0,0,0,.08); --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.12); --v-ink: #fff; --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --v-panel: #FBFBFD; --v-ctl: #ECECF1; --v-sel: rgba(0,0,0,.08); --v-tx: #0C0C10; --v-sc: #55555D; --v-mu: #86868E; --v-edge: rgba(0,0,0,.12); --v-dim: rgba(20,20,30,.4); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .vund { position: absolute; inset: 0; padding: 62px 20px 0; } .vund .t1 { font-size: 28px; line-height: 34px; font-weight: 700; } .vund .r { height: 76px; border-radius: 18px; background: var(--v-ctl); margin-top: 12px; }
   .vdim { position: absolute; inset: 0; z-index: 20; background: var(--v-dim); }

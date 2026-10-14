@@ -15,7 +15,8 @@
      Тексты — из кода. Кегли 16/13. Обводки — только 1px полупрозрачные. Тёмная «Аврора» и светлая тема. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --e-ctl: #1D1D22; --e-card: #202027; --e-sel: rgba(255,255,255,.1); --e-tx: #fff; --e-sc: #A6A6A8; --e-mu: #75757A; --e-edge: rgba(255,255,255,.13); --e-ink: var(--on); --e-tint: var(--acc); --e-ok: #5FD6A0; color: var(--e-tx); }
-  .ph.lite { --e-ctl: #ECECF1; --e-card: #F6F6FA; --e-sel: rgba(0,0,0,.07); --e-tx: #0C0C10; --e-sc: #55555D; --e-mu: #86868E; --e-edge: rgba(0,0,0,.12); --e-ink: #fff; --e-ok: #1E8F5E; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --e-ctl: #ECECF1; --e-card: #F6F6FA; --e-sel: rgba(0,0,0,.07); --e-tx: #0C0C10; --e-sc: #55555D; --e-mu: #86868E; --e-edge: rgba(0,0,0,.12); --e-ok: #1E8F5E; background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .epg { position: absolute; inset: 0; padding-top: 50px; display: flex; flex-direction: column; overflow: hidden; }
   .ehd { display: flex; align-items: center; gap: 10px; padding: 14px 18px 8px; } .ehd .tt { flex: 1; font-size: 32px; line-height: 38px; font-weight: 700; letter-spacing: -.5px; }

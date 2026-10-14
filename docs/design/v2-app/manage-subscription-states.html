@@ -14,7 +14,8 @@
      Обводки — только 1px полупрозрачные. Каждое состояние — в тёмной «Авроре» и в светлой теме. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --m-card: #202027; --m-ctl: #1D1D22; --m-sel: rgba(255,255,255,.1); --m-tx: #fff; --m-sc: #A6A6A8; --m-mu: #75757A; --m-edge: rgba(255,255,255,.13); --m-ink: var(--on); --m-dim: rgba(0,0,0,.68); --m-sheet: rgba(24,24,29,.985); --m-ok: #5FD6A0; --m-tint: var(--acc); color: var(--m-tx); }
-  .ph.lite { --m-card: #F6F6FA; --m-ctl: #ECECF1; --m-sel: rgba(0,0,0,.07); --m-tx: #0C0C10; --m-sc: #55555D; --m-mu: #86868E; --m-edge: rgba(0,0,0,.12); --m-ink: #fff; --m-dim: rgba(20,20,30,.4); --m-sheet: #FBFBFD; --m-ok: #1E8F5E; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --m-card: #F6F6FA; --m-ctl: #ECECF1; --m-sel: rgba(0,0,0,.07); --m-tx: #0C0C10; --m-sc: #55555D; --m-mu: #86868E; --m-edge: rgba(0,0,0,.12); --m-dim: rgba(20,20,30,.4); --m-sheet: #FBFBFD; --m-ok: #1E8F5E; background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .mpg { position: absolute; left: 0; right: 0; top: 0; bottom: 0; padding: 54px 15px 0; overflow: hidden; }
   .mclose { width: 48px; height: 48px; border-radius: 50%; background: var(--m-ctl); display: flex; align-items: center; justify-content: center; color: var(--m-tint); margin-top: 4px; }

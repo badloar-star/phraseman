@@ -14,7 +14,8 @@
      Каждое состояние показано дважды: тёмная «Аврора» и светлая тема. Цены и пробный период в макете примерные — их отдаёт магазин. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --w-sheet: rgba(24,24,29,.985); --w-surf: #1D1D22; --w-hi: rgba(255,255,255,.14); --w-tx: #fff; --w-sc: #A6A6A8; --w-mu: #75757A; --w-edge: rgba(255,255,255,.13); --w-ink: var(--on); --w-dim: rgba(0,0,0,.62); color: var(--w-tx); }
-  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); --w-ink: #fff; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; }
   .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   /* подложка — экран, откуда открылось окно */

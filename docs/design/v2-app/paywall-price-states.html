@@ -14,7 +14,8 @@
      Каждое состояние показано дважды: тёмная «Аврора» и светлая тема. Цены и пробный период в макете примерные — их отдаёт магазин. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --w-sheet: rgba(24,24,29,.985); --w-surf: #1D1D22; --w-hi: rgba(255,255,255,.14); --w-tx: #fff; --w-sc: #A6A6A8; --w-mu: #75757A; --w-edge: rgba(255,255,255,.13); --w-ink: var(--on); --w-dim: rgba(0,0,0,.62); color: var(--w-tx); }
-  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); --w-ink: #fff; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --w-sheet: #FBFBFD; --w-surf: #ECECF1; --w-hi: rgba(0,0,0,.08); --w-tx: #0C0C10; --w-sc: #55555D; --w-mu: #86868E; --w-edge: rgba(0,0,0,.11); --w-dim: rgba(20,20,30,.38); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; }
   .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   /* подложка — экран, откуда открылось окно */
@@ -68,7 +69,9 @@
   .wal { position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 40; border-radius: 25px; padding: 20px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 24px 60px rgba(0,0,0,.45); }
   .wal .tt { font-size: 23px; line-height: 29px; font-weight: 800; text-align: center; } .wal .bd { font-size: 16px; line-height: 22px; text-align: center; margin-top: 9px; color: var(--w-sc); }
   /* зачем (кадр paywalls-015 приложения, общий хост окон): кнопки окна — столбиком, главная снизу, высота 56 */
-  .wal .ac { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; } .wal .bt { flex: 1; min-width: 0; min-height: 56px; border-radius: 22px; padding: 8px 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; line-height: 20px; font-weight: 700; background: var(--acc); color: var(--w-ink); } .wal .bt.gh { background: var(--w-surf); color: var(--w-tx); }
+  .wal .ac { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; } /* зачем: как GlassAlertDialog.actions в коде (gap 12), правило владельца «зазор ≥ 12» */ .wal .bt { flex: 1; min-width: 0; min-height: 56px; border-radius: 22px; padding: 8px 12px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 16px; line-height: 20px; font-weight: 700; background: var(--acc); color: var(--w-ink); } .wal .bt.gh { background: var(--w-surf); color: var(--w-tx); }
+/* зачем (раздел 6, 14.10: вторичная не сливается с листом): заливка вторичной кнопки — как buttonFill кода (deriveLiquidGlassButtonRoles, графит: тёмная #45474B, светлая #C0C0C3), подпись — текст темы */
+  .wal .bt.gh { background: #45474B; } .ph.lite .wal .bt.gh { background: #C0C0C3; }
   .wtoast { position: absolute; left: 20px; right: 20px; top: 56px; z-index: 50; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 19px; background: var(--w-sheet); box-shadow: inset 0 0 0 1px var(--w-edge), 0 14px 34px rgba(0,0,0,.4); }
   .wtoast .ti { width: 41px; height: 41px; border-radius: 10px; background: var(--w-surf); display: flex; align-items: center; justify-content: center; flex: none; font-size: 22px; font-weight: 800; }
   .wtoast .tx { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 600; }

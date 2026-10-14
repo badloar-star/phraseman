@@ -13,7 +13,8 @@
      Тексты — из кода. Каждое состояние показано в тёмной «Авроре» и в светлой теме; в конце — два состояния из кода сверх реестра. Обводки — только 1px полупрозрачные. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --c-sheet: rgba(24,24,29,.985); --c-ctl: #1D1D22; --c-sel: rgba(255,255,255,.1); --c-tx: #fff; --c-sc: #A6A6A8; --c-mu: #75757A; --c-edge: rgba(255,255,255,.13); --c-ink: var(--on); --c-dim: rgba(0,0,0,.55); color: var(--c-tx); }
-  .ph.lite { --c-sheet: #FBFBFD; --c-ctl: #ECECF1; --c-sel: rgba(0,0,0,.07); --c-tx: #0C0C10; --c-sc: #55555D; --c-mu: #86868E; --c-edge: rgba(0,0,0,.12); --c-ink: #fff; --c-dim: rgba(20,20,30,.38); background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --c-sheet: #FBFBFD; --c-ctl: #ECECF1; --c-sel: rgba(0,0,0,.07); --c-tx: #0C0C10; --c-sc: #55555D; --c-mu: #86868E; --c-edge: rgba(0,0,0,.12); --c-dim: rgba(20,20,30,.38); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .cund { position: absolute; inset: 0; padding: 70px 20px 0; opacity: .5; } .cund .t1 { font-size: 28px; font-weight: 700; } .cund .r { height: 70px; border-radius: 18px; background: var(--c-ctl); margin-top: 12px; }
   .cdim { position: absolute; inset: 0; z-index: 20; background: var(--c-dim); }

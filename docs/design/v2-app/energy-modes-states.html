@@ -16,7 +16,8 @@
      Тексты новых окон — предложение (в коде ещё нет), помечены в заметках; тексты «Энергия закончилась», «Открыть Plus», «Позже» и контекст «Энергия 0» — из утверждённых. Кегли 16/13. Обводки — только 1px полупрозрачные. */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --g-ctl: #1D1D22; --g-card: #202027; --g-sel: rgba(255,255,255,.1); --g-tx: #fff; --g-sc: #A6A6A8; --g-mu: #75757A; --g-edge: rgba(255,255,255,.13); --g-ink: var(--on); --g-tint: var(--acc); --g-dim: rgba(0,0,0,.62); --g-sheet: rgba(24,24,29,.985); --g-bad: #FF6B6B; --g-badbg: rgba(255,107,107,.16); --g-ok: #5FD6A0; color: var(--g-tx); }
-  .ph.lite { --g-ctl: #ECECF1; --g-card: #F6F6FA; --g-sel: rgba(0,0,0,.07); --g-tx: #0C0C10; --g-sc: #55555D; --g-mu: #86868E; --g-edge: rgba(0,0,0,.12); --g-ink: #fff; --g-dim: rgba(20,20,30,.4); --g-sheet: #FBFBFD; --g-bad: #C23B3B; --g-badbg: rgba(194,59,59,.12); --g-ok: #1E8F5E; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --g-ctl: #ECECF1; --g-card: #F6F6FA; --g-sel: rgba(0,0,0,.07); --g-tx: #0C0C10; --g-sc: #55555D; --g-mu: #86868E; --g-edge: rgba(0,0,0,.12); --g-dim: rgba(20,20,30,.4); --g-sheet: #FBFBFD; --g-bad: #C23B3B; --g-badbg: rgba(194,59,59,.12); --g-ok: #1E8F5E; background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .gp { position: absolute; inset: 0; padding-top: 52px; overflow: hidden; }
   .gbody > * { transition: filter 520ms ease, opacity 520ms ease; } .frozen .gbody > * { filter: saturate(.25); opacity: .5; } /* зачем (energy-modes-004): filter на самом .gbody делал его контейнером для абсолютных потомков (ответы уезжали вверх при заморозке) — фильтр на детях, раскладка не меняется */

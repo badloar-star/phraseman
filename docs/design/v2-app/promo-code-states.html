@@ -13,7 +13,8 @@
      Обводки только 1px полупрозрачные. Каждое состояние показано в тёмной «Авроре» и в светлой теме. Праздничное окно VIP после успеха — это группа 9 (подтверждённый доступ). */
   .scr > .in { min-height: 100%; padding: 0; }
   .ph { --p-card: rgba(26,26,32,.92); --p-ctl: rgba(255,255,255,.08); --p-tx: #fff; --p-sc: #A6A6A8; --p-mu: #75757A; --p-edge: rgba(255,255,255,.13); --p-tint: color-mix(in srgb, var(--acc) 45%, rgba(255,255,255,.1)); --p-ink: var(--on); color: var(--p-tx); }
-  .ph.lite { --p-card: rgba(255,255,255,.92); --p-ctl: rgba(0,0,0,.06); --p-tx: #0C0C10; --p-sc: #55555D; --p-mu: #86868E; --p-edge: rgba(0,0,0,.11); --p-tint: color-mix(in srgb, var(--acc) 60%, rgba(0,0,0,.1)); --p-ink: #fff; background: #E3E3EA !important; }
+  /* зачем (раздел 6, 14.10): текст на акцентной кнопке в светлой теме — var(--on), как liquidGlassButtonInk в коде (белый только при ≥ 4,5:1), а не вписанный белый (был 3,27:1) */
+  .ph.lite { --p-card: rgba(255,255,255,.92); --p-ctl: rgba(0,0,0,.06); --p-tx: #0C0C10; --p-sc: #55555D; --p-mu: #86868E; --p-edge: rgba(0,0,0,.11); --p-tint: color-mix(in srgb, var(--acc) 60%, rgba(0,0,0,.1)); background: #E3E3EA !important; }
   .ph.lite::before { opacity: .22; } .ph.lite .sb { color: #111; } .ph.lite .sb svg { filter: invert(1); } .ph.lite .hi { background: #111; }
   .phd { height: 56px; margin-top: 52px; position: relative; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 -.5px 0 var(--p-edge); }
   .phd .t { font-size: 16px; font-weight: 700; } .phd .x { position: absolute; right: 12px; top: 6px; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }

@@ -208,7 +208,7 @@ const homeHead = (o = {}) => `<div class="flex" style="gap:10px;align-items:flex
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti">Друзья на этой неделе</div></div><div class="sg-friends">${FRIENDS.map((f) => `<div class="sg-fr t">${coinImg(f.rank, 30)}${f.name}<span class="s">${f.stone}</span></div>`).join('')}</div>`;
 const podium = () => {
   const top = [...ROOM].filter((m) => !m.me).sort(byCoins).slice(0, 3);
-  const pd = (m, p) => `<div class="sg-pc p${p} t">${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${coinsTxt(m.coins)}</div><div class="blk">${p}</div></div>`;
+  const pd = (m, p) => `<div class="sg-pc p${p} t">${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp" style="display:flex;align-items:center;justify-content:center;gap:4px">${m.coins.toLocaleString('ru-RU')}<img src="${K.coin(0)}" alt="" style="width:14px;height:14px"></div><div class="blk">${p}</div></div>`;
   const myIdx = [...ROOM].sort(byCoins).findIndex((m) => m.me) + 1;
   return `<div class="sec" style="margin:26px 2px 0"><div class="ti">Комната недели</div><div class="ac">${ROOM.length}</div></div><div class="sg-pod">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div><div class="sg-all t">Все участники · ${myIdx}</div>`;
 };

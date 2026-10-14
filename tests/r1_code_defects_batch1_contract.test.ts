@@ -15,7 +15,8 @@ describe('R1 code defects, batch 1', () => {
   it('dialogs-007/008: the briefing shows the energy pill unless energy is unlimited', () => {
     const screen = read('components/dialogs/DialogueV2BriefingScreen.tsx');
     expect(screen).toContain("import EnergyBar from '../EnergyBar';");
-    expect(screen).toMatch(/\{showEnergy \? <EnergyBar glass \/> : null\}/);
+    // зачем (14.10): f68ef4c79 (вердикты Макетов d7cf7113d, 13.10) намеренно сделал молнию пилюли сплошной — `solidBolt`; пилюля по-прежнему показывается, пока энергия не безлимитная
+    expect(screen).toMatch(/\{showEnergy \? <EnergyBar glass( solidBolt)? \/> : null\}/);
     expect(screen).toMatch(/top: \{[^}]*justifyContent: 'space-between'/);
     const container = read('app/dialogue_v2_briefing.tsx');
     expect(container).toMatch(/isUnlimited: energyUnlimited/);

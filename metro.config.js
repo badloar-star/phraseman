@@ -126,7 +126,7 @@ const ignoredRootFolders = [
   // зачем (TG-441DCCC0ACA3, 10.10): корневая content/ — сценарии курса, пайплайны MASON/LINGMAN/VIRAL,
   // аватар-студия (~2170+ файлов). Приложение её не импортирует (код курса живёт в modules/learning-v2/content/,
   // эта папка сюда не попадает регэкспом по корню). Без исключения Metro держит её в карте файлов и растит память.
-  'content',
+  // 'content' — блокируется ниже регэкспом contentExceptV2Activation (оставлен проход для activation/).
   'docs',
   'duel',
   'exports',
@@ -154,6 +154,15 @@ const ignoredRootFolders = [
 const adminRoot = escapePathForRegex(path.join(__dirname, 'admin'));
 const adminExceptRuntimeAvatars = new RegExp(
   `^${adminRoot}[/\\\\](?!v2(?:[/\\\\]avatars(?:[/\\\\]|$)|$)).*`,
+);
+
+// зачем (координатор 14.10 22:2x): app/learning_v2_factory_runtime_audio_omissions_v1.ts (курс V2) делает
+// require('../content/learning-v2-course/activation/en/*.json') — при полном блоке content/ бандл отдавал 500
+// UnableToResolveError, эмулятор стоял красным. Блокируем content/ целиком, КРОМЕ дерева
+// content/learning-v2-course/activation/ (мелкие манифесты рантайма) — по образцу исключения admin/v2/avatars выше.
+const contentRoot = escapePathForRegex(path.join(__dirname, 'content'));
+const contentExceptV2Activation = new RegExp(
+  `^${contentRoot}[/\\\\](?!learning-v2-course(?:[/\\\\]activation(?:[/\\\\]|$)|$)).*`,
 );
 
 // Старый обход бага expo-dev-client, который НЕ умел парсить multipart-ответ Metro:
@@ -402,6 +411,7 @@ config.resolver.blockList = [
   ...emulatorDevLoginBlockList,
   ...iosAccountProofBlockList,
   adminExceptRuntimeAvatars,
+  contentExceptV2Activation,
   gradleOutputInNodeModules,
   ...ignoredRootFolders.map(
     (folder) => new RegExp(`^${escapePathForRegex(path.join(__dirname, folder))}[/\\\\].*`),

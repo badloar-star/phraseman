@@ -221,8 +221,12 @@ describe('рубежи серии — флаг, подключение, исхо
     setSoundV2FlagForTests(null);
   });
 
-  // зачем: подключать моменты серии можно только осознанно — список импортёров явный (сторис берут огонь и рубежи, карточка «Сегодня» — кольца за флагом, dev-превью — всё)
-  const ALLOWED_IMPORTERS = ['app/dev_moments_preview.tsx', 'components/home/v2/HomeV2TodayCard.tsx', 'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts', 'app/lesson1.tsx', 'app/spire/use_spire_game.ts'];
+  // зачем: подключать моменты серии можно только осознанно — список импортёров явный (сторис, моменты урока/диалога/Пика берут огонь, флаг и тексты; карточка «Сегодня» — кольца за флагом; dev-превью — всё)
+  const ALLOWED_IMPORTERS = [
+    'app/dev_moments_preview.tsx', 'app/lesson1.tsx', 'components/dialog_moments/FirstDialogMoment.tsx', 'components/home/v2/HomeV2TodayCard.tsx',
+    'components/lesson_moments/LessonPerfectMoment.tsx', 'components/spire/SpireHomeScreen.tsx', 'components/spire/moments/SpireFloorMoment.tsx',
+    'components/stories/StorySlides.tsx', 'modules/story_events/story_event_sources.ts',
+  ];
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {

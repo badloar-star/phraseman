@@ -5,7 +5,7 @@
 // подпись «До N — M дн.» 13/17, монета ранга справа (MomentCoin 32). Плашка в стиле «Тень» (тон + тень, без обводки). Появление пружиной 600 мс сверху (`emToastIn`);
 // reduceMotion — сразу на месте. Ничего не начисляет и не пишет: показывает то, что пришло пропсами; закрывает себя через onDone. Показ — за флагом moments_v3 (решает Ядро).
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { Easing, useAnimatedStyle, useReducedMotion, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import type { Lang } from '../../../constants/i18n';
@@ -39,6 +39,10 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
   const [burstKey, setBurstKey] = useState(0);
   const [sparks, setSparks] = useState(false);
   const enter = useSharedValue(reduceMotion ? 1 : 0);
+  // зачем (проверка класса «эффект тайм-листа перезапускает таймеры», 14.10): onDone приходит от хозяина и может меняться на каждый его рендер — в зависимостях эффекта он перезапускал бы
+  // таймеры, звук и хаптик при любом рендере Главной, а тост так и не закрывался. Колбэк живёт в ref, эффект зависит только от сцены.
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
   useEffect(() => {
     playStreakSceneSound('toast');
     if (!reduceMotion) enter.value = withSpring(1, { damping: 14, stiffness: 140 });
@@ -49,10 +53,10 @@ function StreakMilestoneToast({ lang, milestone, coinRank, onDone, testID = 'str
       playStreakTapSound();
       void hapticSuccess();
     }, STREAK_TOAST_BURST_DELAY_MS);
-    const done = setTimeout(onDone, STREAK_MOMENT_DURATION_MS.toast);
+    const done = setTimeout(() => onDoneRef.current(), STREAK_MOMENT_DURATION_MS.toast);
     void hapticTap();
     return () => { clearTimeout(burst); clearTimeout(done); };
-  }, [enter, onDone, reduceMotion]);
+  }, [enter, reduceMotion]);
   const style = useAnimatedStyle(() => ({ opacity: enter.value, transform: [{ translateY: (1 - enter.value) * -28 }] }));
   const sub = streakMilestoneSubline(lang, milestone);
   return (

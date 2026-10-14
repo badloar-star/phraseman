@@ -384,7 +384,9 @@ export default function DialogueV2BriefingRoute() {
     {/* макет B5: закрытие окна уводит с экрана диалога */}
     <AiDialogConsentModal visible={consentAsk} lang={lang} onAccept={onConsentAccept} onDecline={onConsentDecline} />
     {/* зачем (Макеты 2bac25805, dialogs-011; правило владельца 15.09 «тексты модалов по разделу»): без activity окно падало на «classic_lesson» и в Диалогах говорило «Для урока нужно 1 ⚡». */}
-    <NoEnergyModal variant="dialogs" visible={noEnergy} activity="ai_dialog" onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
+    {/* зачем (координатор 14.10, 🔴): «Получить Plus» уводил назад вместе с окном — пейвол терялся. Plus закрывает только окно: человек
+        остаётся на брифинге, пейвол открывается поверх, после покупки можно сразу начать диалог. «Позже» по-прежнему уводит назад. */}
+    <NoEnergyModal variant="dialogs" visible={noEnergy} activity="ai_dialog" onBeforeOpenPremium={() => setNoEnergy(false)} onClose={() => { setNoEnergy(false); safeRouterBack(router, '/ai_dialog_home' as never); }} />
     </>
   );
 }

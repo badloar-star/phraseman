@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
-import { useRouter } from 'expo-router';
+import { router as globalRouter, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import {
   View,
@@ -135,17 +135,45 @@ function NoEnergyModal({
 
   const flushPremiumPush = useCallback(() => {
     const ctx = pendingPremiumContextRef.current;
-    if (!ctx) return;
+    if (!ctx) {
+      console.log('[NO-ENERGY-PLUS] flush skip reason=nothing_pending'); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
+      return;
+    }
     pendingPremiumContextRef.current = null;
+    console.log(`[NO-ENERGY-PLUS] push via=modal_closed ctx=${ctx} variant=${variant}`); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
     router.push({ pathname: '/premium_modal', params: { context: ctx, source: 'no_energy_modal' } } as any);
-  }, [router]);
+  }, [router, variant]);
 
   useEffect(() => {
     flushPremiumPushRef.current = flushPremiumPush;
   }, [flushPremiumPush]);
 
+  // зачем (координатор 14.10, 🔴 потеря денег; журнал Сверки 19:43/19:44): Диалоги, Learning V2 и Карточки закрывают окно через
+  // «назад» — экран уходит вместе с окном, очистка эффекта ниже отменяла таймер, и «Получить Plus» просто закрывал окно без пейвола.
+  // Если окно размонтировалось с неотправленным открытием — открываем пейвол глобальным роутером уже после ухода экрана.
+  const variantRef = useRef(variant);
+  variantRef.current = variant;
+  useEffect(() => () => {
+    const ctx = pendingPremiumContextRef.current;
+    if (!ctx) {
+      if (__DEV__) console.log('[NO-ENERGY-PLUS] unmount nothing_pending'); // guard-ok: ранний выход пишет причину
+      return;
+    }
+    pendingPremiumContextRef.current = null;
+    console.log(`[NO-ENERGY-PLUS] unmount_with_pending ctx=${ctx} variant=${variantRef.current} → push after screen left`); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
+    setTimeout(() => {
+      try {
+        globalRouter.push({ pathname: '/premium_modal', params: { context: ctx, source: 'no_energy_modal' } } as any);
+        console.log(`[NO-ENERGY-PLUS] push via=unmount_rescue ctx=${ctx}`); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
+      } catch (error) {
+        console.warn('[NO-ENERGY-PLUS] unmount_rescue push failed', String(error)); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
+      }
+    }, 360);
+  }, []);
+
   const openPremiumAfterClose = () => {
     pendingPremiumContextRef.current = paywallContext;
+    console.log(`[NO-ENERGY-PLUS] tap ctx=${paywallContext} variant=${variant} activity=${activity ?? 'none'} handler=${onBeforeOpenPremium ? 'onBeforeOpenPremium' : 'onClose'}`); // guard-ok: одна строка на тап «Получить Plus», ранний выход и catch пишут причину навсегда
     (onBeforeOpenPremium ?? onClose)();
   };
 

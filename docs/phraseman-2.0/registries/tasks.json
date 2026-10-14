@@ -16497,5 +16497,51 @@
     "gate_evidence": {},
     "actual_model": null,
     "actual_reasoning": null
+  },
+  {
+    "id": "PM-302",
+    "epic": "E21",
+    "title": "После R1: переложить 5 шторок с position:absolute на обычную раскладку и включить следование листа за пальцем (shop, панель ошибок PanelSheet, лист карточки набора PackEditorV2, выбор YouTube-каналов, визитка «Про»)",
+    "requirement_ids": [],
+    "basis": "OWNER_DECISION",
+    "stage": "C",
+    "status": "planned",
+    "profile": "S1",
+    "model": "claude-opus-5-5",
+    "reasoning": "medium",
+    "spec": "docs/work/tasks/sheet-swipe-follow-finger-2026-10-14.md",
+    "acceptance": [
+      {
+        "id": "PM-302-A1",
+        "text": "Пять шторок (app/shop.tsx, components/mistakes-panel/PanelSheet.tsx, app/community_packs/PackEditorV2.tsx, components/youtube/YoutubeChannelPickerSheet.tsx, components/profile-card/ProfileCardProSheet.tsx) переложены с position:absolute на обычную раскладку (лист в потоке родителя, внизу), а SheetSwipeClose включён без follow={false}: лист едет за пальцем (внешний слой translateY), >88 px или рывок >900 закрывает, меньше — пружина назад",
+        "accepted": false,
+        "evidence": []
+      },
+      {
+        "id": "PM-302-A2",
+        "text": "Сторож tests/sheet_handle_implies_swipe_contract.test.ts: нет ни одного follow={false} в приложении (кроме явного списка исключений с причиной); кадры Сверки «эмулятор | эталон» по пяти шторкам — внешний вид не изменился",
+        "accepted": false,
+        "evidence": []
+      }
+    ],
+    "depends_on": [],
+    "gates": [
+      "BASELINE_SHA_APPROVED",
+      "DOMAIN_AUDIT_AND_IMPACT_ACCEPTED"
+    ],
+    "audit_sha": null,
+    "result_sha": null,
+    "owner": null,
+    "reviewer": null,
+    "evidence": [],
+    "notes": [
+      "2026-10-14 координатор: «планка Apple — чтобы лист ехал за пальцем везде». Сейчас у этих пяти fallback follow={false}: свайп закрывает по порогу, лист не следует (внешний слой ломает их position:absolute). После R1, отдельной задачей."
+    ],
+    "actual_cost": null,
+    "kind": "code",
+    "review_verdict": null,
+    "gate_evidence": {},
+    "actual_model": null,
+    "actual_reasoning": null
   }
 ]

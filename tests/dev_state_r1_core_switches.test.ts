@@ -226,14 +226,13 @@ describe('dev_state R1 (Ядро): прогресс уроков и экзаме
   });
 });
 
-describe('dev_state R1 (Ядро): EN-проход — автопереход D164 на выбор языка изучения', () => {
-  test('enStudyPrompt=off выключает автопереход при паре en+en (только память); on возвращает', async () => {
-    const ui = require('../app/dev_ui_lang') as typeof import('../app/dev_ui_lang');
-    expect(parseDevStateParams({ enStudyPrompt: 'maybe' }).rejected).toHaveProperty('enStudyPrompt');
-    await applyDevState(parseDevStateParams({ enStudyPrompt: 'off' }).request);
-    expect(ui.isDevEnStudyPromptOff()).toBe(true);
-    await applyDevState(parseDevStateParams({ enStudyPrompt: 'on' }).request);
-    expect(ui.isDevEnStudyPromptOff()).toBe(false);
+// зачем (D188): автопереход D164 и его dev-параметр сняты; старые ссылки с enStudyPrompt=off не ломаются — параметр игнорируется.
+describe('dev_state R1 (Ядро): enStudyPrompt снят вместе с автопереходом (D188)', () => {
+  test('ссылка с enStudyPrompt=off разбирается без отказов, параметр не применяется', () => {
+    const parsed = parseDevStateParams({ enStudyPrompt: 'off', uiLang: 'en' });
+    expect(parsed.rejected).not.toHaveProperty('enStudyPrompt');
+    expect(parsed.request).not.toHaveProperty('enStudyPrompt');
+    expect(require('../app/dev_ui_lang')).not.toHaveProperty('isDevEnStudyPromptOff');
   });
 });
 

@@ -40,23 +40,5 @@ export function isDevUiLangEnOn(): boolean {
   return devAvailable() && enOn;
 }
 
-// зачем (координатор 12.10, EN-проход R1, шаг 6): при паре «интерфейс en + изучаю en» (D164) через 1,2 с после старта вкладок
-// приложение само открывает выбор языка изучения — и перекрывает кадр робота. Карточным кадрам нужны английские демо-данные
-// (studyTarget=en), поэтому только для них — `enStudyPrompt=off`: автопереход не открывается. Только память, только dev.
-let enStudyPromptOff = false;
-
-/** `dev_state?enStudyPrompt=off|on`. В стор-сборке — отказ с логом. */
-export function setDevEnStudyPromptOff(off: boolean): boolean {
-  if (!devAvailable()) {
-    console.warn('[DEV-STATE] enStudyPrompt: отклонено — не dev-сборка', { off }); // guard-ok: ранний выход логируется
-    return false;
-  }
-  enStudyPromptOff = off;
-  console.log(`[DEV-STATE] enStudyPrompt=${off ? 'off' : 'on'} (автопереход на выбор языка изучения при паре en+en ${off ? 'выключен' : 'включён'}, только память)`);
-  return true;
-}
-
-/** true — автопереход на выбор языка изучения при паре en+en выключен dev-подменой. В стор-сборке всегда false. */
-export function isDevEnStudyPromptOff(): boolean {
-  return devAvailable() && enStudyPromptOff;
-}
+// зачем (D188, координатор 14.10): dev-параметр `enStudyPrompt` снят вместе с автопереходом на выбор языка изучения при паре
+// en+en — пара разрешена, автоперехода нет. Старые ссылки с `enStudyPrompt=off` работают: неизвестный параметр парсер не читает.

@@ -19,7 +19,7 @@ import { requestDevOverlayRecheck, setDevOverlaysOff } from './dev_overlays_off'
 import { setDevAnimationsOff } from './dev_animations_off';
 import { setDevRobotNoCloud } from './dev_robot_no_cloud';
 import { setDevSaveOfferOpen, setDevSaveOfferProgress } from './dev_save_offer_progress';
-import { setDevEnStudyPromptOff, setDevUiLang } from './dev_ui_lang';
+import { setDevUiLang } from './dev_ui_lang';
 import { setDevMistakesDemo } from './dev_mistakes_demo';
 import { setDevFriendsDemo } from './dev_friends_demo';
 import { emitAppEvent } from './events';
@@ -285,8 +285,6 @@ export type DevStateRequest = Readonly<{
   winbackaway?: '3' | '8' | '30' | 'off';
   /** settings-gap-034: показ «Обучения» с «Автопроверка вкл, 1,0x» как в образце. Только память. */
   edu?: 'parity' | 'off';
-  /** EN-проход R1: off — при паре «интерфейс en + изучаю en» не открывать выбор языка изучения (только память). */
-  enStudyPrompt?: 'on' | 'off';
   /** Язык изучения гостя (dev_state_study_target.ts): только dev, только одноразовый гость, локально и без выгрузки в облако. Нужен кадру «Нет карточек» (у en всегда есть «Первые 50»). */
   studyTarget?: 'en' | 'es' | 'de' | 'fr' | 'it';
   /** Серия «до:после восстановления» (например 5:12) — проверка [HOME-RESTORE-JUMP]: после кадра Главной + 3 с «приходит облако». */
@@ -410,7 +408,6 @@ export function parseDevStateParams(params: Readonly<Record<string, unknown>>): 
   request.todaytask = pick('todaytask', ['spire', 'off'] as const);
   request.winbackaway = pick('winbackaway', ['3', '8', '30', 'off'] as const);
   request.edu = pick('edu', ['parity', 'off'] as const);
-  request.enStudyPrompt = pick('enStudyPrompt', ['on', 'off'] as const);
   request.studyTarget = pick('studyTarget', ['en', 'es', 'de', 'fr', 'it'] as const);
   request.hint = pick('hint', ['show', 'seen'] as const);
   request.cardsLangs = pick('cardslangs', ['on', 'off'] as const);
@@ -905,10 +902,6 @@ export async function applyDevState(request: DevStateRequest): Promise<DevStateR
       const { setDevEduSettingsParity } = await import('./dev_edu_settings');
       return setDevEduSettingsParity(request.edu === 'parity');
     });
-  }
-  if (request.enStudyPrompt !== undefined) {
-    // зачем (EN-проход R1): карточным кадрам с английскими демо-данными автопереход D164 перекрывал экран
-    await step('enStudyPrompt', request.enStudyPrompt, async () => setDevEnStudyPromptOff(request.enStudyPrompt === 'off'));
   }
   if (request.offerProgress !== undefined) {
     await step('offerProgress', request.offerProgress, async () => setDevSaveOfferProgress(request.offerProgress === 'on'));

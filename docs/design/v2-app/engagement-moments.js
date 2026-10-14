@@ -133,7 +133,7 @@
     root.addEventListener('click', (e) => {
       const rp = e.target.closest('[data-replay]'); const th = e.target.closest('[data-theme]'); const vr = e.target.closest('[data-vid]'); if (!vr) return;
       const wrap = vr.querySelector('[data-wrap]'); const ph = wrap.querySelector('[data-ph]');
-      if (rp) { const lite = ph.classList.contains('lite'); const m = MOMENTS.find((x) => vr.dataset.vid.startsWith(x.id + '-')); const v = m.variants.find((x, j) => `${m.id}-${x.k || j}` === vr.dataset.vid); wrap.innerHTML = phone({ ...v.phone, theme: lite ? 'lite' : v.phone.theme === 'lite' && !lite ? 'dark' : v.phone.theme }); if (lite) wrap.querySelector('[data-ph]').classList.add('lite'); else wrap.querySelector('[data-ph]').classList.remove('lite'); run(wrap); }
+      if (rp) { const lite = ph.classList.contains('lite'); const iris = ph.classList.contains('iris'); const m = MOMENTS.find((x) => vr.dataset.vid.startsWith(x.id + '-')); const v = m.variants.find((x, j) => `${m.id}-${x.k || j}` === vr.dataset.vid); wrap.innerHTML = phone({ ...v.phone, theme: lite ? 'lite' : v.phone.theme === 'lite' && !lite ? 'dark' : v.phone.theme }); const np = wrap.querySelector('[data-ph]'); np.classList.toggle('lite', lite); np.classList.toggle('iris', iris); run(wrap); } // зачем (координатор 14.10): третья тема «Ирис» — класс iris терялся после «Повторить», телефон откатывался в светлую Аврору
       if (th) { ph.classList.toggle('lite'); }
     });
   };

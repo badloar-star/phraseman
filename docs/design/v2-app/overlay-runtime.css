@@ -1,7 +1,7 @@
 /* Runtime overlay catalog only. Graphite / white extension of the approved 2.0 kit. */
 .or-underlay { padding-top: 42px; opacity: .3; }
 .or-underlay .ghost { height: 76px; margin-top: 11px; }
-.or-dim { position: absolute; inset: 0; z-index: 48; background: rgba(0,0,0,.62); }
+.or-dim { position: absolute; inset: 0; z-index: 48; background: var(--scrim); }
 .or-region { position: absolute; z-index: 56; }
 .or-alert {
   left: 24px; right: 24px; top: 50%; transform: translateY(-50%);
@@ -12,14 +12,14 @@
   padding: 12px 20px 28px; border-radius: 30px 30px 0 0;
   border: 1px solid var(--line-2); background: var(--sheet); transform: none;
 }
-.or-grab { width: 42px; height: 5px; margin: 0 auto 16px; border-radius: 5px; background: #5d5e64; }
+.or-grab { width: 42px; height: 5px; margin: 0 auto 16px; border-radius: 5px; background: var(--muted); }
 .or-title { color: var(--text); font-size: 23px; line-height: 29px; font-weight: 780; text-align: center; text-wrap: pretty; }
 .or-body { margin-top: 9px; color: var(--sec); font-size: 14px; line-height: 21px; text-align: center; text-wrap: pretty; }
 .or-next { display: block; margin-top: 9px; }
 .or-actions { display: grid; grid-template-columns: repeat(var(--or-actions,1),minmax(0,1fr)); gap: 9px; margin-top: 18px; }
 .or-actions.stack { grid-template-columns: 1fr; }
 .or-actions .cta { min-width: 0; height: 44px; padding: 0 12px; font-size: 14px; }
-.or-actions .or-danger { border-color: #7a7b82; }
+.or-actions .or-danger { border-color: var(--outline); }
 .or-stage { width: 68px; height: 68px; margin: 0 auto 15px; border-radius: 23px; display: grid; place-items: center; background: var(--tile); color: var(--text); }
 .or-native-note { margin-top: 11px; color: var(--muted); font-size: 11px; line-height: 16px; text-align: center; }
 .or-inline-page { padding-top: 14px; }

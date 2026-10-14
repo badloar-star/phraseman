@@ -23,6 +23,12 @@
   --text: #FFFFFF; --sec: #A6A6A8; --muted: #6E6E72;
   --cta: #F2F1F6; --cta-ink: #0B0C0E;
   --good: #6FD08C; --bad: #F2766B;
+  /* зачем (владелец «всё строго в текущей теме», 14.10): роли, которые раньше были вписаны #hex в общих css окон и кнопок — теперь токены темы */
+  --scrim: rgba(0,0,0,.6);            /* затемнение под окном/шторкой */
+  --control-hi: #383A40;              /* кнопка на плашке (тост): светлее --control, чтобы не сливалась */
+  --btn2: #2C2C2F;                    /* поверхность вторичной текстовой кнопки */
+  --disabled: #1E1E20; --disabled-ink: #8E8E93;
+  --danger: #6A2A25; --danger-ink: #FFC2BB;
   --pad: 20px;
 }
 
@@ -76,7 +82,7 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .rb.l { width: 48px; height: 48px; }
 .rb.sq { border-radius: 12px; background: transparent; border-color: var(--line-2); width: 36px; height: 36px; }
 .rb.bare { background: transparent; border: none; width: 30px; justify-content: flex-start; }
-.rb.fill { background: #2A2A2C; border-color: var(--line); width: 35px; height: 35px; }
+.rb.fill { background: var(--control); border-color: var(--line); width: 35px; height: 35px; }
 .lt { margin-top: 8px; }
 .lt .ti { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
 .lt .su { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 6px; letter-spacing: .15px; }
@@ -109,7 +115,7 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .tile.t46 { width: 46px; height: 46px; border-radius: 12px; }
 .tile.t55 { width: 55px; height: 55px; border-radius: 14px; }
 .tile.t57 { width: 57px; height: 57px; border-radius: 14px; }
-.tile.t61 { width: 61px; height: 61px; border-radius: 16px; background: #28282A; }
+.tile.t61 { width: 61px; height: 61px; border-radius: 16px; background: var(--tile); }
 .meta { display: flex; gap: 18px; color: var(--sec); font-size: 14px; line-height: 18px; margin-top: 4px; align-items: center; }
 .meta span { display: inline-flex; align-items: center; gap: 6px; }
 .cntp { min-width: 33px; height: 24px; padding: 0 9px; border-radius: 12px; background: var(--control); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
@@ -140,7 +146,7 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
 .cta .ar { position: absolute; right: 22px; }
 .cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; font-weight: 600; gap: 10px; }
 .cta.gh { background: transparent; color: var(--text); border: 1px solid var(--outline); }
-.cta.dis { background: #1E1E20; color: var(--muted); }
+.cta.dis { background: var(--disabled); color: var(--muted); }
 .foot-brand { display: flex; align-items: center; gap: 12px; color: #4E4E52; font-size: 13px; margin-top: 26px; }
 .foot-brand::before, .foot-brand::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
@@ -212,12 +218,12 @@ svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; 
    зачем: у вторичной кнопки — своя заметная поверхность, текст ≥ 4,5:1, зазор между кнопками ≥ 12 px, отключённая отличима и читается.
    Слой в конце kit.css перекрывает локальные стили страниц только по этим свойствам. Проверка — C:/Temp/claude/btn/audit.cjs. Код догоняют Темы (№35). */
 /* текстовые ссылки «Ещё раз» / «Назад» / «Пройти ещё раз» — пилюля-поверхность вместо голого текста */
-.ph .quiet.t, .ph .bot2 .quiet { display: flex !important; align-items: center; justify-content: center; width: max-content; min-width: 148px; max-width: 100%; height: 46px !important; margin: 12px auto 0 !important; padding: 0 22px; border-radius: 23px; background: #2C2C2F !important; color: var(--text) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+.ph .quiet.t, .ph .bot2 .quiet { display: flex !important; align-items: center; justify-content: center; width: max-content; min-width: 148px; max-width: 100%; height: 46px !important; margin: 12px auto 0 !important; padding: 0 22px; border-radius: 23px; background: var(--btn2) !important; color: var(--text) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
 /* отключённая главная: тёмная плита, текст #8E8E93 — 5,1:1 на #1E1E20 (было var(--muted) 3,3:1) */
-.ph .cta.dis { color: #8E8E93 !important; }
+.ph .cta.dis { color: var(--disabled-ink) !important; }
 /* опасные действия («Удалить», «Убрать», «Очистить», «Сменить без сохранения»): кромку снимает nobord.js (стиль «Тень»), поэтому различимость —
    заливкой: глубокий красный тон #6A2A25 (яркость выше шторки #28282E и карточки ≥ 1,25×), текст #FFC2BB — 6,5:1. Двойной класс — сильнее локальных !important страниц. */
 .ph .cta.cta.red, .ph .cta.cta.or-danger, .ph .cta.cta.dg-danger,
-.ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: #6A2A25 !important; background-image: none !important; color: #FFC2BB !important; }
+.ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: var(--danger) !important; background-image: none !important; color: var(--danger-ink) !important; }
 /* «Войти через Apple» на тёмной теме — БЕЛАЯ кнопка с чёрным яблоком (Apple HIG; решение координатора 13.10 — чёрная на тёмной плите сливалась). Код — Авторизация (AuthProviderButtons.tsx). */
 .ph .ov-provider.dark { background: #FFFFFF !important; background-image: none !important; color: #000000 !important; }

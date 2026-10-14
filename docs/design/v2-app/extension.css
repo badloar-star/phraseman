@@ -20,7 +20,7 @@
   padding: 14px 16px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: #151517;
+  background: var(--card);
   color: var(--sec);
   font-size: 13px;
   line-height: 1.55;
@@ -58,7 +58,7 @@
   display: grid;
   place-items: center;
   flex: none;
-  background: #28282B;
+  background: var(--control);
   color: var(--text);
 }
 .switch {
@@ -67,7 +67,7 @@
   padding: 3px;
   border: 1px solid var(--line-2);
   border-radius: 16px;
-  background: #252527;
+  background: var(--tile);
   flex: none;
 }
 .switch::before {
@@ -79,14 +79,14 @@
   background: #76767B;
   transition: transform 220ms ease, background 220ms ease;
 }
-.switch.on::before { transform: translateX(19px); background: #F4F3F7; }
+.switch.on::before { transform: translateX(19px); background: var(--cta); }
 button.switch { cursor: pointer; }
 .field {
   width: 100%;
   min-height: 48px;
   border: 1px solid var(--line-2);
   border-radius: 14px;
-  background: #19191B;
+  background: var(--sheet);
   color: var(--text);
   font: 500 15px Inter, sans-serif;
   padding: 12px 14px;
@@ -128,7 +128,7 @@ button.bare {
   white-space: nowrap;
 }
 :where(button, a, input, textarea, [tabindex]):focus-visible {
-  outline: 2px solid #F4F3F7;
+  outline: 2px solid var(--cta);
   outline-offset: 3px;
 }
 .cta { border: 0; }
@@ -147,7 +147,7 @@ button.bare {
   padding: 4px;
   border: 1px solid var(--line);
   border-radius: 15px;
-  background: #151517;
+  background: var(--card);
 }
 .seg-btn {
   display: grid;
@@ -160,7 +160,7 @@ button.bare {
   font-size: 13px;
   font-weight: 650;
 }
-.seg-btn.on { color: var(--text); background: #2B2B2E; box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
+.seg-btn.on { color: var(--text); background: var(--control); box-shadow: inset 0 1px 0 rgba(255,255,255,.12); }
 .modal {
   position: absolute;
   z-index: 60;
@@ -171,7 +171,7 @@ button.bare {
   padding: 24px 20px 20px;
   border: 1px solid var(--line-2);
   border-radius: 26px;
-  background: #1A1A1D;
+  background: var(--sheet);
 }
 .modal-title { font-size: 22px; line-height: 28px; font-weight: 750; text-align: center; }
 .modal-copy { margin-top: 8px; color: var(--sec); font-size: 14px; line-height: 20px; text-align: center; }
@@ -184,7 +184,7 @@ button.bare {
   min-height: 54px;
   padding: 12px 14px;
   border-radius: 17px;
-  background: #29292C;
+  background: var(--control);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -197,7 +197,7 @@ button.bare {
 .empty-state .mini-icon { margin: 0 auto; width: 58px; height: 58px; border-radius: 18px; }
 .empty-state h3 { margin: 17px 0 0; font-size: 20px; line-height: 26px; }
 .empty-state p { margin: 7px auto 0; max-width: 280px; color: var(--sec); font-size: 14px; line-height: 20px; }
-.skeleton { overflow: hidden; position: relative; background: #222225; border-radius: 8px; }
+.skeleton { overflow: hidden; position: relative; background: var(--tile); border-radius: 8px; }
 .skeleton::after {
   content: "";
   position: absolute;
@@ -215,7 +215,7 @@ button.bare {
   padding: 0 14px;
   border: 1px solid var(--line-2);
   border-radius: 18px;
-  background: #171719;
+  background: var(--sheet);
   color: var(--text);
   font-size: 13px;
   font-weight: 650;
@@ -228,27 +228,27 @@ button.bare {
 @keyframes countPulse { to { transform: scale(1.1); filter: brightness(1.25); } }
 .podium { display: flex; align-items: flex-end; justify-content: center; gap: 8px; height: 218px; padding-top: 14px; }
 .podium-place { width: 31%; text-align: center; }
-.podium-place .base { margin-top: 8px; border-radius: 16px 16px 5px 5px; background: #242427; border: 1px solid var(--line); display: grid; place-items: center; color: var(--sec); font-size: 13px; }
+.podium-place .base { margin-top: 8px; border-radius: 16px 16px 5px 5px; background: var(--tile); border: 1px solid var(--line); display: grid; place-items: center; color: var(--sec); font-size: 13px; }
 .podium-place:nth-child(1) .base { height: 74px; }
 .podium-place:nth-child(2) .base { height: 112px; }
 .podium-place:nth-child(3) .base { height: 58px; }
 .rank-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.rank-cell { min-height: 88px; border-radius: 15px; padding: 9px 5px; text-align: center; background: #18181A; border: 1px solid var(--line); }
+.rank-cell { min-height: 88px; border-radius: 15px; padding: 9px 5px; text-align: center; background: var(--sheet); border: 1px solid var(--line); }
 .rank-cell img { width: 50px; height: 50px; object-fit: contain; }
 .rank-cell .r { color: var(--sec); font-size: 11px; margin-top: 4px; }
-.meter { height: 6px; border-radius: 4px; background: #27272A; overflow: hidden; }
-.meter > i { display: block; height: 100%; border-radius: inherit; background: #F2F1F5; }
+.meter { height: 6px; border-radius: 4px; background: var(--control); overflow: hidden; }
+.meter > i { display: block; height: 100%; border-radius: inherit; background: var(--cta); }
 .heatmap { display: grid; grid-template-columns: repeat(13, 1fr); gap: 4px; }
-.heatmap i { aspect-ratio: 1; border-radius: 3px; background: #232326; }
+.heatmap i { aspect-ratio: 1; border-radius: 3px; background: var(--tile); }
 .heatmap i:nth-child(4n) { background: #444449; }
 .heatmap i:nth-child(7n) { background: #727279; }
-.heatmap i:nth-child(17n) { background: #E6E5EA; }
+.heatmap i:nth-child(17n) { background: var(--cta); }
 .spark { display: flex; align-items: flex-end; gap: 6px; height: 72px; }
 .spark i { flex: 1; min-height: 6px; border-radius: 5px 5px 2px 2px; background: #4A4A4F; }
-.spark i:last-child { background: #ECEBF0; }
+.spark i:last-child { background: var(--cta); }
 .shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .medal { text-align: center; min-height: 116px; padding: 12px 6px; }
-.medal .disc { width: 58px; height: 58px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 28%, #66666C, #242427 68%); border: 1px solid #707076; }
+.medal .disc { width: 58px; height: 58px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 28%, #66666C, var(--tile) 68%); border: 1px solid #707076; }
 .medal .name { margin-top: 8px; font-size: 12px; line-height: 15px; font-weight: 650; }
 .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
 .modal-actions .cta { min-width: 0; }
@@ -257,7 +257,7 @@ button.bare {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #070708;
+  background: var(--bg);
   opacity: 0;
   animation: mint-scene 3.5s linear both;
 }

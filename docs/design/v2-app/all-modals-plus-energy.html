@@ -277,13 +277,13 @@ moment({ id: 'm09', num: '09', short: 'PremiumCelebration', title: 'Праздн
   ] });
 
 /* ---------- 10. Три дня доступа — IntroFullAccessModal ---------- */
-const introWelcome = () => sheet({ head: `<div class="ov" style="color:var(--acc-text);margin-bottom:6px">Бонус на старт</div>`, title: 'Три дня доступа начались', body: 'Все возможности Plus открыты: уроки, карточки и занятия без траты энергии.', extra: `<div class="meta" style="text-align:left;margin-top:12px;color:var(--mu);font-size:13px">Это бонус. Подписка не включается автоматически.</div>`, acts: prim('Начать') });
-const introEnded = () => sheet({ title: 'Три дня доступа завершились', body: 'Учебный прогресс остаётся. Базовый режим доступен. Актуальные преимущества Plus — в предложении магазина.', acts: `${prim('Посмотреть предложение')}${sec('Остаться на базовом')}` });
-moment({ id: 'm10', num: '10', short: 'IntroFullAccess', title: 'Три дня доступа — IntroFullAccessModal (welcome / ended)', tag: 'old',
-  lead: 'Шторка после онбординга (welcome) и по окончании трёх дней (ended). Тексты 1:1. Owner-правило D09 «подарков нет» — это не подарок, а стартовый доступ из кода; текст сам говорит, что подписка не включается.',
+// зачем (D186, владелец 14.10: «такого не должно быть вообще, удалить»): окна «Бонус на старт» (IntroFullAccessModal welcome/ended) в продукте нет — плашка как в overlays-more.html.
+const introRemoved = (ended) => `<div class="full clear" style="justify-content:center"><div class="sf" style="background:var(--card);border-radius:22px;padding:22px 20px;text-align:center"><div style="font-size:17px;line-height:22px;font-weight:700">Удалено решением владельца 14.10 (D186)</div><div style="font-size:15px;line-height:21px;color:var(--sec);margin-top:8px">${ended ? 'Окно «Три дня позади»' : 'Окно «Бонус на старт»'} — бонуса на старт в приложении нет.</div></div></div>`;
+moment({ id: 'm10', num: '10', short: 'IntroFullAccess · удалено', title: 'Три дня доступа — IntroFullAccessModal: удалено решением владельца 14.10 (D186)', tag: 'old',
+  lead: 'Окон «Бонус на старт» / «Три дня позади» в продукте нет (D186). Телефоны оставлены плашкой, чтобы не сдвигать нумерацию разделов.',
   variants: [
-    { k: 'A', label: 'welcome · «Бонус на старт»', time: '~0,5 с', phone: { under: homeUnder({ streak: 1 }), over: introWelcome() }, total: 1, beats: BEAT_SHEET, why: 'Одна кнопка — начать; условия честно внизу.', ref: 'IntroFullAccessModal kind=welcome.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.' },
-    { k: 'B', label: 'ended · «Три дня позади»', time: '~0,5 с', phone: { under: homeUnder({ streak: 3 }), over: introEnded() }, total: 1, beats: BEAT_SHEET, why: 'Спокойный выход в базовый режим — без давления.', ref: 'IntroFullAccessModal kind=ended → пейвол intro_ended.', fx: 'см. тайм-лист.', snd: 'см. тайм-лист.', note: ok('«Остаться на базовом» в коде уже на opaqueControl; здесь — buttonFill.') },
+    { k: 'A', label: 'удалено (D186) · было: welcome', phone: { under: homeUnder({ streak: 1 }), over: introRemoved(false) }, why: 'Удалено решением владельца 14.10 (D186).', ref: 'overlays-more.html · OM-FULL-WELCOME.' },
+    { k: 'B', label: 'удалено (D186) · было: ended', phone: { under: homeUnder({ streak: 3 }), over: introRemoved(true) }, why: 'Удалено решением владельца 14.10 (D186).', ref: 'overlays-more.html · OM-FULL-ENDED.' },
   ] });
 
 /* ---------- 11. Plus закончился — EntitlementExpiredHost ---------- */

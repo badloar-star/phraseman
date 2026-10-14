@@ -1,0 +1,55 @@
+TABS_RENDER_3 — ReleasedTabLayout под React.memo (родитель TabLayout перерисовывается по usePathname ради редиректа турниров)
+Применять ТОЛЬКО если в прогоне №7 много [TABS-RENDER] changed=none (parent/context).
+Карта: docs/work/tasks/tabs-render-cascade-plan.md п.1.1. Тест: tests/tabs_layout_memo_contract.test.ts.
+
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -1260,6 +1260,11 @@
+   );
+ }
+ 
++// зачем (координатор 14.10, каскад [TABS-RENDER]): TabLayout подписан на usePathname только ради редиректа турниров и на каждую смену маршрута
++// создавал новый <ReleasedTabLayout/> — разметка вкладок рендерилась целиком, даже когда для неё ничего не поменялось. Пропсов нет → memo
++// отсекает рендер «от родителя»; собственные подписки разметки (usePathname, контексты, состояние) работают как раньше.
++const ReleasedTabLayoutMemo = React.memo(ReleasedTabLayout);
++
+ function isDisabledTournamentTabPath(pathnameRaw: string): boolean {
+   const pathname = pathnameRaw.replace(/\/$/, '');
+   return pathname === '/tournaments' || pathname.endsWith('/(tabs)/tournaments');
+@@ -1276,7 +1281,7 @@
+     <TabBarVisibilityProvider>
+       {/* зачем (координатор 14.10, [PAYWALL-CLOSE-JS]): замер всей разметки вкладок (перелистыватель, обёртки панелей) отдельно от
+           содержимого панелей — после крестика пейвола «stack» дорогой, а tab:* дешёвые. Без флага [TAP-LAT] — пустышка. */}
+-      <TabRenderProbe id="layout:tabs"><ReleasedTabLayout /></TabRenderProbe>
++      <TabRenderProbe id="layout:tabs"><ReleasedTabLayoutMemo /></TabRenderProbe>
+     </TabBarVisibilityProvider>
+   );
+ }
+diff --git a/tests/tabs_layout_memo_contract.test.ts b/tests/tabs_layout_memo_contract.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/tabs_layout_memo_contract.test.ts
+@@ -0,0 +1,22 @@
++// зачем (координатор 14.10, каскад [TABS-RENDER], патч TABS_RENDER_3): TabLayout подписан на usePathname (редирект турниров) и на каждую смену
++// маршрута создавал новый <ReleasedTabLayout/> — разметка вкладок рендерилась «от родителя». Сторож: разметка без пропсов и под React.memo.
++import { readSource } from './helpers/read_source';
++
++const source = readSource('app/(tabs)/_layout.tsx');
++
++describe('tabs layout is memoized against parent re-renders', () => {
++  it('ReleasedTabLayout takes no props, so memo always bails out on a parent render', () => {
++    expect(source).toContain('function ReleasedTabLayout() {');
++    expect(source).toContain('const ReleasedTabLayoutMemo = React.memo(ReleasedTabLayout);');
++  });
++
++  it('TabLayout renders the memoized layout inside the layout:tabs probe', () => {
++    const start = source.indexOf('export default function TabLayout()');
++    expect(start).toBeGreaterThan(0);
++    const body = source.slice(start);
++    expect(body).toContain('<TabRenderProbe id="layout:tabs"><ReleasedTabLayoutMemo /></TabRenderProbe>');
++    expect(body).not.toContain('<ReleasedTabLayout />');
++    // редирект турниров остаётся на родителе
++    expect(body).toContain('isDisabledTournamentTabPath(pathname)');
++  });
++});

@@ -1,0 +1,92 @@
+TABS_RENDER_1 — navigateTo читает маршрут из ref (стабильная ссылка → TabContext.value не меняется на смене маршрута)
+Применять ТОЛЬКО если в прогоне №7 [TABS-RENDER] changed=pathname/segments/router идёт вместе с коммитами [TAP-LAT] tab:* в тот же t=.
+Карта: docs/work/tasks/tabs-render-cascade-plan.md п.3.1. Тест: tests/tabs_navigate_to_stable_contract.test.ts.
+Независим от 2–4 (другие куски файлов), применяется отдельно и вместе: git apply docs/phraseman-2.0/handoff/TABS_RENDER_1.patch
+
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -812,6 +812,11 @@
+   const router = useRouter();
+   const routerRef = useRef(router);
+   routerRef.current = router;
++  // зачем (координатор 14.10, каскад [TABS-RENDER]): маршрут для navigateTo — из ref на момент вызова, а не из замыкания (см. navigateTo).
++  const pathnameRef = useRef(pathname);
++  pathnameRef.current = pathname;
++  const segmentsRef = useRef(segments);
++  segmentsRef.current = segments;
+   traceTabsRenderWhy({ pathname, segments: segments.join('/'), studyTarget, width: tabPaneWidth, theme: t, activeIdx, visualIdx, physicalPageIdx, focusTick, devHubVisible, visited: visitedTabs.size, mounted: mountedTabs.size, router });
+   const lastEffectLayoutRef = useRef<TabPageLayout | null>(null);
+   const backgroundPremountStartedRef = useRef(false);
+@@ -1127,13 +1132,19 @@
+     rememberVisitedTab(idx);
+   }, [rememberVisitedTab]);
+ 
++  // зачем (координатор 14.10, каскад [TABS-RENDER] после крестика пейвола): navigateTo зависел от pathname/segments/router — каждая смена
++  // маршрута (открыть/закрыть пейвол) пересоздавала handleTabChange/handleSwipeComplete, а с ними TabContext.value, и перерисовывались ВСЕ
++  // потребители useTabNav в незамороженных панелях. Маршрут читаем из ref в момент вызова — ссылка стабильна, проверка даже точнее.
+   const navigateTo = useCallback((idx: number) => {
+     const target = IDX_TO_TAB_ROUTE[idx];
+-    if (!target) return;
+-    if (routerShowsTab(pathname, segments, idx)) return;
++    if (!target) {
++      console.warn('[TABS-NAV] navigateTo: no route for tab', idx); // guard-ok: ранний выход логируется
++      return;
++    }
++    if (routerShowsTab(pathnameRef.current, segmentsRef.current, idx)) return;
+     pendingTabIdxRef.current = idx;
+-    router.navigate(target as any);
+-  }, [pathname, segments, router]);
++    routerRef.current.navigate(target as any);
++  }, []);
+ 
+   /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
+   const handleTabChange = useCallback((requestedIdx: number) => {
+diff --git a/tests/tabs_navigate_to_stable_contract.test.ts b/tests/tabs_navigate_to_stable_contract.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/tabs_navigate_to_stable_contract.test.ts
+@@ -0,0 +1,43 @@
++// зачем (координатор 14.10, каскад [TABS-RENDER] после крестика пейвола, патч TABS_RENDER_1): navigateTo зависел от pathname/segments/router,
++// и каждая смена маршрута пересоздавала handleTabChange/handleSwipeComplete → новый TabContext.value → перерисовка всех потребителей useTabNav.
++// Сторож: navigateTo со стабильной ссылкой (пустые зависимости, маршрут из ref), обработчики вкладок не зависят от маршрута.
++import { readSource } from './helpers/read_source';
++
++const source = readSource('app/(tabs)/_layout.tsx');
++
++function callbackBlock(name: string): string {
++  const start = source.indexOf(`const ${name} = useCallback(`);
++  if (start < 0) throw new Error(`${name} not found`);
++  const end = source.indexOf('\n  }, [', start);
++  const depsEnd = source.indexOf(']);', end);
++  return source.slice(start, depsEnd + 3);
++}
++
++describe('tabs layout: navigateTo has a stable identity across route changes', () => {
++  it('navigateTo reads the route from refs and has no dependencies', () => {
++    const block = callbackBlock('navigateTo');
++    expect(block).toMatch(/\n {2}\}, \[\]\);$/);
++    expect(block).toContain('routerShowsTab(pathnameRef.current, segmentsRef.current, idx)');
++    expect(block).toContain('routerRef.current.navigate(target as any)');
++    expect(block).not.toMatch(/routerShowsTab\(pathname, segments/);
++    expect(block).not.toMatch(/\brouter\.navigate\(/);
++    expect(block).toContain("console.warn('[TABS-NAV] navigateTo: no route for tab', idx)");
++  });
++
++  it('the route refs are refreshed on every render', () => {
++    expect(source).toContain('const pathnameRef = useRef(pathname);\n  pathnameRef.current = pathname;');
++    expect(source).toContain('const segmentsRef = useRef(segments);\n  segmentsRef.current = segments;');
++    expect(source).toContain('routerRef.current = router;');
++  });
++
++  it('tab handlers passed to TabProvider do not depend on the route', () => {
++    for (const name of ['handleTabChange', 'handleSwipeComplete']) {
++      const deps = callbackBlock(name).match(/\n {2}\}, \[([^\]]*)\]\);$/);
++      expect(deps).not.toBeNull();
++      const list = (deps?.[1] ?? '').split(',').map((d) => d.trim()).filter(Boolean);
++      expect(list).toEqual(['mountNow', 'navigateTo', 'rememberVisitedTab']);
++    }
++    expect(callbackBlock('mountNow')).toMatch(/\}, \[\]\);$/);
++    expect(callbackBlock('rememberVisitedTab')).toMatch(/\}, \[\]\);$/);
++  });
++});

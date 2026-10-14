@@ -1,0 +1,249 @@
+TABS_RENDER_2 — focusTick в своём контексте (useTabFocusTick); useTabNav() его больше не отдаёт
+Применять ТОЛЬКО если в прогоне №7 changed=focusTick идёт вместе с коммитами tab:* экранов, которым он не нужен (community, videos, Spire, каркас).
+Карта: docs/work/tasks/tabs-render-cascade-plan.md п.2 и п.3.2. Тест (рендер, RNTL): tests/tab_focus_tick_context.test.tsx —
+зарегистрирован в обоих списках (rntl-конфиг testMatch + package.json testPathIgnorePatterns), иначе сторож render_test_registry краснеет.
+home.tsx на момент заготовки правился другой сессией — перед применением git apply --check.
+
+diff --git a/app/TabContext.tsx b/app/TabContext.tsx
+--- a/app/TabContext.tsx
++++ b/app/TabContext.tsx
+@@ -5,7 +5,6 @@
+   activeIdx: number;
+   goToTab: (idx: number) => void;
+   goHome: () => void;
+-  focusTick: number;
+   runtimeOwnerId: TabRuntimeOwnerId;
+   onSwipeStart: (idx: number) => void;
+   onSwipeComplete: (idx: number) => void;
+@@ -15,7 +14,6 @@
+   activeIdx: 0,
+   goToTab: () => {},
+   goHome: () => {},
+-  focusTick: 0,
+   runtimeOwnerId: 'home',
+   onSwipeStart: () => {},
+   onSwipeComplete: () => {},
+@@ -23,6 +21,12 @@
+ 
+ export const useTabNav = () => useContext(TabContext);
+ 
++// зачем (координатор 14.10, каскад [TABS-RENDER]): focusTick растёт на КАЖДЫЙ возврат фокуса группе вкладок (закрыли пейвол, вернулись из урока).
++// В общем TabContext он будил всех потребителей useTabNav — и тех, кому он не нужен (Сообщество, Видео, Шпиль, каркас таббара).
++// Теперь это отдельный контекст: подписываются только экраны, которые перечитывают данные по фокусу.
++const TabFocusTickContext = createContext(0);
++export const useTabFocusTick = () => useContext(TabFocusTickContext);
++
+ // Один источник правды: запасной runtime-владелец обязан иметь тот же индекс,
+ // что и физическая релизная страница. Иначе после удаления/перестановки таба
+ // fallback незаметно отдаёт владельца соседнего экрана.
+@@ -49,10 +53,14 @@
+   const goHome  = useCallback(() => onTabChange(0), [onTabChange]);
+   const runtimeOwnerId = runtimeOwnerIdProp ?? TAB_KEYS[activeIdx] ?? 'home';
+   const value = useMemo(
+-    () => ({ activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete }),
+-    [activeIdx, goToTab, goHome, focusTick, runtimeOwnerId, onSwipeStart, onSwipeComplete],
++    () => ({ activeIdx, goToTab, goHome, runtimeOwnerId, onSwipeStart, onSwipeComplete }),
++    [activeIdx, goToTab, goHome, runtimeOwnerId, onSwipeStart, onSwipeComplete],
++  );
++  return (
++    <TabContext.Provider value={value}>
++      <TabFocusTickContext.Provider value={focusTick}>{children}</TabFocusTickContext.Provider>
++    </TabContext.Provider>
+   );
+-  return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
+ }
+ 
+ /**
+diff --git a/app/(tabs)/home.tsx b/app/(tabs)/home.tsx
+--- a/app/(tabs)/home.tsx
++++ b/app/(tabs)/home.tsx
+@@ -6,7 +6,7 @@
+ import { useRouter } from 'expo-router';
+ import { useGuardedNav } from '../../hooks/use-guarded-nav';
+ import { usePremium } from '../../components/PremiumContext';
+-import { useTabNav } from '../TabContext';
++import { useTabFocusTick, useTabNav } from '../TabContext';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import Ionicons from '@expo/vector-icons/Ionicons';
+ import { useTheme } from '../../components/ThemeContext';
+@@ -632,7 +632,8 @@
+         homeScrollYRef.current = event.nativeEvent.contentOffset.y;
+         refreshDailyPhraseVisibility();
+     }, [refreshDailyPhraseVisibility]);
+-    const { goToTab, activeIdx, focusTick, runtimeOwnerId } = useTabNav();
++    const { goToTab, activeIdx, runtimeOwnerId } = useTabNav();
++    const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
+     // зачем (HOME-COLD_cold1: video:start через 5 998 мс, homeOnboardingDone:false): флаг, уже прочитанный корнем,
+     // включает homeRuntimeActive на первом кадре; multiGet ниже остаётся источником правды.
+     const [homeOnboardingDone, setHomeOnboardingDone] = useState(() => takeOnboardingDonePeek() === true);
+diff --git a/app/(tabs)/lessons.tsx b/app/(tabs)/lessons.tsx
+--- a/app/(tabs)/lessons.tsx
++++ b/app/(tabs)/lessons.tsx
+@@ -68,7 +68,7 @@
+ import { getRunesBalanceRead, peekRunes } from "../runes_system";
+ import { getStableId, peekStableId } from "../stable_id";
+ import { projectDevLessonAccess } from "../dev_plus_controls";
+-import { useTabNav } from "../TabContext";
++import { useTabFocusTick, useTabNav } from "../TabContext";
+ import Ionicons from "@expo/vector-icons/Ionicons";
+ import { useTheme } from "../../components/ThemeContext";
+ import { useAccentGraphics } from "../../hooks/use_accent_graphics";
+@@ -2501,7 +2501,8 @@
+   const tabContentBottomPad = useTabContentBottomPad();
+   const router = useRouter();
+   const topFadeScroll = useTopFadeScroll();
+-  const { goHome, focusTick, runtimeOwnerId } = useTabNav();
++  const { goHome, runtimeOwnerId } = useTabNav();
++  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
+   const { theme: t, f, themeMode, liquidGlassThemeId } = useTheme();
+   const learnGlass = liquidGlassTokens(liquidGlassThemeId);
+   // зачем (Темы R1_THEMEMODE_LEGACY_MAP, координатор 12.10): карточка урока «Обучения» по замыслу ВСЕГДА тёмная с белым текстом (lessonTextColor),
+diff --git a/app/(tabs)/friends.tsx b/app/(tabs)/friends.tsx
+--- a/app/(tabs)/friends.tsx
++++ b/app/(tabs)/friends.tsx
+@@ -91,7 +91,7 @@
+ } from '../friends_tab_swr_warm';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import ReportErrorButton from '../../components/ReportErrorButton';
+-import { useTabNav } from '../TabContext';
++import { useTabFocusTick, useTabNav } from '../TabContext';
+ // зачем (владелец, 2026-08-16): лента «Активность» удалена — у 99 % пользователей она была
+ // пустой (35 из 4 657 имеют друзей), источник событий давал 0–2 события в день на всю базу.
+ // Социальный жест остался один и дешёвый: «дай пять» = профильный лайк прямо в строке друга.
+@@ -791,7 +791,8 @@
+   const { lang } = useLang();
+   const router = useRouter();
+   const socialParams = useLocalSearchParams<{ focusFriend?: string; socialEventId?: string }>();
+-  const { focusTick, runtimeOwnerId } = useTabNav();
++  const { runtimeOwnerId } = useTabNav();
++  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
+   const friendsTabVisible = runtimeOwnerId === 'friends';
+   const friendsRuntimeActive = useRuntimeActive(friendsTabVisible);
+ 
+diff --git a/app/(tabs)/settings.tsx b/app/(tabs)/settings.tsx
+--- a/app/(tabs)/settings.tsx
++++ b/app/(tabs)/settings.tsx
+@@ -9,7 +9,7 @@
+ import Reanimated from 'react-native-reanimated';
+ import { Image } from 'expo-image';
+ import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+-import { useTabNav } from '../TabContext';
++import { useTabFocusTick, useTabNav } from '../TabContext';
+ import Ionicons from '@expo/vector-icons/Ionicons';
+ import AsyncStorage from '@react-native-async-storage/async-storage';
+ import { useTheme } from '../../components/ThemeContext';
+@@ -329,7 +329,8 @@
+     onBouncyScroll(e);
+   }, [onBouncyScroll, topFadeScroll]);
+   const bouncyStyle = useBouncyStyle(bouncyStretch);
+-  const { focusTick, runtimeOwnerId } = useTabNav();
++  const { runtimeOwnerId } = useTabNav();
++  const focusTick = useTabFocusTick(); // зачем (каскад [TABS-RENDER]): focusTick — свой контекст, см. app/TabContext.tsx
+   const settingsTabVisible = runtimeOwnerId === 'settings';
+   const settingsRuntimeActive = useRuntimeActive(settingsTabVisible);
+ 
+diff --git a/jest.rntl.config.cjs b/jest.rntl.config.cjs
+--- a/jest.rntl.config.cjs
++++ b/jest.rntl.config.cjs
+@@ -47,6 +47,8 @@
+     '<rootDir>/tests/spire_tower_skins_nodes.test.tsx',
+     // зачем (координатор 14.10): общий персонаж-монета моментов v3 — все настроения рисуются, reduceMotion = статичная монета
+     '<rootDir>/tests/moment_coin_contract.test.tsx',
++    // зачем (координатор 14.10, каскад [TABS-RENDER]): focusTick в своём контексте — смена фокуса будит только подписчиков useTabFocusTick
++    '<rootDir>/tests/tab_focus_tick_context.test.tsx',
+   ],
+   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
+   setupFiles: ['react-native-gesture-handler/jestSetup'],
+diff --git a/package.json b/package.json
+--- a/package.json
++++ b/package.json
+@@ -428,6 +428,7 @@
+       "<rootDir>/tests/use_session_attempts.test.tsx",
+       "<rootDir>/tests/moment_coin_contract.test.tsx",
+       "<rootDir>/tests/spire_tower_skins_nodes.test.tsx",
++      "<rootDir>/tests/tab_focus_tick_context.test.tsx",
+       "<rootDir>/tests/registration_prompt_modal_lifecycle.test.ts"
+     ],
+     "watchPathIgnorePatterns": [
+diff --git a/tests/tab_focus_tick_context.test.tsx b/tests/tab_focus_tick_context.test.tsx
+new file mode 100644
+--- /dev/null
++++ b/tests/tab_focus_tick_context.test.tsx
+@@ -0,0 +1,77 @@
++// зачем (координатор 14.10, каскад [TABS-RENDER], патч TABS_RENDER_2): focusTick растёт на каждый возврат фокуса группе вкладок (закрыли пейвол,
++// вернулись из урока). В общем TabContext он будил всех потребителей useTabNav — и тех, кому он не нужен. Тест рендером: смена focusTick будит
++// только подписчиков useTabFocusTick, смена activeIdx — только подписчиков useTabNav; useTabNav() больше не отдаёт focusTick.
++import fs from 'fs';
++import path from 'path';
++import React from 'react';
++import { act, render } from '@testing-library/react-native';
++
++// tests/__mocks__/react-native.js — общая заглушка для логических тестов; рендеру нужен настоящий модуль (как в friend_list_row).
++jest.unmock('react-native');
++
++import { TabProvider, TabRuntimeOwnerOverride, useTabFocusTick, useTabNav } from '../app/TabContext';
++
++const counts = { nav: 0, focus: 0 };
++const seenTicks: number[] = [];
++const seenNavKeys: string[][] = [];
++
++const NavProbe = React.memo(function NavProbe() {
++  seenNavKeys.push(Object.keys(useTabNav()).sort());
++  counts.nav += 1;
++  return null;
++});
++const FocusProbe = React.memo(function FocusProbe() {
++  seenTicks.push(useTabFocusTick());
++  counts.focus += 1;
++  return null;
++});
++
++const noop = () => undefined;
++
++function Host({ activeIdx, focusTick }: { activeIdx: number; focusTick: number }) {
++  return (
++    <TabProvider activeIdx={activeIdx} onTabChange={noop} onSwipeStart={noop} onSwipeComplete={noop} focusTick={focusTick}>
++      <NavProbe />
++      <TabRuntimeOwnerOverride runtimeOwnerId="friends">
++        <FocusProbe />
++      </TabRuntimeOwnerOverride>
++    </TabProvider>
++  );
++}
++
++beforeEach(() => {
++  counts.nav = 0;
++  counts.focus = 0;
++  seenTicks.length = 0;
++  seenNavKeys.length = 0;
++});
++
++describe('TabContext: focusTick lives in its own context', () => {
++  it('a focus return wakes only useTabFocusTick subscribers', async () => {
++    const view = await render(<Host activeIdx={0} focusTick={0} />);
++    expect(counts).toEqual({ nav: 1, focus: 1 });
++    await act(async () => { view.rerender(<Host activeIdx={0} focusTick={1} />); });
++    expect(counts).toEqual({ nav: 1, focus: 2 });
++    expect(seenTicks).toEqual([0, 1]);
++  });
++
++  it('a tab change wakes useTabNav subscribers but not focus subscribers', async () => {
++    const view = await render(<Host activeIdx={0} focusTick={3} />);
++    await act(async () => { view.rerender(<Host activeIdx={2} focusTick={3} />); });
++    expect(counts).toEqual({ nav: 2, focus: 1 });
++  });
++
++  it('useTabNav() no longer exposes focusTick', async () => {
++    await render(<Host activeIdx={0} focusTick={0} />);
++    expect(seenNavKeys[0]).toEqual(['activeIdx', 'goHome', 'goToTab', 'onSwipeComplete', 'onSwipeStart', 'runtimeOwnerId']);
++  });
++});
++
++describe('screens that refresh on focus read it from the dedicated hook', () => {
++  const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
++  it.each(['home', 'lessons', 'friends', 'settings'])('%s', (name) => {
++    const src = read(`app/(tabs)/${name}.tsx`);
++    expect(src).toContain('const focusTick = useTabFocusTick();');
++    expect(src).not.toMatch(/\{[^}]*\bfocusTick\b[^}]*\} = useTabNav\(\)/);
++  });
++});

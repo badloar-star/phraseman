@@ -1,0 +1,123 @@
+TABS_RENDER_4 — TabPane/LessonsPaneBoundary под React.memo, содержимое вкладок в своих useMemo
+Применять ТОЛЬКО если в прогоне №7 changed=physicalPageIdx/activeIdx сопровождается коммитами tab:* неподвижных вкладок.
+Карта: docs/work/tasks/tabs-render-cascade-plan.md п.3.3. Тест: tests/tabs_panes_stable_contract.test.ts.
+Граница исходника TabPane для tab_freeze_handoff_contract не сдвинута (memo объявлены ниже LessonsPaneBoundary).
+
+diff --git a/app/(tabs)/_layout.tsx b/app/(tabs)/_layout.tsx
+--- a/app/(tabs)/_layout.tsx
++++ b/app/(tabs)/_layout.tsx
+@@ -312,6 +312,12 @@
+   );
+ }
+ 
++// зачем (координатор 14.10, каскад [TABS-RENDER], п.4): tabScreens пересоздаётся на каждом переходе (physicalPageIdx/activeIdx в зависимостях),
++// и без memo обёртки ВСЕХ пяти панелей (Freeze, Profiler, крышка Уроков) рендерились заново. Под memo панель рендерится только когда
++// меняется её freezeWanted/shouldLoad или содержимое (оно в своих useMemo в ReleasedTabLayout). Состояние и эффекты панелей не тронуты.
++const TabPaneMemo = React.memo(TabPane);
++const LessonsPaneBoundaryMemo = React.memo(LessonsPaneBoundary);
++
+ function markExamBestPctTabActivity(idx: number): void {
+   setExamBestPctTabActivity(idx === 0 ? 'safe_home' : 'unsafe');
+ }
+@@ -1187,6 +1193,20 @@
+     return false;
+   }, []);
+ 
++  // зачем (п.4): содержимое каждой вкладки зависит только от того, что меняет ЭТУ вкладку — memo-панель получает те же children.
++  const homeFallbackStyle = useMemo(() => ({ width: tabPaneWidth, flex: 1, backgroundColor: t.bgPrimary }), [t.bgPrimary, tabPaneWidth]);
++  const homeContent = useMemo(() => (
++    <React.Suspense fallback={<View style={homeFallbackStyle} collapsable={false} />}>
++      <TabRenderProbe id="tab:home"><HomeScreenHost onOpenDevHub={openDevHub} /></TabRenderProbe>
++    </React.Suspense>
++  ), [homeFallbackStyle, openDevHub]);
++  const loadVideo = shouldLoadTabScreen(activeIdx, 2, mountedTabs);
++  const loadCommunity = shouldLoadTabScreen(activeIdx, 3, mountedTabs);
++  const loadSettings = shouldLoadTabScreen(activeIdx, 4, mountedTabs);
++  const videoContent = useMemo(() => <TabRenderProbe id="tab:video"><DeferredTabScreen shouldLoad={loadVideo} loadScreen={loadVideoScreen} /></TabRenderProbe>, [loadVideo]);
++  const communityContent = useMemo(() => <TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={loadCommunity} loadScreen={loadCommunityScreen} /></TabRenderProbe>, [loadCommunity]);
++  const settingsContent = useMemo(() => <TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={loadSettings} loadScreen={loadSettingsScreen} /></TabRenderProbe>, [loadSettings]);
++
+   const tabScreens = useMemo(() => {
+     // Главная всегда в дереве; остальные табы получают слот сразу, а реальные экраны
+     // по одному монтируются в фоне после первого готового кадра, чтобы первый тап не видел пустой placeholder.
+@@ -1205,25 +1225,21 @@
+     // зачем D129: скрытая вкладка выпадает из ленты целиком — свайп её не находит.
+     const screens = [
+       show(0) ? (
+-        <TabPane key="home" freezeWanted={freezeWanted(0)}>
+-          <React.Suspense fallback={placeholder('home-loading')}>
+-            <TabRenderProbe id="tab:home"><HomeScreenHost onOpenDevHub={openDevHub} /></TabRenderProbe>
+-          </React.Suspense>
+-        </TabPane>
++        <TabPaneMemo key="home" freezeWanted={freezeWanted(0)}>{homeContent}</TabPaneMemo>
+       ) : placeholder('ph-home'),
+       show(1) ? (
+-        <LessonsPaneBoundary
++        <LessonsPaneBoundaryMemo
+           key="lessons"
+           freezeWanted={freezeWanted(1)}
+           shouldLoad={shouldLoad(1)}
+         />
+       ) : placeholder('ph-lessons'),
+-      show(2) ? <TabPane key="video" freezeWanted={freezeWanted(2)}><TabRenderProbe id="tab:video"><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadVideoScreen} /></TabRenderProbe></TabPane> : placeholder('ph-video'),
+-      show(3) ? <TabPane key="community" freezeWanted={freezeWanted(3)}><TabRenderProbe id="tab:community"><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadCommunityScreen} /></TabRenderProbe></TabPane> : placeholder('ph-community'),
+-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><TabRenderProbe id="tab:settings"><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabRenderProbe></TabPane> : placeholder('ph-settings'),
++      show(2) ? <TabPaneMemo key="video" freezeWanted={freezeWanted(2)}>{videoContent}</TabPaneMemo> : placeholder('ph-video'),
++      show(3) ? <TabPaneMemo key="community" freezeWanted={freezeWanted(3)}>{communityContent}</TabPaneMemo> : placeholder('ph-community'),
++      show(4) ? <TabPaneMemo key="settings" freezeWanted={freezeWanted(4)}>{settingsContent}</TabPaneMemo> : placeholder('ph-settings'),
+     ];
+     return screens.filter((_, logicalIdx) => !isLogicalTabHidden(logicalIdx, pageLayout));
+-  }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
++  }, [activeIdx, communityContent, homeContent, mountedTabs, pageLayout, physicalPageIdx, settingsContent, t.bgPrimary, tabPaneWidth, videoContent, visitedTabs]);
+ 
+   // зачем D129: при смене раскладки state страницы догоняет в layout-эффекте; до него
+   // старый индекс может выйти за новую длину ленты — зажимаем, а не падаем.
+diff --git a/tests/tabs_panes_stable_contract.test.ts b/tests/tabs_panes_stable_contract.test.ts
+new file mode 100644
+--- /dev/null
++++ b/tests/tabs_panes_stable_contract.test.ts
+@@ -0,0 +1,44 @@
++// зачем (координатор 14.10, каскад [TABS-RENDER], патч TABS_RENDER_4): tabScreens пересоздаётся на каждом переходе (physicalPageIdx/activeIdx),
++// и обёртки всех пяти панелей рендерились заново. Сторож: панели под React.memo, содержимое каждой вкладки — свой useMemo, зависящий только
++// от того, что меняет эту вкладку; граница TabPane для сторожа заморозки (tab_freeze_handoff_contract) не сдвинута.
++import { readSource } from './helpers/read_source';
++
++const source = readSource('app/(tabs)/_layout.tsx');
++
++function memoDeps(name: string): string[] {
++  const start = source.indexOf(`const ${name} = useMemo(`);
++  if (start < 0) throw new Error(`${name} not found`);
++  const close = source.indexOf(']);', start);
++  const open = source.lastIndexOf(', [', close);
++  return source.slice(open + 3, close).split(',').map((d) => d.trim()).filter(Boolean);
++}
++
++describe('tab panes do not re-render on a transition unless their own inputs change', () => {
++  it('pane wrappers are memoized after the TabPane/LessonsPaneBoundary definitions', () => {
++    expect(source).toContain('const TabPaneMemo = React.memo(TabPane);');
++    expect(source).toContain('const LessonsPaneBoundaryMemo = React.memo(LessonsPaneBoundary);');
++    // сторож заморозки режет исходник TabPane до «function LessonsPaneBoundary(» — memo стоит ниже обеих функций
++    expect(source.indexOf('const TabPaneMemo')).toBeGreaterThan(source.indexOf('\nfunction LessonsPaneBoundary('));
++  });
++
++  it('every tab is rendered through a memoized pane with memoized children', () => {
++    expect(source).toContain('<TabPaneMemo key="home" freezeWanted={freezeWanted(0)}>{homeContent}</TabPaneMemo>');
++    expect(source).toContain('<LessonsPaneBoundaryMemo');
++    expect(source).toContain('<TabPaneMemo key="video" freezeWanted={freezeWanted(2)}>{videoContent}</TabPaneMemo>');
++    expect(source).toContain('<TabPaneMemo key="community" freezeWanted={freezeWanted(3)}>{communityContent}</TabPaneMemo>');
++    expect(source).toContain('<TabPaneMemo key="settings" freezeWanted={freezeWanted(4)}>{settingsContent}</TabPaneMemo>');
++    expect(source).not.toMatch(/<TabPane key=/);
++  });
++
++  it('tab content depends only on what changes that tab (not on physicalPageIdx/activeIdx)', () => {
++    expect(memoDeps('homeContent')).toEqual(['homeFallbackStyle', 'openDevHub']);
++    expect(memoDeps('videoContent')).toEqual(['loadVideo']);
++    expect(memoDeps('communityContent')).toEqual(['loadCommunity']);
++    expect(memoDeps('settingsContent')).toEqual(['loadSettings']);
++    for (const name of ['homeContent', 'videoContent', 'communityContent', 'settingsContent']) {
++      expect(memoDeps(name)).not.toContain('physicalPageIdx');
++      expect(memoDeps(name)).not.toContain('activeIdx');
++    }
++    expect(source).toContain('const loadVideo = shouldLoadTabScreen(activeIdx, 2, mountedTabs);');
++  });
++});

@@ -230,15 +230,17 @@ function communityPackValidationToast(
         pl: 'Podaj nazwę i opis zestawu.',
       };
     case 'card_fields':
+      // зачем (D188-следствие, владелец 14.10): набор может быть на испанском, французском, немецком, итальянском —
+      // «EN / English text» было ложью; теперь «фраза и перевод» на любом языке набора.
       return {
-        ru: 'У каждой карточки должны быть EN и перевод.',
-        uk: 'У кожної картки мають бути EN і переклад.',
-        es: 'Cada tarjeta debe tener EN y traducción.', en: 'Every card needs English text and a translation.',
-        'pt-BR': 'Cada cartão precisa ter EN e tradução.',
-        vi: 'Mỗi thẻ cần có EN và bản dịch.',
-        id: 'Setiap kartu harus memiliki EN dan terjemahan.',
-        tr: 'Her kartta EN ve çeviri olmalı.',
-        pl: 'Każda karta musi mieć EN i tłumaczenie.',
+        ru: 'У каждой карточки должны быть фраза и перевод.',
+        uk: 'У кожної картки мають бути вислів і переклад.',
+        es: 'Cada tarjeta debe tener frase y traducción.', en: 'Every card needs a phrase and a translation.',
+        'pt-BR': 'Cada cartão precisa ter frase e tradução.',
+        vi: 'Mỗi thẻ cần có cụm từ và bản dịch.',
+        id: 'Setiap kartu harus memiliki frasa dan terjemahan.',
+        tr: 'Her kartta ifade ve çeviri olmalı.',
+        pl: 'Każda karta musi mieć zwrot i tłumaczenie.',
       };
     case 'study_target_gate':
       return {
@@ -723,14 +725,14 @@ export default function CommunityPackCreateScreen() {
     const translation = draftTranslation.trim();
     if (!en || !translation) {
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Заполни английский текст и перевод.',
-        uk: 'Заповни англійський текст і переклад.',
-        es: 'Completa el texto en inglés y la traducción.', en: 'Fill in the English text and the translation.',
-        'pt-BR': 'Preencha o texto em inglês e a tradução.',
-        vi: 'Nhập văn bản tiếng Anh và bản dịch.',
-        id: 'Isi teks bahasa Inggris dan terjemahannya.',
-        tr: 'İngilizce metni ve çeviriyi doldur.',
-        pl: 'Uzupełnij tekst po angielsku i tłumaczenie.',
+        ru: 'Заполни фразу и перевод.',
+        uk: 'Заповни вислів і переклад.',
+        es: 'Completa la frase y la traducción.', en: 'Fill in the phrase and the translation.',
+        'pt-BR': 'Preencha a frase e a tradução.',
+        vi: 'Nhập cụm từ và bản dịch.',
+        id: 'Isi frasa dan terjemahannya.',
+        tr: 'İfadeyi ve çeviriyi doldur.',
+        pl: 'Uzupełnij zwrot i tłumaczenie.',
       }));
       return;
     }

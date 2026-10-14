@@ -364,7 +364,7 @@ export const AHA_STRINGS = {
   speakSuccess: {
     ru: 'Уже похоже на речь!',
     uk: 'Уже схоже на мовлення!',
-    es: '¡Ya suena a inglés de verdad!',
+    es: '¡Ya suena de verdad!',
   },
   speakSoft: {
     ru: 'Нормально. Этому и учимся.',
@@ -396,10 +396,11 @@ export const AHA_STRINGS = {
     uk: 'Далі',
     es: 'Seguir',
   },
+  // зачем (D188-следствие, владелец 14.10): без названия языка и без мужского рода — человек может учить любой из пяти языков.
   payoffTitle: {
-    ru: 'Ты только что говорил по-английски.',
-    uk: 'Ти щойно говорив англійською.',
-    es: 'Acabas de hablar en inglés.',
+    ru: 'Первая фраза — сказана вслух!',
+    uk: 'Перший вислів — сказано вголос!',
+    es: '¡Primera frase dicha en voz alta!',
   },
   payoffBody: {
     ru: 'Это была первая фраза. Дальше — тысячи живых фраз твоего маршрута.',

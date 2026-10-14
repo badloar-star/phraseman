@@ -3,8 +3,17 @@
  * Остальные тексты экрана (ошибки загрузки, скрытие, попытки) остаются в самом экране.
  */
 import { triLang, type Lang } from '../../constants/i18n';
+import { studyLanguageAction } from '../../constants/study_language_words';
 
-export const practiceCopyFor = (lang: Lang) => triLang(lang, {
+// зачем (D188-следствие, владелец 14.10): ошибки бывают на любом изучаемом языке — «Напиши / Скажи по-английски» врало тем, кто
+// учит испанский, французский, немецкий, итальянский. С studyTarget подписи берутся из constants/study_language_words.ts.
+export const practiceCopyFor = (lang: Lang, studyTarget?: string | null) => {
+  const base = practiceCopyBase(lang);
+  if (!studyTarget) return base;
+  return { ...base, kindType: studyLanguageAction(lang, studyTarget, 'write'), kindSay: studyLanguageAction(lang, studyTarget, 'say') };
+};
+
+const practiceCopyBase = (lang: Lang) => triLang(lang, {
   ru: { menu: 'Меню', kindChoose: 'Выбери перевод', kindGap: 'Вставь пропущенное слово', kindBuild: 'Собери фразу', kindType: 'Напиши по-английски', kindListen: 'Напиши, что услышал', kindSay: 'Скажи по-английски', check: 'Проверить', next: 'Дальше', rightOk: 'Верно', almost: 'Почти', why: 'Почему', whyTitle: 'Почему', yourChoice: 'Твой выбор', correct: 'Правильно', simpler: 'Объясни проще', understood: 'Понятно', skipSpeak: 'Не могу сейчас говорить', hideItem: 'Скрыть ошибку', reportItem: 'Сообщить об ошибке в задании', thinking: 'Разбираю твой ответ', undo: 'Отменить', carryOn: 'Продолжить', hiddenNote: 'Ошибка скрыта', holdToSpeak: 'Зажми и говори', resetAria: 'Собрать заново' },
   uk: { menu: 'Меню', kindChoose: 'Вибери переклад', kindGap: 'Встав пропущене слово', kindBuild: 'Склади фразу', kindType: 'Напиши англійською', kindListen: 'Напиши, що почув', kindSay: 'Скажи англійською', check: 'Перевірити', next: 'Далі', rightOk: 'Правильно', almost: 'Майже', why: 'Чому', whyTitle: 'Чому', yourChoice: 'Твій вибір', correct: 'Правильно', simpler: 'Поясни простіше', understood: 'Зрозуміло', skipSpeak: 'Не можу зараз говорити', hideItem: 'Приховати помилку', reportItem: 'Повідомити про помилку в завданні', thinking: 'Розбираю твою відповідь', undo: 'Скасувати', carryOn: 'Продовжити', hiddenNote: 'Помилку приховано', holdToSpeak: 'Затисни й говори', resetAria: 'Зібрати заново' },
   en: { menu: 'Menu', kindChoose: 'Choose the translation', kindGap: 'Fill in the missing word', kindBuild: 'Build the phrase', kindType: 'Write it in English', kindListen: 'Write what you hear', kindSay: 'Say it in English', check: 'Check', next: 'Next', rightOk: 'Correct', almost: 'Almost', why: 'Why', whyTitle: 'Why', yourChoice: 'Your pick', correct: 'Correct', simpler: 'Explain simpler', understood: 'Got it', skipSpeak: "I can't speak right now", hideItem: 'Hide this mistake', reportItem: 'Report an error in the exercise', thinking: 'Looking at your answer', undo: 'Undo', carryOn: 'Continue', hiddenNote: 'Mistake hidden', holdToSpeak: 'Hold and speak', resetAria: 'Start over' },

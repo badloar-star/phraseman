@@ -129,7 +129,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Правильный ответ', why: 'Почему так', stopToday: 'На сегодня хватит повторов этой ошибки — вернёмся к ней позже.',
     hidden: 'Ошибка скрыта', undo: 'Вернуть', continue: 'Продолжить', check: 'Проверить',
     hideTitle: 'Скрыть ошибку?', cancel: 'Отмена', hide: 'Скрыть',
-    explanationWordOrder: 'Сверь порядок слов: в английской фразе позиция каждого слова меняет смысл.',
+    explanationWordOrder: 'Сверь порядок слов: в этой фразе позиция каждого слова меняет смысл.', // D188: язык ошибки — любой из пяти
     explanationMissing: 'Проверь пропущенное слово и прочитай целую фразу ещё раз.',
     explanationMeaning: 'Свяжи значение со всей фразой, а не с одним знакомым словом.',
     explanationPronunciation: 'Скажи фразу спокойно и отчётливо, сохраняя ударение и окончания.',
@@ -149,7 +149,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Правильна відповідь', why: 'Чому так', stopToday: 'На сьогодні досить повторів цієї помилки — повернемося до неї пізніше.',
     hidden: 'Помилку сховано', undo: 'Повернути', continue: 'Продовжити', check: 'Перевірити',
     hideTitle: 'Сховати помилку?', cancel: 'Скасувати', hide: 'Сховати',
-    explanationWordOrder: 'Звір порядок слів: в англійському вислові позиція кожного слова змінює зміст.',
+    explanationWordOrder: 'Звір порядок слів: у цьому вислові позиція кожного слова змінює зміст.',
     explanationMissing: 'Перевір пропущене слово й прочитай увесь вислів ще раз.',
     explanationMeaning: 'Пов’яжи значення з усім висловом, а не з одним знайомим словом.',
     explanationPronunciation: 'Скажи вислів спокійно й чітко, зберігаючи наголос і закінчення.',
@@ -169,7 +169,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Correct answer', why: 'Why', stopToday: 'That\'s enough repeats of this mistake for today — we\'ll come back to it later.',
     hidden: 'Mistake hidden', undo: 'Undo', continue: 'Continue', check: 'Check',
     hideTitle: 'Hide this mistake?', cancel: 'Cancel', hide: 'Hide',
-    explanationWordOrder: 'Check the word order: in an English sentence, each word\'s position changes the meaning.',
+    explanationWordOrder: 'Check the word order: in this sentence, each word\'s position changes the meaning.',
     explanationMissing: 'Check the missing word and read the whole phrase again.',
     explanationMeaning: 'Connect the meaning to the whole phrase, not just one familiar word.',
     explanationPronunciation: 'Say the phrase calmly and clearly, keeping the stress and endings.',
@@ -189,7 +189,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Respuesta correcta', why: 'Por qué', stopToday: 'Ya es suficiente por hoy; volveremos a este error más tarde.',
     hidden: 'Error ocultado', undo: 'Deshacer', continue: 'Continuar', check: 'Comprobar',
     hideTitle: '¿Ocultar este error?', cancel: 'Cancelar', hide: 'Ocultar',
-    explanationWordOrder: 'Revisa el orden: en inglés, la posición de cada palabra cambia el sentido.',
+    explanationWordOrder: 'Revisa el orden: en esta frase, la posición de cada palabra cambia el sentido.',
     explanationMissing: 'Comprueba la palabra omitida y vuelve a leer la frase completa.',
     explanationMeaning: 'Relaciona el significado con toda la frase, no solo con una palabra conocida.',
     explanationPronunciation: 'Di la frase con calma y claridad, manteniendo el acento y las terminaciones.',
@@ -209,7 +209,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Resposta correta', why: 'Por que', stopToday: 'Chega de repetições desse erro por hoje — voltaremos a ele mais tarde.',
     hidden: 'Erro ocultado', undo: 'Desfazer', continue: 'Continuar', check: 'Verificar',
     hideTitle: 'Ocultar este erro?', cancel: 'Cancelar', hide: 'Ocultar',
-    explanationWordOrder: 'Confira a ordem das palavras: em inglês, a posição de cada palavra muda o sentido.',
+    explanationWordOrder: 'Confira a ordem das palavras: nesta frase, a posição de cada palavra muda o sentido.',
     explanationMissing: 'Verifique a palavra que faltou e leia a frase inteira de novo.',
     explanationMeaning: 'Relacione o significado com a frase toda, não só com uma palavra conhecida.',
     explanationPronunciation: 'Diga a frase com calma e clareza, mantendo o acento e as terminações.',
@@ -229,7 +229,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Đáp án đúng', why: 'Vì sao', stopToday: 'Hôm nay đã đủ lần lặp lại lỗi này — ta sẽ quay lại sau.',
     hidden: 'Đã ẩn lỗi', undo: 'Hoàn tác', continue: 'Tiếp tục', check: 'Kiểm tra',
     hideTitle: 'Ẩn lỗi này?', cancel: 'Hủy', hide: 'Ẩn',
-    explanationWordOrder: 'Kiểm tra trật tự từ: trong câu tiếng Anh, vị trí mỗi từ thay đổi ý nghĩa.',
+    explanationWordOrder: 'Kiểm tra trật tự từ: trong câu này, vị trí mỗi từ thay đổi ý nghĩa.',
     explanationMissing: 'Kiểm tra từ bị thiếu và đọc lại toàn bộ câu.',
     explanationMeaning: 'Liên kết ý nghĩa với cả câu, không chỉ với một từ quen thuộc.',
     explanationPronunciation: 'Nói câu một cách bình tĩnh và rõ ràng, giữ đúng trọng âm và đuôi từ.',
@@ -249,7 +249,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Jawaban benar', why: 'Mengapa begitu', stopToday: 'Cukup pengulangan kesalahan ini untuk hari ini — kita kembali lagi nanti.',
     hidden: 'Kesalahan disembunyikan', undo: 'Batalkan', continue: 'Lanjutkan', check: 'Periksa',
     hideTitle: 'Sembunyikan kesalahan ini?', cancel: 'Batal', hide: 'Sembunyikan',
-    explanationWordOrder: 'Periksa urutan kata: dalam kalimat bahasa Inggris, posisi setiap kata mengubah arti.',
+    explanationWordOrder: 'Periksa urutan kata: dalam kalimat ini, posisi setiap kata mengubah arti.',
     explanationMissing: 'Periksa kata yang hilang dan baca ulang seluruh kalimat.',
     explanationMeaning: 'Hubungkan arti dengan seluruh kalimat, bukan hanya satu kata yang dikenal.',
     explanationPronunciation: 'Ucapkan kalimat dengan tenang dan jelas, jaga tekanan dan akhiran kata.',
@@ -269,7 +269,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Doğru cevap', why: 'Neden böyle', stopToday: 'Bu hata için bugünlük bu kadar tekrar yeter — sonra döneriz.',
     hidden: 'Hata gizlendi', undo: 'Geri al', continue: 'Devam et', check: 'Kontrol et',
     hideTitle: 'Bu hata gizlensin mi?', cancel: 'Vazgeç', hide: 'Gizle',
-    explanationWordOrder: 'Kelime sırasını kontrol et: İngilizce cümlede her kelimenin konumu anlamı değiştirir.',
+    explanationWordOrder: 'Kelime sırasını kontrol et: bu cümlede her kelimenin konumu anlamı değiştirir.',
     explanationMissing: 'Eksik kelimeyi kontrol et ve tüm cümleyi tekrar oku.',
     explanationMeaning: 'Anlamı tüm cümleyle ilişkilendir, sadece bildiğin bir kelimeyle değil.',
     explanationPronunciation: 'Cümleyi sakin ve net söyle, vurguyu ve ekleri koru.',
@@ -289,7 +289,7 @@ const sessionCopy = (lang: Lang) => triLang(lang, {
     correctAnswer: 'Poprawna odpowiedź', why: 'Dlaczego tak', stopToday: 'Na dziś wystarczy powtórek tego błędu — wrócimy do niego później.',
     hidden: 'Błąd ukryty', undo: 'Cofnij', continue: 'Kontynuuj', check: 'Sprawdź',
     hideTitle: 'Ukryć ten błąd?', cancel: 'Anuluj', hide: 'Ukryj',
-    explanationWordOrder: 'Sprawdź szyk wyrazów: w angielskim zdaniu pozycja każdego słowa zmienia znaczenie.',
+    explanationWordOrder: 'Sprawdź szyk wyrazów: w tym zdaniu pozycja każdego słowa zmienia znaczenie.',
     explanationMissing: 'Sprawdź brakujące słowo i przeczytaj całe zdanie jeszcze raz.',
     explanationMeaning: 'Połącz znaczenie z całym zdaniem, a nie tylko ze znanym słowem.',
     explanationPronunciation: 'Powiedz zdanie spokojnie i wyraźnie, zachowując akcent i końcówki.',
@@ -417,8 +417,8 @@ function MistakePracticeSessionScreen() {
   const g = useLv2Glass();
   const { lang } = useLang();
   const copy = useMemo(() => sessionCopy(lang), [lang]);
-  const pcopy = useMemo(() => practiceCopyFor(lang), [lang]);
   const { studyTarget } = useStudyTarget();
+  const pcopy = useMemo(() => practiceCopyFor(lang, studyTarget), [lang, studyTarget]);
   const [attemptSessionId] = useState(makeFeedbackAttemptId);
   const accountToken = useMemo(() => captureAccountGeneration(), []);
   const { hasPremiumAccess } = usePremium();

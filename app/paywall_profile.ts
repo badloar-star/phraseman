@@ -74,16 +74,17 @@ const GOAL_LABELS: Record<LearningGoal, Partial<Record<PaywallLang, string>>> = 
     pl: 'życia za granicą bez bariery',
     en: 'life abroad without the language barrier',
   },
+  // зачем (D188-следствие, владелец 14.10): человек может учить испанский, французский, немецкий, итальянский — без «английского».
   hobby: {
-    ru: 'английского в удовольствие',
-    uk: 'англійської в задоволення',
-    es: 'aprender inglés con gusto',
-    'pt-BR': 'aprender inglês com prazer',
-    vi: 'học tiếng Anh một cách thoải mái',
-    id: 'belajar bahasa Inggris dengan santai',
-    tr: 'keyifle İngilizce öğrenmek',
-    pl: 'angielskiego dla przyjemności',
-    en: 'enjoying English at your own pace',
+    ru: 'языка в удовольствие',
+    uk: 'мови в задоволення',
+    es: 'aprender idiomas con gusto',
+    'pt-BR': 'aprender idiomas com prazer',
+    vi: 'học ngoại ngữ một cách thoải mái',
+    id: 'belajar bahasa dengan santai',
+    tr: 'keyifle dil öğrenmek',
+    pl: 'języka dla przyjemności',
+    en: 'enjoying the language at your own pace',
   },
 };
 

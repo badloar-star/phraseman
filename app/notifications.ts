@@ -26,6 +26,7 @@ import {
   type TrialReminderTiming,
 } from './trial_end_reminder_schedule';
 import { getDevReminderTime } from './dev_robot_display';
+import { studyLanguageWord } from '../constants/study_language_words';
 import { resolveAutoReminderTime } from './smart_reminder_store';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
@@ -283,7 +284,7 @@ export async function cancelYoutubePremiereLocalNotification(notificationId: str
 // ── Мотивационные сообщения ──────────────────────────────────────────────────
 const MESSAGES_RU = [
   { title: '🔥 Серия ждёт тебя!',          body: '5 минут в день — и серия растёт' },
-  { title: '📚 Время для English',         body: 'Один раунд сегодня — уверенность на всю жизнь' },
+  { title: '📚 Время для практики',        body: 'Один раунд сегодня — уверенность на всю жизнь' },
   { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения вызовов!' },
   { title: '💪 Так держать!',              body: 'Ты уже столько прошёл. Продолжи сегодня' },
   { title: '🧠 Повтори вчерашнее',         body: 'Лучшее время для повторения — сейчас' },
@@ -291,7 +292,7 @@ const MESSAGES_RU = [
 
 const MESSAGES_UK = [
   { title: '🔥 Серія чекає тебе!',         body: '5 хвилин на день — і серія росте' },
-  { title: '📚 Час для English',            body: 'Один раунд сьогодні — впевненість на все життя' },
+  { title: '📚 Час для практики',          body: 'Один раунд сьогодні — впевненість на все життя' },
   { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення викликів!' },
   { title: '💪 Так тримати!',              body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
   { title: '🧠 Повтори вчорашнє',          body: 'Найкращий час для повторення — зараз' },
@@ -317,7 +318,7 @@ const MESSAGES_FR_TARGET_UK = [
 // ENGLISH_UI_LOCALE_ENABLED (см. normalizeNotificationLang); планировщик (когда и сколько шлём) не менялся.
 const MESSAGES_EN = [
   { title: '🔥 Your streak is waiting!',   body: '5 minutes a day — and the streak grows' },
-  { title: '📚 Time for English',          body: 'One round today — confidence for life' },
+  { title: '📚 Time to practice',          body: 'One round today — confidence for life' },
   { title: '🎯 Daily goal',                body: 'Just a little left to finish today’s challenges!' },
   { title: '💪 Keep it up!',               body: 'You’ve come so far. Continue today' },
   { title: '🧠 Review yesterday',          body: 'The best time to review is now' },
@@ -334,35 +335,35 @@ const MESSAGES_FR_TARGET_EN = [
 /** Испанский UX для напоминаний (нейтрал., без кальки). */
 const MESSAGES_ES = [
   { title: '🔥 ¡Tu racha cuenta!', body: 'No la cortes: dedica solo 5 minutos al día y verás la diferencia' },
-  { title: '📚 Tu momento de inglés', body: 'Una lección hoy puede darte seguridad mañana' },
+  { title: '📚 Tu momento de práctica', body: 'Una lección hoy puede darte seguridad mañana' },
   { title: '🎯 Objetivo del día', body: '¡Te falta muy poco para cerrar tus metas!' },
   { title: '💪 Sigue sumando', body: 'Ya recorriste mucho camino; continúa hoy' },
   { title: '🧠 Repasa lo de ayer', body: 'Este es un buen momento para refrescar lo aprendido' },
 ];
 const MESSAGES_PT_BR = [
   { title: '🔥 Sua sequência espera por você!', body: 'Não quebre o ritmo: 5 minutos por dia já fazem diferença' },
-  { title: '📚 Hora do inglês', body: 'Uma lição hoje traz mais confiança amanhã' },
+  { title: '📚 Hora de praticar', body: 'Uma lição hoje traz mais confiança amanhã' },
   { title: '🎯 Meta do dia', body: 'Falta pouco para fechar suas tarefas!' },
   { title: '💪 Continue firme', body: 'Você já avançou bastante. Treine hoje' },
   { title: '🧠 Revise o que viu ontem', body: 'Agora é um ótimo momento para reforçar' },
 ];
 const MESSAGES_VI = [
   { title: '🔥 Chuỗi học đang chờ bạn!', body: 'Đừng ngắt chuỗi: 5 phút mỗi ngày tạo khác biệt' },
-  { title: '📚 Đến giờ học tiếng Anh', body: 'Một bài hôm nay, tự tin hơn ngày mai' },
+  { title: '📚 Đến giờ luyện tập', body: 'Một bài hôm nay, tự tin hơn ngày mai' },
   { title: '🎯 Mục tiêu hôm nay', body: 'Bạn sắp hoàn thành các nhiệm vụ rồi!' },
   { title: '💪 Đừng dừng lại', body: 'Bạn đã đi được một đoạn dài. Học tiếp hôm nay nhé' },
   { title: '🧠 Ôn lại hôm qua', body: 'Bây giờ là lúc tốt để củng cố' },
 ];
 const MESSAGES_ID = [
   { title: '🔥 Streak menunggumu!', body: 'Jangan putuskan ritme: 5 menit sehari sudah berarti' },
-  { title: '📚 Waktunya bahasa Inggris', body: 'Satu pelajaran hari ini, lebih percaya diri besok' },
+  { title: '📚 Waktunya latihan', body: 'Satu pelajaran hari ini, lebih percaya diri besok' },
   { title: '🎯 Target harian', body: 'Sedikit lagi tugasmu selesai!' },
   { title: '💪 Lanjutkan', body: 'Kamu sudah banyak maju. Latihan hari ini' },
   { title: '🧠 Ulangi materi kemarin', body: 'Ini waktu yang pas untuk menguatkan ingatan' },
 ];
 const MESSAGES_TR = [
   { title: '🔥 Serin seni bekliyor!', body: 'Ritmi bozma: günde 5 dakika fark yaratır' },
-  { title: '📚 İngilizce zamanı', body: 'Bugün bir ders, yarın daha fazla güven' },
+  { title: '📚 Pratik zamanı', body: 'Bugün bir ders, yarın daha fazla güven' },
   { title: '⭐ Lig sıralamasında geçildin', body: 'Biri puan kazandı. Cevap vermeye hazır mısın?' },
   { title: '🎯 Günlük hedef', body: 'Görevleri tamamlamana çok az kaldı!' },
   { title: '💪 Devam et', body: 'Şimdiden çok ilerledin. Bugün de çalış' },
@@ -370,7 +371,7 @@ const MESSAGES_TR = [
 ];
 const MESSAGES_PL = [
   { title: '🔥 Twoja seria czeka!', body: 'Nie przerywaj rytmu: 5 minut dziennie robi różnicę' },
-  { title: '📚 Czas na angielski', body: 'Jedna lekcja dziś to więcej pewności jutro' },
+  { title: '📚 Czas na praktykę', body: 'Jedna lekcja dziś to więcej pewności jutro' },
   { title: '⭐ Ktoś cię wyprzedził', body: 'Ktoś zdobył punkty w lidze. Odpowiesz?' },
   { title: '🎯 Cel dnia', body: 'Niewiele brakuje do zamknięcia zadań!' },
   { title: '💪 Nie zatrzymuj się', body: 'Masz już spory postęp. Poćwicz dziś' },
@@ -2414,68 +2415,72 @@ export const schedulePhraseOfDayNotification = async (
     // Используем ежедневный повторяющийся триггер — не слетает после перезагрузки
     // телефона и не требует, чтобы пользователь открывал приложение каждый день.
 
+    // зачем (D188-следствие, владелец 14.10 «У НАС ЖЕ НЕ ТОЛЬКО АНГЛИЙСКИЙ»): фраза дня приходит на языке изучения — и подпись
+    // называет ЕГО, а не «English». Где падеж не подставить (uk винительный, tr притяжательный) — нейтрально.
+    const studyWord = studyLanguageWord(lang, studyTarget, 'name');
+    const studyGen = studyLanguageWord(lang, studyTarget, 'gen');
     const TEASERS_RU = [
       `"${phrase.english}" — знаешь что это значит?`,
       `"${phrase.english}" — открой приложение, чтобы узнать смысл.`,
       `"${phrase.english}" — natives говорят так каждый день. А ты знаешь зачем?`,
       `"${phrase.english}" — это не то, что ты думаешь.`,
-      `"${phrase.english}" — одна фраза, которая изменит твой English.`,
+      `"${phrase.english}" — одна фраза, которая изменит твой ${studyWord}.`,
     ];
     const TEASERS_UK = [
       `"${phrase.english}" — знаєш що це означає?`,
       `"${phrase.english}" — відкрий додаток, щоб дізнатись зміст.`,
       `"${phrase.english}" — natives кажуть так щодня. А ти знаєш навіщо?`,
       `"${phrase.english}" — це не те, що ти думаєш.`,
-      `"${phrase.english}" — один вислів, що змінить твій English.`,
+      `"${phrase.english}" — один вислів, що підніме твій рівень.`,
     ];
     const TEASERS_ES = [
       `"${phrase.english}" — ¿sabes qué significa?`,
       `"${phrase.english}" — abre la app y descubre el sentido.`,
       `"${phrase.english}" — los nativos lo dicen así a diario ¿tú ya sabes por qué?`,
       `"${phrase.english}" — no es lo que imaginas.`,
-      `"${phrase.english}" — una sola frase para subir de nivel en inglés.`,
+      `"${phrase.english}" — una sola frase para subir de nivel en ${studyWord}.`,
     ];
     const TEASERS_PT_BR = [
       `"${phrase.english}" — você sabe o que significa?`,
       `"${phrase.english}" — abra o app para descobrir o sentido.`,
       `"${phrase.english}" — nativos usam isso todo dia. Você sabe por quê?`,
       `"${phrase.english}" — não é bem o que parece.`,
-      `"${phrase.english}" — uma frase para subir o nível do seu inglês.`,
+      `"${phrase.english}" — uma frase para subir o nível do seu ${studyWord}.`,
     ];
     const TEASERS_VI = [
       `"${phrase.english}" — bạn biết nghĩa là gì không?`,
       `"${phrase.english}" — mở app để xem ý nghĩa.`,
       `"${phrase.english}" — người bản xứ nói vậy hằng ngày. Bạn biết vì sao chưa?`,
       `"${phrase.english}" — không hẳn như bạn nghĩ đâu.`,
-      `"${phrase.english}" — một cụm từ giúp tiếng Anh của bạn lên cấp.`,
+      `"${phrase.english}" — một cụm từ giúp ${studyWord} của bạn lên cấp.`,
     ];
     const TEASERS_ID = [
       `"${phrase.english}" — tahu artinya?`,
       `"${phrase.english}" — buka aplikasi untuk melihat maknanya.`,
       `"${phrase.english}" — native speaker memakainya setiap hari. Kamu tahu kenapa?`,
       `"${phrase.english}" — bukan seperti yang kamu kira.`,
-      `"${phrase.english}" — satu frasa untuk menaikkan level bahasa Inggrismu.`,
+      `"${phrase.english}" — satu frasa untuk menaikkan level ${studyWord}mu.`,
     ];
     const TEASERS_TR = [
       `"${phrase.english}" — ne anlama geldiğini biliyor musun?`,
       `"${phrase.english}" — anlamını görmek için uygulamayı aç.`,
       `"${phrase.english}" — native speaker'lar bunu her gün söyler. Nedenini biliyor musun?`,
       `"${phrase.english}" — düşündüğün şey olmayabilir.`,
-      `"${phrase.english}" — İngilizceni bir seviye yükseltecek tek ifade.`,
+      `"${phrase.english}" — seviyeni bir basamak yükseltecek tek ifade.`,
     ];
     const TEASERS_PL = [
       `"${phrase.english}" — wiesz, co to znaczy?`,
       `"${phrase.english}" — otwórz aplikację i sprawdź sens.`,
       `"${phrase.english}" — native speakerzy mówią tak codziennie. Wiesz dlaczego?`,
       `"${phrase.english}" — to nie całkiem to, co myślisz.`,
-      `"${phrase.english}" — jeden zwrot, który podnosi poziom angielskiego.`,
+      `"${phrase.english}" — jeden zwrot, który podnosi poziom ${studyGen}.`,
     ];
     const TEASERS_EN = [
       `"${phrase.english}" — do you know what it means?`,
       `"${phrase.english}" — open the app to find out the meaning.`,
       `"${phrase.english}" — natives say this every day. Do you know why?`,
       `"${phrase.english}" — it’s not what you think.`,
-      `"${phrase.english}" — one phrase that will level up your English.`,
+      `"${phrase.english}" — one phrase that will level up your ${studyWord}.`,
     ];
     const teasers = pickNotif(lang, notificationCopy({
       ru: TEASERS_RU,

@@ -745,36 +745,37 @@ const DIALOG_SCENARIO_COPY_BATCH: Record<string, ScenarioBatchCopies> = {
   ),
 };
 
+// зачем (D188-следствие, владелец 14.10): диалоги открыты для es/fr/de — запасная цель не называет язык («en inglés» было ложью).
 const FALLBACK_DIALOG_SCENARIO_COPY_ES: ScenarioUiCopyEs = {
   titleEs: 'Diálogo',
-  goalEs: 'Practica esta situación en inglés.',
+  goalEs: 'Practica esta situación.',
   nextStepHintEs: 'Responde con una frase sencilla y pide aclaración si hace falta.',
 };
 
 const FALLBACK_DIALOG_SCENARIO_COPY_BATCH: ScenarioBatchCopies = {
   'pt-BR': scenarioCopy(
     'Diálogo',
-    'Pratique esta situação em inglês.',
+    'Pratique esta situação.',
     'Responda com uma frase simples e peça esclarecimento se precisar.',
   ),
   vi: scenarioCopy(
     'Đối thoại',
-    'Luyện tình huống này bằng tiếng Anh.',
+    'Luyện tình huống này.',
     'Trả lời bằng một câu đơn giản và hỏi lại nếu cần làm rõ.',
   ),
   id: scenarioCopy(
     'Dialog',
-    'Latih situasi ini dalam bahasa Inggris.',
+    'Latih situasi ini.',
     'Jawab dengan kalimat sederhana dan minta klarifikasi jika perlu.',
   ),
   tr: scenarioCopy(
     'Diyalog',
-    'Bu durumu İngilizce pratik et.',
+    'Bu durumu pratik et.',
     'Basit bir cümleyle cevap ver ve gerekirse açıklama iste.',
   ),
   pl: scenarioCopy(
     'Dialog',
-    'Przećwicz tę sytuację po angielsku.',
+    'Przećwicz tę sytuację.',
     'Odpowiedz prostym zdaniem i poproś o wyjaśnienie, jeśli trzeba.',
   ),
 };

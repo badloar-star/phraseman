@@ -4,7 +4,7 @@ import { getPublicDialogScenarios } from '../app/ai_dialog_scenarios';
 describe('aiDialogBriefingBody', () => {
   it('returns the approved Russian coffee briefing', () => {
     expect(aiDialogBriefingBody('coffee', 'ru')).toBe(
-      'Закажи капучино, выбери размер и спроси цену. Бариста не читает мысли — зато отлично понимает вежливый английский.',
+      'Закажи капучино, выбери размер и спроси цену. Бариста не читает мысли — зато отлично понимает вежливую просьбу.', // D188: диалоги и на es/fr/de
     );
   });
 

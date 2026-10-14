@@ -352,7 +352,8 @@ export default function SettingsEdu() {
       testID: 'fc-autospeak-toggle',
       value: fcAutoSpeak,
       label: L({ ru: 'Автопроизношение', uk: 'Автовимова', en: 'Auto pronunciation', es: 'Pronunciación automática', 'pt-BR': 'Pronúncia automática', vi: 'Tự động phát âm', id: 'Pelafalan otomatis', tr: 'Otomatik telaffuz', pl: 'Automatyczna wymowa' }),
-      sub: L({ ru: 'Озвучивать английскую фразу после ответа', uk: 'Озвучувати англійський вислів після відповіді', en: 'Read the English phrase after answering', es: 'Leer la frase en inglés después de responder', 'pt-BR': 'Ler a frase em inglês após responder', vi: 'Đọc câu tiếng Anh sau khi trả lời', id: 'Bacakan frasa Inggris setelah menjawab', tr: 'Cevaptan sonra İngilizce ifadeyi oku', pl: 'Odczytaj angielskie zdanie po odpowiedzi' }),
+      // зачем (D188-следствие, 14.10): озвучка работает для любого изучаемого языка — подпись не называет английский.
+      sub: L({ ru: 'Озвучивать фразу после ответа', uk: 'Озвучувати вислів після відповіді', en: 'Read the phrase aloud after answering', es: 'Leer la frase después de responder', 'pt-BR': 'Ler a frase após responder', vi: 'Đọc câu sau khi trả lời', id: 'Bacakan frasa setelah menjawab', tr: 'Cevaptan sonra ifadeyi oku', pl: 'Odczytaj zdanie po odpowiedzi' }),
       icon: 'volume-high-outline' as const,
       onValueChange: (value: boolean) => { setFcAutoSpeak(value); void Promise.resolve(setFcAutoSpeakEnabled(value)).catch(logToggleSaveFailure('fc_autospeak', () => setFcAutoSpeak((current) => (current === value ? !value : current)))); },
     },

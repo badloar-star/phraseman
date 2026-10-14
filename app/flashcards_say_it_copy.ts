@@ -7,7 +7,7 @@
 import { triLang, type Lang } from '../constants/i18n';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 
-type SayItTarget = 'en' | 'es' | 'fr' | 'de';
+type SayItTarget = 'en' | 'es' | 'fr' | 'de' | 'it';
 
 type SayItCopy = Readonly<{ ru: string; uk: string; en: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }>;
 
@@ -32,6 +32,12 @@ const SAY_IT: Readonly<Record<SayItTarget, SayItCopy>> = {
     'pt-BR': 'Diga em alemão', vi: 'Nói bằng tiếng Đức', id: 'Ucapkan dalam bahasa Jerman',
     tr: 'Almanca söyle', pl: 'Powiedz po niemiecku',
   },
+  // зачем (D188, 14.10): итальянский открыт — без своей строки он получал нейтральное «Скажи вслух».
+  it: {
+    ru: 'Скажи по-итальянски', uk: 'Скажи італійською', en: 'Say it in Italian', es: 'Dilo en italiano',
+    'pt-BR': 'Diga em italiano', vi: 'Nói bằng tiếng Ý', id: 'Ucapkan dalam bahasa Italia',
+    tr: 'İtalyanca söyle', pl: 'Powiedz po włosku',
+  },
 };
 
 const SAY_IT_ALOUD: SayItCopy = {
@@ -40,7 +46,7 @@ const SAY_IT_ALOUD: SayItCopy = {
 };
 
 function isSayItTarget(value: RuntimeStudyTarget): value is SayItTarget {
-  return value === 'en' || value === 'es' || value === 'fr' || value === 'de';
+  return value === 'en' || value === 'es' || value === 'fr' || value === 'de' || value === 'it';
 }
 
 export function sayItInStudyLanguage(lang: Lang, studyTarget: RuntimeStudyTarget): string {

@@ -89,8 +89,21 @@ export async function isLocalAnonymousIdentityProvenCleanForCredentialHandoff(
       identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof unavailable', { reason: 'no_getAllKeys' });
       return false;
     }
+    // зачем (координатор 14.10, вход №6: clean_proof 0,9–1,6 с): сперва замер шагов — сколько ключей, сколько байт, кто самый крупный.
+    const t0 = Date.now();
     const keys = await storage.getAllKeys();
-    const rows = await storage.multiGet(accountOwnedStorageKeysFrom(keys));
+    const t1 = Date.now();
+    const selected = accountOwnedStorageKeysFrom(keys);
+    const t2 = Date.now();
+    const rows = await storage.multiGet(selected);
+    const t3 = Date.now();
+    const sized = rows.map(([key, value]) => [key, value ? value.length : 0] as const);
+    const totalBytes = sized.reduce((sum, [, len]) => sum + len, 0);
+    const top5 = [...sized].sort((a, b) => b[1] - a[1]).slice(0, 5).map(([key, len]) => `${redactStorageKey(key)}=${len}`).join(' ');
+    identityTrace('[AUTH-LINK-GOOGLE]', 'clean_proof timing', {
+      allKeys: keys.length, getAllKeysMs: t1 - t0, selected: selected.length, filterMs: t2 - t1,
+      multiGetMs: t3 - t2, bytes: totalBytes, top5,
+    });
     const dirtyKeys = rows
       .filter(([key, value]) => !NON_AUTHORITATIVE_BOOT_KEYS.has(key) && isMeaningfulStoredAccountValue(value))
       .map(([key]) => key);
